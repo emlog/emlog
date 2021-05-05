@@ -275,7 +275,7 @@ footer .copyright {
 
 .comment-post input {
     padding: 5px 10px;
-    font-size: large;
+    font-size: small;
     color: #6c757d;
     width: 33.334%
 }
@@ -283,7 +283,7 @@ footer .copyright {
 .comment-post #comment {
     width: 100%;
     border: 1px #d6d6d6 solid;
-    font-size: large;
+    font-size: small;
     border-radius: 10px;
     height: 149px;
     resize: none
@@ -310,7 +310,7 @@ footer .copyright {
 .comment {
     margin: 10px 0;
     padding: 10px 0px;
-    font-size: large;
+    font-size: medium;
     border-bottom: 1px #f7f7f7 solid;
     overflow: hidden;
     color: #333;
