@@ -151,14 +151,14 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
             <div class="form-inline">
 				<?php if (!$draft): ?>
 					<?php if (ROLE == ROLE_ADMIN): ?>
-                        <select name="top" id="top" onChange="changeTop(this);" class="form-control">
+                        <select name="top" id="top" onChange="changeTop(this);" class="form-control m-1">
                             <option value="" selected="selected">置顶</option>
                             <option value="top">首页置顶</option>
                             <option value="sortop">分类置顶</option>
                             <option value="notop">取消置顶</option>
                         </select>
 					<?php endif; ?>
-                    <select name="sort" id="sort" onChange="changeSort(this);" class="form-control mx-1">
+                    <select name="sort" id="sort" onChange="changeSort(this);" class="form-control m-1">
                         <option value="" selected="selected">移动到分类</option>
 						<?php
 						foreach ($sorts as $key => $value):
@@ -181,7 +181,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
                         <option value="-1">未分类</option>
                     </select>
 					<?php if (ROLE == ROLE_ADMIN && count($user_cache) > 1): ?>
-                        <select name="author" id="author" onChange="changeAuthor(this);" class="form-control mx-1">
+                        <select name="author" id="author" onChange="changeAuthor(this);" class="form-control m-1">
                             <option value="" selected="selected">更改作者</option>
 							<?php foreach ($user_cache as $key => $val):
 								$val['name'] = $val['name'];
