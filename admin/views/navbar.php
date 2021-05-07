@@ -51,15 +51,16 @@
                             case Navi_Model::navitype_t:
                             case Navi_Model::navitype_admin:
                                 $value['type_name'] = '系统';
+							    $value['url'] = '/' . $value['url'];
                                 break;
                             case Navi_Model::navitype_sort:
-                                $value['type_name'] = '<font color="blue">分类</font>';
+                                $value['type_name'] = '<span class="text-primary">分类</span>';
                                 break;
                             case Navi_Model::navitype_page:
-                                $value['type_name'] = '<font color="#00A3A3">页面</font>';
+                                $value['type_name'] = '<span class="text-success">页面</span>';
                                 break;
                             case Navi_Model::navitype_custom:
-                                $value['type_name'] = '<font color="#FF6633">自定</font>';
+                                $value['type_name'] = '<span class="text-danger">自定</span>';
                                 break;
                         }
                         doAction('adm_navi_display');
@@ -71,7 +72,8 @@
                             <td><?php echo $value['type_name']; ?></td>
                             <td>
                                 <a href="<?php echo $value['url']; ?>" target="_blank">
-                                    <img src="./views/images/<?php echo $value['newtab'] == 'y' ? 'vlog.gif' : 'vlog2.gif'; ?>" align="absbottom" border="0"/></a>
+                                    <img src="./views/images/<?php echo $value['newtab'] == 'y' ? 'vlog.gif' : 'vlog2.gif'; ?>" align="absbottom" border="0"/>
+                                </a>
                             </td>
                             <td><?php echo $value['url']; ?></td>
                             <td>
@@ -180,8 +182,7 @@
                                 $value = $sorts[$key];
                                 ?>
                                 <div class="form-group">
-                                    &nbsp; &nbsp; &nbsp; <input type="checkbox" style="vertical-align:middle;" name="sort_ids[]" value="<?php echo $value['sid']; ?>"
-                                                                class="ids"/>
+                                    &nbsp; &nbsp; &nbsp; <input type="checkbox" style="vertical-align:middle;" name="sort_ids[]" value="<?php echo $value['sid']; ?>" class="ids"/>
                                     <?php echo $value['sortname']; ?>
                                 </div>
                             <?php

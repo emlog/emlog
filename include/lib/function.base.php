@@ -623,12 +623,12 @@ function chImageSize($img, $max_w, $max_h) {
 }
 
 /**
- * 获取Gravatar头像，使用Gravatar国内镜像源
+ * 获取Gravatar头像，使用Gravatar国内镜像源：极客族公共加速服务 https://cdn.geekzu.org/donate.html
  * http://en.gravatar.com/site/implement/images/
  */
-function getGravatar($email) {
+function getGravatar($email, $s = 40) {
 	$hash = md5($email);
-	return "//dn-qiniu-avatar.qbox.me/avatar/$hash";
+	return "http://sdn.geekzu.org/avatar/$hash?s=$s";
 }
 
 /**
