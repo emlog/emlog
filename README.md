@@ -47,7 +47,7 @@ https://www.emlog.net/download
 <a href="https://github.com/vibbow" target="_blank">
 <img width="30px" style="border-radius:999px" src="https://avatars.githubusercontent.com/u/6408107?s=40"/>
 </a>
-<a href="https://github.com/kohungleeg" target="_blank">
+<a href="https://github.com/kohunglee" target="_blank">
 <img width="40px" style="border-radius:999px" src="https://avatars.githubusercontent.com/u/33373536?s=40"/>
 </a>
 
