@@ -48,7 +48,7 @@ function widget_blogger($title) {
 <?php
 //widget：日历
 function widget_calendar($title) { ?>
-    <div class="widget shadow-theme mh">
+    <div class="widget shadow-theme">
         <div class="widget-title m">
             <h3><?php echo $title; ?></h3>
         </div>
@@ -80,7 +80,7 @@ function widget_tag($title) {
 function widget_sort($title) {
 	global $CACHE;
 	$sort_cache = $CACHE->readCache('sort'); ?>
-    <div class="widget shadow-theme mh">
+    <div class="widget shadow-theme">
         <div class="widget-title m">
             <h3><?php echo $title; ?></h3>
         </div>
@@ -116,7 +116,7 @@ function widget_newcomm($title) {
 	global $CACHE;
 	$com_cache = $CACHE->readCache('comment');
 	?>
-    <div class="widget shadow-theme mh">
+    <div class="widget shadow-theme">
         <div class="widget-title m">
             <h3><?php echo $title; ?></h3>
         </div>
@@ -191,7 +191,7 @@ function widget_archive($title) {
 	global $CACHE;
 	$record_cache = $CACHE->readCache('record');
 	?>
-    <div class="widget shadow-theme mh">
+    <div class="widget shadow-theme">
         <div class="widget-title m">
             <h3><?php echo $title; ?></h3>
         </div>
