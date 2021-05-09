@@ -98,9 +98,9 @@
             </div>
             <div class="list_footer">
                 <div class="btn-group btn-group-sm" role="group">
-                    <a type="button" href="javascript:commentact('del');" class="btn btn-danger">删除</a>
-                    <a type="button" href="javascript:commentact('hide');" class="btn btn-success">隐藏</a>
-                    <a type="button" href="javascript:commentact('pub');" class="btn btn-success">审核</a>
+                    <a type="button" href="javascript:commentact('del');" class="btn btn-sm btn-danger">删除</a>
+                    <a type="button" href="javascript:commentact('hide');" class="btn btn-sm btn-success">隐藏</a>
+                    <a type="button" href="javascript:commentact('pub');" class="btn btn-sm btn-success">审核</a>
                 </div>
                 <input name="operate" id="operate" value="" type="hidden"/>
             </div>
@@ -128,8 +128,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                    <button type="submit" class="btn btn-success">回复</button>
+                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-sm btn-success">回复</button>
                 </div>
             </form>
         </div>

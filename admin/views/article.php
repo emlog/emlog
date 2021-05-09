@@ -35,7 +35,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
     <div class="alert alert-success">文章驳回成功</div><?php endif; ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">文章管理</h1>
-    <a href="./article.php?action=write" class="d-none d-sm-inline-block btn btn-success shadow-sm"><i class="icofont-pencil-alt-5"></i> 写新文章</a>
+    <a href="./article.php?action=write" class="btn btn-sm btn-success shadow-sm"><i class="icofont-pencil-alt-5"></i> 写新文章</a>
 </div>
 <div class="panel-heading">
     <ul class="nav nav-tabs">
@@ -196,11 +196,11 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 				<?php endif; ?>
 
                 <div class="btn-group btn-group-sm" role="group">
-                    <a type="button" href="javascript:logact('del');" class="btn btn-danger">删除</a>
+                    <a type="button" href="javascript:logact('del');" class="btn btn-sm btn-danger">删除</a>
 					<?php if ($draft): ?>
-                        <a type="button" href="javascript:logact('pub');" class="btn btn-success">发布</a>
+                        <a type="button" href="javascript:logact('pub');" class="btn btn-sm btn-success">发布</a>
 					<?php else: ?>
-                        <a type="button" href="javascript:logact('hide');" class="btn btn-success">放入草稿箱</a>
+                        <a type="button" href="javascript:logact('hide');" class="btn btn-sm btn-success">放入草稿箱</a>
 					<?php endif; ?>
                 </div>
             </div>

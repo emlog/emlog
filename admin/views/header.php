@@ -110,7 +110,7 @@
                     <div class="input-group">
                         <input type="text" name="keyword" class="form-control bg-light border-0 small" placeholder="查找文章..." aria-label="Search" aria-describedby="basic-addon2">
                         <div class="input-group-append">
-                            <button class="btn btn-success" type="submit">
+                            <button class="btn btn-sm btn-success" type="submit">
                                 <i class="icofont-search-2"></i>
                             </button>
                         </div>

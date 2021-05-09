@@ -21,7 +21,7 @@
     <div class="alert alert-danger">不能修改创始人信息</div><?php endif; ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">用户管理</h1>
-    <a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#exampleModal"><i class="icofont-plus"></i> 添加用户</a>
+    <a href="#" class="btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#exampleModal"><i class="icofont-plus"></i> 添加用户</a>
 </div>
 <div class="card shadow mb-4">
     <div class="card-header py-3">
@@ -115,8 +115,8 @@
                 </div>
                 <div class="modal-footer">
                     <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                    <button type="submit" class="btn btn-success">保存</button>
+                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-sm btn-success">保存</button>
                     <span id="alias_msg_hook"></span>
                 </div>
             </form>

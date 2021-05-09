@@ -34,7 +34,7 @@
 	<?php endif; ?>
     <input type="hidden" value="<?php echo $naviId; ?>" name="navid"/>
     <input type="hidden" value="<?php echo $isdefault; ?>" name="isdefault"/>
-    <input type="submit" value="保 存" class="btn btn-success"/>
+    <input type="submit" value="保 存" class="btn btn-sm btn-success"/>
     <input type="button" value="取 消" class="btn btn-default" onclick="javascript: window.history.back();"/>
 </form>
 <script>

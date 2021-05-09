@@ -71,7 +71,7 @@
             </div>
 
             <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
-            <input type="submit" value="保存设置" class="btn btn-success"/>
+            <input type="submit" value="保存设置" class="btn btn-sm btn-success"/>
         </form>
     </div>
 </div>

@@ -252,8 +252,8 @@
                                 </li>
                                 <li><textarea class="form-control" name="content" style="overflow:auto; height:260px;"><?php echo $val['content']; ?></textarea><br/></li>
                                 <li>
-                                    <input type="submit" class="btn btn-success" name="" value="保存"/>
-                                    <a class="btn btn-danger" href="widgets.php?action=setwg&wg=custom_text&rmwg=<?php echo $key; ?>">删除</a>
+                                    <input type="submit" class="btn btn-sm btn-success" name="" value="保存"/>
+                                    <a class="btn btn-sm btn-danger" href="widgets.php?action=setwg&wg=custom_text&rmwg=<?php echo $key; ?>">删除</a>
                                 </li>
                             </form>
                         </div>
@@ -262,7 +262,7 @@
 			<?php endforeach; ?>
         </div>
         <div class="my-3">
-            <a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> 添加组件</a>
+            <a href="#" class="btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> 添加组件</a>
         </div>
 
         <!--添加自定义组件-->
@@ -287,8 +287,8 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                            <button type="submit" class="btn btn-success">保存</button>
+                            <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
+                            <button type="submit" class="btn btn-sm btn-success">保存</button>
                             <span id="alias_msg_hook"></span>
                         </div>
                     </form>
@@ -327,8 +327,8 @@
 				<?php endforeach; ?>
             </div>
             <div class="my-3">
-                <input type="submit" value="保存组件排序" class="btn btn-success"/>
-                <a href="javascript:em_confirm(0, 'reset_widget', '<?php echo LoginAuth::genToken(); ?>');" class="btn btn-warning">重置组件</a>
+                <input type="submit" value="保存组件排序" class="btn btn-sm btn-success"/>
+                <a href="javascript:em_confirm(0, 'reset_widget', '<?php echo LoginAuth::genToken(); ?>');" class="btn btn-sm btn-warning">重置组件</a>
             </div>
         </form>
     </div>

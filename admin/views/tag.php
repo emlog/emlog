@@ -46,9 +46,9 @@
                 </div>
                 <div class="modal-footer">
                     <input type="hidden" value="" id="tid" name="tid"/>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                    <button type="submit" class="btn btn-success">保存</button>
-                    <a class="btn btn-outline-danger" href="javascript:deltags();">删除</a>
+                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-sm btn-success">保存</button>
+                    <a class="btn btn-sm btn-outline-danger" href="javascript:deltags();">删除</a>
                 </div>
             </form>
         </div>

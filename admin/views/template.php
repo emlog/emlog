@@ -29,7 +29,7 @@
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">模板管理</h1>
-    <a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> 安装模板</a>
+    <a href="#" class="btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> 安装模板</a>
 </div>
 <div class="card-columns">
 	<?php foreach ($tpls as $key => $value): ?>
@@ -71,8 +71,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                    <button type="submit" class="btn btn-success">上传</button>
+                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-sm btn-success">上传</button>
                     <span id="alias_msg_hook"></span>
                 </div>
             </form>

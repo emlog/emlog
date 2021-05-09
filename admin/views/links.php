@@ -93,8 +93,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                    <button type="submit" class="btn btn-success">保存</button>
+                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-sm btn-success">保存</button>
                     <span id="alias_msg_hook"></span>
                 </div>
             </form>
@@ -130,8 +130,8 @@
                 </div>
                 <div class="modal-footer">
                     <input type="hidden" value="" name="linkid" id="linkid"/>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                    <button type="submit" class="btn btn-success">保存</button>
+                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-sm btn-success">保存</button>
                     <span id="alias_msg_hook"></span>
                 </div>
             </form>
