@@ -33,7 +33,7 @@
 					<?php endif; ?>
                 </p>
                 <p class="card-text">
-                    <a href="javascript: em_confirm(<?php echo $value['aid']; ?>, 'media', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-danger">删除</a>
+                    <a href="javascript: em_confirm(<?php echo $value['aid']; ?>, 'media', '<?php echo LoginAuth::genToken(); ?>');" class="btn btn-sm btn-danger">删除</a>
                 </p>
             </div>
         </div>

@@ -33,19 +33,17 @@
 </div>
 <div class="card-columns">
 	<?php foreach ($tpls as $key => $value): ?>
-        <div class="card <?php if ($nonce_templet == $value['tplfile']) {
-			echo "border border-warning";
-		} ?>">
-            <div class="card-header <?php if ($nonce_templet == $value['tplfile']) {
-				echo "bg-warning";
-			} ?>"><?php echo $value['tplname']; ?></div>
+        <div class="card">
+            <div class="card-header <?php if ($nonce_templet == $value['tplfile']) {echo "bg-success text-white";} ?>">
+                <?php echo $value['tplname']; ?>
+            </div>
             <div class="card-body">
                 <a href="template.php?action=usetpl&tpl=<?php echo $value['tplfile']; ?>&side=<?php echo $value['sidebar']; ?>&token=<?php echo LoginAuth::genToken(); ?>">
                     <img class="card-img-top" src="<?php echo TPLS_URL . $value['tplfile']; ?>/preview.jpg" alt="Card image cap">
                 </a>
             </div>
             <div class="card-footer">
-                <a class="badge badge-danger" href="javascript: em_confirm('<?php echo $value['tplfile']; ?>', 'tpl', '<?php echo LoginAuth::genToken(); ?>');">删除</a>
+                <a class="btn btn-sm btn-danger" href="javascript: em_confirm('<?php echo $value['tplfile']; ?>', 'tpl', '<?php echo LoginAuth::genToken(); ?>');">删除</a>
             </div>
         </div>
 	<?php endforeach; ?>
