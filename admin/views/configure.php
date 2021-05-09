@@ -48,10 +48,13 @@
                 <label class="form-check-label">登录验证码</label>
             </div>
 
-            <div class="form-group form-inline">
+            <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="iscomment" id="iscomment" <?php echo $conf_iscomment; ?> />
                 <label>开启评论</label>，
-                发表评论间隔<input class="form-control" value="<?php echo $comment_interval; ?>" name=comment_interval/>秒
+            </div>
+
+            <div class="form-check form-inline">
+                发表评论间隔 <input class="form-control" value="<?php echo $comment_interval; ?>" name="comment_interval" style="width: 100px;"/>秒
             </div>
 
             <div class="form-check">
@@ -70,15 +73,19 @@
                 <input class="form-check-input" type="checkbox" value="y" name="comment_needchinese" id="comment_needchinese" <?php echo $conf_comment_needchinese; ?> />
                 <label>评论内容必须包含中文</label>
             </div>
-            <div class="form-group form-inline">
+            <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="comment_paging" id="comment_paging" <?php echo $conf_comment_paging; ?> />
-                <label>评论分页，</label>
+                <label>评论分页</label>
+            </div>
+            <div class="form-check form-inline">
                 每页显示<input maxlength="5" style="width:50px;" class="form-control" value="<?php echo $comment_pnum; ?>" name="comment_pnum"/>条评论，
-                <select name="comment_order" class="form-control">
+                <select name="comment_order" class="form-control" style="width: 100px;">
                     <option value="newer" <?php echo $ex3; ?>>较新的</option>
                     <option value="older" <?php echo $ex4; ?>>较旧的</option>
                 </select>排在前面
             </div>
+
+            <hr>
 
             <div class="form-group form-inline">
                 <label>每页显示文章数量</label>
@@ -93,9 +100,13 @@
                 </select>
             </div>
 
-            <div class="form-group form-inline">
+            <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="isexcerpt" id="isexcerpt" <?php echo $conf_isexcerpt; ?> />
-                <label class="form-check-label">自动摘要, 且自动截取</label>
+                <label class="form-check-label">自动摘要</label>
+            </div>
+
+            <div class="form-check form-inline">
+                <label class="form-check-label">自动截取</label>
                 <input type="text" name="excerpt_subnum" value="<?php echo Option::get('excerpt_subnum'); ?>" class="form-control" style="width:60px;"/>个字作为摘要
             </div>
 
@@ -119,7 +130,7 @@
                 <textarea name="footer_info" rows="6" class="form-control"><?php echo $footer_info; ?></textarea>
             </div>
             <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
-            <input type="submit" value="保存设置" class="btn btn-sm btn-success"/>
+            <input type="submit" value="保存设置" class="btn btn-success"/>
         </form>
     </div>
 </div>
