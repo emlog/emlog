@@ -43,7 +43,7 @@
                 </a>
             </div>
             <div class="card-footer">
-                <a class="btn btn-sm btn-danger" href="javascript: em_confirm('<?php echo $value['tplfile']; ?>', 'tpl', '<?php echo LoginAuth::genToken(); ?>');">删除</a>
+                <a class="badge badge-danger" href="javascript: em_confirm('<?php echo $value['tplfile']; ?>', 'tpl', '<?php echo LoginAuth::genToken(); ?>');">删除</a>
             </div>
         </div>
 	<?php endforeach; ?>

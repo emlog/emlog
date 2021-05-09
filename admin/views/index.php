@@ -17,19 +17,19 @@
             <div class="card-body">
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item d-flex justify-content-between align-items-center">文章
-                        <span class="badge badge-primary badge-pill"><?php echo $sta_cache['lognum']; ?></span>
+                        <a href="./article.php"><span class="badge badge-primary badge-pill"><?php echo $sta_cache['lognum']; ?></span></a>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">草稿
-                        <span class="badge badge-primary badge-pill"><?php echo $sta_cache['draftnum']; ?></span>
+                        <a href="./article.php?draft=1"><span class="badge badge-primary badge-pill"><?php echo $sta_cache['draftnum']; ?></span></a>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">评论
-                        <span class="badge badge-primary badge-pill"><?php echo $sta_cache['comnum_all']; ?></span>
+                        <a href="./comment.php"><span class="badge badge-primary badge-pill"><?php echo $sta_cache['comnum_all']; ?></span></a>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">待审评论
-                        <span class="badge badge-warning badge-pill"><?php echo $sta_cache['hidecomnum']; ?></span>
+                        <a href="./comment.php?hide=y"><span class="badge badge-warning badge-pill"><?php echo $sta_cache['hidecomnum']; ?></span></a>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">用户数
-                        <span class="badge badge-warning badge-pill"><?php echo count($user_cache); ?></span>
+                        <a href="./user.php"><span class="badge badge-warning badge-pill"><?php echo count($user_cache); ?></span></a>
                     </li>
                 </ul>
             </div>
