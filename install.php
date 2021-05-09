@@ -15,7 +15,7 @@ if (PHP_VERSION < '7.0') {
 	emMsg('PHP版本过低，请选择支持PHP7及以上的环境安装');
 }
 
-$act = $_GET['action'] ?? '';
+$act = isset($_GET['action']) ? $_GET['action'] : '';
 
 if (!$act) {
 	?>
