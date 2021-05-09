@@ -404,7 +404,7 @@ textarea {
     padding:0px 40px 0px 30px;
 }
 .required{color: red; font-size: 16px; margin-left: 2px;}
-.page{text-align:right;margin:10px 0px;}
+.page{text-align:center;margin:10px 0px;}
 .page span{
     background-color: #4e73df;
     color:#FFF;
