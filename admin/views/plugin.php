@@ -29,66 +29,68 @@
 </div>
 <div class="card shadow mb-4">
     <div class="card-body">
-        <table class="table table-striped table-bordered table-hover dataTable no-footer">
-            <thead>
-            <tr>
-                <th>插件名</th>
-                <th>版本</th>
-                <th>描述</th>
-                <th>开关</th>
-                <th>操作</th>
-            </tr>
-            </thead>
-            <tbody>
-			<?php
-			if ($plugins):
-				$i = 0;
-				foreach ($plugins as $key => $val):
-					$plug_state = 'inactive';
-					$plug_action = 'active';
-					$plug_state_des = '点击开启插件';
-					if (in_array($key, $active_plugins)) {
-						$plug_state = 'active';
-						$plug_action = 'inactive';
-						$plug_state_des = '点击禁用插件';
-					}
-					$i++;
-					if (TRUE === $val['Setting']) {
-						$val['Name'] = "<a href=\"./plugin.php?plugin={$val['Plugin']}\" title=\"点击设置插件\">{$val['Name']}</a>";
-					}
-					?>
-                    <tr>
-                        <td><?php echo $val['Name']; ?></td>
-                        <td><?php echo $val['Version']; ?></td>
-                        <td>
-							<?php echo $val['Description']; ?>
-							<?php if ($val['Url'] != ''): ?><a href="<?php echo $val['Url']; ?>" target="_blank">更多信息&raquo;</a><?php endif; ?>
-                            <div style="margin-top:5px;">
-								<?php if ($val['ForEmlog'] != ''): ?>适用于emlog：<?php echo $val['ForEmlog']; ?>&nbsp | &nbsp<?php endif; ?>
-								<?php if ($val['Author'] != ''): ?>
-                                    作者：<?php if ($val['AuthorUrl'] != ''): ?>
-                                        <a href="<?php echo $val['AuthorUrl']; ?>" target="_blank"><?php echo $val['Author']; ?></a>
-									<?php else: ?>
-										<?php echo $val['Author']; ?>
-									<?php endif; ?>
-								<?php endif; ?>
-                            </div>
-                        </td>
-                        <td id="plugin_<?php echo $i; ?>">
-                            <a href="./plugin.php?action=<?php echo $plug_action; ?>&plugin=<?php echo $key; ?>&token=<?php echo LoginAuth::genToken(); ?>"><img
-                                        src="./views/images/plugin_<?php echo $plug_state; ?>.gif" title="<?php echo $plug_state_des; ?>" align="absmiddle" border="0"></a>
-                        </td>
-                        <td>
-                            <a href="javascript: em_confirm('<?php echo $key; ?>', 'plu', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-danger">删除</a>
-                        </td>
-                    </tr>
-				<?php endforeach; else: ?>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover dataTable no-footer">
+                <thead>
                 <tr>
-                    <td colspan="5">还没有安装插件</td>
+                    <th>插件名</th>
+                    <th>版本</th>
+                    <th>描述</th>
+                    <th>开关</th>
+                    <th>操作</th>
                 </tr>
-			<?php endif; ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+				<?php
+				if ($plugins):
+					$i = 0;
+					foreach ($plugins as $key => $val):
+						$plug_state = 'inactive';
+						$plug_action = 'active';
+						$plug_state_des = '点击开启插件';
+						if (in_array($key, $active_plugins)) {
+							$plug_state = 'active';
+							$plug_action = 'inactive';
+							$plug_state_des = '点击禁用插件';
+						}
+						$i++;
+						if (TRUE === $val['Setting']) {
+							$val['Name'] = "<a href=\"./plugin.php?plugin={$val['Plugin']}\" title=\"点击设置插件\">{$val['Name']}</a>";
+						}
+						?>
+                        <tr>
+                            <td><?php echo $val['Name']; ?></td>
+                            <td><?php echo $val['Version']; ?></td>
+                            <td>
+								<?php echo $val['Description']; ?>
+								<?php if ($val['Url'] != ''): ?><a href="<?php echo $val['Url']; ?>" target="_blank">更多信息&raquo;</a><?php endif; ?>
+                                <div style="margin-top:5px;">
+									<?php if ($val['ForEmlog'] != ''): ?>适用于emlog：<?php echo $val['ForEmlog']; ?>&nbsp | &nbsp<?php endif; ?>
+									<?php if ($val['Author'] != ''): ?>
+                                        作者：<?php if ($val['AuthorUrl'] != ''): ?>
+                                            <a href="<?php echo $val['AuthorUrl']; ?>" target="_blank"><?php echo $val['Author']; ?></a>
+										<?php else: ?>
+											<?php echo $val['Author']; ?>
+										<?php endif; ?>
+									<?php endif; ?>
+                                </div>
+                            </td>
+                            <td id="plugin_<?php echo $i; ?>">
+                                <a href="./plugin.php?action=<?php echo $plug_action; ?>&plugin=<?php echo $key; ?>&token=<?php echo LoginAuth::genToken(); ?>"><img
+                                            src="./views/images/plugin_<?php echo $plug_state; ?>.gif" title="<?php echo $plug_state_des; ?>" align="absmiddle" border="0"></a>
+                            </td>
+                            <td>
+                                <a href="javascript: em_confirm('<?php echo $key; ?>', 'plu', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-danger">删除</a>
+                            </td>
+                        </tr>
+					<?php endforeach; else: ?>
+                    <tr>
+                        <td colspan="5">还没有安装插件</td>
+                    </tr>
+				<?php endif; ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 

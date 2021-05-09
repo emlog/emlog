@@ -22,11 +22,12 @@
     <script src="./views/js/common.js"></script>
 	<?php doAction('adm_head'); ?>
 </head>
+<body>
 <div id="wrapper">
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-        <a class="sidebar-brand d-flex align-items-center" href="./">
-            <div class="sidebar-brand-text mx-3">EMLOG Pro <?php if (ISREG === false) : ?>未注册<?php endif; ?></div>
-        </a>
+        <li class="nav-item active" id="menu_home">
+            <a class="nav-link" href="./">EMLOG PRO <?php if (ISREG === false) : ?>未注册<?php endif; ?></a>
+        </li>
         <hr class="sidebar-divider my-0">
 		<?php if (ROLE == ROLE_ADMIN): ?>
         <li class="nav-item" id="menu_home">

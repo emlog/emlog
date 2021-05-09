@@ -28,47 +28,49 @@
         <h6 class="m-0 font-weight-bold">已创建的用户 (<?php echo $usernum; ?>)</h6>
     </div>
     <div class="card-body">
-        <table class="table table-bordered table-striped table-hover dataTable no-footer" id="adm_comment_list">
-            <thead>
-            <tr>
-                <th></th>
-                <th>用户</th>
-                <th>角色</th>
-                <th>文章数</th>
-                <th>操作</th>
-            </tr>
-            </thead>
-            <tbody>
-			<?php
-			foreach ($users as $key => $val):
-				$avatar = empty($user_cache[$val['uid']]['avatar']) ? './views/images/avatar.svg' : '../' . $user_cache[$val['uid']]['avatar'];
-				?>
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped table-hover dataTable no-footer" id="adm_comment_list">
+                <thead>
                 <tr>
-                    <td><img src="<?php echo $avatar; ?>" height="40" width="40"/></td>
-                    <td>
-						<?php
-						if (UID != $val['uid']): ?>
-                            <a href="user.php?action=edit&uid=<?php echo $val['uid'] ?>"><?php echo empty($val['name']) ? $val['login'] : $val['name']; ?></a>
-						<?php else: ?>
-                            <a href="blogger.php"><?php echo empty($val['name']) ? $val['login'] : $val['name']; ?></a>
-						<?php endif; ?>
-						<?php echo "<br/>" . $val['description']; ?>
-                    </td>
-                    <td>
-						<?php echo $val['role'] == ROLE_ADMIN ? ($val['uid'] == 1 ? '创始人' : '管理员') : '作者'; ?>
-						<?php if ($val['role'] == ROLE_WRITER && $val['ischeck'] == 'y') echo '(文章需审核)'; ?>
-                    </td>
-                    <td><a href="article.php?uid=<?php echo $val['uid']; ?>"><?php echo $sta_cache[$val['uid']]['lognum']; ?></a></td>
-                    <td>
-						<?php
-						if (UID != $val['uid']): ?>
-                            <a href="javascript: em_confirm(<?php echo $val['uid']; ?>, 'user', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-danger">删除</a>
-						<?php endif; ?>
-                    </td>
+                    <th></th>
+                    <th>用户</th>
+                    <th>角色</th>
+                    <th>文章数</th>
+                    <th>操作</th>
                 </tr>
-			<?php endforeach; ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+				<?php
+				foreach ($users as $key => $val):
+					$avatar = empty($user_cache[$val['uid']]['avatar']) ? './views/images/avatar.svg' : '../' . $user_cache[$val['uid']]['avatar'];
+					?>
+                    <tr>
+                        <td><img src="<?php echo $avatar; ?>" height="40" width="40"/></td>
+                        <td>
+							<?php
+							if (UID != $val['uid']): ?>
+                                <a href="user.php?action=edit&uid=<?php echo $val['uid'] ?>"><?php echo empty($val['name']) ? $val['login'] : $val['name']; ?></a>
+							<?php else: ?>
+                                <a href="blogger.php"><?php echo empty($val['name']) ? $val['login'] : $val['name']; ?></a>
+							<?php endif; ?>
+							<?php echo "<br/>" . $val['description']; ?>
+                        </td>
+                        <td>
+							<?php echo $val['role'] == ROLE_ADMIN ? ($val['uid'] == 1 ? '创始人' : '管理员') : '作者'; ?>
+							<?php if ($val['role'] == ROLE_WRITER && $val['ischeck'] == 'y') echo '(文章需审核)'; ?>
+                        </td>
+                        <td><a href="article.php?uid=<?php echo $val['uid']; ?>"><?php echo $sta_cache[$val['uid']]['lognum']; ?></a></td>
+                        <td>
+							<?php
+							if (UID != $val['uid']): ?>
+                                <a href="javascript: em_confirm(<?php echo $val['uid']; ?>, 'user', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-danger">删除</a>
+							<?php endif; ?>
+                        </td>
+                    </tr>
+				<?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 <div class="page"><?php echo $pageurl; ?></div>

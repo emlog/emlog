@@ -53,7 +53,6 @@
                         <th>评论人</th>
                         <th>时间</th>
                         <th>文章</th>
-                        <th>操作</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -83,36 +82,32 @@
                                 </a>
 								<?php echo $ishide; ?>
                             </td>
-                            <td class="small"><?php echo $poster; ?> <?php echo $mail; ?> <?php echo $ip_info; ?></td>
-                            <td class="small"><?php echo $date; ?></td>
-                            <td class="small"><a href="<?php echo Url::log($gid); ?>"><?php echo $title; ?></a></td>
-                            <td>
-                                <a href="javascript: em_confirm(<?php echo $cid; ?>, 'comment', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-danger">删除</a>
-								<?php if ($hide == 'y'): ?>
-                                    <a href="comment.php?action=show&amp;id=<?php echo $cid; ?>" class="badge badge-primary">审核</a>
-								<?php else: ?>
-                                    <a href="comment.php?action=hide&amp;id=<?php echo $cid; ?>" class="badge badge-secondary">隐藏</a>
-								<?php endif; ?>
+                            <td class="small">
+                                <?php echo $poster; ?><?php echo $mail; ?><?php echo $ip_info; ?>
 								<?php if (ROLE == ROLE_ADMIN): ?>
-                                    <a href="javascript: em_confirm('<?php echo $ip; ?>', 'commentbyip', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-pill badge-warning">按IP删除</a>
+                                    <a href="javascript: em_confirm('<?php echo $ip; ?>', 'commentbyip', '<?php echo LoginAuth::genToken(); ?>');"
+                                       class="badge badge-pill badge-warning">按IP删除</a>
 								<?php endif; ?>
                             </td>
+                            <td class="small"><?php echo $date; ?></td>
+                            <td class="small"><a href="<?php echo Url::log($gid); ?>"><?php echo $title; ?></a></td>
                         </tr>
 					<?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
             <div class="list_footer">
-                <a href="javascript:commentact('del');" class="care">删除</a>
-                <a href="javascript:commentact('hide');">隐藏</a>
-                <a href="javascript:commentact('pub');">审核</a>
+                <div class="btn-group btn-group-sm" role="group">
+                    <a type="button" href="javascript:commentact('del');" class="btn btn-danger">删除</a>
+                    <a type="button" href="javascript:commentact('hide');" class="btn btn-success">隐藏</a>
+                    <a type="button" href="javascript:commentact('pub');" class="btn btn-success">审核</a>
+                </div>
                 <input name="operate" id="operate" value="" type="hidden"/>
             </div>
             <div class="page"><?php echo $pageurl; ?> （有 <?php echo $cmnum; ?> 条评论）</div>
         </div>
     </div>
 </form>
-
 <div class="modal fade" id="replyModal" tabindex="-1" role="dialog" aria-labelledby="replyModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
