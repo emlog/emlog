@@ -176,6 +176,7 @@ footer .copyright {
 #pagenavi a {
     color: #c0bcbc;
     padding: 5.5px 9px 5px 9px;
+    font-family: serif,monospace;
     border: 1px solid;
     margin: 0 5px;
     border-radius: 10px
@@ -285,14 +286,14 @@ footer .copyright {
     border: 1px #d6d6d6 solid;
     font-size: small;
     border-radius: 10px;
-    height: 149px;
+    height: 140px;
     resize: none
 }
 
 .comment-post #comment_submit {
     background-color: #f3f3f3;
     color: #a9a9a9;
-    width: 75px;
+    width: auto;
     height: 35px;
     text-align: center;
     font-size: inherit;
@@ -334,8 +335,8 @@ footer .copyright {
 }
 
 .comment .comment-info {
-    float: left;
-    width: 90%;
+    float: right;
+    width: 93%;
     background: #f7f7f7;
     padding: 12px;
     padding-bottom: 5px;
@@ -418,7 +419,6 @@ footer .copyright {
     padding-left: 0px;
     border: 1px solid #f1f1f1;
     border-radius: 4px;
-    width: 111px;
     top: -3000px;
     margin-bottom: -34px;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1)
@@ -552,11 +552,15 @@ body {
     margin-bottom: 0px
 }
 
+/**markdown输出样式**/
+
 .log_con h1 {
     font-size: 2.25rem !important;
     margin-top: 1em;
     margin-bottom: 16px;
     font-weight: bold;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #eee;
     letter-spacing: 1px
 }
 
@@ -565,6 +569,8 @@ body {
     margin-top: 1em;
     margin-bottom: 16px;
     font-weight: bold;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #eee;
     letter-spacing: 1px
 }
 
@@ -697,6 +703,8 @@ body {
 .log_con hr {
     margin: 7px 0 7px 0
 }
+
+/**end**/
 
 .list-menu:hover .dropdown-menus {
     opacity: 0.95;
@@ -886,8 +894,7 @@ body {
 .log_classify_c {
     margin-left: -27px;
     list-style: none;
-    font-size: medium;
-    font-weight: 100
+    font-size: medium
 }
 
 .comm_lates_time {
@@ -951,8 +958,6 @@ body {
     margin-left: -5px
 }
 
-.commentform .form-control {
-}
 
 .com_name {
     float: left;
@@ -991,7 +996,7 @@ body {
 
 .com_info {
     width: auto;
-    margin-top: -22px
+    margin-top: -9px
 }
 
 .com_control {
@@ -1013,7 +1018,13 @@ body {
     display: none
 }
 
-@media screen and (max-width: 1200px) and (min-width: 992px) {
+.log_classify_f,#navbarResponsive {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap
+}
+
+@media all and (max-width: 1200px) and (min-width: 992px) {
     .col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto {
         padding-right: 0px;
         padding-right: 10px;
@@ -1033,10 +1044,20 @@ body {
     }
 }
 
-@media screen and (max-width: 991px) and (min-width: 0px) {
+@media all and (max-width: 991px){
+    
     .col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto {
         padding-right: 13px;
         padding-left: 13px
+    }
+    
+    .arrow {
+        position: absolute;
+        margin-left: -1px;
+        margin-top: -37px;
+        border-width: 13px;
+        border-style: solid;
+        border-color: transparent transparent #f7f7f7 transparent
     }
 
     body {
@@ -1093,28 +1114,81 @@ body {
         margin: 50% 0 0 20%;
         width: 100%
     }
+    .comment .avatar {
+        margin-right: 13px
+    }
+    
+    .comment .comment-info {
+        width: 100%
+    }
+    
+    
+    .comment .avatar {
+        margin-bottom: 13px
+    }
+    
+    img{
+        max-width: 100%
+    }
+    
 }
 
-@media screen and (max-width: 577px) and (min-width: 0px) {
-    .arrow {
-        position: absolute;
-        margin-left: -1px;
-        margin-top: -37px;
-        border-width: 13px;
-        border-style: solid;
-        border-color: transparent transparent #f7f7f7 transparent
+@media all and (max-width: 991px) and (min-width: 689px) {
+    
+    #calendar {
+    transform: scale(0.7);
+    margin-left: -46px;
+    margin-top: -14px
     }
+    
+    .list-unstyled form{
+    transform: scale(0.7);
+    width: 255px;
+    margin-left: -47px
+    }
+    
+    .bloginfo_name {
+    font-size: small
+    }
+    
+}
 
+@media all and (max-width: 349px){
+    
+    #calendar {
+    transform: scale(0.7);
+    margin-left: -46px;
+    margin-top: -14px
+    }
+    
+    .list-unstyled form{
+    transform: scale(0.7);
+    width: 255px;
+    margin-left: -47px
+    }
+    
+    .bloginfo_name {
+    font-size: small
+    }
+    
+}
+
+@media all and (max-width: 577px){
+    
     .side-bar .widget {
         margin-bottom: 1.5rem
     }
 
-    .pagination {
+    .pagination { 
+        line-height: 40px;
         display: contents
     }
-
-    .nav-item {
-        list-style: circle
+    
+    .pagination:after {
+        content: "";
+        margin-bottom: 20px;
+        display: block;
+        clear: both
     }
 
     .bar_top_line {
@@ -1129,4 +1203,22 @@ body {
     .pagination a {
         padding: 5.5px 9px 3px 9px
     }
+    
+    .comment .comment-info {
+        float: left;
+        width: 100%
+    }
+    
+    .com_control {
+        height: 44px
+    }
+    
+    .mb-5, .my-5 {
+    margin-bottom: 1.6rem!important
+    }
+    
+    #pagenavi {
+    line-height: 45px
+    }
+    
 }
