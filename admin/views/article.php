@@ -95,57 +95,60 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
     <div class="card-body">
         <form action="article.php?action=operate_log" method="post" name="form_log" id="form_log">
             <input type="hidden" name="draft" value="<?php echo $draft; ?>">
-            <table class="table table-bordered table-striped table-hover dataTable no-footer">
-                <thead>
-                <tr>
-                    <th><input type="checkbox" id="checkAll"/></th>
-                    <th>标题</th>
-					<?php if (!$draft): ?>
-                        <th>查看</th>
-					<?php endif; ?>
-                    <th>作者</th>
-                    <th>分类</th>
-                    <th><a href="article.php?sortDate=<?php echo $sortDate . $sorturl; ?>">时间</a></th>
-                    <th><a href="article.php?sortComm=<?php echo $sortComm . $sorturl; ?>">评论</a></th>
-                    <th><a href="article.php?sortView=<?php echo $sortView . $sorturl; ?>">阅读</a></th>
-                </tr>
-                </thead>
-                <tbody>
-				<?php foreach ($logs as $key => $value):
-					$sortName = $value['sortid'] == -1 && !array_key_exists($value['sortid'], $sorts) ? '未分类' : $sorts[$value['sortid']]['sortname'];
-					$author = $user_cache[$value['author']]['name'];
-					$author_role = $user_cache[$value['author']]['role'];
-					?>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover dataTable no-footer">
+                    <thead>
                     <tr>
-                        <td><input type="checkbox" name="blog[]" value="<?php echo $value['gid']; ?>" class="ids"/></td>
-                        <td><a href="article.php?action=edit&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a>
-							<?php if ($value['top'] == 'y'): ?><img src="./views/images/top.png" align="top" title="首页置顶"/><?php endif; ?>
-							<?php if ($value['sortop'] == 'y'): ?><img src="./views/images/sortop.png" align="top" title="分类置顶"/><?php endif; ?>
-							<?php if (!$draft && $value['checked'] == 'n'): ?>
-                                <sapn style="color:red;">[待审]</sapn><?php endif; ?>
-                            <div>
-								<?php if (!$draft && ROLE == ROLE_ADMIN && $value['checked'] == 'n'): ?>
-                                    <a class="badge badge-success" href="article.php?action=operate_log&operate=check&gid=<?php echo $value['gid'] ?>&token=<?php echo LoginAuth::genToken(); ?>">审核</a>
-								<?php elseif (!$draft && ROLE == ROLE_ADMIN && $author_role == ROLE_WRITER): ?>
-                                    <a class="badge badge-danger" href="article.php?action=operate_log&operate=uncheck&gid=<?php echo $value['gid'] ?>&token=<?php echo LoginAuth::genToken(); ?>">驳回</a>
-								<?php endif; ?>
-                            </div>
-                        </td>
+                        <th><input type="checkbox" id="checkAll"/></th>
+                        <th>标题</th>
 						<?php if (!$draft): ?>
-                            <td>
-                                <a href="<?php echo Url::log($value['gid']); ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0"/></a>
-                            </td>
+                            <th>查看</th>
 						<?php endif; ?>
-                        <td><a href="article.php?uid=<?php echo $value['author'] . $isdraft; ?>"><?php echo $author; ?></a></td>
-                        <td><a href="article.php?sid=<?php echo $value['sortid'] . $isdraft; ?>"><?php echo $sortName; ?></a></td>
-                        <td class="small"><?php echo $value['date']; ?></td>
-                        <td><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
-                        <td><?php echo $value['views']; ?></a></td>
+                        <th>作者</th>
+                        <th>分类</th>
+                        <th><a href="article.php?sortDate=<?php echo $sortDate . $sorturl; ?>">时间</a></th>
+                        <th><a href="article.php?sortComm=<?php echo $sortComm . $sorturl; ?>">评论</a></th>
+                        <th><a href="article.php?sortView=<?php echo $sortView . $sorturl; ?>">阅读</a></th>
                     </tr>
-				<?php endforeach; ?>
-                </tbody>
-            </table>
-
+                    </thead>
+                    <tbody>
+					<?php foreach ($logs as $key => $value):
+						$sortName = $value['sortid'] == -1 && !array_key_exists($value['sortid'], $sorts) ? '未分类' : $sorts[$value['sortid']]['sortname'];
+						$author = $user_cache[$value['author']]['name'];
+						$author_role = $user_cache[$value['author']]['role'];
+						?>
+                        <tr>
+                            <td><input type="checkbox" name="blog[]" value="<?php echo $value['gid']; ?>" class="ids"/></td>
+                            <td><a href="article.php?action=edit&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a>
+								<?php if ($value['top'] == 'y'): ?><img src="./views/images/top.png" align="top" title="首页置顶"/><?php endif; ?>
+								<?php if ($value['sortop'] == 'y'): ?><img src="./views/images/sortop.png" align="top" title="分类置顶"/><?php endif; ?>
+								<?php if (!$draft && $value['checked'] == 'n'): ?>
+                                    <sapn style="color:red;">[待审]</sapn><?php endif; ?>
+                                <div>
+									<?php if (!$draft && ROLE == ROLE_ADMIN && $value['checked'] == 'n'): ?>
+                                        <a class="badge badge-success"
+                                           href="article.php?action=operate_log&operate=check&gid=<?php echo $value['gid'] ?>&token=<?php echo LoginAuth::genToken(); ?>">审核</a>
+									<?php elseif (!$draft && ROLE == ROLE_ADMIN && $author_role == ROLE_WRITER): ?>
+                                        <a class="badge badge-danger"
+                                           href="article.php?action=operate_log&operate=uncheck&gid=<?php echo $value['gid'] ?>&token=<?php echo LoginAuth::genToken(); ?>">驳回</a>
+									<?php endif; ?>
+                                </div>
+                            </td>
+							<?php if (!$draft): ?>
+                                <td>
+                                    <a href="<?php echo Url::log($value['gid']); ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0"/></a>
+                                </td>
+							<?php endif; ?>
+                            <td><a href="article.php?uid=<?php echo $value['author'] . $isdraft; ?>"><?php echo $author; ?></a></td>
+                            <td><a href="article.php?sid=<?php echo $value['sortid'] . $isdraft; ?>"><?php echo $sortName; ?></a></td>
+                            <td class="small"><?php echo $value['date']; ?></td>
+                            <td><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
+                            <td><?php echo $value['views']; ?></a></td>
+                        </tr>
+					<?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
             <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
             <input name="operate" id="operate" value="" type="hidden"/>
             <div class="form-inline">
@@ -192,12 +195,14 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 					<?php endif; ?>
 				<?php endif; ?>
 
-                <a href="javascript:logact('del');" class="text-danger mx-1">删除</a>
-				<?php if ($draft): ?>
-                    <a href="javascript:logact('pub');" class="mx-1">发布</a>
-				<?php else: ?>
-                    <a href="javascript:logact('hide');" class="mx-1">放入草稿箱</a>
-				<?php endif; ?>
+                <div class="btn-group btn-group-sm" role="group">
+                    <a type="button" href="javascript:logact('del');" class="btn btn-danger">删除</a>
+					<?php if ($draft): ?>
+                        <a type="button" href="javascript:logact('pub');" class="btn btn-success">发布</a>
+					<?php else: ?>
+                        <a type="button" href="javascript:logact('hide');" class="btn btn-success">放入草稿箱</a>
+					<?php endif; ?>
+                </div>
             </div>
         </form>
         <div class="page"><?php echo $pageurl; ?> (有 <?php echo $logNum; ?> 篇<?php echo $draft ? '草稿' : '文章'; ?>)</div>

@@ -17,7 +17,7 @@
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered table-striped table-hover" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered table-striped table-hover dataTable no-footer">
                     <thead>
                     <tr>
                         <th><input type="checkbox" id="checkAll"/></th>
@@ -33,12 +33,12 @@
 							$navibar[$value['gid']]['url'] = Url::log($value['gid']);
 						}
 						$isHide = $value['hide'] == 'y' ?
-							'<font color="red"> - 草稿</font>' :
+							'<span class="text-danger">[草稿]</span>' :
 							'<a href="' . $navibar[$value['gid']]['url'] . '" target="_blank" title="查看页面"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>';
 						?>
                         <tr>
-                            <td width="21"><input type="checkbox" name="page[]" value="<?php echo $value['gid']; ?>" class="ids"/></td>
-                            <td width="440">
+                            <td><input type="checkbox" name="page[]" value="<?php echo $value['gid']; ?>" class="ids"/></td>
+                            <td>
                                 <a href="page.php?action=mod&id=<?php echo $value['gid'] ?>"><?php echo $value['title']; ?></a>
 								<?php echo $isHide; ?>
                             </td>
@@ -51,11 +51,13 @@
                 </table>
             </div>
             <div class="list_footer">
+                <div class="btn-group btn-group-sm" role="group">
+                    <a type="button" href="javascript:pageact('del');" class="btn btn-danger">删除</a>
+                    <a type="button" href="javascript:pageact('hide');" class="btn btn-success">转为草稿</a>
+                    <a type="button" href="javascript:pageact('pub');" class="btn btn-success">发布</a>
+                </div>
                 <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
                 <input name="operate" id="operate" value="" type="hidden"/>
-                <a href="javascript:pageact('del');" class="care">删除</a> |
-                <a href="javascript:pageact('hide');">转为草稿</a> |
-                <a href="javascript:pageact('pub');">发布</a>
             </div>
             <div class="page"><?php echo $pageurl; ?> （有 <?php echo $pageNum; ?> 个页面）</div>
         </div>
