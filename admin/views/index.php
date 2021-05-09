@@ -82,7 +82,7 @@
                 <div>5、"投我以桃，报之以李"，支持我们把emlog做的更好。</div>
             </div>
             <div class="card-footer text-center">
-                <a href="#" class="btn btn-success shadow-lg" data-toggle="modal" data-target="#exampleModal">现在去注册</a>
+                <a href="#" class="btn btn-sm btn-success shadow-lg" data-toggle="modal" data-target="#exampleModal">现在去注册</a>
             </div>
         </div>
 		<?php endif; ?>
@@ -105,7 +105,7 @@
                     <div><a href="<?php echo OFFICIAL_SERVICE_HOST; ?>register">去获取注册码&rarr; </a></div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-success">注册</button>
+                    <button type="submit" class="btn btn-sm btn-success">注册</button>
                 </div>
             </form>
         </div>

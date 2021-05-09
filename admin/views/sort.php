@@ -21,7 +21,7 @@
     <div class="alert alert-danger">别名不得包含系统保留关键字</div><?php endif; ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">分类管理</h1>
-    <a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#exampleModal"><i class="icofont-plus"></i> 添加分类</a>
+    <a href="#" class="btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#exampleModal"><i class="icofont-plus"></i> 添加分类</a>
 </div>
 <form method="post" action="sort.php?action=taxis">
     <div class="card shadow mb-4">
@@ -97,7 +97,7 @@
         </div>
     </div>
     <div class="list_footer">
-        <input type="submit" value="改变排序" class="btn btn-success"/>
+        <input type="submit" value="改变排序" class="btn btn-sm btn-success"/>
     </div>
 </form>
 
@@ -149,8 +149,8 @@
                 <div class="modal-footer">
                     <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
                     <span id="alias_msg_hook"></span>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                    <button type="submit" class="btn btn-success">保存</button>
+                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-sm btn-success">保存</button>
                 </div>
             </form>
         </div>

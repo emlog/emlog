@@ -49,7 +49,7 @@
     </div>
     <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
     <input type="hidden" value="<?php echo $uid; ?>" name="uid"/>
-    <input type="submit" value="保 存" class="btn btn-success"/>
+    <input type="submit" value="保 存" class="btn btn-sm btn-success"/>
     <input type="button" value="取 消" class="btn btn-default" onclick="window.location='user.php';"/>
 </form>
 

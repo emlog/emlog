@@ -34,9 +34,9 @@
                 <input type="hidden" name="ishide" id="ishide" value="<?php echo $hide; ?>" />
                 <input type="hidden" name="pageid" value="<?php echo $pageId; ?>" />
 				<?php if ($pageId < 0): ?>
-                    <input type="submit" value="发布页面" onclick="return checkform();" class="btn btn-success"/>
+                    <input type="submit" value="发布页面" onclick="return checkform();" class="btn btn-sm btn-success"/>
 				<?php else: ?>
-                    <input type="submit" value="保存并返回" onclick="return checkform();" class="btn btn-success"/>
+                    <input type="submit" value="保存并返回" onclick="return checkform();" class="btn btn-sm btn-success"/>
 				<?php endif; ?>
             </div>
         </div>

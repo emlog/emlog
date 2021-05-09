@@ -70,7 +70,7 @@
                     <input type="password" class="form-control" value="" name="repeatpass">
                 </div>
                 <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
-                <input type="submit" value="保存资料" class="btn btn-success"/>
+                <input type="submit" value="保存资料" class="btn btn-sm btn-success"/>
             </div>
         </form>
     </div>

@@ -11,7 +11,7 @@
     <div class="alert alert-success">页面保存成功</div><?php endif; ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">页面管理</h1>
-    <a href="page.php?action=new" class="d-none d-sm-inline-block btn btn-success shadow-sm"><i class="icofont-plus"></i> 新建页面</a>
+    <a href="page.php?action=new" class="btn btn-sm btn-success shadow-sm"><i class="icofont-plus"></i> 新建页面</a>
 </div>
 <form action="page.php?action=operate_page" method="post" name="form_page" id="form_page">
     <div class="card shadow mb-4">
@@ -52,9 +52,9 @@
             </div>
             <div class="list_footer">
                 <div class="btn-group btn-group-sm" role="group">
-                    <a type="button" href="javascript:pageact('del');" class="btn btn-danger">删除</a>
-                    <a type="button" href="javascript:pageact('hide');" class="btn btn-success">转为草稿</a>
-                    <a type="button" href="javascript:pageact('pub');" class="btn btn-success">发布</a>
+                    <a type="button" href="javascript:pageact('del');" class="btn btn-sm btn-danger">删除</a>
+                    <a type="button" href="javascript:pageact('hide');" class="btn btn-sm btn-success">转为草稿</a>
+                    <a type="button" href="javascript:pageact('pub');" class="btn btn-sm btn-success">发布</a>
                 </div>
                 <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
                 <input name="operate" id="operate" value="" type="hidden"/>
