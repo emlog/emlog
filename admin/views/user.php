@@ -21,7 +21,7 @@
     <div class="alert alert-danger">不能修改创始人信息</div><?php endif; ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">用户管理</h1>
-    <a href="#" class="btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#exampleModal"><i class="icofont-plus"></i> 添加用户</a>
+    <a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#exampleModal"><i class="icofont-plus"></i> 添加用户</a>
 </div>
 <div class="card shadow mb-4">
     <div class="card-header py-3">
