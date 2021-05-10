@@ -63,7 +63,7 @@ class User_Model {
 	}
 
 	function deleteUser($uid) {
-		$this->db->query("update " . DB_PREFIX . "blog set author=1 and checked='y' where author=$uid");
+		$this->db->query("update " . DB_PREFIX . "blog set author=1, checked='y' where author=$uid");
 		$this->db->query("delete from " . DB_PREFIX . "user where uid=$uid");
 	}
 

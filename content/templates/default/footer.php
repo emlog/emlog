@@ -1,17 +1,18 @@
-<?php 
+<?php
 /**
  * Page Bottom Information
  */
 if (!defined('EMLOG_ROOT')) {
-    exit('error!');
+	exit('error!');
 }
 ?>
 
-<footer class="py-5">
+<footer class="py-3">
     <div class="container">
-        <p class="m-0 text-center">Powered by <a href="http://www.emlog.net">Emlog Pro</a><br>
-            <a href="https://beian.miit.gov.cn/" target="_blank"><?php echo $icp; ?></a> <?php echo $footer_info; ?>
-            <?php doAction('index_footer'); ?>
+        <p class="text-center small">powered by <a href="https://www.emlog.net">emlog pro</a>
+            <a href="https://beian.miit.gov.cn/" target="_blank"><?php echo $icp; ?></a> <br>
+            <?php echo $footer_info; ?>
+			<?php doAction('index_footer'); ?>
         </p>
     </div>
 </footer>

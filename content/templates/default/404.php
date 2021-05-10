@@ -3,7 +3,7 @@
  * Custom 404 page
  */
 if (!defined('EMLOG_ROOT')) {
-    exit('error!');
+	exit('error!');
 }
 ?>
 <!doctype html>
@@ -18,26 +18,29 @@ if (!defined('EMLOG_ROOT')) {
             font-size: 12px;
             line-height: 150%;
         }
+
         .main {
-        background-color: #FFFFFF;
+            background-color: #FFFFFF;
             font-size: 12px;
             color: #666666;
             width: 650px;
             margin: 60px auto 0px;
             padding: 30px 10px;
-            box-shadow: 0 2px 8px 0 rgba(0,0,0,.02);
+            box-shadow: 0 2px 8px 0 rgba(0, 0, 0, .02);
             border-radius: 10px;
             transition: box-shadow 0.4s;
         }
+
         .main p {
             text-align: center;
             font-weight: 600;
             font-size: 2rem;
         }
+
         .main p a {
-            border: 1px solid #ccc!important;
+            border: 1px solid #ccc !important;
             padding: 14px;
-            border-radius: 16px!important;
+            border-radius: 16px !important;
             color: #929292;
             font-size: initial;
             text-decoration: none;

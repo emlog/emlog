@@ -37,7 +37,7 @@ if ($action == 'update_tag') {
 
 //Bulk Delete Tags
 if ($action == 'del_tag') {
-	$tid = isset($_GET['tid']) ? $_GET['tid'] : '';
+	$tid = isset($_GET['tid']) ? (int)$_GET['tid'] : '';
 
 	LoginAuth::checkToken();
 

@@ -22,7 +22,7 @@ if (PHP_VERSION < '7.0') {
 /*vot*/    emMsg(lang('php_required'));
 }
 
-$act = $_GET['action'] ?? '';
+$act = isset($_GET['action']) ? $_GET['action'] : '';
 
 if (!$act) {
 ?>
