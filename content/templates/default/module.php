@@ -277,8 +277,8 @@ function blog_navi()
 //blog:Top
 function topflg($top, $sortop = 'n', $sortid = null)
 {
-/*vot*/ $ishome_flg='<a href="#" title="<?=lang('home_top')?>" class="log_topflg">&nbsp;&uArr;</a>';
-/*vot*/ $issort_flg='<a href="#" title="<?=lang('category_top')?>" class="log_topflg">&nbsp;&uArr;</a>';
+/*vot*/ $ishome_flg='<a href="#" title="' . lang('home_top') . '" class="log_topflg">&nbsp;&uArr;</a>';
+/*vot*/ $issort_flg='<a href="#" title="' . lang('category_top') . '" class="log_topflg">&nbsp;&uArr;</a>';
     if (blog_tool_ishome()) {
         echo $top == 'y' ? $ishome_flg : '';
     } elseif ($sortid) {

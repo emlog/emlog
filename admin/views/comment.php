@@ -52,8 +52,8 @@
 <!--vot-->              <th><?= lang('content') ?></th>
 <!--vot-->              <th><?= lang('comment_author') ?></th>
 <!--vot-->              <th><?= lang('time') ?></th>
-<!--vot-->              <th><?= lang('operation') ?></th>
 <!--vot-->              <th><?= lang('belongs_to_article') ?></th>
+<!--vot-->              <th><?= lang('operation') ?></th>
                     </tr>
                     </thead>
                     <tbody>
