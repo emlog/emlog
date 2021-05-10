@@ -21,7 +21,7 @@
 <!--vot--><div class="alert alert-danger"><?=lang('alias_no_keywords')?></div><?php endif; ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 <!--vot--><h1 class="h3 mb-0 text-gray-800"><?=lang('category_management')?></h1>
-<!--vot--><a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#exampleModal"><i class="icofont-plus"></i> <?=lang('category_add')?></a>
+<!--vot--><a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#exampleModal"><i class="icofont-plus"></i> <?=lang('category_add')?></a>
 </div>
 <form method="post" action="sort.php?action=taxis">
     <div class="card shadow mb-4">
@@ -97,7 +97,7 @@
         </div>
     </div>
     <div class="list_footer">
-<!--vot--><input type="submit" value="<?=lang('order_change')?>" class="btn btn-success">
+<!--vot--><input type="submit" value="<?=lang('order_change')?>" class="btn btn-sm btn-success">
     </div>
 </form>
 
@@ -115,7 +115,7 @@
                 <div class="modal-body">
                     <div class="form-group">
 <!--vot-->              <label for="sortname"><?=lang('category_name')?></label>
-                        <input class="form-control" id="sortname" name="sortname">
+                        <input class="form-control" id="sortname" name="sortname" required>
                     </div>
                     <div class="form-group">
 <!--vot-->              <label for="alias"><?=lang('alias_info')?></label>
@@ -149,8 +149,8 @@
                 <div class="modal-footer">
                     <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
                     <span id="alias_msg_hook"></span>
-<!--vot-->          <button type="button" class="btn btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
-<!--vot-->          <button type="submit" class="btn btn-success"><?=lang('save')?></button>
+<!--vot-->          <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
+<!--vot-->          <button type="submit" class="btn btn-sm btn-success"><?=lang('save')?></button>
                 </div>
             </form>
         </div>

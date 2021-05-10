@@ -71,7 +71,7 @@
             </div>
 
             <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
-<!--vot-->  <input type="submit" value="<?=lang('save_settings')?>" class="btn btn-success"/>
+<!--vot-->  <input type="submit" value="<?=lang('save_settings')?>" class="btn btn-sm btn-success"/>
         </form>
     </div>
 </div>

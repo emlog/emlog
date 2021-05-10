@@ -13,7 +13,7 @@
 <form action="user.php?action=update" method="post">
     <div class="form-group">
 <!--vot--><label for="username"><?=lang('user_name')?></label>
-<!--vot--><input class="form-control" value="<?php echo $username; ?>" name="username" id="username">
+<!--vot--><input class="form-control" value="<?php echo $username; ?>" name="username" id="username" required>
     </div>
     <div class="form-group">
 <!--vot--><label for="nickname"><?=lang('nickname')?></label>
@@ -49,7 +49,7 @@
     </div>
     <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
     <input type="hidden" value="<?php echo $uid; ?>" name="uid"/>
-<!--vot--><input type="submit" value="<?=lang('save')?>" class="btn btn-success">
+<!--vot--><input type="submit" value="<?=lang('save')?>" class="btn btn-sm btn-success">
 <!--vot--><input type="button" value="<?=lang('cancel')?>" class="btn btn-default" onclick="window.location='user.php';"/>
 </form>
 

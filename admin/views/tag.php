@@ -14,16 +14,16 @@
     <div class="card-body">
         <div>
 			<?php if ($tags): ?>
-                <li>
+                <p>
 					<?php foreach ($tags as $key => $value): ?>
                         <a href="#" class="badge badge-primary" data-toggle="modal" data-target="#editModal" data-tid="<?php echo $value['tid']; ?>"
                            data-tagname="<?php echo $value['tagname']; ?>">
 							<?php echo $value['tagname']; ?>
                         </a>
 					<?php endforeach; ?>
-                </li>
+                </p>
 			<?php else: ?>
-<!--vot-->      <li style="margin:20px 30px"><?=lang('tags_no_info')?></li>
+<!--vot-->      <p style="margin:20px 30px"><?=lang('tags_no_info')?></p>
 			<?php endif; ?>
         </div>
     </div>
@@ -41,14 +41,14 @@
             <form method="post" action="tag.php?action=update_tag">
                 <div class="modal-body">
                     <div class="form-group">
-                        <input type="text" class="form-control" id="tagname" name="tagname">
+                        <input type="text" class="form-control" id="tagname" name="tagname" required>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <input type="hidden" value="" id="tid" name="tid"/>
-<!--vot-->          <button type="button" class="btn btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
-<!--vot-->          <button type="submit" class="btn btn-success"><?=lang('save')?></button>
-<!--vot-->          <a class="btn btn-outline-danger" href="javascript:deltags();"><?=lang('delete')?></a>
+<!--vot-->          <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
+<!--vot-->          <button type="submit" class="btn btn-sm btn-success"><?=lang('save')?></button>
+<!--vot-->          <a class="btn btn-sm btn-outline-danger" href="javascript:deltags();"><?=lang('delete')?></a>
                 </div>
             </form>
         </div>

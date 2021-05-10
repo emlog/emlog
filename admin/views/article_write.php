@@ -8,7 +8,7 @@
         <div class="col-xl-12">
             <div id="post" class="form-group">
                 <div>
-<!--vot-->          <input type="text" name="title" id="title" value="<?php echo $title; ?>" class="form-control" placeholder="<?=lang('post_title')?>"/>
+<!--vot-->          <input type="text" name="title" id="title" value="<?php echo $title; ?>" class="form-control" placeholder="<?=lang('post_title')?>" required/>
                 </div>
                 <div id="post_bar">
 <!--vot-->          <a href="#" class="text-muted small my-3" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> <?=lang('upload_insert')?></a>
@@ -89,13 +89,13 @@
                 <input type="hidden" name="author" id="author" value=<?php echo $author; ?>/>
 
 				<?php if ($logid < 0): ?>
-<!--vot-->          <input type="submit" value="<?=lang('post_publish')?>" onclick="return checkform();" class="btn btn-success"/>
-<!--vot-->          <input type="button" name="savedf" id="savedf" value="<?=lang('save_draft')?>" onclick="autosave(2);" class="btn btn-success"/>
+<!--vot-->          <input type="submit" value="<?=lang('post_publish')?>" onclick="return checkform();" class="btn btn-sm btn-success"/>
+<!--vot-->          <input type="button" name="savedf" id="savedf" value="<?=lang('save_draft')?>" onclick="autosave(2);" class="btn btn-sm btn-success"/>
 				<?php else: ?>
-<!--vot-->          <input type="submit" value="<?=lang('save_and_return')?>" onclick="return checkform();" class="btn btn-success"/>
-<!--vot-->          <input type="button" name="savedf" id="savedf" value="<?=lang('save')?>" onclick="autosave(2);" class="btn btn-success"/>
+<!--vot-->          <input type="submit" value="<?=lang('save_and_return')?>" onclick="return checkform();" class="btn btn-sm btn-success"/>
+<!--vot-->          <input type="button" name="savedf" id="savedf" value="<?=lang('save')?>" onclick="autosave(2);" class="btn btn-sm btn-success"/>
 					<?php if ($isdraft) : ?>
-<!--vot-->              <input type="submit" name="pubdf" id="pubdf" value="<?=lang('publish')?>" onclick="return checkform();" class="btn btn-success"/>
+<!--vot-->              <input type="submit" name="pubdf" id="pubdf" value="<?=lang('publish')?>" onclick="return checkform();" class="btn btn-sm btn-success"/>
 					<?php endif; ?>
 				<?php endif; ?>
             </div>
@@ -114,7 +114,39 @@
                 </button>
             </div>
             <div class="modal-body">
-
+                <div class="card-columns">
+					<?php
+					if ($medias):
+						foreach ($medias as $key => $value):
+							$media_url = BLOG_URL . substr($value['filepath'], 3);
+							$media_name = $value['filename'];
+							if (isImage($value['filepath'])) {
+								$imgpath = $value['thum_filepath'] ?? $value['filepath'];
+								$media_icon_imgurl = BLOG_URL . substr($imgpath, 3);
+							} else {
+								$media_icon_imgurl = "./views/images/fnone.png";
+							}
+							?>
+                            <div class="card" style="min-height: 138px;">
+								<?php if (isImage($value['filepath'])): ?>
+<!--vot-->                          <a href="javascript:insert_media_img('<?php echo $media_url; ?>', '<?php echo $media_icon_imgurl; ?>')" title="<?=lang('img_insert')?>: <?php echo $media_name; ?>">
+                                        <img class="card-img-top" src="<?php echo $media_icon_imgurl; ?>"/>
+                                    </a>
+								<?php else: ?>
+<!--vot-->                          <a href="javascript:insert_media('<?php echo $media_url; ?>', '<?php echo $media_name; ?>')" title="<?=lang('file_insert')?>: <?php echo $media_name; ?>">
+                                        <img class="card-img-top" src="<?php echo $media_icon_imgurl; ?>"/>
+                                    </a>
+								<?php endif; ?>
+                            </div>
+						<?php
+						endforeach;
+					else :
+						?>
+<!--vot-->          <?=lang('no_resources')?>
+					<?php
+					endif;
+					?>
+                </div>
             </div>
 
         </div>
@@ -143,11 +175,11 @@
                     "bold", "del", "italic", "quote", "|",
                     "h1", "h2", "h3", "h4", "h5", "h6", "|",
                     "list-ul", "list-ol", "hr", "|",
-                    "link", "image", "preformatted-text", "table", "|", "search", "watch", "|", "info"]
+                    "link", "image", "preformatted-text", "table", "|", "search", "watch"]
             },
             path: "editor.md/lib/",
             tex: false,
-            watch: false,
+            watch: true,
             flowChart: false,
             sequenceDiagram: false
         });
@@ -165,7 +197,7 @@
             tex: false,
             watch: false,
             flowChart: false,
-            autoFocus : false,
+            autoFocus: false,
             sequenceDiagram: false,
 /*vot*/     placeholder: "<?=lang('enter_summary')?>",
         });

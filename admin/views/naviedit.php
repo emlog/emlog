@@ -34,7 +34,7 @@
 	<?php endif; ?>
     <input type="hidden" value="<?php echo $naviId; ?>" name="navid"/>
     <input type="hidden" value="<?php echo $isdefault; ?>" name="isdefault"/>
-<!--vot--><input type="submit" value="<?=lang('_save_')?>" class="btn btn-success"/>
+<!--vot--><input type="submit" value="<?=lang('_save_')?>" class="btn btn-sm btn-success"/>
 <!--vot--><input type="button" value="<?=lang('_cancel_')?>" class="btn btn-default" onclick="javascript: window.history.back();"/>
 </form>
 <script>

@@ -13,6 +13,7 @@ class Log_Model {
 	function __construct() {
 		$this->db = Database::getInstance();
 		$this->Parsedown = new Parsedown();
+		$this->Parsedown->setBreaksEnabled(true); //automatic line wrapping
 	}
 
 	/**
@@ -54,7 +55,7 @@ class Log_Model {
 	/**
 	 * Gets the number of articles for the specified condition
 	 *
-	 * @param int $spot //0: foreground 1: Background
+	 * @param int $spot 0: foreground 1: background
 	 * @param string $hide
 	 * @param string $condition
 	 * @param string $type
@@ -359,31 +360,28 @@ class Log_Model {
 	 */
 	function authPassword($postPwd, $cookiePwd, $logPwd, $logid) {
 		$url = BLOG_URL;
-		$pwd = $cookiePwd ? $cookiePwd : $postPwd;
+		$pwd = $cookiePwd ?: $postPwd;
 		if ($pwd !== addslashes($logPwd)) {
 /*vot*/			$page_pass = lang('page_password_enter');
 /*vot*/			$submit_pass = lang('submit_password');
 /*vot*/			$back = lang('back_home');
 /*vot*/			echo <<<EOT
+<!doctype html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>emlog message</title>
-<style type="text/css">
-<!--
-body{background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:150%;}
-.main{background-color:#FFFFFF;margin-top:20px;font-size: 12px;color: #666666;width:580px;margin:10px 200px;padding:10px;list-style:none;border:#DFDFDF 1px solid;}
--->
-</style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name=renderer  content=webkit>
+<title>emlog</title>
+<link href="{$url}admin/views/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 </head>
-<body>
-<div class="main">
-<form action="" method="post">
-{$page_pass}<br>
-<input type="password" name="logpwd" /><input type="submit" value="{$submit_pass}" />
-<br /><br /><a href="$url">{$back}</a>
+<body class="text-center">
+	<form action="" method="post" class="form-signin" style="width: 100%;max-width: 330px;padding: 15px;margin: 0 auto;">
+<!--vot--><input type="password" id="logpwd" name="logpwd" class="form-control" placeholder="{$page_pass}" required>
+<!--vot--><button class="btn btn-lg btn-primary btn-block mt-2" type="submit">{$submit_pass}"></button>
+<!--vot--><p class="mt-5 mb-3 text-muted"><a href="$url">{$back}</a></p>
 </form>
-</div>
 </body>
 </html>
 EOT;

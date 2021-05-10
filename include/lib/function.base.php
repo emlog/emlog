@@ -98,15 +98,6 @@ function realUrl() {
 	return $real_url;
 }
 
-function isIE6Or7() {
-	if (isset($_SERVER['HTTP_USER_AGENT'])) {
-		if (strpos($_SERVER['HTTP_USER_AGENT'], "MSIE 7.0") || strpos($_SERVER['HTTP_USER_AGENT'], "MSIE 6.0")) {
-			return true;
-		}
-	}
-	return false;
-}
-
 /**
  * Check Plugin
  */
@@ -152,9 +143,9 @@ function checkMail($email) {
 /**
  * Get utf8 substring
  *
- * @param string $strings //source string 
- * @param int $start //start position, eg:0
- * @param int $length //substring length
+ * @param string $strings Preprocessed string
+ * @param int $start Start position, eg:0
+ * @param int $length Length
  */
 function subString($strings, $start, $length) {
 	if (function_exists('mb_substr') && function_exists('mb_strlen')) {
@@ -238,6 +229,17 @@ function changeFileSize($fileSize) {
  */
 function getFileSuffix($fileName) {
 	return strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+}
+
+/**
+ * Check if the file is an image, based on the file name extension
+ */
+function isImage($fileName) {
+	$extension = getFileSuffix($fileName);
+	if (in_array($extension, array('gif', 'jpg', 'jpeg', 'png'))) {
+		return true;
+	}
+	return false;
 }
 
 /**
@@ -368,16 +370,6 @@ function getRandStr($length = 12, $special_chars = true) {
 	return $randStr;
 }
 
-/**
- * Looking for all the different elements of the two arrays
- */
-function findArray($array1, $array2) {
-	$r1 = array_diff($array1, $array2);
-	$r2 = array_diff($array2, $array1);
-	$r = array_merge($r1, $r2);
-	return $r;
-}
-
 function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = false, $is_thumbnail = true) {
 	$result = upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon, $is_thumbnail);
 	switch ($result) {
@@ -399,25 +391,6 @@ function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = 
 			break;
 		case '105':
 /*vot*/     emMsg(lang('upload_folder_unwritable'));
-			break;
-		default:
-			return $result;
-			break;
-	}
-}
-
-//Use for Attachment Bulk Upload
-function uploadFileBySwf($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = false, $is_thumbnail = true) {
-	$result = upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon, $is_thumbnail);
-	switch ($result) {
-		case '100':
-		case '101':
-		case '102':
-		case '103':
-		case '104':
-		case '105':
-			header("HTTP/1.1 404 Not Found");
-			exit;
 			break;
 		default:
 			return $result;
@@ -448,20 +421,20 @@ function uploadFileBySwf($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIc
  * @param boolean $isIcon Whether it is the avatar uploaded
  * @param boolean $is_thumbnail Whether to generate thumbnail
  * @return array File Data Index
- * 
+ *
  */
 function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = false, $is_thumbnail = true) {
 	if ($errorNum == 1) {
-        return '100'; //File size exceeds the system limit
+		return '100'; //File size exceeds the system limit
 	} elseif ($errorNum > 1) {
-        return '101'; //File upload failed
+		return '101'; //File upload failed
 	}
 	$extension = getFileSuffix($fileName);
 	if (!in_array($extension, $type)) {
-        return '102'; //Incorrect file type
+		return '102'; //Incorrect file type
 	}
 	if ($fileSize > Option::getAttMaxSize()) {
-        return '103'; //File size exceeds the emlog limit
+		return '103'; //File size exceeds the emlog limit
 	}
 	$file_info = array();
 	$file_info['file_name'] = $fileName;
@@ -477,14 +450,14 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = fals
 		@umask(0);
 		$ret = @mkdir(Option::UPLOADFILE_PATH, 0777);
 		if ($ret === false) {
-            return '104'; //Create the file upload directory failed
+			return '104'; //Create the file upload directory failed
 		}
 	}
 	if (!is_dir($uppath)) {
 		@umask(0);
 		$ret = @mkdir($uppath, 0777);
 		if ($ret === false) {
-            return '105'; //Upload failed. File upload directory (content/uploadfile) is not writable
+			return '105'; //Upload failed. File upload directory (content/uploadfile) is not writable
 		}
 	}
 	doAction('attach_upload', $tmpFile);
@@ -515,12 +488,12 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = fals
 	if (@is_uploaded_file($tmpFile)) {
 		if (@!move_uploaded_file($tmpFile, $attachpath)) {
 			@unlink($tmpFile);
-            return '105'; //Upload failed. File upload directory (content/uploadfile) is not writable
+			return '105'; //Upload failed. File upload directory (content/uploadfile) is not writable
 		}
 		@chmod($attachpath, 0777);
 	}
 
-        // If the attachment is an image, then need to extract the width and height
+	// If the attachment is an image, then need to extract the width and height
 	if (in_array($file_info['mime_type'], array('image/jpeg', 'image/png', 'image/gif', 'image/bmp'))) {
 		$size = getimagesize($file_info['file_path']);
 		if ($size) {
@@ -653,15 +626,10 @@ function chImageSize($img, $max_w, $max_h) {
 /**
  * Get Gravatar Avatar
  * http://en.gravatar.com/site/implement/images/
- * @param $email
- * @param $s size
- * @param $d default avatar
- * @param $g
  */
-function getGravatar($email, $s = 40, $d = 'mm', $g = 'g') {
+function getGravatar($email, $s = 40) {
 	$hash = md5($email);
-/*vot*/ $avatar = "http://www.gravatar.com/avatar/$hash?s=$s&d=$d&r=$g";
-	return $avatar;
+/*vot*/ return "http://www.gravatar.com/avatar/$hash?s=$s";
 }
 
 /**
@@ -750,7 +718,7 @@ function emUnZip($zipfile, $path, $type = 'tpl') {
 		$zip->close();
 		return 0;
 	} else {
-        return 1;//File permissions problem
+		return 1;//File permissions problem
 	}
 }
 
@@ -846,17 +814,17 @@ function emMsg($msg, $url = 'javascript:history.back(-1);', $isAutoGo = false) {
 	}
 /*vot*/    $lang = EMLOG_LANGUAGE;
 /*vot*/    $dir  = EMLOG_LANGUAGE_DIR;
+/*vot*/    $title = lang('prompt');
 /*vot*/    echo <<<EOT
-<!DOCTYPE html>
+<!doctype html>
 <html dir="$dir" lang="$lang">
 <head>
+    <meta charset="utf-8">
 EOT;
 	if ($isAutoGo) {
 		echo "<meta http-equiv=\"refresh\" content=\"2;url=$url\" />";
 	}
-/*vot*/ $title = lang('prompt');
 	echo <<<EOT
-<meta charset="utf-8">
 <title>$title</title>
 <style type="text/css">
 <!--
@@ -889,7 +857,7 @@ body {
 <p>$msg</p>
 EOT;
 	if ($url != 'none') {
-/*vot*/        echo '<p><a href="' . $url . '">'. lang('click_return').'</a></p>';
+/*vot*/        echo '<p><a href="' . $url . '">&larr;'. lang('click_return').'</a></p>';
 	}
 	echo <<<EOT
 </div>
@@ -911,23 +879,6 @@ function show_404_page() {
 	} else {
 		emMsg('404', BLOG_URL);
 	}
-}
-
-/**
- * Replace Emoticons
- *
- * @param $t
- */
-function emoFormat($t) {
-/*vot*/    require_once(EMLOG_ROOT . '/admin/views/js/emo.php'); //$emos = array(code=>image,...);
-	if (!empty($t) && preg_match_all('/\[.+?\]/', $t, $matches)) {
-		$matches = array_unique($matches[0]);
-		foreach ($matches as $data) {
-			if (isset($emos[$data]))
-				$t = str_replace($data, '<img title="' . $data . '" src="' . BLOG_URL . 'admin/editor/plugins/emoticons/images/' . $emos[$data] . '"/>', $t);
-		}
-	}
-	return $t;
 }
 
 /**

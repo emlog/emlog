@@ -29,16 +29,14 @@
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 <!--vot--><h1 class="h3 mb-0 text-gray-800"><?=lang('template_manager')?></h1>
-<!--vot--><a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> <?=lang('template_add')?></a>
+<!--vot--><a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> <?=lang('template_add')?></a>
 </div>
 <div class="card-columns">
 	<?php foreach ($tpls as $key => $value): ?>
-        <div class="card <?php if ($nonce_templet == $value['tplfile']) {
-			echo "border border-warning";
-		} ?>">
-            <div class="card-header <?php if ($nonce_templet == $value['tplfile']) {
-				echo "bg-warning";
-			} ?>"><?php echo $value['tplname']; ?></div>
+        <div class="card">
+            <div class="card-header <?php if ($nonce_templet == $value['tplfile']) {echo "bg-success text-white";} ?>">
+                <?php echo $value['tplname']; ?>
+            </div>
             <div class="card-body">
                 <a href="template.php?action=usetpl&tpl=<?php echo $value['tplfile']; ?>&side=<?php echo $value['sidebar']; ?>&token=<?php echo LoginAuth::genToken(); ?>">
                     <img class="card-img-top" src="<?php echo TPLS_URL . $value['tplfile']; ?>/preview.jpg" alt="Card image cap">
@@ -71,8 +69,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-<!--vot-->          <button type="button" class="btn btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
-<!--vot-->          <button type="submit" class="btn btn-success"><?=lang('upload')?></button>
+<!--vot-->          <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
+<!--vot-->          <button type="submit" class="btn btn-sm btn-success"><?=lang('upload')?></button>
                     <span id="alias_msg_hook"></span>
                 </div>
             </form>

@@ -182,7 +182,7 @@ if ($action == 'operate_log') {
 	}
 }
 
-//Show the write article page
+//write article page
 if ($action === 'write') {
 	$blogData = [
 		'logid'    => -1,
@@ -207,9 +207,12 @@ if ($action === 'write') {
 	$tagStr = '';
 	$is_top = '';
 	$is_sortop = '';
-	$is_allow_remark = '';
+	$is_allow_remark = 'checked="checked"';
 	$postDate = date('Y-m-d H:i:s');
-	$att_frame_url = 'attachment.php?action=selectFile';
+
+	//media
+	$Media_Model = new Media_Model();
+	$medias = $Media_Model->getMedias();
 
 	include View::getView('header');
 	require_once View::getView('article_write');
@@ -217,7 +220,7 @@ if ($action === 'write') {
 	View::output();
 }
 
-//Show edit article page
+// edit article page
 if ($action === 'edit') {
 	$logid = isset($_GET['gid']) ? (int)$_GET['gid'] : '';
 	$blogData = $Log_Model->getOneLogForAdmin($logid);
@@ -235,11 +238,13 @@ if ($action === 'edit') {
 	}
 	$tagStr = implode(',', $tags);
 
+	//media
+	$Media_Model = new Media_Model();
+	$medias = $Media_Model->getMedias();
+
 	$is_top = $top == 'y' ? 'checked="checked"' : '';
 	$is_sortop = $sortop == 'y' ? 'checked="checked"' : '';
 	$is_allow_remark = $allow_remark == 'y' ? 'checked="checked"' : '';
-
-	$att_frame_url = 'attachment.php?action=attlib&logid=' . $logid;
 
 	include View::getView('header');
 	require_once View::getView('article_write');

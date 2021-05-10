@@ -21,6 +21,7 @@ class Calendar {
 		$DB = Database::getInstance();
 
 		//Array of post create time
+		$logdate = [];
 		$query = $DB->query("SELECT date FROM " . DB_PREFIX . "blog WHERE hide='n' and checked='y' and type='blog'");
 		while ($date = $DB->fetch_array($query)) {
 			$logdate[] = date("Ymd", $date['date']);
@@ -97,9 +98,9 @@ class Calendar {
 					//Format the date for url
 					$n_time = $n_year . $n_month . '0' . $r;
 					//If there is an article for that day
-					if (@in_array($n_time, $logdate) && $n_time == $time) {
+					if (in_array($n_time, $logdate) && $n_time == $time) {
 						$calendar .= '<td class="day"><a href="' . Url::record($n_time) . '">' . $r . '</a></td>';
-					} elseif (@in_array($n_time, $logdate)) {
+					} elseif (in_array($n_time, $logdate)) {
 						$calendar .= '<td class="day2"><a href="' . Url::record($n_time) . '">' . $r . '</a></td>';
 					} elseif ($n_time == $time) {
 						$calendar .= '<td class="day">' . $r . '</td>';
@@ -114,9 +115,9 @@ class Calendar {
 					} else {
 						//Format the date for url
 						$t < 10 ? $n_time = $n_year . $n_month . '0' . $t : $n_time = $n_year . $n_month . $t;
-						if (@in_array($n_time, $logdate) && $n_time == $time) {
+						if (in_array($n_time, $logdate) && $n_time == $time) {
 							$calendar .= '<td class="day"><a href="' . Url::record($n_time) . '">' . $t . '</a></td>';
-						} elseif (@in_array($n_time, $logdate)) {
+						} elseif (in_array($n_time, $logdate)) {
 							$calendar .= '<td class="day2"><a href="' . Url::record($n_time) . '">' . $t . '</a></td>';
 						} elseif ($n_time == $time) {
 							$calendar .= '<td class="day">' . $t . '</td>';

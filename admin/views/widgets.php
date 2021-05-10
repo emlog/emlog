@@ -252,8 +252,8 @@
                                 </li>
                                 <li><textarea class="form-control" name="content" style="overflow:auto; height:260px;"><?php echo $val['content']; ?></textarea><br/></li>
                                 <li>
-<!--vot-->                          <input type="submit" class="btn btn-success" name="" value="<?=lang('save')?>">
-<!--vot-->                          <a class="btn btn-danger" href="widgets.php?action=setwg&wg=custom_text&rmwg=<?php echo $key; ?>"><?=lang('widget_delete')?></a>
+<!--vot-->                          <input type="submit" class="btn btn-sm btn-success" name="" value="<?=lang('save')?>">
+<!--vot-->                          <a class="btn btn-sm btn-danger" href="widgets.php?action=setwg&wg=custom_text&rmwg=<?php echo $key; ?>"><?=lang('widget_delete')?></a>
                                 </li>
                             </form>
                         </div>
@@ -262,7 +262,7 @@
 			<?php endforeach; ?>
         </div>
         <div class="my-3">
-<!--vot-->  <a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> <?=lang('widget_add')?></a>
+<!--vot-->  <a href="#" class="btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> <?=lang('widget_add')?></a>
         </div>
 
         <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -278,16 +278,16 @@
                         <div class="modal-body">
                             <div class="form-group">
 <!--vot-->                      <label for="sortname"><?=lang('widget_title')?></label>
-                                <input class="form-control" id="new_title" name="new_title">
+                                <input class="form-control" id="new_title" name="new_title" required>
                             </div>
                             <div class="form-group">
 <!--vot-->                      <label for="alias"><?=lang('widget_content_info')?></label>
-                                <textarea name="new_content" class="form-control" rows="10"></textarea>
+                                <textarea name="new_content" class="form-control" rows="10" required></textarea>
                             </div>
                         </div>
                         <div class="modal-footer">
-<!--vot-->                  <button type="button" class="btn btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
-<!--vot-->                  <button type="submit" class="btn btn-success"><?=lang('save')?></button>
+<!--vot-->                  <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
+<!--vot-->                  <button type="submit" class="btn btn-sm btn-success"><?=lang('save')?></button>
                             <span id="alias_msg_hook"></span>
                         </div>
                     </form>
@@ -326,8 +326,8 @@
 				<?php endforeach; ?>
             </div>
             <div class="my-3">
-<!--vot-->      <input type="submit" value="<?=lang('widget_order_save')?>" class="btn btn-success"/>
-<!--vot-->      <a href="javascript:em_confirm(0, 'reset_widget', '<?php echo LoginAuth::genToken(); ?>');" class="btn btn-warning"><?=lang('widget_setting_reset')?></a>
+<!--vot-->      <input type="submit" value="<?=lang('widget_order_save')?>" class="btn btn-sm btn-success"/>
+<!--vot-->      <a href="javascript:em_confirm(0, 'reset_widget', '<?php echo LoginAuth::genToken(); ?>');" class="btn btn-sm btn-warning"><?=lang('widget_setting_reset')?></a>
             </div>
         </form>
     </div>

@@ -34,9 +34,9 @@
                 <input type="hidden" name="ishide" id="ishide" value="<?php echo $hide; ?>" />
                 <input type="hidden" name="pageid" value="<?php echo $pageId; ?>" />
 				<?php if ($pageId < 0): ?>
-<!--vot-->          <input type="submit" value="<?=lang('page_publish')?>" onclick="return checkform();" class="btn btn-success"/>
+<!--vot-->          <input type="submit" value="<?=lang('page_publish')?>" onclick="return checkform();" class="btn btn-sm btn-success"/>
 				<?php else: ?>
-<!--vot-->          <input type="submit" value="<?=lang('save_and_return')?>" onclick="return checkform();" class="btn btn-success"/>
+<!--vot-->          <input type="submit" value="<?=lang('save_and_return')?>" onclick="return checkform();" class="btn btn-sm btn-success"/>
 				<?php endif; ?>
             </div>
         </div>
@@ -54,7 +54,39 @@
                 </button>
             </div>
             <div class="modal-body">
-
+                <div class="card-columns">
+					<?php
+					if ($medias):
+						foreach ($medias as $key => $value):
+							$media_url = BLOG_URL . substr($value['filepath'], 3);
+							$media_name = $value['filename'];
+							if (isImage($value['filepath'])) {
+								$imgpath = $value['thum_filepath'] ?? $value['filepath'];
+								$media_icon_imgurl = BLOG_URL . substr($imgpath, 3);
+							} else {
+								$media_icon_imgurl = "./views/images/fnone.png";
+							}
+							?>
+                            <div class="card" style="min-height: 138px;">
+								<?php if (isImage($value['filepath'])): ?>
+<!--vot-->                          <a href="javascript:insert_media_img('<?php echo $media_url; ?>', '<?php echo $media_icon_imgurl; ?>')" title="<?=lang('img_insert')?>: <?php echo $media_name; ?>">
+                                        <img class="card-img-top" src="<?php echo $media_icon_imgurl; ?>"/>
+                                    </a>
+								<?php else: ?>
+<!--vot-->                          <a href="javascript:insert_media('<?php echo $media_url; ?>', '<?php echo $media_name; ?>')" title="<?=lang('file_insert')?>: <?php echo $media_name; ?>">
+                                        <img class="card-img-top" src="<?php echo $media_icon_imgurl; ?>"/>
+                                    </a>
+								<?php endif; ?>
+                            </div>
+						<?php
+						endforeach;
+					else :
+						?>
+<!--vot-->              <?=lang('no_resources')?>
+					<?php
+					endif;
+					?>
+                </div>
             </div>
         </div>
     </div>
@@ -87,7 +119,7 @@
                     "bold", "del", "italic", "quote", "|",
                     "h1", "h2", "h3", "h4", "h5", "h6", "|",
                     "list-ul", "list-ol", "hr", "|",
-                    "link", "image", "preformatted-text", "table", "|", "search", "watch", "|", "info"]
+                    "link", "image", "preformatted-text", "table", "|", "watch"]
             },
             path: "editor.md/lib/",
             tex: false,

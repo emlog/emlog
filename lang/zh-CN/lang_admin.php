@@ -544,6 +544,7 @@ $lang = array(
  'exceeds'			=> '已超出',//'has been exceeded ',
  'publish'			=> '发布',//,'Publish',
  'write_article'		=> '去写文章',//'Write an article',
+ 'welcome'			=> '欢迎',//'Welcome',
 
 //---------------------------
 //admin/views/links.php
@@ -568,7 +569,7 @@ $lang = array(
  'password'		=> '密码',//'Password',
  'remember_me'		=> '记住登录状态',//'Remember login status',
  'log_in'		=> ' 登 录 ',//' Log in ',
- 'back_home'		=> '&laquo;返回首页',//'&laquo; Back to home',
+ 'back_home'		=> '&larr;返回首页',//'&laquo; Back to home',
  'password_forget'	=> '忘记密码?',//'Forgot Password?',
 
 //---------------------------

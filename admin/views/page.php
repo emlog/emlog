@@ -11,13 +11,13 @@
 <!--vot--><div class="alert alert-success"><?=lang('page_saved_ok')?></div><?php endif; ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 <!--vot--><h1 class="h3 mb-0 text-gray-800"><?=lang('page_management')?></h1>
-<!--vot--><a href="page.php?action=new" class="d-none d-sm-inline-block btn btn-success shadow-sm"><i class="icofont-plus"></i> <?=lang('add_page')?></a>
+<!--vot--><a href="page.php?action=new" class="btn btn-sm btn-success shadow-sm mt-4"><i class="icofont-plus"></i> <?=lang('add_page')?></a>
 </div>
 <form action="page.php?action=operate_page" method="post" name="form_page" id="form_page">
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered table-striped table-hover" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered table-striped table-hover dataTable no-footer">
                     <thead>
                     <tr>
                         <th><input type="checkbox" id="checkAll"/></th>
@@ -33,15 +33,14 @@
 							$navibar[$value['gid']]['url'] = Url::log($value['gid']);
 						}
 						$isHide = $value['hide'] == 'y' ?
-/*vot*/						'<font color="red"> - ' . lang('draft') . '</font>' :
+/*vot*/						'<span class="text-danger">[' . lang('draft') . ']</span>' :
 /*vot*/						'<a href="' . $navibar[$value['gid']]['url'] . '" target="_blank" title="' . lang('page_view') . '"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>';
 						?>
                         <tr>
-                            <td width="21"><input type="checkbox" name="page[]" value="<?php echo $value['gid']; ?>" class="ids"/></td>
-                            <td width="440">
+                            <td><input type="checkbox" name="page[]" value="<?php echo $value['gid']; ?>" class="ids"/></td>
+                            <td>
                                 <a href="page.php?action=mod&id=<?php echo $value['gid'] ?>"><?php echo $value['title']; ?></a>
 								<?php echo $isHide; ?>
-<!--vot-->						<?php if ($value['attnum'] > 0): ?><img src="./views/images/att.gif" align="top" title="<?=lang('attachments')?>: <?php echo $value['attnum']; ?>" /><?php endif; ?>
                             </td>
                             <td><?php echo $value['template']; ?></td>
                             <td><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
@@ -52,11 +51,13 @@
                 </table>
             </div>
             <div class="list_footer">
+                <div class="btn-group btn-group-sm" role="group">
+<!--vot-->          <a type="button" href="javascript:pageact('del');" class="btn btn-sm btn-danger">删除</a>
+<!--vot-->          <a type="button" href="javascript:pageact('hide');" class="btn btn-sm btn-success">转为草稿</a>
+<!--vot-->          <a type="button" href="javascript:pageact('pub');" class="btn btn-sm btn-success">发布</a>
+                </div>
                 <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
                 <input name="operate" id="operate" value="" type="hidden"/>
-<!--vot-->      <a href="javascript:pageact('del');" class="care"><?=lang('delete')?></a> |
-<!--vot-->      <a href="javascript:pageact('hide');"><?=lang('make_draft')?></a> |
-<!--vot-->      <a href="javascript:pageact('pub');"><?=lang('publish')?></a>
             </div>
 <!--vot-->  <div class="page"><?php echo $pageurl; ?> (<?=lang('have')?> <?php echo $pageNum; ?> <?=lang('_pages')?>)</div>
         </div>

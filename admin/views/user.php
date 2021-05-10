@@ -21,54 +21,56 @@
 <!--vot--><div class="alert alert-danger"><?=lang('founder_not_edit')?></div><?php endif; ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 <!--vot--><h1 class="h3 mb-0 text-gray-800"><?=lang('user_management')?></h1>
-<!--vot--><a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#exampleModal"><i class="icofont-plus"></i> <?=lang('user_add')?></a>
+<!--vot--><a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#exampleModal"><i class="icofont-plus"></i> <?=lang('user_add')?></a>
 </div>
 <div class="card shadow mb-4">
     <div class="card-header py-3">
 <!--vot--><h6 class="m-0 font-weight-bold"><?=lang('users_total')?> (<?php echo $usernum; ?>)</h6>
     </div>
     <div class="card-body">
-        <table class="table table-bordered table-striped table-hover dataTable no-footer" id="adm_comment_list">
-            <thead>
-            <tr>
-                <th></th>
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped table-hover dataTable no-footer" id="adm_comment_list">
+                <thead>
+                <tr>
+                    <th></th>
 <!--vot-->      <th><?=lang('user')?></th>
 <!--vot-->      <th><?=lang('description')?></th>
 <!--vot-->      <th><?=lang('email')?></th>
 <!--vot-->      <th><?=lang('posts')?></th>
-            </tr>
-            </thead>
-            <tbody>
-			<?php
-			foreach ($users as $key => $val):
-				$avatar = empty($user_cache[$val['uid']]['avatar']) ? './views/images/avatar.svg' : '../' . $user_cache[$val['uid']]['avatar'];
-				?>
-                <tr>
-                    <td><img src="<?php echo $avatar; ?>" height="40" width="40"/></td>
-                    <td>
-						<?php
-						if (UID != $val['uid']): ?>
-                            <a href="user.php?action=edit&uid=<?php echo $val['uid'] ?>"><?php echo empty($val['name']) ? $val['login'] : $val['name']; ?></a>
-						<?php else: ?>
-                            <a href="blogger.php"><?php echo empty($val['name']) ? $val['login'] : $val['name']; ?></a>
-						<?php endif; ?>
-						<?php echo "<br/>" . $val['description']; ?>
-                    </td>
-                    <td>
+                </tr>
+                </thead>
+                <tbody>
+				<?php
+				foreach ($users as $key => $val):
+					$avatar = empty($user_cache[$val['uid']]['avatar']) ? './views/images/avatar.svg' : '../' . $user_cache[$val['uid']]['avatar'];
+					?>
+                    <tr>
+                        <td><img src="<?php echo $avatar; ?>" height="40" width="40"/></td>
+                        <td>
+							<?php
+							if (UID != $val['uid']): ?>
+                                <a href="user.php?action=edit&uid=<?php echo $val['uid'] ?>"><?php echo empty($val['name']) ? $val['login'] : $val['name']; ?></a>
+							<?php else: ?>
+                                <a href="blogger.php"><?php echo empty($val['name']) ? $val['login'] : $val['name']; ?></a>
+							<?php endif; ?>
+							<?php echo "<br/>" . $val['description']; ?>
+                        </td>
+                        <td>
 <!--vot-->              <?php echo $val['role'] == ROLE_ADMIN ? ($val['uid'] == 1 ? lang('founder') : lang('admin')) : lang('user'); ?>
 <!--vot-->              <?php if ($val['role'] == ROLE_WRITER && $val['ischeck'] == 'y') echo lang('posts_need_audit'); ?>
-                    </td>
-                    <td><a href="article.php?uid=<?php echo $val['uid']; ?>"><?php echo $sta_cache[$val['uid']]['lognum']; ?></a></td>
-                    <td>
-						<?php
-						if (UID != $val['uid']): ?>
+                        </td>
+                        <td><a href="article.php?uid=<?php echo $val['uid']; ?>"><?php echo $sta_cache[$val['uid']]['lognum']; ?></a></td>
+                        <td>
+							<?php
+							if (UID != $val['uid']): ?>
 <!--vot-->                  <a href="javascript: em_confirm(<?php echo $val['uid']; ?>, 'user', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-danger"><?=lang('delete')?></a>
-						<?php endif; ?>
-                    </td>
-                </tr>
-			<?php endforeach; ?>
-            </tbody>
-        </table>
+							<?php endif; ?>
+                        </td>
+                    </tr>
+				<?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 <div class="page"><?php echo $pageurl; ?></div>
@@ -93,15 +95,15 @@
                     </div>
                     <div class="form-group">
 <!--vot-->              <label for="sortname"><?=lang('user_name')?></label>
-                        <input class="form-control" id="login" name="login">
+                        <input class="form-control" id="login" name="login" required>
                     </div>
                     <div class="form-group">
 <!--vot-->              <label for="alias"><?=lang('password_min_length')?></label>
-                        <input class="form-control" id="password" name="password" type="password">
+                        <input class="form-control" id="password" name="password" type="password" required>
                     </div>
                     <div class="form-group">
 <!--vot-->              <label for="template"><?=lang('password_repeat')?></label>
-                        <input class="form-control" id="password2" name="password2" type="password">
+                        <input class="form-control" id="password2" name="password2" type="password" required>
                     </div>
                     <div class="form-group" id="ischeck">
 <!--vot-->                  <label for="template"><?=lang('publish_permission')?></label>
@@ -113,8 +115,8 @@
                 </div>
                 <div class="modal-footer">
                     <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
-<!--vot-->          <button type="button" class="btn btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
-<!--vot-->          <button type="submit" class="btn btn-success"><?=lang('save')?></button>
+<!--vot-->          <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
+<!--vot-->          <button type="submit" class="btn btn-sm btn-success"><?=lang('save')?></button>
                     <span id="alias_msg_hook"></span>
                 </div>
             </form>

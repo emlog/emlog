@@ -53,7 +53,6 @@
 <!--vot-->              <th><?= lang('comment_author') ?></th>
 <!--vot-->              <th><?= lang('time') ?></th>
 <!--vot-->              <th><?= lang('belongs_to_article') ?></th>
-<!--vot-->              <th><?= lang('operation') ?></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -63,7 +62,7 @@
 						$ip = $value['ip'];
 						$gid = $value['gid'];
 						$cid = $value['cid'];
-/*vot*/						$ip_info = $ip ? '<br />' . lang('from_ip') . ': ' . $ip : '';
+/*vot*/					$ip_info = $ip ? '<br />' . lang('from_ip') . ': ' . $ip : '';
 						$comment = $value['comment'];
 						$poster = $value['poster'] ?: '';
 						$title = subString($value['title'], 0, 42);
@@ -83,36 +82,32 @@
                                 </a>
 								<?php echo $ishide; ?>
                             </td>
-                            <td class="small"><?php echo $poster; ?> <?php echo $mail; ?> <?php echo $ip_info; ?></td>
-                            <td class="small"><?php echo $date; ?></td>
-                            <td class="small"><a href="<?php echo Url::log($gid); ?>"><?php echo $title; ?></a></td>
-                            <td>
-<!--vot-->                      <a href="javascript: em_confirm(<?php echo $cid; ?>, 'comment', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-danger"><?=lang('delete')?></a>
-								<?php if ($hide == 'y'): ?>
-<!--vot-->                          <a href="comment.php?action=show&amp;id=<?php echo $cid; ?>" class="badge badge-primary"><?=lang('check')?></a>
-								<?php else: ?>
-<!--vot-->                          <a href="comment.php?action=hide&amp;id=<?php echo $cid; ?>" class="badge badge-secondary"><?=lang('hide')?></a>
-								<?php endif; ?>
+                            <td class="small">
+<!--vot-->                      <?php echo $poster; ?> <?php echo $mail; ?> <?php echo $ip_info; ?>
 								<?php if (ROLE == ROLE_ADMIN): ?>
-<!--vot-->                          <a href="javascript: em_confirm('<?php echo $ip; ?>', 'commentbyip', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-pill badge-warning"><?=lang('del_from_ip')?></a>
+<!--vot-->                          <a href="javascript: em_confirm('<?php echo $ip; ?>', 'commentbyip', '<?php echo LoginAuth::genToken(); ?>');"
+                                       class="badge badge-pill badge-warning"><?=lang('del_from_ip')?></a>
 								<?php endif; ?>
                             </td>
+                            <td class="small"><?php echo $date; ?></td>
+                            <td class="small"><a href="<?php echo Url::log($gid); ?>"><?php echo $title; ?></a></td>
                         </tr>
 					<?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
             <div class="list_footer">
-<!--vot-->      <a href="javascript:commentact('del');" class="care"><?=lang('delete')?></a>
-<!--vot-->      <a href="javascript:commentact('hide');"><?=lang('hide')?></a>
-<!--vot-->      <a href="javascript:commentact('pub');"><?=lang('approve')?></a>
+                <div class="btn-group btn-group-sm" role="group">
+<!--vot-->          <a type="button" href="javascript:commentact('del');" class="btn btn-sm btn-danger"><?=lang('delete')?></a>
+<!--vot-->          <a type="button" href="javascript:commentact('hide');" class="btn btn-sm btn-success"><?=lang('hide')?></a>
+<!--vot-->          <a type="button" href="javascript:commentact('pub');" class="btn btn-sm btn-success"><?=lang('approve')?></a>
+                </div>
                 <input name="operate" id="operate" value="" type="hidden"/>
             </div>
 <!--vot-->  <div class="page"><?php echo $pageurl; ?> (<?=lang('have')?> <?php echo $cmnum; ?> <?=lang('_comments')?>)</div>
         </div>
     </div>
 </form>
-
 <div class="modal fade" id="replyModal" tabindex="-1" role="dialog" aria-labelledby="replyModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -129,12 +124,12 @@
                         <input type="hidden" value="" name="cid" id="cid"/>
                         <input type="hidden" value="" name="gid" id="gid"/>
                         <input type="hidden" value="" name="hide" id="hide"/>
-                        <textarea class="form-control" id="reply" name="reply"></textarea>
+                        <textarea class="form-control" id="reply" name="reply" required></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
-<!--vot-->          <button type="button" class="btn btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
-<!--vot-->          <button type="submit" class="btn btn-success"><?=lang('reply')?></button>
+<!--vot-->          <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
+<!--vot-->          <button type="submit" class="btn btn-sm btn-success"><?=lang('reply')?></button>
                 </div>
             </form>
         </div>

@@ -48,10 +48,13 @@
 <!--vot-->      <label class="form-check-label"><?=lang('login_verification_code')?></label>
             </div>
 
-            <div class="form-group form-inline">
+            <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="iscomment" id="iscomment" <?php echo $conf_iscomment; ?> />
 <!--vot-->      <label><?=lang('enable_comments')?></label>,
-<!--vot-->      <?=lang('comment_interval')?> <input class="form-control" value="<?php echo $comment_interval; ?>" name=comment_interval/> <?=lang('seconds')?>
+            </div>
+
+            <div class="form-check form-inline">
+<!--vot-->      <?=lang('comment_interval')?> <input class="form-control" value="<?php echo $comment_interval; ?>" name="comment_interval" style="width: 100px;"/> <?=lang('seconds')?>
             </div>
 
             <div class="form-check">
@@ -70,15 +73,19 @@
                 <input class="form-check-input" type="checkbox" value="y" name="comment_needchinese" id="comment_needchinese" <?php echo $conf_comment_needchinese; ?> />
 <!--vot-->      <label><?=lang('comment_must_contain_chinese')?></label>
             </div>
-            <div class="form-group form-inline">
+            <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="comment_paging" id="comment_paging" <?php echo $conf_comment_paging; ?> />
 <!--vot-->      <label><?=lang('comment_per_page')?>,</label>
+            </div>
+            <div class="form-check form-inline">
 <!--vot-->      <?=lang('per_page')?> <input maxlength="5" style="width:50px;" class="form-control" value="<?php echo $comment_pnum; ?>" name="comment_pnum"/><?=lang('_comments')?>,
-                <select name="comment_order" class="form-control">
+                <select name="comment_order" class="form-control" style="width: 100px;">
 <!--vot-->          <option value="newer" <?php echo $ex3; ?>><?=lang('newer')?></option>
 <!--vot-->          <option value="older" <?php echo $ex4; ?>><?=lang('older')?></option>
 <!--vot-->      </select><?=lang('standing_in_front')?>
             </div>
+
+            <hr>
 
             <div class="form-group form-inline">
 <!--vot-->      <label><?=lang('posts_per_page')?></label>
@@ -93,9 +100,13 @@
                 </select>
             </div>
 
-            <div class="form-group form-inline">
+            <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="isexcerpt" id="isexcerpt" <?php echo $conf_isexcerpt; ?> />
 <!--vot-->      <label class="form-check-label"><?=lang('auto_summary')?></label>
+            </div>
+
+            <div class="form-check form-inline">
+<!--vot-->      <label class="form-check-label"><?=lang('auto_summary_length')?></label>
 <!--vot-->      <input type="text" name="excerpt_subnum" value="<?php echo Option::get('excerpt_subnum'); ?>" class="form-control" style="width:60px;"/> <?=lang('characters_as_summary')?>
             </div>
 
@@ -103,7 +114,7 @@
 <!--vot-->      <?=lang('php_upload_max_size')?> <input maxlength="10" style="width:80px;" class="form-control" value="<?php echo $att_maxsize; ?>" name="att_maxsize"/> KB
             </div>
             <div class="form-group form-inline">
-<!--vot-->      <?=lang('allow_attach_type')?> <input maxlength="200" style="width:320px;" class="form-control" value="<?php echo $att_type; ?>" name="att_type"/>
+<!--vot-->      <?=lang('allow_attach_type')?> <input maxlength="200" style="width:320px;" class="form-control" value="<?php echo $att_type; ?>" name="att_type"/> <?=lang('separate_by_comma')?>
             </div>
             <div class="form-group form-inline">
 <!--vot-->      <input type="checkbox" value="y" name="isthumbnail" id="isthumbnail" <?php echo $conf_isthumbnail; ?> /> <?=lang('thumbnail_max_size')?>

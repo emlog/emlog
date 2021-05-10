@@ -35,7 +35,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 <!--vot--><div class="alert alert-success"><?=lang('rejected_ok')?></div><?php endif; ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 <!--vot--><h1 class="h3 mb-0 text-gray-800"><?=lang('post_manage')?></h1>
-<!--vot--><a href="./article.php?action=write" class="d-none d-sm-inline-block btn btn-success shadow-sm"><i class="icofont-pencil-alt-5"></i> <?=lang('article_add')?></a>
+<!--vot--><a href="./article.php?action=write" class="btn btn-sm btn-success shadow-sm mt-4"><i class="icofont-pencil-alt-5"></i> <?=lang('article_add')?></a>
 </div>
 <div class="panel-heading">
     <ul class="nav nav-tabs">
@@ -95,70 +95,73 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
     <div class="card-body">
         <form action="article.php?action=operate_log" method="post" name="form_log" id="form_log">
             <input type="hidden" name="draft" value="<?php echo $draft; ?>">
-            <table class="table table-bordered table-striped table-hover dataTable no-footer">
-                <thead>
-                <tr>
-                    <th><input type="checkbox" id="checkAll"/></th>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover dataTable no-footer">
+                    <thead>
+                    <tr>
+                        <th><input type="checkbox" id="checkAll"/></th>
 <!--vot-->          <th><?=lang('title')?></th>
-					<?php if ($draft): ?>
+						<?php if (!$draft): ?>
 <!--vot-->              <th><?=lang('views')?></th>
-					<?php endif; ?>
+						<?php endif; ?>
 <!--vot-->          <th><?=lang('user')?></th>
 <!--vot-->          <th><?=lang('category')?></th>
 <!--vot-->          <th><a href="article.php?sortDate=<?php echo $sortDate . $sorturl; ?>"><?=lang('time')?></a></th>
 <!--vot-->          <th><a href="article.php?sortComm=<?php echo $sortComm . $sorturl; ?>"><?=lang('comments')?></a></th>
 <!--vot-->          <th><a href="article.php?sortView=<?php echo $sortView . $sorturl; ?>"><?=lang('reads')?></a></th>
-                </tr>
-                </thead>
-                <tbody>
-				<?php foreach ($logs as $key => $value):
-/*vot*/				$sortName = $value['sortid'] == -1 && !array_key_exists($value['sortid'], $sorts) ? lang('uncategorized') : $sorts[$value['sortid']]['sortname'];
-					$author = $user_cache[$value['author']]['name'];
-					$author_role = $user_cache[$value['author']]['role'];
-					?>
-                    <tr>
-                        <td><input type="checkbox" name="blog[]" value="<?php echo $value['gid']; ?>" class="ids"/></td>
-                        <td><a href="article.php?action=edit&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a>
-<!--vot-->					<?php if ($value['top'] == 'y'): ?><img src="./views/images/top.png" align="top" title="<?=lang('home_top')?>"/><?php endif; ?>
-<!--vot-->					<?php if ($value['sortop'] == 'y'): ?><img src="./views/images/sortop.png" align="top" title="<?=lang('category_top')?>"/><?php endif; ?>
-							<?php if (!$draft && $value['checked'] == 'n'): ?>
-<!--vot-->                      <span style="color:red;"> - <?=lang('pending')?></span><?php endif; ?>
-                            <div>
-								<?php if (!$draft && ROLE == ROLE_ADMIN && $value['checked'] == 'n'): ?>
-<!--vot-->                          <a href="article.php?action=operate_log&operate=check&gid=<?php echo $value['gid'] ?>&token=<?php echo LoginAuth::genToken(); ?>"><?=lang('check')?></a>
-								<?php elseif ($draft && ROLE == ROLE_ADMIN && $author_role == ROLE_WRITER): ?>
-<!--vot-->                          <a href="article.php?action=operate_log&operate=uncheck&gid=<?php echo $value['gid'] ?>&token=<?php echo LoginAuth::genToken(); ?>"><?=lang('uncheck')?></a>
-								<?php endif; ?>
-                            </div>
-                        </td>
-						<?php if ($draft): ?>
-                            <td>
-                                <a href="<?php echo Url::log($value['gid']); ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0"/></a>
-                            </td>
-						<?php endif; ?>
-                        <td><a href="article.php?uid=<?php echo $value['author'] . $isdraft; ?>"><?php echo $author; ?></a></td>
-                        <td><a href="article.php?sid=<?php echo $value['sortid'] . $isdraft; ?>"><?php echo $sortName; ?></a></td>
-                        <td class="small"><?php echo $value['date']; ?></td>
-                        <td><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
-                        <td><?php echo $value['views']; ?></a></td>
                     </tr>
-				<?php endforeach; ?>
-                </tbody>
-            </table>
-
+                    </thead>
+                    <tbody>
+					<?php foreach ($logs as $key => $value):
+/*vot*/	    			$sortName = $value['sortid'] == -1 && !array_key_exists($value['sortid'], $sorts) ? lang('uncategorized') : $sorts[$value['sortid']]['sortname'];
+						$author = $user_cache[$value['author']]['name'];
+						$author_role = $user_cache[$value['author']]['role'];
+						?>
+                        <tr>
+                            <td><input type="checkbox" name="blog[]" value="<?php echo $value['gid']; ?>" class="ids"/></td>
+                            <td><a href="article.php?action=edit&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a>
+<!--vot-->					    <?php if ($value['top'] == 'y'): ?><img src="./views/images/top.png" align="top" title="<?=lang('home_top')?>"/><?php endif; ?>
+<!--vot-->					    <?php if ($value['sortop'] == 'y'): ?><img src="./views/images/sortop.png" align="top" title="<?=lang('category_top')?>"/><?php endif; ?>
+							    <?php if (!$draft && $value['checked'] == 'n'): ?>
+<!--vot-->                          <span style="color:red;">[<?=lang('pending')?>]</span><?php endif; ?>
+                                <div>
+									<?php if (!$draft && ROLE == ROLE_ADMIN && $value['checked'] == 'n'): ?>
+<!--vot-->                              <a class="badge badge-success"
+                                           href="article.php?action=operate_log&operate=check&gid=<?php echo $value['gid'] ?>&token=<?php echo LoginAuth::genToken(); ?>"><?=lang('check')?></a>
+									<?php elseif (!$draft && ROLE == ROLE_ADMIN && $author_role == ROLE_WRITER): ?>
+<!--vot-->                          <a class="badge badge-danger"
+                                       href="article.php?action=operate_log&operate=uncheck&gid=<?php echo $value['gid'] ?>&token=<?php echo LoginAuth::genToken(); ?>"><?=lang('uncheck')?></a>
+									<?php endif; ?>
+                                </div>
+                            </td>
+							<?php if (!$draft): ?>
+                                <td>
+                                    <a href="<?php echo Url::log($value['gid']); ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0"/></a>
+                                </td>
+							<?php endif; ?>
+                            <td><a href="article.php?uid=<?php echo $value['author'] . $isdraft; ?>"><?php echo $author; ?></a></td>
+                            <td><a href="article.php?sid=<?php echo $value['sortid'] . $isdraft; ?>"><?php echo $sortName; ?></a></td>
+                            <td class="small"><?php echo $value['date']; ?></td>
+                            <td><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
+                            <td><?php echo $value['views']; ?></a></td>
+                        </tr>
+					<?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
             <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
             <input name="operate" id="operate" value="" type="hidden"/>
             <div class="form-inline">
-				<?php if ($draft): ?>
+				<?php if (!$draft): ?>
 					<?php if (ROLE == ROLE_ADMIN): ?>
-                        <select name="top" id="top" onChange="changeTop(this);" class="form-control">
+                        <select name="top" id="top" onChange="changeTop(this);" class="form-control m-1">
 <!--vot-->                  <option value="" selected="selected"><?=lang('top')?></option>
 <!--vot-->                  <option value="top"><?=lang('home_top')?></option>
 <!--vot-->                  <option value="sortop"><?=lang('category_top')?></option>
 <!--vot-->                  <option value="notop"><?=lang('unstick')?></option>
                         </select>
 					<?php endif; ?>
-                    <select name="sort" id="sort" onChange="changeSort(this);" class="form-control mx-1">
+                    <select name="sort" id="sort" onChange="changeSort(this);" class="form-control m-1">
 <!--vot-->              <option value="" selected="selected"><?=lang('move_to_category')?></option>
 						<?php
 						foreach ($sorts as $key => $value):
@@ -181,7 +184,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 <!--vot-->              <option value="-1"><?=lang('uncategorized')?></option>
                     </select>
 					<?php if (ROLE == ROLE_ADMIN && count($user_cache) > 1): ?>
-                        <select name="author" id="author" onChange="changeAuthor(this);" class="form-control mx-1">
+                        <select name="author" id="author" onChange="changeAuthor(this);" class="form-control m-1">
 <!--vot-->                  <option value="" selected="selected"><?=lang('user_edit')?></option>
 							<?php foreach ($user_cache as $key => $val):
 								$val['name'] = $val['name'];
@@ -192,15 +195,17 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 					<?php endif; ?>
 				<?php endif; ?>
 
-<!--vot-->      <a href="javascript:logact('del');" class="text-danger mx-1"><?=lang('delete')?></a>
-				<?php if ($draft): ?>
-<!--vot-->          <a href="javascript:logact('pub');" class="mx-1"><?=lang('publish')?></a>
-				<?php else: ?>
-<!--vot-->          <a href="javascript:logact('hide');" class="mx-1"><?=lang('add_draft')?></a>
-				<?php endif; ?>
+                <div class="btn-group btn-group-sm" role="group">
+<!--vot-->          <a type="button" href="javascript:logact('del');" class="btn btn-sm btn-danger"><?=lang('delete')?></a>
+					<?php if ($draft): ?>
+<!--vot-->              <a type="button" href="javascript:logact('pub');" class="btn btn-sm btn-success"><?=lang('publish')?></a>
+					<?php else: ?>
+<!--vot-->              <a type="button" href="javascript:logact('hide');" class="btn btn-sm btn-success"><?=lang('add_draft')?></a>
+					<?php endif; ?>
+                </div>
             </div>
         </form>
-<!--vot--><div class="page"><?php echo $pageurl; ?> (<?=lang('have')?> <?php echo $logNum; ?> <?=lang('number_of_items')?> <?php echo $pid == 'draft' ? lang('_drafts') : lang('_articles'); ?>)</div>
+<!--vot--><div class="page"><?php echo $pageurl; ?> (<?=lang('have')?> <?php echo $logNum; ?> <?=lang('number_of_items')?> <?php echo $draft ? lang('_drafts') : lang('_articles'); ?>)</div>
     </div>
 </div>
 

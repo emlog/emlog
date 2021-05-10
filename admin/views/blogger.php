@@ -70,7 +70,7 @@
                     <input type="password" class="form-control" value="" name="repeatpass">
                 </div>
                 <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
-<!--vot-->      <input type="submit" value="<?=lang('save_data')?>" class="btn btn-success">
+<!--vot-->      <input type="submit" value="<?=lang('save_data')?>" class="btn btn-sm btn-success">
             </div>
         </form>
     </div>

@@ -34,7 +34,7 @@
 <!--vot-->          <p id="local_bakzip"><?=lang('compress_zip')?>: <input type="checkbox" style="vertical-align:middle;" value="y" name="zipbak" id="zipbak"></p>
                     <p>
                         <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
-<!--vot-->              <input type="submit" value="<?=lang('backup_start')?>" class="btn btn-success"/>
+<!--vot-->              <input type="submit" value="<?=lang('backup_start')?>" class="btn btn-sm btn-success"/>
                     </p>
                 </div>
             </form>
@@ -59,7 +59,7 @@
         <div class="card-body">
             <div id="cache">
 <!--vot-->      <p class="des"><?=lang('cache_update_info')?></p>
-<!--vot-->      <p><input type="button" onclick="window.location='data.php?action=Cache';" value="<?=lang('cache_update')?>" class="btn btn-success"></p>
+<!--vot-->      <p><input type="button" onclick="window.location='data.php?action=Cache';" value="<?=lang('cache_update')?>" class="btn btn-sm btn-success"></p>
             </div>
         </div>
     </div>

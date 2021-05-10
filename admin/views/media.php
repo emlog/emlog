@@ -5,29 +5,27 @@
 <!--vot--><div class="alert alert-success"><?=lang('deleted_ok')?></div><?php endif; ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 <!--vot--><h1 class="h3 mb-0 text-gray-800"><?=lang('resource_manage')?></h1>
-<!--vot--><a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#exampleModal"><i class="icofont-plus"></i> <?=lang('upload_files')?></a>
+<!--vot--><a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#exampleModal"><i class="icofont-plus"></i> <?=lang('upload_files')?></a>
 </div>
 
 <div class="card-columns">
-	<?php foreach ($attach as $key => $value):
-		$extension = strtolower(substr(strrchr($value['filepath'], "."), 1));
-		$atturl = BLOG_URL . substr($value['filepath'], 3);
-		$name =  $value['filename'];
-		if (in_array($extension, array('gif', 'jpg', 'jpeg', 'png'))) {
-			$imgpath = $value['filepath'];
-			if (isset($value['thum_filepath'])) {
-				$imgpath = BLOG_URL . substr($value['thum_filepath'], 3);
-			}
+	<?php foreach ($medias as $key => $value):
+		$media_url = BLOG_URL . substr($value['filepath'], 3);
+		$media_name = $value['filename'];
+		if (isImage($value['filepath'])) {
+			$imgpath = $value['thum_filepath'] ?? $value['filepath'];
+			$media_icon_imgurl = BLOG_URL . substr($imgpath, 3);
 		} else {
-			$imgpath = "./views/images/fnone.png";
+			$media_icon_imgurl = "./views/images/fnone.png";
 		}
 		?>
         <div class="card" style="min-height: 280px;">
-            <a href="<?php echo $atturl; ?>" target="_blank" title="<?php echo $name; ?>">
-                <img class="card-img-top" src="<?php echo $imgpath; ?>" />
+            <a href="<?php echo $media_url; ?>" target="_blank"">
+                <img class="card-img-top" src="<?php echo $media_icon_imgurl; ?>" />
             </a>
             <div class="card-body">
                 <p class="card-text text-muted small">
+					<?php echo $media_name; ?><br><br>
 <!--vot-->          <?=lang('time')?>: <?php echo $value['addtime']; ?><br>
 <!--vot-->          <?=lang('size')?>: <?php echo $value['attsize']; ?>
 					<?php if ($value['width'] && $value['height']): ?>
@@ -53,7 +51,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="./media.php?action=upload_multi" class="dropzone" id="my-awesome-dropzone"></form>
+                <form action="./media.php?action=upload" class="dropzone" id="my-awesome-dropzone"></form>
             </div>
 
         </div>

@@ -13,7 +13,7 @@
 <form action="sort.php?action=update" method="post">
     <div class="form-group">
 <!--vot-->  <label for="sortname"><?=lang('category_name')?></label>
-        <input class="form-control" value="<?php echo $sortname; ?>" name="sortname" id="sortname">
+        <input class="form-control" value="<?php echo $sortname; ?>" name="sortname" id="sortname" required>
     </div>
     <div class="form-group">
 <!--vot--><label for="alias"><?=lang('alias')?></label>
@@ -42,8 +42,8 @@
         <textarea name="description" type="text" class="form-control"><?php echo $description; ?></textarea>
     </div>
     <input type="hidden" value="<?php echo $sid; ?>" name="sid"/>
-<!--vot--><input type="submit" value="<?=lang('save')?>" class="btn btn-success" id="save">
-<!--vot--><input type="button" value="<?=lang('cancel')?>" class="btn btn-default" onclick="javascript: window.history.back();">
+<!--vot--><input type="submit" value="<?=lang('save')?>" class="btn btn-sm btn-success" id="save">
+<!--vot--><input type="button" value="<?=lang('cancel')?>" class="btn btn-sm btn-default" onclick="javascript: window.history.back();">
     <span id="alias_msg_hook"></span>
 </form>
 

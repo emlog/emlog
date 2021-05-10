@@ -25,70 +25,72 @@
 <!--vot--><div class="alert alert-danger"><?=lang('plugin_zipped_only')?></div><?php endif; ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 <!--vot--><h1 class="h3 mb-0 text-gray-800"><?=lang('plugin_manage')?></h1>
-<!--vot--><a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#addModal"><i class="far fa-edit"></i> <?=lang('plugin_new_install')?></a>
+<!--vot--><a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> <?=lang('plugin_new_install')?></a>
 </div>
 <div class="card shadow mb-4">
     <div class="card-body">
-        <table class="table table-striped table-bordered table-hover dataTable no-footer">
-            <thead>
-            <tr>
-<!--vot-->      <th><?=lang('plugin_name')?></th>
-<!--vot-->      <th><?=lang('version')?></th>
-<!--vot-->      <th><?=lang('description')?></th>
-<!--vot-->      <th><?=lang('plugin_status')?></th>
-<!--vot-->      <th><?=lang('operation')?></th>
-            </tr>
-            </thead>
-            <tbody>
-			<?php
-			if ($plugins):
-				$i = 0;
-				foreach ($plugins as $key => $val):
-					$plug_state = 'inactive';
-					$plug_action = 'active';
-/*vot*/                                 $plug_state_des = lang('plugin_active_click');
-					if (in_array($key, $active_plugins)) {
-						$plug_state = 'active';
-						$plug_action = 'inactive';
-/*vot*/                                         $plug_state_des = lang('plugin_disable_click');
-					}
-					$i++;
-					if (TRUE === $val['Setting']) {
-/*vot*/                                         $val['Name'] = "<a href=\"./plugin.php?plugin={$val['Plugin']}\" title=\"".lang('plugin_settings_click')."\">{$val['Name']}</a>";
-					}
-					?>
-                    <tr>
-                        <td><?php echo $val['Name']; ?></td>
-                        <td><?php echo $val['Version']; ?></td>
-                        <td>
-							<?php echo $val['Description']; ?>
-<!--vot-->                                              <?php if ($val['Url'] != ''): ?><a href="<?php echo $val['Url']; ?>" target="_blank"><?=lang('more_info')?></a><?php endif; ?>
-                            <div style="margin-top:5px;">
-<!--vot-->                                                      <?php if ($val['ForEmlog'] != ''): ?><?=lang('ok_for_emlog')?>: <?php echo $val['ForEmlog']; ?>&nbsp | &nbsp<?php endif; ?>
-								<?php if ($val['Author'] != ''): ?>
-<!--vot-->                      <?=lang('user')?>: <?php if ($val['AuthorUrl'] != ''): ?>
-                                        <a href="<?php echo $val['AuthorUrl']; ?>" target="_blank"><?php echo $val['Author']; ?></a>
-									<?php else: ?>
-										<?php echo $val['Author']; ?>
-									<?php endif; ?>
-								<?php endif; ?>
-                            </div>
-                        </td>
-                        <td id="plugin_<?php echo $i; ?>">
-                            <a href="./plugin.php?action=<?php echo $plug_action; ?>&plugin=<?php echo $key; ?>&token=<?php echo LoginAuth::genToken(); ?>"><img
-                                        src="./views/images/plugin_<?php echo $plug_state; ?>.gif" title="<?php echo $plug_state_des; ?>" align="absmiddle" border="0"></a>
-                        </td>
-                        <td>
-<!--vot-->                  <a href="javascript: em_confirm('<?php echo $key; ?>', 'plu', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-danger"><?=lang('delete')?></a>
-                        </td>
-                    </tr>
-				<?php endforeach; else: ?>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover dataTable no-footer">
+                <thead>
                 <tr>
-<!--vot-->          <td colspan="5"><?=lang('plugin_no_installed')?></td>
+<!--vot-->          <th><?=lang('plugin_name')?></th>
+<!--vot-->          <th><?=lang('version')?></th>
+<!--vot-->          <th><?=lang('description')?></th>
+<!--vot-->          <th><?=lang('plugin_status')?></th>
+<!--vot-->          <th><?=lang('operation')?></th>
                 </tr>
-			<?php endif; ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+				<?php
+				if ($plugins):
+					$i = 0;
+					foreach ($plugins as $key => $val):
+						$plug_state = 'inactive';
+						$plug_action = 'active';
+/*vot*/                                 	$plug_state_des = lang('plugin_active_click');
+						if (in_array($key, $active_plugins)) {
+							$plug_state = 'active';
+							$plug_action = 'inactive';
+/*vot*/                                         	$plug_state_des = lang('plugin_disable_click');
+						}
+						$i++;
+						if (TRUE === $val['Setting']) {
+/*vot*/                                         	$val['Name'] = "<a href=\"./plugin.php?plugin={$val['Plugin']}\" title=\"".lang('plugin_settings_click')."\">{$val['Name']}</a>";
+						}
+						?>
+                        <tr>
+                            <td><?php echo $val['Name']; ?></td>
+                            <td><?php echo $val['Version']; ?></td>
+                            <td>
+								<?php echo $val['Description']; ?>
+<!--vot-->                      <?php if ($val['Url'] != ''): ?><a href="<?php echo $val['Url']; ?>" target="_blank"><?=lang('more_info')?></a><?php endif; ?>
+                                <div style="margin-top:5px;">
+<!--vot-->                          <?php if ($val['ForEmlog'] != ''): ?><?=lang('ok_for_emlog')?>: <?php echo $val['ForEmlog']; ?>&nbsp | &nbsp<?php endif; ?>
+									<?php if ($val['Author'] != ''): ?>
+<!--vot-->                              <?=lang('user')?>: <?php if ($val['AuthorUrl'] != ''): ?>
+                                            <a href="<?php echo $val['AuthorUrl']; ?>" target="_blank"><?php echo $val['Author']; ?></a>
+										<?php else: ?>
+											<?php echo $val['Author']; ?>
+										<?php endif; ?>
+									<?php endif; ?>
+                                </div>
+                            </td>
+                            <td id="plugin_<?php echo $i; ?>">
+                                <a href="./plugin.php?action=<?php echo $plug_action; ?>&plugin=<?php echo $key; ?>&token=<?php echo LoginAuth::genToken(); ?>"><img
+                                            src="./views/images/plugin_<?php echo $plug_state; ?>.gif" title="<?php echo $plug_state_des; ?>" align="absmiddle" border="0"></a>
+                            </td>
+                            <td>
+<!--vot-->                  <a href="javascript: em_confirm('<?php echo $key; ?>', 'plu', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-danger"><?=lang('delete')?></a>
+                            </td>
+                        </tr>
+					<?php endforeach; else: ?>
+                    <tr>
+<!--vot-->          <td colspan="5"><?=lang('plugin_no_installed')?></td>
+                    </tr>
+				<?php endif; ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
@@ -112,8 +114,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-<!--vot-->          <button type="button" class="btn btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
-<!--vot-->          <button type="submit" class="btn btn-success"><?=lang('upload')?><button>
+<!--vot-->          <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
+<!--vot-->          <button type="submit" class="btn btn-sm btn-success"><?=lang('upload')?><button>
                     <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
                 </div>
             </form>

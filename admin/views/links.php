@@ -15,53 +15,55 @@
 <!--vot--><div class="alert alert-danger"><?=lang('no_link_order')?></div><?php endif; ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 <!--vot--><h1 class="h3 mb-0 text-gray-800"><?= lang('link_management') ?></h1>
-<!--vot--><a href="#" class="d-none d-sm-inline-block btn btn-success shadow-sm" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> <?= lang('link_add') ?></a>
+<!--vot--><a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> <?= lang('link_add') ?></a>
 </div>
 <form action="link.php?action=link_taxis" method="post">
     <div class="card shadow mb-4">
         <div class="card-body">
-            <table class="table table-bordered table-striped table-hover" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                <tr>
-<!--vot-->          <th><?= lang('order') ?></th>
-<!--vot-->          <th><?= lang('link') ?></th>
-<!--vot-->          <th><?= lang('description') ?></th>
-<!--vot-->          <th><?= lang('status') ?></th>
-<!--vot-->          <th><?= lang('operation') ?></th>
-                </tr>
-                </thead>
-                <tbody>
-				<?php
-				foreach ($links as $key => $value):
-					doAction('adm_link_display');
-					?>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
                     <tr>
-                        <td><input class="form-control em-small" name="link[<?php echo $value['id']; ?>]" value="<?php echo $value['taxis']; ?>" maxlength="4"/></td>
-                        <td><a href="#" data-toggle="modal" data-target="#editModal"
-                               data-linkid="<?php echo $value['id']; ?>"
-                               data-sitename="<?php echo $value['sitename']; ?>"
-                               data-siteurl="<?php echo $value['siteurl']; ?>"
-                               data-description="<?php echo $value['description']; ?>"><?php echo $value['sitename']; ?></a></td>
-                        <td><?php echo $value['description']; ?></td>
-                        <td>
-                            <a href="<?php echo $value['siteurl']; ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0"/></a>
-                        </td>
-                        <td>
-							<?php if ($value['hide'] == 'n'): ?>
-<!--vot-->                      <a href="link.php?action=hide&amp;linkid=<?php echo $value['id']; ?>" class="badge badge-primary"><?= lang('visible') ?></a>
-							<?php else: ?>
-<!--vot-->                      <a href="link.php?action=show&amp;linkid=<?php echo $value['id']; ?>" class="badge badge-warning"><?= lang('hidden') ?></a>
-							<?php endif; ?>
-<!--vot-->                  <a href="javascript: em_confirm(<?php echo $value['id']; ?>, 'link', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-danger"><?=lang('delete')?></a>
-                        </td>
+<!--vot-->              <th><?= lang('order') ?></th>
+<!--vot-->              <th><?= lang('link') ?></th>
+<!--vot-->              <th><?= lang('description') ?></th>
+<!--vot-->              <th><?= lang('status') ?></th>
+<!--vot-->              <th><?= lang('operation') ?></th>
                     </tr>
-				<?php endforeach; ?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+					<?php
+					foreach ($links as $key => $value):
+						doAction('adm_link_display');
+						?>
+                        <tr>
+                            <td><input class="form-control em-small" name="link[<?php echo $value['id']; ?>]" value="<?php echo $value['taxis']; ?>" maxlength="4"/></td>
+                            <td><a href="#" data-toggle="modal" data-target="#editModal"
+                                   data-linkid="<?php echo $value['id']; ?>"
+                                   data-sitename="<?php echo $value['sitename']; ?>"
+                                   data-siteurl="<?php echo $value['siteurl']; ?>"
+                                   data-description="<?php echo $value['description']; ?>"><?php echo $value['sitename']; ?></a></td>
+                            <td><?php echo $value['description']; ?></td>
+                            <td>
+                                <a href="<?php echo $value['siteurl']; ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0"/></a>
+                            </td>
+                            <td>
+								<?php if ($value['hide'] == 'n'): ?>
+<!--vot-->                          <a href="link.php?action=hide&amp;linkid=<?php echo $value['id']; ?>" class="badge badge-primary"><?= lang('visible') ?></a>
+								<?php else: ?>
+<!--vot-->                          <a href="link.php?action=show&amp;linkid=<?php echo $value['id']; ?>" class="badge badge-warning"><?= lang('hidden') ?></a>
+								<?php endif; ?>
+<!--vot-->                      <a href="javascript: em_confirm(<?php echo $value['id']; ?>, 'link', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-danger"><?=lang('delete')?></a>
+                            </td>
+                        </tr>
+					<?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     <div class="list_footer">
-<!--vot--><input type="submit" value="<?=lang('order_change')?>" class="btn btn-success">
+<!--vot--><input type="submit" value="<?=lang('order_change')?>" class="btn btn-sm btn-success shadow-sm">
     </div>
 </form>
 <!--Add Link popup-->
@@ -79,11 +81,11 @@
                 <div class="modal-body">
                     <div class="form-group">
 <!--vot-->              <label for="alias"><?=lang('name')?></label>
-                        <input class="form-control" id="sitename" name="sitename">
+                        <input class="form-control" id="sitename" name="sitename" required>
                     </div>
                     <div class="form-group">
 <!--vot-->              <label for="template"><?=lang('link_url')?></label>
-                        <input class="form-control" id="siteurl" name="siteurl">
+                        <input class="form-control" id="siteurl" name="siteurl" required>
                     </div>
                     <div class="form-group">
 <!--vot-->              <label for="alias"><?=lang('description')?></label>
@@ -91,8 +93,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-<!--vot-->          <button type="button" class="btn btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
-<!--vot-->          <button type="submit" class="btn btn-success"><?=lang('save')?></button>
+<!--vot-->          <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
+<!--vot-->          <button type="submit" class="btn btn-sm btn-success"><?=lang('save')?></button>
                     <span id="alias_msg_hook"></span>
                 </div>
             </form>
@@ -115,11 +117,11 @@
                 <div class="modal-body">
                     <div class="form-group">
 <!--vot-->              <label for="alias"><?=lang('name')?></label>
-                        <input class="form-control" id="sitename" name="sitename">
+                        <input class="form-control" id="sitename" name="sitename" required>
                     </div>
                     <div class="form-group">
 <!--vot-->              <label for="template"><?=lang('address')?></label>
-                        <input class="form-control" id="siteurl" name="siteurl">
+                        <input class="form-control" id="siteurl" name="siteurl" required>
                     </div>
                     <div class="form-group">
 <!--vot-->              <label for="alias"><?=lang('description')?></label>
@@ -128,8 +130,8 @@
                 </div>
                 <div class="modal-footer">
                     <input type="hidden" value="" name="linkid" id="linkid"/>
-<!--vot-->          <button type="button" class="btn btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
-<!--vot-->          <button type="submit" class="btn btn-success"><?=lang('link_add')?></button>
+<!--vot-->          <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
+<!--vot-->          <button type="submit" class="btn btn-sm btn-success"><?=lang('link_add')?></button>
                     <span id="alias_msg_hook"></span>
                 </div>
             </form>

@@ -7,10 +7,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name=renderer  content=webkit>
+    <meta name=renderer content=webkit>
 <!--vot--><title><?=lang('admin_center')?> - <?php echo Option::get('blogname'); ?></title>
-    <link rel="stylesheet" href="./views/css/style.css" />
-    <link rel="stylesheet" href="./editor.md/css/editormd.css" />
+    <link rel="stylesheet" href="./views/css/style.css"/>
+    <link rel="stylesheet" href="./editor.md/css/editormd.css"/>
     <link href="./views/css/bootstrap-sbadmin-4.5.3.css" rel="stylesheet">
     <link href="./views/css/css-main.css" type=text/css rel=stylesheet>
     <link href="./views/css/icofont/icofont.min.css" type=text/css rel=stylesheet>
@@ -24,16 +24,18 @@
 <!--vot--><script src="<?= BLOG_URL ?>/lang/<?= EMLOG_LANGUAGE ?>/lang_js.js"></script>
 	<?php doAction('adm_head'); ?>
 </head>
-<!--vot--><body>
+<body>
 <div id="wrapper">
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-        <a class="sidebar-brand d-flex align-items-center" href="./">
-<!--vot-->  <div class="sidebar-brand-text mx-3">EMLOG Pro <?php if (ISREG === false) : ?><?=lang('unregistered')?><?php endif;?></div>
-        </a>
+        <li class="nav-item active" id="menu_home">
+<!--vot-->  <a class="nav-link" href="./">EMLOG PRO <?php if (ISREG === false) : ?><?=lang('unregistered')?><?php endif; ?></a>
+        </li>
         <hr class="sidebar-divider my-0">
+		<?php if (ROLE == ROLE_ADMIN): ?>
         <li class="nav-item" id="menu_home">
 <!--vot-->  <a class="nav-link" href="./"><i class="icofont-dashboard icofont-1x"></i><span><?= lang('admincp') ?></span></a>
         </li>
+		<?php endif; ?>
         <hr class="sidebar-divider my-0">
         <li class="nav-item" id="menu_category_content">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_content" aria-expanded="true" aria-controls="menu_content">
@@ -43,54 +45,58 @@
                 <div class="bg-white py-2 collapse-inner rounded">
 <!--vot-->          <a class="collapse-item" id="menu_write" href="article.php?action=write"><?=lang('post_write')?></a>
 <!--vot-->          <a class="collapse-item" id="menu_log" href="article.php"><?=lang('post_manage')?></a>
+					<?php if (ROLE == ROLE_ADMIN): ?>
 <!--vot-->          <a class="collapse-item" id="menu_sort" href="sort.php"><?=lang('categories')?></a>
 <!--vot-->          <a class="collapse-item" id="menu_tag" href="tag.php"><?=lang('tags')?></a>
+					<?php endif; ?>
                 </div>
             </div>
-        </li>
-        <li class="nav-item" id="menu_page">
-<!--vot-->  <a class="nav-link" href="page.php"><i class="icofont-page"></i><span><?= lang('pages') ?></span></a>
-        </li>
-        <li class="nav-item" id="menu_media">
-<!--vot-->  <a class="nav-link" href="media.php"><i class="icofont-image"></i><span><?= lang('resources') ?></span></a>
         </li>
         <li class="nav-item" id="menu_cm">
 <!--vot-->  <a class="nav-link" href="comment.php"><i class="icofont-comment"></i><span><?= lang('comments') ?></span></a>
         </li>
-        <li class="nav-item" id="menu_link">
-<!--vot-->  <a class="nav-link" href="./link.php"><i class="icofont-link"></i><span><?= lang('friend_links') ?></span></a>
-        </li>
-        <hr class="sidebar-divider d-none d-md-block">
-        <li class="nav-item" id="menu_store">
-<!--vot-->  <a class="nav-link" href="store.php"><i class="icofont-shopping-cart"></i><span><?= lang('store') ?></span></a>
-        </li>
-        <li class="nav-item" id="menu_category_view">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_view" aria-expanded="true" aria-controls="menu_view">
-                <i class="icofont-paint"></i>
-<!--vot-->      <span><?= lang('exterior') ?></span>
-            </a>
-            <div id="menu_view" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-<!--vot-->          <a class="collapse-item" id="menu_tpl" href="template.php"><?= lang('templates') ?></a>
-<!--vot-->          <a class="collapse-item" id="menu_navi" href="navbar.php"><?= lang('navigation') ?></a>
-<!--vot-->          <a class="collapse-item" id="menu_widget" href="widgets.php"><?= lang('sidebar') ?></a>
+		<?php if (ROLE == ROLE_ADMIN): ?>
+            <li class="nav-item" id="menu_page">
+<!--vot-->      <a class="nav-link" href="page.php"><i class="icofont-page"></i><span><?= lang('pages') ?></span></a>
+            </li>
+            <li class="nav-item" id="menu_media">
+<!--vot-->      <a class="nav-link" href="media.php"><i class="icofont-image"></i><span><?= lang('resources') ?></span></a>
+            </li>
+            <li class="nav-item" id="menu_link">
+<!--vot-->      <a class="nav-link" href="./link.php"><i class="icofont-link""></i><span><?= lang('friend_links') ?></span></a>
+            </li>
+            <hr class="sidebar-divider d-none d-md-block">
+            <li class="nav-item" id="menu_store">
+<!--vot-->      <a class="nav-link" href="store.php"><i class="icofont-shopping-cart"></i><span><?= lang('store') ?></span></a>
+            </li>
+            <li class="nav-item" id="menu_category_view">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_view" aria-expanded="true" aria-controls="menu_view">
+                    <i class="icofont-paint"></i>
+<!--vot-->          <span><?= lang('exterior') ?></span>
+                </a>
+                <div id="menu_view" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+<!--vot-->              <a class="collapse-item" id="menu_tpl" href="template.php"><?= lang('templates') ?></a>
+<!--vot-->              <a class="collapse-item" id="menu_navi" href="navbar.php"><?= lang('navigation') ?></a>
+<!--vot-->              <a class="collapse-item" id="menu_widget" href="widgets.php"><?= lang('sidebar') ?></a>
+                    </div>
                 </div>
-            </div>
-        </li>
-        <li class="nav-item" id="menu_category_sys">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_sys" aria-expanded="true" aria-controls="menu_sys">
-                <i class="icofont-options"></i>
-<!--vot-->      <span><?= lang('system') ?></span>
-            </a>
-            <div id="menu_sys" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
+            </li>
+            <li class="nav-item" id="menu_category_sys">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_sys" aria-expanded="true" aria-controls="menu_sys">
+                    <i class="icofont-options"></i>
+<!--vot-->          <span><?=lang('system')?></span>
+                </a>
+                <div id="menu_sys" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
 <!--vot-->          <a class="collapse-item" id="menu_setting" href="configure.php"><?= lang('settings') ?></a>
 <!--vot-->          <a class="collapse-item" id="menu_user" href="user.php"><?= lang('users') ?></a>
 <!--vot-->          <a class="collapse-item" id="menu_data" href="data.php"><?= lang('data') ?></a>
 <!--vot-->          <a class="collapse-item" id="menu_plug" href="plugin.php"><?= lang('plugins') ?></a>
+                    </div>
                 </div>
-            </div>
-        </li>
+            </li>
+		<?php endif; ?>
         <hr class="sidebar-divider d-none d-md-block">
         <div class="text-center d-none d-md-inline">
             <button class="rounded-circle border-0" id="sidebarToggle"></button>
@@ -106,7 +112,7 @@
                     <div class="input-group">
 <!--vot-->              <input type="text" name="keyword" class="form-control bg-light border-0 small" placeholder="<?=lang('search_for')?>" aria-label="<?=lang('search')?>" aria-describedby="basic-addon2">
                         <div class="input-group-append">
-                            <button class="btn btn-success" type="submit">
+                            <button class="btn btn-sm btn-success" type="submit">
                                 <i class="icofont-search-2"></i>
                             </button>
                         </div>

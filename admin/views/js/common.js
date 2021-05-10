@@ -42,10 +42,6 @@ function em_confirm(id, property, token) {
             var urlreturn = "sort.php?action=del&sid=" + id;
 /*vot*/     var msg = lang('category_del_sure');
             break;
-        case 'page':
-            var urlreturn = "page_create.php?action=del&gid=" + id;
-/*vot*/     var msg = lang('page_del_sure');
-            break;
         case 'user':
             var urlreturn = "user.php?action=del&uid=" + id;
 /*vot*/     var msg = lang('user_del_sure');
@@ -112,11 +108,7 @@ function isalias(a) {
 function checkform() {
     var a = $.trim($("#alias").val());
     var t = $.trim($("#title").val());
-    if (t == "") {
-/*vot*/ alert(lang('title_empty'));
-        $("#title").focus();
-        return false;
-    } else if (0 == isalias(a)) {
+    if (0 == isalias(a)) {
         return true;
     } else {
 /*vot*/ alert(lang('alis_link_error'));
@@ -141,33 +133,12 @@ function checkalias() {
     }
 }
 
-function addattach_img(fileurl, imgsrc, aid, width, height, alt) {
-    if (editorMap['content'].designMode === false) {
-/*vot*/ alert(lang('wysiwyg_switch'));
-    } else if (imgsrc != "") {
-/*vot*/ editorMap['content'].insertHtml('<a target=\"_blank\" href=\"' + fileurl + '\" id=\"ematt:' + aid + '\"><img src=\"' + imgsrc + '\" title="' + lang('click_view_fullsize') + '" alt=\"' + alt + '\" border=\"0\" width="' + width + '" height="' + height + '"/></a>');
-    }
+function insert_media_img(fileurl, imgsrc) {
+    Editor.insertValue('[![]('+imgsrc+')]('+fileurl+')\n\n');
 }
 
-function addattach_file(fileurl, filename, aid) {
-    if (editorMap['content'].designMode === false) {
-/*vot*/ alert(lang('wysiwyg_switch'));
-    } else {
-        editorMap['content'].insertHtml('<span class=\"attachment\"><a target=\"_blank\" href=\"' + fileurl + '\" >' + filename + '</a></span>');
-    }
-}
-
-function insertTag(tag, boxId) {
-    var targetinput = $("#" + boxId).val();
-    if (targetinput == '') {
-        targetinput += tag;
-    } else {
-        var n = ',' + tag;
-        targetinput += n;
-    }
-    $("#" + boxId).val(targetinput);
-    if (boxId == "tag")
-        $("#tag_label").hide();
+function insert_media(fileurl, filename) {
+    Editor.insertValue('['+filename+']('+fileurl+')\n\n');
 }
 
 // act: 1 auto save, 2 manual save:click save button to save,
