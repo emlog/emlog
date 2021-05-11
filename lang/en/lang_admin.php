@@ -3,7 +3,7 @@
 $lang = array(
 
 //---------------------------
-//admin/admin_log.php
+//admin/article.php
  'drafts'		=> 'Drafts',//'草稿箱',
  '_drafts'		=> ' drafts',//'草稿箱',
  'post_manage'		=> 'Post Manage',//'文章管理',
@@ -13,6 +13,7 @@ $lang = array(
  'uncheck'		=> 'Uncheck',//'驳回',
  'view_by_tag'		=> 'View by tag',//'按标签查看',
  'article_add'		=> 'Write a new article',//'写新文章',
+'enter_summary'		=> 'If left blank, use the content of the article as a summary...',//'如果留空，则使用文章内容作为摘要...',
 
 //---------------------------
 //admin/attachment.php
@@ -63,6 +64,7 @@ $lang = array(
 //---------------------------
 //admin/store.php
  'template'		=> 'Template',//'模板',
+ 'templates'		=> 'Templates',//'模板',
  'template_view'	=> 'View template',//'查看模板',
  'plugin'		=> 'Plugin',//'插件',
  'plugins'		=> 'Plug-ins',//'插件',
@@ -72,6 +74,7 @@ $lang = array(
 //admin/style.php
  'user'		=> 'User',//'作者',
  'users'	=> 'Users',//'作者',
+ 'author'	=> 'Author',//'作者',
 
 //---------------------------
 //admin/template.php
@@ -113,7 +116,7 @@ $lang = array(
  'save'			=> 'Save',//'保存',
 
 //---------------------------
-//admin/views/admin_log.php
+//admin/views/article.php
  'deleted_ok'		=> 'Deleted successfully',//'删除成功',
  'sticked_ok'		=> 'Entry has been has sticked successfully',//'置顶成功',
  'unsticked_ok'		=> 'Entry has been unsticked successfully',//'取消置顶成功',
@@ -140,6 +143,7 @@ $lang = array(
  'views'		=> 'Views',//'查看',
  'reads'		=> 'Reads',//'阅读',
  'time'			=> 'Date',//'时间',
+ 'create_time'		=> 'Create time',//'创建时间',
  'comments'		=> 'Comments',//'评论',
  'attachment_num'	=> 'Attachments',//'附件',
  'pending'		=> 'Pending',//'待审',
@@ -159,14 +163,27 @@ $lang = array(
  'draft'		=> 'Draft',//'草稿',
  'article'		=> 'article',//'文章',
  'articles'		=> 'Articles',//'文章',
+ '_articles'		=> ' articles',//'文章',
  'posts'		=> 'posts',//'文章',
  'select_post_to_operate'	=> 'Please, select the entry to operate',//'请选择要操作的文章',
  'sure_delete_selected_posts'	=> 'Are you sure to want delete selected entries?',//'你确定要删除所选文章吗？',
  'tags'			=> 'Tags',//'标签',
  'tags_no'		=> 'No tags',//'还没有标签',
  'tag_by_view'		=> 'View by tags',//'按标签查看',
+ 'top'			=> '置顶',//'Top',
 
 
+//---------------------------
+//admin/views/article_write.php
+ 'publish_time'		=> 'Publish time:',//'发布时间：',
+ 'access_password'	=> 'Access Password',//'访问密码',
+ 'choose_file'		=> 'Choose a file for upload...',//'选择文件上传...',
+ 'tags_have'		=> 'Have tags+',//'已有标签+',
+ 'post_tags_separated'	=> 'Post tags, separated by commas',//'文章标签，使用逗号分隔',
+ 'resource_library'	=> 'Resource Library',//'资源库',
+ 'no_resources'		=> 'No resources available',//'没有资源可以使用',
+ 'file_insert'		=> 'Insert file',//'插入文件',
+ 'img_insert'		=> 'Insert image',//'插入图片',
 
 //---------------------------
 //admin/views/admin_page.php
@@ -361,6 +378,7 @@ $lang = array(
  'mobile_access_address'	=> 'Mobile Access version, address',//'手机访问版，地址',
  'access_site_by_mobile'	=> 'Access to your site using a mobile phone',//'用手机访问你的站点',
  'auto_summary'			=> 'Automatic summary, intercept from the post',//'自动摘要，截取文章的前',
+ 'auto_summary_length'		=> 'Automatically intercept',//'自动截取',
  'characters_as_summary'	=> ' characters as the summary',//'个字作为摘要',
  'twitters'			=> 'Twitters',//'微语',
  'twitters_enable'		=> 'Enable twitters, ',//'开启微语，',
@@ -459,11 +477,13 @@ $lang = array(
  'sidebar'		=> 'Sidebar',//'侧边栏',
  'navigation'		=> 'Navigation',//'导航',
  'pages'		=> 'Pages',//'页面',
+ 'link'			=> 'Link',//'链接',
  'links'		=> 'Links',//'链接',
+ 'url'			=> 'URL',//'链接',
  'friend_links'		=> 'Friend links',//'友链',
+ 'store'		=> 'Store',//'商店',
  'users'		=> 'Users',//'用户',
  'data'			=> 'Data Backup',//'数据',
- 'templates'		=> 'Templates',//'模板',
  'applications'		=> 'Apps',//'应用',
  'extensions'		=> 'Extensions',//'扩展功能',
  'search_for'		=> 'Search for...',//'查找文章...',
@@ -472,6 +492,7 @@ $lang = array(
 
 //---------------------------
 //admin/views/index.php
+ 'welcome'		=> 'Welcome',//'欢迎',
  'admincp'		=> 'AdminCP',//'管理后台',
  'link_manage_info'	=> 'Friendship link management, you can display the added link in the sidebar of the homepage in the sidebar management.',//'友情链接管理，可以在侧边栏管理中将该处添加的链接展示在首页侧边栏。',
  'user_info'		=> 'User info',//'大伟',
@@ -506,12 +527,14 @@ $lang = array(
  'em_reg_ok'			=> 'Congratulations, the registration is successful',//'恭喜，注册成功了',
  'register_emlog'		=> 'Register EMLOG PRO',//'注册EMLOG PRO',
  'enter_emkey'			=> 'Enter emkey',//'输入emkey',
- 'emkey_invalid'		=> 'Invalid registration code (emkey)',//'无效的注册码（emkey）',
- 'emkey_info'			=> 'emkey is the only identification code officially distributed by emlog to paid registered users, please keep it safe',//'emkey是emlog官方分发给付费注册用户的唯一识别码，请妥善保管',
- 'how_get_emkey'		=> 'How to get emkey?',//'如何获取emkey？',
+ 'reg_failed'			=> 'Registration failed',//'注册失败',
+ 'emkey_info'			=> 'EMKEY is the only identification code officially distributed to paying users of emlog pro, please keep it properly',//'EMKEY是官方分发给emlog pro付费用户的唯一识别码，请妥善保管',
+ 'get_emkey'			=> 'Get the registration code',//'去获取注册码',
  'registered'			=> 'registered',//'注册',
+ 'registered_already'		=> 'already registered',//'已注册',
  'mysql_version'		=> 'MySQL version',//'MySQL版本',
  'server_environment'		=> 'Server environment',//'服务器环境',
+ 'software_info'		=> 'Software information',//'软件信息',
  'gd_library'			=> 'GD graphic library',//'GD图形处理库',
  'server_max_upload_size'	=> 'Maximum upload file size allowed by server',//'服务器空间允许上传最大文件',
  'more_php_info'		=> 'More Info&raquo;',//'更多信息&raquo;',
@@ -536,7 +559,8 @@ $lang = array(
  'exceeds'			=> 'has been exceeded ',//'已超出',
  'publish'			=> 'Publish',//'发布',
  'write_article'		=> 'Write an article',//'去写文章',
- 'welcome'			=> 'Welcome',//'欢迎',
+ 'pending_review'		=> 'Review pendings',//'待审评论',
+ 'user_num'			=> 'Number of users',//'用户数',
 
 //---------------------------
 //admin/views/links.php
@@ -570,6 +594,8 @@ $lang = array(
  'file'			=> 'File',//'文件',
  'preview'		=> 'Preview',//'预览',
  'date'			=> 'Date',//'日期',
+ 'size'			=> 'Size',//'大小',
+ 'img_size'		=> 'Image size',//'尺寸',
  'upload_files'		=> 'Upload image/file',//'上传图片/文件',
  'media_deleted_ok'	=> 'Media file deleted successfully',//'媒体文件删除成功',
  '_resources'		=> 'resources',//'个资源',
@@ -595,7 +621,7 @@ $lang = array(
  'nav_no'		=> 'Has not yet added navigation',//'还没有添加导航',
  'nav_add_custom'	=> 'Add custom navigation',//'添加自定义导航',
  'nav_name'		=> 'Navigation Name',//'导航名称',
- 'nav_url_http'		=> 'Address (with http)',//'地址(带http)',
+ 'nav_url'		=> 'Address (URL)',//'地址(URL)',
  'nav_parent'		=> 'Parent navigation',//'父导航',
  'nav_add_category'	=> 'Add categories to navigation',//'添加分类到导航',
  'nav_page_add'		=> 'Add pages to navigation',//'添加页面到导航',
@@ -702,11 +728,9 @@ $lang = array(
 //---------------------------
 //admin/views/tag.php
  'tag_management'	=> 'Tag management',//'标签管理',
-
-//---------------------------
-//admin/views/tag.php
  '_save_'	=> ' Save ',//'保 存',
  '_cancel_'	=> ' Cancel ',//'取 消',
+ 'tag_select'	=> 'Please select a tag',//'请选择标签',
 
 //---------------------------
 //admin/views/template.php
@@ -797,7 +821,7 @@ $lang = array(
 
 //---------------------------
 //admin/views/useredit.php
- 'use_manage'		=> 'User management',//'修改作者资料',
+ 'user_manage'		=> 'User management',//'修改作者资料',
  'password_new'		=> 'New password (leave blank, if you do not want to modify)',//'新密码(不修改请留空)',
  'password_new_repeat'	=> 'Repeat new password',//'重复新密码',
 
@@ -828,15 +852,6 @@ $lang = array(
  'widget_use'		=> 'Used widgets',//'使用中的组件',
  'widget_order_save'	=> 'Save widget order',//'保存组件排序',
  'widget_setting_reset'	=> 'Reset default widget settings',//'恢复出厂设置',
-
-//---------------------------
-//admin/views/write.php
- 'publish_time'		=> 'Publish time:',//'发布时间：',
- 'access_password'	=> 'Access Password',//'访问密码',
- 'choose_file'		=> 'Choose a file for upload...',//'选择文件上传...',
- 'tags_have'		=> 'Have tags+',//'已有标签+',
- 'post_tags_separated'	=> 'Post tags, separated by commas',//'文章标签，使用逗号分隔',
- 'resource_library'	=> 'Resource Library',//'资源库',
 
 //---------------------------
 //include/lib/mysql.php

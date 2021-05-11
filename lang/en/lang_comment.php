@@ -62,7 +62,7 @@ $lang = array(
 // 'time'		=> 'Date',//'时间',
 // 'content'		=> 'Content',//'内容',
 // 'reply'		=> 'Reply',//'回复',
- 'reply_and_audit'	=> 'Reply and publish',//'回复并审核',
+ 'reply_and_publish'	=> 'Reply and publish',//'回复并审核',
 // 'cancel'		=> 'Cancel',//'取 消',
 
 //---------------------------
