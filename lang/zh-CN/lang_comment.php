@@ -59,7 +59,7 @@ $lang = array(
 //admin/views/comment_reply.php
  'comment_reply'	=> '回复评论',//'Reply the comment',
 // 'commentator'	=> '评论人',//'Commentator',
-// 'time'		=> '时间',//'Date',
+ 'time'			=> '时间',//'Date',
 // 'content'		=> '内容',//'Content',
 // 'reply'		=> '回复',//'Reply',
  'reply_and_publish'	=> '回复并审核',//'Reply and publish',
