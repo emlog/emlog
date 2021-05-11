@@ -3,7 +3,7 @@
 $lang = array(
 
 //---------------------------
-//admin/admin_log.php
+//admin/article.php
  'drafts'		=> '草稿箱',//'Drafts',
  '_drafts'		=> '草稿箱',//' drafts',
  'post_manage'		=> '文章管理',//'Post management',
@@ -13,9 +13,6 @@ $lang = array(
  'uncheck'		=> '驳回',//'Uncheck',
  'view_by_tag'		=> '按标签查看',//'View by tag',
  'article_add'		=> '写新文章',//'Write a new article',
-
-//---------------------------
-//admin/article.php
  'enter_summary'	=> '如果留空，则使用文章内容作为摘要...',//'If left blank, use the content of the article as a summary...',
 
 //---------------------------
@@ -45,9 +42,9 @@ $lang = array(
  'upload_failed_code'		=> '上传文件失败,错误码: ',//'Upload failed. Error code: ',
  'import_only_emlog_no_change'	=> '只能导入emlog备份的压缩包，且不能修改压缩包文件名！',//'You can only import emlog backup archive, and the archive file name can not be changed!',
  'import_failed_not_read'	=> '导入失败！读取文件失败',//'Import failed! Can not read the file',
- 'import_failed_not_emlog'	=> '导入失败！该备份文件不是 emlog的备份文件!',//'Import failed! The backup file is not the emlog backup file!',
- 'import_failed_not_emlog_ver'	=> '导入失败！该备份文件不是emlog ' . EMLOG_VERSION . '  生成的备份!',//'Import failed! The backup file is not the emlog ' . EMLOG_VERSION . ' backup file!',
- 'import_failed_bad_prefix'	=> '导入失败！备份文件中的数据库前缀与当前系统数据库前缀不匹配 ',//'Import failed! The database backup file prefix does not match the current system database prefix ',
+ 'import_failed_not_emlog'	=> '导入失败！该文件不是emlog的数据备份文件!',//'Import failed! The backup file is not the emlog backup file!',
+ 'import_failed_not_emlog_ver'	=> '导入失败！该文件不是emlog' . Option::EMLOG_VERSION . '生成的备份!',//'Import failed! The backup file is not the emlog ' . Option::EMLOG_VERSION . ' backup file!',
+ 'import_failed_bad_prefix'	=> '导入失败！备份文件中的数据库表前缀与当前系统数据库表前缀不一致',//'Import failed! The database backup file prefix does not match the current system database prefix ',
 
 //---------------------------
 //admin/globals.php
@@ -89,7 +86,7 @@ $lang = array(
 //admin/views/add_log.php
  'post_write'		=> '写文章',//'Write post',
  'enter_post_title'	=> '输入文章标题',//'Enter the post title',
- 'upload_insert'	=> '上传文件\图片',//'Upload file/picture',
+ 'upload_insert'	=> '插入图文资源',//'Insert graphic resources',
  'category_select'	=> '选择分类...',//'Select Category...',
  'post_time'		=> '发布于',//'Posted on',
  'advanced_options'	=> '高级选项',//'Advanced Options',
@@ -131,7 +128,7 @@ $lang = array(
  'user_modified_ok'	=> '更改作者成功',//'Entry author has been modified successfully',
  'draft_moved_ok'	=> '转入草稿箱成功',//'Moved to Draft successfully',
  'draft_saved_ok'	=> '草稿保存成功',//'Draft has been saved successfully',
- 'saved_ok'		=> '保存成功',//'Entry has been saved successfully',
+ 'saved_ok'		=> '保存成功',//'Saved successfully',
  'verified_ok'		=> '文章审核成功',//'Entry has been verified successfully',
  'rejected_ok'		=> '文章驳回成功',//'Entry has been rejected successfully',
  'all'			=> '全部',//'All',
@@ -146,6 +143,7 @@ $lang = array(
  'views'		=> '查看',//'Views',
  'reads'		=> '阅读',//'Reads',
  'time'			=> '时间',//'Time',
+ 'create_time'		=> '创建时间',//'Create time',
  'comments'		=> '评论',//'Comments',
  'attachment_num'	=> '附件',//'Attachments',
  'pending'		=> '待审',//'Pending',
@@ -165,6 +163,7 @@ $lang = array(
  'draft'		=> '草稿',//'Draft',
  'article'		=> '文章',//'article',
  'articles'		=> '文章',//'Articles',
+ '_articles'		=> '文章',//' articles',
  'posts'		=> '文章',//'posts',
  'select_post_to_operate'	=> '请选择要操作的文章',//'Please, select the entry to operate',
  'sure_delete_selected_posts'	=> '你确定要删除所选文章吗？',//'Are you sure to want delete selected entries?',
@@ -173,6 +172,18 @@ $lang = array(
  'tag_by_view'		=> 'View by tags',//'按标签查看',
  'top'			=> '置顶',//'Top',
 
+
+//---------------------------
+//admin/views/article_write.php
+ 'publish_time'		=> '发布时间',//'Publish time',
+ 'access_password'	=> '访问密码',//'Access Password',
+ 'choose_file'		=> '选择文件上传...',//'Choose a file for upload...',
+ 'tags_have'		=> '已有标签+',//'Have tags+',
+ 'post_tags_separated'	=> '文章标签，使用逗号分隔',//'Post tags, separated by commas',
+ 'resource_library'	=> '最近上传的资源',//'Recent uploads',
+ 'no_resources'		=> '没有资源可以使用',//'No resources available',
+ 'file_insert'		=> '插入文件',//'Insert file',
+ 'img_insert'		=> '插入图片',//'Insert image',
 
 //---------------------------
 //admin/views/admin_page.php
@@ -366,8 +377,9 @@ $lang = array(
  'offline_writing'		=> '离线写作（支持用Windows Live Writer等工具写文章）',//'Offline Writing (Support the use of tools such as Windows Live Writer to write articles)',
  'mobile_access_address'	=> '手机访问版，地址',//'Mobile Access version, address',
  'access_site_by_mobile'	=> '用手机访问你的站点',//'Access to your site using a mobile phone',
- 'auto_summary'			=> '自动摘要, 且自动截取',//'Automatic summary, and automatic interception',
- 'characters_as_summary'	=> '个字作为摘要',//' characters as the summary',
+ 'auto_summary'			=> '自动摘要',//'Automatic summary',
+ 'auto_summary_length'		=> '自动截取',//'Automatically intercept',
+ 'characters_as_summary'	=> '个字作为摘要',//' characters as a summary',
  'twitters'			=> '微语',//'Twitters',
  'twitters_enable'		=> '开启微语，',//'Enable twitters, ',
  '_twitters'			=> '条微语',//' twitter(s)',
@@ -418,7 +430,7 @@ $lang = array(
  'backup_no'			=> '还没有备份',//'No backups found',
  'db_backup'			=> '备份数据库',//'Database Backup',
  'backup_create'		=> '备份数据',//'备份数据+',//'Create Backup',
- 'backup_import_local'		=> '导入本地备份',//'Import Local Backup',
+ 'backup_import_local'		=> '导入备份',//'Import Backup',
  'cache_update'			=> '更新缓存',//'Update cache',
  'backup_choose_table'		=> '选择要备份的数据库表',//'Choose the database table to backup',
  'backup_export_to'		=> '将站点内容数据库备份到',//'Export database backup to',
@@ -462,16 +474,16 @@ $lang = array(
  'posts_pending'	=> '篇文章待审',//' Pending posts',
  'comments_pending'	=> '条评论待审',//' Pending comments',
  'exterior'		=> '外观',//'Exterior',
- 'sidebar'		=> '侧边栏',//'Sidebar',
+ 'sidebar'		=> '边栏',//'Sidebar',
  'navigation'		=> '导航',//'Navigation',
  'pages'		=> '页面',//'Pages',
  'link'			=> '链接',//'Link',
  'links'		=> '链接',//'Links',
  'url'			=> '链接',//'URL',
  'friend_links'		=> '友链',//'Friend links',
+ 'store'		=> '商店',//'Store',
  'users'		=> '用户',//'Users',
  'data'			=> '数据',//'Data Backup',
- 'templates'		=> '模板',//'Templates',
  'applications'		=> '应用',//'Apps',
  'extensions'		=> '扩展功能',//'Extensions',
  'search_for'		=> '查找文章...',//'Search for...',
@@ -480,6 +492,7 @@ $lang = array(
 
 //---------------------------
 //admin/views/index.php
+ 'welcome'		=> '欢迎',//'Welcome',
  'admincp'		=> '管理后台',//'AdminCP',
  'link_manage_info'	=> '友情链接管理，可以在侧边栏管理中将该处添加的链接展示在首页侧边栏。',//'Friendship link management, you can display the added link in the sidebar of the homepage in the sidebar management.',
  'user_info'		=> '大伟',//'User info',
@@ -503,14 +516,14 @@ $lang = array(
  'php_version'			=> 'PHP版本',//'PHP version',
  'emlog_version'		=> 'EMLOG版本',//'EMLOG version',
  'unregistered'			=> '未注册',//'unregistered',
- 'emlog_unregistered'		=> '您的emlog pro尚未注册，请先完成注册',//'Your emlog pro has not been registered, please complete the registration first',
- 'advantage1'			=> '1、一键安全更新、新功能升级服务。',//'1. One-click security update and new function upgrade service.',
- 'advantage2'			=> '2、解除软件使用限制和该注册提示。',//'2. Remove the software usage restrictions and the registration prompt.',
- 'advantage3'			=> '3、获得官方提供的模板和插件。',//'3. Get official templates and plug-ins.',
+ 'emlog_unregistered'		=> '您安装的emlog pro尚未注册，注册后将获得：',//'Your emlog pro is not registered, please complete the registration first and you will have:',
+ 'advantage1'			=> '1、一键升级，获得来自官方的安全和功能更新。',//'1. One-click upgrade to get official security and function updates.',
+ 'advantage2'			=> '2、解锁扩展商店，获得更多模板和插件。',//'2. Unlock the extended store to get more templates and plugins.',
+ 'advantage3'			=> '3、解除使用限制和所有未注册提示',//'3. Remove the usage restrictions and all unregistered prompts.',
  'advantage4'			=> '4、加入官方社群，和开发者以及更多emer一起学习成长。',//'4. Join the official community, learn and grow with developers and more emers.',
  'advantage5'			=> '5、投我以桃，报之以李，支持我们把emlog做的更好。',//'5. Vote me as a peach, give me a reward, and support us to make emlog better.',
  'register_now'			=> '现在去注册',//'Register now',
- 'emlog_registered_ok'		=> '恭喜，您的EMLOG已经完成注册。',//'Congratulations, your EMLOG has been registered.',
+ 'emlog_registered_ok'		=> '恭喜，您的EMLOG已经完成注册。','Congratulations, your EMLOG has been registered.',
  'em_reg_ok'			=> '恭喜，注册成功了',//'Congratulations, the registration is successful',
  'register_emlog'		=> '注册EMLOG PRO',//'Register EMLOG PRO',
  'enter_emkey'			=> '输入EMKEY',//'Enter EMKEY',
@@ -518,8 +531,10 @@ $lang = array(
  'emkey_info'			=> 'EMKEY是官方分发给emlog pro付费用户的唯一识别码，请妥善保管',//'EMKEY is the only identification code officially distributed to paying users of emlog pro, please keep it properly',
  'get_emkey'			=> '去获取注册码',//'Get the registration code',
  'registered'			=> '注册',//'registered',
+ 'registered_already'		=> '已注册',//'already registered',
  'mysql_version'		=> 'MySQL版本',//'MySQL version',
- 'server_environment'		=> '服务器环境',//'Server environment',
+ 'server_environment'		=> '服务器软件环境',//'Server software environment',
+ 'software_info'		=> '软件信息',//'Software information',
  'gd_library'			=> 'GD图形处理库',//'GD graphic library',
  'server_max_upload_size'	=> '服务器空间允许上传最大文件',//'Maximum upload file size allowed by server',
  'more_php_info'		=> '更多信息&raquo;',//'More Info&raquo;',
@@ -544,7 +559,8 @@ $lang = array(
  'exceeds'			=> '已超出',//'has been exceeded ',
  'publish'			=> '发布',//,'Publish',
  'write_article'		=> '去写文章',//'Write an article',
- 'welcome'			=> '欢迎',//'Welcome',
+ 'pending_review'		=> '待审评论',//'Review pendings',
+ 'user_num'			=> '用户数',//'Number of users',
 
 //---------------------------
 //admin/views/links.php
@@ -569,7 +585,7 @@ $lang = array(
  'password'		=> '密码',//'Password',
  'remember_me'		=> '记住登录状态',//'Remember login status',
  'log_in'		=> ' 登 录 ',//' Log in ',
- 'back_home'		=> '&larr;返回首页',//'&laquo; Back to home',
+ 'back_home'		=> '&laquo;返回首页',//'&laquo; Back to home',
  'password_forget'	=> '忘记密码?',//'Forgot Password?',
 
 //---------------------------
@@ -605,7 +621,7 @@ $lang = array(
  'nav_no'		=> '还没有添加导航',//'Has not yet added navigation',
  'nav_add_custom'	=> '添加自定义导航',//'Add custom navigation',
  'nav_name'		=> '导航名称',//'Navigation Name',
- 'nav_url_http'		=> '地址(带http)',//'Address (with http)',
+ 'nav_url'		=> '地址(URL)',//'Address (URL)',
  'nav_parent'		=> '父导航',//'Parent navigation',
  'nav_add_category'	=> '添加分类到导航',//'Add categories to navigation',
  'nav_page_add'		=> '添加页面到导航',//'Add pages to navigation',
@@ -712,11 +728,9 @@ $lang = array(
 //---------------------------
 //admin/views/tag.php
  'tag_management'	=> '标签管理',//'Tag management',
-
-//---------------------------
-//admin/views/tag.php
  '_save_'	=> '保 存',//' Save ',
  '_cancel_'	=> '取 消',//' Cancel ',
+ 'tag_select'	=> '请选择标签',//'Please select a tag',
 
 //---------------------------
 //admin/views/template.php
@@ -838,15 +852,6 @@ $lang = array(
  'widget_use'		=> '使用中的组件',//'Used widgets',
  'widget_order_save'	=> '保存组件排序',//'Save widget order',
  'widget_setting_reset'	=> '恢复出厂设置',//'Reset default widget settings',
-
-//---------------------------
-//admin/views/article_write.php
- 'publish_time'		=> '发布时间',//'Publish time',
- 'access_password'	=> '访问密码',//'Access Password',
- 'choose_file'		=> '选择文件上传...',//'Choose a file for upload...',
- 'tags_have'		=> '已有标签+',//'Have tags+',
- 'post_tags_separated'	=> '文章标签，使用逗号分隔',//'Post tags, separated by commas',
- 'resource_library'	=> '资源库',//'Resource Library',
 
 //---------------------------
 //include/lib/mysql.php
