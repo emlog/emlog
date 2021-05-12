@@ -48,7 +48,8 @@
                     <p class="des">仅可导入相同版本emlog的数据库备份文件，且数据库表前缀需保持一致。<br/>当前数据库表前缀：<?php echo DB_PREFIX; ?></p>
                     <p>
                         <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
-                        <input type="file" name="sqlfile"/> <input type="submit" value="导入" class="submit"/>
+                        <input type="file" name="sqlfile" required/>
+                        <input type="submit" value="导入" class="btn btn-sm btn-success"/>
                     </p>
                 </div>
             </form>
