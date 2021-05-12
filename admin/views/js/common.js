@@ -134,11 +134,11 @@ function checkalias() {
 }
 
 function insert_media_img(fileurl, imgsrc) {
-    Editor.insertValue('[![]('+imgsrc+')]('+fileurl+')\n\n');
+    Editor.insertValue('[![](' + imgsrc + ')](' + fileurl + ')\n\n');
 }
 
 function insert_media(fileurl, filename) {
-    Editor.insertValue('['+filename+']('+fileurl+')\n\n');
+    Editor.insertValue('[' + filename + '](' + fileurl + ')\n\n');
 }
 
 // act: 1 auto save, 2 manual save：click save button to save,
@@ -208,17 +208,12 @@ function autosave(act) {
         if (isrespone.test(data)) {
             var getvar = data.match(/\_gid\:([\d]+)\_df\:([\d]*)\_/);
             var logid = getvar[1];
-            // 展示边栏草稿箱文章数量
-            // var dfnum = getvar[2];
-            // if (dfnum > 0) {
-            //     $("#dfnum").html("(" + dfnum + ")")
-            // }
-            var digital = new Date();
-            var hours = digital.getHours();
-            var mins = digital.getMinutes();
-            var secs = digital.getSeconds();
-            $("#save_info").html("<span class=\"ajax_remind_1\">保存于" + hours + ":" + mins + ":" + secs + " </span>");
-
+            var d = new Date();
+            var h = d.getHours();
+            var m = d.getMinutes();
+            var s = d.getSeconds();
+            var tm = (h < 10 ? "0" + h : h) +":"+ (m < 10 ? "0" + m : m) +":"+ (s < 10 ? "0" + s : s);
+            $("#save_info").html("<span class=\"ajax_remind_1\">保存于：" + tm + " </span>");
             $("#" + nodeid).val(logid);
             $("#savedf").attr("disabled", false).val(btname);
             $("#msg").hide().html("");
