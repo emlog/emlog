@@ -114,8 +114,6 @@ if ($action === 'import') {
 
 /**
  * 检查备份文件头信息
- *
- * @param file $sqlfile
  */
 function checkSqlFileInfo($sqlfile) {
 	$fp = @fopen($sqlfile, 'r');
@@ -131,13 +129,13 @@ function checkSqlFileInfo($sqlfile) {
 	}
 	fclose($fp);
 	if (empty($dumpinfo)) {
-		emMsg('导入失败！该备份文件不是 emlog的备份文件!');
+		emMsg('导入失败！该文件不是emlog的数据备份文件!');
 	}
-	if (!preg_match('/#version:emlog ' . Option::EMLOG_VERSION . '/', $dumpinfo[0])) {
-		emMsg('导入失败！该备份文件不是emlog' . Option::EMLOG_VERSION . '生成的备份!');
+	if (!strstr($dumpinfo[0], '#version:emlog ' . Option::EMLOG_VERSION)) {
+		emMsg('导入失败！该文件不是emlog' . Option::EMLOG_VERSION . '生成的备份!');
 	}
 	if (preg_match('/#tableprefix:' . DB_PREFIX . '/', $dumpinfo[2]) === 0) {
-		emMsg('导入失败！备份文件中的数据库表前缀与当前系统数据库表前缀不匹配' . $dumpinfo[2]);
+		emMsg('导入失败！备份文件中的数据库表前缀与当前系统数据库表前缀不一致' . $dumpinfo[2]);
 	}
 }
 
