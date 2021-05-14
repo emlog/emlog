@@ -396,9 +396,9 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('emkey','');
 DROP TABLE IF EXISTS {$db_prefix}link;
 CREATE TABLE {$db_prefix}link (
   id int(10) unsigned NOT NULL auto_increment COMMENT '链接表',
-  sitename varchar(30) NOT NULL default '' COMMENT '名称',
-  siteurl varchar(75) NOT NULL default '' COMMENT '地址',
-  description varchar(255) NOT NULL default '' COMMENT '备注信息',
+  sitename varchar(255) NOT NULL default '' COMMENT '名称',
+  siteurl varchar(255) NOT NULL default '' COMMENT '地址',
+  description varchar(512) NOT NULL default '' COMMENT '备注信息',
   hide enum('n','y') NOT NULL default 'n' COMMENT '是否隐藏',
   taxis int(10) unsigned NOT NULL default '0' COMMENT '排序序号',
   PRIMARY KEY  (id)

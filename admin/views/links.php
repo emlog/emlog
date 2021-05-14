@@ -38,11 +38,13 @@
 						?>
                         <tr>
                             <td><input class="form-control em-small" name="link[<?php echo $value['id']; ?>]" value="<?php echo $value['taxis']; ?>" maxlength="4"/></td>
-                            <td><a href="#" data-toggle="modal" data-target="#editModal"
+                            <td>
+                                <a href="#" data-toggle="modal" data-target="#editModal"
                                    data-linkid="<?php echo $value['id']; ?>"
                                    data-sitename="<?php echo $value['sitename']; ?>"
                                    data-siteurl="<?php echo $value['siteurl']; ?>"
-                                   data-description="<?php echo $value['description']; ?>"><?php echo $value['sitename']; ?></a></td>
+                                   data-description="<?php echo $value['description']; ?>"><?php echo $value['sitename']; ?></a>
+                            </td>
                             <td><?php echo $value['description']; ?></td>
                             <td>
                                 <a href="<?php echo $value['siteurl']; ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0"/></a>
@@ -81,15 +83,15 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="alias">名称</label>
-                        <input class="form-control" id="sitename" name="sitename" required>
+                        <input class="form-control" id="sitename" maxlength="255" name="sitename" required>
                     </div>
                     <div class="form-group">
                         <label for="template">地址</label>
-                        <input class="form-control" id="siteurl" name="siteurl" required>
+                        <input class="form-control" id="siteurl" name="siteurl" maxlength="255" required>
                     </div>
                     <div class="form-group">
                         <label for="alias">描述</label>
-                        <textarea name="description" type="text" class="form-control"></textarea>
+                        <textarea name="description" type="text" maxlength="512" class="form-control"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -117,15 +119,15 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="alias">名称</label>
-                        <input class="form-control" id="sitename" name="sitename" required>
+                        <input class="form-control" id="sitename" maxlength="255" name="sitename" required>
                     </div>
                     <div class="form-group">
                         <label for="template">地址</label>
-                        <input class="form-control" id="siteurl" name="siteurl" required>
+                        <input class="form-control" id="siteurl" maxlength="255" name="siteurl" required>
                     </div>
                     <div class="form-group">
                         <label for="alias">描述</label>
-                        <textarea name="description" id="description" type="text" class="form-control"></textarea>
+                        <textarea name="description" id="description" maxlength="512" type="text" class="form-control"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
