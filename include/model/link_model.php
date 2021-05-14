@@ -17,7 +17,7 @@ class Link_Model {
 		$links = array();
 		while ($row = $this->db->fetch_array($res)) {
 			$row['sitename'] = htmlspecialchars($row['sitename']);
-			$row['description'] = subString(htmlClean($row['description'], false), 0, 80);
+			$row['description'] = htmlClean($row['description'], false);
 			$row['siteurl'] = $row['siteurl'];
 			$links[] = $row;
 		}
