@@ -41,7 +41,7 @@
         </div>
     </div>
     <div class="card">
-        <h5 class="card-header">导入本地备份</h5>
+        <h5 class="card-header">导入备份</h5>
         <div class="card-body">
             <form action="data.php?action=import" enctype="multipart/form-data" method="post">
                 <div id="import">
