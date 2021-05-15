@@ -60,13 +60,6 @@
             <li class="nav-item" id="menu_media">
                 <a class="nav-link" href="media.php"><i class="icofont-image"></i><span>资源</span></a>
             </li>
-            <li class="nav-item" id="menu_link">
-                <a class="nav-link" href="./link.php"><i class="icofont-link"></i><span>链接</span></a>
-            </li>
-            <hr class="sidebar-divider d-none d-md-block">
-            <li class="nav-item" id="menu_store">
-                <a class="nav-link" href="store.php"><i class="icofont-shopping-cart"></i><span>商店</span></a>
-            </li>
             <li class="nav-item" id="menu_category_view">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_view" aria-expanded="true" aria-controls="menu_view">
                     <i class="icofont-paint"></i>
@@ -76,9 +69,14 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" id="menu_tpl" href="template.php">模板</a>
                         <a class="collapse-item" id="menu_navi" href="navbar.php">导航</a>
-                        <a class="collapse-item" id="menu_widget" href="widgets.php">侧边栏</a>
+                        <a class="collapse-item" id="menu_widget" href="widgets.php">边栏</a>
+                        <a class="collapse-item" id="menu_link" href="link.php">链接</a>
                     </div>
                 </div>
+            </li>
+            <hr class="sidebar-divider d-none d-md-block">
+            <li class="nav-item" id="menu_store">
+                <a class="nav-link" href="store.php"><i class="icofont-shopping-cart"></i><span>商店</span></a>
             </li>
             <li class="nav-item" id="menu_category_sys">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_sys" aria-expanded="true" aria-controls="menu_sys">

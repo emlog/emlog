@@ -361,10 +361,10 @@
             var title = $(this).prevAll(".widget-title").html();
             var widget_id = $(this).parent().parent().parent().attr("id");
             var widget_element = "<div class=\"card m-1\" id=\"em_" + widget_id + "\">";
-            widget_element += "<div class=\"card-header\"><h2 class=\"mb-0\">";
-            widget_element += "<button class=\"btn btn-link\" type=\"button\">" + title + "</button>";
+            widget_element += "<div class=\"card-header\"><div class=\"mb-0\">";
+            widget_element += "<h6>" + title + "</h6>";
             widget_element += "<input type=\"hidden\" name=\"widgets[]\" value=\"" + widget_id + "\" />";
-            widget_element += "</h2></div>";
+            widget_element += "</div></div>";
             widget_element += "</div>";
             // console.log("The title %s, id: s%", title, widget_id);
             $(".adm_widget_box").append(widget_element);

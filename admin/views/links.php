@@ -142,6 +142,8 @@
 </div>
 
 <script>
+    $("#menu_category_view").addClass('active');
+    $("#menu_view").addClass('show');
     $("#menu_link").addClass('active');
     setTimeout(hideActived, 3600);
     $('#editModal').on('show.bs.modal', function (event) {
