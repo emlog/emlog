@@ -23,7 +23,7 @@ define('ISREG', Register::isRegLocal());
 if ($action == 'login') {
 	$username = isset($_POST['user']) ? addslashes(trim($_POST['user'])) : '';
 	$password = isset($_POST['pw']) ? addslashes(trim($_POST['pw'])) : '';
-	$ispersis = isset($_POST['ispersis']) ? (int)$_POST['ispersis'] : false;
+	$ispersis = isset($_POST['ispersis']) ? (int)$_POST['ispersis'] : 0;
 	$img_code = Option::get('login_code') == 'y' && isset($_POST['imgcode']) ? addslashes(trim(strtoupper($_POST['imgcode']))) : '';
 
 	$loginAuthRet = LoginAuth::checkUser($username, $password, $img_code);
