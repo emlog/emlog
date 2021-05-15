@@ -15,7 +15,7 @@
 <body>
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-xl-6 col-lg-12 col-md-9">
+        <div class="col-xl-5 col-lg-5 col-md-12">
             <div class="card o-hidden border-0 shadow-lg my-5">
                 <div class="card-body p-0">
                     <div class="p-5">
@@ -27,21 +27,21 @@
                                 </div>
 							<?php endif; ?>
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-user" id="user" name="user" placeholder="用户名" required="required">
+                                <input type="text" class="form-control form-control-user" id="user" name="user" autofocus="autofocus" placeholder="用户名" required="required">
                             </div>
                             <div class="form-group">
                                 <input type="password" class="form-control form-control-user" id="pw" name="pw" placeholder="密码" required="required">
                             </div>
 							<?php if ($ckcode): ?>
-                                <div class="form-group">
+                                <div class="form-group form-inline">
                                     <input type="text" name="imgcode" class="form-control" id="imgcode" placeholder="验证码" required="required">
-                                    <img src="../include/lib/checkcode.php" align="absmiddle" id="checkcode">
+                                    <img src="../include/lib/checkcode.php" align="absmiddle" id="checkcode" class="mx-2">
                                 </div>
 							<?php endif; ?>
                             <div class="form-group">
-                                <div class="custom-control custom-checkbox small">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck">
-                                    <label class="custom-control-label" for="customCheck">记住登录状态</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="ispersis" id="ispersis" value="1">
+                                    <label class="form-check-label" for="gridCheck">记住我</label>
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary btn-user btn-block">登录</button>
