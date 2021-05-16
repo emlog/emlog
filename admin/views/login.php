@@ -27,14 +27,14 @@
                                 </div>
 							<?php endif; ?>
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-user" id="user" name="user" autofocus="autofocus" placeholder="用户名" required="required">
+                                <input type="text" class="form-control form-control-user" id="user" name="user" placeholder="用户名" required autofocus>
                             </div>
                             <div class="form-group">
-                                <input type="password" class="form-control form-control-user" id="pw" name="pw" placeholder="密码" required="required">
+                                <input type="password" class="form-control form-control-user" id="pw" name="pw" placeholder="密码" required>
                             </div>
 							<?php if ($ckcode): ?>
                                 <div class="form-group form-inline">
-                                    <input type="text" name="imgcode" class="form-control" id="imgcode" placeholder="验证码" required="required">
+                                    <input type="text" name="imgcode" class="form-control" id="imgcode" placeholder="验证码" required>
                                     <img src="../include/lib/checkcode.php" align="absmiddle" id="checkcode" class="mx-2">
                                 </div>
 							<?php endif; ?>
