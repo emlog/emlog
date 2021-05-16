@@ -9,7 +9,7 @@
         <div class="col-xl-12">
             <div id="post" class="form-group">
                 <div>
-                    <input type="text" name="title" id="title" value="<?php echo $title; ?>" class="form-control" placeholder="文章标题" required/>
+                    <input type="text" name="title" id="title" value="<?php echo $title; ?>" class="form-control" placeholder="文章标题" autofocus required/>
                 </div>
                 <div id="post_bar">
                     <a href="#" class="text-muted small my-3" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> 插入图文资源</a>
@@ -91,10 +91,10 @@
 
 				<?php if ($logid < 0): ?>
                     <input type="submit" value="发布文章" onclick="return checkform();" class="btn btn-sm btn-success"/>
-                    <input type="button" name="savedf" id="savedf" value="保存草稿" onclick="autosave(2);" class="btn btn-sm btn-success"/>
+                    <input type="button" name="savedf" id="savedf" value="保存草稿" onclick="autosave(2);" class="btn btn-sm btn-primary"/>
 				<?php else: ?>
                     <input type="submit" value="保存并返回" onclick="return checkform();" class="btn btn-sm btn-success"/>
-                    <input type="button" name="savedf" id="savedf" value="保存" onclick="autosave(2);" class="btn btn-sm btn-success"/>
+                    <input type="button" name="savedf" id="savedf" value="保存" onclick="autosave(2);" class="btn btn-sm btn-primary"/>
 					<?php if ($isdraft) : ?>
                         <input type="submit" name="pubdf" id="pubdf" value="发布" onclick="return checkform();" class="btn btn-sm btn-success"/>
 					<?php endif; ?>
@@ -180,8 +180,9 @@
             },
             path: "editor.md/lib/",
             tex: false,
-            watch: true,
+            watch: false,
             flowChart: false,
+            autoFocus: false,
             sequenceDiagram: false
         });
         Editor_summary = editormd("logexcerpt", {
