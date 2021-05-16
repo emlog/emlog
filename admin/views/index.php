@@ -1,10 +1,6 @@
 <?php if (!defined('EMLOG_ROOT')) {
 	exit('error!');
 } ?>
-<?php if (isset($_GET['active_reg'])): ?>
-    <div class="alert alert-success">恭喜，注册成功了</div><?php endif; ?>
-<?php if (isset($_GET['error_b'])): ?>
-    <div class="alert alert-danger">注册失败</div><?php endif; ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">欢迎，<?php echo $user_cache[UID]['name'] ?></h1>
 	<?php doAction('adm_main_top'); ?>
@@ -57,7 +53,7 @@
                     <li class="list-group-item d-flex justify-content-between align-items-center small">
                         EMLOG版本
 						<?php if (ISREG === false) : ?>
-                        <span class="badge badge-danger"><?php echo Option::EMLOG_VERSION; ?> 未注册</span>
+                        <a href="register.php"><span class="badge badge-danger"><?php echo Option::EMLOG_VERSION; ?> 未注册, 点击去注册</span></a>
 						<?php else: ?>
                         <span class="badge badge-success"><?php echo Option::EMLOG_VERSION; ?> 已注册</span>
                         <?php endif; ?>
@@ -82,33 +78,10 @@
                 <div>5、"投我以桃，报之以李"，支持我们把emlog做的更好。</div>
             </div>
             <div class="card-footer text-center">
-                <a href="#" class="btn btn-sm btn-success shadow-lg" data-toggle="modal" data-target="#exampleModal">现在去注册</a>
+                <a href="register.php" class="btn btn-sm btn-success shadow-lg">现在去注册</a>
             </div>
         </div>
 		<?php endif; ?>
-    </div>
-</div>
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">注册EMLOG PRO</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="register.php?action=register" method="post">
-                <div class="modal-body">
-                    <div class="form-group">
-                        <input class="form-control" id="emkey" name="emkey" placeholder="输入注册码" required>
-                    </div>
-                    <div><a href="<?php echo OFFICIAL_SERVICE_HOST; ?>register">去获取注册码&rarr; </a></div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-sm btn-success">注册</button>
-                </div>
-            </form>
-        </div>
     </div>
 </div>
 <script>
@@ -134,7 +107,7 @@
         $.get("./upgrade.php?action=check_update",
             function (result) {
                 if (result.code == 1001) {
-                    $("#upmsg").html("您的emlog pro尚未注册，请先完成注册").removeClass();
+                    $("#upmsg").html("您的emlog pro尚未注册，<a href=\"register.php\">请先完成注册</a>").removeClass();
                 } else if (result.code == 1002) {
                     $("#upmsg").html("已经是最新版本，没有可用的更新").removeClass();
                 } else if (result.code == 200) {

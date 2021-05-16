@@ -16,7 +16,7 @@ if (empty($action)) {
 	$emcurl->setPost(['emkey' => Option::get('emkey'), 'ver' => Option::EMLOG_VERSION,]);
 	$emcurl->request(OFFICIAL_SERVICE_HOST . 'service/store');
 	$retStatus = $emcurl->getHttpStatus();
-	if ($retStatus !== 200) {
+	if ($retStatus !== MSGCODE_SUCCESS) {
 		emDirect("./store.php?action=error&error=1");
 	}
 	$respone = $emcurl->getRespone();
@@ -24,8 +24,8 @@ if (empty($action)) {
 	if (empty($ret)) {
 		emDirect("./store.php?action=error&error=1");
 	}
-	if ($ret['code'] === 1001) {
-		emDirect("./store.php?action=error&error_unreg=1");
+	if ($ret['code'] === MSGCODE_EMKEY_INVALID) {
+		emDirect("./register.php?error_store=1");
 	}
 
 	$templates = $ret['data']['templates'] ?? [];

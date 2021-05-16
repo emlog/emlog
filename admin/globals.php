@@ -13,6 +13,9 @@ require_once '../init.php';
 
 const TEMPLATE_PATH = EMLOG_ROOT . '/admin/views/';              //后台模板路径
 const OFFICIAL_SERVICE_HOST = 'https://www.emlog.net/';          //官方服务域名
+const MSGCODE_EMKEY_INVALID = 1001;                              // 错误的注册码
+const MSGCODE_NO_UPUPDATE = 1002;                                // 没有可用的版本更新
+const MSGCODE_SUCCESS = 200;                                     // 成功
 
 $sta_cache = $CACHE->readCache('sta');
 $user_cache = $CACHE->readCache('user');
