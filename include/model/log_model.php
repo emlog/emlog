@@ -375,7 +375,7 @@ class Log_Model {
 </head>
 <body class="text-center">
 	<form action="" method="post" class="form-signin" style="width: 100%;max-width: 330px;padding: 15px;margin: 0 auto;">
-      <input type="password" id="logpwd" name="logpwd" class="form-control" placeholder="请输入文章的访问密码" required>
+      <input type="password" id="logpwd" name="logpwd" class="form-control" placeholder="请输入文章的访问密码" required autofocus>
       <button class="btn btn-lg btn-primary btn-block mt-2" type="submit">提交</button>
       <p class="mt-5 mb-3 text-muted"><a href="$url">&larr;返回首页</a></p>
     </form>
