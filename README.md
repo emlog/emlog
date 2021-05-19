@@ -33,22 +33,22 @@ https://www.emlog.net/download
 
 ## Main contributor
 <a href="https://github.com/emlog" target="_blank">
-<img width="40px" style="border-radius:999px" src="https://avatars.githubusercontent.com/u/4344235?s=40"/>
+<img style="border-radius:999px" src="https://avatars.githubusercontent.com/u/4344235?s=40"/>
 </a>
 <a href="https://github.com/colt-evil" target="_blank">
-<img width="40px" style="border-radius:999px" src="https://avatars.githubusercontent.com/u/4045157?s=40"/>
+<img style="border-radius:999px" src="https://avatars.githubusercontent.com/u/4045157?s=40"/>
 </a>
 <a href="https://github.com/Baiqiang" target="_blank">
-<img width="40px" style="border-radius:999px" src="https://avatars.githubusercontent.com/u/2390434?s=40"/>
+<img style="border-radius:999px" src="https://avatars.githubusercontent.com/u/2390434?s=40"/>
 </a>
 <a href="https://github.com/aweika" target="_blank">
-<img width="40px" style="border-radius:999px" src="https://avatars.githubusercontent.com/u/4565941?s=40"/>
+<img style="border-radius:999px" src="https://avatars.githubusercontent.com/u/4565941?s=40"/>
 </a>
 <a href="https://github.com/vibbow" target="_blank">
-<img width="30px" style="border-radius:999px" src="https://avatars.githubusercontent.com/u/6408107?s=40"/>
+<img style="border-radius:999px" src="https://avatars.githubusercontent.com/u/6408107?s=40"/>
 </a>
 <a href="https://github.com/kohunglee" target="_blank">
-<img width="40px" style="border-radius:999px" src="https://avatars.githubusercontent.com/u/33373536?s=40"/>
+<img style="border-radius:999px" src="https://avatars.githubusercontent.com/u/33373536?s=40"/>
 </a>
 
 
