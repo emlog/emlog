@@ -50,7 +50,7 @@
     <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
     <input type="hidden" value="<?php echo $uid; ?>" name="uid"/>
 <!--vot--><input type="submit" value="<?=lang('save')?>" class="btn btn-sm btn-success">
-<!--vot--><input type="button" value="<?=lang('cancel')?>" class="btn btn-default" onclick="window.location='user.php';"/>
+<!--vot--><input type="button" value="<?=lang('cancel')?>" class="btn btn-sm btn-secondary" onclick="window.location='user.php';"/>
 </form>
 
 <script>

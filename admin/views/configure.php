@@ -130,7 +130,7 @@
                 <textarea name="footer_info" rows="6" class="form-control"><?php echo $footer_info; ?></textarea>
             </div>
             <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
-<!--vot-->  <input type="submit" value="<?=lang('save_settings')?>" class="btn btn-success"/>
+<!--vot-->  <input type="submit" value="<?=lang('save_settings')?>" class="btn btn-sm btn-success"/>
         </form>
     </div>
 </div>

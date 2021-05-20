@@ -62,13 +62,6 @@
             <li class="nav-item" id="menu_media">
 <!--vot-->      <a class="nav-link" href="media.php"><i class="icofont-image"></i><span><?= lang('resources') ?></span></a>
             </li>
-            <li class="nav-item" id="menu_link">
-<!--vot-->      <a class="nav-link" href="./link.php"><i class="icofont-link""></i><span><?= lang('friend_links') ?></span></a>
-            </li>
-            <hr class="sidebar-divider d-none d-md-block">
-            <li class="nav-item" id="menu_store">
-<!--vot-->      <a class="nav-link" href="store.php"><i class="icofont-shopping-cart"></i><span><?= lang('store') ?></span></a>
-            </li>
             <li class="nav-item" id="menu_category_view">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_view" aria-expanded="true" aria-controls="menu_view">
                     <i class="icofont-paint"></i>
@@ -79,8 +72,13 @@
 <!--vot-->              <a class="collapse-item" id="menu_tpl" href="template.php"><?= lang('templates') ?></a>
 <!--vot-->              <a class="collapse-item" id="menu_navi" href="navbar.php"><?= lang('navigation') ?></a>
 <!--vot-->              <a class="collapse-item" id="menu_widget" href="widgets.php"><?= lang('sidebar') ?></a>
+<!--vot-->              <a class="collapse-item" id="menu_link" href="link.php"><?= lang('friend_links') ?></a>
                     </div>
                 </div>
+            </li>
+            <hr class="sidebar-divider d-none d-md-block">
+            <li class="nav-item" id="menu_store">
+<!--vot-->      <a class="nav-link" href="store.php"><i class="icofont-shopping-cart"></i><span><?= lang('store') ?></span></a>
             </li>
             <li class="nav-item" id="menu_category_sys">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_sys" aria-expanded="true" aria-controls="menu_sys">

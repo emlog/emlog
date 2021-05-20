@@ -11,10 +11,13 @@
 
 require_once '../init.php';
 
-const TEMPLATE_PATH = EMLOG_ROOT . '/admin/views/';           //AdminCP current template path
-const OFFICIAL_SERVICE_HOST = 'https://www.emlog.net/';       //Official Service Domain
-
 /*vot*/ load_language('admin');
+
+const TEMPLATE_PATH = EMLOG_ROOT . '/admin/views/';           // AdminCP current template path
+const OFFICIAL_SERVICE_HOST = 'https://www.emlog.net/';       // Official Service Domain
+const MSGCODE_EMKEY_INVALID = 1001;                           // Wrong registration code
+const MSGCODE_NO_UPUPDATE = 1002;                             // No version update available
+const MSGCODE_SUCCESS = 200;                                  // Success
 
 $sta_cache = $CACHE->readCache('sta');
 $user_cache = $CACHE->readCache('user');
@@ -25,7 +28,7 @@ define('ISREG', Register::isRegLocal());
 if ($action == 'login') {
 	$username = isset($_POST['user']) ? addslashes(trim($_POST['user'])) : '';
 	$password = isset($_POST['pw']) ? addslashes(trim($_POST['pw'])) : '';
-	$ispersis = isset($_POST['ispersis']) ? (int)$_POST['ispersis'] : false;
+	$ispersis = isset($_POST['ispersis']) ? (int)$_POST['ispersis'] : 0;
 	$img_code = Option::get('login_code') == 'y' && isset($_POST['imgcode']) ? addslashes(trim(strtoupper($_POST['imgcode']))) : '';
 
 	$loginAuthRet = LoginAuth::checkUser($username, $password, $img_code);

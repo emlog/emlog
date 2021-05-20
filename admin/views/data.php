@@ -48,7 +48,8 @@
 <!--vot-->          <p class="des"><?=lang('backup_version_tip')?> <?php echo DB_PREFIX; ?></p>
                     <p>
                         <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
-<!--vot-->              <input type="file" name="sqlfile"/> <input type="submit" value="<?=lang('import')?>" class="submit"/>
+                        <input type="file" name="sqlfile" required/>
+<!--vot-->              <input type="submit" value="<?=lang('import')?>" class="btn btn-sm btn-success"/>
                     </p>
                 </div>
             </form>

@@ -1,10 +1,6 @@
 <?php if (!defined('EMLOG_ROOT')) {
 	exit('error!');
 } ?>
-<?php if (isset($_GET['active_reg'])): ?>
-<!--vot--><div class="alert alert-success"><?=lang('em_reg_ok')?></div><?php endif; ?>
-<?php if (isset($_GET['error_b'])): ?>
-<!--vot--><div class="alert alert-danger"><?=lang('reg_failed')?></div><?php endif; ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 <!--vot--><h1 class="h3 mb-0 text-gray-800"><?=lang('welcome')?>, <?php echo $user_cache[UID]['name'] ?></h1>
 	<?php doAction('adm_main_top'); ?>
@@ -57,7 +53,7 @@
                     <li class="list-group-item d-flex justify-content-between align-items-center small">
 <!--vot-->              <?=lang('emlog_version')?>:
 						<?php if (ISREG === false) : ?>
-<!--vot-->              <span class="badge badge-danger"><?php echo Option::EMLOG_VERSION; ?> <?=lang('unregistered')?></span>
+<!--vot-->              <a href="register.php"><span class="badge badge-danger"><?php echo Option::EMLOG_VERSION; ?> <?=lang('unregistered')?></span></a>
 						<?php else: ?>
 <!--vot-->              <span class="badge badge-success"><?php echo Option::EMLOG_VERSION; ?> <?=lang('registered_already')?></span>
                         <?php endif; ?>
@@ -82,33 +78,10 @@
 <!--vot-->      <div><?=lang('advantage5')?></div>
             </div>
             <div class="card-footer text-center">
-<!--vot-->      <a href="#" class="btn btn-sm btn-success shadow-lg" data-toggle="modal" data-target="#exampleModal"><?=lang('register_now')?></a>
+<!--vot-->      <a href="register.php" class="btn btn-sm btn-success shadow-lg"><?=lang('register_now')?></a>
             </div>
         </div>
 		<?php endif; ?>
-    </div>
-</div>
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-<!--vot-->      <h5 class="modal-title" id="exampleModalLabel"><?=lang('register_emlog')?></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="register.php?action=register" method="post">
-                <div class="modal-body">
-                    <div class="form-group">
-<!--vot-->              <input class="form-control" id="emkey" name="emkey" placeholder="<?=lang('enter_emkey')?>" required>
-                    </div>
-<!--vot-->          <div><a href="<?php echo OFFICIAL_SERVICE_HOST; ?>register"><?=lang('how_get_emkey')?> &rarr;</a></div>
-                </div>
-                <div class="modal-footer">
-<!--vot-->          <button type="submit" class="btn btn-sm btn-success"><?=lang('registered')?></button>
-                </div>
-            </form>
-        </div>
     </div>
 </div>
 <script>

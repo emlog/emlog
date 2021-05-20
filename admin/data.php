@@ -114,8 +114,6 @@ if ($action === 'import') {
 
 /**
  * Check the backup file header information
- *
- * @param file $sqlfile
  */
 function checkSqlFileInfo($sqlfile) {
 	$fp = @fopen($sqlfile, 'r');
@@ -133,8 +131,8 @@ function checkSqlFileInfo($sqlfile) {
 	if (empty($dumpinfo)) {
 /*vot*/		emMsg(lang('import_failed_not_emlog'));
 	}
-	if (!preg_match('/#version:emlog ' . Option::EMLOG_VERSION . '/', $dumpinfo[0])) {
-/*vot*/ emMsg(lang('import_failed_not_emlog_ver'));
+	if (!strstr($dumpinfo[0], '#version:emlog ' . Option::EMLOG_VERSION)) {
+/*vot*/		emMsg(lang('import_failed_not_emlog_ver') . Option::EMLOG_VERSION);
 	}
 	if (preg_match('/#tableprefix:' . DB_PREFIX . '/', $dumpinfo[2]) === 0) {
 /*vot*/ emMsg(lang('import_failed_bad_prefix') . $dumpinfo[2]);

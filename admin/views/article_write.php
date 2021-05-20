@@ -1,6 +1,7 @@
 <?php if (!defined('EMLOG_ROOT')) {
 	exit('error!');
-} ?>
+}
+?>
 <div id="msg" class="fixed-top alert" style="display: none"></div>
 <h1 class="h3 mb-4 text-gray-800"><?php echo $containertitle; ?></h1>
 <form action="article_save.php?action=add" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
@@ -8,7 +9,7 @@
         <div class="col-xl-12">
             <div id="post" class="form-group">
                 <div>
-<!--vot-->          <input type="text" name="title" id="title" value="<?php echo $title; ?>" class="form-control" placeholder="<?=lang('post_title')?>" required/>
+<!--vot-->          <input type="text" name="title" id="title" value="<?php echo $title; ?>" class="form-control" placeholder="<?=lang('post_title')?>" autofocus required/>
                 </div>
                 <div id="post_bar">
 <!--vot-->          <a href="#" class="text-muted small my-3" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> <?=lang('upload_insert')?></a>
@@ -90,10 +91,10 @@
 
 				<?php if ($logid < 0): ?>
 <!--vot-->          <input type="submit" value="<?=lang('post_publish')?>" onclick="return checkform();" class="btn btn-sm btn-success"/>
-<!--vot-->          <input type="button" name="savedf" id="savedf" value="<?=lang('save_draft')?>" onclick="autosave(2);" class="btn btn-sm btn-success"/>
+<!--vot-->          <input type="button" name="savedf" id="savedf" value="<?=lang('save_draft')?>" onclick="autosave(2);" class="btn btn-sm btn-primary"/>
 				<?php else: ?>
 <!--vot-->          <input type="submit" value="<?=lang('save_and_return')?>" onclick="return checkform();" class="btn btn-sm btn-success"/>
-<!--vot-->          <input type="button" name="savedf" id="savedf" value="<?=lang('save')?>" onclick="autosave(2);" class="btn btn-sm btn-success"/>
+<!--vot-->          <input type="button" name="savedf" id="savedf" value="<?=lang('save')?>" onclick="autosave(2);" class="btn btn-sm btn-primary"/>
 					<?php if ($isdraft) : ?>
 <!--vot-->              <input type="submit" name="pubdf" id="pubdf" value="<?=lang('publish')?>" onclick="return checkform();" class="btn btn-sm btn-success"/>
 					<?php endif; ?>
@@ -179,8 +180,9 @@
             },
             path: "editor.md/lib/",
             tex: false,
-            watch: true,
+            watch: false,
             flowChart: false,
+            autoFocus: false,
             sequenceDiagram: false
         });
         Editor_summary = editormd("logexcerpt", {
