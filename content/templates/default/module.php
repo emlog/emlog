@@ -126,10 +126,12 @@ function widget_newcomm($title) {
 			foreach ($com_cache as $value):
 				$url = Url::comment($value['gid'], $value['page'], $value['cid']);
 				?>
-                <li class='comment_lates' id="comment"><span class='comm_lates_name' style="color: #616161;"><?php echo $value['name']; ?></span>&nbsp;<span
-                            class='comm_lates_time'><?php echo smartDate($value['date']); ?></span>
-                    <br/><a href="<?php echo $url; ?>"><?php echo $value['content']; ?></a>
-                    <hr>
+                <li class='comment_lates' id="comment">
+				<img class='comment_lates_img' src="<?php echo getGravatar($value['mail']); ?>"/>
+				<span class='comm_lates_name'><?php echo $value['name']; ?></span>
+				<span class='comm_lates_time'><?php echo smartDate($value['date']); ?></span><br/>
+                <a href="<?php echo $url; ?>" style="color: #989898;"><?php echo $value['content']; ?></a>
+                <hr>
                 </li>
 			<?php endforeach; ?>
         </ul>

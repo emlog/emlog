@@ -22,6 +22,7 @@ require_once View::getView('module');
     <link rel="alternate" title="RSS" href="<?php echo BLOG_URL; ?>rss.php" type="application/rss+xml"/>
     <link href="<?php echo TEMPLATE_URL; ?>css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <link href="<?php echo TEMPLATE_URL; ?>css/main.css" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo TEMPLATE_URL; ?>css/markdown.css" rel="stylesheet" type="text/css"/>
     <script src="<?php echo TEMPLATE_URL; ?>js/common_tpl.js" type="text/javascript"></script>
 	<?php doAction('index_head'); ?>
 </head>
@@ -30,7 +31,7 @@ require_once View::getView('module');
     <div class="container">
         <a class="navbar-brand main_blogname" title="<?php echo $bloginfo; ?>" href="<?php echo BLOG_URL; ?>"><?php echo $blogname; ?></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-                aria-label="Toggle navigation">
+                aria-label="Toggle navigation" style="outline: none;">
             <span class="navbar-toggler-icon"></span>
         </button>
 		<?php blog_navi(); ?>
