@@ -31,7 +31,7 @@ require_once View::getView('module');
     <div class="container">
         <a class="navbar-brand main_blogname" title="<?php echo $bloginfo; ?>" href="<?php echo BLOG_URL; ?>"><?php echo $blogname; ?></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-                aria-label="Toggle navigation">
+                aria-label="Toggle navigation" style="outline: none;">
             <span class="navbar-toggler-icon"></span>
         </button>
 		<?php blog_navi(); ?>
