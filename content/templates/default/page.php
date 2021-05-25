@@ -11,6 +11,7 @@ if (!defined('EMLOG_ROOT')) {
 			background-color: #ffffff;
 			border-radius: 10px;
 			padding: 30px;
+			margin-bottom: 29px;
 		}
 		
     </style>
