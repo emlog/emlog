@@ -40,7 +40,7 @@ class Register {
 
 		$emcurl = new EmCurl();
 		$emcurl->setPost(['emkey' => $emkey]);
-		$emcurl->request(OFFICIAL_SERVICE_HOST . 'service/register');
+		$emcurl->request(OFFICIAL_SERVICE_HOST . 'proauth/register');
 		if ($emcurl->getHttpStatus() !== 200) {
 			return false;
 		}
