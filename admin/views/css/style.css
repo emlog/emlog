@@ -77,3 +77,8 @@ body {
 .editormd{
 	    z-index: 0;
 }
+.editormd .CodeMirror pre.CodeMirror-placeholder {
+    margin: 0px;
+    z-index: 2;
+    position: absolute;
+}

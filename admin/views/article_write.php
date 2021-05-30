@@ -154,7 +154,7 @@
     </div>
 </div>
 
-<script src="./editor.md/editormd.js"></script>
+<script src="./editor.md/editormd.js?d=5.25.2021"></script>
 <script>
     $("#alias").keyup(function () {
         checkalias();
@@ -181,6 +181,7 @@
             path: "editor.md/lib/",
             tex: false,
             watch: false,
+	    htmlDecode : "style,script,iframe,sub,sup,embed|onclick,title,onmouseover,onmouseout,style",
             flowChart: false,
             autoFocus: false,
             sequenceDiagram: false
@@ -198,6 +199,7 @@
             path: "editor.md/lib/",
             tex: false,
             watch: false,
+	    htmlDecode : "style,script,iframe,sub,sup,embed|onclick,title,onmouseover,onmouseout,style",
             flowChart: false,
             autoFocus: false,
             sequenceDiagram: false,

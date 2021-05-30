@@ -124,6 +124,7 @@ function cal_margin(links){
 		var div_ls = document.getElementsByTagName('ul')
 		for(var i=0;i<div_ls.length;i++){
 		if(div_ls[i].getAttribute('id') == 'dropmenus'){
+			count=(count%2==0)?count:count+1;
 			div_ls[i].style.marginLeft='-'+count/2+'px';
 			}
         }

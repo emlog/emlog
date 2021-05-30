@@ -92,7 +92,7 @@
     </div>
 </div>
 
-<script src="./editor.md/editormd.js"></script>
+<script src="./editor.md/editormd.js?d=5.25.2021"></script>
 <script>
     $("#menu_page").addClass('active');
     checkalias();
@@ -125,6 +125,7 @@
             tex: false,
             flowChart: false,
             watch: false,
+	    htmlDecode : "style,script,iframe,sub,sup,embed|onclick,title,onmouseover,onmouseout,style",
             sequenceDiagram: false
         });
         Editor_page.setToolbarAutoFixed(false);
