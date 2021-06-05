@@ -117,7 +117,7 @@
             toolbarIcons: function () {
                 return ["undo", "redo", "|",
                     "bold", "del", "italic", "quote", "|",
-                    "h1", "h2", "h3", "h4", "h5", "h6", "|",
+                    "h1", "h2", "h3", "|",
                     "list-ul", "list-ol", "hr", "|",
                     "link", "image", "preformatted-text", "table", "|", "watch"]
             },
