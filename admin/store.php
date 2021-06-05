@@ -14,7 +14,7 @@ require_once 'globals.php';
 if (empty($action)) {
 	$emcurl = new EmCurl();
 	$emcurl->setPost(['emkey' => Option::get('emkey'), 'ver' => Option::EMLOG_VERSION,]);
-	$emcurl->request(OFFICIAL_SERVICE_HOST . 'service/store');
+	$emcurl->request(OFFICIAL_SERVICE_HOST . 'store/pro');
 	$retStatus = $emcurl->getHttpStatus();
 	if ($retStatus !== MSGCODE_SUCCESS) {
 		emDirect("./store.php?action=error&error=1");
