@@ -13,7 +13,7 @@
                     <a href="#" class="text-muted small my-3" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> 插入图文资源</a>
 					<?php doAction('adm_writelog_head'); ?>
                 </div>
-                <div id="pagecontent"><textarea style="display:none;"><?php echo $content; ?></textarea></div>
+                <div><textarea id="pagecontent" name="pagecontent" ><?php echo $content; ?></textarea></div>
             </div>
 
             <div class="form-group">
@@ -91,8 +91,12 @@
         </div>
     </div>
 </div>
-
-<script src="./editor.md/editormd.js?d=5.25.2021"></script>
+<style>
+    .ck-editor__editable_inline {
+        min-height: 400px;
+    }
+</style>
+<script src="./editor/ckeditor.js?d=6.06.2021"></script>
 <script>
     $("#menu_page").addClass('active');
     checkalias();
@@ -109,25 +113,28 @@
     });
     if ($("#title").val() != '') $("#title_label").hide();
 
-    var Editor_page;
-    $(function () {
-        Editor_page = editormd("pagecontent", {
-            width: "100%",
-            height: 640,
-            toolbarIcons: function () {
-                return ["undo", "redo", "|",
-                    "bold", "del", "italic", "quote", "|",
-                    "h1", "h2", "h3", "|",
-                    "list-ul", "list-ol", "hr", "|",
-                    "link", "image", "preformatted-text", "table", "|", "watch"]
-            },
-            path: "editor.md/lib/",
-            tex: false,
-            flowChart: false,
-            watch: false,
-	    htmlDecode : "style,script,iframe,sub,sup,embed|onclick,title,onmouseover,onmouseout,style",
-            sequenceDiagram: false
-        });
-        Editor_page.setToolbarAutoFixed(false);
+    ClassicEditor.create(document.querySelector('#pagecontent'), {
+        toolbar: {
+            items: [
+                'heading', '|',
+                'bold', 'italic', '|',
+                'link', '|',
+                'outdent', 'indent', '|',
+                'bulletedList', 'numberedList', '|',
+                'insertTable', '|',
+                'uploadImage', 'blockQuote', '|',
+                'undo', 'redo'
+            ],
+            shouldNotGroupWhenFull: true
+        },
+        heading: {
+            options: [
+                {model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph'},
+                {model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1'},
+                {model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2'}
+            ]
+        }
+    }).catch(error => {
+        console.log(error);
     });
 </script>

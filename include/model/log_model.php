@@ -8,13 +8,9 @@
 class Log_Model {
 
 	private $db;
-	private $Parsedown;
 
 	function __construct() {
 		$this->db = Database::getInstance();
-		$this->Parsedown = new Parsedown();
-		$this->Parsedown->setBreaksEnabled(true); //automatic line wrapping
-		$this->Parsedown->setSafeMode(true); //escaping HTML
 	}
 
 	/**
@@ -115,7 +111,7 @@ class Log_Model {
 				'sortid'       => (int)$row['sortid'],
 				'type'         => $row['type'],
 				'author'       => $row['author'],
-				'log_content'  => $this->Parsedown->text($row['content']),
+				'log_content'  => $row['content'],
 				'views'        => (int)$row['views'],
 				'comnum'       => (int)$row['comnum'],
 				'top'          => $row['top'],
@@ -184,7 +180,7 @@ class Log_Model {
 				}
 			}
 
-			$row['log_description'] = $this->Parsedown->text(empty($row['excerpt']) ? breakLog($row['content'], $row['gid']) : $row['excerpt']);
+			$row['log_description'] = empty($row['excerpt']) ? breakLog($row['content'], $row['gid']) : $row['excerpt'];
 			$row['attachment'] = '';
 			$row['tag'] = '';
 			$row['tbcount'] = 0;//兼容未删除引用的模板

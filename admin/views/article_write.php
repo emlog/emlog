@@ -16,7 +16,7 @@
 					<?php doAction('adm_writelog_head'); ?>
                     <span id="save_info"></span>
                 </div>
-                <div id="logcontent"><textarea><?php echo $content; ?></textarea></div>
+                <div><textarea id="logcontent" name="logcontent"><?php echo $content; ?></textarea></div>
             </div>
 
             <div class="show_advset" id="displayToggle" onclick="displayToggle('advset', 1);">高级选项<i class="icofont-simple-right"></i></div>
@@ -24,7 +24,7 @@
             <div id="advset">
                 <div class="form-group">
                     <label>文章摘要：</label>
-                    <div id="logexcerpt"><textarea><?php echo $excerpt; ?></textarea></div>
+                    <div><textarea id="logexcerpt" name="logexcerpt"><?php echo $excerpt; ?></textarea></div>
                 </div>
                 <div class="form-group">
                     <label>分类：</label>
@@ -153,8 +153,12 @@
         </div>
     </div>
 </div>
-
-<script src="./editor.md/editormd.js?d=5.25.2021"></script>
+<style>
+    .ck-editor__editable_inline {
+        min-height: 400px;
+    }
+</style>
+<script src="./editor/ckeditor.js?d=6.06.2021"></script>
 <script>
     $("#alias").keyup(function () {
         checkalias();
@@ -166,52 +170,41 @@
 
     $("#advset").css('display', Cookies.get('em_advset') ? Cookies.get('em_advset') : '');
 
-    var Editor, Editor_summary;
-    $(function () {
-        Editor = editormd("logcontent", {
-            width: "100%",
-            height: 640,
-            toolbarIcons: function () {
-                return ["undo", "redo", "|",
-                    "bold", "del", "italic", "quote", "|",
-                    "h1", "h2", "h3", "|",
-                    "list-ul", "list-ol", "hr", "|",
-                    "link", "image", "preformatted-text", "table", "|", "search", "watch"]
-            },
-            path: "editor.md/lib/",
-            tex: false,
-            watch: false,
-	    htmlDecode : "style,script,iframe,sub,sup,embed|onclick,title,onmouseover,onmouseout,style",
-            flowChart: false,
-            autoFocus: false,
-            sequenceDiagram: false
-        });
-        Editor_summary = editormd("logexcerpt", {
-            width: "100%",
-            height: 300,
-            toolbarIcons: function () {
-                return ["undo", "redo", "|",
-                    "bold", "del", "italic", "quote", "|",
-                    "h1", "h2", "h3", "|",
-                    "list-ul", "list-ol", "hr", "|",
-                    "link", "image", "|", "watch"]
-            },
-            path: "editor.md/lib/",
-            tex: false,
-            watch: false,
-	    htmlDecode : "style,script,iframe,sub,sup,embed|onclick,title,onmouseover,onmouseout,style",
-            flowChart: false,
-            autoFocus: false,
-            sequenceDiagram: false,
-            placeholder: "如果留空，则使用文章内容作为摘要...",
-        });
-        Editor.setToolbarAutoFixed(false);
-        Editor_summary.setToolbarAutoFixed(false);
-        $("#displayToggle").bind('click', function () {
-            var editor_act = Editor_summary.toolbarHandlers;
-            $.proxy(editor_act.watch, Editor_summary)();
-            $.proxy(editor_act.clear, Editor_summary)();
-            $.proxy(editor_act.undo, Editor_summary)();
-        });
+    ClassicEditor.create(document.querySelector('#logcontent'), {
+        toolbar: {
+            items: [
+                'heading', '|',
+                'bold', 'italic', '|',
+                'link', '|',
+                'outdent', 'indent', '|',
+                'bulletedList', 'numberedList', '|',
+                'insertTable', '|',
+                'uploadImage', 'blockQuote', '|',
+                'undo', 'redo'
+            ],
+            shouldNotGroupWhenFull: true
+        },
+        heading: {
+            options: [
+                {model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph'},
+                {model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1'},
+                {model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2'}
+            ]
+        }
+    }).catch(error => {
+        console.log(error);
+    });
+
+    ClassicEditor.create(document.querySelector('#logexcerpt'), {
+        toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote'],
+        heading: {
+            options: [
+                {model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph'},
+                {model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1'},
+                {model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2'}
+            ]
+        }
+    }).catch(error => {
+        console.log(error);
     });
 </script>
