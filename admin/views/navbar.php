@@ -138,7 +138,7 @@
                     <input class="form-control" name="naviname" placeholder="导航名称" required/>
                 </div>
                 <div class="form-group">
-                    <input maxlength="200" class="form-control" placeholder="链接（URL）" name="url" id="url" required/>
+                    <textarea maxlength="512" class="form-control" placeholder="地址（URL）" name="url" id="url" required/></textarea>
                 </div>
                 <div class="form-group">
                     <label>父导航</label>
