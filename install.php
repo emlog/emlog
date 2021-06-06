@@ -408,7 +408,7 @@ DROP TABLE IF EXISTS {$db_prefix}navi;
 CREATE TABLE {$db_prefix}navi (
   id int(10) unsigned NOT NULL auto_increment COMMENT '导航表',
   naviname varchar(30) NOT NULL default '' COMMENT '导航名称',
-  url varchar(75) NOT NULL default '' COMMENT '导航地址',
+  url varchar(512) NOT NULL default '' COMMENT '导航地址',
   newtab enum('n','y') NOT NULL default 'n' COMMENT '在新窗口打开',
   hide enum('n','y') NOT NULL default 'n' COMMENT '是否隐藏',
   taxis int(10) unsigned NOT NULL default '0' COMMENT '排序序号',
