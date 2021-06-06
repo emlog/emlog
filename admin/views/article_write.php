@@ -191,7 +191,9 @@
                 {model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2'}
             ]
         }
-    }).catch(error => {
+    }).then( newEditor => {
+        editor = newEditor;
+    } ).catch(error => {
         console.log(error);
     });
 
@@ -204,7 +206,9 @@
                 {model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2'}
             ]
         }
-    }).catch(error => {
+    }).then( newEditor => {
+        editor2 = newEditor;
+    } ).catch(error => {
         console.log(error);
     });
 </script>

@@ -133,12 +133,12 @@ function checkalias() {
     }
 }
 
-function insert_media_img(fileurl, imgsrc) {
-    Editor.insertValue('[![](' + imgsrc + ')](' + fileurl + ')\n\n');
+function insert_media_img(fileurl, imgsrc, width=500, height=500) {
+    editor.insertText('<a target=\"_blank\" href=\"' + fileurl + '\"><img src=\"' + imgsrc + '\" border=\"0\" width="' + width + '" height="' + height + '"/></a>');
 }
 
 function insert_media(fileurl, filename) {
-    Editor.insertValue('[' + filename + '](' + fileurl + ')\n\n');
+    editor.insertText('<span class=\"attachment\"><a target=\"_blank\" href=\"' + fileurl + '\" >' + filename + '</a></span>');
 }
 
 // act: 1 auto save, 2 manual save：click save button to save,
@@ -153,8 +153,8 @@ function autosave(act) {
     var date = $.trim($("#date").val());
     var logid = $("#as_logid").val();
     var author = $("#author").val();
-    var content = Editor.getMarkdown();
-    var excerpt = Editor_summary.getMarkdown();
+    var content = editor.getData();
+    var excerpt = editor2.getData();
     var tag = $.trim($("#tag").val());
     var top = $("#top").is(":checked") ? 'y' : 'n';
     var sortop = $("#sortop").is(":checked") ? 'y' : 'n';
@@ -212,7 +212,7 @@ function autosave(act) {
             var h = d.getHours();
             var m = d.getMinutes();
             var s = d.getSeconds();
-            var tm = (h < 10 ? "0" + h : h) +":"+ (m < 10 ? "0" + m : m) +":"+ (s < 10 ? "0" + s : s);
+            var tm = (h < 10 ? "0" + h : h) + ":" + (m < 10 ? "0" + m : m) + ":" + (s < 10 ? "0" + s : s);
             $("#save_info").html("<span class=\"ajax_remind_1\">保存于：" + tm + " </span>");
             $("#" + nodeid).val(logid);
             $("#savedf").attr("disabled", false).val(btname);
