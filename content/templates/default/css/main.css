@@ -545,6 +545,7 @@ body {
 .log_con p {
     font-size: 1em !important;
     margin-top: 0;
+    overflow: hidden;
     margin-bottom: 16px
 }
 
@@ -568,6 +569,8 @@ body {
 
 .loglist_body {
     margin-bottom: -22px;
+    overflow: hidden;
+    margin-right: 1.25rem;
     font-size: small
 }
 
@@ -848,7 +851,7 @@ body {
 .form-control:focus {
     box-shadow: unset;
     border-color: #ced4da;
-    background-color: #f9f9f9
+    background-color: #f9f9f99c
 }
 
 .com_info {
@@ -883,6 +886,11 @@ body {
 
 .navbar-toggler {
     border-radius: 10px;
+}
+
+ 
+img{
+    max-width: 100%
 }
 
 @media all and (max-width: 1200px) and (min-width: 992px) {
@@ -987,11 +995,7 @@ body {
     .comment .avatar {
         margin-bottom: 13px
     }
-    
-    img{
-        max-width: 100%
-    }
-    
+   
 }
 
 @media all and (max-width: 991px) and (min-width: 689px) {
