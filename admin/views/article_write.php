@@ -181,7 +181,7 @@
             path: "editor.md/lib/",
             tex: false,
             watch: false,
-	    htmlDecode : "style,script,iframe,sub,sup,embed|onclick,title,onmouseover,onmouseout,style",
+	    htmlDecode : true,
             flowChart: false,
             autoFocus: false,
             sequenceDiagram: false
@@ -199,7 +199,7 @@
             path: "editor.md/lib/",
             tex: false,
             watch: false,
-	    htmlDecode : "style,script,iframe,sub,sup,embed|onclick,title,onmouseover,onmouseout,style",
+	    htmlDecode : true,
             flowChart: false,
             autoFocus: false,
             sequenceDiagram: false,
