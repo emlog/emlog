@@ -82,3 +82,6 @@ body {
     z-index: 2;
     position: absolute;
 }
+.editormd-preview li {
+    list-style: unset!important;
+}
