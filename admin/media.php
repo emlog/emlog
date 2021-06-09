@@ -27,29 +27,47 @@ if (empty($action)) {
 }
 
 if ($action === 'upload') {
-	$logid = isset($_GET['logid']) ? (int)$_GET['logid'] : 0;
+	$editor = isset($_GET['editor']) ? 1 : 0; // 是否来自编辑器的上传
 	$attach = $_FILES['file'] ?? '';
 
-	if (!$attach || $attach['error'] == 4) {
-		return;
+	if ($editor) {
+		$attach = $_FILES['editormd-image-file'] ?? '';
+	}
+
+	if (!$attach || $attach['error'] === 4) {
+		echo json_encode(['success'=>0,'message'=>'upload error']);
+		exit;
 	}
 
 	$isthumbnail = Option::get('isthumbnail') === 'y';
 	$attach['name'] = Database::getInstance()->escape_string($attach['name']);
-	$file_info = upload($attach['name'], $attach['error'], $attach['tmp_name'], $attach['size'], Option::getAttType(), false, $isthumbnail);
+	$ret = uploadFileAjax($attach['name'], $attach['error'], $attach['tmp_name'], $attach['size'], Option::getAttType(), false, $isthumbnail);
 
-	// 写入附件信息
-	$query = "INSERT INTO " . DB_PREFIX . "attachment (blogid, filename, filesize, filepath, addtime, width, height, mimetype, thumfor) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s',0)";
-	$query = sprintf($query, $logid, $file_info['file_name'], $file_info['size'], $file_info['file_path'], time(), $file_info['width'], $file_info['height'], $file_info['mime_type']);
+	if (empty($ret['success'])) {
+		echo json_encode($ret);
+		exit;
+	}
+
+	$file_info = $ret['file_info'];
+
+	// 写入资源信息
+	$query = "INSERT INTO " . DB_PREFIX . "attachment (filename, filesize, filepath, addtime, width, height, mimetype, thumfor) VALUES ('%s','%s','%s','%s','%s','%s','%s',0)";
+	$query = sprintf($query , $file_info['file_name'], $file_info['size'], $file_info['file_path'], time(), $file_info['width'], $file_info['height'], $file_info['mime_type']);
 	$DB->query($query);
 	$aid = $DB->insert_id();
+	$file_url = $file_info['file_path'];
 
 	// 写入缩略图信息
 	if (isset($file_info['thum_file'])) {
-		$query = "INSERT INTO " . DB_PREFIX . "attachment (blogid, filename, filesize, filepath, addtime, width, height, mimetype, thumfor) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s')";
-		$query = sprintf($query, $logid, $file_info['file_name'], $file_info['thum_size'], $file_info['thum_file'], time(), $file_info['thum_width'], $file_info['thum_height'], $file_info['mime_type'], $aid);
+		$query = "INSERT INTO " . DB_PREFIX . "attachment (filename, filesize, filepath, addtime, width, height, mimetype, thumfor) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s')";
+		$query = sprintf($query, $file_info['file_name'], $file_info['thum_size'], $file_info['thum_file'], time(), $file_info['thum_width'], $file_info['thum_height'], $file_info['mime_type'], $aid);
 		$DB->query($query);
+		$file_url = $file_info['thum_file'];
 	}
+
+	$ret['url'] = $file_url;
+	echo json_encode($ret);
+	exit;
 }
 
 //删除附件

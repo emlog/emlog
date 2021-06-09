@@ -181,10 +181,13 @@
             path: "editor.md/lib/",
             tex: false,
             watch: false,
-	    htmlDecode : "style,script,iframe,sub,sup,embed|onclick,title,onmouseover,onmouseout,style",
+            htmlDecode: "style,script,iframe,sub,sup,embed|onclick,title,onmouseover,onmouseout,style",
             flowChart: false,
             autoFocus: false,
-            sequenceDiagram: false
+            sequenceDiagram: false,
+            imageUpload: true,
+            imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+            imageUploadURL: "media.php?action=upload&editor=1",
         });
         Editor_summary = editormd("logexcerpt", {
             width: "100%",
@@ -199,7 +202,7 @@
             path: "editor.md/lib/",
             tex: false,
             watch: false,
-	    htmlDecode : "style,script,iframe,sub,sup,embed|onclick,title,onmouseover,onmouseout,style",
+            htmlDecode: "style,script,iframe,sub,sup,embed|onclick,title,onmouseover,onmouseout,style",
             flowChart: false,
             autoFocus: false,
             sequenceDiagram: false,
