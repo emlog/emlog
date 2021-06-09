@@ -190,7 +190,7 @@ class Comment_Model {
 		$row = $this->db->once_fetch_array("SELECT gid,pid FROM " . DB_PREFIX . "comment WHERE cid=$commentId");
 		$blogId = (int)$row['gid'];
 		$commentIds = array($commentId);
-		/* Get parent comment ID */
+		/* Get the parent comment ID */
 		while ($row['pid'] != 0) {
 			$commentId = (int)$row['pid'];
 			$commentIds[] = $commentId;
@@ -212,7 +212,7 @@ class Comment_Model {
 			$utctimestamp = time();
 			if ($pid != 0) {
 				$comment = $this->getOneComment($pid);
-/*vot*/                $content = '@' . addslashes($comment['poster']) . ': ' . $content;
+/*vot*/         $content = '@' . addslashes($comment['poster']) . ': ' . $content;
 			}
 			$this->db->query("INSERT INTO " . DB_PREFIX . "comment (date,poster,gid,comment,mail,url,hide,ip,pid)
                     VALUES ('$utctimestamp','$name','$blogId','$content','$mail','$url','$hide','$ipaddr','$pid')");

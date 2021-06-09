@@ -33,10 +33,10 @@
                 <thead>
                 <tr>
                     <th></th>
-<!--vot-->      <th><?=lang('user')?></th>
-<!--vot-->      <th><?=lang('description')?></th>
-<!--vot-->      <th><?=lang('email')?></th>
-<!--vot-->      <th><?=lang('posts')?></th>
+<!--vot-->          <th><?=lang('user')?></th>
+<!--vot-->          <th><?=lang('description')?></th>
+<!--vot-->          <th><?=lang('email')?></th>
+<!--vot-->          <th><?=lang('posts')?></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -56,14 +56,14 @@
 							<?php echo "<br/>" . $val['description']; ?>
                         </td>
                         <td>
-<!--vot-->              <?php echo $val['role'] == ROLE_ADMIN ? ($val['uid'] == 1 ? lang('founder') : lang('admin')) : lang('user'); ?>
-<!--vot-->              <?php if ($val['role'] == ROLE_WRITER && $val['ischeck'] == 'y') echo lang('posts_need_audit'); ?>
+<!--vot-->                  <?php echo $val['role'] == ROLE_ADMIN ? ($val['uid'] == 1 ? lang('founder') : lang('admin')) : lang('user'); ?>
+<!--vot-->                  <?php if ($val['role'] == ROLE_WRITER && $val['ischeck'] == 'y') echo lang('posts_need_audit'); ?>
                         </td>
                         <td><a href="article.php?uid=<?php echo $val['uid']; ?>"><?php echo $sta_cache[$val['uid']]['lognum']; ?></a></td>
                         <td>
 							<?php
 							if (UID != $val['uid']): ?>
-<!--vot-->                  <a href="javascript: em_confirm(<?php echo $val['uid']; ?>, 'user', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-danger"><?=lang('delete')?></a>
+<!--vot-->                      <a href="javascript: em_confirm(<?php echo $val['uid']; ?>, 'user', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-danger"><?=lang('delete')?></a>
 							<?php endif; ?>
                         </td>
                     </tr>

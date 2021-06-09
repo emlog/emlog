@@ -20,7 +20,7 @@ $lang = array(
  'comments'		=> '评论',//'Comments',
  '_views'		=> '浏览',//' views',
  'not_found'		=> '未找到',//'Not found.',
- 'sorry_no_results'	=> '抱歉，没有符合您查询条件的结果。',//'Sorry, no results found.',
+ 'sorry_no_results'	=> '抱歉，暂时还没有内容。',//'Sorry, there is no content yet.',
  'file_not_found'	=> '抱歉，没有找到与',//'Sorry, can not find the file ',
  'related_content'	=> '相关的内容',//'Related content',
  'return'		=> '返回',//'Return',
@@ -31,18 +31,18 @@ $lang = array(
  'no_more_articles'	=> '无更多文章',//'No more articles',
  'write_something'	=> '说点什么吧.....',//'say something.....',
  'enter_captcha'	=> '输入验证码',//'Enter confirmation code',
- ''	=> '关闭',//'',
+// ''	=> '关闭',//'',
 
 //---------------------------
 //include/model/log_model.php
 // 'no_permission'	=> '权限不足！',//'Insufficient permissions!',
  'no_title'		=> '无标题',//'Untitled',
- 'post_protected_by_password_click_title'	=> '该文章已设置加密，请点击标题输入密码访问',//'This entry is protected. Click on title and enter the password to access this page.',
+ 'post_protected_by_password_click_title'	=> '该文章已加密，请点击标题输入密码访问',//'This article is encrypted, please click on the title and enter the password to access',
 // 'read_more'		=> '阅读全文&gt;&gt;',//'Read more&gt;&gt;';
 // 'no_title'		=> '无标题',//'Untitled',
 // 'no_permission'	=> '权限不足！',//'Insufficient permissions!',
 // 'no_permission'	=> '权限不足！',//'Insufficient permissions!',
- 'page_password_enter'	=> '请输入该文章的访问密码',//'Please enter password to access this page.',
+ 'page_password_enter'	=> '请输入文章的访问密码',//'Please enter the article access password',
  'submit_password'	=> '进入..',//'Enter..',
  'back_home'		=> '&laquo;返回首页',//'&laquo; Back to home',
                                            

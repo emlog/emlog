@@ -9,8 +9,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name=renderer content=webkit>
 <!--vot--><title><?=lang('admin_center')?> - <?php echo Option::get('blogname'); ?></title>
-    <link rel="stylesheet" href="./views/css/style.css"/>
-    <link rel="stylesheet" href="./editor.md/css/editormd.css"/>
+    <link rel="stylesheet" href="./views/css/style.css?d=5.25.2021"/>
+    <link rel="stylesheet" href="./editor.md/css/editormd.css?d=5.25.2021"/>
     <link href="./views/css/bootstrap-sbadmin-4.5.3.css" rel="stylesheet">
     <link href="./views/css/css-main.css" type=text/css rel=stylesheet>
     <link href="./views/css/icofont/icofont.min.css" type=text/css rel=stylesheet>

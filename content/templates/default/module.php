@@ -11,7 +11,7 @@ if (!defined('EMLOG_ROOT')) {
 function widget_link($title) {
 	global $CACHE;
 	$link_cache = $CACHE->readCache('link');
-    //if (!blog_tool_ishome()) return;#Only show the friend link on the homepage and remove the double slash comment
+	//if (!blog_tool_ishome()) return;#Only show the friend link on the homepage and remove the double slash comment
 	?>
     <div class="widget shadow-theme">
         <div class="widget-title m">
@@ -70,7 +70,7 @@ function widget_tag($title) {
         <ul class="list-unstyled">
 			<?php foreach ($tag_cache as $value): ?>
                 <span style="font-size:<?php echo $value['fontsize']; ?>pt; line-height:30px;">
-<!--vot-->          <a href="<?php echo Url::tag($value['tagurl']); ?>" title="<?php echo $value['usenum'] + 2; ?> <?=lang('_posts')?>" class='tags_side' ><?php echo $value['tagname']; ?></a></span>
+<!--vot-->	<a href="<?php echo Url::tag($value['tagurl']); ?>" title="<?php echo $value['usenum'] + 2; ?> <?=lang('_posts')?>" class='tags_side' ><?php echo $value['tagname']; ?></a></span>
 			<?php endforeach; ?>
         </ul>
     </div>
@@ -181,7 +181,7 @@ function widget_search($title) { ?>
         <ul class="list-unstyled" style="text-align: center;">
             <form name="keyform" method="get" action="<?php echo BLOG_URL; ?>index.php">
                 <input name="keyword" class="search form-control" autocomplete="off" type="text"/>
-<!--vot-->			<input type="submit" value="<?=lang('search')?>">
+<!--vot-->		<input type="submit" value="<?=lang('search')?>">
             </form>
         </ul>
     </div>
@@ -299,7 +299,7 @@ function blog_sort($blogid) {
 	<?php if (!empty($log_cache_sort[$blogid])) { ?>
         <a href="<?php echo Url::sort($log_cache_sort[$blogid]['id']); ?>" class="echo_sort"><?php echo $log_cache_sort[$blogid]['name']; ?></a>
 	<?php } else { ?>
-<!--vot-->  <a href="#" class="echo_sort"><?= lang('no') ?></a>
+<!--vot--><a href="#" class="echo_sort"><?=lang('no')?></a>
 	<?php }
 } ?>
 <?php

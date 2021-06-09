@@ -26,8 +26,8 @@
             <div class="card-body">
                 <p class="card-text text-muted small">
 					<?php echo $media_name; ?><br><br>
-<!--vot-->          <?=lang('time')?>: <?php echo $value['addtime']; ?><br>
-<!--vot-->          <?=lang('size')?>: <?php echo $value['attsize']; ?>
+<!--vot-->          <?=lang('create_time')?>: <?php echo $value['addtime']; ?><br>
+<!--vot-->          <?=lang('file_size')?>: <?php echo $value['attsize']; ?>,
 					<?php if ($value['width'] && $value['height']): ?>
 <!--vot-->              <?=lang('img_size')?>: <?php echo $value['width'] ?>x<?php echo $value['height'] ?>
 					<?php endif; ?>

@@ -7,7 +7,7 @@ var LNG = {
  'link_del_sure'	: '你确定要删除该链接吗？',//'Are you sure you want to delete this link?',
  'navi_del_sure'	: '你确定要删除该导航吗？',//'Are you sure you want to delete this navigation?',
  'backup_import_sure'	: '你确定要导入该备份文件吗？',//'Are you sure you want to import the backup files?',
- 'attach_del_sure'	: '你确定要删除该附件吗？',//'Are you sure you want to delete this attachment?',
+ 'attach_del_sure'	: '你确定要删除该附件吗？',//'Are you sure you want to delete this media file?',
  'avatar_del_sure'	: '你确定要删除头像吗？',//'Are you sure you want to delete this avatar?',
  'category_del_sure'	: '你确定要删除该分类吗？',//'Are you sure you want to delete this category?',
  'page_del_sure'	: '你确定要删除该页面吗？',//'Are you sure you want to delete this page?',
@@ -24,10 +24,10 @@ var LNG = {
  'wysiwyg_switch'		: '请先切换到所见所得模式',//'Please, switch to WYSIWYG mode',
  'click_view_fullsize'		: '点击查看原图',//'Click to view full size',
 // 'wysiwyg_switch'		: '请先切换到所见所得模式',//'Please, switch to WYSIWYG mode',
- 'alis_link_error_not_saved'	: '链接别名错误，自动保存失败',//'Invalid Link Alias. Can not be saved automatically.',
- 'saving'		: '正在保存',//'Saving',
+ 'alias_link_error_not_saved'	: '链接别名错误，自动保存失败',//'Invalid Link Alias. Can not be saved automatically.',
 // 'saving'		: '正在保存',//'Saving',
- 'saved_ok_time'	: '保存于',//'Saved at ',
+ 'saving'		: '正在保存中...',//'Saving...',
+ 'saved_ok_time'	: '保存于：',//'Saved at: ',
  'save_system_error'	: '网络或系统出现异常...保存可能失败',//'Error while saving... Unable to save.',
 
 //---------------------------

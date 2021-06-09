@@ -379,7 +379,7 @@ class Log_Model {
 </head>
 <body class="text-center">
 	<form action="" method="post" class="form-signin" style="width: 100%;max-width: 330px;padding: 15px;margin: 0 auto;">
-<!--vot--><input type="password" id="logpwd" name="logpwd" class="form-control" placeholder="{$page_pass}" required>
+<!--vot--><input type="password" id="logpwd" name="logpwd" class="form-control" placeholder="{$page_pass}" required autofocus>
 <!--vot--><button class="btn btn-lg btn-primary btn-block mt-2" type="submit">{$submit_pass}"></button>
 <!--vot--><p class="mt-5 mb-3 text-muted"><a href="$url">{$back}</a></p>
 </form>

@@ -14,9 +14,6 @@ $lang = array(
  'view_by_tag'		=> '按标签查看',//'View by tag',
  'article_add'		=> '写新文章',//'Write a new article',
  'enter_summary'	=> '如果留空，则使用文章内容作为摘要...',//'If left blank, use the content of the article as a summary...',
-
-//---------------------------
-//admin/attachment.php
  'attachment_delete_error'	=> '删除附件失败!',
 
 //---------------------------
@@ -677,6 +674,9 @@ $lang = array(
  'upload_install_info'		=> '（上传一个zip压缩格式的插件安装包）',//'Upload a plug-in installation package in zip compressed format',
  'plugin_get_more'		=> '获取更多插件',//'Get More Plugins',
  'app_center'			=> '应用中心&raquo;',//'App center &raquo;',
+
+//---------------------------
+//admin/views/register.php
 
 //---------------------------
 //admin/views/seo.php

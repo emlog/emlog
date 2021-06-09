@@ -41,7 +41,7 @@ $lang = array(
  'upload_folder_unwritable'	=> '上传失败。文件上传目录(content/uploadfile)不可写',//'Upload failed. Directory (content/uploadfile) cannot be written.',
  '404_description'		=> '抱歉，你所请求的页面不存在！',//'Sorry, the page that you requested does not exist.',
  'prompt'			=> '提示信息',//'Prompt Message',
- 'click_return'			=> '&laquo;点击返回',//'&laquo;Return back',
+ 'click_return'			=> '点击返回',//'Return back',
 
 //---------------------------
 //include/lib/loginauth.php
@@ -131,7 +131,7 @@ $lang = array(
  'email'		=> '邮件地址',//'E-Mail adress',
  'homepage'		=> '个人主页',//'Homepage',
  'homepage_optional'	=> '个人主页 (选填)',//'Homepage (optional)',
- 'comment_leave'	=> '发表评论',//'Leave a comment',
+ 'comment_leave'	=> '发布评论',//'Post a comment',
 
 //---------------------------
 //content/templates/default/side.php

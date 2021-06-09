@@ -552,160 +552,6 @@ body {
     margin-bottom: 0px
 }
 
-/**markdown style**/
-
-.log_con h1 {
-    font-size: 2.25rem !important;
-    margin-top: 1em;
-    margin-bottom: 16px;
-    font-weight: bold;
-    padding-bottom: 5px;
-    border-bottom: 1px solid #eee;
-    letter-spacing: 1px
-}
-
-.log_con h2 {
-    font-size: 1.75rem !important;
-    margin-top: 1em;
-    margin-bottom: 16px;
-    font-weight: bold;
-    padding-bottom: 5px;
-    border-bottom: 1px solid #eee;
-    letter-spacing: 1px
-}
-
-.log_con h3 {
-    font-size: 1.5rem !important;
-    line-height: 1.43;
-    font-weight: bold
-}
-
-.log_con h4 {
-    margin-bottom: 16px;
-    font-weight: bold;
-    line-height: 1.4;
-    font-size: 1.25em !important;
-    letter-spacing: 0.5px
-}
-
-.log_con h5 {
-    font-size: 1rem !important;
-    margin-top: 1em;
-    margin-bottom: 16px;
-    font-weight: bold;
-    line-height: 1.4
-}
-
-.log_con h6 {
-    font-size: 1rem !important;
-    color: #777;
-    margin-top: 1em;
-    font-weight: bold;
-    line-height: 1.4;
-    margin-bottom: 16px
-}
-
-.log_con strong {
-    font-weight: bold;
-    font-size: 1rem !important
-}
-
-.log_con del {
-    text-decoration: line-through
-}
-
-.log_con blockquote {
-    color: #666;
-    border-left: 4px solid #ddd;
-    padding-left: 20px;
-    margin-left: 0;
-    font-size: 14px;
-    font-style: italic
-}
-
-.log_con ul {
-    padding-left: 2em;
-    margin-bottom: 16px
-}
-
-.log_con ol {
-    padding-left: 2em;
-    margin-bottom: 16px
-}
-
-.log_con li {
-    font-size: 15px !important;
-    line-height: 2
-}
-
-.log_con hr {
-    height: 1px;
-    border: none;
-    border-top: 1px solid #ddd;
-    background: none
-}
-
-.log_con pre.prettyprint {
-    padding: 10px;
-    border: 1px solid #ddd;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    line-height: 1.6
-}
-
-.log_con table {
-    display: block;
-    width: 100%;
-    overflow: auto;
-    word-break: normal;
-    word-break: keep-all;
-    margin-bottom: 16px
-}
-
-.log_con thead tr {
-    background-color: #F8F8F8
-}
-
-.log_con td {
-    padding: 6px 13px;
-    border: 1px solid #ddd
-}
-
-.log_con th {
-    padding: 6px 13px;
-    border: 1px solid #ddd
-}
-
-.log_con table tr:nth-child(even) {
-    background: #f8f8f8
-}
-
-.log_con code {
-    background: #f6f6f6;
-    border-radius: 3px;
-    font-size: 14px;
-    margin-right: 4px
-}
-
-.log_con pre {
-    padding: 10px;
-    border: 1px solid #ddd;
-    white-space: pre-wrap;
-    background: #f6f6f6
-}
-
-.log_con img {
-    box-sizing: border-box;
-    border: 0;
-    vertical-align: middle
-}
-
-.log_con hr {
-    margin: 7px 0 7px 0
-}
-
-/**end**/
-
 .list-menu:hover .dropdown-menus {
     opacity: 0.95;
     top: 56px;
@@ -898,9 +744,20 @@ body {
 }
 
 .comm_lates_time {
+    position: absolute;
+    right:10px;
     color: #b5b5b5;
     margin-left: 10px;
     font-size: small
+}
+
+.comment_lates_img {
+    width: 27px;
+    margin-bottom: 4px;
+    margin-right: 3px;
+    border-radius: 50%;
+    vertical-align: middle;
+    border-style: none
 }
 
 .date {
@@ -1022,6 +879,10 @@ body {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap
+}
+
+.navbar-toggler {
+    border-radius: 10px;
 }
 
 @media all and (max-width: 1200px) and (min-width: 992px) {

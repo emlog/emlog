@@ -141,7 +141,7 @@ function insert_media(fileurl, filename) {
     Editor.insertValue('[' + filename + '](' + fileurl + ')\n\n');
 }
 
-// act: 1 auto save, 2 manual save:click save button to save,
+// act: 1 auto save, 2 manual save: click save button to save
 function autosave(act) {
     var nodeid = "as_logid";
     var timeout = 30000;
@@ -180,19 +180,19 @@ function autosave(act) {
         + "&ishide=" + ishide
         + "&as_logid=" + logid;
 
-    //Check alias
+    //check alias
     if (alias != '' && 0 != isalias(alias)) {
-/*vot*/ $("#msg").show().html(lang('alis_link_error_not_saved'));
+/*vot*/ $("#msg").show().html(lang('alias_link_error_not_saved'));
         if (act == 0) {
             setTimeout("autosave(1)", timeout);
         }
         return;
     }
-    // Do not automatically save when editing published articles
+    // Do not automatically save when editing published article
     if (act == 1 && ishide == 'n') {
         return;
     }
-    // Do not save automatically when the content is empty
+    // Do not save automatically when the content is empty 
     if (act == 1 && content == "") {
         setTimeout("autosave(1)", timeout);
         return;
@@ -213,7 +213,7 @@ function autosave(act) {
             var m = d.getMinutes();
             var s = d.getSeconds();
             var tm = (h < 10 ? "0" + h : h) +":"+ (m < 10 ? "0" + m : m) +":"+ (s < 10 ? "0" + s : s);
-/*vot*/     $("#save_info").html("<span class=\"ajax_remind_1\">" + lang('saved_ok_time') + ": " + tm + " </span>");
+/*vot*/     $("#save_info").html("<span class=\"ajax_remind_1\">" + lang('saved_ok_time')+ tm + " </span>");
             $("#" + nodeid).val(logid);
             $("#savedf").attr("disabled", false).val(btname);
             $("#msg").hide().html("");
@@ -241,7 +241,7 @@ $.fn.toggleClick = function () {
 //Filter HTML tags
 function removeHTMLTag(str) {
 /*vot*/ str = str.replace(/<\/?[^>]*>/g, ''); //Remove HTML tags
-/*vot*/ str = str.replace(/[ | ]*\n/g, '\n'); //Remove white space at the end of the line
+/*vot*/ str = str.replace(/[ | ]*\n/g, '\n'); //Trim white spaces
     str = str.replace(/ /ig, '');
     return str;
 }
@@ -253,7 +253,7 @@ $(function () {
         tr_checkbox.prop('checked', $(this).prop('checked'));
         event.stopPropagation();
     });
-    // Click the checkbox in each row of the table, and when the number of checkboxes selected in the table = the number of rows in the table, set the 'checkAll' radio box in the header of the table to be selected, otherwise it is unselected
+    // Click on the checkbox in each row of the table, and when the number of checkboxes selected in the table = the number of table rows, set the "checkAll" radio box in the header of the table to be selected, otherwise it is unselected
     $('table tbody tr').find('input[type=checkbox]').click(function (event) {
         var tbr = $('table tbody tr');
         $('#checkAll').prop('checked', tbr.find('input[type=checkbox]:checked').length == tbr.length ? true : false);
