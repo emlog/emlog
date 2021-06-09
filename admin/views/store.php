@@ -2,30 +2,30 @@
 	exit('error!');
 } ?>
 <?php if (isset($_GET['active'])): ?>
-    <div class="alert alert-success">安装成功</div><?php endif; ?>
+<!--vot--><div class="alert alert-success"><?=lang('install_ok')?></div><?php endif; ?>
 <?php if (isset($_GET['error_param'])): ?>
-    <div class="alert alert-danger">安装失败</div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('install_failed')?></div><?php endif; ?>
 <?php if (isset($_GET['error_down'])): ?>
-    <div class="alert alert-danger">安装失败</div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('install_failed')?></div><?php endif; ?>
 <?php if (isset($_GET['error_dir'])): ?>
-    <div class="alert alert-danger">安装失败</div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('install_failed')?></div><?php endif; ?>
 <?php if (isset($_GET['error_zip'])): ?>
-    <div class="alert alert-danger">安装失败</div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('install_failed')?></div><?php endif; ?>
 <?php if (isset($_GET['error_source'])): ?>
-    <div class="alert alert-danger">安装失败，不是有效的扩展安装包</div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('install_invalid_ext')?></div><?php endif; ?>
 
 <?php if (isset($_GET['error'])): ?>
     <div class="container-fluid">
         <div class="text-center">
-            <p class="lead text-gray-800 mb-5">商店暂不可用，可能是网络问题</p>
-            <a href="./">&larr; 返回首页</a>
+<!--vot-->  <p class="lead text-gray-800 mb-5"><?=lang('store_unavailable')?></p>
+<!--vot-->  <a href="./">&larr; <?=lang('back_home')?></a>
         </div>
     </div>
 <?php endif; ?>
 
 <?php if (!empty($templates) || !empty($plugins)): ?>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">扩展商店</h1>
+<!--vot--><h1 class="h3 mb-0 text-gray-800"><?=lang('ext_store')?></h1>
     </div>
     <div class="card-columns">
 		<?php foreach ($templates as $k => $v):
@@ -34,18 +34,18 @@
             <div class="card" style="min-height: 340px;">
                 <img class="card-img-top" src="<?php echo $icon; ?>"/>
                 <div class="card-body">
-                    <p class="card-text"><span class="badge badge-warning">模板</span> <?php echo $v['name']; ?></p>
+<!--vot-->          <p class="card-text"><span class="badge badge-warning"><?=lang('template')?></span> <?php echo $v['name']; ?></p>
                     <p class="card-text text-muted small">
                         <span class="small"><?php echo $v['info']; ?></span><br><br>
-                        开发者：<?php echo $v['author']; ?><br>
-                        更新时间：<?php echo $v['update_time']; ?><br>
-                        价格：<?php echo $v['price'] > 0 ? $v['price'] : '免费'; ?><br>
+<!--vot-->              <?=lang('developer')?>: <?php echo $v['author']; ?><br>
+<!--vot-->              <?=lang('update_time')?>: <?php echo $v['update_time']; ?><br>
+<!--vot-->              <?=lang('price')?>: <?php echo $v['price'] > 0 ? $v['price'] : <?=lang('free')?>; ?><br>
                     </p>
                     <p class="card-text text-right">
 						<?php if ($v['price'] > 0): ?>
-                            <a href="<?php echo $v['buy_url']; ?>" class="btn btn-sm btn-warning btn-sm" target="_blank">去购买</a>
+<!--vot-->                  <a href="<?php echo $v['buy_url']; ?>" class="btn btn-sm btn-warning btn-sm" target="_blank"><?=lang('go_buy')?></a>
 						<?php else: ?>
-                            <a href="./store.php?action=install&source=<?php echo urlencode($v['download_url']); ?>&type=tpl" class="btn btn-success btn-sm">下载安装</a>
+<!--vot-->                  <a href="./store.php?action=install&source=<?php echo urlencode($v['download_url']); ?>&type=tpl" class="btn btn-success btn-sm"><?=lang('download&install')?></a>
 						<?php endif; ?>
                     </p>
                 </div>
@@ -59,18 +59,18 @@
             <div class="card">
                 <img class="card-img-top" src="<?php echo $icon; ?>" style="height: 150px;object-fit: cover;"/>
                 <div class="card-body">
-                    <p class="card-text"><span class="badge badge-primary">插件</span> <?php echo $v['name']; ?></p>
+<!--vot-->          <p class="card-text"><span class="badge badge-primary"><?=lang('plugin')?></span> <?php echo $v['name']; ?></p>
                     <p class="card-text text-muted small">
 						<?php echo $v['info']; ?><br><br>
-                        开发者：<?php echo $v['author']; ?><br>
-                        更新时间：<?php echo $v['update_time']; ?><br>
-                        价格：<?php echo $v['price'] > 0 ? $v['price'] : '免费'; ?><br>
+<!--vot-->              <?=lang('developer')?>: <?php echo $v['author']; ?><br>
+<!--vot-->              <?=lang('update_time')?>: <?php echo $v['update_time']; ?><br>
+<!--vot-->              <?=lang('price')?>: <?php echo $v['price'] > 0 ? $v['price'] : <?=lang('free')?>; ?><br>
                     </p>
                     <p class="card-text text-right">
 						<?php if ($v['price'] > 0): ?>
-                            <a href="<?php echo $v['buy_url']; ?>" class="btn btn-warning btn-sm" target="_blank">去购买</a>
+<!--vot-->                  <a href="<?php echo $v['buy_url']; ?>" class="btn btn-warning btn-sm" target="_blank"><?=lang('go_buy')?></a>
 						<?php else: ?>
-                            <a href="./store.php?action=install&source=<?php echo urlencode($v['download_url']); ?>&type=plugin" class="btn btn-success btn-sm">下载安装</a>
+<!--vot-->                  <a href="./store.php?action=install&source=<?php echo urlencode($v['download_url']); ?>&type=plugin" class="btn btn-success btn-sm"><?=lang('download&install')?></a>
 						<?php endif; ?>
                     </p>
                 </div>

@@ -63,7 +63,7 @@ $lang = array(
  'template'		=> '模板',//'Template',
  'templates'		=> '模板',//'Templates',
  'template_view'	=> '查看模板',//'View template',
- 'plugin'		=> '插件',//'Plugin',
+ 'plugin'		=> '插件',//'Plug-in',
  'plugins'		=> '插件',//'Plug-ins',
  'plugin_view'		=> '查看插件',//'View Plugin',
 
@@ -525,6 +525,7 @@ $lang = array(
  'register_emlog'		=> '注册EMLOG PRO',//'Register EMLOG PRO',
  'enter_emkey'			=> '输入EMKEY',//'Enter EMKEY',
  'reg_failed'			=> '注册失败',//'Registration failed',
+ 'reg_code_invalid'		=> '注册失败，无效的注册码',//'Registration failed, invalid registration code',
  'emkey_info'			=> 'EMKEY是官方分发给emlog pro付费用户的唯一识别码，请妥善保管',//'EMKEY is the only identification code officially distributed to paying users of emlog pro, please keep it properly',
  'get_emkey'			=> '去获取注册码',//'Get the registration code',
  'registered'			=> '注册',//'registered',
@@ -540,7 +541,7 @@ $lang = array(
  'update_check'			=> '检查更新',//'Check for updates',
  'reading'			=> '正在读取...',//'Is reading...',
  'checking_wait'		=> '正在检查，请稍后',//'Is checking, please wait',
- 'updates_no'			=> '已经是最新版本，没有可用的更新',//'lready the latest version, no updates available ',
+ 'updates_no'			=> '已经是最新版本，没有可用的更新',//'Already the latest version, no updates available ',
  'update_exists'		=> '有可用的emlog更新版本 ',//'It is available emlog updated version ',
  'backup_before_update'		=> '，更新之前请您做好数据备份工作，',//' Do not forget to make a backup before updating job, ',
  'update_now'			=> '现在更新',//'Update now',
@@ -582,7 +583,7 @@ $lang = array(
  'password'		=> '密码',//'Password',
  'remember_me'		=> '记住登录状态',//'Remember login status',
  'log_in'		=> ' 登 录 ',//' Log in ',
- 'back_home'		=> '&laquo;返回首页',//'&laquo; Back to home',
+ 'back_home'		=> '返回首页',//'Back to home',
  'password_forget'	=> '忘记密码?',//'Forgot Password?',
 
 //---------------------------
@@ -709,6 +710,29 @@ $lang = array(
 
 //---------------------------
 //admin/views/store.php
+ 'install_ok'		=> '安装成功',//'Successful installation',
+ 'install_failed'	=> '安装失败',//'Installation failed',
+// 'install_failed'	=> '安装失败',//'Installation failed',
+// 'install_failed'	=> '安装失败',//'Installation failed',
+// 'install_failed'	=> '安装失败',//'Installation failed',
+ 'install_invalid_ext'	=> '安装失败，不是有效的扩展安装包',//'Installation failed, installation package have invalid extension',
+ 'store_unavailable'	=> '商店暂不可用，可能是网络问题',//'The store is temporarily unavailable, it may be a network problem',
+// 'back_home'		=> '返回首页',//'Back to home',
+ 'ext_store'		=> '扩展商店',//'Extension store',
+// 'template'		=> '模板',//'Template',
+ 'developer'		=> '开发者',//'Developer',
+ 'update_time'		=> '更新时间',//'Update time',
+ 'price'		=> '价格',//'Price',
+ 'free'			=> '免费',//'Free',
+ 'go_buy'		=> '去购买',//'Go to buy',
+ 'download&install'	=> '下载安装',//'Download and install',
+// 'plugin'		=> '插件',//'Plug-in',
+// 'developer'		=> '开发者',//'Developer',
+// 'update_time'		=> '更新时间',//'Update time',
+// 'price'		=> '价格',//'Price',
+// 'free'			=> '免费',//'Free',
+// 'go_buy'		=> '去购买',//'Go to buy',
+// 'download&install'	=> '下载安装',//'Download and install',
 
 //---------------------------
 //admin/views/store_install.php
