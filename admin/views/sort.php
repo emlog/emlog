@@ -97,7 +97,7 @@
         </div>
     </div>
     <div class="list_footer">
-<!--vot--><input type="submit" value="<?=lang('order_change')?>" class="btn btn-sm btn-success">
+<!--vot--><input type="submit" value="<?=lang('order_change')?>" class="btn btn-sm btn-success"/>
     </div>
 </form>
 

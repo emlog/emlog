@@ -678,6 +678,13 @@ $lang = array(
 
 //---------------------------
 //admin/views/register.php
+ 'ext_store_info'	=> '扩展商店用于下载模板和插件，仅开放给注册用户',//'The extension store is used to download templates and plugins and is only open to registered users',
+ 'too_many_articles'	=> '抱歉，您的文章数量已经超过未注册版本限额',//'Sorry, the number of your articles has exceeded the limit of unregistered versions',
+ 'emlog_notregistered'	=> '未注册！您的emlog pro尚未完成注册， 完成注册来解锁emlog pro的全部功能',//'Unregistered! Your emlog pro has not yet completed the registration, complete the registration to unlock all the functions of emlog pro',
+ 'ok_register_now'	=> '好的，现在开始注册',//'Ok, register now',
+ 'emlog_reg_ok'		=> '恭喜，您的emlog pro已完成注册！',//'Congratulations, your emlog pro has been registered!',
+ 'enter_reg_code'	=> '输入注册码',//'Enter the registration code',
+ 'register'		=> '注册',//'Register',
 
 //---------------------------
 //admin/views/seo.php
