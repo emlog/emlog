@@ -125,7 +125,7 @@
             tex: false,
             flowChart: false,
             watch: false,
-	    htmlDecode : "style,script,iframe,sub,sup,embed|onclick,title,onmouseover,onmouseout,style",
+	    htmlDecode : true,
             sequenceDiagram: false
         });
         Editor_page.setToolbarAutoFixed(false);

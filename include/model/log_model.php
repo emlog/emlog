@@ -14,7 +14,6 @@ class Log_Model {
 		$this->db = Database::getInstance();
 		$this->Parsedown = new Parsedown();
 		$this->Parsedown->setBreaksEnabled(true); //automatic line wrapping
-		$this->Parsedown->setSafeMode(true); //escaping HTML
 	}
 
 	/**
