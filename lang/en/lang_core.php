@@ -32,7 +32,7 @@ $lang = array(
  'about_'	=> '~ ',//'约 ',
  '_hour_ago'	=> ' hour(s) ago.',//' 小时前',
  'file_size_exceeds_system'	=> 'File size exceeds the system limit ',//'文件大小超过系统 ',
- '_limit'			=> '',//' limit',//'限制',//LEAVE THIS EMPTY???
+ '_limit'			=> '',//' limit',//LEAVE THIS EMPTY???//'限制',
  'upload_failed_error_code'	=> 'Upload failed. Error code: ',//'上传文件失败,错误码: ',
  'file_type_not_supported'	=> 'This file type is not supported.',//'错误的文件类型',
  'file_size_exceeds_'		=> 'File size exceeds the limit ',//'文件大小超出',
@@ -41,7 +41,7 @@ $lang = array(
  'upload_folder_unwritable'	=> 'Upload failed. Directory (content/uploadfile) cannot be written.',//'上传失败。文件上传目录(content/uploadfile)不可写',
  '404_description'		=> 'Sorry, the page that you requested does not exist.',//'抱歉，你所请求的页面不存在！',
  'prompt'			=> 'Prompt Message',//'提示信息',
- 'click_return'			=> '&laquo;Return back',//'&laquo;点击返回',
+ 'click_return'			=> 'Return back',//'点击返回',
 
 //---------------------------
 //include/lib/loginauth.php
@@ -50,7 +50,7 @@ $lang = array(
  'user_name_wrong_reenter'	=> 'Wrong username. Please, re-enter.',//'用户名错误，请重新输入',
  'password_wrong_reenter'	=> 'Wrong password. Please, re-enter.',//'密码错误，请重新输入',
 // 'no_permission'		=> 'Insufficient permissions!',//'权限不足！',
- 'token_error'			=> 'Token error',//'token error',
+ 'token_error'			=> 'token error','Token error',
 
 //---------------------------
 //include/lib/option.php
@@ -131,7 +131,7 @@ $lang = array(
  'email'		=> 'E-Mail adress',//'邮件地址',
  'homepage'		=> 'Homepage',//'个人主页',
  'homepage_optional'	=> 'Homepage (optional)',//'个人主页 (选填)',
- 'comment_leave'	=> 'Leave a comment',//'发表评论',
+ 'comment_leave'	=> 'Post a comment',//'发布评论',
 
 //---------------------------
 //content/templates/default/side.php

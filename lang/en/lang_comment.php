@@ -49,6 +49,7 @@ $lang = array(
 //---------------------------
 //admin/views/comment_edit.php
  'comment_edit'		=> 'Edit comment',//'编辑评论',
+// 'commentator'	=> 'Commentator',//'评论人',
  'email'		=> 'E-mail',//'电子邮件',
  'home_page'		=> 'Home Page',//'主页',
  'comment_content'	=> 'Comment content',//'评论内容',

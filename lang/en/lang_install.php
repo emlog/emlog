@@ -4,12 +4,12 @@ $lang = array(
 //---------------------------
 //install.php
 
- 'php_required'		=> 'For normal functioning Emlog requires PHP5 or higher',//'您的php版本过低，请选用支持PHP5的环境安装emlog。',
+ 'php_required'		=> 'PHP version is too low, please choose an environment that supports PHP7 and above to install',//'PHP版本过低，请选择支持PHP7及以上的环境安装',
  'installation'		=> 'Install Emlog v.',//'安装程序emlog ',
  'mysql_settings'	=> 'MySQL settings',//'MySQL数据库设置',
  'mysql_required'	=> 'Your MySQL version is too low. Please install emlog in an environment that supports MySQL 5.5 and above.',//'您的MySQL版本过低，请选用支持MySQL5.5及以上的环境安装emlog。',
  'db_hostname'		=> 'Database Hostname',//'数据库地址',
- 'db_hostname_info'	=> '(default: localhost/127.0.0.1)',//'(通常为 localhost/127.0.0.1， 不必修改)',
+ 'db_hostname_info'	=> '(Usually localhost or 127.0.0.1)',//'(通常为 localhost 或者 127.0.0.1)',
  'db_user'		=> 'DB user',//'数据库用户名',
  'db_password'		=> 'DB password',//'数据库密码',
  'db_name'		=> 'DB name',//'数据库名',
@@ -30,8 +30,8 @@ $lang = array(
  'already_installed'	=> 'It seems the Emlog is already installed!<br>Continue this process will overwrite the original data.<br>Are you sure to continue?<br>',//'你的emlog看起来已经安装过了。继续安装将会覆盖原有数据，确定要继续吗？',
  'continue'		=> 'Continue&raquo;',//'继续&raquo;',
  'return'		=> '&laquo;Return back',//'&laquo;点击返回',
- 'config_not_writable'	=> 'Configuration file (config.php) is not writable. If you are using a Unix / Linux hosts, modify the file permissions to 777. If you are using a Windows host, please contact the administrator.',//'配置文件(config.php)不可写。如果您使用的是Unix/Linux主机，请修改该文件的权限为777。如果您使用的是Windows主机，请联系管理员，将此文件设为可写',
- 'cache_not_writable'	=> 'Cache is not writable. If you are using a Unix / Linux host, modify the permissions of all files in the directory (content/cache) to 777.',//'缓存文件不可写。如果您使用的是Unix/Linux主机，请修改缓存目录 (content/cache) 下所有文件的权限为777。如果您使用的是Windows主机，请联系管理员，将该目录下所有文件设为可写',
+ 'config_not_writable'	=> 'The configuration file (config.php) is not writable, please check the file permissions.',//'配置文件(config.php)不可写，请检查文件权限。',
+ 'cache_not_writable'	=> 'The cache directory (content/cache) is not writable. Please check file permissions.',//'缓存目录（content/cache）不可写。请检查文件权限。',
  'emlog_welcome'	=> 'Welcome to emlog',//'欢迎使用emlog',
  'emlog_install_congratulation'	=> 'Congratulations, you have successfully installed the emlog. The first entry is ready. Just edit or delete it and start a blog!',//'恭喜您成功安装了emlog，这是系统自动生成的演示文章。编辑或者删除它，然后开始您的创作吧！',
  'my_blog'		=> 'My blog',//'点滴记忆',
