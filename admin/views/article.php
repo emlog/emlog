@@ -225,10 +225,10 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 
     function logact(act) {
         if (getChecked('ids') == false) {
-/*vot*/     alert('<?=lang('select_post_to_operate')?>');
+/*vot*/     alert('<?=lang('select_article')?>');
             return;
         }
-/*vot*/ if (act == 'del' && !confirm('<?=lang('sure_delete_selected_posts')?>')) {
+/*vot*/ if (act == 'del' && !confirm('<?=lang('sure_delete_articles')?>')) {
             return;
         }
         $("#operate").val(act);

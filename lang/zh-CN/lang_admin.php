@@ -14,24 +14,24 @@ $lang = array(
  'view_by_tag'		=> '按标签查看',//'View by tag',
  'article_add'		=> '写新文章',//'Write a new article',
  'enter_summary'	=> '如果留空，则使用文章内容作为摘要...',//'If left blank, use the content of the article as a summary...',
- 'attachment_delete_error'	=> '删除附件失败!',
+ 'attachment_delete_error'	=> '删除附件失败!',//'Failed to delete attachment!',
 
 //---------------------------
 //admin/blogger.php
- 'photo_delete'	=> '删除头像',
+ 'avatar_delete'	=> '删除头像',//'Delete avatar',
 
 //---------------------------
 //admin/configure.php
  'site_address'	=> '站点地址：',//'Site address',
- 'verification_code_not_supported' => '开启登录验证码失败!服务器空间不支持GD图形库',
- 'verification_code_comment_not_supported' =>'开启评论验证码失败!服务器空间不支持GD图形库',
- 'detect_url' => '自动检测站点地址 (可能和部分CDN解决方案不兼容)',
+ 'verification_code_not_supported' => '开启登录验证码失败!服务器空间不支持GD图形库',//'Failed to open the login verification code! The server space does not support the GD graphics library',
+ 'verification_code_comment_not_supported' =>'开启评论验证码失败!服务器空间不支持GD图形库',//'Failed to open comment verification code! Server space does not support GD graphics library',
+ 'detect_url' => '自动检测站点地址 (可能和部分CDN解决方案不兼容)',//'Automatic detection of site address (may be incompatible with some CDN solutions)',
                   
 //---------------------------
 //admin/data.php
- 'backup_directory_not_writable'	=> '备份失败。备份目录(content/backup)不可写',
- 'backup_create_file_error'	=> '创建备份文件失败。备份目录(content/backup)不可写',
- 'backup_empty' 		=> '数据表没有任何内容',
+ 'backup_directory_not_writable'	=> '备份失败。备份目录(content/backup)不可写',//'The backup failed. The backup directory (content/backup) is not writable',
+ 'backup_create_file_error'	=> '创建备份文件失败。备份目录(content/backup)不可写',//'Failed to create backup file. The backup directory (content/backup) is not writable',
+ 'backup_empty' 		=> '数据表没有任何内容',//'There is nothing in the backup data',
  'file_not_exists'		=> '文件不存在',//'File does not exist',
  'import_only_emlog'		=> '只能导入emlog备份的SQL文件',//'You can import only emlog SQL backup file',
  'info_illegal'			=> '非法提交的信息',//'Submitted information is illegal',
@@ -162,11 +162,11 @@ $lang = array(
  'articles'		=> '文章',//'Articles',
  '_articles'		=> '文章',//' articles',
  'posts'		=> '文章',//'posts',
- 'select_post_to_operate'	=> '请选择要操作的文章',//'Please, select the entry to operate',
- 'sure_delete_selected_posts'	=> '你确定要删除所选文章吗？',//'Are you sure to want delete selected entries?',
- 'tags'			=> 'Tags',//'标签',
- 'tags_no'		=> 'No tags',//'还没有标签',
- 'tag_by_view'		=> 'View by tags',//'按标签查看',
+ 'select_article'	=> '请选择要操作的文章',//'Please select the article to operate',
+ 'sure_delete_articles'	=> '你确定要删除所选文章吗？',//'Are you sure you want to delete the selected articles?',
+ 'tags'			=> '标签',//'Tags',
+ 'tags_no'		=> '还没有标签',//'No tags',
+ 'tag_by_view'		=> '按标签查看',//'View by tags',
  'top'			=> '置顶',//'Top',
 
 
@@ -238,7 +238,7 @@ $lang = array(
 
 //---------------------------
 //admin/views/comment.php
- 'comment_management'			=> '评论管理',//'Comment management',
+ 'comment_management'	=> '评论管理',//'Comment management',
  'content'		=> '内容',//'Content',
  'comment_author'	=> '评论人',//'Comment author',
  'belongs_to_article'	=> '所属文章',//'Belongs to article',
@@ -395,7 +395,7 @@ $lang = array(
  'older'			=> '较旧的',//'Older',
  'standing_in_front'		=> '排在前面',//'Standing in front',
  'upload_max_size'		=> '附件上传最大限制',//'Upload attachment maximum size',
- 'php_upload_max_size'		=> '上传文件还受到服务器空间PHP配置最大上传'//'Upload file has been configured by server PHP maximum upload space ',
+ 'php_upload_max_size'		=> '上传文件还受到服务器空间PHP配置最大上传',//'Upload file has been configured by server PHP maximum upload space',
  'allow_attach_type'		=> '允许上传的附件类型',//'Allow attachment types to upload',
  'separate_by_comma'		=> '（多个用半角逗号分隔）',//' (Separate multiple by a comma)',
  'thumbnail_max_size'		=> '上传图片生成缩略图，最大尺寸：',//'Uploaded pictures generated thumbnail maximum size: ',
@@ -648,7 +648,7 @@ $lang = array(
  'plugin_active_failed'		=> '插件开启失败',//'Plug-in activation failed',
  'plugin_disable_ok'		=> '插件禁用成功',//'Plug-in disabled successfully',
  'plugin_delete_failed'		=> '删除失败，请检查插件文件权限',//'Delete failed, check the plug-in file permissions',
- 'plugin_name'			=> '插件名',//'插件名',
+ 'plugin_name'			=> '插件名',//'Plug-in name',
  'plugin_status'		=> '开关',//'Status',
  'version'			=> '版本',//'Version',
  'description'			=> '描述',//'Description',
@@ -664,14 +664,14 @@ $lang = array(
 //admin/views/plugin_install.php
 // 'plugin_install'		=> '安装插件',//'Install plugin',
  'plugin_zipped_only'		=> '只支持zip压缩格式的插件包',//'Supports plug-in package only in zip compression format',
- 'plugin_upload_failed_nonwritable'	=> '上传失败，插件目录(content/plugins)不可写',//'Upload failed, plugin directory (content/plugins) is not writable',
+ 'plugin_not_writable'		=> '上传失败，插件目录(content/plugins)不可写',//'Upload failed, plugin directory (content/plugins) is not writable',
  'plugin_zip_nonsupport'	=> '空间不支持zip模块，请按照提示手动安装插件',//'Server does not support zip module, follow the prompts to install the plugin manually' ,
  'plugin_zip_select'		=> '请选择一个zip插件安装包',//'Please select a zipped plug-in installation package',
- 'plugin_install_failed_wrong_format'	=> '安装失败，插件安装包不符合标准',//'Installation failed, plug-in installation package does not meet the standards',
+ 'plugin_wrong_format'		=> '安装失败，插件安装包不符合标准',//'Installation failed, plug-in installation package does not meet the standards',
  'plugin_install_manually'	=> '手动安装插件',//'Install the plug-in manually',
  'install_promt_1'		=> '1、把解压后的插件文件夹上传到 content/plugins 目录下。',//'1) Unzip the plugin file and upload it to the content/plugins directory.',
  'install_prompt2'		=> '2、登录后台进入插件管理,插件管理里已经有了该插件，点击激活即可。',//'2) Log in to AdminCP, go to Plug-in management, and if the plug-in is already listed, you can click on it to activate it.',
- 'upload_install'		=> '上传安装',//'Upload installation',
+ 'upload_install'		=> '上传安装',//'Upload and install',
  'upload_install_info'		=> '（上传一个zip压缩格式的插件安装包）',//'Upload a plug-in installation package in zip compressed format',
  'plugin_get_more'		=> '获取更多插件',//'Get More Plugins',
  'app_center'			=> '应用中心&raquo;',//'App center &raquo;',
@@ -735,9 +735,9 @@ $lang = array(
  'download&install'	=> '下载安装',//'Download and install',
 // 'plugin'		=> '插件',//'Plug-in',
 // 'developer'		=> '开发者',//'Developer',
-// 'update_time'		=> '更新时间',//'Update time',
+// 'update_time'	=> '更新时间',//'Update time',
 // 'price'		=> '价格',//'Price',
-// 'free'			=> '免费',//'Free',
+// 'free'		=> '免费',//'Free',
 // 'go_buy'		=> '去购买',//'Go to buy',
 // 'download&install'	=> '下载安装',//'Download and install',
 
@@ -789,8 +789,8 @@ $lang = array(
 //---------------------------
 //admin/views/template_install.php
  'template_zip_support'		=> '只支持zip压缩格式的模板包',//'Only supported for .zip files.',
- 'template_upload_failed_nonwritable'	=> '上传失败，模板目录(content/templates)不可写',//'Upload failed. Template directory (content/templates) cannot be written.',
- 'template_no_zip_install_manually'	=> '空间不支持zip模块，请手动安装： <br/>',//'Server does not support zip module, please install it manually:<br>',
+ 'template_not_writable'	=> '上传失败，模板目录(content/templates)不可写',//'Upload failed. Template directory (content/templates) cannot be written.',
+ 'template_no_zip'		=> '空间不支持zip模块，请手动安装： <br/>',//'Server does not support zip module, please install it manually:<br>',
  'template_select_zip'		=> '请选择一个zip模板安装包',//'Please select a zipped template installation package',
  'template_non_standard'	=> '安装失败，模板安装包不符合标准',//'Installation failed, template installation package does not meet the standards',
  'template_install_manual'	=> '手动安装模板',//'Template manual installation',
@@ -801,14 +801,14 @@ $lang = array(
 
 //---------------------------
 //admin/views/template_top.php
- 'image_replace_ok'	=> '顶部图片更换成功',//'Image has been replaced successfully.',
- 'image_crop_error'	=> '裁剪图片失败',//'Image crop error',
+ 'image_replace_ok'		=> '顶部图片更换成功',//'Image has been replaced successfully.',
+ 'image_crop_error'		=> '裁剪图片失败',//'Image crop error',
  'top_image_unavailable'	=> '当前未使用顶部图片或者使用中的顶部图片被删除',//'Current top image is unused or deleted',
- 'images_optional'	=> '可选图片',//'Optional images',
- 'image_click_to_use'	=> '点击使用该图片',//'Click on image to use it',
- 'top_image_not_use'	=> '不使用顶部图片',//'Do not use the top image.',
- 'top_image_custom'	=> '自定义图片',//'Custom image',
- 'upload'		=> '上传',//'Upload',
+ 'images_optional'		=> '可选图片',//'Optional images',
+ 'image_click_to_use'		=> '点击使用该图片',//'Click on image to use it',
+ 'top_image_not_use'		=> '不使用顶部图片',//'Do not use the top image.',
+ 'top_image_custom'		=> '自定义图片',//'Custom image',
+ 'upload'			=> '上传',//'Upload',
  'top_image_upload_prompt'	=> '(上传一张你喜欢的顶部图片，支持JPG、PNG格式)',//'(Upload your favourite picture to top. Supported formats: jpg, png.)',
 
 //---------------------------

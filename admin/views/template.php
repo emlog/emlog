@@ -14,14 +14,14 @@
 <?php if (isset($_GET['error_a'])): ?>
 <!--vot--><div class="alert alert-danger"><?=lang('template_zip_support')?></div><?php endif; ?>
 <?php if (isset($_GET['error_b'])): ?>
-<!--vot--><div class="alert alert-danger"><?=lang('template_upload_failed_nonwritable')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('template_not_writable')?></div><?php endif; ?>
 <?php if (isset($_GET['error_d'])): ?>
 <!--vot--><div class="alert alert-danger"><?=lang('template_select_zip')?></div><?php endif; ?>
 <?php if (isset($_GET['error_e'])): ?>
 <!--vot--><div class="alert alert-danger"><?=lang('template_non_standard')?></div><?php endif; ?>
 <?php if (isset($_GET['error_c'])): ?>
     <div class="alert alert-danger">
-<!--vot-->  <?=lang('template_no_zip_install_manually')?>
+<!--vot-->  <?=lang('template_no_zip')?>
 <!--vot-->  <?=lang('template_install_prompt1')?>
 <!--vot-->  <?=lang('template_install_prompt2')?>
     </div>

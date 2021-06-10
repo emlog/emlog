@@ -14,13 +14,13 @@
 <?php if (isset($_GET['error_a'])): ?>
 <!--vot--><div class="alert alert-danger"><?=lang('plugin_delete_failed')?></div><?php endif; ?>
 <?php if (isset($_GET['error_b'])): ?>
-<!--vot--><div class="alert alert-danger"><?=lang('plugin_upload_failed_nonwritable')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('plugin_not_writable')?></div><?php endif; ?>
 <?php if (isset($_GET['error_c'])): ?>
 <!--vot--><div class="alert alert-danger"><?=lang('plugin_zip_nonsupport')?></div><?php endif; ?>
 <?php if (isset($_GET['error_d'])): ?>
 <!--vot--><div class="alert alert-danger"><?=lang('plugin_zip_select')?></div><?php endif; ?>
 <?php if (isset($_GET['error_e'])): ?>
-<!--vot--><div class="alert alert-danger"><?=lang('plugin_install_failed_wrong_format')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('plugin_wrong_format')?></div><?php endif; ?>
 <?php if (isset($_GET['error_f'])): ?>
 <!--vot--><div class="alert alert-danger"><?=lang('plugin_zipped_only')?></div><?php endif; ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
