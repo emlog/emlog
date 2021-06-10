@@ -118,10 +118,10 @@
                 </form>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown no-arrow mx-1">
-                        <a class="nav-link" href=".." target="_blank" role="button">
+<!--vot-->          <a class="nav-link" href="../" target="_blank" role="button">
 							<?php
 							$blog_name = Option::get('blogname');
-/*vot*/                     echo empty($blog_name) ? lang('to_site') : subString($blog_name, 0, 12);
+/*vot*/                  echo empty($blog_name) ? lang('to_site') : subString($blog_name, 0, 12);
 							?>
                         </a>
                     </li>

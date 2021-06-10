@@ -39,7 +39,7 @@
                         <span class="small"><?php echo $v['info']; ?></span><br><br>
 <!--vot-->              <?=lang('developer')?>: <?php echo $v['author']; ?><br>
 <!--vot-->              <?=lang('update_time')?>: <?php echo $v['update_time']; ?><br>
-<!--vot-->              <?=lang('price')?>: <?php echo $v['price'] > 0 ? $v['price'] : <?=lang('free')?>; ?><br>
+<!--vot-->              <?=lang('price')?>: <?php echo $v['price'] > 0 ? $v['price'] : lang('free'); ?><br>
                     </p>
                     <p class="card-text text-right">
 						<?php if ($v['price'] > 0): ?>
@@ -64,7 +64,7 @@
 						<?php echo $v['info']; ?><br><br>
 <!--vot-->              <?=lang('developer')?>: <?php echo $v['author']; ?><br>
 <!--vot-->              <?=lang('update_time')?>: <?php echo $v['update_time']; ?><br>
-<!--vot-->              <?=lang('price')?>: <?php echo $v['price'] > 0 ? $v['price'] : <?=lang('free')?>; ?><br>
+<!--vot-->              <?=lang('price')?>: <?php echo $v['price'] > 0 ? $v['price'] : lang('free'); ?><br>
                     </p>
                     <p class="card-text text-right">
 						<?php if ($v['price'] > 0): ?>

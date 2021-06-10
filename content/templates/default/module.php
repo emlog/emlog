@@ -357,7 +357,7 @@ function neighbor_log($neighborLog) {
 	<?php endif; ?>
 <?php } ?>
 <?php
-//blog:Comment List
+//blog:comment list
 function blog_comments($comments) {
 	extract($comments);
 	if ($commentStacks): ?>

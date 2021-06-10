@@ -29,7 +29,7 @@ if (empty($action)) {
 
 if ($action == 'new') {
 	$pageData = array(
-/*vot*/ 'containertitle' => lang('add_page'),
+/*vot*/ 	'containertitle'  => lang('add_page'),
 		'pageId'          => -1,
 		'title'           => '',
 		'content'         => '',
@@ -105,7 +105,7 @@ if ($action == 'save') {
 	);
 
 	$directUrl = '';
-/*vot*/	if ($pageId > 0) {//auto-save, add into update
+	if ($pageId > 0) {
 		$emPage->updateLog($logData, $pageId);
 		$directUrl = './page.php?active_pubpage=1';
 	} else {

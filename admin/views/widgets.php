@@ -2,7 +2,7 @@
 	exit('error!');
 } ?>
 <?php if (isset($_GET['activated'])): ?>
-<!--vot--><div class="alert alert-success"><?=lang('settings_saved_ok')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-success"><?=lang('saved_ok')?></div><?php endif; ?>
 <!--vot--><h1 class="h3 mb-4 text-gray-800"><?=lang('widget_manage')?></h1>
 <div class="card shadow mb-4 mt-2">
     <div class="card-body">
@@ -34,8 +34,8 @@
                     <div class="card" id="calendar">
                         <div class="card-header">
                             <h2 class="mb-0">
-<!--vot-->              <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#calendarForm" aria-expanded="false"
-                                aria-controls="collapseTwo"><?=lang('calendar')?>
+<!--vot-->                      <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#calendarForm" aria-expanded="false"
+                                        aria-controls="collapseTwo"><?=lang('calendar')?>
                                 </button>
                                 <li class="widget-act-add"></li>
                                 <li class="widget-act-del"></li>
@@ -77,8 +77,8 @@
                     <div class="card" id="sort">
                         <div class="card-header">
                             <h2 class="mb-0">
-<!--vot-->              <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#sortForm" aria-expanded="false"
-                                aria-controls="collapseThree"><?=lang('category')?>
+<!--vot-->                      <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#sortForm" aria-expanded="false"
+	                              aria-controls="collapseThree"><?=lang('category')?>
                                 </button>
                                 <li class="widget-act-add"></li>
                                 <li class="widget-act-del"></li>
@@ -98,8 +98,8 @@
                     <div class="card" id="archive">
                         <div class="card-header">
                             <h2 class="mb-0">
-<!--vot-->              <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#archiveForm" aria-expanded="false"
-                                aria-controls="collapseThree"><?=lang('archive')?>
+<!--vot-->                      <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#archiveForm" aria-expanded="false"
+	                              aria-controls="collapseThree"><?=lang('archive')?>
                                 </button>
                                 <li class="widget-act-add"></li>
                                 <li class="widget-act-del"></li>
@@ -119,8 +119,8 @@
                     <div class="card" id="newcomm">
                         <div class="card-header">
                             <h2 class="mb-0">
-<!--vot-->              <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#newcommFrom" aria-expanded="false"
-                                aria-controls="collapseThree"><?=lang('new_comments')?>
+<!--vot-->                      <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#newcommFrom" aria-expanded="false"
+	                              aria-controls="collapseThree"><?=lang('new_comments')?>
                                 </button>
                                 <li class="widget-act-add"></li>
                                 <li class="widget-act-del"></li>
@@ -129,11 +129,11 @@
                         <div id="newcommFrom" class="collapse" data-parent="#accordionExample">
                             <div class="card-body">
                                 <form action="widgets.php?action=setwg&wg=newcomm" method="post">
-<!--vot-->                  <label><?=lang('title')?></label>
+<!--vot-->                          <li><?=lang('title')?></li>
                                     <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['newcomm']; ?>"/></li>
-<!--vot-->                  <label><?=lang('last_comments_num')?></label>
+<!--vot-->                          <li><?=lang('last_comments_num')?></li>
                                     <li><input class="form-control" maxlength="5" size="10" value="<?php echo Option::get('index_comnum'); ?>" name="index_comnum"/></li>
-<!--vot-->                  <label><?=lang('new_comments_length')?></label>
+<!--vot-->                          <li><?=lang('new_comments_length')?></li>
                                     <li>
                                         <input class="form-control" maxlength="5" size="10" value="<?php echo Option::get('comment_subnum'); ?>" name="comment_subnum"/>
 <!--vot-->                              <input type="submit" name="" value="<?=lang('save')?>" class="btn btn-success btn-sm"/>
@@ -145,8 +145,8 @@
                     <div class="card" id="newlog">
                         <div class="card-header">
                             <h2 class="mb-0">
-<!--vot-->              <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#newlogForm" aria-expanded="false"
-                                aria-controls="collapseThree"><?=lang('new_posts')?>
+<!--vot-->                      <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#newlogForm" aria-expanded="false"
+	                              aria-controls="collapseThree"><?=lang('new_posts')?>
                                 </button>
                                 <li class="widget-act-add"></li>
                                 <li class="widget-act-del"></li>
@@ -169,8 +169,8 @@
                     <div class="card" id="hotlog">
                         <div class="card-header">
                             <h2 class="mb-0">
-<!--vot-->              <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#hotlogForm" aria-expanded="false"
-                                aria-controls="collapseThree"><?=lang('hot_posts')?>
+<!--vot-->                      <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#hotlogForm" aria-expanded="false"
+	                      aria-controls="collapseThree"><?=lang('hot_posts')?>
                                 </button>
                                 <li class="widget-act-add"></li>
                                 <li class="widget-act-del"></li>
@@ -193,8 +193,8 @@
                     <div class="card" id="link">
                         <div class="card-header">
                             <h2 class="mb-0">
-<!--vot-->              <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#linkForm" aria-expanded="false"
-                                aria-controls="collapseThree"><?=lang('links')?>
+<!--vot-->                      <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#linkForm" aria-expanded="false"
+	                              aria-controls="collapseThree"><?=lang('links')?>
                                 </button>
                                 <li class="widget-act-add"></li>
                                 <li class="widget-act-del"></li>
@@ -214,8 +214,8 @@
                     <div class="card" id="search">
                         <div class="card-header">
                             <h2 class="mb-0">
-<!--vot-->              <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#searchForm" aria-expanded="false"
-                                aria-controls="collapseThree"><?=lang('search')?>
+<!--vot-->                      <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#searchForm" aria-expanded="false"
+	                              aria-controls="collapseThree"><?=lang('search')?>
                                 </button>
                                 <li class="widget-act-add"></li>
                                 <li class="widget-act-del"></li>
@@ -307,11 +307,11 @@
                     <div id="sortable" class="adm_widget_box">
 						<?php
 						foreach ($widgets as $widget):
-/*vot*/					$flg = strpos($widget, 'custom_wg_') === 0; //Whether is custom widget
-/*vot*/					$title = ($flg && isset($custom_widget[$widget]['title'])) ? $custom_widget[$widget]['title'] : ''; //Get custom widget title
+/*vot*/							$flg = strpos($widget, 'custom_wg_') === 0; //If it is a custom widgets
+/*vot*/                     $title = ($flg && isset($custom_widget[$widget]['title'])) ? $custom_widget[$widget]['title'] : ''; //Get custom widget title
 							if ($flg && empty($title)) {
 								preg_match("/^custom_wg_(\d+)/", $widget, $matches);
-/*vot*/                 			$title = lang('widget_untitled'). ' (' . $matches[1] . ')';
+/*vot*/                         $title = lang('widget_untitled'). ' (' . $matches[1] . ')';
 							}
 							?>
                             <div class="card m-1 active_widget" style="cursor: move" id="em_<?php echo $widget; ?>">
