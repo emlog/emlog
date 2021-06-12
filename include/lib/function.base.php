@@ -394,8 +394,46 @@ function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = 
 			break;
 		default:
 			return $result;
+	}
+}
+
+function uploadFileAjax($fileName, $errorNum, $tmpFile, $fileSize) {
+	$isthum = Option::get('isthumbnail') === 'y'; //是否生成缩略图
+	$fileName = Database::getInstance()->escape_string($fileName);
+	$type = Option::getAttType();
+
+	$result = upload($fileName, $errorNum, $tmpFile, $fileSize, $type, false, $isthum);
+	$success = 0;
+	switch ($result) {
+		case '100':
+			$message = '文件大小超过系统' . ini_get('upload_max_filesize') . '限制';
+			break;
+		case '101':
+		case '104':
+			$message = '上传文件失败,错误码：' . $errorNum;
+			break;
+		case '102':
+			$message = '错误的文件类型';
+			break;
+		case '103':
+			$ret = changeFileSize(Option::getAttMaxSize());
+			$message = "文件大小超出{$ret}的限制";
+			break;
+		case '105':
+			$message = '上传失败。文件上传目录(content/uploadfile)不可写';
+			break;
+		default:
+			$message = '上传成功';
+			$success = 1;
 			break;
 	}
+
+	return [
+		'success'   => $success, // 1 成功、0失败
+		'message'   => $message, // 错误信息
+		'url'       => $result['file_path'],//文件地址
+		'file_info' => $success ? $result : [],//文件信息
+	];
 }
 
 /**

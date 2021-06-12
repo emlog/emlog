@@ -214,7 +214,7 @@ if ($action === 'write') {
 	$Media_Model = new Media_Model();
 	$medias = $Media_Model->getMedias();
 
-	if (!ISREG && $sta_cache['lognum'] > 50) {
+	if (!ISREG && $sta_cache['lognum'] > 20) {
 		emDirect("register.php?error_article=1");
 	}
 

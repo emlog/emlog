@@ -50,4 +50,30 @@ class Media_Model {
 		return $res['count'];
 	}
 
+	/**
+	 * @param $file_info
+	 * @param int $thumfor
+	 * @return int|string
+	 */
+	function addMedia($file_info, $thumfor = 0) {
+
+		$file_name = $file_info['file_name'];
+		$file_size = $file_info['size'];
+		$file_path = $file_info['file_path'];
+		$file_mime_type = $file_info['mime_type'];
+		$img_width = $file_info['width'];
+		$img_height = $file_info['height'];
+		$create_time = time();
+
+		$query = "INSERT INTO " . DB_PREFIX . "attachment (filename, filesize, filepath, addtime, width, height, mimetype, thumfor) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s')";
+		$query = sprintf($query, $file_name, $file_size, $file_path, $create_time, $img_width, $img_height, $file_mime_type, $thumfor);
+		$this->db->query($query);
+		return $this->db->insert_id();
+
+	}
+
+	function deleteMedia($linkId) {
+		$this->db->query("DELETE FROM " . DB_PREFIX . "link where id=$linkId");
+	}
+
 }

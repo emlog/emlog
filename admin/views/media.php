@@ -64,4 +64,12 @@
     $('#exampleModal').on('hidden.bs.modal', function (e) {
         window.location.reload();
     })
+    Dropzone.options.myAwesomeDropzone = {
+        paramName: "file", // The name that will be used to transfer the file
+        init: function() {
+            this.on("error", function(file, response) {
+               // alert(response);
+            });
+        }
+    };
 </script>

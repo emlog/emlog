@@ -174,17 +174,20 @@
             toolbarIcons: function () {
                 return ["undo", "redo", "|",
                     "bold", "del", "italic", "quote", "|",
-                    "h1", "h2", "h3", "h4", "h5", "h6", "|",
+                    "h1", "h2", "h3", "|",
                     "list-ul", "list-ol", "hr", "|",
                     "link", "image", "preformatted-text", "table", "|", "search", "watch"]
             },
             path: "editor.md/lib/",
             tex: false,
             watch: false,
-	    htmlDecode : "style,script,iframe,sub,sup,embed|onclick,title,onmouseover,onmouseout,style",
+            htmlDecode : true,
             flowChart: false,
             autoFocus: false,
-            sequenceDiagram: false
+            sequenceDiagram: false,
+            imageUpload: true,
+            imageFormats: ["jpg", "jpeg", "gif", "png"],
+            imageUploadURL: "media.php?action=upload&editor=1",
         });
         Editor_summary = editormd("logexcerpt", {
             width: "100%",
@@ -192,14 +195,14 @@
             toolbarIcons: function () {
                 return ["undo", "redo", "|",
                     "bold", "del", "italic", "quote", "|",
-                    "h1", "h2", "h3", "h4", "h5", "h6", "|",
+                    "h1", "h2", "h3", "|",
                     "list-ul", "list-ol", "hr", "|",
                     "link", "image", "|", "watch"]
             },
             path: "editor.md/lib/",
             tex: false,
             watch: false,
-	    htmlDecode : "style,script,iframe,sub,sup,embed|onclick,title,onmouseover,onmouseout,style",
+            htmlDecode : true,
             flowChart: false,
             autoFocus: false,
             sequenceDiagram: false,
