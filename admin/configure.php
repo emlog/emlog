@@ -41,7 +41,7 @@ if (empty($action)) {
 		$ex4 = 'selected="selected"';
 	}
 
-/*vot*/ load_language('tz'); // Load Time Zone List
+/*vot*/	include EMLOG_ROOT.'/lang/'.EMLOG_LANGUAGE.'/lang_tz.php'; // Load Time Zone List
 
 	include View::getView('header');
 	require_once(View::getView('configure'));
@@ -58,7 +58,7 @@ if ($action == 'mod_config') {
 		'icp'                 => isset($_POST['icp']) ? addslashes($_POST['icp']) : '',
 		'footer_info'         => isset($_POST['footer_info']) ? addslashes($_POST['footer_info']) : '',
 		'index_lognum'        => isset($_POST['index_lognum']) ? (int)$_POST['index_lognum'] : '',
-		'timezone'            => isset($_POST['timezone']) ? addslashes($_POST['timezone']) : '',
+/*vot*/		'timezone'            => isset($_POST['timezone']) ? addslashes($_POST['timezone']) : 'UTC',
 		'login_code'          => isset($_POST['login_code']) ? addslashes($_POST['login_code']) : 'n',
 		'comment_code'        => isset($_POST['comment_code']) ? addslashes($_POST['comment_code']) : 'n',
 		'comment_needchinese' => isset($_POST['comment_needchinese']) ? addslashes($_POST['comment_needchinese']) : 'n',
