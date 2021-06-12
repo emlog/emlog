@@ -82,7 +82,7 @@
                 <select name="comment_order" class="form-control" style="width: 100px;">
 <!--vot-->          <option value="newer" <?php echo $ex3; ?>><?=lang('newer')?></option>
 <!--vot-->          <option value="older" <?php echo $ex4; ?>><?=lang('older')?></option>
-<!--vot-->      </select><?=lang('standing_in_front')?>
+<!--vot-->      </select> <?=lang('standing_in_front')?>
             </div>
 
             <hr>
