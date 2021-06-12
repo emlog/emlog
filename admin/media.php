@@ -27,47 +27,47 @@ if (empty($action)) {
 }
 
 if ($action === 'upload') {
-	$editor = isset($_GET['editor']) ? 1 : 0; // 是否来自编辑器的上传
+	$editor = isset($_GET['editor']) ? 1 : 0; // 是否来自Markdown编辑器的上传
 	$attach = $_FILES['file'] ?? '';
-
 	if ($editor) {
 		$attach = $_FILES['editormd-image-file'] ?? '';
 	}
 
 	if (!$attach || $attach['error'] === 4) {
-		echo json_encode(['success'=>0,'message'=>'upload error']);
+		if ($editor) {
+			echo json_encode(['success' => 0, 'message' => 'upload error']);
+		} else {
+			header("HTTP/1.0 400 Bad Request");
+			echo "upload error";
+		}
 		exit;
 	}
 
-	$isthumbnail = Option::get('isthumbnail') === 'y';
-	$attach['name'] = Database::getInstance()->escape_string($attach['name']);
-	$ret = uploadFileAjax($attach['name'], $attach['error'], $attach['tmp_name'], $attach['size'], Option::getAttType(), false, $isthumbnail);
+	$ret = uploadFileAjax($attach['name'], $attach['error'], $attach['tmp_name'], $attach['size']);
 
 	if (empty($ret['success'])) {
-		echo json_encode($ret);
+		if ($editor) {
+			echo json_encode($ret);
+		} else {
+			header("HTTP/1.0 400 Bad Request");
+			echo $ret['message'];
+		}
 		exit;
 	}
 
-	$file_info = $ret['file_info'];
-
 	// 写入资源信息
-	$query = "INSERT INTO " . DB_PREFIX . "attachment (filename, filesize, filepath, addtime, width, height, mimetype, thumfor) VALUES ('%s','%s','%s','%s','%s','%s','%s',0)";
-	$query = sprintf($query , $file_info['file_name'], $file_info['size'], $file_info['file_path'], time(), $file_info['width'], $file_info['height'], $file_info['mime_type']);
-	$DB->query($query);
-	$aid = $DB->insert_id();
-	$file_url = $file_info['file_path'];
+	$aid = $Media_Model->addMedia($ret['file_info']);
 
 	// 写入缩略图信息
-	if (isset($file_info['thum_file'])) {
-		$query = "INSERT INTO " . DB_PREFIX . "attachment (filename, filesize, filepath, addtime, width, height, mimetype, thumfor) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s')";
-		$query = sprintf($query, $file_info['file_name'], $file_info['thum_size'], $file_info['thum_file'], time(), $file_info['thum_width'], $file_info['thum_height'], $file_info['mime_type'], $aid);
-		$DB->query($query);
-		$file_url = $file_info['thum_file'];
+	if (isset($ret['file_info']['thum_file'])) {
+		$Media_Model->addMedia($ret['file_info'], $aid);
 	}
 
-	$ret['url'] = $file_url;
-	echo json_encode($ret);
-	exit;
+	if ($editor) {
+		echo json_encode($ret);
+	} else {
+		echo 'success';
+	}
 }
 
 //删除附件

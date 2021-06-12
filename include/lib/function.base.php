@@ -396,8 +396,12 @@ function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = 
 	}
 }
 
-function uploadFileAjax($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = false, $is_thumbnail = true) {
-	$result = upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon, $is_thumbnail);
+function uploadFileAjax($fileName, $errorNum, $tmpFile, $fileSize) {
+	$isthum = Option::get('isthumbnail') === 'y'; //是否生成缩略图
+	$fileName = Database::getInstance()->escape_string($fileName);
+	$type = Option::getAttType();
+
+	$result = upload($fileName, $errorNum, $tmpFile, $fileSize, $type, false, $isthum);
 	$success = 0;
 	switch ($result) {
 		case '100':
@@ -426,6 +430,7 @@ function uploadFileAjax($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIco
 	return [
 		'success'   => $success, // 1 成功、0失败
 		'message'   => $message, // 错误信息
+		'url'       => $result['file_path'],//文件地址
 		'file_info' => $success ? $result : [],//文件信息
 	];
 }
