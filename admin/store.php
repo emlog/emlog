@@ -25,6 +25,8 @@ if (empty($action)) {
 		emDirect("./store.php?action=error&error=1");
 	}
 	if ($ret['code'] === MSGCODE_EMKEY_INVALID) {
+		Option::updateOption('emkey', '');
+		$CACHE->updateCache('options');
 		emDirect("./register.php?error_store=1");
 	}
 
