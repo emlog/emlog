@@ -43,7 +43,7 @@ if ($action == 'update') {
 	$newpass = isset($_POST['newpass']) ? addslashes(trim($_POST['newpass'])) : '';
 	$repeatpass = isset($_POST['repeatpass']) ? addslashes(trim($_POST['repeatpass'])) : '';
 
-	if (strlen($nickname) > 20) {
+/*vot*/	if (strlen($nickname) > 128) {
 		emDirect("./blogger.php?error_a=1");
 	} else if ($email != '' && !checkMail($email)) {
 		emDirect("./blogger.php?error_b=1");
