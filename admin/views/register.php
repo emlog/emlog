@@ -9,12 +9,12 @@
     <div class="container-fluid">
         <div class="text-center">
 			<?php if (isset($_GET['error_store'])): ?>
-<!--vot-->      <p class="lead text-gray-800 mb-4"><?=lang('ext_store_info')?></p>
+<!--vot-->      <p class="lead text-danger mb-4"><?=lang('ext_store_info')?></p>
 			<?php endif; ?>
 			<?php if (isset($_GET['error_article'])): ?>
-<!--vot-->      <p class="lead text-gray-800 mb-4"><?=lang('too_many_articles')?></p>
+<!--vot-->      <p class="lead text-danger mb-4"><?=lang('too_many_articles')?></p>
 			<?php endif; ?>
-<!--vot-->  <p class="lead text-gray-800 mb-4"><?=lang('emlog_notregistered')?></p>
+<!--vot-->  <p class="lead text-danger mb-4"><?=lang('emlog_notregistered')?></p>
 <!--vot-->  <p><a href="<?php echo OFFICIAL_SERVICE_HOST; ?>register" target="_blank"><?=lang('get_emkey')?>&rarr; </a></p>
             <hr>
 <!--vot-->  <a href="#" class="btn btn-sm btn-success shadow-lg" data-toggle="modal" data-target="#exampleModal"><?=lang('ok_register_now')?></a>

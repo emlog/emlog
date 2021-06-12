@@ -425,7 +425,7 @@ DROP TABLE IF EXISTS {$db_prefix}navi;
 CREATE TABLE {$db_prefix}navi (
   id int(11) unsigned NOT NULL auto_increment COMMENT 'Navigation table',
   naviname varchar(255) NOT NULL default '' COMMENT 'Navigation name',
-  url varchar(255) NOT NULL default '' COMMENT 'Navigation URL',
+  url varchar(512) NOT NULL default '' COMMENT 'Navigation URL',
   newtab enum('n','y') NOT NULL default 'n' COMMENT 'Open in a new window',
   hide enum('n','y') NOT NULL default 'n' COMMENT 'Hide or not',
   taxis int(11) unsigned NOT NULL default '0' COMMENT 'Sort order',

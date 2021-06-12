@@ -27,28 +27,46 @@ if (empty($action)) {
 }
 
 if ($action === 'upload') {
-	$logid = isset($_GET['logid']) ? (int)$_GET['logid'] : 0;
+	$editor = isset($_GET['editor']) ? 1 : 0; // 是否来自Markdown编辑器的上传
 	$attach = $_FILES['file'] ?? '';
-
-	if (!$attach || $attach['error'] == 4) {
-		return;
+	if ($editor) {
+		$attach = $_FILES['editormd-image-file'] ?? '';
 	}
 
-	$isthumbnail = Option::get('isthumbnail') === 'y';
-	$attach['name'] = Database::getInstance()->escape_string($attach['name']);
-	$file_info = upload($attach['name'], $attach['error'], $attach['tmp_name'], $attach['size'], Option::getAttType(), false, $isthumbnail);
+	if (!$attach || $attach['error'] === 4) {
+		if ($editor) {
+			echo json_encode(['success' => 0, 'message' => 'upload error']);
+		} else {
+			header("HTTP/1.0 400 Bad Request");
+			echo "upload error";
+		}
+		exit;
+	}
 
-	// Write attachment information
-	$query = "INSERT INTO " . DB_PREFIX . "attachment (blogid, filename, filesize, filepath, addtime, width, height, mimetype, thumfor) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s',0)";
-	$query = sprintf($query, $logid, $file_info['file_name'], $file_info['size'], $file_info['file_path'], time(), $file_info['width'], $file_info['height'], $file_info['mime_type']);
-	$DB->query($query);
-	$aid = $DB->insert_id();
+	$ret = uploadFileAjax($attach['name'], $attach['error'], $attach['tmp_name'], $attach['size']);
+
+	if (empty($ret['success'])) {
+		if ($editor) {
+			echo json_encode($ret);
+		} else {
+			header("HTTP/1.0 400 Bad Request");
+			echo $ret['message'];
+		}
+		exit;
+	}
+
+	// 写入资源信息
+	$aid = $Media_Model->addMedia($ret['file_info']);
 
 	// Write thumbnail information
-	if (isset($file_info['thum_file'])) {
-		$query = "INSERT INTO " . DB_PREFIX . "attachment (blogid, filename, filesize, filepath, addtime, width, height, mimetype, thumfor) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s')";
-		$query = sprintf($query, $logid, $file_info['file_name'], $file_info['thum_size'], $file_info['thum_file'], time(), $file_info['thum_width'], $file_info['thum_height'], $file_info['mime_type'], $aid);
-		$DB->query($query);
+	if (isset($ret['file_info']['thum_file'])) {
+		$Media_Model->addMedia($ret['file_info'], $aid);
+	}
+
+	if ($editor) {
+		echo json_encode($ret);
+	} else {
+		echo 'success';
 	}
 }
 
