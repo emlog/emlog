@@ -16,7 +16,7 @@ $lang = array(
 
 //---------------------------
 //admin/blogger.php
- 'photo_delete'	=> 'Delete image',//'删除头像',
+ 'avatar_delete'	=> 'Delete avatar',//'删除头像',
 
 //---------------------------
 //admin/configure.php

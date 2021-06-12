@@ -456,6 +456,7 @@ $lang = array(
  'write_article'		=> '去写文章',//'Write an article',
  'pending_review'		=> '待审评论',//'Review pendings',
  'user_num'			=> '用户数',//'Number of users',
+ 'go_to_register'		=> '去注册',//'Go to register',
 
 //---------------------------
 //admin/views/links.php

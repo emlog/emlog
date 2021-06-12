@@ -31,9 +31,9 @@ $lang = array(
  '_min_ago'	=> '分钟前',//' minutes ago.',
  'about_'	=> '约 ',//'~ ',
  '_hour_ago'	=> ' 小时前',//' hour(s) ago.',
- 'file_size_exceeds_system'	=> '文件大小超过系统 ',//'File size exceeds the system limit ',
+ 'file_size_exceeds_system'	=> '文件大小超过系统',//'File size exceeds the system limit ',
  '_limit'			=> '限制',//'',//' limit',//LEAVE THIS EMPTY???
- 'upload_failed_error_code'	=> '上传文件失败,错误码: ',//'Upload failed. Error code: ',
+ 'upload_failed_error_code'	=> '上传文件失败,错误码：',//'Upload failed. Error code: ',
  'file_type_not_supported'	=> '错误的文件类型',//'This file type is not supported.',
  'file_size_exceeds_'		=> '文件大小超出',//'File size exceeds the limit ',
  '_of_limit'			=> '的限制',//'',//' limit',
@@ -42,6 +42,7 @@ $lang = array(
  '404_description'		=> '抱歉，你所请求的页面不存在！',//'Sorry, the page that you requested does not exist.',
  'prompt'			=> '提示信息',//'Prompt Message',
  'click_return'			=> '点击返回',//'Return back',
+ 'upload_ok'			=> '上传成功',//'Upload successful',
 
 //---------------------------
 //include/lib/loginauth.php
