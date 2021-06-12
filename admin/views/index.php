@@ -107,7 +107,7 @@
         $.get("./upgrade.php?action=check_update",
             function (result) {
                 if (result.code == 1001) {
-                    $("#upmsg").html("您的emlog pro尚未注册，<a href=\"register.php\">请先完成注册</a>").removeClass();
+                    $("#upmsg").html("您的emlog pro尚未注册，<a href=\"register.php\">去注册</a>").removeClass();
                 } else if (result.code == 1002) {
                     $("#upmsg").html("已经是最新版本，没有可用的更新").removeClass();
                 } else if (result.code == 200) {
