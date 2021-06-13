@@ -111,7 +111,7 @@ function checkform() {
     if (0 == isalias(a)) {
         return true;
     } else {
-/*vot*/ alert(lang('alis_link_error'));
+/*vot*/ alert(lang('alias_link_error'));
         $("#alias").focus();
         return false;
     }
