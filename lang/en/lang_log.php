@@ -10,6 +10,7 @@ $lang = array(
   'date_format'		=> 'Y-m-d',//'Y-n-j',
 // 'user'		=> 'User',//'作者',
 // 'post_time'		=> 'Posted on',//'发布于',
+ 'time'			=> 'Time',//'时间',
  'author'		=> 'Author',//'作者',
  'no'			=> 'No',//'无',
 
