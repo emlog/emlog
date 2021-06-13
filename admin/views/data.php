@@ -26,7 +26,7 @@
 </div>
 <div class="card-deck">
     <div class="card">
-<!--vot-->  <h5 class="card-header"><?=lang('data_backup')?></h5>
+<!--vot-->  <h5 class="card-header"><?=lang('db_backup')?></h5>
         <div class="card-body">
             <form action="data.php?action=bakstart" method="post">
                 <div id="backup">

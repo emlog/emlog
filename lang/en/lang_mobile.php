@@ -50,7 +50,7 @@ $lang = array(
 // 'home'		=> 'Home',//'首页',
 // 'twitters'		=> 'Twitters',//'微语',
 // 'comments'		=> 'Comments',//'评论',
-// 'post_write'		=> 'Write post',//'写文章',
+// 'post_write'		=> 'Add post',//'写文章',
 // 'logout'		=> 'Logout',//'退出',
 // 'login'		=> 'Login',//'登录',
 

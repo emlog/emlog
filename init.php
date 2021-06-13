@@ -48,6 +48,7 @@ define('DYNAMIC_BLOGURL', Option::get("blogurl"));
 define('TEMPLATE_URL', TPLS_URL . Option::get('nonce_templet') . '/');
 //Access Scheme
 /*vot*/define('SCHEME', isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://');
+/*vot*/define('ROOT_URL', str_replace('\\','/', dirname($_SERVER['PHP_SELF'])));
 
 $active_plugins = Option::get('active_plugins');
 $emHooks = array();

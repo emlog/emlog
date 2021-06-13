@@ -70,7 +70,7 @@
 		<?php if (ISREG === false) : ?>
         <div class="card bg-danger text-white shadow">
             <div class="card-body">
-<!--vot-->      <h4><?=lang('emlog_unregistered')?></h4>
+<!--vot-->      <h4><?=lang('emlog_reg_advantages')?></h4>
 <!--vot-->      <div><?=lang('advantage1')?></div>
 <!--vot-->      <div><?=lang('advantage2')?></div>
 <!--vot-->      <div><?=lang('advantage3')?></div>
@@ -107,7 +107,7 @@
         $.get("./upgrade.php?action=check_update",
             function (result) {
                 if (result.code == 1001) {
-/*vot*/             $("#upmsg").html("<?=lang('emlog_unregistered')?>").removeClass();
+/*vot*/             $("#upmsg").html("<?=lang('emlog_unregistered')?>, <a href=\"register.php\"><?=lang('go_to_register')?></a>").removeClass();
                 } else if (result.code == 1002) {
 /*vot*/             $("#upmsg").html("<?=lang('updates_no')?> ").removeClass();
                 } else if (result.code == 200) {
