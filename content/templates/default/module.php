@@ -199,7 +199,7 @@ function widget_archive($title) {
         </div>
         <ul class="list-unstyled">
 			<?php foreach ($record_cache as $value): ?>
-                <li><a href="<?php echo Url::record($value['date']); ?>"><?php echo $value['record']; ?>(<?php echo $value['lognum']; ?>)</a></li>
+<!--vot-->			<li><a href="<?php echo Url::record($value['date']); ?>"><?php echo $value['record']; ?> (<?php echo $value['lognum']; ?>)</a></li>
 			<?php endforeach; ?>
         </ul>
     </div>
