@@ -11,9 +11,14 @@ AddCharset utf-8 .html .css .js .xml .json .rss
 # ----------------------------------------------------------------------
 # Rewrite engine rules
 # ----------------------------------------------------------------------
+<IfModule mod_rewrite.c>
+  RewriteEngine on
+  #RewriteBase /
+  RewriteBase /emlog/
 
-RewriteEngine on
-RewriteBase /
-#RewriteBase /emlog
+  RewriteRule ^wlwmanifest\.xml$ wlwmanifest.php [L]
 
-RewriteRule ^wlwmanifest\.xml$ wlwmanifest.php [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(.*) index.php [L]
+</IfModule>
