@@ -64,7 +64,7 @@
             </li>
             <li class="nav-item" id="menu_category_view">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_view" aria-expanded="true" aria-controls="menu_view">
-                    <i class="icofont-paint"></i><span>外观</span>
+<!--vot-->          <i class="icofont-paint"></i><span>外观</span><span><?= lang('exterior') ?></span>
                 </a>
                 <div id="menu_view" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -81,7 +81,7 @@
             </li>
             <li class="nav-item" id="menu_category_sys">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_sys" aria-expanded="true" aria-controls="menu_sys">
-                    <i class="icofont-options"></i><span>系统</span>
+<!--vot-->          <i class="icofont-options"></i><span>系统</span><span><?=lang('system')?></span>
                 </a>
                 <div id="menu_sys" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
