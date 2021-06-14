@@ -634,6 +634,7 @@ body {
 }
 
 .bloggerinfo {
+    margin-bottom: -10px;
     text-align: center
 }
 
@@ -807,7 +808,8 @@ body {
 
 .comment_lates a {
     color: #4c4c4c;
-    font-size: smaller
+    font-size: smaller;
+    padding-left: 5px
 }
 
 .comment_lates hr {
@@ -880,8 +882,7 @@ body {
 
 .log_classify_f,#navbarResponsive {
     text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap
+    overflow: hidden
 }
 
 .navbar-toggler {

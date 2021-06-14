@@ -1,5 +1,13 @@
 /*main.css*/
-li {list-style:none;}
+:root {
+    overflow-x: hidden
+}
+body {
+    background-color: #f8f9fc
+}
+li {
+    list-style:none
+}
 .tdcenter {
     text-align:center;
     padding-left:0;
@@ -443,4 +451,92 @@ textarea {
     cursor:pointer;
     height:15px;
     float: right;
+}
+
+@media all and (min-width: 768px){
+
+    .emlog_title {
+        padding-left: 4px;
+    }
+
+    .shadow {
+        box-shadow: 0 2px 10px 0 rgb(0 0 0 / 5%)!important;
+    }
+
+    .container, .container-fluid, .container-sm, .container-md, .container-lg, .container-xl {
+        width: auto;
+        padding-top: 80px;
+        padding-left: 218px;
+    }
+    
+    .sidebar {
+        position: fixed;
+        padding-inline: 9x;
+        z-index: 2;
+    }
+    .navbar {
+        width: 100%;
+        position: fixed;
+        z-index: 1;
+    }
+
+    .ml-md-3, .mx-md-3 {
+        margin-left: 210px!important;
+    }
+
+    .d-md-inline {
+        display: none !important;
+    }
+
+    .sidebar .nav-item .nav-link span {
+        padding-left: 1px;
+    }
+
+    .sidebar .nav-item .collapse .collapse-inner .collapse-item, .sidebar .nav-item .collapsing .collapse-inner .collapse-item {
+        white-space: break-spaces;
+    }
+
+    footer.sticky-footer {
+        background-color: unset!important;
+    }
+
+}
+
+@media all and (max-width: 767px) and (min-width: 1px) {
+    
+    /*scroll hidden*/
+    body {
+        position: absolute;
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    .sd-hidden {
+        width: 0 !important;
+    }
+
+    #content-wrapper {
+        min-height: 100vh;
+        position: absolute;
+    }
+
+    .toggle {
+        margin-left: -91px;
+    }
+
+    .sidebar .nav-item .collapse .collapse-inner .collapse-item.active, .sidebar .nav-item .collapsing .collapse-inner .collapse-item.active {
+        color: #4e73df;;
+    }
+    .sidebar .nav-item .collapse .collapse-inner .collapse-item, .sidebar .nav-item .collapsing .collapse-inner .collapse-item {
+        color: #3a3b45;
+    }
+
+    .container, .container-fluid, .container-sm, .container-md, .container-lg, .container-xl {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .sd_menu_hd {
+        display: none;
+    }
 }

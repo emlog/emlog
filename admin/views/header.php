@@ -24,8 +24,8 @@
 </head>
 <body>
 <div id="wrapper">
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-        <li class="nav-item active" id="menu_home">
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion sd-hidden" id="accordionSidebar">
+        <li class="nav-item active emlog_title" id="menu_home">
             <a class="nav-link" href="./">EMLOG PRO <?php if (ISREG === false) : ?>未注册<?php endif; ?></a>
         </li>
         <hr class="sidebar-divider my-0">
@@ -62,8 +62,7 @@
             </li>
             <li class="nav-item" id="menu_category_view">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_view" aria-expanded="true" aria-controls="menu_view">
-                    <i class="icofont-paint"></i>
-                    <span>外观</span>
+                    <i class="icofont-paint"></i><span>外观</span>
                 </a>
                 <div id="menu_view" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -80,8 +79,7 @@
             </li>
             <li class="nav-item" id="menu_category_sys">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_sys" aria-expanded="true" aria-controls="menu_sys">
-                    <i class="icofont-options"></i>
-                    <span>系统</span>
+                    <i class="icofont-options"></i><span>系统</span>
                 </a>
                 <div id="menu_sys" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
