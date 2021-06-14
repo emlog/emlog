@@ -117,15 +117,12 @@ function cancelReply(){
 	commentPlace.appendChild(response);
 }
 
-function cal_margin(links){
-		var count,menus;
-		menus=document.getElementById('dropmenus');		
-		count=menus.offsetWidth-links.offsetWidth;
-		var div_ls = document.getElementsByTagName('ul')
-		for(var i=0;i<div_ls.length;i++){
-		if(div_ls[i].getAttribute('id') == 'dropmenus'){
-			count=(count%2==0)?count:count+1;
-			div_ls[i].style.marginLeft='-'+count/2+'px';
-			}
-        }
+function cal_margin(links,dp_id){
+	var count,menus,cal_width;
+	cal_width = 85;//初始子导航的宽度(px)，可根据需要修改
+	menus=document.getElementById('dropmenus'+dp_id);		
+	count=links.offsetWidth-cal_width;
+	menus.style.width=cal_width+'px';
+	menus.style.marginLeft=count/2+'px';
 }
+
