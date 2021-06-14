@@ -125,8 +125,14 @@
             tex: false,
             flowChart: false,
             watch: false,
-	    htmlDecode : true,
-            sequenceDiagram: false
+            htmlDecode : true,
+            sequenceDiagram: false,
+            onload : function() {
+                    //在大屏模式下，编辑器默认显示预览
+                    if($(window).width() > 767){
+                        this.watch();
+                    }
+            }
         });
         Editor_page.setToolbarAutoFixed(false);
     });
