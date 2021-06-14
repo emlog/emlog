@@ -188,6 +188,12 @@
             imageUpload: true,
             imageFormats: ["jpg", "jpeg", "gif", "png"],
             imageUploadURL: "media.php?action=upload&editor=1",
+            onload : function() {
+                    //在大屏模式下，编辑器默认显示预览
+                    if($(window).width() > 767){
+                        this.watch();
+                    }
+            }
         });
         Editor_summary = editormd("logexcerpt", {
             width: "100%",
@@ -206,15 +212,9 @@
             flowChart: false,
             autoFocus: false,
             sequenceDiagram: false,
-            placeholder: "如果留空，则使用文章内容作为摘要...",
+            placeholder: "如果留空，则使用文章内容作为摘要..."
         });
         Editor.setToolbarAutoFixed(false);
         Editor_summary.setToolbarAutoFixed(false);
-        $("#displayToggle").bind('click', function () {
-            var editor_act = Editor_summary.toolbarHandlers;
-            $.proxy(editor_act.watch, Editor_summary)();
-            $.proxy(editor_act.clear, Editor_summary)();
-            $.proxy(editor_act.undo, Editor_summary)();
-        });
     });
 </script>
