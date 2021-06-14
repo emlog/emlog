@@ -13,7 +13,7 @@
 #
 #
 
-class parsedown {
+/*vot*/class Parsedown {
 	# ~
 
 	const version = '1.7.4';
