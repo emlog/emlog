@@ -226,6 +226,7 @@ function blog_navi() {
     <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto top-menu">
 			<?php
+            $dp_id = 0;
 			foreach ($navi_cache as $value):
 				if ($value['pid'] != 0) {
 					continue;
@@ -245,16 +246,17 @@ function blog_navi() {
                 <li class="nav-item list-menu">
 					<?php if (!empty($value['children'])): ?>
                         <a class='nav-link' href="<?php echo $value['url']; ?>" id="nav_link"
-                           onmousemove="cal_margin(this)" <?php echo $newtab; ?>><?php echo $value['naviname']; ?> <b class="caret"></b></a>
-                        <ul class="dropdown-menus" id="dropmenus">
+                           onmousemove="cal_margin(this,<?php echo $dp_id; ?>)" <?php echo $newtab; ?>><?php echo $value['naviname']; ?> <b class="caret"></b></a>
+                        <ul class="dropdown-menus" id="dropmenus<?php echo $dp_id++; ?>">
 							<?php foreach ($value['children'] as $row) {
 								echo '<li class="nav-item list-menu"><a class="nav-link" href="' . Url::sort($row['sid']) . '">' . $row['sortname'] . '</a></li>';
 							} ?>
                         </ul>
 					<?php endif; ?>
 					<?php if (!empty($value['childnavi'])) : ?>
-                        <a class='nav-link' href="<?php echo $value['url']; ?>" <?php echo $newtab; ?>><?php echo $value['naviname']; ?> <b class="caret"></b></a>
-                        <ul class="dropdown-menus">
+                        <a class='nav-link' href="<?php echo $value['url']; ?>" id="nav_link"
+                           onmousemove="cal_margin(this,<?php echo $dp_id; ?>)" <?php echo $newtab; ?>><?php echo $value['naviname']; ?> <b class="caret"></b></a>
+                        <ul class="dropdown-menus" id="dropmenus<?php echo $dp_id++; ?>">
 							<?php foreach ($value['childnavi'] as $row) {
 								$newtab = $row['newtab'] == 'y' ? 'target="_blank"' : '';
 								echo '<li class="nav-item list-menu"><a class="nav-link" href="' . $row['url'] . "\" $newtab >" . $row['naviname'] . '</a></li>';
