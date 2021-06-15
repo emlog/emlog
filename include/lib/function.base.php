@@ -428,10 +428,10 @@ function uploadFileAjax($fileName, $errorNum, $tmpFile, $fileSize) {
 	}
 
 	return [
-		'success'   => $success, // 1 成功、0失败
-		'message'   => $message, // 错误信息
-		'url'       => $result['file_path'],//文件地址
-		'file_info' => $success ? $result : [],//文件信息
+		'success'   => $success,
+		'message'   => $message,
+		'url'       => $success ? $result['file_path'] : '',
+		'file_info' => $success ? $result : [],
 	];
 }
 
