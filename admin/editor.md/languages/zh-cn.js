@@ -4,6 +4,9 @@
             name        : "zh-cn",
             description : "开源在线Markdown编辑器<br/>Open source online Markdown editor.",
             tocTitle    : "目录",
+            placeholder : "使用 Markdown! 开始你的创作...",
+            weekDays    : ["日", "一", "二", "三", "四", "五", "六"],
+            wdPrefix    : "星期",//Only for Chinese! Set EMPTY for others
             toolbar     : {
                 undo             : "撤销（Ctrl+Z）",
                 redo             : "重做（Ctrl+Y）",
@@ -87,8 +90,8 @@
                     selectDefaultText : "请选择代码语言",
                     otherLanguage     : "其他语言",
                     unselectedLanguageAlert : "错误：请选择代码所属的语言类型。",
-                    codeEmptyAlert    : "错误：请填写代码内容。"
-                    placeholder:      : "coding now...."
+                    codeEmptyAlert    : "错误：请填写代码内容。",
+                    placeholder       : "coding now...."
                 },
                 htmlEntities : {
                     title : "HTML 实体字符"

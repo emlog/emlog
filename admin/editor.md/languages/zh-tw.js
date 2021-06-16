@@ -1,9 +1,12 @@
 (function(){
     var factory = function (exports) {
         var lang = {
-            name : "zh-tw",
+            name        : "zh-tw",
             description : "開源在線Markdown編輯器<br/>Open source online Markdown editor.",
             tocTitle    : "目錄",
+            placeholder : "使用 Markdown! 開始你的創作...",
+            weekDays    : ["日", "一", "二", "三", "四", "五", "六"],
+            wdPrefix    : "星期",//Only for Chinese! Set EMPTY for others
             toolbar     : {
                 undo             : "撤銷（Ctrl+Z）",
                 redo             : "重做（Ctrl+Y）",
@@ -82,13 +85,13 @@
                     placeholder       : "coding now...."
                 },
                 codeBlock : {
-                    title             : "添加代碼塊",                 
+                    title             : "添加代碼塊",
                     selectLabel       : "代碼語言：",
                     selectDefaultText : "請語言代碼語言",
                     otherLanguage     : "其他語言",
                     unselectedLanguageAlert : "錯誤：請選擇代碼所屬的語言類型。",
                     codeEmptyAlert    : "錯誤：請填寫代碼內容。",
-                    placeholder:      : "coding now...."
+                    placeholder       : "coding now...."
                 },
                 htmlEntities : {
                     title : "HTML實體字符"
@@ -98,13 +101,13 @@
                 }
             }
         };
-        
+
         exports.defaults.lang = lang;
     };
-    
+
 	// CommonJS/Node.js
 	if (typeof require === "function" && typeof exports === "object" && typeof module === "object")
-    { 
+    {
         module.exports = factory;
     }
 	else if (typeof define === "function")  // AMD/CMD/Sea.js
@@ -121,10 +124,10 @@
                 factory(editormd);
             });
 		}
-	} 
+	}
 	else
 	{
         factory(window.editormd);
 	}
-    
+
 })();

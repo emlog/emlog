@@ -4,7 +4,10 @@
             name : "en",
             description : "Open source online Markdown editor.",
             tocTitle    : "Table of Contents",
-            toolbar : {
+            placeholder : "Enjoy Markdown! coding now...",
+            weekDays    : ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+            wdPrefix    : "",//Only for Chinese! Set EMPTY for others
+            toolbar     : {
                 undo             : "Undo(Ctrl+Z)",
                 redo             : "Redo(Ctrl+Y)",
                 bold             : "Bold",
@@ -82,7 +85,7 @@
                     placeholder       : "coding now...."
                 },
                 codeBlock : {
-                    title             : "Code block",         
+                    title             : "Code block",
                     selectLabel       : "Languages: ",
                     selectDefaultText : "select a code language...",
                     otherLanguage     : "Other languages",
@@ -98,13 +101,13 @@
                 }
             }
         };
-        
+
         exports.defaults.lang = lang;
     };
-    
+
 	// CommonJS/Node.js
 	if (typeof require === "function" && typeof exports === "object" && typeof module === "object")
-    { 
+    {
         module.exports = factory;
     }
 	else if (typeof define === "function")  // AMD/CMD/Sea.js
@@ -121,10 +124,10 @@
                 factory(editormd);
             });
 		}
-	} 
+	}
 	else
 	{
         factory(window.editormd);
 	}
-    
+
 })();

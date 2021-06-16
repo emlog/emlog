@@ -104,7 +104,7 @@
         delay                : 300,            // Delay parse markdown to html, Uint : ms
         autoLoadModules      : true,           // Automatic load dependent module files
         watch                : true,
-        placeholder          : "Enjoy Markdown! coding now...",
+//vot   placeholder          : "Enjoy Markdown! coding now...",//"使用 Markdown! 开始你的创作...",
         gotoLine             : true,
         codeFold             : false,
         autoHeight           : false,
@@ -230,6 +230,9 @@
             name        : "zh-cn",
             description : "开源在线Markdown编辑器<br/>Open source online Markdown editor.",
             tocTitle    : "目录",
+            placeholder : "Enjoy Markdown! coding now...",//"使用 Markdown! 开始你的创作...",
+            weekDays    : ["日", "一", "二", "三", "四", "五", "六"],
+            wdPrefix    : "星期",//Only for Chinese! Set EMPTY for others
             toolbar     : {
                 undo             : "撤销（Ctrl+Z）",
                 redo             : "重做（Ctrl+Y）",
@@ -407,11 +410,13 @@
                 markdownTextarea = this.markdownTextarea = editor.children("textarea");
             }
             
-            markdownTextarea.addClass(classNames.textarea.markdown).attr("placeholder", settings.placeholder);
-            
+//vot       markdownTextarea.addClass(classNames.textarea.markdown).attr("placeholder", settings.placeholder);
+            markdownTextarea.addClass(classNames.textarea.markdown).attr("placeholder", settings.lang.placeholder);
+
             if (typeof markdownTextarea.attr("name") === "undefined" || markdownTextarea.attr("name") === "")
             {
-                markdownTextarea.attr("name", (settings.name !== "") ? settings.name : id + "-markdown-doc");
+                markdownTextarea.attr("name", (settings.name !== "") ? settings.name : id);
+//vot           markdownTextarea.attr("name", (settings.name !== "") ? settings.name : id + "-markdown-doc");
             }
             
             var appendElements = [
@@ -3901,7 +3906,7 @@
             toc                  : true,
             tocm                 : false,
             tocStartLevel        : 1,
-            tocTitle             : "目录",
+/*vot*/     tocTitle             : this.lang.tocTitle, //"目录",
             tocDropdown          : false,
             tocContainer         : "",
             markdown             : "",
@@ -4539,14 +4544,15 @@
 
             case "cn-week-day" :
             case "cn-wd" :
-                    var cnWeekDays = ["日", "一", "二", "三", "四", "五", "六"];
-                    datefmt = "星期" + cnWeekDays[weekDay];
-                break;
+//vot               var cnWeekDays = ["日", "一", "二", "三", "四", "五", "六"];
+//vot               datefmt = "星期" + cnWeekDays[weekDay];
+//vot                break;
 
             case "week-day" :
             case "wd" :
-                    var weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-                    datefmt = weekDays[weekDay];
+//vot               var weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+//vot               datefmt = weekDays[weekDay];
+                    datefmt = wdPrefix + this.lang.weekDays[weekDay];
                 break;
 
             case "day" :
