@@ -21,7 +21,7 @@ if (empty($action)) {
 	if ($photo) {
 		$imgsize = chImageSize($photo, Option::ICON_MAX_W, Option::ICON_MAX_H);
 		$token = LoginAuth::genToken();
-/*vot*/ $icon = "<img src=\"{$photo}\" width=\"{$imgsize['w']}\" height=\"{$imgsize['h']}\" class=\"rounded-circle\" /><br /><a href=\"javascript: em_confirm(0, 'avatar', '$token');\">".lang('avatar_delete')."</a>";
+/*vot*/ $icon = "<img src=\"{$photo}\" width=\"160\" height=\"160\" class=\"rounded-circle\" /><br /><a href=\"javascript: em_confirm(0, 'avatar', '$token');\">".lang('avatar_delete')."</a>";
 	} else {
 		$icon = '<img src="./views/images/avatar.svg" width="160" height="160" />';
 	}
