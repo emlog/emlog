@@ -34,6 +34,7 @@
                 emoji            : "Emoji",
                 "html-entities"  : "HTML Entities",
                 pagebreak        : "Page break",
+                "goto-line"      : "Go to line",
                 watch            : "Unwatch",
                 unwatch          : "Watch",
                 preview          : "HTML Preview (Press Shift + ESC exit)",

@@ -34,6 +34,7 @@
                 emoji            : "Emoji 表情",
                 "html-entities"  : "HTML 實體字符",
                 pagebreak        : "插入分頁符",
+                "goto-line"      : "跳轉到行",
                 watch            : "關閉實時預覽",
                 unwatch          : "開啟實時預覽",
                 preview          : "全窗口預覽HTML（按 Shift + ESC 退出）",
