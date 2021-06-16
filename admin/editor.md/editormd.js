@@ -69,8 +69,9 @@
             "bold", "del", "italic", "quote", "ucwords", "uppercase", "lowercase", "|", 
             "h1", "h2", "h3", "h4", "h5", "h6", "|", 
             "list-ul", "list-ol", "hr", "|",
-            "link", "reference-link", "image", "code", "preformatted-text", "code-block", "table", "datetime", "pagebreak", "|",
-            "goto-line", "watch", "preview", "fullscreen", "clear", "search", "|", "info"
+            "link", "reference-link", "image", "code", "preformatted-text", "code-block", "table", "datetime", "emoji", "html-entities", "pagebreak", "|",
+            "goto-line", "watch", "preview", "fullscreen", "clear", "search", "|",
+            "help", "info"
         ],
         simple : [
             "undo", "redo", "|", 
@@ -103,7 +104,7 @@
         delay                : 300,            // Delay parse markdown to html, Uint : ms
         autoLoadModules      : true,           // Automatic load dependent module files
         watch                : true,
-        placeholder          : "使用 Markdown! 开始你的创作...",
+        placeholder          : "Enjoy Markdown! coding now...",
         gotoLine             : true,
         codeFold             : false,
         autoHeight           : false,
@@ -410,7 +411,7 @@
             
             if (typeof markdownTextarea.attr("name") === "undefined" || markdownTextarea.attr("name") === "")
             {
-                markdownTextarea.attr("name", (settings.name !== "") ? settings.name : id );
+                markdownTextarea.attr("name", (settings.name !== "") ? settings.name : id + "-markdown-doc");
             }
             
             var appendElements = [
