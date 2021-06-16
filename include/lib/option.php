@@ -11,9 +11,9 @@ class Option {
 	//Version number
 	const EMLOG_VERSION = 'pro v1.0.0(dev)';
 	//Maximum avatar thumbnail width
-	const ICON_MAX_W = 200;
+	const ICON_MAX_W = 160;
 	//Maximum avatar thumbnail height
-	const ICON_MAX_H = 200;
+	const ICON_MAX_H = 160;
 	//Attachments upload path
 	const UPLOADFILE_PATH = '../content/uploadfile/';
 
