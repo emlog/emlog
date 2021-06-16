@@ -93,6 +93,9 @@
 </div>
 
 <script src="./editor.md/editormd.js?d=5.25.2021"></script>
+<? if (EMLOG_LANGUAGE !== 'zh-cn') { ?>
+<script src="./editor.md/languages/<?=EMLOG_LANGUAGE?>.js"></script>
+<? } ?>
 <script>
     $("#menu_page").addClass('active');
     checkalias();
