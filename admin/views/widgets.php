@@ -56,8 +56,7 @@
                         <div class="card-header">
                             <h2 class="mb-0">
                                 <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#tagForm" aria-expanded="false"
-                                        aria-controls="collapseThree">
-<!--vot-->                  <?=lang('tags')?>
+<!--vot-->                              aria-controls="collapseThree"><?=lang('tags')?>
                                 </button>
                                 <li class="widget-act-add"></li>
                                 <li class="widget-act-del"></li>
@@ -78,7 +77,7 @@
                         <div class="card-header">
                             <h2 class="mb-0">
 <!--vot-->                      <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#sortForm" aria-expanded="false"
-	                              aria-controls="collapseThree"><?=lang('category')?>
+	                              aria-controls="collapseThree"><?=lang('categories')?>
                                 </button>
                                 <li class="widget-act-add"></li>
                                 <li class="widget-act-del"></li>
