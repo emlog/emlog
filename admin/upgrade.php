@@ -29,7 +29,6 @@ if ($action === 'check_update') {
 	$response = $emcurl->getRespone();
 	header('Content-Type: application/json; charset=UTF-8');
 	exit($response);
-
 }
 
 if ($action === 'update' && ROLE === ROLE_ADMIN) {
@@ -40,7 +39,7 @@ if ($action === 'update' && ROLE === ROLE_ADMIN) {
 		exit('error');
 	}
 
-	$temp_file = emFecthFile(OFFICIAL_SERVICE_HOST . $source);
+	$temp_file = emFecthFile($source);
 	if (!$temp_file) {
 		exit('error_down');
 	}
@@ -64,7 +63,7 @@ if ($action === 'update' && ROLE === ROLE_ADMIN) {
 	}
 	$DB = Database::getInstance();
 	$setchar = "ALTER DATABASE `" . DB_NAME . "` DEFAULT CHARACTER SET utf8 COLLATE utf8mb4_unicode_ci;";
-	$temp_file = emFecthFile(OFFICIAL_SERVICE_HOST . $upsql);
+	$temp_file = emFecthFil($upsql);
 	if (!$temp_file) {
 		exit('error_down');
 	}
