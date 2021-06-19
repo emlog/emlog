@@ -44,9 +44,9 @@ class Register {
 		if ($emcurl->getHttpStatus() !== 200) {
 			return false;
 		}
-		$respone = $emcurl->getRespone();
-		$respone = json_decode($respone, 1);
-		if ($respone['code'] !== 200) {
+		$response = $emcurl->getRespone();
+		$response = json_decode($response, 1);
+		if ($response['code'] !== 200) {
 			$CACHE = Cache::getInstance();
 			Option::updateOption('emkey', '');
 			$CACHE->updateCache('options');

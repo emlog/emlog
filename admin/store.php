@@ -19,8 +19,8 @@ if (empty($action)) {
 	if ($retStatus !== MSGCODE_SUCCESS) {
 		emDirect("./store.php?action=error&error=1");
 	}
-	$respone = $emcurl->getRespone();
-	$ret = json_decode($respone, 1);
+	$response = $emcurl->getRespone();
+	$ret = json_decode($response, 1);
 	if (empty($ret)) {
 		emDirect("./store.php?action=error&error=1");
 	}

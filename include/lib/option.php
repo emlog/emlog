@@ -5,14 +5,12 @@
  */
 
 class Option {
-	//版本编号
-	const EMLOG_VERSION = 'pro v1.0.0(dev)';
-	//头像缩略图最大宽
-	const ICON_MAX_W = 160;
-	//头像缩略图最大高
-	const ICON_MAX_H = 160;
-	//附件上传路径
-	const UPLOADFILE_PATH = '../content/uploadfile/';
+
+	const EMLOG_VERSION = 'pro v1.0.0(dev)';         //版本编号
+	const EMLOG_VERSION_TIMESTAMP = 1621425948;      //版本时间戳
+	const ICON_MAX_W = 160;                          //头像缩略图最大宽
+	const ICON_MAX_H = 160;                          //头像缩略图最大高
+	const UPLOADFILE_PATH = '../content/uploadfile/';//附件上传路径
 
 	static function get($option) {
 		$CACHE = Cache::getInstance();
@@ -48,10 +46,8 @@ class Option {
 	static function getAll() {
 		$CACHE = Cache::getInstance();
 		$options_cache = $CACHE->readCache('options');
-
 		$options_cache['site_title'] = $options_cache['site_title'] ? $options_cache['site_title'] : $options_cache['blogname'];
 		$options_cache['site_description'] = $options_cache['site_description'] ? $options_cache['site_description'] : $options_cache['bloginfo'];
-
 		return $options_cache;
 	}
 
