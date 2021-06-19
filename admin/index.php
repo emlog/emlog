@@ -20,6 +20,10 @@ if (empty($action)) {
 	$mysql_ver = $DB->getMysqlVersion();
 	$php_ver = PHP_VERSION;
 
+	if (function_exists("curl_init")) {
+		$php_ver .= '，curl';
+	}
+
 	include View::getView('header');
 	require_once(View::getView('index'));
 	include View::getView('footer');

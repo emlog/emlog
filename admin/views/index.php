@@ -37,19 +37,19 @@
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            服务器软件环境
-                            <span>PHP<?php echo $php_ver; ?>， MySQL<?php echo $mysql_ver; ?>，<?php echo $serverapp; ?></span>
+                            PHP
+                            <span><?php echo $php_ver; ?></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            服务器软件环境
-                            <span>PHP<?php echo $php_ver; ?>， MySQL<?php echo $mysql_ver; ?>，<?php echo $serverapp; ?></span>
+                            MySQL
+                            <span><?php echo $mysql_ver; ?></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            服务器软件环境
-                            <span>PHP<?php echo $php_ver; ?>， MySQL<?php echo $mysql_ver; ?>，<?php echo $serverapp; ?></span>
+                            Web Server
+                            <span><?php echo $serverapp; ?></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            EMLOG版本
+                            EMLOG
 							<?php if (ISREG === false) : ?>
                                 <a href="register.php"><span class="badge badge-danger"><?php echo Option::EMLOG_VERSION; ?> 未注册, 点击去注册</span></a>
 							<?php else: ?>
