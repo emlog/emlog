@@ -78,7 +78,7 @@ if ($action === 'update' && ROLE === ROLE_ADMIN) {
 		$value = str_replace("{db_prefix}", DB_PREFIX, trim($value));
 		if (preg_match("/\;$/i", $value)) {
 			$query .= $value;
-			$DB->query($query);
+			$DB->query($query, 1);
 			$query = '';
 		} else {
 			$query .= $value;

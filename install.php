@@ -338,7 +338,7 @@ option_id INT( 11 ) UNSIGNED NOT NULL auto_increment COMMENT '站点配置信息
 option_name VARCHAR( 255 ) NOT NULL COMMENT '配置项',
 option_value LONGTEXT NOT NULL COMMENT '配置项值',
 PRIMARY KEY (option_id),
-KEY option_name (option_name)
+UNIQUE KEY `option_name_uindex` (`option_name`)
 )" . $table_charset_sql . "
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('blogname','EMLOG');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('bloginfo','使用emlog搭建的站点');
