@@ -119,7 +119,7 @@
                     } else if (result.code == 1002) {
                         $("#upmsg").html("已是最新版本").removeClass();
                     } else if (result.code == 200) {
-                        $("#upmsg").html("有可用的新版本 " + result.data.ver + "，更新之前请做好数据备份工作，<a id=\"doup\" href=\"javascript:doup('" + result.data.file + "','" + result.data.sql + "');\">现在更新</a>").removeClass();
+                        $("#upmsg").html("有可用的新版本 " + result.data.version + "，更新之前请做好数据备份工作，<a id=\"doup\" href=\"javascript:doup('" + result.data.file + "','" + result.data.sql + "');\">现在更新</a>").removeClass();
                     } else {
                         $("#upmsg").html("检查失败，可能是网络问题").removeClass();
                     }
