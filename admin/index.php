@@ -33,7 +33,7 @@ if ($action === 'get_news') {
 		header('Content-Type: application/json; charset=UTF-8');
 		exit('{"result":"fail"}');
 	}
-	$respone = $emcurl->getRespone();
+	$response = $emcurl->getRespone();
 	header('Content-Type: application/json; charset=UTF-8');
-	exit($respone);
+	exit($response);
 }

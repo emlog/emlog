@@ -12,22 +12,24 @@
 require_once 'globals.php';
 
 if ($action === 'check_update') {
-
 	$emcurl = new EmCurl();
 	$emcurl->setPost([
-		'emkey' => Option::get('emkey'),
-		'ver' => Option::EMLOG_VERSION,
+		'emkey'     => Option::get('emkey'),
+		'version'   => Option::EMLOG_VERSION,
+		'timestamp' => Option::EMLOG_VERSION_TIMESTAMP,
 	]);
+
 	$emcurl->request(OFFICIAL_SERVICE_HOST . 'service/upgrade');
 	$retStatus = $emcurl->getHttpStatus();
 	if ($retStatus !== 200) {
 		header('Content-Type: application/json; charset=UTF-8');
 		exit('{"result":"fail"}');
-	} else {
-		$respone = $emcurl->getRespone();
-		header('Content-Type: application/json; charset=UTF-8');
-		exit($respone);
 	}
+
+	$response = $emcurl->getRespone();
+	header('Content-Type: application/json; charset=UTF-8');
+	exit($response);
+
 }
 
 if ($action === 'update' && ROLE === ROLE_ADMIN) {
