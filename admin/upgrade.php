@@ -62,12 +62,14 @@ if ($action === 'update' && ROLE === ROLE_ADMIN) {
 		exit('succ');
 	}
 	$DB = Database::getInstance();
+	$setchar = "ALTER DATABASE `" . DB_NAME . "` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;";
 	$temp_file = emFecthFile($upsql);
 	if (!$temp_file) {
 		exit('error_down');
 	}
 	$sql = file($temp_file);
 	@unlink($temp_file);
+	array_unshift($sql, $setchar);
 	$query = '';
 	foreach ($sql as $value) {
 		if (!$value || $value[0] == '#') {
