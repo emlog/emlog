@@ -63,7 +63,7 @@ if ($action === 'update' && ROLE === ROLE_ADMIN) {
 	}
 	$DB = Database::getInstance();
 	$setchar = "ALTER DATABASE `" . DB_NAME . "` DEFAULT CHARACTER SET utf8 COLLATE utf8mb4_unicode_ci;";
-	$temp_file = emFecthFil($upsql);
+	$temp_file = emFecthFile($upsql);
 	if (!$temp_file) {
 		exit('error_down');
 	}
