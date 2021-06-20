@@ -147,7 +147,7 @@ class Option {
 /*vot*/			'blogger'     => lang('blogger'),
 /*vot*/			'calendar'    => lang('calendar'),
 /*vot*/			'tag'         => lang('tags'),
-/*vot*/			'sort'        => lang('category'),
+/*vot*/			'sort'        => lang('categories'),
 /*vot*/			'archive'     => lang('archive'),
 /*vot*/			'newcomm'     => lang('new_comments'),
 /*vot*/			'newlog'      => lang('new_posts'),
