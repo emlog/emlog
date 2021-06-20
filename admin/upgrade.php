@@ -12,22 +12,23 @@
 require_once 'globals.php';
 
 if ($action === 'check_update') {
-
 	$emcurl = new EmCurl();
 	$emcurl->setPost([
-		'emkey' => Option::get('emkey'),
-		'ver' => Option::EMLOG_VERSION,
+		'emkey'     => Option::get('emkey'),
+		'version'   => Option::EMLOG_VERSION,
+		'timestamp' => Option::EMLOG_VERSION_TIMESTAMP,
 	]);
+
 	$emcurl->request(OFFICIAL_SERVICE_HOST . 'service/upgrade');
 	$retStatus = $emcurl->getHttpStatus();
 	if ($retStatus !== 200) {
 		header('Content-Type: application/json; charset=UTF-8');
 		exit('{"result":"fail"}');
-	} else {
-		$respone = $emcurl->getRespone();
-		header('Content-Type: application/json; charset=UTF-8');
-		exit($respone);
 	}
+
+	$response = $emcurl->getRespone();
+	header('Content-Type: application/json; charset=UTF-8');
+	exit($response);
 }
 
 if ($action === 'update' && ROLE === ROLE_ADMIN) {
@@ -38,7 +39,7 @@ if ($action === 'update' && ROLE === ROLE_ADMIN) {
 		exit('error');
 	}
 
-	$temp_file = emFecthFile(OFFICIAL_SERVICE_HOST . $source);
+	$temp_file = emFecthFile($source);
 	if (!$temp_file) {
 		exit('error_down');
 	}
@@ -61,8 +62,8 @@ if ($action === 'update' && ROLE === ROLE_ADMIN) {
 		exit('succ');
 	}
 	$DB = Database::getInstance();
-	$setchar = "ALTER DATABASE `" . DB_NAME . "` DEFAULT CHARACTER SET utf8 COLLATE utf8mb4_unicode_ci;";
-	$temp_file = emFecthFile(OFFICIAL_SERVICE_HOST . $upsql);
+	$setchar = "ALTER DATABASE `" . DB_NAME . "` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;";
+	$temp_file = emFecthFile($upsql);
 	if (!$temp_file) {
 		exit('error_down');
 	}
@@ -77,7 +78,7 @@ if ($action === 'update' && ROLE === ROLE_ADMIN) {
 		$value = str_replace("{db_prefix}", DB_PREFIX, trim($value));
 		if (preg_match("/\;$/i", $value)) {
 			$query .= $value;
-			$DB->query($query);
+			$DB->query($query, 1);
 			$query = '';
 		} else {
 			$query .= $value;

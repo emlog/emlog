@@ -10,7 +10,7 @@ class EmCurl {
 	protected $_postFields;
 	protected $_referer = BLOG_URL;
 
-	protected $_respone;
+	protected $_response;
 	protected $_includeHeader;
 	protected $_noBody;
 	protected $_status;
@@ -78,7 +78,7 @@ class EmCurl {
 		curl_setopt($s, CURLOPT_USERAGENT, $this->_useragent);
 		curl_setopt($s, CURLOPT_REFERER, $this->_referer);
 
-		$this->_respone = curl_exec($s);
+		$this->_response = curl_exec($s);
 		$this->_status = curl_getinfo($s, CURLINFO_HTTP_CODE);
 		curl_close($s);
 	}
@@ -88,6 +88,6 @@ class EmCurl {
 	}
 
 	public function getRespone() {
-		return $this->_respone;
+		return $this->_response;
 	}
 }
