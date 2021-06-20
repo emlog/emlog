@@ -4,15 +4,14 @@
  * @package EMLOG (www.emlog.net)
  */
 
-/*vot*/ define('EMLOG_ROOT', str_replace('\\','/',__DIR__));
+/*vot*/ define('EMLOG_LANGUAGE','en'); //sc, tc, en, ru, etc.
+/*vot*/ define('EMLOG_LANGUAGE_DIR','ltr'); //ltr, rtl 
+
+/*vot*/ const EMLOG_ROOT = str_replace('\\','/',__DIR__);
 const DEL_INSTALLER = 0;
 
 require_once EMLOG_ROOT . '/include/lib/function.base.php';
 
-/*vot*/ define('EMLOG_LANGUAGE','en'); //sc, tc, en, ru, etc.
-/*vot*/ define('EMLOG_LANGUAGE_DIR','ltr'); //ltr, rtl 
-
-/*vot*/ load_language('core');
 /*vot*/ load_language('install');
 
 header('Content-Type: text/html; charset=UTF-8');
@@ -415,7 +414,7 @@ CREATE TABLE {$db_prefix}link (
   id int(11) unsigned NOT NULL auto_increment COMMENT 'Link table',
   sitename varchar(255) NOT NULL default '' COMMENT 'Name',
   siteurl varchar(255) NOT NULL default '' COMMENT 'URL',
-  description varchar(255) NOT NULL default '' COMMENT 'Description',
+  description varchar(512) NOT NULL default '' COMMENT 'Description',
   hide enum('n','y') NOT NULL default 'n' COMMENT 'Hide or not',
   taxis int(11) unsigned NOT NULL default '0' COMMENT 'Sort order',
   PRIMARY KEY  (id)

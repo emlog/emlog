@@ -4,6 +4,10 @@
  * Basic Function library
  * @package EMLOG (www.emlog.net)
  */
+
+// Load the core Lang File
+/*vot*/ load_language('core');
+
 function emAutoload($class) {
 	$class = strtolower($class);
 	if (file_exists(EMLOG_ROOT . '/include/model/' . $class . '.php')) {
@@ -59,7 +63,7 @@ function getBlogUrl() {
 }
 
 /**
- * Get the current access base url
+ * Get the currently visited base url
  */
 function realUrl() {
 	static $real_url = NULL;
@@ -99,7 +103,7 @@ function realUrl() {
 }
 
 /**
- * Check Plugin
+ * Check plugin
  */
 function checkPlugin($plugin) {
 	if (is_string($plugin) && preg_match("/^[\w\-\/]+\.php$/", $plugin) && file_exists(EMLOG_ROOT . '/content/plugins/' . $plugin)) {
@@ -130,7 +134,7 @@ function emLoadJQuery() {
 }
 
 /**
- * Validate email address format
+ * Verify email address format
  */
 function checkMail($email) {
 	if (preg_match("/^[\w\.\-]+@\w+([\.\-]\w+)*\.\w+$/", $email) && strlen($email) <= 60) {
@@ -141,7 +145,7 @@ function checkMail($email) {
 }
 
 /**
- * Get utf8 substring
+ * Substring encoded as utf8
  *
  * @param string $strings Preprocessed string
  * @param int $start Start position, eg:0
@@ -398,7 +402,7 @@ function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = 
 }
 
 function uploadFileAjax($fileName, $errorNum, $tmpFile, $fileSize) {
-	$isthum = Option::get('isthumbnail') === 'y'; //是否生成缩略图
+/*vot*/	$isthum = Option::get('isthumbnail') === 'y'; //Whether to generate thumbnails
 	$fileName = Database::getInstance()->escape_string($fileName);
 	$type = Option::getAttType();
 
@@ -406,30 +410,30 @@ function uploadFileAjax($fileName, $errorNum, $tmpFile, $fileSize) {
 	$success = 0;
 	switch ($result) {
 		case '100':
-			$message = '文件大小超过系统' . ini_get('upload_max_filesize') . '限制';
+/*vot*/		$message = lang('file_size_exceeds_system') . ini_get('upload_max_filesize') . lang('_limit');
 			break;
 		case '101':
 		case '104':
-			$message = '上传文件失败,错误码：' . $errorNum;
+/*vot*/		$message = lang('upload_failed_error_code') . $errorNum;
 			break;
 		case '102':
-			$message = '错误的文件类型';
+/*vot*/		$message = lang('file_type_not_supported');
 			break;
 		case '103':
 			$ret = changeFileSize(Option::getAttMaxSize());
-			$message = "文件大小超出{$ret}的限制";
+/*vot*/		$message = lang('file_size_exceeds_') . $ret . lang('_of_limit');
 			break;
 		case '105':
-			$message = '上传失败。文件上传目录(content/uploadfile)不可写';
+/*vot*/		$message = lang('upload_folder_unwritable');
 			break;
 		default:
-			$message = '上传成功';
+/*vot*/		$message = lang('upload_ok');
 			$success = 1;
 			break;
 	}
 
 	return [
-		'success'   => $success,
+		'success'   => $success, // 1 success, 0 failure
 		'message'   => $message,
 		'url'       => $success ? $result['file_path'] : '',
 		'file_info' => $success ? $result : [],
@@ -1182,6 +1186,3 @@ function dump($data, $name = '')
     echo $buf;
     echo "</pre>\n";
 }
-
-// Load the core Lang File
-/*vot*/ load_language('core');

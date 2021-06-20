@@ -4,14 +4,11 @@
  * @package EMLOG (www.emlog.net)
  */
 
-// Load the core Lang File
-/*vot*/ load_language('core');
-
 class Option {
 
 	const EMLOG_VERSION = 'pro v1.0.0(dev)';         //Version number
 	const EMLOG_VERSION_TIMESTAMP = 1621425948;      //Version timestamp
-	const ICON_MAX_W = 160;                          //Maximum avatar thumbnai
+	const ICON_MAX_W = 160;                          //Maximum avatar thumbnail width
 	const ICON_MAX_H = 160;                          //Maximum avatar thumbnail height
 	const UPLOADFILE_PATH = '../content/uploadfile/';//Attachments upload path
 
@@ -141,7 +138,7 @@ class Option {
 	static function getAttMaxSize() {
 		return self::get('att_maxsize') * 1024;
 	}
-	
+
 	/**
 	 * Get widget module title
 	 */
