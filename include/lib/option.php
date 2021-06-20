@@ -8,14 +8,12 @@
 /*vot*/ load_language('core');
 
 class Option {
-	//Version number
-	const EMLOG_VERSION = 'pro v1.0.0(dev)';
-	//Maximum avatar thumbnail width
-	const ICON_MAX_W = 160;
-	//Maximum avatar thumbnail height
-	const ICON_MAX_H = 160;
-	//Attachments upload path
-	const UPLOADFILE_PATH = '../content/uploadfile/';
+
+	const EMLOG_VERSION = 'pro v1.0.0(dev)';         //Version number
+	const EMLOG_VERSION_TIMESTAMP = 1621425948;      //Version timestamp
+	const ICON_MAX_W = 160;                          //Maximum avatar thumbnai
+	const ICON_MAX_H = 160;                          //Maximum avatar thumbnail height
+	const UPLOADFILE_PATH = '../content/uploadfile/';//Attachments upload path
 
 	static function get($option) {
 		$CACHE = Cache::getInstance();
@@ -51,10 +49,8 @@ class Option {
 	static function getAll() {
 		$CACHE = Cache::getInstance();
 		$options_cache = $CACHE->readCache('options');
-
 		$options_cache['site_title'] = $options_cache['site_title'] ? $options_cache['site_title'] : $options_cache['blogname'];
 		$options_cache['site_description'] = $options_cache['site_description'] ? $options_cache['site_description'] : $options_cache['bloginfo'];
-
 		return $options_cache;
 	}
 
