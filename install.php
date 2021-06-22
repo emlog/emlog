@@ -335,7 +335,7 @@ CREATE TABLE {$db_prefix}comment (
 DROP TABLE IF EXISTS {$db_prefix}options;
 CREATE TABLE {$db_prefix}options (
 option_id INT( 11 ) UNSIGNED NOT NULL auto_increment COMMENT '站点配置信息表',
-option_name VARCHAR( 255 ) NOT NULL COMMENT '配置项',
+option_name VARCHAR( 75 ) NOT NULL COMMENT '配置项',
 option_value LONGTEXT NOT NULL COMMENT '配置项值',
 PRIMARY KEY (option_id),
 UNIQUE KEY `option_name_uindex` (`option_name`)

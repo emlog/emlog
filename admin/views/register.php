@@ -17,7 +17,7 @@
             <p class="lead text-danger mb-4">抱歉！您的emlog pro尚未完成注册， 完成注册来解锁emlog pro的全部功能</p>
             <p><a href="<?php echo OFFICIAL_SERVICE_HOST; ?>register" target="_blank">去获取注册码&rarr; </a></p>
             <hr>
-            <a href="#" class="btn btn-sm btn-success shadow-lg" data-toggle="modal" data-target="#exampleModal">好的，现在开始注册</a>
+            <a href="#" class="btn btn-sm btn-success shadow-lg" data-toggle="modal" data-target="#exampleModal">开始注册</a>
         </div>
     </div>
 <?php else: ?>
