@@ -29,7 +29,14 @@ www.emlog.net
 
 https://www.emlog.net/download
 
+## Environment requirements
+* PHP7.0 and above
+* MySQL5.6 and above
 
+## Installation Notes
+1. Upload all the decompressed files to the web root directory of the server or virtual host, or upload the zip compression package and decompress it online.
+2. Visit the pre-resolved domain name on the browser, the program will automatically jump to the emlog installation page, just follow the prompts to install.
+3. The installation process will not create a database, you need to create it in advance, click to confirm the installation, the installation is successful.
 
 ## Main contributor
 <a href="https://github.com/emlog" target="_blank">
@@ -54,5 +61,3 @@ https://www.emlog.net/download
 
 ## Software License
 The license under which Emlog software is released is GPLv3 (or higher) of the Free Software Foundation: [LICENSE](/license.txt)
-
-
