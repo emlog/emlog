@@ -1,6 +1,6 @@
 # Emlog
 
-Emlog是一款基于PHP和MySQL的功能强大的博客及CMS建站系统，追求快速、稳定、简单、舒适的建站体验。
+emlog是一款基于PHP和MySQL的功能强大的博客及CMS建站系统，追求快速、稳定、简单、舒适的建站体验。
 
 
 ## 功能简介
@@ -29,7 +29,14 @@ www.emlog.net
 
 https://www.emlog.net/download
 
+## 环境要求
+* PHP7.0及以上
+* MySQL5.6及以上
 
+## 安装说明
+1. 将解压后的所有文件上传到服务器或者虚拟主机的web根目录，也可以将zip压缩包上传后在线解压。
+2. 在浏览器上访问事先解析好的域名，程序会自动跳转到emlog安装页面，按照提示安装即可。
+3. 安装过程不会创建数据库，需要您事先创建好 ,点击确认安装，安装成功。
 
 ## 主要贡献者
 <a href="https://github.com/emlog" target="_blank">
@@ -54,5 +61,3 @@ https://www.emlog.net/download
 
 ## 软件授权许可证（License）
 发布Emlog软件所依据的许可证是自由软件基金会的GPLv3(或更高版本)：[LICENSE](/license.txt)
-
-
