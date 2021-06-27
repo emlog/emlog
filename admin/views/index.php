@@ -82,8 +82,7 @@
                         <div>1、一键升级，获得来自官方的安全和功能更新。</div>
                         <div>2、解锁扩展商店，获得更多模板和插件。</div>
                         <div>3、解除使用限制和所有未注册提示。</div>
-                        <div>4、加入官方社群，和开发者以及更多emer一起学习成长。</div>
-                        <div>5、"投我以桃，报之以李"，支持我们把emlog做的更好。</div>
+                        <div>4、"投我以桃，报之以李"，支持我们把emlog做的更好。</div>
                     </div>
                     <div class="card-footer text-center">
                         <a href="register.php" class="btn btn-sm btn-success shadow-lg">现在去注册</a>
