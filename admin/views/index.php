@@ -9,22 +9,22 @@
     <div class="row">
         <div class="col-lg-6 mb-4">
             <div class="card shadow mb-4">
-<!--vot-->  <h6 class="card-header"><?= lang('site_info') ?></h6>
+<!--vot-->      <h6 class="card-header"><?= lang('site_info') ?></h6>
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
-<!--vot-->          <li class="list-group-item d-flex justify-content-between align-items-center"><?=lang('posts')?>
+<!--vot-->              <li class="list-group-item d-flex justify-content-between align-items-center"><?=lang('posts')?>
                             <a href="./article.php"><span class="badge badge-primary badge-pill"><?php echo $sta_cache['lognum']; ?></span></a>
                         </li>
-<!--vot-->          <li class="list-group-item d-flex justify-content-between align-items-center"><?=lang('drafts')?>
+<!--vot-->              <li class="list-group-item d-flex justify-content-between align-items-center"><?=lang('drafts')?>
                             <a href="./article.php?draft=1"><span class="badge badge-primary badge-pill"><?php echo $sta_cache['draftnum']; ?></span></a>
                         </li>
-<!--vot-->          <li class="list-group-item d-flex justify-content-between align-items-center"><?=lang('comments')?>
+<!--vot-->              <li class="list-group-item d-flex justify-content-between align-items-center"><?=lang('comments')?>
                             <a href="./comment.php"><span class="badge badge-primary badge-pill"><?php echo $sta_cache['comnum_all']; ?></span></a>
                         </li>
-<!--vot-->          <li class="list-group-item d-flex justify-content-between align-items-center"><?=lang('pending_review')?>
+<!--vot-->              <li class="list-group-item d-flex justify-content-between align-items-center"><?=lang('pending_review')?>
                             <a href="./comment.php?hide=y"><span class="badge badge-warning badge-pill"><?php echo $sta_cache['hidecomnum']; ?></span></a>
                         </li>
-<!--vot-->          <li class="list-group-item d-flex justify-content-between align-items-center"><?=lang('user_num')?>
+<!--vot-->              <li class="list-group-item d-flex justify-content-between align-items-center"><?=lang('user_num')?>
                             <a href="./user.php"><span class="badge badge-warning badge-pill"><?php echo count($user_cache); ?></span></a>
                         </li>
                     </ul>
@@ -49,15 +49,15 @@
                             <span><?php echo $serverapp; ?></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            EMLOG
+<!--vot-->                  <?=lang('emlog_version')?>:
 							<?php if (ISREG === false) : ?>
-<!--vot-->              <a href="register.php"><span class="badge badge-danger"><?php echo Option::EMLOG_VERSION; ?> <?=lang('unregistered')?></span></a>
+<!--vot-->                      <a href="register.php"><span class="badge badge-danger"><?php echo Option::EMLOG_VERSION; ?> <?=lang('unregistered')?></span></a>
 							<?php else: ?>
-<!--vot-->              <span class="badge badge-success"><?php echo Option::EMLOG_VERSION; ?> <?=lang('registered_already')?></span>
+<!--vot-->                      <span class="badge badge-success"><?php echo Option::EMLOG_VERSION; ?> <?=lang('registered_already')?></span>
 							<?php endif; ?>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center small">
-<!--vot-->              <a id="ckup" href="javascript:checkupdate();"><?=lang('update_check')?></a>
+<!--vot-->                  <a id="ckup" href="javascript:checkupdate();"><?=lang('update_check')?></a>
                             <span id="upmsg"></span>
                         </li>
                     </ul>
@@ -68,7 +68,7 @@
     <div class="row">
         <div class="col-lg-6 mb-4">
             <div class="card shadow mb-4">
-                <h6 class="card-header">官方消息</h6>
+<!--vot-->      <h6 class="card-header"><?= lang('official_news') ?></h6>
                 <div class="card-body" id="admindex_msg">
                     <ul class="list-group list-group-flush"></ul>
                 </div>
@@ -78,15 +78,14 @@
 			<?php if (ISREG === false) : ?>
                 <div class="card bg-danger text-white shadow">
                     <div class="card-body">
-<!--vot-->      <h4><?=lang('emlog_reg_advantages')?></h4>
+<!--vot-->          <h4><?=lang('emlog_reg_advantages')?></h4>
 <!--vot-->      <div><?=lang('advantage1')?></div>
 <!--vot-->      <div><?=lang('advantage2')?></div>
 <!--vot-->      <div><?=lang('advantage3')?></div>
 <!--vot-->      <div><?=lang('advantage4')?></div>
-<!--vot-->      <div><?=lang('advantage5')?></div>
                     </div>
                     <div class="card-footer text-center">
-<!--vot-->      <a href="register.php" class="btn btn-sm btn-success shadow-lg"><?=lang('register_now')?></a>
+<!--vot-->              <a href="register.php" class="btn btn-sm btn-success shadow-lg"><?=lang('register_now')?></a>
                     </div>
                 </div>
 			<?php endif; ?>
@@ -115,32 +114,32 @@
             $.get("./upgrade.php?action=check_update",
                 function (result) {
                     if (result.code == 1001) {
-/*vot*/             $("#upmsg").html("<?=lang('emlog_unregistered')?>, <a href=\"register.php\"><?=lang('go_to_register')?></a>").removeClass();
+/*vot*/                 $("#upmsg").html("<?=lang('emlog_unregistered')?>, <a href=\"register.php\"><?=lang('go_to_register')?></a>").removeClass();
                     } else if (result.code == 1002) {
-/*vot*/             $("#upmsg").html("<?=lang('updates_no')?> ").removeClass();
+/*vot*/                 $("#upmsg").html("<?=lang('updates_no')?> ").removeClass();
                     } else if (result.code == 200) {
-/*vot*/             $("#upmsg").html("<?=lang('update_exists')?> " + result.data.ver + ", <?=lang('backup_before_update')?>, <a id=\"doup\" href=\"javascript:doup('" + result.data.file + "','" + result.data.sql + "');\"><?=lang('update_now')?></a>").removeClass();
+/*vot*/                 $("#upmsg").html("<?=lang('update_exists')?> " + result.data.version + ", <?=lang('backup_before_update')?>, <a id=\"doup\" href=\"javascript:doup('" + result.data.file + "','" + result.data.sql + "');\"><?=lang('update_now')?></a>").removeClass();
                     } else {
-/*vot*/             $("#upmsg").html("<?=lang('update_check_failed')?>").removeClass();
+/*vot*/              $("#upmsg").html("<?=lang('update_check_failed')?>").removeClass();
                     }
                 });
         }
 
         function doup(source, upsql) {
-/*vot*/ $("#upmsg").html("<?=lang('updating')?>").addClass("ajaxload");
+/*vot*/     $("#upmsg").html("<?=lang('updating')?>").addClass("ajaxload");
             $.get('./upgrade.php?action=update&source=' + source + "&upsql=" + upsql,
                 function (data) {
                     $("#upmsg").removeClass();
                     if (data.match("succ")) {
-/*vot*/             $("#upmsg").html('<?=lang('update_completed')?>');
+/*vot*/                 $("#upmsg").html('<?=lang('update_completed')?>');
                     } else if (data.match("error_down")) {
-/*vot*/             $("#upmsg").html('<?=lang('update_download_failed')?>');
+/*vot*/                 $("#upmsg").html('<?=lang('update_download_failed')?>');
                     } else if (data.match("error_zip")) {
-/*vot*/             $("#upmsg").html('<?=lang('update_extract_failed')?>');
+/*vot*/                 $("#upmsg").html('<?=lang('update_extract_failed')?>');
                     } else if (data.match("error_dir")) {
-/*vot*/             $("#upmsg").html('<?=lang('update_failed_nonwritable')?>');
+/*vot*/                 $("#upmsg").html('<?=lang('update_failed_nonwritable')?>');
                     } else {
-/*vot*/             $("#upmsg").html('<?=lang('update_failed')?>');
+/*vot*/                 $("#upmsg").html('<?=lang('update_failed')?>');
                     }
                 });
         }
