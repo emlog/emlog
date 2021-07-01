@@ -119,11 +119,11 @@
 					<?php
 					if ($medias):
 						foreach ($medias as $key => $value):
-							$media_url = BLOG_URL . substr($value['filepath'], 3);
+							$media_url = getFileUrl($value['filepath']);
 							$media_name = $value['filename'];
 							if (isImage($value['filepath'])) {
 								$imgpath = $value['thum_filepath'] ?? $value['filepath'];
-								$media_icon_imgurl = BLOG_URL . substr($imgpath, 3);
+								$media_icon_imgurl = getFileUrl($imgpath);
 							} else {
 								$media_icon_imgurl = "./views/images/fnone.png";
 							}
