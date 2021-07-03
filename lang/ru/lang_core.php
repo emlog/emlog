@@ -99,7 +99,7 @@ $lang = array(
 //---------------------------------------
 //include/lib/mysqlpdo.php
 'pdo_not_supported'		=> 'Server PHP does not support PDO function',//'服务器空间PHP不支持PDO函数',
-'pdo_connect_error'		=> 'Failed to connect to the database, please check the database information. Error message: '//'连接数据库失败，请检查数据库信息。错误原因：',
+'pdo_connect_error'		=> 'Failed to connect to the database, please check the database information. Error message: ',//'连接数据库失败，请检查数据库信息。错误原因：',
 
 //---------------------------
 //content/templates/default/404.php
