@@ -2,6 +2,8 @@
 header("location: ./install.php");exit;
 //mysql database address
 define('DB_HOST','127.0.0.1');
+//mysql port
+define('DB_PORT',3306);
 //mysql database user
 define('DB_USER','root');
 //database password
