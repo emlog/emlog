@@ -37,7 +37,7 @@ if ($action === 'bakstart') {
 		'user'
 	];
 
-	$bakfname = 'emlog_' . date('Ymd') . '_' . substr(md5(AUTH_KEY . uniqid()), 0, 18);
+	$bakfname = 'emlog_' . date('Ymd') . '_' . substr(md5(AUTH_KEY . uniqid('', true)), 0, 18);
 	$filename = '';
 	$sqldump = '';
 
