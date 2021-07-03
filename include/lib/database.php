@@ -10,6 +10,8 @@ class Database {
 	public static function getInstance() {
 		if (class_exists('mysqli', FALSE)) {
 			return MySqlii::getInstance();
+		} elseif (class_exists('pdo', false)) {
+			return Mysqlpdo::getInstance();
 		} else {
 /*vot*/	 emMsg(lang('php_mysql_not_supported'));
 		}
