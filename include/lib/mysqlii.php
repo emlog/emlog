@@ -39,32 +39,7 @@ class MySqlii {
 		@$this->conn = new mysqli(DB_HOST, DB_USER, DB_PASSWD, DB_NAME);
 
 		if ($this->conn->connect_error) {
-			switch ($this->conn->connect_errno) {
-				case 1044:
-				case 1045:
-/*vot*/			 emMsg(lang('db_credential_error'));
-					break;
-
-				case 1049:
-/*vot*/			 emMsg(lang('db_not_found'));
-					break;
-
-				case 2003:
-/*vot*/			 emMsg(lang('db_port_invalid'));
-					break;
-
-				case 2005:
-/*vot*/			 emMsg(lang('db_unavailable'));
-					break;
-
-				case 2006:
-/*vot*/			 emMsg(lang('db_server_unavailable'));
-					break;
-
-				default :
 /*vot*/			 emMsg(lang('db_error_code') . $this->conn->connect_errno);
-					break;
-			}
 		}
 
 		$this->conn->set_charset('utf8mb4');
@@ -74,7 +49,7 @@ class MySqlii {
 	 * Static method that returns the database connection instance
 	 */
 	public static function getInstance() {
-		if (self::$instance == null) {
+		if (self::$instance === null) {
 			self::$instance = new MySqlii();
 		}
 

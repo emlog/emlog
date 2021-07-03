@@ -236,6 +236,15 @@ function getFileSuffix($fileName) {
 }
 
 /**
+ * 将相对路径转换为完整URL，eg：../content/uploadfile/xxx.jpeg
+ * @param $filePath
+ * @return string
+ */
+function getFileUrl($filePath) {
+	return BLOG_URL . substr($filePath, 3);
+}
+
+/**
  * Check if the file is an image, based on the file name extension
  */
 function isImage($fileName) {
@@ -435,7 +444,7 @@ function uploadFileAjax($fileName, $errorNum, $tmpFile, $fileSize) {
 	return [
 		'success'   => $success, // 1 success, 0 failure
 		'message'   => $message,
-		'url'       => $success ? $result['file_path'] : '',
+		'url'       => $success ? getFileUrl($result['file_path']) : '',
 		'file_info' => $success ? $result : [],
 	];
 }

@@ -55,12 +55,12 @@
         <li class="nav-item" id="menu_cm">
 <!--vot-->  <a class="nav-link" href="comment.php"><i class="icofont-comment"></i><span><?= lang('comments') ?></span></a>
         </li>
+        <li class="nav-item" id="menu_media">
+            <a class="nav-link" href="media.php"><i class="icofont-image"></i><span>资源</span></a>
+        </li>
 		<?php if (ROLE == ROLE_ADMIN): ?>
             <li class="nav-item" id="menu_page">
 <!--vot-->      <a class="nav-link" href="page.php"><i class="icofont-page"></i><span><?= lang('pages') ?></span></a>
-            </li>
-            <li class="nav-item" id="menu_media">
-<!--vot-->      <a class="nav-link" href="media.php"><i class="icofont-image"></i><span><?= lang('resources') ?></span></a>
             </li>
             <li class="nav-item" id="menu_category_view">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_view" aria-expanded="true" aria-controls="menu_view">
