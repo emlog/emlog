@@ -39,32 +39,7 @@ class MySqlii {
 		@$this->conn = new mysqli(DB_HOST, DB_USER, DB_PASSWD, DB_NAME);
 
 		if ($this->conn->connect_error) {
-			switch ($this->conn->connect_errno) {
-				case 1044:
-				case 1045:
-					emMsg("连接数据库失败，数据库用户名或密码错误");
-					break;
-
-				case 1049:
-					emMsg("连接数据库失败，未找到您填写的数据库");
-					break;
-
-				case 2003:
-					emMsg("连接数据库失败，数据库端口错误");
-					break;
-
-				case 2005:
-					emMsg("连接数据库失败，数据库地址错误或者数据库服务器不可用");
-					break;
-
-				case 2006:
-					emMsg("连接数据库失败，数据库服务器不可用");
-					break;
-
-				default :
-					emMsg("连接数据库失败，请检查数据库信息。错误编号：" . $this->conn->connect_errno);
-					break;
-			}
+			emMsg("连接数据库失败，请检查数据库信息。错误编号：" . $this->conn->connect_errno);
 		}
 
 		$this->conn->set_charset('utf8mb4');
@@ -74,7 +49,7 @@ class MySqlii {
 	 * 静态方法，返回数据库连接实例
 	 */
 	public static function getInstance() {
-		if (self::$instance == null) {
+		if (self::$instance === null) {
 			self::$instance = new MySqlii();
 		}
 
