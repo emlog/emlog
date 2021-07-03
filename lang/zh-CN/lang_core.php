@@ -97,6 +97,11 @@ $lang = array(
  'db_error_name'		=> '连接数据库失败，请填写数据库名',//'Database connection error:  Please fill out the database name',
 // 'db_sql_error'		=> 'SQL语句执行错误',//'SQL statement execution error',
 
+//---------------------------------------
+//include/lib/mysqlpdo.php
+'pdo_not_supported'		=> '服务器空间PHP不支持PDO函数',//'Server PHP does not support PDO function',
+'pdo_connect_error'		=> '连接数据库失败，请检查数据库信息。错误原因：',//'Failed to connect to the database, please check the database information. Error message: ',
+
 //---------------------------
 //content/templates/default/404.php
  '404_error'		=> '错误提示-页面未找到',//'Error - page not found.',

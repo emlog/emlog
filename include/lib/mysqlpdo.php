@@ -31,7 +31,7 @@ class Mysqlpdo {
 
 	private function __construct() {
 		if (!class_exists('PDO')) {
-			emMsg('服务器空间PHP不支持PDO函数');
+/*vot*/		emMsg(lang('pdo_not_supported'));
 		}
 
 		try {
@@ -43,7 +43,7 @@ class Mysqlpdo {
 
 			$this->conn = $dbh;
 		} catch (PDOException $e) {
-			emMsg("连接数据库失败，请检查数据库信息。错误原因：" . $e->getMessage());
+/*vot*/		emMsg(lang('pdo_connect_error' . $e->getMessage());
 		}
 
 	}
@@ -78,10 +78,10 @@ class Mysqlpdo {
 			$this->result = $this->conn->query($sql);
 			$this->queryCount++;
 			if (!$ignore_err && 1046 == $this->geterrno()) {
-				emMsg("连接数据库失败，请填写数据库名");
+/*vot*/			emMsg(lang('db_error_name');
 			}
 			if (!$ignore_err && !$this->result) {
-				emMsg("SQL语句执行错误: {$sql}<br />" . $this->geterror());
+/*vot*/			emMsg(lang('db_sql_error') . ": {$sql}<br />" . $this->geterror());
 			} else {
 				return $this->result;
 			}
