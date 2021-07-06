@@ -285,8 +285,10 @@ textarea {
     position:absolute;
     cursor:text;
 }
-#advset {
-    display:none;
+.advset_hidden {
+    opacity: 0;
+    visibility: hidden;
+    margin-top: -762.5px;
 }
 #post_bar {
     margin:5px 0px;
