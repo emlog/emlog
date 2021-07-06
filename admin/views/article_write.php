@@ -156,6 +156,8 @@
 
 <script src="./editor.md/editormd.js?d=5.25.2021"></script>
 <script>
+    var icon_tog;//如果值为true，则“高级选项”箭头向右
+
     $("#alias").keyup(function () {
         checkalias();
     });
@@ -163,8 +165,14 @@
     $("#menu_category_content").addClass('active');
     $("#menu_content").addClass('show');
     $("#menu_write").addClass('active');
-
-    $("#advset").css('display', Cookies.get('em_advset') ? Cookies.get('em_advset') : '');
+    
+    if(Cookies.get('em_advset')=="hidden"){
+        icon_tog = true;
+        displayToggle('advset', 1);
+    }else{
+        icon_tog = false;
+        $(".icofont-simple-right").attr("class","icofont-simple-down");
+    }
 
     var Editor, Editor_summary;
     $(function () {
