@@ -6,11 +6,11 @@
 <?php if (isset($_GET['error_param'])): ?>
 <!--vot--><div class="alert alert-danger"><?=lang('install_failed')?></div><?php endif; ?>
 <?php if (isset($_GET['error_down'])): ?>
-<!--vot--><div class="alert alert-danger"><?=lang('install_failed')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('install_failed_download')?></div><?php endif; ?>
 <?php if (isset($_GET['error_dir'])): ?>
-<!--vot--><div class="alert alert-danger"><?=lang('install_failed')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('install_failed_write')?></div><?php endif; ?>
 <?php if (isset($_GET['error_zip'])): ?>
-<!--vot--><div class="alert alert-danger"><?=lang('install_failed')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('install_failed_zip')?></div><?php endif; ?>
 <?php if (isset($_GET['error_source'])): ?>
 <!--vot--><div class="alert alert-danger"><?=lang('install_invalid_ext')?></div><?php endif; ?>
 

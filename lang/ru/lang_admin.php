@@ -619,9 +619,9 @@ $lang = array(
 //admin/views/store.php
  'install_ok'		=> 'Successful installation',//'安装成功',
  'install_failed'	=> 'Installation failed',//'安装失败',
-// 'install_failed'	=> 'Installation failed',//'安装失败',
-// 'install_failed'	=> 'Installation failed',//'安装失败',
-// 'install_failed'	=> 'Installation failed',//'安装失败',
+ 'install_failed_download'	=> 'Installation failed, unable to download the installation package',//'安装失败，无法下载安装包',
+ 'install_failed_write'	=> 'Installation failed, unable to write file',//'安装失败，无法写入文件',
+ 'install_failed_zip'	=> 'Installation failed, zip decompression is not supported',//'安装失败，不支持zip解压',
  'install_invalid_ext'	=> 'Installation failed, installation package have invalid extension',//'安装失败，不是有效的扩展安装包',
  'store_unavailable'	=> 'The store is temporarily unavailable, it may be a network problem',//'商店暂不可用，可能是网络问题',
 // 'back_home'		=> 'Back to home',//'返回首页',
