@@ -7,6 +7,7 @@ $lang = array(
  'php_required'		=> 'Для нормальной работы Emlog требуется PHP5+.',//'For normal functioning Emlog requires PHP5 or higher',//'您的php版本过低，请选用支持PHP5的环境安装emlog。',
  'installation'		=> 'Установка Emlog v.',//'Install Emlog v.',//'安装程序emlog ',
  'mysql_settings'	=> 'Параметры MySQL',//'MySQL数据库设置',
+ 'mysql_required'	=> 'Для установки Emlog требуется поддержка MySQL 5.5 и выше.',//'您的MySQL版本过低，请选用支持MySQL5.5及以上的环境安装emlog。',
  'db_hostname'		=> 'Имя хосты БД',//'数据库地址',
  'db_hostname_info'	=> '(по умолчанию: localhost/127.0.0.1)',//'(通常为 localhost/127.0.0.1， 不必修改)',
  'db_user'		=> 'Пользователь БД',//'数据库用户名',

@@ -49,7 +49,6 @@ $lang = array(
 //---------------------------
 //admin/views/comment_edit.php
  'comment_edit'		=> 'Edit comment',//'编辑评论',
-// 'commentator'	=> 'Commentator',//'评论人',
  'email'		=> 'E-mail',//'电子邮件',
  'home_page'		=> 'Home Page',//'主页',
  'comment_content'	=> 'Comment content',//'评论内容',
@@ -70,7 +69,7 @@ $lang = array(
 //include/controller/comment_controller.php
  'comment_error_comment_disabled'	=> 'Comment error: The comments for this entry has been closed.',//'评论失败：该文章已关闭评论',
  'comment_error_content_exists'		=> 'Comment error: The same content already exists.',//'评论失败：已存在相同内容评论',
- 'comment_error_flood_control'		=> 'Comment error: You must wait before sending another comment.',//'评论失败：您提交评论的速度太快了，请稍后再发表评论',
+ 'comment_error_flood_control'		=> 'Comment error: You must wait some time before sending another comment.',//'评论失败：您写评论的速度太快了，请稍后再试',
  'comment_error_name_enter'		=> 'Comment error: Please, enter your name.',//'评论失败：请填写姓名',
  'comment_error_name_invalid'		=> 'Comment error: Name does not meet requirements.',//'评论失败：姓名不符合规范',
  'comment_error_email_invalid'		=> 'Comment error: E-mail address does not meet requirements.',//'评论失败：邮件地址不符合规范',

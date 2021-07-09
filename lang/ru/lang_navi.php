@@ -41,7 +41,7 @@ $lang = array(
  'order_change'		=> 'Change order',//'改变排序',
 // 'nav_edit'		=> 'Edit navigation',//'编辑导航',
  'nav_add_custom'	=> 'Add custom navigation',//'添加自定义导航',
-// 'id'			=> 'ID',//'序号',,
+// 'id'			=> 'ID',//'序号',
  'nav_name'		=> 'Navigation Name',//'导航名称',
  'nav_url_http'		=> 'Address (with http)',//'地址(带http)',
  'no'			=> 'No',//'无',
@@ -60,7 +60,7 @@ $lang = array(
 //admin/views/naviedit.php
  'nav_modify'		=> 'Modify navigation',//'修改导航',
 // 'nav_name'		=> 'Navigation Name',//'导航名称',
- 'nav_address'		=> 'Navigation address',//'导航地址，','导航地址,'
+ 'nav_address'		=> 'Navigation address',//'导航地址',
 // 'open_new_win'	=> 'Open in new window',//'在新窗口打开',
 // 'no'			=> 'No',//'无',
 // 'save'		=> 'Save',//'保 存',

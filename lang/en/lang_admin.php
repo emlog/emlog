@@ -611,7 +611,7 @@ $lang = array(
  'alias_prompt'		=> 'Used for friendly display of URL, optional',//'用于URL的友好显示，可不填',
  'category_parent'	=> 'Parent category',//'父分类',
  'submit'		=> 'Submit',//'提交',
- 'category_add'		=> 'Add Category',//'添加分类',//'添加分类+',
+ 'category_add'		=> 'Add Category',//'添加分类',
  'tag_add'		=> 'Add Tag',//'新建标签',
 
 //---------------------------

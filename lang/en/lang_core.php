@@ -4,7 +4,7 @@ $lang = array(
 
 //---------------------------
 //include/lib/cache.php
- 'cache_date_format'	=> 'Y-m',//'Y年n月',
+ 'cache_date_format'	=> 'm.Y',//'Y年n月',
  'cache_read_error'	=> 'Cache read failed. If you are using a Unix/Linux host, modify the permissions of the cache directory (content/cache) and all the folders inside it to 777. If you are using a Windows host, please contact the administrator, and make all files under this directory writeable.',//'读取缓存失败。如果您使用的是Unix/Linux主机，请修改缓存目录 (content/cache) 下所有文件的权限为777。如果您使用的是Windows主机，请联系管理员，将该目录下所有文件设为可写',
  'cache_not_writable'	=> 'The cache directory (content/cache) is not writable.',//'写入缓存失败，缓存目录 (content/cache) 不可写',
 
@@ -32,7 +32,7 @@ $lang = array(
  'about_'	=> '~ ',//'约 ',
  '_hour_ago'	=> ' hour(s) ago.',//' 小时前',
  'file_size_exceeds_system'	=> 'File size exceeds the system limit ',//'文件大小超过系统 ',
- '_limit'			=> '',//' limit',//LEAVE THIS EMPTY???//'限制',
+ '_limit'			=> '',//' limit',//'限制',//LEAVE THIS EMPTY???
  'upload_failed_error_code'	=> 'Upload failed. Error code: ',//'上传文件失败,错误码: ',
  'file_type_not_supported'	=> 'This file type is not supported.',//'错误的文件类型',
  'file_size_exceeds_'		=> 'File size exceeds the limit ',//'文件大小超出',
@@ -42,6 +42,7 @@ $lang = array(
  '404_description'		=> 'Sorry, the page that you requested does not exist.',//'抱歉，你所请求的页面不存在！',
  'prompt'			=> 'Prompt Message',//'提示信息',
  'click_return'			=> 'Return back',//'点击返回',
+ 'upload_ok'			=> 'Upload successful',//'上传成功',
 
 //---------------------------
 //include/lib/loginauth.php
@@ -50,7 +51,7 @@ $lang = array(
  'user_name_wrong_reenter'	=> 'Wrong username. Please, re-enter.',//'用户名错误，请重新输入',
  'password_wrong_reenter'	=> 'Wrong password. Please, re-enter.',//'密码错误，请重新输入',
 // 'no_permission'		=> 'Insufficient permissions!',//'权限不足！',
- 'token_error'			=> 'token error','Token error',
+ 'token_error'			=> 'Token error',
 
 //---------------------------
 //include/lib/option.php
@@ -119,7 +120,7 @@ $lang = array(
 // 'subscribe_category'	=> 'Subscribe this category',//'订阅该分类',
  'view_image'		=> 'View image',//'查看图片',
  'more'			=> 'More &raquo;',//'更多&raquo;',
- 'site_management'	=> 'Management',//'管理',
+ 'site_management'	=> 'Site management',//'管理',
  'logout'		=> 'Logout',//'退出',
  'top_posts'		=> 'Top entries',//'置顶文章',
  'cat_top_posts'	=> 'Category Top entries',//'分类置顶文章',
@@ -133,7 +134,7 @@ $lang = array(
  'comment_leave'	=> 'Leave a comment',//'发表评论',
  'nickname'		=> 'Nicname',//'昵称',
  'email_optional'	=> 'E-Mail adress (optional)',//'邮件地址 (选填)',
- 'email'		=> 'E-Mail adress',//'邮件地址',
+ 'email'		=> 'E-Mail address',//'邮件地址',
  'homepage'		=> 'Homepage',//'个人主页',
  'homepage_optional'	=> 'Homepage (optional)',//'个人主页 (选填)',
  'comment_leave'	=> 'Post a comment',//'发布评论',

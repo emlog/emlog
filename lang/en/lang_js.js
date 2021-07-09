@@ -16,7 +16,7 @@ var LNG = {
  'plugin_reset_sure'	: 'Are you sure you want to restore default plugin settings? This operation will lose your custom plugin configuration.',//'你确定要恢复组件设置到初始状态吗？这样会丢失你自定义的组件。',
  'plugin_del_sure'	: 'Are you sure you want to delete this plugin?',//'你确定要删除该插件吗？',
  'title_empty'		: 'Title can not be empty',//'标题不能为空',
- 'alis_link_error'	: 'Link Alias error',//'链接别名错误',
+ 'alias_link_error'	: 'Link Alias error',//'链接别名错误',
  'alias_invalid_chars'	: 'Alias should contain only latin letters, numbers, underscores and dashes',//'别名错误，应由字母、数字、下划线、短横线组成',
  'alias_digital'	: 'Alias cannot contain numbers only',//'别名错误，不能为纯数字',
  'alias_format_must_be'	: 'Invalid alias. It can not contain \'post\' or \'post-digits\'',//'别名错误，不能为\'post\'或\'post-数字\'',

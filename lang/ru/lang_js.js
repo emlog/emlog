@@ -24,10 +24,10 @@ var LNG = {
  'wysiwyg_switch'		: 'Please, switch to WYSIWYG mode',//'请先切换到所见所得模式',
  'click_view_fullsize'		: 'Click to view full size',//'点击查看原图',
 // 'wysiwyg_switch'		: 'Please, switch to WYSIWYG mode',//'请先切换到所见所得模式',
- 'alis_link_error_not_saved'	: 'Invalid Link Alias. Can not be saved automatically.',//'链接别名错误，自动保存失败',
- 'saving'		: 'Saving',//'正在保存',
+ 'alias_link_error_not_saved'	: 'Invalid Link Alias. Can not be saved automatically.',//'链接别名错误，自动保存失败',
 // 'saving'		: 'Saving',//'正在保存',
- 'saved_ok_time'	: 'Successfully saved at ',//'成功保存于',
+ 'saving'		: 'Saving...',//'正在保存中...',
+ 'saved_ok_time'	: 'Saved at ',//'保存于：',
  'save_system_error'	: 'Error while saving... Unable to save.',//'网络或系统出现异常...保存可能失败',
 
 //---------------------------

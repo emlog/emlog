@@ -13,7 +13,7 @@ $lang = array(
  'time'			=> '时间',//'Time',
  'author'		=> '作者',//'Author',
  'no'			=> '无',//'No',
-
+                                   
 //---------------------------
 //content/templates/default/log_list.php
 // 'user'		=> '作者',//'User',
