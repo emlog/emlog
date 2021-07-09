@@ -178,10 +178,11 @@ $lang = array(
  'choose_file'		=> '选择文件上传...',//'Choose a file for upload...',
  'tags_have'		=> '已有标签+',//'Have tags+',
  'post_tags_separated'	=> '文章标签，使用逗号分隔',//'Post tags, separated by commas',
- 'resource_library'	=> '最近上传的资源',//'Recent uploads',
- 'no_resources'		=> '没有资源可以使用',//'No resources available',
+ 'resource_library'	=> '图文资源',//'Graphic resources',
+ 'no_resources'		=> '暂无可用资源',//'No resources available',
  'file_insert'		=> '插入文件',//'Insert file',
  'img_insert'		=> '插入图片',//'Insert image',
+ 'go_upload'		=> '去上传',//'Go Upload',
 
 //---------------------------
 //admin/views/admin_page.php

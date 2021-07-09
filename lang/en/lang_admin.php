@@ -29,8 +29,8 @@ $lang = array(
 
 //---------------------------
 //admin/data.php
- 'backup_directory_not_writable'	=> 'The backup failed. The backup directory (content/backup) is not writable',//'备份失败。备份目录(content/backup)不可写',
- 'backup_create_file_error'	=> 'Failed to create backup file. The backup directory (content/backup) is not writable',//'创建备份文件失败。备份目录(content/backup)不可写',
+ 'backup_directory_not_writable'	=> 'Backup failed. Backup directory (content/backup) is not writable.',//'备份失败。备份目录(content/backup)不可写',
+ 'backup_create_file_error'	=> 'Failed to create backup file. Backup directory (content/backup) is not writable.',//'创建备份文件失败。备份目录(content/backup)不可写',
  'backup_empty' 		=> 'There is nothing in the backup data',//'数据表没有任何内容',
  'file_not_exists'		=> 'File does not exist',//'文件不存在',
  'import_only_emlog'		=> 'You can import only emlog SQL backup file',//'只能导入emlog备份的SQL文件',
@@ -156,7 +156,7 @@ $lang = array(
  'move_to_category'	=> 'Move to category',//'移动到分类',
  'change_author'	=> 'Change the author',//'更改作者为',
  'have'			=> 'Have ',//'有',
- 'number_of_items'	=> ' ',//LEAVE THIS EMPTY! It is just a number of "Items", "Pieces", etc..//'篇',
+ 'number_of_items'	=> ' ',//'篇',//LEAVE THIS EMPTY! It is just a number of "Items", "Pieces", etc..
  'draft'		=> 'Draft',//'草稿',
 // 'drafts'		=> 'drafts',//'草稿',
  'article'		=> 'article',//'文章',
@@ -178,10 +178,11 @@ $lang = array(
  'choose_file'		=> 'Choose a file for upload...',//'选择文件上传...',
  'tags_have'		=> 'Have tags+',//'已有标签+',
  'post_tags_separated'	=> 'Post tags, separated by commas',//'文章标签，使用逗号分隔',
- 'resource_library'	=> 'Recent uploads',//'最近上传的资源',
- 'no_resources'		=> 'No resources available',//'没有资源可以使用',
+ 'resource_library'	=> 'Graphic resources',//'图文资源',
+ 'no_resources'		=> 'No resources available',//'暂无可用资源',
  'file_insert'		=> 'Insert file',//'插入文件',
  'img_insert'		=> 'Insert image',//'插入图片',
+ 'go_upload'		=> 'Go Upload',//'去上传',
 
 //---------------------------
 //admin/views/admin_page.php
@@ -334,8 +335,8 @@ $lang = array(
  'compress_zip'			=> 'Compress to zip format',//'压缩成zip包',
  'backup_file_name'		=> 'Backup file name',//'备份文件名',
  'backup_start'			=> 'Start Backup',//'开始备份',
- 'backup_version_tip'		=> 'Only the database backup files of the same emlog version can be imported, and the database table prefix must be consistent. <br/>Current database table prefix: ',//'仅可导入相同版本emlog的数据库备份文件，且数据库表前缀需保持一致。<br/>当前数据库表前缀：',
- 'cache_update_info'		=> 'Cache can speed up the loading speed of the site, usually the system will automatically update the cache. Special circumstances need to be updated manually, such as: cache files have been modified, the database has been manually modified, the page is abnormal, etc.',//'缓存可以加快站点的加载速度，通常系统会自动更新缓存。特殊情况需要手动更新，如：缓存文件被修改、手动修改过数据库、页面出现异常等。',
+ 'backup_version_tip'		=> 'You can import only the same emlog version database backup files, and the database table prefix must be the same.<br>Current database table prefix: ',//'仅可导入相同版本emlog的数据库备份文件，且数据库表前缀需保持一致。<br/>当前数据库表前缀：',
+ 'cache_update_info'		=> 'Caching can speed up the site loading speed. Usually the system will automatically update the cache, no manual operation required. But in some special cases, such as the cache file or the database were modified manually, and so the page appears abnormal, it is only need to update the cache manually.',//'缓存可以加快站点的加载速度，通常系统会自动更新缓存。特殊情况需要手动更新，如：缓存文件被修改、手动修改过数据库、页面出现异常等。',
  'cache_update'			=> 'Update the cache',//'更新缓存',
  'backup_file_select'		=> 'Please select the backup file you want to operate',//'请选择要操作的备份文件',
  'backup_delete_sure'		=> 'Are you sure you want to delete the selected backup files? ',//'你确定要删除所选备份文件吗？',
@@ -480,7 +481,7 @@ $lang = array(
  'login'		=> 'Login',//'登录',
  'user_name'		=> 'User name',//'用户名',
  'password'		=> 'Password',//'密码',
- 'remember_me'		=> 'Remember Me',//'记住我',
+ 'remember_me'		=> 'Remember Me',//'记住登录状态',
  'log_in'		=> ' Log in ',//' 登 录 ',
  'back_home'		=> 'Back to home',//'返回首页',
  'password_forget'	=> 'Forgot Password?',//'忘记密码?',
