@@ -9,9 +9,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name=renderer content=webkit>
 <!--vot--><title><?=lang('admin_center')?> - <?php echo Option::get('blogname'); ?></title>
-    <link rel="stylesheet" href="./views/css/style.css?d=5.25.2021"/>
-    <link rel="stylesheet" href="./editor.md/css/editormd.css?d=5.25.2021"/>
-    <link href="./views/css/bootstrap-sbadmin-4.5.3.css" rel="stylesheet">
+    <link rel="stylesheet" href="./views/css/style.css?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"/>
+    <link rel="stylesheet" href="./editor.md/css/editormd.css?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"/>
+    <link href="./views/css/bootstrap-sbadmin-4.5.3.css?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>" rel="stylesheet">
     <link href="./views/css/css-main.css" type=text/css rel=stylesheet>
     <link href="./views/css/icofont/icofont.min.css" type=text/css rel=stylesheet>
     <link href="./views/css/dropzone.css" type=text/css rel=stylesheet>
@@ -19,8 +19,8 @@
     <script src="./views/js/bootstrap.bundle.min.4.6.js"></script>
     <script src="./views/js/jquery-ui.min.js"></script>
     <script src="./views/js/js.cookie-2.2.1.min.js"></script>
-    <script src="./views/js/common.js"></script>
-<!--vot--><script>var em_lang = '<?= EMLOG_LANGUAGE ?>';</script>
+    <script src="./views/js/common.js?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
+<!--vot--><script>/*vot*/	var em_lang = '<?= EMLOG_LANGUAGE ?>';</script>
 <!--vot--><script src="<?= BLOG_URL ?>/lang/<?= EMLOG_LANGUAGE ?>/lang_js.js"></script>
 	<?php doAction('adm_head'); ?>
 </head>
@@ -32,9 +32,9 @@
         </li>
         <hr class="sidebar-divider my-0">
 		<?php if (ROLE == ROLE_ADMIN): ?>
-        <li class="nav-item" id="menu_home">
-<!--vot-->  <a class="nav-link" href="./"><i class="icofont-dashboard icofont-1x"></i><span><?= lang('admincp') ?></span></a>
-        </li>
+            <li class="nav-item" id="menu_home">
+<!--vot-->      <a class="nav-link" href="./"><i class="icofont-dashboard icofont-1x"></i><span><?= lang('admincp') ?></span></a>
+            </li>
 		<?php endif; ?>
         <hr class="sidebar-divider my-0">
         <li class="nav-item" id="menu_category_content">
@@ -56,7 +56,7 @@
 <!--vot-->  <a class="nav-link" href="comment.php"><i class="icofont-comment"></i><span><?= lang('comments') ?></span></a>
         </li>
         <li class="nav-item" id="menu_media">
-            <a class="nav-link" href="media.php"><i class="icofont-image"></i><span>资源</span></a>
+<!--vot-->  <a class="nav-link" href="media.php"><i class="icofont-image"></i><span><?= lang('resources') ?></span></a>
         </li>
 		<?php if (ROLE == ROLE_ADMIN): ?>
             <li class="nav-item" id="menu_page">
@@ -64,7 +64,7 @@
             </li>
             <li class="nav-item" id="menu_category_view">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_view" aria-expanded="true" aria-controls="menu_view">
-<!--vot-->          <i class="icofont-paint"></i><span>外观</span><span><?= lang('exterior') ?></span>
+<!--vot-->          <i class="icofont-paint"></i><span><?= lang('exterior') ?></span>
                 </a>
                 <div id="menu_view" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -81,7 +81,7 @@
             </li>
             <li class="nav-item" id="menu_category_sys">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_sys" aria-expanded="true" aria-controls="menu_sys">
-<!--vot-->          <i class="icofont-options"></i><span>系统</span><span><?=lang('system')?></span>
+<!--vot-->          <i class="icofont-options"></i><span><?=lang('system')?></span>
                 </a>
                 <div id="menu_sys" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
