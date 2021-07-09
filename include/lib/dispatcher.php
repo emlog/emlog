@@ -33,14 +33,12 @@ class Dispatcher {
 	 */
 	private $_path = NULL;
 
-	public static function getInstance() {
-		if (self::$_instance == null) {
-			self::$_instance = new Dispatcher();
-			return self::$_instance;
-		} else {
-			return self::$_instance;
-		}
-	}
+    public static function getInstance() {
+        if (!self::$_instance instanceof self) {
+            self::$_instance = new self();
+        }
+        return self::$_instance;
+    }
 
 	private function __construct() {
 		$this->_path = $this->setPath();

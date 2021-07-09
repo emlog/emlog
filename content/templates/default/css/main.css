@@ -23,6 +23,10 @@ a:focus, a:hover {
     color: #5a5c69
 }
 
+img{
+    max-width: 100%
+}
+
 blockquote {
     font-style: italic;
     color: #868e96
@@ -145,7 +149,7 @@ footer .copyright {
 }
 
 .pagination span {
-    padding: 5.5px 15px 3px 15px;
+    padding: 5.5px 10px 3px 10px;
     border: 1px solid;
     margin: 0 5px;
     border-radius: 8px;
@@ -154,7 +158,7 @@ footer .copyright {
 
 .pagination a {
     color: #c0bcbc;
-    padding: 5.5px 15px 3px 15px;
+    padding: 5.5px 10px 3px 10px;
     border: 1px solid;
     margin: 0 5px;
     border-radius: 8px
@@ -166,7 +170,7 @@ footer .copyright {
 }
 
 #pagenavi span {
-    padding: 5.5px 9px 5px 9px;
+    padding: 4.5px 9px 4px 9px;
     border: 2px solid;
     margin: 0 5px;
     border-radius: 10px;
@@ -175,7 +179,7 @@ footer .copyright {
 
 #pagenavi a {
     color: #c0bcbc;
-    padding: 5.5px 9px 5px 9px;
+    padding: 4.5px 9px 4px 9px;
     font-family: serif,monospace;
     border: 1px solid;
     margin: 0 5px;
@@ -285,8 +289,8 @@ footer .copyright {
     width: 100%;
     border: 1px #d6d6d6 solid;
     font-size: small;
-    border-radius: 10px;
-    height: 140px;
+    border-radius: 10px 10px 0 0;
+    height: 130px;
     resize: none
 }
 
@@ -331,17 +335,16 @@ footer .copyright {
 
 .comment .avatar {
     float: left;
-    margin: 5px
+    margin: 5px 4px
 }
 
 .comment .comment-info {
-    float: right;
-    width: 93%;
     background: #f7f7f7;
     padding: 12px;
     padding-bottom: 5px;
     border-radius: 10px;
-    margin-top: 9px
+    margin-top: 9px;
+    margin-left: 58px
 }
 
 .arrow {
@@ -370,8 +373,7 @@ footer .copyright {
 }
 
 .comment-children {
-    width: 95%;
-    margin: auto;
+    margin: 20px 10px 20px 20px;
     clear: both;
     border: none;
     padding: 0
@@ -655,7 +657,7 @@ body {
 }
 
 .bloginfo_cache {
-    margin-top: 25px;
+    margin-top: 20px;
     margin-bottom: 15px;
     color: #929292
 }
@@ -672,7 +674,7 @@ body {
 
 .tags {
     border: 1px dashed #a1a1a1;
-    padding: 3px 6px;
+    padding: 1px 6px;
     border-radius: 8px
 }
 
@@ -791,7 +793,7 @@ body {
 .prev_Log {
     margin: 3px 0px;
     float: left;
-    padding: 6px;
+    padding: 6px 6px 4px 6px;
     font-size: medium;
     border: 1px solid rgba(0, 0, 0, .1);
     border-radius: 50rem
@@ -800,7 +802,7 @@ body {
 .next_Log {
     margin: 3px 0px;
     float: right;
-    padding: 6px;
+    padding: 6px 6px 4px 6px;
     font-size: medium;
     border: 1px solid rgba(0, 0, 0, .1);
     border-radius: 50rem
@@ -852,13 +854,12 @@ body {
 
 .form-control:focus {
     box-shadow: unset;
-    border-color: #ced4da;
-    background-color: #f9f9f99c
+    border-color: #ced4da
 }
 
 .com_info {
     width: auto;
-    margin-top: -9px
+    margin-top: -1px
 }
 
 .com_control {
@@ -889,10 +890,10 @@ body {
     border-radius: 10px;
 }
 
- 
-img{
-    max-width: 100%
+.nav-item .list-menu {
+    border-bottom: 1px solid #f1f1f1;
 }
+
 
 @media all and (max-width: 1200px) and (min-width: 992px) {
     .col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto {
@@ -919,15 +920,6 @@ img{
     .col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto {
         padding-right: 13px;
         padding-left: 13px
-    }
-    
-    .arrow {
-        position: absolute;
-        margin-left: -1px;
-        margin-top: -37px;
-        border-width: 13px;
-        border-style: solid;
-        border-color: transparent transparent #f7f7f7 transparent
     }
 
     body {
@@ -1045,11 +1037,6 @@ img{
         margin-bottom: 1.5rem
     }
 
-    .pagination { 
-        line-height: 40px;
-        display: contents
-    }
-    
     .pagination:after {
         content: "";
         margin-bottom: 20px;
@@ -1072,6 +1059,7 @@ img{
     
     .comment .comment-info {
         float: left;
+        margin-left: unset;
         width: 100%
     }
     
@@ -1086,5 +1074,42 @@ img{
     #pagenavi {
     line-height: 45px
     }
+
+
+    .arrow {
+        position: absolute;
+        margin-left: -1px;
+        margin-top: -37px;
+        border-width: 13px;
+        border-style: solid;
+        border-color: transparent transparent #f7f7f7 transparent
+    }
+
+    .comment-post #comment {
+        border-radius:0;
+    }
+
+    .comment-post input {
+        width: 100%
+    }
+
+    #comment-place {
+        margin-bottom: 80px
+    }
+
+    .com_control {
+        border:1px solid #ced4da;
+        border-radius: 0px !important;
+        margin-top: 10px
+    }
+
+    .com_mail {
+        margin-bottom: 10px;
+    }
+
+    .comment .comment-post {
+        height: 385px;
+    }
+    
     
 }

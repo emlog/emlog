@@ -79,12 +79,14 @@ function hideActived() {
 }
 
 function displayToggle(id, keep) {
-    $("#" + id).toggle();
+    $("#" + id).toggleClass(id+"_hidden");
+    icon_tog?$(".icofont-simple-right").attr("class","icofont-simple-down"):$(".icofont-simple-down").attr("class","icofont-simple-right");
+    icon_tog=!icon_tog;
     if (keep == 1) {
-        Cookies.set('em_' + id, $("#" + id).css('display'), {expires: 365})
+        Cookies.set('em_' + id, $("#" + id).css('visibility'), {expires: 365})
     }
     if (keep == 2) {
-        Cookies.set('em_' + id, $("#" + id).css('display'))
+        Cookies.set('em_' + id, $("#" + id).css('visibility'))
     }
 }
 
