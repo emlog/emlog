@@ -15,7 +15,7 @@ if (PHP_VERSION < '7.0') {
 	emMsg('PHP版本过低，请选择支持PHP7及以上的环境安装');
 }
 
-$act = isset($_GET['action']) ? $_GET['action'] : '';
+$act = $_GET['action'] ?? '';
 
 if (!$act) {
 	?>
@@ -47,9 +47,9 @@ if (!$act) {
             }
 
             .logo {
-                background: url(admin/views/images/logo.gif) no-repeat center;
-                padding: 30px 0px 30px 0px;
-                margin: 30px 0px;
+                background: url(admin/views/images/logo.png) no-repeat center;
+                padding: 50px 0px 50px 0px;
+                margin: 0px 0px;
             }
 
             .title {
