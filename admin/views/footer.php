@@ -13,6 +13,6 @@
 </div>
 </div>
 <?php doAction('adm_footer'); ?>
-<script src="./views/js/sb-admin-2.min.js"></script>
+<script src="./views/js/sb-admin-2.min.js?d=7.10.2021"></script>
 </body>
 </html>
