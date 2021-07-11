@@ -169,7 +169,7 @@ class LoginAuth {
 		}
 
 		$cookie_elements = explode('|', $cookie);
-		if (count($cookie_elements) != 3) {
+		if (count($cookie_elements) !== 3) {
 			return false;
 		}
 
@@ -182,7 +182,7 @@ class LoginAuth {
 		$key = self::emHash($username . '|' . $expiration);
 		$hash = hash_hmac('md5', $username . '|' . $expiration, $key);
 
-		if ($hmac != $hash) {
+		if ($hmac !== $hash) {
 			return false;
 		}
 
@@ -197,14 +197,15 @@ class LoginAuth {
 	 * 生成token，防御CSRF攻击
 	 */
 	public static function genToken() {
-		$token_cookie_name = 'EM_TOKENCOOKIE_' . md5(substr(AUTH_KEY, 16, 32) . UID);
-		if (isset($_COOKIE[$token_cookie_name])) {
+		$token_cookie_name = 'EM_TOKENCOOKIE_' . sha1(AUTH_KEY . UID);
+
+		if (!empty($_COOKIE[$token_cookie_name])) {
 			return $_COOKIE[$token_cookie_name];
-		} else {
-			$token = md5(getRandStr(16));
-			setcookie($token_cookie_name, $token, 0, '/');
-			return $token;
 		}
+
+		$token = sha1(getRandStr(16));
+		setcookie($token_cookie_name, $token, 0, '/');
+		return $token;
 	}
 
 	/**
@@ -212,7 +213,7 @@ class LoginAuth {
 	 */
 	public static function checkToken() {
 		$token = isset($_REQUEST['token']) ? addslashes($_REQUEST['token']) : '';
-		if ($token != self::genToken()) {
+		if ($token !== self::genToken()) {
 			emMsg('权限不足，token error');
 		}
 	}
