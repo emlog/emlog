@@ -161,12 +161,11 @@
     $("#menu_category_content").addClass('active');
     $("#menu_content").addClass('show');
     $("#menu_write").addClass('active');
-
+	
+    icon_tog = false;
     if (Cookies.get('em_advset') == "hidden") {
-        icon_tog = true;
         displayToggle('advset', 1);
-    } else {
-        icon_tog = false;
+    } else {        
         $(".icofont-simple-right").attr("class", "icofont-simple-down");
     }
 
