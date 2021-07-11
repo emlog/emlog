@@ -232,19 +232,19 @@ EOT;
 	}
 	$config = "<?php\n"
 		. "//mysql database address\n"
-		. "define('DB_HOST','$db_host');"
+		. "const DB_HOST = '$db_host';"
 		. "\n//mysql database user\n"
-		. "define('DB_USER','$db_user');"
+		. "const DB_USER = '$db_user';"
 		. "\n//database password\n"
-		. "define('DB_PASSWD','$db_pw');"
+		. "const DB_PASSWD = '$db_pw';"
 		. "\n//database name\n"
-		. "define('DB_NAME','$db_name');"
+		. "const DB_NAME = '$db_name';"
 		. "\n//database prefix\n"
-		. "define('DB_PREFIX','$db_prefix');"
+		. "const DB_PREFIX = '$db_prefix';"
 		. "\n//auth key\n"
-		. "define('AUTH_KEY','" . getRandStr(32) . md5($_SERVER['HTTP_USER_AGENT']) . "');"
+		. "const AUTH_KEY = '" . getRandStr(32) . md5($_SERVER['HTTP_USER_AGENT']) . "';"
 		. "\n//cookie name\n"
-		. "define('AUTH_COOKIE_NAME','EM_AUTHCOOKIE_" . getRandStr(32, false) . "');"
+		. "const AUTH_COOKIE_NAME = 'EM_AUTHCOOKIE_" . getRandStr(32, false) . "';"
 		. "\n";
 
 	$fp = @fopen('config.php', 'w');
