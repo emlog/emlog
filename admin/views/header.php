@@ -11,7 +11,7 @@
     <title>管理中心 - <?php echo Option::get('blogname'); ?></title>
     <link rel="stylesheet" href="./views/css/style.css?d=5.25.2021"/>
     <link rel="stylesheet" href="./editor.md/css/editormd.css?d=5.25.2021"/>
-    <link href="./views/css/bootstrap-sbadmin-4.5.3.css" rel="stylesheet">
+    <link href="./views/css/bootstrap-sbadmin-4.5.3.css?d=7.10.2021" rel="stylesheet">
     <link href="./views/css/css-main.css" type=text/css rel=stylesheet>
     <link href="./views/css/icofont/icofont.min.css" type=text/css rel=stylesheet>
     <link href="./views/css/dropzone.css" type=text/css rel=stylesheet>
@@ -19,7 +19,7 @@
     <script src="./views/js/bootstrap.bundle.min.4.6.js"></script>
     <script src="./views/js/jquery-ui.min.js"></script>
     <script src="./views/js/js.cookie-2.2.1.min.js"></script>
-    <script src="./views/js/common.js"></script>
+    <script src="./views/js/common.js?d=7.10.2021"></script>
 	<?php doAction('adm_head'); ?>
 </head>
 <body>
