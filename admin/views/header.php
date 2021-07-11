@@ -9,9 +9,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name=renderer content=webkit>
     <title>管理中心 - <?php echo Option::get('blogname'); ?></title>
-    <link rel="stylesheet" href="./views/css/style.css?d=5.25.2021"/>
-    <link rel="stylesheet" href="./editor.md/css/editormd.css?d=5.25.2021"/>
-    <link href="./views/css/bootstrap-sbadmin-4.5.3.css?d=7.10.2021" rel="stylesheet">
+    <link rel="stylesheet" href="./views/css/style.css?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"/>
+    <link rel="stylesheet" href="./editor.md/css/editormd.css?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"/>
+    <link href="./views/css/bootstrap-sbadmin-4.5.3.css?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>" rel="stylesheet">
     <link href="./views/css/css-main.css" type=text/css rel=stylesheet>
     <link href="./views/css/icofont/icofont.min.css" type=text/css rel=stylesheet>
     <link href="./views/css/dropzone.css" type=text/css rel=stylesheet>
@@ -19,7 +19,7 @@
     <script src="./views/js/bootstrap.bundle.min.4.6.js"></script>
     <script src="./views/js/jquery-ui.min.js"></script>
     <script src="./views/js/js.cookie-2.2.1.min.js"></script>
-    <script src="./views/js/common.js?d=7.10.2021"></script>
+    <script src="./views/js/common.js?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
 	<?php doAction('adm_head'); ?>
 </head>
 <body>
@@ -30,9 +30,9 @@
         </li>
         <hr class="sidebar-divider my-0">
 		<?php if (ROLE == ROLE_ADMIN): ?>
-        <li class="nav-item" id="menu_home">
-            <a class="nav-link" href="./"><i class="icofont-dashboard icofont-1x"></i><span>管理后台</span></a>
-        </li>
+            <li class="nav-item" id="menu_home">
+                <a class="nav-link" href="./"><i class="icofont-dashboard icofont-1x"></i><span>管理后台</span></a>
+            </li>
 		<?php endif; ?>
         <hr class="sidebar-divider my-0">
         <li class="nav-item" id="menu_category_content">
