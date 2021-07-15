@@ -60,4 +60,8 @@
 </html>
 <script>
     setTimeout(hideActived, 3600);
+    $('#checkcode').click(function () {
+        var timestamp = new Date().getTime();
+        $(this).attr("src", "../include/lib/checkcode.php?" + timestamp);
+    });
 </script>
