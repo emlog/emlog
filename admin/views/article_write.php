@@ -196,6 +196,15 @@
                 if ($(window).width() > 767) {
                     this.watch();
                 }
+		//添加Ctrl(Cmd)+S快捷键保存文章内容
+                var articleSave = {
+                    "Ctrl-S": function(cm) {
+                    	autosave(2);
+                    },
+                    "Cmd-S": function(cm) {
+                    	autosave(2);
+                    }};
+                this.addKeyMap(articleSave);  
             }
         });
         Editor_summary = editormd("logexcerpt", {
@@ -219,5 +228,6 @@
         });
         Editor.setToolbarAutoFixed(false);
         Editor_summary.setToolbarAutoFixed(false);
+        editorHook(article);
     });
 </script>
