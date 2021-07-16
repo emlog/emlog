@@ -6,11 +6,11 @@
 <?php if (isset($_GET['error_param'])): ?>
     <div class="alert alert-danger">安装失败</div><?php endif; ?>
 <?php if (isset($_GET['error_down'])): ?>
-    <div class="alert alert-danger">安装失败</div><?php endif; ?>
+    <div class="alert alert-danger">安装失败，无法下载安装包</div><?php endif; ?>
 <?php if (isset($_GET['error_dir'])): ?>
-    <div class="alert alert-danger">安装失败</div><?php endif; ?>
+    <div class="alert alert-danger">安装失败，无法写入文件</div><?php endif; ?>
 <?php if (isset($_GET['error_zip'])): ?>
-    <div class="alert alert-danger">安装失败</div><?php endif; ?>
+    <div class="alert alert-danger">安装失败，不支持zip解压</div><?php endif; ?>
 <?php if (isset($_GET['error_source'])): ?>
     <div class="alert alert-danger">安装失败，不是有效的扩展安装包</div><?php endif; ?>
 
