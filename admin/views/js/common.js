@@ -182,7 +182,7 @@ function autosave(act) {
         + "&ishide=" + ishide
         + "&as_logid=" + logid;
 
-    //检查别名
+    // 检查别名
     if (alias != '' && 0 != isalias(alias)) {
         $("#msg").show().html("链接别名错误，自动保存失败");
         if (act == 0) {
@@ -229,7 +229,7 @@ function autosave(act) {
     }
 }
 
-//toggle plugin
+// toggle plugin
 $.fn.toggleClick = function () {
     var functions = arguments;
     return this.click(function () {
@@ -240,7 +240,7 @@ $.fn.toggleClick = function () {
     });
 };
 
-//过滤HTML标签
+// 过滤HTML标签
 function removeHTMLTag(str) {
     str = str.replace(/<\/?[^>]*>/g, ''); //去除HTML tag
     str = str.replace(/[ | ]*\n/g, '\n'); //去除行尾空白
@@ -262,3 +262,5 @@ $(function () {
         event.stopPropagation();
     });
 });
+// 定义editor.md编辑器的事件钩子，可通过插件实现编辑器功能的扩展
+function editorHook(sort) {}
