@@ -6,7 +6,7 @@
 
 class Option {
 
-	const EMLOG_VERSION = 'pro v1.0.1(dev)';         //版本编号
+	const EMLOG_VERSION = 'pro v1.0.1';              //版本编号
 	const EMLOG_VERSION_TIMESTAMP = 1626531415;      //版本时间戳
 	const ICON_MAX_W = 160;                          //头像缩略图最大宽
 	const ICON_MAX_H = 160;                          //头像缩略图最大高
