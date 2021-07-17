@@ -228,6 +228,5 @@
         });
         Editor.setToolbarAutoFixed(false);
         Editor_summary.setToolbarAutoFixed(false);
-        editorHook(article);
     });
 </script>

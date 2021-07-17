@@ -262,5 +262,4 @@ $(function () {
         event.stopPropagation();
     });
 });
-// 定义editor.md编辑器的事件钩子，可通过插件实现编辑器功能的扩展
-function editorHook(sort) {}
+

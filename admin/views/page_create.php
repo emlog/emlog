@@ -144,6 +144,5 @@
             }
         });
         Editor_page.setToolbarAutoFixed(false);
-	editorHook(page);    
     });
 </script>
