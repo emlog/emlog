@@ -8,11 +8,11 @@
 <?php if (isset($_GET['error_down'])): ?>
     <div class="alert alert-danger">安装失败，无法下载安装包</div><?php endif; ?>
 <?php if (isset($_GET['error_dir'])): ?>
-    <div class="alert alert-danger">安装失败，无法写入文件</div><?php endif; ?>
+    <div class="alert alert-danger">安装失败，无法写文件，请检查content/下目录是否可写</div><?php endif; ?>
 <?php if (isset($_GET['error_zip'])): ?>
-    <div class="alert alert-danger">安装失败，不支持zip解压</div><?php endif; ?>
+    <div class="alert alert-danger">安装失败，无法解压，请安装php的Zip扩展</div><?php endif; ?>
 <?php if (isset($_GET['error_source'])): ?>
-    <div class="alert alert-danger">安装失败，不是有效的扩展安装包</div><?php endif; ?>
+    <div class="alert alert-danger">安装失败，不是有效的安装包</div><?php endif; ?>
 
 <?php if (isset($_GET['error'])): ?>
     <div class="container-fluid">
