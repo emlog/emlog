@@ -138,7 +138,6 @@
 .log_con pre {
     padding: 10px;
     border: 1px solid #ddd;
-    white-space: pre-wrap;
     background: #f6f6f6
 }
 

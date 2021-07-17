@@ -643,6 +643,7 @@ body {
 .bloggerinfo_img {
     border: 2px solid #efefef;
     width: 100px;
+    height: 100px;
     border-radius: 50%
 }
 
@@ -934,10 +935,6 @@ body {
 
     .bloggerinfo {
         margin-bottom: 0px
-    }
-
-    .bloggerinfo_img {
-        display: none
     }
 
     .mb-5, .my-5 {
