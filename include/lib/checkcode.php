@@ -30,6 +30,14 @@ for ($j = 0; $j < 60; $j++) {
 	imagesetpixel($img, $x, $y, $pixColor);
 }
 
+for ($j = 0; $j < 3; $j++) {
+	$x = mt_rand(0, 70);
+	$y = mt_rand(0, 22);
+	$x2 = mt_rand(0, 70);
+	$y2 = mt_rand(0, 22);
+	imageline($img, $x, $y, $x2, $y2, $pixColor);
+}
+
 header('Content-Type: image/png');
 imagepng($img);
 imagedestroy($img);

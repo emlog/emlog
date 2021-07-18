@@ -27,14 +27,14 @@ if (!defined('EMLOG_ROOT')) {
     <div style="clear:both;"></div>
 </div>
 <script>
-function change_com_radius(){
-    if(!document.getElementById("com_info"))
-    {
-        var comment = document.getElementById("comment");
-        comment.style.height = "140px";
-        comment.style.setProperty('border-radius', '10px');
+    function change_com_radius() {
+        if (!document.getElementById("com_info")) {
+            var comment = document.getElementById("comment");
+            comment.style.height = "140px";
+            comment.style.setProperty('border-radius', '10px');
+        }
     }
-}
-change_com_radius();
+
+    change_com_radius();
 </script>
 <?php include View::getView('footer'); ?>

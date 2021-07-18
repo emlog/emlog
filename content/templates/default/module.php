@@ -127,11 +127,11 @@ function widget_newcomm($title) {
 				$url = Url::comment($value['gid'], $value['page'], $value['cid']);
 				?>
                 <li class='comment_lates' id="comment">
-				<img class='comment_lates_img' src="<?php echo getGravatar($value['mail']); ?>"/>
-				<span class='comm_lates_name'><?php echo $value['name']; ?></span>
-				<span class='comm_lates_time'><?php echo smartDate($value['date']); ?></span><br/>
-                <a href="<?php echo $url; ?>" style="color: #989898;"><?php echo $value['content']; ?></a>
-                <hr>
+                    <img class='comment_lates_img' src="<?php echo getGravatar($value['mail']); ?>"/>
+                    <span class='comm_lates_name'><?php echo $value['name']; ?></span>
+                    <span class='comm_lates_time'><?php echo smartDate($value['date']); ?></span><br/>
+                    <a href="<?php echo $url; ?>" style="color: #989898;"><?php echo $value['content']; ?></a>
+                    <hr>
                 </li>
 			<?php endforeach; ?>
         </ul>
@@ -226,7 +226,7 @@ function blog_navi() {
     <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto top-menu">
 			<?php
-            $dp_id = 0;
+			$dp_id = 0;
 			foreach ($navi_cache as $value):
 				if ($value['pid'] != 0) {
 					continue;
@@ -400,7 +400,7 @@ function blog_comments_children($comments, $children) {
         <div class="comment comment-children" id="comment-<?php echo $comment['cid']; ?>">
             <a name="<?php echo $comment['cid']; ?>"></a>
 			<?php if ($isGravatar == 'y'): ?>
-                <div class="avatar"><img src="<?php echo getGravatar($comment['mail']); ?>" /></div><?php endif; ?>
+                <div class="avatar"><img src="<?php echo getGravatar($comment['mail']); ?>"/></div><?php endif; ?>
             <div class="comment-info">
                 <div class="arrow"></div>
                 <b><?php echo $comment['poster']; ?> </b><span class="comment-time"><?php echo $comment['date']; ?></span>

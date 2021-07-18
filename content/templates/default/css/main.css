@@ -319,7 +319,6 @@ footer .copyright {
     border-bottom: 1px #f7f7f7 solid;
     overflow: hidden;
     color: #333;
-    height: 100%;
     zoom: 1
 }
 
@@ -643,6 +642,7 @@ body {
 .bloggerinfo_img {
     border: 2px solid #efefef;
     width: 100px;
+    height: 100px;
     border-radius: 50%
 }
 
@@ -934,10 +934,6 @@ body {
 
     .bloggerinfo {
         margin-bottom: 0px
-    }
-
-    .bloggerinfo_img {
-        display: none
     }
 
     .mb-5, .my-5 {
