@@ -229,7 +229,7 @@ function autosave(act) {
     }
 }
 
-//toggle plugin
+// toggle plugin
 $.fn.toggleClick = function () {
     var functions = arguments;
     return this.click(function () {
@@ -262,3 +262,4 @@ $(function () {
         event.stopPropagation();
     });
 });
+

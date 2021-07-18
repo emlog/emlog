@@ -426,7 +426,7 @@ function blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allo
                     <input type="hidden" name="gid" value="<?php echo $logid; ?>"/>
                     <textarea class="form-control log_comment" name="comment" id="comment" rows="10" tabindex="4" required></textarea>
 					<?php if (ROLE == ROLE_VISITOR): ?>
-                        <div class="com_info">
+                        <div class="com_info" id="com_info">
 <!--vot-->                  <input class="form-control com_control com_name" autocomplete="off" type="text" name="comname" maxlength="49" value="<?php echo $ckname; ?>" size="22"
                                    tabindex="1" placeholder="<?=lang('nickname')?>*" required/>
 <!--vot-->                  <input class="form-control com_control com_mail" autocomplete="off" type="text" name="commail" maxlength="128" value="<?php echo $ckmail; ?>" size="22"

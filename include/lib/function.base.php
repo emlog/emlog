@@ -1036,33 +1036,31 @@ function get_mimetype($extension) {
  */
 function emStrtotime($timeStr) {
 	$timezone = Option::get('timezone');
-	if ($timeStr) {
-		$unixPostDate = @strtotime($timeStr);
-		if ($unixPostDate === false) {
-			return false;
-		} else {
-			$serverTimeZone = phpversion() > '5.2' ? @date_default_timezone_get() : ini_get('date.timezone');
-			if (empty($serverTimeZone) || $serverTimeZone == 'UTC') {
-				$unixPostDate -= $timezone * 3600;
-			} else {
-				if (phpversion() > '5.2' && $serverTimeZone = date_default_timezone_get()) {
-					/*
+	if (!$timeStr) {
+		return false;
+	}
+
+	$unixPostDate = @strtotime($timeStr);
+	if ($unixPostDate === false) {
+		return false;
+	}
+
+	$serverTimeZone = @date_default_timezone_get();
+	if (empty($serverTimeZone) || $serverTimeZone == 'UTC') {
+		$unixPostDate -= (int)$timezone * 3600;
+	} elseif ($serverTimeZone) {
+		/*
 					 * If the server configuration defaults to the time zone, then PHP will recognize the incoming time as the local time in the time zone
 					 * But the time we pass in is actually the local time of the time zone configured by the blog, not the local time of the server time zone
 					 * Therefore, we need to subtract / add the time difference between the two time zones to get the UTC time.
-					 */
-					$offset = getTimeZoneOffset($serverTimeZone);
+		 */
+		$offset = getTimeZoneOffset($serverTimeZone);
 					// First subtract/add the time difference configured by the local time zone
-					$unixPostDate -= $timezone * 3600;
+		$unixPostDate -= (int)$timezone * 3600;
 					// Then subtract/add the time difference between the server time zone and UTC to get the UTC time.
-					$unixPostDate -= $offset;
-				}
-			}
-		}
-		return $unixPostDate;
-	} else {
-		return false;
+		$unixPostDate -= $offset;
 	}
+	return $unixPostDate;
 }
 
 //------------------------------------------------------------------

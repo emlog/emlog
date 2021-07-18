@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Tips
-Version: 1.1
+Version: 1.2
 Plugin URL:
 Description: It is the world's first emlog plugin, it will send one cozy little tips in your administration page.
 Author: emlog
@@ -12,7 +12,7 @@ Author URL: http://www.emlog.net
 
 /*vot*/ load_language('plugin_tips');
 
-$array_tips = array(
+$array_tips = [
 /*vot*/ lang('attach_upload_tip'),
 /*vot*/ lang('tag_tip'),
 /*vot*/ lang('indent_tip'),
@@ -31,19 +31,19 @@ $array_tips = array(
 /*vot*/ lang('browser_upgrade_tip'),
 /*vot*/ lang('create_backup_tip'),
 /*vot*/ lang('tomorrow_happy_tip'),
-);
+];
 
 function tips() {
-    global $array_tips;
-    $i = mt_rand(0, count($array_tips) - 1);
-    $tip = $array_tips[$i];	
-    echo "<div id=\"tip\"> $tip</div>";
+	global $array_tips;
+	$i = mt_rand(0, count($array_tips) - 1);
+	$tip = $array_tips[$i];
+	echo "<div id=\"tip\"> $tip</div>";
 }
 
 addAction('adm_main_top', 'tips');
 
 function tips_css() {
-    echo "<style type='text/css'>
+	echo "<style type='text/css'>
     #tip{
         background:url(../content/plugins/tips/icon_tips.gif) no-repeat left 3px;
         padding:3px 18px;

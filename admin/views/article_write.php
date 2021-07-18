@@ -115,39 +115,35 @@
                 </button>
             </div>
             <div class="modal-body">
+				<?php if ($medias): ?>
                 <div class="card-columns">
 					<?php
-					if ($medias):
-						foreach ($medias as $key => $value):
-							$media_url = getFileUrl($value['filepath']);
-							$media_name = $value['filename'];
-							if (isImage($value['filepath'])) {
-								$imgpath = $value['thum_filepath'] ?? $value['filepath'];
-								$media_icon_imgurl = getFileUrl($imgpath);
-							} else {
-								$media_icon_imgurl = "./views/images/fnone.png";
-							}
-							?>
-                            <div class="card" style="min-height: 138px;">
-								<?php if (isImage($value['filepath'])): ?>
-<!--vot-->                          <a href="javascript:insert_media_img('<?php echo $media_url; ?>', '<?php echo $media_icon_imgurl; ?>')" title="<?=lang('img_insert')?>: <?php echo $media_name; ?>">
-                                        <img class="card-img-top" src="<?php echo $media_icon_imgurl; ?>"/>
-                                    </a>
-								<?php else: ?>
-<!--vot-->                          <a href="javascript:insert_media('<?php echo $media_url; ?>', '<?php echo $media_name; ?>')" title="<?=lang('file_insert')?>: <?php echo $media_name; ?>">
-                                        <img class="card-img-top" src="<?php echo $media_icon_imgurl; ?>"/>
-                                    </a>
-								<?php endif; ?>
-                            </div>
-						<?php
-						endforeach;
-					else :
+					foreach ($medias as $key => $value):
+						$media_url = getFileUrl($value['filepath']);
+						$media_name = $value['filename'];
+						if (isImage($value['filepath'])) {
+							$imgpath = $value['thum_filepath'] ?? $value['filepath'];
+							$media_icon_imgurl = getFileUrl($imgpath);
+						} else {
+							$media_icon_imgurl = "./views/images/fnone.png";
+						}
 						?>
-<!--vot-->          <?=lang('no_resources')?>
-					<?php
-					endif;
-					?>
+                        <div class="card" style="min-height: 138px;">
+							<?php if (isImage($value['filepath'])): ?>
+<!--vot-->                          <a href="javascript:insert_media_img('<?php echo $media_url; ?>', '<?php echo $media_icon_imgurl; ?>')" title="<?=lang('img_insert')?>: <?php echo $media_name; ?>">
+                                    <img class="card-img-top" src="<?php echo $media_icon_imgurl; ?>"/>
+                                </a>
+							<?php else: ?>
+<!--vot-->                          <a href="javascript:insert_media('<?php echo $media_url; ?>', '<?php echo $media_name; ?>')" title="<?=lang('file_insert')?>: <?php echo $media_name; ?>">
+                                    <img class="card-img-top" src="<?php echo $media_icon_imgurl; ?>"/>
+                                </a>
+							<?php endif; ?>
+                        </div>
+					<?php endforeach; ?>
                 </div>
+			<?php else: ?>
+                    <div class="text-center">暂无可用资源，<a href="media.php">去上传</a></div>
+			<?php endif; ?>
             </div>
 
         </div>
@@ -168,13 +164,12 @@
     $("#menu_category_content").addClass('active');
     $("#menu_content").addClass('show');
     $("#menu_write").addClass('active');
-    
-    if(Cookies.get('em_advset')=="hidden"){
-        icon_tog = true;
+	
+    icon_tog = false;
+    if (Cookies.get('em_advset') == "hidden") {
         displayToggle('advset', 1);
-    }else{
-        icon_tog = false;
-        $(".icofont-simple-right").attr("class","icofont-simple-down");
+    } else {        
+        $(".icofont-simple-right").attr("class", "icofont-simple-down");
     }
 
     var Editor, Editor_summary;
@@ -192,18 +187,27 @@
             path: "editor.md/lib/",
             tex: false,
             watch: false,
-            htmlDecode : true,
+            htmlDecode: true,
             flowChart: false,
             autoFocus: false,
             sequenceDiagram: false,
             imageUpload: true,
             imageFormats: ["jpg", "jpeg", "gif", "png"],
             imageUploadURL: "media.php?action=upload&editor=1",
-            onload : function() {
-                    //在大屏模式下，编辑器默认显示预览
-                    if($(window).width() > 767){
-                        this.watch();
-                    }
+            onload: function () {
+                //在大屏模式下，编辑器默认显示预览
+                if ($(window).width() > 767) {
+                    this.watch();
+                }
+		//添加Ctrl(Cmd)+S快捷键保存文章内容
+                var articleSave = {
+                    "Ctrl-S": function(cm) {
+                    	autosave(2);
+                    },
+                    "Cmd-S": function(cm) {
+                    	autosave(2);
+                    }};
+                this.addKeyMap(articleSave);  
             }
         });
         Editor_summary = editormd("logexcerpt", {
@@ -219,7 +223,7 @@
             path: "editor.md/lib/",
             tex: false,
             watch: false,
-            htmlDecode : true,
+            htmlDecode: true,
             flowChart: false,
             autoFocus: false,
             sequenceDiagram: false,
