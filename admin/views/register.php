@@ -4,7 +4,7 @@
 <?php if (isset($_GET['active_reg'])): ?>
     <div class="alert alert-success">恭喜，注册成功了</div><?php endif; ?>
 <?php if (isset($_GET['error_b'])): ?>
-    <div class="alert alert-danger">注册失败，无效的注册码</div><?php endif; ?>
+    <div class="alert alert-danger">注册失败</div><?php endif; ?>
 <?php if (ISREG === false) : ?>
     <div class="container-fluid">
         <div class="text-center">

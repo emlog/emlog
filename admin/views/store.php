@@ -25,7 +25,7 @@
 
 <?php if (!empty($templates) || !empty($plugins)): ?>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">扩展商店</h1>
+        <h1 class="h3 mb-0 text-gray-800">扩展商店 - 模板</h1>
     </div>
     <div class="card-columns">
 		<?php foreach ($templates as $k => $v):
@@ -51,6 +51,9 @@
                 </div>
             </div>
 		<?php endforeach; ?>
+    </div>
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">扩展商店 - 插件</h1>
     </div>
     <div class="card-columns">
 		<?php foreach ($plugins as $k => $v):
