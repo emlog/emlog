@@ -625,8 +625,11 @@ $lang = array(
  'install_invalid_ext'	=> '安装失败，不是有效的安装包',//'Installation failed, not a valid installation package',
  'store_unavailable'	=> '商店暂不可用，可能是网络问题',//'The store is temporarily unavailable, it may be a network problem',
 // 'back_home'		=> '返回首页',//'Back to home',
- 'ext_store'		=> '扩展商店',//'Extension store',
+ 'ext_store'		=> '扩展商店',//'Extension Store',
+ 'ext_store_templates'	=> '扩展商店 - 模板',//'Extension Store - Templates',
 // 'template'		=> '模板',//'Template',
+ 'ext_store_plugins'	=> '扩展商店 - 插件',//'Extension Store - Plugins',
+
  'developer'		=> '开发者',//'Developer',
  'update_time'		=> '更新时间',//'Update time',
  'price'		=> '价格',//'Price',
