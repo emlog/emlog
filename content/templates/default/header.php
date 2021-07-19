@@ -35,6 +35,7 @@ require_once View::getView('module');
             <span class="navbar-toggler-icon"></span>
         </button>
 		<?php blog_navi(); ?>
+		<?php doAction('index_navi_ext'); ?>
     </div>
 </nav>
 
