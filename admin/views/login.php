@@ -48,7 +48,8 @@
                         </form>
                         <hr>
                         <div class="text-center">
-                            <a href="../" class="btn btn-link btn-xs" role="button">&larr;返回首页</a>
+                            <div class="login-ext"><?php doAction('login_ext'); ?></div>
+                            <div><a href="../" class="btn btn-link btn-xs" role="button">&larr;返回首页</a></div>
                         </div>
                     </div>
                 </div>

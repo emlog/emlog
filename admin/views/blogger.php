@@ -10,7 +10,7 @@
 <?php if (isset($_GET['error_b'])): ?>
     <div class="alert alert-danger">电子邮件格式错误</div><?php endif; ?>
 <?php if (isset($_GET['error_c'])): ?>
-    <div class="alert alert-danger"><密码长度不得小于6></密码长度不得小于6>位</div><?php endif; ?>
+    <div class="alert alert-danger">密码长度不得小于6位</div><?php endif; ?>
 <?php if (isset($_GET['error_d'])): ?>
     <div class="alert alert-danger">两次输入的密码不一致</div><?php endif; ?>
 <?php if (isset($_GET['error_e'])): ?>
@@ -68,6 +68,9 @@
                 <div class="form-group">
                     <label>再输入一次新密码</label>
                     <input type="password" class="form-control" value="" name="repeatpass">
+                </div>
+                <div class="form-group">
+					<?php doAction('blogger_ext'); ?>
                 </div>
                 <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
                 <input type="submit" value="保存资料" class="btn btn-sm btn-success"/>
