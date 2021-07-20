@@ -1,0 +1,11 @@
+{
+  "php_ext": "pathinfo,opcache",
+  "chmod":"",
+  "success_url": "/index.php",
+  "php_versions": "70,71,72,73,74",
+  "db_config": "",
+  "admin_username": "",
+  "admin_password": "",
+  "run_path": "/",
+  "remove_file": ["/install", "/temp", "/.user.ini"]
+}
