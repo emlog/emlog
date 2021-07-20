@@ -130,11 +130,11 @@
 						?>
                         <div class="card" style="min-height: 138px;">
 							<?php if (isImage($value['filepath'])): ?>
-<!--vot-->                          <a href="javascript:insert_media_img('<?php echo $media_url; ?>', '<?php echo $media_icon_imgurl; ?>')" title="<?=lang('img_insert')?>: <?php echo $media_name; ?>">
+<!--vot-->                      <a href="javascript:insert_media_img('<?php echo $media_url; ?>', '<?php echo $media_icon_imgurl; ?>')" title="<?=lang('img_insert')?>: <?php echo $media_name; ?>">
                                     <img class="card-img-top" src="<?php echo $media_icon_imgurl; ?>"/>
                                 </a>
 							<?php else: ?>
-<!--vot-->                          <a href="javascript:insert_media('<?php echo $media_url; ?>', '<?php echo $media_name; ?>')" title="<?=lang('file_insert')?>: <?php echo $media_name; ?>">
+<!--vot-->                      <a href="javascript:insert_media('<?php echo $media_url; ?>', '<?php echo $media_name; ?>')" title="<?=lang('file_insert')?>: <?php echo $media_name; ?>">
                                     <img class="card-img-top" src="<?php echo $media_icon_imgurl; ?>"/>
                                 </a>
 							<?php endif; ?>
@@ -142,7 +142,7 @@
 					<?php endforeach; ?>
                 </div>
 			<?php else: ?>
-                    <div class="text-center">暂无可用资源，<a href="media.php">去上传</a></div>
+<!--vot-->          <div class="text-center"><?=lang('no_resources')?>, <a href="media.php"><?=lang('go_upload')?></a></div>
 			<?php endif; ?>
             </div>
 
@@ -155,7 +155,7 @@
 <script src="./editor.md/languages/<?=EMLOG_LANGUAGE?>.js"></script>
 <? } ?>
 <script>
-    var icon_tog;//如果值为true，则“高级选项”箭头向右
+    var icon_tog;//If the value is true, the "advanced options" arrow points to the right
 
     $("#alias").keyup(function () {
         checkalias();
@@ -195,11 +195,11 @@
             imageFormats: ["jpg", "jpeg", "gif", "png"],
             imageUploadURL: "media.php?action=upload&editor=1",
             onload: function () {
-                //在大屏模式下，编辑器默认显示预览
+                //In the large screen mode, the editor displays the preview by default
                 if ($(window).width() > 767) {
                     this.watch();
                 }
-		//添加Ctrl(Cmd)+S快捷键保存文章内容
+		//Add Ctrl(Cmd)+S shortcut key to save article content
                 var articleSave = {
                     "Ctrl-S": function(cm) {
                     	autosave(2);
@@ -227,7 +227,7 @@
             flowChart: false,
             autoFocus: false,
             sequenceDiagram: false,
-/*vot*/     placeholder: "<?=lang('enter_summary')?>",
+/*vot*/     placeholder: "<?=lang('enter_summary')?>"
         });
         Editor.setToolbarAutoFixed(false);
         Editor_summary.setToolbarAutoFixed(false);

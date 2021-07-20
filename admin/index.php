@@ -21,7 +21,7 @@ if (empty($action)) {
 	$php_ver = PHP_VERSION;
 
 	if (function_exists("curl_init")) {
-		$php_ver .= '，curl';
+/*vot*/		$php_ver .= ', curl';
 	}
 
 	include View::getView('header');

@@ -25,7 +25,7 @@
 
 <?php if (!empty($templates) || !empty($plugins)): ?>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-<!--vot--><h1 class="h3 mb-0 text-gray-800"><?=lang('ext_store')?></h1>
+<!--vot--><h1 class="h3 mb-0 text-gray-800"><?=lang('ext_store_templates')?></h1>
     </div>
     <div class="card-columns">
 		<?php foreach ($templates as $k => $v):
@@ -37,7 +37,7 @@
 <!--vot-->          <p class="card-text"><span class="badge badge-warning"><?=lang('template')?></span> <?php echo $v['name']; ?></p>
                     <p class="card-text text-muted small">
                         <span class="small"><?php echo $v['info']; ?></span><br><br>
-                        <?=lang('price')?>: <?php echo $v['price'] > 0 ? $v['price'] : lang('free'); ?><br>
+<!--vot-->              <?=lang('price')?>: <?php echo $v['price'] > 0 ? $v['price'] : lang('free'); ?><br>
 <!--vot-->              <?=lang('developer')?>: <?php echo $v['author']; ?><br>
 <!--vot-->              <?=lang('update_time')?>: <?php echo $v['update_time']; ?><br>
                     </p>
@@ -53,7 +53,7 @@
 		<?php endforeach; ?>
     </div>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">扩展商店 - 插件</h1>
+<!--vot--><h1 class="h3 mb-0 text-gray-800"><?=lang('ext_store_plugins')?></h1>
     </div>
     <div class="card-columns">
 		<?php foreach ($plugins as $k => $v):
@@ -65,9 +65,9 @@
 <!--vot-->          <p class="card-text"><span class="badge badge-primary"><?=lang('plugin')?></span> <?php echo $v['name']; ?></p>
                     <p class="card-text text-muted small">
 						<?php echo $v['info']; ?><br><br>
-                        <?=lang('price')?>: <?php echo $v['price'] > 0 ? $v['price'] : lang('free'); ?><br>
-                        <?=lang('developer')?>: <?php echo $v['author']; ?><br>
-                        <?=lang('update_time')?>: <?php echo $v['update_time']; ?><br>
+<!--vot-->              <?=lang('price')?>: <?php echo $v['price'] > 0 ? $v['price'] : lang('free'); ?><br>
+<!--vot-->              <?=lang('developer')?>: <?php echo $v['author']; ?><br>
+<!--vot-->              <?=lang('update_time')?>: <?php echo $v['update_time']; ?><br>
                     </p>
                     <p class="card-text text-right">
 						<?php if ($v['price'] > 0): ?>
