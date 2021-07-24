@@ -33,13 +33,28 @@ class MySqlii {
 
 	private function __construct() {
 		if (!class_exists('mysqli')) {
-			emMsg('服务器空间PHP不支持MySqli函数');
+			emMsg('服务器PHP不支持mysqli函数');
 		}
 
 		@$this->conn = new mysqli(DB_HOST, DB_USER, DB_PASSWD, DB_NAME);
-
 		if ($this->conn->connect_error) {
-			emMsg("连接数据库失败，请检查数据库信息。错误编号：" . $this->conn->connect_errno);
+			switch ($this->conn->connect_errno) {
+				case 1044:
+				case 1045:
+					emMsg("连接MySQL数据库失败，数据库用户名或密码错误");
+					break;
+				case 1049:
+					emMsg("连接MySQL数据库失败，未找到你填写的数据库");
+					break;
+				case 2003:
+				case 2005:
+				case 2006:
+					emMsg("连接MySQL数据库失败，数据库地址错误或者数据库服务器不可用");
+					break;
+				default :
+					emMsg("连接MySQL数据库失败，请检查数据库信息。错误编号：" . $this->conn->connect_errno);
+					break;
+			}
 		}
 
 		$this->conn->set_charset('utf8mb4');
