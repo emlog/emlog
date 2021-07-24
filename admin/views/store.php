@@ -25,14 +25,14 @@
 
 <?php if (!empty($templates) || !empty($plugins)): ?>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">扩展商店 - 模板</h1>
+        <h1 class="h3 mb-0 text-gray-800">模板主题</h1>
     </div>
     <div class="card-columns">
 		<?php foreach ($templates as $k => $v):
 			$icon = $v['icon'] ?: "./views/images/theme.png";
 			?>
             <div class="card" style="min-height: 340px;">
-                <img class="card-img-top" src="<?php echo $icon; ?>"/>
+                <a href="<?php echo OFFICIAL_SERVICE_HOST . $v['buy_url']; ?>" target="_blank"><img class="card-img-top" src="<?php echo $icon; ?>"/></a>
                 <div class="card-body">
                     <p class="card-text"><span class="badge badge-warning">模板</span> <?php echo $v['name']; ?></p>
                     <p class="card-text text-muted small">
@@ -53,14 +53,14 @@
 		<?php endforeach; ?>
     </div>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">扩展商店 - 插件</h1>
+        <h1 class="h3 mb-0 text-gray-800">扩展插件</h1>
     </div>
     <div class="card-columns">
 		<?php foreach ($plugins as $k => $v):
 			$icon = $v['icon'] ?: "./views/images/plugin.png";
 			?>
             <div class="card">
-                <img class="card-img-top" src="<?php echo $icon; ?>" style="height: 150px;object-fit: cover;"/>
+                <a href="<?php echo OFFICIAL_SERVICE_HOST . $v['buy_url']; ?>" target="_blank"><img class="card-img-top" src="<?php echo $icon; ?>" style="height: 150px;object-fit: cover;"/></a>
                 <div class="card-body">
                     <p class="card-text"><span class="badge badge-primary">插件</span> <?php echo $v['name']; ?></p>
                     <p class="card-text text-muted small">
