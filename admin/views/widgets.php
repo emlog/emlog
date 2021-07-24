@@ -3,7 +3,7 @@
 } ?>
 <?php if (isset($_GET['activated'])): ?>
     <div class="alert alert-success">保存成功</div><?php endif; ?>
-<h1 class="h3 mb-4 text-gray-800">侧边栏管理</h1>
+<h1 class="h3 mb-4 text-gray-800">边栏管理</h1>
 <div class="card shadow mb-4 mt-2">
     <div class="card-body">
         <div class="row">
