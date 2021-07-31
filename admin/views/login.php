@@ -9,7 +9,7 @@
     <link href="./views/css/bootstrap-sbadmin-4.5.3.css" rel="stylesheet" type="text/css" type="text/css"/>
     <script src="./views/js/jquery.min.3.5.1.js" type="text/javascript"></script>
     <script src="./views/js/bootstrap.bundle.min.4.6.js" type="text/javascript"></script>
-    <script src="./views/js/common.js?v=<?php echo Option::EMLOG_VERSION; ?>" type="text/javascript"></script>
+    <script src="./views/js/common.js?v=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>" type="text/javascript"></script>
     <title>登录</title>
 </head>
 <body>
