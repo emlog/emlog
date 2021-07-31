@@ -18,10 +18,7 @@
 <div class="card shadow mb-4 mt-2">
     <div class="card-body">
         <form action="seo.php?action=update" method="post">
-            <h5>文章链接设置</h5>
-            <div class="alert alert-info">
-                如果修改后文章无法访问，可能是服务器空间不支持URL重写，请修改回默认形式、关闭文章连接别名。 启用链接别名后可以自定义文章和页面的链接地址。
-            </div>
+            <h4>文章链接格式</h4>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="permalink" value="0" <?php echo $ex0; ?>>
                 <label class="form-check-label">默认形式：<span class="permalink_url"><?php echo BLOG_URL; ?>?post=1</span></label>
@@ -48,7 +45,18 @@
                 <label>启用文章链接别名html后缀</label>
             </div>
 
-            <h5 class="mt-4">页头信息设置</h5>
+            <div class="alert alert-warning">
+                如果修改后文章无法访问，可能是服务器空间不支持URL重写，请修改回默认形式、关闭文章连接别名。 启用链接别名后可以自定义文章和页面的链接地址。<br>
+                Nginx服务器请配置如下伪静态规则：<br>
+                location / {<br>
+                index index.php index.html;<br>
+                if (!-e $request_filename){<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;rewrite ^/(.*)$ /index.php last;<br>
+                }<br>
+                }<br>
+            </div>
+
+            <h4 class="mt-4">页头信息</h4>
             <div class="form-group">
                 <label>站点浏览器标题(title)</label>
                 <input class="form-control" value="<?php echo $site_title; ?>" name="site_title">
