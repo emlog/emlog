@@ -18,9 +18,6 @@ class Log_Model {
 
 	/**
 	 * create article
-	 *
-	 * @param array $logData
-	 * @return int
 	 */
 	function addlog($logData) {
 		$kItem = array();
@@ -38,9 +35,6 @@ class Log_Model {
 
 	/**
 	 * update article
-	 *
-	 * @param array $logData
-	 * @param int $blogId
 	 */
 	function updateLog($logData, $blogId) {
 		$author = ROLE == ROLE_ADMIN ? '' : 'and author=' . UID;
@@ -177,10 +171,8 @@ class Log_Model {
 			$cookiePassword = isset($_COOKIE['em_logpwd_' . $row['gid']]) ? addslashes(trim($_COOKIE['em_logpwd_' . $row['gid']])) : '';
 			if (!empty($row['password']) && $cookiePassword != $row['password']) {
 				$row['excerpt'] = '<p>[该文章已加密，请点击标题输入密码访问]</p>';
-			} else {
-				if (!empty($row['excerpt'])) {
-					$row['excerpt'] .= '<p class="readmore"><a href="' . Url::log($row['logid']) . '">阅读全文&gt;&gt;</a></p>';
-				}
+			} elseif (!empty($row['excerpt'])) {
+				$row['excerpt'] .= '<p class="readmore"><a href="' . Url::log($row['logid']) . '">阅读全文&gt;&gt;</a></p>';
 			}
 
 			$row['log_description'] = $this->Parsedown->text(empty($row['excerpt']) ? breakLog($row['content'], $row['gid']) : $row['excerpt']);
