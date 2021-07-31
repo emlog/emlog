@@ -791,13 +791,17 @@ function emZip($orig_fname, $content) {
 
 /**
  * 获取远程文件
- * @param type $source 远程文件地址
- * @return 临时文件地址
+ * @param string $source 远程文件地址
+ * @return string 临时文件地址
  */
 function emFecthFile($source) {
 	$temp_file = tempnam('/tmp', 'emtemp_');
-	$rh = fopen($source, 'rb');
 	$wh = fopen($temp_file, 'w+b');
+
+	$timeout = ['http' => ['timeout' => 60]];//超时时间，单位为秒
+	$ctx = stream_context_create($timeout);
+	$rh = fopen($source, 'rb', false, $ctx);
+
 	if (!$rh || !$wh) {
 		return FALSE;
 	}

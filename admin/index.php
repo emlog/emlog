@@ -19,9 +19,10 @@ if (empty($action)) {
 	$DB = Database::getInstance();
 	$mysql_ver = $DB->getMysqlVersion();
 	$php_ver = PHP_VERSION;
+	$max_execution_time = ini_get('max_execution_time') ?: '';
 
 	if (function_exists("curl_init")) {
-		$php_ver .= '，curl';
+		$php_ver .= '，Curl';
 	}
 
 	include View::getView('header');
@@ -32,7 +33,7 @@ if (empty($action)) {
 
 if ($action === 'get_news') {
 	$emcurl = new EmCurl();
-	$emcurl->request(OFFICIAL_SERVICE_HOST . 'services/messenger_pro.php?ver=' . Option::EMLOG_VERSION);
+	$emcurl->request(OFFICIAL_SERVICE_HOST . 'services/messenger_pro.php');
 	if ($emcurl->getHttpStatus() !== 200) {
 		header('Content-Type: application/json; charset=UTF-8');
 		exit('{"result":"fail"}');
