@@ -14,40 +14,32 @@ require_once 'globals.php';
 if ($action === '') {
 	$nonce_templet = Option::get('nonce_templet');
 	$nonceTplData = @implode('', @file(TPLS_PATH . $nonce_templet . '/header.php'));
-	preg_match("/Template Name:(.*)/i", $nonceTplData, $tplName);
-	preg_match("/Version:(.*)/i", $nonceTplData, $tplVersion);
-	preg_match("/Author:(.*)/i", $nonceTplData, $tplAuthor);
-	preg_match("/Description:(.*)/i", $nonceTplData, $tplDes);
-	preg_match("/Author Url:(.*)/i", $nonceTplData, $tplUrl);
-	preg_match("/ForEmlog:(.*)/i", $nonceTplData, $tplForEmlog);
-	$tplName = !empty($tplName[1]) ? trim($tplName[1]) : $nonce_templet;
-	$tplDes = !empty($tplDes[1]) ? $tplDes[1] : '';
-	$tplVer = !empty($tplVersion[1]) ? $tplVersion[1] : '';
-	$tplForEm = !empty($tplForEmlog[1]) ? '适用于emlog：' . $tplForEmlog[1] : '';
-
-	if (isset($tplAuthor[1])) {
-		$tplAuthor = !empty($tplUrl[1]) ? "作者：<a href=\"{$tplUrl[1]}\">{$tplAuthor[1]}</a>" : "作者：{$tplAuthor[1]}";
-	} else {
-		$tplAuthor = '';
-	}
 
 	//模板列表
+	$tpls = [];
 	$handle = @opendir(TPLS_PATH) or die('emlog template path error!');
-	$tpls = array();
 	while ($file = @readdir($handle)) {
-		if (@file_exists(TPLS_PATH . $file . '/header.php')) {
-			$tplData = implode('', @file(TPLS_PATH . $file . '/header.php'));
-			preg_match("/Template Name:([^\r\n]+)/i", $tplData, $name);
-			preg_match("/Sidebar Amount:([^\r\n]+)/i", $tplData, $sidebar);
-			$tplInfo['tplname'] = !empty($name[1]) ? trim($name[1]) : $file;
-			$tplInfo['sidebar'] = !empty($sidebar[1]) ? (int)$sidebar[1] : 1;
-			$tplInfo['tplfile'] = $file;
-
-			$tpls[] = $tplInfo;
+		if (!file_exists(TPLS_PATH . $file . '/header.php')) {
+			continue;
 		}
+		$tplData = implode('', @file(TPLS_PATH . $file . '/header.php'));
+		preg_match("/Template Name:(.*)/i", $tplData, $tplName);
+		preg_match("/Template Url:(.*)/i", $tplData, $tplUrl);
+		preg_match("/Version:(.*)/i", $tplData, $tplVersion);
+		preg_match("/Author:(.*)/i", $tplData, $author);
+		preg_match("/Description:(.*)/i", $tplData, $tplDes);
+		preg_match("/Author Url:(.*)/i", $tplData, $authorUrl);
+		$tplInfo = [
+			'tplfile' => $file,
+			'tplname' => !empty($tplName[1]) ? subString(strip_tags(trim($tplName[1])), 0, 16) : $file,
+			'tplurl'  => !empty($tplUrl[1]) ? subString(strip_tags(trim($tplUrl[1])), 0, 75) : '',
+			'tpldes'  => !empty($tplDes[1]) ? subString(strip_tags(trim($tplDes[1])), 0, 40) : '',
+			'author'  => !empty($author[1]) ? subString(strip_tags(trim($author[1])), 0, 16) : '',
+			'author_url'  => !empty($authorUrl[1]) ? subString(strip_tags(trim($authorUrl[1])), 0, 75) : '',
+		];
+		$tpls[] = $tplInfo;
 	}
 	closedir($handle);
-
 	$tplnums = count($tpls);
 
 	include View::getView('header');
@@ -60,10 +52,8 @@ if ($action === '') {
 if ($action === 'usetpl') {
 	LoginAuth::checkToken();
 	$tplName = isset($_GET['tpl']) ? addslashes($_GET['tpl']) : '';
-	$tplSideNum = isset($_GET['side']) ? (int)$_GET['side'] : '';
 
 	Option::updateOption('nonce_templet', $tplName);
-	Option::updateOption('tpl_sidenum', $tplSideNum);
 	$CACHE->updateCache('options');
 	emDirect("./template.php?activated=1");
 }
@@ -96,7 +86,7 @@ if ($action === 'install') {
 //上传zip模板
 if ($action === 'upload_zip') {
 	LoginAuth::checkToken();
-	$zipfile = isset($_FILES['tplzip']) ? $_FILES['tplzip'] : '';
+	$zipfile = $_FILES['tplzip'] ?? '';
 
 	if ($zipfile['error'] == 4) {
 		emDirect("./template.php?error_d=1");
