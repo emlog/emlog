@@ -9,29 +9,16 @@ class EmCurl {
 	protected $_post;
 	protected $_postFields;
 	protected $_referer = BLOG_URL;
-
 	protected $_response;
 	protected $_includeHeader;
 	protected $_noBody;
 	protected $_status;
+
 	public $authentication = false;
 	public $auth_name = '';
 	public $auth_pass = '';
 
-	public function useAuth($use) {
-		$this->authentication = false;
-		if ($use == true) $this->authentication = true;
-	}
-
-	public function setName($name) {
-		$this->auth_name = $name;
-	}
-
-	public function setPass($pass) {
-		$this->auth_pass = $pass;
-	}
-
-	public function __construct($timeOut = 3, $includeHeader = false, $noBody = false) {
+	public function __construct($timeOut = 5, $includeHeader = false, $noBody = false) {
 		$this->_timeout = $timeOut; // second
 		$this->_noBody = $noBody;
 		$this->_includeHeader = $includeHeader;

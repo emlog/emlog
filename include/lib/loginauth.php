@@ -197,14 +197,12 @@ class LoginAuth {
 	 * Generate token, defense CSRF attack
 	 */
 	public static function genToken() {
-		$token_cookie_name = 'EM_TOKENCOOKIE_' . sha1(AUTH_KEY . UID);
-
-		if (!empty($_COOKIE[$token_cookie_name])) {
-			return $_COOKIE[$token_cookie_name];
+		session_start();
+		if (!empty($_SESSION['em_csrf_token'])) {
+			return $_SESSION['em_csrf_token'];
 		}
-
-		$token = sha1(getRandStr(16));
-		setcookie($token_cookie_name, $token, 0, '/');
+		$token = sha1(getRandStr(32));
+		$_SESSION['em_csrf_token'] = $token;
 		return $token;
 	}
 
