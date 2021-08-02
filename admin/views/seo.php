@@ -18,10 +18,7 @@
 <div class="card shadow mb-4 mt-2">
     <div class="card-body">
         <form action="seo.php?action=update" method="post">
-<!--vot-->  <h5><?=lang('post_url_settings')?></h5>
-            <div class="alert alert-info">
-<!--vot-->      <?=lang('post_url_rewriting')?>
-            </div>
+<!--vot-->  <h4><?=lang('post_url_settings')?></h4>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="permalink" value="0" <?php echo $ex0; ?>>
 <!--vot-->      <label class="form-check-label"><?=lang('default_format')?>: <span class="permalink_url"><?php echo BLOG_URL; ?>?post=1</span></label>
@@ -48,7 +45,18 @@
 <!--vot-->      <label><?=lang('enable_html_suffix')?></label>
             </div>
 
-<!--vot-->  <h5 class="mt-4"><?=lang('meta_settings')?>:</h5>
+            <div class="alert alert-warning">
+                如果修改后文章无法访问，可能是服务器空间不支持URL重写，请修改回默认形式、关闭文章连接别名。 启用链接别名后可以自定义文章和页面的链接地址。<br>
+                Nginx服务器请配置如下伪静态规则：<br>
+                location / {<br>
+                index index.php index.html;<br>
+                if (!-e $request_filename){<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;rewrite ^/(.*)$ /index.php last;<br>
+                }<br>
+                }<br>
+            </div>
+
+<!--vot-->  <h4 class="mt-4"><?=lang('meta_settings')?>:</h4>
             <div class="form-group">
 <!--vot-->      <label><?=lang('meta_title')?></label>
                 <input class="form-control" value="<?php echo $site_title; ?>" name="site_title">

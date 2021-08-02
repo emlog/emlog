@@ -796,13 +796,17 @@ function emZip($orig_fname, $content) {
 
 /**
  * Get Remote File
- * @param type $source Remote file address
- * @return Temporary file address
+ * @param string $source Remote file address
+ * @return string Temporary file address
  */
 function emFecthFile($source) {
 	$temp_file = tempnam('/tmp', 'emtemp_');
-	$rh = fopen($source, 'rb');
 	$wh = fopen($temp_file, 'w+b');
+
+	$timeout = ['http' => ['timeout' => 60]];//超时时间，单位为秒
+	$ctx = stream_context_create($timeout);
+	$rh = fopen($source, 'rb', false, $ctx);
+
 	if (!$rh || !$wh) {
 		return FALSE;
 	}

@@ -1,6 +1,7 @@
 <?php
 /*
 Template Name: Default template
+Template Url:https://www.emlog.net/template/
 Description: Emlog Pro Default template
 Author:emlog
 Author Url:http://www.emlog.net
@@ -36,6 +37,7 @@ require_once View::getView('module');
             <span class="navbar-toggler-icon"></span>
         </button>
 		<?php blog_navi(); ?>
+		<?php doAction('index_navi_ext'); ?>
     </div>
 </nav>
 

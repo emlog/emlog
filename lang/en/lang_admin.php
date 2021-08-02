@@ -591,12 +591,13 @@ $lang = array(
  'htaccess_not_writable'	=> 'Save failed: .htaccess file in the root directory is not writable',//'保存失败：根目录下的.htaccess不可写',
  'post_url_settings'		=> 'Post URL settings',//'文章链接设置',
  'post_url_rewriting'		=> 'If the article cannot be accessed after the modification, it may be that the server space does not support URL rewriting. Please modify it back to the default form and turn off the article connection alias. After enabling link aliases, you can customize the link addresses of articles and pages.',//'如果修改后文章无法访问，可能是服务器空间不支持URL重写，请修改回默认形式、关闭文章连接别名。 启用链接别名后可以自定义文章和页面的链接地址。',
+ 'post_url_format'		=> 'Article URL format',//'文章链接格式',
  'default_format'		=> 'Default format',//'默认形式',
  'file_format'			=> 'File format',//'文件形式',
  'directory_format'		=> 'Directory format',//'目录形式',
  'category_format'		=> 'Category format',//'分类形式',
  'enable_html_suffix'		=> 'Enable html suffix for article link alias',//'启用文章链接别名html后缀',
- 'meta_settings'		=> 'Meta settings',//'meta信息设置',
+ 'meta_settings'		=> 'Header Meta settings',//'meta信息设置',
  'meta_title'			=> 'Site Browser Title (title)',//'站点浏览器标题(title)',
  'meta_keywords'		=> 'Site keywords (keywords)',//'站点关键字(keywords)',
  'meta_description'		=> 'Site Browser Description (description)',//'站点浏览器描述(description)',
@@ -604,6 +605,7 @@ $lang = array(
  'post_title'			=> 'Post title',//'文章标题',
  'post_title_site_title'	=> 'Post title - Site title',//'文章标题 - 站点标题',
  'post_title_site_meta_title'	=> 'Post title - Site browser title',//'文章标题 - 站点浏览器标题',
+ 'nginx_rewrite'		=> 'Please configure the following pseudo-static rules for the Nginx server',//'Nginx服务器请配置如下伪静态规则',
 
 //---------------------------
 //admin/views/sort.php
@@ -626,9 +628,10 @@ $lang = array(
  'store_unavailable'	=> 'The store is temporarily unavailable, it may be a network problem',//'商店暂不可用，可能是网络问题',
 // 'back_home'		=> 'Back to home',//'返回首页',
  'ext_store'		=> 'Extension Store',//'扩展商店',
- 'ext_store_templates'	=> 'Extension Store - Templates',//'扩展商店 - 模板',
+ 'ext_store_templates'	=> 'Template themes',//'模板主题',
 // 'template'		=> 'Template',//'模板',
- 'ext_store_plugins'	=> 'Extension Store - Plugins',//'扩展商店 - 插件',
+ 'extensions'		=> 'Extensions',//'扩展插件',
+ 'ext_store_plugins'	=> 'Extensions',//'扩展插件',
 
  'developer'		=> 'Developer',//'开发者',
  'update_time'		=> 'Update time',//'更新时间',
@@ -681,6 +684,7 @@ $lang = array(
  'template_use_this'		=> 'Use this template',//'使用该模板',
  'template_add'			=> 'Install template',//'安装模板',
  'template_install'		=> 'Install template',//'安装模板',
+ 'template_author'		=> 'Template author',//'模板开发者',
 
 //---------------------------
 //admin/views/template_crop.php
@@ -761,7 +765,7 @@ $lang = array(
 
 //---------------------------
 //admin/views/widgets.php
- 'widget_manage'	=> 'Sidebar widget management',//'侧边栏组件管理',
+ 'widget_manage'	=> 'Sidebar management',//'边栏管理',
  'system_widgets'	=> 'System widgets',//'系统组件',
  'blogger'		=> 'Personal information',//'个人资料',
  'change'		=> 'Change',//'更改',

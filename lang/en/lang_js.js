@@ -27,7 +27,7 @@ var LNG = {
  'alias_link_error_not_saved'	: 'Invalid Link Alias. Can not be saved automatically.',//'链接别名错误，自动保存失败',
 // 'saving'		: 'Saving',//'正在保存',
  'saving'		: 'Saving...',//'正在保存中...',
- 'saved_ok_time'	: 'Saved at ',//'保存于',
+ 'saved_ok_time'	: 'Saved at ',//'保存于：',
  'save_system_error'	: 'Error while saving... Unable to save.',//'网络或系统出现异常...保存可能失败',
 
 //---------------------------

@@ -555,7 +555,7 @@ $lang = array(
  'plugin_active_click'		=> '点击开启插件',//'Click to activate the plug-in',
  'plugin_disable_click'		=> '点击禁用插件',//'Click to disable the plug-in',
  'plugin_settings_click'	=> '点击设置插件',//'Click to plug-in settings',
- 'more_info'			=> '更多信息&raquo;',//'More Info&raquo;',
+ 'more_info'			=> '更多信息&raquo;',//'更多介绍&raquo;',//'More Info&raquo;',
  'plugin_no_installed'		=> '还没有安装插件',//'No installed plugins',
  'plugin_install'		=> '安装插件',//'Install plugin',
  'plugin_new_install'		=> '安装插件',//'Install plugin',
@@ -591,12 +591,13 @@ $lang = array(
  'htaccess_not_writable'	=> '保存失败：根目录下的.htaccess不可写',//'Save failed: .htaccess file in the root directory is not writable',
  'post_url_settings'		=> '文章链接设置',//'Post URL settings',
  'post_url_rewriting'		=> '如果修改后文章无法访问，可能是服务器空间不支持URL重写，请修改回默认形式、关闭文章连接别名。 启用链接别名后可以自定义文章和页面的链接地址。',//'If the article cannot be accessed after the modification, it may be that the server space does not support URL rewriting. Please modify it back to the default form and turn off the article connection alias. After enabling link aliases, you can customize the link addresses of articles and pages.',
+ 'post_url_format'		=> '文章链接格式',//'Article URL format',
  'default_format'		=> '默认形式',//'Default format',
  'file_format'			=> '文件形式',//'File format',
  'directory_format'		=> '目录形式',//'Directory format',
  'category_format'		=> '分类形式',//'Category format',
  'enable_html_suffix'		=> '启用文章链接别名html后缀',//'Enable html suffix for article link alias',
- 'meta_settings'		=> 'meta信息设置',//'Meta settings',
+ 'meta_settings'		=> '页头信息',//'Header Meta settings',
  'meta_title'			=> '站点浏览器标题(title)',//'Site Browser Title (title)',
  'meta_keywords'		=> '站点关键字(keywords)',//'Site keywords (keywords)',
  'meta_description'		=> '站点浏览器描述(description)',//'Site Browser Description (description)',
@@ -604,6 +605,7 @@ $lang = array(
  'post_title'			=> '文章标题',//'Post title',
  'post_title_site_title'	=> '文章标题 - 站点标题',//'Post title - Site title',
  'post_title_site_meta_title'	=> '文章标题 - 站点浏览器标题',//'Post title - Site browser title',
+ 'nginx_rewrite'		=> 'Nginx服务器请配置如下伪静态规则',//'Please configure the following pseudo-static rules for the Nginx server',
 
 //---------------------------
 //admin/views/sort.php
@@ -626,9 +628,10 @@ $lang = array(
  'store_unavailable'	=> '商店暂不可用，可能是网络问题',//'The store is temporarily unavailable, it may be a network problem',
 // 'back_home'		=> '返回首页',//'Back to home',
  'ext_store'		=> '扩展商店',//'Extension Store',
- 'ext_store_templates'	=> '扩展商店 - 模板',//'Extension Store - Templates',
+ 'ext_store_templates'	=> '模板主题',//'Template themes',
 // 'template'		=> '模板',//'Template',
- 'ext_store_plugins'	=> '扩展商店 - 插件',//'Extension Store - Plugins',
+ 'extensions'		=> '扩展插件',//'Extensions',
+ 'ext_store_plugins'	=> '扩展插件',//'Extensions',
 
  'developer'		=> '开发者',//'Developer',
  'update_time'		=> '更新时间',//'Update time',
@@ -681,6 +684,7 @@ $lang = array(
  'template_use_this'		=> '使用该模板',//'Use this template',
  'template_add'			=> '安装模板',//'Install template',
  'template_install'		=> '安装模板',//'Install template',
+ 'template_author'		=> '模板开发者',//'Template author',
 
 //---------------------------
 //admin/views/template_crop.php
@@ -761,7 +765,7 @@ $lang = array(
 
 //---------------------------
 //admin/views/widgets.php
- 'widget_manage'	=> '侧边栏组件管理',//'Sidebar widget management',
+ 'widget_manage'	=> '边栏管理',//'Sidebar management',
  'system_widgets'	=> '系统组件',//'System widgets',
  'blogger'		=> '个人资料',//'Personal information',
  'change'		=> '更改',//'Change',

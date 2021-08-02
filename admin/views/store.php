@@ -32,12 +32,12 @@
 			$icon = $v['icon'] ?: "./views/images/theme.png";
 			?>
             <div class="card" style="min-height: 340px;">
-                <img class="card-img-top" src="<?php echo $icon; ?>"/>
+                <a href="<?php echo $v['buy_url']; ?>" target="_blank"><img class="card-img-top" src="<?php echo $icon; ?>"/></a>
                 <div class="card-body">
 <!--vot-->          <p class="card-text"><span class="badge badge-warning"><?=lang('template')?></span> <?php echo $v['name']; ?></p>
                     <p class="card-text text-muted small">
                         <span class="small"><?php echo $v['info']; ?></span><br><br>
-<!--vot-->              <?=lang('price')?>: <?php echo $v['price'] > 0 ? $v['price'] : lang('free'); ?><br>
+<!--vot-->              <?=lang('price')?>: <?php echo $v['price'] > 0 ? $v['price'] . '元' : lang('free'); ?><br>
 <!--vot-->              <?=lang('developer')?>: <?php echo $v['author']; ?><br>
 <!--vot-->              <?=lang('update_time')?>: <?php echo $v['update_time']; ?><br>
                     </p>
@@ -60,12 +60,12 @@
 			$icon = $v['icon'] ?: "./views/images/plugin.png";
 			?>
             <div class="card">
-                <img class="card-img-top" src="<?php echo $icon; ?>" style="height: 150px;object-fit: cover;"/>
+                <a href="<?php echo $v['buy_url']; ?>" target="_blank"><img class="card-img-top" src="<?php echo $icon; ?>"/></a>
                 <div class="card-body">
 <!--vot-->          <p class="card-text"><span class="badge badge-primary"><?=lang('plugin')?></span> <?php echo $v['name']; ?></p>
                     <p class="card-text text-muted small">
 						<?php echo $v['info']; ?><br><br>
-<!--vot-->              <?=lang('price')?>: <?php echo $v['price'] > 0 ? $v['price'] : lang('free'); ?><br>
+<!--vot-->              <?=lang('price')?>: <?php echo $v['price'] > 0 ? $v['price'] . '元' : lang('free'); ?><br>
 <!--vot-->              <?=lang('developer')?>: <?php echo $v['author']; ?><br>
 <!--vot-->              <?=lang('update_time')?>: <?php echo $v['update_time']; ?><br>
                     </p>

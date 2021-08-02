@@ -87,13 +87,13 @@ $lang = array(
 
 //---------------------------------------
 //include/lib/mysqlii.php
- 'mysqli_not_supported'		=> '服务器空间PHP不支持MySqli函数',//'Server does not support PHP MySqli extension',
-// 'db_credential_error'	=> '连接数据库失败，数据库用户名或密码错误',//'Database connection error: Wrong username or password.',
-// 'db_not_found'		=> '连接数据库失败，未找到您填写的数据库',//'Database connection failed. The database you filled in was not found.',
+ 'mysqli_not_supported'		=> '服务器PHP不支持mysqli函数',//'Server PHP does not support mysqli function',
+ 'db_credential_error'		=> '连接MySQL数据库失败，数据库用户名或密码错误',//'Failed to connect to the MySQL database, the database user name or password is incorrect',
+ 'db_not_found'			=> '连接MySQL数据库失败，未找到你填写的数据库',//'Failed to connect to the MySQL database, the database you filled in was not found',
 // 'db_port_invalid'		=> '连接数据库失败，数据库端口错误',//'Database connection error: The database port is invalid.',
-// 'db_unavailable'		=> '连接数据库失败，数据库地址错误或者数据库服务器不可用',//'Database connection error: The database server or database is unavailable.',
+ 'db_unavailable'		=> '连接MySQL数据库失败，数据库地址错误或者数据库服务器不可用',//'Failed to connect to the MySQL database, the database address is wrong or the database server is unavailable',
 // 'db_server_unavailable'	=> '连接数据库失败，数据库服务器不可用',//'Database connection error: The database server is unavailable.',
-// 'db_error_code'		=> '连接数据库失败，请检查数据库信息。错误编号：',//'Database connection error: Please, check database information. Error code ',
+ 'db_error_code'		=> '连接MySQL数据库失败，请检查数据库信息。错误编号：',//'Failed to connect to the MySQL database, please check the database information. Error code: ',
  'db_error_name'		=> '连接数据库失败，请填写数据库名',//'Database connection error:  Please fill out the database name',
 // 'db_sql_error'		=> 'SQL语句执行错误',//'SQL statement execution error',
 

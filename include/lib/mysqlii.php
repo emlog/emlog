@@ -37,9 +37,24 @@ class MySqlii {
 		}
 
 		@$this->conn = new mysqli(DB_HOST, DB_USER, DB_PASSWD, DB_NAME);
-
 		if ($this->conn->connect_error) {
-/*vot*/			 emMsg(lang('db_error_code') . $this->conn->connect_errno);
+			switch ($this->conn->connect_errno) {
+				case 1044:
+				case 1045:
+/*vot*/					emMsg(lang('db_credential_error'));
+					break;
+				case 1049:
+/*vot*/					emMsg(lang('db_not_found'));
+					break;
+				case 2003:
+				case 2005:
+				case 2006:
+/*vot*/					emMsg(lang('db_unavailable'));
+					break;
+				default :
+/*vot*/					emMsg(lang('db_error_code') . $this->conn->connect_errno);
+					break;
+			}
 		}
 
 		$this->conn->set_charset('utf8mb4');

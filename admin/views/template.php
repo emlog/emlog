@@ -34,16 +34,35 @@
 <div class="card-columns">
 	<?php foreach ($tpls as $key => $value): ?>
         <div class="card">
-            <div class="card-header <?php if ($nonce_templet == $value['tplfile']) {echo "bg-success text-white";} ?>">
-                <?php echo $value['tplname']; ?>
+            <div class="card-header <?php if ($nonce_templet == $value['tplfile']) {
+				echo "bg-success text-white";
+			} ?>">
+				<?php echo $value['tplname']; ?>
             </div>
             <div class="card-body">
-                <a href="template.php?action=usetpl&tpl=<?php echo $value['tplfile']; ?>&side=<?php echo $value['sidebar']; ?>&token=<?php echo LoginAuth::genToken(); ?>">
+                <a href="template.php?action=usetpl&tpl=<?php echo $value['tplfile']; ?>&token=<?php echo LoginAuth::genToken(); ?>">
                     <img class="card-img-top" src="<?php echo TPLS_URL . $value['tplfile']; ?>/preview.jpg" alt="Card image cap">
                 </a>
             </div>
             <div class="card-footer">
+				<?php if ($value['author']): ?>
+                    <div class="small">模板开发者：
+						<?php if ($value['author_url']): ?>
+                            <a href="<?php echo $value['author_url']; ?>" target="_blank"><?php echo $value['author']; ?></a>
+						<?php else: ?>
+							<?php echo $value['author']; ?>
+						<?php endif; ?>
+                    </div>
+				<?php endif; ?>
+                <div class="small">
+					<?php echo $value['tpldes']; ?>
+					<?php if ($value['tplurl']): ?>
+                        <a href="<?php echo $value['tplurl']; ?>" target="_blank">更多介绍&rarr;</a>
+					<?php endif; ?>
+                </div>
+                <div class="mt-3">
 <!--vot-->      <a class="badge badge-danger" href="javascript: em_confirm('<?php echo $value['tplfile']; ?>', 'tpl', '<?php echo LoginAuth::genToken(); ?>');"><?=lang('delete')?></a>
+                </div>
             </div>
         </div>
 	<?php endforeach; ?>
