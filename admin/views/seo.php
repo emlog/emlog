@@ -18,7 +18,7 @@
 <div class="card shadow mb-4 mt-2">
     <div class="card-body">
         <form action="seo.php?action=update" method="post">
-<!--vot-->  <h4><?=lang('post_url_settings')?></h4>
+/*vot*/     <h4><?=lang('post_url_format')?></h4>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="permalink" value="0" <?php echo $ex0; ?>>
 <!--vot-->      <label class="form-check-label"><?=lang('default_format')?>: <span class="permalink_url"><?php echo BLOG_URL; ?>?post=1</span></label>
@@ -46,8 +46,8 @@
             </div>
 
             <div class="alert alert-warning">
-                如果修改后文章无法访问，可能是服务器空间不支持URL重写，请修改回默认形式、关闭文章连接别名。 启用链接别名后可以自定义文章和页面的链接地址。<br>
-                Nginx服务器请配置如下伪静态规则：<br>
+<!--vot-->      <?=lang('post_url_rewriting')?><br>
+<!--vot-->      <?=lang('nginx_rewrite')?>:<br>
                 location / {<br>
                 index index.php index.html;<br>
                 if (!-e $request_filename){<br>

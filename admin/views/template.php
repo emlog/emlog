@@ -46,7 +46,7 @@
             </div>
             <div class="card-footer">
 				<?php if ($value['author']): ?>
-                    <div class="small">模板开发者：
+/*vot*/             <div class="small"><?=lang('template_author')?>:
 						<?php if ($value['author_url']): ?>
                             <a href="<?php echo $value['author_url']; ?>" target="_blank"><?php echo $value['author']; ?></a>
 						<?php else: ?>
@@ -57,7 +57,7 @@
                 <div class="small">
 					<?php echo $value['tpldes']; ?>
 					<?php if ($value['tplurl']): ?>
-                        <a href="<?php echo $value['tplurl']; ?>" target="_blank">更多介绍&rarr;</a>
+/*vot*/                 <a href="<?php echo $value['tplurl']; ?>" target="_blank"><?=lang('more_info')?></a>
 					<?php endif; ?>
                 </div>
                 <div class="mt-3">
