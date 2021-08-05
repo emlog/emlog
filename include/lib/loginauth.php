@@ -35,7 +35,9 @@ class LoginAuth {
 	 * 验证密码/用户
 	 */
 	public static function checkUser($username, $password, $imgcode) {
-		session_start();
+		if (!isset($_SESSION)) {
+			session_start();
+		}
 		if (empty($username) || empty($password)) {
 			return false;
 		}
@@ -197,7 +199,9 @@ class LoginAuth {
 	 * 生成token，防御CSRF攻击
 	 */
 	public static function genToken() {
-		session_start();
+		if (!isset($_SESSION)) {
+			session_start();
+		}
 		if (!empty($_SESSION['em_csrf_token'])) {
 			return $_SESSION['em_csrf_token'];
 		}
