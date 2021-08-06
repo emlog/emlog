@@ -288,7 +288,7 @@ textarea {
 .advset_hidden {
     opacity: 0;
     visibility: hidden;
-    margin-top: -762.5px;
+    margin-top: -530px;
 }
 #post_bar {
     margin:5px 0px;
@@ -299,7 +299,7 @@ textarea {
     cursor:pointer;
 }
 #post_button{
-    margin:10px 0px;
+    margin:20px 0px;
 }
 #post_options {
     float:right

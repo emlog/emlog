@@ -17,7 +17,7 @@
             </div>
 
             <div class="form-group">
-                <label>链接别名：</label>
+                <label>链接别名：（用于seo设置 <a href="./seo.php">&rarr;</a>）</label>
                 <input name="alias" id="alias" class="form-control" value="<?php echo $alias; ?>"/>
             </div>
             <div class="form-group">

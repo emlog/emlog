@@ -19,13 +19,14 @@
                 <div id="logcontent"><textarea><?php echo $content; ?></textarea></div>
             </div>
 
+            <div class="form-group">
+                <label>文章摘要：</label>
+                <div id="logexcerpt"><textarea><?php echo $excerpt; ?></textarea></div>
+            </div>
+
             <div class="show_advset" id="displayToggle" onclick="displayToggle('advset', 1);">高级选项<i class="icofont-simple-right"></i></div>
 
-            <div id="advset">
-                <div class="form-group">
-                    <label>文章摘要：</label>
-                    <div id="logexcerpt"><textarea><?php echo $excerpt; ?></textarea></div>
-                </div>
+            <div id="advset" class="shadow-sm p-3 mb-2 bg-white rounded">
                 <div class="form-group">
                     <label>分类：</label>
                     <select name="sort" id="sort" class="form-control">
@@ -51,32 +52,31 @@
 						?>
                     </select>
                 </div>
-
                 <div class="form-group">
                     <label>标签：</label>
                     <input name="tag" id="tag" class="form-control" value="<?php echo $tagStr; ?>" placeholder="文章标签，使用逗号分隔"/>
                 </div>
-
                 <div class="form-group">
                     <label>发布时间：</label>
                     <input maxlength="200" name="postdate" id="postdate" value="<?php echo $postDate; ?>" class="form-control"/>
                 </div>
-
                 <div class="form-group">
-                    <label>链接别名：</label>
+                    <label>链接别名：（用于seo设置 <a href="./seo.php">&rarr;</a>）</label>
                     <input name="alias" id="alias" class="form-control" value="<?php echo $alias; ?>"/>
                 </div>
-
                 <div class="form-group">
                     <label>访问密码：</label>
                     <input type="text" name="password" id="password" class="form-control" value="<?php echo $password; ?>"/>
                 </div>
-
                 <div class="form-group">
                     <input type="checkbox" value="y" name="top" id="top" <?php echo $is_top; ?> />
                     <label for="top">首页置顶</label>
+                </div>
+                <div class="form-group">
                     <input type="checkbox" value="y" name="sortop" id="sortop" <?php echo $is_sortop; ?> />
                     <label for="sortop">分类置顶</label>
+                </div>
+                <div class="form-group">
                     <input type="checkbox" value="y" name="allow_remark" id="allow_remark" <?php echo $is_allow_remark; ?> />
                     <label for="allow_remark">允许评论</label>
                 </div>
@@ -88,15 +88,14 @@
                 <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $logid; ?>">
                 <input type="hidden" name="gid" value=<?php echo $logid; ?>/>
                 <input type="hidden" name="author" id="author" value=<?php echo $author; ?>/>
-
 				<?php if ($logid < 0): ?>
-                    <input type="submit" value="发布文章" onclick="return checkform();" class="btn btn-sm btn-success"/>
-                    <input type="button" name="savedf" id="savedf" value="保存草稿" onclick="autosave(2);" class="btn btn-sm btn-primary"/>
+                    <input type="submit" value="发布文章" onclick="return checkform();" class="btn btn-success"/>
+                    <input type="button" name="savedf" id="savedf" value="保存草稿" onclick="autosave(2);" class="btn btn-primary"/>
 				<?php else: ?>
-                    <input type="submit" value="保存并返回" onclick="return checkform();" class="btn btn-sm btn-success"/>
-                    <input type="button" name="savedf" id="savedf" value="保存" onclick="autosave(2);" class="btn btn-sm btn-primary"/>
+                    <input type="submit" value="保存并返回" onclick="return checkform();" class="btn btn-success"/>
+                    <input type="button" name="savedf" id="savedf" value="保存" onclick="autosave(2);" class="btn btn-primary"/>
 					<?php if ($isdraft) : ?>
-                        <input type="submit" name="pubdf" id="pubdf" value="发布" onclick="return checkform();" class="btn btn-sm btn-success"/>
+                        <input type="submit" name="pubdf" id="pubdf" value="发布" onclick="return checkform();" class="btn btn-success"/>
 					<?php endif; ?>
 				<?php endif; ?>
             </div>
@@ -116,34 +115,34 @@
             </div>
             <div class="modal-body">
 				<?php if ($medias): ?>
-                <div class="card-columns">
-					<?php
-					foreach ($medias as $key => $value):
-						$media_url = getFileUrl($value['filepath']);
-						$media_name = $value['filename'];
-						if (isImage($value['filepath'])) {
-							$imgpath = $value['thum_filepath'] ?? $value['filepath'];
-							$media_icon_imgurl = getFileUrl($imgpath);
-						} else {
-							$media_icon_imgurl = "./views/images/fnone.png";
-						}
-						?>
-                        <div class="card" style="min-height: 138px;">
-							<?php if (isImage($value['filepath'])): ?>
-                                <a href="javascript:insert_media_img('<?php echo $media_url; ?>', '<?php echo $media_icon_imgurl; ?>')" title="插入图片：<?php echo $media_name; ?>">
-                                    <img class="card-img-top" src="<?php echo $media_icon_imgurl; ?>"/>
-                                </a>
-							<?php else: ?>
-                                <a href="javascript:insert_media('<?php echo $media_url; ?>', '<?php echo $media_name; ?>')" title="插入文件：<?php echo $media_name; ?>">
-                                    <img class="card-img-top" src="<?php echo $media_icon_imgurl; ?>"/>
-                                </a>
-							<?php endif; ?>
-                        </div>
-					<?php endforeach; ?>
-                </div>
-			<?php else: ?>
+                    <div class="card-columns">
+						<?php
+						foreach ($medias as $key => $value):
+							$media_url = getFileUrl($value['filepath']);
+							$media_name = $value['filename'];
+							if (isImage($value['filepath'])) {
+								$imgpath = $value['thum_filepath'] ?? $value['filepath'];
+								$media_icon_imgurl = getFileUrl($imgpath);
+							} else {
+								$media_icon_imgurl = "./views/images/fnone.png";
+							}
+							?>
+                            <div class="card" style="min-height: 138px;">
+								<?php if (isImage($value['filepath'])): ?>
+                                    <a href="javascript:insert_media_img('<?php echo $media_url; ?>', '<?php echo $media_icon_imgurl; ?>')" title="插入图片：<?php echo $media_name; ?>">
+                                        <img class="card-img-top" src="<?php echo $media_icon_imgurl; ?>"/>
+                                    </a>
+								<?php else: ?>
+                                    <a href="javascript:insert_media('<?php echo $media_url; ?>', '<?php echo $media_name; ?>')" title="插入文件：<?php echo $media_name; ?>">
+                                        <img class="card-img-top" src="<?php echo $media_icon_imgurl; ?>"/>
+                                    </a>
+								<?php endif; ?>
+                            </div>
+						<?php endforeach; ?>
+                    </div>
+				<?php else: ?>
                     <div class="text-center">暂无可用资源，<a href="media.php">去上传</a></div>
-			<?php endif; ?>
+				<?php endif; ?>
             </div>
 
         </div>
@@ -161,11 +160,11 @@
     $("#menu_category_content").addClass('active');
     $("#menu_content").addClass('show');
     $("#menu_write").addClass('active');
-	
+
     icon_tog = false;
     if (Cookies.get('em_advset') == "hidden") {
         displayToggle('advset', 1);
-    } else {        
+    } else {
         $(".icofont-simple-right").attr("class", "icofont-simple-down");
     }
 
@@ -196,15 +195,16 @@
                 if ($(window).width() > 767) {
                     this.watch();
                 }
-		//添加Ctrl(Cmd)+S快捷键保存文章内容
+                //添加Ctrl(Cmd)+S快捷键保存文章内容
                 var articleSave = {
-                    "Ctrl-S": function(cm) {
-                    	autosave(2);
+                    "Ctrl-S": function (cm) {
+                        autosave(2);
                     },
-                    "Cmd-S": function(cm) {
-                    	autosave(2);
-                    }};
-                this.addKeyMap(articleSave);  
+                    "Cmd-S": function (cm) {
+                        autosave(2);
+                    }
+                };
+                this.addKeyMap(articleSave);
             }
         });
         Editor_summary = editormd("logexcerpt", {
