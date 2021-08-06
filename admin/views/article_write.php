@@ -24,7 +24,7 @@
                 <div id="logexcerpt"><textarea><?php echo $excerpt; ?></textarea></div>
             </div>
 
-            <div class="show_advset" id="displayToggle" onclick="displayToggle('advset', 1);">高级选项<i class="icofont-simple-right"></i></div>
+            <div class="show_advset" id="displayToggle" onclick="displayToggle('advset', 1);">更多选项<i class="icofont-simple-right"></i></div>
 
             <div id="advset" class="shadow-sm p-3 mb-2 bg-white rounded">
                 <div class="form-group">
@@ -151,7 +151,7 @@
 
 <script src="./editor.md/editormd.js?d=5.25.2021"></script>
 <script>
-    var icon_tog;//如果值为true，则“高级选项”箭头向右
+    var icon_tog;//如果值为true，则“更多选项”箭头向右
 
     $("#alias").keyup(function () {
         checkalias();
