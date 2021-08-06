@@ -18,35 +18,38 @@
 <div class="card shadow mb-4 mt-2">
     <div class="card-body">
         <form action="seo.php?action=update" method="post">
-            <h4>文章链接格式</h4>
+            <h4>文章链接</h4>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="permalink" value="0" <?php echo $ex0; ?>>
-                <label class="form-check-label">默认形式：<span class="permalink_url"><?php echo BLOG_URL; ?>?post=1</span></label>
+                <label class="form-check-label">默认格式：<span class="permalink_url"><?php echo BLOG_URL; ?>?post=1</span></label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="permalink" value="1" <?php echo $ex1; ?>>
-                <label class="form-check-label">文件形式：<span class="permalink_url"><?php echo BLOG_URL; ?>post-1.html</span></label>
+                <label class="form-check-label">文件格式：<span class="permalink_url"><?php echo BLOG_URL; ?>post-1.html</span></label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="permalink" value="2" <?php echo $ex2; ?>>
-                <label class="form-check-label">目录形式：<span class="permalink_url"><?php echo BLOG_URL; ?>post/1</span></label>
+                <label class="form-check-label">目录格式：<span class="permalink_url"><?php echo BLOG_URL; ?>post/1</span></label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="permalink" value="3" <?php echo $ex3; ?>>
-                <label class="form-check-label">分类形式：<span class="permalink_url"><?php echo BLOG_URL; ?>category/1.html</span></label>
+                <label class="form-check-label">分类格式：<span class="permalink_url"><?php echo BLOG_URL; ?>category/1.html</span></label>
             </div>
 
             <div class="form-check mt-3">
                 <input class="form-check-input" type="checkbox" value="y" name="isalias" id="isalias" <?php echo $isalias; ?> />
-                <label>启用文章链接别名</label>
+                <label>启用链接别名：<span class="permalink_url"><?php echo BLOG_URL; ?>abc</span></label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="isalias_html" id="isalias_html" <?php echo $isalias_html; ?> />
-                <label>启用文章链接别名html后缀</label>
+                <label>启用链接别名html后缀：<span class="permalink_url"><?php echo BLOG_URL; ?>abc.html</span></label>
             </div>
 
             <div class="alert alert-warning">
-                如果修改后文章无法访问，可能是服务器空间不支持URL重写，请修改回默认形式、关闭文章连接别名。 启用链接别名后可以自定义文章和页面的链接地址。<br>
+                如果修改后文章无法访问，可能是服务器空间不支持URL重写，请修改回默认格式并关闭文章连接别名。<br>
+            </div>
+
+            <div class="alert alert-primary">
                 Nginx服务器请配置如下伪静态规则：<br>
                 location / {<br>
                 index index.php index.html;<br>
