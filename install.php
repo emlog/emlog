@@ -231,20 +231,22 @@ EOT;
 		emMsg('缓存目录（content/cache）不可写。请检查文件权限。');
 	}
 	$config = "<?php\n"
-		. "//mysql database address\n"
+		. "//MySQL数据库地址\n"
 		. "const DB_HOST = '$db_host';"
-		. "\n//mysql database user\n"
+		. "\n//数据库用户名\n"
 		. "const DB_USER = '$db_user';"
-		. "\n//database password\n"
+		. "\n//数据库用户密码\n"
 		. "const DB_PASSWD = '$db_pw';"
-		. "\n//database name\n"
+		. "\n//数据库名\n"
 		. "const DB_NAME = '$db_name';"
-		. "\n//database prefix\n"
+		. "\n//数据库表前缀\n"
 		. "const DB_PREFIX = '$db_prefix';"
 		. "\n//auth key\n"
 		. "const AUTH_KEY = '" . getRandStr(32) . md5($_SERVER['HTTP_USER_AGENT']) . "';"
 		. "\n//cookie name\n"
 		. "const AUTH_COOKIE_NAME = 'EM_AUTHCOOKIE_" . getRandStr(32, false) . "';"
+		. "\n//管理后台安全入口：/admin/?s=xxx\n"
+		. "//const ADMIN_PATH_CODE = '" . getRandStr(8, false) . "';"
 		. "\n";
 
 	$fp = @fopen('config.php', 'w');

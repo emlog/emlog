@@ -918,10 +918,13 @@ EOT;
  * 显示404错误页面
  *
  */
-function show_404_page() {
+function show_404_page($show_404_only = false) {
 	if (is_file(TEMPLATE_PATH . '404.php')) {
 		header("HTTP/1.1 404 Not Found");
 		include View::getView('404');
+		exit;
+	} elseif ($show_404_only) {
+		header("HTTP/1.1 404 Not Found");
 		exit;
 	} else {
 		emMsg('404', BLOG_URL);
