@@ -50,12 +50,12 @@
             </div>
 
             <div class="alert alert-primary">
-                Nginx服务器请配置如下伪静态规则：<br>
+                Nginx服务器请配置如下伪静态规则：<br><br>
                 location / {<br>
-                index index.php index.html;<br>
-                if (!-e $request_filename){<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;rewrite ^/(.*)$ /index.php last;<br>
-                }<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;index index.php index.html;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;if (!-e $request_filename){<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rewrite ^/(.*)$ /index.php last;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;}<br>
                 }<br>
             </div>
 
