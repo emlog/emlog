@@ -20,6 +20,7 @@ const MSGCODE_SUCCESS = 200;                                     // 成功
 $sta_cache = $CACHE->readCache('sta');
 $user_cache = $CACHE->readCache('user');
 $action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
+$admin_path_code = isset($_GET['s']) ? addslashes($_GET['s']) : '';
 
 define('ISREG', Register::isRegLocal());
 
@@ -46,6 +47,9 @@ if ($action == 'logout') {
 }
 
 if (ISLOGIN === false) {
+	if (defined('ADMIN_PATH_CODE') && $admin_path_code !== ADMIN_PATH_CODE) {
+		show_404_page(true);
+	}
 	LoginAuth::loginPage();
 }
 
