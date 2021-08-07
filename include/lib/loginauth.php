@@ -61,7 +61,10 @@ class LoginAuth {
 	/**
 	 * 登录页面
 	 */
-	public static function loginPage($errorCode = NULL) {
+	public static function loginPage($errorCode = NULL, $admin_path_code = '') {
+		if (defined('ADMIN_PATH_CODE') && $admin_path_code !== ADMIN_PATH_CODE) {
+			show_404_page(true);
+		}
 		$ckcode = Option::get('login_code') == 'y' ? true : false;
 		$error_msg = '';
 		switch ($errorCode) {

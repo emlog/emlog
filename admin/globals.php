@@ -25,6 +25,9 @@ $admin_path_code = isset($_GET['s']) ? addslashes($_GET['s']) : '';
 define('ISREG', Register::isRegLocal());
 
 if ($action == 'login') {
+	if (defined('ADMIN_PATH_CODE') && $admin_path_code !== ADMIN_PATH_CODE) {
+		show_404_page(true);
+	}
 	$username = isset($_POST['user']) ? addslashes(trim($_POST['user'])) : '';
 	$password = isset($_POST['pw']) ? addslashes(trim($_POST['pw'])) : '';
 	$ispersis = isset($_POST['ispersis']) ? (int)$_POST['ispersis'] : 0;
@@ -47,10 +50,7 @@ if ($action == 'logout') {
 }
 
 if (ISLOGIN === false) {
-	if (defined('ADMIN_PATH_CODE') && $admin_path_code !== ADMIN_PATH_CODE) {
-		show_404_page(true);
-	}
-	LoginAuth::loginPage();
+	LoginAuth::loginPage(null, $admin_path_code);
 }
 
 $request_uri = strtolower(substr(basename($_SERVER['SCRIPT_NAME']), 0, -4));

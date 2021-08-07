@@ -19,7 +19,7 @@
             <div class="card o-hidden border-0 shadow-lg my-5">
                 <div class="card-body p-0">
                     <div class="p-5">
-                        <form method="post" action="./index.php?action=login">
+                        <form method="post" action="./index.php?action=login&s=<?php echo $admin_path_code; ?>">
 							<?php if ($error_msg): ?>
                                 <div class="alert alert-danger alert-dismissible" role="alert">
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
