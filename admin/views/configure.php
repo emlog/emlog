@@ -48,6 +48,8 @@
                 <label class="form-check-label">登录验证码</label>
             </div>
 
+            <hr>
+
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="iscomment" id="iscomment" <?php echo $conf_iscomment; ?> />
                 <label>开启评论</label>，
@@ -110,6 +112,8 @@
                 <input type="text" name="excerpt_subnum" value="<?php echo Option::get('excerpt_subnum'); ?>" class="form-control" style="width:60px;"/>个字作为摘要
             </div>
 
+            <hr>
+
             <div class="form-group form-inline">
                 附件上传最大限制 <input maxlength="10" style="width:80px;" class="form-control" value="<?php echo $att_maxsize; ?>" name="att_maxsize"/> KB
             </div>
@@ -121,6 +125,7 @@
                 <input maxlength="5" style="width:60px;" class="form-control" value="<?php echo $att_imgmaxw; ?>" name="att_imgmaxw"/> x
                 <input maxlength="5" style="width:60px;" class="form-control" value="<?php echo $att_imgmaxh; ?>" name="att_imgmaxh"/>（单位：像素）
             </div>
+
             <div class="form-group">
                 <label>ICP备案号</label>
                 <input class="form-control" value="<?php echo $icp; ?>" name="icp"/>
