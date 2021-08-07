@@ -18,11 +18,14 @@ if (empty($action)) {
 	$serverapp = $_SERVER['SERVER_SOFTWARE'];
 	$DB = Database::getInstance();
 	$mysql_ver = $DB->getMysqlVersion();
-	$php_ver = PHP_VERSION;
-	$max_execution_time = ini_get('max_execution_time') ?: '';
 
+	$max_execution_time = ini_get('max_execution_time') ?: '';
+	$php_ver = PHP_VERSION . ', MET' . $max_execution_time;
 	if (function_exists("curl_init")) {
-		$php_ver .= '，Curl';
+		$php_ver .= ', Curl';
+	}
+	if (class_exists('ZipArchive', FALSE)) {
+		$php_ver .= ', Zip';
 	}
 
 	include View::getView('header');
