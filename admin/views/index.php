@@ -38,7 +38,7 @@
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             PHP
-                            <span><?php echo $php_ver . ', ' . $max_execution_time; ?></span>
+                            <span><?php echo $php_ver; ?></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             MySQL
