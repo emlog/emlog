@@ -93,7 +93,7 @@ footer .copyright {
 }
 
 .side-bar .widget {
-    margin-bottom: 45px;
+    margin-bottom: 24px;
     padding: 30px
 }
 
@@ -295,16 +295,14 @@ footer .copyright {
 }
 
 .comment-post #comment_submit {
-    background-color: #f3f3f3;
-    color: #a9a9a9;
     width: auto;
     height: 35px;
     text-align: center;
     font-size: inherit;
-    margin-top: 20px;
+    margin: 10px 0px;
     float: right;
     margin-right: 1px;
-    border-radius: 10px;
+    border-radius: 6px;
     border: 1px solid #dedede
 }
 
