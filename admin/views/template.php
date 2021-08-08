@@ -16,7 +16,7 @@
 <?php if (isset($_GET['error_b'])): ?>
     <div class="alert alert-danger">上传失败，模板目录(content/templates)不可写</div><?php endif; ?>
 <?php if (isset($_GET['error_d'])): ?>
-    <div class="alert alert-danger">请选择一个zip模板安装包</div><?php endif; ?>
+    <div class="alert alert-danger">请选择一个zip格式的模板安装包</div><?php endif; ?>
 <?php if (isset($_GET['error_e'])): ?>
     <div class="alert alert-danger">安装失败，模板安装包不符合标准</div><?php endif; ?>
 <?php if (isset($_GET['error_c'])): ?>
