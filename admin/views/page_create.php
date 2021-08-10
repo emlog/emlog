@@ -129,7 +129,7 @@
             sequenceDiagram: false,
             syncScrolling : "single",
             onload: function () {
-                    hooks.doAction("loaded",this);
+                    hooks.doAction("page_loaded",this);
                     //在大屏模式下，编辑器默认显示预览
                     if($(window).width() > 767){
                         this.watch();
