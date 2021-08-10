@@ -905,7 +905,8 @@ body {
     }
 
     .bloggerinfo_img {
-        width: 70px !important
+        width: 70px;
+        height: 70px
     }
 
     .bloginfo_name {
