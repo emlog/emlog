@@ -147,7 +147,7 @@ function cancelReply() {
 }
 
 function cal_margin(links, dp_id) {
-    if(window.outerWidth < 992){
+    if(window.outerWidth > 991){
         console.log(window.outerWidth);
         var count, menus, cal_width;
         cal_width = 85;//初始子导航的宽度(px)，可根据需要修改
