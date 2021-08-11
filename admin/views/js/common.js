@@ -79,9 +79,9 @@ function hideActived() {
 }
 
 function displayToggle(id, keep) {
-    $("#" + id).toggleClass(id+"_hidden");
-    icon_tog?$(".icofont-simple-right").attr("class","icofont-simple-down"):$(".icofont-simple-down").attr("class","icofont-simple-right");
-    icon_tog=!icon_tog;
+    $("#" + id).toggleClass(id + "_hidden");
+    icon_tog ? $(".icofont-simple-right").attr("class", "icofont-simple-down") : $(".icofont-simple-down").attr("class", "icofont-simple-right");
+    icon_tog = !icon_tog;
     if (keep == 1) {
         Cookies.set('em_' + id, $("#" + id).css('visibility'), {expires: 365})
     }
@@ -200,7 +200,6 @@ function autosave(act) {
         return;
     }
 
-    $("#msg").show().html("正在保存中...").addClass("alert-success");
     var btname = $("#savedf").val();
     $("#savedf").val("正在保存中...");
     $("#savedf").attr("disabled", "disabled");
@@ -214,11 +213,10 @@ function autosave(act) {
             var h = d.getHours();
             var m = d.getMinutes();
             var s = d.getSeconds();
-            var tm = (h < 10 ? "0" + h : h) +":"+ (m < 10 ? "0" + m : m) +":"+ (s < 10 ? "0" + s : s);
-            $("#save_info").html("<span class=\"ajax_remind_1\">保存于：" + tm + " </span>");
+            var tm = (h < 10 ? "0" + h : h) + ":" + (m < 10 ? "0" + m : m) + ":" + (s < 10 ? "0" + s : s);
+            $("#save_info").html("保存于：" + tm);
             $("#" + nodeid).val(logid);
             $("#savedf").attr("disabled", false).val(btname);
-            $("#msg").hide().html("");
         } else {
             $("#savedf").attr("disabled", false).val(btname);
             $("#msg").html("网络或系统出现异常...保存可能失败").addClass("alert-danger");
