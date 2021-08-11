@@ -14,7 +14,6 @@
                 <div id="post_bar">
                     <a href="#" class="text-muted small my-3" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> 插入图文资源</a>
 					<?php doAction('adm_writelog_head'); ?>
-                    <span id="save_info"></span>
                 </div>
                 <div id="logcontent"><textarea><?php echo $content; ?></textarea></div>
             </div>
@@ -98,6 +97,7 @@
                         <input type="submit" name="pubdf" id="pubdf" value="发布" onclick="return checkform();" class="btn btn-success"/>
 					<?php endif; ?>
 				<?php endif; ?>
+                <span id="save_info"></span>
             </div>
         </div>
     </div>

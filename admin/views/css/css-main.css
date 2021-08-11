@@ -71,12 +71,6 @@ textarea {
     background-color:#C30;
     color:#FFF
 }
-.ajax_remind_1 {
-    padding:3px 5px;
-    color: #3c763d;
-    background-color: #dff0d8;
-    border-color: #d6e9c6;
-}
 #user,#pw {
     height:28px;
     width:210px
