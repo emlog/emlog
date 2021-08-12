@@ -264,14 +264,15 @@ function pagination($count, $perlogs, $page, $url, $anchor = '') {
 	$re = '';
 	$urlHome = preg_replace("|[\?&/][^\./\?&=]*page[=/\-]|", "", $url);
 	for ($i = $page - 5; $i <= $page + 5 && $i <= $pnums; $i++) {
-		if ($i > 0) {
-			if ($i == $page) {
-				$re .= " <span>$i</span> ";
-			} elseif ($i == 1) {
-				$re .= " <a href=\"$urlHome$anchor\">$i</a> ";
-			} else {
-				$re .= " <a href=\"$url$i$anchor\">$i</a> ";
-			}
+		if ($i <= 0) {
+			continue;
+		}
+		if ($i == $page) {
+			$re .= " <span>$i</span> ";
+		} elseif ($i == 1) {
+			$re .= " <a href=\"$urlHome$anchor\">$i</a> ";
+		} else {
+			$re .= " <a href=\"$url$i$anchor\">$i</a> ";
 		}
 	}
 	if ($page > 6)
@@ -335,13 +336,11 @@ function breakLog($content, $lid) {
 /**
  * 时间转化函数
  *
- * @param $now
  * @param $datetemp
  * @param $dstr
  * @return string
  */
 function smartDate($datetemp, $dstr = 'Y-m-d H:i') {
-	$op = '';
 	$sec = time() - $datetemp;
 	$hover = floor($sec / 3600);
 	if ($hover == 0) {
@@ -914,10 +913,6 @@ EOT;
 	exit;
 }
 
-/**
- * 显示404错误页面
- *
- */
 function show_404_page($show_404_only = false) {
 	if (is_file(TEMPLATE_PATH . '404.php')) {
 		header("HTTP/1.1 404 Not Found");
