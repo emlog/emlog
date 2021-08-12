@@ -261,3 +261,23 @@ $(function () {
     });
 });
 
+// editor.md的js钩子
+var queue = new Array();
+var hooks = {
+    addAction: function(hook, func) {      
+        if (typeof(queue[hook])=="undefined"||queue[hook] == null){
+            queue[hook] = new Array();
+        }        
+        if (typeof func == 'function') {
+            queue[hook].push(func);
+        }
+   },
+   doAction: function(hook,obj) {
+        try{
+            for(var i=0; i < queue[hook].length; i++) {
+                queue[hook][i](obj);
+            }
+        }catch(e) {}
+    }
+}
+
