@@ -131,7 +131,7 @@ class LoginAuth {
 		}
 		$auth_cookie_name = AUTH_COOKIE_NAME;
 		$auth_cookie = self::generateAuthCookie($user_login, $expiration);
-		setcookie($auth_cookie_name, $auth_cookie, $expiration, '/');
+		setcookie($auth_cookie_name, $auth_cookie, $expiration, '/', '', false, true);
 	}
 
 	/**
