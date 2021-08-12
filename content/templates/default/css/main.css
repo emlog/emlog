@@ -279,7 +279,7 @@ footer .copyright {
 }
 
 .comment-post input {
-    padding: 5px 10px;
+    padding: 7px 10px;
     font-size: small;
     color: #6c757d;
     width: 33.334%
@@ -863,7 +863,7 @@ body {
 .com_control {
     border-radius: 0px;
     border-right: 0px;
-    height: 55px
+    height: 50px
 }
 
 .commentform {
@@ -905,7 +905,8 @@ body {
     }
 
     .bloggerinfo_img {
-        width: 70px !important
+        width: 70px;
+        height: 70px
     }
 
     .bloginfo_name {

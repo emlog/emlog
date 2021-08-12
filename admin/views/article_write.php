@@ -190,7 +190,9 @@
             imageUpload: true,
             imageFormats: ["jpg", "jpeg", "gif", "png"],
             imageUploadURL: "media.php?action=upload&editor=1",
+            syncScrolling : "single",
             onload: function () {
+                hooks.doAction("loaded",this);
                 //在大屏模式下，编辑器默认显示预览
                 if ($(window).width() > 767) {
                     this.watch();
@@ -224,7 +226,10 @@
             flowChart: false,
             autoFocus: false,
             sequenceDiagram: false,
-            placeholder: "如果留空，则使用文章内容作为摘要..."
+            placeholder: "如果留空，则使用文章内容作为摘要...",
+            onload: function () {
+                hooks.doAction("sum_loaded",this);
+            }
         });
         Editor.setToolbarAutoFixed(false);
         Editor_summary.setToolbarAutoFixed(false);
