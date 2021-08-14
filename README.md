@@ -29,6 +29,9 @@ www.emlog.net
 
 https://www.emlog.net/download
 
+## 更新记录
+[changelog](/CHANGELOG.md)
+
 ## 环境要求
 * PHP7.0及以上
 * MySQL5.6及以上
