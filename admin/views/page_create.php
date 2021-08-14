@@ -17,7 +17,7 @@
             </div>
 
             <div class="form-group">
-<!--vot-->      <label><?=lang('link_alias')?>:</label>
+                <label>链接别名：（用于seo设置 <a href="./seo.php">&rarr;</a>）</label>
                 <input name="alias" id="alias" class="form-control" value="<?php echo $alias; ?>"/>
             </div>
             <div class="form-group">
@@ -130,7 +130,9 @@
             watch: false,
             htmlDecode : true,
             sequenceDiagram: false,
-            onload : function() {
+            syncScrolling : "single",
+            onload: function () {
+                    hooks.doAction("page_loaded",this);
                     //在大屏模式下，编辑器默认显示预览
                     if($(window).width() > 767){
                         this.watch();

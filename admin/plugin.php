@@ -83,13 +83,13 @@ if ($action == 'del') {
 //Upload zipped plugin
 if ($action == 'upload_zip') {
 	LoginAuth::checkToken();
-	$zipfile = isset($_FILES['pluzip']) ? $_FILES['pluzip'] : '';
+	$zipfile = $_FILES['pluzip'] ?? '';
 
-	if ($zipfile['error'] == 4) {
+	if ($zipfile['error'] === 4) {
 		emDirect("./plugin.php?error_d=1");
 	}
 	if (!$zipfile || $zipfile['error'] >= 1 || empty($zipfile['tmp_name'])) {
-/*vot*/		emMsg(lang('plugin_upload_error'));
+		emMsg('插件上传失败， 错误码：' . $zipfile['error']);
 	}
 	if (getFileSuffix($zipfile['name']) != 'zip') {
 		emDirect("./plugin.php?error_f=1");

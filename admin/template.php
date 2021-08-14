@@ -30,12 +30,12 @@ if ($action === '') {
 		preg_match("/Description:(.*)/i", $tplData, $tplDes);
 		preg_match("/Author Url:(.*)/i", $tplData, $authorUrl);
 		$tplInfo = [
-			'tplfile' => $file,
-			'tplname' => !empty($tplName[1]) ? subString(strip_tags(trim($tplName[1])), 0, 16) : $file,
-			'tplurl'  => !empty($tplUrl[1]) ? subString(strip_tags(trim($tplUrl[1])), 0, 75) : '',
-			'tpldes'  => !empty($tplDes[1]) ? subString(strip_tags(trim($tplDes[1])), 0, 40) : '',
-			'author'  => !empty($author[1]) ? subString(strip_tags(trim($author[1])), 0, 16) : '',
-			'author_url'  => !empty($authorUrl[1]) ? subString(strip_tags(trim($authorUrl[1])), 0, 75) : '',
+			'tplfile'    => $file,
+			'tplname'    => !empty($tplName[1]) ? subString(strip_tags(trim($tplName[1])), 0, 16) : $file,
+			'tplurl'     => !empty($tplUrl[1]) ? subString(strip_tags(trim($tplUrl[1])), 0, 75) : '',
+			'tpldes'     => !empty($tplDes[1]) ? subString(strip_tags(trim($tplDes[1])), 0, 40) : '',
+			'author'     => !empty($author[1]) ? subString(strip_tags(trim($author[1])), 0, 16) : '',
+			'author_url' => !empty($authorUrl[1]) ? subString(strip_tags(trim($authorUrl[1])), 0, 75) : '',
 		];
 		$tpls[] = $tplInfo;
 	}
@@ -88,11 +88,11 @@ if ($action === 'upload_zip') {
 	LoginAuth::checkToken();
 	$zipfile = $_FILES['tplzip'] ?? '';
 
-	if ($zipfile['error'] == 4) {
+	if ($zipfile['error'] === 4) {
 		emDirect("./template.php?error_d=1");
 	}
 	if (!$zipfile || $zipfile['error'] >= 1 || empty($zipfile['tmp_name'])) {
-/*vot*/ emMsg(lang('template_upload_failed'));
+		emMsg('模板上传失败， 错误码：' . $zipfile['error']);
 	}
 	if (getFileSuffix($zipfile['name']) != 'zip') {
 		emDirect("./template.php?error_a=1");

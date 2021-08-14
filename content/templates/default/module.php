@@ -437,7 +437,7 @@ function blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allo
 					<?php endif; ?>
 
                     <p class="com_submit_p">
-<!--vot-->			<input class="com_submit"<?php if ($verifyCode != "") { ?> type="button" data-toggle="modal" data-target="#myModal"<?php } else { ?> type="submit"<?php } ?>
+<!--vot-->			<input class="btn btn-outline-primary"<?php if ($verifyCode != "") { ?> type="button" data-toggle="modal" data-target="#myModal"<?php } else { ?> type="submit"<?php } ?>
                            id="comment_submit" value="<?=lang('comment_leave')?>" tabindex="6"/>
                     </p>
 					<?php if ($verifyCode != "") { ?>

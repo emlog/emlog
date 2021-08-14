@@ -26,7 +26,7 @@ if (!defined('EMLOG_ROOT')) {
                         <hr class="list_line"/>
                         <div class="row p-3 info_row">
                             <div class="col-md-8 text-muted loglist_info">
-<!--vot-->                          <?php echo gmdate('Y-m-d', $value['date']); ?>&nbsp;&nbsp;&nbsp;<?php blog_author($value['author']); ?>
+								<?php blog_author($value['author']); ?> 发布于 <?php echo gmdate('Y-n-j h:m', $value['date']); ?>
                             </div>
                             <div class="col-md-4 text-right text-muted loglist_count">
 <!--vot-->                      <a href="<?php echo $value['log_url']; ?>#comments"><?=lang('comments')?>: (<?php echo $value['comnum']; ?>)&nbsp;</a>

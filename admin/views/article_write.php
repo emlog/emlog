@@ -14,18 +14,18 @@
                 <div id="post_bar">
 <!--vot-->          <a href="#" class="text-muted small my-3" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> <?=lang('upload_insert')?></a>
 					<?php doAction('adm_writelog_head'); ?>
-                    <span id="save_info"></span>
                 </div>
                 <div id="logcontent"><textarea><?php echo $content; ?></textarea></div>
             </div>
 
-<!--vot-->  <div class="show_advset" id="displayToggle" onclick="displayToggle('advset', 1);"><?=lang('advanced_options')?><i class="icofont-simple-right"></i></div>
-
-            <div id="advset">
-                <div class="form-group">
+            <div class="form-group">
 <!--vot-->      <label><?=lang('post_description')?>:</label>
-                    <div id="logexcerpt"><textarea><?php echo $excerpt; ?></textarea></div>
-                </div>
+                <div id="logexcerpt"><textarea><?php echo $excerpt; ?></textarea></div>
+            </div>
+
+            <div class="show_advset" id="displayToggle" onclick="displayToggle('advset', 1);">更多选项<i class="icofont-simple-right"></i></div>
+
+            <div id="advset" class="shadow-sm p-3 mb-2 bg-white rounded">
                 <div class="form-group">
 <!--vot-->          <label><?=lang('category')?>:</label>
                     <select name="sort" id="sort" class="form-control">
@@ -51,32 +51,31 @@
 						?>
                     </select>
                 </div>
-
                 <div class="form-group">
 <!--vot-->          <label><?=lang('tags')?>:</label>
 <!--vot-->          <input name="tag" id="tag" class="form-control" value="<?php echo $tagStr; ?>" placeholder="<?=lang('post_tags_separated')?>"/>
                 </div>
-
                 <div class="form-group">
 <!--vot-->          <label><?=lang('publish_time')?>:</label>
                     <input maxlength="200" name="postdate" id="postdate" value="<?php echo $postDate; ?>" class="form-control"/>
                 </div>
-
                 <div class="form-group">
-<!--vot-->          <label><?=lang('link_alias')?>:</label>
+                    <label>链接别名：（用于seo设置 <a href="./seo.php">&rarr;</a>）</label>
                     <input name="alias" id="alias" class="form-control" value="<?php echo $alias; ?>"/>
                 </div>
-
                 <div class="form-group">
 <!--vot-->          <label><?=lang('access_password')?>:</label>
                     <input type="text" name="password" id="password" class="form-control" value="<?php echo $password; ?>"/>
                 </div>
-
                 <div class="form-group">
                     <input type="checkbox" value="y" name="top" id="top" <?php echo $is_top; ?> />
 <!--vot-->          <label for="top"><?=lang('home_top')?></label>
+                </div>
+                <div class="form-group">
                     <input type="checkbox" value="y" name="sortop" id="sortop" <?php echo $is_sortop; ?> />
 <!--vot-->          <label for="sortop"><?=lang('category_top')?></label>
+                </div>
+                <div class="form-group">
                     <input type="checkbox" value="y" name="allow_remark" id="allow_remark" <?php echo $is_allow_remark; ?> />
 <!--vot-->          <label for="allow_remark"><?=lang('allow_comments')?></label>
                 </div>
@@ -88,17 +87,17 @@
                 <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $logid; ?>">
                 <input type="hidden" name="gid" value=<?php echo $logid; ?>/>
                 <input type="hidden" name="author" id="author" value=<?php echo $author; ?>/>
-
 				<?php if ($logid < 0): ?>
-<!--vot-->          <input type="submit" value="<?=lang('post_publish')?>" onclick="return checkform();" class="btn btn-sm btn-success"/>
-<!--vot-->          <input type="button" name="savedf" id="savedf" value="<?=lang('save_draft')?>" onclick="autosave(2);" class="btn btn-sm btn-primary"/>
+<!--vot-->          <input type="submit" value="<?=lang('post_publish')?>" onclick="return checkform();" class="btn btn-success"/>
+<!--vot-->          <input type="button" name="savedf" id="savedf" value="<?=lang('save_draft')?>" onclick="autosave(2);" class="btn btn-primary"/>
 				<?php else: ?>
-<!--vot-->          <input type="submit" value="<?=lang('save_and_return')?>" onclick="return checkform();" class="btn btn-sm btn-success"/>
-<!--vot-->          <input type="button" name="savedf" id="savedf" value="<?=lang('save')?>" onclick="autosave(2);" class="btn btn-sm btn-primary"/>
+<!--vot-->          <input type="submit" value="<?=lang('save_and_return')?>" onclick="return checkform();" class="btn btn-success"/>
+<!--vot-->          <input type="button" name="savedf" id="savedf" value="<?=lang('save')?>" onclick="autosave(2);" class="btn btn-primary"/>
 					<?php if ($isdraft) : ?>
-<!--vot-->              <input type="submit" name="pubdf" id="pubdf" value="<?=lang('publish')?>" onclick="return checkform();" class="btn btn-sm btn-success"/>
+<!--vot-->              <input type="submit" name="pubdf" id="pubdf" value="<?=lang('publish')?>" onclick="return checkform();" class="btn btn-success"/>
 					<?php endif; ?>
 				<?php endif; ?>
+                <span id="save_info"></span>
             </div>
         </div>
     </div>
@@ -116,34 +115,34 @@
             </div>
             <div class="modal-body">
 				<?php if ($medias): ?>
-                <div class="card-columns">
-					<?php
-					foreach ($medias as $key => $value):
-						$media_url = getFileUrl($value['filepath']);
-						$media_name = $value['filename'];
-						if (isImage($value['filepath'])) {
-							$imgpath = $value['thum_filepath'] ?? $value['filepath'];
-							$media_icon_imgurl = getFileUrl($imgpath);
-						} else {
-							$media_icon_imgurl = "./views/images/fnone.png";
-						}
-						?>
-                        <div class="card" style="min-height: 138px;">
-							<?php if (isImage($value['filepath'])): ?>
+                    <div class="card-columns">
+						<?php
+						foreach ($medias as $key => $value):
+							$media_url = getFileUrl($value['filepath']);
+							$media_name = $value['filename'];
+							if (isImage($value['filepath'])) {
+								$imgpath = $value['thum_filepath'] ?? $value['filepath'];
+								$media_icon_imgurl = getFileUrl($imgpath);
+							} else {
+								$media_icon_imgurl = "./views/images/fnone.png";
+							}
+							?>
+                            <div class="card" style="min-height: 138px;">
+								<?php if (isImage($value['filepath'])): ?>
 <!--vot-->                      <a href="javascript:insert_media_img('<?php echo $media_url; ?>', '<?php echo $media_icon_imgurl; ?>')" title="<?=lang('img_insert')?>: <?php echo $media_name; ?>">
-                                    <img class="card-img-top" src="<?php echo $media_icon_imgurl; ?>"/>
-                                </a>
-							<?php else: ?>
+                                        <img class="card-img-top" src="<?php echo $media_icon_imgurl; ?>"/>
+                                    </a>
+								<?php else: ?>
 <!--vot-->                      <a href="javascript:insert_media('<?php echo $media_url; ?>', '<?php echo $media_name; ?>')" title="<?=lang('file_insert')?>: <?php echo $media_name; ?>">
-                                    <img class="card-img-top" src="<?php echo $media_icon_imgurl; ?>"/>
-                                </a>
-							<?php endif; ?>
-                        </div>
-					<?php endforeach; ?>
-                </div>
-			<?php else: ?>
+                                        <img class="card-img-top" src="<?php echo $media_icon_imgurl; ?>"/>
+                                    </a>
+								<?php endif; ?>
+                            </div>
+						<?php endforeach; ?>
+                    </div>
+				<?php else: ?>
 <!--vot-->          <div class="text-center"><?=lang('no_resources')?>, <a href="media.php"><?=lang('go_upload')?></a></div>
-			<?php endif; ?>
+				<?php endif; ?>
             </div>
 
         </div>
@@ -164,11 +163,11 @@
     $("#menu_category_content").addClass('active');
     $("#menu_content").addClass('show');
     $("#menu_write").addClass('active');
-	
+
     icon_tog = false;
     if (Cookies.get('em_advset') == "hidden") {
         displayToggle('advset', 1);
-    } else {        
+    } else {
         $(".icofont-simple-right").attr("class", "icofont-simple-down");
     }
 
@@ -194,20 +193,23 @@
             imageUpload: true,
             imageFormats: ["jpg", "jpeg", "gif", "png"],
             imageUploadURL: "media.php?action=upload&editor=1",
+            syncScrolling : "single",
             onload: function () {
+                hooks.doAction("loaded",this);
                 //In the large screen mode, the editor displays the preview by default
                 if ($(window).width() > 767) {
                     this.watch();
                 }
 		//Add Ctrl(Cmd)+S shortcut key to save article content
                 var articleSave = {
-                    "Ctrl-S": function(cm) {
-                    	autosave(2);
+                    "Ctrl-S": function (cm) {
+                        autosave(2);
                     },
-                    "Cmd-S": function(cm) {
-                    	autosave(2);
-                    }};
-                this.addKeyMap(articleSave);  
+                    "Cmd-S": function (cm) {
+                        autosave(2);
+                    }
+                };
+                this.addKeyMap(articleSave);
             }
         });
         Editor_summary = editormd("logexcerpt", {
@@ -227,7 +229,10 @@
             flowChart: false,
             autoFocus: false,
             sequenceDiagram: false,
-/*vot*/     placeholder: "<?=lang('enter_summary')?>"
+/*vot*/     placeholder: "<?=lang('enter_summary')?>",
+            onload: function () {
+                hooks.doAction("sum_loaded",this);
+            }
         });
         Editor.setToolbarAutoFixed(false);
         Editor_summary.setToolbarAutoFixed(false);

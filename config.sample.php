@@ -14,6 +14,8 @@ const DB_PREFIX = 'emlog_';
 const AUTH_KEY = 'emlog-key';
 //cookie name
 const AUTH_COOKIE_NAME = 'emlog-cookie';
+//Management back-end security entrance: /admin/?s=xxx
+//const ADMIN_PATH_CODE = 'F6MRkx9a';
 
 //vot: blog language
 define('EMLOG_LANGUAGE','en'); //'en', 'ru', 'sc', 'tc', etc.

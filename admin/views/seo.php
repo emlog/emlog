@@ -25,11 +25,11 @@
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="permalink" value="1" <?php echo $ex1; ?>>
-<!--vot-->      <label><?=lang('file_format')?>: <span class="permalink_url"><?php echo BLOG_URL; ?>post-1.html</span></label>
+<!--vot-->      <label class="form-check-label"><?=lang('file_format')?>: <span class="permalink_url"><?php echo BLOG_URL; ?>post-1.html</span></label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="permalink" value="2" <?php echo $ex2; ?>>
-<!--vot-->      <label><?=lang('directory_format')?>: <span class="permalink_url"><?php echo BLOG_URL; ?>post/1</span></label>
+<!--vot-->      <label class="form-check-label"><?=lang('directory_format')?>: <span class="permalink_url"><?php echo BLOG_URL; ?>post/1</span></label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="permalink" value="3" <?php echo $ex3; ?>>
@@ -48,11 +48,14 @@
             <div class="alert alert-warning">
 <!--vot-->      <?=lang('post_url_rewriting')?><br>
 <!--vot-->      <?=lang('nginx_rewrite')?>:<br>
+
+            <div class="alert alert-primary">
+                Nginx服务器请配置如下伪静态规则：<br><br>
                 location / {<br>
-                index index.php index.html;<br>
-                if (!-e $request_filename){<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;rewrite ^/(.*)$ /index.php last;<br>
-                }<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;index index.php index.html;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;if (!-e $request_filename){<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rewrite ^/(.*)$ /index.php last;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;}<br>
                 }<br>
             </div>
 

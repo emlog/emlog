@@ -144,7 +144,7 @@ class Log_Model {
 		$logs = array();
 		while ($row = $this->db->fetch_array($res)) {
 			$row['date'] = date("Y-m-d H:i", $row['date']);
-/*vot*/     $row['title'] = !empty($row['title']) ? htmlspecialchars($row['title']) : lang('no_title');
+/*vot*/     		$row['title'] = !empty($row['title']) ? htmlspecialchars($row['title']) : lang('no_title');
 			$logs[] = $row;
 		}
 		return $logs;
@@ -170,15 +170,15 @@ class Log_Model {
 			$row['logid'] = $row['gid'];
 			$cookiePassword = isset($_COOKIE['em_logpwd_' . $row['gid']]) ? addslashes(trim($_COOKIE['em_logpwd_' . $row['gid']])) : '';
 			if (!empty($row['password']) && $cookiePassword != $row['password']) {
-/*vot*/         $row['excerpt'] = '<p>['.lang('post_protected_by_password_click_title').']</p>';
+/*vot*/         $		row['excerpt'] = '<p>['.lang('post_protected_by_password_click_title').']</p>';
 			} elseif (!empty($row['excerpt'])) {
-/*vot*/             $row['excerpt'] .= '<p class="readmore"><a href="' . Url::log($row['logid']) . '">'.lang('read_more').'</a></p>';
+/*vot*/             		$row['excerpt'] .= '<span class="readmore"><a href="' . Url::log($row['logid']) . '">'.lang('read_more').'</a></span>';
 			}
 
 			$row['log_description'] = $this->Parsedown->text(empty($row['excerpt']) ? breakLog($row['content'], $row['gid']) : $row['excerpt']);
 			$row['attachment'] = '';
 			$row['tag'] = '';
-/*vot*/     $row['tbcount'] = 0;//Compatible not deleted Quote of template
+/*vot*/     		$row['tbcount'] = 0;//Compatible not deleted Quote of template
 			$logs[] = $row;
 		}
 		return $logs;
@@ -215,7 +215,7 @@ class Log_Model {
 		// tag
 		$this->db->query("UPDATE " . DB_PREFIX . "tag SET gid= REPLACE(gid,',$blogId,',',') WHERE gid LIKE '%" . $blogId . "%' ");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "tag WHERE gid=',' ");
-        // Attachments
+        	// Attachments
 		$query = $this->db->query("select filepath from " . DB_PREFIX . "attachment where blogid=$blogId ");
 		while ($attach = $this->db->fetch_array($query)) {
 			if (file_exists($attach['filepath'])) {
@@ -267,7 +267,7 @@ class Log_Model {
 	}
 
 	/**
-     * Determine whether the repeated posting
+         * Determine whether the repeated posting
 	 */
 	function isRepeatPost($title, $time) {
 		$sql = "SELECT gid FROM " . DB_PREFIX . "blog WHERE title='$title' and date='$time' LIMIT 1";

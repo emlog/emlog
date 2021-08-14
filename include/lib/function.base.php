@@ -269,14 +269,15 @@ function pagination($count, $perlogs, $page, $url, $anchor = '') {
 	$re = '';
 	$urlHome = preg_replace("|[\?&/][^\./\?&=]*page[=/\-]|", "", $url);
 	for ($i = $page - 5; $i <= $page + 5 && $i <= $pnums; $i++) {
-		if ($i > 0) {
-			if ($i == $page) {
-				$re .= " <span>$i</span> ";
-			} elseif ($i == 1) {
-				$re .= " <a href=\"$urlHome$anchor\">$i</a> ";
-			} else {
-				$re .= " <a href=\"$url$i$anchor\">$i</a> ";
-			}
+		if ($i <= 0) {
+			continue;
+		}
+		if ($i == $page) {
+			$re .= " <span>$i</span> ";
+		} elseif ($i == 1) {
+			$re .= " <a href=\"$urlHome$anchor\">$i</a> ";
+		} else {
+			$re .= " <a href=\"$url$i$anchor\">$i</a> ";
 		}
 	}
 	if ($page > 6)
@@ -326,12 +327,8 @@ function doAction($hook) {
  * @param int $lid Post id
  */
 function breakLog($content, $lid) {
-	$ret = explode('[break]', $content, 2);
-	if (!empty($ret[1])) {
-/*vot*/        $ret[0] .= '<p class="readmore"><a href="' . Url::log($lid) . '">'.lang('read_more').'</a></p>';
-		return $ret[0];
-	} elseif (Option::get('isexcerpt') == 'y') {
-/*vot*/        return subString(trim(strip_tags($content)), 0, Option::get('excerpt_subnum')) . '<p class="readmore"><a href="' . Url::log($lid) . '">'.lang('read_more').'</a></p>';
+	if (Option::get('isexcerpt') == 'y') {
+/*vot*/        return subString(trim(strip_tags($content)), 0, Option::get('excerpt_subnum')) . '<span class="readmore"><a href="' . Url::log($lid) . '">'.lang('read_more').'</a></span>';
 	} else {
 		return $content;
 	}
@@ -340,13 +337,11 @@ function breakLog($content, $lid) {
 /**
  * Time transformation function
  *
- * @param $now
  * @param $datetemp
  * @param $dstr
  * @return string
  */
 function smartDate($datetemp, $dstr = 'Y-m-d H:i') {
-	$op = '';
 	$sec = time() - $datetemp;
 	$hover = floor($sec / 3600);
 	if ($hover == 0) {
@@ -922,14 +917,13 @@ EOT;
 	exit;
 }
 
-/**
- * Show error 404 page
- *
- */
-function show_404_page() {
+function show_404_page($show_404_only = false) {
 	if (is_file(TEMPLATE_PATH . '404.php')) {
 		header("HTTP/1.1 404 Not Found");
 		include View::getView('404');
+		exit;
+	} elseif ($show_404_only) {
+		header("HTTP/1.1 404 Not Found");
 		exit;
 	} else {
 		emMsg('404', BLOG_URL);

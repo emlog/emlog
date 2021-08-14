@@ -79,9 +79,9 @@ function hideActived() {
 }
 
 function displayToggle(id, keep) {
-    $("#" + id).toggleClass(id+"_hidden");
-    icon_tog?$(".icofont-simple-right").attr("class","icofont-simple-down"):$(".icofont-simple-down").attr("class","icofont-simple-right");
-    icon_tog=!icon_tog;
+    $("#" + id).toggleClass(id + "_hidden");
+    icon_tog ? $(".icofont-simple-right").attr("class", "icofont-simple-down") : $(".icofont-simple-down").attr("class", "icofont-simple-right");
+    icon_tog = !icon_tog;
     if (keep == 1) {
         Cookies.set('em_' + id, $("#" + id).css('visibility'), {expires: 365})
     }
@@ -200,7 +200,6 @@ function autosave(act) {
         return;
     }
 
-/*vot*/ $("#msg").show().html(lang('saving')).addClass("alert-success");
     var btname = $("#savedf").val();
 /*vot*/ $("#savedf").val(lang('saving'));
     $("#savedf").attr("disabled", "disabled");
@@ -214,11 +213,10 @@ function autosave(act) {
             var h = d.getHours();
             var m = d.getMinutes();
             var s = d.getSeconds();
-            var tm = (h < 10 ? "0" + h : h) +":"+ (m < 10 ? "0" + m : m) +":"+ (s < 10 ? "0" + s : s);
-/*vot*/     $("#save_info").html("<span class=\"ajax_remind_1\">" + lang('saved_ok_time')+ tm + " </span>");
+            var tm = (h < 10 ? "0" + h : h) + ":" + (m < 10 ? "0" + m : m) + ":" + (s < 10 ? "0" + s : s);
+/*vot*/     $("#save_info").html(lang('saved_ok_time') + tm);
             $("#" + nodeid).val(logid);
             $("#savedf").attr("disabled", false).val(btname);
-            $("#msg").hide().html("");
         } else {
             $("#savedf").attr("disabled", false).val(btname);
 /*vot*/     $("#msg").html(lang('save_system_error')).addClass("alert-danger");
@@ -262,4 +260,24 @@ $(function () {
         event.stopPropagation();
     });
 });
+
+// editor.md的js钩子
+var queue = new Array();
+var hooks = {
+    addAction: function(hook, func) {      
+        if (typeof(queue[hook])=="undefined"||queue[hook] == null){
+            queue[hook] = new Array();
+        }        
+        if (typeof func == 'function') {
+            queue[hook].push(func);
+        }
+   },
+   doAction: function(hook,obj) {
+        try{
+            for(var i=0; i < queue[hook].length; i++) {
+                queue[hook][i](obj);
+            }
+        }catch(e) {}
+    }
+}
 
