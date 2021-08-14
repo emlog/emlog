@@ -71,12 +71,6 @@ textarea {
     background-color:#C30;
     color:#FFF
 }
-.ajax_remind_1 {
-    padding:3px 5px;
-    color: #3c763d;
-    background-color: #dff0d8;
-    border-color: #d6e9c6;
-}
 #user,#pw {
     height:28px;
     width:210px
@@ -288,7 +282,7 @@ textarea {
 .advset_hidden {
     opacity: 0;
     visibility: hidden;
-    margin-top: -762.5px;
+    margin-top: -530px;
 }
 #post_bar {
     margin:5px 0px;
@@ -299,7 +293,7 @@ textarea {
     cursor:pointer;
 }
 #post_button{
-    margin:10px 0px;
+    margin:20px 0px;
 }
 #post_options {
     float:right

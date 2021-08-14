@@ -124,7 +124,7 @@ if ($action === 'setwg') {
 
 //Save component to sort
 if ($action === 'compages') {
-	$widgets = isset($_POST['widgets']) ? serialize($_POST['widgets']) : '';
+	$widgets = isset($_POST['widgets']) ? addslashes(serialize($_POST['widgets'])) : '';
 	Option::updateOption("widgets1", $widgets);
 	$CACHE->updateCache('options');
 	emDirect("./widgets.php?activated=1");

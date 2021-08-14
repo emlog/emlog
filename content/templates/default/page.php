@@ -13,6 +13,9 @@ if (!defined('EMLOG_ROOT')) {
         padding: 30px;
         margin-bottom: 29px;
     }
+    .com_submit_p {
+        font-size: 15px
+    }
 
 </style>
 <div class="container">

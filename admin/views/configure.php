@@ -48,6 +48,8 @@
 <!--vot-->      <label class="form-check-label"><?=lang('login_verification_code')?></label>
             </div>
 
+            <hr>
+
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="iscomment" id="iscomment" <?php echo $conf_iscomment; ?> />
 <!--vot-->      <label><?=lang('enable_comments')?></label>,
@@ -110,6 +112,8 @@
 <!--vot-->      <input type="text" name="excerpt_subnum" value="<?php echo Option::get('excerpt_subnum'); ?>" class="form-control" style="width:60px;"/> <?=lang('characters_as_summary')?>
             </div>
 
+            <hr>
+
             <div class="form-group form-inline">
 <!--vot-->      <?=lang('php_upload_max_size')?> <input maxlength="10" style="width:80px;" class="form-control" value="<?php echo $att_maxsize; ?>" name="att_maxsize"/> KB
             </div>
@@ -121,6 +125,7 @@
                 <input maxlength="5" style="width:60px;" class="form-control" value="<?php echo $att_imgmaxw; ?>" name="att_imgmaxw"/> x
 <!--vot-->      <input maxlength="5" style="width:60px;" class="form-control" value="<?php echo $att_imgmaxh; ?>" name="att_imgmaxh"/> <?= lang('unit_pixels') ?>
             </div>
+
             <div class="form-group">
 <!--vot-->      <label><?=lang('icp_reg_no')?></label>
                 <input class="form-control" value="<?php echo $icp; ?>" name="icp"/>

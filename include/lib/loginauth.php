@@ -35,7 +35,9 @@ class LoginAuth {
 	 * Verify User/Password
 	 */
 	public static function checkUser($username, $password, $imgcode) {
-		session_start();
+		if (!isset($_SESSION)) {
+			session_start();
+		}
 		if (empty($username) || empty($password)) {
 			return false;
 		}
@@ -59,7 +61,10 @@ class LoginAuth {
 	/**
 	 * Login Page
 	 */
-	public static function loginPage($errorCode = NULL) {
+	public static function loginPage($errorCode = NULL, $admin_path_code = '') {
+		if (defined('ADMIN_PATH_CODE') && $admin_path_code !== ADMIN_PATH_CODE) {
+			show_404_page(true);
+		}
 		$ckcode = Option::get('login_code') == 'y' ? true : false;
 		$error_msg = '';
 		switch ($errorCode) {
@@ -126,7 +131,7 @@ class LoginAuth {
 		}
 		$auth_cookie_name = AUTH_COOKIE_NAME;
 		$auth_cookie = self::generateAuthCookie($user_login, $expiration);
-		setcookie($auth_cookie_name, $auth_cookie, $expiration, '/');
+		setcookie($auth_cookie_name, $auth_cookie, $expiration, '/', '', false, true);
 	}
 
 	/**
@@ -197,7 +202,9 @@ class LoginAuth {
 	 * Generate token, defense CSRF attack
 	 */
 	public static function genToken() {
-		session_start();
+		if (!isset($_SESSION)) {
+			session_start();
+		}
 		if (!empty($_SESSION['em_csrf_token'])) {
 			return $_SESSION['em_csrf_token'];
 		}

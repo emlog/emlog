@@ -4,7 +4,9 @@
  * @package EMLOG (www.emlog.net)
  */
 
-session_start();
+if (!isset($_SESSION)) {
+	session_start();
+}
 
 $randCode = '';
 $chars = 'abcdefghijkmnpqrstuvwxyzABCDEFGHIJKLMNPRSTUVWXYZ23456789';

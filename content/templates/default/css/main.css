@@ -1,11 +1,11 @@
 body {
-    font-size: 20px;
+    font-size: 18px;
     color: #5a5c69;
     font-family: -apple-system, SF UI Text, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei, WenQuanYi Micro Hei, sans-serif
 }
 
 p {
-    line-height: 1.5;
+    line-height: 2;
     margin: 30px 0
 }
 
@@ -23,7 +23,7 @@ a:focus, a:hover {
     color: #5a5c69
 }
 
-img{
+img {
     max-width: 100%
 }
 
@@ -89,12 +89,13 @@ footer .copyright {
 .side-bar .widget li {
     position: relative;
     color: #6f6f6f;
-    line-height: 2
+    line-height: 2;
+    font-size: 14px;
 }
 
 .side-bar .widget {
-    margin-bottom: 45px;
-    padding: 30px
+    margin-bottom: 24px;
+    padding: 20px
 }
 
 .shadow-theme {
@@ -180,7 +181,7 @@ footer .copyright {
 #pagenavi a {
     color: #c0bcbc;
     padding: 4.5px 9px 4px 9px;
-    font-family: serif,monospace;
+    font-family: serif, monospace;
     border: 1px solid;
     margin: 0 5px;
     border-radius: 10px
@@ -279,7 +280,7 @@ footer .copyright {
 }
 
 .comment-post input {
-    padding: 5px 10px;
+    padding: 7px 10px;
     font-size: small;
     color: #6c757d;
     width: 33.334%
@@ -295,16 +296,14 @@ footer .copyright {
 }
 
 .comment-post #comment_submit {
-    background-color: #f3f3f3;
-    color: #a9a9a9;
     width: auto;
     height: 35px;
     text-align: center;
     font-size: inherit;
-    margin-top: 20px;
+    margin: 10px 0px;
     float: right;
     margin-right: 1px;
-    border-radius: 10px;
+    border-radius: 6px;
     border: 1px solid #dedede
 }
 
@@ -426,8 +425,12 @@ footer .copyright {
 }
 
 .readmore {
-    margin-top: 0px;
-    margin-bottom: 34px
+    margin-left: 10px;
+}
+
+.readmore a {
+    color: #929292;
+    font-size: small
 }
 
 .navbar-expand-lg {
@@ -440,12 +443,6 @@ footer .copyright {
 
 .card-title {
     margin-bottom: 30px
-}
-
-.readmore a {
-    letter-spacing: 1px;
-    color: #929292;
-    font-size: x-small
 }
 
 .loglist_content h1 {
@@ -585,7 +582,7 @@ body {
 }
 
 .main_blogname {
-    font-size: xx-large
+    font-size: x-large;
 }
 
 .loglist_title {
@@ -751,7 +748,7 @@ body {
 
 .comm_lates_time {
     position: absolute;
-    right:10px;
+    right: 10px;
     color: #b5b5b5;
     margin-left: 10px;
     font-size: small
@@ -822,7 +819,6 @@ body {
     margin-left: -5px
 }
 
-
 .com_name {
     float: left;
     border-bottom-left-radius: 10px !important
@@ -865,7 +861,7 @@ body {
 .com_control {
     border-radius: 0px;
     border-right: 0px;
-    height: 55px
+    height: 50px
 }
 
 .commentform {
@@ -881,7 +877,7 @@ body {
     display: none
 }
 
-.log_classify_f,#navbarResponsive {
+.log_classify_f, #navbarResponsive {
     text-overflow: ellipsis;
     overflow: hidden
 }
@@ -893,7 +889,6 @@ body {
 .nav-item .list-menu {
     border-bottom: 1px solid #f1f1f1;
 }
-
 
 @media all and (max-width: 1200px) and (min-width: 992px) {
     .col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto {
@@ -907,7 +902,8 @@ body {
     }
 
     .bloggerinfo_img {
-        width: 70px !important
+        width: 70px;
+        height: 70px
     }
 
     .bloginfo_name {
@@ -915,8 +911,8 @@ body {
     }
 }
 
-@media all and (max-width: 991px){
-    
+@media all and (max-width: 991px) {
+
     .col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto {
         padding-right: 13px;
         padding-left: 13px
@@ -972,63 +968,63 @@ body {
         margin: 50% 0 0 20%;
         width: 100%
     }
+
     .comment .avatar {
         margin-right: 13px
     }
-    
+
     .comment .comment-info {
         width: 100%
     }
-    
-    
+
     .comment .avatar {
         margin-bottom: 13px
     }
-   
+
 }
 
 @media all and (max-width: 991px) and (min-width: 689px) {
-    
+
     #calendar {
-    transform: scale(0.7);
-    margin-left: -46px;
-    margin-top: -14px
+        transform: scale(0.7);
+        margin-left: -46px;
+        margin-top: -14px
     }
-    
-    .list-unstyled form{
-    transform: scale(0.7);
-    width: 255px;
-    margin-left: -47px
+
+    .list-unstyled form {
+        transform: scale(0.7);
+        width: 255px;
+        margin-left: -47px
     }
-    
+
     .bloginfo_name {
-    font-size: small
+        font-size: small
     }
-    
+
 }
 
-@media all and (max-width: 349px){
-    
+@media all and (max-width: 349px) {
+
     #calendar {
-    transform: scale(0.7);
-    margin-left: -46px;
-    margin-top: -14px
+        transform: scale(0.7);
+        margin-left: -46px;
+        margin-top: -14px
     }
-    
-    .list-unstyled form{
-    transform: scale(0.7);
-    width: 255px;
-    margin-left: -47px
+
+    .list-unstyled form {
+        transform: scale(0.7);
+        width: 255px;
+        margin-left: -47px
     }
-    
+
     .bloginfo_name {
-    font-size: small
+        font-size: small
     }
-    
+
 }
 
-@media all and (max-width: 577px){
-    
+@media all and (max-width: 577px) {
+
     .side-bar .widget {
         margin-bottom: 1.5rem
     }
@@ -1052,26 +1048,23 @@ body {
     .pagination a {
         padding: 5.5px 9px 3px 9px
     }
-    
+
     .comment .comment-info {
         float: left;
         margin-left: unset;
         width: 100%
     }
-    
+
     .com_control {
         height: 44px
     }
-    
+
     .mb-5, .my-5 {
-    margin-bottom: 1.6rem!important
+        margin-bottom: 1.6rem !important
     }
-    
     #pagenavi {
-    line-height: 45px
+        line-height: 45px
     }
-
-
     .arrow {
         position: absolute;
         margin-left: -1px;
@@ -1080,32 +1073,24 @@ body {
         border-style: solid;
         border-color: transparent transparent #f7f7f7 transparent
     }
-
     .comment-post #comment {
-        border-radius:0;
+        border-radius: 0;
     }
-
     .comment-post input {
         width: 100%
     }
-
     #comment-place {
         margin-bottom: 80px
     }
-
     .com_control {
-        border:1px solid #ced4da;
+        border: 1px solid #ced4da;
         border-radius: 0px !important;
         margin-top: 10px
     }
-
     .com_mail {
         margin-bottom: 10px;
     }
-
     .comment .comment-post {
         height: 385px;
     }
-    
-    
 }
