@@ -172,7 +172,7 @@ class Log_Model {
 			if (!empty($row['password']) && $cookiePassword != $row['password']) {
 				$row['excerpt'] = '<p>[该文章已加密，请点击标题输入密码访问]</p>';
 			} elseif (!empty($row['excerpt'])) {
-				$row['excerpt'] .= '<p class="readmore"><a href="' . Url::log($row['logid']) . '">阅读全文&gt;&gt;</a></p>';
+				$row['excerpt'] .= '<span class="readmore"><a href="' . Url::log($row['logid']) . '">阅读全文&rarr;</a></span>';
 			}
 
 			$row['log_description'] = $this->Parsedown->text(empty($row['excerpt']) ? breakLog($row['content'], $row['gid']) : $row['excerpt']);
