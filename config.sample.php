@@ -14,3 +14,5 @@ const DB_PREFIX = 'emlog_';
 const AUTH_KEY = 'emlog-key';
 //cookie name
 const AUTH_COOKIE_NAME = 'emlog-cookie';
+//管理后台安全入口：/admin/?s=xxx
+//const ADMIN_PATH_CODE = 'F6MRkx9a';
