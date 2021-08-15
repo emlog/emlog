@@ -56,7 +56,7 @@ $lang = array(
 
 //---------------------------
 //admin/plugin.php
- 'plugin_upload_error'	=> '插件上传失败',//'Plugin upload failed',
+ 'plugin_upload_error'	=> '插件上传失败， 错误码：',//'Plugin upload failed, error code: ',
 
 //---------------------------
 //admin/store.php
@@ -76,7 +76,7 @@ $lang = array(
 //---------------------------
 //admin/template.php
  'ok_for_emlog'		=> '适用于emlog: ',//'Suitable for Emlog: ',
- 'template_upload_failed'	=> '模板上传失败',//'Template upload failed',
+ 'template_upload_failed'	=> '模板上传失败， 错误码：',//'Template upload failed, error code: ',
  'template_used'	=> '您不能删除正在使用的模板',//'You can not delete a template being used',
 
 //---------------------------
@@ -86,11 +86,11 @@ $lang = array(
  'upload_insert'	=> '插入图文资源',//'Insert graphic resources',
  'category_select'	=> '选择分类...',//'Select Category...',
  'post_time'		=> '发布于',//'Posted on',
- 'advanced_options'	=> '高级选项',//'Advanced Options',
+ 'advanced_options'	=> '更多选项',//'More Options',
  'post_description'	=> '文章摘要',//'Post Description',
  'post_alias'		=> '文章链接别名',//'Post Link Alias',
  'post_alias_info'	=> '用于自定义文章链接。需要',//'Used to customize the post link. Required',
- 'post_alias_enable'	=> '启用文章链接别名',//'Enable post link alias',
+ 'post_alias_enable'	=> '启用链接别名',//'Enable post link alias',
  'post_access_password'	=> '文章访问密码',//'Post Access Password',
  'home_top'		=> '首页置顶',//'Home Top',
  'category_top'		=> '分类置顶',//'Category Top',
@@ -103,7 +103,7 @@ $lang = array(
  'add_page'		=> '新建页面',//'Add page',
  'page_title_info'	=> '输入页面标题',//'Enter the page title',
  'upload_insert'	=> '上传插入',//'Insert upload',
- 'link_alias'		=> '链接别名',//'Link Alias',
+ 'link_alias'		=> '链接别名：（用于seo设置 <a href="./seo.php">&rarr;</a>',//'Link alias: (used for <a href="./seo.php">SEO settings &rarr;</a>',
  'link_alias_info'	=> '用于自定义该页面的链接地址。需要',//'The page link custom address. Required',
  'link_alias_enable'	=> '启用链接别名',//'Enable Link Alias',
  'page_template'	=> '页面模板',//'Page template',
@@ -590,13 +590,13 @@ $lang = array(
 //admin/views/seo.php
  'htaccess_not_writable'	=> '保存失败：根目录下的.htaccess不可写',//'Save failed: .htaccess file in the root directory is not writable',
  'post_url_settings'		=> '文章链接设置',//'Post URL settings',
- 'post_url_rewriting'		=> '如果修改后文章无法访问，可能是服务器空间不支持URL重写，请修改回默认形式、关闭文章连接别名。 启用链接别名后可以自定义文章和页面的链接地址。',//'If the article cannot be accessed after the modification, it may be that the server space does not support URL rewriting. Please modify it back to the default form and turn off the article connection alias. After enabling link aliases, you can customize the link addresses of articles and pages.',
+ 'post_url_rewriting'		=> '如果修改后文章无法访问，可能是服务器空间不支持URL重写，请修改回默认形式、关闭文章连接别名。',//'If the article cannot be accessed after the modification, it may be that the server space does not support URL rewriting. Please modify it back to the default form and turn off the article connection alias.',
  'post_url_format'		=> '文章链接格式',//'Article URL format',
- 'default_format'		=> '默认形式',//'Default format',
- 'file_format'			=> '文件形式',//'File format',
- 'directory_format'		=> '目录形式',//'Directory format',
- 'category_format'		=> '分类形式',//'Category format',
- 'enable_html_suffix'		=> '启用文章链接别名html后缀',//'Enable html suffix for article link alias',
+ 'default_format'		=> '默认格式',//'Default format',
+ 'file_format'			=> '文件格式',//'File format',
+ 'directory_format'		=> '目录格式',//'Directory format',
+ 'category_format'		=> '分类格式',//'Category format',
+ 'enable_html_suffix'		=> '启用链接别名html后缀',//'Enable html suffix for link alias',
  'meta_settings'		=> '页头信息',//'Header Meta settings',
  'meta_title'			=> '站点浏览器标题(title)',//'Site Browser Title (title)',
  'meta_keywords'		=> '站点关键字(keywords)',//'Site keywords (keywords)',
@@ -698,7 +698,7 @@ $lang = array(
  'template_zip_support'		=> '只支持zip压缩格式的模板包',//'Only supported for .zip files.',
  'template_not_writable'	=> '上传失败，模板目录(content/templates)不可写',//'Upload failed. Template directory (content/templates) cannot be written.',
  'template_no_zip'		=> '空间不支持zip模块，请手动安装： <br/>',//'Server does not support zip module, please install it manually:<br>',
- 'template_select_zip'		=> '请选择一个zip模板安装包',//'Please select a zipped template installation package',
+ 'template_select_zip'		=> '请选择一个zip格式的模板安装包',//'Please select a template installation package in zip format',
  'template_non_standard'	=> '安装失败，模板安装包不符合标准',//'Installation failed, template installation package does not meet the standards',
  'template_install_manual'	=> '手动安装模板',//'Template manual installation',
  'template_install_prompt1'	=> '1、把解压后的模板文件夹上传到 content/templates目录下。 <br/>',//'1. Upload the decompressed template folder to the content/templates directory. <br/>',

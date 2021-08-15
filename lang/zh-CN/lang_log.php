@@ -17,7 +17,7 @@ $lang = array(
 //---------------------------
 //content/templates/default/log_list.php
 // 'user'		=> '作者',//'User',
-// 'post_time'		=> '发布于',//'Posted on',
+ 'post_time'		=> '发布于',//'Posted on',
  'comments'		=> '评论',//'Comments',
  '_views'		=> '浏览',//' views',
  'not_found'		=> '未找到',//'Not found.',
