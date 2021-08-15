@@ -274,8 +274,8 @@ function blog_navi() {
 <?php
 //blog:Top
 function topflg($top, $sortop = 'n', $sortid = null) {
-/*vot*/ $ishome_flg = '<a href="#" title="' . lang('home_top') . '" class="log_topflg">&nbsp;&uArr;</a>';
-/*vot*/ $issort_flg = '<a href="#" title="' . lang('category_top') . '" class="log_topflg">&nbsp;&uArr;</a>';
+/*vot*/ $ishome_flg='<a href="#" title="' . lang('home_top') . '" class="log_topflg">&nbsp;&uArr;</a>';
+/*vot*/ $issort_flg='<a href="#" title="' . lang('category_top') . '" class="log_topflg">&nbsp;&uArr;</a>';
 	if (blog_tool_ishome()) {
 		echo $top == 'y' ? $ishome_flg : '';
 	} elseif ($sortid) {
@@ -438,7 +438,7 @@ function blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allo
 
                     <p class="com_submit_p">
 <!--vot-->			<input class="btn btn-outline-primary"<?php if ($verifyCode != "") { ?> type="button" data-toggle="modal" data-target="#myModal"<?php } else { ?> type="submit"<?php } ?>
-                           id="comment_submit" value="<?=lang('comment_leave')?>" tabindex="6"/>
+                               id="comment_submit" value="<?=lang('comment_leave')?>" tabindex="6"/>
                     </p>
 					<?php if ($verifyCode != "") { ?>
 					<!-- Verification window -->

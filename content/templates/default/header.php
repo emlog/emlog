@@ -1,7 +1,7 @@
 <?php
 /*
 Template Name: Default template
-Template Url:https://www.emlog.net/template/
+Template Url: https://www.emlog.net/template/
 Description: Emlog Pro Default template
 Author:emlog
 Author Url:http://www.emlog.net

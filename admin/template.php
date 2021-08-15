@@ -92,7 +92,7 @@ if ($action === 'upload_zip') {
 		emDirect("./template.php?error_d=1");
 	}
 	if (!$zipfile || $zipfile['error'] >= 1 || empty($zipfile['tmp_name'])) {
-		emMsg('模板上传失败， 错误码：' . $zipfile['error']);
+/*vot*/ emMsg(lang('template_upload_failed') . $zipfile['error']);
 	}
 	if (getFileSuffix($zipfile['name']) != 'zip') {
 		emDirect("./template.php?error_a=1");

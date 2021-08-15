@@ -24,13 +24,13 @@ if (PHP_VERSION < '7.0') {
 $act = $_GET['action'] ?? '';
 
 if (!$act) {
-?>
-<!doctype html>
+	?>
+    <!doctype html>
 <!--vot--><html dir="<?= EMLOG_LANGUAGE_DIR ?>" lang="<?= EMLOG_LANGUAGE ?>">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>emlog</title>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>emlog</title>
         <style type="text/css">
             <!--
             body {
@@ -243,21 +243,21 @@ EOT;
 /*vot*/        emMsg(lang('cache_not_writable'));
 	}
 	$config = "<?php\n"
-		. "//MySQL数据库地址\n"
+		. "//mysql database address\n"
 		. "const DB_HOST = '$db_host';"
-		. "\n//数据库用户名\n"
+		. "\n//mysql database user\n"
 		. "const DB_USER = '$db_user';"
-		. "\n//数据库用户密码\n"
+		. "\n//database password\n"
 		. "const DB_PASSWD = '$db_pw';"
-		. "\n//数据库名\n"
+		. "\n//database name\n"
 		. "const DB_NAME = '$db_name';"
-		. "\n//数据库表前缀\n"
+		. "\n//database prefix\n"
 		. "const DB_PREFIX = '$db_prefix';"
 		. "\n//auth key\n"
 		. "const AUTH_KEY = '" . getRandStr(32) . md5($_SERVER['HTTP_USER_AGENT']) . "';"
 		. "\n//cookie name\n"
 		. "const AUTH_COOKIE_NAME = 'EM_AUTHCOOKIE_" . getRandStr(32, false) . "';"
-		. "\n//Management back-end security entrance: /admin/?s=xxx\n"
+/*vot*/		. "\n//Safety admin entry: /admin/?s=xxx\n"
 		. "//const ADMIN_PATH_CODE = '" . getRandStr(8, false) . "';"
 /*vot*/		. "//blog language\n"
 /*vot*/		. "\ndefine('EMLOG_"."LANGUAGE','".EMLOG_LANGUAGE."'); //sc, tc, en, ru, etc."
@@ -272,7 +272,7 @@ EOT;
 	}
 	fclose($fp);
 
-    //Encrypt Password
+	//Encrypt Password
 	$PHPASS = new PasswordHash(8, true);
 	$adminpw = $PHPASS->HashPassword($adminpw);
 
@@ -287,7 +287,7 @@ EOT;
 
 	define('BLOG_URL', realUrl());
 
-/*vot*/    $sql = "
+/*vot*/	$sql = "
 DROP TABLE IF EXISTS {$db_prefix}blog;
 CREATE TABLE {$db_prefix}blog (
   gid int(11) unsigned NOT NULL auto_increment COMMENT 'Article table',
@@ -492,7 +492,7 @@ CREATE TABLE {$db_prefix}storage (
 			$DB->query($sql);
 		}
 	}
-    //Rebuild cache
+	//Rebuild cache
 	$CACHE->updateCache();
 /*vot*/    $result .= "
         <p style=\"font-size:24px; border-bottom:1px solid #E6E6E6; padding:10px 0px;\">".lang('emlog_installed')."</p>
@@ -502,6 +502,6 @@ CREATE TABLE {$db_prefix}storage (
 	if ((DEL_INSTALLER === 1 && !@unlink('./install.php')) || DEL_INSTALLER === 0) {
 /*vot*/        $result .= '<p style="color:#ff0000;margin:10px 20px;">' . lang('delete_install') . '</p> ';
 	}
-/*vot*/    $result .= "<p style=\"text-align:right;\"><a href=\"./\">" . lang('go_to_front') . "</a> | <a href=\"./admin/\">" . lang('go_to_admincp') . "</a></p>";
+/*vot*/	$result .= "<p style=\"text-align:right;\"><a href=\"./\">" . lang('go_to_front') . "</a> | <a href=\"./admin/\">" . lang('go_to_admincp') . "</a></p>";
 	emMsg($result, 'none');
 }

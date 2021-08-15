@@ -47,10 +47,10 @@
 
             <div class="alert alert-warning">
 <!--vot-->      <?=lang('post_url_rewriting')?><br>
-<!--vot-->      <?=lang('nginx_rewrite')?>:<br>
+            </div>
 
             <div class="alert alert-primary">
-                Nginx服务器请配置如下伪静态规则：<br><br>
+<!--vot-->      <?=lang('nginx_rewrite')?>:<br><br>
                 location / {<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;index index.php index.html;<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;if (!-e $request_filename){<br>

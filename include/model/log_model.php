@@ -170,7 +170,7 @@ class Log_Model {
 			$row['logid'] = $row['gid'];
 			$cookiePassword = isset($_COOKIE['em_logpwd_' . $row['gid']]) ? addslashes(trim($_COOKIE['em_logpwd_' . $row['gid']])) : '';
 			if (!empty($row['password']) && $cookiePassword != $row['password']) {
-/*vot*/         $		row['excerpt'] = '<p>['.lang('post_protected_by_password_click_title').']</p>';
+/*vot*/         		$row['excerpt'] = '<p>['.lang('post_protected_by_password_click_title').']</p>';
 			} elseif (!empty($row['excerpt'])) {
 /*vot*/             		$row['excerpt'] .= '<span class="readmore"><a href="' . Url::log($row['logid']) . '">'.lang('read_more').'</a></span>';
 			}

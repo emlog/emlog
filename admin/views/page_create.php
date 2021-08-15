@@ -17,7 +17,7 @@
             </div>
 
             <div class="form-group">
-                <label>链接别名：（用于seo设置 <a href="./seo.php">&rarr;</a>）</label>
+<!--vot-->      <label><?=lang('link_alias')?></label>
                 <input name="alias" id="alias" class="form-control" value="<?php echo $alias; ?>"/>
             </div>
             <div class="form-group">
@@ -133,11 +133,11 @@
             syncScrolling : "single",
             onload: function () {
                     hooks.doAction("page_loaded",this);
-                    //在大屏模式下，编辑器默认显示预览
+                    //In the large screen mode, the editor displays the preview by default
                     if($(window).width() > 767){
                         this.watch();
                     }
-                    //添加Ctrl(Cmd)+S快捷键保存文章内容
+                    //Add Ctrl(Cmd)+S shortcut key to save article content
                     var articleSave = {
                     "Ctrl-S": function(cm) {
                     	autosave(2);

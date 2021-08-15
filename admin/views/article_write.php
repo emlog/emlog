@@ -23,7 +23,7 @@
                 <div id="logexcerpt"><textarea><?php echo $excerpt; ?></textarea></div>
             </div>
 
-            <div class="show_advset" id="displayToggle" onclick="displayToggle('advset', 1);">更多选项<i class="icofont-simple-right"></i></div>
+<!--vot-->  <div class="show_advset" id="displayToggle" onclick="displayToggle('advset', 1);"><?=lang('more_options')?><i class="icofont-simple-right"></i></div>
 
             <div id="advset" class="shadow-sm p-3 mb-2 bg-white rounded">
                 <div class="form-group">
@@ -60,7 +60,7 @@
                     <input maxlength="200" name="postdate" id="postdate" value="<?php echo $postDate; ?>" class="form-control"/>
                 </div>
                 <div class="form-group">
-                    <label>链接别名：（用于seo设置 <a href="./seo.php">&rarr;</a>）</label>
+<!--vot-->          <label><?=lang('link_alias')?></label>
                     <input name="alias" id="alias" class="form-control" value="<?php echo $alias; ?>"/>
                 </div>
                 <div class="form-group">
@@ -200,7 +200,7 @@
                 if ($(window).width() > 767) {
                     this.watch();
                 }
-		//Add Ctrl(Cmd)+S shortcut key to save article content
+                //Add Ctrl(Cmd)+S shortcut key to save article content
                 var articleSave = {
                     "Ctrl-S": function (cm) {
                         autosave(2);

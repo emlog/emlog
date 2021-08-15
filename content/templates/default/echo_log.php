@@ -9,7 +9,7 @@ if (!defined('EMLOG_ROOT')) {
 <div class="container log_con">
     <span class="back_top mh" onclick="history.go(-1);">&laquo;</span>
     <header class="log_title"><?php topflg($top); ?><?php echo $log_title; ?></header>
-<!--vot--><p class="date"><b><?= lang('time') ?>:</b> <?php echo gmdate('Y-m-d', $date); ?>&nbsp;&nbsp;&nbsp;
+<!--vot--><p class="date"><b><?=lang('time')?>:</b> <?php echo gmdate('Y-m-d', $date); ?>&nbsp;&nbsp;&nbsp;
 <!--vot--><b><?=lang('author')?>:</b> <?php blog_author($author); ?>&nbsp;&nbsp;&nbsp;
 <!--vot--><b><?=lang('category')?>:</b> <?php blog_sort($logid); ?>
 		<?php editflg($logid, $author); ?>
