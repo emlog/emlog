@@ -791,8 +791,4 @@ $lang = array(
  'widget_order_save'	=> 'Save widget order',//'保存组件排序',
  'widget_setting_reset'	=> 'Reset default widget settings',//'恢复出厂设置',
 
-//---------------------------
-//include/lib/mysql.php
- 'mysql_not_supported'	=> 'PHP does not support MySql database',//'服务器空间PHP不支持MySql数据库',
-
 );

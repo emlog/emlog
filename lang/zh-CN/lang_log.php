@@ -5,7 +5,7 @@ $lang = array(
 //---------------------------
 //content/templates/default/echo_log.php
 //ToDo: 'Y-n-j G:i'	=> 'Y-m-d H:i'
-  'date_hms_format'	=> 'Y-n-j G:i:s',//'Y-m-d H:i:s', 
+  'date_hms_format'	=> 'Y-n-j G:i:s',//'Y-m-d H:i:s',
   'date_hm_format'	=> 'Y-n-j G:i',//'Y-m-d H:i',
   'date_format'		=> 'Y-n-j',//'Y-m-d',
 // 'user'		=> '作者',//'User',

@@ -76,7 +76,7 @@ $lang = array(
 
 //---------------------------------------
 //include/lib/mysql.php
- 'php_mysql_not_supported'	=> 'Server does not support PHP MySql database',//'服务器空间PHP不支持MySql数据库',
+ 'mysql_not_supported'		=> 'Server does not support PHP MySql database',//'服务器空间PHP不支持MySql数据库',
  'db_database_unavailable'	=> 'Database connection error: The database server or database is unavailable.',//'连接数据库失败，数据库地址错误或者数据库服务器不可用',
  'db_port_invalid'		=> 'Database connection error: The database port is invalid.',//'连接数据库失败，数据库端口错误',
  'db_server_unavailable'	=> 'Database connection error: The database server is unavailable.',//'连接数据库失败，数据库服务器不可用',

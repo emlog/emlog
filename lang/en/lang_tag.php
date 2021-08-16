@@ -37,7 +37,6 @@ $lang = array(
 
 //---------------------------
 //include/model/tag_model.php
-//[67] DO NOT TRANSLATE!!!	preg_split ("/[,\s]|(，)/", $tagStr)
 //[88] DO NOT TRANSLATE!!!	preg_split ("/[,\s]|(，)/", $tagStr)
 
 );
