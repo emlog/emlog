@@ -2,8 +2,8 @@
  *markdown输出样式
  */
  
-.log_con h1 {
-    font-size: 2.25rem !important;
+.markdown h1 {
+    font-size: 1.8rem !important;
     margin-top: 1em;
     margin-bottom: 16px;
     font-weight: bold;
@@ -12,31 +12,31 @@
     letter-spacing: 1px
 }
 
-.log_con h2 {
-    font-size: 1.75rem !important;
-    margin-top: 1em;
-    margin-bottom: 16px;
-    font-weight: bold;
-    padding-bottom: 5px;
-    border-bottom: 1px solid #eee;
-    letter-spacing: 1px
-}
-
-.log_con h3 {
+.markdown h2 {
     font-size: 1.5rem !important;
+    margin-top: 1em;
+    margin-bottom: 16px;
+    font-weight: bold;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #eee;
+    letter-spacing: 1px
+}
+
+.markdown h3 {
+    font-size: 1.3rem !important;
     line-height: 1.43;
     font-weight: bold
 }
 
-.log_con h4 {
+.markdown h4 {
+    font-size: 1.2em !important;
     margin-bottom: 16px;
     font-weight: bold;
     line-height: 1.4;
-    font-size: 1.25em !important;
     letter-spacing: 0.5px
 }
 
-.log_con h5 {
+.markdown h5 {
     font-size: 1rem !important;
     margin-top: 1em;
     margin-bottom: 16px;
@@ -44,7 +44,7 @@
     line-height: 1.4
 }
 
-.log_con h6 {
+.markdown h6 {
     font-size: 1rem !important;
     color: #777;
     margin-top: 1em;
@@ -53,16 +53,16 @@
     margin-bottom: 16px
 }
 
-.log_con strong {
+.markdown strong {
     font-weight: bold;
     font-size: 1rem !important
 }
 
-.log_con del {
+.markdown del {
     text-decoration: line-through
 }
 
-.log_con blockquote {
+.markdown blockquote {
     color: #666;
     border-left: 4px solid #ddd;
     padding-left: 20px;
@@ -71,29 +71,29 @@
     font-style: italic
 }
 
-.log_con ul {
+.markdown ul {
     padding-left: 2em;
     margin-bottom: 16px
 }
 
-.log_con ol {
+.markdown ol {
     padding-left: 2em;
     margin-bottom: 16px
 }
 
-.log_con li {
+.markdown li {
     font-size: 15px !important;
     line-height: 2
 }
 
-.log_con hr {
+.markdown hr {
     height: 1px;
     border: none;
     border-top: 1px solid #ddd;
     background: none
 }
 
-.log_con pre.prettyprint {
+.markdown pre.prettyprint {
     padding: 10px;
     border: 1px solid #ddd;
     white-space: pre-wrap;
@@ -101,7 +101,7 @@
     line-height: 1.6
 }
 
-.log_con table {
+.markdown table {
     display: block;
     width: 100%;
     overflow: auto;
@@ -110,43 +110,43 @@
     margin-bottom: 16px
 }
 
-.log_con thead tr {
+.markdown thead tr {
     background-color: #F8F8F8
 }
 
-.log_con td {
+.markdown td {
     padding: 6px 13px;
     border: 1px solid #ddd
 }
 
-.log_con th {
+.markdown th {
     padding: 6px 13px;
     border: 1px solid #ddd
 }
 
-.log_con table tr:nth-child(even) {
+.markdown table tr:nth-child(even) {
     background: #f8f8f8
 }
 
-.log_con code {
+.markdown code {
     background: #f6f6f6;
     border-radius: 3px;
     font-size: 14px;
     margin-right: 4px
 }
 
-.log_con pre {
+.markdown pre {
     padding: 10px;
     border: 1px solid #ddd;
     background: #f6f6f6
 }
 
-.log_con img {
+.markdown img {
     box-sizing: border-box;
     border: 0;
     vertical-align: middle
 }
 
-.log_con hr {
+.markdown hr {
     margin: 7px 0 7px 0
 }
