@@ -20,8 +20,8 @@ if (!defined('EMLOG_ROOT')) {
                                 <a href="<?php echo $value['log_url']; ?>" class="loglist_title">
 									<?php echo $value['log_title']; ?></a><?php topflg($value['top'], $value['sortop'], isset($sortid) ? $sortid : ''); ?>
                             </h3>
-                            <p class="loglist_content"><?php echo $value['log_description']; ?></p>
-                            <p class="tag loglist_tag"><?php blog_tag($value['logid']); ?></p>
+                            <div class="loglist_content markdown"><?php echo $value['log_description']; ?></div>
+                            <div class="tag loglist_tag"><?php blog_tag($value['logid']); ?></div>
                         </div>
                         <hr class="list_line"/>
                         <div class="row p-3 info_row">

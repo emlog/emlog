@@ -15,7 +15,7 @@ if (!defined('EMLOG_ROOT')) {
 		<?php editflg($logid, $author); ?>
     </p>
     <hr class="mb-4"/>
-	<?php echo $log_content; ?>
+	<div class="markdown"><?php echo $log_content; ?></div>
 
     <p class="tag mt-5 small"><?php blog_tag($logid); ?></p>
 	<?php doAction('log_related', $logData); ?>
