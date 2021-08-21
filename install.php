@@ -279,6 +279,7 @@ CREATE TABLE {$db_prefix}blog (
   date bigint(20) NOT NULL COMMENT '发布时间',
   content longtext NOT NULL  COMMENT '文章内容',
   excerpt longtext NOT NULL  COMMENT '文章摘要',
+  cover VARCHAR(255) NOT NULL DEFAULT '' COMMENT '封面图',
   alias VARCHAR(200) NOT NULL DEFAULT '' COMMENT '文章别名',
   author int(10) NOT NULL default '1' COMMENT '作者',
   sortid int(10) NOT NULL default '-1' COMMENT '分类ID',

@@ -536,3 +536,28 @@ textarea {
         display: none;
     }
 }
+
+/*图片裁剪*/
+#avatar_image {
+    display: block;
+    max-width: 100%;
+    cursor: pointer;
+}
+#cover_image {
+    display: block;
+    max-width: 100%;
+    cursor: pointer;
+    border: 2px dashed;
+    border-color: #E5E5E5;
+    padding: 1px;
+}
+.preview {
+    overflow: hidden;
+    width: 180px;
+    height: 180px;
+    margin: 10px;
+    border: 1px solid red;
+}
+.modal-lg {
+    max-width: 1000px !important;
+}

@@ -149,6 +149,7 @@ function autosave(act) {
     var timeout = 30000;
     var url = "article_save.php?action=autosave";
     var title = $.trim($("#title").val());
+    var cover = $.trim($("#cover").val());
     var alias = $.trim($("#alias").val());
     var sort = $.trim($("#sort").val());
     var postdate = $.trim($("#postdate").val());
@@ -168,6 +169,7 @@ function autosave(act) {
     var querystr = "logcontent=" + encodeURIComponent(content)
         + "&logexcerpt=" + encodeURIComponent(excerpt)
         + "&title=" + encodeURIComponent(title)
+        + "&cover=" + encodeURIComponent(cover)
         + "&alias=" + encodeURIComponent(alias)
         + "&author=" + author
         + "&sort=" + sort

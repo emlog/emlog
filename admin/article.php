@@ -196,6 +196,7 @@ if ($action === 'write') {
 		'password' => '',
 		'hide'     => '',
 		'author'   => UID,
+		'cover'    => '',
 	];
 
 	extract($blogData);
@@ -254,4 +255,17 @@ if ($action === 'edit') {
 	require_once View::getView('article_write');
 	include View::getView('footer');
 	View::output();
+}
+
+if ($action == 'upload_cover') {
+	$data = isset($_POST['image']) ? addslashes($_POST['image']) : '';
+	//data:image/png;base64,xxxx
+	$image_array = explode(",", $data);
+	if (empty($image_array[1])) {
+		exit("error");
+	}
+	$data = base64_decode($image_array[1]);
+	$fname = Option::UPLOADFILE_PATH . gmdate('Ym') . '/' . time() . '.png';
+	file_put_contents($fname, $data);
+	echo $fname;
 }

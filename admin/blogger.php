@@ -17,14 +17,9 @@ if (empty($action)) {
 	$User_Model = new User_Model();
 	$row = $User_Model->getOneUser(UID);
 	extract($row);
-	$icon = '';
-	if ($photo) {
-		$imgsize = chImageSize($photo, Option::ICON_MAX_W, Option::ICON_MAX_H);
-		$token = LoginAuth::genToken();
-		$icon = "<img src=\"{$photo}\" width=\"160\" height=\"160\" class=\"rounded-circle\" /><br /><a href=\"javascript: em_confirm(0, 'avatar', '$token');\">删除头像</a>";
-	} else {
-		$icon = '<img src="./views/images/avatar.svg" width="160" height="160" />';
-	}
+
+	$icon = $photo ?: "./views/images/avatar.svg";
+
 	include View::getView('header');
 	require_once(View::getView('blogger'));
 	include View::getView('footer');
@@ -34,7 +29,6 @@ if (empty($action)) {
 if ($action == 'update') {
 	LoginAuth::checkToken();
 	$User_Model = new User_Model();
-	$photo = isset($_POST['photo']) ? addslashes(trim($_POST['photo'])) : '';
 	$nickname = isset($_POST['name']) ? addslashes(trim($_POST['name'])) : '';
 	$email = isset($_POST['email']) ? addslashes(trim($_POST['email'])) : '';
 	$description = isset($_POST['description']) ? addslashes(trim($_POST['description'])) : '';
@@ -67,37 +61,25 @@ if ($action == 'update') {
 		$User_Model->updateUser(array('username' => $login), UID);
 	}
 
-	$photo_type = array('gif', 'jpg', 'jpeg', 'png');
-	$usericon = $photo;
-	if ($_FILES['photo']['size'] > 0) {
-		$file_info = uploadFile($_FILES['photo']['name'], $_FILES['photo']['error'], $_FILES['photo']['tmp_name'], $_FILES['photo']['size'], $photo_type, true);
-		if (!empty($file_info['file_path'])) {
-			$usericon = !empty($file_info['thum_file']) ? $file_info['thum_file'] : $file_info['file_path'];
-		}
-	}
-	$User_Model->updateUser(array('nickname' => $nickname, 'email' => $email, 'photo' => $usericon, 'description' => $description), UID);
+	$User_Model->updateUser(array('nickname' => $nickname, 'email' => $email, 'description' => $description), UID);
 	$CACHE->updateCache('user');
 	emDirect("./blogger.php?active_edit=1");
 }
 
-if ($action == 'delicon') {
-	LoginAuth::checkToken();
-	$DB = Database::getInstance();
-	$query = $DB->query("select photo from " . DB_PREFIX . "user where uid=" . UID);
-	$icon = $DB->fetch_array($query);
-	$icon_1 = $icon['photo'];
-	if (file_exists($icon_1)) {
-		$icon_2 = str_replace('thum-', '', $icon_1);
-		if ($icon_2 != $icon_1 && file_exists($icon_2)) {
-			unlink($icon_2);
-		}
-		$icon_3 = preg_replace("/^(.*)\/(.*)$/", "\$1/thum52-\$2", $icon_2);
-		if ($icon_3 != $icon_2 && file_exists($icon_3)) {
-			unlink($icon_3);
-		}
-		unlink($icon_1);
+if ($action == 'update_avatar') {
+	$data = isset($_POST['image']) ? addslashes($_POST['image']) : '';
+	//data:image/png;base64,xxxx
+	$image_array = explode(",", $data);
+	if (empty($image_array[1])) {
+		exit("error");
 	}
-	$DB->query("UPDATE " . DB_PREFIX . "user SET photo='' where uid=" . UID);
+
+	$data = base64_decode($image_array[1]);
+	$fname = Option::UPLOADFILE_PATH . gmdate('Ym') . '/' . time() . '.png';
+	file_put_contents($fname, $data);
+
+	$User_Model = new User_Model();
+	$User_Model->updateUser(array('photo' => $fname), UID);
 	$CACHE->updateCache('user');
-	emDirect("./blogger.php?active_del=1");
+	echo $fname;
 }

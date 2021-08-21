@@ -12,6 +12,9 @@ class Media_Model {
 		$this->db = Database::getInstance();
 	}
 
+	/**
+	 * 获取资源列表
+	 */
 	function getMedias($page = null) {
 
 		$condition = '';
