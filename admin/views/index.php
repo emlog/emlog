@@ -2,7 +2,7 @@
 	exit('error!');
 } ?>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">欢迎，<?php echo $user_cache[UID]['name'] ?></h1>
+        <h1 class="h3 mb-0 text-gray-800">Hi，<a class="small" href="./blogger.php"><?php echo $user_cache[UID]['name'] ?></a></h1>
 		<?php doAction('adm_main_top'); ?>
     </div>
 <?php if (ROLE == ROLE_ADMIN): ?>

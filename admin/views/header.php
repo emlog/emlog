@@ -15,10 +15,13 @@
     <link href="./views/css/css-main.css" type=text/css rel=stylesheet>
     <link href="./views/css/icofont/icofont.min.css" type=text/css rel=stylesheet>
     <link href="./views/css/dropzone.css" type=text/css rel=stylesheet>
+    <link href="./views/css/cropper.min.css" type=text/css rel=stylesheet>
+
     <script src="./views/js/jquery.min.3.5.1.js"></script>
     <script src="./views/js/bootstrap.bundle.min.4.6.js"></script>
     <script src="./views/js/jquery-ui.min.js"></script>
     <script src="./views/js/js.cookie-2.2.1.min.js"></script>
+    <script src="./views/js/cropper.min.js"></script>
     <script src="./views/js/common.js?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
 	<?php doAction('adm_head'); ?>
 </head>
@@ -124,9 +127,7 @@
                     <div class="topbar-divider d-none d-sm-block"></div>
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $user_cache[UID]['name'] ?></span>
-                            <img class="img-profile rounded-circle"
-                                 src="<?php echo empty($user_cache[UID]['avatar']) ? './views/images/avatar.svg' : '../' . $user_cache[UID]['avatar'] ?>">
+                            <img class="img-profile rounded-circle" src="<?php echo empty($user_cache[UID]['avatar']) ? './views/images/avatar.svg' : '../' . $user_cache[UID]['avatar'] ?>">
                         </a>
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                             <a class="dropdown-item" href="blogger.php">

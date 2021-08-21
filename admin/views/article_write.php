@@ -23,6 +23,19 @@
                 <div id="logexcerpt"><textarea><?php echo $excerpt; ?></textarea></div>
             </div>
 
+            <div class="form-group">
+                <label>文章封面：</label>
+                <div class="row m-3">
+                    <div class="col-md-4">
+                        <label for="upload_img">
+                            <img src="<?php echo $cover ?: './views/images/cover.svg' ; ?>" id="cover_image" class="rounded"/>
+                            <input type="file" name="upload_img" class="image" id="upload_img" style="display:none"/>
+                            <input type="hidden" name="cover" id="cover" value="<?php echo $cover; ?>"/>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
             <div class="show_advset" id="displayToggle" onclick="displayToggle('advset', 1);">更多选项<i class="icofont-simple-right"></i></div>
 
             <div id="advset" class="shadow-sm p-3 mb-2 bg-white rounded">
@@ -149,6 +162,36 @@
     </div>
 </div>
 
+<!-- 封面图裁剪 -->
+<div class="modal fade" id="modal" tabindex="-2" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">裁剪并上传</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="img-container">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <img src="" id="sample_image"/>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="preview"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="bt btn-sm btn-secondary" data-dismiss="modal">取消</button>
+                <button type="button" id="crop" class="btn btn-sm btn-success">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="./editor.md/editormd.js?d=5.25.2021"></script>
 <script>
     var icon_tog;//如果值为true，则“更多选项”箭头向右
@@ -190,9 +233,9 @@
             imageUpload: true,
             imageFormats: ["jpg", "jpeg", "gif", "png"],
             imageUploadURL: "media.php?action=upload&editor=1",
-            syncScrolling : "single",
+            syncScrolling: "single",
             onload: function () {
-                hooks.doAction("loaded",this);
+                hooks.doAction("loaded", this);
                 //在大屏模式下，编辑器默认显示预览
                 if ($(window).width() > 767) {
                     this.watch();
@@ -228,10 +271,67 @@
             sequenceDiagram: false,
             placeholder: "如果留空，则使用文章内容作为摘要...",
             onload: function () {
-                hooks.doAction("sum_loaded",this);
+                hooks.doAction("sum_loaded", this);
             }
         });
         Editor.setToolbarAutoFixed(false);
         Editor_summary.setToolbarAutoFixed(false);
+    });
+
+
+    $(document).ready(function () {
+        var $modal = $('#modal');
+        var image = document.getElementById('sample_image');
+        var cropper;
+        $('#upload_img').change(function (event) {
+            var files = event.target.files;
+            var done = function (url) {
+                image.src = url;
+                $modal.modal('show');
+            };
+            if (files && files.length > 0) {
+                reader = new FileReader();
+                reader.onload = function (event) {
+                    done(reader.result);
+                };
+                reader.readAsDataURL(files[0]);
+            }
+        });
+        $modal.on('shown.bs.modal', function () {
+            cropper = new Cropper(image, {
+                aspectRatio: 16 / 9,
+                viewMode: 3,
+                preview: '.preview'
+            });
+        }).on('hidden.bs.modal', function () {
+            cropper.destroy();
+            cropper = null;
+        });
+        $('#crop').click(function () {
+            canvas = cropper.getCroppedCanvas({
+                width: 290,
+                height: 170
+            });
+            canvas.toBlob(function (blob) {
+                url = URL.createObjectURL(blob);
+                var reader = new FileReader();
+                reader.readAsDataURL(blob);
+                reader.onloadend = function () {
+                    var base64data = reader.result;
+                    $.ajax({
+                        url: './article.php?action=upload_cover',
+                        method: 'POST',
+                        data: {image: base64data},
+                        success: function (data) {
+                            $modal.modal('hide');
+                            if (data != "error") {
+                                $('#cover_image').attr('src', data);
+                                $('#cover').val(data);
+                            }
+                        }
+                    });
+                };
+            });
+        });
     });
 </script>
