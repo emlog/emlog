@@ -599,6 +599,10 @@ body {
     color: #929292
 }
 
+.loglist_cover {
+    margin-left: 5px;
+}
+
 .loglist_content {
     font-size: medium;
     margin-left: 1px;

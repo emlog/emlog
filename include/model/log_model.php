@@ -166,7 +166,7 @@ class Log_Model {
 		$logs = array();
 		while ($row = $this->db->fetch_array($res)) {
 			$row['log_title'] = htmlspecialchars(trim($row['title']));
-			$row['log_cover'] = getFileUrl($row['cover']);
+			$row['log_cover'] = $row['cover'] ? getFileUrl($row['cover']) : '';
 			$row['log_url'] = Url::log($row['gid']);
 			$row['logid'] = $row['gid'];
 			$cookiePassword = isset($_COOKIE['em_logpwd_' . $row['gid']]) ? addslashes(trim($_COOKIE['em_logpwd_' . $row['gid']])) : '';

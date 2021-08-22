@@ -211,6 +211,7 @@
         $(".icofont-simple-right").attr("class", "icofont-simple-down");
     }
 
+    // MD编辑器
     var Editor, Editor_summary;
     $(function () {
         Editor = editormd("logcontent", {
@@ -278,7 +279,7 @@
         Editor_summary.setToolbarAutoFixed(false);
     });
 
-
+    // 封面图裁剪上传
     $(document).ready(function () {
         var $modal = $('#modal');
         var image = document.getElementById('sample_image');
@@ -309,8 +310,8 @@
         });
         $('#crop').click(function () {
             canvas = cropper.getCroppedCanvas({
-                width: 290,
-                height: 170
+                width: 650,
+                height: 366
             });
             canvas.toBlob(function (blob) {
                 url = URL.createObjectURL(blob);
