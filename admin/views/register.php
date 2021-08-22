@@ -15,7 +15,7 @@
                 <p class="lead text-danger mb-4">抱歉，您的文章数量已经超过未注册版本限额</p>
 			<?php endif; ?>
             <p class="lead text-danger mb-4">抱歉！您的emlog pro尚未完成注册， 完成注册来解锁emlog pro的全部功能</p>
-            <p><a href="<?php echo OFFICIAL_SERVICE_HOST; ?>register" target="_blank">去获取注册码&rarr; </a></p>
+            <p><a href="<?php echo OFFICIAL_SERVICE_HOST; ?>register" target="_blank">获取注册码&rarr; </a></p>
             <hr>
             <a href="#" class="btn btn-sm btn-success shadow-lg" data-toggle="modal" data-target="#exampleModal">开始注册</a>
         </div>
@@ -41,6 +41,9 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <input class="form-control" id="emkey" name="emkey" placeholder="输入注册码" required>
+                    </div>
+                    <div class="form-group">
+                        <a href="<?php echo OFFICIAL_SERVICE_HOST; ?>register" target="_blank">获取注册码&rarr; </a>
                     </div>
                 </div>
                 <div class="modal-footer">
