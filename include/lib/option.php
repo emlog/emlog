@@ -143,7 +143,7 @@ class Option {
 	 * 获取widget组件标题
 	 */
 	static function getWidgetTitle() {
-		$widget_title = array(
+		return [
 			'blogger'     => '个人资料',
 			'calendar'    => '日历',
 			'tag'         => '标签',
@@ -155,16 +155,14 @@ class Option {
 			'link'        => '链接',
 			'search'      => '搜索',
 			'custom_text' => '自定义组件'
-		);
-		return $widget_title;
+		];
 	}
 
 	/**
 	 * 获取初始安装时的widget列表
 	 */
 	static function getDefWidget() {
-		$default_widget = array('archive', 'link', 'search');
-		return $default_widget;
+		return ['blogger', 'newcomm', 'link', 'search'];
 	}
 
 	/**
