@@ -17,9 +17,16 @@ if (!defined('EMLOG_ROOT')) {
                     <div class="shadow-theme mb-4">
                         <div class="card-body loglist_body">
                             <h3 class="card-title">
-                                <a href="<?php echo $value['log_url']; ?>" class="loglist_title">
-									<?php echo $value['log_title']; ?></a><?php topflg($value['top'], $value['sortop'], isset($sortid) ? $sortid : ''); ?>
+                                <a href="<?php echo $value['log_url']; ?>" class="loglist_title"><?php echo $value['log_title']; ?></a>
+								<?php topflg($value['top'], $value['sortop'], isset($sortid) ? $sortid : ''); ?>
                             </h3>
+							<?php if (!empty($value['log_cover'])) : ?>
+                                <div class="loglist_cover">
+                                    <a href="<?php echo $value['log_url']; ?>">
+                                        <img src="<?php echo $value['log_cover']; ?>" class="cover img-fluid">
+                                    </a>
+                                </div>
+							<?php endif; ?>
                             <div class="loglist_content markdown"><?php echo $value['log_description']; ?></div>
                             <div class="tag loglist_tag"><?php blog_tag($value['logid']); ?></div>
                         </div>
