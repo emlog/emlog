@@ -39,7 +39,7 @@ if ($action === 'update' && ROLE === ROLE_ADMIN) {
 		exit('error');
 	}
 
-	$temp_file = emFecthFile($source);
+	$temp_file = emFetchFile($source);
 	if (!$temp_file) {
 		exit('error_down');
 	}
@@ -63,7 +63,7 @@ if ($action === 'update' && ROLE === ROLE_ADMIN) {
 	}
 	$DB = Database::getInstance();
 	$setchar = "ALTER DATABASE `" . DB_NAME . "` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;";
-	$temp_file = emFecthFile($upsql);
+	$temp_file = emFetchFile($upsql);
 	if (!$temp_file) {
 		exit('error_down');
 	}
