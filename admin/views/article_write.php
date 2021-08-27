@@ -28,9 +28,10 @@
                 <div class="row m-3">
                     <div class="col-md-4">
                         <label for="upload_img">
-                            <img src="<?php echo $cover ?: './views/images/cover.svg' ; ?>" id="cover_image" class="rounded"/>
+                            <img src="<?php echo $cover ?: './views/images/cover.svg'; ?>" id="cover_image" class="rounded"/>
                             <input type="file" name="upload_img" class="image" id="upload_img" style="display:none"/>
                             <input type="hidden" name="cover" id="cover" value="<?php echo $cover; ?>"/>
+                            <button type="button" id="cover_rm" class="btn-sm btn btn-link" <?php if (!$cover): ?>style="display:none"<?php endif; ?>>x</button>
                         </label>
                     </div>
                 </div>
@@ -211,17 +212,14 @@
         $(".icofont-simple-right").attr("class", "icofont-simple-down");
     }
 
-    // MD编辑器
+    // 编辑器
     var Editor, Editor_summary;
     $(function () {
         Editor = editormd("logcontent", {
             width: "100%",
             height: 640,
             toolbarIcons: function () {
-                return ["undo", "redo", "|",
-                    "bold", "del", "italic", "quote", "|",
-                    "h1", "h2", "h3", "|",
-                    "list-ul", "list-ol", "hr", "|",
+                return ["undo", "redo", "|", "bold", "del", "italic", "quote", "|", "h1", "h2", "h3", "|", "list-ul", "list-ol", "hr", "|",
                     "link", "image", "preformatted-text", "table", "|", "search", "watch"]
             },
             path: "editor.md/lib/",
@@ -257,11 +255,7 @@
             width: "100%",
             height: 300,
             toolbarIcons: function () {
-                return ["undo", "redo", "|",
-                    "bold", "del", "italic", "quote", "|",
-                    "h1", "h2", "h3", "|",
-                    "list-ul", "list-ol", "hr", "|",
-                    "link", "image", "|", "watch"]
+                return ["undo", "redo", "|", "bold", "del", "italic", "quote", "|", "h1", "h2", "h3", "|", "list-ul", "list-ol", "hr", "|", "link", "image", "|", "watch"]
             },
             path: "editor.md/lib/",
             tex: false,
@@ -279,7 +273,7 @@
         Editor_summary.setToolbarAutoFixed(false);
     });
 
-    // 封面图裁剪上传
+    // 封面图
     $(document).ready(function () {
         var $modal = $('#modal');
         var image = document.getElementById('sample_image');
@@ -328,11 +322,17 @@
                             if (data != "error") {
                                 $('#cover_image').attr('src', data);
                                 $('#cover').val(data);
+                                $('#cover_rm').show();
                             }
                         }
                     });
                 };
             });
+        });
+        $('#cover_rm').click(function () {
+            $('#cover_image').attr('src', "./views/images/cover.svg");
+            $('#cover').val("");
+            $('#cover_rm').hide();
         });
     });
 </script>
