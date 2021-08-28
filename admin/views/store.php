@@ -45,7 +45,7 @@
 						<?php if ($v['price'] > 0): ?>
                             <a href="<?php echo $v['buy_url']; ?>" class="btn btn-sm btn-warning btn-sm" target="_blank">去购买</a>
 						<?php else: ?>
-                            <a href="./store.php?action=install&source=<?php echo urlencode($v['download_url']); ?>&type=tpl" class="btn btn-success btn-sm">下载安装</a>
+                            <a href="./store.php?action=install&source=<?php echo urlencode($v['download_url']); ?>&type=tpl" class="btn btn-success btn-sm">安装</a>
 						<?php endif; ?>
                     </p>
                 </div>
@@ -73,7 +73,7 @@
 						<?php if ($v['price'] > 0): ?>
                             <a href="<?php echo $v['buy_url']; ?>" class="btn btn-warning btn-sm" target="_blank">去购买</a>
 						<?php else: ?>
-                            <a href="./store.php?action=install&source=<?php echo urlencode($v['download_url']); ?>&type=plugin" class="btn btn-success btn-sm">下载安装</a>
+                            <a href="./store.php?action=install&source=<?php echo urlencode($v['download_url']); ?>&type=plugin" class="btn btn-success btn-sm">安装</a>
 						<?php endif; ?>
                     </p>
                 </div>
