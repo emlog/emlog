@@ -57,7 +57,7 @@
 							<?php endif; ?>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center small">
-                            <a id="ckup" href="javascript:checkupdate();">检查更新</a>
+                            <a id="ckup" href="javascript:checkupdate();" class="badge badge-success">检查更新</a>
                             <span id="upmsg"></span>
                         </li>
                     </ul>
@@ -116,9 +116,9 @@
                     if (result.code == 1001) {
                         $("#upmsg").html("您的emlog pro尚未注册，<a href=\"register.php\">去注册</a>").removeClass();
                     } else if (result.code == 1002) {
-                        $("#upmsg").html("已是最新版本").removeClass();
+                        $("#upmsg").html("已经是最新版本").removeClass();
                     } else if (result.code == 200) {
-                        $("#upmsg").html("有可用的新版本 " + result.data.version + "，更新之前请做好数据备份工作，<a id=\"doup\" href=\"javascript:doup('" + result.data.file + "','" + result.data.sql + "');\">现在更新</a>").removeClass();
+                        $("#upmsg").html("有可用的新版本 " + result.data.version + "，<a id=\"doup\" href=\"javascript:doup('" + result.data.file + "','" + result.data.sql + "');\">现在更新</a>").removeClass();
                     } else {
                         $("#upmsg").html("检查失败，可能是网络问题").removeClass();
                     }
