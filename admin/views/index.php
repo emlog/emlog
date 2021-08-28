@@ -56,7 +56,7 @@
                                 <span class="badge badge-success"><?php echo Option::EMLOG_VERSION; ?> 已注册</span>
 							<?php endif; ?>
                         </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center small">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
                             <a id="ckup" href="javascript:checkupdate();" class="badge badge-success">检查更新</a>
                             <span id="upmsg"></span>
                         </li>
