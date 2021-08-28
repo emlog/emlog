@@ -66,16 +66,8 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-6 mb-4">
-            <div class="card shadow mb-4">
-                <h6 class="card-header">官方消息</h6>
-                <div class="card-body" id="admindex_msg">
-                    <ul class="list-group list-group-flush"></ul>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6 mb-4">
-			<?php if (ISREG === false) : ?>
+		<?php if (ISREG === false) : ?>
+            <div class="col-lg-6 mb-4">
                 <div class="card bg-danger text-white shadow">
                     <div class="card-body">
                         <h4>您安装的emlog pro尚未注册，注册后将获得：</h4>
@@ -88,7 +80,15 @@
                         <a href="register.php" class="btn btn-sm btn-success shadow-lg">现在去注册</a>
                     </div>
                 </div>
-			<?php endif; ?>
+            </div>
+		<?php endif; ?>
+        <div class="col-lg-6 mb-4">
+            <div class="card shadow mb-4">
+                <h6 class="card-header">官方消息</h6>
+                <div class="card-body" id="admindex_msg">
+                    <ul class="list-group list-group-flush"></ul>
+                </div>
+            </div>
         </div>
     </div>
     <script>
