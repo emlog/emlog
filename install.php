@@ -295,6 +295,7 @@ CREATE TABLE {$db_prefix}blog (
   date bigint(20) NOT NULL COMMENT 'Publish time',
   content longtext NOT NULL  COMMENT 'Article content',
   excerpt longtext NOT NULL  COMMENT 'Article Summary',
+  cover VARCHAR(255) NOT NULL DEFAULT '' COMMENT 'Cover image',
   alias VARCHAR(255) NOT NULL DEFAULT '' COMMENT 'Article alias',
   author int(11) NOT NULL default '1' COMMENT 'Author',
   sortid int(11) NOT NULL default '-1' COMMENT 'Category ID',
@@ -350,6 +351,7 @@ CREATE TABLE {$db_prefix}comment (
   KEY date (date),
   KEY hide (hide)
 )" . $table_charset_sql . "
+INSERT INTO {$db_prefix}comment (gid, date, poster, comment) VALUES (1, 1629601845, 'snow', 'stay hungry stay foolish');
 DROP TABLE IF EXISTS {$db_prefix}options;
 CREATE TABLE {$db_prefix}options (
 option_id INT( 11 ) UNSIGNED NOT NULL auto_increment COMMENT 'Cofiguration table',
@@ -471,7 +473,7 @@ CREATE TABLE {$db_prefix}user (
 PRIMARY KEY  (uid),
 KEY username (username)
 )" . $table_charset_sql . "
-INSERT INTO {$db_prefix}user (uid, username, password, role) VALUES (1,'$admin','" . $adminpw . "','admin');
+INSERT INTO {$db_prefix}user (uid, username, password, nickname, role) VALUES (1,'$admin','" . $adminpw . "', 'emer','admin');
 DROP TABLE IF EXISTS {$db_prefix}storage;
 CREATE TABLE {$db_prefix}storage (
   `sid` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Object storage table',

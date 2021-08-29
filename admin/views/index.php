@@ -2,7 +2,7 @@
 	exit('error!');
 } ?>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-<!--vot--><h1 class="h3 mb-0 text-gray-800"><?=lang('welcome')?>, <?php echo $user_cache[UID]['name'] ?></h1>
+<!--vot--><h1 class="h3 mb-0 text-gray-800"><?=lang('welcome')?>, <a class="small" href="./blogger.php"><?php echo $user_cache[UID]['name'] ?></a></h1>
 		<?php doAction('adm_main_top'); ?>
     </div>
 <?php if (ROLE == ROLE_ADMIN): ?>
@@ -56,8 +56,8 @@
 <!--vot-->                      <span class="badge badge-success"><?php echo Option::EMLOG_VERSION; ?> <?=lang('registered_already')?></span>
 							<?php endif; ?>
                         </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center small">
-<!--vot-->                  <a id="ckup" href="javascript:checkupdate();"><?=lang('update_check')?></a>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+<!--vot-->                  <a id="ckup" href="javascript:checkupdate();" class="badge badge-success"><?=lang('update_check')?></a>
                             <span id="upmsg"></span>
                         </li>
                     </ul>
@@ -66,16 +66,8 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-6 mb-4">
-            <div class="card shadow mb-4">
-<!--vot-->      <h6 class="card-header"><?= lang('official_news') ?></h6>
-                <div class="card-body" id="admindex_msg">
-                    <ul class="list-group list-group-flush"></ul>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6 mb-4">
-			<?php if (ISREG === false) : ?>
+		<?php if (ISREG === false) : ?>
+            <div class="col-lg-6 mb-4">
                 <div class="card bg-danger text-white shadow">
                     <div class="card-body">
 <!--vot-->          <h4><?=lang('emlog_reg_advantages')?></h4>
@@ -88,7 +80,15 @@
 <!--vot-->              <a href="register.php" class="btn btn-sm btn-success shadow-lg"><?=lang('register_now')?></a>
                     </div>
                 </div>
-			<?php endif; ?>
+            </div>
+		<?php endif; ?>
+        <div class="col-lg-6 mb-4">
+            <div class="card shadow mb-4">
+                <h6 class="card-header">官方消息</h6>
+                <div class="card-body" id="admindex_msg">
+                    <ul class="list-group list-group-flush"></ul>
+                </div>
+            </div>
         </div>
     </div>
     <script>
@@ -118,7 +118,7 @@
                     } else if (result.code == 1002) {
 /*vot*/                 $("#upmsg").html("<?=lang('updates_no')?> ").removeClass();
                     } else if (result.code == 200) {
-/*vot*/                 $("#upmsg").html("<?=lang('update_exists')?> " + result.data.version + ", <?=lang('backup_before_update')?>, <a id=\"doup\" href=\"javascript:doup('" + result.data.file + "','" + result.data.sql + "');\"><?=lang('update_now')?></a>").removeClass();
+/*vot*/                 $("#upmsg").html("<?=lang('update_exists')?> " + result.data.version + ", <a id=\"doup\" href=\"javascript:doup('" + result.data.file + "','" + result.data.sql + "');\"><?=lang('update_now')?></a>").removeClass();
                     } else {
 /*vot*/              $("#upmsg").html("<?=lang('update_check_failed')?>").removeClass();
                     }

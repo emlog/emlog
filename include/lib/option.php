@@ -6,8 +6,8 @@
 
 class Option {
 
-	const EMLOG_VERSION = 'pro v1.0.3';              //Version number
-	const EMLOG_VERSION_TIMESTAMP = 1628912958;      //Version timestamp
+	const EMLOG_VERSION = 'pro v1.0.4';              //Version number
+	const EMLOG_VERSION_TIMESTAMP = 1630197998;      //Version timestamp
 	const ICON_MAX_W = 160;                          //Maximum avatar thumbnail width
 	const ICON_MAX_H = 160;                          //Maximum avatar thumbnail height
 	const UPLOADFILE_PATH = '../content/uploadfile/';//Attachments upload path
@@ -143,7 +143,7 @@ class Option {
 	 * Get widget module title
 	 */
 	static function getWidgetTitle() {
-		$widget_title = array(
+		return [
 /*vot*/			'blogger'     => lang('blogger'),
 /*vot*/			'calendar'    => lang('calendar'),
 /*vot*/			'tag'         => lang('tags'),
@@ -155,16 +155,14 @@ class Option {
 /*vot*/			'link'        => lang('links'),
 /*vot*/			'search'      => lang('search'),
 /*vot*/			'custom_text' => lang('widget_custom')
-		);
-		return $widget_title;
+		];
 	}
 
 	/**
 	 * Get a list of widgets installed by default
 	 */
 	static function getDefWidget() {
-		$default_widget = array('archive', 'link', 'search');
-		return $default_widget;
+		return ['blogger', 'newcomm', 'link', 'search'];
 	}
 
 	/**

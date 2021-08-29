@@ -42,6 +42,9 @@
                     <div class="form-group">
 <!--vot-->              <input class="form-control" id="emkey" name="emkey" placeholder="<?=lang('enter_reg_code')?>" required>
                     </div>
+                    <div class="form-group">
+                        <a href="<?php echo OFFICIAL_SERVICE_HOST; ?>register" target="_blank">获取注册码&rarr; </a>
+                    </div>
                 </div>
                 <div class="modal-footer">
 <!--vot-->          <button type="submit" class="btn btn-sm btn-success"><?=lang('register')?></button>
