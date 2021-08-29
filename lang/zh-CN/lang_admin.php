@@ -183,6 +183,7 @@ $lang = array(
  'file_insert'		=> '插入文件',//'Insert file',
  'img_insert'		=> '插入图片',//'Insert image',
  'go_upload'		=> '去上传',//'Go Upload',
+ 'article_cover'	=> '文章封面',//'Article cover',
 
 //---------------------------
 //admin/views/admin_page.php

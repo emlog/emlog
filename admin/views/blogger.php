@@ -84,7 +84,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">裁剪并上传</h5>
+<!--vot-->      <h5 class="modal-title"><?=lang('crop_upload')?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -102,8 +102,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="bt btn-sm btn-secondary" data-dismiss="modal">取消</button>
-                <button type="button" id="crop" class="btn btn-sm btn-success">保存</button>
+<!--vot-->      <button type="button" class="bt btn-sm btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
+<!--vot-->      <button type="button" id="crop" class="btn btn-sm btn-success"><?=lang('save')?></button>
             </div>
         </div>
     </div>

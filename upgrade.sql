@@ -8,5 +8,5 @@
 
 # Add new field
 # -- eg: ALTER TABLE {db_prefix}blog ADD COLUMN sortop enum('n','y') NOT NULL default 'n' AFTER top;
-# v1.0.4 添加文章封面图
+# v1.0.4 Add article cover image
 ALTER TABLE `{db_prefix}blog` ADD COLUMN `cover` varchar(255) NOT NULL default '' AFTER `excerpt`;

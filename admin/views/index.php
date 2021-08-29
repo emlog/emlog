@@ -49,7 +49,7 @@
                             <span><?php echo $serverapp; ?></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-<!--vot-->                  <?=lang('emlog_version')?>:
+                            EMLOG
 							<?php if (ISREG === false) : ?>
 <!--vot-->                      <a href="register.php"><span class="badge badge-danger"><?php echo Option::EMLOG_VERSION; ?> <?=lang('unregistered')?></span></a>
 							<?php else: ?>
@@ -84,7 +84,7 @@
 		<?php endif; ?>
         <div class="col-lg-6 mb-4">
             <div class="card shadow mb-4">
-                <h6 class="card-header">官方消息</h6>
+<!--vot-->      <h6 class="card-header"><?= lang('official_news') ?></h6>
                 <div class="card-body" id="admindex_msg">
                     <ul class="list-group list-group-flush"></ul>
                 </div>

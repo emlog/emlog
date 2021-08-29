@@ -4,7 +4,7 @@
 <?php if (isset($_GET['active_reg'])): ?>
 <!--vot--><div class="alert alert-success"><?=lang('em_reg_ok')?></div><?php endif; ?>
 <?php if (isset($_GET['error_b'])): ?>
-<!--vot--><div class="alert alert-danger"><?=lang('reg_code_invalid')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('reg_failed')?></div><?php endif; ?>
 <?php if (ISREG === false) : ?>
     <div class="container-fluid">
         <div class="text-center">
@@ -43,7 +43,7 @@
 <!--vot-->              <input class="form-control" id="emkey" name="emkey" placeholder="<?=lang('enter_reg_code')?>" required>
                     </div>
                     <div class="form-group">
-                        <a href="<?php echo OFFICIAL_SERVICE_HOST; ?>register" target="_blank">获取注册码&rarr; </a>
+<!--vot-->              <a href="<?php echo OFFICIAL_SERVICE_HOST; ?>register" target="_blank"><?=lang('get_emkey')?>&rarr; </a>
                     </div>
                 </div>
                 <div class="modal-footer">

@@ -24,7 +24,7 @@
             </div>
 
             <div class="form-group">
-                <label>文章封面：</label>
+<!--vot-->      <label><?=lang('article_cover')?>:</label>
                 <div class="row m-3">
                     <div class="col-md-4">
                         <label for="upload_img">
@@ -37,7 +37,7 @@
                 </div>
             </div>
 
-            <div class="show_advset" id="displayToggle" onclick="displayToggle('advset', 1);">更多选项<i class="icofont-simple-right"></i></div>
+<!--vot-->  <div class="show_advset" id="displayToggle" onclick="displayToggle('advset', 1);"><?=lang('more_options')?><i class="icofont-simple-right"></i></div>
 
             <div id="advset" class="shadow-sm p-3 mb-2 bg-white rounded">
                 <div class="form-group">
@@ -163,12 +163,12 @@
     </div>
 </div>
 
-<!-- 封面图裁剪 -->
+<!-- Cover image cropping -->
 <div class="modal fade" id="modal" tabindex="-2" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">裁剪并上传</h5>
+                <h5 class="modal-title"><?=lang('crop_upload')?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -186,8 +186,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="bt btn-sm btn-secondary" data-dismiss="modal">取消</button>
-                <button type="button" id="crop" class="btn btn-sm btn-success">保存</button>
+<!--vot-->      <button type="button" class="bt btn-sm btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
+<!--vot-->      <button type="button" id="crop" class="btn btn-sm btn-success"><?=lang('save')?></button>
             </div>
         </div>
     </div>
@@ -215,7 +215,7 @@
         $(".icofont-simple-right").attr("class", "icofont-simple-down");
     }
 
-    // 编辑器
+    // Editor
     var Editor, Editor_summary;
     $(function () {
         Editor = editormd("logcontent", {
@@ -276,7 +276,7 @@
         Editor_summary.setToolbarAutoFixed(false);
     });
 
-    // 封面图
+    // Cover image
     $(document).ready(function () {
         var $modal = $('#modal');
         var image = document.getElementById('sample_image');
