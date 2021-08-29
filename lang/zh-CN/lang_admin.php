@@ -170,7 +170,6 @@ $lang = array(
  'tag_by_view'		=> '按标签查看',//'View by tags',
  'top'			=> '置顶',//'Top',
 
-
 //---------------------------
 //admin/views/article_write.php
  'publish_time'		=> '发布时间',//'Publish time',
@@ -184,6 +183,7 @@ $lang = array(
  'img_insert'		=> '插入图片',//'Insert image',
  'go_upload'		=> '去上传',//'Go Upload',
  'article_cover'	=> '文章封面',//'Article cover',
+ 'crop_upload'		=> '裁剪并上传',//'Crop and upload',
 
 //---------------------------
 //admin/views/admin_page.php
@@ -427,7 +427,7 @@ $lang = array(
  'reg_failed'			=> '注册失败',//'Registration failed',
  'reg_code_invalid'		=> '注册失败，无效的注册码',//'Registration failed, invalid registration code',
  'emkey_info'			=> 'EMKEY是官方分发给emlog pro付费用户的唯一识别码，请妥善保管',//'EMKEY is the only identification code officially distributed to paying users of emlog pro, please keep it properly',
- 'get_emkey'			=> '去获取注册码',//'Get the registration code',
+ 'get_emkey'			=> '去获取注册码',//'Get registration code',
  'registered'			=> '注册',//'registered',
  'registered_already'		=> '已注册',//'already registered',
  'mysql_version'		=> 'MySQL版本',//'MySQL version',
@@ -791,9 +791,5 @@ $lang = array(
  'widget_use'		=> '使用中的组件',//'Used widgets',
  'widget_order_save'	=> '保存组件排序',//'Save widget order',
  'widget_setting_reset'	=> '恢复出厂设置',//'Reset default widget settings',
-
-//---------------------------
-//include/lib/mysql.php
- 'mysql_not_supported'	=> '服务器空间PHP不支持MySql数据库',//'PHP does not support MySql database',
 
 );

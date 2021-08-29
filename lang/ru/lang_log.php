@@ -37,14 +37,14 @@ $lang = array(
 //---------------------------
 //include/model/log_model.php
 // 'no_permission'	=> 'Insufficient permissions!',//'权限不足！',
- 'no_title'		=> 'Untitled',//'无标题',
- 'post_protected_by_password_click_title'	=> 'This article is encrypted, please click on the title and enter the password to access',//'该文章已加密，请点击标题输入密码访问',
+ 'no_title'		=> 'Без названия',//'无标题',
+ 'post_protected_by_password_click_title'	=> 'Эта статья зашифрована, пожалуйста, нажмите на заголовок и введите пароль для получения доступа',//'该文章已加密，请点击标题输入密码访问',
 // 'read_more'		=> 'Read more&gt;&gt;';//'阅读全文&gt;&gt;',
 // 'no_title'		=> 'Untitled',//'无标题',
 // 'no_permission'	=> 'Insufficient permissions!',//'权限不足！',
 // 'no_permission'	=> 'Insufficient permissions!',//'权限不足！',
- 'page_password_enter'	=> 'Please enter the article access password',//'请输入文章的访问密码',
- 'submit_password'	=> 'Enter..',//'进入..',
- 'back_home'		=> '&laquo; Back to home',//'&laquo;返回首页',
+ 'page_password_enter'	=> 'Пожалуйста, введите пароль для доступа к статье',//'请输入文章的访问密码',
+ 'submit_password'	=> 'Введите..',//'进入..',
+ 'back_home'		=> '&laquo; Вернуться на Главную',//'&laquo;返回首页',
 
 );

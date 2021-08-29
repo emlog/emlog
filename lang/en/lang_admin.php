@@ -184,6 +184,7 @@ $lang = array(
  'img_insert'		=> 'Insert image',//'插入图片',
  'go_upload'		=> 'Go Upload',//'去上传',
  'article_cover'	=> 'Article cover',//'文章封面',
+ 'crop_upload'		=> 'Crop and upload',//'裁剪并上传',
 
 //---------------------------
 //admin/views/admin_page.php
@@ -427,7 +428,7 @@ $lang = array(
  'reg_failed'			=> 'Registration failed',//'注册失败',
  'reg_code_invalid'		=> 'Registration failed, invalid registration code',//'注册失败，无效的注册码',
  'emkey_info'			=> 'EMKEY is the only identification code officially distributed to paying users of emlog pro, please keep it properly',//'EMKEY是官方分发给emlog pro付费用户的唯一识别码，请妥善保管',
- 'get_emkey'			=> 'Get the registration code',//'去获取注册码',
+ 'get_emkey'			=> 'Get registration code',//'去获取注册码',
  'registered'			=> 'registered',//'注册',
  'registered_already'		=> 'already registered',//'已注册',
  'mysql_version'		=> 'MySQL version',//'MySQL版本',
