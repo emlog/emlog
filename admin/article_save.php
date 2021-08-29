@@ -29,6 +29,7 @@ $sortop = isset($_POST['sortop']) ? addslashes(trim($_POST['sortop'])) : 'n';
 $allow_remark = isset($_POST['allow_remark']) ? addslashes(trim($_POST['allow_remark'])) : 'n';
 $ishide = isset($_POST['ishide']) && !empty($_POST['ishide']) && !isset($_POST['pubdf']) ? addslashes($_POST['ishide']) : 'n';
 $password = isset($_POST['password']) ? addslashes(trim($_POST['password'])) : '';
+$cover = isset($_POST['cover']) ? addslashes(trim($_POST['cover'])) : '';
 
 $postTime = strtotime($postDate);
 
@@ -45,6 +46,7 @@ $logData = array(
 	'alias'        => $alias,
 	'content'      => $content,
 	'excerpt'      => $excerpt,
+	'cover'        => $cover,
 	'author'       => $author,
 	'sortid'       => $sort,
 	'date'         => $postTime,

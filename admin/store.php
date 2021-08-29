@@ -53,7 +53,7 @@ if ($action === 'install') {
 		emDirect("./store.php?error_param=1");
 	}
 
-	$temp_file = emFecthFile(OFFICIAL_SERVICE_HOST . $source);
+	$temp_file = emFetchFile(OFFICIAL_SERVICE_HOST . $source);
 	if (!$temp_file) {
 		emDirect("./store.php?error_down=1");
 	}

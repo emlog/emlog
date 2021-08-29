@@ -794,8 +794,8 @@ function emZip($orig_fname, $content) {
  * @param string $source Remote file address
  * @return string Temporary file address
  */
-function emFecthFile($source) {
-	$temp_file = tempnam('/tmp', 'emtemp_');
+function emFetchFile($source) {
+	$temp_file = tempnam(EMLOG_ROOT . '/content/cache/', 'emtemp_');
 	$wh = fopen($temp_file, 'w+b');
 
 	$timeout = ['http' => ['timeout' => 60]];//超时时间，单位为秒
