@@ -176,7 +176,7 @@
             <div class="modal-body">
                 <div class="img-container">
                     <div class="row">
-                        <div class="col-md-12 p-3">
+                        <div class="col-md-11">
                             <img src="" id="sample_image"/>
                         </div>
                     </div>
@@ -207,7 +207,6 @@
     } else {
         $(".icofont-simple-right").attr("class", "icofont-simple-down");
     }
-
     // 编辑器
     var Editor, Editor_summary;
     $(function () {
@@ -268,7 +267,6 @@
         Editor.setToolbarAutoFixed(false);
         Editor_summary.setToolbarAutoFixed(false);
     });
-
     // 封面图
     $(document).ready(function () {
         var $modal = $('#modal');
