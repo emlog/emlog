@@ -56,10 +56,10 @@
         <li class="nav-item" id="menu_cm">
             <a class="nav-link" href="comment.php"><i class="icofont-comment"></i><span>评论</span></a>
         </li>
-        <li class="nav-item" id="menu_media">
-            <a class="nav-link" href="media.php"><i class="icofont-image"></i><span>资源</span></a>
-        </li>
 		<?php if (ROLE == ROLE_ADMIN): ?>
+            <li class="nav-item" id="menu_media">
+                <a class="nav-link" href="media.php"><i class="icofont-image"></i><span>资源</span></a>
+            </li>
             <li class="nav-item" id="menu_page">
                 <a class="nav-link" href="page.php"><i class="icofont-page"></i><span>页面</span></a>
             </li>

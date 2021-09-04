@@ -92,7 +92,7 @@
             <div class="modal-body">
                 <div class="img-container">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-11">
                             <img src="" id="sample_image"/>
                         </div>
                     </div>
