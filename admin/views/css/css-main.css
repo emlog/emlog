@@ -551,13 +551,6 @@ textarea {
     border-color: #E5E5E5;
     padding: 1px;
 }
-.preview {
-    overflow: hidden;
-    width: 180px;
-    height: 180px;
-    margin: 10px;
-    border: 1px solid red;
-}
-.modal-lg {
-    max-width: 1000px !important;
+.img-container img {
+    max-width: 100%;
 }

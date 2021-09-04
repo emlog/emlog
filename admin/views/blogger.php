@@ -92,11 +92,8 @@
             <div class="modal-body">
                 <div class="img-container">
                     <div class="row">
-                        <div class="col-md-8">
+                        <div class="col-md-12">
                             <img src="" id="sample_image"/>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="preview"></div>
                         </div>
                     </div>
                 </div>
@@ -137,7 +134,6 @@
             cropper = new Cropper(image, {
                 aspectRatio: 1,
                 viewMode: 3,
-                preview: '.preview'
             });
         }).on('hidden.bs.modal', function () {
             cropper.destroy();
