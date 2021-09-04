@@ -176,11 +176,8 @@
             <div class="modal-body">
                 <div class="img-container">
                     <div class="row">
-                        <div class="col-md-8">
+                        <div class="col-md-12 p-3">
                             <img src="" id="sample_image"/>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="preview"></div>
                         </div>
                     </div>
                 </div>
@@ -192,7 +189,6 @@
         </div>
     </div>
 </div>
-
 <script src="./editor.md/editormd.js?d=5.25.2021"></script>
 <script>
     var icon_tog;//如果值为true，则“更多选项”箭头向右
@@ -295,8 +291,7 @@
         $modal.on('shown.bs.modal', function () {
             cropper = new Cropper(image, {
                 aspectRatio: 16 / 9,
-                viewMode: 3,
-                preview: '.preview'
+                viewMode: 3
             });
         }).on('hidden.bs.modal', function () {
             cropper.destroy();

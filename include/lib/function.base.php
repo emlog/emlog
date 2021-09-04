@@ -356,10 +356,6 @@ function smartDate($datetemp, $dstr = 'Y-m-d H:i') {
 
 /**
  * 生成一个随机的字符串
- *
- * @param int $length
- * @param boolean $special_chars
- * @return string
  */
 function getRandStr($length = 12, $special_chars = true) {
 	$chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -373,31 +369,18 @@ function getRandStr($length = 12, $special_chars = true) {
 	return $randStr;
 }
 
-function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = false, $is_thumbnail = true) {
-	$result = upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon, $is_thumbnail);
-	switch ($result) {
-		case '100':
-			emMsg('文件大小超过系统' . ini_get('upload_max_filesize') . '限制');
-			break;
-		case '101':
-			emMsg('上传文件失败,错误码：' . $errorNum);
-			break;
-		case '102':
-			emMsg('错误的文件类型');
-			break;
-		case '103':
-			$ret = changeFileSize(Option::getAttMaxSize());
-			emMsg("文件大小超出{$ret}的限制");
-			break;
-		case '104':
-			emMsg('创建文件上传目录失败');
-			break;
-		case '105':
-			emMsg('上传失败。文件上传目录(content/uploadfile)不可写');
-			break;
-		default:
-			return $result;
+function emFilePutContent($data) {
+	$fpath = Option::UPLOADFILE_PATH . gmdate('Ym');
+	$fname = $fpath . '/' . time() . '.png';
+
+	if (!is_dir($fpath) && !mkdir($fpath)) {
+		return false;
 	}
+	$ret = file_put_contents($fname, $data);
+	if (!$ret) {
+		return false;
+	}
+	return $fname;
 }
 
 function uploadFileAjax($fileName, $errorNum, $tmpFile, $fileSize) {
