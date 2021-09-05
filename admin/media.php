@@ -17,9 +17,10 @@ $Media_Model = new Media_Model();
 
 if (empty($action)) {
 	$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-	$medias = $Media_Model->getMedias($page);
+	$perpage_count = 24;
+	$medias = $Media_Model->getMedias($page, $perpage_count);
 	$count = $Media_Model->getMediaCount();
-	$pageurl = pagination($count, 30, $page, "media.php?page=");
+	$pageurl = pagination($count, $perpage_count, $page, "media.php?page=");
 	include View::getView('header');
 	require_once(View::getView('media'));
 	include View::getView('footer');
