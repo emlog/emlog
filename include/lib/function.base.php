@@ -4,6 +4,8 @@
  * 基础函数库
  * @package EMLOG (www.emlog.net)
  */
+
+
 function emAutoload($class) {
 	$class = strtolower($class);
 	if (file_exists(EMLOG_ROOT . '/include/model/' . $class . '.php')) {
@@ -105,26 +107,6 @@ function checkPlugin($plugin) {
 		return true;
 	} else {
 		return false;
-	}
-}
-
-/**
- * 加载jQuery
- */
-function emLoadJQuery() {
-	static $isJQueryLoaded = false;
-	if (!$isJQueryLoaded) {
-		global $emHooks;
-		if (!isset($emHooks['index_head'])) {
-			$emHooks['index_head'] = array();
-		}
-		array_unshift($emHooks['index_head'], 'loadJQuery');
-		$isJQueryLoaded = true;
-
-		function loadJQuery() {
-			echo '<script src="' . BLOG_URL . 'include/lib/js/jquery/jquery-1.7.1.js" type="text/javascript"></script>';
-		}
-
 	}
 }
 
@@ -653,7 +635,7 @@ function chImageSize($img, $max_w, $max_h) {
  */
 function getGravatar($email, $s = 40) {
 	$hash = md5($email);
-	return "http://sdn.geekzu.org/avatar/$hash?s=$s";
+	return "//sdn.geekzu.org/avatar/$hash?s=$s";
 }
 
 /**
