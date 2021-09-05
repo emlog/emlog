@@ -213,7 +213,7 @@ if ($action === 'write') {
 
 	//media
 	$Media_Model = new Media_Model();
-	$medias = $Media_Model->getMedias(1);
+	$medias = $Media_Model->getMedias();
 
 	if (!ISREG && $sta_cache['lognum'] > 20) {
 		emDirect("register.php?error_article=1");
@@ -245,7 +245,7 @@ if ($action === 'edit') {
 
 	//media
 	$Media_Model = new Media_Model();
-	$medias = $Media_Model->getMedias(1);
+	$medias = $Media_Model->getMedias();
 
 	$is_top = $top == 'y' ? 'checked="checked"' : '';
 	$is_sortop = $sortop == 'y' ? 'checked="checked"' : '';
