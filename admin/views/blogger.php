@@ -92,11 +92,8 @@
             <div class="modal-body">
                 <div class="img-container">
                     <div class="row">
-                        <div class="col-md-8">
+                        <div class="col-md-11">
                             <img src="" id="sample_image"/>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="preview"></div>
                         </div>
                     </div>
                 </div>
@@ -136,8 +133,7 @@
         $modal.on('shown.bs.modal', function () {
             cropper = new Cropper(image, {
                 aspectRatio: 1,
-                viewMode: 3,
-                preview: '.preview'
+                viewMode: 1,
             });
         }).on('hidden.bs.modal', function () {
             cropper.destroy();
@@ -145,8 +141,8 @@
         });
         $('#crop').click(function () {
             canvas = cropper.getCroppedCanvas({
-                width: 180,
-                height: 180
+                width: 160,
+                height: 160
             });
             canvas.toBlob(function (blob) {
                 url = URL.createObjectURL(blob);

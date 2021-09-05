@@ -15,14 +15,9 @@ class Media_Model {
 	/**
 	 * 获取资源列表
 	 */
-	function getMedias($page = null) {
-
-		$condition = '';
-		if ($page) {
-			$perpage_num = 30;
-			$startId = ($page - 1) * $perpage_num;
-			$condition = "LIMIT $startId, " . $perpage_num;
-		}
+	function getMedias($page = 1, $perpage_count = 24) {
+		$startId = ($page - 1) * $perpage_count;
+		$condition = "LIMIT $startId, " . $perpage_count;
 
 		$sql = "SELECT * FROM " . DB_PREFIX . "attachment WHERE thumfor = 0 order by aid desc $condition";
 		$query = $this->db->query($sql);

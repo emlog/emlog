@@ -75,8 +75,11 @@ if ($action == 'update_avatar') {
 	}
 
 	$data = base64_decode($image_array[1]);
-	$fname = Option::UPLOADFILE_PATH . gmdate('Ym') . '/' . time() . '.png';
-	file_put_contents($fname, $data);
+
+	$fname = emFilePutContent($data);
+	if (!$fname) {
+		exit("error");
+	}
 
 	$User_Model = new User_Model();
 	$User_Model->updateUser(array('photo' => $fname), UID);
