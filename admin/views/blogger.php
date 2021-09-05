@@ -133,7 +133,7 @@
         $modal.on('shown.bs.modal', function () {
             cropper = new Cropper(image, {
                 aspectRatio: 1,
-                viewMode: 3,
+                viewMode: 1,
             });
         }).on('hidden.bs.modal', function () {
             cropper.destroy();
@@ -141,8 +141,8 @@
         });
         $('#crop').click(function () {
             canvas = cropper.getCroppedCanvas({
-                width: 180,
-                height: 180
+                width: 160,
+                height: 160
             });
             canvas.toBlob(function (blob) {
                 url = URL.createObjectURL(blob);
