@@ -114,26 +114,6 @@ function checkPlugin($plugin) {
 }
 
 /**
- * Load jQuery
- */
-function emLoadJQuery() {
-	static $isJQueryLoaded = false;
-	if (!$isJQueryLoaded) {
-		global $emHooks;
-		if (!isset($emHooks['index_head'])) {
-			$emHooks['index_head'] = array();
-		}
-		array_unshift($emHooks['index_head'], 'loadJQuery');
-		$isJQueryLoaded = true;
-
-		function loadJQuery() {
-			echo '<script src="' . BLOG_URL . 'include/lib/js/jquery/jquery-1.7.1.js" type="text/javascript"></script>';
-		}
-
-	}
-}
-
-/**
  * Verify email address format
  */
 function checkMail($email) {
@@ -361,10 +341,6 @@ function smartDate($datetemp, $dstr = 'Y-m-d H:i') {
 
 /**
  * Generate a random string
- *
- * @param int $length
- * @param boolean $special_chars
- * @return string
  */
 function getRandStr($length = 12, $special_chars = true) {
 	$chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -378,31 +354,18 @@ function getRandStr($length = 12, $special_chars = true) {
 	return $randStr;
 }
 
-function uploadFile($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = false, $is_thumbnail = true) {
-	$result = upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon, $is_thumbnail);
-	switch ($result) {
-		case '100':
-/*vot*/     emMsg(lang('file_size_exceeds_system') . ini_get('upload_max_filesize') . lang('_limit'));
-			break;
-		case '101':
-/*vot*/     emMsg(lang('upload_failed_error_code') . $errorNum);
-			break;
-		case '102':
-/*vot*/     emMsg(lang('file_type_not_supported'));
-			break;
-		case '103':
-			$ret = changeFileSize(Option::getAttMaxSize());
-/*vot*/     emMsg(lang('file_size_exceeds_') . $ret . lang('_of_limit'));
-			break;
-		case '104':
-/*vot*/     emMsg(lang('upload_folder_create_error'));
-			break;
-		case '105':
-/*vot*/     emMsg(lang('upload_folder_unwritable'));
-			break;
-		default:
-			return $result;
+function emFilePutContent($data) {
+	$fpath = Option::UPLOADFILE_PATH . gmdate('Ym');
+	$fname = $fpath . '/' . time() . '.png';
+
+	if (!is_dir($fpath) && !mkdir($fpath)) {
+		return false;
 	}
+	$ret = file_put_contents($fname, $data);
+	if (!$ret) {
+		return false;
+	}
+	return $fname;
 }
 
 function uploadFileAjax($fileName, $errorNum, $tmpFile, $fileSize) {

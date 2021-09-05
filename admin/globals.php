@@ -56,7 +56,7 @@ if (ISLOGIN === false) {
 }
 
 $request_uri = strtolower(substr(basename($_SERVER['SCRIPT_NAME']), 0, -4));
-if (ROLE === ROLE_WRITER && !in_array($request_uri, array('article_write', 'article', 'media', 'blogger', 'comment', 'index', 'article_save'))) {
+if (ROLE === ROLE_WRITER && !in_array($request_uri, array('article_write', 'article', 'blogger', 'comment', 'index', 'article_save'))) {
 /*vot*/	emMsg(lang('no_permission'), './');
 }
 

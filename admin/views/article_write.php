@@ -176,11 +176,8 @@
             <div class="modal-body">
                 <div class="img-container">
                     <div class="row">
-                        <div class="col-md-8">
+                        <div class="col-md-11">
                             <img src="" id="sample_image"/>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="preview"></div>
                         </div>
                     </div>
                 </div>
@@ -192,7 +189,6 @@
         </div>
     </div>
 </div>
-
 <script src="./editor.md/editormd.js?d=5.25.2021"></script>
 <? if (EMLOG_LANGUAGE !== 'zh-cn') { ?>
 <script src="./editor.md/languages/<?=EMLOG_LANGUAGE?>.js"></script>
@@ -214,7 +210,6 @@
     } else {
         $(".icofont-simple-right").attr("class", "icofont-simple-down");
     }
-
     // Editor
     var Editor, Editor_summary;
     $(function () {
@@ -275,7 +270,6 @@
         Editor.setToolbarAutoFixed(false);
         Editor_summary.setToolbarAutoFixed(false);
     });
-
     // Cover image
     $(document).ready(function () {
         var $modal = $('#modal');
@@ -298,8 +292,7 @@
         $modal.on('shown.bs.modal', function () {
             cropper = new Cropper(image, {
                 aspectRatio: 16 / 9,
-                viewMode: 3,
-                preview: '.preview'
+                viewMode: 1
             });
         }).on('hidden.bs.modal', function () {
             cropper.destroy();
