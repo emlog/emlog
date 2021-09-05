@@ -37,7 +37,7 @@
                 </div>
             </div>
 
-<!--vot-->  <div class="show_advset" id="displayToggle" onclick="displayToggle('advset', 1);"><?=lang('more_options')?><i class="icofont-simple-right"></i></div>
+<!--vot-->  <div class="show_advset" id="displayToggle" onclick="displayToggle('advset', 1);"><?=lang('advanced_options')?><i class="icofont-simple-right"></i></div>
 
             <div id="advset" class="shadow-sm p-3 mb-2 bg-white rounded">
                 <div class="form-group">
