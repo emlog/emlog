@@ -639,26 +639,6 @@ function getGravatar($email, $s = 40) {
 }
 
 /**
- * 计算时区的时差
- * @param string $remote_tz 远程时区
- * @param string $origin_tz 标准时区
- *
- */
-function getTimeZoneOffset($remote_tz, $origin_tz = 'UTC') {
-	if ($origin_tz === null) {
-		if (!is_string($origin_tz = date_default_timezone_get())) {
-			return false; // A UTC timestamp was returned -- bail out!
-		}
-	}
-	$origin_dtz = new DateTimeZone($origin_tz);
-	$remote_dtz = new DateTimeZone($remote_tz);
-	$origin_dt = new DateTime('now', $origin_dtz);
-	$remote_dt = new DateTime('now', $remote_dtz);
-	$offset = $origin_dtz->getOffset($origin_dt) - $remote_dtz->getOffset($remote_dt);
-	return $offset;
-}
-
-/**
  * 获取指定月份的天数
  */
 function getMonthDayNum($month, $year) {
@@ -990,17 +970,18 @@ function get_mimetype($extension) {
  * 将字符串转换为时区无关的UNIX时间戳
  */
 function emStrtotime($timeStr) {
-	$timezone = Option::get('timezone');
 	if (!$timeStr) {
 		return false;
 	}
 
-	$unixPostDate = @strtotime($timeStr);
-	if ($unixPostDate === false) {
+	$timezone = Option::get('timezone');
+
+	$unixPostDate = strtotime($timeStr);
+	if (!$unixPostDate) {
 		return false;
 	}
 
-	$serverTimeZone = @date_default_timezone_get();
+	$serverTimeZone = date_default_timezone_get();
 	if (empty($serverTimeZone) || $serverTimeZone == 'UTC') {
 		$unixPostDate -= (int)$timezone * 3600;
 	} elseif ($serverTimeZone) {
@@ -1016,4 +997,24 @@ function emStrtotime($timeStr) {
 		$unixPostDate -= $offset;
 	}
 	return $unixPostDate;
+}
+
+/**
+ * 计算时区的时差
+ * @param string $remote_tz 远程时区
+ * @param string $origin_tz 标准时区
+ *
+ */
+function getTimeZoneOffset($remote_tz, $origin_tz = 'UTC') {
+	if ($origin_tz === null) {
+		if (!is_string($origin_tz = date_default_timezone_get())) {
+			return false; // A UTC timestamp was returned -- bail out!
+		}
+	}
+	$origin_dtz = new DateTimeZone($origin_tz);
+	$remote_dtz = new DateTimeZone($remote_tz);
+	$origin_dt = new DateTime('now', $origin_dtz);
+	$remote_dt = new DateTime('now', $remote_dtz);
+	$offset = $origin_dtz->getOffset($origin_dt) - $remote_dtz->getOffset($remote_dt);
+	return $offset;
 }

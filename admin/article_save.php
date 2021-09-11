@@ -15,8 +15,7 @@ $Log_Model = new Log_Model();
 $Tag_Model = new Tag_Model();
 
 $title = isset($_POST['title']) ? addslashes(trim($_POST['title'])) : '';
-$postDate = isset($_POST['postdate']) ? trim($_POST['postdate']) : '';
-$date = isset($_POST['date']) ? addslashes($_POST['date']) : '';//修改前的文章时间
+$postDate = isset($_POST['postdate']) ? strtotime(trim($_POST['postdate'])) : '';
 $sort = isset($_POST['sort']) ? (int)$_POST['sort'] : -1;
 $tagstring = isset($_POST['tag']) ? addslashes(trim($_POST['tag'])) : '';
 $content = isset($_POST['logcontent']) ? addslashes(trim($_POST['logcontent'])) : '';
@@ -30,8 +29,6 @@ $allow_remark = isset($_POST['allow_remark']) ? addslashes(trim($_POST['allow_re
 $ishide = isset($_POST['ishide']) && !empty($_POST['ishide']) && !isset($_POST['pubdf']) ? addslashes($_POST['ishide']) : 'n';
 $password = isset($_POST['password']) ? addslashes(trim($_POST['password'])) : '';
 $cover = isset($_POST['cover']) ? addslashes(trim($_POST['cover'])) : '';
-
-$postTime = strtotime($postDate);
 
 LoginAuth::checkToken();
 
@@ -49,7 +46,7 @@ $logData = array(
 	'cover'        => $cover,
 	'author'       => $author,
 	'sortid'       => $sort,
-	'date'         => $postTime,
+	'date'         => $postDate,
 	'top '         => $top,
 	'sortop '      => $sortop,
 	'allow_remark' => $allow_remark,
@@ -63,7 +60,7 @@ if ($blogid > 0) {//自动保存草稿后,添加变为更新
 	$Tag_Model->updateTag($tagstring, $blogid);
 	$dftnum = '';
 } else {
-	if (!$blogid = $Log_Model->isRepeatPost($title, $postTime)) {
+	if (!$blogid = $Log_Model->isRepeatPost($title, $postDate)) {
 		$blogid = $Log_Model->addlog($logData);
 		$Tag_Model->addTag($tagstring, $blogid);
 	}
