@@ -22,6 +22,7 @@
                     <tr>
                         <th><input type="checkbox" id="checkAll"/></th>
                         <th>标题</th>
+                        <th>查看</th>
                         <th>模板</th>
                         <th>评论</th>
                         <th>时间</th>
@@ -40,8 +41,8 @@
                             <td><input type="checkbox" name="page[]" value="<?php echo $value['gid']; ?>" class="ids"/></td>
                             <td>
                                 <a href="page.php?action=mod&id=<?php echo $value['gid'] ?>"><?php echo $value['title']; ?></a>
-								<?php echo $isHide; ?>
                             </td>
+                            <td><?php echo $isHide; ?></td>
                             <td><?php echo $value['template']; ?></td>
                             <td><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
                             <td class="small"><?php echo $value['date']; ?></td>

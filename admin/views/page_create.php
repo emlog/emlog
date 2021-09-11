@@ -69,11 +69,11 @@
 							?>
                             <div class="card" style="min-height: 138px;">
 								<?php if (isImage($value['filepath'])): ?>
-                                    <a href="javascript:insert_media_img('<?php echo $media_url; ?>', '<?php echo $media_icon_imgurl; ?>')" title="插入图片：<?php echo $media_name; ?>">
+                                    <a href="javascript:insert_media_img('<?php echo $media_url; ?>', '<?php echo $media_icon_imgurl; ?>')">
                                         <img class="card-img-top" src="<?php echo $media_icon_imgurl; ?>"/>
                                     </a>
 								<?php else: ?>
-                                    <a href="javascript:insert_media('<?php echo $media_url; ?>', '<?php echo $media_name; ?>')" title="插入文件：<?php echo $media_name; ?>">
+                                    <a href="javascript:insert_media('<?php echo $media_url; ?>', '<?php echo $media_name; ?>')">
                                         <img class="card-img-top" src="<?php echo $media_icon_imgurl; ?>"/>
                                     </a>
 								<?php endif; ?>
@@ -109,9 +109,9 @@
     });
     if ($("#title").val() != '') $("#title_label").hide();
 
-    var Editor_page;
+    var Editor;
     $(function () {
-        Editor_page = editormd("pagecontent", {
+        Editor = editormd("pagecontent", {
             width: "100%",
             height: 640,
             toolbarIcons: function () {
