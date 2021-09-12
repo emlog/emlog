@@ -352,7 +352,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('site_key','
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('log_title_style','0');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('blogurl','" . BLOG_URL . "');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('icp','');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('footer_info','');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('footer_info','powered by <a href=\"https://www.emlog.net\">emlog pro</a>');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('admin_perpage_num','15');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('rss_output_num','10');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('rss_output_fulltext','y');
