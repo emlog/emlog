@@ -143,11 +143,15 @@
 							?>
                             <div class="card" style="min-height: 138px;">
 								<?php if (isImage($value['filepath'])): ?>
-                                    <a href="javascript:insert_media_img('<?php echo $media_url; ?>', '<?php echo $media_icon_imgurl; ?>')">
+                                    <a href="javascript:insert_media_img('<?php echo $media_url; ?>', '<?php echo $media_icon_imgurl; ?>')" title="插入图片：<?php echo $media_name; ?>">
+                                        <img class="card-img-top" src="<?php echo $media_icon_imgurl; ?>"/>
+                                    </a>
+								<?php elseif (isVideo($value['filepath'])): ?>
+                                    <a href="javascript:insert_media_video('<?php echo $media_url; ?>')" title="插入视频：<?php echo $media_name; ?>">
                                         <img class="card-img-top" src="<?php echo $media_icon_imgurl; ?>"/>
                                     </a>
 								<?php else: ?>
-                                    <a href="javascript:insert_media('<?php echo $media_url; ?>', '<?php echo $media_name; ?>')">
+                                    <a href="javascript:insert_media('<?php echo $media_url; ?>', '<?php echo $media_name; ?>')" title="插入文件：<?php echo $media_name; ?>">
                                         <img class="card-img-top" src="<?php echo $media_icon_imgurl; ?>"/>
                                     </a>
 								<?php endif; ?>

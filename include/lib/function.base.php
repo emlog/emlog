@@ -233,6 +233,17 @@ function isImage($fileName) {
 }
 
 /**
+ * 根据文件名后缀判断是否视频
+ */
+function isVideo($fileName) {
+	$extension = getFileSuffix($fileName);
+	if (in_array($extension, array('mp4'))) {
+		return true;
+	}
+	return false;
+}
+
+/**
  * 分页函数
  *
  * @param int $count 条目总数

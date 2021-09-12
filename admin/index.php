@@ -20,7 +20,8 @@ if (empty($action)) {
 	$mysql_ver = $DB->getMysqlVersion();
 
 	$max_execution_time = ini_get('max_execution_time') ?: '';
-	$php_ver = PHP_VERSION . ', MET' . $max_execution_time;
+	$max_upload_size = ini_get('upload_max_filesize') ?: '';
+	$php_ver = PHP_VERSION . ', MET' . $max_execution_time . ',UMF' . $max_upload_size;
 	if (function_exists("curl_init")) {
 		$php_ver .= ', Curl';
 	}

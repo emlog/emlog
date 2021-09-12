@@ -21,7 +21,7 @@
 		?>
         <div class="card" style="min-height: 280px;">
             <a href="<?php echo $media_url; ?>" target="_blank"">
-                <img class="card-img-top" src="<?php echo $media_icon_imgurl; ?>" />
+            <img class="card-img-top" src="<?php echo $media_icon_imgurl; ?>"/>
             </a>
             <div class="card-body">
                 <p class="card-text text-muted small">
@@ -65,10 +65,11 @@
         window.location.reload();
     })
     Dropzone.options.myAwesomeDropzone = {
-        paramName: "file", // The name that will be used to transfer the file
-        init: function() {
-            this.on("error", function(file, response) {
-               // alert(response);
+        maxFilesize: 2048,//max uplaod filesize
+        paramName: "file",
+        init: function () {
+            this.on("error", function (file, response) {
+                // alert(response);
             });
         }
     };
