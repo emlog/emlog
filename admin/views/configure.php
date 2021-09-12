@@ -115,10 +115,10 @@
             <hr>
 
             <div class="form-group form-inline">
-                附件上传最大限制 <input maxlength="10" style="width:80px;" class="form-control" value="<?php echo $att_maxsize; ?>" name="att_maxsize"/> KB
+                文件上传最大限制 <input maxlength="20" style="width:120px;" class="form-control" value="<?php echo $att_maxsize; ?>" name="att_maxsize"/> KB(1M=1024KB)
             </div>
             <div class="form-group form-inline">
-                允许上传的附件类型 <input maxlength="200" style="width:320px;" class="form-control" value="<?php echo $att_type; ?>" name="att_type"/>（多个用半角逗号分隔）
+                允许上传的文件类型 <input maxlength="200" style="width:500px;" class="form-control" value="<?php echo $att_type; ?>" name="att_type"/>（多个用半角逗号分隔）
             </div>
             <div class="form-group form-inline">
                 <input type="checkbox" value="y" name="isthumbnail" id="isthumbnail" <?php echo $conf_isthumbnail; ?> />上传图片生成缩略图，最大尺寸：
