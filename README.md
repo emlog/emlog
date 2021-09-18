@@ -27,39 +27,19 @@ www.emlog.net
 
 ## 安装包下载
 
-https://www.emlog.net/download
+[下载pro安装包](https://www.emlog.net/download)
 
 ## 更新记录
-[changelog](/CHANGELOG.md)
+[changelog](https://www.emlog.net/docs/#/changelog)
 
 ## 环境要求
-* PHP7.0及以上
-* MySQL5.6及以上
+* PHP7，PHP8 推荐PHP7.4
+* MySQL5.6及以上，推荐5.7
 
 ## 安装说明
 1. 将解压后的所有文件上传到服务器或者虚拟主机的web根目录，也可以将zip压缩包上传后在线解压。
 2. 在浏览器上访问事先解析好的域名，程序会自动跳转到emlog安装页面，按照提示安装即可。
 3. 安装过程不会创建数据库，需要您事先创建好 ,点击确认安装，安装成功。
-
-## 主要贡献者
-<a href="https://github.com/emlog" target="_blank">
-<img style="border-radius:999px" src="https://avatars.githubusercontent.com/u/4344235?s=40"/>
-</a>
-<a href="https://github.com/colt-evil" target="_blank">
-<img style="border-radius:999px" src="https://avatars.githubusercontent.com/u/4045157?s=40"/>
-</a>
-<a href="https://github.com/Baiqiang" target="_blank">
-<img style="border-radius:999px" src="https://avatars.githubusercontent.com/u/2390434?s=40"/>
-</a>
-<a href="https://github.com/aweika" target="_blank">
-<img style="border-radius:999px" src="https://avatars.githubusercontent.com/u/4565941?s=40"/>
-</a>
-<a href="https://github.com/vibbow" target="_blank">
-<img style="border-radius:999px" src="https://avatars.githubusercontent.com/u/6408107?s=40"/>
-</a>
-<a href="https://github.com/kohunglee" target="_blank">
-<img style="border-radius:999px" src="https://avatars.githubusercontent.com/u/33373536?s=40"/>
-</a>
 
 
 ## 软件授权许可证（License）
