@@ -36,6 +36,9 @@
                     <th>用户</th>
                     <th>角色</th>
                     <th>文章数</th>
+                    <th>最近登录IP</th>
+                    <th>更新/登录时间</th>
+                    <th>创建时间</th>
                     <th>操作</th>
                 </tr>
                 </thead>
@@ -60,6 +63,9 @@
 							<?php if ($val['role'] == ROLE_WRITER && $val['ischeck'] == 'y') echo '(文章需审核)'; ?>
                         </td>
                         <td><a href="article.php?uid=<?php echo $val['uid']; ?>"><?php echo $sta_cache[$val['uid']]['lognum']; ?></a></td>
+                        <td><?php echo $val['ip']; ?></td>
+                        <td><?php echo $val['update_time']; ?></td>
+                        <td><?php echo $val['create_time']; ?></td>
                         <td>
 							<?php
 							if (UID != $val['uid']): ?>
