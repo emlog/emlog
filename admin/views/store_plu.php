@@ -27,7 +27,7 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">应用商店</h1>
     </div>
-    <div class="panel-heading mb-5">
+    <div class="panel-heading mb-4">
         <ul class="nav nav-pills">
             <li class="nav-item"><a class="nav-link" href="./store.php">模板主题</a></li>
             <li class="nav-item"><a class="nav-link active" href="./store.php?action=plu">扩展插件</a></li>
