@@ -23,7 +23,8 @@ if (empty($action)) {
 	$max_upload_size = ini_get('upload_max_filesize') ?: '';
 	$php_ver = PHP_VERSION . ', MET' . $max_execution_time . ',UMF' . $max_upload_size;
 	if (function_exists("curl_init")) {
-		$php_ver .= ', Curl';
+		$c = curl_version();
+		$php_ver .= ", Curl" . $c['version'];
 	}
 	if (class_exists('ZipArchive', FALSE)) {
 		$php_ver .= ', Zip';
