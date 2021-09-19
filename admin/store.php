@@ -13,7 +13,7 @@ require_once 'globals.php';
 
 if (empty($action)) {
 	$emcurl = new EmCurl();
-	$emcurl->setPost(['emkey' => Option::get('emkey'), 'ver' => Option::EMLOG_VERSION,]);
+	$emcurl->setPost(['emkey' => Option::get('emkey'), 'ver' => Option::EMLOG_VERSION, 'type' => 'tpl']);
 	$emcurl->request(OFFICIAL_SERVICE_HOST . 'store/pro');
 	$retStatus = $emcurl->getHttpStatus();
 	if ($retStatus !== MSGCODE_SUCCESS) {
@@ -40,7 +40,7 @@ if (empty($action)) {
 
 if ($action === 'plu') {
 	$emcurl = new EmCurl();
-	$emcurl->setPost(['emkey' => Option::get('emkey'), 'ver' => Option::EMLOG_VERSION,]);
+	$emcurl->setPost(['emkey' => Option::get('emkey'), 'ver' => Option::EMLOG_VERSION, 'type' => 'plu']);
 	$emcurl->request(OFFICIAL_SERVICE_HOST . 'store/pro');
 	$retStatus = $emcurl->getHttpStatus();
 	if ($retStatus !== MSGCODE_SUCCESS) {
