@@ -26,6 +26,9 @@ class User_Model {
 			$row['login'] = htmlspecialchars($row['username']);
 			$row['email'] = htmlspecialchars($row['email']);
 			$row['description'] = htmlspecialchars($row['description']);
+			$row['ip'] = $row['ip'];
+			$row['create_time'] = smartDate($row['create_time']);
+			$row['update_time'] = smartDate($row['update_time']);
 			$users[] = $row;
 		}
 		return $users;
@@ -49,7 +52,8 @@ class User_Model {
 	}
 
 	function updateUser($userData, $uid) {
-		$Item = array();
+		$utctimestamp = time();
+		$Item = ["update_time=$utctimestamp"];
 		foreach ($userData as $key => $data) {
 			$Item[] = "$key='$data'";
 		}
@@ -58,7 +62,8 @@ class User_Model {
 	}
 
 	function addUser($login, $password, $role, $ischeck) {
-		$sql = "insert into " . DB_PREFIX . "user (username,password,role,ischeck) values('$login','$password','$role','$ischeck')";
+		$utctimestamp = time();
+		$sql = "insert into " . DB_PREFIX . "user (username,password,role,ischeck, create_time, update_time) values('$login','$password','$role','$ischeck', $utctimestamp, $utctimestamp)";
 		$this->db->query($sql);
 	}
 

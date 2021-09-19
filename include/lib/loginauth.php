@@ -39,7 +39,7 @@ class LoginAuth {
 			session_start();
 		}
 		if (empty($username) || empty($password)) {
-			return false;
+			return self::LOGIN_ERROR_USER;
 		}
 		$sessionCode = $_SESSION['code'] ?? '';
 		if (Option::get('login_code') === 'y' && (empty($imgcode) || $imgcode != $sessionCode)) {
@@ -52,7 +52,7 @@ class LoginAuth {
 		}
 		$hash = $userData['password'];
 		if (true === self::checkPassword($password, $hash)) {
-			return true;
+			return $userData['uid'];
 		} else {
 			return self::LOGIN_ERROR_PASSWD;
 		}
@@ -92,11 +92,12 @@ class LoginAuth {
 		if (empty($userLogin)) {
 			return false;
 		}
-		$userData = false;
+		$userData = [];
 		if (!$userData = $DB->once_fetch_array("SELECT * FROM " . DB_PREFIX . "user WHERE username = '$userLogin'")) {
 			return false;
 		}
 		$userData['nickname'] = htmlspecialchars($userData['nickname']);
+		$userData['username'] = htmlspecialchars($userData['username']);
 		$userData['username'] = htmlspecialchars($userData['username']);
 		return $userData;
 	}

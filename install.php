@@ -25,8 +25,7 @@ if (!$act) {
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>emlog</title>
-        <style type="text/css">
-            <!--
+        <style>
             body {
                 background-color: #F7F7F7;
                 font-family: Arial;
@@ -92,8 +91,6 @@ if (!$act) {
             .main li {
                 margin: 20px 0px;
             }
-
-            -->
         </style>
     </head>
     <body>
@@ -335,7 +332,7 @@ CREATE TABLE {$db_prefix}comment (
   KEY date (date),
   KEY hide (hide)
 )" . $table_charset_sql . "
-INSERT INTO {$db_prefix}comment (gid, date, poster, comment) VALUES (1, 1629601845, 'snow', 'stay hungry stay foolish');
+INSERT INTO {$db_prefix}comment (gid, date, poster, comment) VALUES (1, '" . time() . "', 'snow', 'stay hungry stay foolish');
 DROP TABLE IF EXISTS {$db_prefix}options;
 CREATE TABLE {$db_prefix}options (
 option_id INT( 11 ) UNSIGNED NOT NULL auto_increment COMMENT '站点配置信息表',
@@ -454,10 +451,13 @@ CREATE TABLE {$db_prefix}user (
   photo varchar(255) NOT NULL default '' COMMENT '头像',
   email varchar(60) NOT NULL default '' COMMENT '邮箱',
   description varchar(255) NOT NULL default '' COMMENT '备注',
+  ip varchar(128) NOT NULL default '' COMMENT 'ip地址',
+  create_time int(11) NOT NULL COMMENT '创建时间',
+  update_time int(11) NOT NULL COMMENT '更新时间',
 PRIMARY KEY  (uid),
 KEY username (username)
 )" . $table_charset_sql . "
-INSERT INTO {$db_prefix}user (uid, username, password, nickname, role) VALUES (1,'$admin','" . $adminpw . "', 'emer','admin');
+INSERT INTO {$db_prefix}user (uid, username, password, nickname, role, create_time, update_time) VALUES (1,'$admin','" . $adminpw . "', 'emer','admin', " . time() . ", " . time() . ");
 DROP TABLE IF EXISTS {$db_prefix}storage;
 CREATE TABLE {$db_prefix}storage (
   `sid` int(8) NOT NULL AUTO_INCREMENT COMMENT '对象存储表',
