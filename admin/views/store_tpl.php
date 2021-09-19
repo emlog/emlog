@@ -23,9 +23,15 @@
     </div>
 <?php endif; ?>
 
-<?php if (!empty($templates) || !empty($plugins)): ?>
+<?php if (!empty($templates)): ?>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">模板主题</h1>
+        <h1 class="h3 mb-0 text-gray-800">应用商店</h1>
+    </div>
+    <div class="panel-heading mb-5">
+        <ul class="nav nav-pills">
+            <li class="nav-item"><a class="nav-link active" href="./store.php">模板主题</a></li>
+            <li class="nav-item"><a class="nav-link" href="./store.php?action=plu">扩展插件</a></li>
+        </ul>
     </div>
     <div class="card-columns">
 		<?php foreach ($templates as $k => $v):
@@ -46,34 +52,6 @@
                             <a href="<?php echo $v['buy_url']; ?>" class="btn btn-sm btn-warning btn-sm" target="_blank">去购买</a>
 						<?php else: ?>
                             <a href="./store.php?action=install&source=<?php echo urlencode($v['download_url']); ?>&type=tpl" class="btn btn-success btn-sm">安装</a>
-						<?php endif; ?>
-                    </p>
-                </div>
-            </div>
-		<?php endforeach; ?>
-    </div>
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">扩展插件</h1>
-    </div>
-    <div class="card-columns">
-		<?php foreach ($plugins as $k => $v):
-			$icon = $v['icon'] ?: "./views/images/plugin.png";
-			?>
-            <div class="card">
-                <a href="<?php echo $v['buy_url']; ?>" target="_blank"><img class="card-img-top" src="<?php echo $icon; ?>"/></a>
-                <div class="card-body">
-                    <p class="card-text"><span class="badge badge-primary">插件</span> <?php echo $v['name']; ?></p>
-                    <p class="card-text text-muted small">
-						<?php echo $v['info']; ?><br><br>
-                        售价：<?php echo $v['price'] > 0 ? $v['price'] . '元' : '免费'; ?><br>
-                        开发者：<?php echo $v['author']; ?><br>
-                        更新时间：<?php echo $v['update_time']; ?><br>
-                    </p>
-                    <p class="card-text text-right">
-						<?php if ($v['price'] > 0): ?>
-                            <a href="<?php echo $v['buy_url']; ?>" class="btn btn-warning btn-sm" target="_blank">去购买</a>
-						<?php else: ?>
-                            <a href="./store.php?action=install&source=<?php echo urlencode($v['download_url']); ?>&type=plugin" class="btn btn-success btn-sm">安装</a>
 						<?php endif; ?>
                     </p>
                 </div>
