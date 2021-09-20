@@ -80,12 +80,12 @@
                                             src="./views/images/plugin_<?php echo $plug_state; ?>.gif" title="<?php echo $plug_state_des; ?>" align="absmiddle" border="0"></a>
                             </td>
                             <td>
-<!--vot-->                  <a href="javascript: em_confirm('<?php echo $key; ?>', 'plu', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-danger"><?=lang('delete')?></a>
+<!--vot-->                      <a href="javascript: em_confirm('<?php echo $key; ?>', 'plu', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-danger"><?=lang('delete')?></a>
                             </td>
                         </tr>
 					<?php endforeach; else: ?>
                     <tr>
-<!--vot-->          <td colspan="5"><?=lang('plugin_no_installed')?></td>
+<!--vot-->              <td colspan="5"><?=lang('plugin_no_installed')?></td>
                     </tr>
 				<?php endif; ?>
                 </tbody>

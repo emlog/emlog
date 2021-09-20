@@ -55,8 +55,8 @@
                     <div class="card" id="tag">
                         <div class="card-header">
                             <h2 class="mb-0">
-                                <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#tagForm" aria-expanded="false"
-<!--vot-->                              aria-controls="collapseThree"><?=lang('tags')?>
+<!--vot-->                      <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#tagForm" aria-expanded="false"
+                                    aria-controls="collapseThree"><?=lang('tags')?>
                                 </button>
                                 <li class="widget-act-add"></li>
                                 <li class="widget-act-del"></li>

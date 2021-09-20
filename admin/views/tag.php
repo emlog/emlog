@@ -2,11 +2,11 @@
 	exit('error!');
 } ?>
 <?php if (isset($_GET['active_del'])): ?>
-<!--vot--><div class="alert alert-success"><?=lang('tag_delete_ok')?></div><?php endif;?>
+<!--vot--><div class="alert alert-success"><?=lang('tag_delete_ok')?></div><?php endif; ?>
 <?php if (isset($_GET['active_edit'])): ?>
-<!--vot--><div class="alert alert-success"><?=lang('tag_modify_ok')?></div><?php endif;?>
+<!--vot--><div class="alert alert-success"><?=lang('tag_modify_ok')?></div><?php endif; ?>
 <?php if (isset($_GET['error_a'])): ?>
-<!--vot--><div class="alert alert-danger"><?=lang('tag_select_to_delete')?></div><?php endif;?>
+<!--vot--><div class="alert alert-danger"><?=lang('tag_select')?></div><?php endif; ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 <!--vot--><h1 class="h3 mb-0 text-gray-800"><?=lang('tag_management')?></h1>
 </div>

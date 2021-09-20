@@ -188,7 +188,7 @@ function autosave(act) {
         + "&ishide=" + ishide
         + "&as_logid=" + logid;
 
-    //check alias
+    // check alias
     if (alias != '' && 0 != isalias(alias)) {
 /*vot*/ $("#msg").show().html(lang('alias_link_error_not_saved'));
         if (act == 0) {
@@ -244,7 +244,7 @@ $.fn.toggleClick = function () {
     });
 };
 
-//Filter HTML tags
+// Filter HTML tags
 function removeHTMLTag(str) {
 /*vot*/ str = str.replace(/<\/?[^>]*>/g, ''); //Remove HTML tags
 /*vot*/ str = str.replace(/[ | ]*\n/g, '\n'); //Trim white spaces
@@ -267,7 +267,7 @@ $(function () {
     });
 });
 
-// editor.md的js钩子
+// editor.md js hook
 var queue = new Array();
 var hooks = {
     addAction: function(hook, func) {      

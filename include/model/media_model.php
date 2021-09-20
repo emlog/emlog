@@ -13,7 +13,7 @@ class Media_Model {
 	}
 
 	/**
-	 * 获取资源列表
+	 * Get a list of resources
 	 */
 	function getMedias($page = 1, $perpage_count = 24) {
 		$startId = ($page - 1) * $perpage_count;

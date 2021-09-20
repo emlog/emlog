@@ -102,7 +102,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
                         <th><input type="checkbox" id="checkAll"/></th>
 <!--vot-->          <th><?=lang('title')?></th>
 						<?php if (!$draft): ?>
-<!--vot-->              <th><?=lang('views')?></th>
+<!--vot-->              <th><?=lang('view')?></th>
 						<?php endif; ?>
 <!--vot-->          <th><?=lang('user')?></th>
 <!--vot-->          <th><?=lang('category')?></th>

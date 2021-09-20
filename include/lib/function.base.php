@@ -10,8 +10,10 @@
 
 function emAutoload($class) {
 	$class = strtolower($class);
+
+/*vot*/ load_language($class);
+
 	if (file_exists(EMLOG_ROOT . '/include/model/' . $class . '.php')) {
-/*vot*/        load_language($class);
 		require_once(EMLOG_ROOT . '/include/model/' . $class . '.php');
 	} elseif (file_exists(EMLOG_ROOT . '/include/lib/' . $class . '.php')) {
 		require_once(EMLOG_ROOT . '/include/lib/' . $class . '.php');
@@ -216,7 +218,7 @@ function getFileSuffix($fileName) {
 }
 
 /**
- * 将相对路径转换为完整URL，eg：../content/uploadfile/xxx.jpeg
+ * Convert relative path to full URL, eg：../content/uploadfile/xxx.jpeg
  * @param $filePath
  * @return string
  */
@@ -230,6 +232,17 @@ function getFileUrl($filePath) {
 function isImage($fileName) {
 	$extension = getFileSuffix($fileName);
 	if (in_array($extension, array('gif', 'jpg', 'jpeg', 'png'))) {
+		return true;
+	}
+	return false;
+}
+
+/**
+ * Check is this a video based on the file name suffix
+ */
+function isVideo($fileName) {
+	$extension = getFileSuffix($fileName);
+	if (in_array($extension, array('mp4'))) {
 		return true;
 	}
 	return false;
@@ -642,26 +655,6 @@ function getGravatar($email, $s = 40) {
 }
 
 /**
- * Calculate time zone difference
- * @param string $remote_tz Remote time zone
- * @param string $origin_tz Original time zone
- *
- */
-function getTimeZoneOffset($remote_tz, $origin_tz = 'UTC') {
-	if ($origin_tz === null) {
-		if (!is_string($origin_tz = date_default_timezone_get())) {
-			return false; // A UTC timestamp was returned -- bail out!
-		}
-	}
-	$origin_dtz = new DateTimeZone($origin_tz);
-	$remote_dtz = new DateTimeZone($remote_tz);
-	$origin_dt = new DateTime('now', $origin_dtz);
-	$remote_dt = new DateTime('now', $remote_dtz);
-	$offset = $origin_dtz->getOffset($origin_dt) - $remote_dtz->getOffset($remote_dt);
-	return $offset;
-}
-
-/**
  * Gets a number of days of the specified month
  */
 function getMonthDayNum($month, $year) {
@@ -761,7 +754,7 @@ function emFetchFile($source) {
 	$temp_file = tempnam(EMLOG_ROOT . '/content/cache/', 'emtemp_');
 	$wh = fopen($temp_file, 'w+b');
 
-	$timeout = ['http' => ['timeout' => 60]];//超时时间，单位为秒
+/*vot*/	$timeout = ['http' => ['timeout' => 60]];//Timeout period, in seconds
 	$ctx = stream_context_create($timeout);
 	$rh = fopen($source, 'rb', false, $ctx);
 
@@ -996,32 +989,53 @@ function get_mimetype($extension) {
  * Convert a string to a time zone independent UNIX timestamp
  */
 function emStrtotime($timeStr) {
-	$timezone = Option::get('timezone');
 	if (!$timeStr) {
 		return false;
 	}
 
-	$unixPostDate = @strtotime($timeStr);
-	if ($unixPostDate === false) {
+	$timezone = Option::get('timezone');
+
+	$unixPostDate = strtotime($timeStr);
+	if (!$unixPostDate) {
 		return false;
 	}
 
-	$serverTimeZone = @date_default_timezone_get();
+	$serverTimeZone = date_default_timezone_get();
 	if (empty($serverTimeZone) || $serverTimeZone == 'UTC') {
 		$unixPostDate -= (int)$timezone * 3600;
 	} elseif ($serverTimeZone) {
 		/*
-					 * If the server configuration defaults to the time zone, then PHP will recognize the incoming time as the local time in the time zone
-					 * But the time we pass in is actually the local time of the time zone configured by the blog, not the local time of the server time zone
-					 * Therefore, we need to subtract / add the time difference between the two time zones to get the UTC time.
+		 * If the server configuration defaults to the time zone, then PHP will recognize the incoming time as the local time in the time zone
+		 * But the time we pass in is actually the local time of the time zone configured by the blog, not the local time of the server time zone
+		 * Therefore, we need to subtract / add the time difference between the two time zones to get the UTC time.
 		 */
 		$offset = getTimeZoneOffset($serverTimeZone);
-					// First subtract/add the time difference configured by the local time zone
+		// First subtract/add the time difference configured by the local time zone
 		$unixPostDate -= (int)$timezone * 3600;
-					// Then subtract/add the time difference between the server time zone and UTC to get the UTC time.
+		// Then subtract/add the time difference between the server time zone and UTC to get the UTC time.
 		$unixPostDate -= $offset;
 	}
 	return $unixPostDate;
+}
+
+/**
+ * Calculate time zone difference
+ * @param string $remote_tz Remote time zone
+ * @param string $origin_tz Original time zone
+ *
+ */
+function getTimeZoneOffset($remote_tz, $origin_tz = 'UTC') {
+	if ($origin_tz === null) {
+		if (!is_string($origin_tz = date_default_timezone_get())) {
+			return false; // A UTC timestamp was returned -- bail out!
+		}
+	}
+	$origin_dtz = new DateTimeZone($origin_tz);
+	$remote_dtz = new DateTimeZone($remote_tz);
+	$origin_dt = new DateTime('now', $origin_dtz);
+	$remote_dt = new DateTime('now', $remote_dtz);
+	$offset = $origin_dtz->getOffset($origin_dt) - $remote_dtz->getOffset($remote_dt);
+	return $offset;
 }
 
 //------------------------------------------------------------------
@@ -1059,12 +1073,6 @@ function load_language($model='') {
     $model = str_replace('_controller','',$model);
     $model = str_replace('_model','',$model);
 
-//DEBUG
-//echo '<pre>';
-//echo 'load_language:', "\n";
-//echo '    model=', $model, "\n";
-//echo '</pre>';
-
   if(!isset($LANGUAGE)) {$LANGUAGE = array();}
   if(!isset($LANGLIST)) {$LANGLIST = array();}
 
@@ -1093,12 +1101,12 @@ function load_language($model='') {
       $LANGLIST[$model] = 1;
 
 //DEBUG
-//echo '<pre>';
-//echo '    require_ok=', intval($ok), "\n";
-//echo '    key number=', count($LANGUAGE), "\n";
-//echo 'LANGUAGE=';
-//print_r($LANGUAGE);
-//echo '</pre>';
+//dump($model, 'load_language');
+//dump($file, '$file');
+//dump($ok, '$ok');
+//dump(count($LANGUAGE), 'count($LANGUAGE)');
+//dump($LANGUAGE, '$LANGUAGE');
+//dump($LANGLIST, '$LANGLIST');
 
     }
 

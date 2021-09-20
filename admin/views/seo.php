@@ -38,7 +38,7 @@
 
             <div class="form-check mt-3">
                 <input class="form-check-input" type="checkbox" value="y" name="isalias" id="isalias" <?php echo $isalias; ?> />
-<!--vot-->      <label><?=lang('post_alias_enable')?></label>
+<!--vot-->      <label><?=lang('post_alias_enable')?>: <span class="permalink_url"><?php echo BLOG_URL; ?>abc</span></label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="isalias_html" id="isalias_html" <?php echo $isalias_html; ?> />

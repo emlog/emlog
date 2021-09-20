@@ -76,7 +76,7 @@ class User_Model {
 	 * Check the User name exists
 	 *
 	 * @param string $login
-	 * @param int $uid //Update user information is compatible with the user name does not change the situation
+	 * @param int $uid Compatible with the fact that the user name has not changed when updating the author's information
 	 * @return boolean
 	 */
 	function isUserExist($login, $uid = '') {
@@ -84,7 +84,7 @@ class User_Model {
 		$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "user WHERE username='$login' $subSql");
 		if ($data['total'] > 0) {
 			return true;
-		}else {
+		} else {
 			return false;
 		}
 	}

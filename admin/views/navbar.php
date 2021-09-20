@@ -79,9 +79,9 @@
                                 <td><?php echo $value['url']; ?></td>
                                 <td>
 									<?php if ($value['hide'] == 'n'): ?>
-<!--vot-->                          <a href="navbar.php?action=hide&amp;id=<?php echo $value['id']; ?>" class="badge badge-primary"><?=lang('visible')?></a>
+<!--vot-->                              <a href="navbar.php?action=hide&amp;id=<?php echo $value['id']; ?>" class="badge badge-primary"><?=lang('visible')?></a>
 									<?php else: ?>
-<!--vot-->                          <a href="navbar.php?action=show&amp;id=<?php echo $value['id']; ?>" class="badge badge-warning"><?=lang('hidden')?></a>
+<!--vot-->                              <a href="navbar.php?action=show&amp;id=<?php echo $value['id']; ?>" class="badge badge-warning"><?=lang('hidden')?></a>
 									<?php endif; ?>
 									<?php if ($value['isdefault'] == 'n'): ?>
 <!--vot-->                              <a href="javascript: em_confirm(<?php echo $value['id']; ?>, 'navi', '<?php echo LoginAuth::genToken(); ?>');"

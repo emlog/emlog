@@ -27,39 +27,19 @@ www.emlog.net
 
 ## Installation package download
 
-https://www.emlog.net/download
+[Download emlog pro installation package](https://www.emlog.net/download)
 
 ## Changelog
-[changelog](/CHANGELOG.md)
+[changelog](https://www.emlog.net/docs/#/changelog)
 
 ## Environment requirements
-* PHP7.0 and above
-* MySQL5.6 and above
+* PHP7, PHP8 (PHP7.4 recommended)
+* MySQL5.6 and above (5.7 recommended)
 
 ## Installation Notes
 1. Upload all the decompressed files to the web root directory of the server or virtual host, or upload the zip compression package and decompress it online.
 2. Visit the pre-resolved domain name on the browser, the program will automatically jump to the emlog installation page, just follow the prompts to install.
 3. The installation process will not create a database, you need to create it in advance, click to confirm the installation, the installation is successful.
-
-## Main contributors
-<a href="https://github.com/emlog" target="_blank">
-<img style="border-radius:999px" src="https://avatars.githubusercontent.com/u/4344235?s=40"/>
-</a>
-<a href="https://github.com/colt-evil" target="_blank">
-<img style="border-radius:999px" src="https://avatars.githubusercontent.com/u/4045157?s=40"/>
-</a>
-<a href="https://github.com/Baiqiang" target="_blank">
-<img style="border-radius:999px" src="https://avatars.githubusercontent.com/u/2390434?s=40"/>
-</a>
-<a href="https://github.com/aweika" target="_blank">
-<img style="border-radius:999px" src="https://avatars.githubusercontent.com/u/4565941?s=40"/>
-</a>
-<a href="https://github.com/vibbow" target="_blank">
-<img style="border-radius:999px" src="https://avatars.githubusercontent.com/u/6408107?s=40"/>
-</a>
-<a href="https://github.com/kohunglee" target="_blank">
-<img style="border-radius:999px" src="https://avatars.githubusercontent.com/u/33373536?s=40"/>
-</a>
 
 
 ## Software License

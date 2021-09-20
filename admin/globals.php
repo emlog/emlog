@@ -11,13 +11,13 @@
 
 require_once '../init.php';
 
-/*vot*/ load_language('admin');
+const TEMPLATE_PATH = EMLOG_ROOT . '/admin/views/';              //AdminCP current template path
+const OFFICIAL_SERVICE_HOST = 'https://www.emlog.net/';          //Official Service Domain
+const MSGCODE_EMKEY_INVALID = 1001;                              // Wrong registration code
+const MSGCODE_NO_UPUPDATE = 1002;                                // No version update available
+const MSGCODE_SUCCESS = 200;                                     // Success 
 
-const TEMPLATE_PATH = EMLOG_ROOT . '/admin/views/';           // AdminCP current template path
-const OFFICIAL_SERVICE_HOST = 'https://www.emlog.net/';       // Official Service Domain
-const MSGCODE_EMKEY_INVALID = 1001;                           // Wrong registration code
-const MSGCODE_NO_UPUPDATE = 1002;                             // No version update available
-const MSGCODE_SUCCESS = 200;                                  // Success
+/*vot*/ load_language('admin');
 
 $sta_cache = $CACHE->readCache('sta');
 $user_cache = $CACHE->readCache('user');

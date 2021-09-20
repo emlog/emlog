@@ -496,8 +496,8 @@ class Cache {
 	function cacheWrite($cacheData, $cacheName) {
 		$cachefile = EMLOG_ROOT . '/content/cache/' . $cacheName . '.php';
 		$cacheData = "<?php exit;//" . $cacheData;
-/*vot*/		@ $fp = fopen($cachefile, 'wb') OR emMsg(lang('cache_read_error'));
-/*vot*/		@ $fw = fwrite($fp, $cacheData) OR emMsg(lang('cache_not_writable'));
+/*vot*/		@ $fp = fopen($cachefile, 'wb') or emMsg(lang('cache_read_error'));
+/*vot*/		@ $fw = fwrite($fp, $cacheData) or emMsg(lang('cache_not_writable'));
 		$this->{$cacheName . '_cache'} = null;
 		fclose($fp);
 	}

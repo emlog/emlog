@@ -2,35 +2,35 @@
 	exit('error!');
 } ?>
 <?php if (isset($_GET['active'])): ?>
-    <div class="alert alert-success">安装成功</div><?php endif; ?>
+<!--vot--><div class="alert alert-success"><?=lang('install_ok')?></div><?php endif; ?>
 <?php if (isset($_GET['error_param'])): ?>
-    <div class="alert alert-danger">安装失败</div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('install_failed')?></div><?php endif; ?>
 <?php if (isset($_GET['error_down'])): ?>
-    <div class="alert alert-danger">安装失败，无法下载安装包</div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('install_failed_download')?></div><?php endif; ?>
 <?php if (isset($_GET['error_dir'])): ?>
-    <div class="alert alert-danger">安装失败，无法写文件，请检查content/下目录是否可写</div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('install_failed_write')?></div><?php endif; ?>
 <?php if (isset($_GET['error_zip'])): ?>
-    <div class="alert alert-danger">安装失败，无法解压，请安装php的Zip扩展</div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('install_failed_zip')?></div><?php endif; ?>
 <?php if (isset($_GET['error_source'])): ?>
-    <div class="alert alert-danger">安装失败，不是有效的安装包</div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('install_invalid_ext')?></div><?php endif; ?>
 
 <?php if (isset($_GET['error'])): ?>
     <div class="container-fluid">
         <div class="text-center">
-            <p class="lead text-gray-800 mb-5">商店暂不可用，可能是网络问题</p>
-            <a href="./">&larr; 返回首页</a>
+<!--vot-->  <p class="lead text-gray-800 mb-5"><?=lang('store_unavailable')?></p>
+<!--vot-->  <a href="./">&larr; <?=lang('back_home')?></a>
         </div>
     </div>
 <?php endif; ?>
 
 <?php if (!empty($templates)): ?>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">应用商店</h1>
+<!--vot--><h1 class="h3 mb-0 text-gray-800"><?=lang('app_store')?></h1>
     </div>
     <div class="panel-heading mb-4">
         <ul class="nav nav-pills">
-            <li class="nav-item"><a class="nav-link active" href="./store.php">模板主题</a></li>
-            <li class="nav-item"><a class="nav-link" href="./store.php?action=plu">扩展插件</a></li>
+<!--vot-->  <li class="nav-item"><a class="nav-link active" href="./store.php"><?=lang('ext_store_templates')?></a></li>
+<!--vot-->  <li class="nav-item"><a class="nav-link" href="./store.php?action=plu"><?=lang('ext_store_plugins')?></a></li>
         </ul>
     </div>
     <div class="card-columns">
@@ -40,18 +40,18 @@
             <div class="card" style="min-height: 340px;">
                 <a href="<?php echo $v['buy_url']; ?>" target="_blank"><img class="card-img-top" src="<?php echo $icon; ?>"/></a>
                 <div class="card-body">
-                    <p class="card-text"><span class="badge badge-warning">模板</span> <?php echo $v['name']; ?></p>
+<!--vot-->          <p class="card-text"><span class="badge badge-warning"><?=lang('template')?></span> <?php echo $v['name']; ?></p>
                     <p class="card-text text-muted small">
                         <span class="small"><?php echo $v['info']; ?></span><br><br>
-                        售价：<?php echo $v['price'] > 0 ? $v['price'] . '元' : '免费'; ?><br>
-                        开发者：<?php echo $v['author']; ?><br>
-                        更新时间：<?php echo $v['update_time']; ?><br>
+<!--vot-->              <?=lang('price')?>: <?php echo $v['price'] > 0 ? $v['price'] . ' ' . lang('price_unit') : lang('free'); ?><br>
+<!--vot-->              <?=lang('developer')?>： <?php echo $v['author']; ?><br>
+<!--vot-->              <?=lang('update_time')?>： <?php echo $v['update_time']; ?><br>
                     </p>
                     <p class="card-text text-right">
 						<?php if ($v['price'] > 0): ?>
-                            <a href="<?php echo $v['buy_url']; ?>" class="btn btn-sm btn-warning btn-sm" target="_blank">去购买</a>
+<!--vot-->                  <a href="<?php echo $v['buy_url']; ?>" class="btn btn-sm btn-warning btn-sm" target="_blank"><?=lang('go_buy')?></a>
 						<?php else: ?>
-                            <a href="./store.php?action=install&source=<?php echo urlencode($v['download_url']); ?>&type=tpl" class="btn btn-success btn-sm">安装</a>
+<!--vot-->                  <a href="./store.php?action=install&source=<?php echo urlencode($v['download_url']); ?>&type=tpl" class="btn btn-success btn-sm"><?=lang('install')?></a>
 						<?php endif; ?>
                     </p>
                 </div>

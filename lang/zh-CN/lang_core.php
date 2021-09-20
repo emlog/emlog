@@ -5,7 +5,7 @@ $lang = array(
 //---------------------------
 //include/lib/cache.php
  'cache_date_format'	=> 'Y年n月',//'m.Y',
- 'cache_read_error'	=> '读取缓存失败。如果您使用的是Unix/Linux主机，请修改缓存目录 (content/cache) 下所有文件的权限为777。如果您使用的是Windows主机，请联系管理员，将该目录下所有文件设为可写',//'Cache read failed. If you are using a Unix/Linux host, modify the permissions of the cache directory (content/cache) and all the folders inside it to 777. If you are using a Windows host, please contact the administrator, and make all files under this directory writeable.',
+ 'cache_read_error'	=> '读取缓存失败',//'Cache read failed',
  'cache_not_writable'	=> '写入缓存失败，缓存目录 (content/cache) 不可写',//'The cache directory (content/cache) is not writable.',
 
 //---------------------------

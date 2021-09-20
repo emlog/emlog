@@ -28,7 +28,7 @@ if (empty($action)) {
 }
 
 if ($action === 'upload') {
-	$editor = isset($_GET['editor']) ? 1 : 0; // 是否来自Markdown编辑器的上传
+	$editor = isset($_GET['editor']) ? 1 : 0; // Whether it comes from the upload from the Markdown editor
 	$attach = $_FILES['file'] ?? '';
 	if ($editor) {
 		$attach = $_FILES['editormd-image-file'] ?? '';
@@ -56,7 +56,7 @@ if ($action === 'upload') {
 		exit;
 	}
 
-	// 写入资源信息
+	// Write attachment information
 	$aid = $Media_Model->addMedia($ret['file_info']);
 
 	// Write thumbnail information

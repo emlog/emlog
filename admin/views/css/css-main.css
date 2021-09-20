@@ -537,7 +537,7 @@ textarea {
     }
 }
 
-/*图片裁剪*/
+/*Image cropping*/
 #avatar_image {
     display: block;
     max-width: 100%;

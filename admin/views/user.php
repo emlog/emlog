@@ -35,8 +35,11 @@
                     <th></th>
 <!--vot-->          <th><?=lang('user')?></th>
 <!--vot-->          <th><?=lang('description')?></th>
-<!--vot-->          <th><?=lang('email')?></th>
 <!--vot-->          <th><?=lang('posts')?></th>
+<!--vot-->          <th><?=lang('last_login_ip')?></th>
+<!--vot-->          <th><?=lang('last_login_time')?></th>
+<!--vot-->          <th><?=lang('create_time')?></th>
+<!--vot-->          <th><?=lang('operation')?></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -60,6 +63,9 @@
 <!--vot-->                  <?php if ($val['role'] == ROLE_WRITER && $val['ischeck'] == 'y') echo lang('posts_need_audit'); ?>
                         </td>
                         <td><a href="article.php?uid=<?php echo $val['uid']; ?>"><?php echo $sta_cache[$val['uid']]['lognum']; ?></a></td>
+                        <td><?php echo $val['ip']; ?></td>
+                        <td><?php echo $val['update_time']; ?></td>
+                        <td><?php echo $val['create_time']; ?></td>
                         <td>
 							<?php
 							if (UID != $val['uid']): ?>

@@ -115,15 +115,15 @@
             <hr>
 
             <div class="form-group form-inline">
-<!--vot-->      <?=lang('php_upload_max_size')?> <input maxlength="10" style="width:80px;" class="form-control" value="<?php echo $att_maxsize; ?>" name="att_maxsize"/> KB
+<!--vot-->      <?=lang('php_upload_max_size')?> <input maxlength="20" style="width:120px;" class="form-control" value="<?php echo $att_maxsize; ?>" name="att_maxsize"/> KB (1M=1024KB)
             </div>
             <div class="form-group form-inline">
-<!--vot-->      <?=lang('allow_attach_type')?> <input maxlength="200" style="width:320px;" class="form-control" value="<?php echo $att_type; ?>" name="att_type"/> <?=lang('separate_by_comma')?>
+<!--vot-->      <?=lang('allow_attach_type')?> <input maxlength="200" style="width:500px;" class="form-control" value="<?php echo $att_type; ?>" name="att_type"/> <?=lang('separate_by_comma')?>
             </div>
             <div class="form-group form-inline">
 <!--vot-->      <input type="checkbox" value="y" name="isthumbnail" id="isthumbnail" <?php echo $conf_isthumbnail; ?> /> <?=lang('thumbnail_max_size')?>
                 <input maxlength="5" style="width:60px;" class="form-control" value="<?php echo $att_imgmaxw; ?>" name="att_imgmaxw"/> x
-<!--vot-->      <input maxlength="5" style="width:60px;" class="form-control" value="<?php echo $att_imgmaxh; ?>" name="att_imgmaxh"/> <?= lang('unit_pixels') ?>
+<!--vot-->      <input maxlength="5" style="width:60px;" class="form-control" value="<?php echo $att_imgmaxh; ?>" name="att_imgmaxh"/> <?=lang('unit_pixels')?>
             </div>
 
             <div class="form-group">

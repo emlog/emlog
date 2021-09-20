@@ -15,14 +15,13 @@ $Log_Model = new Log_Model();
 $Tag_Model = new Tag_Model();
 
 $title = isset($_POST['title']) ? addslashes(trim($_POST['title'])) : '';
-$postDate = isset($_POST['postdate']) ? trim($_POST['postdate']) : '';
-$date = isset($_POST['date']) ? addslashes($_POST['date']) : '';//Article time before modification
+$postDate = isset($_POST['postdate']) ? strtotime(trim($_POST['postdate'])) : '';
 $sort = isset($_POST['sort']) ? (int)$_POST['sort'] : -1;
 $tagstring = isset($_POST['tag']) ? addslashes(trim($_POST['tag'])) : '';
 $content = isset($_POST['logcontent']) ? addslashes(trim($_POST['logcontent'])) : '';
 $excerpt = isset($_POST['logexcerpt']) ? addslashes(trim($_POST['logexcerpt'])) : '';
 $author = isset($_POST['author']) && ROLE == ROLE_ADMIN ? (int)trim($_POST['author']) : UID;
-$blogid = isset($_POST['as_logid']) ? (int)trim($_POST['as_logid']) : -1;//If it is automatically saved as a draft, there is a blog id number
+/*vot*/ $blogid = isset($_POST['as_logid']) ? (int)trim($_POST['as_logid']) : -1;//If it is automatically saved as a draft, there is a blog id number
 $alias = isset($_POST['alias']) ? addslashes(trim($_POST['alias'])) : '';
 $top = isset($_POST['top']) ? addslashes(trim($_POST['top'])) : 'n';
 $sortop = isset($_POST['sortop']) ? addslashes(trim($_POST['sortop'])) : 'n';
@@ -30,8 +29,6 @@ $allow_remark = isset($_POST['allow_remark']) ? addslashes(trim($_POST['allow_re
 $ishide = isset($_POST['ishide']) && !empty($_POST['ishide']) && !isset($_POST['pubdf']) ? addslashes($_POST['ishide']) : 'n';
 $password = isset($_POST['password']) ? addslashes(trim($_POST['password'])) : '';
 $cover = isset($_POST['cover']) ? addslashes(trim($_POST['cover'])) : '';
-
-$postTime = strtotime($postDate);
 
 LoginAuth::checkToken();
 
@@ -49,7 +46,7 @@ $logData = array(
 	'cover'        => $cover,
 	'author'       => $author,
 	'sortid'       => $sort,
-	'date'         => $postTime,
+	'date'         => $postDate,
 	'top '         => $top,
 	'sortop '      => $sortop,
 	'allow_remark' => $allow_remark,
@@ -58,12 +55,12 @@ $logData = array(
 	'password'     => $password
 );
 
-if ($blogid > 0) {//After the draft is automatically saved, the addition becomes the update
+/*vot*/ if ($blogid > 0) {//After the draft is automatically saved, the addition becomes the update
 	$Log_Model->updateLog($logData, $blogid);
 	$Tag_Model->updateTag($tagstring, $blogid);
 	$dftnum = '';
 } else {
-	if (!$blogid = $Log_Model->isRepeatPost($title, $postTime)) {
+	if (!$blogid = $Log_Model->isRepeatPost($title, $postDate)) {
 		$blogid = $Log_Model->addlog($logData);
 		$Tag_Model->addTag($tagstring, $blogid);
 	}

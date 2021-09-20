@@ -88,7 +88,7 @@ function loadr(url, tid) {
         rp.style.display = "none";
     } else {
         r.style.display = "block";
-/*vot*/		r.innerHTML = '<span style=\"background-color:#FFFFE5;text-align:center;font-size:12px;color:#666666;\">' + lang('loading') + '</span>';
+/*vot*/	r.innerHTML = '<span style=\"background-color:#FFFFE5;text-align:center;font-size:12px;color:#666666;\">'+lang('loading')+'</span>';
         XMLHttp.sendReq('GET', url, '', function (obj) {
             r.innerHTML = obj.responseText;
             rp.style.display = "block";
@@ -105,26 +105,26 @@ function reply(url, tid) {
     var r = document.getElementById("r_" + tid);
     var data = "r=" + rtext + "&rname=" + rname + "&rcode=" + rcode + "&tid=" + tid;
     XMLHttp.sendReq('POST', url, data, function (obj) {
-		if(obj.responseText == 'err1') {
-/*vot*/			rmsg.innerHTML = lang('max_140_bytes');
-		} else if(obj.responseText == 'err2') {
-/*vot*/			rmsg.innerHTML = lang('nickname_empty');
-		} else if(obj.responseText == 'err3') {
-/*vot*/			rmsg.innerHTML = lang('captcha_error');
-		} else if(obj.responseText == 'err4') {
-/*vot*/			rmsg.innerHTML = lang('nickname_disabled');
-		} else if(obj.responseText == 'err5') {
-/*vot*/			rmsg.innerHTML = lang('nickname_exists');
-		} else if(obj.responseText == 'err0') {
-/*vot*/			rmsg.innerHTML = lang('comments_disabled');
-		} else if(obj.responseText == 'succ1') {
-/*vot*/			rmsg.innerHTML = lang('comment_ok_moderation');
-		} else {
-			r.innerHTML += obj.responseText;
-			rn.innerHTML = Number(rn.innerHTML)+1;
-			rmsg.innerHTML=''
-		}
-	});
+        if (obj.responseText == 'err1') {
+/*vot*/     rmsg.innerHTML = lang('max_140_bytes');
+        } else if (obj.responseText == 'err2') {
+/*vot*/     rmsg.innerHTML = lang('nickname_empty');
+        } else if (obj.responseText == 'err3') {
+/*vot*/     rmsg.innerHTML = lang('captcha_error');
+        } else if (obj.responseText == 'err4') {
+/*vot*/     rmsg.innerHTML = lang('nickname_disabled');
+        } else if (obj.responseText == 'err5') {
+/*vot*/     rmsg.innerHTML = lang('nickname_exists');
+        } else if (obj.responseText == 'err0') {
+/*vot*/     rmsg.innerHTML = lang('comments_disabled');
+        } else if (obj.responseText == 'succ1') {
+/*vot*/     rmsg.innerHTML = lang('comment_ok_moderation');
+        } else {
+            r.innerHTML += obj.responseText;
+            rn.innerHTML = Number(rn.innerHTML) + 1;
+            rmsg.innerHTML = ''
+        }
+    });
 }
 
 function re(tid, rp) {
@@ -150,7 +150,7 @@ function cal_margin(links, dp_id) {
     if(window.outerWidth > 991){
         console.log(window.outerWidth);
         var count, menus, cal_width;
-        cal_width = 85;//初始子导航的宽度(px)，可根据需要修改
+/*vot*/	cal_width = 85; //The width of the initial sub-navigation (px), can be modified as needed
         menus = document.getElementById('dropmenus' + dp_id);
         count = links.offsetWidth - cal_width;
         menus.style.width = cal_width + 'px';

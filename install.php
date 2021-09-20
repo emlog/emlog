@@ -31,8 +31,7 @@ if (!$act) {
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>emlog</title>
-        <style type="text/css">
-            <!--
+        <style>
             body {
                 background-color: #F7F7F7;
                 font-family: Arial;
@@ -98,11 +97,9 @@ if (!$act) {
             .main li {
                 margin: 20px 0px;
             }
-
-            -->
         </style>
-</head>
-<body>
+    </head>
+    <body>
     <form name="form1" method="post" action="install.php?action=install">
         <div class="main">
             <p class="logo"></p>
@@ -351,7 +348,7 @@ CREATE TABLE {$db_prefix}comment (
   KEY date (date),
   KEY hide (hide)
 )" . $table_charset_sql . "
-INSERT INTO {$db_prefix}comment (gid, date, poster, comment) VALUES (1, 1629601845, 'snow', 'stay hungry stay foolish');
+INSERT INTO {$db_prefix}comment (gid, date, poster, comment) VALUES (1, '" . time() . "', 'snow', 'stay hungry stay foolish');
 DROP TABLE IF EXISTS {$db_prefix}options;
 CREATE TABLE {$db_prefix}options (
 option_id INT( 11 ) UNSIGNED NOT NULL auto_increment COMMENT 'Cofiguration table',
@@ -368,7 +365,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('site_key','
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('log_title_style','0');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('blogurl','" . BLOG_URL . "');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('icp','');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('footer_info','');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('footer_info','powered by <a href=\"https://www.emlog.net\">emlog pro</a>');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('admin_perpage_num','15');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('rss_output_num','10');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('rss_output_fulltext','y');
@@ -388,8 +385,8 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_nee
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_interval',60);
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isgravatar','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isthumbnail','y');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('att_maxsize','20480');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('att_type','rar,zip,gif,jpg,jpeg,png,txt,pdf,docx,doc,xls,xlsx');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('att_maxsize','1024000');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('att_type','rar,zip,gif,jpg,jpeg,png,txt,pdf,docx,doc,xls,xlsx,mp4');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('att_imgmaxw','420');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('att_imgmaxh','460');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_paging','y');
@@ -470,10 +467,13 @@ CREATE TABLE {$db_prefix}user (
   photo varchar(255) NOT NULL default '' COMMENT 'Avatar',
   email varchar(255) NOT NULL default '' COMMENT 'Email',
   description varchar(255) NOT NULL default '' COMMENT 'Description',
+  ip varchar(128) NOT NULL default '' COMMENT 'IP address',
+  create_time int(11) NOT NULL COMMENT 'Create time',
+  update_time int(11) NOT NULL COMMENT 'Update time',
 PRIMARY KEY  (uid),
 KEY username (username)
 )" . $table_charset_sql . "
-INSERT INTO {$db_prefix}user (uid, username, password, nickname, role) VALUES (1,'$admin','" . $adminpw . "', 'emer','admin');
+INSERT INTO {$db_prefix}user (uid, username, password, nickname, role, create_time, update_time) VALUES (1,'$admin','" . $adminpw . "', 'emer','admin', " . time() . ", " . time() . ");
 DROP TABLE IF EXISTS {$db_prefix}storage;
 CREATE TABLE {$db_prefix}storage (
   `sid` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Object storage table',

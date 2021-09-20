@@ -220,7 +220,7 @@ class LoginAuth {
 	public static function checkToken() {
 		$token = isset($_REQUEST['token']) ? addslashes($_REQUEST['token']) : '';
 		if ($token !== self::genToken()) {
-/*vot*/	 emMsg(lang('no_permission') . ', ');
+/*vot*/	 emMsg(lang('no_permission') . ' Token error');
 		}
 	}
 }

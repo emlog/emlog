@@ -182,6 +182,7 @@ $lang = array(
  'no_resources'		=> 'No resources available',//'暂无可用资源',
  'file_insert'		=> 'Insert file',//'插入文件',
  'img_insert'		=> 'Insert image',//'插入图片',
+ 'video_insert'		=> 'Insert video',//'插入视频',
  'go_upload'		=> 'Go Upload',//'去上传',
  'article_cover'	=> 'Article cover',//'文章封面',
  'crop_upload'		=> 'Crop and upload',//'裁剪并上传',
@@ -439,6 +440,7 @@ $lang = array(
  'more_php_info'		=> 'More Info&raquo;',//'更多信息&raquo;',
  'official_news'		=> 'Official news',//'官方消息',
  'using_emlog'			=> 'You are using emlog',//'您正在使用emlog',
+ 'view_changelog'		=> 'View changelog',//'查看更新内容',
  'update_check'			=> 'Check for updates',//'检查更新',
  'reading'			=> 'Is reading...',//'正在读取...',
  'checking_wait'		=> 'Is checking, please wait',//'正在检查，请稍后',
@@ -639,6 +641,7 @@ $lang = array(
  'update_time'		=> 'Update time',//'更新时间',
  'price'		=> 'Price',//'价格',
  'free'			=> 'Free',//'免费',
+ 'price_unit'		=> 'Yuan',//'元',
  'go_buy'		=> 'Go to buy',//'去购买',
  'download&install'	=> 'Download and install',//'下载安装',
 // 'plugin'		=> 'Plug-in',//'插件',
@@ -648,6 +651,7 @@ $lang = array(
 // 'free'		=> 'Free',//'免费',
 // 'go_buy'		=> 'Go to buy',//'去购买',
 // 'download&install'	=> 'Download and install',//'下载安装',
+ 'app_store'		=> 'App store',//'应用商店',
 
 //---------------------------
 //admin/views/store_install.php
@@ -758,6 +762,8 @@ $lang = array(
  'publish_permission'	=> 'Publishing permissions',//'发布权限',
  'users_total'		=> 'Users created',//'已创建的用户',
  'role'			=> 'Role',//'角色',
+ 'last_login_ip'	=> 'Last logged in IP',//'最近登录IP',
+ 'last_login_time'	=> 'Update/login time',//'更新/登录时间',
 
 //---------------------------
 //admin/views/useredit.php

@@ -20,9 +20,11 @@ if (empty($action)) {
 	$mysql_ver = $DB->getMysqlVersion();
 
 	$max_execution_time = ini_get('max_execution_time') ?: '';
-	$php_ver = PHP_VERSION . ', MET' . $max_execution_time;
+	$max_upload_size = ini_get('upload_max_filesize') ?: '';
+	$php_ver = PHP_VERSION . ', MET' . $max_execution_time . ',UMF' . $max_upload_size;
 	if (function_exists("curl_init")) {
-/*vot*/		$php_ver .= ', curl';
+		$c = curl_version();
+		$php_ver .= ", Curl" . $c['version'];
 	}
 	if (class_exists('ZipArchive', FALSE)) {
 		$php_ver .= ', Zip';

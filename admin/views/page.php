@@ -22,6 +22,7 @@
                     <tr>
                         <th><input type="checkbox" id="checkAll"/></th>
 <!--vot-->              <th><?=lang('title')?></th>
+<!--vot-->              <th><?=lang('view')?></th>
 <!--vot-->              <th><?=lang('template')?></th>
 <!--vot-->              <th><?=lang('comments')?></th>
 <!--vot-->              <th><?=lang('time')?></th>
@@ -40,8 +41,8 @@
                             <td><input type="checkbox" name="page[]" value="<?php echo $value['gid']; ?>" class="ids"/></td>
                             <td>
                                 <a href="page.php?action=mod&id=<?php echo $value['gid'] ?>"><?php echo $value['title']; ?></a>
-								<?php echo $isHide; ?>
                             </td>
+                            <td><?php echo $isHide; ?></td>
                             <td><?php echo $value['template']; ?></td>
                             <td><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
                             <td class="small"><?php echo $value['date']; ?></td>
