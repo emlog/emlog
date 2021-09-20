@@ -118,7 +118,7 @@
                     } else if (result.code == 1002) {
                         $("#upmsg").html("已经是最新版本").removeClass();
                     } else if (result.code == 200) {
-                        $("#upmsg").html("有可用的新版本 " + result.data.version + "，<a id=\"doup\" href=\"javascript:doup('" + result.data.file + "','" + result.data.sql + "');\">现在更新</a>").removeClass();
+                        $("#upmsg").html("有可用的新版本 " + result.data.version + "，<a href=\"https://www.emlog.net/docs/#/changelog\" target=\"_blank\">查看更新内容</a>，<a id=\"doup\" href=\"javascript:doup('" + result.data.file + "','" + result.data.sql + "');\">现在更新</a>").removeClass();
                     } else {
                         $("#upmsg").html("检查失败，可能是网络问题").removeClass();
                     }
