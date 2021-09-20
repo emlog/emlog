@@ -139,6 +139,10 @@ function insert_media_img(fileurl, imgsrc) {
     Editor.insertValue('[![](' + imgsrc + ')](' + fileurl + ')\n\n');
 }
 
+function insert_media_video(fileurl) {
+    Editor.insertValue('<video class=\"video-js\" controls preload=\"auto\" width=\"100%\" data-setup=\'{"aspectRatio":"16:9"}\'> <source src="' + fileurl + '" type=\'video/mp4\' > </video>');
+}
+
 function insert_media(fileurl, filename) {
     Editor.insertValue('[' + filename + '](' + fileurl + ')\n\n');
 }

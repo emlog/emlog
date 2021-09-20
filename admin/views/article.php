@@ -136,7 +136,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
                             </td>
 							<?php if (!$draft): ?>
                                 <td>
-                                    <a href="<?php echo Url::log($value['gid']); ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0"/></a>
+                                    <a href="<?php echo Url::log($value['gid']); ?>" target="_blank"><img src="./views/images/vlog.gif" /></a>
                                 </td>
 							<?php endif; ?>
                             <td><a href="article.php?uid=<?php echo $value['author'] . $isdraft; ?>"><?php echo $author; ?></a></td>

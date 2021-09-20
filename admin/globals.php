@@ -35,14 +35,16 @@ if ($action == 'login') {
 	$ispersis = isset($_POST['ispersis']) ? (int)$_POST['ispersis'] : 0;
 	$img_code = Option::get('login_code') == 'y' && isset($_POST['imgcode']) ? addslashes(trim(strtoupper($_POST['imgcode']))) : '';
 
-	$loginAuthRet = LoginAuth::checkUser($username, $password, $img_code);
+	$uid = LoginAuth::checkUser($username, $password, $img_code);
 
-	if ($loginAuthRet === true) {
+	if ($uid > 0) {
 		Register::isRegServer();
+		$User_Model = new User_Model();
+		$User_Model->updateUser(['ip'=>getIp()], $uid);
 		LoginAuth::setAuthCookie($username, $ispersis);
 		emDirect("./");
 	} else {
-		LoginAuth::loginPage($loginAuthRet);
+		LoginAuth::loginPage($uid);
 	}
 }
 

@@ -28,7 +28,7 @@ if (!empty($blog)) {
 	foreach ($blog as $value) {
 		$link = Url::log($value['id']);
 		$abstract = str_replace('[break]', '', $value['content']);
-		$pubdate = gmdate('r', $value['date']);
+		$pubdate = date('r', $value['date']);
 		$author = $user_cache[$value['author']]['name'];
 		doAction('rss_display');
 		echo <<< END
