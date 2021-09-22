@@ -38,15 +38,15 @@
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             PHP
-                            <span><?php echo $php_ver; ?></span>
+                            <span class="small"><?php echo $php_ver; ?></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             MySQL
-                            <span><?php echo $mysql_ver; ?></span>
+                            <span class="small"><?php echo $mysql_ver; ?></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Web Server
-                            <span><?php echo $serverapp; ?></span>
+                            <span class="small"><?php echo $serverapp; ?></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             EMLOG
@@ -126,7 +126,7 @@
         }
 
         function doup(source, upsql) {
-            $("#upmsg").html("正在更新，请勿关闭或刷新页面，耐心等待").addClass("ajaxload");
+            $("#upmsg").html("正在更新中，请耐心等待").addClass("ajaxload");
             $.get('./upgrade.php?action=update&source=' + source + "&upsql=" + upsql,
                 function (data) {
                     $("#upmsg").removeClass();
