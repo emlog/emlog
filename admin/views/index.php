@@ -126,7 +126,7 @@
         }
 
         function doup(source, upsql) {
-            $("#upmsg").html("正在更新中，请耐心等待").addClass("ajaxload");
+            $("#upmsg").html("正在更新，请勿关闭或刷新页面，耐心等待").addClass("ajaxload");
             $.get('./upgrade.php?action=update&source=' + source + "&upsql=" + upsql,
                 function (data) {
                     $("#upmsg").removeClass();
