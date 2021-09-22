@@ -21,13 +21,11 @@ if ($action === 'check_update') {
 
 	$emcurl->request(OFFICIAL_SERVICE_HOST . 'service/upgrade');
 	$retStatus = $emcurl->getHttpStatus();
-	if ($retStatus !== 200) {
-		header('Content-Type: application/json; charset=UTF-8');
-		exit('{"result":"fail"}');
-	}
-
 	$response = $emcurl->getRespone();
 	header('Content-Type: application/json; charset=UTF-8');
+	if ($retStatus !== 200) {
+		exit('{"result":"fail"}');
+	}
 	exit($response);
 }
 
@@ -39,51 +37,45 @@ if ($action === 'update' && ROLE === ROLE_ADMIN) {
 		exit('error');
 	}
 
-	$temp_file = emFetchFile($source);
-	if (!$temp_file) {
+	// update files
+	$temp_zip_file = emFetchFile($source);
+	if (!$temp_zip_file) {
 		exit('error_down');
 	}
-
-	$ret = emUnZip($temp_file, '../', 'update');
-	@unlink($temp_file);
-
+	$ret = emUnZip($temp_zip_file, '../', 'update');
 	switch ($ret) {
 		case 1:
 		case 2:
 			exit('error_dir');
-			break;
 		case 3:
 			exit('error_zip');
-			break;
 	}
+	@unlink($temp_zip_file);
 
-	//update db
-	if (!$upsql) {
-		exit('succ');
-	}
-	$DB = Database::getInstance();
-	$setchar = "ALTER DATABASE `" . DB_NAME . "` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;";
-	$temp_file = emFetchFile($upsql);
-	if (!$temp_file) {
-		exit('error_down');
-	}
-	$sql = file($temp_file);
-	@unlink($temp_file);
-	array_unshift($sql, $setchar);
-	$query = '';
-	foreach ($sql as $value) {
-		if (!$value || $value[0] == '#') {
-			continue;
+	// update database
+	if ($upsql) {
+		$temp_sql_file = emFetchFile($upsql);
+		if (!$temp_sql_file) {
+			exit('error_down');
 		}
-		$value = str_replace("{db_prefix}", DB_PREFIX, trim($value));
-		if (preg_match("/\;$/i", $value)) {
+		$DB = Database::getInstance();
+		$setchar = "ALTER DATABASE `" . DB_NAME . "` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;";
+		$sql = file($temp_sql_file);
+		array_unshift($sql, $setchar);
+		$query = '';
+		foreach ($sql as $value) {
+			if (!$value || $value[0] == '#') {
+				continue;
+			}
+			$value = str_replace("{db_prefix}", DB_PREFIX, trim($value));
 			$query .= $value;
-			$DB->query($query, 1);
-			$query = '';
-		} else {
-			$query .= $value;
+			if (preg_match("/\;$/i", $value)) {
+				$DB->query($query, 1);
+				$query = '';
+			}
 		}
+		$CACHE->updateCache();
+		@unlink($temp_sql_file);
 	}
-	$CACHE->updateCache();
 	exit('succ');
 }
