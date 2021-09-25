@@ -6,7 +6,7 @@ if (!defined('EMLOG_ROOT')) {
 	exit('error!');
 }
 ?>
-<footer class="py-3">
+<footer class="py-1">
     <div class="container">
         <p class="text-center small">
             <a href="https://beian.miit.gov.cn/" target="_blank"><?php echo $icp; ?></a> <br>
