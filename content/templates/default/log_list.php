@@ -47,7 +47,7 @@ if (!defined('EMLOG_ROOT')) {
 				?>
                 <p>抱歉，暂时还没有内容。</p>
 			<?php endif; ?>
-            <ul class="pagination justify-content-center mb-4">
+            <ul class="pagination justify-content-center">
 				<?php echo $page_url; ?>
             </ul>
         </div>
