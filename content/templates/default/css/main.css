@@ -16,11 +16,12 @@ h1, h2, h3, h4, h5, h6 {
 a {
     color: #858796;
     transition: all 0.2s;
-    text-decoration: none !important
+    text-decoration: none;
 }
 
 a:focus, a:hover {
-    color: #5a5c69
+    color: #5a5c69;
+    text-decoration: underline;
 }
 
 img {
@@ -1066,9 +1067,11 @@ body {
     .mb-5, .my-5 {
         margin-bottom: 1.6rem !important
     }
+
     #pagenavi {
         line-height: 45px
     }
+
     .arrow {
         position: absolute;
         margin-left: -1px;
@@ -1077,23 +1080,29 @@ body {
         border-style: solid;
         border-color: transparent transparent #f7f7f7 transparent
     }
+
     .comment-post #comment {
         border-radius: 0;
     }
+
     .comment-post input {
         width: 100%
     }
+
     #comment-place {
         margin-bottom: 80px
     }
+
     .com_control {
         border: 1px solid #ced4da;
         border-radius: 0px !important;
         margin-top: 10px
     }
+
     .com_mail {
         margin-bottom: 10px;
     }
+
     .comment .comment-post {
         height: 385px;
     }
