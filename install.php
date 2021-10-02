@@ -180,8 +180,10 @@ if ($act == 'install' || $act == 'reinstall') {
 	$DB = Database::getInstance();
 	$CACHE = Cache::getInstance();
 
-	if ($DB->getMysqlVersion() < '5.5.3') {
-		emMsg('您的MySQL版本过低，请选用支持MySQL5.5及以上的环境安装emlog。');
+	$v = $DB->getMysqlVersion();
+
+	if ($v < '5.5.3') {
+		emMsg('MySQL版本太低('.$v.')，请使用5.6及以上版本');
 	}
 
 	if ($act != 'reinstall' && $DB->num_rows($DB->query("SHOW TABLES LIKE '{$db_prefix}blog'")) == 1) {
