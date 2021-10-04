@@ -57,14 +57,14 @@
             <a class="nav-link" href="comment.php"><i class="icofont-comment"></i><span>评论</span></a>
         </li>
 		<?php if (ROLE == ROLE_ADMIN): ?>
+            <li class="nav-item" id="menu_twitter">
+                <a class="nav-link" href="twitter.php"><i class="icofont-pencil-alt-5"></i><span>笔记</span></a>
+            </li>
             <li class="nav-item" id="menu_media">
                 <a class="nav-link" href="media.php"><i class="icofont-image"></i><span>资源</span></a>
             </li>
             <li class="nav-item" id="menu_page">
                 <a class="nav-link" href="page.php"><i class="icofont-page"></i><span>页面</span></a>
-            </li>
-            <li class="nav-item" id="menu_twitter">
-                <a class="nav-link" href="twitter.php"><i class="icofont-pencil-alt-5"></i><span>笔记</span></a>
             </li>
             <li class="nav-item" id="menu_category_view">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_view" aria-expanded="true" aria-controls="menu_view">
@@ -130,7 +130,8 @@
                     <div class="topbar-divider d-none d-sm-block"></div>
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="img-profile rounded-circle" src="<?php echo empty($user_cache[UID]['avatar']) ? './views/images/avatar.svg' : '../' . $user_cache[UID]['avatar'] ?>">
+                            <img class="img-profile rounded-circle"
+                                 src="<?php echo empty($user_cache[UID]['avatar']) ? './views/images/avatar.svg' : '../' . $user_cache[UID]['avatar'] ?>">
                         </a>
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                             <a class="dropdown-item" href="blogger.php">

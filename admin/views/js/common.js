@@ -14,37 +14,41 @@ function timestamp() {
 
 function em_confirm(id, property, token) {
     switch (property) {
+        case 'tw':
+            var urlreturn = "twitter.php?action=del&id=" + id;
+            var msg = "确定要删除该笔记吗？";
+            break;
         case 'comment':
             var urlreturn = "comment.php?action=del&id=" + id;
-            var msg = "你确定要删除该评论吗？";
+            var msg = "确定要删除该评论吗？";
             break;
         case 'commentbyip':
             var urlreturn = "comment.php?action=delbyip&ip=" + id;
-            var msg = "你确定要删除来自该IP的所有评论吗？";
+            var msg = "确定要删除来自该IP的所有评论吗？";
             break;
         case 'link':
             var urlreturn = "link.php?action=dellink&linkid=" + id;
-            var msg = "你确定要删除该链接吗？";
+            var msg = "确定要删除该链接吗？";
             break;
         case 'navi':
             var urlreturn = "navbar.php?action=del&id=" + id;
-            var msg = "你确定要删除该导航吗？";
+            var msg = "确定要删除该导航吗？";
             break;
         case 'media':
             var urlreturn = "media.php?action=delete&aid=" + id;
-            var msg = "你确定要删除该媒体文件吗？";
+            var msg = "确定要删除该媒体文件吗？";
             break;
         case 'avatar':
             var urlreturn = "blogger.php?action=delicon";
-            var msg = "你确定要删除头像吗？";
+            var msg = "确定要删除头像吗？";
             break;
         case 'sort':
             var urlreturn = "sort.php?action=del&sid=" + id;
-            var msg = "你确定要删除该分类吗？";
+            var msg = "确定要删除该分类吗？";
             break;
         case 'user':
             var urlreturn = "user.php?action=del&uid=" + id;
-            var msg = "你确定要删除该用户吗？";
+            var msg = "确定要删除该用户吗？";
             break;
         case 'tpl':
             var urlreturn = "template.php?action=del&tpl=" + id;
@@ -270,20 +274,21 @@ $(function () {
 // editor.md的js钩子
 var queue = new Array();
 var hooks = {
-    addAction: function(hook, func) {      
-        if (typeof(queue[hook])=="undefined"||queue[hook] == null){
+    addAction: function (hook, func) {
+        if (typeof (queue[hook]) == "undefined" || queue[hook] == null) {
             queue[hook] = new Array();
-        }        
+        }
         if (typeof func == 'function') {
             queue[hook].push(func);
         }
-   },
-   doAction: function(hook,obj) {
-        try{
-            for(var i=0; i < queue[hook].length; i++) {
+    },
+    doAction: function (hook, obj) {
+        try {
+            for (var i = 0; i < queue[hook].length; i++) {
                 queue[hook][i](obj);
             }
-        }catch(e) {}
+        } catch (e) {
+        }
     }
 }
 
