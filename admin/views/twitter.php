@@ -13,7 +13,7 @@
 <p class="mb-4">快速记录想法，帮你方便的捕捉灵感，积累知识的复利</p>
 <form method="post" action="twitter.php?action=post">
     <div class="form-group">
-        <textarea class="form-control" id="t" name="t" rows="3" placeholder="" autofocus required></textarea>
+        <textarea class="form-control" id="t" name="t" rows="4" placeholder="" autofocus required></textarea>
     </div>
     <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
     <button type="submit" class="btn btn-sm btn-success">保存笔记</button>
@@ -21,14 +21,11 @@
 <div class="card-columns mt-5">
 	<?php
 	foreach ($tws as $val):
-		$author = $user_cache[$val['author']]['name'];
-		$avatar = empty($user_cache[$val['author']]['avatar']) ? './views/images/avatar.jpg' : '../' . $user_cache[$val['author']]['avatar'];
 		$tid = (int)$val['id'];
-		$img = empty($val['img']) ? "" : BLOG_URL . $val['img'];
 		?>
         <div class="card p-3">
             <blockquote class="blockquote mb-0 card-body">
-                <p><?php echo $val['t']; ?><br></p>
+                <p><?php echo $val['t']; ?></p>
                 <footer class="blockquote-footer">
                     <small class="text-muted">
 						<?php echo $val['date']; ?> | <a href="javascript: em_confirm(<?php echo $tid; ?>, 'tw', '<?php echo LoginAuth::genToken(); ?>');" class="care">删除</a>
@@ -43,4 +40,10 @@
 <script>
     $("#menu_twitter").addClass('active');
     setTimeout(hideActived, 3600);
+
+    var textarea = document.querySelector('#t');
+    textarea.addEventListener('input', (e) => {
+        textarea.style.height = '98px';
+        textarea.style.height = e.target.scrollHeight + 'px';
+    });
 </script>

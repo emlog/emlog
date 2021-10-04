@@ -9,6 +9,8 @@
  * @var object $CACHE
  */
 
+const TW_PAGE_COUNT = 20; // 笔记每页显示数量
+
 require_once 'globals.php';
 
 $Twitter_Model = new Twitter_Model();
@@ -16,9 +18,9 @@ $Twitter_Model = new Twitter_Model();
 if (empty($action)) {
 	$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
-	$tws = $Twitter_Model->getTwitters($page, 1);
-	$twnum = $Twitter_Model->getTwitterNum(1);
-	$pageurl = pagination($twnum, Option::get('admin_perpage_num'), $page, 'twitter.php?page=');
+	$tws = $Twitter_Model->getTwitters($page, TW_PAGE_COUNT);
+	$twnum = $Twitter_Model->getTwitterNum();
+	$pageurl = pagination($twnum, TW_PAGE_COUNT, $page, 'twitter.php?page=');
 	$avatar = empty($user_cache[UID]['avatar']) ? './views/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'];
 
 	include View::getView('header');
@@ -29,7 +31,6 @@ if (empty($action)) {
 
 if ($action == 'post') {
 	$t = isset($_POST['t']) ? addslashes(trim($_POST['t'])) : '';
-	$img = isset($_POST['img']) ? addslashes(trim($_POST['img'])) : '';
 
 	LoginAuth::checkToken();
 
@@ -37,19 +38,17 @@ if ($action == 'post') {
 		emDirect("twitter.php?error_a=1");
 	}
 
-	$tdata = array(
+	$tdata = [
 		'content' => $t,
 		'author'  => UID,
 		'date'    => time(),
-		'img'     => str_replace('../', '', $img)
-	);
+	];
 
 	$twid = $Twitter_Model->addTwitter($tdata);
 	$CACHE->updateCache(array('sta', 'newtw'));
 	emDirect("twitter.php?active_t=1");
 }
 
-// del note
 if ($action == 'del') {
 	LoginAuth::checkToken();
 	$id = isset($_GET['id']) ? (int)$_GET['id'] : '';
