@@ -459,6 +459,17 @@ CREATE TABLE {$db_prefix}user (
 PRIMARY KEY  (uid),
 KEY username (username)
 )" . $table_charset_sql . "
+DROP TABLE IF EXISTS {$db_prefix}twitter;
+CREATE TABLE {$db_prefix}twitter (
+id INT NOT NULL AUTO_INCREMENT COMMENT '笔记表',
+content text NOT NULL COMMENT '笔记内容',
+img varchar(200) DEFAULT NULL COMMENT '图片',
+author int(10) NOT NULL default '1' COMMENT '作者uid',
+date bigint(20) NOT NULL COMMENT '创建时间',
+replynum int(10) unsigned NOT NULL default '0' COMMENT '回复数量',
+PRIMARY KEY (id),
+KEY author (author)
+)".$table_charset_sql."
 INSERT INTO {$db_prefix}user (uid, username, password, nickname, role, create_time, update_time) VALUES (1,'$admin','" . $adminpw . "', 'emer','admin', " . time() . ", " . time() . ");
 DROP TABLE IF EXISTS {$db_prefix}storage;
 CREATE TABLE {$db_prefix}storage (

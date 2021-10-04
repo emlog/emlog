@@ -619,6 +619,9 @@ function imageCropAndResize($src_image, $dst_path, $dst_x, $dst_y, $src_x, $src_
  */
 function chImageSize($img, $max_w, $max_h) {
 	$size = @getimagesize($img);
+	if (!$size) {
+		return [];
+	}
 	$w = $size[0];
 	$h = $size[1];
 	//计算缩放比例
