@@ -63,8 +63,8 @@
             <li class="nav-item" id="menu_page">
                 <a class="nav-link" href="page.php"><i class="icofont-page"></i><span>页面</span></a>
             </li>
-            <li class="nav-item" id="menu_page">
-                <a class="nav-link" href="tw.php"><i class="icofont-page"></i><span>笔记</span></a>
+            <li class="nav-item" id="menu_twitter">
+                <a class="nav-link" href="twitter.php"><i class="icofont-pencil-alt-5"></i><span>笔记</span></a>
             </li>
             <li class="nav-item" id="menu_category_view">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_view" aria-expanded="true" aria-controls="menu_view">

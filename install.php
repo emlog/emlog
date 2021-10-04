@@ -417,7 +417,7 @@ CREATE TABLE {$db_prefix}navi (
   taxis int(10) unsigned NOT NULL default '0' COMMENT '排序序号',
   pid int(10) unsigned NOT NULL default '0' COMMENT '父级ID',
   isdefault enum('n','y') NOT NULL default 'n' COMMENT '是否系统默认导航，如首页',
-  type tinyint(3) unsigned NOT NULL default '0' COMMENT '导航类型 0自定义 1首页 2微语 3后台管理 4分类 5页面',
+  type tinyint(3) unsigned NOT NULL default '0' COMMENT '导航类型 0自定义 1首页 2笔记 3后台管理 4分类 5页面',
   type_id int(10) unsigned NOT NULL default '0' COMMENT '导航类型对应ID',
   PRIMARY KEY  (id)
 )" . $table_charset_sql . "
