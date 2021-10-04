@@ -2,7 +2,7 @@
 /**
  * 笔记
  *
- * @copyright (c) Emlog All Rights Reserved
+ * @package EMLOG (www.emlog.net)
  */
 
 class Twitter_Model {
@@ -29,8 +29,7 @@ class Twitter_Model {
 		$field = implode(',', $kItem);
 		$values = "'" . implode("','", $dItem) . "'";
 		$this->db->query("INSERT INTO " . DB_PREFIX . "twitter ($field) VALUES ($values)");
-		$logid = $this->db->insert_id();
-		return $logid;
+		return $this->db->insert_id();
 	}
 
 	/**
@@ -64,7 +63,6 @@ class Twitter_Model {
 			$row['id'] = $row['id'];
 			$row['t'] = $row['content'];
 			$row['date'] = smartDate($row['date']);
-			$row['replynum'] = $row['replynum'];
 			$tws[] = $row;
 		}
 		return $tws;
@@ -80,8 +78,6 @@ class Twitter_Model {
 		if ($this->db->affected_rows() < 1) {
 			emMsg('权限不足！', './');
 		}
-		// del reply
-		$this->db->query("DELETE FROM " . DB_PREFIX . "reply where tid=$tid");
 		// del pic
 		if (!empty($row['img'])) {
 			$fpath = str_replace('thum-', '', $row['img']);
@@ -90,12 +86,5 @@ class Twitter_Model {
 			}
 			@unlink('../' . $row['img']);
 		}
-	}
-
-	function formatTwitter($t) {
-		//识别URL
-		$t = htmlspecialchars(preg_replace("/http:\/\/[\w-.?\/=&%:]*/i", "[+@] href=\"\$0\" target=\"_blank\"[@+]\$0[-@+]", $t), ENT_NOQUOTES);
-		$t = str_replace(array('[+@]', '[@+]', '[-@+]'), array('<a', '>', '</a>'), $t);
-		return $t;
 	}
 }

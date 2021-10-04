@@ -4,11 +4,16 @@
  * @package EMLOG (www.emlog.net)
  */
 
+/**
+ * @var string $action
+ * @var object $CACHE
+ */
+
 require_once 'globals.php';
 
 $Twitter_Model = new Twitter_Model();
 
-if ($action == '') {
+if (empty($action)) {
 	$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
 	$tws = $Twitter_Model->getTwitters($page, 1);
@@ -28,16 +33,12 @@ if ($action == 'post') {
 
 	LoginAuth::checkToken();
 
-	if ($img && !$t) {
-		$t = '分享图片';
-	}
-
 	if (!$t) {
 		emDirect("twitter.php?error_a=1");
 	}
 
 	$tdata = array(
-		'content' => $Twitter_Model->formatTwitter($t),
+		'content' => $t,
 		'author'  => UID,
 		'date'    => time(),
 		'img'     => str_replace('../', '', $img)
