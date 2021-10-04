@@ -34,6 +34,7 @@ if ($action === 'bakstart') {
 		'link',
 		'storage',
 		'tag',
+		'twitter',
 		'user'
 	];
 
@@ -123,9 +124,15 @@ function checkSqlFileInfo($sqlfile) {
 	$dumpinfo = array();
 	$line = 0;
 	while (!feof($fp)) {
-		$dumpinfo[] = fgets($fp, 4096);
+		$a = fgets($fp, 4096);
+		if (empty(trim($a, "\t\n\r\0\x0B"))) {
+			continue;
+		}
+		$dumpinfo[] = $a;
 		$line++;
-		if ($line == 3) break;
+		if ($line == 3) {
+			break;
+		}
 	}
 	fclose($fp);
 	if (empty($dumpinfo)) {
@@ -146,7 +153,7 @@ function checkSqlFileInfo($sqlfile) {
  */
 function bakindata($filename) {
 	$DB = Database::getInstance();
-	$setchar = $DB->getMysqlVersion() > '4.1' ? "ALTER DATABASE `" . DB_NAME . "` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;" : '';
+	$setchar = $DB->getMysqlVersion() > '5.5' ? "ALTER DATABASE `" . DB_NAME . "` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;" : '';
 	$sql = file($filename);
 	if (isset($sql[0]) && !empty($sql[0]) && checkBOM($sql[0])) {
 		$sql[0] = substr($sql[0], 3);
@@ -155,18 +162,16 @@ function bakindata($filename) {
 	$query = '';
 	foreach ($sql as $value) {
 		$value = trim($value);
-		if (!$value || $value[0] == '#') {
+		if (!$value || $value[0] === '#') {
 			continue;
 		}
+		$query .= $value;
 		if (preg_match("/\;$/i", $value)) {
-			$query .= $value;
 			if (preg_match("/^CREATE/i", $query)) {
 				$query = preg_replace("/\DEFAULT CHARSET=([a-z0-9]+)/is", '', $query);
 			}
 			$DB->query($query);
 			$query = '';
-		} else {
-			$query .= $value;
 		}
 	}
 }
