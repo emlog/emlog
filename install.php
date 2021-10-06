@@ -373,8 +373,8 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isgravatar'
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isthumbnail','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('att_maxsize','1024000');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('att_type','rar,zip,gif,jpg,jpeg,png,txt,pdf,docx,doc,xls,xlsx,mp4');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('att_imgmaxw','420');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('att_imgmaxh','460');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('att_imgmaxw','600');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('att_imgmaxh','370');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_paging','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_pnum','10');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_order','newer');
