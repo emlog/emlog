@@ -381,7 +381,7 @@ function uploadFileAjax($fileName, $errorNum, $tmpFile, $fileSize) {
 	$fileName = Database::getInstance()->escape_string($fileName);
 	$type = Option::getAttType();
 
-	$result = upload($fileName, $errorNum, $tmpFile, $fileSize, $type, false, $isthum);
+	$result = upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isthum);
 	$success = 0;
 	switch ($result) {
 		case '100':
@@ -426,21 +426,17 @@ function uploadFileAjax($fileName, $errorNum, $tmpFile, $fileSize) {
  * height    高度
  * 可选值（仅在上传文件是图片且系统开启缩略图时起作用）
  * thum_file   缩略图的路径
- * thum_width  缩略图宽度
- * thum_height 缩略图高度
- * thum_size   缩略图大小(单位KB)
  *
  * @param string $fileName 文件名
  * @param string $errorNum 错误码：$_FILES['error']
  * @param string $tmpFile 上传后的临时文件
  * @param string $fileSize 文件大小 KB
  * @param array $type 允许上传的文件类型
- * @param boolean $isIcon 是否为上传头像
  * @param boolean $is_thumbnail 是否生成缩略图
  * @return array 文件数据 索引
  *
  */
-function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = false, $is_thumbnail = true) {
+function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $is_thumbnail = true) {
 	if ($errorNum == 1) {
 		return '100'; //文件大小超过系统限制
 	} elseif ($errorNum > 1) {
@@ -481,33 +477,13 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = fals
 
 	// 生成缩略图
 	$thum = $uppath . 'thum-' . $fname;
-	if ($is_thumbnail) {
-		if ($isIcon && resizeImage($tmpFile, $thum, Option::ICON_MAX_W, Option::ICON_MAX_H)) {
-			$file_info['thum_file'] = $thum;
-			$file_info['thum_size'] = filesize($thum);
-			$size = getimagesize($thum);
-			if ($size) {
-				$file_info['thum_width'] = $size[0];
-				$file_info['thum_height'] = $size[1];
-			}
-			resizeImage($tmpFile, $uppath . 'thum70-' . $fname, 70, 70);
-		} elseif (resizeImage($tmpFile, $thum, Option::get('att_imgmaxw'), Option::get('att_imgmaxh'))) {
-			$file_info['thum_file'] = $thum;
-			$file_info['thum_size'] = filesize($thum);
-			$size = getimagesize($thum);
-			if ($size) {
-				$file_info['thum_width'] = $size[0];
-				$file_info['thum_height'] = $size[1];
-			}
-		}
+	if ($is_thumbnail && resizeImage($tmpFile, $thum, Option::get('att_imgmaxw'), Option::get('att_imgmaxh'))) {
+		$file_info['thum_file'] = $thum;
 	}
 
-	if (@is_uploaded_file($tmpFile)) {
-		if (@!move_uploaded_file($tmpFile, $attachpath)) {
-			@unlink($tmpFile);
-			return '105'; //上传失败。文件上传目录(content/uploadfile)不可写
-		}
-		@chmod($attachpath, 0777);
+	if (@is_uploaded_file($tmpFile) && @!move_uploaded_file($tmpFile, $attachpath)) {
+		@unlink($tmpFile);
+		return '105'; //上传失败。文件上传目录(content/uploadfile)不可写
 	}
 
 	// 提取图片宽高
