@@ -68,8 +68,19 @@ class Media_Model {
 		return $this->db->insert_id();
 	}
 
-	function deleteMedia($linkId) {
-		$this->db->query("DELETE FROM " . DB_PREFIX . "link where id=$linkId");
+	function deleteMedia($media_id) {
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "attachment WHERE aid = $media_id ");
+		$attach = $this->db->fetch_array($query);
+		$filepath_thum = $attach['filepath'];
+		$filepath = str_replace("thum-", "", $attach['filepath']);
+		if (file_exists($filepath_thum)) {
+			@unlink($filepath_thum) or emMsg("删除失败!");
+		}
+		if (file_exists($filepath)) {
+			@unlink($filepath) or emMsg("删除失败!");
+		}
+
+		return $this->db->query("DELETE FROM " . DB_PREFIX . "attachment WHERE aid = {$media_id} ");
 	}
 
 }
