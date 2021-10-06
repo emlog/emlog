@@ -285,7 +285,7 @@ CREATE TABLE {$db_prefix}blog (
   type varchar(20) NOT NULL default 'blog' COMMENT '文章OR页面',
   views int(10) unsigned NOT NULL default '0' COMMENT '阅读量',
   comnum int(10) unsigned NOT NULL default '0' COMMENT '评论数量',
-  attnum int(10) unsigned NOT NULL default '0' COMMENT '附件数量',
+  attnum int(10) unsigned NOT NULL default '0' COMMENT '附件数量（已废弃）',
   top enum('n','y') NOT NULL default 'n' COMMENT '置顶',
   sortop enum('n','y') NOT NULL default 'n' COMMENT '分类置顶',
   hide enum('n','y') NOT NULL default 'n' COMMENT '草稿y',
@@ -305,7 +305,7 @@ INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,author,views,comnum
 DROP TABLE IF EXISTS {$db_prefix}attachment;
 CREATE TABLE {$db_prefix}attachment (
   aid int(10) unsigned NOT NULL auto_increment COMMENT '资源文件表',
-  blogid int(10) unsigned NOT NULL default '0' COMMENT '文章ID',
+  blogid int(10) unsigned NOT NULL default '0' COMMENT '文章ID（已废弃）',
   filename varchar(255) NOT NULL default '' COMMENT '文件名',
   filesize int(10) NOT NULL default '0' COMMENT '文件大小',
   filepath varchar(255) NOT NULL default '' COMMENT '文件路径',
@@ -313,7 +313,7 @@ CREATE TABLE {$db_prefix}attachment (
   width int(10) NOT NULL default '0' COMMENT '图片宽度',
   height int(10) NOT NULL default '0' COMMENT '图片高度',
   mimetype varchar(40) NOT NULL default '' COMMENT '文件mime类型',
-  thumfor int(10) NOT NULL default 0 COMMENT '缩略图的原资源ID',
+  thumfor int(10) NOT NULL default 0 COMMENT '缩略图的原资源ID（已废弃）',
   PRIMARY KEY  (aid),
   KEY blogid (blogid)
 )" . $table_charset_sql . "
