@@ -203,8 +203,6 @@ class Log_Model {
 
 	/**
 	 * delete article
-	 *
-	 * @param int $blogId
 	 */
 	function deleteLog($blogId) {
 		$author = ROLE == ROLE_ADMIN ? '' : 'and author=' . UID;
@@ -217,18 +215,6 @@ class Log_Model {
 		// tag
 		$this->db->query("UPDATE " . DB_PREFIX . "tag SET gid= REPLACE(gid,',$blogId,',',') WHERE gid LIKE '%" . $blogId . "%' ");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "tag WHERE gid=',' ");
-		// 附件
-		$query = $this->db->query("select filepath from " . DB_PREFIX . "attachment where blogid=$blogId ");
-		while ($attach = $this->db->fetch_array($query)) {
-			if (file_exists($attach['filepath'])) {
-				$fpath = str_replace('thum-', '', $attach['filepath']);
-				if ($fpath != $attach['filepath']) {
-					@unlink($fpath);
-				}
-				@unlink($attach['filepath']);
-			}
-		}
-		$this->db->query("DELETE FROM " . DB_PREFIX . "attachment where blogid=$blogId");
 	}
 
 	/**

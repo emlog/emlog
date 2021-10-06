@@ -82,7 +82,7 @@ if ($action === 'import') {
 		emMsg('非法提交的信息');
 	}
 	if ($sqlfile['error'] == 1) {
-		emMsg('附件大小超过系统' . ini_get('upload_max_filesize') . '限制');
+		emMsg('文件大小超过系统' . ini_get('upload_max_filesize') . '限制');
 	} elseif ($sqlfile['error'] > 1) {
 		emMsg('上传文件失败,错误码：' . $sqlfile['error']);
 	}

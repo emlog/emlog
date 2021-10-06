@@ -10,7 +10,7 @@ class Option {
 	const EMLOG_VERSION_TIMESTAMP = 1632128457;      //版本时间戳
 	const ICON_MAX_W = 160;                          //头像缩略图最大宽
 	const ICON_MAX_H = 160;                          //头像缩略图最大高
-	const UPLOADFILE_PATH = '../content/uploadfile/';//附件上传路径
+	const UPLOADFILE_PATH = '../content/uploadfile/';//上传路径
 
 	static function get($option) {
 		$CACHE = Cache::getInstance();
@@ -126,14 +126,14 @@ class Option {
 	}
 
 	/**
-	 * 获取允许上传的附件类型
+	 * 获取允许上传的文件类型
 	 */
 	static function getAttType() {
 		return explode(',', self::get('att_type'));
 	}
 
 	/**
-	 * 获取附件最大限制,单位字节
+	 * 获取上传最大限制,单位字节
 	 */
 	static function getAttMaxSize() {
 		return self::get('att_maxsize') * 1024;
