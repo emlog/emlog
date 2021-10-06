@@ -71,7 +71,6 @@ if ($action === 'upload') {
 	}
 }
 
-//删除附件
 if ($action === 'delete') {
 	LoginAuth::checkToken();
 	$aid = isset($_GET['aid']) ? (int)$_GET['aid'] : '';
@@ -79,14 +78,14 @@ if ($action === 'delete') {
 	$attach = $DB->fetch_array($query);
 	$logid = $attach['blogid'];
 	if (file_exists($attach['filepath'])) {
-		@unlink($attach['filepath']) or emMsg("删除附件失败!");
+		@unlink($attach['filepath']) or emMsg("删除失败!");
 	}
 
 	$query = $DB->query("SELECT * FROM " . DB_PREFIX . "attachment WHERE thumfor = " . $attach['aid']);
 	$thum_attach = $DB->fetch_array($query);
 	if ($thum_attach) {
 		if (file_exists($thum_attach['filepath'])) {
-			@unlink($thum_attach['filepath']) or emMsg("删除附件失败!");
+			@unlink($thum_attach['filepath']) or emMsg("删除失败!");
 		}
 		$DB->query("DELETE FROM " . DB_PREFIX . "attachment WHERE aid = {$thum_attach['aid']} ");
 	}

@@ -188,7 +188,7 @@ function extractHtmlData($data, $len) {
 }
 
 /**
- * 转换附件大小单位
+ * 转换文件大小单位
  *
  * @param string $fileSize 文件大小 kb
  */
@@ -510,7 +510,7 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = fals
 		@chmod($attachpath, 0777);
 	}
 
-	// 如果附件是图片需要提取宽高
+	// 提取图片宽高
 	if (in_array($file_info['mime_type'], array('image/jpeg', 'image/png', 'image/gif', 'image/bmp'))) {
 		$size = getimagesize($file_info['file_path']);
 		if ($size) {
