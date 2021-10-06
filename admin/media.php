@@ -69,18 +69,21 @@ if ($action === 'upload') {
 if ($action === 'delete') {
 	LoginAuth::checkToken();
 	$aid = isset($_GET['aid']) ? (int)$_GET['aid'] : '';
-	$query = $DB->query("SELECT * FROM " . DB_PREFIX . "attachment WHERE aid = $aid ");
-	$attach = $DB->fetch_array($query);
-	$logid = $attach['blogid'];
-	$filepath_thum = $attach['filepath'];
-	$filepath = str_replace("thum-", "", $attach['filepath']);
-	if (file_exists($filepath_thum)) {
-		@unlink($filepath_thum) or emMsg("删除失败!");
-	}
-	if (file_exists($filepath)) {
-		@unlink($filepath) or emMsg("删除失败!");
-	}
-
-	$DB->query("DELETE FROM " . DB_PREFIX . "attachment WHERE aid = {$attach['aid']} ");
+	$Media_Model->deleteMedia($aid);
 	emDirect("media.php?active_del=1");
+}
+
+if ($action == 'operate_media') {
+	$operate = $_POST['operate'] ?? '';
+	$aids = isset($_POST['aids']) ? array_map('intval', $_POST['aids']) : array();
+
+	LoginAuth::checkToken();
+	switch ($operate) {
+		case 'del':
+			foreach ($aids as $value) {
+				$Media_Model->deleteMedia($value);
+			}
+			emDirect("media.php?active_del=1");
+			break;
+	}
 }
