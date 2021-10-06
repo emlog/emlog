@@ -72,7 +72,7 @@
 
     function deltags() {
         var tid = $('#tid').val()
-        if (!confirm('你确定要删除所选标签吗？')) {
+        if (!confirm('确定要删除所选标签吗？')) {
             return;
         }
         window.open("./tag.php?action=del_tag&token=<?php echo LoginAuth::genToken(); ?>&tid=" + tid, "_self");

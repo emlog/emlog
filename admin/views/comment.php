@@ -145,7 +145,7 @@
             alert('请选择要操作的评论');
             return;
         }
-        if (act == 'del' && !confirm('你确定要删除所选评论吗？')) {
+        if (act == 'del' && !confirm('确定要删除所选评论吗？')) {
             return;
         }
         $("#operate").val(act);
