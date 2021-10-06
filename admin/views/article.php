@@ -37,7 +37,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
     <h1 class="h3 mb-0 text-gray-800">文章管理</h1>
     <a href="./article.php?action=write" class="btn btn-sm btn-success shadow-sm mt-4"><i class="icofont-pencil-alt-5"></i> 写新文章</a>
 </div>
-<div class="panel-heading">
+<div class="panel-heading mb-3">
     <ul class="nav nav-tabs">
         <li class="nav-item"><a class="nav-link <?php if (!$draft) {
 				echo 'active';
@@ -136,7 +136,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
                             </td>
 							<?php if (!$draft): ?>
                                 <td>
-                                    <a href="<?php echo Url::log($value['gid']); ?>" target="_blank"><img src="./views/images/vlog.gif" /></a>
+                                    <a href="<?php echo Url::log($value['gid']); ?>" target="_blank"><img src="./views/images/vlog.gif"/></a>
                                 </td>
 							<?php endif; ?>
                             <td><a href="article.php?uid=<?php echo $value['author'] . $isdraft; ?>"><?php echo $author; ?></a></td>
