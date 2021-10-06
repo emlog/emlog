@@ -59,11 +59,6 @@ if ($action === 'upload') {
 	// 写入资源信息
 	$aid = $Media_Model->addMedia($ret['file_info']);
 
-	// 写入缩略图信息
-	if (isset($ret['file_info']['thum_file'])) {
-		$Media_Model->addMedia($ret['file_info'], $aid);
-	}
-
 	if ($editor) {
 		echo json_encode($ret);
 	} else {
@@ -77,17 +72,13 @@ if ($action === 'delete') {
 	$query = $DB->query("SELECT * FROM " . DB_PREFIX . "attachment WHERE aid = $aid ");
 	$attach = $DB->fetch_array($query);
 	$logid = $attach['blogid'];
-	if (file_exists($attach['filepath'])) {
-		@unlink($attach['filepath']) or emMsg("删除失败!");
+	$filepath_thum = $attach['filepath'];
+	$filepath = str_replace("thum-", "", $attach['filepath']);
+	if (file_exists($filepath_thum)) {
+		@unlink($filepath_thum) or emMsg("删除失败!");
 	}
-
-	$query = $DB->query("SELECT * FROM " . DB_PREFIX . "attachment WHERE thumfor = " . $attach['aid']);
-	$thum_attach = $DB->fetch_array($query);
-	if ($thum_attach) {
-		if (file_exists($thum_attach['filepath'])) {
-			@unlink($thum_attach['filepath']) or emMsg("删除失败!");
-		}
-		$DB->query("DELETE FROM " . DB_PREFIX . "attachment WHERE aid = {$thum_attach['aid']} ");
+	if (file_exists($filepath)) {
+		@unlink($filepath) or emMsg("删除失败!");
 	}
 
 	$DB->query("DELETE FROM " . DB_PREFIX . "attachment WHERE aid = {$attach['aid']} ");
