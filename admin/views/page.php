@@ -74,7 +74,7 @@
             alert('请选择要操作的页面');
             return;
         }
-        if (act == 'del' && !confirm('你确定要删除所选页面吗？')) {
+        if (act == 'del' && !confirm('确定要删除所选页面吗？')) {
             return;
         }
         $("#operate").val(act);

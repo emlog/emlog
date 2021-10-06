@@ -228,7 +228,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
             alert('请选择要操作的文章');
             return;
         }
-        if (act == 'del' && !confirm('你确定要删除所选文章吗？')) {
+        if (act == 'del' && !confirm('确定要删除所选文章吗？')) {
             return;
         }
         $("#operate").val(act);

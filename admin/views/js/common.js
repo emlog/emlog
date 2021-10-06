@@ -52,15 +52,15 @@ function em_confirm(id, property, token) {
             break;
         case 'tpl':
             var urlreturn = "template.php?action=del&tpl=" + id;
-            var msg = "你确定要删除该模板吗？";
+            var msg = "确定要删除该模板吗？";
             break;
         case 'reset_widget':
             var urlreturn = "widgets.php?action=reset";
-            var msg = "你确定要恢复组件设置到初始状态吗？这样会丢失你自定义的组件。";
+            var msg = "确定要恢复组件设置到初始状态吗？这样会丢失你自定义的组件。";
             break;
         case 'plu':
             var urlreturn = "plugin.php?action=del&plugin=" + id;
-            var msg = "你确定要删除该插件吗？";
+            var msg = "确定要删除该插件吗？";
             break;
     }
     if (confirm(msg)) {

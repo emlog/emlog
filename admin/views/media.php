@@ -86,7 +86,7 @@
             alert('请选择要删除的资源');
             return;
         }
-        if (act == 'del' && !confirm('确定要删除所资源吗？')) {
+        if (act == 'del' && !confirm('确定要删除所选资源吗？')) {
             return;
         }
         $("#operate").val(act);
