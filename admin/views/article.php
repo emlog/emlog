@@ -196,11 +196,11 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 				<?php endif; ?>
 
                 <div class="btn-group btn-group-sm" role="group">
-                    <a type="button" href="javascript:logact('del');" class="btn btn-sm btn-danger">删除</a>
+                    <a href="javascript:logact('del');" class="btn btn-sm btn-danger">删除</a>
 					<?php if ($draft): ?>
-                        <a type="button" href="javascript:logact('pub');" class="btn btn-sm btn-success">发布</a>
+                        <a href="javascript:logact('pub');" class="btn btn-sm btn-success">发布</a>
 					<?php else: ?>
-                        <a type="button" href="javascript:logact('hide');" class="btn btn-sm btn-success">放入草稿箱</a>
+                        <a href="javascript:logact('hide');" class="btn btn-sm btn-success">放入草稿箱</a>
 					<?php endif; ?>
                 </div>
             </div>

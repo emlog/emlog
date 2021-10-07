@@ -98,9 +98,9 @@
             </div>
             <div class="list_footer">
                 <div class="btn-group btn-group-sm" role="group">
-                    <a type="button" href="javascript:commentact('del');" class="btn btn-sm btn-danger">删除</a>
-                    <a type="button" href="javascript:commentact('hide');" class="btn btn-sm btn-success">隐藏</a>
-                    <a type="button" href="javascript:commentact('pub');" class="btn btn-sm btn-success">审核</a>
+                    <a href="javascript:commentact('del');" class="btn btn-sm btn-danger">删除</a>
+                    <a href="javascript:commentact('hide');" class="btn btn-sm btn-success">隐藏</a>
+                    <a href="javascript:commentact('pub');" class="btn btn-sm btn-success">审核</a>
                 </div>
                 <input name="operate" id="operate" value="" type="hidden"/>
             </div>
