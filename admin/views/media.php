@@ -42,7 +42,7 @@
         <div class="btn-group btn-group-sm" role="group">
             <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
             <input name="operate" id="operate" value="" type="hidden"/>
-            <a type="button" href="javascript:mediaact('del');" class="btn btn-sm btn-danger">删除所选资源</a>
+            <a href="javascript:mediaact('del');" class="btn btn-sm btn-danger">删除所选资源</a>
         </div>
     </div>
 </form>
