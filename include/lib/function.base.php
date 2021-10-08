@@ -193,7 +193,7 @@ function extractHtmlData($data, $len) {
 }
 
 /**
- * Convert Attachment size unit
+ * Convert file size unit
  *
  * @param string $fileSize //File Size kb
  */
@@ -218,7 +218,7 @@ function getFileSuffix($fileName) {
 }
 
 /**
- * Convert relative path to full URL, eg：../content/uploadfile/xxx.jpeg
+ * Convert relative path to full URL, eg: ../content/uploadfile/xxx.jpeg
  * @param $filePath
  * @return string
  */
@@ -386,7 +386,7 @@ function uploadFileAjax($fileName, $errorNum, $tmpFile, $fileSize) {
 	$fileName = Database::getInstance()->escape_string($fileName);
 	$type = Option::getAttType();
 
-	$result = upload($fileName, $errorNum, $tmpFile, $fileSize, $type, false, $isthum);
+	$result = upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isthum);
 	$success = 0;
 	switch ($result) {
 		case '100':
@@ -431,21 +431,17 @@ function uploadFileAjax($fileName, $errorNum, $tmpFile, $fileSize) {
  * height    Height
  * Optional values (Only if the is an image and the system have to make a thjumbnail)
  * thum_file   Thumbnail path
- * thum_width  Thumbnail Width
- * thum_height Thumbnail height
- * thum_size   Thumbnail size (in KB)
  *
  * @param string $fileName File Name
  * @param string $errorNum Error code: $_FILES['error']
  * @param string $tmpFile Temporary File Uploaded
  * @param string $fileSize File Size KB
  * @param array $type Allowed to upload file types
- * @param boolean $isIcon Whether it is the avatar uploaded
  * @param boolean $is_thumbnail Whether to generate thumbnail
  * @return array File Data Index
  *
  */
-function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = false, $is_thumbnail = true) {
+function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $is_thumbnail = true) {
 	if ($errorNum == 1) {
 		return '100'; //File size exceeds the system limit
 	} elseif ($errorNum > 1) {
@@ -486,36 +482,16 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isIcon = fals
 
     // Generate thumbnail
 	$thum = $uppath . 'thum-' . $fname;
-	if ($is_thumbnail) {
-		if ($isIcon && resizeImage($tmpFile, $thum, Option::ICON_MAX_W, Option::ICON_MAX_H)) {
-			$file_info['thum_file'] = $thum;
-			$file_info['thum_size'] = filesize($thum);
-			$size = getimagesize($thum);
-			if ($size) {
-				$file_info['thum_width'] = $size[0];
-				$file_info['thum_height'] = $size[1];
-			}
-			resizeImage($tmpFile, $uppath . 'thum70-' . $fname, 70, 70);
-		} elseif (resizeImage($tmpFile, $thum, Option::get('att_imgmaxw'), Option::get('att_imgmaxh'))) {
-			$file_info['thum_file'] = $thum;
-			$file_info['thum_size'] = filesize($thum);
-			$size = getimagesize($thum);
-			if ($size) {
-				$file_info['thum_width'] = $size[0];
-				$file_info['thum_height'] = $size[1];
-			}
-		}
+	if ($is_thumbnail && resizeImage($tmpFile, $thum, Option::get('att_imgmaxw'), Option::get('att_imgmaxh'))) {
+		$file_info['thum_file'] = $thum;
 	}
 
-	if (@is_uploaded_file($tmpFile)) {
-		if (@!move_uploaded_file($tmpFile, $attachpath)) {
-			@unlink($tmpFile);
-			return '105'; //Upload failed. File upload directory (content/uploadfile) is not writable
-		}
-		@chmod($attachpath, 0777);
+	if (@is_uploaded_file($tmpFile) && @!move_uploaded_file($tmpFile, $attachpath)) {
+		@unlink($tmpFile);
+/*vot*/			return '105'; //Upload failed. File upload directory (content/uploadfile) is not writable
 	}
 
-	// If the attachment is an image, then need to extract the width and height
+	// Extract image width and height
 	if (in_array($file_info['mime_type'], array('image/jpeg', 'image/png', 'image/gif', 'image/bmp'))) {
 		$size = getimagesize($file_info['file_path']);
 		if ($size) {
@@ -624,6 +600,9 @@ function imageCropAndResize($src_image, $dst_path, $dst_x, $dst_y, $src_x, $src_
  */
 function chImageSize($img, $max_w, $max_h) {
 	$size = @getimagesize($img);
+	if (!$size) {
+		return [];
+	}
 	$w = $size[0];
 	$h = $size[1];
 	//Calculate zoom ratio

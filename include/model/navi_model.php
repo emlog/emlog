@@ -10,7 +10,7 @@ class Navi_Model {
 
 	const navitype_custom = 0;//Custom
 	const navitype_home = 1;  //Home
-	const navitype_t = 2;     //Weily/Whisper
+	const navitype_t = 2;     //Notes
 	const navitype_admin = 3; //AdminCP
 	const navitype_sort = 4;  //Categories
 	const navitype_page = 5;  //Pages

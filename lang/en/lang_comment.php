@@ -40,7 +40,7 @@ $lang = array(
 // 'have'		=> 'Have ',//'有',
  '_comments'		=> ' comments',//'条评论',
  'comment_operation_select'	=> 'Please select the operation for comments',//'请选择要操作的评论',
- 'comment_selected_delete_sure'	=> 'Are you sure you want to delete selected comments?',//'你确定要删除所选评论吗？',
+ 'comment_selected_delete_sure'	=> 'Are you sure you want to delete selected comments?',//'确定要删除所选评论吗？',
 
 //---------------------------
 //admin/views/comment_edit.php

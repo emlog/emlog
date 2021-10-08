@@ -186,8 +186,10 @@ if ($act == 'install' || $act == 'reinstall') {
 	$DB = Database::getInstance();
 	$CACHE = Cache::getInstance();
 
-	if ($DB->getMysqlVersion() < '5.5.3') {
-/*vot*/ emMsg(lang('mysql_required'));
+	$v = $DB->getMysqlVersion();
+
+	if ($v < '5.5.3') {
+/*vot*/		emMsg(sprintf(lang('mysql_required'), $v));
 	}
 
 	if ($act != 'reinstall' && $DB->num_rows($DB->query("SHOW TABLES LIKE '{$db_prefix}blog'")) == 1) {
@@ -299,7 +301,7 @@ CREATE TABLE {$db_prefix}blog (
   type varchar(64) NOT NULL default 'blog' COMMENT 'Article OR page',
   views int(11) unsigned NOT NULL default '0' COMMENT 'Read counter',
   comnum int(11) unsigned NOT NULL default '0' COMMENT 'Number of comments',
-  attnum int(11) unsigned NOT NULL default '0' COMMENT 'Number of attachments',
+  attnum int(11) unsigned NOT NULL default '0' COMMENT 'Number of attachments (obsolete)',
   top enum('n','y') NOT NULL default 'n' COMMENT 'Top',
   sortop enum('n','y') NOT NULL default 'n' COMMENT 'Top category',
   hide enum('n','y') NOT NULL default 'n' COMMENT 'Draft=y',
@@ -315,11 +317,11 @@ CREATE TABLE {$db_prefix}blog (
   KEY sortid (sortid),
   KEY top (top,date)
 )" . $table_charset_sql . "
-INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,author,views,comnum,attnum,top,sortop,hide,allow_remark,password) VALUES (1, '" . lang('emlog_welcome') . "', '" . time() . "', '" . lang('emlog_install_congratulation') . "', '', 1, 0, 0, 0, 'n', 'n', 'n', 'y', '');
+INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,author,views,comnum,attnum,top,sortop,hide,allow_remark,password) VALUES (1, '" . lang('emlog_welcome') . "', '" . time() . "', '" . lang('emlog_install_congratulation') . "', '', 1, 0, 1, 0, 'n', 'n', 'n', 'y', '');
 DROP TABLE IF EXISTS {$db_prefix}attachment;
 CREATE TABLE {$db_prefix}attachment (
   aid int(11) unsigned NOT NULL auto_increment COMMENT 'Resource file table',
-  blogid int(11) unsigned NOT NULL default '0' COMMENT 'Post ID',
+  blogid int(11) unsigned NOT NULL default '0' COMMENT 'Post ID (obsolete)',
   filename varchar(255) NOT NULL default '' COMMENT 'File name',
   filesize int(11) NOT NULL default '0' COMMENT 'File size',
   filepath varchar(255) NOT NULL default '' COMMENT 'File path',
@@ -327,7 +329,7 @@ CREATE TABLE {$db_prefix}attachment (
   width int(11) NOT NULL default '0' COMMENT 'Image width',
   height int(11) NOT NULL default '0' COMMENT 'Image Height',
   mimetype varchar(64) NOT NULL default '' COMMENT 'File mime type',
-  thumfor int(11) NOT NULL default 0 COMMENT 'Thumbnail for original resource ID',
+  thumfor int(11) NOT NULL default 0 COMMENT 'Thumbnail for original resource ID (obsolete)',
   PRIMARY KEY  (aid),
   KEY blogid (blogid)
 )" . $table_charset_sql . "
@@ -387,8 +389,8 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isgravatar'
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isthumbnail','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('att_maxsize','1024000');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('att_type','rar,zip,gif,jpg,jpeg,png,txt,pdf,docx,doc,xls,xlsx,mp4');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('att_imgmaxw','420');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('att_imgmaxh','460');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('att_imgmaxw','600');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('att_imgmaxh','370');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_paging','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_pnum','10');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_order','newer');
@@ -431,7 +433,7 @@ CREATE TABLE {$db_prefix}navi (
   taxis int(11) unsigned NOT NULL default '0' COMMENT 'Sort order',
   pid int(11) unsigned NOT NULL default '0' COMMENT 'Parent ID',
   isdefault enum('n','y') NOT NULL default 'n' COMMENT 'Is the system default navigation, i.e. home page',
-  type tinyint(3) unsigned NOT NULL default '0' COMMENT 'Navigation type: 0=custom, 1=home, 2=chat, 3=AdminCP, 4=Categories, 5=page',
+  type tinyint(3) unsigned NOT NULL default '0' COMMENT 'Navigation type: 0=custom, 1=home, 2=Note, 3=AdminCP, 4=Categories, 5=page',
   type_id int(11) unsigned NOT NULL default '0' COMMENT 'Navigation type corresponding ID',
   PRIMARY KEY  (id)
 )" . $table_charset_sql . "
@@ -473,6 +475,17 @@ CREATE TABLE {$db_prefix}user (
 PRIMARY KEY  (uid),
 KEY username (username)
 )" . $table_charset_sql . "
+DROP TABLE IF EXISTS {$db_prefix}twitter;
+CREATE TABLE {$db_prefix}twitter (
+id INT NOT NULL AUTO_INCREMENT COMMENT 'Note ID',
+content text NOT NULL COMMENT 'Note content',
+img varchar(255) DEFAULT NULL COMMENT 'Image',
+author int(11) NOT NULL default '1' COMMENT 'Author uid',
+date bigint(20) NOT NULL COMMENT 'Create time',
+replynum int(11) unsigned NOT NULL default '0' COMMENT 'Number of replies',
+PRIMARY KEY (id),
+KEY author (author)
+)".$table_charset_sql."
 INSERT INTO {$db_prefix}user (uid, username, password, nickname, role, create_time, update_time) VALUES (1,'$admin','" . $adminpw . "', 'emer','admin', " . time() . ", " . time() . ");
 DROP TABLE IF EXISTS {$db_prefix}storage;
 CREATE TABLE {$db_prefix}storage (

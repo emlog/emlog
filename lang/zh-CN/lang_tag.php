@@ -28,7 +28,7 @@ $lang = array(
  'tag_modify_ok'	=> '修改标签成功',//'Tag has been modified successfully',
  'tag_select_to_delete'	=> '请选择要删除的标签',//'Please, select tag that you want to delete',
  'tags_no_info'		=> '还没有标签，写文章的时候可以给文章打标签',//'No tags yet! You can play with tags when writing a post',
- 'tag_delete_sure'	=> '你确定要删除所选标签吗？',//'Are you sure you want delete this tag?',
+ 'tag_delete_sure'	=> '你确定要删除所选标签吗？',//'Are you sure you want to delete the selected tags?',
                                             
 //---------------------------
 //admin/views/tagedit.php

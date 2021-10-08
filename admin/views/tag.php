@@ -72,7 +72,7 @@
 
     function deltags() {
         var tid = $('#tid').val()
-/*vot*/ if(!confirm('<?=lang('tag_delete_sure')?>')) {
+/*vot*/ if (!confirm('<?=lang('tag_delete_sure')?>')) {
             return;
         }
         window.open("./tag.php?action=del_tag&token=<?php echo LoginAuth::genToken(); ?>&tid=" + tid, "_self");

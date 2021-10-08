@@ -6,8 +6,8 @@
 
 class Option {
 
-	const EMLOG_VERSION = 'pro v1.0.6';              //Version number
-	const EMLOG_VERSION_TIMESTAMP = 1632128457;      //Version timestamp
+	const EMLOG_VERSION = 'pro v1.0.7';              //Version number
+	const EMLOG_VERSION_TIMESTAMP = 1633654283;      //Version timestamp
 	const ICON_MAX_W = 160;                          //Maximum avatar thumbnail width
 	const ICON_MAX_H = 160;                          //Maximum avatar thumbnail height
 	const UPLOADFILE_PATH = '../content/uploadfile/';//Attachments upload path

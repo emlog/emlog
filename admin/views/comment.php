@@ -98,9 +98,9 @@
             </div>
             <div class="list_footer">
                 <div class="btn-group btn-group-sm" role="group">
-<!--vot-->        <a type="button" href="javascript:commentact('del');" class="btn btn-sm btn-danger"><?=lang('delete')?></a>
-<!--vot-->        <a type="button" href="javascript:commentact('hide');" class="btn btn-sm btn-success"><?=lang('hide')?></a>
-<!--vot-->        <a type="button" href="javascript:commentact('pub');" class="btn btn-sm btn-success"><?=lang('approve')?></a>
+<!--vot-->        <a href="javascript:commentact('del');" class="btn btn-sm btn-danger"><?=lang('delete')?></a>
+<!--vot-->        <a href="javascript:commentact('hide');" class="btn btn-sm btn-success"><?=lang('hide')?></a>
+<!--vot-->        <a href="javascript:commentact('pub');" class="btn btn-sm btn-success"><?=lang('approve')?></a>
                 </div>
                 <input name="operate" id="operate" value="" type="hidden"/>
             </div>

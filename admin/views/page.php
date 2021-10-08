@@ -53,9 +53,9 @@
             </div>
             <div class="list_footer">
                 <div class="btn-group btn-group-sm" role="group">
-<!--vot-->          <a type="button" href="javascript:pageact('del');" class="btn btn-sm btn-danger"><?=lang('delete')?></a>
-<!--vot-->          <a type="button" href="javascript:pageact('hide');" class="btn btn-sm btn-success"><?=lang('make_draft')?></a>
-<!--vot-->          <a type="button" href="javascript:pageact('pub');" class="btn btn-sm btn-success"><?=lang('publish')?></a>
+<!--vot-->          <a href="javascript:pageact('del');" class="btn btn-sm btn-danger"><?=lang('delete')?></a>
+<!--vot-->          <a href="javascript:pageact('hide');" class="btn btn-sm btn-success"><?=lang('make_draft')?></a>
+<!--vot-->          <a href="javascript:pageact('pub');" class="btn btn-sm btn-success"><?=lang('publish')?></a>
                 </div>
                 <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
                 <input name="operate" id="operate" value="" type="hidden"/>

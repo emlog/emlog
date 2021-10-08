@@ -26,7 +26,6 @@ $lang = array(
  'content'		=> '内容',//'Content',
  'commentator'		=> '评论者',//'Commentator',
  'belongs_to_post'	=> '所属文章',//'Belongs to post',
-// 'pending'		=> '待审',//'Pending',
  'from'			=> '来自',//'From',
  'delete'		=> '删除',//'Delete',
  'approve'		=> '审核',//'Approve',
@@ -38,13 +37,10 @@ $lang = array(
  'no_comments_yet'	=> '还没有收到评论',//'Have not yet received comments',
 // 'select_all'		=> '全选',//'Select all',
 // 'selected_items'	=> '选中项',//'Selected items',
-// 'delete'		=> '删除',//'Delete',
-// 'hide'		=> '隐藏',//'Hide',
-// 'approve'		=> '审核',//'Approve',
 // 'have'		=> '有',//'Have ',
  '_comments'		=> '条评论',//' comments',
  'comment_operation_select'	=> '请选择要操作的评论',//'Please select the operation for comments',
- 'comment_selected_delete_sure'	=> '你确定要删除所选评论吗？',//'Are you sure you want to delete selected comments?',
+ 'comment_selected_delete_sure'	=> '确定要删除所选评论吗？',//'Are you sure you want to delete selected comments?',
 
 //---------------------------
 //admin/views/comment_edit.php

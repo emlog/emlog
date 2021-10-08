@@ -37,7 +37,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 <!--vot--><h1 class="h3 mb-0 text-gray-800"><?=lang('post_manage')?></h1>
 <!--vot--><a href="./article.php?action=write" class="btn btn-sm btn-success shadow-sm mt-4"><i class="icofont-pencil-alt-5"></i> <?=lang('article_add')?></a>
 </div>
-<div class="panel-heading">
+<div class="panel-heading mb-3">
     <ul class="nav nav-tabs">
         <li class="nav-item"><a class="nav-link <?php if (!$draft) {
 				echo 'active';
@@ -136,7 +136,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
                             </td>
 							<?php if (!$draft): ?>
                                 <td>
-                                    <a href="<?php echo Url::log($value['gid']); ?>" target="_blank"><img src="./views/images/vlog.gif" /></a>
+                                    <a href="<?php echo Url::log($value['gid']); ?>" target="_blank"><img src="./views/images/vlog.gif"/></a>
                                 </td>
 							<?php endif; ?>
                             <td><a href="article.php?uid=<?php echo $value['author'] . $isdraft; ?>"><?php echo $author; ?></a></td>
@@ -196,11 +196,11 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 				<?php endif; ?>
 
                 <div class="btn-group btn-group-sm" role="group">
-<!--vot-->          <a type="button" href="javascript:logact('del');" class="btn btn-sm btn-danger"><?=lang('delete')?></a>
+<!--vot-->          <a href="javascript:logact('del');" class="btn btn-sm btn-danger"><?=lang('delete')?></a>
 					<?php if ($draft): ?>
-<!--vot-->              <a type="button" href="javascript:logact('pub');" class="btn btn-sm btn-success"><?=lang('publish')?></a>
+<!--vot-->              <a href="javascript:logact('pub');" class="btn btn-sm btn-success"><?=lang('publish')?></a>
 					<?php else: ?>
-<!--vot-->              <a type="button" href="javascript:logact('hide');" class="btn btn-sm btn-success"><?=lang('add_draft')?></a>
+<!--vot-->              <a href="javascript:logact('hide');" class="btn btn-sm btn-success"><?=lang('add_draft')?></a>
 					<?php endif; ?>
                 </div>
             </div>

@@ -18,7 +18,7 @@
 <div class="card shadow mb-4 mt-2">
     <div class="card-body">
         <form action="seo.php?action=update" method="post">
-<!--vot-->  <h4><?=lang('post_url_format')?></h4>
+<!--vot-->  <h4><?=lang('post_url')?></h4>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="permalink" value="0" <?php echo $ex0; ?>>
 <!--vot-->      <label class="form-check-label"><?=lang('default_format')?>: <span class="permalink_url"><?php echo BLOG_URL; ?>?post=1</span></label>

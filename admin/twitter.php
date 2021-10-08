@@ -1,6 +1,6 @@
 <?php
 /**
- * 笔记
+ * Notes
  * @package EMLOG (www.emlog.net)
  */
 
@@ -9,7 +9,7 @@
  * @var object $CACHE
  */
 
-const TW_PAGE_COUNT = 20; // 笔记每页显示数量
+const TW_PAGE_COUNT = 20; // Number of notes displayed per page
 
 require_once 'globals.php';
 

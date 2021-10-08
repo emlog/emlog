@@ -14,6 +14,10 @@ function timestamp() {
 
 function em_confirm(id, property, token) {
     switch (property) {
+        case 'tw':
+            var urlreturn = "twitter.php?action=del&id=" + id;
+/*vot*/     var msg = lang('twitter_del_sure');
+            break;
         case 'comment':
             var urlreturn = "comment.php?action=del&id=" + id;
 /*vot*/     var msg = lang('comment_del_sure');
@@ -220,7 +224,7 @@ function autosave(act) {
             var m = d.getMinutes();
             var s = d.getSeconds();
             var tm = (h < 10 ? "0" + h : h) + ":" + (m < 10 ? "0" + m : m) + ":" + (s < 10 ? "0" + s : s);
-/*vot*/     $("#save_info").html(lang('saved_ok_time') + tm);
+/*vot*/     $("#save_info").html(lang('saved_ok_time')+ tm);
             $("#" + nodeid).val(logid);
             $("#savedf").attr("disabled", false).val(btname);
         } else {
@@ -270,20 +274,21 @@ $(function () {
 // editor.md js hook
 var queue = new Array();
 var hooks = {
-    addAction: function(hook, func) {      
-        if (typeof(queue[hook])=="undefined"||queue[hook] == null){
+    addAction: function (hook, func) {
+        if (typeof (queue[hook]) == "undefined" || queue[hook] == null) {
             queue[hook] = new Array();
-        }        
+        }
         if (typeof func == 'function') {
             queue[hook].push(func);
         }
-   },
-   doAction: function(hook,obj) {
-        try{
-            for(var i=0; i < queue[hook].length; i++) {
+    },
+    doAction: function (hook, obj) {
+        try {
+            for (var i = 0; i < queue[hook].length; i++) {
                 queue[hook][i](obj);
             }
-        }catch(e) {}
+        } catch (e) {
+        }
     }
 }
 

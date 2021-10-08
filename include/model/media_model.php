@@ -74,10 +74,10 @@ class Media_Model {
 		$filepath_thum = $attach['filepath'];
 		$filepath = str_replace("thum-", "", $attach['filepath']);
 		if (file_exists($filepath_thum)) {
-			@unlink($filepath_thum) or emMsg("删除失败!");
+/*vot*/		@unlink($filepath_thum) or emMsg(lang('del_failed'));
 		}
 		if (file_exists($filepath)) {
-			@unlink($filepath) or emMsg("删除失败!");
+/*vot*/		@unlink($filepath) or emMsg(lang('del_failed'));
 		}
 
 		return $this->db->query("DELETE FROM " . DB_PREFIX . "attachment WHERE aid = {$media_id} ");

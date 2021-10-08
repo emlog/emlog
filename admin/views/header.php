@@ -60,7 +60,7 @@
         </li>
 		<?php if (ROLE == ROLE_ADMIN): ?>
             <li class="nav-item" id="menu_twitter">
-                <a class="nav-link" href="twitter.php"><i class="icofont-penalty-card"></i><span>笔记</span></a>
+<!--vot-->      <a class="nav-link" href="twitter.php"><i class="icofont-penalty-card"></i><span><?= lang('twitters') ?></span></a>
             </li>
             <li class="nav-item" id="menu_media">
 <!--vot-->      <a class="nav-link" href="media.php"><i class="icofont-image"></i><span><?= lang('resources') ?></span></a>

@@ -14,7 +14,7 @@ $lang = array(
  'view_by_tag'		=> '按标签查看',//'View by tag',
  'article_add'		=> '写新文章',//'Write a new article',
  'enter_summary'	=> '如果留空，则使用文章内容作为摘要...',//'If left blank, use the content of the article as a summary...',
- 'attachment_delete_error'	=> '删除附件失败!',//'Failed to delete attachment!',
+ 'attachment_delete_error'	=> '删除失败!',//'Failed to delete the file!',
 
 //---------------------------
 //admin/blogger.php
@@ -35,7 +35,7 @@ $lang = array(
  'file_not_exists'		=> '文件不存在',//'File does not exist',
  'import_only_emlog'		=> '只能导入emlog备份的SQL文件',//'You can import only emlog SQL backup file',
  'info_illegal'			=> '非法提交的信息',//'Submitted information is illegal',
- 'attachment_exceed_system_limit'	=> '附件大小超过系统 ',//'Attachment size exceeds the system limit ',
+ 'attachment_exceed_system_limit'	=> '文件大小超过系统 ',//'File size exceeds system limit ',
  'upload_failed_code'		=> '上传文件失败,错误码: ',//'Upload failed. Error code: ',
  'import_only_emlog_no_change'	=> '只能导入emlog备份的压缩包，且不能修改压缩包文件名！',//'You can only import emlog backup archive, and the archive file name can not be changed!',
  'import_failed_not_read'	=> '导入失败！读取文件失败',//'Import failed! Can not read the file',
@@ -164,7 +164,7 @@ $lang = array(
  '_articles'		=> '文章',//' articles',
  'posts'		=> '文章',//'Posts',
  'select_article'	=> '请选择要操作的文章',//'Please select the article to operate',
- 'sure_delete_articles'	=> '你确定要删除所选文章吗？',//'Are you sure you want to delete the selected articles?',
+ 'sure_delete_articles'	=> '确定要删除所选文章吗？',//'Are you sure you want to delete selected articles?',
  'tags'			=> '标签',//'Tags',
  'tags_no'		=> '还没有标签',//'No tags',
  'tag_by_view'		=> '按标签查看',//'View by tags',
@@ -200,7 +200,7 @@ $lang = array(
  'make_draft'		=> '转为草稿',//'Convert to draft',
  '_pages'		=> '个页面',//' pages',
  'select_page_to_operate'	=> '请选择要操作的页面',//'Please, select the page to operate',
- 'sure_delete_selected_pages'	=> '你确定要删除所选页面吗？',//'Are you sure you want to delete selected pages?',
+ 'sure_delete_selected_pages'	=> '确定要删除所选页面吗？',//'Are you sure you want to delete selected pages?',
  'pages_total'		=> '已创建了',//'Total pages:',
 
 //---------------------------
@@ -252,6 +252,7 @@ $lang = array(
  'view_article'		=> '查看该文章',//'View the article',
  'no_comments_yet'	=> '还没有收到评论',//'Yet no comments',
  'operation'		=> '操作',//'Operation',
+ 'comment_selected_delete_sure'	=> '确定要删除所选评论吗？',//'Are you sure you want to delete the selected comments?',
 
 //---------------------------
 //admin/views/configure.php
@@ -278,10 +279,6 @@ $lang = array(
  'auto_summary'			=> '自动摘要',//'Automatic summary',
  'auto_summary_length'		=> '自动截取',//'Automatically intercept',
  'characters_as_summary'	=> '个字作为摘要',//' characters as a summary',
- 'twitters'			=> '微语',//'Twitters',
- 'twitters_enable'		=> '开启微语，',//'Enable twitters, ',
- '_twitters'			=> '条微语',//' twitter(s)',
- 'twitter_reply_enable'		=> '开启微语回复，',//'Enable twitter reply, ',
  'reply_verification_code'	=> '回复验证码，',//'Reply verification code, ',
  'reply_audit'			=> '回复审核',//'Reply audit',
  'enable_comments'		=> '开启评论',//'Enable comments',
@@ -387,6 +384,7 @@ $lang = array(
  'search_for'		=> '查找文章...',//'Search for...',
  'search'		=> 'Search',//'Search',
  'resources'		=> '资源',//'Resources',
+ 'twitters'		=> '笔记',//'Notes',
 
 //---------------------------
 //admin/views/index.php
@@ -405,9 +403,7 @@ $lang = array(
  'close'		=> 'Close',
  'logout_prompt'	=> 'Select "Logout" below if you are ready to end your current session.',
  'system'		=> '系统',//'System',
- 'twitter_write_placeholder'	=> '用微语记录生活 ……',//'Write some words to the twitter...',
  'cancel'			=> '取消',//'Cancel',
- 'twitter_write_length'		=> '(你还可以输入140字)',//'(You can enter 140 characters maximum)',
  'site_info'			=> '站点信息',//'Site Info',
  '_comments'			=> '条评论',//' comments',
  'db_prefix'			=> '数据库表前缀',//'Database table prefix',
@@ -500,6 +496,9 @@ $lang = array(
  'upload_files'		=> '上传图片/文件',//'Upload image/file',
  'media_deleted_ok'	=> '媒体文件删除成功',//'Media file deleted successfully',
  '_resources'		=> '个资源',//'resources',
+ 'resource_del_selected'	=> '删除所选资源',//'Delete selected resources',
+ 'resource_select'	=> '请选择要删除的资源',//'Please select the resource to be deleted',
+ 'resource_del_sure'	=> '确定要删除所选资源吗？',//'Are you sure you want to delete the selected resource?',
 
 //---------------------------
 //admin/views/navbar.php
@@ -594,7 +593,7 @@ $lang = array(
  'htaccess_not_writable'	=> '保存失败：根目录下的.htaccess不可写',//'Save failed: .htaccess file in the root directory is not writable',
  'post_url_settings'		=> '文章链接设置',//'Post URL settings',
  'post_url_rewriting'		=> '如果修改后文章无法访问，可能是服务器空间不支持URL重写，请修改回默认形式、关闭文章连接别名。',//'If the article cannot be accessed after the modification, it may be that the server space does not support URL rewriting. Please modify it back to the default form and turn off the article connection alias.',
- 'post_url_format'		=> '文章链接格式',//'Article URL format',
+ 'post_url'			=> '文章链接',//'Article URL',
  'default_format'		=> '默认格式',//'Default format',
  'file_format'			=> '文件格式',//'File format',
  'directory_format'		=> '目录格式',//'Directory format',
@@ -673,6 +672,7 @@ $lang = array(
  '_save_'	=> '保 存',//' Save ',
  '_cancel_'	=> '取 消',//' Cancel ',
  'tag_select'	=> '请选择标签',//'Please select a tag',
+ 'tag_delete_sure'	=> '你确定要删除所选标签吗？',//'Are you sure you want to delete the selected tags?',
 
 //---------------------------
 //admin/views/template.php
@@ -722,6 +722,20 @@ $lang = array(
  'top_image_custom'		=> '自定义图片',//'Custom image',
  'upload'			=> '上传',//'Upload',
  'top_image_upload_prompt'	=> '(上传一张你喜欢的顶部图片，支持JPG、PNG格式)',//'(Upload your favourite picture to top. Supported formats: jpg, png.)',
+
+//---------------------------
+//admin/views/twitter.php
+// 'published_ok'		=> '发布成功',//'Entry has been publised successfully',
+// 'settings_saved_ok'	=> '设置保存成功',//'Settings have been saved successfully',
+ 'twitter_del_ok'	=> '笔记删除成功',//'Note deleted successfully',
+ 'twitter_empty'	=> '笔记内容不能为空',//'Note content cannot be empty',
+ 'twitter_add'		=> '卡片笔记',//'Add a note',
+ 'twitter_prompt'	=> '快速记录想法，帮你方便的捕捉灵感，积累知识的复利',//'Quickly record ideas, help you easily capture inspiration and accumulate knowledge compound interest',
+ 'twitter_save'		=> '保存笔记',//'Save the note',
+// 'delete'		=> '删除',//'Delete',
+// 'have'			=> '有',//'Have ',
+ 'twitters'			=> '笔记',//'Notes',
+ '_twitters'			=> '条笔记',//' note(s)',
 
 //---------------------------
 //admin/views/upload.php
@@ -777,8 +791,6 @@ $lang = array(
  'blogger'		=> '个人资料',//'Personal information',
  'change'		=> '更改',//'Change',
  'calendar'		=> '日历',//'Calendar',
- 'twitter_latest'	=> '最新微语',//'Latest twits',
- 'twitter_latest_num'	=> '首页显示最新微语数',//'Number of latest twits',
  'last_comments_num'	=> '最新评论数',//'Last comments number',
  'new_comments_home'	=> '首页最新评论数',//'Home Latest comments',
  'new_comments_length'	=> '新近评论截取字节数',//'Summary length for latest comments',

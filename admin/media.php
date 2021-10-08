@@ -59,11 +59,6 @@ if ($action === 'upload') {
 	// Write attachment information
 	$aid = $Media_Model->addMedia($ret['file_info']);
 
-	// Write thumbnail information
-	if (isset($ret['file_info']['thum_file'])) {
-		$Media_Model->addMedia($ret['file_info'], $aid);
-	}
-
 	if ($editor) {
 		echo json_encode($ret);
 	} else {
@@ -75,22 +70,21 @@ if ($action === 'upload') {
 if ($action === 'delete') {
 	LoginAuth::checkToken();
 	$aid = isset($_GET['aid']) ? (int)$_GET['aid'] : '';
-	$query = $DB->query("SELECT * FROM " . DB_PREFIX . "attachment WHERE aid = $aid ");
-	$attach = $DB->fetch_array($query);
-	$logid = $attach['blogid'];
-	if (file_exists($attach['filepath'])) {
-/*vot*/ @unlink($attach['filepath']) or emMsg(lang('attachment_delete_error'));
-	}
-
-	$query = $DB->query("SELECT * FROM " . DB_PREFIX . "attachment WHERE thumfor = " . $attach['aid']);
-	$thum_attach = $DB->fetch_array($query);
-	if ($thum_attach) {
-		if (file_exists($thum_attach['filepath'])) {
-/*vot*/	 @unlink($thum_attach['filepath']) or emMsg(lang('attachment_delete_error'));
-		}
-		$DB->query("DELETE FROM " . DB_PREFIX . "attachment WHERE aid = {$thum_attach['aid']} ");
-	}
-
-	$DB->query("DELETE FROM " . DB_PREFIX . "attachment WHERE aid = {$attach['aid']} ");
+	$Media_Model->deleteMedia($aid);
 	emDirect("media.php?active_del=1");
+}
+
+if ($action == 'operate_media') {
+	$operate = $_POST['operate'] ?? '';
+	$aids = isset($_POST['aids']) ? array_map('intval', $_POST['aids']) : array();
+
+	LoginAuth::checkToken();
+	switch ($operate) {
+		case 'del':
+			foreach ($aids as $value) {
+				$Media_Model->deleteMedia($value);
+			}
+			emDirect("media.php?active_del=1");
+			break;
+	}
 }

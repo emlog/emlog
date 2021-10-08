@@ -102,6 +102,14 @@ $lang = array(
 'pdo_not_supported'		=> 'Сервер не поддерживает функционал PDO',//'服务器空间PHP不支持PDO函数',
 'pdo_connect_error'		=> 'Ошибка: Проверьте введённую информацию. Error message: ',//'连接数据库失败，请检查数据库信息。错误原因：',
 
+//---------------------------------------
+//include/lib/twitter_model.php
+// 'no_permission'	=> 'Insufficient permissions!',//'权限不足！',
+
+//---------------------------------------
+//include/model/media_model.php
+'del_failed'	=> 'Ошибка удаления!',//'删除失败!',
+
 //---------------------------
 //content/templates/default/404.php
  '404_error'		=> 'Ошибка: страница не найдена.',//'错误提示-页面未找到',
