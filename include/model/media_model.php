@@ -24,20 +24,15 @@ class Media_Model {
 		$medias = [];
 		while ($row = $this->db->fetch_array($query)) {
 			$medias[$row['aid']] = [
-				'attsize'  => changeFileSize($row['filesize']),
-				'filename' => htmlspecialchars($row['filename']),
-				'addtime'  => date("Y-m-d H:i", $row['addtime']),
-				'aid'      => $row['aid'],
-				'filepath' => $row['filepath'],
-				'width'    => $row['width'],
-				'height'   => $row['height'],
+				'attsize'       => changeFileSize($row['filesize']),
+				'filename'      => htmlspecialchars($row['filename']),
+				'addtime'       => date("Y-m-d H:i", $row['addtime']),
+				'aid'           => $row['aid'],
+				'filepath_thum' => $row['filepath'],
+				'filepath'      => str_replace("thum-", '', $row['filepath']),
+				'width'         => $row['width'],
+				'height'        => $row['height'],
 			];
-			$thum = $this->db->once_fetch_array('SELECT * FROM ' . DB_PREFIX . 'attachment WHERE thumfor = ' . $row['aid']);
-			if ($thum) {
-				$medias[$row['aid']]['thum_filepath'] = $thum['filepath'];
-				$medias[$row['aid']]['thum_width'] = $thum['width'];
-				$medias[$row['aid']]['thum_height'] = $thum['height'];
-			}
 		}
 		return $medias;
 	}
@@ -53,7 +48,7 @@ class Media_Model {
 	 * @param int $thumfor
 	 * @return int|string
 	 */
-	function addMedia($file_info, $thumfor = 0) {
+	function addMedia($file_info) {
 
 		$file_name = $file_info['file_name'];
 		$file_size = $file_info['size'];
@@ -63,15 +58,29 @@ class Media_Model {
 		$img_height = $file_info['height'];
 		$create_time = time();
 
+		if (isset($file_info['thum_file'])) {
+			$file_path = $file_info['thum_file'];
+		}
+
 		$query = "INSERT INTO " . DB_PREFIX . "attachment (filename, filesize, filepath, addtime, width, height, mimetype, thumfor) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s')";
-		$query = sprintf($query, $file_name, $file_size, $file_path, $create_time, $img_width, $img_height, $file_mime_type, $thumfor);
+		$query = sprintf($query, $file_name, $file_size, $file_path, $create_time, $img_width, $img_height, $file_mime_type, 0);
 		$this->db->query($query);
 		return $this->db->insert_id();
-
 	}
 
-	function deleteMedia($linkId) {
-		$this->db->query("DELETE FROM " . DB_PREFIX . "link where id=$linkId");
+	function deleteMedia($media_id) {
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "attachment WHERE aid = $media_id ");
+		$attach = $this->db->fetch_array($query);
+		$filepath_thum = $attach['filepath'];
+		$filepath = str_replace("thum-", "", $attach['filepath']);
+		if (file_exists($filepath_thum)) {
+			@unlink($filepath_thum) or emMsg("删除失败!");
+		}
+		if (file_exists($filepath)) {
+			@unlink($filepath) or emMsg("删除失败!");
+		}
+
+		return $this->db->query("DELETE FROM " . DB_PREFIX . "attachment WHERE aid = {$media_id} ");
 	}
 
 }

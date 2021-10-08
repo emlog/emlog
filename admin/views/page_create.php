@@ -61,20 +61,19 @@
 							$media_url = getFileUrl($value['filepath']);
 							$media_name = $value['filename'];
 							if (isImage($value['filepath'])) {
-								$imgpath = $value['thum_filepath'] ?? $value['filepath'];
-								$media_icon_imgurl = getFileUrl($imgpath);
+								$media_icon = getFileUrl($value['filepath_thum']);
 							} else {
-								$media_icon_imgurl = "./views/images/fnone.png";
+								$media_icon = "./views/images/fnone.png";
 							}
 							?>
                             <div class="card" style="min-height: 138px;">
 								<?php if (isImage($value['filepath'])): ?>
-                                    <a href="javascript:insert_media_img('<?php echo $media_url; ?>', '<?php echo $media_icon_imgurl; ?>')">
-                                        <img class="card-img-top" src="<?php echo $media_icon_imgurl; ?>"/>
+                                    <a href="javascript:insert_media_img('<?php echo $media_url; ?>', '<?php echo $media_icon; ?>')">
+                                        <img class="card-img-top" src="<?php echo $media_icon; ?>"/>
                                     </a>
 								<?php else: ?>
                                     <a href="javascript:insert_media('<?php echo $media_url; ?>', '<?php echo $media_name; ?>')">
-                                        <img class="card-img-top" src="<?php echo $media_icon_imgurl; ?>"/>
+                                        <img class="card-img-top" src="<?php echo $media_icon; ?>"/>
                                     </a>
 								<?php endif; ?>
                             </div>

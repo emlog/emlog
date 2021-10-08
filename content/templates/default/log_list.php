@@ -47,7 +47,7 @@ if (!defined('EMLOG_ROOT')) {
 				?>
 <!--vot-->          <p><?=lang('sorry_no_results')?></p>
 			<?php endif; ?>
-            <ul class="pagination justify-content-center mb-4">
+            <ul class="pagination justify-content-center">
 				<?php echo $page_url; ?>
             </ul>
         </div>

@@ -59,6 +59,9 @@
 <!--vot-->  <a class="nav-link" href="comment.php"><i class="icofont-comment"></i><span><?= lang('comments') ?></span></a>
         </li>
 		<?php if (ROLE == ROLE_ADMIN): ?>
+            <li class="nav-item" id="menu_twitter">
+                <a class="nav-link" href="twitter.php"><i class="icofont-penalty-card"></i><span>笔记</span></a>
+            </li>
             <li class="nav-item" id="menu_media">
 <!--vot-->      <a class="nav-link" href="media.php"><i class="icofont-image"></i><span><?= lang('resources') ?></span></a>
             </li>
@@ -129,7 +132,8 @@
                     <div class="topbar-divider d-none d-sm-block"></div>
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="img-profile rounded-circle" src="<?php echo empty($user_cache[UID]['avatar']) ? './views/images/avatar.svg' : '../' . $user_cache[UID]['avatar'] ?>">
+                            <img class="img-profile rounded-circle"
+                                 src="<?php echo empty($user_cache[UID]['avatar']) ? './views/images/avatar.svg' : '../' . $user_cache[UID]['avatar'] ?>">
                         </a>
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                             <a class="dropdown-item" href="blogger.php">
