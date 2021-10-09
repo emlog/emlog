@@ -435,7 +435,6 @@ function blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allo
                                    tabindex="3" placeholder="个人主页"/>
                         </div>
 					<?php endif; ?>
-
                     <p class="com_submit_p">
                         <input class="btn btn-outline-primary"<?php if ($verifyCode != "") { ?> type="button" data-toggle="modal" data-target="#myModal"<?php } else { ?> type="submit"<?php } ?>
                                id="comment_submit" value="发布评论" tabindex="6"/>
@@ -445,9 +444,7 @@ function blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allo
                         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content" style="display: table-cell;">
-                                    <div class="modal-header" style="border-bottom: 0px;">
-                                        输入验证码
-                                    </div>
+                                    <div class="modal-header" style="border-bottom: 0px;">输入验证码</div>
 									<?php echo $verifyCode; ?>
                                     <div class="modal-footer" style="border-top: 0px;">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
