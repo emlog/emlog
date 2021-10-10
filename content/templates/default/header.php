@@ -4,7 +4,7 @@ Template Name:默认模板
 Template Url:https://www.emlog.net/template/
 Description:这是emlog pro的默认模板
 Author:emlog
-Author Url:http://www.emlog.net
+Author Url:https://www.emlog.net
 */
 if (!defined('EMLOG_ROOT')) {
 	exit('error!');
@@ -19,14 +19,13 @@ require_once View::getView('module');
     <title><?php echo $site_title; ?></title>
     <meta name="keywords" content="<?php echo $site_key; ?>"/>
     <meta name="description" content="<?php echo $site_description; ?>"/>
-    <meta name="generator" content="emlog"/>
     <link rel="alternate" title="RSS" href="<?php echo BLOG_URL; ?>rss.php" type="application/rss+xml"/>
-    <link href="<?php echo TEMPLATE_URL; ?>css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-    <link href="<?php echo TEMPLATE_URL; ?>css/main.css" rel="stylesheet" type="text/css"/>
-    <link href="<?php echo TEMPLATE_URL; ?>css/markdown.css" rel="stylesheet" type="text/css"/>
-    <script src="<?php echo TEMPLATE_URL; ?>js/common_tpl.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="<?php echo TEMPLATE_URL; ?>css/bootstrap.min.css?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo TEMPLATE_URL; ?>css/main.css?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo TEMPLATE_URL; ?>css/markdown.css?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>">
+    <script src="<?php echo TEMPLATE_URL; ?>js/common_tpl.js?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
     <script src="<?php echo TEMPLATE_URL; ?>js/jquery.min.3.5.1.js?v=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
-    <script src="<?php echo TEMPLATE_URL; ?>js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="<?php echo TEMPLATE_URL; ?>js/bootstrap.min.js?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
 	<?php doAction('index_head'); ?>
 </head>
 <body>

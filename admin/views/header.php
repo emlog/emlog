@@ -9,19 +9,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name=renderer content=webkit>
     <title>管理中心 - <?php echo Option::get('blogname'); ?></title>
-    <link rel="stylesheet" href="./views/css/style.css?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"/>
-    <link rel="stylesheet" href="./editor.md/css/editormd.css?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"/>
-    <link href="./views/css/bootstrap-sbadmin-4.5.3.css?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>" rel="stylesheet">
-    <link href="./views/css/css-main.css" type=text/css rel=stylesheet>
-    <link href="./views/css/icofont/icofont.min.css" type=text/css rel=stylesheet>
-    <link href="./views/css/dropzone.css" type=text/css rel=stylesheet>
-    <link href="./views/css/cropper.min.css" type=text/css rel=stylesheet>
+    <link rel="stylesheet" type="text/css" href="./views/css/style.css?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>">
+    <link rel="stylesheet" type="text/css" href="./editor.md/css/editormd.css?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>">
+    <link rel="stylesheet" type="text/css" href="./views/css/bootstrap-sbadmin-4.5.3.css?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>">
+    <link rel="stylesheet" type="text/css" href="./views/css/css-main.css?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>">
+    <link rel="stylesheet" type="text/css" href="./views/css/icofont/icofont.min.css?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>">
+    <link rel="stylesheet" type="text/css" href="./views/css/dropzone.css?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>">
+    <link rel="stylesheet" type="text/css" href="./views/css/cropper.min.css?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>">
 
-    <script src="./views/js/jquery.min.3.5.1.js"></script>
-    <script src="./views/js/bootstrap.bundle.min.4.6.js"></script>
-    <script src="./views/js/jquery-ui.min.js"></script>
-    <script src="./views/js/js.cookie-2.2.1.min.js"></script>
-    <script src="./views/js/cropper.min.js"></script>
+    <script src="./views/js/jquery.min.3.5.1.js?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
+    <script src="./views/js/bootstrap.bundle.min.4.6.js?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
+    <script src="./views/js/jquery-ui.min.js?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
+    <script src="./views/js/js.cookie-2.2.1.min.js?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
+    <script src="./views/js/cropper.min.js?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
     <script src="./views/js/common.js?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
 	<?php doAction('adm_head'); ?>
 </head>
