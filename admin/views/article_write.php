@@ -192,7 +192,7 @@
         </div>
     </div>
 </div>
-<script src="./editor.md/editormd.js?d=5.25.2021"></script>
+<script src="./editor.md/editormd.js?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
 <script>
     var icon_tog;//如果值为true，则“更多选项”箭头向右
 

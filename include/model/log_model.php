@@ -351,7 +351,7 @@ class Log_Model {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name=renderer  content=webkit>
 <title>emlog</title>
-<link href="{$url}admin/views/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="{$url}admin/views/css/bootstrap.min.css">
 </head>
 <body class="text-center">
 	<form action="" method="post" class="form-signin" style="width: 100%;max-width: 330px;padding: 15px;margin: 0 auto;">

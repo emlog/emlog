@@ -64,7 +64,7 @@
         </div>
     </div>
 </div>
-<script src="./views/js/dropzone.min.js"></script>
+<script src="./views/js/dropzone.min.js?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
 <script>
     $("#menu_media").addClass('active');
     setTimeout(hideActived, 3600);
