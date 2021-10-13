@@ -25,7 +25,7 @@ require_once View::getView('module');
     <link rel="stylesheet" type="text/css" href="<?php echo TEMPLATE_URL; ?>css/markdown.css?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>">
     <script src="<?php echo TEMPLATE_URL; ?>js/common_tpl.js?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
     <script src="<?php echo TEMPLATE_URL; ?>js/jquery.min.3.5.1.js?v=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
-    <script src="<?php echo TEMPLATE_URL; ?>js/bootstrap.min.js?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
+    <script src="<?php echo TEMPLATE_URL; ?>js/bootstrap.bundle.min.js?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
 	<?php doAction('index_head'); ?>
 </head>
 <body>
