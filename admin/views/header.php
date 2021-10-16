@@ -128,20 +128,17 @@
                         </a>
                     </li>
                     <div class="topbar-divider d-none d-sm-block"></div>
-                    <li class="nav-item dropdown no-arrow">
-                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <li class="nav-item mx-1">
+                        <a class="nav-link" href="blogger.php" role="button">
                             <img class="img-profile rounded-circle"
                                  src="<?php echo empty($user_cache[UID]['avatar']) ? './views/images/avatar.svg' : '../' . $user_cache[UID]['avatar'] ?>">
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="blogger.php">
-                                <i class="icofont-user icofont-1x"></i> 个人设置
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="?action=logout">
-                                <i class="icofont-logout icofont-1x"></i> 退出
-                            </a>
-                        </div>
+                    </li>
+                    <div class="topbar-divider d-none d-sm-block"></div>
+                    <li class="nav-item mx-1">
+                        <a class="nav-link" href="?action=logout" title="退出" role="button">
+                            <i class="icofont-logout icofont-1x"></i>
+                        </a>
                     </li>
                 </ul>
             </nav>
