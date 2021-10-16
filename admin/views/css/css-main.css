@@ -282,7 +282,7 @@ textarea {
 .advset_hidden {
     opacity: 0;
     visibility: hidden;
-    margin-top: -530px;
+    margin-top: -450px;
 }
 #post_bar {
     margin:5px 0px;

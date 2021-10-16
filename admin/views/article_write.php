@@ -82,14 +82,6 @@
                     <input type="text" name="password" id="password" class="form-control" value="<?php echo $password; ?>"/>
                 </div>
                 <div class="form-group">
-                    <input type="checkbox" value="y" name="top" id="top" <?php echo $is_top; ?> />
-                    <label for="top">首页置顶</label>
-                </div>
-                <div class="form-group">
-                    <input type="checkbox" value="y" name="sortop" id="sortop" <?php echo $is_sortop; ?> />
-                    <label for="sortop">分类置顶</label>
-                </div>
-                <div class="form-group">
                     <input type="checkbox" value="y" name="allow_remark" id="allow_remark" <?php echo $is_allow_remark; ?> />
                     <label for="allow_remark">允许评论</label>
                 </div>
