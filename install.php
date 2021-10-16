@@ -12,10 +12,10 @@ header('Content-Type: text/html; charset=UTF-8');
 spl_autoload_register("emAutoload");
 
 if (PHP_VERSION < '7.0') {
-	emMsg('PHP版本过低，请选择支持PHP7及以上的环境安装');
+	emMsg('PHP版本太低，请使用7.0及以上版本(推荐7.4)');
 }
 
-$act = $_GET['action'] ?? '';
+$act = isset($_GET['action']) ? $_GET['action'] : '';
 
 if (!$act) {
 	?>
@@ -103,7 +103,7 @@ if (!$act) {
                 <li>
                     数据库地址： <br/>
                     <input name="hostname" type="text" class="input" value="127.0.0.1">
-                    <span class="care">(通常为 localhost 或者 127.0.0.1)</span>
+                    <span class="care">(通常为 127.0.0.1 或者指定端口 127.0.0.1:3306)</span>
                 </li>
                 <li>
                     数据库用户名：<br/><input name="dbuser" type="text" class="input" value="">
@@ -158,7 +158,7 @@ if ($act == 'install' || $act == 'reinstall') {
 	$adminpw2 = isset($_POST['adminpw2']) ? addslashes(trim($_POST['adminpw2'])) : '';
 	$result = '';
 
-	if ($db_prefix == '') {
+	if ($db_prefix === '') {
 		emMsg('数据库表前缀不能为空!');
 	} elseif (!preg_match("/^[\w_]+_$/", $db_prefix)) {
 		emMsg('数据库表前缀格式错误!');
@@ -183,7 +183,7 @@ if ($act == 'install' || $act == 'reinstall') {
 	$v = $DB->getMysqlVersion();
 
 	if ($v < '5.5.3') {
-		emMsg('MySQL版本太低('.$v.')，请使用5.6及以上版本');
+		emMsg('MySQL版本太低(' . $v . ')，请使用5.6及以上版本');
 	}
 
 	if ($act != 'reinstall' && $DB->num_rows($DB->query("SHOW TABLES LIKE '{$db_prefix}blog'")) == 1) {
@@ -469,7 +469,7 @@ date bigint(20) NOT NULL COMMENT '创建时间',
 replynum int(10) unsigned NOT NULL default '0' COMMENT '回复数量',
 PRIMARY KEY (id),
 KEY author (author)
-)".$table_charset_sql."
+)" . $table_charset_sql . "
 INSERT INTO {$db_prefix}user (uid, username, password, nickname, role, create_time, update_time) VALUES (1,'$admin','" . $adminpw . "', 'emer','admin', " . time() . ", " . time() . ");
 DROP TABLE IF EXISTS {$db_prefix}storage;
 CREATE TABLE {$db_prefix}storage (
