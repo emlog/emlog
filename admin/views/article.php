@@ -34,21 +34,13 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 <?php if (isset($_GET['active_unck'])): ?>
     <div class="alert alert-success">文章驳回成功</div><?php endif; ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">文章管理</h1>
+    <h1 class="h3 mb-0 text-gray-800"><?php echo $draft ? '草稿' : '文章'; ?>管理</h1>
     <a href="./article.php?action=write" class="btn btn-sm btn-success shadow-sm mt-4"><i class="icofont-pencil-alt-5"></i> 写新文章</a>
 </div>
 <div class="card shadow mb-4">
-    <div class="card-header py-3 d-flex justify-content-between align-items-center">
-        <ul class="nav nav-pills card-header-pills">
-            <li class="nav-item">
-                <a class="nav-link <?php if (!$draft) {echo 'active';} ?>" href="article.php">文章</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link <?php if ($draft) {echo 'active';} ?>" href="article.php?draft=1">草稿箱</a>
-            </li>
-        </ul>
+    <div class="card-header py-3">
         <div class="filters">
-            <div class="row form-inline">
+            <div id="f_title" class="row form-inline">
                 <div id="f_t_sort" class="mx-1">
                     <select name="bysort" id="bysort" onChange="selectSort(this);" class="form-control">
                         <option value="" selected="selected">按分类查看</option>
@@ -87,7 +79,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
                         </select>
                     </div>
 				<?php endif; ?>
-            </div class="row form-inline">
+            </div>
         </div>
     </div>
     <div class="card-body">
@@ -210,7 +202,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 <script>
     $("#menu_category_content").addClass('active');
     $("#menu_content").addClass('show');
-    $("#menu_log").addClass('active');
+    $("#menu_<?php echo $draft ? 'draft' : 'log'; ?>").addClass('active');
     setTimeout(hideActived, 2600);
 
     $(document).ready(function () {
