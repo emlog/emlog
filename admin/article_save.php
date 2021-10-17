@@ -45,8 +45,6 @@ $logData = array(
 	'author'       => $author,
 	'sortid'       => $sort,
 	'date'         => $postDate,
-	'top '         => $top,
-	'sortop '      => $sortop,
 	'allow_remark' => $allow_remark,
 	'hide'         => $ishide,
 	'checked'      => $user_cache[UID]['ischeck'] == 'y' ? 'n' : 'y',
