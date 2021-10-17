@@ -8,7 +8,7 @@
 <?php if (isset($_GET['error_a'])): ?>
     <div class="alert alert-danger">请选择标签</div><?php endif; ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">标签管理</h1>
+    <h1 class="h3 mb-0 text-gray-800">文章标签</h1>
 </div>
 <div class="card shadow mb-4">
     <div class="card-body">

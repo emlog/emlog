@@ -23,7 +23,7 @@
 <?php if (isset($_GET['error_e'])): ?>
     <div class="alert alert-danger">评论内容不能为空</div><?php endif; ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">评论管理</h1>
+    <h1 class="h3 mb-0 text-gray-800">评论</h1>
 </div>
 <?php if ($hideCommNum > 0) : ?>
     <div class="panel-heading">

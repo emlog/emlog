@@ -22,7 +22,7 @@
 <?php if (isset($_GET['active_mc'])): ?>
     <div class="alert alert-success">缓存更新成功</div><?php endif; ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">数据管理</h1>
+    <h1 class="h3 mb-0 text-gray-800">数据</h1>
 </div>
 <div class="card-deck">
     <div class="card">

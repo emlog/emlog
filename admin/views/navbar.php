@@ -22,7 +22,7 @@
 <?php if (isset($_GET['error_f'])): ?>
     <div class="alert alert-danger">导航地址格式错误(需包含http等前缀)</div><?php endif; ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">导航管理</h1>
+    <h1 class="h3 mb-0 text-gray-800">导航</h1>
 </div>
 <div class="card shadow mb-4">
     <div class="card-body">

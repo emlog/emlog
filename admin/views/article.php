@@ -34,7 +34,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 <?php if (isset($_GET['active_unck'])): ?>
     <div class="alert alert-success">文章驳回成功</div><?php endif; ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800"><?php echo $draft ? '草稿' : '文章'; ?>管理</h1>
+    <h1 class="h3 mb-0 text-gray-800"><?php echo $draft ? '草稿箱' : '文章'; ?></h1>
     <a href="./article.php?action=write" class="btn btn-sm btn-success shadow-sm mt-4"><i class="icofont-pencil-alt-5"></i> 写新文章</a>
 </div>
 <div class="card shadow mb-4">
