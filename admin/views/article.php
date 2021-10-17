@@ -37,20 +37,18 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
     <h1 class="h3 mb-0 text-gray-800">文章管理</h1>
     <a href="./article.php?action=write" class="btn btn-sm btn-success shadow-sm mt-4"><i class="icofont-pencil-alt-5"></i> 写新文章</a>
 </div>
-<div class="panel-heading mb-3">
-    <ul class="nav nav-tabs">
-        <li class="nav-item"><a class="nav-link <?php if (!$draft) {
-				echo 'active';
-			} ?>" href="article.php">文章</a></li>
-        <li class="nav-item"><a class="nav-link <?php if ($draft) {
-				echo 'active';
-			} ?>" href="article.php?draft=1">草稿箱</a></li>
-    </ul>
-</div>
 <div class="card shadow mb-4">
-    <div class="card-header py-3">
+    <div class="card-header py-3 d-flex justify-content-between align-items-center">
+        <ul class="nav nav-pills card-header-pills">
+            <li class="nav-item">
+                <a class="nav-link <?php if (!$draft) {echo 'active';} ?>" href="article.php">文章</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <?php if ($draft) {echo 'active';} ?>" href="article.php?draft=1">草稿箱</a>
+            </li>
+        </ul>
         <div class="filters">
-            <div id="f_title" class="row form-inline">
+            <div class="row form-inline">
                 <div id="f_t_sort" class="mx-1">
                     <select name="bysort" id="bysort" onChange="selectSort(this);" class="form-control">
                         <option value="" selected="selected">按分类查看</option>
@@ -89,7 +87,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
                         </select>
                     </div>
 				<?php endif; ?>
-            </div>
+            </div class="row form-inline">
         </div>
     </div>
     <div class="card-body">
