@@ -237,7 +237,7 @@ if ($action === 'edit') {
 	$sorts = $CACHE->readCache('sort');
 
 	//tag
-	$tags = array();
+	$tags = [];
 	foreach ($Tag_Model->getTag($logid) as $val) {
 		$tags[] = $val['tagname'];
 	}

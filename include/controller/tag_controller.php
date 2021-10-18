@@ -21,8 +21,7 @@ class Tag_Controller {
 
 		$Tag_Model = new Tag_Model();
 		$blogIdStr = $Tag_Model->getTagByName($tag);
-
-		if ($blogIdStr === false) {
+		if (!$blogIdStr) {
 			show_404_page();
 		}
 		$sqlSegment = "and gid IN ($blogIdStr) order by date desc";

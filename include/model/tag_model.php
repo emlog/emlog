@@ -19,13 +19,13 @@ class Tag_Model {
 	 * @return array
 	 */
 	function getTag($blogId = NULL) {
-		$tags = array();
+		$tags = [];
 
 		$tag_ids = $this->getTagIdsFromBlogId($blogId);
 		$tag_names = $this->getNamesFromIds($tag_ids);
 
 		foreach ($tag_names as $key => $value) {
-			$row = array();
+			$row = [];
 			$row['tagname'] = htmlspecialchars($value);
 			$row['tid'] = (int)$key;
 			$tags[] = $row;
@@ -35,7 +35,7 @@ class Tag_Model {
 	}
 
 	function getOneTag($tagId) {
-		$tag = array();
+		$tag = [];
 		$row = $this->db->once_fetch_array("SELECT tagname,tid FROM " . DB_PREFIX . "tag WHERE tid=$tagId");
 		$tag['tagname'] = htmlspecialchars(trim($row['tagname']));
 		$tag['tagid'] = (int)$row['tid'];
@@ -68,7 +68,7 @@ class Tag_Model {
 		$tagNameArray = explode(',', $tagStr);
 		$tagNameArray = array_unique($tagNameArray);
 
-		$tags = array();
+		$tags = [];
 		foreach ($tagNameArray as $tagName) {
 			$tagName = trim($tagName);
 
@@ -103,7 +103,7 @@ class Tag_Model {
 		$old_tags = $this->getTagIdsFromBlogId($blogId);
 
 		// 新的标签Id列表
-		$new_tags = array();
+		$new_tags = [];
 
 		// 建立新的标签id数组
 		if (!empty($tagStr)) {
@@ -188,7 +188,7 @@ class Tag_Model {
 	 * @return array 标签ID
 	 */
 	function getIdsFromNames($tagNames) {
-		$result = array();
+		$result = [];
 		$tagNameArray = explode(',', $tagNames);
 
 		foreach ($tagNameArray as $each) {
@@ -213,7 +213,7 @@ class Tag_Model {
 	 * @return array
 	 */
 	function getNamesFromIds($tagIds = NULL) {
-		$names = array();
+		$names = [];
 
 		if (!empty($tagIds)) {
 			$tag_string = implode(',', $tagIds);
@@ -275,7 +275,7 @@ class Tag_Model {
 			return $this->getAllTagIds();
 		}
 
-		$tags = array();
+		$tags = [];
 
 		$sql = "SELECT `tags` FROM `" . DB_PREFIX . "blog` WHERE `gid` = " . $blogId;
 
@@ -293,7 +293,7 @@ class Tag_Model {
 	}
 
 	function getAllTagIds() {
-		$tags = array();
+		$tags = [];
 
 		$sql = "SELECT `tid` FROM `" . DB_PREFIX . "tag`";
 		$query = $this->db->query($sql);
@@ -314,7 +314,7 @@ class Tag_Model {
 	 * @return array 文章ID列表
 	 */
 	function getBlogIdsFromTagId($tagId) {
-		$blogs = array();
+		$blogs = [];
 
 		$sql = "SELECT `gid` FROM `" . DB_PREFIX . "tag` WHERE `tid` = " . $tagId;
 		$query = $this->db->query($sql);
@@ -344,7 +344,7 @@ class Tag_Model {
 
 		// 如果blogId存在，则构建一个新的不包含这个blogId的Blog数组，并保存到数据库
 		if (in_array($blogId, $blogs)) {
-			$new_blogs = array();
+			$new_blogs = [];
 
 			foreach ($blogs as $each) {
 				if ($each != $blogId) {
@@ -372,7 +372,7 @@ class Tag_Model {
 
 		// 如果tagId存在，则构建一个新的不包含这个TagId的Tag数组，并保存到数据库
 		if (in_array($tagId, $tags)) {
-			$new_tags = array();
+			$new_tags = [];
 
 			foreach ($tags as $each) {
 				if ($each != $tagId) {

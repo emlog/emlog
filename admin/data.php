@@ -121,7 +121,7 @@ function checkSqlFileInfo($sqlfile) {
 	if (!$fp) {
 		emMsg('导入失败！读取文件失败');
 	}
-	$dumpinfo = array();
+	$dumpinfo = [];
 	$line = 0;
 	while (!feof($fp)) {
 		$a = fgets($fp, 4096);

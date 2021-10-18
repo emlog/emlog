@@ -29,19 +29,19 @@ class Comment_Model {
 		$sql = "SELECT * FROM " . DB_PREFIX . "comment as a where $andQuery ORDER BY a.date ASC $condition";
 
 		$ret = $this->db->query($sql);
-		$comments = array();
+		$comments = [];
 		while ($row = $this->db->fetch_array($ret)) {
 			$row['poster'] = htmlspecialchars($row['poster']);
 			$row['mail'] = htmlspecialchars($row['mail']);
 			$row['url'] = htmlspecialchars($row['url']);
 			$row['content'] = htmlClean($row['comment']);
 			$row['date'] = smartDate($row['date']);
-			$row['children'] = array();
+			$row['children'] = [];
 			$row['level'] = isset($comments[$row['pid']]) ? $comments[$row['pid']]['level'] + 1 : 0;
 			$comments[$row['cid']] = $row;
 		}
 
-		$commentStacks = array();
+		$commentStacks = [];
 		$commentPageUrl = '';
 		foreach ($comments as $cid => $comment) {
 			$pid = $comment['pid'];
@@ -107,7 +107,7 @@ class Comment_Model {
 			$row['url'] = htmlspecialchars($row['url']);
 			$row['comment'] = htmlClean($row['comment']);
 			$row['date'] = smartDate($row['date']);
-			$row['children'] = array();
+			$row['children'] = [];
 			$comments[$row['cid']] = $row;
 		}
 
@@ -158,7 +158,7 @@ class Comment_Model {
 	}
 
 	function delCommentByIp($ip) {
-		$blogids = array();
+		$blogids = [];
 		$sql = "SELECT DISTINCT gid FROM " . DB_PREFIX . "comment WHERE ip='$ip'";
 		$query = $this->db->query($sql);
 		while ($row = $this->db->fetch_array($query)) {
@@ -286,7 +286,7 @@ class Comment_Model {
 
 	function updateComment($commentData, $commentId) {
 		$this->isYoursComment($commentId);
-		$Item = array();
+		$Item = [];
 		foreach ($commentData as $key => $data) {
 			$Item[] = "$key='$data'";
 		}

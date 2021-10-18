@@ -14,7 +14,7 @@ class Link_Model {
 
 	function getLinks() {
 		$res = $this->db->query("SELECT * FROM " . DB_PREFIX . "link ORDER BY taxis ASC");
-		$links = array();
+		$links = [];
 		while ($row = $this->db->fetch_array($res)) {
 			$row['sitename'] = htmlspecialchars($row['sitename']);
 			$row['description'] = htmlClean($row['description'], false);
@@ -25,7 +25,7 @@ class Link_Model {
 	}
 
 	function updateLink($linkData, $linkId) {
-		$Item = array();
+		$Item = [];
 		foreach ($linkData as $key => $data) {
 			$Item[] = "$key='$data'";
 		}

@@ -90,7 +90,7 @@ if ($action == 'update') {
     $template = isset($_POST['template']) && $_POST['template'] != 'log_list' ? addslashes(trim($_POST['template'])) : '';
     $description = isset($_POST['description']) ? addslashes(trim($_POST['description'])) : '';
 
-    $sort_data = array();
+    $sort_data = [];
     if (empty($sortname)) {
         emDirect("./sort.php?action=mod_sort&sid={$sid}&error_a=1");
     }

@@ -224,7 +224,7 @@ class Storage {
 	 * @return array 数据名称
 	 */
 	public function getAllName() {
-		$names = array();
+		$names = [];
 		$sql = "SELECT `name` FROM " . DB_PREFIX . "storage WHERE `plugin` = '" . $this->db_conn->escape_string($this->plugin_name) . "'";
 		$query = $this->db_conn->query($sql);
 		while ($result = $this->db_conn->fetch_array($query)) {

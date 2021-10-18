@@ -73,7 +73,7 @@ function getBlog($sortid = null) {
 	}
 	$sql = "SELECT * FROM " . DB_PREFIX . "blog  WHERE hide='n' and type='blog' $subsql ORDER BY date DESC limit 0," . $rss_output_num;
 	$result = $DB->query($sql);
-	$blog = array();
+	$blog = [];
 	while ($re = $DB->fetch_array($result)) {
 		$re['id'] = $re['gid'];
 		$re['title'] = htmlspecialchars($re['title']);
