@@ -449,7 +449,7 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $is_thumbnail 
 	if ($fileSize > Option::getAttMaxSize()) {
 		return '103'; //文件大小超出emlog的限制
 	}
-	$file_info = array();
+	$file_info = [];
 	$file_info['file_name'] = $fileName;
 	$file_info['mime_type'] = get_mimetype($extension);
 	$file_info['size'] = $fileSize;

@@ -20,7 +20,7 @@ class User_Model {
 			$condition = "LIMIT $startId, " . $perpage_num;
 		}
 		$res = $this->db->query("SELECT * FROM " . DB_PREFIX . "user $condition");
-		$users = array();
+		$users = [];
 		while ($row = $this->db->fetch_array($res)) {
 			$row['name'] = htmlspecialchars($row['nickname']);
 			$row['login'] = htmlspecialchars($row['username']);
@@ -36,7 +36,7 @@ class User_Model {
 
 	function getOneUser($uid) {
 		$row = $this->db->once_fetch_array("select * from " . DB_PREFIX . "user where uid=$uid");
-		$userData = array();
+		$userData = [];
 		if ($row) {
 			$userData = array(
 				'username'    => htmlspecialchars($row['username']),

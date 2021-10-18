@@ -20,8 +20,8 @@ class Log_Model {
 	 * create article
 	 */
 	function addlog($logData) {
-		$kItem = array();
-		$dItem = array();
+		$kItem = [];
+		$dItem = [];
 		foreach ($logData as $key => $data) {
 			$kItem[] = $key;
 			$dItem[] = $data;
@@ -38,7 +38,7 @@ class Log_Model {
 	 */
 	function updateLog($logData, $blogId) {
 		$author = ROLE == ROLE_ADMIN ? '' : 'and author=' . UID;
-		$Item = array();
+		$Item = [];
 		foreach ($logData as $key => $data) {
 			$Item[] = "$key='$data'";
 		}
@@ -142,7 +142,7 @@ class Log_Model {
 		$limit = "LIMIT $start_limit, " . $perpage_num;
 		$sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE type='$type' $author $hide_state $condition $limit";
 		$res = $this->db->query($sql);
-		$logs = array();
+		$logs = [];
 		while ($row = $this->db->fetch_array($res)) {
 			$row['date'] = date("Y-m-d H:i", $row['date']);
 			$row['title'] = !empty($row['title']) ? htmlspecialchars($row['title']) : '无标题';
@@ -164,7 +164,7 @@ class Log_Model {
 		$limit = $perPageNum ? "LIMIT $start_limit, $perPageNum" : '';
 		$sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE type='blog' and hide='n' and checked='y' $condition $limit";
 		$res = $this->db->query($sql);
-		$logs = array();
+		$logs = [];
 		while ($row = $this->db->fetch_array($res)) {
 			$row['log_title'] = htmlspecialchars(trim($row['title']));
 			$row['log_cover'] = $row['cover'] ? getFileUrl($row['cover']) : '';
@@ -192,7 +192,7 @@ class Log_Model {
 	function getAllPageList() {
 		$sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE type='page'";
 		$res = $this->db->query($sql);
-		$pages = array();
+		$pages = [];
 		while ($row = $this->db->fetch_array($res)) {
 			$row['date'] = date("Y-m-d H:i", $row['date']);
 			$row['title'] = !empty($row['title']) ? htmlspecialchars($row['title']) : '无标题';
@@ -271,7 +271,7 @@ class Log_Model {
 	 * @return array
 	 */
 	function neighborLog($date) {
-		$neighborlog = array();
+		$neighborlog = [];
 		$neighborlog['nextLog'] = $this->db->once_fetch_array("SELECT title,gid FROM " . DB_PREFIX . "blog WHERE date < $date and hide = 'n' and checked='y' and type='blog' ORDER BY date DESC LIMIT 1");
 		$neighborlog['prevLog'] = $this->db->once_fetch_array("SELECT title,gid FROM " . DB_PREFIX . "blog WHERE date > $date and hide = 'n' and checked='y' and type='blog' ORDER BY date LIMIT 1");
 		if ($neighborlog['nextLog']) {
@@ -293,7 +293,7 @@ class Log_Model {
 		$start = $lognum > $num ? mt_rand(0, $lognum - $num) : 0;
 		$sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' and checked='y' and type='blog' LIMIT $start, $num";
 		$res = $this->db->query($sql);
-		$logs = array();
+		$logs = [];
 		while ($row = $this->db->fetch_array($res)) {
 			$row['gid'] = (int)$row['gid'];
 			$row['title'] = htmlspecialchars($row['title']);
@@ -308,7 +308,7 @@ class Log_Model {
 	function getHotLog($num) {
 		$sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' and checked='y' and type='blog' ORDER BY views DESC, comnum DESC LIMIT 0, $num";
 		$res = $this->db->query($sql);
-		$logs = array();
+		$logs = [];
 		while ($row = $this->db->fetch_array($res)) {
 			$row['gid'] = (int)$row['gid'];
 			$row['title'] = htmlspecialchars($row['title']);

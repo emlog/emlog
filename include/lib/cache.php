@@ -80,7 +80,7 @@ class Cache {
 	 * 注意更新缓存的方法必须为mc开头
 	 */
 	private function mc_options() {
-		$options_cache = array();
+		$options_cache = [];
 		$res = $this->db->query("SELECT * FROM " . DB_PREFIX . "options");
 		while ($row = $this->db->fetch_array($res)) {
 			if (in_array($row['option_name'], array('site_key', 'blogname', 'bloginfo', 'blogurl', 'icp'))) {
@@ -96,10 +96,10 @@ class Cache {
 	 * 用户信息缓存
 	 */
 	private function mc_user() {
-		$user_cache = array();
+		$user_cache = [];
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "user");
 		while ($row = $this->db->fetch_array($query)) {
-			$photo = array();
+			$photo = [];
 			$avatar = '';
 			if (!empty($row['photo'])) {
 				$photosrc = str_replace("../", '', $row['photo']);
@@ -131,7 +131,7 @@ class Cache {
 	 * 站点统计缓存
 	 */
 	private function mc_sta() {
-		$sta_cache = array();
+		$sta_cache = [];
 		$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "blog WHERE type='blog' AND hide='n' AND checked='y' ");
 		$lognum = $data['total'];
 
@@ -191,8 +191,8 @@ class Cache {
 			${$row['option_name']} = $row['option_value'];
 		}
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "comment WHERE hide='n' ORDER BY date DESC LIMIT 0, $index_comnum");
-		$com_cache = array();
-		$com_cids = array();
+		$com_cache = [];
+		$com_cids = [];
 		while ($show_com = $this->db->fetch_array($query)) {
 			$com_page = '';
 			if ($comment_paging == 'y') {
@@ -205,7 +205,7 @@ class Cache {
 					$cid = $show_pid['cid'];
 				}
 				if (!isset($com_cids[$show_com['gid']])) {
-					$com_cids[$show_com['gid']] = array();
+					$com_cids[$show_com['gid']] = [];
 					$query2 = $this->db->query("SELECT cid FROM " . DB_PREFIX . "comment WHERE gid=" . $show_com['gid'] . " AND pid=0 AND hide='n' ORDER BY date $order");
 					while ($show_cid = $this->db->fetch_array($query2)) {
 						$com_cids[$show_com['gid']][] = $show_cid['cid'];
@@ -231,7 +231,7 @@ class Cache {
 	 * 侧边栏标签缓存
 	 */
 	private function mc_tags() {
-		$tag_cache = array();
+		$tag_cache = [];
 		$query = $this->db->query("SELECT gid FROM " . DB_PREFIX . "tag");
 		$tagnum = 0;
 		$maxuse = 0;
@@ -254,7 +254,7 @@ class Cache {
 		$rank = ($rank == 0 ? 1 : $rank);
 		$rank = $spread / $rank;
 		// 获取草稿id
-		$hideGids = array();
+		$hideGids = [];
 		$query = $this->db->query("SELECT gid FROM " . DB_PREFIX . "blog where (hide='y' or checked='n') and type='blog'");
 		while ($row = $this->db->fetch_array($query)) {
 			$hideGids[] = $row['gid'];
@@ -285,7 +285,7 @@ class Cache {
 	 * 侧边栏分类缓存
 	 */
 	private function mc_sort() {
-		$sort_cache = array();
+		$sort_cache = [];
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "sort ORDER BY pid ASC,taxis ASC");
 		while ($row = $this->db->fetch_array($query)) {
 			$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "blog WHERE sortid=" . $row['sid'] . " AND hide='n' AND checked='y' AND type='blog'");
@@ -301,7 +301,7 @@ class Cache {
 				'template'    => htmlspecialchars($row['template']),
 			);
 			if ($sortData['pid'] == 0) {
-				$sortData['children'] = array();
+				$sortData['children'] = [];
 			} elseif (isset($sort_cache[$row['pid']])) {
 				$sort_cache[$row['pid']]['children'][] = $row['sid'];
 			}
@@ -315,7 +315,7 @@ class Cache {
 	 * 友情链接缓存
 	 */
 	private function mc_link() {
-		$link_cache = array();
+		$link_cache = [];
 		$query = $this->db->query("SELECT siteurl,sitename,description FROM " . DB_PREFIX . "link WHERE hide='n' ORDER BY taxis ASC");
 		while ($show_link = $this->db->fetch_array($query)) {
 			$link_cache[] = array(
@@ -332,11 +332,11 @@ class Cache {
 	 * 导航缓存
 	 */
 	private function mc_navi() {
-		$navi_cache = array();
+		$navi_cache = [];
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "navi WHERE hide='n' ORDER BY pid ASC, taxis ASC");
 		$sorts = $this->readCache('sort');
 		while ($row = $this->db->fetch_array($query)) {
-			$children = array();
+			$children = [];
 			$url = Url::navi($row['type'], $row['type_id'], $row['url']);
 
 			if ($row['type'] == Navi_Model::navitype_sort && !empty($sorts[$row['type_id']]['children'])) {
@@ -359,7 +359,7 @@ class Cache {
 			);
 			if ($row['type'] == Navi_Model::navitype_custom) {
 				if ($naviData['pid'] == 0) {
-					$naviData['childnavi'] = array();
+					$naviData['childnavi'] = [];
 				} elseif (isset($navi_cache[$row['pid']])) {
 					$navi_cache[$row['pid']]['childnavi'][] = $naviData;
 				}
@@ -378,7 +378,7 @@ class Cache {
 		$index_newlognum = $row['option_value'];
 		$sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' and checked='y' and type='blog' ORDER BY date DESC LIMIT 0, $index_newlognum";
 		$res = $this->db->query($sql);
-		$logs = array();
+		$logs = [];
 		while ($row = $this->db->fetch_array($res)) {
 			$row['gid'] = (int)$row['gid'];
 			$row['title'] = htmlspecialchars($row['title']);
@@ -396,7 +396,7 @@ class Cache {
 		$record = 'xxxx_x';
 		$p = 0;
 		$lognum = 1;
-		$record_cache = array();
+		$record_cache = [];
 		while ($show_record = $this->db->fetch_array($query)) {
 			$f_record = gmdate('Y_n', $show_record['date']);
 			if ($record != $f_record) {
@@ -432,15 +432,15 @@ class Cache {
 		$tag_model = new Tag_Model();
 		$newlog = $this->readCache("newlog");
 
-		$log_cache_tags = array();
+		$log_cache_tags = [];
 		foreach ($newlog as $each) {
 			$gid = $each['gid'];
 			$tag_ids = $tag_model->getTagIdsFromBlogId($gid);
 			$tag_names = $tag_model->getNamesFromIds($tag_ids);
 
-			$tags = array();
+			$tags = [];
 			foreach ($tag_names as $key => $value) {
-				$tag = array();
+				$tag = [];
 				$tag['tagurl'] = rawurlencode($value);
 				$tag['tagname'] = htmlspecialchars($value);
 				$tag['tid'] = (int)$key;
@@ -460,7 +460,7 @@ class Cache {
 	private function mc_logsort() {
 		$sql = "SELECT gid,sortid FROM " . DB_PREFIX . "blog where type='blog'";
 		$query = $this->db->query($sql);
-		$log_cache_sort = array();
+		$log_cache_sort = [];
 		while ($row = $this->db->fetch_array($query)) {
 			if ($row['sortid'] > 0) {
 				$res = $this->db->query("SELECT sid,sortname,alias FROM " . DB_PREFIX . "sort where sid=" . $row['sortid']);
@@ -482,7 +482,7 @@ class Cache {
 	private function mc_logalias() {
 		$sql = "SELECT gid,alias FROM " . DB_PREFIX . "blog where alias!=''";
 		$query = $this->db->query($sql);
-		$log_cache_alias = array();
+		$log_cache_alias = [];
 		while ($row = $this->db->fetch_array($query)) {
 			$log_cache_alias[$row['gid']] = $row['alias'];
 		}

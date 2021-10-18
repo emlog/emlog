@@ -20,7 +20,7 @@ class Navi_Model {
 	}
 
 	function getNavis() {
-		$navis = array();
+		$navis = [];
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "navi ORDER BY pid ASC, taxis ASC");
 		while ($row = $this->db->fetch_array($query)) {
 			$url = Url::navi($row['type'], $row['type_id'], $row['url']);
@@ -38,7 +38,7 @@ class Navi_Model {
 			);
 			if ($row['type'] == Navi_Model::navitype_custom) {
 				if ($naviData['pid'] == 0) {
-					$naviData['childnavi'] = array();
+					$naviData['childnavi'] = [];
 				} elseif (isset($navis[$row['pid']])) {
 					$navis[$row['pid']]['childnavi'][] = $naviData;
 				}
@@ -49,7 +49,7 @@ class Navi_Model {
 	}
 
 	function updateNavi($naviData, $navid) {
-		$Item = array();
+		$Item = [];
 		foreach ($naviData as $key => $data) {
 			$Item[] = "$key='$data'";
 		}
@@ -69,7 +69,7 @@ class Navi_Model {
 		$sql = "select * from " . DB_PREFIX . "navi where id=$navid ";
 		$res = $this->db->query($sql);
 		$row = $this->db->fetch_array($res);
-		$naviData = array();
+		$naviData = [];
 		if ($row) {
 			$naviData = array(
 				'naviname'  => htmlspecialchars(trim($row['naviname'])),
