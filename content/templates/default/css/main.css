@@ -101,7 +101,7 @@ footer .copyright {
 
 .shadow-theme {
     box-shadow: 0 2px 8px 0 rgba(0, 0, 0, .02);
-    border-radius: 10px;
+    border-radius: 8px;
     transition: box-shadow 0.4s
 }
 
@@ -175,7 +175,7 @@ footer .copyright {
     padding: 4.5px 9px 4px 9px;
     border: 2px solid;
     margin: 0 5px;
-    border-radius: 10px;
+    border-radius: 8px;
     color: #000
 }
 
@@ -304,7 +304,7 @@ footer .copyright {
     margin: 10px 0px;
     float: right;
     margin-right: 1px;
-    border-radius: 6px;
+    border-radius: 8px;
     border: 1px solid #dedede
 }
 
@@ -341,7 +341,7 @@ footer .copyright {
     background: #f7f7f7;
     padding: 12px;
     padding-bottom: 5px;
-    border-radius: 10px;
+    border-radius: 8px;
     margin-top: 9px;
     margin-left: 58px
 }
@@ -528,13 +528,13 @@ body {
 .modal-content .btn {
     margin: 10px;
     border-color: #0085A1;
-    border-radius: 10px;
+    border-radius: 8px;
     height: 35px;
     padding: 0px 18px
 }
 
 .log_con {
-    border-radius: 10px;
+    border-radius: 8px;
     max-width: 990px;
     padding: 30px;
     font-size: 14px;
@@ -584,6 +584,10 @@ body {
 
 .main_blogname {
     font-size: x-large;
+}
+
+.main_bloginfo {
+    font-size: small;
 }
 
 .loglist_title {
@@ -728,7 +732,7 @@ body {
 .list_line {
     margin-top: 12px;
     margin-bottom: -7px;
-    border-top: 2px solid rgb(245, 245, 246)
+    border-top: 1px solid rgb(245, 245, 246)
 }
 
 .info_row {
@@ -888,7 +892,7 @@ body {
 }
 
 .navbar-toggler {
-    border-radius: 10px;
+    border-radius: 8px;
 }
 
 .nav-item .list-menu {

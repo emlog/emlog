@@ -30,8 +30,11 @@ require_once View::getView('module');
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light mb-3">
-    <div class="container">
-        <a class="navbar-brand main_blogname" title="<?php echo $bloginfo; ?>" href="<?php echo BLOG_URL; ?>"><?php echo $blogname; ?></a>
+    <div class="container mt-2 mb-2">
+        <div class="navbar-brand">
+            <a class="main_blogname" href="<?php echo BLOG_URL; ?>"><?php echo $blogname; ?></a>
+            <div class="main_bloginfo text-muted mt-2"><?php echo $bloginfo; ?></div>
+        </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
                 aria-label="Toggle navigation" style="outline: none;">
             <span class="navbar-toggler-icon"></span>
