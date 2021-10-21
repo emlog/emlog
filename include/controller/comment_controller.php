@@ -57,21 +57,7 @@ class Comment_Controller {
 			emMsg('评论失败：验证码错误');
 		}
 
-		$to_user = "emloog@gmail.com";
-		$title = "测试邮件发送标题";
-		$content = "测试邮件发送内容";
-		$sendmail_model = new SendMail();
-		$ret = $sendmail_model->send($to_user, $title, $content);
-		if($ret){
-			echo "邮件发送成功";
-		}else{
-			echo "邮件发送失败";
-		}
-exit;
-
 		$_SESSION['code'] = null;
 		$Comment_Model->addComment($name, $content, $mail, $url, $imgcode, $blogId, $pid);
-
-
 	}
 }
