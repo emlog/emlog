@@ -244,9 +244,8 @@ EOT;
 		. "const AUTH_KEY = '" . getRandStr(32) . md5($_SERVER['HTTP_USER_AGENT']) . "';"
 		. "\n//cookie name\n"
 		. "const AUTH_COOKIE_NAME = 'EM_AUTHCOOKIE_" . getRandStr(32, false) . "';"
-		. "\n//管理后台安全入口：/admin/?s=xxx\n"
-		. "//const ADMIN_PATH_CODE = '" . getRandStr(8, false) . "';"
-		. "\n";
+		. "\n//管理后台安全入口（字母数字，不要包含特殊字符）：/admin/?s=xxx\n"
+		. "//const ADMIN_PATH_CODE = 'xxx';";
 
 	$fp = @fopen('config.php', 'w');
 	$fw = @fwrite($fp, $config);
