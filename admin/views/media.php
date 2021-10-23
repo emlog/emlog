@@ -38,11 +38,17 @@
             </div>
 		<?php endforeach; ?>
     </div>
-    <div class="list_footer">
-        <div class="btn-group btn-group-sm" role="group">
-            <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
-            <input name="operate" id="operate" value="" type="hidden"/>
+    <div class="form-row align-items-center">
+        <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
+        <input name="operate" id="operate" value="" type="hidden"/>
+        <div class="col-auto my-1">
             <a href="javascript:mediaact('del');" class="btn btn-sm btn-danger">删除所选资源</a>
+        </div>
+        <div class="col-auto my-1">
+            <div class="custom-control custom-checkbox mr-sm-2">
+                <input type="checkbox" class="custom-control-input" id="checkAll">
+                <label class="custom-control-label" for="checkAll">全选</label>
+            </div>
         </div>
     </div>
 </form>

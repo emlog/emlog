@@ -259,12 +259,12 @@ function removeHTMLTag(str) {
 // 表格全选
 $(function () {
     $('#checkAll').click(function (event) {
-        var tr_checkbox = $('table tbody tr').find('input[type=checkbox]');
+        var tr_checkbox = $('.card-body').find('input[type=checkbox]');
         tr_checkbox.prop('checked', $(this).prop('checked'));
         event.stopPropagation();
     });
     // 点击表格每一行的checkbox，表格所有选中的checkbox数 = 表格行数时，则将表头的‘checkAll’单选框置为选中，否则置为未选中
-    $('table tbody tr').find('input[type=checkbox]').click(function (event) {
+    $('.card-body').find('input[type=checkbox]').click(function (event) {
         var tbr = $('table tbody tr');
         $('#checkAll').prop('checked', tbr.find('input[type=checkbox]:checked').length == tbr.length ? true : false);
         event.stopPropagation();
