@@ -215,10 +215,6 @@ if ($action === 'write') {
 	$Media_Model = new Media_Model();
 	$medias = $Media_Model->getMedias();
 
-	if (!ISREG && $sta_cache['lognum'] > 20) {
-		emDirect("register.php?error_article=1");
-	}
-
 	include View::getView('header');
 	require_once View::getView('article_write');
 	include View::getView('footer');
