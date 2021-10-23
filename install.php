@@ -261,11 +261,9 @@ EOT;
 	$table_charset_sql = 'ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;';
 	$DB->query("ALTER DATABASE `{$db_name}` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;", true);
 
-	$widgets = Option::getWidgetTitle();
-	$sider_wg = Option::getDefWidget();
-
-	$widget_title = serialize($widgets);
-	$widgets = serialize($sider_wg);
+	$widget_title = serialize(Option::getWidgetTitle());
+	$def_widgets = serialize(Option::getDefWidget());
+	$def_plugin = serialize(Option::getDefPluin());
 
 	define('BLOG_URL', realUrl());
 
@@ -389,10 +387,10 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isexcerpt',
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('excerpt_subnum','300');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istreply','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('timezone','Asia/Shanghai');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('active_plugins','');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('active_plugins','$def_plugin');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widget_title','$widget_title');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_widget','a:0:{}');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widgets1','$widgets');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widgets1','$def_widgets');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('detect_url','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('emkey','');
 DROP TABLE IF EXISTS {$db_prefix}link;

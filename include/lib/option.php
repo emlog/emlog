@@ -166,6 +166,13 @@ class Option {
 	}
 
 	/**
+	 * 获取初始安装时的插件
+	 */
+	static function getDefPluin() {
+		return ['tips/tips.php'];
+	}
+
+	/**
 	 * 更新配置选项
 	 * @param $name
 	 * @param $value
