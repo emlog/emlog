@@ -46,8 +46,8 @@
         </div>
         <div class="col-auto my-1">
             <div class="custom-control custom-checkbox mr-sm-2">
-                <input type="checkbox" class="custom-control-input" id="checkAll">
-                <label class="custom-control-label" for="checkAll">全选</label>
+                <input type="checkbox" class="custom-control-input" id="checkAllCard">
+                <label class="custom-control-label" for="checkAllCard">全选</label>
             </div>
         </div>
     </div>
