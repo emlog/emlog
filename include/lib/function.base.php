@@ -1008,3 +1008,22 @@ function getTimeZoneOffset($remote_tz, $origin_tz = 'UTC') {
 	$offset = $origin_dtz->getOffset($origin_dt) - $remote_dtz->getOffset($remote_dt);
 	return $offset;
 }
+
+/**
+ * 上传js裁剪的图片，封面、头像
+ */
+function uploadCropImg() {
+	$attach = $_FILES['image'] ?? '';
+	if (!$attach || $attach['error'] === 4) {
+		echo "error";
+		exit;
+	}
+
+	$ret = uploadFileAjax($attach['name'], $attach['error'], $attach['tmp_name'], $attach['size']);
+
+	if (empty($ret['success'])) {
+		echo "error";
+		exit;
+	}
+	return $ret;
+}

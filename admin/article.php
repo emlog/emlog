@@ -254,16 +254,6 @@ if ($action === 'edit') {
 }
 
 if ($action == 'upload_cover') {
-	$data = isset($_POST['image']) ? addslashes($_POST['image']) : '';
-	//data:image/png;base64,xxxx
-	$image_array = explode(",", $data);
-	if (empty($image_array[1])) {
-		exit("error");
-	}
-	$data = base64_decode($image_array[1]);
-	$fname = emFilePutContent($data);
-	if (!$fname) {
-		exit("error");
-	}
-	echo $fname;
+	$ret = uploadCropImg();
+	echo $ret['file_info']['file_path'];
 }

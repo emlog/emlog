@@ -296,27 +296,25 @@
                 height: 366
             });
             canvas.toBlob(function (blob) {
-                url = URL.createObjectURL(blob);
-                var reader = new FileReader();
-                reader.readAsDataURL(blob);
-                reader.onloadend = function () {
-                    var base64data = reader.result;
-                    $.ajax({
-                        url: './article.php?action=upload_cover',
-                        method: 'POST',
-                        data: {image: base64data},
-                        success: function (data) {
-                            $modal.modal('hide');
-                            if (data != "error") {
-                                $('#cover_image').attr('src', data);
-                                $('#cover').val(data);
-                                $('#cover_rm').show();
-                            }
+                var formData = new FormData();
+                formData.append('image', blob, 'cover.jpg');
+                $.ajax('./article.php?action=upload_cover', {
+                    method: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {
+                        $modal.modal('hide');
+                        if (data != "error") {
+                            $('#cover_image').attr('src', data);
+                            $('#cover').val(data);
+                            $('#cover_rm').show();
                         }
-                    });
-                };
+                    }
+                });
             });
         });
+
         $('#cover_rm').click(function () {
             $('#cover_image').attr('src', "./views/images/cover.svg");
             $('#cover').val("");
