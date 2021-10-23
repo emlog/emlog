@@ -144,25 +144,24 @@
                 width: 160,
                 height: 160
             });
+
             canvas.toBlob(function (blob) {
-                url = URL.createObjectURL(blob);
-                var reader = new FileReader();
-                reader.readAsDataURL(blob);
-                reader.onloadend = function () {
-                    var base64data = reader.result;
-                    $.ajax({
-                        url: './blogger.php?action=update_avatar',
-                        method: 'POST',
-                        data: {image: base64data},
-                        success: function (data) {
-                            $modal.modal('hide');
-                            if (data != "error") {
-                                $('#avatar_image').attr('src', data);
-                            }
+                var formData = new FormData();
+                formData.append('image', blob, 'avatar.jpg');
+                $.ajax('./blogger.php?action=update_avatar', {
+                    method: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {
+                        $modal.modal('hide');
+                        if (data != "error") {
+                            $('#avatar_image').attr('src', data);
                         }
-                    });
-                };
+                    }
+                });
             });
+
         });
     });
 </script>
