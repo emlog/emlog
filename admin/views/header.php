@@ -9,21 +9,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name=renderer content=webkit>
 <!--vot--><title><?=lang('admin_center')?> - <?php echo Option::get('blogname'); ?></title>
-    <link rel="stylesheet" href="./views/css/style.css?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"/>
-    <link rel="stylesheet" href="./editor.md/css/editormd.css?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"/>
-    <link href="./views/css/bootstrap-sbadmin-4.5.3.css?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>" rel="stylesheet">
-    <link href="./views/css/css-main.css" type=text/css rel=stylesheet>
-    <link href="./views/css/icofont/icofont.min.css" type=text/css rel=stylesheet>
-    <link href="./views/css/dropzone.css" type=text/css rel=stylesheet>
-    <link href="./views/css/cropper.min.css" type=text/css rel=stylesheet>
+    <link rel="stylesheet" type="text/css" href="./views/css/style.css?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>">
+    <link rel="stylesheet" type="text/css" href="./editor.md/css/editormd.css?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>">
+    <link rel="stylesheet" type="text/css" href="./views/css/bootstrap-sbadmin-4.5.3.css?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>">
+    <link rel="stylesheet" type="text/css" href="./views/css/css-main.css?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>">
+    <link rel="stylesheet" type="text/css" href="./views/css/icofont/icofont.min.css?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>">
+    <link rel="stylesheet" type="text/css" href="./views/css/dropzone.css?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>">
+    <link rel="stylesheet" type="text/css" href="./views/css/cropper.min.css?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>">
 
-    <script src="./views/js/jquery.min.3.5.1.js"></script>
-    <script src="./views/js/bootstrap.bundle.min.4.6.js"></script>
-    <script src="./views/js/jquery-ui.min.js"></script>
-    <script src="./views/js/js.cookie-2.2.1.min.js"></script>
-    <script src="./views/js/cropper.min.js"></script>
+    <script src="./views/js/jquery.min.3.5.1.js?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
+    <script src="./views/js/bootstrap.bundle.min.4.6.js?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
+    <script src="./views/js/jquery-ui.min.js?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
+    <script src="./views/js/js.cookie-2.2.1.min.js?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
+    <script src="./views/js/cropper.min.js?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
     <script src="./views/js/common.js?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
-<!--vot--><script>/*vot*/	var em_lang = '<?= EMLOG_LANGUAGE ?>';</script>
+<!--vot--><script>	var em_lang = '<?= EMLOG_LANGUAGE ?>';</script>
 <!--vot--><script src="<?= BLOG_URL ?>/lang/<?= EMLOG_LANGUAGE ?>/lang_js.js"></script>
 	<?php doAction('adm_head'); ?>
 </head>
@@ -47,7 +47,8 @@
             <div id="menu_content" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
 <!--vot-->          <a class="collapse-item" id="menu_write" href="article.php?action=write"><?=lang('post_write')?></a>
-<!--vot-->          <a class="collapse-item" id="menu_log" href="article.php"><?=lang('post_manage')?></a>
+<!--vot-->          <a class="collapse-item" id="menu_log" href="article.php"><?=lang('articles')?></a>
+<!--vot-->          <a class="collapse-item" id="menu_draft" href="article.php?draft=1"><?=lang('drafts')?></a>
 					<?php if (ROLE == ROLE_ADMIN): ?>
 <!--vot-->          <a class="collapse-item" id="menu_sort" href="sort.php"><?=lang('categories')?></a>
 <!--vot-->          <a class="collapse-item" id="menu_tag" href="tag.php"><?=lang('tags')?></a>
@@ -130,20 +131,17 @@
                         </a>
                     </li>
                     <div class="topbar-divider d-none d-sm-block"></div>
-                    <li class="nav-item dropdown no-arrow">
-                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <li class="nav-item mx-1">
+                        <a class="nav-link" href="blogger.php" role="button">
                             <img class="img-profile rounded-circle"
                                  src="<?php echo empty($user_cache[UID]['avatar']) ? './views/images/avatar.svg' : '../' . $user_cache[UID]['avatar'] ?>">
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="blogger.php">
-<!--vot-->                      <i class="icofont-user icofont-1x"></i><?= lang('personal_settings') ?>
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="?action=logout">
-<!--vot-->                      <i class="icofont-logout icofont-1x"></i><?= lang('logout') ?>
-                            </a>
-                        </div>
+                    </li>
+                    <div class="topbar-divider d-none d-sm-block"></div>
+                    <li class="nav-item mx-1">
+<!--vot-->              <a class="nav-link" href="?action=logout" title="<?= lang('logout') ?>" role="button">
+                            <i class="icofont-logout icofont-1x"></i>
+                        </a>
                     </li>
                 </ul>
             </nav>

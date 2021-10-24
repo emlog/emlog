@@ -38,11 +38,17 @@
             </div>
 		<?php endforeach; ?>
     </div>
-    <div class="list_footer">
-        <div class="btn-group btn-group-sm" role="group">
-            <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
-            <input name="operate" id="operate" value="" type="hidden"/>
+    <div class="form-row align-items-center">
+        <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
+        <input name="operate" id="operate" value="" type="hidden"/>
+        <div class="col-auto my-1">
 <!--vot-->  <a href="javascript:mediaact('del');" class="btn btn-sm btn-danger"><?= lang('resource_del_selected') ?></a>
+        </div>
+        <div class="col-auto my-1">
+            <div class="custom-control custom-checkbox mr-sm-2">
+                <input type="checkbox" class="custom-control-input" id="checkAllCard">
+<!--vot-->      <label class="custom-control-label" for="checkAllCard"><?=lang('select_all')?></label>
+            </div>
         </div>
     </div>
 </form>
@@ -64,7 +70,7 @@
         </div>
     </div>
 </div>
-<script src="./views/js/dropzone.min.js"></script>
+<script src="./views/js/dropzone.min.js?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
 <script>
     $("#menu_media").addClass('active');
     setTimeout(hideActived, 3600);
@@ -72,7 +78,7 @@
         window.location.reload();
     })
     Dropzone.options.myAwesomeDropzone = {
-        maxFilesize: 2048,//max uplaod filesize
+        maxFilesize: 2048,// Unit: M
         paramName: "file",
         init: function () {
             this.on("error", function (file, response) {

@@ -188,7 +188,7 @@ $lang = array(
 
 //---------------------------
 //admin/views/admin_page.php
- 'page_management'	=> '页面管理',//'Page management',
+ 'page_management'	=> '页面',//'Page management',
  'page_deleted_ok'	=> '删除页面成功',//'Page has been removed successfully',
  'page_published_ok'	=> '发布页面成功',//'Page has been published successfully',
  'page_disabled_ok'	=> '禁用页面成功',//'Page has been disabled successfully',
@@ -242,7 +242,7 @@ $lang = array(
 
 //---------------------------
 //admin/views/comment.php
- 'comment_management'	=> '评论管理',//'Comment management',
+ 'comment_management'	=> '评论',//'Comments',
  'content'		=> '内容',//'Content',
  'comment_author'	=> '评论人',//'Comment author',
  'belongs_to_article'	=> '所属文章',//'Belongs to article',
@@ -306,7 +306,7 @@ $lang = array(
 
 //---------------------------
 //admin/views/data.php
- 'data_backup'			=> '数据管理',//'Data management',
+ 'data_backup'			=> '数据',//'Data',
  'backup_prompt'		=> '将站点内容数据库备份到自己电脑上。',//'Back up the site content database to your computer.',
  'backup_delete_ok'		=> '备份文件删除成功',//'Backup file deleted successfully',
  'backup_create_ok'		=> '数据备份成功',//'Data backup created successfully',
@@ -462,7 +462,7 @@ $lang = array(
 //---------------------------
 //admin/views/links.php
  'link_add'		=> '新建链接',//'Add Link',
- 'link_management'	=> '链接管理',//'Link management',
+ 'link_management'	=> '友情链接',//'Friend links',
  'links_created'	=> '已创建的链接',//'Links created',
  'order'		=> '排序',//'Order',
  'edit_link'		=> '编辑链接',//'Edit link',
@@ -487,7 +487,7 @@ $lang = array(
 
 //---------------------------
 //admin/views/media.php
- 'resource_manage'	=> '资源管理',//'Resource management',
+ 'resource_manage'	=> '多媒体资源',//'Multimedia resources',
  'file'			=> '文件',//'File',
  'preview'		=> '预览',//'Preview',
  'date'			=> '日期',//'Date',
@@ -502,7 +502,7 @@ $lang = array(
 
 //---------------------------
 //admin/views/navbar.php
- 'nav_manage'		=> '导航管理',//'Navigation Management',
+ 'nav_manage'		=> '导航',//'Navigation',
  'nav_cat_update_ok'	=> '排序更新成功',//'Category updated successfully',
  'nav_delete_ok'	=> '删除导航成功',//'Navigation deleted successfully',
  'nav_edit_ok'		=> '修改导航成功',//'Navigation modified successfully',
@@ -544,7 +544,7 @@ $lang = array(
 
 //---------------------------
 //admin/views/plugin.php
- 'plugin_manage'		=> '插件管理',//'Plugin Management',
+ 'plugin_manage'		=> '插件扩展',//'Plug-ins',
  'plugin_upload_ok'		=> '插件上传成功，请开启使用',//'Plugin uploaded successfully, please activate it to use',
  'plugin_active_ok'		=> '插件开启成功',//'Plug-in activated successfully',
  'plugin_active_failed'		=> '插件开启失败',//'Plug-in activation failed',
@@ -611,7 +611,7 @@ $lang = array(
 
 //---------------------------
 //admin/views/sort.php
- 'category_management'	=> '分类管理',//'Category Management',
+ 'category_management'	=> '文章分类',//'Article categories',
  'category_name'	=> '分类名',//'Category name',
  'alias_prompt'		=> '用于URL的友好显示，可不填',//'Used for friendly display of URL, optional',
  'category_parent'	=> '父分类',//'Parent category',
@@ -668,7 +668,7 @@ $lang = array(
 
 //---------------------------
 //admin/views/tag.php
- 'tag_management'	=> '标签管理',//'Tag management',
+ 'tag_management'	=> '文章标签',//'Article tags',
  '_save_'	=> '保 存',//' Save ',
  '_cancel_'	=> '取 消',//' Cancel ',
  'tag_select'	=> '请选择标签',//'Please select a tag',
@@ -676,7 +676,7 @@ $lang = array(
 
 //---------------------------
 //admin/views/template.php
- 'template_manager'		=> '模板管理',//'Template Manager',
+ 'template_manager'		=> '模板外观',//'Templates',
  'template_current'		=> '当前模板',//'Current template',
  'template_change_ok'		=> '模板更换成功',//'Template have been replaced successfully',
  'template_current_use'		=> '当前使用的模板',//'Currently used template',
@@ -751,7 +751,7 @@ $lang = array(
 
 //---------------------------
 //admin/views/user.php
- 'user_management'	=> '用户管理',//'User management',
+ 'user_management'	=> '用户',//'Users',
  'user_modify_ok'	=> '修改用户资料成功',//'User data has been modified successfully',
  'user_add_ok'		=> '添加用户成功',//'User has been added successfully',
  'user_name_empty'	=> '用户名不能为空',//'Username cannot be empty',
@@ -786,7 +786,7 @@ $lang = array(
 
 //---------------------------
 //admin/views/widgets.php
- 'widget_manage'	=> '边栏管理',//'Sidebar management',
+ 'widget_manage'	=> '侧边栏',//'Sidebar',
  'system_widgets'	=> '系统组件',//'System widgets',
  'blogger'		=> '个人资料',//'Personal information',
  'change'		=> '更改',//'Change',

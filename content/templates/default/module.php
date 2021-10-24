@@ -223,10 +223,9 @@ function blog_navi() {
 	global $CACHE;
 	$navi_cache = $CACHE->readCache('navi');
 	?>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto top-menu">
+    <div class="dropdown">
+        <ul class="navbar-nav ml-md-auto top-menu">
 			<?php
-			$dp_id = 0;
 			foreach ($navi_cache as $value):
 				if ($value['pid'] != 0) {
 					continue;
@@ -234,7 +233,6 @@ function blog_navi() {
 				if ($value['url'] == ROLE_ADMIN && (ROLE == ROLE_ADMIN || ROLE == ROLE_WRITER)):
 					?>
 <!--vot-->          <li class="nav-item list-menu"><a href="<?php echo BLOG_URL; ?>admin/" class="nav-link"><?=lang('site_management')?></a></li>
-<!--vot-->          <li class="nav-item list-menu"><a href="<?php echo BLOG_URL; ?>admin/?action=logout" class="nav-link"><?=lang('logout')?></a></li>
 					<?php
 					continue;
 				endif;
@@ -243,29 +241,34 @@ function blog_navi() {
 				$current_tab = BLOG_URL . trim(Dispatcher::setPath(), '/') == $value['url'] ? 'active' : '';
 				?>
 				<?php if (!empty($value['children']) || !empty($value['childnavi'])) : ?>
-                <li class="nav-item list-menu">
+                <li class="nav-item dropdown">
 					<?php if (!empty($value['children'])): ?>
-                        <a class='nav-link' href="<?php echo $value['url']; ?>" id="nav_link"
-                           onmousemove="cal_margin(this,<?php echo $dp_id; ?>)" <?php echo $newtab; ?>><?php echo $value['naviname']; ?> <b class="caret"></b></a>
-                        <ul class="dropdown-menus" id="dropmenus<?php echo $dp_id++; ?>">
+                        <a class='nav-item nav-link dropdown-toggle mr-md-2' href="<?php echo $value['url']; ?>" id="bd-versions" data-toggle="dropdown" aria-haspopup="true"
+                           aria-expanded="false" <?php echo $newtab; ?>>
+							<?php echo $value['naviname']; ?>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="bd-versions">
 							<?php foreach ($value['children'] as $row) {
-								echo '<li class="nav-item list-menu"><a class="nav-link" href="' . Url::sort($row['sid']) . '">' . $row['sortname'] . '</a></li>';
+								echo '<a class="dropdown-item" href="' . Url::sort($row['sid']) . '">' . $row['sortname'] . '</a>';
 							} ?>
-                        </ul>
+                        </div>
 					<?php endif; ?>
 					<?php if (!empty($value['childnavi'])) : ?>
-                        <a class='nav-link' href="<?php echo $value['url']; ?>" id="nav_link"
-                           onmousemove="cal_margin(this,<?php echo $dp_id; ?>)" <?php echo $newtab; ?>><?php echo $value['naviname']; ?> <b class="caret"></b></a>
-                        <ul class="dropdown-menus" id="dropmenus<?php echo $dp_id++; ?>">
+                        <a class='nav-item nav-link dropdown-toggle mr-md-2' href="<?php echo $value['url']; ?>" id="bd-versions" data-toggle="dropdown" aria-haspopup="true"
+                           aria-expanded="false" <?php echo $newtab; ?>>
+							<?php echo $value['naviname']; ?>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="bd-versions">
 							<?php foreach ($value['childnavi'] as $row) {
 								$newtab = $row['newtab'] == 'y' ? 'target="_blank"' : '';
-								echo '<li class="nav-item list-menu"><a class="nav-link" href="' . $row['url'] . "\" $newtab >" . $row['naviname'] . '</a></li>';
+								echo '<a class="dropdown-item" href="' . $row['url'] . "\" $newtab >" . $row['naviname'] . '</a>';
 							} ?>
-                        </ul>
+                        </div>
 					<?php endif; ?>
                 </li>
 			<?php else: ?>
-                <li class="nav-item list-menu"><a class="nav-link" href="<?php echo $value['url']; ?>" <?php echo $newtab; ?>><?php echo $value['naviname']; ?></a></li>
+                <li class="nav-item list-menu <?php echo $current_tab; ?>"><a class="nav-link"
+                                                                              href="<?php echo $value['url']; ?>" <?php echo $newtab; ?>><?php echo $value['naviname']; ?></a></li>
 			<?php endif; ?>
 			<?php endforeach; ?>
         </ul>
@@ -435,7 +438,6 @@ function blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allo
                                    tabindex="3" placeholder="<?=lang('homepage')?>" />
                         </div>
 					<?php endif; ?>
-
                     <p class="com_submit_p">
 <!--vot-->			<input class="btn btn-outline-primary"<?php if ($verifyCode != "") { ?> type="button" data-toggle="modal" data-target="#myModal"<?php } else { ?> type="submit"<?php } ?>
                                id="comment_submit" value="<?=lang('comment_leave')?>" tabindex="6"/>
@@ -445,9 +447,7 @@ function blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allo
                         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content" style="display: table-cell;">
-                                    <div class="modal-header" style="border-bottom: 0px;">
-<!--vot-->								<?=lang('enter_captcha')?>
-                                    </div>
+<!--vot-->                          <div class="modal-header" style="border-bottom: 0px;"><?=lang('enter_captcha')?></div>
 									<?php echo $verifyCode; ?>
                                     <div class="modal-footer" style="border-top: 0px;">
 <!--vot-->								<button type="button" class="btn btn-default" data-dismiss="modal"><?=lang('close')?></button>

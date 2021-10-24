@@ -6,10 +6,10 @@
 <head>
 <!--vot--><meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./views/css/bootstrap-sbadmin-4.5.3.css" rel="stylesheet" type="text/css" type="text/css"/>
-    <script src="./views/js/jquery.min.3.5.1.js" type="text/javascript"></script>
-    <script src="./views/js/bootstrap.bundle.min.4.6.js" type="text/javascript"></script>
-    <script src="./views/js/common.js?v=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="./views/css/bootstrap-sbadmin-4.5.3.css?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>">
+    <script src="./views/js/jquery.min.3.5.1.js?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
+    <script src="./views/js/bootstrap.bundle.min.4.6.js?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
+    <script src="./views/js/common.js?v=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
 <!--vot--><title><?=lang('login')?></title>
 </head>
 <body>

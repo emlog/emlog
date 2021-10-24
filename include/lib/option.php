@@ -6,11 +6,11 @@
 
 class Option {
 
-	const EMLOG_VERSION = 'pro v1.0.7';              //Version number
-	const EMLOG_VERSION_TIMESTAMP = 1633654283;      //Version timestamp
+	const EMLOG_VERSION = 'pro 1.0.8';               //Version number
+	const EMLOG_VERSION_TIMESTAMP = 1635085374;      //Version timestamp
 	const ICON_MAX_W = 160;                          //Maximum avatar thumbnail width
 	const ICON_MAX_H = 160;                          //Maximum avatar thumbnail height
-	const UPLOADFILE_PATH = '../content/uploadfile/';//Attachments upload path
+	const UPLOADFILE_PATH = '../content/uploadfile/';//Upload path
 
 	static function get($option) {
 		$CACHE = Cache::getInstance();
@@ -126,14 +126,14 @@ class Option {
 	}
 
 	/**
-	 * Get attachment types allowed to upload
+	 * Get the file types allowed to upload
 	 */
 	static function getAttType() {
 		return explode(',', self::get('att_type'));
 	}
 
 	/**
-	 * Get attachment maximum limit, in bytes
+	 * Get the maximum upload limit, in bytes
 	 */
 	static function getAttMaxSize() {
 		return self::get('att_maxsize') * 1024;
@@ -163,6 +163,13 @@ class Option {
 	 */
 	static function getDefWidget() {
 		return ['blogger', 'newcomm', 'link', 'search'];
+	}
+
+	/**
+	 * Get default plug-in after installation
+	 */
+	static function getDefPlugin() {
+		return ['tips/tips.php'];
 	}
 
 	/**

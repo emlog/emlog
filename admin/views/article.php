@@ -34,18 +34,8 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 <?php if (isset($_GET['active_unck'])): ?>
 <!--vot--><div class="alert alert-success"><?=lang('rejected_ok')?></div><?php endif; ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-<!--vot--><h1 class="h3 mb-0 text-gray-800"><?=lang('post_manage')?></h1>
+<!--vot--><h1 class="h3 mb-0 text-gray-800"><?php echo $draft ? lang('draft_manage') : lang('post_manage'); ?></h1>
 <!--vot--><a href="./article.php?action=write" class="btn btn-sm btn-success shadow-sm mt-4"><i class="icofont-pencil-alt-5"></i> <?=lang('article_add')?></a>
-</div>
-<div class="panel-heading mb-3">
-    <ul class="nav nav-tabs">
-        <li class="nav-item"><a class="nav-link <?php if (!$draft) {
-				echo 'active';
-/*vot*/ 	} ?>" href="article.php"><?=lang('articles')?></a></li>
-        <li class="nav-item"><a class="nav-link <?php if ($draft) {
-				echo 'active';
-/*vot*/ 	} ?>" href="article.php?draft=1"><?=lang('drafts')?></a></li>
-    </ul>
 </div>
 <div class="card shadow mb-4">
     <div class="card-header py-3">
@@ -129,8 +119,8 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 <!--vot-->                              <a class="badge badge-success"
                                            href="article.php?action=operate_log&operate=check&gid=<?php echo $value['gid'] ?>&token=<?php echo LoginAuth::genToken(); ?>"><?=lang('check')?></a>
 									<?php elseif (!$draft && ROLE == ROLE_ADMIN && $author_role == ROLE_WRITER): ?>
-<!--vot-->                          <a class="badge badge-danger"
-                                       href="article.php?action=operate_log&operate=uncheck&gid=<?php echo $value['gid'] ?>&token=<?php echo LoginAuth::genToken(); ?>"><?=lang('uncheck')?></a>
+<!--vot-->                              <a class="badge badge-danger"
+                                           href="article.php?action=operate_log&operate=uncheck&gid=<?php echo $value['gid'] ?>&token=<?php echo LoginAuth::genToken(); ?>"><?=lang('uncheck')?></a>
 									<?php endif; ?>
                                 </div>
                             </td>
@@ -212,7 +202,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 <script>
     $("#menu_category_content").addClass('active');
     $("#menu_content").addClass('show');
-    $("#menu_log").addClass('active');
+    $("#menu_<?php echo $draft ? 'draft' : 'log'; ?>").addClass('active');
     setTimeout(hideActived, 2600);
 
     $(document).ready(function () {

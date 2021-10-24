@@ -11,11 +11,11 @@
 
 # v1.0.7 Add note card
 CREATE TABLE `{db_prefix}twitter` (
-`id` int NOT NULL AUTO_INCREMENT COMMENT 'Note list',
+`id` int NOT NULL AUTO_INCREMENT COMMENT 'Note ID',
 `content` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Note content',
-`img` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Image',
+`img` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Image',
 `author` int NOT NULL DEFAULT '1' COMMENT 'Author uid',
-`date` bigint NOT NULL COMMENT 'Creation time',
+`date` bigint NOT NULL COMMENT 'Create time',
 `replynum` int unsigned NOT NULL DEFAULT '0' COMMENT 'Number of replies',
 PRIMARY KEY (`id`),
 KEY `author` (`author`)

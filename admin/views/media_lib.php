@@ -16,8 +16,8 @@
         <div class="card-body">
             <p class="card-text text-muted small">
 				<?php echo $media_name; ?><br>
-                上传时间：<?php echo $value['addtime']; ?><br>
-                文件大小：<?php echo $value['attsize']; ?>，
+                <?=lang('upload_time')?>: <?php echo $value['addtime']; ?><br>
+                <?=lang('file_size')?>: <?php echo $value['attsize']; ?>,
             </p>
             <p class="card-text d-flex justify-content-between">
 				<?php if (isImage($value['filepath'])): ?>

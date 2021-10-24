@@ -259,14 +259,28 @@ function removeHTMLTag(str) {
 // Select all forms
 $(function () {
     $('#checkAll').click(function (event) {
-        var tr_checkbox = $('table tbody tr').find('input[type=checkbox]');
+        let tr_checkbox = $('table tbody tr').find('input[type=checkbox]');
         tr_checkbox.prop('checked', $(this).prop('checked'));
         event.stopPropagation();
     });
     // Click on the checkbox in each row of the table, and when the number of checkboxes selected in the table = the number of table rows, set the "checkAll" radio box in the header of the table to be selected, otherwise it is unselected
     $('table tbody tr').find('input[type=checkbox]').click(function (event) {
-        var tbr = $('table tbody tr');
+        let tbr = $('table tbody tr');
         $('#checkAll').prop('checked', tbr.find('input[type=checkbox]:checked').length == tbr.length ? true : false);
+        event.stopPropagation();
+    });
+});
+
+// Select all cards
+$(function () {
+    $('#checkAllCard').click(function (event) {
+        let card_checkbox = $('.card-body').find('input[type=checkbox]');
+        card_checkbox.prop('checked', $(this).prop('checked'));
+        event.stopPropagation();
+    });
+    $('.card-body').find('input[type=checkbox]').click(function (event) {
+        let cards = $('.card-body');
+        $('#checkAllCard').prop('checked', cards.find('input[type=checkbox]:checked').length == cards.length ? true : false);
         event.stopPropagation();
     });
 });

@@ -3,6 +3,13 @@
 $lang = array(
 
 //---------------------------
+//include/controller/comment_controller.php
+'mail_test_header'	=> '测试邮件发送标题',//'Test mail sending header',
+'mail_test_content'	=> '测试邮件发送内容',//'Test mail sending content',
+'mail_send_ok'		=> '邮件发送成功',//'Mail sent successfully',
+'mail_send_error'	=> '邮件发送失败',//'Mail sending failed',
+
+//---------------------------
 //include/lib/cache.php
  'cache_date_format'	=> 'Y年n月',//'m.Y',
  'cache_read_error'	=> '读取缓存失败',//'Cache read failed',

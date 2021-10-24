@@ -454,7 +454,7 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $is_thumbnail 
 	if ($fileSize > Option::getAttMaxSize()) {
 		return '103'; //File size exceeds the emlog limit
 	}
-	$file_info = array();
+	$file_info = [];
 	$file_info['file_name'] = $fileName;
 	$file_info['mime_type'] = get_mimetype($extension);
 	$file_info['size'] = $fileSize;
@@ -1015,6 +1015,25 @@ function getTimeZoneOffset($remote_tz, $origin_tz = 'UTC') {
 	$remote_dt = new DateTime('now', $remote_dtz);
 	$offset = $origin_dtz->getOffset($origin_dt) - $remote_dtz->getOffset($remote_dt);
 	return $offset;
+}
+
+/**
+ * Upload and Crop image
+ */
+function uploadCropImg() {
+	$attach = $_FILES['image'] ?? '';
+	if (!$attach || $attach['error'] === 4) {
+		echo "error";
+		exit;
+	}
+
+	$ret = uploadFileAjax($attach['name'], $attach['error'], $attach['tmp_name'], $attach['size']);
+
+	if (empty($ret['success'])) {
+		echo "error";
+		exit;
+	}
+	return $ret;
 }
 
 //------------------------------------------------------------------

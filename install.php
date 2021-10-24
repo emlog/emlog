@@ -21,7 +21,7 @@ if (PHP_VERSION < '7.0') {
 /*vot*/    emMsg(lang('php_required'));
 }
 
-$act = $_GET['action'] ?? '';
+$act = isset($_GET['action']) ? $_GET['action'] : '';
 
 if (!$act) {
 	?>
@@ -164,7 +164,7 @@ if ($act == 'install' || $act == 'reinstall') {
 	$adminpw2 = isset($_POST['adminpw2']) ? addslashes(trim($_POST['adminpw2'])) : '';
 	$result = '';
 
-	if ($db_prefix == '') {
+	if ($db_prefix === '') {
 /*vot*/        emMsg(lang('db_prefix_empty'));
 	} elseif (!preg_match("/^[\w_]+_$/", $db_prefix)) {
 /*vot*/        emMsg(lang('db_prefix_empty'));
@@ -209,14 +209,14 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
 </head><body>
 <form name="form1" method="post" action="install.php?action=reinstall">
 <div class="main">
-<!--vot--><input name="hostname" type="hidden" class="input" value="<?=$db_host?>">
-<!--vot--><input name="dbuser" type="hidden" class="input" value="<?=$db_user?>">
-<!--vot--><input name="password" type="hidden" class="input" value="<?=$db_pw?>">
-<!--vot--><input name="dbname" type="hidden" class="input" value="<?=$db_name?>">
-<!--vot--><input name="dbprefix" type="hidden" class="input" value="<?=$db_prefix?>">
-<!--vot--><input name="admin" type="hidden" class="input" value="<?=$admin?>">
-<!--vot--><input name="adminpw" type="hidden" class="input" value="<?=$adminpw?>">
-<!--vot--><input name="adminpw2" type="hidden" class="input" value="<?=$adminpw2?>">
+    <input name="hostname" type="hidden" class="input" value="$db_host">
+    <input name="dbuser" type="hidden" class="input" value="$db_user">
+    <input name="password" type="hidden" class="input" value="$db_pw">
+    <input name="dbname" type="hidden" class="input" value="$db_name">
+    <input name="dbprefix" type="hidden" class="input" value="$db_prefix">
+    <input name="admin" type="hidden" class="input" value="$admin">
+    <input name="adminpw" type="hidden" class="input" value="$adminpw">
+    <input name="adminpw2" type="hidden" class="input" value="$adminpw2">
 <p>
 <!--vot--><?=lang('already_installed')?>
 <!--vot--><input type="submit" value="<?=lang('continue')?>">
@@ -257,12 +257,12 @@ EOT;
 		. "\n//cookie name\n"
 		. "const AUTH_COOKIE_NAME = 'EM_AUTHCOOKIE_" . getRandStr(32, false) . "';"
 /*vot*/		. "\n//Safety admin entry: /admin/?s=xxx\n"
-		. "//const ADMIN_PATH_CODE = '" . getRandStr(8, false) . "';"
+/*vot*/		. "//const ADMIN_PATH_CODE = 'xxx';"
 /*vot*/		. "//blog language\n"
-/*vot*/		. "\ndefine('EMLOG_"."LANGUAGE','".EMLOG_LANGUAGE."'); //sc, tc, en, ru, etc."
+/*vot*/		. "\ndefine('EMLOG_"."LANGUAGE','".EMLOG_LANGUAGE."'); //zh-CN, zh-TW, en, ru, etc."
 /*vot*/		. "\n//blog language direction //vot\n"
 /*vot*/		. "define('EMLOG_"."LANGUAGE_DIR','".EMLOG_LANGUAGE_DIR."'); //ltr, rtl"
-		. "\n";
+/*vot*/		. "\n";
 
 	$fp = @fopen('config.php', 'w');
 	$fw = @fwrite($fp, $config);
@@ -278,11 +278,9 @@ EOT;
 	$table_charset_sql = 'ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;';
 	$DB->query("ALTER DATABASE `{$db_name}` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;", true);
 
-	$widgets = Option::getWidgetTitle();
-	$sider_wg = Option::getDefWidget();
-
-	$widget_title = serialize($widgets);
-	$widgets = serialize($sider_wg);
+	$widget_title = serialize(Option::getWidgetTitle());
+	$def_widgets = serialize(Option::getDefWidget());
+	$def_plugin = serialize(Option::getDefPlugin());
 
 	define('BLOG_URL', realUrl());
 
@@ -406,10 +404,10 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isexcerpt',
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('excerpt_subnum','300');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istreply','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('timezone','UTC');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('active_plugins','');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('active_plugins','$def_plugin');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widget_title','$widget_title');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_widget','a:0:{}');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widgets1','$widgets');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widgets1','$def_widgets');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('detect_url','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('emkey','');
 DROP TABLE IF EXISTS {$db_prefix}link;
@@ -485,7 +483,7 @@ date bigint(20) NOT NULL COMMENT 'Create time',
 replynum int(11) unsigned NOT NULL default '0' COMMENT 'Number of replies',
 PRIMARY KEY (id),
 KEY author (author)
-)".$table_charset_sql."
+)" . $table_charset_sql . "
 INSERT INTO {$db_prefix}user (uid, username, password, nickname, role, create_time, update_time) VALUES (1,'$admin','" . $adminpw . "', 'emer','admin', " . time() . ", " . time() . ");
 DROP TABLE IF EXISTS {$db_prefix}storage;
 CREATE TABLE {$db_prefix}storage (

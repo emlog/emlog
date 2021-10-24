@@ -10,7 +10,8 @@
 <!--vot-->          <input type="text" name="title" id="title" value="<?php echo $title; ?>" class="form-control" placeholder="<?=lang('page_title')?>"/>
                 </div>
                 <div id="post_bar">
-<!--vot-->          <a href="#" class="text-muted small my-3" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> <?=lang('upload_insert')?></a>
+<!--vot-->          <a href="#mediaModal" class="text-muted small my-3" data-remote="./media.php?action=lib" data-toggle="modal" data-target="#mediaModal"><i
+                                class="icofont-plus"></i> <?=lang('upload_insert')?></a>
 					<?php doAction('adm_writelog_head'); ?>
                 </div>
                 <div id="pagecontent"><textarea style="display:none;"><?php echo $content; ?></textarea></div>
@@ -44,8 +45,9 @@
 </form>
 
 <!--Resource Library-->
-<div class="modal fade bd-example-modal-lg" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+
+<div class="modal" id="mediaModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
 <!--vot-->      <h5 class="modal-title" id="exampleModalLabel"><?=lang('resource_library')?></h5>
@@ -54,44 +56,50 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="card-columns">
-					<?php
-					if ($medias):
-						foreach ($medias as $key => $value):
-							$media_url = getFileUrl($value['filepath']);
-							$media_name = $value['filename'];
-							if (isImage($value['filepath'])) {
-								$media_icon = getFileUrl($value['filepath_thum']);
-							} else {
-								$media_icon = "./views/images/fnone.png";
-							}
-							?>
-                            <div class="card" style="min-height: 138px;">
-								<?php if (isImage($value['filepath'])): ?>
-                                    <a href="javascript:insert_media_img('<?php echo $media_url; ?>', '<?php echo $media_icon; ?>')">
-                                        <img class="card-img-top" src="<?php echo $media_icon; ?>"/>
-                                    </a>
-								<?php else: ?>
-                                    <a href="javascript:insert_media('<?php echo $media_url; ?>', '<?php echo $media_name; ?>')">
-                                        <img class="card-img-top" src="<?php echo $media_icon; ?>"/>
-                                    </a>
-								<?php endif; ?>
-                            </div>
-						<?php
-						endforeach;
-					else :
-						?>
-<!--vot-->              <?=lang('no_resources')?>
-					<?php
-					endif;
-					?>
-                </div>
+<!--vot-->      <a href="#" id="mediaAdd" class="btn btn-sm btn-success shadow-sm mb-3"><?=lang('upload_files')?></a>
+                <form action="media.php?action=operate_media" method="post" name="form_media" id="form_media">
+                    <div class="card-columns">
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
+<div class="dropzone-previews" style="display: none;"></div>
+<script src="./views/js/dropzone.min.js?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
+<script>
+    // Upload resources
+    Dropzone.autoDiscover = false;
+    var myDropzone = new Dropzone("#mediaAdd", {
+        url: "./media.php?action=upload",
+        addRemoveLinks: false,
+        method: 'post',
+        maxFilesize: 2048,//M
+        filesizeBase: 1024,
+        previewsContainer: ".dropzone-previews",
+        sending: function (file, xhr, formData) {
+            formData.append("filesize", file.size);
+<!--vot-->  $('#mediaAdd').html("<?=lang('uploading')?>");
+        },
+        init: function () {
+            this.on("error", function (file, response) {
+                alert(response);
+            });
+            this.on("queuecomplete", function (file) {
+                $('#mediaModal').find('.modal-body .card-columns').load("./media.php?action=lib");
+<!--vot-->      $('#mediaAdd').html("<?=lang('upload_files')?>");
+            });
+        }
+    });
+    // Load file list
+    $('#mediaModal').on('show.bs.modal', function (e) {
+        var button = $(e.relatedTarget);
+        var modal = $(this);
+        modal.find('.modal-body .card-columns').load(button.data("remote"));
+    });
+</script>
 
-<script src="./editor.md/editormd.js?d=5.25.2021"></script>
+<script src="./editor.md/editormd.js?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
 <? /*vot*/ if (EMLOG_LANGUAGE !== 'zh-cn') { ?>
 <script src="./editor.md/languages/<?=EMLOG_LANGUAGE?>.js"></script>
 <? } ?>

@@ -14,7 +14,7 @@ Emlog is a powerful blog and CMS website building system based on PHP and MySQL,
 * Customize the page, easily create the message board, navigation bar, personal introduction and other pages
 * Multi-person joint writing, easy management of multiple writers in the background
 * Support flexible tag classification, as well as traditional classification methods
-* Convenient upload and management of attachments (pictures, files)
+* Resources upload and management (pictures, videos, files)
 * The uploaded pictures can be embedded in the log content freely and intuitively, so that your log has both pictures and texts
 * View log in home calendar mode, convenient, intuitive and fast
 * Data caching technology, faster site access

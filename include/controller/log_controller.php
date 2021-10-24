@@ -91,7 +91,7 @@ class Log_Controller {
 			}
 		}
 		//comments
-		$verifyCode = ISLOGIN == false && $comment_code == 'y' ? "<img src=\"./include/lib/checkcode.php\" id=\"captcha\" /><input name=\"imgcode\" type=\"text\" class=\"input\" size=\"5\" tabindex=\"5\" />" : '';
+		$verifyCode = ISLOGIN == false && $comment_code == 'y' ? "<img src=\"".BLOG_URL."include/lib/checkcode.php\" id=\"captcha\" /><input name=\"imgcode\" type=\"text\" class=\"input\" size=\"5\" tabindex=\"5\" />" : '';
 		$ckname = isset($_COOKIE['commentposter']) ? htmlspecialchars(stripslashes($_COOKIE['commentposter'])) : '';
 		$ckmail = isset($_COOKIE['postermail']) ? htmlspecialchars($_COOKIE['postermail']) : '';
 		$ckurl = isset($_COOKIE['posterurl']) ? htmlspecialchars($_COOKIE['posterurl']) : '';
@@ -101,7 +101,7 @@ class Log_Controller {
 		if ($type == 'blog') {
 			$Log_Model->updateViewCount($logid);
 			$neighborLog = $Log_Model->neighborLog($timestamp);
-			$tb = array();
+			$tb = [];
 /*vot*/     $tb_url = '';//Compatible not delete references Templates
 			include View::getView('echo_log');
 		} elseif ($type == 'page') {

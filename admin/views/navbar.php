@@ -138,7 +138,7 @@
 <!--vot-->          <input class="form-control" name="naviname" placeholder="<?=lang('nav_name')?>" required/>
                 </div>
                 <div class="form-group">
-<!--vot-->          <textarea maxlength="512" class="form-control" placeholder="<?=lang('nav_url_http')?>" name="url" id="url" required/></textarea>
+<!--vot-->          <textarea maxlength="512" class="form-control" placeholder="<?=lang('nav_url')?>" name="url" id="url" required/></textarea>
                 </div>
                 <div class="form-group">
 <!--vot-->          <label><?=lang('nav_parent')?></label>

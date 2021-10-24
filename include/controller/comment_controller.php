@@ -55,9 +55,9 @@ class Comment_Controller {
 /*vot*/            emMsg(lang('comment_error_national_chars'));
 		} elseif (ISLOGIN == false && Option::get('comment_code') == 'y' && session_start() && (empty($imgcode) || $imgcode !== $_SESSION['code'])) {
 /*vot*/            emMsg(lang('comment_error_captcha_invalid'));
-		} else {
-			$_SESSION['code'] = null;
-			$Comment_Model->addComment($name, $content, $mail, $url, $imgcode, $blogId, $pid);
 		}
+
+		$_SESSION['code'] = null;
+		$Comment_Model->addComment($name, $content, $mail, $url, $imgcode, $blogId, $pid);
 	}
 }

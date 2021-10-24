@@ -19,13 +19,13 @@ class Tag_Model {
 	 * @return array
 	 */
 	function getTag($blogId = NULL) {
-		$tags = array();
+		$tags = [];
 
 		$tag_ids = $this->getTagIdsFromBlogId($blogId);
 		$tag_names = $this->getNamesFromIds($tag_ids);
 
 		foreach ($tag_names as $key => $value) {
-			$row = array();
+			$row = [];
 			$row['tagname'] = htmlspecialchars($value);
 			$row['tid'] = (int)$key;
 			$tags[] = $row;
@@ -35,7 +35,7 @@ class Tag_Model {
 	}
 
 	function getOneTag($tagId) {
-		$tag = array();
+		$tag = [];
 		$row = $this->db->once_fetch_array("SELECT tagname,tid FROM " . DB_PREFIX . "tag WHERE tid=$tagId");
 		$tag['tagname'] = htmlspecialchars(trim($row['tagname']));
 		$tag['tagid'] = (int)$row['tid'];
@@ -68,7 +68,7 @@ class Tag_Model {
 		$tagNameArray = explode(',', $tagStr);
 		$tagNameArray = array_unique($tagNameArray);
 
-		$tags = array();
+		$tags = [];
 		foreach ($tagNameArray as $tagName) {
 			$tagName = trim($tagName);
 
@@ -103,7 +103,7 @@ class Tag_Model {
 		$old_tags = $this->getTagIdsFromBlogId($blogId);
 
 		// The new Tag Id list
-		$new_tags = array();
+		$new_tags = [];
 
 		// Establish new tag id array
 		if (!empty($tagStr)) {
@@ -188,7 +188,7 @@ class Tag_Model {
 	 * @return array Tag ID list
 	 */
 	function getIdsFromNames($tagNames) {
-		$result = array();
+		$result = [];
 		$tagNameArray = explode(',', $tagNames);
 
 		foreach ($tagNameArray as $each) {
@@ -213,7 +213,7 @@ class Tag_Model {
 	 * @return array
 	 */
 	function getNamesFromIds($tagIds = NULL) {
-		$names = array();
+		$names = [];
 /*vot*/	foreach ($tagIds AS $i => $tag) {
 /*vot*/		if(empty($tag)) {
 /*vot*/			unset($tagIds[$i]);
@@ -280,7 +280,7 @@ class Tag_Model {
 			return $this->getAllTagIds();
 		}
 
-		$tags = array();
+		$tags = [];
 
 		$sql = "SELECT `tags` FROM `" . DB_PREFIX . "blog` WHERE `gid` = " . $blogId;
 
@@ -298,7 +298,7 @@ class Tag_Model {
 	}
 
 	function getAllTagIds() {
-		$tags = array();
+		$tags = [];
 
 		$sql = "SELECT `tid` FROM `" . DB_PREFIX . "tag`";
 		$query = $this->db->query($sql);
@@ -319,7 +319,7 @@ class Tag_Model {
 	 * @return array Article ID list
 	 */
 	function getBlogIdsFromTagId($tagId) {
-		$blogs = array();
+		$blogs = [];
 
 /*vot*/	if(!empty($tagId)) {
 
@@ -352,7 +352,7 @@ class Tag_Model {
 
 		// If blogId exist, then build a new does not contain this blogId array of Blog, and save to the database
 		if (in_array($blogId, $blogs)) {
-			$new_blogs = array();
+			$new_blogs = [];
 
 			foreach ($blogs as $each) {
 				if ($each != $blogId) {
@@ -380,7 +380,7 @@ class Tag_Model {
 
 		// If tagId exist, then build a new array that does not contain this TagId of Tag, and save to the database
 		if (in_array($tagId, $tags)) {
-			$new_tags = array();
+			$new_tags = [];
 
 			foreach ($tags as $each) {
 				if ($each != $tagId) {

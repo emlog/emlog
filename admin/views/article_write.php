@@ -12,7 +12,8 @@
 <!--vot-->          <input type="text" name="title" id="title" value="<?php echo $title; ?>" class="form-control" placeholder="<?=lang('post_title')?>" autofocus required/>
                 </div>
                 <div id="post_bar">
-<!--vot-->          <a href="#" class="text-muted small my-3" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> <?=lang('upload_insert')?></a>
+<!--vot-->          <a href="#mediaModal" class="text-muted small my-3" data-remote="./media.php?action=lib" data-toggle="modal" data-target="#mediaModal"><i
+                                class="icofont-plus"></i> <?=lang('upload_insert')?></a>
 					<?php doAction('adm_writelog_head'); ?>
                 </div>
                 <div id="logcontent"><textarea><?php echo $content; ?></textarea></div>
@@ -82,14 +83,6 @@
                     <input type="text" name="password" id="password" class="form-control" value="<?php echo $password; ?>"/>
                 </div>
                 <div class="form-group">
-                    <input type="checkbox" value="y" name="top" id="top" <?php echo $is_top; ?> />
-<!--vot-->          <label for="top"><?=lang('home_top')?></label>
-                </div>
-                <div class="form-group">
-                    <input type="checkbox" value="y" name="sortop" id="sortop" <?php echo $is_sortop; ?> />
-<!--vot-->          <label for="sortop"><?=lang('category_top')?></label>
-                </div>
-                <div class="form-group">
                     <input type="checkbox" value="y" name="allow_remark" id="allow_remark" <?php echo $is_allow_remark; ?> />
 <!--vot-->          <label for="allow_remark"><?=lang('allow_comments')?></label>
                 </div>
@@ -117,9 +110,8 @@
     </div>
 </form>
 
-<!--Resource Library-->
-<div class="modal fade bd-example-modal-lg" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+<div class="modal" id="mediaModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
 <!--vot-->      <h5 class="modal-title" id="exampleModalLabel"><?=lang('resource_library')?></h5>
@@ -128,43 +120,48 @@
                 </button>
             </div>
             <div class="modal-body">
-				<?php if ($medias): ?>
+<!--vot-->      <a href="#" id="mediaAdd" class="btn btn-sm btn-success shadow-sm mb-3"><?=lang('upload_files')?></a>
+                <form action="media.php?action=operate_media" method="post" name="form_media" id="form_media">
                     <div class="card-columns">
-						<?php
-						foreach ($medias as $key => $value):
-							$media_url = getFileUrl($value['filepath']);
-							$media_name = $value['filename'];
-							if (isImage($value['filepath'])) {
-								$media_icon = getFileUrl($value['filepath_thum']);
-							} else {
-								$media_icon = "./views/images/fnone.png";
-							}
-							?>
-                            <div class="card" style="min-height: 138px;">
-								<?php if (isImage($value['filepath'])): ?>
-<!--vot-->                          <a href="javascript:insert_media_img('<?php echo $media_url; ?>', '<?php echo $media_icon_img; ?>')" title="<?=lang('img_insert')?>: <?php echo $media_name; ?>">
-                                        <img class="card-img-top" src="<?php echo $media_icon; ?>"/>
-                                    </a>
-								<?php elseif (isVideo($value['filepath'])): ?>
-<!--vot-->                          <a href="javascript:insert_media_video('<?php echo $media_url; ?>')" title="<?=lang('video_insert')?>: <?php echo $media_name; ?>">
-                                        <img class="card-img-top" src="<?php echo $media_icon; ?>"/>
-                                    </a>
-								<?php else: ?>
-<!--vot-->                          <a href="javascript:insert_media('<?php echo $media_url; ?>', '<?php echo $media_name; ?>')" title="<?=lang('file_insert')?>: <?php echo $media_name; ?>">
-                                        <img class="card-img-top" src="<?php echo $media_icon; ?>"/>
-                                    </a>
-								<?php endif; ?>
-                            </div>
-						<?php endforeach; ?>
                     </div>
-				<?php else: ?>
-<!--vot-->          <div class="text-center"><?=lang('no_resources')?>, <a href="media.php"><?=lang('go_upload')?></a></div>
-				<?php endif; ?>
+                </form>
             </div>
-
         </div>
     </div>
 </div>
+<div class="dropzone-previews" style="display: none;"></div>
+<script src="./views/js/dropzone.min.js?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
+<script>
+    // Upload resources
+    Dropzone.autoDiscover = false;
+    var myDropzone = new Dropzone("#mediaAdd", {
+        url: "./media.php?action=upload",
+        addRemoveLinks: false,
+        method: 'post',
+        maxFilesize: 2048,//M
+        filesizeBase: 1024,
+        previewsContainer: ".dropzone-previews",
+        sending: function (file, xhr, formData) {
+            formData.append("filesize", file.size);
+<!--vot-->  $('#mediaAdd').html("<?=lang('uploading')?>");
+        },
+        init: function () {
+            this.on("error", function (file, response) {
+                alert(response);
+            });
+            this.on("queuecomplete", function (file) {
+                $('#mediaModal').find('.modal-body .card-columns').load("./media.php?action=lib");
+<!--vot-->      $('#mediaAdd').html("<?=lang('upload_files')?>");
+            });
+        }
+    });
+    // Load file list
+    $('#mediaModal').on('show.bs.modal', function (e) {
+        var button = $(e.relatedTarget);
+        var modal = $(this);
+        modal.find('.modal-body .card-columns').load(button.data("remote"));
+    });
+</script>
 
 <!-- Cover image cropping -->
 <div class="modal fade" id="modal" tabindex="-2" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
@@ -192,7 +189,7 @@
         </div>
     </div>
 </div>
-<script src="./editor.md/editormd.js?d=5.25.2021"></script>
+<script src="./editor.md/editormd.js?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
 <? if (EMLOG_LANGUAGE !== 'zh-cn') { ?>
 <script src="./editor.md/languages/<?=EMLOG_LANGUAGE?>.js"></script>
 <? } ?>
@@ -307,27 +304,25 @@
                 height: 366
             });
             canvas.toBlob(function (blob) {
-                url = URL.createObjectURL(blob);
-                var reader = new FileReader();
-                reader.readAsDataURL(blob);
-                reader.onloadend = function () {
-                    var base64data = reader.result;
-                    $.ajax({
-                        url: './article.php?action=upload_cover',
-                        method: 'POST',
-                        data: {image: base64data},
-                        success: function (data) {
-                            $modal.modal('hide');
-                            if (data != "error") {
-                                $('#cover_image').attr('src', data);
-                                $('#cover').val(data);
-                                $('#cover_rm').show();
-                            }
+                var formData = new FormData();
+                formData.append('image', blob, 'cover.jpg');
+                $.ajax('./article.php?action=upload_cover', {
+                    method: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {
+                        $modal.modal('hide');
+                        if (data != "error") {
+                            $('#cover_image').attr('src', data);
+                            $('#cover').val(data);
+                            $('#cover_rm').show();
                         }
-                    });
-                };
+                    }
+                });
             });
         });
+
         $('#cover_rm').click(function () {
             $('#cover_image').attr('src', "./views/images/cover.svg");
             $('#cover').val("");

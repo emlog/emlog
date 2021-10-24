@@ -3,6 +3,13 @@
 $lang = array(
 
 //---------------------------
+//include/controller/comment_controller.php
+'mail_test_header'	=> 'Тема тестового письма',//'测试邮件发送标题',
+'mail_test_content'	=> 'Содержание тестового письма',//'测试邮件发送内容',
+'mail_send_ok'		=> 'Письмо успешно отправлено',//'邮件发送成功',
+'mail_send_error'	=> 'Ошибка отправки письма',//'邮件发送失败',
+
+//---------------------------
 //include/lib/cache.php
  'cache_date_format'	=> 'm.Y',//'Y年n月',
  'cache_read_error'	=> 'Ошибка чтения кэша',//'读取缓存失败',

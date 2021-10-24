@@ -1,40 +1,24 @@
 <?php
 /*
 Plugin Name: Tips
-Version: 1.2
+Version: 2.0
 Plugin URL:
 Description: It is the world's first emlog plugin, it will send one cozy little tips in your administration page.
-Author: emlog
-Author URL: http://www.emlog.net
+Author: emlog official
+Author URL: https://www.emlog.net
 */
 
 !defined('EMLOG_ROOT') && exit('access deined!');
 
-/*vot*/ load_language('plugin_tips');
-
+/*vot: Moved to /lang/XX/lang_plugin_tips.php
 $array_tips = [
-/*vot*/	lang('tag_tip'),
-/*vot*/	lang('summary_tip'),
-/*vot*/	lang('autosave_tip'),
-/*vot*/	lang('draft_tip'),
-/*vot*/	lang('thumbnail_tip'),
-/*vot*/	lang('official_feed_tip'),
-/*vot*/	lang('image_tip'),
-/*vot*/	lang('post_password_tip'),
-/*vot*/	lang('co-author_tip'),
-/*vot*/	lang('intro_page_tip'),
-/*vot*/	lang('message_board_tip'),
-/*vot*/	lang('install_delete_tip'),
-/*vot*/	lang('chrome_tip'),
-/*vot*/	lang('be_happy_tip'),
-
-/*vot*/	lang('attach_upload_tip'),
-/*vot*/	lang('indent_tip'),
-/*vot*/	lang('emoticon_tip'),
-/*vot*/	lang('browser_upgrade_tip'),
-/*vot*/	lang('create_backup_tip'),
-/*vot*/	lang('tomorrow_happy_tip'),
+//...
 ];
+vot*/
+
+// Load Tips from /lang/XX/lang_plugin_tips.php
+/*vot*/ load_language('plugin_tips');
+/*vot*/	require_once EMLOG_ROOT . '/lang/' . EMLOG_LANGUAGE . '/lang_plugin_tips.php';
 
 function tips() {
 	global $array_tips;
