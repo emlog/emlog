@@ -215,10 +215,6 @@ if ($action === 'write') {
 	$Media_Model = new Media_Model();
 	$medias = $Media_Model->getMedias();
 
-	if (!ISREG && $sta_cache['lognum'] > 20) {
-		emDirect("register.php?error_article=1");
-	}
-
 	include View::getView('header');
 	require_once View::getView('article_write');
 	include View::getView('footer');
@@ -237,7 +233,7 @@ if ($action === 'edit') {
 	$sorts = $CACHE->readCache('sort');
 
 	//tag
-	$tags = array();
+	$tags = [];
 	foreach ($Tag_Model->getTag($logid) as $val) {
 		$tags[] = $val['tagname'];
 	}
@@ -258,16 +254,6 @@ if ($action === 'edit') {
 }
 
 if ($action == 'upload_cover') {
-	$data = isset($_POST['image']) ? addslashes($_POST['image']) : '';
-	//data:image/png;base64,xxxx
-	$image_array = explode(",", $data);
-	if (empty($image_array[1])) {
-		exit("error");
-	}
-	$data = base64_decode($image_array[1]);
-	$fname = emFilePutContent($data);
-	if (!$fname) {
-		exit("error");
-	}
-	echo $fname;
+	$ret = uploadCropImg();
+	echo $ret['file_info']['file_path'];
 }

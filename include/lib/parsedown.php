@@ -22,7 +22,7 @@
 
 	function text($text) {
 		# make sure no definitions are set
-		$this->DefinitionData = array();
+		$this->DefinitionData = [];
 
 		# standardize line breaks
 		$text = str_replace(array("\r\n", "\r"), "\n", $text);
@@ -754,7 +754,7 @@
 		}
 
 		if (strpos($Block['element']['text'], '|') !== false and chop($Line['text'], ' -:|') === '') {
-			$alignments = array();
+			$alignments = [];
 
 			$divider = $Line['text'];
 
@@ -785,7 +785,7 @@
 
 			# ~
 
-			$HeaderElements = array();
+			$HeaderElements = [];
 
 			$header = $Block['element']['text'];
 
@@ -852,7 +852,7 @@
 		}
 
 		if ($Line['text'][0] === '|' or strpos($Line['text'], '|')) {
-			$Elements = array();
+			$Elements = [];
 
 			$row = $Line['text'];
 
@@ -1327,7 +1327,7 @@
 			$markup .= '>';
 
 			if (!isset($Element['nonNestables'])) {
-				$Element['nonNestables'] = array();
+				$Element['nonNestables'] = [];
 			}
 
 			if (isset($Element['handler'])) {
@@ -1455,7 +1455,7 @@
 		return $instance;
 	}
 
-	private static $instances = array();
+	private static $instances = [];
 
 	#
 	# Fields

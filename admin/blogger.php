@@ -67,22 +67,11 @@ if ($action == 'update') {
 }
 
 if ($action == 'update_avatar') {
-	$data = isset($_POST['image']) ? addslashes($_POST['image']) : '';
-	//data:image/png;base64,xxxx
-	$image_array = explode(",", $data);
-	if (empty($image_array[1])) {
-		exit("error");
-	}
-
-	$data = base64_decode($image_array[1]);
-
-	$fname = emFilePutContent($data);
-	if (!$fname) {
-		exit("error");
-	}
+	$ret = uploadCropImg();
+	$file_path = $ret['file_info']['file_path'];
 
 	$User_Model = new User_Model();
-	$User_Model->updateUser(array('photo' => $fname), UID);
+	$User_Model->updateUser(array('photo' => $file_path), UID);
 	$CACHE->updateCache('user');
-	echo $fname;
+	echo $file_path;
 }

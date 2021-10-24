@@ -23,7 +23,7 @@ if ($action === '') {
 		$custom_widget[$key] = array_map('htmlspecialchars', $val);
 	}
 
-	$customWgTitle = array();
+	$customWgTitle = [];
 	foreach ($widgetTitle as $key => $val) {
 		if (preg_match("/^.*\s\((.*)\)/", $val, $matchs)) {
 			$customWgTitle[$key] = $matchs[1];

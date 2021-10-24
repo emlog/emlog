@@ -21,7 +21,7 @@ spl_autoload_register("emAutoload");
 
 $CACHE = Cache::getInstance();
 
-$userData = array();
+$userData = [];
 
 define('ISLOGIN', LoginAuth::isLogin());
 
@@ -51,7 +51,7 @@ define('TEMPLATE_URL', TPLS_URL . Option::get('nonce_templet') . '/');
 /*vot*/define('ROOT_URL', str_replace('\\','/', dirname($_SERVER['PHP_SELF'])));
 
 $active_plugins = Option::get('active_plugins');
-$emHooks = array();
+$emHooks = [];
 if ($active_plugins && is_array($active_plugins)) {
 	foreach ($active_plugins as $plugin) {
 		if (true === checkPlugin($plugin)) {

@@ -82,8 +82,8 @@ class Plugin_Model {
 		if (isset($emPlugins)) {
 			return $emPlugins;
 		}
-		$emPlugins = array();
-		$pluginFiles = array();
+		$emPlugins = [];
+		$pluginFiles = [];
 		$pluginPath = EMLOG_ROOT . '/content/plugins';
 		$pluginDir = @ dir($pluginPath);
 		if ($pluginDir) {

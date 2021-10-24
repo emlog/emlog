@@ -20,7 +20,7 @@ if (!defined('EMLOG_ROOT')) {
 <div class="container">
     <div class="row">
         <div class="col-md-8 page">
-            <h2><?php echo $log_title; ?></h2>
+            <h3><?php echo $log_title; ?></h3>
             <div class="markdown"><?php echo $log_content; ?></div>
 			<?php blog_comments($comments); ?>
 			<?php blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allow_remark); ?>

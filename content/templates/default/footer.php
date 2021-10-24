@@ -18,7 +18,8 @@ if (!defined('EMLOG_ROOT')) {
 <script>
     $('#captcha').click(function () {
         var timestamp = new Date().getTime();
-        $(this).attr("src", "./include/lib/checkcode.php?" + timestamp);
+        var src = $(this).attr("src");
+        $(this).attr("src", src + "?" + timestamp);
     });
 </script>
 </body>

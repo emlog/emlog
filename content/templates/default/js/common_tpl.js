@@ -147,7 +147,7 @@ function cancelReply() {
 }
 
 function cal_margin(links, dp_id) {
-    if(window.outerWidth > 991){
+    if (window.outerWidth > 991) {
         console.log(window.outerWidth);
         var count, menus, cal_width;
 /*vot*/	cal_width = 85; //The width of the initial sub-navigation (px), can be modified as needed

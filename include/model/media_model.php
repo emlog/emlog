@@ -26,7 +26,7 @@ class Media_Model {
 			$medias[$row['aid']] = [
 				'attsize'       => changeFileSize($row['filesize']),
 				'filename'      => htmlspecialchars($row['filename']),
-				'addtime'       => date("Y-m-d H:i", $row['addtime']),
+				'addtime'       => date("Y-m-d H:i:s", $row['addtime']),
 				'aid'           => $row['aid'],
 				'filepath_thum' => $row['filepath'],
 				'filepath'      => str_replace("thum-", '', $row['filepath']),

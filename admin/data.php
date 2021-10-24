@@ -121,7 +121,7 @@ function checkSqlFileInfo($sqlfile) {
 	if (!$fp) {
 /*vot*/ emMsg(lang('import_failed_not_read'));
 	}
-	$dumpinfo = array();
+	$dumpinfo = [];
 	$line = 0;
 	while (!feof($fp)) {
 		$a = fgets($fp, 4096);

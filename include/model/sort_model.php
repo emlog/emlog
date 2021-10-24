@@ -14,7 +14,7 @@ class Sort_Model {
 
 	function getSorts() {
 		$res = $this->db->query("SELECT * FROM " . DB_PREFIX . "sort ORDER BY taxis ASC");
-		$sorts = array();
+		$sorts = [];
 		while ($row = $this->db->fetch_array($res)) {
 			$row['sortname'] = htmlspecialchars($row['sortname']);
 			$sorts[] = $row;
@@ -23,7 +23,7 @@ class Sort_Model {
 	}
 
 	function updateSort($sortData, $sid) {
-		$Item = array();
+		$Item = [];
 		foreach ($sortData as $key => $data) {
 			$Item[] = "$key='$data'";
 		}
@@ -46,7 +46,7 @@ class Sort_Model {
 		$sql = "select * from " . DB_PREFIX . "sort where sid=$sid";
 		$res = $this->db->query($sql);
 		$row = $this->db->fetch_array($res);
-		$sortData = array();
+		$sortData = [];
 		if ($row) {
 			$sortData = array(
 				'sortname'    => htmlspecialchars(trim($row['sortname'])),

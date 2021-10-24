@@ -23,8 +23,6 @@ $excerpt = isset($_POST['logexcerpt']) ? addslashes(trim($_POST['logexcerpt'])) 
 $author = isset($_POST['author']) && ROLE == ROLE_ADMIN ? (int)trim($_POST['author']) : UID;
 /*vot*/ $blogid = isset($_POST['as_logid']) ? (int)trim($_POST['as_logid']) : -1;//If it is automatically saved as a draft, there is a blog id number
 $alias = isset($_POST['alias']) ? addslashes(trim($_POST['alias'])) : '';
-$top = isset($_POST['top']) ? addslashes(trim($_POST['top'])) : 'n';
-$sortop = isset($_POST['sortop']) ? addslashes(trim($_POST['sortop'])) : 'n';
 $allow_remark = isset($_POST['allow_remark']) ? addslashes(trim($_POST['allow_remark'])) : 'n';
 $ishide = isset($_POST['ishide']) && !empty($_POST['ishide']) && !isset($_POST['pubdf']) ? addslashes($_POST['ishide']) : 'n';
 $password = isset($_POST['password']) ? addslashes(trim($_POST['password'])) : '';
@@ -47,8 +45,6 @@ $logData = array(
 	'author'       => $author,
 	'sortid'       => $sort,
 	'date'         => $postDate,
-	'top '         => $top,
-	'sortop '      => $sortop,
 	'allow_remark' => $allow_remark,
 	'hide'         => $ishide,
 	'checked'      => $user_cache[UID]['ischeck'] == 'y' ? 'n' : 'y',

@@ -92,12 +92,11 @@ class LoginAuth {
 		if (empty($userLogin)) {
 			return false;
 		}
-		$userData = [];
-		if (!$userData = $DB->once_fetch_array("SELECT * FROM " . DB_PREFIX . "user WHERE username = '$userLogin'")) {
+		$userData = $DB->once_fetch_array("SELECT * FROM " . DB_PREFIX . "user WHERE username = '$userLogin'");
+		if (!$userData) {
 			return false;
 		}
 		$userData['nickname'] = htmlspecialchars($userData['nickname']);
-		$userData['username'] = htmlspecialchars($userData['username']);
 		$userData['username'] = htmlspecialchars($userData['username']);
 		return $userData;
 	}
