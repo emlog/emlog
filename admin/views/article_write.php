@@ -145,13 +145,13 @@
             formData.append("filesize", file.size);
             $('#mediaAdd').html("上传中……");
         },
-        success: function (file, response, e) {
-            $('#mediaModal').find('.modal-body .card-columns').load("./media.php?action=lib");
-            $('#mediaAdd').html("上传图片/文件");
-        },
         init: function () {
             this.on("error", function (file, response) {
                 alert(response);
+            });
+            this.on("queuecomplete", function (file) {
+                $('#mediaModal').find('.modal-body .card-columns').load("./media.php?action=lib");
+                $('#mediaAdd').html("上传图片/文件");
             });
         }
     });
