@@ -12,7 +12,8 @@
                     <input type="text" name="title" id="title" value="<?php echo $title; ?>" class="form-control" placeholder="文章标题" autofocus required/>
                 </div>
                 <div id="post_bar">
-                    <a href="#mediaModal" class="text-muted small my-3" data-remote="./media.php?action=lib" data-toggle="modal" data-target="#mediaModal"><i class="icofont-plus"></i> 插入图文资源</a>
+                    <a href="#mediaModal" class="text-muted small my-3" data-remote="./media.php?action=lib" data-toggle="modal" data-target="#mediaModal"><i
+                                class="icofont-plus"></i> 插入图文资源</a>
 					<?php doAction('adm_writelog_head'); ?>
                 </div>
                 <div id="logcontent"><textarea><?php echo $content; ?></textarea></div>
@@ -119,7 +120,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <a href="#" id="myIdxxx" class="btn btn-sm btn-success shadow-sm mb-3" data-toggle="modal" data-target="#exampleModal"><i class="icofont-plus"></i> 上传图片/文件</a>
+                <a href="#" id="mediaAdd" class="btn btn-sm btn-success shadow-sm mb-3"><i class="icofont-plus"></i> 上传图片/文件</a>
                 <form action="media.php?action=operate_media" method="post" name="form_media" id="form_media">
                     <div class="card-columns">
                     </div>
@@ -128,14 +129,33 @@
         </div>
     </div>
 </div>
+<div class="dropzone-previews" style="display: none;"></div>
 <script src="./views/js/dropzone.min.js?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
 <script>
-    var myDropzone = new Dropzone("#myIdxxx", { url: "./media.php?action=upload"});
-    myDropzone.on("complete", function(file) {
+    // 上传资源
+    Dropzone.autoDiscover = false;
+    var myDropzone = new Dropzone("#mediaAdd", {
+        url: "./media.php?action=upload",
+        addRemoveLinks: false,
+        method: 'post',
+        filesizeBase: 1024,
+        previewsContainer: ".dropzone-previews",
+        sending: function (file, xhr, formData) {
+            formData.append("filesize", file.size);
+        },
+        success: function (file, response, e) {
+            // var res = JSON.parse(response);
+            // if (res.error) {
+            //     $(file.previewTemplate).children('.dz-error-mark').css('opacity', '1')
+            // }
+        }
+    });
+    // 上传成功后刷新资源列表
+    myDropzone.on("complete", function (file) {
         $('#mediaModal').find('.modal-body .card-columns').load("./media.php?action=lib");
     });
-
-    $('#mediaModal').on('show.bs.modal', function(e) {
+    // 载入资源列表
+    $('#mediaModal').on('show.bs.modal', function (e) {
         var button = $(e.relatedTarget);
         var modal = $(this);
         modal.find('.modal-body .card-columns').load(button.data("remote"));
