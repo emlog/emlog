@@ -12,7 +12,7 @@
                     <input type="text" name="title" id="title" value="<?php echo $title; ?>" class="form-control" placeholder="文章标题" autofocus required/>
                 </div>
                 <div id="post_bar">
-                    <a href="#" class="text-muted small my-3" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> 插入图文资源</a>
+                    <a href="#mediaModal" class="text-muted small my-3" data-remote="./media.php?action=lib" data-toggle="modal" data-target="#mediaModal"><i class="icofont-plus"></i> 插入图文资源</a>
 					<?php doAction('adm_writelog_head'); ?>
                 </div>
                 <div id="logcontent"><textarea><?php echo $content; ?></textarea></div>
@@ -109,9 +109,8 @@
     </div>
 </form>
 
-<!--资源库-->
-<div class="modal fade bd-example-modal-lg" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+<div class="modal" id="mediaModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">图文资源</h5>
@@ -120,43 +119,28 @@
                 </button>
             </div>
             <div class="modal-body">
-				<?php if ($medias): ?>
+                <a href="#" id="myIdxxx" class="btn btn-sm btn-success shadow-sm mb-3" data-toggle="modal" data-target="#exampleModal"><i class="icofont-plus"></i> 上传图片/文件</a>
+                <form action="media.php?action=operate_media" method="post" name="form_media" id="form_media">
                     <div class="card-columns">
-						<?php
-						foreach ($medias as $key => $value):
-							$media_url = getFileUrl($value['filepath']);
-							$media_name = $value['filename'];
-							if (isImage($value['filepath'])) {
-								$media_icon = getFileUrl($value['filepath_thum']);
-							} else {
-								$media_icon = "./views/images/fnone.png";
-							}
-							?>
-                            <div class="card" style="min-height: 138px;">
-								<?php if (isImage($value['filepath'])): ?>
-                                    <a href="javascript:insert_media_img('<?php echo $media_url; ?>', '<?php echo $media_icon; ?>')" title="插入图片：<?php echo $media_name; ?>">
-                                        <img class="card-img-top" src="<?php echo $media_icon; ?>"/>
-                                    </a>
-								<?php elseif (isVideo($value['filepath'])): ?>
-                                    <a href="javascript:insert_media_video('<?php echo $media_url; ?>')" title="插入视频：<?php echo $media_name; ?>">
-                                        <img class="card-img-top" src="<?php echo $media_icon; ?>"/>
-                                    </a>
-								<?php else: ?>
-                                    <a href="javascript:insert_media('<?php echo $media_url; ?>', '<?php echo $media_name; ?>')" title="插入文件：<?php echo $media_name; ?>">
-                                        <img class="card-img-top" src="<?php echo $media_icon; ?>"/>
-                                    </a>
-								<?php endif; ?>
-                            </div>
-						<?php endforeach; ?>
                     </div>
-				<?php else: ?>
-                    <div class="text-center">暂无可用资源，<a href="media.php">去上传</a></div>
-				<?php endif; ?>
+                </form>
             </div>
-
         </div>
     </div>
 </div>
+<script src="./views/js/dropzone.min.js?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
+<script>
+    var myDropzone = new Dropzone("#myIdxxx", { url: "./media.php?action=upload"});
+    myDropzone.on("complete", function(file) {
+        $('#mediaModal').find('.modal-body .card-columns').load("./media.php?action=lib");
+    });
+
+    $('#mediaModal').on('show.bs.modal', function(e) {
+        var button = $(e.relatedTarget);
+        var modal = $(this);
+        modal.find('.modal-body .card-columns').load(button.data("remote"));
+    });
+</script>
 
 <!-- 封面图裁剪 -->
 <div class="modal fade" id="modal" tabindex="-2" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">

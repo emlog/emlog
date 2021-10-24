@@ -27,6 +27,16 @@ if (empty($action)) {
 	View::output();
 }
 
+if ($action === 'lib') {
+	$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+	$perpage_count = 48;
+	$medias = $Media_Model->getMedias($page, $perpage_count);
+	$count = $Media_Model->getMediaCount();
+	$pageurl = pagination($count, $perpage_count, $page, "media.php?page=");
+	require_once(View::getView('media_lib'));
+	View::output();
+}
+
 if ($action === 'upload') {
 	$editor = isset($_GET['editor']) ? 1 : 0; // 是否来自Markdown编辑器的上传
 	$attach = $_FILES['file'] ?? '';
