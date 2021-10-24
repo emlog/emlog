@@ -120,7 +120,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <a href="#" id="mediaAdd" class="btn btn-sm btn-success shadow-sm mb-3"><i class="icofont-plus"></i> 上传图片/文件</a>
+                <a href="#" id="mediaAdd" class="btn btn-sm btn-success shadow-sm mb-3">上传图片/文件</a>
                 <form action="media.php?action=operate_media" method="post" name="form_media" id="form_media">
                     <div class="card-columns">
                     </div>
@@ -143,9 +143,11 @@
         previewsContainer: ".dropzone-previews",
         sending: function (file, xhr, formData) {
             formData.append("filesize", file.size);
+            $('#mediaAdd').html("上传中……");
         },
         success: function (file, response, e) {
             $('#mediaModal').find('.modal-body .card-columns').load("./media.php?action=lib");
+            $('#mediaAdd').html("上传图片/文件");
         },
         init: function () {
             this.on("error", function (file, response) {
