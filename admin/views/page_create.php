@@ -10,7 +10,8 @@
                     <input type="text" name="title" id="title" value="<?php echo $title; ?>" class="form-control" placeholder="页面标题"/>
                 </div>
                 <div id="post_bar">
-                    <a href="#" class="text-muted small my-3" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> 插入图文资源</a>
+                    <a href="#mediaModal" class="text-muted small my-3" data-remote="./media.php?action=lib" data-toggle="modal" data-target="#mediaModal"><i
+                                class="icofont-plus"></i> 插入图文资源</a>
 					<?php doAction('adm_writelog_head'); ?>
                 </div>
                 <div id="pagecontent"><textarea style="display:none;"><?php echo $content; ?></textarea></div>
@@ -44,52 +45,57 @@
 </form>
 
 <!--资源库-->
-<div class="modal fade bd-example-modal-lg" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+
+<div class="modal" id="mediaModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">最近上传的资源</h5>
+                <h5 class="modal-title" id="exampleModalLabel">图文资源</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <div class="card-columns">
-					<?php
-					if ($medias):
-						foreach ($medias as $key => $value):
-							$media_url = getFileUrl($value['filepath']);
-							$media_name = $value['filename'];
-							if (isImage($value['filepath'])) {
-								$media_icon = getFileUrl($value['filepath_thum']);
-							} else {
-								$media_icon = "./views/images/fnone.png";
-							}
-							?>
-                            <div class="card" style="min-height: 138px;">
-								<?php if (isImage($value['filepath'])): ?>
-                                    <a href="javascript:insert_media_img('<?php echo $media_url; ?>', '<?php echo $media_icon; ?>')">
-                                        <img class="card-img-top" src="<?php echo $media_icon; ?>"/>
-                                    </a>
-								<?php else: ?>
-                                    <a href="javascript:insert_media('<?php echo $media_url; ?>', '<?php echo $media_name; ?>')">
-                                        <img class="card-img-top" src="<?php echo $media_icon; ?>"/>
-                                    </a>
-								<?php endif; ?>
-                            </div>
-						<?php
-						endforeach;
-					else :
-						?>
-                        没有资源可以使用
-					<?php
-					endif;
-					?>
-                </div>
+                <a href="#" id="mediaAdd" class="btn btn-sm btn-success shadow-sm mb-3"><i class="icofont-plus"></i> 上传图片/文件</a>
+                <form action="media.php?action=operate_media" method="post" name="form_media" id="form_media">
+                    <div class="card-columns">
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
+<div class="dropzone-previews" style="display: none;"></div>
+<script src="./views/js/dropzone.min.js?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
+<script>
+    // 上传资源
+    Dropzone.autoDiscover = false;
+    var myDropzone = new Dropzone("#mediaAdd", {
+        url: "./media.php?action=upload",
+        addRemoveLinks: false,
+        method: 'post',
+        maxFilesize: 2048,//M
+        filesizeBase: 1024,
+        previewsContainer: ".dropzone-previews",
+        sending: function (file, xhr, formData) {
+            formData.append("filesize", file.size);
+        },
+        success: function (file, response, e) {
+            $('#mediaModal').find('.modal-body .card-columns').load("./media.php?action=lib");
+        },
+        init: function () {
+            this.on("error", function (file, response) {
+                alert(response);
+            });
+        }
+    });
+    // 载入资源列表
+    $('#mediaModal').on('show.bs.modal', function (e) {
+        var button = $(e.relatedTarget);
+        var modal = $(this);
+        modal.find('.modal-body .card-columns').load(button.data("remote"));
+    });
+</script>
 
 <script src="./editor.md/editormd.js?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
 <script>
