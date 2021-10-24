@@ -138,21 +138,20 @@
         url: "./media.php?action=upload",
         addRemoveLinks: false,
         method: 'post',
+        maxFilesize: 2048,//M
         filesizeBase: 1024,
         previewsContainer: ".dropzone-previews",
         sending: function (file, xhr, formData) {
             formData.append("filesize", file.size);
         },
         success: function (file, response, e) {
-            // var res = JSON.parse(response);
-            // if (res.error) {
-            //     $(file.previewTemplate).children('.dz-error-mark').css('opacity', '1')
-            // }
+            $('#mediaModal').find('.modal-body .card-columns').load("./media.php?action=lib");
+        },
+        init: function () {
+            this.on("error", function (file, response) {
+                alert(response);
+            });
         }
-    });
-    // 上传成功后刷新资源列表
-    myDropzone.on("complete", function (file) {
-        $('#mediaModal').find('.modal-body .card-columns').load("./media.php?action=lib");
     });
     // 载入资源列表
     $('#mediaModal').on('show.bs.modal', function (e) {

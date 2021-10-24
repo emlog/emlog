@@ -78,7 +78,7 @@
         window.location.reload();
     })
     Dropzone.options.myAwesomeDropzone = {
-        maxFilesize: 2048,//max uplaod filesize
+        maxFilesize: 2048,// 单位M
         paramName: "file",
         init: function () {
             this.on("error", function (file, response) {
