@@ -185,6 +185,7 @@ $lang = array(
  'go_upload'		=> '去上传',//'Go Upload',
  'article_cover'	=> '文章封面',//'Article cover',
  'crop_upload'		=> '裁剪并上传',//'Crop and upload',
+ 'uploading'		=> '上传中……',//'Uploading...',
 
 //---------------------------
 //admin/views/admin_page.php
@@ -499,6 +500,10 @@ $lang = array(
  'resource_del_selected'	=> '删除所选资源',//'Delete selected resources',
  'resource_select'	=> '请选择要删除的资源',//'Please select the resource to be deleted',
  'resource_del_sure'	=> '确定要删除所选资源吗？',//'Are you sure you want to delete the selected resource?',
+
+//---------------------------
+//admin/views/media_lib.php
+ 'upload_time'		=> '上传时间',//'Upload time',
 
 //---------------------------
 //admin/views/navbar.php
