@@ -17,7 +17,6 @@ $array_tips = [
 vot*/
 
 // Load Tips from /lang/XX/lang_plugin_tips.php
-/*vot*/ load_language('plugin_tips');
 /*vot*/	require_once EMLOG_ROOT . '/lang/' . EMLOG_LANGUAGE . '/lang_plugin_tips.php';
 
 function tips() {
