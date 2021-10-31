@@ -217,15 +217,15 @@ function widget_custom_text($title, $content) { ?>
     </div>
 <?php } ?>
 <?php
-
 //blog：导航
 function blog_navi() {
 	global $CACHE;
 	$navi_cache = $CACHE->readCache('navi');
 	?>
-    <div class="dropdown">
-        <ul class="navbar-nav ml-md-auto top-menu">
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto top-menu">
 			<?php
+			$dp_id = 0;
 			foreach ($navi_cache as $value):
 				if ($value['pid'] != 0) {
 					continue;
@@ -233,6 +233,7 @@ function blog_navi() {
 				if ($value['url'] == ROLE_ADMIN && (ROLE == ROLE_ADMIN || ROLE == ROLE_WRITER)):
 					?>
                     <li class="nav-item list-menu"><a href="<?php echo BLOG_URL; ?>admin/" class="nav-link">管理</a></li>
+                    <li class="nav-item list-menu"><a href="<?php echo BLOG_URL; ?>admin/?action=logout" class="nav-link">退出</a></li>
 					<?php
 					continue;
 				endif;
@@ -241,34 +242,29 @@ function blog_navi() {
 				$current_tab = BLOG_URL . trim(Dispatcher::setPath(), '/') == $value['url'] ? 'active' : '';
 				?>
 				<?php if (!empty($value['children']) || !empty($value['childnavi'])) : ?>
-                <li class="nav-item dropdown">
+                <li class="nav-item list-menu">
 					<?php if (!empty($value['children'])): ?>
-                        <a class='nav-item nav-link dropdown-toggle mr-md-2' href="<?php echo $value['url']; ?>" id="bd-versions" data-toggle="dropdown" aria-haspopup="true"
-                           aria-expanded="false" <?php echo $newtab; ?>>
-							<?php echo $value['naviname']; ?>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="bd-versions">
+                        <a class="nav-link" href="<?php echo $value['url']; ?>" id="nav_link"
+                           onmousemove="cal_margin(this,<?php echo $dp_id; ?>)" <?php echo $newtab; ?>><?php echo $value['naviname']; ?></a>
+                        <ul class="dropdown-menus" id="dropmenus<?php echo $dp_id++; ?>">
 							<?php foreach ($value['children'] as $row) {
-								echo '<a class="dropdown-item" href="' . Url::sort($row['sid']) . '">' . $row['sortname'] . '</a>';
+								echo '<li class="nav-item list-menu small"><a class="nav-link" href="' . Url::sort($row['sid']) . '">' . $row['sortname'] . '</a></li>';
 							} ?>
-                        </div>
+                        </ul>
 					<?php endif; ?>
 					<?php if (!empty($value['childnavi'])) : ?>
-                        <a class='nav-item nav-link dropdown-toggle mr-md-2' href="<?php echo $value['url']; ?>" id="bd-versions" data-toggle="dropdown" aria-haspopup="true"
-                           aria-expanded="false" <?php echo $newtab; ?>>
-							<?php echo $value['naviname']; ?>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="bd-versions">
+                        <a class="nav-link" href="<?php echo $value['url']; ?>" id="nav_link"
+                           onmousemove="cal_margin(this,<?php echo $dp_id; ?>)" <?php echo $newtab; ?>><?php echo $value['naviname']; ?> <b class="caret"></b></a>
+                        <ul class="dropdown-menus" id="dropmenus<?php echo $dp_id++; ?>">
 							<?php foreach ($value['childnavi'] as $row) {
 								$newtab = $row['newtab'] == 'y' ? 'target="_blank"' : '';
-								echo '<a class="dropdown-item" href="' . $row['url'] . "\" $newtab >" . $row['naviname'] . '</a>';
+								echo '<li class="nav-item list-menu small"><a class="nav-link" href="' . $row['url'] . "\" $newtab >" . $row['naviname'] . '</a></li>';
 							} ?>
-                        </div>
+                        </ul>
 					<?php endif; ?>
                 </li>
 			<?php else: ?>
-                <li class="nav-item list-menu <?php echo $current_tab; ?>"><a class="nav-link"
-                                                                              href="<?php echo $value['url']; ?>" <?php echo $newtab; ?>><?php echo $value['naviname']; ?></a></li>
+                <li class="nav-item list-menu <?php echo $current_tab; ?>"><a class="nav-link" href="<?php echo $value['url']; ?>" <?php echo $newtab; ?>><?php echo $value['naviname']; ?></a></li>
 			<?php endif; ?>
 			<?php endforeach; ?>
         </ul>

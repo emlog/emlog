@@ -150,11 +150,12 @@ function cal_margin(links, dp_id) {
     if (window.outerWidth > 991) {
         console.log(window.outerWidth);
         var count, menus, cal_width;
-        cal_width = 85;//初始子导航的宽度(px)，可根据需要修改
+        cal_width = 165;//初始子导航的宽度(px)，可根据需要修改
         menus = document.getElementById('dropmenus' + dp_id);
         count = links.offsetWidth - cal_width;
         menus.style.width = cal_width + 'px';
         menus.style.marginLeft = count / 2 + 'px';
+        menus.style.marginTop = '10px';
     }
 }
 
