@@ -42,5 +42,10 @@ www.emlog.net
 3. 安装过程不会创建数据库，需要您事先创建好 ,点击确认安装，安装成功。
 
 
-## 软件授权许可证（License）
+## Special thanks
+
+[![JetBrains](https://raw.githubusercontent.com/kainonly/ngx-bit/main/resource/jetbrains.svg)](https://www.jetbrains.com/)
+
+
+## License
 发布Emlog软件所依据的许可证是自由软件基金会的GPLv3(或更高版本)：[LICENSE](/license.txt)
