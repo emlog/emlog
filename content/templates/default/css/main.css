@@ -20,12 +20,22 @@ a {
 }
 
 a:focus, a:hover {
-    color: #5a5c69;
-    text-decoration: underline;
+    color: #f6607d;
+    text-decoration: none;
 }
 
 img {
     max-width: 100%
+}
+
+.navbar-brand a {
+    color: #858796;
+    text-decoration: none;
+}
+
+.loglist_title {
+    color: #858796;
+    text-decoration: none;
 }
 
 blockquote {
@@ -193,7 +203,6 @@ footer .copyright {
 }
 
 #calendar a {
-    color: #000;
     font-weight: bolder
 }
 
@@ -622,18 +631,10 @@ body {
     color: #404040 !important
 }
 
-.loglist_info a {
-    color: #929292
-}
-
 .loglist_count {
     font-size: small;
     position: absolute;
     right: 15px
-}
-
-.loglist_count a {
-    color: #252525
 }
 
 .side-bar {
