@@ -78,8 +78,8 @@ function focusEle(id) {
 }
 
 function hideActived() {
-    $(".alert-success").hide();
-    $(".alert-danger").hide();
+    $(".alert-success").slideUp(300);
+    $(".alert-danger").slideUp(300);
 }
 
 function displayToggle(id, keep) {
