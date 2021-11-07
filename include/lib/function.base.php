@@ -218,7 +218,10 @@ function getFileSuffix($fileName) {
  * @return string
  */
 function getFileUrl($filePath) {
-	return BLOG_URL . substr($filePath, 3);
+	if (!stristr($filePath, 'http')) {
+		return BLOG_URL . substr($filePath, 3);
+	}
+	return $filePath;
 }
 
 /**

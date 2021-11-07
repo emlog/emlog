@@ -151,6 +151,12 @@ function insert_media(fileurl, filename) {
     Editor.insertValue('[' + filename + '](' + fileurl + ')\n\n');
 }
 
+function insert_conver(imgsrc) {
+    $('#cover_image').attr('src', imgsrc);
+    $('#cover').val(imgsrc);
+    $('#cover_rm').show();
+}
+
 // act: 1 auto save, 2 manual save：click save button to save,
 function autosave(act) {
     var nodeid = "as_logid";
