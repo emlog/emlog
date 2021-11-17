@@ -64,7 +64,7 @@
                             <td>
 								<?php echo $val['Description']; ?>
 								<?php if ($val['Url'] != ''): ?><a href="<?php echo $val['Url']; ?>" target="_blank">更多信息&raquo;</a><?php endif; ?>
-                                <div style="margin-top:5px;">
+                                <div class="small mt-3">
 									<?php if ($val['ForEmlog'] != ''): ?>适用于emlog：<?php echo $val['ForEmlog']; ?>&nbsp | &nbsp<?php endif; ?>
 									<?php if ($val['Author'] != ''): ?>
                                         作者：<?php if ($val['AuthorUrl'] != ''): ?>

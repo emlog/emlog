@@ -34,16 +34,6 @@ if (!$action) {
 	View::output();
 }
 
-if ($action === 'del') {
-	$id = isset($_GET['id']) ? (int)$_GET['id'] : '';
-
-	LoginAuth::checkToken();
-
-	$Comment_Model->delComment($id);
-	$CACHE->updateCache(array('sta', 'comment'));
-	emDirect("./comment.php?active_del=1");
-}
-
 if ($action === 'delbyip') {
 	LoginAuth::checkToken();
 	if (ROLE !== ROLE_ADMIN) {
@@ -55,44 +45,40 @@ if ($action === 'delbyip') {
 	emDirect("./comment.php?active_del=1");
 }
 
-if ($action === 'hide') {
-	$id = isset($_GET['id']) ? (int)$_GET['id'] : '';
-	$Comment_Model->hideComment($id);
-	$CACHE->updateCache(array('sta', 'comment'));
-	emDirect("./comment.php?active_hide=1");
-}
-if ($action === 'show') {
-	$id = isset($_GET['id']) ? (int)$_GET['id'] : '';
-	$Comment_Model->showComment($id);
-	$CACHE->updateCache(array('sta', 'comment'));
-	emDirect("./comment.php?active_show=1");
-}
-
-if ($action === 'admin_all_coms') {
+if ($action === 'batch_operation') {
 	$operate = $_POST['operate'] ?? '';
-	$comments = isset($_POST['com']) ? array_map('intval', $_POST['com']) : array();
+	$comments = isset($_POST['com']) ? array_map('intval', $_POST['com']) : [];
 
-	if ($comments === '') {
+	if (empty($comments)) {
 		emDirect("./comment.php?error_a=1");
 	}
 
-	if ($operate === '') {
-		emDirect("./comment.php?error_b=1");
-	}
-	if ($operate === 'del') {
-		$Comment_Model->batchComment('delcom', $comments);
-		$CACHE->updateCache(array('sta', 'comment'));
-		emDirect("./comment.php?active_del=1");
-	}
-	if ($operate === 'hide') {
-		$Comment_Model->batchComment('hidecom', $comments);
-		$CACHE->updateCache(array('sta', 'comment'));
-		emDirect("./comment.php?active_hide=1");
-	}
-	if ($operate === 'pub') {
-		$Comment_Model->batchComment('showcom', $comments);
-		$CACHE->updateCache(array('sta', 'comment'));
-		emDirect("./comment.php?active_show=1");
+	switch ($operate) {
+		case 'del' :
+			$Comment_Model->batchComment('delcom', $comments);
+			$CACHE->updateCache(array('sta', 'comment'));
+			emDirect("./comment.php?active_del=1");
+			break;
+		case 'hide':
+			$Comment_Model->batchComment('hidecom', $comments);
+			$CACHE->updateCache(array('sta', 'comment'));
+			emDirect("./comment.php?active_hide=1");
+			break;
+		case 'pub':
+			$Comment_Model->batchComment('showcom', $comments);
+			$CACHE->updateCache(array('sta', 'comment'));
+			emDirect("./comment.php?active_show=1");
+			break;
+		case 'top':
+			$Comment_Model->batchComment('top', $comments);
+			emDirect("./comment.php?active_top=1");
+			break;
+		case 'untop':
+			$Comment_Model->batchComment('untop', $comments);
+			emDirect("./comment.php?active_untop=1");
+			break;
+		default:
+			emDirect("./comment.php?error_b=1");
 	}
 }
 
@@ -102,7 +88,7 @@ if ($action === 'doreply') {
 	$blogId = isset($_POST['gid']) ? (int)$_POST['gid'] : '';
 	$hide = isset($_POST['hide']) ? addslashes($_POST['hide']) : 'n';
 
-	if ($reply === '') {
+	if (empty($reply)) {
 		emDirect("./comment.php?error_c=1");
 	}
 	if (strlen($reply) > 2000) {

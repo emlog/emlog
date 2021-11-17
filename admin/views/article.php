@@ -91,14 +91,11 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
                     <tr>
                         <th><input type="checkbox" id="checkAll"/></th>
                         <th>标题</th>
-						<?php if (!$draft): ?>
-                            <th>查看</th>
-						<?php endif; ?>
+                        <th><a href="article.php?sortComm=<?php echo $sortComm . $sorturl; ?>">评论</a></th>
+                        <th><a href="article.php?sortView=<?php echo $sortView . $sorturl; ?>">阅读</a></th>
                         <th>作者</th>
                         <th>分类</th>
                         <th><a href="article.php?sortDate=<?php echo $sortDate . $sorturl; ?>">时间</a></th>
-                        <th><a href="article.php?sortComm=<?php echo $sortComm . $sorturl; ?>">评论</a></th>
-                        <th><a href="article.php?sortView=<?php echo $sortView . $sorturl; ?>">阅读</a></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -108,10 +105,10 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 						$author_role = $user_cache[$value['author']]['role'];
 						?>
                         <tr>
-                            <td><input type="checkbox" name="blog[]" value="<?php echo $value['gid']; ?>" class="ids"/></td>
+                            <td style="width: 20px;"><input type="checkbox" name="blog[]" value="<?php echo $value['gid']; ?>" class="ids"/></td>
                             <td><a href="article.php?action=edit&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a>
-								<?php if ($value['top'] == 'y'): ?><img src="./views/images/top.png" align="top" title="首页置顶"/><?php endif; ?>
-								<?php if ($value['sortop'] == 'y'): ?><img src="./views/images/sortop.png" align="top" title="分类置顶"/><?php endif; ?>
+								<?php if ($value['top'] == 'y'): ?><img src="./views/images/top.png" title="首页置顶"/><?php endif; ?>
+								<?php if ($value['sortop'] == 'y'): ?><img src="./views/images/sortop.png" title="分类置顶"/><?php endif; ?>
 								<?php if (!$draft && $value['checked'] == 'n'): ?>
                                     <sapn style="color:red;">[待审]</sapn><?php endif; ?>
                                 <div>
@@ -124,16 +121,11 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 									<?php endif; ?>
                                 </div>
                             </td>
-							<?php if (!$draft): ?>
-                                <td>
-                                    <a href="<?php echo Url::log($value['gid']); ?>" target="_blank"><img src="./views/images/vlog.gif"/></a>
-                                </td>
-							<?php endif; ?>
+                            <td><a href="comment.php?gid=<?php echo $value['gid']; ?>" class="badge badge-info"><?php echo $value['comnum']; ?></a></td>
+                            <td><a href="<?php echo Url::log($value['gid']); ?>" class="badge badge-secondary" target="_blank"><?php echo $value['views']; ?></a></td>
                             <td><a href="article.php?uid=<?php echo $value['author'] . $isdraft; ?>"><?php echo $author; ?></a></td>
                             <td><a href="article.php?sid=<?php echo $value['sortid'] . $isdraft; ?>"><?php echo $sortName; ?></a></td>
                             <td class="small"><?php echo $value['date']; ?></td>
-                            <td><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
-                            <td><?php echo $value['views']; ?></a></td>
                         </tr>
 					<?php endforeach; ?>
                     </tbody>
@@ -186,19 +178,18 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 				<?php endif; ?>
 
                 <div class="btn-group btn-group-sm" role="group">
-                    <a href="javascript:logact('del');" class="btn btn-sm btn-danger">删除</a>
 					<?php if ($draft): ?>
                         <a href="javascript:logact('pub');" class="btn btn-sm btn-success">发布</a>
 					<?php else: ?>
                         <a href="javascript:logact('hide');" class="btn btn-sm btn-success">放入草稿箱</a>
 					<?php endif; ?>
+                    <a href="javascript:logact('del');" class="btn btn-sm btn-danger">删除</a>
                 </div>
             </div>
         </form>
         <div class="page"><?php echo $pageurl; ?> (有 <?php echo $logNum; ?> 篇<?php echo $draft ? '草稿' : '文章'; ?>)</div>
     </div>
 </div>
-
 <script>
     $("#menu_category_content").addClass('active');
     $("#menu_content").addClass('show');
