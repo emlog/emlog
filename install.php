@@ -302,6 +302,7 @@ INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,author,views,comnum
 DROP TABLE IF EXISTS {$db_prefix}attachment;
 CREATE TABLE {$db_prefix}attachment (
   aid int(10) unsigned NOT NULL auto_increment COMMENT '资源文件表',
+  author int(10) unsigned NOT NULL default '1' COMMENT '作者UID',
   blogid int(10) unsigned NOT NULL default '0' COMMENT '文章ID（已废弃）',
   filename varchar(255) NOT NULL default '' COMMENT '文件名',
   filesize int(10) NOT NULL default '0' COMMENT '文件大小',
@@ -312,7 +313,7 @@ CREATE TABLE {$db_prefix}attachment (
   mimetype varchar(40) NOT NULL default '' COMMENT '文件mime类型',
   thumfor int(10) NOT NULL default 0 COMMENT '缩略图的原资源ID（已废弃）',
   PRIMARY KEY  (aid),
-  KEY blogid (blogid)
+  KEY thum_uid (thumfor,author)
 )" . $table_charset_sql . "
 DROP TABLE IF EXISTS {$db_prefix}comment;
 CREATE TABLE {$db_prefix}comment (
