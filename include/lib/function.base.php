@@ -5,7 +5,6 @@
  * @package EMLOG (www.emlog.net)
  */
 
-
 function emAutoload($class) {
 	$class = strtolower($class);
 	if (file_exists(EMLOG_ROOT . '/include/model/' . $class . '.php')) {
@@ -14,8 +13,6 @@ function emAutoload($class) {
 		require_once(EMLOG_ROOT . '/include/lib/' . $class . '.php');
 	} elseif (file_exists(EMLOG_ROOT . '/include/controller/' . $class . '.php')) {
 		require_once(EMLOG_ROOT . '/include/controller/' . $class . '.php');
-	} else {
-		emMsg($class . '加载失败。');
 	}
 }
 
@@ -298,8 +295,6 @@ function addAction($hook, $actionFunc) {
 
 /**
  * 执行挂在钩子上的函数,支持多参数 eg:doAction('post_comment', $author, $email, $url, $comment);
- *
- * @param string $hook
  */
 function doAction($hook) {
 	global $emHooks;
@@ -308,6 +303,18 @@ function doAction($hook) {
 		foreach ($emHooks[$hook] as $function) {
 			call_user_func_array($function, $args);
 		}
+	}
+}
+
+/**
+ * 执行挂在钩子上的第一个函数,仅支持行一次，且ret采用引用传递
+ */
+function doOnceAction($hook, $input, &$ret) {
+	global $emHooks;
+	$args = [$input, &$ret];
+	$func = !empty($emHooks[$hook][0]) ? $emHooks[$hook][0] : '';
+	if ($func) {
+		call_user_func_array($func, $args);
 	}
 }
 
@@ -365,28 +372,24 @@ function getRandStr($length = 12, $special_chars = true) {
 	return $randStr;
 }
 
-function emFilePutContent($data) {
-	$fpath = Option::UPLOADFILE_PATH . gmdate('Ym');
-	$fname = $fpath . '/' . time() . '.png';
+/**
+ * 上传文件到当前服务器
+ * @param $attach array 文件FILE信息
+ * @param $result array 上传结果
+ */
+function upload2local($attach, &$result) {
+	$fileName = $attach['name'];
+	$errorNum = $attach['error'];
+	$tmpFile = $attach['tmp_name'];
+	$fileSize = $attach['size'];
 
-	if (!is_dir($fpath) && !mkdir($fpath)) {
-		return false;
-	}
-	$ret = file_put_contents($fname, $data);
-	if (!$ret) {
-		return false;
-	}
-	return $fname;
-}
-
-function uploadFileAjax($fileName, $errorNum, $tmpFile, $fileSize) {
-	$isthum = Option::get('isthumbnail') === 'y'; //是否生成缩略图
+	$isthum = Option::get('isthumbnail') === 'y';
 	$fileName = Database::getInstance()->escape_string($fileName);
 	$type = Option::getAttType();
 
-	$result = upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isthum);
+	$ret = upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isthum);
 	$success = 0;
-	switch ($result) {
+	switch ($ret) {
 		case '100':
 			$message = '文件大小超过系统' . ini_get('upload_max_filesize') . '限制';
 			break;
@@ -398,8 +401,8 @@ function uploadFileAjax($fileName, $errorNum, $tmpFile, $fileSize) {
 			$message = '错误的文件类型';
 			break;
 		case '103':
-			$ret = changeFileSize(Option::getAttMaxSize());
-			$message = "文件大小超出{$ret}的限制";
+			$r = changeFileSize(Option::getAttMaxSize());
+			$message = "文件大小超出{$r}的限制";
 			break;
 		case '105':
 			$message = '上传失败。文件上传目录(content/uploadfile)不可写';
@@ -410,11 +413,11 @@ function uploadFileAjax($fileName, $errorNum, $tmpFile, $fileSize) {
 			break;
 	}
 
-	return [
+	$result = [
 		'success'   => $success,
 		'message'   => $message,
-		'url'       => $success ? getFileUrl($result['file_path']) : '',
-		'file_info' => $success ? $result : [],
+		'url'       => $success ? getFileUrl($ret['file_path']) : '',
+		'file_info' => $success ? $ret : [],
 	];
 }
 
@@ -806,8 +809,7 @@ EOT;
 	}
 	echo <<<EOT
 <title>提示信息</title>
-<style type="text/css">
-<!--
+<style>
 body {
     background-color:#F7F7F7;
     font-family: Arial;
@@ -829,7 +831,6 @@ body {
     line-height: 18px;
     margin: 5px 20px;
 }
--->
 </style>
 </head>
 <body>
@@ -1013,7 +1014,7 @@ function getTimeZoneOffset($remote_tz, $origin_tz = 'UTC') {
 }
 
 /**
- * 上传js裁剪的图片，封面、头像
+ * 上传裁剪后的图片（封面、头像）
  */
 function uploadCropImg() {
 	$attach = $_FILES['image'] ?? '';
@@ -1022,8 +1023,8 @@ function uploadCropImg() {
 		exit;
 	}
 
-	$ret = uploadFileAjax($attach['name'], $attach['error'], $attach['tmp_name'], $attach['size']);
-
+	$ret = '';
+	upload2local($attach, $ret);
 	if (empty($ret['success'])) {
 		echo "error";
 		exit;

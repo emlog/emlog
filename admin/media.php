@@ -54,7 +54,10 @@ if ($action === 'upload') {
 		exit;
 	}
 
-	$ret = uploadFileAjax($attach['name'], $attach['error'], $attach['tmp_name'], $attach['size']);
+	$ret = '';
+
+	addAction('upload_media', 'upload2local');
+	doOnceAction('upload_media', $attach, $ret);
 
 	if (empty($ret['success'])) {
 		if ($editor) {
