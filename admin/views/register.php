@@ -5,11 +5,11 @@
     <div class="alert alert-success">恭喜，注册成功了</div><?php endif; ?>
 <?php if (isset($_GET['error_b'])): ?>
     <div class="alert alert-danger">注册失败</div><?php endif; ?>
-<?php if (ISREG === false) : ?>
+<?php if (!Register::isRegLocal()) : ?>
     <div class="container-fluid">
         <div class="text-center">
 			<?php if (isset($_GET['error_store'])): ?>
-                <p class="lead text-danger mb-4">扩展商店用于下载模板和插件，仅开放给注册用户</p>
+                <p class="lead text-danger mb-4">扩展商店用于下载模板和插件，仅开放给已完成注册用户</p>
 			<?php endif; ?>
 			<?php if (isset($_GET['error_article'])): ?>
                 <p class="lead text-danger mb-4">抱歉，您的文章数量已经超过未注册版本限额</p>

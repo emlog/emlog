@@ -22,8 +22,6 @@ $user_cache = $CACHE->readCache('user');
 $action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
 $admin_path_code = isset($_GET['s']) ? addslashes($_GET['s']) : '';
 
-define('ISREG', Register::isRegLocal());
-
 if ($action == 'login') {
 	if (defined('ADMIN_PATH_CODE') && $admin_path_code !== ADMIN_PATH_CODE) {
 		show_404_page(true);
@@ -60,6 +58,6 @@ if (ROLE === ROLE_WRITER && !in_array($request_uri, array('article_write', 'arti
 	emMsg('权限不足！', './');
 }
 
-if (!ISREG && mt_rand(1,10) === 10) {
+if (!Register::isRegLocal() && mt_rand(1,10) === 10) {
 	emDirect("register.php");
 }
