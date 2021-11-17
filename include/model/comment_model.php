@@ -26,7 +26,7 @@ class Comment_Model {
 		$andQuery .= $hide ? " and a.hide='$hide'" : '';
 		$condition = '';
 
-		$sql = "SELECT * FROM " . DB_PREFIX . "comment as a where $andQuery ORDER BY a.date ASC $condition";
+		$sql = "SELECT * FROM " . DB_PREFIX . "comment as a where $andQuery ORDER BY a.top ASC, a.date ASC $condition";
 
 		$ret = $this->db->query($sql);
 		$comments = [];
@@ -83,6 +83,7 @@ class Comment_Model {
 	 * @return array
 	 */
 	function getCommentsForAdmin($blogId = null, $hide = null, $page = null) {
+		$orderBy = $blogId ? "ORDER BY a.top DESC, a.date DESC" : 'ORDER BY a.date DESC';
 		$andQuery = '1=1';
 		$andQuery .= $blogId ? " and a.gid=$blogId" : '';
 		$andQuery .= $hide ? " and a.hide='$hide'" : '';
@@ -97,7 +98,7 @@ class Comment_Model {
 		}
 
 		$andQuery .= ROLE != ROLE_ADMIN ? ' and b.author=' . UID : '';
-		$sql = "SELECT *,a.hide,a.date FROM " . DB_PREFIX . "comment as a, " . DB_PREFIX . "blog as b where $andQuery and a.gid=b.gid ORDER BY a.date DESC $condition";
+		$sql = "SELECT *,a.hide,a.date,a.top FROM " . DB_PREFIX . "comment as a, " . DB_PREFIX . "blog as b where $andQuery and a.gid=b.gid $orderBy $condition";
 
 		$ret = $this->db->query($sql);
 		$comments = [];
@@ -107,6 +108,7 @@ class Comment_Model {
 			$row['url'] = htmlspecialchars($row['url']);
 			$row['comment'] = htmlClean($row['comment']);
 			$row['date'] = smartDate($row['date']);
+			$row['top'] = $row['top'];
 			$row['children'] = [];
 			$comments[$row['cid']] = $row;
 		}
@@ -201,6 +203,13 @@ class Comment_Model {
 		$this->updateCommentNum($blogId);
 	}
 
+	function topComment($commentId, $top = 'y') {
+		$this->isYoursComment($commentId);
+		$commentIds = array($commentId);
+		$commentIds = implode(',', $commentIds);
+		$this->db->query("UPDATE " . DB_PREFIX . "comment SET top='$top' WHERE cid IN ($commentIds)");
+	}
+
 	function replyComment($blogId, $pid, $content, $hide) {
 		$CACHE = Cache::getInstance();
 		$user_cache = $CACHE->readCache('user');
@@ -235,6 +244,16 @@ class Comment_Model {
 			case 'showcom':
 				foreach ($comments as $val) {
 					$this->showComment($val);
+				}
+				break;
+			case 'top':
+				foreach ($comments as $val) {
+					$this->topComment($val);
+				}
+				break;
+			case 'untop':
+				foreach ($comments as $val) {
+					$this->topComment($val, 'n');
 				}
 				break;
 		}
@@ -282,16 +301,6 @@ class Comment_Model {
 			doAction('comment_saved', $cid);
 			emMsg('评论发表成功，请等待管理员审核', Url::log($blogId));
 		}
-	}
-
-	function updateComment($commentData, $commentId) {
-		$this->isYoursComment($commentId);
-		$Item = [];
-		foreach ($commentData as $key => $data) {
-			$Item[] = "$key='$data'";
-		}
-		$upStr = implode(',', $Item);
-		$this->db->query("UPDATE " . DB_PREFIX . "comment SET $upStr WHERE cid=$commentId");
 	}
 
 	function isCommentExist($blogId, $name, $content) {

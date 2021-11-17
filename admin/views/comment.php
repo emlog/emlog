@@ -3,15 +3,19 @@
 } ?>
 
 <?php if (isset($_GET['active_del'])): ?>
-    <div class="alert alert-success">删除评论成功</div><?php endif; ?>
+    <div class="alert alert-success">删除成功</div><?php endif; ?>
 <?php if (isset($_GET['active_show'])): ?>
-    <div class="alert alert-success">审核评论成功</div><?php endif; ?>
+    <div class="alert alert-success">审核成功</div><?php endif; ?>
 <?php if (isset($_GET['active_hide'])): ?>
-    <div class="alert alert-success">隐藏评论成功</div><?php endif; ?>
+    <div class="alert alert-success">隐藏成功</div><?php endif; ?>
+<?php if (isset($_GET['active_top'])): ?>
+    <div class="alert alert-success">置顶成功</div><?php endif; ?>
+<?php if (isset($_GET['active_untop'])): ?>
+    <div class="alert alert-success">取消置顶成功</div><?php endif; ?>
 <?php if (isset($_GET['active_edit'])): ?>
-    <div class="alert alert-success">修改评论成功</div><?php endif; ?>
+    <div class="alert alert-success">修改成功</div><?php endif; ?>
 <?php if (isset($_GET['active_rep'])): ?>
-    <div class="alert alert-success">回复评论成功</div><?php endif; ?>
+    <div class="alert alert-success">回复成功</div><?php endif; ?>
 <?php if (isset($_GET['error_a'])): ?>
     <div class="alert alert-danger">请选择要执行操作的评论</div><?php endif; ?>
 <?php if (isset($_GET['error_b'])): ?>
@@ -41,7 +45,7 @@
         </ul>
     </div>
 <?php endif; ?>
-<form action="comment.php?action=admin_all_coms" method="post" name="form_com" id="form_com">
+<form action="comment.php?action=batch_operation" method="post" name="form_com" id="form_com">
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="table-responsive">
@@ -68,11 +72,12 @@
 						$title = subString($value['title'], 0, 42);
 						$hide = $value['hide'];
 						$date = $value['date'];
+						$top = $value['top'];
 						doAction('adm_comment_display');
 						?>
                         <tr>
-                            <td width="19"><input type="checkbox" value="<?php echo $cid; ?>" name="com[]" class="ids"/></td>
-                            <td width="350">
+                            <td style="width: 19px;"><input type="checkbox" value="<?php echo $cid; ?>" name="com[]" class="ids"/></td>
+                            <td>
                                 <a href="#" data-toggle="modal" data-target="#replyModal"
                                    data-cid="<?php echo $cid; ?>"
                                    data-comment="<?php echo $comment; ?>"
@@ -81,6 +86,7 @@
 									<?php echo $comment; ?>
                                 </a>
 								<?php echo $ishide; ?>
+								<?php if ($top == 'y'): ?><img src="./views/images/top.png" title="置顶"/><?php endif; ?>
                             </td>
                             <td class="small">
                                 <?php echo $poster; ?><?php echo $mail; ?><?php echo $ip_info; ?>
@@ -90,7 +96,10 @@
 								<?php endif; ?>
                             </td>
                             <td class="small"><?php echo $date; ?></td>
-                            <td class="small"><a href="<?php echo Url::log($gid); ?>"><?php echo $title; ?></a></td>
+                            <td class="small">
+                                <a href="<?php echo Url::log($gid); ?>" target="_blank"><?php echo $title; ?></a><br>
+                                <a href="comment.php?gid=<?php echo $gid; ?>" class="badge badge-info">该文所有评论</a>
+                            </td>
                         </tr>
 					<?php endforeach; ?>
                     </tbody>
@@ -98,9 +107,11 @@
             </div>
             <div class="list_footer">
                 <div class="btn-group btn-group-sm" role="group">
-                    <a href="javascript:commentact('del');" class="btn btn-sm btn-danger">删除</a>
+                    <a href="javascript:commentact('top');" class="btn btn-sm btn-secondary">置顶</a>
+                    <a href="javascript:commentact('untop');" class="btn btn-sm btn-secondary">取消置顶</a>
                     <a href="javascript:commentact('hide');" class="btn btn-sm btn-success">隐藏</a>
                     <a href="javascript:commentact('pub');" class="btn btn-sm btn-success">审核</a>
+                    <a href="javascript:commentact('del');" class="btn btn-sm btn-danger">删除</a>
                 </div>
                 <input name="operate" id="operate" value="" type="hidden"/>
             </div>
