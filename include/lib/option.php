@@ -46,8 +46,11 @@ class Option {
 	static function getAll() {
 		$CACHE = Cache::getInstance();
 		$options_cache = $CACHE->readCache('options');
-		$options_cache['site_title'] = $options_cache['site_title'] ? $options_cache['site_title'] : $options_cache['blogname'];
-		$options_cache['site_description'] = $options_cache['site_description'] ? $options_cache['site_description'] : $options_cache['bloginfo'];
+		$options_cache['site_title'] = $options_cache['site_title'] ?: $options_cache['blogname'];
+		$options_cache['site_description'] = $options_cache['site_description'] ?: $options_cache['bloginfo'];
+		if (empty($options_cache['emkey'])) {
+			$options_cache['footer_info'] .= ' 未注册的PRO版本';
+		}
 		return $options_cache;
 	}
 

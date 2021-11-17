@@ -50,7 +50,7 @@
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             EMLOG
-							<?php if (ISREG === false) : ?>
+							<?php if (!Register::isRegLocal()) : ?>
                                 <a href="register.php"><span class="badge badge-danger"><?php echo Option::EMLOG_VERSION; ?> 未注册, 点击去注册</span></a>
 							<?php else: ?>
                                 <span class="badge badge-success"><?php echo Option::EMLOG_VERSION; ?> 已注册</span>
@@ -66,7 +66,7 @@
         </div>
     </div>
     <div class="row">
-		<?php if (ISREG === false) : ?>
+		<?php if (!Register::isRegLocal()) : ?>
             <div class="col-lg-6 mb-4">
                 <div class="card bg-danger text-white shadow">
                     <div class="card-body">
