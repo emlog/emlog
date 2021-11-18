@@ -122,7 +122,7 @@
             <div class="modal-body">
                 <a href="#" id="mediaAdd" class="btn btn-sm btn-success shadow-sm mb-3">上传图片/文件</a>
                 <form action="media.php?action=operate_media" method="post" name="form_media" id="form_media">
-                    <div class="card-columns">
+                    <div class="row">
                     </div>
                 </form>
             </div>
@@ -150,7 +150,7 @@
                 alert(response);
             });
             this.on("queuecomplete", function (file) {
-                $('#mediaModal').find('.modal-body .card-columns').load("./media.php?action=lib");
+                $('#mediaModal').find('.modal-body .row').load("./media.php?action=lib");
                 $('#mediaAdd').html("上传图片/文件");
             });
         }
@@ -159,7 +159,7 @@
     $('#mediaModal').on('show.bs.modal', function (e) {
         var button = $(e.relatedTarget);
         var modal = $(this);
-        modal.find('.modal-body .card-columns').load(button.data("remote"));
+        modal.find('.modal-body .row').load(button.data("remote"));
     });
 </script>
 

@@ -33,31 +33,36 @@
             <li class="nav-item"><a class="nav-link" href="./store.php?action=plu">扩展插件</a></li>
         </ul>
     </div>
-    <div class="card-columns">
+    <div class="row">
 		<?php foreach ($templates as $k => $v):
 			$icon = $v['icon'] ?: "./views/images/theme.png";
 			?>
-            <div class="card" style="min-height: 340px;">
-                <a href="<?php echo $v['buy_url']; ?>" target="_blank"><img class="card-img-top" src="<?php echo $icon; ?>"/></a>
-                <div class="card-body">
-                    <p class="card-text"><span class="badge badge-warning">模板</span> <?php echo $v['name']; ?></p>
-                    <p class="card-text text-muted small">
-                        <span class="small"><?php echo $v['info']; ?></span><br><br>
-                        售价：<?php echo $v['price'] > 0 ? $v['price'] . '元' : '免费'; ?><br>
-                        开发者：<?php echo $v['author']; ?><br>
-                        更新时间：<?php echo $v['update_time']; ?><br>
-                    </p>
-                    <p class="card-text text-right">
-						<?php if ($v['price'] > 0): ?>
-                            <a href="<?php echo $v['buy_url']; ?>" class="btn btn-sm btn-warning btn-sm" target="_blank">去购买</a>
-						<?php else: ?>
-                            <a href="./store.php?action=install&source=<?php echo urlencode($v['download_url']); ?>&type=tpl" class="btn btn-success btn-sm">安装</a>
-						<?php endif; ?>
-                    </p>
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <a class="p-1" href="<?php echo $v['buy_url']; ?>">
+                        <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="<?php echo $icon; ?>">
+                    </a>
+                    <div class="card-body">
+                        <p class="card-text"><?php echo $v['name']; ?> <span class="badge badge-info">模板</span></p>
+                        <p class="card-text text-muted small">
+                            <span class="small"><?php echo $v['info']; ?></span><br><br>
+                            售价：<?php echo $v['price'] > 0 ? $v['price'] . '元' : '免费'; ?><br>
+                            开发者：<?php echo $v['author']; ?><br>
+                            更新时间：<?php echo $v['update_time']; ?><br>
+                        </p>
+                        <p class="card-text text-right">
+							<?php if ($v['price'] > 0): ?>
+                                <a href="<?php echo $v['buy_url']; ?>" class="btn btn-sm btn-warning btn-sm" target="_blank">去购买</a>
+							<?php else: ?>
+                                <a href="./store.php?action=install&source=<?php echo urlencode($v['download_url']); ?>&type=tpl" class="btn btn-success btn-sm">安装</a>
+							<?php endif; ?>
+                        </p>
+                    </div>
                 </div>
             </div>
 		<?php endforeach; ?>
     </div>
+
 <?php endif; ?>
 <script>
     $("#menu_store").addClass('active');

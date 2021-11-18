@@ -9,7 +9,7 @@
 </div>
 
 <form action="media.php?action=operate_media" method="post" name="form_media" id="form_media">
-    <div class="card-columns">
+    <div class="row">
 		<?php foreach ($medias as $key => $value):
 			$media_url = getFileUrl($value['filepath']);
 			$media_name = $value['filename'];
@@ -19,21 +19,23 @@
 				$media_icon = "./views/images/fnone.png";
 			}
 			?>
-            <div class="card" style="min-height: 280px;">
-                <a href="<?php echo $media_url; ?>" target="_blank""><img class="card-img-top" src="<?php echo $media_icon; ?>"/></a>
-                <div class="card-body">
-                    <p class="card-text text-muted small">
-						<?php echo $media_name; ?><br>
-                        创建时间：<?php echo $value['addtime']; ?><br>
-                        文件大小：<?php echo $value['attsize']; ?>，
-						<?php if ($value['width'] && $value['height']): ?>
-                            图片尺寸：<?php echo $value['width'] ?>x<?php echo $value['height'] ?>
-						<?php endif; ?>
-                    </p>
-                    <p class="card-text d-flex justify-content-between">
-                        <a href="javascript: em_confirm(<?php echo $value['aid']; ?>, 'media', '<?php echo LoginAuth::genToken(); ?>');" class="text-danger small">删除</a>
-                        <input type="checkbox" name="aids[]" value="<?php echo $value['aid']; ?>" class="aids"/>
-                    </p>
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <a href="<?php echo $media_url; ?>" target="_blank""><img class="card-img-top" src="<?php echo $media_icon; ?>"/></a>
+                    <div class="card-body">
+                        <p class="card-text text-muted small">
+							<?php echo $media_name; ?><br>
+                            创建时间：<?php echo $value['addtime']; ?><br>
+                            文件大小：<?php echo $value['attsize']; ?>，
+							<?php if ($value['width'] && $value['height']): ?>
+                                图片尺寸：<?php echo $value['width'] ?>x<?php echo $value['height'] ?>
+							<?php endif; ?>
+                        </p>
+                        <p class="card-text d-flex justify-content-between">
+                            <a href="javascript: em_confirm(<?php echo $value['aid']; ?>, 'media', '<?php echo LoginAuth::genToken(); ?>');" class="text-danger small">删除</a>
+                            <input type="checkbox" name="aids[]" value="<?php echo $value['aid']; ?>" class="aids"/>
+                        </p>
+                    </div>
                 </div>
             </div>
 		<?php endforeach; ?>
