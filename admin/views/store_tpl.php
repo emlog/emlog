@@ -39,7 +39,7 @@
 			?>
             <div class="col-md-4">
                 <div class="card mb-4 shadow-sm">
-                    <a class="p-1" href="<?php echo $v['buy_url']; ?>">
+                    <a class="p-1" href="<?php echo $v['buy_url']; ?>" target="_blank">
                         <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="<?php echo $icon; ?>">
                     </a>
                     <div class="card-body">
