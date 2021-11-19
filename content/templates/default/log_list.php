@@ -21,7 +21,7 @@ if (!defined('EMLOG_ROOT')) {
 								<?php topflg($value['top'], $value['sortop'], isset($sortid) ? $sortid : ''); ?>
                             </h3>
                             <div class="text-muted mt-1"><?php blog_author($value['author']); ?> 发布于 <?php echo date('Y-m-d H:i', $value['date']); ?></div>
-                            <div class="loglist_content markdown"><?php echo subContent($value['log_description'],180); ?></div>
+                            <div class="loglist_content markdown"><?php echo subContent($value['log_description'],280); ?></div>
                             <div class="tag loglist_tag"><?php blog_tag($value['logid']); ?></div>
                             <div class="mt-2">
                                 <a href="<?php echo $value['log_url']; ?>#comments">评论(<?php echo $value['comnum']; ?>)</a>

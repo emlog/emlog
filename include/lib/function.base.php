@@ -321,8 +321,11 @@ function doOnceAction($hook, $input, &$ret) {
 /**
  * 截取文章内容前len个字符
  */
-function subContent($content, $len) {
-	return subString(trim(strip_tags($content)), 0, $len);
+function subContent($content, $len, $clean = 0) {
+	if ($clean) {
+		$content = strip_tags($content);
+	}
+	return subString($content, 0, $len);
 }
 
 /**
