@@ -13,15 +13,17 @@ if (!defined('EMLOG_ROOT')) {
         padding: 30px;
         margin-bottom: 29px;
     }
+
     .com_submit_p {
         font-size: 15px
     }
+
 </style>
 <div class="container">
     <div class="row">
-        <div class="col-md-8 page">
-            <h3><?php echo $log_title; ?></h3>
-            <div class="markdown"><?php echo $log_content; ?></div>
+        <div class="column-big log-con markdown" id="page">
+            <h1><?php echo $log_title; ?></h1>
+			<?php echo $log_content; ?>
 			<?php blog_comments($comments); ?>
 			<?php blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allow_remark); ?>
         </div>
@@ -32,14 +34,16 @@ if (!defined('EMLOG_ROOT')) {
 </div>
 <script>
     function change_com_radius() {
-        if (!document.getElementById("com_info")) {
+        if (!document.getElementById("comment-info")) {
             var comment = document.getElementById("comment");
             comment.style.height = "140px";
             comment.style.setProperty('border-radius', '10px');
         }
     }
+
     change_com_radius();
 </script>
 <?php
 include View::getView('footer');
 ?>
+ 

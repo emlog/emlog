@@ -16,7 +16,7 @@ if (!defined('EMLOG_ROOT')) {
             background-color: #F7F7F7;
             font-family: Arial;
             font-size: 12px;
-            line-height: 150%;
+            line-height: 150%
         }
 
         .main {
@@ -28,29 +28,29 @@ if (!defined('EMLOG_ROOT')) {
             padding: 30px 10px;
             box-shadow: 0 2px 8px 0 rgba(0, 0, 0, .02);
             border-radius: 10px;
-            transition: box-shadow 0.4s;
+            transition: box-shadow 0.4s
         }
 
         .main p {
             text-align: center;
             font-weight: 600;
-            font-size: 2rem;
+            font-size: 2rem
         }
 
         .main p a {
             border: 1px solid #ccc !important;
-            padding: 14px;
-            border-radius: 16px !important;
+            padding: 8px;
+            border-radius: 10px !important;
             color: #929292;
             font-size: initial;
-            text-decoration: none;
+            text-decoration: none
         }
     </style>
 </head>
 <body>
 <div class="main">
     <p>404 Not Found ！</p>
-    <p><a href="javascript:history.back(-1);">返回</a></p>
+    <p><a href="<?php echo BLOG_URL; ?>">首页</a></p>
 </div>
 </body>
 </html>

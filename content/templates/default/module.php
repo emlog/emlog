@@ -7,17 +7,19 @@ if (!defined('EMLOG_ROOT')) {
 }
 ?>
 <?php
-//widget：链接
+/**
+ * 侧边栏：链接
+ */
 function widget_link($title) {
 	global $CACHE;
 	$link_cache = $CACHE->readCache('link');
 	//if (!blog_tool_ishome()) return;#只在首页显示友链去掉双斜杠注释即可
 	?>
     <div class="widget shadow-theme">
-        <div class="widget-title m">
+        <div class="widget-title">
             <h3><?php echo $title; ?></h3>
         </div>
-        <ul class="widget-list no-margin-bottom">
+        <ul class="widget-list no-margin-bottom unstyle-li">
 			<?php foreach ($link_cache as $value): ?>
                 <li><a href="<?php echo $value['url']; ?>" target="_blank"><?php echo $value['link']; ?></a></li>
 			<?php endforeach; ?>
@@ -25,41 +27,47 @@ function widget_link($title) {
     </div>
 <?php } ?>
 <?php
-//widget：blogger
+/**
+ * 侧边栏：个人资料
+ */
 function widget_blogger($title) {
 	global $CACHE;
 	$user_cache = $CACHE->readCache('user');
 	$name = $user_cache[1]['mail'] != '' ? "<a href=\"mailto:" . $user_cache[1]['mail'] . "\">" . $user_cache[1]['name'] . "</a>" : $user_cache[1]['name']; ?>
     <div class="widget shadow-theme">
-        <div class="widget-title m">
+        <div class="widget-title">
             <h3><?php echo $title; ?></h3>
         </div>
-        <ul class="list-unstyled bloggerinfo">
+        <ul class="unstyle-li bloggerinfo">
             <div>
 				<?php if (!empty($user_cache[1]['photo']['src'])): ?>
-                    <img class='bloggerinfo_img' src="<?php echo BLOG_URL . $user_cache[1]['photo']['src']; ?>" alt="blogger"/>
+                    <img class='bloggerinfo-img' src="<?php echo BLOG_URL . $user_cache[1]['photo']['src']; ?>" alt="blogger"/>
 				<?php endif; ?>
             </div>
-            <p class='bloginfo_name'><b><?php echo $name; ?></b></p>
-            <p class='bloginfo_cache'> <?php echo $user_cache[1]['des']; ?></p>
+            <p class='bloginfo-name'><b><?php echo $name; ?></b></p>
+            <p class='bloginfo-cache'> <?php echo $user_cache[1]['des']; ?></p>
         </ul>
     </div>
 <?php } ?>
 <?php
-//widget：日历
+/**
+ * 侧边栏：日历
+ */
 function widget_calendar($title) { ?>
     <div class="widget shadow-theme">
         <div class="widget-title m">
             <h3><?php echo $title; ?></h3>
         </div>
-        <ul class="list-unstyled">
+        <ul class="unstyle-li">
             <div id="calendar"></div>
             <script>sendinfo('<?php echo Calendar::url(); ?>', 'calendar');</script>
         </ul>
     </div>
 <?php } ?>
 <?php
-//widget：标签
+/**
+ * 侧边栏：标签
+ */
 function widget_tag($title) {
 	global $CACHE;
 	$tag_cache = $CACHE->readCache('tags'); ?>
@@ -67,16 +75,18 @@ function widget_tag($title) {
         <div class="widget-title m">
             <h3><?php echo $title; ?></h3>
         </div>
-        <ul class="list-unstyled">
+        <ul class="unstyle-li tag-container">
 			<?php foreach ($tag_cache as $value): ?>
                 <span style="font-size:<?php echo $value['fontsize']; ?>pt; line-height:30px;">
-            <a href="<?php echo Url::tag($value['tagurl']); ?>" title="<?php echo $value['usenum'] + 2; ?> 篇文章" class='tags_side'><?php echo $value['tagname']; ?></a></span>
+            <a href="<?php echo Url::tag($value['tagurl']); ?>" title="<?php echo $value['usenum'] + 2; ?> 篇文章" class='tags-side'><?php echo $value['tagname']; ?></a></span>
 			<?php endforeach; ?>
         </ul>
     </div>
 <?php } ?>
 <?php
-//widget：分类
+/**
+ * 侧边栏：分类
+ */
 function widget_sort($title) {
 	global $CACHE;
 	$sort_cache = $CACHE->readCache('sort'); ?>
@@ -84,7 +94,7 @@ function widget_sort($title) {
         <div class="widget-title m">
             <h3><?php echo $title; ?></h3>
         </div>
-        <ul class="list-unstyled log_classify_f">
+        <ul class="unstyle-li log-classify-f">
 			<?php
 			foreach ($sort_cache as $value):
 				if ($value['pid'] != 0) continue;
@@ -92,7 +102,7 @@ function widget_sort($title) {
                 <li>
                     <a href="<?php echo Url::sort($value['sid']); ?>"><?php echo $value['sortname']; ?>&nbsp;&nbsp;(<?php echo $value['lognum'] ?>)</a>
 					<?php if (!empty($value['children'])): ?>
-                        <ul class="log_classify_c">
+                        <ul class="log-classify-c">
 							<?php
 							$children = $value['children'];
 							foreach ($children as $key):
@@ -111,25 +121,27 @@ function widget_sort($title) {
     </div>
 <?php } ?>
 <?php
-//widget：最新评论
+/**
+ * 侧边栏：最新评论
+ */
 function widget_newcomm($title) {
 	global $CACHE;
 	$com_cache = $CACHE->readCache('comment');
 	?>
     <div class="widget shadow-theme">
-        <div class="widget-title m">
+        <div class="widget-title">
             <h3><?php echo $title; ?></h3>
         </div>
         <hr style="margin-bottom: 4px;"/>
-        <ul class="list-unstyled">
+        <ul class="unstyle-li">
 			<?php
 			foreach ($com_cache as $value):
 				$url = Url::comment($value['gid'], $value['page'], $value['cid']);
 				?>
-                <li class='comment_lates' id="comment">
-                    <img class='comment_lates_img' src="<?php echo getGravatar($value['mail']); ?>"/>
-                    <span class='comm_lates_name'><?php echo $value['name']; ?></span>
-                    <span class='comm_lates_time'><?php echo smartDate($value['date']); ?></span><br/>
+                <li class='comment-info' id="side-comment">
+                    <img class='comment-info_img' src="<?php echo getGravatar($value['mail']); ?>"/>
+                    <span class='comm-lates-name'><?php echo $value['name']; ?></span>
+                    <span class='logcom-latest-time mh'><?php echo smartDate($value['date']); ?></span><br/>
                     <a href="<?php echo $url; ?>" style="color: #989898;"><?php echo $value['content']; ?></a>
                     <hr>
                 </li>
@@ -138,7 +150,9 @@ function widget_newcomm($title) {
     </div>
 <?php } ?>
 <?php
-//widget：最新文章
+/**
+ * 侧边栏：最新文章
+ */
 function widget_newlog($title) {
 	global $CACHE;
 	$newLogs_cache = $CACHE->readCache('newlog');
@@ -147,15 +161,17 @@ function widget_newlog($title) {
         <div class="widget-title m">
             <h3><?php echo $title; ?></h3>
         </div>
-        <ul class="list-unstyled">
+        <ul class="unstyle-li">
 			<?php foreach ($newLogs_cache as $value): ?>
-                <li class='blog_lates'><a href="<?php echo Url::log($value['gid']); ?>"><?php echo $value['title']; ?></a></li>
+                <li class='blog-lates'><a href="<?php echo Url::log($value['gid']); ?>"><?php echo $value['title']; ?></a></li>
 			<?php endforeach; ?>
         </ul>
     </div>
 <?php } ?>
 <?php
-//widget：热门文章
+/**
+ * 侧边栏：热门文章
+ */
 function widget_hotlog($title) {
 	$index_hotlognum = Option::get('index_hotlognum');
 	$Log_Model = new Log_Model();
@@ -164,7 +180,7 @@ function widget_hotlog($title) {
         <div class="widget-title m">
             <h3><?php echo $title; ?></h3>
         </div>
-        <ul class="list-unstyled">
+        <ul class="unstyle-li">
 			<?php foreach ($hotLogs as $value): ?>
                 <li><a href="<?php echo Url::log($value['gid']); ?>"><?php echo $value['title']; ?></a></li>
 			<?php endforeach; ?>
@@ -172,13 +188,15 @@ function widget_hotlog($title) {
     </div>
 <?php } ?>
 <?php
-//widget：搜索
+/**
+ * 侧边栏：搜索
+ */
 function widget_search($title) { ?>
     <div class="widget shadow-theme">
-        <div class="widget-title m">
+        <div class="widget-title">
             <h3><?php echo $title; ?></h3>
         </div>
-        <ul class="list-unstyled" style="text-align: center;">
+        <ul class="unstyle-li" style="text-align: center;">
             <form name="keyform" method="get" action="<?php echo BLOG_URL; ?>index.php">
                 <input name="keyword" class="search form-control" autocomplete="off" type="text"/>
                 <input type="submit" value="搜索">
@@ -187,7 +205,9 @@ function widget_search($title) { ?>
     </div>
 <?php } ?>
 <?php
-//widget：归档
+/**
+ * 侧边栏：归档
+ */
 function widget_archive($title) {
 	$bar_id = "36";
 	global $CACHE;
@@ -197,7 +217,7 @@ function widget_archive($title) {
         <div class="widget-title m">
             <h3><?php echo $title; ?></h3>
         </div>
-        <ul class="list-unstyled">
+        <ul class="unstyle-li">
 			<?php foreach ($record_cache as $value): ?>
                 <li><a href="<?php echo Url::record($value['date']); ?>"><?php echo $value['record']; ?>(<?php echo $value['lognum']; ?>)</a></li>
 			<?php endforeach; ?>
@@ -205,34 +225,38 @@ function widget_archive($title) {
     </div>
 <?php } ?>
 <?php
-//widget：自定义组件
+/**
+ * 侧边栏：自定义组件
+ */
 function widget_custom_text($title, $content) { ?>
     <div class="widget shadow-theme">
         <div class="widget-title m">
             <h3><?php echo $title; ?></h3>
         </div>
-        <ul class="list-unstyled">
+        <ul class="unstyle-li">
 			<?php echo $content; ?>
         </ul>
     </div>
 <?php } ?>
 <?php
-//blog：导航
+/**
+ * 页顶：导航
+ */
 function blog_navi() {
 	global $CACHE;
 	$navi_cache = $CACHE->readCache('navi');
 	?>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto top-menu">
+    <div class="blog-header-nav" id="navbarResponsive">
+        <ul class="nav-list">
 			<?php
-			$dp_id = 0;
 			foreach ($navi_cache as $value):
 				if ($value['pid'] != 0) {
 					continue;
 				}
 				if ($value['url'] == ROLE_ADMIN && (ROLE == ROLE_ADMIN || ROLE == ROLE_WRITER)):
 					?>
-                    <li class="nav-item list-menu"><a href="<?php echo BLOG_URL; ?>admin/" class="nav-link">管理</a></li>
+                    <li class="list-item list-menu"><a href="<?php echo BLOG_URL; ?>admin/" class="nav-link">管理</a></li>
+                    <li class="list-item list-menu"><a href="<?php echo BLOG_URL; ?>admin/?action=logout" class="nav-link">退出</a></li>
 					<?php
 					continue;
 				endif;
@@ -241,39 +265,39 @@ function blog_navi() {
 				$current_tab = BLOG_URL . trim(Dispatcher::setPath(), '/') == $value['url'] ? 'active' : '';
 				?>
 				<?php if (!empty($value['children']) || !empty($value['childnavi'])) : ?>
-                <li class="nav-item list-menu">
+                <li class="list-item list-menu">
 					<?php if (!empty($value['children'])): ?>
-                        <a class="nav-link" href="<?php echo $value['url']; ?>" id="nav_link"
-                           onmousemove="cal_margin(this,<?php echo $dp_id; ?>)" <?php echo $newtab; ?>><?php echo $value['naviname']; ?></a>
-                        <ul class="dropdown-menus" id="dropmenus<?php echo $dp_id++; ?>">
+                        <a class='nav-link has-down' id="nav_link""  <?php echo $newtab; ?>><?php echo $value['naviname']; ?> <b class="caret"></b></a>
+                        <ul class="dropdown-menus">
 							<?php foreach ($value['children'] as $row) {
-								echo '<li class="nav-item list-menu small"><a class="nav-link" href="' . Url::sort($row['sid']) . '">' . $row['sortname'] . '</a></li>';
+								echo '<li class="list-item list-menu"><a class="nav-link" href="' . Url::sort($row['sid']) . '">' . $row['sortname'] . '</a></li>';
 							} ?>
                         </ul>
 					<?php endif; ?>
 					<?php if (!empty($value['childnavi'])) : ?>
-                        <a class="nav-link" href="<?php echo $value['url']; ?>" id="nav_link"
-                           onmousemove="cal_margin(this,<?php echo $dp_id; ?>)" <?php echo $newtab; ?>><?php echo $value['naviname']; ?> <b class="caret"></b></a>
-                        <ul class="dropdown-menus" id="dropmenus<?php echo $dp_id++; ?>">
+                        <a class='nav-link has-down' id="nav_link" <?php echo $newtab; ?> ><?php echo $value['naviname']; ?><b class="caret"></b></a>
+                        <ul class="dropdown-menus">
 							<?php foreach ($value['childnavi'] as $row) {
 								$newtab = $row['newtab'] == 'y' ? 'target="_blank"' : '';
-								echo '<li class="nav-item list-menu small"><a class="nav-link" href="' . $row['url'] . "\" $newtab >" . $row['naviname'] . '</a></li>';
+								echo '<li class="list-item list-menu"><a class="nav-link" href="' . $row['url'] . "\" $newtab >" . $row['naviname'] . '</a></li>';
 							} ?>
                         </ul>
 					<?php endif; ?>
                 </li>
 			<?php else: ?>
-                <li class="nav-item list-menu <?php echo $current_tab; ?>"><a class="nav-link" href="<?php echo $value['url']; ?>" <?php echo $newtab; ?>><?php echo $value['naviname']; ?></a></li>
+                <li class="list-item list-menu"><a class="nav-link" href="<?php echo $value['url']; ?>" <?php echo $newtab; ?>><?php echo $value['naviname']; ?></a></li>
 			<?php endif; ?>
 			<?php endforeach; ?>
         </ul>
     </div>
 <?php } ?>
 <?php
-//blog：置顶
+/**
+ * 文章列出卡片：置顶标志
+ */
 function topflg($top, $sortop = 'n', $sortid = null) {
-	$ishome_flg = '<a href="#" title="首页置顶" class="log_topflg">&nbsp;&uArr;</a>';
-	$issort_flg = '<a href="#" title="分类置顶" class="log_topflg">&nbsp;&uArr;</a>';
+	$ishome_flg = '<span title="首页置顶" class="log-topflg" />';
+	$issort_flg = '<span title="分类置顶" class="log-topflg" />';
 	if (blog_tool_ishome()) {
 		echo $top == 'y' ? $ishome_flg : '';
 	} elseif ($sortid) {
@@ -283,7 +307,9 @@ function topflg($top, $sortop = 'n', $sortid = null) {
 
 ?>
 <?php
-//blog：编辑
+/**
+ * 文章查看页：编辑链接
+ */
 function editflg($logid, $author) {
 	$editflg = ROLE == ROLE_ADMIN || $author == UID ? '<a href="' . BLOG_URL . 'admin/article.php?action=edit&gid=' . $logid . '" target="_blank">&nbsp;&nbsp;&nbsp;编辑</a>' : '';
 	echo $editflg;
@@ -291,19 +317,23 @@ function editflg($logid, $author) {
 
 ?>
 <?php
-//blog：分类
+/**
+ * 文章列出卡片和查看页：分类
+ */
 function blog_sort($blogid) {
 	global $CACHE;
 	$log_cache_sort = $CACHE->readCache('logsort');
 	?>
 	<?php if (!empty($log_cache_sort[$blogid])) { ?>
-        <a href="<?php echo Url::sort($log_cache_sort[$blogid]['id']); ?>" class="echo_sort"><?php echo $log_cache_sort[$blogid]['name']; ?></a>
+        <a href="<?php echo Url::sort($log_cache_sort[$blogid]['id']); ?>"><?php echo $log_cache_sort[$blogid]['name']; ?></a>
 	<?php } else { ?>
-        <a href="#" class="echo_sort">无</a>
+        <a href="#">无</a>
 	<?php }
 } ?>
 <?php
-//blog：文章标签
+/**
+ * 文章列出卡片和查看页：标签
+ */
 function blog_tag($blogid) {
 	global $CACHE;
 	$tag_model = new Tag_Model();
@@ -333,7 +363,9 @@ function blog_tag($blogid) {
 
 ?>
 <?php
-//blog：文章作者
+/**
+ * 文章列出卡片和查看页：作者
+ */
 function blog_author($uid) {
 	global $CACHE;
 	$user_cache = $CACHE->readCache('user');
@@ -346,18 +378,22 @@ function blog_author($uid) {
 
 ?>
 <?php
-//blog：相邻文章
+/**
+ * 文章查看页：相邻文章
+ */
 function neighbor_log($neighborLog) {
 	extract($neighborLog); ?>
 	<?php if ($prevLog): ?>
-        <span class="prev_Log"><a href="<?php echo Url::log($prevLog['gid']) ?>" title="<?php echo $prevLog['title']; ?>">上一篇</a></span>
+        <span class="prev-log"><a href="<?php echo Url::log($prevLog['gid']) ?>" title="<?php echo $prevLog['title']; ?>">上一篇</a></span>
 	<?php endif; ?>
 	<?php if ($nextLog): ?>
-        <span class="next_Log"><a href="<?php echo Url::log($nextLog['gid']) ?>" title="<?php echo $nextLog['title']; ?>">下一篇</a></span>
+        <span class="next-log"><a href="<?php echo Url::log($nextLog['gid']) ?>" title="<?php echo $nextLog['title']; ?>">下一篇</a></span>
 	<?php endif; ?>
 <?php } ?>
 <?php
-//blog：评论列表
+/**
+ * 文章查看页：评论列表
+ */
 function blog_comments($comments) {
 	extract($comments);
 	if ($commentStacks): ?>
@@ -366,6 +402,7 @@ function blog_comments($comments) {
 	<?php endif; ?>
 	<?php
 	$isGravatar = Option::get('isgravatar');
+
 	foreach ($commentStacks as $cid):
 		$comment = $comments[$cid];
 		$comment['poster'] = $comment['url'] ? '<a href="' . $comment['url'] . '" target="_blank">' . $comment['poster'] . '</a>' : $comment['poster'];
@@ -374,11 +411,11 @@ function blog_comments($comments) {
             <a name="<?php echo $comment['cid']; ?>"></a>
 			<?php if ($isGravatar == 'y'): ?>
                 <div class="avatar"><img src="<?php echo getGravatar($comment['mail']); ?>"/></div><?php endif; ?>
-            <div class="comment-info">
+            <div class="comment-infos">
                 <div class="arrow"></div>
                 <b><?php echo $comment['poster']; ?> </b><span class="comment-time"><?php echo $comment['date']; ?></span>
                 <div class="comment-content"><?php echo $comment['content']; ?></div>
-                <div class="comment-reply"><a href="#comment-<?php echo $comment['cid']; ?>" onclick="commentReply(<?php echo $comment['cid']; ?>,this)">回复</a></div>
+                <div class="comment-reply"><a class="com-reply">回复</a></div>
             </div>
 			<?php blog_comments_children($comments, $comment['children']); ?>
         </div>
@@ -388,7 +425,9 @@ function blog_comments($comments) {
     </div>
 <?php } ?>
 <?php
-//blog：子评论列表
+/**
+ * 文章查看页：子评论
+ */
 function blog_comments_children($comments, $children) {
 	$isGravatar = Option::get('isgravatar');
 	foreach ($children as $child):
@@ -398,13 +437,14 @@ function blog_comments_children($comments, $children) {
         <div class="comment comment-children" id="comment-<?php echo $comment['cid']; ?>">
             <a name="<?php echo $comment['cid']; ?>"></a>
 			<?php if ($isGravatar == 'y'): ?>
-                <div class="avatar"><img src="<?php echo getGravatar($comment['mail']); ?>"/></div><?php endif; ?>
-            <div class="comment-info">
+                <div class="avatar"><img src="<?php echo getGravatar($comment['mail']); ?>"/></div>
+			<?php endif; ?>
+            <div class="comment-infos">
                 <div class="arrow"></div>
                 <b><?php echo $comment['poster']; ?> </b><span class="comment-time"><?php echo $comment['date']; ?></span>
                 <div class="comment-content"><?php echo $comment['content']; ?></div>
 				<?php if ($comment['level'] < 4): ?>
-                    <div class="comment-reply"><a href="#comment-<?php echo $comment['cid']; ?>" onclick="commentReply(<?php echo $comment['cid']; ?>,this)">回复</a>
+                    <div class="comment-reply"><a class="com-reply">回复</a>
                     </div><?php endif; ?>
             </div>
 			<?php blog_comments_children($comments, $comment['children']); ?>
@@ -412,44 +452,56 @@ function blog_comments_children($comments, $children) {
 	<?php endforeach; ?>
 <?php } ?>
 <?php
-//blog：发表评论表单
+/**
+ * 文章查看页：评论表单
+ */
 function blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allow_remark) {
+	$isNeedChinese = Option::get('comment_needchinese');
+
 	if ($allow_remark == 'y'): ?>
         <div id="comment-place">
             <div class="comment-post" id="comment-post">
-                <div class="cancel-reply" id="cancel-reply" style="display:none"><a href="javascript:void(0);" onclick="cancelReply()">取消回复</a></div>
+                <div class="cancel-reply" id="cancel-reply" style="display:none"><a>取消回复</a></div>
                 <p class="comment-header">
                     <a name="respond"></a><br></p>
-                <form class="commentform" method="post" name="commentform" action="<?php echo BLOG_URL; ?>index.php?action=addcom" id="commentform">
+                <form class="commentform" method="post" name="commentform" action="<?php echo BLOG_URL; ?>index.php?action=addcom" id="commentform"
+                      is-chinese="<?php echo $isNeedChinese; ?>">
                     <input type="hidden" name="gid" value="<?php echo $logid; ?>"/>
                     <textarea class="form-control log_comment" name="comment" id="comment" rows="10" tabindex="4" required></textarea>
 					<?php if (ROLE == ROLE_VISITOR): ?>
-                        <div class="com_info" id="com_info">
-                            <input class="form-control com_control com_name" autocomplete="off" type="text" name="comname" maxlength="49" value="<?php echo $ckname; ?>" size="22"
+                        <div class="comment-info" id="comment-info">
+                            <input class="form-control com_control comment-name" id="info_n" autocomplete="off" type="text" name="comname" maxlength="49"
+                                   value="<?php echo $ckname; ?>" size="22"
                                    tabindex="1" placeholder="昵称*" required/>
-                            <input class="form-control com_control com_mail" autocomplete="off" type="text" name="commail" maxlength="128" value="<?php echo $ckmail; ?>" size="22"
+                            <input class="form-control com_control comment-mail" id="info_m" autocomplete="off" type="text" name="commail" maxlength="128"
+                                   value="<?php echo $ckmail; ?>" size="22"
                                    tabindex="2" placeholder="邮件地址"/>
-                            <input class="form-control com_control com_url" autocomplete="off" type="text" name="comurl" maxlength="128" value="<?php echo $ckurl; ?>" size="22"
+                            <input class="form-control com_control comment-url" id="info_u" autocomplete="off" type="text" name="comurl" maxlength="128"
+                                   value="<?php echo $ckurl; ?>" size="22"
                                    tabindex="3" placeholder="个人主页"/>
                         </div>
 					<?php endif; ?>
-                    <p class="com_submit_p">
-                        <input class="btn btn-outline-primary"<?php if ($verifyCode != "") { ?> type="button" data-toggle="modal" data-target="#myModal"<?php } else { ?> type="submit"<?php } ?>
+
+                    <span class="com_submit_p">
+                        <input class="btn"<?php if ($verifyCode != "") { ?> type="button" data-toggle="modal" data-target="#myModal"<?php } else { ?> type="submit"<?php } ?>
                                id="comment_submit" value="发布评论" tabindex="6"/>
-                    </p>
+                    </span>
 					<?php if ($verifyCode != "") { ?>
                         <!-- 验证窗口 -->
-                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content" style="display: table-cell;">
-                                    <div class="modal-header" style="border-bottom: 0px;">输入验证码</div>
+                                    <div class="modal-header" style="border-bottom: 0px;">
+                                        输入验证码
+                                    </div>
 									<?php echo $verifyCode; ?>
                                     <div class="modal-footer" style="border-top: 0px;">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                                        <button type="submit" class="btn btn-primary">提交</button>
+                                        <button type="button" class="btn" id="close-modal" data-dismiss="modal">关闭</button>
+                                        <button type="submit" class="btn" id="comment_submit2">提交</button>
                                     </div>
                                 </div>
                             </div>
+                            <div class="lock-screen"></div>
                         </div>
                         <!-- 验证窗口(end) -->
 					<?php } ?>
@@ -460,7 +512,9 @@ function blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allo
 	<?php endif; ?>
 <?php } ?>
 <?php
-//blog-tool:判断是否是首页
+/**
+ * 判断函数：是否是首页
+ */
 function blog_tool_ishome() {
 	if (BLOG_URL . trim(Dispatcher::setPath(), '/') == BLOG_URL) {
 		return true;

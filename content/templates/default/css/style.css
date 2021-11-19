@@ -1,0 +1,1539 @@
+/**
+ * 模版样式表
+ */
+
+/* 全局样式
+---------------------------------------------------*/
+
+/* 禁止页面溢出出现滚动条 */
+:root {overflow-x: hidden}
+
+/* 定义所有元素的 width =（border+padding），方便后续计算 */
+* { 
+    box-sizing: border-box
+}
+
+/* 初始化 */
+body {
+    margin: 0;
+    line-height: 1.5;
+	font-size: 18px;
+    color: #5a5c69;
+	background: #f5f5f6;
+    font-family: -apple-system, SF UI Text, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei, WenQuanYi Micro Hei, sans-serif
+}
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+	font-weight: 400
+}
+p {
+    line-height: 2;
+    margin: 30px 0
+}
+a {
+    color: #333333;
+    transition: all 0.2s;
+    text-decoration: none 
+}
+a:focus, a:hover {
+    color: #f6607d;
+    text-decoration: none
+}
+img {
+    max-width: 100%
+}
+hr {
+    border: 0;
+    border-top: 1px solid rgba(0,0,0,.1)
+}
+blockquote {
+    font-style: italic;
+    color: #868e96
+}
+input,textarea {
+	font-family: inherit;
+	color: #495057;
+    outline:none
+}
+textarea {
+    padding: 1rem 0.75rem
+}
+footer {
+    padding: 0px 50px;
+} 
+footer .list-inline {
+    margin: 0;
+    padding: 0
+}
+footer .copyright {
+    font-size: 14px;
+    margin-bottom: 0;
+    text-align: center
+}
+
+/* 无样式列表  */
+.unstyle-li {
+    padding-left: 0;
+    list-style: none;
+    margin-block: 8px;
+	font-size: medium
+}
+
+/* 卡片属性。页面以卡片形式组成，这里直接配置，让整个页面的卡片有统一的内边距。 */
+.card-padding {
+    padding: 1.25rem
+}
+
+/* 布局
+   行（row）上选择flex布局，并设置允许换行（wrap）
+   列（col）则需要通过根据大小屏分别配置，这是网页最重要的地方，是整个网页的骨架
+---------------------------------------------------*/
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* 大屏下的列 */
+@media (min-width:768px)  {
+
+    .column-big {
+        padding-right: 10px;
+        flex: 0 0 66.666667%;
+        max-width: 66.666667%
+    }
+
+    /* 工具栏列 */
+    .column-small {
+        font-size: medium;
+        padding-left: 20px;
+        -ms-flex: 0 0 33.333333%;
+        flex: 0 0 33.333333%;
+        max-width: 33.333333%
+    }
+
+    /* 文章发布时间和文章阅读评论数这两列的配置 */
+    .log-info {
+        flex: 0 0 66.666667%;
+        max-width: 66.666667%
+    }
+    .log-count {
+        flex: 0 0 33.333333%;
+        max-width: 33.333333%;
+        text-align: right
+    }
+
+}
+
+/* 小屏下的列 */
+@media (max-width:767px) {
+
+    .column-big {
+        padding-right: 15px;
+        padding-left: 15px;
+        width:100%
+    }
+    /* 工具栏列 */
+    .column-small {
+        padding-right: 15px;
+        padding-left: 15px;
+        width:100%
+
+    }
+    /* 文章发布时间和文章阅读评论数两列的配置 */
+    .log-info {
+        flex: 0 0 66.666667%;
+        max-width: 66.666667%;
+    }
+    .log-count {
+        white-space: nowrap;
+        flex: 0 0 33.333333%;
+        max-width: 33.333333%;
+        text-align: right;
+    }
+}
+
+/* 最外层整体容器的响应式配置，即container配置
+---------------------------------------------------*/
+.container{
+    width: 100%;
+    align-items: center;/* 网页容器在整个网页中垂直居中 */
+	margin-right: auto;
+	margin-left: auto
+}
+
+/* container 在不同屏幕下的配置 */
+@media (min-width:576px) {.container{max-width: 540px}}
+@media (min-width:768px) {.container{max-width: 720px}}
+@media (min-width:992px) {.container {max-width: 960px}}
+@media (min-width:1201px) {.container {max-width: 1140px}}
+
+/* 设置 container 在小型屏幕上的内外边距 ，使其更符合小型屏幕的观感体验 */
+@media (min-width:768px)  {
+    .container{
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto
+    }
+}
+
+/* 在绝对定位情况下，主边栏的全宽(可供一些位于主边栏的难以计算宽度的对象使用)
+---------------------------------------------------*/
+
+@media (min-width:1px) {.rea-width{width: calc(100% - 30px)}}
+@media (min-width:576px) {.rea-width{width: 510px}}
+@media (min-width:768px) {.rea-width{width: 450px}}
+@media (min-width:992px) {.rea-width{width: 610px}}
+@media (min-width:1201px) {.rea-width{width: 730px}}
+
+/* 博客头部属性的配置
+---------------------------------------------------*/
+
+.blog-header {
+	margin-bottom: 3rem;
+	background: #ffffff; /* 背景颜色颜色白色 */
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1) /* 阴影 */
+}
+.blog-header-c {
+    height: 71.63px;
+    display: flex;
+    justify-content: space-between /* 导航栏为主轴方向两端对齐，即大标题与导航两部分，一个向左靠齐，一个向右靠齐 */
+}
+
+/* 博客标题和副标题 */
+.blog-header-title {
+    font-size: 26px;
+    z-index: 1
+}
+.blog-header-subtitle {
+    font-size: small;
+    letter-spacing: 0.2rem;
+    position: absolute;
+    padding-top: 45px;
+    z-index: 0
+}
+
+/* 导航链接的上下内边距（padding-block）要大，可使光标离开字符后一段距离依然能唤起子导航标签
+ * 另外li标签的列表项标记为空 （list-style: none） */
+.nav-link {
+    padding: 1rem 0.5rem 1rem 0.5rem
+}
+.list-menu {
+		list-style: none
+	}
+
+/* 导航列表的响应式配置
+   在不同大小的屏幕上，导航菜单会有不同的样式。
+   样式根据屏幕大小分为两种：767px以上，767px以下
+---------------------------------------------------*/
+
+/* 大屏幕 */
+@media (min-width:768px)  {
+
+    .nav-list {
+        display: flex;
+        padding-block: 4.5px;
+		text-align: center
+	}
+	
+	/* 大屏幕列表样式 */
+	.list-menu .list-menu{
+		border-bottom: 1px solid #f1f1f1;
+	}
+
+	.list-menu:last-child { 
+		border-bottom: unset
+	}
+}
+
+/* 小屏幕 */
+@media (max-width:767px)  {
+	.header {
+        padding: 0.6rem 1rem;
+        margin-bottom: 30px!important;
+        height:80px
+    }
+	
+    .blog-header-title {
+        position: absolute;
+        left: 17px;
+        top: 15px
+    }
+
+    .blog-header-subtitle {
+
+        padding-top: 60px;
+        left: 17px;
+        top: -11px
+    }
+
+	/* 仅在小屏幕上显示切换菜单边框和切换菜单 */
+	.blog-header-toggle {
+        border: 1px solid rgba(0,0,0,.1);
+        padding-inline: 13px;
+        padding-block: 5.5px 5px;
+        border-radius: 10px;
+        cursor: pointer;
+        position: absolute;
+        top: 15px;
+        right: 16px
+    }
+    .blogtoggle-icon {
+        display: inline-block;
+        width: 28px;
+        height: 22px;
+        margin-top: -3px;
+        vertical-align: middle;
+		/* 为了使模版文件结构更精炼，使用base64图片 */
+        background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAWCAYAAADTlvzyAAAABHNCSVQICAgIfAhkiAAAABl0RVh0U29mdHdhcmUAZ25vbWUtc2NyZWVuc2hvdO8Dvz4AAABNSURBVEiJ7ZPBDcAwCMRM1EEYjdEYjU3oqxtQokT4xc86HSeZmTSyOmUAz3e4OxHxi0RVMTNgQ0K5vsMRni+cHZZz/9OMsJzZYTntCV8iEyIfzeIP9wAAAABJRU5ErkJggg==)
+    }
+	
+	/* 小屏幕的导航变成下拉框 */
+    .blog-header-nav {
+        display: none;
+        z-index: 999;
+        position: absolute;
+        width: 100%;
+        background: white;
+        top: 72px;
+        left: 0;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1)
+    }
+    
+	/* 小屏幕上头部的列表样式 */
+    .nav-list {
+        margin-top: 0px;
+        margin-bottom: 10px
+    }
+    .list-menu {
+        line-height: 28px;
+        width: 90%
+    }
+
+}
+
+/* 大屏幕下的下拉框样式，这里设置的透明度为0（opacity: 0.0;）。但小屏状态下
+ * 没有隐藏，所以下面会在小屏部分，即767px及以下的部分对这个属性覆盖。 */
+.dropdown-menus {
+    background: white;
+    opacity: 0.0;
+    z-index: 4;
+    list-style: none;
+    margin-left: -26px;
+    position: absolute;
+    padding-left: 0px;
+    border: 1px solid #f1f1f1;
+    border-radius: 4px;
+    top: -3000px;
+    margin-bottom: -34px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1)
+}
+.dropdown-menus .list-menu{
+    padding: 6px
+}
+
+/* 顶部菜单栏的小屏属性，“小屏”定义在767px及以下。当然这个也包含小屏的下拉框样式。 */
+@media all and (max-width: 767px) {
+    .nav-list {
+        text-align: left !important;
+        padding-left: 10%;
+        letter-spacing: 3px;
+        line-height: 17px
+    }
+	.dropdown-menus {
+        opacity: 1;
+        margin-left: 0px;
+        position: unset;
+        padding-left: 30px;
+        border: 0px solid #f1f1f1;
+        width: auto;
+        top: 0px;
+        margin-bottom: 0px;
+        box-shadow: 0 0 0 0 white;
+        font-size: smaller
+    }
+}
+
+/* 下拉框的样式 */
+.list-menu:hover .dropdown-menus {
+    opacity: 0.95;
+    top: 56px;
+    transition: opacity 0.2s
+}
+
+/* 列出文章（或文章条目）页
+---------------------------------------------------*/
+
+ /* 卡片上的文章发布时间这部分的属性 */
+.info-row {
+	padding: 1rem;
+    padding-bottom: 8px !important
+}
+
+/* 文章阅读页
+---------------------------------------------------*/
+
+ /* 文章作者、时间等信息下hr水平线的属性，设置margin-bottom为四级 */
+.bottom-5{
+    margin-bottom: 1.5rem !important
+}
+/* 标签的属性，设置margin-top为三级 */
+.top-5, .mtop-5 {
+    margin-top: 3rem !important
+}
+
+/* 验证码模态窗的配置 */
+.modal-dialog {
+	display:none;
+    background-color: white;
+    
+    border-radius: 10px;
+    border: 1px solid #dedede;
+    position: fixed;
+    z-index: 100;
+    /* 定位 */
+    top: 35%;
+    left: 50%;
+    transform: translate3d(-50%,-50%,0)
+}
+
+/* 验证码模态窗的按钮 */
+.btn {
+    cursor: pointer;
+    color: #848798;
+    background-color: white;
+    padding: 8px 11px;
+    font-weight: 800;
+    border-radius: 10px;
+    margin-block: 12px;
+    margin-inline: 17.5px;
+    border: 1px solid #dedede
+}
+.btn:hover {
+    color: #50525e
+}
+.modal-header {
+    text-align: center;
+    border-bottom: 0px;
+    width: 250px;
+    padding: 20px
+}
+.modal-content img {
+    float: left;
+    height: 32px;
+    margin-left: 20px;
+    margin-block: 30px
+}
+.modal-content input[name="imgcode"] {
+    padding: 6px 8px !important;
+    margin-right: 20px;
+    margin-left: 8px;
+    text-align: left;
+    margin-block: 30px;
+    border: 1px solid #dedede
+}
+.modal-content .modal-footer {
+    padding: 10px;
+    text-align: center
+}
+
+/* 弹出验证码模态窗后，屏幕背景要锁住 */
+.lock-screen {
+	display:none;
+    z-index: 99;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: #2d2d2b;
+    top: 0;
+    left: 0;
+    opacity: 0.5
+}
+/* 验证码的点击样式 */
+#captcha {
+    cursor: pointer
+}
+
+/* 禁止滚动 */
+.scroll-fix{overflow:hidden}
+
+/* 阴影
+   文章列出页的文章摘要卡片和边栏组件卡片的阴影和鼠标浮动后的阴影
+---------------------------------------------------*/
+.shadow-theme {
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.02);
+    border-radius: 10px;
+	background: #ffffff;
+    transition: box-shadow 0.4s
+}
+
+.shadow-theme:hover {
+    box-shadow: 1px 1px 2px #ddd
+}
+
+/* 日历样式
+---------------------------------------------------*/
+
+/* 日历的加载样式，防止翻页造成太大的视觉变化 */
+.cal_loading {
+    margin-bottom: 243px
+}
+#calendar {
+    color: #212529
+}
+#calendar a {
+    color: #000;
+    font-weight: bolder
+}
+.calendartop {
+    letter-spacing: 3px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+    color: #000
+}
+.calendartop a {
+    font-weight: 100 !important
+}
+.calendar {
+    margin-bottom: -25px;
+    width: 100%
+}
+.calendar td {
+    text-align: center;
+    padding: 1px 10px;
+    line-height: 1.6
+}
+.calendar td a:link {
+    color: #886353;
+    text-decoration: none
+}
+.calendar td a:hover {
+    color: #886353;
+    text-decoration: none
+}
+.calendar tr {
+    height: 40px
+}
+.day {
+    color: #212529;
+    background: #eaeaea;
+    border-radius: 10px
+}
+.sun {
+    color: #333
+}
+.week {
+    color: #333
+}
+
+/* 侧边栏卡片样式
+---------------------------------------------------*/
+/* 卡片的内边距和外边距 */
+.side-bar {
+    font-size: medium
+}
+.side-bar .widget {
+    margin-bottom: 24px;
+    padding: 20px
+}
+/* 边栏组件的标题 */
+.side-bar h3 {
+    position: relative;
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 20px
+}
+.side-bar .widget li {
+    position: relative;
+    color: #6f6f6f;
+    line-height: 2
+}
+
+/* 分页按钮样式
+---------------------------------------------------*/
+.pagination {
+    font-size: 14px;
+    padding: 10px;
+    text-align: center
+}
+.pagination span {
+    padding: 5.5px 6px 3px 6px;
+    margin: 0 5px;
+    border-radius: 8px;
+    line-height: 3;
+    color: #858796
+}
+.pagination a {
+    color: #c0bcbc;
+    padding: 5.5px 10px 3px 10px;
+    background: white;
+    margin: 0 5px;
+    line-height: 3;
+    border-radius: 8px
+}
+.pagination a:hover {
+    text-decoration: none
+}
+#pagenavi {
+    text-align: center;
+    font-size: 14px
+}
+#pagenavi span {
+    padding: 4.5px 9px 4px 9px;
+    margin: 0 5px;
+    line-height: 3;
+    border-radius: 10px;
+    color: #000
+}
+#pagenavi a {
+    color: #c0bcbc;
+    padding: 4.5px 9px 4px 9px;
+    font-family: serif, monospace;
+    margin: 0 5px;
+    line-height: 3;
+    border-radius: 10px
+}
+
+/* 评论样式
+---------------------------------------------------*/
+
+/* 发表评论表单样式 */
+@media (min-width:768px)  {
+    .commentform {
+        height: 250px
+    }
+}
+.comment-name {
+    float: left;
+    border-bottom-left-radius: 10px !important
+}
+.comment-mail {
+    float: left
+}
+.comment-url {
+    border-right: 1px #d6d6d6 solid !important;
+    border-bottom-right-radius: 10px !important
+}
+.form-controls {
+    display: block;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-out, box-shadow 0.15s ease-in-out
+}
+.comment-info {
+    width: auto
+}
+.com_control {
+    display: block;
+    border-radius: 0px;
+    border: 1px #d6d6d6 solid;
+    border-right: 0px;
+    height: 50px
+} 
+
+/* 评论处的输入框提示，居中、隐藏 */
+.com_control:focus::-webkit-input-placeholder{
+    color: rgba(255, 255, 255, 0)
+} 
+.com_control::-webkit-input-placeholder {
+    color: rgba(116, 116, 116, 0.336)
+}
+@media (min-width:578px) {
+    .com_control::-webkit-input-placeholder {
+        text-align: center
+    }
+}
+.comment-header {
+    margin: 15px 0px 5px 0px
+}
+
+.comment-post {
+    clear: both
+}
+
+.comment-post p {
+    margin: 5px 0px
+}
+
+.comment-post .cancel-reply {
+    float: right;
+    cursor: pointer;
+    _cursor: hand;
+    padding-right: 10%
+}
+
+.comment-post .cancel-reply:hover {
+    text-decoration: underline
+}
+
+.comment-post small {
+    font-size: 12px;
+    color: #999
+}
+
+.comment-post input {
+    padding: 7px 40px;
+    font-size: small;
+    color: #848797;
+    width: 33.334%
+}
+
+.comment-post #comment {
+    width: 100%;
+    border: 1px #d6d6d6 solid;
+    font-size: small;
+    border-radius: 10px 10px 0 0;
+    height: 130px;
+    resize: none
+}
+
+.comment-post #comment_submit {
+    width: 84px;
+    height: 35px;
+    text-align: center;
+    font-size: 14px;
+    margin: 10px 0px;
+    float: right;
+    margin-right: 1px;
+    border-radius: 8px;
+    border: 1px solid #dedede;
+    padding: 7px 10px;
+    justify-content: center
+}
+
+.comment-post #comment_submit:hover {
+    cursor: pointer;
+    color: #fff;
+    background-color: #007bff
+}
+
+.comment-post .input {
+    width: 100px
+}
+
+.comment {
+    margin: 10px 0;
+    padding: 10px 0px;
+    font-size: medium;
+    border-bottom: 1px #f7f7f7 solid;
+    overflow: hidden;
+    color: #333
+}
+
+.comment span {
+    color: #ff7a15
+}
+
+.comment .comment-time {
+    color: #999999;
+    display: inline;
+    font-size: 10px
+}
+
+.comment .avatar {
+    float: left;
+    margin: 5px 4px
+}
+
+.comment .comment-infos {
+    background: #f7f7f7;
+    padding: 12px;
+    padding-bottom: 5px;
+    border-radius: 10px;
+    margin-top: 9px;
+    margin-left: 58px
+}
+
+.com-bottom {
+    margin-bottom: 80px;
+}
+
+/* 评论列表中指向评论者头像的箭头 */
+.arrow {
+    position: absolute;
+    margin-top: 3px;
+    margin-left: -34px;
+    border-width: 13px;
+    border-style: solid;
+    border-color: transparent #f7f7f7 transparent transparent
+}
+
+.comment .comment-content {
+    margin: 8px 0px 0px 0px;
+    word-break: break-word
+}
+
+.comment .comment-reply {
+    float: right;
+    font-size: 12px;
+    cursor: pointer;
+    margin-top: -15px
+}
+
+.comment .comment-reply:hover {
+    text-decoration: underline
+}
+
+.comment-children {
+    margin: 20px 10px 20px 20px;
+    clear: both;
+    border: none;
+    padding: 0
+}
+
+.comment .comment-post {
+    width: 90%;
+    margin: 15px auto
+}
+
+.comment-info {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-top: -9px;
+    white-space: nowrap
+}
+
+/* 边栏处的最新评论信息margin-top应该是0 */
+.unstyle-li .comment-info {
+    margin-top: 4px
+}
+
+.cancel-reply {
+    font-size: large
+}
+
+/* 评论人的头像 */
+.avatar img {
+    margin-top: 9px;
+    margin-right: 4px;
+    border-radius: 50%
+}
+
+.unstyle-li input[type="submit"] {
+    background-color: #313131;
+    color: #FFFFFF;
+    margin-left: -25px;
+    height: 38px;
+    width: 55px;
+    border: 0;
+    border-radius: 0 3px 3px 0;
+    padding: 0
+}
+
+/*文章条目中的部分样式
+---------------------------------------------------*/
+
+/* “阅读全文”的样式 */
+.readmore {
+    margin-left: 10px;
+}
+
+.readmore a {
+    color: #929292;
+    font-size: small
+}
+/* 文章条目的标题 */
+.card-title {
+    margin-bottom: 30px
+}
+
+/* 文章条目中的置顶图案，采用base64 */
+.log-topflg {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    vertical-align: middle;
+    user-select: none;
+    background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACYAAAAkCAYAAADl9UilAAAAAXNSR0IArs4c6QAAA+9JREFUWEftmG1MU1cYx/9tKbYFS1nqiC9EI6UJ7SbGBVCM2QdmxChOP0iyT2aLiUsMixizOEPYRCXGYIJRTFEYNviSEBWZqIXoF0kGg2GME9SNZdFC5mUYUmi9t6W3Nc8xLcqM94X5koXzsT3nOb/zf577f869mmg0GsV7ODQzYAqzMqOYQsHw/1bsmKsWZbvLoNPp4HA64G5swOKFC5WK9NL8aSv2c08Pms41oa+vH06nAxzHoWRHCfJzct4dWAyq0d2Iy57LDKSosAgfpqWh3l03LTjViv127x5OuE7CZrchKSmJpTA2vi/7AQG/H1XVVarhVIERVJunHZX7KuGqr8WCBfPjUEajETzPo7BgDdYVrVedVsVg434/Dh6qwsXzzdh7YO9LUFOLipSjuiv+olixcorAeEFA/Sk39nz7HebOnYeG0w2SBb72s0Isyc5GjesYljgm0y21UDYYQe2vPAhXjQtnms7CbJ4tFZv9PzY2DvePp1CwugB5ebn4OCtL1jrZYA2Np7Frxy4WNPYEytoBwNHqo2i75kHR5xtwpPowLCkpkktlgUUiEcyZMw/lFeXIyVXvT2QldCg5HicLzDs0BGfWR/DcaJc86esmUL1du+7578DC4TCczqWwfJAKs9mMQe8gvt6+TVI9qq/SklKkplogRiIY+P0PdHTehMNulzygLMUoCrk81Uq7px3RaAQajVay1sgubv3ayyCoG5C9FG/aKAlFE2SD0eS/Hj3C3xzH2s6LDwEpmpCQ8K8NYwchoGWfLJOVwlgQRWC06MnoKPKXr8LIyEhcMVEU2c1i6qirrcOli81obbuiCEqxYrGNsxzZGOa4SbBwGLpXKEap7O7qQkdnhyJzVQ225cutaP2pNQ5GvZF6ZGyEQiEkJiai9JudrOC7e7uQsWiRrNpSnUpamL/yUzy4/4CBjY2PI0GrgynJxGIKT3mEIyKSk5PjYLfv9CJ9/mSjl0OouMYoaN6KVUyJCy3nQa+lPB+EJXXSzb1eL9LT01mn6Lt7F4+5IRgNBjk88TmqwFavWcdsgBTz+XyYpdfDYHquGI0/BwaQYbOxpzcUCsLnewKtVvvmwWKKEdjExAQGH3phspiRZrVC4AUEg0GkWFIYGM8H4A+MQavRvHmwr7ZuQ0tzS7z4h7lhGE1G0LcGSpler2cQ5GNXW69gdPSft6PYkZrjqCivYG5OIxQMQhTDeCrwECdE9pvVamVeZ7Nn4pfODkVqqbaLO/392LypmG38ukFwdJmUc5uYGkdV8VMQumLT3Z9sIxAIsBcS6gCCIMBgMCDTnomVubmvbFVy5FMNJif4dObMgClVb0YxpYo9A3xJDbNANb8bAAAAAElFTkSuQmCC);
+    margin-top: -22px
+}
+
+.log-topflg:hover {
+    color: black
+}
+/* 文章内容页样式
+---------------------------------------------------*/
+.log-con {
+    background-color: #ffffff;
+    border-radius: 10px;
+    max-width: 990px;
+    padding: 30px;
+    font-size: 16px;
+    height: fit-content;
+    letter-spacing: 0.5px
+}
+
+.log-con p {
+    margin-top: 0;
+    margin-bottom: 16px
+}
+
+.log-con .date {
+    margin-bottom: 0px
+}
+
+.loglist-content h1 {
+    font-size: medium;
+    font-family: inherit;
+    letter-spacing: 0.5px;
+    margin: 0
+}
+
+.loglist-content h2 {
+    font-size: medium;
+    font-family: inherit;
+    letter-spacing: 0.5px;
+    margin: 0
+}
+
+.loglist-content h3 {
+    font-size: medium;
+    font-family: inherit;
+    letter-spacing: 0.5px;
+    margin: 0
+}
+
+.loglist-content h4 {
+    font-size: medium;
+    font-family: inherit;
+    letter-spacing: 0.5px;
+    margin: 0
+}
+
+.loglist-content h5 {
+    font-size: medium;
+    font-family: inherit;
+    letter-spacing: 0.5px;
+    margin: 0
+}
+
+.loglist-content p {
+    font-size: medium;
+    font-family: inherit;
+    margin: 0
+}
+
+/* 需要改名，侧边栏链接卡片的友情链接属性 */
+.no-margin-bottom {
+    font-size: medium;
+    padding-left: 10px
+}
+
+/* 摘要内容部分 */
+.loglist-body {
+    margin-bottom: -22px;
+    font-size: small
+}
+
+.loglist-body p {
+    margin: 0 -6px 0 0
+}
+/* 文章标题和标签等 */
+.loglist-title {
+    font-size: x-large
+}
+
+.loglist-tag {
+    margin-top: 30px;
+    line-height: 2;
+    color: #000000
+}
+
+.loglist-tag a {
+    color: #929292
+}
+
+
+.loglist-cover {
+    width: 100%;
+    height: 205px;
+    border-radius: 10px 10px 0 0
+}
+
+.loglist-cover img {
+    position: absolute;
+    /* width: 730px; */
+    opacity: 0.8;
+    border-radius: 10px 10px 0 0;
+    transition: all 0.4s;
+    clip: rect(50px 730px 250px 0px);
+    margin-top: -50px
+}
+
+.loglist-cover img:hover {
+    opacity: 0.7;
+    transform: scale(1.01);
+    clip: rect(50px 730px 250px 0px)
+}
+
+@media (max-width:390px) {.loglist-cover{ height: 140px}}
+
+/* 回形针 */
+
+.clip,
+.clip::after,
+.clip::before {
+    border-color: white!important;
+}
+.clip {
+    margin-top: -38px;
+    width: 40px;
+    margin-bottom: 40px;
+    border-bottom: none;
+    border-left: 0px solid;
+    border-right: 6px solid;
+    border-top: none;
+    position: relative;
+    z-index: 5;
+    box-shadow: 10px 40px 100px 10px rgb(115 115 115)
+}
+
+/* 自适应位置，使其始终在封面图右侧向左95px */
+@media (max-width:575px) {.clip{display: none}}
+@media (min-width:576px) {.clip{left: calc(510px - 95px)}}
+@media (min-width:768px) {.clip{left: calc(450px - 95px)}}
+@media (min-width:992px) {.clip{left: calc(600px - 95px)}}
+@media (min-width:1201px) {.clip{left: calc(730px - 95px)}}
+
+.clip::before {
+    position: absolute;
+    content: "";
+    top: -5px;
+    right: -9px;
+    width: 14px;
+    height: 33px;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    border-bottom: none;
+    border-left: 6px solid;
+    border-right: 6px solid;
+    border-top: 6px solid
+}
+.clip::after {
+    position: absolute;
+    content: "";
+    bottom: -80px;
+    right: 1px;
+    width: 4px;
+    height: 56px;
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+    border-top: none;
+    border-left: 6px solid;
+    border-right: 6px solid;
+    border-bottom: 6px solid
+}
+
+/* 条目的其他内容 */
+
+.loglist-content {
+    font-size: medium;
+    margin-left: 1px;
+    margin-bottom: 5px;
+    margin-right: 3px;
+    margin-top: 30px
+}
+
+.log-info {
+    font-size: small;
+    letter-spacing: 0.5px;
+    color: #404040 !important
+}
+
+.log-info a {
+    color: #929292
+}
+
+.log-count {
+    font-size: small
+}
+
+.log-count a {
+    color: #252525
+}
+/* 侧边栏组件的一些样式 */
+.bloggerinfo {
+    margin-bottom: -10px;
+    text-align: center
+}
+
+.bloggerinfo-img {
+    width: 100px;
+    height: 100px;
+    border: 0px solid #c2a9a9;
+    border-radius: 50%
+}
+.bloggerinfo-img:hover {
+    --distance: 17;
+    border: 1px solid #ffffff;
+    margin: calc(var(--distance) * -1px);
+    padding: calc(var(--distance) * 1px);
+    width: calc(100px + var(--distance) * 2px );
+    height: calc(100px + var(--distance) * 2px );
+    transition: all 0.7s
+}
+
+
+.comm-lates-name {
+    font-weight: bolder
+}
+
+.bloginfo-name {
+    font-size: x-large;
+    margin-top: 15px;
+    margin-bottom: 0px
+}
+
+.bloginfo-cache {
+    margin-top: 20px;
+    margin-bottom: 15px;
+    color: #929292
+}
+/* 搜索栏 */
+.search {
+    width: 80%;
+    box-shadow: none;
+    float: left;
+    font-size: 1rem;
+    padding: 0.375rem 0.75rem;
+    line-height: 1.5;
+    color: #495057;
+    border: 1px solid #ced4da;
+    /* 兼容 Safari ，Safari默认input会有1px的上下外边距 */
+    margin-block: 0;
+    border-radius: 0.25rem
+}
+/* 文章阅读和文章条目的标签 */
+.tags {
+    border: 1px solid #f2dada;
+    padding: 1px 6px;
+    border-radius: 4px;
+    white-space: nowrap
+}
+/* 侧边栏组件中的标签 */
+.tag-container {
+    text-overflow: ellipsis;
+    overflow: hidden
+}
+.tags-side {
+    border: 1px solid #f2dada;
+    padding: 2px 6px;
+    border-radius: 4px;
+    white-space: nowrap
+}
+/* 侧边栏组件中的最新文章样式 */
+.blog-lates {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+/* 返回上页图标 */
+.back-top {
+    font-size: 20px;
+    text-align: center;
+    height: 34px;
+    width: 34px;
+    margin-left: -90px;
+    position: absolute;
+    top: 151px;
+    border: 1px solid #e6e6e6;
+    color: #e6e6e6;
+    border-radius: 50%;
+    cursor: pointer
+}
+.back-top:hover {
+    border: 1px solid #bbbbbb;
+    color: #bbbbbb
+}
+/* 文章条目中的分割线 */
+.list-line {
+    border: 0;
+    margin-top: 12px;
+    margin-bottom: -7px;
+    border-top: 2px solid rgb(245, 245, 246)
+}
+
+/* 侧边栏组件中的文章分类 */
+.log-classify-f {
+    letter-spacing: 1px;
+    font-size: 16px;
+    font-weight: 400
+}
+
+.log-classify-c {
+    margin-left: -27px;
+    list-style: none;
+    font-size: medium
+}
+
+/* 侧边栏组件中的最新评论 */
+.logcom-latest-time {
+    position: absolute;
+    right: 10px;
+    color: #b5b5b5;
+    margin-left: 10px;
+    font-size: small
+}
+.comment-info_img {
+    width: 27px;
+    margin-bottom: 4px;
+    margin-right: 3px;
+    border-radius: 50%;
+    vertical-align: middle;
+    border-style: none
+}
+
+/* 各处的日期文字样式 */
+.date {
+    margin: 0;
+    text-align: center;
+    color: #7f7f7f
+}
+.date a {
+    color: #7f7f7f
+}
+.log-con .date {
+    font-size: small
+}
+.log_title {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.75rem
+}
+/* 相邻文章按钮的样式 */
+.neighbor-log {
+    overflow: hidden
+}
+.prev-log {
+    margin: 3px 0px;
+    float: left;
+    padding: 6px 6px 4px 6px;
+    font-size: medium;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50rem
+}
+.next-log {
+    margin: 3px 0px;
+    float: right;
+    padding: 6px 6px 4px 6px;
+    font-size: medium;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50rem
+}
+.comment-info a {
+    color: #4c4c4c;
+    padding-left: 5px
+}
+.comment-info hr {
+    margin: 4px
+}
+
+/* 网页足部
+---------------------------------------------------*/
+
+.text-center {
+    text-align: center !important;
+}
+
+/* 图片放大
+---------------------------------------------------*/
+img[data-action="zoom"] {
+    cursor: pointer;
+    cursor: -webkit-zoom-in;
+    cursor: -moz-zoom-in;
+  }
+.zoom-img,
+.zoom-img-wrap {
+    position: relative;
+    z-index: 666;
+    -webkit-transition: all 300ms;
+         -o-transition: all 300ms;
+            transition: all 300ms;
+  }
+img.zoom-img {
+    cursor: pointer;
+    cursor: -webkit-zoom-out;
+    cursor: -moz-zoom-out;
+  }
+.zoom-overlay {
+    z-index: 420;
+    background: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    filter: "alpha(opacity=0)";
+    opacity: 0;
+    -webkit-transition:      opacity 300ms;
+         -o-transition:      opacity 300ms;
+            transition:      opacity 300ms;
+  }
+.zoom-overlay-open .zoom-overlay {
+    filter: "alpha(opacity=100)";
+    opacity: 1;
+  }
+.zoom-overlay-open,
+.zoom-overlay-transitioning {
+    cursor: default;
+  }
+.cover-unclip {
+    /* 放大后的图片无裁剪、无圆角、无透明度 */
+    clip: unset!important;
+    border-radius: unset!important;
+    opacity: 1!important
+}
+/* toc
+---------------------------------------------------*/
+.toc-con {
+    padding: 30px;
+    padding-right: 50px;
+    left: 150px;
+    width: 300px;
+    position: absolute;
+    top: 200px
+}
+.toc-con li{
+    font-size: 16px;
+    line-height: 1.8rem;
+    cursor: pointer;
+    list-style: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+.toc-con div {
+    scrollbar-color: #0000002b #fff0
+}
+.toc-con div::-webkit-scrollbar {
+    width: 10px;
+    background-color: rgb(0 0 0 / 0%)
+}
+.toc-con div::-webkit-scrollbar-thumb {
+    background-color: rgb(0 0 0 / 10%)
+}
+
+/* 一些适应各屏幕尺寸显示效果的样式 */
+@media all and (max-width: 1200px) and (min-width: 992px) {
+
+	/* 方便在中、小屏幕隐藏元素的class */
+    .mh {
+        display: none
+    }
+
+    .bloggerinfo-img {
+        width: 70px;
+        height: 70px
+    }
+
+    .bloginfo-name {
+        margin-top: 32px
+    }
+
+    /* 中型屏状态下的日历 */
+    #calendar {
+        margin-left: -8px;
+    }
+
+}
+
+@media all and (max-width: 991px) {
+
+    /* 头部无容器的限宽 */
+    .blog-header-c {
+        max-width: unset !important
+    } 
+
+    .blog-header-c {
+        height: 74px
+    }
+
+    body {
+        width: 100%;
+        margin: -2px;
+        padding-left: 2px
+    }
+
+	/* 方便在中、小屏幕隐藏元素的class */
+    .mh {
+        display: none
+    }
+
+    .bloggerinfo {
+        margin-bottom: 0px
+    }
+    .mb-5, .mtop-5 {
+        margin-bottom: 2rem !important
+    }
+    .log_title {
+        text-align: left
+    }
+    .log-con {
+        padding: 30px 18px
+    }
+	.comment .avatar {
+        margin-right: 13px
+    }
+    .commentform .comment-info {
+        width: 100%;
+        margin-top: -5px
+    }
+    .comment .avatar {
+        margin-bottom: 13px
+    }
+
+    /* 展开菜单后，博客头部的下边距变大 */
+    .bottom-change {
+        margin-bottom: 13pxs
+    }
+
+    /* 为文章列出页卡片在小屏幕的观感体验优化 */
+    .card-title {
+        margin-bottom: 10px
+    }
+    .loglist-content {
+        margin-top: 10px
+    }
+    .loglist-tag {
+        margin-top: 10px
+    }
+    /* 博客头部的下边距 */
+    .blog-header {
+        margin-bottom: 1.6rem
+    }
+    /* 评论的信息栏变化 */
+    .comment-post input {
+        padding: 0.5em 0.75em
+    }
+
+}
+/* 在平板一些处于中间尺寸的不常见设备所做的缩放和其他一些调整样式 */
+@media all and (max-width: 991px) and (min-width: 768px) {
+
+    #calendar {
+        transform: scale(0.7);
+        margin-left: -46px;
+        margin-top: -14px
+    }
+    .unstyle-li form {
+        transform: scale(0.7);
+        width: 255px;
+        margin-left: -47px
+    }
+
+    /* 最新评论的评论内容字体略小 */
+    .comment-info a {
+        font-size: small
+    }
+
+}
+/* 对一些极小尺寸屏幕所做的比较妥协的缩放等调整 */
+@media all and (max-width: 349px) {
+
+    #calendar {
+        transform: scale(0.7);
+        margin-left: -46px;
+        margin-top: -14px
+    }
+    .unstyle-li form {
+        transform: scale(0.7);
+        width: 255px;
+        margin-left: -47px
+    }
+    .bloginfo-name {
+        font-size: small
+    }
+
+}
+/* 普通移动设备的显示样式 */
+@media all and (max-width: 577px) {
+
+    .side-bar .widget {
+        margin-bottom: 1.5rem
+    }
+    .pagination:after {
+        content: "";
+        margin-bottom: 20px;
+        display: block;
+        clear: both
+    }
+    .bar_top_line {
+        display: block;
+        margin-bottom: 23px
+    }
+    .pagination span {
+        padding: 5.5px 9px 3px 9px
+    }
+    .pagination a {
+        padding: 5.5px 9px 3px 9px
+    }
+    .comment .comment-info {
+        float: left;
+        margin-left: unset;
+        width: 100%
+    }
+    .com_control {
+        height: 44px
+    }
+    .mb-5, .mtop-5 {
+        margin-bottom: 1.6rem !important
+    }
+    #pagenavi {
+        line-height: 45px
+    }
+	
+	/* 评论相关 */
+    .comment-post #comment {
+        border-radius: 6px;
+    }
+    .comment-post input {
+        width: 100%
+    }
+    #comment-place {
+        margin-bottom: 80px
+    }
+    .com_control {
+        border: 1px solid #ced4da;
+        border-radius: 6px !important;
+        margin-top: 10px
+    }
+    .comment-mail {
+        margin-bottom: 10px;
+    }
+    .comment .comment-post {
+        height: 385px;
+    }
+}
+
+
+/* 如果想还是原来那样子显示，则将下面的样式表注释 */
+
+/* body {
+    background: white
+}
+.shadow-theme {
+    box-shadow: unset;
+    border: 1px #ecebeb solid
+}
+.shadow-theme:hover {
+    box-shadow: unset
+}
+.blog-header {
+    border: 1px #ecebeb solid;
+    box-shadow: unset
+} */
