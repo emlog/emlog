@@ -14,7 +14,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 a {
-    color: #858796;
+    color: #020202;
     transition: all 0.2s;
     text-decoration: none;
 }
@@ -29,12 +29,12 @@ img {
 }
 
 .navbar-brand a {
-    color: #858796;
+    color: #020202;
     text-decoration: none;
 }
 
 .loglist_title {
-    color: #858796;
+    color: #020202;
     text-decoration: none;
 }
 
@@ -455,48 +455,6 @@ footer .copyright {
     margin-bottom: 30px
 }
 
-.loglist_content h1 {
-    font-size: medium;
-    font-family: inherit;
-    letter-spacing: 0.5px;
-    margin: 0
-}
-
-.loglist_content h2 {
-    font-size: medium;
-    font-family: inherit;
-    letter-spacing: 0.5px;
-    margin: 0
-}
-
-.loglist_content h3 {
-    font-size: medium;
-    font-family: inherit;
-    letter-spacing: 0.5px;
-    margin: 0
-}
-
-.loglist_content h4 {
-    font-size: medium;
-    font-family: inherit;
-    letter-spacing: 0.5px;
-    margin: 0
-}
-
-.loglist_content h5 {
-    font-size: medium;
-    font-family: inherit;
-    letter-spacing: 0.5px;
-    margin: 0
-}
-
-.loglist_content p {
-    font-size: medium;
-    font-family: inherit;
-    letter-spacing: 0.5px;
-    margin: 0
-}
-
 .list-unstyled {
     font-size: medium
 }
@@ -578,8 +536,8 @@ body {
 .loglist_body {
     margin-bottom: -22px;
     overflow: hidden;
-    margin-right: 1.25rem;
-    font-size: small
+    font-size: small;
+    background-color: #FFFFFF;
 }
 
 .loglist_body p {
@@ -604,7 +562,7 @@ body {
 }
 
 .loglist_tag {
-    margin-top: 30px !important;
+    margin-top: 10px !important;
     font-size: xx-small !important;
     color: #000000
 }
@@ -618,11 +576,11 @@ body {
 }
 
 .loglist_content {
-    font-size: medium;
+    font-size: small;
     margin-left: 1px;
     margin-bottom: 5px;
     margin-right: 3px;
-    margin-top: 30px
+    margin-top: 10px
 }
 
 .loglist_info {

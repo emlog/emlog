@@ -319,17 +319,10 @@ function doOnceAction($hook, $input, &$ret) {
 }
 
 /**
- * 文章分割
- *
- * @param string $content 文章内容
- * @param int $lid 文章id
+ * 截取文章内容前len个字符
  */
-function breakLog($content, $lid) {
-	if (Option::get('isexcerpt') == 'y') {
-		return subString(trim(strip_tags($content)), 0, Option::get('excerpt_subnum')) . '<span class="readmore"><a href="' . Url::log($lid) . '">阅读全文&rarr;</a></span>';
-	} else {
-		return $content;
-	}
+function subContent($content, $len) {
+	return subString(trim(strip_tags($content)), 0, $len);
 }
 
 /**
