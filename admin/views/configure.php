@@ -102,16 +102,6 @@
                 </select>
             </div>
 
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="y" name="isexcerpt" id="isexcerpt" <?php echo $conf_isexcerpt; ?> />
-                <label class="form-check-label">自动摘要</label>
-            </div>
-
-            <div class="form-check form-inline">
-                <label class="form-check-label">自动截取</label>
-                <input type="text" name="excerpt_subnum" value="<?php echo Option::get('excerpt_subnum'); ?>" class="form-control" style="width:60px;"/>个字作为摘要
-            </div>
-
             <hr>
 
             <div class="form-group form-inline">

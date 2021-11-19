@@ -14,32 +14,27 @@ if (!defined('EMLOG_ROOT')) {
 			if (!empty($logs)):
 				foreach ($logs as $value):
 					?>
-                    <div class="shadow-theme mb-4">
-                        <div class="card-body loglist_body">
-                            <h3 class="card-title">
+                    <div class="row loglist_body no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                        <div class="col p-3 d-flex flex-column position-static">
+                            <h3 class="mb-0">
                                 <a href="<?php echo $value['log_url']; ?>" class="loglist_title"><?php echo $value['log_title']; ?></a>
 								<?php topflg($value['top'], $value['sortop'], isset($sortid) ? $sortid : ''); ?>
                             </h3>
-							<?php if (!empty($value['log_cover'])) : ?>
-                                <div class="loglist_cover">
-                                    <a href="<?php echo $value['log_url']; ?>">
-                                        <img src="<?php echo $value['log_cover']; ?>" class="cover img-fluid">
-                                    </a>
-                                </div>
-							<?php endif; ?>
-                            <div class="loglist_content markdown"><?php echo $value['log_description']; ?></div>
+                            <div class="text-muted mt-1"><?php blog_author($value['author']); ?> 发布于 <?php echo date('Y-m-d H:i', $value['date']); ?></div>
+                            <div class="loglist_content markdown"><?php echo subContent($value['log_description'],180); ?></div>
                             <div class="tag loglist_tag"><?php blog_tag($value['logid']); ?></div>
-                        </div>
-                        <hr class="list_line"/>
-                        <div class="row p-3 info_row">
-                            <div class="col-md-8 text-muted loglist_info">
-								<?php blog_author($value['author']); ?> 发布于 <?php echo date('Y-m-d H:i', $value['date']); ?>
-                            </div>
-                            <div class="col-md-4 text-right text-muted loglist_count">
-                                <a href="<?php echo $value['log_url']; ?>#comments">评论(<?php echo $value['comnum']; ?>)&nbsp;</a>
+                            <div class="mt-2">
+                                <a href="<?php echo $value['log_url']; ?>#comments">评论(<?php echo $value['comnum']; ?>)</a>
                                 <a href="<?php echo $value['log_url']; ?>">浏览(<?php echo $value['views']; ?>)</a>
                             </div>
                         </div>
+						<?php if (!empty($value['log_cover'])) : ?>
+                            <div class="col-auto d-none d-lg-block">
+                                <a href="<?php echo $value['log_url']; ?>">
+                                    <img class="rounded m-2" width="360" height="260" src="<?php echo $value['log_cover']; ?>">
+                                </a>
+                            </div>
+						<?php endif; ?>
                     </div>
 				<?php
 				endforeach;

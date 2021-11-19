@@ -173,11 +173,9 @@ class Log_Model {
 			$cookiePassword = isset($_COOKIE['em_logpwd_' . $row['gid']]) ? addslashes(trim($_COOKIE['em_logpwd_' . $row['gid']])) : '';
 			if (!empty($row['password']) && $cookiePassword != $row['password']) {
 				$row['excerpt'] = '<p>[该文章已加密，请点击标题输入密码访问]</p>';
-			} elseif (!empty($row['excerpt'])) {
-				$row['excerpt'] .= '<span class="readmore"><a href="' . Url::log($row['logid']) . '">阅读全文&rarr;</a></span>';
 			}
 
-			$row['log_description'] = $this->Parsedown->text(empty($row['excerpt']) ? breakLog($row['content'], $row['gid']) : $row['excerpt']);
+			$row['log_description'] = $this->Parsedown->text(empty($row['excerpt']) ? $row['content'] : $row['excerpt']);
 			$row['attachment'] = '';
 			$row['tag'] = '';
 			$row['tbcount'] = 0;//兼容未删除引用的模板
