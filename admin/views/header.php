@@ -87,7 +87,6 @@
                 <div id="menu_ext" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" id="menu_plug" href="plugin.php">插件</a>
-                        <a class="collapse-item" id="menu_plug" href="plugin.php">文章收藏</a>
 						<?php doAction('adm_sidebar_ext'); ?>
                     </div>
                 </div>
