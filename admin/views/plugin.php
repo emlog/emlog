@@ -125,7 +125,7 @@
 
 <script>
     setTimeout(hideActived, 2600);
-    $("#menu_category_sys").addClass('active');
-    $("#menu_sys").addClass('show');
+    $("#menu_category_ext").addClass('active');
+    $("#menu_ext").addClass('show');
     $("#menu_plug").addClass('active');
 </script>
