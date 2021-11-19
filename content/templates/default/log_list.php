@@ -31,7 +31,7 @@ if (!defined('EMLOG_ROOT')) {
 						<?php if (!empty($value['log_cover'])) : ?>
                             <div class="col-auto d-none d-lg-block">
                                 <a href="<?php echo $value['log_url']; ?>">
-                                    <img class="rounded m-2" width="360" height="260" src="<?php echo $value['log_cover']; ?>">
+                                    <img class="rounded m-2" width="300" height="200" src="<?php echo $value['log_cover']; ?>">
                                 </a>
                             </div>
 						<?php endif; ?>
