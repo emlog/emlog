@@ -48,6 +48,7 @@
 							<?php echo $v['info']; ?><br><br>
                             售价：<?php echo $v['price'] > 0 ? $v['price'] . '元' : '免费'; ?><br>
                             开发者：<?php echo $v['author']; ?><br>
+                            版本号：<?php echo $v['ver']; ?><br>
                             更新时间：<?php echo $v['update_time']; ?><br>
                         </p>
                         <p class="card-text text-right">
