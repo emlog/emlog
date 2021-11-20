@@ -65,10 +65,10 @@ if ($action === 'update' && ROLE === ROLE_ADMIN) {
 		$query = '';
 		foreach ($sql as $value) {
 			// 只执行当前版本需要的更新
-			if (!empty($value[0]) && $value[0] == '#') {
-				preg_match("/# (pro .*)/i", $value[0], $v);
+			if (!empty($value) && $value[0] == '#') {
+				preg_match("/#\s(pro\s[\.\d]+)/i", $value, $v);
 				$ver = isset($v[1]) ? trim($v[1]) : '';
-				if (Option::EMLOG_VERSION < $ver) {
+				if (Option::EMLOG_VERSION > $ver) {
 					break;
 				}
 			}
