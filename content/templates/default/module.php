@@ -109,7 +109,7 @@ function widget_sort($title) {
 								$value = $sort_cache[$key];
 								?>
                                 <li>
-                                    <a href="<?php echo Url::sort($value['sid']); ?>">&#9507;&nbsp;&nbsp;<?php echo $value['sortname']; ?>
+                                    <a href="<?php echo Url::sort($value['sid']); ?>">-&nbsp;&nbsp;<?php echo $value['sortname']; ?>
                                         &nbsp;&nbsp;(<?php echo $value['lognum'] ?>)</a>
                                 </li>
 							<?php endforeach; ?>
@@ -126,7 +126,8 @@ function widget_sort($title) {
  */
 function widget_newcomm($title) {
 	global $CACHE;
-	$com_cache = $CACHE->readCache('comment');
+	$com_cache  = $CACHE->readCache('comment');
+    $isGravatar = Option::get('isgravatar');
 	?>
     <div class="widget shadow-theme">
         <div class="widget-title">
@@ -139,7 +140,9 @@ function widget_newcomm($title) {
 				$url = Url::comment($value['gid'], $value['page'], $value['cid']);
 				?>
                 <li class='comment-info' id="side-comment">
+                <?php if ($isGravatar == 'y'): ?>
                     <img class='comment-info_img' src="<?php echo getGravatar($value['mail']); ?>"/>
+                <?php endif; ?>
                     <span class='comm-lates-name'><?php echo $value['name']; ?></span>
                     <span class='logcom-latest-time mh'><?php echo smartDate($value['date']); ?></span><br/>
                     <a href="<?php echo $url; ?>" style="color: #989898;"><?php echo $value['content']; ?></a>
@@ -318,7 +321,7 @@ function editflg($logid, $author) {
 ?>
 <?php
 /**
- * 文章列出卡片和查看页：分类
+ * 文章列出页和文章查看页：分类
  */
 function blog_sort($blogid) {
 	global $CACHE;
@@ -332,7 +335,7 @@ function blog_sort($blogid) {
 } ?>
 <?php
 /**
- * 文章列出卡片和查看页：标签
+ * 文章列出页和文章查看页：标签
  */
 function blog_tag($blogid) {
 	global $CACHE;
@@ -342,7 +345,7 @@ function blog_tag($blogid) {
 	if (!empty($log_cache_tags[$blogid])) {
 		$tag = '';
 		foreach ($log_cache_tags[$blogid] as $value) {
-			$tag .= "	<a href=\"" . Url::tag($value['tagurl']) . "\" class='tags' >" . $value['tagname'] . '</a>';
+			$tag .= "	<a href=\"" . Url::tag($value['tagurl']) . "\" class='tags'  title='标签' >" . $value['tagname'] . '</a>';
 		}
 		echo $tag;
 	} else {
@@ -353,7 +356,7 @@ function blog_tag($blogid) {
 			$tag = '标签:';
 
 			foreach ($tag_names as $key => $value) {
-				$tag .= "	<a href=\"" . Url::tag(rawurlencode($value)) . "\" class='tags'>" . htmlspecialchars($value) . '</a>';
+				$tag .= "	<a href=\"" . Url::tag(rawurlencode($value)) . "\" class='tags' title='标签' >" . htmlspecialchars($value) . '</a>';
 			}
 
 			echo $tag;
@@ -364,7 +367,7 @@ function blog_tag($blogid) {
 ?>
 <?php
 /**
- * 文章列出卡片和查看页：作者
+ * 文章列出页和文章查看页：作者
  */
 function blog_author($uid) {
 	global $CACHE;
@@ -410,13 +413,19 @@ function blog_comments($comments) {
         <div class="comment" id="comment-<?php echo $comment['cid']; ?>">
             <a name="<?php echo $comment['cid']; ?>"></a>
 			<?php if ($isGravatar == 'y'): ?>
-                <div class="avatar"><img src="<?php echo getGravatar($comment['mail']); ?>"/></div><?php endif; ?>
+                <div class="avatar"><img src="<?php echo getGravatar($comment['mail']); ?>"/></div>
             <div class="comment-infos">
                 <div class="arrow"></div>
                 <b><?php echo $comment['poster']; ?> </b><span class="comment-time"><?php echo $comment['date']; ?></span>
                 <div class="comment-content"><?php echo $comment['content']; ?></div>
                 <div class="comment-reply"><a class="com-reply">回复</a></div>
             </div>
+            <?php else: ?>
+            <div class="comment-infos-unGravatar">
+                <b><?php echo $comment['poster']; ?> </b><span class="comment-time"><?php echo $comment['date']; ?></span>
+                <div class="comment-content"><?php echo $comment['content']; ?></div>
+            </div>
+            <?php endif; ?>
 			<?php blog_comments_children($comments, $comment['children']); ?>
         </div>
 	<?php endforeach; ?>
@@ -437,8 +446,7 @@ function blog_comments_children($comments, $children) {
         <div class="comment comment-children" id="comment-<?php echo $comment['cid']; ?>">
             <a name="<?php echo $comment['cid']; ?>"></a>
 			<?php if ($isGravatar == 'y'): ?>
-                <div class="avatar"><img src="<?php echo getGravatar($comment['mail']); ?>"/></div>
-			<?php endif; ?>
+            <div class="avatar"><img src="<?php echo getGravatar($comment['mail']); ?>"/></div>
             <div class="comment-infos">
                 <div class="arrow"></div>
                 <b><?php echo $comment['poster']; ?> </b><span class="comment-time"><?php echo $comment['date']; ?></span>
@@ -447,6 +455,12 @@ function blog_comments_children($comments, $children) {
                     <div class="comment-reply"><a class="com-reply">回复</a>
                     </div><?php endif; ?>
             </div>
+            <?php else: ?>
+            <div class="comment-infos-unGravatar">
+                <b><?php echo $comment['poster']; ?> </b><span class="comment-time"><?php echo $comment['date']; ?></span>
+                <div class="comment-content"><?php echo $comment['content']; ?></div>
+            </div>
+            <?php endif; ?>
 			<?php blog_comments_children($comments, $comment['children']); ?>
         </div>
 	<?php endforeach; ?>
