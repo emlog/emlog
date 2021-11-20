@@ -6,10 +6,9 @@ if (!defined('EMLOG_ROOT')) {
 	exit('error!');
 }
 ?>
-<div class="container">
+<main class="container">
     <div class="row">
         <div class="column-big">
-
 			<?php doAction('index_loglist_top');
 			if (!empty($logs)):
 				foreach ($logs as $value):
@@ -27,7 +26,7 @@ if (!defined('EMLOG_ROOT')) {
                                 <a href="<?php echo $value['log_url']; ?>" class="loglist-title"><?php echo $value['log_title']; ?></a>
 								<?php topflg($value['top'], $value['sortop'], isset($sortid) ? $sortid : ''); ?>
                             </h3>
-                            <div class="loglist-content markdown"><?php echo $value['log_description']; ?></div>
+                            <summary class="loglist-content markdown"><?php echo $value['log_description']; ?></summary>
                             <div class="loglist-tag"><?php blog_tag($value['logid']); ?></div>
                         </div>
                         <hr class="list-line"/>
@@ -53,7 +52,7 @@ if (!defined('EMLOG_ROOT')) {
         </div>
 		<?php include View::getView('side'); ?>
     </div>
-</div>
+</main>
 
 <?php include View::getView('footer'); ?>
  

@@ -6,43 +6,22 @@ if (!defined('EMLOG_ROOT')) {
 	exit('error!');
 }
 ?>
-<style>
-    .page {
-        background-color: #ffffff;
-        border-radius: 10px;
-        padding: 30px;
-        margin-bottom: 29px;
-    }
 
-    .com_submit_p {
-        font-size: 15px
-    }
-
-</style>
-<div class="container">
+<main class="container">
     <div class="row">
-        <div class="column-big log-con markdown" id="page">
-            <h1><?php echo $log_title; ?></h1>
-			<?php echo $log_content; ?>
-			<?php blog_comments($comments); ?>
-			<?php blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allow_remark); ?>
+        <div class="column-big log-con " id="page">
+            <header class="page-title"><?php echo $log_title; ?></header>
+            <article class="markdown">
+                <?php echo $log_content; ?>
+            </article>
+		    <?php blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allow_remark); ?>
+            <?php blog_comments($comments); ?>
         </div>
 		<?php
 		include View::getView('side');
 		?>
     </div>
-</div>
-<script>
-    function change_com_radius() {
-        if (!document.getElementById("comment-info")) {
-            var comment = document.getElementById("comment");
-            comment.style.height = "140px";
-            comment.style.setProperty('border-radius', '10px');
-        }
-    }
-
-    change_com_radius();
-</script>
+</main>
 <?php
 include View::getView('footer');
 ?>

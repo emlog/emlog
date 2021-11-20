@@ -1,3 +1,16 @@
+  "use strict"
+
+/**
+ * jqurey添加动画扩展，先加速度至配速的50%，再减速到零
+ */
+ jQuery.extend( jQuery.easing,
+{
+    easeInOut: function (x, t, b, c, d) {
+      if ((t/=d/2) < 1) return c/2*t*t + b
+      return -c/2 * ((--t)*(t-2) - 1) + b
+    }
+})
+
 var myBlog = {
     /**
      * 初始化
@@ -11,7 +24,7 @@ var myBlog = {
       $(".markdown img").attr("data-action","zoom")  // 为摘要、文章、页面中图片添加“查看大图”
                         .parent().removeAttr("href")
                         .parent("p").css("text-align","center")
-      $("#commentform").attr("onsubmit","return myBlog.comSubmitTip()")  // 评论提交在表单验证未通过的情况下是不能提交的
+      //$("#commentform").attr("onsubmit","return myBlog.comSubmitTip()")  // 评论提交在表单验证未通过的情况下是不能提交的
     },
     /**
      * 回复
@@ -40,34 +53,36 @@ var myBlog = {
      * 手机点击展开导航按钮
      */
     navToggle : function($t) {
-      var $navbar,$subtitle,$nav_c,nav_height
+      var time,effect,$navbar,$nav_c,nav_height
+      time       = 'slow'
+      effect     = 'easeInOut'
       $navbar    = $("#navbarResponsive")
-      $title     = $(".blog-header-title, .blog-header-subtitle")
       $nav_c     = $(".blog-header-c")
       nav_height = ($nav_c.height() == 74) ? $navbar.height() + 74 : 74
 
-      $nav_c.animate({height:nav_height+'px'},"slow")
-      $navbar.slideToggle("slow")
+      $nav_c.animate({height:nav_height+'px'},time,effect)
+      $navbar.slideToggle(time,effect)
     },
     /**
      * 定位大屏状态下的导航下拉框位置
      */
     calMargin : function($t) {
       if (window.outerWidth < 992) return
+      console.log('hover')
       var $fatherLink,$childMenu,menuWidth,count
 
       menuWidth     = 135  // 大屏幕端的子导航下拉框宽度(px)，可根据需要修改
-      count         = ($t.width() - menuWidth) /2 + "px"
+      count         = ($t.outerWidth() - menuWidth)/2 + "px"
       $childMenu    = $t.siblings('.dropdown-menus')
 
       $childMenu.css("width",menuWidth + "px")
-                .css("margain-left",count)
+                .css("margin-left",count)
     },
     /**
      * 提交评论前对表单的验证
      */
     comSubmitTip : function($t) {
-      return false
+      return true
     },
     /**
      * 显示(隐藏)验证码模态窗
@@ -88,15 +103,13 @@ var myBlog = {
       var timestamp = new Date().getTime()
       $t.attr("src", "./include/lib/checkcode.php?" + timestamp)
     },
-
-    toc_Array : new Array(),
-
     /**
      * toc 分析
      * 
      * tip: 在文章最开头单独一行输入[toc]，或者<!--[toc]-->，即可启用
      */
     tocFlag     : /\[toc\]/gi,  // 判断toc是否声明的正则表达式
+    tocArray    : new Array(),  // 储存toc的数组
     tocAnalyse  : function() {
       if (window.outerWidth < 1275)       return  // 屏幕小于 1275px  退出  
       if ($("#emlogEchoLog").length == 0) return  // 不在阅读页面  退出
@@ -105,7 +118,7 @@ var myBlog = {
       var $logCon   = $(".log-con")
       var logConMar = parseInt($logCon.css("margin-left"))
       var $titles   = $("#emlogEchoLog h1,h2,h3,h4,h5,h6:eq(0)")
-      var arr       = this.toc_Array
+      var arr       = this.tocArray
       var tocFlag   = document.querySelector("#emlogEchoLog p")
 
       tocFlag.innerHTML = tocFlag.innerHTML.replace(this.tocFlag,"")  // 去除toc声明
@@ -138,7 +151,7 @@ var myBlog = {
      */ 
     tocRender : function()  {
       var tocHtml = ''
-      var data    = this.toc_Array
+      var data    = this.tocArray
       var $logcon = $(".log-con")
       var padNum  = parseInt($logcon.css("margin-left")) - 270
       var judgeN  = 0
@@ -167,8 +180,8 @@ var myBlog = {
         $('#to' + i).bind("click",function(){
           window.onscroll = function(){tocSetPos()} 
           $('body,html').animate({scrollTop:$('#' + temp).offset().top - 20},300,function(){
-            getSetPos()
-            window.onscroll = function(){tocSetPos();getSetPos()} 
+            tocGetPos()
+            window.onscroll = function(){tocSetPos();tocGetPos()} 
           })
         })
       }
@@ -181,7 +194,7 @@ var myBlog = {
                        .css("top","200px")
         }
       }
-      function getSetPos() {  // 获取位置并改变指定标题颜色
+      function tocGetPos() {  // 获取位置并改变指定标题颜色
         let $tempItem
         $('#toc-con li').css('color','unset')
         for(var i = 0;i < data.length;i++) {
@@ -193,7 +206,7 @@ var myBlog = {
       tocSetPos()
       window.onscroll = function() {  // 滚轮事件
         tocSetPos()
-        getSetPos()
+        tocGetPos()
        }
     }
 }
@@ -224,7 +237,7 @@ $(document).ready(function(){
     myBlog.captchaRefresh($(this))
   }),
 
-  $('#comment_submit[type="buttom"],#close-modal').click(function () {
+  $('#comment_submit[type="button"], #close-modal').click(function () {
     myBlog.viewModal()
   }),
 
