@@ -33,6 +33,7 @@ class Media_Model {
 				'filepath'      => str_replace("thum-", '', $row['filepath']),
 				'width'         => $row['width'],
 				'height'        => $row['height'],
+				'mimetype'      => $row['mimetype'],
 			];
 		}
 		return $medias;
