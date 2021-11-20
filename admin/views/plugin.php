@@ -34,9 +34,9 @@
                 <thead>
                 <tr>
                     <th>插件名</th>
-                    <th>版本</th>
-                    <th>描述</th>
                     <th>开关</th>
+                    <th>描述</th>
+                    <th>版本</th>
                     <th>操作</th>
                 </tr>
                 </thead>
@@ -60,7 +60,10 @@
 						?>
                         <tr>
                             <td><?php echo $val['Name']; ?></td>
-                            <td><?php echo $val['Version']; ?></td>
+                            <td id="plugin_<?php echo $i; ?>">
+                                <a href="./plugin.php?action=<?php echo $plug_action; ?>&plugin=<?php echo $key; ?>&token=<?php echo LoginAuth::genToken(); ?>"><img
+                                            src="./views/images/plugin_<?php echo $plug_state; ?>.gif" title="<?php echo $plug_state_des; ?>"></a>
+                            </td>
                             <td>
 								<?php echo $val['Description']; ?>
 								<?php if ($val['Url'] != ''): ?><a href="<?php echo $val['Url']; ?>" target="_blank">更多信息&raquo;</a><?php endif; ?>
@@ -75,10 +78,7 @@
 									<?php endif; ?>
                                 </div>
                             </td>
-                            <td id="plugin_<?php echo $i; ?>">
-                                <a href="./plugin.php?action=<?php echo $plug_action; ?>&plugin=<?php echo $key; ?>&token=<?php echo LoginAuth::genToken(); ?>"><img
-                                            src="./views/images/plugin_<?php echo $plug_state; ?>.gif" title="<?php echo $plug_state_des; ?>" align="absmiddle" border="0"></a>
-                            </td>
+                            <td><?php echo $val['Version']; ?></td>
                             <td>
                                 <a href="javascript: em_confirm('<?php echo $key; ?>', 'plu', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-danger">删除</a>
                             </td>
