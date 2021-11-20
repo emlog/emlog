@@ -2,8 +2,8 @@
 /*
 Template Name:默认模板
 Template Url:https://www.emlog.net/template/
-Description:(开发中1105)这是emlog pro的默认模板
-Author:emlog
+Description:这是emlog pro的默认模板
+Author:emlog官方
 Author Url:http://www.emlog.net
 */
 if (!defined('EMLOG_ROOT')) {
