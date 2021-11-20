@@ -222,11 +222,21 @@ function getFileUrl($filePath) {
 }
 
 /**
+ * 去除url的参数
+ */
+function rmUrlParams($url) {
+	$urlInfo = explode("?", $url);
+	if (empty($urlInfo[0])) {
+		return $url;
+	}
+	return $urlInfo[0];
+}
+
+/**
  * 根据文件名后缀判断是否图片
  */
-function isImage($fileName) {
-	$extension = getFileSuffix($fileName);
-	if (in_array($extension, array('gif', 'jpg', 'jpeg', 'png'))) {
+function isImage($mimetype) {
+	if (strstr($mimetype, "image")) {
 		return true;
 	}
 	return false;
