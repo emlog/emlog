@@ -6,18 +6,22 @@
 ---------------------------------------------------*/
 
 /* 禁止页面溢出出现滚动条 */
-:root {overflow-x: hidden}
-
+:root {
+    overflow-x: hidden
+}
+/* 一些变量 */
+* {
+     --marRadius : 8px /* 卡片圆角 */
+}
 /* 定义所有元素的 width =（border+padding），方便后续计算 */
 * { 
     box-sizing: border-box
 }
-
 /* 初始化 */
 body {
     margin: 0;
     line-height: 1.5;
-	font-size: 18px;
+	font-size: 16px;
     color: #5a5c69;
 	background: #f5f5f6;
     font-family: -apple-system, SF UI Text, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei, WenQuanYi Micro Hei, sans-serif
@@ -55,6 +59,9 @@ input,textarea {
 	font-family: inherit;
 	color: #495057;
     outline:none
+}
+input[type="submit"] {
+    cursor: pointer
 }
 textarea {
     padding: 1rem 0.75rem
@@ -97,13 +104,11 @@ footer .copyright {
 
 /* 大屏下的列 */
 @media (min-width:768px)  {
-
     .column-big {
         padding-right: 10px;
         flex: 0 0 66.666667%;
         max-width: 66.666667%
     }
-
     /* 工具栏列 */
     .column-small {
         font-size: medium;
@@ -112,7 +117,6 @@ footer .copyright {
         flex: 0 0 33.333333%;
         max-width: 33.333333%
     }
-
     /* 文章发布时间和文章阅读评论数这两列的配置 */
     .log-info {
         flex: 0 0 66.666667%;
@@ -123,7 +127,6 @@ footer .copyright {
         max-width: 33.333333%;
         text-align: right
     }
-
 }
 
 /* 小屏下的列 */
@@ -192,7 +195,7 @@ footer .copyright {
 ---------------------------------------------------*/
 
 .blog-header {
-	margin-bottom: 3rem;
+	margin-bottom: 2.4rem;
 	background: #ffffff; /* 背景颜色颜色白色 */
 	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1) /* 阴影 */
 }
@@ -201,7 +204,6 @@ footer .copyright {
     display: flex;
     justify-content: space-between /* 导航栏为主轴方向两端对齐，即大标题与导航两部分，一个向左靠齐，一个向右靠齐 */
 }
-
 /* 博客标题和副标题 */
 .blog-header-title {
     font-size: 26px;
@@ -246,6 +248,11 @@ footer .copyright {
 	.list-menu:last-child { 
 		border-bottom: unset
 	}
+
+    .blog-header-toggle {
+        display: none
+        }
+
 }
 
 /* 小屏幕 */
@@ -271,10 +278,11 @@ footer .copyright {
 
 	/* 仅在小屏幕上显示切换菜单边框和切换菜单 */
 	.blog-header-toggle {
+        display: block!important;
         border: 1px solid rgba(0,0,0,.1);
         padding-inline: 13px;
         padding-block: 5.5px 5px;
-        border-radius: 10px;
+        border-radius: var(--marRadius);
         cursor: pointer;
         position: absolute;
         top: 15px;
@@ -286,9 +294,7 @@ footer .copyright {
         height: 22px;
         margin-top: -3px;
         vertical-align: middle;
-		/* 为了使模版文件结构更精炼，使用base64图片 */
-        background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAWCAYAAADTlvzyAAAABHNCSVQICAgIfAhkiAAAABl0RVh0U29mdHdhcmUAZ25vbWUtc2NyZWVuc2hvdO8Dvz4AAABNSURBVEiJ7ZPBDcAwCMRM1EEYjdEYjU3oqxtQokT4xc86HSeZmTSyOmUAz3e4OxHxi0RVMTNgQ0K5vsMRni+cHZZz/9OMsJzZYTntCV8iEyIfzeIP9wAAAABJRU5ErkJggg==)
-    }
+	}
 	
 	/* 小屏幕的导航变成下拉框 */
     .blog-header-nav {
@@ -389,7 +395,7 @@ footer .copyright {
 	display:none;
     background-color: white;
     
-    border-radius: 10px;
+    border-radius: var(--marRadius);
     border: 1px solid #dedede;
     position: fixed;
     z-index: 100;
@@ -406,7 +412,7 @@ footer .copyright {
     background-color: white;
     padding: 8px 11px;
     font-weight: 800;
-    border-radius: 10px;
+    border-radius: var(--marRadius);
     margin-block: 12px;
     margin-inline: 17.5px;
     border: 1px solid #dedede
@@ -464,7 +470,7 @@ footer .copyright {
 ---------------------------------------------------*/
 .shadow-theme {
     box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.02);
-    border-radius: 10px;
+    border-radius: var(--marRadius);
 	background: #ffffff;
     transition: box-shadow 0.4s
 }
@@ -520,7 +526,7 @@ footer .copyright {
 .day {
     color: #212529;
     background: #eaeaea;
-    border-radius: 10px
+    border-radius: var(--marRadius)
 }
 .sun {
     color: #333
@@ -585,7 +591,7 @@ footer .copyright {
     padding: 4.5px 9px 4px 9px;
     margin: 0 5px;
     line-height: 3;
-    border-radius: 10px;
+    border-radius: var(--marRadius);
     color: #000
 }
 #pagenavi a {
@@ -594,7 +600,7 @@ footer .copyright {
     font-family: serif, monospace;
     margin: 0 5px;
     line-height: 3;
-    border-radius: 10px
+    border-radius: var(--marRadius)
 }
 
 /* 评论样式
@@ -693,7 +699,7 @@ footer .copyright {
     width: 100%;
     border: 1px #d6d6d6 solid;
     font-size: small;
-    border-radius: 10px 10px 0 0;
+    border-radius: var(--marRadius) 10px 0 0;
     height: 130px;
     resize: none
 }
@@ -750,9 +756,13 @@ footer .copyright {
     background: #f7f7f7;
     padding: 12px;
     padding-bottom: 5px;
-    border-radius: 10px;
+    border-radius: var(--marRadius);
     margin-top: 9px;
     margin-left: 58px
+}
+
+.comment .comment-infos-unGravatar {
+    padding: 5px
 }
 
 .com-bottom {
@@ -786,7 +796,7 @@ footer .copyright {
 }
 
 .comment-children {
-    margin: 20px 10px 20px 20px;
+    margin: 20px 10px 10px 20px;
     clear: both;
     border: none;
     padding: 0
@@ -860,7 +870,6 @@ footer .copyright {
     background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACYAAAAkCAYAAADl9UilAAAAAXNSR0IArs4c6QAAA+9JREFUWEftmG1MU1cYx/9tKbYFS1nqiC9EI6UJ7SbGBVCM2QdmxChOP0iyT2aLiUsMixizOEPYRCXGYIJRTFEYNviSEBWZqIXoF0kGg2GME9SNZdFC5mUYUmi9t6W3Nc8xLcqM94X5koXzsT3nOb/zf577f869mmg0GsV7ODQzYAqzMqOYQsHw/1bsmKsWZbvLoNPp4HA64G5swOKFC5WK9NL8aSv2c08Pms41oa+vH06nAxzHoWRHCfJzct4dWAyq0d2Iy57LDKSosAgfpqWh3l03LTjViv127x5OuE7CZrchKSmJpTA2vi/7AQG/H1XVVarhVIERVJunHZX7KuGqr8WCBfPjUEajETzPo7BgDdYVrVedVsVg434/Dh6qwsXzzdh7YO9LUFOLipSjuiv+olixcorAeEFA/Sk39nz7HebOnYeG0w2SBb72s0Isyc5GjesYljgm0y21UDYYQe2vPAhXjQtnms7CbJ4tFZv9PzY2DvePp1CwugB5ebn4OCtL1jrZYA2Np7Frxy4WNPYEytoBwNHqo2i75kHR5xtwpPowLCkpkktlgUUiEcyZMw/lFeXIyVXvT2QldCg5HicLzDs0BGfWR/DcaJc86esmUL1du+7578DC4TCczqWwfJAKs9mMQe8gvt6+TVI9qq/SklKkplogRiIY+P0PdHTehMNulzygLMUoCrk81Uq7px3RaAQajVay1sgubv3ayyCoG5C9FG/aKAlFE2SD0eS/Hj3C3xzH2s6LDwEpmpCQ8K8NYwchoGWfLJOVwlgQRWC06MnoKPKXr8LIyEhcMVEU2c1i6qirrcOli81obbuiCEqxYrGNsxzZGOa4SbBwGLpXKEap7O7qQkdnhyJzVQ225cutaP2pNQ5GvZF6ZGyEQiEkJiai9JudrOC7e7uQsWiRrNpSnUpamL/yUzy4/4CBjY2PI0GrgynJxGIKT3mEIyKSk5PjYLfv9CJ9/mSjl0OouMYoaN6KVUyJCy3nQa+lPB+EJXXSzb1eL9LT01mn6Lt7F4+5IRgNBjk88TmqwFavWcdsgBTz+XyYpdfDYHquGI0/BwaQYbOxpzcUCsLnewKtVvvmwWKKEdjExAQGH3phspiRZrVC4AUEg0GkWFIYGM8H4A+MQavRvHmwr7ZuQ0tzS7z4h7lhGE1G0LcGSpler2cQ5GNXW69gdPSft6PYkZrjqCivYG5OIxQMQhTDeCrwECdE9pvVamVeZ7Nn4pfODkVqqbaLO/392LypmG38ukFwdJmUc5uYGkdV8VMQumLT3Z9sIxAIsBcS6gCCIMBgMCDTnomVubmvbFVy5FMNJif4dObMgClVb0YxpYo9A3xJDbNANb8bAAAAAElFTkSuQmCC);
     margin-top: -22px
 }
-
 .log-topflg:hover {
     color: black
 }
@@ -868,7 +877,7 @@ footer .copyright {
 ---------------------------------------------------*/
 .log-con {
     background-color: #ffffff;
-    border-radius: 10px;
+    border-radius: var(--marRadius);
     max-width: 990px;
     padding: 30px;
     font-size: 16px;
@@ -960,14 +969,14 @@ footer .copyright {
 .loglist-cover {
     width: 100%;
     height: 205px;
-    border-radius: 10px 10px 0 0
+    border-radius: var(--marRadius) 10px 0 0
 }
 
 .loglist-cover img {
     position: absolute;
     /* width: 730px; */
     opacity: 0.8;
-    border-radius: 10px 10px 0 0;
+    border-radius: var(--marRadius) 10px 0 0;
     transition: all 0.4s;
     clip: rect(50px 730px 250px 0px);
     margin-top: -50px
@@ -979,7 +988,10 @@ footer .copyright {
     clip: rect(50px 730px 250px 0px)
 }
 
-@media (max-width:390px) {.loglist-cover{ height: 140px}}
+/* @media (max-width:390px) {.loglist-cover{ height: 140px}} */
+@media (max-width:415px) {.loglist-cover{ height: 160px;}}
+@media (max-width:375px) {.loglist-cover{ height: 140px;}}
+
 
 /* 回形针 */
 
@@ -1076,16 +1088,6 @@ footer .copyright {
     border: 0px solid #c2a9a9;
     border-radius: 50%
 }
-.bloggerinfo-img:hover {
-    --distance: 17;
-    border: 1px solid #ffffff;
-    margin: calc(var(--distance) * -1px);
-    padding: calc(var(--distance) * 1px);
-    width: calc(100px + var(--distance) * 2px );
-    height: calc(100px + var(--distance) * 2px );
-    transition: all 0.7s
-}
-
 
 .comm-lates-name {
     font-weight: bolder
@@ -1209,8 +1211,12 @@ footer .copyright {
 .log-con .date {
     font-size: small
 }
-.log_title {
+.log-title {
     text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.75rem
+}
+.page-title {
     margin-bottom: 30px;
     font-size: 1.75rem
 }
@@ -1321,21 +1327,21 @@ img.zoom-img {
     scrollbar-color: #0000002b #fff0
 }
 .toc-con div::-webkit-scrollbar {
-    width: 10px;
+    width: 5px;
     background-color: rgb(0 0 0 / 0%)
 }
 .toc-con div::-webkit-scrollbar-thumb {
     background-color: rgb(0 0 0 / 10%)
 }
 
-/* 一些适应各屏幕尺寸显示效果的样式 */
+/* 一些适应各屏幕尺寸显示效果的样式
+---------------------------------------------------*/
 @media all and (max-width: 1200px) and (min-width: 992px) {
 
 	/* 方便在中、小屏幕隐藏元素的class */
     .mh {
         display: none
     }
-
     .bloggerinfo-img {
         width: 70px;
         height: 70px
@@ -1380,7 +1386,7 @@ img.zoom-img {
     .mb-5, .mtop-5 {
         margin-bottom: 2rem !important
     }
-    .log_title {
+    .log-title {
         text-align: left
     }
     .log-con {
@@ -1463,6 +1469,10 @@ img.zoom-img {
 /* 普通移动设备的显示样式 */
 @media all and (max-width: 577px) {
 
+    /* 卡片容器内边距略小一点 */
+    .card-padding {
+        padding: 1.0rem;
+    }
     .side-bar .widget {
         margin-bottom: 1.5rem
     }
@@ -1496,7 +1506,9 @@ img.zoom-img {
     #pagenavi {
         line-height: 45px
     }
-	
+    .loglist-content p {
+        font-size: 14px;
+    }
 	/* 评论相关 */
     .comment-post #comment {
         border-radius: 6px;
@@ -1519,21 +1531,3 @@ img.zoom-img {
         height: 385px;
     }
 }
-
-
-/* 如果想还是原来那样子显示，则将下面的样式表注释 */
-
-/* body {
-    background: white
-}
-.shadow-theme {
-    box-shadow: unset;
-    border: 1px #ecebeb solid
-}
-.shadow-theme:hover {
-    box-shadow: unset
-}
-.blog-header {
-    border: 1px #ecebeb solid;
-    box-shadow: unset
-} */
