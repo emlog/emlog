@@ -115,10 +115,10 @@
  this._calculateZoom()
  this._triggerAnimation()
  }
- Zoom.prototype._calculateZoom = function () {
+ Zoom.prototype._calculateZoom = function (img) {
  this._targetImage.offsetWidth
- var originalFullImageWidth= this._fullWidth
- var originalFullImageHeight = this._fullHeight
+ var originalFullImageWidth= (!img)?this._fullWidth:Number(img.width)
+ var originalFullImageHeight = (!img)?this._fullHeight:Number(img.height)
  var scrollTop = $(window).scrollTop()
  var maxScaleFactor = originalFullImageWidth / this._targetImage.width
  var viewportHeight = ($(window).height() - Zoom.OFFSET)
@@ -132,6 +132,12 @@
  } else {
  this._imgScaleFactor = (viewportWidth / originalFullImageWidth) * maxScaleFactor
  }
+ /* 修改：比原尺寸大，不需缩小展示，与原尺寸一样，变为原来的1.5倍 */
+ if (this._imgScaleFactor < 1) {
+    this._imgScaleFactor = 1
+ } else if (this._imgScaleFactor = 1) {
+    this._imgScaleFactor = 1.5
+ }
  }
  Zoom.prototype._triggerAnimation = function () {
  this._targetImage.offsetWidth
@@ -143,8 +149,6 @@
  var imageCenterX = imageOffset.left + (this._targetImage.width / 2)
  this._translateY = viewportY - imageCenterY
  this._translateX = viewportX - imageCenterX
- /* 修改：如果点击的图片本身大于原图尺寸，无需缩小展示 */
- this._imgScaleFactor = (this._imgScaleFactor<1) ? 1 : this._imgScaleFactor
  var targetTransform = 'scale(' + this._imgScaleFactor + ')'
  var imageWrapTransform = 'translate(' + this._translateX + 'px, ' + this._translateY + 'px)'
  if ($.support.transition) {
