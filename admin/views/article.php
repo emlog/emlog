@@ -92,7 +92,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
                         <th><input type="checkbox" id="checkAll"/></th>
                         <th>标题</th>
                         <th><a href="article.php?sortComm=<?php echo $sortComm . $sorturl; ?>">评论</a></th>
-                        <th><a href="article.php?sortView=<?php echo $sortView . $sorturl; ?>">阅读</a></th>
+                        <th><a href="article.php?sortView=<?php echo $sortView . $sorturl; ?>">浏览</a></th>
                         <th>作者</th>
                         <th>分类</th>
                         <th><a href="article.php?sortDate=<?php echo $sortDate . $sorturl; ?>">时间</a></th>
