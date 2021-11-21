@@ -1,7 +1,7 @@
   "use strict"
 
 /**
- * jqurey添加动画扩展，先加速度至配速的50%，再减速到零
+ * jqurey添加动画扩展。先加速度至配速的50%，再减速到零
  */
  jQuery.extend( jQuery.easing,
 {
@@ -24,7 +24,7 @@ var myBlog = {
       $(".markdown img").attr("data-action","zoom")  // 为摘要、文章、页面中图片添加“查看大图”
                         .parent().removeAttr("href")
                         .parent("p").css("text-align","center")
-      //$("#commentform").attr("onsubmit","return myBlog.comSubmitTip()")  // 评论提交在表单验证未通过的情况下是不能提交的
+      $("#commentform").attr("onsubmit","return myBlog.comSubmitTip()")  // 评论提交在表单验证未通过的情况下是不能提交的
     },
     /**
      * 回复
@@ -54,7 +54,7 @@ var myBlog = {
      */
     navToggle : function($t) {
       var time,effect,$navbar,$nav_c,nav_height
-      time       = 'slow'
+      time       = 'fast'
       effect     = 'easeInOut'
       $navbar    = $("#navbarResponsive")
       $nav_c     = $(".blog-header-c")
@@ -68,7 +68,6 @@ var myBlog = {
      */
     calMargin : function($t) {
       if (window.outerWidth < 992) return
-      console.log('hover')
       var $fatherLink,$childMenu,menuWidth,count
 
       menuWidth     = 135  // 大屏幕端的子导航下拉框宽度(px)，可根据需要修改
@@ -81,8 +80,36 @@ var myBlog = {
     /**
      * 提交评论前对表单的验证
      */
-    comSubmitTip : function($t) {
-      return true
+    comTip        : '',
+    comSubmitTip  : function(value) {
+      if(value == 'judge') {
+        let cnReg      = /[\u4e00-\u9fa5]/
+        let mailReg    = /^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/
+        let urlReg     = /[^\s]*\.+[^\s]/
+
+        let isCn       = $('#commentform').attr('is-chinese')
+        let comContent = $('#comment').val()
+        let name       = $('#info_n').val()
+        let mail       = $('#info_m').val()
+        let url        = $('#info_u').val()
+
+        if(isCn == 'y' && !cnReg.test(comContent)){
+          this.comTip = "评论内容需要包含中文！"
+        }else if((mail != '') && !mailReg.test(mail)){
+          this.comTip = "邮箱格式错误！"
+        }else if((url != '') && !urlReg.test(url)){
+          this.comTip = "网址格式错误！"
+        }else {
+          this.comTip = ''
+        }
+      }else{
+        if(this.comTip != ''){
+          alert(this.comTip)
+          return false
+        }else{
+          return true
+        }
+      }
     },
     /**
      * 显示(隐藏)验证码模态窗
@@ -100,13 +127,13 @@ var myBlog = {
      * 点击刷新验证码
      */
     captchaRefresh : function($t) {
-      var timestamp = new Date().getTime()
+      var timestamp   = new Date().getTime()
       $t.attr("src", "./include/lib/checkcode.php?" + timestamp)
     },
     /**
      * toc 分析
      * 
-     * tip: 在文章最开头单独一行输入[toc]，或者<!--[toc]-->，即可启用
+     * 启用toc方式: 在文章最开头写上'[toc]',最好是单独一行
      */
     tocFlag     : /\[toc\]/gi,  // 判断toc是否声明的正则表达式
     tocArray    : new Array(),  // 储存toc的数组
@@ -131,16 +158,12 @@ var myBlog = {
       $titles.attr("toc-date","title")
       for(var i = 0 ;i < $titles.length;i++){  // 将标签数据依次存入数组
         let $tit      = $("#emlogEchoLog [toc-date='title']:eq("+ i +")")
-        let repeatNum = 
         arr[i]        = new Array()
 
         arr[i]['type'] = $tit.prop('tagName').substring(1)
         arr[i]['content'] = $tit.text()
         arr[i]['pos'] = $tit.offset().top
-        for(var k = 0;k < arr.length - 1;k++){
-          if(arr[i]['content'] == arr[k]['content']) repeatNum++
-        }
-        arr[i]['id'] = $tit.text()+repeatNum
+        arr[i]['id'] = $tit.text()
         $tit.attr("id",arr[i]['id'])
       }
       this.tocRender()
@@ -155,6 +178,7 @@ var myBlog = {
       var $logcon = $(".log-con")
       var padNum  = parseInt($logcon.css("margin-left")) - 270
       var judgeN  = 0
+      var chilPad = 10
 
       tocHtml = tocHtml + '<div class="toc-con" style="left:'+ padNum +'px" id="toc-con">'   // 渲染
       tocHtml = tocHtml + '<div style="height:calc(100vh - 70px);overflow-y:scroll;" ><lu>'
@@ -163,8 +187,8 @@ var myBlog = {
         let itemType  = data[i]['type']
         let isPadding = ''
         
-        if(itemType != judgeN) isPadding = 'style="padding-top:4px"'
-        tocHtml = tocHtml + '<li ' + isPadding + ' id="to' + i + '" >'
+        if(itemType != judgeN) isPadding = 'style="padding-top:' + chilPad + 'px"'
+        tocHtml = tocHtml + '<li ' + isPadding + ' id="to' + i + '" title="' + data[i]['content'] + '" >'
         while(k < itemType){
           tocHtml = tocHtml + '&nbsp;&nbsp;&nbsp;&nbsp;'
           k++
@@ -176,10 +200,10 @@ var myBlog = {
       $logcon.before(tocHtml)
 
       for(var i = 0 ;i < data.length ; i++) {  // 批量添加监听事件
-        let temp = data[i]["id"]
+        let tempPos = data[i]["pos"]
         $('#to' + i).bind("click",function(){
           window.onscroll = function(){tocSetPos()} 
-          $('body,html').animate({scrollTop:$('#' + temp).offset().top - 20},300,function(){
+          $('body,html').animate({scrollTop:tempPos},300,function(){
             tocGetPos()
             window.onscroll = function(){tocSetPos();tocGetPos()} 
           })
@@ -240,8 +264,7 @@ $(document).ready(function(){
   $('#comment_submit[type="button"], #close-modal').click(function () {
     myBlog.viewModal()
   }),
-
   $(".form-control").blur(function () {
-    myBlog.comSubmitTip($(this))
+    myBlog.comSubmitTip('judge')
   })
 })
