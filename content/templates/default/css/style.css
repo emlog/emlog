@@ -81,7 +81,7 @@ footer .copyright {
 
 /* 无样式列表  */
 .unstyle-li {
-    padding-left: 0;
+    padding-left: 0px;
     list-style: none;
     margin-block: 8px;
 	font-size: medium
@@ -278,15 +278,10 @@ footer .copyright {
 
 	/* 仅在小屏幕上显示切换菜单边框和切换菜单 */
 	.blog-header-toggle {
-        display: block!important;
-        border: 1px solid rgba(0,0,0,.1);
-        padding-inline: 13px;
-        padding-block: 5.5px 5px;
-        border-radius: var(--marRadius);
         cursor: pointer;
         position: absolute;
-        top: 15px;
-        right: 16px
+        top: 25px;
+        right: 25px;
     }
     .blogtoggle-icon {
         display: inline-block;
@@ -661,7 +656,8 @@ footer .copyright {
     }
 }
 .comment-header {
-    margin: 15px 0px 5px 0px
+    margin-block: 30px;
+    height: 0
 }
 
 .comment-post {
@@ -692,7 +688,7 @@ footer .copyright {
     padding: 7px 40px;
     font-size: small;
     color: #848797;
-    width: 33.334%
+    width: 33.3333334%
 }
 
 .comment-post #comment {
@@ -810,7 +806,7 @@ footer .copyright {
 .comment-info {
     text-overflow: ellipsis;
     overflow: hidden;
-    margin-top: -9px;
+    margin-top: -10px;
     white-space: nowrap
 }
 
@@ -988,9 +984,9 @@ footer .copyright {
     clip: rect(50px 730px 250px 0px)
 }
 
-/* @media (max-width:390px) {.loglist-cover{ height: 140px}} */
-@media (max-width:415px) {.loglist-cover{ height: 160px;}}
-@media (max-width:375px) {.loglist-cover{ height: 140px;}}
+/* @media (max-width:390px) {.loglist-cover{ height: 140px;overflow: hidden}} */
+@media (max-width:415px) {.loglist-cover{ height: 160px;overflow: hidden}.loglist-cover img {position:unset;    width: 730px;}}
+@media (max-width:375px) {.loglist-cover{ height: 140px;overflow: hidden}.loglist-cover img {position:unset;    width: 730px;}}
 
 
 /* 回形针 */
@@ -1120,7 +1116,7 @@ footer .copyright {
 }
 /* 文章阅读和文章条目的标签 */
 .tags {
-    border: 1px solid #f2dada;
+    border: 1px solid #e8e8e8;
     padding: 1px 6px;
     border-radius: 4px;
     white-space: nowrap
@@ -1131,7 +1127,7 @@ footer .copyright {
     overflow: hidden
 }
 .tags-side {
-    border: 1px solid #f2dada;
+    border: 1px solid #e8e8e8;
     padding: 2px 6px;
     border-radius: 4px;
     white-space: nowrap
@@ -1222,7 +1218,8 @@ footer .copyright {
 }
 /* 相邻文章按钮的样式 */
 .neighbor-log {
-    overflow: hidden
+    overflow: hidden;
+    margin-block: 20px
 }
 .prev-log {
     margin: 3px 0px;
@@ -1245,7 +1242,7 @@ footer .copyright {
     padding-left: 5px
 }
 .comment-info hr {
-    margin: 4px
+    margin: 4px 0px
 }
 
 /* 网页足部
@@ -1396,8 +1393,7 @@ img.zoom-img {
         margin-right: 13px
     }
     .commentform .comment-info {
-        width: 100%;
-        margin-top: -5px
+        width: 100%
     }
     .comment .avatar {
         margin-bottom: 13px
@@ -1443,8 +1439,8 @@ img.zoom-img {
     }
 
     /* 最新评论的评论内容字体略小 */
-    .comment-info a {
-        font-size: small
+    #side-comment{
+        font-size: 12px
     }
 
 }
@@ -1468,7 +1464,6 @@ img.zoom-img {
 }
 /* 普通移动设备的显示样式 */
 @media all and (max-width: 577px) {
-
     /* 卡片容器内边距略小一点 */
     .card-padding {
         padding: 1.0rem;
@@ -1516,6 +1511,9 @@ img.zoom-img {
     .comment-post input {
         width: 100%
     }
+    .commentform .comment-info {
+        margin-top: -5px
+    }
     #comment-place {
         margin-bottom: 80px
     }
@@ -1528,6 +1526,19 @@ img.zoom-img {
         margin-bottom: 10px;
     }
     .comment .comment-post {
-        height: 385px;
+        display: table
     }
+    /* 评论列表换新样式 */
+    .arrow {
+        display: none
+    }
+    .comment .comment-infos {
+        margin-left: 0;
+        font-size: 14px
+    }
+    .comment .avatar {
+        margin: 8px;
+        width: 30px
+    }
+    
 }
