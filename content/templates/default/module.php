@@ -144,7 +144,7 @@ function widget_newcomm($title) {
                     <img class='comment-info_img' src="<?php echo getGravatar($value['mail']); ?>"/>
                 <?php endif; ?>
                     <span class='comm-lates-name'><?php echo $value['name']; ?></span>
-                    <span class='logcom-latest-time mh'><?php echo smartDate($value['date']); ?></span><br/>
+                    <span class='logcom-latest-time'><?php echo smartDate($value['date']); ?></span><br/>
                     <a href="<?php echo $url; ?>" style="color: #989898;"><?php echo $value['content']; ?></a>
                     <hr>
                 </li>
@@ -344,6 +344,7 @@ function blog_tag($blogid) {
 	$log_cache_tags = $CACHE->readCache('logtags');
 	if (!empty($log_cache_tags[$blogid])) {
 		$tag = '';
+        echo '标签：';
 		foreach ($log_cache_tags[$blogid] as $value) {
 			$tag .= "	<a href=\"" . Url::tag($value['tagurl']) . "\" class='tags'  title='标签' >" . $value['tagname'] . '</a>';
 		}
@@ -400,8 +401,9 @@ function neighbor_log($neighborLog) {
 function blog_comments($comments) {
 	extract($comments);
 	if ($commentStacks): ?>
+    
         <a name="comments"></a>
-        <p class="comment-header"><b>评论：</b></p>
+        <div class="comment-header"><b>评论：</b></div>
 	<?php endif; ?>
 	<?php
 	$isGravatar = Option::get('isgravatar');
@@ -424,11 +426,15 @@ function blog_comments($comments) {
             <div class="comment-infos-unGravatar">
                 <b><?php echo $comment['poster']; ?> </b><span class="comment-time"><?php echo $comment['date']; ?></span>
                 <div class="comment-content"><?php echo $comment['content']; ?></div>
+                <div class="comment-reply"><a class="com-reply">回复</a></div>
             </div>
             <?php endif; ?>
 			<?php blog_comments_children($comments, $comment['children']); ?>
         </div>
 	<?php endforeach; ?>
+    <?php   if ($commentStacks): ?>
+    
+	<?php endif; ?>
     <div id="pagenavi">
 		<?php echo $commentPageUrl; ?>
     </div>
@@ -459,6 +465,9 @@ function blog_comments_children($comments, $children) {
             <div class="comment-infos-unGravatar">
                 <b><?php echo $comment['poster']; ?> </b><span class="comment-time"><?php echo $comment['date']; ?></span>
                 <div class="comment-content"><?php echo $comment['content']; ?></div>
+                <?php if ($comment['level'] < 4): ?>
+                    <div class="comment-reply"><a class="com-reply">回复</a>
+                    </div><?php endif; ?>
             </div>
             <?php endif; ?>
 			<?php blog_comments_children($comments, $comment['children']); ?>
