@@ -9,7 +9,7 @@
     <div class="alert alert-success">删除模板成功</div><?php endif; ?>
 <?php if (isset($_GET['error_f'])): ?>
     <div class="alert alert-danger">删除失败，请检查模板文件权限</div><?php endif; ?>
-<?php if (!$nonceTplData): ?>
+<?php if (!$nonce_templet_data): ?>
     <div class="alert alert-danger">当前使用的模板(<?php echo $nonce_templet; ?>)已被删除或损坏，请选择其他模板。</div><?php endif; ?>
 <?php if (isset($_GET['error_a'])): ?>
     <div class="alert alert-danger">只支持zip压缩格式的模板包</div><?php endif; ?>
@@ -31,37 +31,39 @@
     <h1 class="h3 mb-0 text-gray-800">模板外观</h1>
     <a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> 安装模板</a>
 </div>
-<div class="card-columns">
+<div class="row">
 	<?php foreach ($tpls as $key => $value): ?>
-        <div class="card">
-            <div class="card-header <?php if ($nonce_templet == $value['tplfile']) {
-				echo "bg-success text-white";
-			} ?>">
-				<?php echo $value['tplname']; ?>
-            </div>
-            <div class="card-body">
-                <a href="template.php?action=usetpl&tpl=<?php echo $value['tplfile']; ?>&token=<?php echo LoginAuth::genToken(); ?>">
-                    <img class="card-img-top" src="<?php echo TPLS_URL . $value['tplfile']; ?>/preview.jpg" alt="Card image cap">
-                </a>
-            </div>
-            <div class="card-footer">
-				<?php if ($value['author']): ?>
-                    <div class="small">模板开发者：
-						<?php if ($value['author_url']): ?>
-                            <a href="<?php echo $value['author_url']; ?>" target="_blank"><?php echo $value['author']; ?></a>
-						<?php else: ?>
-							<?php echo $value['author']; ?>
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header <?php if ($nonce_templet == $value['tplfile']) {
+					echo "bg-success text-white font-weight-bold";
+				} ?>">
+					<?php echo $value['tplname']; ?>
+                </div>
+                <div class="card-body">
+                    <a href="template.php?action=usetpl&tpl=<?php echo $value['tplfile']; ?>&token=<?php echo LoginAuth::genToken(); ?>">
+                        <img class="card-img-top" src="<?php echo TPLS_URL . $value['tplfile']; ?>/preview.jpg" alt="Card image cap">
+                    </a>
+                </div>
+                <div class="card-footer">
+					<?php if ($value['author']): ?>
+                        <div class="small">模板开发者：
+							<?php if ($value['author_url']): ?>
+                                <a href="<?php echo $value['author_url']; ?>" target="_blank"><?php echo $value['author']; ?></a>
+							<?php else: ?>
+								<?php echo $value['author']; ?>
+							<?php endif; ?>
+                        </div>
+					<?php endif; ?>
+                    <div class="small">
+						<?php echo $value['tpldes']; ?>
+						<?php if ($value['tplurl']): ?>
+                            <a href="<?php echo $value['tplurl']; ?>" target="_blank">更多介绍&rarr;</a>
 						<?php endif; ?>
                     </div>
-				<?php endif; ?>
-                <div class="small">
-					<?php echo $value['tpldes']; ?>
-					<?php if ($value['tplurl']): ?>
-                        <a href="<?php echo $value['tplurl']; ?>" target="_blank">更多介绍&rarr;</a>
-					<?php endif; ?>
-                </div>
-                <div class="mt-3">
-                    <a class="badge badge-danger" href="javascript: em_confirm('<?php echo $value['tplfile']; ?>', 'tpl', '<?php echo LoginAuth::genToken(); ?>');">删除</a>
+                    <div class="mt-3">
+                        <a class="badge badge-danger" href="javascript: em_confirm('<?php echo $value['tplfile']; ?>', 'tpl', '<?php echo LoginAuth::genToken(); ?>');">删除</a>
+                    </div>
                 </div>
             </div>
         </div>
