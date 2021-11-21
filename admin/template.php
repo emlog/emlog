@@ -13,11 +13,12 @@ require_once 'globals.php';
 
 if ($action === '') {
 	$nonce_templet = Option::get('nonce_templet');
-	$nonceTplData = @implode('', @file(TPLS_PATH . $nonce_templet . '/header.php'));
+	$nonce_templet_data = @file(TPLS_PATH . $nonce_templet . '/header.php');
 
 	//模板列表
 	$tpls = [];
 	$handle = @opendir(TPLS_PATH) or die('emlog template path error!');
+	$i = 1;
 	while ($file = @readdir($handle)) {
 		if (!file_exists(TPLS_PATH . $file . '/header.php')) {
 			continue;
@@ -37,8 +38,15 @@ if ($action === '') {
 			'author'     => !empty($author[1]) ? subString(strip_tags(trim($author[1])), 0, 16) : '',
 			'author_url' => !empty($authorUrl[1]) ? subString(strip_tags(trim($authorUrl[1])), 0, 75) : '',
 		];
-		$tpls[] = $tplInfo;
+
+		if ($nonce_templet == $file) {
+			$tpls[0] = $tplInfo;
+		} else {
+			$tpls[$i] = $tplInfo;
+		}
+		$i++;
 	}
+	ksort($tpls);
 	closedir($handle);
 	$tplnums = count($tpls);
 
