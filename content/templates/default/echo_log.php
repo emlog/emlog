@@ -24,7 +24,7 @@ if (!defined('EMLOG_ROOT')) {
 
 	<?php doAction('log_related', $logData); ?>
 
-    <nav class="neighbor_log"><?php neighbor_log($neighborLog); ?></nav>
+    <nav class="neighbor-log"><?php neighbor_log($neighborLog); ?></nav>
 
 	<?php blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allow_remark); ?>
 	<?php blog_comments($comments); ?>
