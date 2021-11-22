@@ -352,14 +352,11 @@ function blog_tag($blogid) {
 	} else {
 		$tag_ids = $tag_model->getTagIdsFromBlogId($blogid);
 		$tag_names = $tag_model->getNamesFromIds($tag_ids);
-
 		if (!empty($tag_names)) {
 			$tag = '标签:';
-
 			foreach ($tag_names as $key => $value) {
 				$tag .= "	<a href=\"" . Url::tag(rawurlencode($value)) . "\" class='tags' title='标签' >" . htmlspecialchars($value) . '</a>';
 			}
-
 			echo $tag;
 		}
 	}
@@ -432,9 +429,6 @@ function blog_comments($comments) {
 			<?php blog_comments_children($comments, $comment['children']); ?>
         </div>
 	<?php endforeach; ?>
-    <?php   if ($commentStacks): ?>
-    
-	<?php endif; ?>
     <div id="pagenavi">
 		<?php echo $commentPageUrl; ?>
     </div>
@@ -458,16 +452,16 @@ function blog_comments_children($comments, $children) {
                 <b><?php echo $comment['poster']; ?> </b><span class="comment-time"><?php echo $comment['date']; ?></span>
                 <div class="comment-content"><?php echo $comment['content']; ?></div>
 				<?php if ($comment['level'] < 4): ?>
-                    <div class="comment-reply"><a class="com-reply">回复</a>
-                    </div><?php endif; ?>
+                <div class="comment-reply"><a class="com-reply">回复</a>
+                </div><?php endif; ?>
             </div>
             <?php else: ?>
             <div class="comment-infos-unGravatar">
                 <b><?php echo $comment['poster']; ?> </b><span class="comment-time"><?php echo $comment['date']; ?></span>
                 <div class="comment-content"><?php echo $comment['content']; ?></div>
                 <?php if ($comment['level'] < 4): ?>
-                    <div class="comment-reply"><a class="com-reply">回复</a>
-                    </div><?php endif; ?>
+                <div class="comment-reply"><a class="com-reply">回复</a>
+                </div><?php endif; ?>
             </div>
             <?php endif; ?>
 			<?php blog_comments_children($comments, $comment['children']); ?>
@@ -545,5 +539,4 @@ function blog_tool_ishome() {
 		return FALSE;
 	}
 }
-
 ?>
