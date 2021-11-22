@@ -917,7 +917,7 @@ footer .copyright {
 /* @media (max-width:390px) {.loglist-cover{ height: 140px;overflow: hidden}} */
 @media (max-width:415px) {.loglist-cover{ height: 160px;overflow: hidden}.loglist-cover img {position:unset;    width: 730px;}}
 @media (max-width:375px) {.loglist-cover{ height: 140px;overflow: hidden}.loglist-cover img {position:unset;    width: 730px;}}
-/* 回形针 *
+/* 回形针 */
 .clip,
 .clip::after,
 .clip::before {
