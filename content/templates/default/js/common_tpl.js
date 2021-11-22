@@ -95,9 +95,9 @@ var myBlog = {
 
         if(isCn == 'y' && !cnReg.test(comContent)){
           this.comTip = "评论内容需要包含中文！"
-        }else if((mail != '') && !mailReg.test(mail)){
+        }else if(typeof mail !== "undefined" && mail != '' && !mailReg.test(mail)){
           this.comTip = "邮箱格式错误！"
-        }else if((url != '') && !urlReg.test(url)){
+        }else if(typeof url !== "undefined" && url != '' && !urlReg.test(url)){
           this.comTip = "网址格式错误！"
         }else {
           this.comTip = ''
