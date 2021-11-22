@@ -21,15 +21,14 @@
 body {
     margin: 0;
     line-height: 1.5;
-	font-size: 16px;
+    font-size: 16px;
     color: #5a5c69;
-	background: #f5f5f6;
+    background: #f5f5f6;
     font-family: -apple-system, SF UI Text, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei, WenQuanYi Micro Hei, sans-serif
 }
 h1, h2, h3, h4, h5, h6 {
     margin-top: 0;
-    margin-bottom: 0.5rem;
-	font-weight: 400
+    font-weight: 400
 }
 p {
     line-height: 2;
@@ -56,8 +55,8 @@ blockquote {
     color: #868e96
 }
 input,textarea {
-	font-family: inherit;
-	color: #495057;
+    font-family: inherit;
+    color: #495057;
     outline:none
 }
 input[type="submit"] {
@@ -83,7 +82,7 @@ footer .copyright {
     padding-left: 0px;
     list-style: none;
     margin-block: 8px;
-	font-size: medium
+    font-size: medium
 }
 /* 卡片属性。页面以卡片形式组成，这里直接配置，让整个页面的卡片有统一的内边距。 */
 .card-padding {
@@ -271,7 +270,7 @@ footer .copyright {
     .blogtoggle-icon {
         display: inline-block;
         width: 28px;
-        height: 22px;
+        height: 19px;
         margin-top: -3px;
         vertical-align: middle;
 	}
@@ -367,7 +366,7 @@ footer .copyright {
 }
 /* 验证码模态窗的配置 */
 .modal-dialog {
-	display:none;
+    display:none;
     background-color: white;
     
     border-radius: var(--marRadius);
@@ -444,7 +443,7 @@ footer .copyright {
 .shadow-theme {
     box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.02);
     border-radius: var(--marRadius);
-	background: #ffffff;
+    background: #ffffff;
     transition: box-shadow 0.4s
 }
 .shadow-theme:hover {
@@ -759,7 +758,7 @@ footer .copyright {
 .comment-info {
     text-overflow: ellipsis;
     overflow: hidden;
-    margin-top: -6px;
+    margin-top: -8px;
     white-space: nowrap
 }
 /* 边栏处的最新评论信息margin-top应该是0 */
