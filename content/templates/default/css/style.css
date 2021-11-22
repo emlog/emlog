@@ -78,7 +78,6 @@ footer .copyright {
     margin-bottom: 0;
     text-align: center
 }
-
 /* 无样式列表  */
 .unstyle-li {
     padding-left: 0px;
@@ -86,7 +85,6 @@ footer .copyright {
     margin-block: 8px;
 	font-size: medium
 }
-
 /* 卡片属性。页面以卡片形式组成，这里直接配置，让整个页面的卡片有统一的内边距。 */
 .card-padding {
     padding: 1.25rem
@@ -101,7 +99,6 @@ footer .copyright {
     display: flex;
     flex-wrap: wrap;
 }
-
 /* 大屏下的列 */
 @media (min-width:768px)  {
     .column-big {
@@ -128,7 +125,6 @@ footer .copyright {
         text-align: right
     }
 }
-
 /* 小屏下的列 */
 @media (max-width:767px) {
 
@@ -142,7 +138,6 @@ footer .copyright {
         padding-right: 15px;
         padding-left: 15px;
         width:100%
-
     }
     /* 文章发布时间和文章阅读评论数两列的配置 */
     .log-info {
@@ -165,13 +160,11 @@ footer .copyright {
 	margin-right: auto;
 	margin-left: auto
 }
-
 /* container 在不同屏幕下的配置 */
 @media (min-width:576px) {.container{max-width: 540px}}
 @media (min-width:768px) {.container{max-width: 720px}}
 @media (min-width:992px) {.container {max-width: 960px}}
 @media (min-width:1201px) {.container {max-width: 1140px}}
-
 /* 设置 container 在小型屏幕上的内外边距 ，使其更符合小型屏幕的观感体验 */
 @media (min-width:768px)  {
     .container{
@@ -233,13 +226,11 @@ footer .copyright {
 
 /* 大屏幕 */
 @media (min-width:768px)  {
-
     .nav-list {
         display: flex;
         padding-block: 4.5px;
 		text-align: center
 	}
-	
 	/* 大屏幕列表样式 */
 	.list-menu .list-menu{
 		border-bottom: 1px solid #f1f1f1;
@@ -248,13 +239,10 @@ footer .copyright {
 	.list-menu:last-child { 
 		border-bottom: unset
 	}
-
     .blog-header-toggle {
         display: none
         }
-
 }
-
 /* 小屏幕 */
 @media (max-width:767px)  {
 	.header {
@@ -262,20 +250,17 @@ footer .copyright {
         margin-bottom: 30px!important;
         height:80px
     }
-	
     .blog-header-title {
         position: absolute;
         left: 17px;
         top: 15px
     }
-
     .blog-header-subtitle {
 
         padding-top: 60px;
         left: 17px;
         top: -11px
     }
-
 	/* 仅在小屏幕上显示切换菜单边框和切换菜单 */
 	.blog-header-toggle {
         cursor: pointer;
@@ -290,19 +275,16 @@ footer .copyright {
         margin-top: -3px;
         vertical-align: middle;
 	}
-	
 	/* 小屏幕的导航变成下拉框 */
     .blog-header-nav {
         display: none;
         z-index: 999;
         position: absolute;
-        width: 100%;
+        width: calc(100% - 4px);
         background: white;
         top: 72px;
-        left: 0;
-        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1)
+        left: 0
     }
-    
 	/* 小屏幕上头部的列表样式 */
     .nav-list {
         margin-top: 0px;
@@ -312,7 +294,6 @@ footer .copyright {
         line-height: 28px;
         width: 90%
     }
-
 }
 
 /* 大屏幕下的下拉框样式，这里设置的透明度为0（opacity: 0.0;）。但小屏状态下
@@ -384,7 +365,6 @@ footer .copyright {
 .top-5, .mtop-5 {
     margin-top: 3rem !important
 }
-
 /* 验证码模态窗的配置 */
 .modal-dialog {
 	display:none;
@@ -399,7 +379,6 @@ footer .copyright {
     left: 50%;
     transform: translate3d(-50%,-50%,0)
 }
-
 /* 验证码模态窗的按钮 */
 .btn {
     cursor: pointer;
@@ -439,7 +418,6 @@ footer .copyright {
     padding: 10px;
     text-align: center
 }
-
 /* 弹出验证码模态窗后，屏幕背景要锁住 */
 .lock-screen {
 	display:none;
@@ -469,7 +447,6 @@ footer .copyright {
 	background: #ffffff;
     transition: box-shadow 0.4s
 }
-
 .shadow-theme:hover {
     box-shadow: 1px 1px 2px #ddd
 }
@@ -659,38 +636,31 @@ footer .copyright {
     margin-block: 30px;
     height: 0
 }
-
 .comment-post {
     clear: both
 }
-
 .comment-post p {
     margin: 5px 0px
 }
-
 .comment-post .cancel-reply {
     float: right;
     cursor: pointer;
     _cursor: hand;
     padding-right: 10%
 }
-
 .comment-post .cancel-reply:hover {
     text-decoration: underline
 }
-
 .comment-post small {
     font-size: 12px;
     color: #999
 }
-
 .comment-post input {
     padding: 7px 40px;
     font-size: small;
     color: #848797;
     width: 33.3333334%
 }
-
 .comment-post #comment {
     width: 100%;
     border: 1px #d6d6d6 solid;
@@ -699,7 +669,6 @@ footer .copyright {
     height: 130px;
     resize: none
 }
-
 .comment-post #comment_submit {
     width: 84px;
     height: 35px;
@@ -713,17 +682,14 @@ footer .copyright {
     padding: 7px 10px;
     justify-content: center
 }
-
 .comment-post #comment_submit:hover {
     cursor: pointer;
     color: #fff;
     background-color: #007bff
 }
-
 .comment-post .input {
     width: 100px
 }
-
 .comment {
     margin: 10px 0;
     padding: 10px 0px;
@@ -732,22 +698,18 @@ footer .copyright {
     overflow: hidden;
     color: #333
 }
-
 .comment span {
     color: #ff7a15
 }
-
 .comment .comment-time {
     color: #999999;
     display: inline;
     font-size: 10px
 }
-
 .comment .avatar {
     float: left;
     margin: 5px 4px
 }
-
 .comment .comment-infos {
     background: #f7f7f7;
     padding: 12px;
@@ -756,15 +718,12 @@ footer .copyright {
     margin-top: 9px;
     margin-left: 58px
 }
-
 .comment .comment-infos-unGravatar {
     padding: 5px
 }
-
 .com-bottom {
     margin-bottom: 80px;
 }
-
 /* 评论列表中指向评论者头像的箭头 */
 .arrow {
     position: absolute;
@@ -774,58 +733,48 @@ footer .copyright {
     border-style: solid;
     border-color: transparent #f7f7f7 transparent transparent
 }
-
 .comment .comment-content {
     margin: 8px 0px 0px 0px;
     word-break: break-word
 }
-
 .comment .comment-reply {
     float: right;
     font-size: 12px;
     cursor: pointer;
     margin-top: -15px
 }
-
 .comment .comment-reply:hover {
     text-decoration: underline
 }
-
 .comment-children {
     margin: 20px 10px 10px 20px;
     clear: both;
     border: none;
     padding: 0
 }
-
 .comment .comment-post {
     width: 90%;
     margin: 15px auto
 }
-
 .comment-info {
     text-overflow: ellipsis;
     overflow: hidden;
-    margin-top: -10px;
+    margin-top: -6px;
     white-space: nowrap
 }
-
 /* 边栏处的最新评论信息margin-top应该是0 */
 .unstyle-li .comment-info {
     margin-top: 4px
 }
-
 .cancel-reply {
     font-size: large
 }
-
 /* 评论人的头像 */
 .avatar img {
     margin-top: 9px;
     margin-right: 4px;
     border-radius: 50%
 }
-
 .unstyle-li input[type="submit"] {
     background-color: #313131;
     color: #FFFFFF;
@@ -844,7 +793,6 @@ footer .copyright {
 .readmore {
     margin-left: 10px;
 }
-
 .readmore a {
     color: #929292;
     font-size: small
@@ -853,7 +801,6 @@ footer .copyright {
 .card-title {
     margin-bottom: 30px
 }
-
 /* 文章条目中的置顶图案，采用base64 */
 .log-topflg {
     display: inline-block;
@@ -869,6 +816,7 @@ footer .copyright {
 .log-topflg:hover {
     color: black
 }
+
 /* 文章内容页样式
 ---------------------------------------------------*/
 .log-con {
@@ -880,69 +828,58 @@ footer .copyright {
     height: fit-content;
     letter-spacing: 0.5px
 }
-
 .log-con p {
     margin-top: 0;
     margin-bottom: 16px
 }
-
 .log-con .date {
     margin-bottom: 0px
 }
-
 .loglist-content h1 {
     font-size: medium;
     font-family: inherit;
     letter-spacing: 0.5px;
     margin: 0
 }
-
 .loglist-content h2 {
     font-size: medium;
     font-family: inherit;
     letter-spacing: 0.5px;
     margin: 0
 }
-
 .loglist-content h3 {
     font-size: medium;
     font-family: inherit;
     letter-spacing: 0.5px;
     margin: 0
 }
-
 .loglist-content h4 {
     font-size: medium;
     font-family: inherit;
     letter-spacing: 0.5px;
     margin: 0
 }
-
 .loglist-content h5 {
     font-size: medium;
     font-family: inherit;
     letter-spacing: 0.5px;
     margin: 0
 }
-
 .loglist-content p {
     font-size: medium;
     font-family: inherit;
     margin: 0
 }
-
 /* 需要改名，侧边栏链接卡片的友情链接属性 */
 .no-margin-bottom {
     font-size: medium;
     padding-left: 10px
 }
-
 /* 摘要内容部分 */
 .loglist-body {
     margin-bottom: -22px;
     font-size: small
 }
-
 .loglist-body p {
     margin: 0 -6px 0 0
 }
@@ -950,24 +887,19 @@ footer .copyright {
 .loglist-title {
     font-size: x-large
 }
-
 .loglist-tag {
     margin-top: 30px;
     line-height: 2;
     color: #000000
 }
-
 .loglist-tag a {
     color: #929292
 }
-
-
 .loglist-cover {
     width: 100%;
     height: 205px;
     border-radius: var(--marRadius) 10px 0 0
 }
-
 .loglist-cover img {
     position: absolute;
     /* width: 730px; */
@@ -977,20 +909,15 @@ footer .copyright {
     clip: rect(50px 730px 250px 0px);
     margin-top: -50px
 }
-
 .loglist-cover img:hover {
     opacity: 0.7;
     transform: scale(1.01);
     clip: rect(50px 730px 250px 0px)
 }
-
 /* @media (max-width:390px) {.loglist-cover{ height: 140px;overflow: hidden}} */
 @media (max-width:415px) {.loglist-cover{ height: 160px;overflow: hidden}.loglist-cover img {position:unset;    width: 730px;}}
 @media (max-width:375px) {.loglist-cover{ height: 140px;overflow: hidden}.loglist-cover img {position:unset;    width: 730px;}}
-
-
-/* 回形针 */
-
+/* 回形针 *
 .clip,
 .clip::after,
 .clip::before {
@@ -1008,14 +935,12 @@ footer .copyright {
     z-index: 5;
     box-shadow: 10px 40px 100px 10px rgb(115 115 115)
 }
-
 /* 自适应位置，使其始终在封面图右侧向左95px */
 @media (max-width:575px) {.clip{display: none}}
 @media (min-width:576px) {.clip{left: calc(510px - 95px)}}
 @media (min-width:768px) {.clip{left: calc(450px - 95px)}}
 @media (min-width:992px) {.clip{left: calc(600px - 95px)}}
 @media (min-width:1201px) {.clip{left: calc(730px - 95px)}}
-
 .clip::before {
     position: absolute;
     content: "";
@@ -1044,9 +969,7 @@ footer .copyright {
     border-right: 6px solid;
     border-bottom: 6px solid
 }
-
 /* 条目的其他内容 */
-
 .loglist-content {
     font-size: medium;
     margin-left: 1px;
@@ -1054,21 +977,17 @@ footer .copyright {
     margin-right: 3px;
     margin-top: 30px
 }
-
 .log-info {
     font-size: small;
     letter-spacing: 0.5px;
     color: #404040 !important
 }
-
 .log-info a {
     color: #929292
 }
-
 .log-count {
     font-size: small
 }
-
 .log-count a {
     color: #252525
 }
@@ -1077,24 +996,20 @@ footer .copyright {
     margin-bottom: -10px;
     text-align: center
 }
-
 .bloggerinfo-img {
     width: 100px;
     height: 100px;
     border: 0px solid #c2a9a9;
     border-radius: 50%
 }
-
 .comm-lates-name {
     font-weight: bolder
 }
-
 .bloginfo-name {
     font-size: x-large;
     margin-top: 15px;
     margin-bottom: 0px
 }
-
 .bloginfo-cache {
     margin-top: 20px;
     margin-bottom: 15px;
@@ -1138,7 +1053,6 @@ footer .copyright {
     overflow: hidden;
     text-overflow: ellipsis
 }
-
 /* 返回上页图标 */
 .back-top {
     font-size: 20px;
@@ -1164,20 +1078,17 @@ footer .copyright {
     margin-bottom: -7px;
     border-top: 2px solid rgb(245, 245, 246)
 }
-
 /* 侧边栏组件中的文章分类 */
 .log-classify-f {
     letter-spacing: 1px;
     font-size: 16px;
     font-weight: 400
 }
-
 .log-classify-c {
     margin-left: -27px;
     list-style: none;
     font-size: medium
 }
-
 /* 侧边栏组件中的最新评论 */
 .logcom-latest-time {
     position: absolute;
@@ -1194,7 +1105,6 @@ footer .copyright {
     vertical-align: middle;
     border-style: none
 }
-
 /* 各处的日期文字样式 */
 .date {
     margin: 0;
@@ -1343,16 +1253,13 @@ img.zoom-img {
         width: 70px;
         height: 70px
     }
-
     .bloginfo-name {
         margin-top: 32px
     }
-
     /* 中型屏状态下的日历 */
     #calendar {
         margin-left: -8px;
     }
-
 }
 
 @media all and (max-width: 991px) {
@@ -1361,22 +1268,18 @@ img.zoom-img {
     .blog-header-c {
         max-width: unset !important
     } 
-
     .blog-header-c {
         height: 74px
     }
-
     body {
         width: 100%;
         margin: -2px;
         padding-left: 2px
     }
-
 	/* 方便在中、小屏幕隐藏元素的class */
     .mh {
         display: none
     }
-
     .bloggerinfo {
         margin-bottom: 0px
     }
@@ -1422,7 +1325,6 @@ img.zoom-img {
     .comment-post input {
         padding: 0.5em 0.75em
     }
-
 }
 /* 在平板一些处于中间尺寸的不常见设备所做的缩放和其他一些调整样式 */
 @media all and (max-width: 991px) and (min-width: 768px) {
@@ -1437,7 +1339,6 @@ img.zoom-img {
         width: 255px;
         margin-left: -47px
     }
-
     /* 最新评论的评论内容字体略小 */
     #side-comment{
         font-size: 12px
@@ -1540,5 +1441,4 @@ img.zoom-img {
         margin: 8px;
         width: 30px
     }
-    
 }
