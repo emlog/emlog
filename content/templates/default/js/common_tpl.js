@@ -133,22 +133,23 @@ var myBlog = {
     /**
      * toc 分析
      * 
-     * 启用toc方式: 在文章最开头写上'[toc]',最好是单独一行
+     * 启用toc目录方式: 在文章最开头写上'[toc]'或者'<!--[toc]-->',最好是单独一行
      */
     tocFlag     : /\[toc\]/gi,  // 判断toc是否声明的正则表达式
     tocArray    : new Array(),  // 储存toc的数组
     tocAnalyse  : function() {
-      if (window.outerWidth < 1275)       return  // 屏幕小于 1275px  退出  
+      var tocFlag   = document.querySelector("#emlogEchoLog p")
+
       if ($("#emlogEchoLog").length == 0) return  // 不在阅读页面  退出
       if (!this.tocFlag.test($('#emlogEchoLog').html().substring(0,30))) return  // 未声明toc标签  退出
+      tocFlag.innerHTML = tocFlag.innerHTML.replace(this.tocFlag,"")  // 去除toc声明
+      if (window.outerWidth < 1275)       return  // 屏幕小于 1275px  退出
 
       var $logCon   = $(".log-con")
       var logConMar = parseInt($logCon.css("margin-left"))
       var $titles   = $("#emlogEchoLog h1,h2,h3,h4,h5,h6:eq(0)")
       var arr       = this.tocArray
-      var tocFlag   = document.querySelector("#emlogEchoLog p")
 
-      tocFlag.innerHTML = tocFlag.innerHTML.replace(this.tocFlag,"")  // 去除toc声明
       if($titles.length > 0){
         $logCon.css("margin-left",logConMar + 150 + 'px')  // 文章正文向右偏移150px
       }else{
@@ -178,22 +179,32 @@ var myBlog = {
       var $logcon = $(".log-con")
       var padNum  = parseInt($logcon.css("margin-left")) - 270
       var judgeN  = 0
-      var chilPad = 10
+      var chilPad = 4
+      var minType = 6
 
+      for (var i =0;i < data.length; i++){
+        if(data[i]['type'] < minType) minType = data[i]['type']
+      }
       tocHtml = tocHtml + '<div class="toc-con" style="left:'+ padNum +'px" id="toc-con">'   // 渲染
       tocHtml = tocHtml + '<div style="height:calc(100vh - 70px);overflow-y:scroll;" ><lu>'
       for(var i = 0 ;i < data.length ; i++) {
-        let k         = 0
+        let k         = minType
         let itemType  = data[i]['type']
         let isPadding = ''
+        let isBold    = ['','']
         
         if(itemType != judgeN) isPadding = 'style="padding-top:' + chilPad + 'px"'
         tocHtml = tocHtml + '<li ' + isPadding + ' id="to' + i + '" title="' + data[i]['content'] + '" >'
+        console.log(itemType + '===' + minType)
+        if(itemType == minType) {
+          isBold[0] = '<b>'
+          isBold[1] = '</b>'
+        }
         while(k < itemType){
           tocHtml = tocHtml + '&nbsp;&nbsp;&nbsp;&nbsp;'
           k++
         }
-        tocHtml = tocHtml + data[i]['content'] + '</li>'
+        tocHtml = tocHtml + isBold[0] + data[i]['content'] + isBold[1] + '</li>'
         judgeN = itemType
       }
       tocHtml = tocHtml + '</lu></div></div>'
@@ -264,6 +275,7 @@ $(document).ready(function(){
   $('#comment_submit[type="button"], #close-modal').click(function () {
     myBlog.viewModal()
   }),
+
   $(".form-control").blur(function () {
     myBlog.comSubmitTip('judge')
   })
