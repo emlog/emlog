@@ -71,13 +71,14 @@
                 <div class="card bg-danger text-white shadow">
                     <div class="card-body">
                         <h4>您安装的emlog pro尚未注册，注册后将获得：</h4>
-                        <div>1、一键升级，获得来自官方的安全和功能更新。</div>
+                        <div>1、一键升级功能，获得来自官方的安全和功能更新。</div>
                         <div>2、解锁扩展商店，获得更多模板和插件。</div>
                         <div>3、解除使用限制和所有未注册提示。</div>
                         <div>4、"投我以桃，报之以李"，支持我们把emlog做的更好。</div>
                     </div>
                     <div class="card-footer text-center">
-                        <a href="register.php" class="btn btn-sm btn-success shadow-lg">现在去注册</a>
+                        <a href="https://emlog.net/register" target="_blank" class="btn btn-sm btn-primary shadow-lg">获取注册码</a>
+                        <a href="register.php" class="btn btn-sm btn-success shadow-lg">去注册</a>
                     </div>
                 </div>
             </div>
