@@ -6,7 +6,7 @@ if (!defined('EMLOG_ROOT')) {
 	exit('error!');
 }
 ?>
-<div class="col-md-4 side-bar">
+<asider class="column-small side-bar">
 	<?php
 	$widgets = !empty($options_cache['widgets1']) ? unserialize($options_cache['widgets1']) : array();
 	doAction('diff_side');
@@ -28,4 +28,5 @@ if (!defined('EMLOG_ROOT')) {
 		}
 	}
 	?>
-</div>
+</asider>
+ 

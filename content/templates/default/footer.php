@@ -6,21 +6,17 @@ if (!defined('EMLOG_ROOT')) {
 	exit('error!');
 }
 ?>
-<footer class="py-1">
+<footer>
     <div class="container">
-        <p class="text-center small">
-            <a href="https://beian.miit.gov.cn/" target="_blank"><?php echo $icp; ?></a> <br>
+        <p class="text-center">
+            <a href="https://beian.miit.gov.cn/" target="_blank"><?php echo $icp; ?></a><br>
 			<?php echo $footer_info; ?>
 			<?php doAction('index_footer'); ?>
         </p>
     </div>
 </footer>
-<script>
-    $('#captcha').click(function () {
-        var timestamp = new Date().getTime();
-        var src = $(this).attr("src");
-        $(this).attr("src", src + "?" + timestamp);
-    });
-</script>
 </body>
+<script src="<?php echo TEMPLATE_URL; ?>js/common_tpl.js?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
+<script src="<?php echo TEMPLATE_URL; ?>js/zoom.js?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
 </html>
+ 

@@ -5,6 +5,8 @@ config.php
 /content/cache/*.php
 /content/uploadfile/*
 /content/uploadfile/*
+/content/plugins/cloud_storage
+/content/templates/chen
 # 开发工具文件
 .project
 .settings

@@ -20,7 +20,6 @@ if (empty($action)) {
 	$conf_comment_needchinese = $comment_needchinese == 'y' ? 'checked="checked"' : '';
 	$conf_iscomment = $iscomment == 'y' ? 'checked="checked"' : '';
 	$conf_ischkcomment = $ischkcomment == 'y' ? 'checked="checked"' : '';
-	$conf_isexcerpt = $isexcerpt == 'y' ? 'checked="checked"' : '';
 	$conf_isthumbnail = $isthumbnail == 'y' ? 'checked="checked"' : '';
 	$conf_isgravatar = $isgravatar == 'y' ? 'checked="checked"' : '';
 	$conf_comment_paging = $comment_paging == 'y' ? 'checked="checked"' : '';

@@ -175,8 +175,8 @@ class Storage {
 		$sql = "SELECT `type`, `value` FROM " . DB_PREFIX . "storage WHERE `plugin` = '" . $this->db_conn->escape_string($this->plugin_name) . "' AND `name` = '" . $this->db_conn->escape_string($name) . "'";
 		$result = $this->db_conn->once_fetch_array($sql);
 
-		if ($result === FALSE) {
-			return FALSE;
+		if (empty($result)) {
+			return false;
 		}
 
 		$type = $result['type'];
@@ -185,16 +185,12 @@ class Storage {
 		switch ($type) {
 			case "string":
 				return (string)$value;
-				break;
 			case "number":
 				return (float)$value;
-				break;
 			case "boolean":
 				return $value === "TRUE";
-				break;
 			case "array":
 				return unserialize($value);
-				break;
 		}
 	}
 

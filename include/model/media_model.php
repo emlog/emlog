@@ -17,9 +17,10 @@ class Media_Model {
 	 */
 	function getMedias($page = 1, $perpage_count = 24) {
 		$startId = ($page - 1) * $perpage_count;
-		$condition = "LIMIT $startId, " . $perpage_count;
+		$author = 'and author=' . UID;
+		$limit = "LIMIT $startId, " . $perpage_count;
 
-		$sql = "SELECT * FROM " . DB_PREFIX . "attachment WHERE thumfor = 0 order by aid desc $condition";
+		$sql = "SELECT * FROM " . DB_PREFIX . "attachment WHERE thumfor = 0 $author order by aid desc $limit";
 		$query = $this->db->query($sql);
 		$medias = [];
 		while ($row = $this->db->fetch_array($query)) {
@@ -32,13 +33,15 @@ class Media_Model {
 				'filepath'      => str_replace("thum-", '', $row['filepath']),
 				'width'         => $row['width'],
 				'height'        => $row['height'],
+				'mimetype'      => $row['mimetype'],
 			];
 		}
 		return $medias;
 	}
 
 	function getMediaCount() {
-		$sql = "SELECT count(*) as count FROM " . DB_PREFIX . "attachment WHERE thumfor = 0";
+		$author = 'and author=' . UID;
+		$sql = "SELECT count(*) as count FROM " . DB_PREFIX . "attachment WHERE thumfor = 0 $author";
 		$res = $this->db->once_fetch_array($sql);
 		return $res['count'];
 	}
@@ -49,7 +52,6 @@ class Media_Model {
 	 * @return int|string
 	 */
 	function addMedia($file_info) {
-
 		$file_name = $file_info['file_name'];
 		$file_size = $file_info['size'];
 		$file_path = $file_info['file_path'];
@@ -62,8 +64,9 @@ class Media_Model {
 			$file_path = $file_info['thum_file'];
 		}
 
-		$query = "INSERT INTO " . DB_PREFIX . "attachment (filename, filesize, filepath, addtime, width, height, mimetype, thumfor) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s')";
-		$query = sprintf($query, $file_name, $file_size, $file_path, $create_time, $img_width, $img_height, $file_mime_type, 0);
+		$query = "INSERT INTO " . DB_PREFIX . "attachment (author, filename, filesize, filepath, addtime, width, height, mimetype, thumfor)
+		 VALUES ('%d','%s','%s','%s','%s','%s','%s','%s','%s')";
+		$query = sprintf($query, UID, $file_name, $file_size, $file_path, $create_time, $img_width, $img_height, $file_mime_type, 0);
 		$this->db->query($query);
 		return $this->db->insert_id();
 	}
