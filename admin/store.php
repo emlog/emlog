@@ -67,7 +67,7 @@ if ($action === 'plu') {
 
 if ($action === 'error') {
 	include View::getView('header');
-	require_once(View::getView('store'));
+	require_once(View::getView('store_tpl'));
 	include View::getView('footer');
 	View::output();
 }
