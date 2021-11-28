@@ -9,7 +9,7 @@
 <!--vot--><div class="alert alert-success"><?=lang('template_delete_ok')?></div><?php endif; ?>
 <?php if (isset($_GET['error_f'])): ?>
 <!--vot--><div class="alert alert-danger"><?=lang('template_delete_failed')?></div><?php endif; ?>
-<?php if (!$nonceTplData): ?>
+<?php if (!$nonce_templet_data): ?>
 <!--vot--><div class="alert alert-danger"><?=lang('template_current_use')?>(<?php echo $nonce_templet; ?>) <?=lang('template_damaged')?></div><?php endif; ?>
 <?php if (isset($_GET['error_a'])): ?>
 <!--vot--><div class="alert alert-danger"><?=lang('template_zip_support')?></div><?php endif; ?>
@@ -31,37 +31,39 @@
 <!--vot--><h1 class="h3 mb-0 text-gray-800"><?=lang('template_manager')?></h1>
 <!--vot--><a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> <?=lang('template_add')?></a>
 </div>
-<div class="card-columns">
+<div class="row">
 	<?php foreach ($tpls as $key => $value): ?>
-        <div class="card">
-            <div class="card-header <?php if ($nonce_templet == $value['tplfile']) {
-				echo "bg-success text-white";
-			} ?>">
-				<?php echo $value['tplname']; ?>
-            </div>
-            <div class="card-body">
-                <a href="template.php?action=usetpl&tpl=<?php echo $value['tplfile']; ?>&token=<?php echo LoginAuth::genToken(); ?>">
-                    <img class="card-img-top" src="<?php echo TPLS_URL . $value['tplfile']; ?>/preview.jpg" alt="Card image cap">
-                </a>
-            </div>
-            <div class="card-footer">
-				<?php if ($value['author']): ?>
-/*vot*/             <div class="small"><?=lang('template_author')?>:
-						<?php if ($value['author_url']): ?>
-                            <a href="<?php echo $value['author_url']; ?>" target="_blank"><?php echo $value['author']; ?></a>
-						<?php else: ?>
-							<?php echo $value['author']; ?>
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header <?php if ($nonce_templet == $value['tplfile']) {
+					echo "bg-success text-white font-weight-bold";
+				} ?>">
+					<?php echo $value['tplname']; ?>
+                </div>
+                <div class="card-body">
+                    <a href="template.php?action=usetpl&tpl=<?php echo $value['tplfile']; ?>&token=<?php echo LoginAuth::genToken(); ?>">
+                        <img class="card-img-top" src="<?php echo TPLS_URL . $value['tplfile']; ?>/preview.jpg" alt="Card image cap">
+                    </a>
+                </div>
+                <div class="card-footer">
+					<?php if ($value['author']): ?>
+<!--vot-->          <div class="small"><?=lang('template_author')?>:
+							<?php if ($value['author_url']): ?>
+                                <a href="<?php echo $value['author_url']; ?>" target="_blank"><?php echo $value['author']; ?></a>
+							<?php else: ?>
+								<?php echo $value['author']; ?>
+							<?php endif; ?>
+                    </div>
+					<?php endif; ?>
+                    <div class="small">
+						<?php echo $value['tpldes']; ?>
+						<?php if ($value['tplurl']): ?>
+<!--vot-->              <a href="<?php echo $value['tplurl']; ?>" target="_blank"><?=lang('more_info')?></a>
 						<?php endif; ?>
                     </div>
-				<?php endif; ?>
-                <div class="small">
-					<?php echo $value['tpldes']; ?>
-					<?php if ($value['tplurl']): ?>
-/*vot*/                 <a href="<?php echo $value['tplurl']; ?>" target="_blank"><?=lang('more_info')?></a>
-					<?php endif; ?>
-                </div>
-                <div class="mt-3">
-<!--vot-->      <a class="badge badge-danger" href="javascript: em_confirm('<?php echo $value['tplfile']; ?>', 'tpl', '<?php echo LoginAuth::genToken(); ?>');"><?=lang('delete')?></a>
+                    <div class="mt-3">
+<!--vot-->              <a class="badge badge-danger" href="javascript: em_confirm('<?php echo $value['tplfile']; ?>', 'tpl', '<?php echo LoginAuth::genToken(); ?>');"><?=lang('delete')?></a>
+                    </div>
                 </div>
             </div>
         </div>

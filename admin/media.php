@@ -38,42 +38,28 @@ if ($action === 'lib') {
 }
 
 if ($action === 'upload') {
-	$editor = isset($_GET['editor']) ? 1 : 0; // Whether it comes from the upload from the Markdown editor
 	$attach = $_FILES['file'] ?? '';
-	if ($editor) {
-		$attach = $_FILES['editormd-image-file'] ?? '';
-	}
 
 	if (!$attach || $attach['error'] === 4) {
-		if ($editor) {
-			echo json_encode(['success' => 0, 'message' => 'upload error']);
-		} else {
-			header("HTTP/1.0 400 Bad Request");
-			echo "upload error";
-		}
+		header("HTTP/1.0 400 Bad Request");
+		echo "upload error";
 		exit;
 	}
 
-	$ret = uploadFileAjax($attach['name'], $attach['error'], $attach['tmp_name'], $attach['size']);
+	$ret = '';
+
+	addAction('upload_media', 'upload2local');
+	doOnceAction('upload_media', $attach, $ret);
 
 	if (empty($ret['success'])) {
-		if ($editor) {
-			echo json_encode($ret);
-		} else {
-			header("HTTP/1.0 400 Bad Request");
-			echo $ret['message'];
-		}
+		header("HTTP/1.0 400 Bad Request");
+		echo $ret['message'];
 		exit;
 	}
 
 	// Write attachment information
 	$aid = $Media_Model->addMedia($ret['file_info']);
-
-	if ($editor) {
-		echo json_encode($ret);
-	} else {
-		echo 'success';
-	}
+	echo 'success';
 }
 
 //Delete attachment

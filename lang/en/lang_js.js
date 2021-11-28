@@ -42,6 +42,9 @@ var LNG = {
  'nickname_exists'	: '(This nickname already exists)',//'(已存在该回复)',
  'comments_disabled'	: '(Comments disabled)',//'(禁止回复)',
  'comment_ok_moderation'	: '(Your comment saved successfully and is awaiting for moderation.)',//'(回复成功，等待管理员审核)',
+ 'chinese_must_have'	: 'The comment content must contain Chinese characters!',//'评论内容需要包含中文！',
+ 'email_invalid'	: 'The email format is wrong!',//'邮箱格式错误！',
+ 'url_invalid'		: 'URL format is wrong!',//'网址格式错误！',
 
 //---------------------------
 //admin/views/js/dropzone.min.js

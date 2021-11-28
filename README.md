@@ -42,5 +42,10 @@ www.emlog.net
 3. The installation process will not create a database, you need to create it in advance, click to confirm the installation, the installation is successful.
 
 
-## Software License
+## Special thanks
+
+[![JetBrains](https://raw.githubusercontent.com/kainonly/ngx-bit/main/resource/jetbrains.svg)](https://www.jetbrains.com/)
+
+
+## License
 The license under which Emlog software is released is GPLv3 (or higher) of the Free Software Foundation: [LICENSE](/license.txt)

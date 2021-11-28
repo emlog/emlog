@@ -1,4 +1,4 @@
-/*
+/**
  *markdown
  */
  
@@ -107,6 +107,7 @@
     overflow: auto;
     word-break: normal;
     word-break: keep-all;
+    border-collapse: collapse;
     margin-bottom: 16px
 }
 
@@ -138,7 +139,8 @@
 .markdown pre {
     padding: 10px;
     border: 1px solid #ddd;
-    background: #f6f6f6
+    background: #f6f6f6;
+    overflow: auto
 }
 
 .markdown img {

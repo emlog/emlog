@@ -95,13 +95,13 @@
                 <input type="hidden" name="gid" value=<?php echo $logid; ?>/>
                 <input type="hidden" name="author" id="author" value=<?php echo $author; ?>/>
 				<?php if ($logid < 0): ?>
-<!--vot-->          <input type="submit" value="<?=lang('post_publish')?>" onclick="return checkform();" class="btn btn-success"/>
-<!--vot-->          <input type="button" name="savedf" id="savedf" value="<?=lang('save_draft')?>" onclick="autosave(2);" class="btn btn-primary"/>
+<!--vot-->          <input type="submit" value="<?=lang('post_publish')?>" onclick="return checkform();" class="btn btn-sm btn-success"/>
+<!--vot-->          <input type="button" name="savedf" id="savedf" value="<?=lang('save_draft')?>" onclick="autosave(2);" class="btn btn-sm btn-primary"/>
 				<?php else: ?>
-<!--vot-->          <input type="submit" value="<?=lang('save_and_return')?>" onclick="return checkform();" class="btn btn-success"/>
-<!--vot-->          <input type="button" name="savedf" id="savedf" value="<?=lang('save')?>" onclick="autosave(2);" class="btn btn-primary"/>
+<!--vot-->          <input type="submit" value="<?=lang('save_and_return')?>" onclick="return checkform();" class="btn btn-sm btn-success"/>
+<!--vot-->          <input type="button" name="savedf" id="savedf" value="<?=lang('save')?>" onclick="autosave(2);" class="btn btn-sm btn-primary"/>
 					<?php if ($isdraft) : ?>
-<!--vot-->              <input type="submit" name="pubdf" id="pubdf" value="<?=lang('publish')?>" onclick="return checkform();" class="btn btn-success"/>
+<!--vot-->              <input type="submit" name="pubdf" id="pubdf" value="<?=lang('publish')?>" onclick="return checkform();" class="btn btn-sm btn-success"/>
 					<?php endif; ?>
 				<?php endif; ?>
                 <span id="save_info"></span>
@@ -122,7 +122,7 @@
             <div class="modal-body">
 <!--vot-->      <a href="#" id="mediaAdd" class="btn btn-sm btn-success shadow-sm mb-3"><?=lang('upload_files')?></a>
                 <form action="media.php?action=operate_media" method="post" name="form_media" id="form_media">
-                    <div class="card-columns">
+                    <div class="row">
                     </div>
                 </form>
             </div>
@@ -150,7 +150,7 @@
                 alert(response);
             });
             this.on("queuecomplete", function (file) {
-                $('#mediaModal').find('.modal-body .card-columns').load("./media.php?action=lib");
+                $('#mediaModal').find('.modal-body .row').load("./media.php?action=lib");
 <!--vot-->      $('#mediaAdd').html("<?=lang('upload_files')?>");
             });
         }
@@ -159,7 +159,7 @@
     $('#mediaModal').on('show.bs.modal', function (e) {
         var button = $(e.relatedTarget);
         var modal = $(this);
-        modal.find('.modal-body .card-columns').load(button.data("remote"));
+        modal.find('.modal-body .row').load(button.data("remote"));
     });
 </script>
 
@@ -227,7 +227,7 @@
             flowChart: false,
             autoFocus: false,
             sequenceDiagram: false,
-            imageUpload: true,
+            imageUpload: false,
             imageFormats: ["jpg", "jpeg", "gif", "png"],
             imageUploadURL: "media.php?action=upload&editor=1",
             syncScrolling: "single",

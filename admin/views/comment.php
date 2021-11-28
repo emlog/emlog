@@ -8,6 +8,10 @@
 <!--vot--><div class="alert alert-success"><?=lang('comment_audit_ok')?></div><?php endif; ?>
 <?php if (isset($_GET['active_hide'])): ?>
 <!--vot--><div class="alert alert-success"><?=lang('comment_hide_ok')?></div><?php endif; ?>
+<?php if (isset($_GET['active_top'])): ?>
+<!--vot--><div class="alert alert-success"><?=lang('sticked_ok')?></div><?php endif; ?>
+<?php if (isset($_GET['active_untop'])): ?>
+<!--vot--><div class="alert alert-success"><?=lang('unsticked_ok')?></div><?php endif; ?>
 <?php if (isset($_GET['active_edit'])): ?>
 <!--vot--><div class="alert alert-success"><?=lang('comment_edit_ok')?></div><?php endif; ?>
 <?php if (isset($_GET['active_rep'])): ?>
@@ -41,7 +45,7 @@
         </ul>
     </div>
 <?php endif; ?>
-<form action="comment.php?action=admin_all_coms" method="post" name="form_com" id="form_com">
+<form action="comment.php?action=batch_operation" method="post" name="form_com" id="form_com">
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="table-responsive">
@@ -68,11 +72,12 @@
 						$title = subString($value['title'], 0, 42);
 						$hide = $value['hide'];
 						$date = $value['date'];
+						$top = $value['top'];
 						doAction('adm_comment_display');
 						?>
                         <tr>
-                            <td width="19"><input type="checkbox" value="<?php echo $cid; ?>" name="com[]" class="ids"/></td>
-                            <td width="350">
+                            <td style="width: 19px;"><input type="checkbox" value="<?php echo $cid; ?>" name="com[]" class="ids"/></td>
+                            <td>
                                 <a href="#" data-toggle="modal" data-target="#replyModal"
                                    data-cid="<?php echo $cid; ?>"
                                    data-comment="<?php echo $comment; ?>"
@@ -81,6 +86,7 @@
 									<?php echo $comment; ?>
                                 </a>
 								<?php echo $ishide; ?>
+<!--vot-->							<?php if ($top == 'y'): ?><img src="./views/images/top.png" title="<?=lang('top')?>"/><?php endif; ?>
                             </td>
                             <td class="small">
 <!--vot-->                      <?php echo $poster; ?> <?php echo $mail; ?> <?php echo $ip_info; ?>
@@ -90,7 +96,10 @@
 								<?php endif; ?>
                             </td>
                             <td class="small"><?php echo $date; ?></td>
-                            <td class="small"><a href="<?php echo Url::log($gid); ?>"><?php echo $title; ?></a></td>
+                            <td class="small">
+                                <a href="<?php echo Url::log($gid); ?>" target="_blank"><?php echo $title; ?></a><br>
+<!--vot-->                      <a href="comment.php?gid=<?php echo $gid; ?>" class="badge badge-info"><?=lang('article_all_comments')?></a>
+                            </td>
                         </tr>
 					<?php endforeach; ?>
                     </tbody>
@@ -98,9 +107,11 @@
             </div>
             <div class="list_footer">
                 <div class="btn-group btn-group-sm" role="group">
-<!--vot-->        <a href="javascript:commentact('del');" class="btn btn-sm btn-danger"><?=lang('delete')?></a>
+<!--vot-->          <a href="javascript:commentact('top');" class="btn btn-sm btn-secondary"><?=lang('top')?></a>
+<!--vot-->          <a href="javascript:commentact('untop');" class="btn btn-sm btn-secondary"><?=lang('unstick')?></a>
 <!--vot-->        <a href="javascript:commentact('hide');" class="btn btn-sm btn-success"><?=lang('hide')?></a>
 <!--vot-->        <a href="javascript:commentact('pub');" class="btn btn-sm btn-success"><?=lang('approve')?></a>
+<!--vot-->        <a href="javascript:commentact('del');" class="btn btn-sm btn-danger"><?=lang('delete')?></a>
                 </div>
                 <input name="operate" id="operate" value="" type="hidden"/>
             </div>

@@ -33,31 +33,37 @@
 <!--vot-->  <li class="nav-item"><a class="nav-link" href="./store.php?action=plu"><?=lang('ext_store_plugins')?></a></li>
         </ul>
     </div>
-    <div class="card-columns">
+    <div class="row">
 		<?php foreach ($templates as $k => $v):
 			$icon = $v['icon'] ?: "./views/images/theme.png";
 			?>
-            <div class="card" style="min-height: 340px;">
-                <a href="<?php echo $v['buy_url']; ?>" target="_blank"><img class="card-img-top" src="<?php echo $icon; ?>"/></a>
-                <div class="card-body">
-<!--vot-->          <p class="card-text"><span class="badge badge-warning"><?=lang('template')?></span> <?php echo $v['name']; ?></p>
-                    <p class="card-text text-muted small">
-                        <span class="small"><?php echo $v['info']; ?></span><br><br>
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <a class="p-1" href="<?php echo $v['buy_url']; ?>" target="_blank">
+                        <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="<?php echo $icon; ?>">
+                    </a>
+                    <div class="card-body">
+<!--vot-->              <p class="card-text"><?php echo $v['name']; ?> <span class="badge badge-info"><?=lang('template')?></span></p>
+                        <p class="card-text text-muted small">
+                            <span class="small"><?php echo $v['info']; ?></span><br><br>
 <!--vot-->              <?=lang('price')?>: <?php echo $v['price'] > 0 ? $v['price'] . ' ' . lang('price_unit') : lang('free'); ?><br>
 <!--vot-->              <?=lang('developer')?>: <?php echo $v['author']; ?><br>
+<!--vot-->              <?=lang('version_number')?>: <?php echo $v['ver']; ?><br>
 <!--vot-->              <?=lang('update_time')?>: <?php echo $v['update_time']; ?><br>
-                    </p>
-                    <p class="card-text text-right">
-						<?php if ($v['price'] > 0): ?>
+                        </p>
+                        <p class="card-text text-right">
+							<?php if ($v['price'] > 0): ?>
 <!--vot-->                  <a href="<?php echo $v['buy_url']; ?>" class="btn btn-sm btn-warning btn-sm" target="_blank"><?=lang('go_buy')?></a>
-						<?php else: ?>
+							<?php else: ?>
 <!--vot-->                  <a href="./store.php?action=install&source=<?php echo urlencode($v['download_url']); ?>&type=tpl" class="btn btn-success btn-sm"><?=lang('install')?></a>
-						<?php endif; ?>
-                    </p>
+							<?php endif; ?>
+                        </p>
+                    </div>
                 </div>
             </div>
 		<?php endforeach; ?>
     </div>
+
 <?php endif; ?>
 <script>
     $("#menu_store").addClass('active');

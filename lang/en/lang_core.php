@@ -76,6 +76,7 @@ $lang = array(
  'search'		=> 'Search',//'搜索',
  'widget_custom'	=> 'Custom widget',//'自定义组件',
  'search_placeholder'	=> 'Search...and Enter',//'Search...and Enter',
+ 'pro_unregistered'	=> ' Unregistered PRO version',//' 未注册的PRO版本',
 
 //---------------------------
 //include/lib/view.php

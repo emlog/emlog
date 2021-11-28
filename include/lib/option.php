@@ -6,8 +6,8 @@
 
 class Option {
 
-	const EMLOG_VERSION = 'pro 1.0.8';               //Version number
-	const EMLOG_VERSION_TIMESTAMP = 1635085374;      //Version timestamp
+	const EMLOG_VERSION = 'pro 1.1.0';               //Version number
+	const EMLOG_VERSION_TIMESTAMP = 1637590554;      //Version timestamp
 	const ICON_MAX_W = 160;                          //Maximum avatar thumbnail width
 	const ICON_MAX_H = 160;                          //Maximum avatar thumbnail height
 	const UPLOADFILE_PATH = '../content/uploadfile/';//Upload path
@@ -46,8 +46,11 @@ class Option {
 	static function getAll() {
 		$CACHE = Cache::getInstance();
 		$options_cache = $CACHE->readCache('options');
-		$options_cache['site_title'] = $options_cache['site_title'] ? $options_cache['site_title'] : $options_cache['blogname'];
-		$options_cache['site_description'] = $options_cache['site_description'] ? $options_cache['site_description'] : $options_cache['bloginfo'];
+		$options_cache['site_title'] = $options_cache['site_title'] ?: $options_cache['blogname'];
+		$options_cache['site_description'] = $options_cache['site_description'] ?: $options_cache['bloginfo'];
+		if (empty($options_cache['emkey'])) {
+/*vot*/			$options_cache['footer_info'] .= lang('pro_unregistered');
+		}
 		return $options_cache;
 	}
 

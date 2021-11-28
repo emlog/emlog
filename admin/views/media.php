@@ -9,31 +9,33 @@
 </div>
 
 <form action="media.php?action=operate_media" method="post" name="form_media" id="form_media">
-    <div class="card-columns">
+    <div class="row">
 		<?php foreach ($medias as $key => $value):
-			$media_url = getFileUrl($value['filepath']);
+			$media_url = rmUrlParams(getFileUrl($value['filepath']));
 			$media_name = $value['filename'];
-			if (isImage($value['filepath'])) {
+			if (isImage($value['mimetype'])) {
 				$media_icon = getFileUrl($value['filepath_thum']);
 			} else {
 				$media_icon = "./views/images/fnone.png";
 			}
 			?>
-            <div class="card" style="min-height: 280px;">
-                <a href="<?php echo $media_url; ?>" target="_blank""><img class="card-img-top" src="<?php echo $media_icon; ?>"/></a>
-                <div class="card-body">
-                    <p class="card-text text-muted small">
-						<?php echo $media_name; ?><br>
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <a href="<?php echo $media_url; ?>" target="_blank""><img class="card-img-top" src="<?php echo $media_icon; ?>"/></a>
+                    <div class="card-body">
+                        <p class="card-text text-muted small">
+							<?php echo $media_name; ?><br>
 <!--vot-->              <?=lang('create_time')?>: <?php echo $value['addtime']; ?><br>
 <!--vot-->              <?=lang('file_size')?>: <?php echo $value['attsize']; ?>,
-						<?php if ($value['width'] && $value['height']): ?>
+							<?php if ($value['width'] && $value['height']): ?>
 <!--vot-->              <?=lang('img_size')?>: <?php echo $value['width'] ?>x<?php echo $value['height'] ?>
-						<?php endif; ?>
-                    </p>
-                    <p class="card-text d-flex justify-content-between">
+							<?php endif; ?>
+                        </p>
+                        <p class="card-text d-flex justify-content-between">
 <!--vot-->              <a href="javascript: em_confirm(<?php echo $value['aid']; ?>, 'media', '<?php echo LoginAuth::genToken(); ?>');" class="text-danger small"><?=lang('delete')?></a>
-                        <input type="checkbox" name="aids[]" value="<?php echo $value['aid']; ?>" class="aids"/>
-                    </p>
+                            <input type="checkbox" name="aids[]" value="<?php echo $value['aid']; ?>" class="aids"/>
+                        </p>
+                    </div>
                 </div>
             </div>
 		<?php endforeach; ?>

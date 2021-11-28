@@ -5,7 +5,7 @@
 <!--vot--><div class="alert alert-success"><?=lang('em_reg_ok')?></div><?php endif; ?>
 <?php if (isset($_GET['error_b'])): ?>
 <!--vot--><div class="alert alert-danger"><?=lang('reg_failed')?></div><?php endif; ?>
-<?php if (ISREG === false) : ?>
+<?php if (!Register::isRegLocal()) : ?>
     <div class="container-fluid">
         <div class="text-center">
 			<?php if (isset($_GET['error_store'])): ?>

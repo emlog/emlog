@@ -34,9 +34,9 @@
                 <thead>
                 <tr>
 <!--vot-->          <th><?=lang('plugin_name')?></th>
-<!--vot-->          <th><?=lang('version')?></th>
-<!--vot-->          <th><?=lang('description')?></th>
 <!--vot-->          <th><?=lang('plugin_status')?></th>
+<!--vot-->          <th><?=lang('description')?></th>
+<!--vot-->          <th><?=lang('version')?></th>
 <!--vot-->          <th><?=lang('operation')?></th>
                 </tr>
                 </thead>
@@ -60,11 +60,14 @@
 						?>
                         <tr>
                             <td><?php echo $val['Name']; ?></td>
-                            <td><?php echo $val['Version']; ?></td>
+                            <td id="plugin_<?php echo $i; ?>">
+                                <a href="./plugin.php?action=<?php echo $plug_action; ?>&plugin=<?php echo $key; ?>&token=<?php echo LoginAuth::genToken(); ?>"><img
+                                            src="./views/images/plugin_<?php echo $plug_state; ?>.gif" title="<?php echo $plug_state_des; ?>"></a>
+                            </td>
                             <td>
 								<?php echo $val['Description']; ?>
 <!--vot-->                      <?php if ($val['Url'] != ''): ?><a href="<?php echo $val['Url']; ?>" target="_blank"><?=lang('more_info')?></a><?php endif; ?>
-                                <div style="margin-top:5px;">
+                                <div class="small mt-3">
 <!--vot-->                          <?php if ($val['ForEmlog'] != ''): ?><?=lang('ok_for_emlog')?>: <?php echo $val['ForEmlog']; ?>&nbsp | &nbsp<?php endif; ?>
 									<?php if ($val['Author'] != ''): ?>
 <!--vot-->                              <?=lang('user')?>: <?php if ($val['AuthorUrl'] != ''): ?>
@@ -75,10 +78,7 @@
 									<?php endif; ?>
                                 </div>
                             </td>
-                            <td id="plugin_<?php echo $i; ?>">
-                                <a href="./plugin.php?action=<?php echo $plug_action; ?>&plugin=<?php echo $key; ?>&token=<?php echo LoginAuth::genToken(); ?>"><img
-                                            src="./views/images/plugin_<?php echo $plug_state; ?>.gif" title="<?php echo $plug_state_des; ?>" align="absmiddle" border="0"></a>
-                            </td>
+                            <td><?php echo $val['Version']; ?></td>
                             <td>
 <!--vot-->                      <a href="javascript: em_confirm('<?php echo $key; ?>', 'plu', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-danger"><?=lang('delete')?></a>
                             </td>
@@ -125,7 +125,7 @@
 
 <script>
     setTimeout(hideActived, 2600);
-    $("#menu_category_sys").addClass('active');
-    $("#menu_sys").addClass('show');
+    $("#menu_category_ext").addClass('active');
+    $("#menu_ext").addClass('show');
     $("#menu_plug").addClass('active');
 </script>

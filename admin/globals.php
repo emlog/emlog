@@ -22,9 +22,7 @@ const MSGCODE_SUCCESS = 200;                                     // Success
 $sta_cache = $CACHE->readCache('sta');
 $user_cache = $CACHE->readCache('user');
 $action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
-$admin_path_code = isset($_GET['s']) ? addslashes($_GET['s']) : '';
-
-define('ISREG', Register::isRegLocal());
+$admin_path_code = isset($_GET['s']) ? addslashes(htmlClean($_GET['s'])) : '';
 
 if ($action == 'login') {
 	if (defined('ADMIN_PATH_CODE') && $admin_path_code !== ADMIN_PATH_CODE) {
@@ -58,10 +56,10 @@ if (ISLOGIN === false) {
 }
 
 $request_uri = strtolower(substr(basename($_SERVER['SCRIPT_NAME']), 0, -4));
-if (ROLE === ROLE_WRITER && !in_array($request_uri, array('article_write', 'article', 'twitter', 'blogger', 'comment', 'index', 'article_save'))) {
+if (ROLE === ROLE_WRITER && !in_array($request_uri, array('article_write', 'article', 'twitter', 'media', 'blogger', 'comment', 'index', 'article_save'))) {
 /*vot*/	emMsg(lang('no_permission'), './');
 }
 
-if (!ISREG && mt_rand(1,10) === 10) {
+if (!Register::isRegLocal() && mt_rand(1,10) === 10) {
 	emDirect("register.php");
 }

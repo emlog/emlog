@@ -173,11 +173,9 @@ class Log_Model {
 			$cookiePassword = isset($_COOKIE['em_logpwd_' . $row['gid']]) ? addslashes(trim($_COOKIE['em_logpwd_' . $row['gid']])) : '';
 			if (!empty($row['password']) && $cookiePassword != $row['password']) {
 /*vot*/         		$row['excerpt'] = '<p>['.lang('post_protected_by_password_click_title').']</p>';
-			} elseif (!empty($row['excerpt'])) {
-/*vot*/             		$row['excerpt'] .= '<span class="readmore"><a href="' . Url::log($row['logid']) . '">'.lang('read_more').'</a></span>';
 			}
 
-			$row['log_description'] = $this->Parsedown->text(empty($row['excerpt']) ? breakLog($row['content'], $row['gid']) : $row['excerpt']);
+			$row['log_description'] = $this->Parsedown->text(empty($row['excerpt']) ? $row['content'] : $row['excerpt']);
 			$row['attachment'] = '';
 			$row['tag'] = '';
 /*vot*/     		$row['tbcount'] = 0;//Compatible not deleted Quote of template

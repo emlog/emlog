@@ -78,8 +78,8 @@ function focusEle(id) {
 }
 
 function hideActived() {
-    $(".alert-success").hide();
-    $(".alert-danger").hide();
+    $(".alert-success").slideUp(300);
+    $(".alert-danger").slideUp(300);
 }
 
 function displayToggle(id, keep) {
@@ -149,6 +149,12 @@ function insert_media_video(fileurl) {
 
 function insert_media(fileurl, filename) {
     Editor.insertValue('[' + filename + '](' + fileurl + ')\n\n');
+}
+
+function insert_conver(imgsrc) {
+    $('#cover_image').attr('src', imgsrc);
+    $('#cover').val(imgsrc);
+    $('#cover_rm').show();
 }
 
 // act: 1 auto save, 2 manual save: click save button to save

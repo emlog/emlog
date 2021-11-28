@@ -7,7 +7,6 @@
 
 // Load the core Lang File
 /*vot*/ load_language('core');
-
 function emAutoload($class) {
 	$class = strtolower($class);
 
@@ -19,8 +18,6 @@ function emAutoload($class) {
 		require_once(EMLOG_ROOT . '/include/lib/' . $class . '.php');
 	} elseif (file_exists(EMLOG_ROOT . '/include/controller/' . $class . '.php')) {
 		require_once(EMLOG_ROOT . '/include/controller/' . $class . '.php');
-	} else {
-/*vot*/        emMsg($class . lang('_load_failed'));
 	}
 }
 
@@ -223,15 +220,28 @@ function getFileSuffix($fileName) {
  * @return string
  */
 function getFileUrl($filePath) {
-	return BLOG_URL . substr($filePath, 3);
+	if (!stristr($filePath, 'http')) {
+		return BLOG_URL . substr($filePath, 3);
+	}
+	return $filePath;
+}
+
+/**
+ * 去除url的参数
+ */
+function rmUrlParams($url) {
+	$urlInfo = explode("?", $url);
+	if (empty($urlInfo[0])) {
+		return $url;
+	}
+	return $urlInfo[0];
 }
 
 /**
  * Check if the file is an image, based on the file name extension
  */
-function isImage($fileName) {
-	$extension = getFileSuffix($fileName);
-	if (in_array($extension, array('gif', 'jpg', 'jpeg', 'png'))) {
+function isImage($mimetype) {
+	if (strstr($mimetype, "image")) {
 		return true;
 	}
 	return false;
@@ -300,8 +310,6 @@ function addAction($hook, $actionFunc) {
 
 /**
  * Implementation of the hanging hook function, support multi-parameter eg:doAction('post_comment', $author, $email, $url, $comment);
- *
- * @param string $hook
  */
 function doAction($hook) {
 	global $emHooks;
@@ -314,17 +322,25 @@ function doAction($hook) {
 }
 
 /**
- * Post split
- *
- * @param string $content Post Content
- * @param int $lid Post id
+ * 执行挂在钩子上的第一个函数,仅支持行一次，且ret采用引用传递
  */
-function breakLog($content, $lid) {
-	if (Option::get('isexcerpt') == 'y') {
-/*vot*/        return subString(trim(strip_tags($content)), 0, Option::get('excerpt_subnum')) . '<span class="readmore"><a href="' . Url::log($lid) . '">'.lang('read_more').'</a></span>';
-	} else {
-		return $content;
+function doOnceAction($hook, $input, &$ret) {
+	global $emHooks;
+	$args = [$input, &$ret];
+	$func = !empty($emHooks[$hook][0]) ? $emHooks[$hook][0] : '';
+	if ($func) {
+		call_user_func_array($func, $args);
 	}
+}
+
+/**
+ * 截取文章内容前len个字符
+ */
+function subContent($content, $len, $clean = 0) {
+	if ($clean) {
+		$content = strip_tags($content);
+	}
+	return subString($content, 0, $len);
 }
 
 /**
@@ -367,28 +383,24 @@ function getRandStr($length = 12, $special_chars = true) {
 	return $randStr;
 }
 
-function emFilePutContent($data) {
-	$fpath = Option::UPLOADFILE_PATH . gmdate('Ym');
-	$fname = $fpath . '/' . time() . '.png';
+/**
+ * 上传文件到当前服务器
+ * @param $attach array 文件FILE信息
+ * @param $result array 上传结果
+ */
+function upload2local($attach, &$result) {
+	$fileName = $attach['name'];
+	$errorNum = $attach['error'];
+	$tmpFile = $attach['tmp_name'];
+	$fileSize = $attach['size'];
 
-	if (!is_dir($fpath) && !mkdir($fpath)) {
-		return false;
-	}
-	$ret = file_put_contents($fname, $data);
-	if (!$ret) {
-		return false;
-	}
-	return $fname;
-}
-
-function uploadFileAjax($fileName, $errorNum, $tmpFile, $fileSize) {
-/*vot*/	$isthum = Option::get('isthumbnail') === 'y'; //Whether to generate thumbnails
+	$isthum = Option::get('isthumbnail') === 'y';
 	$fileName = Database::getInstance()->escape_string($fileName);
 	$type = Option::getAttType();
 
-	$result = upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isthum);
+	$ret = upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isthum);
 	$success = 0;
-	switch ($result) {
+	switch ($ret) {
 		case '100':
 /*vot*/		$message = lang('file_size_exceeds_system') . ini_get('upload_max_filesize') . lang('_limit');
 			break;
@@ -400,7 +412,7 @@ function uploadFileAjax($fileName, $errorNum, $tmpFile, $fileSize) {
 /*vot*/		$message = lang('file_type_not_supported');
 			break;
 		case '103':
-			$ret = changeFileSize(Option::getAttMaxSize());
+			$r = changeFileSize(Option::getAttMaxSize());
 /*vot*/		$message = lang('file_size_exceeds_') . $ret . lang('_of_limit');
 			break;
 		case '105':
@@ -412,11 +424,11 @@ function uploadFileAjax($fileName, $errorNum, $tmpFile, $fileSize) {
 			break;
 	}
 
-	return [
+	$result = [
 		'success'   => $success, // 1 success, 0 failure
 		'message'   => $message,
-		'url'       => $success ? getFileUrl($result['file_path']) : '',
-		'file_info' => $success ? $result : [],
+		'url'       => $success ? getFileUrl($ret['file_path']) : '',
+		'file_info' => $success ? $ret : [],
 	];
 }
 
@@ -811,8 +823,7 @@ EOT;
 	}
 	echo <<<EOT
 <title>$title</title>
-<style type="text/css">
-<!--
+<style>
 body {
     background-color:#F7F7F7;
     font-family: Arial;
@@ -834,7 +845,6 @@ body {
     line-height: 18px;
     margin: 5px 20px;
 }
--->
 </style>
 </head>
 <body>
@@ -1027,8 +1037,8 @@ function uploadCropImg() {
 		exit;
 	}
 
-	$ret = uploadFileAjax($attach['name'], $attach['error'], $attach['tmp_name'], $attach['size']);
-
+	$ret = '';
+	upload2local($attach, $ret);
 	if (empty($ret['success'])) {
 		echo "error";
 		exit;

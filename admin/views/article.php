@@ -91,14 +91,12 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
                     <tr>
                         <th><input type="checkbox" id="checkAll"/></th>
 <!--vot-->          <th><?=lang('title')?></th>
-						<?php if (!$draft): ?>
-<!--vot-->              <th><?=lang('view')?></th>
-						<?php endif; ?>
+<!--vot-->          <th><a href="article.php?sortComm=<?php echo $sortComm . $sorturl; ?>"><?=lang('comments')?></a></th>
+<!--vot-->          <th><a href="article.php?sortView=<?php echo $sortView . $sorturl; ?>"><?=lang('reads')?></a></th>
+
 <!--vot-->          <th><?=lang('user')?></th>
 <!--vot-->          <th><?=lang('category')?></th>
 <!--vot-->          <th><a href="article.php?sortDate=<?php echo $sortDate . $sorturl; ?>"><?=lang('time')?></a></th>
-<!--vot-->          <th><a href="article.php?sortComm=<?php echo $sortComm . $sorturl; ?>"><?=lang('comments')?></a></th>
-<!--vot-->          <th><a href="article.php?sortView=<?php echo $sortView . $sorturl; ?>"><?=lang('reads')?></a></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -108,10 +106,10 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 						$author_role = $user_cache[$value['author']]['role'];
 						?>
                         <tr>
-                            <td><input type="checkbox" name="blog[]" value="<?php echo $value['gid']; ?>" class="ids"/></td>
+                            <td style="width: 20px;"><input type="checkbox" name="blog[]" value="<?php echo $value['gid']; ?>" class="ids"/></td>
                             <td><a href="article.php?action=edit&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a>
-<!--vot-->					    <?php if ($value['top'] == 'y'): ?><img src="./views/images/top.png" align="top" title="<?=lang('home_top')?>"/><?php endif; ?>
-<!--vot-->					    <?php if ($value['sortop'] == 'y'): ?><img src="./views/images/sortop.png" align="top" title="<?=lang('category_top')?>"/><?php endif; ?>
+<!--vot-->					    <?php if ($value['top'] == 'y'): ?><img src="./views/images/top.png" title="<?=lang('home_top')?>"/><?php endif; ?>
+<!--vot-->					    <?php if ($value['sortop'] == 'y'): ?><img src="./views/images/sortop.png" title="<?=lang('category_top')?>"/><?php endif; ?>
 							    <?php if (!$draft && $value['checked'] == 'n'): ?>
 <!--vot-->                          <span style="color:red;">[<?=lang('pending')?>]</span><?php endif; ?>
                                 <div>
@@ -124,16 +122,11 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 									<?php endif; ?>
                                 </div>
                             </td>
-							<?php if (!$draft): ?>
-                                <td>
-                                    <a href="<?php echo Url::log($value['gid']); ?>" target="_blank"><img src="./views/images/vlog.gif"/></a>
-                                </td>
-							<?php endif; ?>
+                            <td><a href="comment.php?gid=<?php echo $value['gid']; ?>" class="badge badge-info"><?php echo $value['comnum']; ?></a></td>
+                            <td><a href="<?php echo Url::log($value['gid']); ?>" class="badge badge-secondary" target="_blank"><?php echo $value['views']; ?></a></td>
                             <td><a href="article.php?uid=<?php echo $value['author'] . $isdraft; ?>"><?php echo $author; ?></a></td>
                             <td><a href="article.php?sid=<?php echo $value['sortid'] . $isdraft; ?>"><?php echo $sortName; ?></a></td>
                             <td class="small"><?php echo $value['date']; ?></td>
-                            <td><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
-                            <td><?php echo $value['views']; ?></a></td>
                         </tr>
 					<?php endforeach; ?>
                     </tbody>
@@ -186,19 +179,18 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 				<?php endif; ?>
 
                 <div class="btn-group btn-group-sm" role="group">
-<!--vot-->          <a href="javascript:logact('del');" class="btn btn-sm btn-danger"><?=lang('delete')?></a>
 					<?php if ($draft): ?>
 <!--vot-->              <a href="javascript:logact('pub');" class="btn btn-sm btn-success"><?=lang('publish')?></a>
 					<?php else: ?>
 <!--vot-->              <a href="javascript:logact('hide');" class="btn btn-sm btn-success"><?=lang('add_draft')?></a>
 					<?php endif; ?>
+<!--vot-->          <a href="javascript:logact('del');" class="btn btn-sm btn-danger"><?=lang('delete')?></a>
                 </div>
             </div>
         </form>
 <!--vot--><div class="page"><?php echo $pageurl; ?> (<?=lang('have')?> <?php echo $logNum; ?> <?=lang('number_of_items')?> <?php echo $draft ? lang('_drafts') : lang('_articles'); ?>)</div>
     </div>
 </div>
-
 <script>
     $("#menu_category_content").addClass('active');
     $("#menu_content").addClass('show');

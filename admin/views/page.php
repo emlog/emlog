@@ -38,7 +38,7 @@
 /*vot*/						'<a href="' . $navibar[$value['gid']]['url'] . '" target="_blank" title="' . lang('page_view') . '"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>';
 						?>
                         <tr>
-                            <td><input type="checkbox" name="page[]" value="<?php echo $value['gid']; ?>" class="ids"/></td>
+                            <td style="width: 19px;"><input type="checkbox" name="page[]" value="<?php echo $value['gid']; ?>" class="ids"/></td>
                             <td>
                                 <a href="page.php?action=mod&id=<?php echo $value['gid'] ?>"><?php echo $value['title']; ?></a>
                             </td>
@@ -53,9 +53,9 @@
             </div>
             <div class="list_footer">
                 <div class="btn-group btn-group-sm" role="group">
-<!--vot-->          <a href="javascript:pageact('del');" class="btn btn-sm btn-danger"><?=lang('delete')?></a>
 <!--vot-->          <a href="javascript:pageact('hide');" class="btn btn-sm btn-success"><?=lang('make_draft')?></a>
 <!--vot-->          <a href="javascript:pageact('pub');" class="btn btn-sm btn-success"><?=lang('publish')?></a>
+<!--vot-->          <a href="javascript:pageact('del');" class="btn btn-sm btn-danger"><?=lang('delete')?></a>
                 </div>
                 <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
                 <input name="operate" id="operate" value="" type="hidden"/>
@@ -64,7 +64,6 @@
         </div>
     </div>
 </form>
-
 <script>
     $("#menu_page").addClass('active');
     setTimeout(hideActived, 2600);

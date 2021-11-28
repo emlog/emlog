@@ -43,9 +43,7 @@
         </div>
     </div>
 </form>
-
 <!--Resource Library-->
-
 <div class="modal" id="mediaModal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
         <div class="modal-content">
@@ -58,7 +56,7 @@
             <div class="modal-body">
 <!--vot-->      <a href="#" id="mediaAdd" class="btn btn-sm btn-success shadow-sm mb-3"><?=lang('upload_files')?></a>
                 <form action="media.php?action=operate_media" method="post" name="form_media" id="form_media">
-                    <div class="card-columns">
+                    <div class="row">
                     </div>
                 </form>
             </div>
@@ -86,7 +84,7 @@
                 alert(response);
             });
             this.on("queuecomplete", function (file) {
-                $('#mediaModal').find('.modal-body .card-columns').load("./media.php?action=lib");
+                $('#mediaModal').find('.modal-body .row').load("./media.php?action=lib");
 <!--vot-->      $('#mediaAdd').html("<?=lang('upload_files')?>");
             });
         }
@@ -95,7 +93,7 @@
     $('#mediaModal').on('show.bs.modal', function (e) {
         var button = $(e.relatedTarget);
         var modal = $(this);
-        modal.find('.modal-body .card-columns').load(button.data("remote"));
+        modal.find('.modal-body .row').load(button.data("remote"));
     });
 </script>
 
@@ -155,6 +153,6 @@
                     this.addKeyMap(articleSave);  
             }
         });
-        Editor_page.setToolbarAutoFixed(false);
+        Editor.setToolbarAutoFixed(false);
     });
 </script>

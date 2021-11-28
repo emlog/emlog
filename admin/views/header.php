@@ -31,7 +31,7 @@
 <div id="wrapper">
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion sd-hidden" id="accordionSidebar">
         <li class="nav-item active emlog_title" id="menu_home">
-<!--vot-->  <a class="nav-link" href="./">EMLOG PRO <?php if (ISREG === false) : ?><?=lang('unregistered')?><?php endif; ?></a>
+<!--vot-->  <a class="nav-link" href="./">EMLOG PRO <?php if (!Register::isRegLocal()) : ?><?=lang('unregistered')?><?php endif; ?></a>
         </li>
         <hr class="sidebar-divider my-0">
 		<?php if (ROLE == ROLE_ADMIN): ?>
@@ -59,13 +59,13 @@
         <li class="nav-item" id="menu_cm">
 <!--vot-->  <a class="nav-link" href="comment.php"><i class="icofont-comment"></i><span><?= lang('comments') ?></span></a>
         </li>
-		<?php if (ROLE == ROLE_ADMIN): ?>
-            <li class="nav-item" id="menu_twitter">
+        <li class="nav-item" id="menu_twitter">
 <!--vot-->      <a class="nav-link" href="twitter.php"><i class="icofont-penalty-card"></i><span><?= lang('twitters') ?></span></a>
-            </li>
-            <li class="nav-item" id="menu_media">
+        </li>
+        <li class="nav-item" id="menu_media">
 <!--vot-->      <a class="nav-link" href="media.php"><i class="icofont-image"></i><span><?= lang('resources') ?></span></a>
-            </li>
+        </li>
+		<?php if (ROLE == ROLE_ADMIN): ?>
             <li class="nav-item" id="menu_page">
 <!--vot-->      <a class="nav-link" href="page.php"><i class="icofont-page"></i><span><?= lang('pages') ?></span></a>
             </li>
@@ -82,6 +82,17 @@
                     </div>
                 </div>
             </li>
+            <li class="nav-item" id="menu_category_ext">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_ext" aria-expanded="true" aria-controls="menu_ext">
+<!--vot-->          <i class="icofont-plugin"></i><span><?=lang('extensions')?></span>
+                </a>
+                <div id="menu_ext" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+<!--vot-->              <a class="collapse-item" id="menu_plug" href="plugin.php"><?=lang('plugins')?></a>
+						<?php doAction('adm_menu_ext'); ?>
+                    </div>
+                </div>
+            </li>
             <hr class="sidebar-divider d-none d-md-block">
             <li class="nav-item" id="menu_store">
 <!--vot-->      <a class="nav-link" href="store.php"><i class="icofont-shopping-cart"></i><span><?= lang('store') ?></span></a>
@@ -92,10 +103,9 @@
                 </a>
                 <div id="menu_sys" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-<!--vot-->          <a class="collapse-item" id="menu_setting" href="configure.php"><?= lang('settings') ?></a>
 <!--vot-->          <a class="collapse-item" id="menu_user" href="user.php"><?= lang('users') ?></a>
 <!--vot-->          <a class="collapse-item" id="menu_data" href="data.php"><?= lang('data') ?></a>
-<!--vot-->          <a class="collapse-item" id="menu_plug" href="plugin.php"><?= lang('plugins') ?></a>
+<!--vot-->          <a class="collapse-item" id="menu_setting" href="configure.php"><?= lang('settings') ?></a>
                     </div>
                 </div>
             </li>

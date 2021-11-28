@@ -319,6 +319,7 @@ INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,author,views,comnum
 DROP TABLE IF EXISTS {$db_prefix}attachment;
 CREATE TABLE {$db_prefix}attachment (
   aid int(11) unsigned NOT NULL auto_increment COMMENT 'Resource file table',
+  author int(11) unsigned NOT NULL default '1' COMMENT 'Author UID',
   blogid int(11) unsigned NOT NULL default '0' COMMENT 'Post ID (obsolete)',
   filename varchar(255) NOT NULL default '' COMMENT 'File name',
   filesize int(11) NOT NULL default '0' COMMENT 'File size',
@@ -329,20 +330,21 @@ CREATE TABLE {$db_prefix}attachment (
   mimetype varchar(64) NOT NULL default '' COMMENT 'File mime type',
   thumfor int(11) NOT NULL default 0 COMMENT 'Thumbnail for original resource ID (obsolete)',
   PRIMARY KEY  (aid),
-  KEY blogid (blogid)
+  KEY thum_uid (thumfor,author)
 )" . $table_charset_sql . "
 DROP TABLE IF EXISTS {$db_prefix}comment;
 CREATE TABLE {$db_prefix}comment (
   cid int(11) unsigned NOT NULL auto_increment COMMENT 'Comment ID',
   gid int(11) unsigned NOT NULL default '0' COMMENT 'Article ID',
   pid int(11) unsigned NOT NULL default '0' COMMENT 'Parent comment ID',
-  date bigint(20) NOT NULL COMMENT 'Creation time',
+  top enum('n','y') NOT NULL default 'n' COMMENT 'Top',
   poster varchar(255) NOT NULL default '' COMMENT 'Publisher',
   comment text NOT NULL COMMENT 'Comment content',
   mail varchar(255) NOT NULL default '' COMMENT 'Email',
   url varchar(255) NOT NULL default '' COMMENT 'Homepage URL',
   ip varchar(128) NOT NULL default '' COMMENT 'IP address',
   hide enum('n','y') NOT NULL default 'n' COMMENT 'Hide or not',
+  date bigint(20) NOT NULL COMMENT 'Creation time',
   PRIMARY KEY  (cid),
   KEY gid (gid),
   KEY date (date),
@@ -400,8 +402,6 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('ischkreply'
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isurlrewrite','0');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isalias','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isalias_html','n');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isexcerpt','n');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('excerpt_subnum','300');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istreply','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('timezone','UTC');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('active_plugins','$def_plugin');

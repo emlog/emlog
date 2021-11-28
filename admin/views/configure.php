@@ -102,16 +102,6 @@
                 </select>
             </div>
 
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="y" name="isexcerpt" id="isexcerpt" <?php echo $conf_isexcerpt; ?> />
-<!--vot-->      <label class="form-check-label"><?=lang('auto_summary')?></label>
-            </div>
-
-            <div class="form-check form-inline">
-<!--vot-->      <label class="form-check-label"><?=lang('auto_summary_length')?></label>
-<!--vot-->      <input type="text" name="excerpt_subnum" value="<?php echo Option::get('excerpt_subnum'); ?>" class="form-control" style="width:60px;"/> <?=lang('characters_as_summary')?>
-            </div>
-
             <hr>
 
             <div class="form-group form-inline">

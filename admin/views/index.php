@@ -50,7 +50,7 @@
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             EMLOG
-							<?php if (ISREG === false) : ?>
+							<?php if (!Register::isRegLocal()) : ?>
 <!--vot-->                      <a href="register.php"><span class="badge badge-danger"><?php echo Option::EMLOG_VERSION; ?> <?=lang('unregistered')?></span></a>
 							<?php else: ?>
 <!--vot-->                      <span class="badge badge-success"><?php echo Option::EMLOG_VERSION; ?> <?=lang('registered_already')?></span>
@@ -66,17 +66,18 @@
         </div>
     </div>
     <div class="row">
-		<?php if (ISREG === false) : ?>
+		<?php if (!Register::isRegLocal()) : ?>
             <div class="col-lg-6 mb-4">
                 <div class="card bg-danger text-white shadow">
                     <div class="card-body">
 <!--vot-->          <h4><?=lang('emlog_reg_advantages')?></h4>
-<!--vot-->      <div><?=lang('advantage1')?></div>
-<!--vot-->      <div><?=lang('advantage2')?></div>
-<!--vot-->      <div><?=lang('advantage3')?></div>
-<!--vot-->      <div><?=lang('advantage4')?></div>
+<!--vot-->          <div><?=lang('advantage1')?></div>
+<!--vot-->          <div><?=lang('advantage2')?></div>
+<!--vot-->          <div><?=lang('advantage3')?></div>
+<!--vot-->          <div><?=lang('advantage4')?></div>
                     </div>
                     <div class="card-footer text-center">
+<!--vot-->              <a href="https://emlog.net/register" target="_blank" class="btn btn-sm btn-primary shadow-lg"><?=lang('get_emkey')?></a>
 <!--vot-->              <a href="register.php" class="btn btn-sm btn-success shadow-lg"><?=lang('register_now')?></a>
                     </div>
                 </div>
