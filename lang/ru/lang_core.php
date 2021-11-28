@@ -76,6 +76,7 @@ $lang = array(
  'search'		=> 'Поиск',//'搜索',
  'widget_custom'	=> 'Произвольный виджет',//'自定义组件',
  'search_placeholder'	=> 'Искомые слова... и Enter',//'Search...and Enter',
+ 'pro_unregistered'	=> ' Незарегистрированная PRO версия',//' 未注册的PRO版本',
 
 //---------------------------
 //include/lib/view.php
