@@ -13,21 +13,21 @@
 
 var myBlog = {
     /**
-     * 初始化
+     * Initialization
      */
     init : function(){
-      this.tocAnalyse()  // toc目录生成
-      if ($("#comment-info").length == 0) {  // 大屏幕登录状态，评论框下两角变圆角 
+      this.tocAnalyse()  // TOC catalog generation
+      if ($("#comment-info").length == 0) {  // Large screen login status, the bottom two corners of the comment box are rounded 
         $(".commentform #comment").css("height","140px")
                                   .css('border-radius', '10px')
       }
-      $(".markdown img").attr("data-action","zoom")  // 为摘要、文章、页面中图片添加“查看大图”
+      $(".markdown img").attr("data-action","zoom")  // Add "View Larger Image" for abstracts, articles, and pictures on the page
                         .parent().removeAttr("href")
                         .parent("p").css("text-align","center")
-      $("#commentform").attr("onsubmit","return myBlog.comSubmitTip()")  // 评论提交在表单验证未通过的情况下是不能提交的
+      $("#commentform").attr("onsubmit","return myBlog.comSubmitTip()")  // Comment submission cannot be submitted if the form verification fails
     },
     /**
-     * 回复
+     * Reply
      */
     comReply : function($t) {
       var $ele,getpid,$com_board
@@ -41,7 +41,7 @@ var myBlog = {
       $("#comment-place").toggleClass("com-bottom")
     },
     /**
-     * 取消回复
+     * Cancel reply
      */
     cancelReply : function($t) {
       $("#comment-pid").attr("value","0")
@@ -50,7 +50,7 @@ var myBlog = {
                          .toggleClass("com-bottom")
     },
     /**
-     * 手机点击展开导航按钮
+     * Click on the mobile phone to expand the navigation button
      */
     navToggle : function($t) {
       var time,effect,$navbar,$nav_c,nav_height
@@ -64,13 +64,13 @@ var myBlog = {
       $navbar.slideToggle(time,effect)
     },
     /**
-     * 定位大屏状态下的导航下拉框位置
+     * Locate the position of the navigation drop-down box in the large screen state
      */
     calMargin : function($t) {
       if (window.outerWidth < 992) return
       var $fatherLink,$childMenu,menuWidth,count
 
-      menuWidth     = 135  // 大屏幕端的子导航下拉框宽度(px)，可根据需要修改
+      menuWidth     = 135  // The width of the sub-navigation drop-down box on the big screen (px), can be modified as needed
       count         = ($t.outerWidth() - menuWidth)/2 + "px"
       $childMenu    = $t.siblings('.dropdown-menus')
 
@@ -78,7 +78,7 @@ var myBlog = {
                 .css("margin-left",count)
     },
     /**
-     * 提交评论前对表单的验证
+     * Validation of the form before submitting the comment
      */
     comTip        : '',
     comSubmitTip  : function(value) {
@@ -112,7 +112,7 @@ var myBlog = {
       }
     },
     /**
-     * 显示(隐藏)验证码模态窗
+     * Show (hide) the verification code modal window
      */
     viewModal : function() {
       var $modal,$lock
@@ -124,26 +124,26 @@ var myBlog = {
       $("input[name='imgcode']").attr("autocomplete","off")
     },
     /**
-     * 点击刷新验证码
+     * Click Refresh verification code
      */
     captchaRefresh : function($t) {
       var timestamp   = new Date().getTime()
       $t.attr("src", "./include/lib/checkcode.php?" + timestamp)
     },
     /**
-     * toc 分析
+     * toc analysis
      * 
-     * 启用toc目录方式: 在文章最开头写上'[toc]'或者'<!--[toc]-->',最好是单独一行
+     * Enable toc directory method: write '[toc]' or'<!--[toc]-->' at the beginning of the article, preferably on a single line
      */
-    tocFlag     : /\[toc\]/gi,  // 判断toc是否声明的正则表达式
-    tocArray    : new Array(),  // 储存toc的数组
+    tocFlag     : /\[toc\]/gi,  // Regular expression to determine whether toc is declared
+    tocArray    : new Array(),  // Array to store toc
     tocAnalyse  : function() {
       var tocFlag   = document.querySelector("#emlogEchoLog p")
 
-      if ($("#emlogEchoLog").length == 0) return  // 不在阅读页面  退出
-      if (!this.tocFlag.test($('#emlogEchoLog').html().substring(0,30))) return  // 未声明toc标签  退出
-      tocFlag.innerHTML = tocFlag.innerHTML.replace(this.tocFlag,"")  // 去除toc声明
-      if (window.outerWidth < 1275)       return  // 屏幕小于 1275px  退出
+      if ($("#emlogEchoLog").length == 0) return  // Not reading the page, Exit
+      if (!this.tocFlag.test($('#emlogEchoLog').html().substring(0,30))) return  // No toc tag declared, Exit
+      tocFlag.innerHTML = tocFlag.innerHTML.replace(this.tocFlag,"")  // Remove toc statement
+      if (window.outerWidth < 1275)       return  // The screen is smaller than 1275px exit
 
       var $logCon   = $(".log-con")
       var logConMar = parseInt($logCon.css("margin-left"))
@@ -151,13 +151,13 @@ var myBlog = {
       var arr       = this.tocArray
 
       if($titles.length > 0){
-        $logCon.css("margin-left",logConMar + 150 + 'px')  // 文章正文向右偏移150px
+        $logCon.css("margin-left",logConMar + 150 + 'px')  // The text of the article is offset 150px to the right
       }else{
-        return  // 未发现标题（h标签） 退出
+        return  // No title found (h tag), Exit
       }
       
       $titles.attr("toc-date","title")
-      for(var i = 0 ;i < $titles.length;i++){  // 将标签数据依次存入数组
+      for(var i = 0 ;i < $titles.length;i++){  // Store the label data in the array one by one
         let $tit      = $("#emlogEchoLog [toc-date='title']:eq("+ i +")")
         arr[i]        = new Array()
 
@@ -171,7 +171,7 @@ var myBlog = {
     },
 
     /**
-     * toc 目录渲染
+     * toc directory rendering
      */ 
     tocRender : function()  {
       var tocHtml = ''
@@ -185,7 +185,7 @@ var myBlog = {
       for (var i =0;i < data.length; i++){
         if(data[i]['type'] < minType) minType = data[i]['type']
       }
-      tocHtml = tocHtml + '<div class="toc-con" style="left:'+ padNum +'px" id="toc-con">'   // 渲染
+      tocHtml = tocHtml + '<div class="toc-con" style="left:'+ padNum +'px" id="toc-con">'   // Rendering
       tocHtml = tocHtml + '<div style="height:calc(100vh - 70px);overflow-y:scroll;" ><lu>'
       for(var i = 0 ;i < data.length ; i++) {
         let k         = minType
@@ -210,7 +210,7 @@ var myBlog = {
       tocHtml = tocHtml + '</lu></div></div>'
       $logcon.before(tocHtml)
 
-      for(var i = 0 ;i < data.length ; i++) {  // 批量添加监听事件
+      for(var i = 0 ;i < data.length ; i++) {  // Add listening events in batches
         let tempPos = data[i]["pos"]
         $('#to' + i).bind("click",function(){
           window.onscroll = function(){tocSetPos()} 
@@ -220,7 +220,7 @@ var myBlog = {
           })
         })
       }
-      function tocSetPos() {  // 判断位置和设置定位样式
+      function tocSetPos() {  // Determine location and set positioning style
         if (document.documentElement.scrollTop > 200) {
           $("#toc-con").css("position","fixed")
                        .css("top","0px")
@@ -229,7 +229,7 @@ var myBlog = {
                        .css("top","200px")
         }
       }
-      function tocGetPos() {  // 获取位置并改变指定标题颜色
+      function tocGetPos() {  // Get the position and change the color of the specified title
         let $tempItem
         $('#toc-con li').css('color','unset')
         for(var i = 0;i < data.length;i++) {
@@ -239,7 +239,7 @@ var myBlog = {
         if($tempItem) $tempItem.css('color','red')
       }
       tocSetPos()
-      window.onscroll = function() {  // 滚轮事件
+      window.onscroll = function() {  // Wheel event
         tocSetPos()
         tocGetPos()
        }
@@ -247,7 +247,7 @@ var myBlog = {
 }
 
 /**
- * 监听
+ * Monitor
  */
 $(document).ready(function(){
   myBlog.init()

@@ -1,5 +1,5 @@
 /**
- * 利用jqury实现图片放大 zoom.js
+ * zoom.js - Use jquery to achieve image zoom
  * https://github.com/fat/zoom.js
  */
  +function ($) { "use strict";
@@ -132,7 +132,7 @@
  } else {
  this._imgScaleFactor = (viewportWidth / originalFullImageWidth) * maxScaleFactor
  }
- /* 修改：比原尺寸大，不需缩小展示，与原尺寸一样，变为原来的1.5倍 */
+ /* Modification: larger than the original size, no need to reduce the display, the same as the original size, changed to 1.5 times the original */
  if (this._imgScaleFactor < 1) {
     this._imgScaleFactor = 1
  } else if (this._imgScaleFactor = 1) {

@@ -227,7 +227,7 @@ function getFileUrl($filePath) {
 }
 
 /**
- * 去除url的参数
+ * Remove the url parameter
  */
 function rmUrlParams($url) {
 	$urlInfo = explode("?", $url);
@@ -322,7 +322,7 @@ function doAction($hook) {
 }
 
 /**
- * 执行挂在钩子上的第一个函数,仅支持行一次，且ret采用引用传递
+ * Execute the first function hung on the hook, only supports one line, and ret is passed by reference
  */
 function doOnceAction($hook, $input, &$ret) {
 	global $emHooks;
@@ -334,7 +334,7 @@ function doOnceAction($hook, $input, &$ret) {
 }
 
 /**
- * 截取文章内容前len个字符
+ * Intercept the first len characters of the article content
  */
 function subContent($content, $len, $clean = 0) {
 	if ($clean) {
@@ -384,9 +384,9 @@ function getRandStr($length = 12, $special_chars = true) {
 }
 
 /**
- * 上传文件到当前服务器
- * @param $attach array 文件FILE信息
- * @param $result array 上传结果
+ * Upload files to the current server
+ * @param $attach array File information
+ * @param $result array Upload result
  */
 function upload2local($attach, &$result) {
 	$fileName = $attach['name'];
