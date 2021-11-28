@@ -165,6 +165,7 @@ $lang = array(
  'posts'		=> '文章',//'Posts',
  'select_article'	=> '请选择要操作的文章',//'Please select the article to operate',
  'sure_delete_articles'	=> '确定要删除所选文章吗？',//'Are you sure you want to delete selected articles?',
+ 'tag'			=> '标签',//'Tag',
  'tags'			=> '标签',//'Tags',
  'tags_no'		=> '还没有标签',//'No tags',
  'tag_by_view'		=> '按标签查看',//'View by tags',
@@ -254,6 +255,7 @@ $lang = array(
  'no_comments_yet'	=> '还没有收到评论',//'Yet no comments',
  'operation'		=> '操作',//'Operation',
  'comment_selected_delete_sure'	=> '确定要删除所选评论吗？',//'Are you sure you want to delete the selected comments?',
+ 'article_all_comments'	=> '该文所有评论',//'All comments on this article',
 
 //---------------------------
 //admin/views/configure.php
@@ -381,7 +383,7 @@ $lang = array(
  'users'		=> '用户',//'Users',
  'data'			=> '数据',//'Data Backup',
  'applications'		=> '应用',//'Apps',
- 'extensions'		=> '扩展功能',//'Extensions',
+ 'extensions'		=> '扩展',//'扩展功能',//'Extensions',
  'search_for'		=> '查找文章...',//'Search for...',
  'search'		=> 'Search',//'Search',
  'resources'		=> '资源',//'Resources',
@@ -425,7 +427,7 @@ $lang = array(
  'reg_failed'			=> '注册失败',//'Registration failed',
  'reg_code_invalid'		=> '注册失败，无效的注册码',//'Registration failed, invalid registration code',
  'emkey_info'			=> 'EMKEY是官方分发给emlog pro付费用户的唯一识别码，请妥善保管',//'EMKEY is the only identification code officially distributed to paying users of emlog pro, please keep it properly',
- 'get_emkey'			=> '去获取注册码',//'Get registration code',
+ 'get_emkey'			=> '获取注册码',//'Get registration code',
  'registered'			=> '注册',//'registered',
  'registered_already'		=> '已注册',//'already registered',
  'mysql_version'		=> 'MySQL版本',//'MySQL version',
@@ -504,6 +506,8 @@ $lang = array(
 //---------------------------
 //admin/views/media_lib.php
  'upload_time'		=> '上传时间',//'Upload time',
+ 'insert_into'		=> '插入到文章',//'Insert into article',
+ 'set_cover'		=> '设为封面',//'Set as cover',
 
 //---------------------------
 //admin/views/navbar.php
@@ -655,6 +659,7 @@ $lang = array(
 // 'go_buy'		=> '去购买',//'Go to buy',
 // 'download&install'	=> '下载安装',//'Download and install',
  'app_store'		=> '应用商店',//'App store',
+ 'version_number'	=> '版本号',//'Version number',
 
 //---------------------------
 //admin/views/store_install.php
