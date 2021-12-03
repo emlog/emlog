@@ -218,7 +218,7 @@
             height: 640,
             toolbarIcons: function () {
                 return ["undo", "redo", "|", "bold", "del", "italic", "quote", "|", "h1", "h2", "h3", "|", "list-ul", "list-ol", "hr", "|",
-                    "link", "image", "preformatted-text", "table", "|", "search", "watch"]
+                    "link", "image", "preformatted-text", "code-block", "table", "|", "search", "watch"]
             },
             path: "editor.md/lib/",
             tex: false,
