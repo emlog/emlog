@@ -49,7 +49,7 @@ class Option {
 		$options_cache['site_title'] = $options_cache['site_title'] ?: $options_cache['blogname'];
 		$options_cache['site_description'] = $options_cache['site_description'] ?: $options_cache['bloginfo'];
 		if (empty($options_cache['emkey'])) {
-/*vot*/			$options_cache['footer_info'] .= lang('pro_unregistered');
+/*vot*/			$options_cache['footer_info'] .= defined('DEV_MODE') ? lang('powered_by_emlog') : lang('pro_unregistered');
 		}
 		return $options_cache;
 	}

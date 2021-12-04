@@ -26,6 +26,19 @@ $lang = array(
  'weekday6'	=> '六',//'Sa',//'Saturday',
  'weekday7'	=> '日',//'Su',//'Sunday',
 
+ 'month_1'	=> '一月',
+ 'month_2'	=> '二月',
+ 'month_3'	=> '行进',
+ 'month_4'	=> '四月',
+ 'month_5'	=> '可能',
+ 'month_6'	=> '六月',
+ 'month_7'	=> '七月',
+ 'month_8'	=> '八月',
+ 'month_9'	=> '九月',
+ 'month_10'	=> '十月',
+ 'month_11'	=> '十一月',
+ 'month_12'	=> '十二月',
+
 //---------------------------
 //include/lib/function.base.php
  '_load_failed'	=> '加载失败。',//' load failed.',

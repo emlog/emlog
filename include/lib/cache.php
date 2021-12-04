@@ -405,7 +405,7 @@ class Cache {
 					$record_cache[$h]['lognum'] = $lognum;
 				}
 				$record_cache[$p] = array(
-/*vot*/			 'record' => gmdate(lang('cache_date_format'), $show_record['date']),
+/*vot*/					'record' => gmdate('Y-m', $show_record['date']),
 					'date'   => gmdate('Ym', $show_record['date'])
 				);
 				$p++;

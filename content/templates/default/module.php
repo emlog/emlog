@@ -222,7 +222,13 @@ function widget_archive($title) {
         </div>
         <ul class="unstyle-li">
 			<?php foreach ($record_cache as $value): ?>
-<!--vot-->			<li><a href="<?php echo Url::record($value['date']); ?>"><?php echo $value['record']; ?> (<?php echo $value['lognum']; ?>)</a></li>
+<?php
+/*vot*/	//2008年12月, 2008-12
+/*vot*/	$sep = mb_substr($value['record'],4,1);
+/*vot*/	$da = explode($sep,$value['record']);
+/*vot*/	$value['record'] = lang('month_'.intval($da[1])) . ' ' . $da[0];
+?>
+		<li><a href="<?php echo Url::record($value['date']); ?>"><?php echo $value['record']; ?> (<?php echo $value['lognum']; ?>)</a></li>
 			<?php endforeach; ?>
         </ul>
     </div>
