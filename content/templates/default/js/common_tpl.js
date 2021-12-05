@@ -195,7 +195,6 @@ var myBlog = {
         
         if(itemType != judgeN) isPadding = 'style="padding-top:' + chilPad + 'px"'
         tocHtml = tocHtml + '<li ' + isPadding + ' id="to' + i + '" title="' + data[i]['content'] + '" >'
-        console.log(itemType + '===' + minType)
         if(itemType == minType) {
           isBold[0] = '<b>'
           isBold[1] = '</b>'
@@ -231,18 +230,32 @@ var myBlog = {
       }
       function tocGetPos() {  // 获取位置并改变指定标题颜色
         let $tempItem
-        $('#toc-con li').css('color','unset')
+        $('#toc-con li').css('color','unset').attr('isRed','n')
         for(var i = 0;i < data.length;i++) {
           let winPos = document.documentElement.scrollTop + 30
           if(winPos > data[i]['pos']) $tempItem = $('#to'+i)
         }
-        if($tempItem) $tempItem.css('color','red')
+        if($tempItem) $tempItem.css('color','red').attr('isRed','y')
+
+        let redScreenPos = $("li[isred='y']").offset().top - document.documentElement.scrollTop
+        let tocHeight    = $("#toc-con div").outerHeight()
+        let tocPos       = $("#toc-con div").scrollTop()
+        if(redScreenPos > tocHeight){  // 根据文章阅读位置来调整 toc 滚动条位置
+          $("#toc-con div").scrollTop($("li[isred='y']").offset().top - tocHeight)
+        }else if(redScreenPos < 0){
+          $("#toc-con div").scrollTop(tocPos + redScreenPos - (tocHeight/2))
+        }else{
+          if(redScreenPos > (tocHeight/2)) $("#toc-con div").scrollTop(tocPos + 10)
+          if(redScreenPos < (tocHeight/2 - 40)) $("#toc-con div").scrollTop(tocPos - 10)
+        }
       }
       tocSetPos()
-      window.onscroll = function() {  // 滚轮事件
-        tocSetPos()
-        tocGetPos()
-       }
+      window.onscroll = function(){tocSetPos();tocGetPos()}  // 滚轮事件
+      $('#toc-con div').mouseover(function(){  // 根据鼠标位置来调整滚轮事件
+        window.onscroll = function(){tocSetPos()} 
+      }).mouseout(function(){
+        window.onscroll = function(){tocSetPos();tocGetPos()} 
+      })
     }
 }
 
