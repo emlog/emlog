@@ -2,6 +2,10 @@
  *markdown
  */
  
+ .markdown {
+    overflow-wrap: break-word
+ }
+
 .markdown h1 {
     font-size: 1.8rem !important;
     margin-top: 1em;
