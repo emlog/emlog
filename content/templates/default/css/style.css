@@ -114,6 +114,9 @@ footer .copyright {
         max-width: 33.333333%
     }
     /* The configuration of the two columns of article publication time and article reading comments */
+    .info-row {
+        padding: 1rem !important
+    }
     .log-info {
         flex: 0 0 66.666667%;
         max-width: 66.666667%
@@ -128,26 +131,26 @@ footer .copyright {
 @media (max-width:767px) {
 
     .column-big {
-        padding-right: 15px;
-        padding-left: 15px;
+        padding-right: 8px;
+        padding-left: 8px;
         width:100%
     }
     /* Toolbar */
     .column-small {
-        padding-right: 15px;
-        padding-left: 15px;
+        padding-right: 8px;
+        padding-left: 8px;
         width:100%
     }
     /* The configuration of the two columns of article publication time and article reading comment number */
     .log-info {
-        flex: 0 0 66.666667%;
-        max-width: 66.666667%;
+        flex: 0 0 60%;
+        max-width: 60%
     }
     .log-count {
         white-space: nowrap;
-        flex: 0 0 33.333333%;
-        max-width: 33.333333%;
-        text-align: right;
+        flex: 0 0 40%;
+        max-width: 40%;
+        text-align: right
     }
 }
 
@@ -312,7 +315,7 @@ footer .copyright {
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1)
 }
 .dropdown-menus .list-menu{
-    padding: 6px
+    padding: 6px 0 0 0
 }
 
 /* For the small screen attribute of the top menu bar, "small screen" is defined at 767px and below. Of course, this also includes the drop-down box style of the small screen. */
@@ -1020,7 +1023,7 @@ footer .copyright {
     box-shadow: none;
     float: left;
     font-size: 1rem;
-    padding: 0.375rem 0.75rem;
+    padding: 0.4rem 0.75rem;
     line-height: 1.5;
     color: #495057;
     border: 1px solid #ced4da;
@@ -1262,7 +1265,6 @@ img.zoom-img {
 }
 
 @media all and (max-width: 991px) {
-
     /* Header width without container */
     .blog-header-c {
         max-width: unset !important
@@ -1289,7 +1291,7 @@ img.zoom-img {
         text-align: left
     }
     .log-con {
-        padding: 30px 18px
+        padding: 30px 16px
     }
 	.comment .avatar {
         margin-right: 13px
@@ -1364,9 +1366,13 @@ img.zoom-img {
 }
 /* The display style of ordinary mobile devices */
 @media all and (max-width: 577px) {
+
+    .nav-link {
+        padding: 8px;
+    }
     /* The inner margin of the card container is slightly smaller */
     .card-padding {
-        padding: 1.0rem;
+        padding: 14px;
     }
     .side-bar .widget {
         margin-bottom: 1.5rem

@@ -132,11 +132,11 @@
  } else {
  this._imgScaleFactor = (viewportWidth / originalFullImageWidth) * maxScaleFactor
  }
- /* Modification: larger than the original size, no need to reduce the display, the same as the original size, changed to 1.5 times the original */
+ /* Modification: larger than the original size, no need to reduce the display, the same as the original size, changed to 1.2 times the original */
  if (this._imgScaleFactor < 1) {
     this._imgScaleFactor = 1
  } else if (this._imgScaleFactor = 1) {
-    this._imgScaleFactor = 1.5
+    this._imgScaleFactor = 1.2
  }
  }
  Zoom.prototype._triggerAnimation = function () {
