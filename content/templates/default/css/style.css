@@ -11,7 +11,7 @@
 }
 /* 一些变量 */
 * {
-     --marRadius : 8px /* 卡片圆角 */
+    --marRadius : 8px /* 卡片圆角 */
 }
 /* 定义所有元素的 width =（border+padding），方便后续计算 */
 * { 
@@ -114,6 +114,9 @@ footer .copyright {
         max-width: 33.333333%
     }
     /* 文章发布时间和文章阅读评论数这两列的配置 */
+    .info-row {
+        padding: 1rem !important
+    }
     .log-info {
         flex: 0 0 66.666667%;
         max-width: 66.666667%
@@ -128,26 +131,26 @@ footer .copyright {
 @media (max-width:767px) {
 
     .column-big {
-        padding-right: 15px;
-        padding-left: 15px;
+        padding-right: 8px;
+        padding-left: 8px;
         width:100%
     }
     /* 工具栏列 */
     .column-small {
-        padding-right: 15px;
-        padding-left: 15px;
+        padding-right: 8px;
+        padding-left: 8px;
         width:100%
     }
     /* 文章发布时间和文章阅读评论数两列的配置 */
     .log-info {
-        flex: 0 0 66.666667%;
-        max-width: 66.666667%;
+        flex: 0 0 60%;
+        max-width: 60%
     }
     .log-count {
         white-space: nowrap;
-        flex: 0 0 33.333333%;
-        max-width: 33.333333%;
-        text-align: right;
+        flex: 0 0 40%;
+        max-width: 40%;
+        text-align: right
     }
 }
 
@@ -312,7 +315,7 @@ footer .copyright {
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1)
 }
 .dropdown-menus .list-menu{
-    padding: 6px
+    padding: 6px 0 0 0
 }
 
 /* 顶部菜单栏的小屏属性，“小屏”定义在767px及以下。当然这个也包含小屏的下拉框样式。 */
@@ -1020,7 +1023,7 @@ footer .copyright {
     box-shadow: none;
     float: left;
     font-size: 1rem;
-    padding: 0.375rem 0.75rem;
+    padding: 0.4rem 0.75rem;
     line-height: 1.5;
     color: #495057;
     border: 1px solid #ced4da;
@@ -1262,7 +1265,6 @@ img.zoom-img {
 }
 
 @media all and (max-width: 991px) {
-
     /* 头部无容器的限宽 */
     .blog-header-c {
         max-width: unset !important
@@ -1289,7 +1291,7 @@ img.zoom-img {
         text-align: left
     }
     .log-con {
-        padding: 30px 18px
+        padding: 30px 16px
     }
 	.comment .avatar {
         margin-right: 13px
@@ -1364,9 +1366,13 @@ img.zoom-img {
 }
 /* 普通移动设备的显示样式 */
 @media all and (max-width: 577px) {
+
+    .nav-link {
+        padding: 8px;
+    }
     /* 卡片容器内边距略小一点 */
     .card-padding {
-        padding: 1.0rem;
+        padding: 14px;
     }
     .side-bar .widget {
         margin-bottom: 1.5rem

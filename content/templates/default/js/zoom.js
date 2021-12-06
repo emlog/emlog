@@ -132,11 +132,11 @@
  } else {
  this._imgScaleFactor = (viewportWidth / originalFullImageWidth) * maxScaleFactor
  }
- /* 修改：比原尺寸大，不需缩小展示，与原尺寸一样，变为原来的1.5倍 */
+ /* 修改：比原尺寸大，不需缩小展示，与原尺寸一样，变为原来的1.2倍 */
  if (this._imgScaleFactor < 1) {
     this._imgScaleFactor = 1
  } else if (this._imgScaleFactor = 1) {
-    this._imgScaleFactor = 1.5
+    this._imgScaleFactor = 1.2
  }
  }
  Zoom.prototype._triggerAnimation = function () {

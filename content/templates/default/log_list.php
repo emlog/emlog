@@ -32,7 +32,7 @@ if (!defined('EMLOG_ROOT')) {
                         <hr class="list-line"/>
                         <div class="row info-row">
                             <div class="log-info">
-								<?php blog_author($value['author']); ?> 发布于 <?php echo gmdate('Y-n-j H:i', $value['date']); ?>
+								<?php blog_author($value['author']); ?>&nbsp;发布于&nbsp;<?php echo gmdate('Y-n-j', $value['date']); ?>&nbsp;<span class="mh"><?php echo gmdate('H:i', $value['date']); ?></span>
                             </div>
                             <div class="log-count">
                                 <a href="<?php echo $value['log_url']; ?>#comments">评论(<?php echo $value['comnum']; ?>)&nbsp;</a>
