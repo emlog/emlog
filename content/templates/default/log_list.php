@@ -32,7 +32,7 @@ if (!defined('EMLOG_ROOT')) {
                         <hr class="list-line"/>
                         <div class="row info-row">
                             <div class="log-info">
-<!--vot-->							<?php blog_author($value['author']); ?> <?= lang('post_time') ?> <?php echo gmdate('Y-m-d H:i', $value['date']); ?>
+<!--vot-->							<?php blog_author($value['author']); ?>&nbsp;<?=lang('post_time')?>&nbsp;<?php echo gmdate('Y-m-d', $value['date']); ?>&nbsp;<span class="mh"><?php echo gmdate('H:i', $value['date']); ?></span>
                             </div>
                             <div class="log-count">
 <!--vot-->                      <a href="<?php echo $value['log_url']; ?>#comments"><?=lang('comments')?>: (<?php echo $value['comnum']; ?>)&nbsp;</a>
