@@ -240,7 +240,7 @@ var myBlog = {
         let redScreenPos = $("li[isred='y']").offset().top - document.documentElement.scrollTop
         let tocHeight    = $("#toc-con div").outerHeight()
         let tocPos       = $("#toc-con div").scrollTop()
-        if(redScreenPos > tocHeight){  // 根据文章阅读位置来调整 toc 滚动条位置
+        if(redScreenPos > tocHeight){  // Adjust the position of the toc scroll bar according to the reading position of the article
           $("#toc-con div").scrollTop($("li[isred='y']").offset().top - tocHeight)
         }else if(redScreenPos < 0){
           $("#toc-con div").scrollTop(tocPos + redScreenPos - (tocHeight/2))
@@ -250,8 +250,8 @@ var myBlog = {
         }
       }
       tocSetPos()
-      window.onscroll = function(){tocSetPos();tocGetPos()}  // 滚轮事件
-      $('#toc-con div').mouseover(function(){  // 根据鼠标位置来调整滚轮事件
+      window.onscroll = function(){tocSetPos();tocGetPos()}  // Wheel event
+      $('#toc-con div').mouseover(function(){  // Adjust the wheel event according to the mouse position
         window.onscroll = function(){tocSetPos()} 
       }).mouseout(function(){
         window.onscroll = function(){tocSetPos();tocGetPos()} 
