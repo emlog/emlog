@@ -16,9 +16,9 @@ $lang = array(
 //---------------------------
 //admin/views/configure.php
  'twitter'		=> 'Twitter',//'微语',
- 'twitters'		=> 'Twitters',//'微语',
+ 'twitters'		=> 'Notes',//'微语',
  'twitters_enable'	=> 'Enable twitters, ',//'开启微语，',
- '_twitters'		=> ' twitters',//'条微语',
+ '_twitters'		=> ' note(s)',//'条微语',
  'twitter_reply_enable'	=> 'Enable twitter reply, ',//'开启微语回复，',
 
 //---------------------------
