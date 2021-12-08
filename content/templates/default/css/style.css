@@ -672,7 +672,7 @@ footer .copyright {
     resize: none
 }
 .comment-post #comment_submit {
-    width: 84px;
+*    width: 84px;
     height: 35px;
     text-align: center;
     font-size: 14px;
