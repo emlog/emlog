@@ -21,13 +21,13 @@ if (empty($action)) {
 
 	$max_execution_time = ini_get('max_execution_time') ?: '';
 	$max_upload_size = ini_get('upload_max_filesize') ?: '';
-	$php_ver = PHP_VERSION . ', ' . $max_execution_time . 's,' . $max_upload_size;
+	$php_ver = PHP_VERSION . ', ' . $max_execution_time . 's, ' . $max_upload_size;
 	if (function_exists("curl_init")) {
 		$c = curl_version();
-		$php_ver .= ",curl" . $c['version'];
+		$php_ver .= ", curl" . $c['version'];
 	}
 	if (class_exists('ZipArchive', FALSE)) {
-		$php_ver .= ',zip';
+		$php_ver .= ', zip';
 	}
 
 	include View::getView('header');
