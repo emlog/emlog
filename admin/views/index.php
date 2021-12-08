@@ -53,7 +53,7 @@
 							<?php if (!Register::isRegLocal()) : ?>
 <!--vot-->                      <a href="register.php"><span class="badge badge-danger"><?php echo Option::EMLOG_VERSION; ?> <?=lang('unregistered')?></span></a>
 							<?php else: ?>
-<!--vot-->                      <span class="badge badge-success"><?php echo Option::EMLOG_VERSION; ?> <?=lang('registered_already')?></span>
+<!--vot-->                      <span class="badge badge-success"><?php echo Option::EMLOG_VERSION; ?> <?=lang('registered')?></span>
 							<?php endif; ?>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
