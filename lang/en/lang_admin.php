@@ -103,7 +103,7 @@ $lang = array(
  'add_page'		=> 'Add page',//'新建页面',
  'page_title_info'	=> 'Enter the page title',//'输入页面标题',
  'upload_insert'	=> 'Insert upload',//'上传插入',
- 'link_alias'		=> 'Link alias: (used for <a href="./seo.php">SEO settings &rarr;</a>',//'链接别名：（用于seo设置 <a href="./seo.php">&rarr;</a>',
+ 'link_alias'		=> 'Link alias: (used for <a href="./seo.php">SEO settings &rarr;</a>)',//'链接别名：（用于seo设置 <a href="./seo.php">&rarr;</a>）',
  'link_alias_info'	=> 'The page link custom address. Required',//'用于自定义该页面的链接地址。需要',
  'link_alias_enable'	=> 'Enable Link Alias',//'启用链接别名',
  'page_template'	=> 'Page template',//'页面模板',
