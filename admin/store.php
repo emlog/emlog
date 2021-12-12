@@ -11,26 +11,10 @@
 
 require_once 'globals.php';
 
-if (empty($action)) {
-	$emcurl = new EmCurl();
-	$emcurl->setPost(['emkey' => Option::get('emkey'), 'ver' => Option::EMLOG_VERSION, 'type' => 'tpl']);
-	$emcurl->request(OFFICIAL_SERVICE_HOST . 'store/pro');
-	$retStatus = $emcurl->getHttpStatus();
-	if ($retStatus !== MSGCODE_SUCCESS) {
-		emDirect("./store.php?action=error&error=1");
-	}
-	$response = $emcurl->getRespone();
-	$ret = json_decode($response, 1);
-	if (empty($ret)) {
-		emDirect("./store.php?action=error&error=1");
-	}
-	if ($ret['code'] === MSGCODE_EMKEY_INVALID) {
-		Option::updateOption('emkey', '');
-		$CACHE->updateCache('options');
-		emDirect("./register.php?error_store=1");
-	}
+$Store_Model = new Store_Model();
 
-	$templates = $ret['data']['templates'] ?? [];
+if (empty($action)) {
+	$templates = $Store_Model->getTemplates();
 
 	include View::getView('header');
 	require_once(View::getView('store_tpl'));
@@ -39,25 +23,7 @@ if (empty($action)) {
 }
 
 if ($action === 'plu') {
-	$emcurl = new EmCurl();
-	$emcurl->setPost(['emkey' => Option::get('emkey'), 'ver' => Option::EMLOG_VERSION, 'type' => 'plu']);
-	$emcurl->request(OFFICIAL_SERVICE_HOST . 'store/pro');
-	$retStatus = $emcurl->getHttpStatus();
-	if ($retStatus !== MSGCODE_SUCCESS) {
-		emDirect("./store.php?action=error&error=1");
-	}
-	$response = $emcurl->getRespone();
-	$ret = json_decode($response, 1);
-	if (empty($ret)) {
-		emDirect("./store.php?action=error&error=1");
-	}
-	if ($ret['code'] === MSGCODE_EMKEY_INVALID) {
-		Option::updateOption('emkey', '');
-		$CACHE->updateCache('options');
-		emDirect("./register.php?error_store=1");
-	}
-
-	$plugins = $ret['data']['plugins'] ?? [];
+	$plugins = $Store_Model->getPlugins();
 
 	include View::getView('header');
 	require_once(View::getView('store_plu'));
