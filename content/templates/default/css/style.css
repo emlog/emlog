@@ -4,7 +4,6 @@
 
 /* 全局样式
 ---------------------------------------------------*/
-
 /* 禁止页面溢出出现滚动条 */
 :root {
     overflow-x: hidden
@@ -93,7 +92,6 @@ footer .copyright {
    行（row）上选择flex布局，并设置允许换行（wrap）
    列（col）则需要通过根据大小屏分别配置，这是网页最重要的地方，是整个网页的骨架
 ---------------------------------------------------*/
-
 .row {
     display: flex;
     flex-wrap: wrap;
@@ -154,7 +152,7 @@ footer .copyright {
     }
 }
 
-/* 最外层整体容器的响应式配置，即container配置
+/* 最外层整体容器的响应式配置，即 container 配置
 ---------------------------------------------------*/
 .container{
     width: 100%;
@@ -179,7 +177,6 @@ footer .copyright {
 
 /* 在绝对定位情况下，主边栏的全宽(可供一些位于主边栏的难以计算宽度的对象使用)
 ---------------------------------------------------*/
-
 @media (min-width:1px) {.rea-width{width: calc(100% - 30px)}}
 @media (min-width:576px) {.rea-width{width: 510px}}
 @media (min-width:768px) {.rea-width{width: 450px}}
@@ -188,7 +185,6 @@ footer .copyright {
 
 /* 博客头部属性的配置
 ---------------------------------------------------*/
-
 .blog-header {
 	margin-bottom: 2.4rem;
 	background: #ffffff; /* 背景颜色颜色白色 */
@@ -225,7 +221,6 @@ footer .copyright {
    在不同大小的屏幕上，导航菜单会有不同的样式。
    样式根据屏幕大小分为两种：767px以上，767px以下
 ---------------------------------------------------*/
-
 /* 大屏幕 */
 @media (min-width:768px)  {
     .nav-list {
@@ -315,7 +310,7 @@ footer .copyright {
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1)
 }
 .dropdown-menus .list-menu{
-    padding: 6px 0 0 0
+    padding: 6px
 }
 
 /* 顶部菜单栏的小屏属性，“小屏”定义在767px及以下。当然这个也包含小屏的下拉框样式。 */
@@ -349,7 +344,6 @@ footer .copyright {
 
 /* 列出文章（或文章条目）页
 ---------------------------------------------------*/
-
  /* 卡片上的文章发布时间这部分的属性 */
 .info-row {
 	padding: 1rem;
@@ -358,7 +352,6 @@ footer .copyright {
 
 /* 文章阅读页
 ---------------------------------------------------*/
-
  /* 文章作者、时间等信息下hr水平线的属性，设置margin-bottom为四级 */
 .bottom-5{
     margin-bottom: 1.5rem !important
@@ -455,7 +448,6 @@ footer .copyright {
 
 /* 日历样式
 ---------------------------------------------------*/
-
 /* 日历的加载样式，防止翻页造成太大的视觉变化 */
 .cal_loading {
     margin-bottom: 243px
@@ -579,7 +571,6 @@ footer .copyright {
 
 /* 评论样式
 ---------------------------------------------------*/
-
 /* 发表评论表单样式 */
 @media (min-width:768px)  {
     .commentform {
@@ -781,7 +772,7 @@ footer .copyright {
     background-color: #313131;
     color: #FFFFFF;
     margin-left: -25px;
-    height: 38px;
+    height: 39px;
     width: 55px;
     border: 0;
     border-radius: 0 3px 3px 0;
@@ -790,7 +781,6 @@ footer .copyright {
 
 /*文章条目中的部分样式
 ---------------------------------------------------*/
-
 /* “阅读全文”的样式 */
 .readmore {
     margin-left: 10px;
@@ -916,7 +906,6 @@ footer .copyright {
     transform: scale(1.01);
     clip: rect(50px 730px 250px 0px)
 }
-/* @media (max-width:390px) {.loglist-cover{ height: 140px;overflow: hidden}} */
 @media (max-width:415px) {.loglist-cover{ height: 160px;overflow: hidden}.loglist-cover img {position:unset;    width: 730px;}}
 @media (max-width:375px) {.loglist-cover{ height: 140px;overflow: hidden}.loglist-cover img {position:unset;    width: 730px;}}
 /* 回形针 */
@@ -1159,7 +1148,6 @@ footer .copyright {
 
 /* 网页足部
 ---------------------------------------------------*/
-
 .text-center {
     text-align: center !important;
 }
@@ -1367,6 +1355,9 @@ img.zoom-img {
 /* 普通移动设备的显示样式 */
 @media all and (max-width: 577px) {
 
+    .dropdown-menus .list-menu{
+        padding-bottom : 0px
+    }
     .nav-link {
         padding: 8px;
     }
