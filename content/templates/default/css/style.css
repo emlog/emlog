@@ -10,7 +10,7 @@
 }
 /* Some variables */
 * {
-     --marRadius : 8px /* Card rounded corners */
+    --marRadius : 8px /* Card rounded corners */
 }
 /* Define width = (border+padding) for all elements to facilitate subsequent calculations */
 * { 
@@ -663,7 +663,7 @@ footer .copyright {
     resize: none
 }
 .comment-post #comment_submit {
-*    width: 84px;
+/*vot    width: 84px; */
     height: 35px;
     text-align: center;
     font-size: 14px;

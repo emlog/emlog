@@ -145,7 +145,7 @@ class Log_Model {
 		$logs = [];
 		while ($row = $this->db->fetch_array($res)) {
 			$row['date'] = date("Y-m-d H:i", $row['date']);
-/*vot*/     		$row['title'] = !empty($row['title']) ? htmlspecialchars($row['title']) : lang('no_title');
+/*vot*/			$row['title'] = !empty($row['title']) ? htmlspecialchars($row['title']) : lang('no_title');
 			$logs[] = $row;
 		}
 		return $logs;
@@ -172,13 +172,13 @@ class Log_Model {
 			$row['logid'] = $row['gid'];
 			$cookiePassword = isset($_COOKIE['em_logpwd_' . $row['gid']]) ? addslashes(trim($_COOKIE['em_logpwd_' . $row['gid']])) : '';
 			if (!empty($row['password']) && $cookiePassword != $row['password']) {
-/*vot*/         		$row['excerpt'] = '<p>['.lang('post_protected_by_password_click_title').']</p>';
+/*vot*/				$row['excerpt'] = '<p>['.lang('post_protected_by_password_click_title').']</p>';
 			}
 
 			$row['log_description'] = $this->Parsedown->text(empty($row['excerpt']) ? $row['content'] : $row['excerpt']);
 			$row['attachment'] = '';
 			$row['tag'] = '';
-/*vot*/     		$row['tbcount'] = 0;//Compatible not deleted Quote of template
+/*vot*/			$row['tbcount'] = 0;//Compatible not deleted Quote of template
 			$logs[] = $row;
 		}
 		return $logs;
@@ -343,7 +343,7 @@ class Log_Model {
 /*vot*/			$page_pass = lang('page_password_enter');
 /*vot*/			$submit_pass = lang('submit_password');
 /*vot*/			$back = lang('back_home');
-/*vot*/			echo <<<EOT
+			echo <<<EOT
 <!doctype html>
 <html>
 <head>

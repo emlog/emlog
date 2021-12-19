@@ -37,7 +37,7 @@ if (!$action) {
 if ($action === 'delbyip') {
 	LoginAuth::checkToken();
 	if (ROLE !== ROLE_ADMIN) {
-/*vot*/ emMsg(lang('no_permission'), './');
+/*vot*/		emMsg(lang('no_permission'), './');
 	}
 	$ip = $_GET['ip'] ? addslashes($_GET['ip']) : '';
 	$Comment_Model->delCommentByIp($ip);

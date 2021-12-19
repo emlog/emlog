@@ -79,12 +79,12 @@ if ($action === 'import') {
 	LoginAuth::checkToken();
 	$sqlfile = $_FILES['sqlfile'] ?? '';
 	if (!$sqlfile) {
-/*vot*/ emMsg(lang('info_illegal'));
+/*vot*/		emMsg(lang('info_illegal'));
 	}
 	if ($sqlfile['error'] == 1) {
-/*vot*/ emMsg(lang('attachment_exceed_system_limit') . ini_get('upload_max_filesize') . lang('_limit'));
+/*vot*/		emMsg(lang('attachment_exceed_system_limit') . ini_get('upload_max_filesize') . lang('_limit'));
 	} elseif ($sqlfile['error'] > 1) {
-/*vot*/ emMsg(lang('upload_failed_code') . $sqlfile['error']);
+/*vot*/		emMsg(lang('upload_failed_code') . $sqlfile['error']);
 	}
 	if (getFileSuffix($sqlfile['name']) == 'zip') {
 		$ret = emUnZip($sqlfile['tmp_name'], dirname($sqlfile['tmp_name']), 'backup');
@@ -102,10 +102,10 @@ if ($action === 'import') {
 		}
 		$sqlfile['tmp_name'] = dirname($sqlfile['tmp_name']) . '/' . str_replace('.zip', '.sql', $sqlfile['name']);
 		if (!file_exists($sqlfile['tmp_name'])) {
-/*vot*/	 emMsg(lang('import_only_emlog_no_change'));
+/*vot*/			emMsg(lang('import_only_emlog_no_change'));
 		}
 	} elseif (getFileSuffix($sqlfile['name']) != 'sql') {
-/*vot*/ emMsg(lang('import_only_emlog'));
+/*vot*/		emMsg(lang('import_only_emlog'));
 	}
 	checkSqlFileInfo($sqlfile['tmp_name']);
 	bakindata($sqlfile['tmp_name']);
@@ -119,7 +119,7 @@ if ($action === 'import') {
 function checkSqlFileInfo($sqlfile) {
 	$fp = @fopen($sqlfile, 'r');
 	if (!$fp) {
-/*vot*/ emMsg(lang('import_failed_not_read'));
+/*vot*/		emMsg(lang('import_failed_not_read'));
 	}
 	$dumpinfo = [];
 	$line = 0;
@@ -142,7 +142,7 @@ function checkSqlFileInfo($sqlfile) {
 /*vot*/		emMsg(lang('import_failed_not_emlog_ver') . Option::EMLOG_VERSION);
 	}
 	if (preg_match('/#tableprefix:' . DB_PREFIX . '/', $dumpinfo[2]) === 0) {
-/*vot*/ emMsg(lang('import_failed_bad_prefix') . $dumpinfo[2]);
+/*vot*/		emMsg(lang('import_failed_bad_prefix') . $dumpinfo[2]);
 	}
 }
 

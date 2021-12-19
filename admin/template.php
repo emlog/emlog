@@ -73,7 +73,7 @@ if ($action === 'del') {
 
 	$nonce_templet = Option::get('nonce_templet');
 	if ($tplName === $nonce_templet) {
-/*vot*/ emMsg(lang('template_used'));
+/*vot*/		emMsg(lang('template_used'));
 	}
 
 	if (true === emDeleteFile(TPLS_PATH . $tplName)) {
@@ -100,7 +100,7 @@ if ($action === 'upload_zip') {
 		emDirect("./template.php?error_d=1");
 	}
 	if (!$zipfile || $zipfile['error'] >= 1 || empty($zipfile['tmp_name'])) {
-/*vot*/ emMsg(lang('template_upload_failed') . $zipfile['error']);
+/*vot*/		emMsg(lang('template_upload_failed') . $zipfile['error']);
 	}
 	if (getFileSuffix($zipfile['name']) != 'zip') {
 		emDirect("./template.php?error_a=1");

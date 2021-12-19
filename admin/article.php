@@ -155,7 +155,7 @@ if ($action == 'operate_log') {
 			break;
 		case 'change_author':
 			if (ROLE != ROLE_ADMIN) {
-/*vot*/			emMsg(lang('no_permission'), './');
+/*vot*/				emMsg(lang('no_permission'), './');
 			}
 			foreach ($logs as $val) {
 				$Log_Model->updateLog(array('author' => $author), $val);
@@ -165,7 +165,7 @@ if ($action == 'operate_log') {
 			break;
 		case 'check':
 			if (ROLE != ROLE_ADMIN) {
-/*vot*/			emMsg(lang('no_permission'), './');
+/*vot*/			e	mMsg(lang('no_permission'), './');
 			}
 			$Log_Model->checkSwitch($gid, 'y');
 			$CACHE->updateCache();
@@ -173,7 +173,7 @@ if ($action == 'operate_log') {
 			break;
 		case 'uncheck':
 			if (ROLE != ROLE_ADMIN) {
-/*vot*/			emMsg(lang('no_permission'), './');
+/*vot*/				emMsg(lang('no_permission'), './');
 			}
 			$Log_Model->checkSwitch($gid, 'n');
 			$CACHE->updateCache();

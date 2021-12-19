@@ -43,7 +43,7 @@ class Mysqlpdo {
 
 			$this->conn = $dbh;
 		} catch (PDOException $e) {
-/*vot*/		emMsg(lang('pdo_connect_error' . $e->getMessage());
+/*vot*/			emMsg(lang('pdo_connect_error' . $e->getMessage());
 		}
 
 	}
@@ -78,10 +78,10 @@ class Mysqlpdo {
 			$this->result = $this->conn->query($sql);
 			$this->queryCount++;
 			if (!$ignore_err && 1046 == $this->geterrno()) {
-/*vot*/			emMsg(lang('db_error_name');
+/*vot*/				emMsg(lang('db_error_name');
 			}
 			if (!$ignore_err && !$this->result) {
-/*vot*/			emMsg(lang('db_sql_error') . ": {$sql}<br />" . $this->geterror());
+/*vot*/				emMsg(lang('db_sql_error') . ": {$sql}<br />" . $this->geterror());
 			} else {
 				return $this->result;
 			}

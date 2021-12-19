@@ -82,14 +82,14 @@ function getBlog($sortid = null) {
 		$re['date'] = $re['date'];
 		$re['content'] = $re['content'];
 		if (!empty($re['password'])) {
-/*vot*/     $re['content'] = '<p>[' . lang('post_protected_by_password') . ']</p>';
+/*vot*/			$re['content'] = '<p>[' . lang('post_protected_by_password') . ']</p>';
 		} elseif (Option::get('rss_output_fulltext') == 'n') {
 			if (!empty($re['excerpt'])) {
 				$re['content'] = $re['excerpt'];
 			} else {
 				$re['content'] = extractHtmlData($re['content'], 330);
 			}
-/*vot*/     $re['content'] .= ' <a href="' . Url::log($re['id']) . '">'.lang('read_more') . '</a>';
+/*vot*/			$re['content'] .= ' <a href="' . Url::log($re['id']) . '">'.lang('read_more') . '</a>';
 		}
 
 		$blog[] = $re;

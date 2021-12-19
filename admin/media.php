@@ -62,7 +62,6 @@ if ($action === 'upload') {
 	echo 'success';
 }
 
-//Delete attachment
 if ($action === 'delete') {
 	LoginAuth::checkToken();
 	$aid = isset($_GET['aid']) ? (int)$_GET['aid'] : '';

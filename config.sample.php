@@ -15,7 +15,7 @@ const AUTH_KEY = 'emlog-key';
 //cookie name
 const AUTH_COOKIE_NAME = 'emlog-cookie';
 //Security entrance of the management background: /admin/?s=xxx
-//const ADMIN_PATH_CODE = 'F6MRkx9a';
+//const ADMIN_PATH_CODE = 'xxx';
 
 //vot: blog language
 define('EMLOG_LANGUAGE','en'); //'en', 'ru', 'zh-CN', 'zh-TW', etc.

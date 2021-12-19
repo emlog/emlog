@@ -356,12 +356,12 @@ function smartDate($datetemp, $dstr = 'Y-m-d H:i') {
 	if ($hover == 0) {
 		$min = floor($sec / 60);
 		if ($min == 0) {
-/*vot*/     $op = $sec . lang('_sec_ago');
+/*vot*/			$op = $sec . lang('_sec_ago');
 		} else {
-/*vot*/     $op = $min . lang('_min_ago');
+/*vot*/			$op = $min . lang('_min_ago');
 		}
 	} elseif ($hover < 24) {
-/*vot*/     $op = lang('about_') . $hover . lang('_hour_ago');
+/*vot*/		$op = lang('about_') . $hover . lang('_hour_ago');
 	} else {
 		$op = date($dstr, $datetemp);
 	}
@@ -402,24 +402,24 @@ function upload2local($attach, &$result) {
 	$success = 0;
 	switch ($ret) {
 		case '100':
-/*vot*/		$message = lang('file_size_exceeds_system') . ini_get('upload_max_filesize') . lang('_limit');
+/*vot*/			$message = lang('file_size_exceeds_system') . ini_get('upload_max_filesize') . lang('_limit');
 			break;
 		case '101':
 		case '104':
-/*vot*/		$message = lang('upload_failed_error_code') . $errorNum;
+/*vot*/			$message = lang('upload_failed_error_code') . $errorNum;
 			break;
 		case '102':
-/*vot*/		$message = lang('file_type_not_supported');
+/*vot*/			$message = lang('file_type_not_supported');
 			break;
 		case '103':
 			$r = changeFileSize(Option::getAttMaxSize());
-/*vot*/		$message = lang('file_size_exceeds_') . $ret . lang('_of_limit');
+/*vot*/			$message = lang('file_size_exceeds_') . $ret . lang('_of_limit');
 			break;
 		case '105':
-/*vot*/		$message = lang('upload_folder_unwritable');
+/*vot*/			$message = lang('upload_folder_unwritable');
 			break;
 		default:
-/*vot*/		$message = lang('upload_ok');
+/*vot*/			$message = lang('upload_ok');
 			$success = 1;
 			break;
 	}
@@ -492,7 +492,7 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $is_thumbnail 
 	}
 	doAction('attach_upload', $tmpFile);
 
-    // Generate thumbnail
+	// Generate thumbnail
 	$thum = $uppath . 'thum-' . $fname;
 	if ($is_thumbnail && resizeImage($tmpFile, $thum, Option::get('att_imgmaxw'), Option::get('att_imgmaxh'))) {
 		$file_info['thum_file'] = $thum;
@@ -500,7 +500,7 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $is_thumbnail 
 
 	if (@is_uploaded_file($tmpFile) && @!move_uploaded_file($tmpFile, $attachpath)) {
 		@unlink($tmpFile);
-/*vot*/			return '105'; //Upload failed. File upload directory (content/uploadfile) is not writable
+/*vot*/		return '105'; //Upload failed. File upload directory (content/uploadfile) is not writable
 	}
 
 	// Extract image width and height
@@ -812,9 +812,9 @@ function emMsg($msg, $url = 'javascript:history.back(-1);', $isAutoGo = false) {
 /*vot*/    $lang = EMLOG_LANGUAGE;
 /*vot*/    $dir  = EMLOG_LANGUAGE_DIR;
 /*vot*/    $title = lang('prompt');
-/*vot*/    echo <<<EOT
+	echo <<<EOT
 <!doctype html>
-<html dir="$dir" lang="$lang">
+<html lang="$lang" dir="$dir">
 <head>
     <meta charset="utf-8">
 EOT;
@@ -1088,14 +1088,6 @@ function load_language($model='') {
 
     $file = EMLOG_ROOT.'/lang/'.EMLOG_LANGUAGE.'/lang_'.$model.'.php';
 
-//DEBUG
-//echo '<pre>';
-//echo '    file=', $file, "\n";
-//if(!is_file($file)) {
-//  echo '    file NOT FOUND!', "\n";
-//}
-//echo '</pre>';
-
     if(is_file($file)) {
 
       $lang = array();
@@ -1108,18 +1100,8 @@ function load_language($model='') {
 
       $LANGLIST[$model] = 1;
 
-//DEBUG
-//dump($model, 'load_language');
-//dump($file, '$file');
-//dump($ok, '$ok');
-//dump(count($LANGUAGE), 'count($LANGUAGE)');
-//dump($LANGUAGE, '$LANGUAGE');
-//dump($LANGLIST, '$LANGLIST');
-
     }
-
   }
-
 }
 
 /**

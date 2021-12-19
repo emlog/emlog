@@ -55,7 +55,7 @@ class Twitter_Model {
 		// del tw
 		$this->db->query("DELETE FROM " . DB_PREFIX . "twitter where id=$tid $author");
 		if ($this->db->affected_rows() < 1) {
-/*vot*/		emMsg(lang('no_permission'), './');
+/*vot*/			emMsg(lang('no_permission'), './');
 		}
 		// del pic
 		if (!empty($row['img'])) {

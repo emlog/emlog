@@ -221,7 +221,7 @@ class Comment_Model {
 			$utctimestamp = time();
 			if ($pid != 0) {
 				$comment = $this->getOneComment($pid);
-/*vot*/         $content = '@' . addslashes($comment['poster']) . ': ' . $content;
+/*vot*/				$content = '@' . addslashes($comment['poster']) . ': ' . $content;
 			}
 			$this->db->query("INSERT INTO " . DB_PREFIX . "comment (date,poster,gid,comment,mail,url,hide,ip,pid)
                     VALUES ('$utctimestamp','$name','$blogId','$content','$mail','$url','$hide','$ipaddr','$pid')");
@@ -279,7 +279,7 @@ class Comment_Model {
 
 		if ($pid != 0) {
 			$comment = $this->getOneComment($pid);
-/*vot*/     $content = '@' . addslashes($comment['poster']) . ': ' . $content;
+/*vot*/			$content = '@' . addslashes($comment['poster']) . ': ' . $content;
 		}
 
 		$ischkcomment = Option::get('ischkcomment');
@@ -299,7 +299,7 @@ class Comment_Model {
 		} else {
 			$CACHE->updateCache('sta');
 			doAction('comment_saved', $cid);
-/*vot*/     emMsg(lang('comment_wait_approve'), Url::log($blogId));
+/*vot*/			emMsg(lang('comment_wait_approve'), Url::log($blogId));
 		}
 	}
 
@@ -319,7 +319,7 @@ class Comment_Model {
 		$query = $this->db->query("SELECT a.cid FROM " . DB_PREFIX . "comment as a," . DB_PREFIX . "blog as b WHERE a.cid=$cid and a.gid=b.gid AND b.author=" . UID);
 		$result = $this->db->num_rows($query);
 		if ($result <= 0) {
-/*vot*/     emMsg(lang('no_permission'), './');
+/*vot*/			emMsg(lang('no_permission'), './');
 		}
 	}
 

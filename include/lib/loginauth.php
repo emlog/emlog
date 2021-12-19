@@ -69,11 +69,11 @@ class LoginAuth {
 		$error_msg = '';
 		switch ($errorCode) {
 			case self::LOGIN_ERROR_AUTHCODE:
-/*vot*/		 $error_msg = lang('captcha_error_reenter');
+/*vot*/				$error_msg = lang('captcha_error_reenter');
 				break;
 			case self::LOGIN_ERROR_USER:
 			case self::LOGIN_ERROR_PASSWD:
-/*vot*/		 $error_msg = lang('password_wrong_reenter');
+/*vot*/				$error_msg = lang('password_wrong_reenter');
 				break;
 		}
 
@@ -219,7 +219,7 @@ class LoginAuth {
 	public static function checkToken() {
 		$token = isset($_REQUEST['token']) ? addslashes($_REQUEST['token']) : '';
 		if ($token !== self::genToken()) {
-/*vot*/	 emMsg(lang('no_permission') . ' Token error');
+/*vot*/			emMsg(lang('no_permission') . ' Token error');
 		}
 	}
 }

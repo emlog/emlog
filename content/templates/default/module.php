@@ -202,7 +202,7 @@ function widget_search($title) { ?>
         <ul class="unstyle-li" style="text-align: center;">
             <form name="keyform" method="get" action="<?php echo BLOG_URL; ?>index.php">
                 <input name="keyword" class="search form-control" autocomplete="off" type="text"/>
-<!--vot-->		<input type="submit" value="<?=lang('search')?>">
+<!--vot-->	<input type="submit" value="<?=lang('search')?>">
             </form>
         </ul>
     </div>
@@ -350,7 +350,7 @@ function blog_tag($blogid) {
 	$log_cache_tags = $CACHE->readCache('logtags');
 	if (!empty($log_cache_tags[$blogid])) {
 		$tag = '';
-/*vot*/         echo 'tags' . ': ';
+/*vot*/         echo lang('tags') . ': ';
 		foreach ($log_cache_tags[$blogid] as $value) {
 /*vot*/			$tag .= "	<a href=\"" . Url::tag($value['tagurl']) . "\" class='tags'  title='{lang('tag')}' >" . $value['tagname'] . '</a>';
 		}
@@ -359,7 +359,7 @@ function blog_tag($blogid) {
 		$tag_ids = $tag_model->getTagIdsFromBlogId($blogid);
 		$tag_names = $tag_model->getNamesFromIds($tag_ids);
 		if (!empty($tag_names)) {
-/*vot*/     $tag = lang('tags').':';
+/*vot*/			$tag = lang('tags').':';
 			foreach ($tag_names as $key => $value) {
 /*vot*/				$tag .= "	<a href=\"" . Url::tag(rawurlencode($value)) . "\" class='tags' title='{lang('tag')}' >" . htmlspecialchars($value) . '</a>';
 			}
@@ -493,12 +493,12 @@ function blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allo
                     <textarea class="form-control log_comment" name="comment" id="comment" rows="10" tabindex="4" required></textarea>
 					<?php if (ROLE == ROLE_VISITOR): ?>
                         <div class="comment-info" id="comment-info">
-                            <input class="form-control com_control comment-name" id="info_n" autocomplete="off" type="text" name="comname" maxlength="49"
+<!--vot-->                  <input class="form-control com_control comment-name" id="info_n" autocomplete="off" type="text" name="comname" maxlength="49"
                                    value="<?php echo $ckname; ?>" size="22"
-<!--vot-->                  <input class="form-control com_control com_mail" autocomplete="off" type="text" name="commail" maxlength="128" value="<?php echo $ckmail; ?>" size="22"
-                            <input class="form-control com_control comment-mail" id="info_m" autocomplete="off" type="text" name="commail" maxlength="128"
+                                   tabindex="1" placeholder="<?=lang('nickname')?>*" required/>
+<!--vot-->                  <input class="form-control com_control comment-mail" id="info_m" autocomplete="off" type="text" name="commail" maxlength="128"
                                    value="<?php echo $ckmail; ?>" size="22"
-                                   tabindex="3" placeholder="<?=lang('homepage')?>" />
+                                   tabindex="2" placeholder="<?=lang('homepage')?>" />
 <!--vot-->                  <input class="form-control com_control comment-url" id="info_u" autocomplete="off" type="text" name="comurl" maxlength="128"
                                    value="<?php echo $ckurl; ?>" size="22"
                                    tabindex="3" placeholder="<?=lang('homepage')?>"/>
@@ -510,7 +510,7 @@ function blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allo
                                id="comment_submit" value="<?=lang('comment_leave')?>" tabindex="6"/>
                     </span>
 					<?php if ($verifyCode != "") { ?>
-					<!-- Verification window -->
+			<!-- Verification window -->
                         <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content" style="display: table-cell;">
@@ -519,14 +519,14 @@ function blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allo
                                     </div>
 									<?php echo $verifyCode; ?>
                                     <div class="modal-footer" style="border-top: 0px;">
-<!--vot-->								<button type="button" class="btn btn-default" data-dismiss="modal"><?=lang('close')?></button>
-<!--vot-->								<button type="submit" class="btn btn-primary"><?=lang('submit')?></button>
+<!--vot-->				<button type="button" class="btn" id="close-modal" data-dismiss="modal"><?=lang('close')?></button>
+<!--vot-->				<button type="submit" class="btn" id="comment_submit2"><?=lang('submit')?></button>
                                     </div>
                                 </div>
                             </div>
                             <div class="lock-screen"></div>
                         </div>
-					<!-- Verification window (end)  -->
+			<!-- Verification window (end)  -->
 					<?php } ?>
                     <input type="hidden" name="pid" id="comment-pid" value="0" size="22" tabindex="1"/>
                 </form>

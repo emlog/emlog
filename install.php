@@ -230,7 +230,7 @@ EOT;
 		exit;
 	}
 
-    // Create config.php
+	// Create config.php
 /*vot*/    if ( $fp = @fopen('config.php', 'w') ){
 /*vot*/        fclose($fp);
 /*vot*/    }

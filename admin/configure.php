@@ -85,10 +85,10 @@ if ($action == 'mod_config') {
 	];
 
 	if ($getData['login_code'] == 'y' && !function_exists("imagecreate") && !function_exists('imagepng')) {
-/*vot*/ emMsg(lang('verification_code_not_supported'), "configure.php");
+/*vot*/		emMsg(lang('verification_code_not_supported'), "configure.php");
 	}
 	if ($getData['comment_code'] == 'y' && !function_exists("imagecreate") && !function_exists('imagepng')) {
-/*vot*/ emMsg(lang('verification_code_comment_not_supported'), "configure.php");
+/*vot*/		emMsg(lang('verification_code_comment_not_supported'), "configure.php");
 	}
 	if ($getData['blogurl'] && substr($getData['blogurl'], -1) != '/') {
 		$getData['blogurl'] .= '/';

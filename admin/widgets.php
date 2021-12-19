@@ -73,10 +73,10 @@ if ($action === 'setwg') {
 			$custom_widget = Option::get('custom_widget');
 			$title = $_POST['title'] ?? '';
 			$content = $_POST['content'] ?? '';
-/*vot*/		$custom_wg_id = $_POST['custom_wg_id'] ?? '';//Edit widget id
+/*vot*/			$custom_wg_id = $_POST['custom_wg_id'] ?? '';//Edit widget id
 			$new_title = $_POST['new_title'] ?? '';
 			$new_content = $_POST['new_content'] ?? '';
-/*vot*/		$rmwg = isset($_GET['rmwg']) ? addslashes($_GET['rmwg']) : '';//Delete widget id
+/*vot*/			$rmwg = isset($_GET['rmwg']) ? addslashes($_GET['rmwg']) : '';//Delete widget id
 			//Add a new custom widget
 			if ($new_content) {
 				//Determine the widget index

@@ -73,7 +73,7 @@ class Plugin_Model {
 
 	/**
 	 * Get a list of all plug-ins, plug-defined plug-in name will not get
-	 *  plug-in directory: content/plugins
+	 * plug-in directory: content/plugins
 	 * Recognized only plugins in the /plugin/ directory
 	 * @return array
 	 */

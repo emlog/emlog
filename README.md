@@ -5,7 +5,6 @@ It is convenient to create personal sites easily and quickly.
 
 Based on original Emlog (https://www.emlog.net/) (single Chinese language)
 
-
 ## Features
 
 * Multilingual UI, 3 languages onboard (en, ru, zh-CN), easy to add new languages
@@ -31,7 +30,7 @@ Based on original Emlog (https://www.emlog.net/) (single Chinese language)
 
 
 ## Download
-* [Multilingual version Emlog.ML](https://github.com/codersclub/emlog/archive/refs/heads/multilang.zip)
+* [Multilingual version Emlog.ML](https://github.com/codersclub/emlog.ml/archive/refs/heads/multilang.zip)
 * [Original Chinese emlog pro](https://www.emlog.net/download)
 
 

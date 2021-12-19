@@ -13,7 +13,7 @@ class Database {
 		} elseif (class_exists('pdo', false)) {
 			return Mysqlpdo::getInstance();
 		} else {
-/*vot*/	 emMsg(lang('mysql_not_supported'));
+/*vot*/			emMsg(lang('mysql_not_supported'));
 		}
 	}
 

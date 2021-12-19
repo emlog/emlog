@@ -59,10 +59,10 @@ class Calendar {
 			$m = '12';
 			$year_down = $n_year - 1;
 		}
-/*vot*/	$url = DYNAMIC_BLOGURL . '?action=cal&record=' . ($n_year - 1) . $n_month; //Previous Year
-/*vot*/	$url2 = DYNAMIC_BLOGURL . '?action=cal&record=' . ($n_year + 1) . $n_month;//Next Year
-/*vot*/	$url3 = DYNAMIC_BLOGURL . '?action=cal&record=' . $year_down . $m;         //Previous Month
-/*vot*/	$url4 = DYNAMIC_BLOGURL . '?action=cal&record=' . $year_up . $mj;          //Next month
+/*vot*/		$url = DYNAMIC_BLOGURL . '?action=cal&record=' . ($n_year - 1) . $n_month; //Previous Year
+/*vot*/		$url2 = DYNAMIC_BLOGURL . '?action=cal&record=' . ($n_year + 1) . $n_month;//Next Year
+/*vot*/		$url3 = DYNAMIC_BLOGURL . '?action=cal&record=' . $year_down . $m;         //Previous Month
+/*vot*/		$url4 = DYNAMIC_BLOGURL . '?action=cal&record=' . $year_up . $mj;          //Next month
 
 		$calendar = "<table class=\"calendartop\" cellspacing=\"0\"><tr>
 		<td><a href=\"javascript:void(0);\" onclick=\"sendinfo('$url','calendar');\"> &laquo; </a>$n_year2<a href=\"javascript:void(0);\" onclick=\"sendinfo('$url2','calendar');\"> &raquo; </a></td>
