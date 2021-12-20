@@ -165,7 +165,7 @@ if ($action == 'operate_log') {
 			break;
 		case 'check':
 			if (ROLE != ROLE_ADMIN) {
-/*vot*/			e	mMsg(lang('no_permission'), './');
+/*vot*/				emMsg(lang('no_permission'), './');
 			}
 			$Log_Model->checkSwitch($gid, 'y');
 			$CACHE->updateCache();
