@@ -110,7 +110,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 								<?php if ($value['top'] == 'y'): ?><img src="./views/images/top.png" title="首页置顶"/><?php endif; ?>
 								<?php if ($value['sortop'] == 'y'): ?><img src="./views/images/sortop.png" title="分类置顶"/><?php endif; ?>
 								<?php if (!$draft && $value['checked'] == 'n'): ?>
-                                    <sapn style="color:red;">[待审]</sapn><?php endif; ?>
+                                    <span style="color:red;">[待审]</span><?php endif; ?>
                                 <div>
 									<?php if (!$draft && ROLE == ROLE_ADMIN && $value['checked'] == 'n'): ?>
                                         <a class="badge badge-success"
