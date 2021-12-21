@@ -245,7 +245,7 @@ $lang = array(
 //---------------------------
 //admin/views/comment.php
  'comment_management'	=> 'Комментарии',//'评论',
- 'content'		=> 'Текст',//'内容',
+ 'content'		=> 'Контент',//'内容',
  'comment_author'	=> 'Автор',//'评论人',
  'belongs_to_article'	=> 'Статья',//'所属文章',
  'from_ip'		=> 'IP',//'来自IP',
