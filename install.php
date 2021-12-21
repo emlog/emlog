@@ -263,7 +263,7 @@ EOT;
 
 	$widget_title = serialize(Option::getWidgetTitle());
 	$def_widgets = serialize(Option::getDefWidget());
-	$def_plugin = serialize(Option::getDefPluin());
+	$def_plugin = serialize(Option::getDefPlugin());
 
 	define('BLOG_URL', realUrl());
 
