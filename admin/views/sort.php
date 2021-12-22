@@ -181,13 +181,13 @@
         var a = $.trim($("#alias").val());
         if (1 == issortalias(a)) {
             $("#addsort").attr("disabled", "disabled");
-<!--vot-->  $("#alias_msg_hook").html('<span id="input_error"><?=lang('alias_invalid_characters')?></span>');
+/*vot*/     $("#alias_msg_hook").html('<span id="input_error"><?=lang('alias_invalid_characters')?></span>');
         } else if (2 == issortalias(a)) {
             $("#addsort").attr("disabled", "disabled");
-<!--vot-->  $("#alias_msg_hook").html('<span id="input_error"><?=lang('alias_only_digits')?></span>');
+/*vot*/     $("#alias_msg_hook").html('<span id="input_error"><?=lang('alias_only_digits')?></span>');
         } else if (3 == issortalias(a)) {
             $("#addsort").attr("disabled", "disabled");
-<!--vot-->  $("#alias_msg_hook").html('<span id="input_error"><?=lang('alias_system_link')?></span>');
+/*vot*/     $("#alias_msg_hook").html('<span id="input_error"><?=lang('alias_system_link')?></span>');
         } else {
             $("#alias_msg_hook").html('');
             $("#msg").html('');

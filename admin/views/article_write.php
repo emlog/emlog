@@ -143,7 +143,7 @@
         previewsContainer: ".dropzone-previews",
         sending: function (file, xhr, formData) {
             formData.append("filesize", file.size);
-<!--vot-->  $('#mediaAdd').html("<?=lang('uploading')?>");
+/*vot*/     $('#mediaAdd').html("<?=lang('uploading')?>");
         },
         init: function () {
             this.on("error", function (file, response) {
@@ -151,7 +151,7 @@
             });
             this.on("queuecomplete", function (file) {
                 $('#mediaModal').find('.modal-body .row').load("./media.php?action=lib");
-<!--vot-->      $('#mediaAdd').html("<?=lang('upload_files')?>");
+/*vot*/         $('#mediaAdd').html("<?=lang('upload_files')?>");
             });
         }
     });
