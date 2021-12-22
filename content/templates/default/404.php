@@ -9,7 +9,7 @@ if (!defined('EMLOG_ROOT')) {
 <!doctype html>
 <html lang="zh-cn">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8">
     <title>错误提示-页面未找到</title>
     <style type="text/css">
         body {
