@@ -171,7 +171,7 @@ class Option {
 	/**
 	 * 获取初始安装时的插件
 	 */
-	static function getDefPluin() {
+	static function getDefPlugin() {
 		return ['tips/tips.php'];
 	}
 
