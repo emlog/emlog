@@ -740,8 +740,17 @@ function emFetchFile($source) {
 	$temp_file = tempnam(EMLOG_ROOT . '/content/cache/', 'emtemp_');
 	$wh = fopen($temp_file, 'w+b');
 
-	$timeout = ['http' => ['timeout' => 60]];//超时时间，单位为秒
-	$ctx = stream_context_create($timeout);
+	$data = http_build_query(array ('emkey' => Option::get('emkey')));
+	$ctx_opt = [
+		'http' => [
+			'timeout' => 60,
+			'method' => 'POST',
+			'header'=> "Content-type: application/x-www-form-urlencoded\r\n"
+				. "Content-Length: " . strlen($data) . "\r\n",
+			'content' => $data
+		]
+	];
+	$ctx = stream_context_create($ctx_opt);
 	$rh = fopen($source, 'rb', false, $ctx);
 
 	if (!$rh || !$wh) {
