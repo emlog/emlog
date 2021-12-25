@@ -39,11 +39,10 @@ if (empty($action)) {
 if ($action === 'get_news') {
 	$emcurl = new EmCurl();
 	$emcurl->request(OFFICIAL_SERVICE_HOST . 'services/messenger_pro.php');
+	header('Content-Type: application/json; charset=UTF-8');
 	if ($emcurl->getHttpStatus() !== 200) {
-		header('Content-Type: application/json; charset=UTF-8');
 		exit('{"result":"fail"}');
 	}
 	$response = $emcurl->getRespone();
-	header('Content-Type: application/json; charset=UTF-8');
 	exit($response);
 }

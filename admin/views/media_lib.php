@@ -14,7 +14,7 @@
 	?>
     <div class="col-md-4">
         <div class="card mb-4 shadow-sm">
-            <a href="<?php echo $media_url; ?>" target="_blank""><img class="card-img-top" src="<?php echo $media_icon; ?>"/></a>
+            <a href="<?php echo $media_url; ?>" target="_blank"><img class="card-img-top" src="<?php echo $media_icon; ?>"/></a>
             <div class="card-body">
                 <p class="card-text text-muted small">
 					<?php echo $media_name; ?><br>
