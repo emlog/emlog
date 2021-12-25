@@ -15,13 +15,15 @@
 			$media_name = $value['filename'];
 			if (isImage($value['mimetype'])) {
 				$media_icon = getFileUrl($value['filepath_thum']);
+                $imgviewer = 'class="highslide" onclick="return hs.expand(this)"';
 			} else {
 				$media_icon = "./views/images/fnone.png";
+				$imgviewer = '';
 			}
 			?>
             <div class="col-md-4">
                 <div class="card mb-4 shadow-sm">
-                    <a href="<?php echo $media_url; ?>" target="_blank""><img class="card-img-top" src="<?php echo $media_icon; ?>"/></a>
+                    <a href="<?php echo $media_url; ?>" <?php echo $imgviewer; ?> target="_blank"><img class="card-img-top" src="<?php echo $media_icon; ?>"/></a>
                     <div class="card-body">
                         <p class="card-text text-muted small">
 							<?php echo $media_name; ?><br>
@@ -100,4 +102,10 @@
         $("#operate").val(act);
         $("#form_media").submit();
     }
+</script>
+<script src="./views/highslide/highslide.min.js?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
+<link rel="stylesheet" type="text/css" href="./views/highslide/highslide.css?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>" />
+<script type="text/javascript">
+    hs.graphicsDir = './views/highslide/graphics/';
+    hs.wrapperClassName = 'rounded-white';
 </script>
