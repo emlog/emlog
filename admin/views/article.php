@@ -181,7 +181,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 					<?php if ($draft): ?>
                         <a href="javascript:logact('pub');" class="btn btn-sm btn-success">发布</a>
 					<?php else: ?>
-                        <a href="javascript:logact('hide');" class="btn btn-sm btn-success">放入草稿箱</a>
+                        <a href="javascript:logact('hide');" class="btn btn-sm btn-primary">放入草稿箱</a>
 					<?php endif; ?>
                     <a href="javascript:logact('del');" class="btn btn-sm btn-danger">删除</a>
                 </div>
