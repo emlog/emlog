@@ -58,6 +58,6 @@ if (ROLE === ROLE_WRITER && !in_array($request_uri, array('article_write', 'arti
 	emMsg('权限不足！', './');
 }
 
-if (!Register::isRegLocal() && mt_rand(1,10) === 10) {
+if (!Register::isRegLocal() && mt_rand(1,15) === 10) {
 	emDirect("register.php");
 }
