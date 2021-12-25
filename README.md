@@ -1,10 +1,12 @@
 # emlog
 
-一款基于PHP和MySQL的功能强大的博客及CMS建站系统，追求快速、稳定、简单、舒适的建站体验。
+一款基于PHP和MySQL的功能强大的博客及内容知识管理系统，追求快速、稳定、简单、舒适的建站体验。
 
 
 ## 功能简介
 
+* Markdown编辑器
+* 多屏幕尺寸适配，兼容pc和移动端设备
 * 一键式更换模板，方便快捷打造个性站点
 * 支持强大的插件扩展功能，随意选择实用的插件，让你的站点无限可能
 * 支持日志URL自定义，链接样式更适合SEO
@@ -16,16 +18,14 @@
 * 支持灵活的标签(tag)分类，以及传统分类方式
 * 资源（图片、视频、文件）上传和管理
 * 上传的图片可以随意直观的嵌入到日志内容里，让你的日志图文并茂
-* 首页日历方式查阅日志，方便、直观、快捷
-* 数据缓存技术，站点访问速度更快
 * 站点数据备份/恢复功能
 
 
-## 官方首页
+## 文档
 
-www.emlog.net
+[简体中文](https://www.emlog.net/docs/#/install)
 
-## 安装包下载
+## 安装包
 
 [下载pro安装包](https://www.emlog.net/download)
 
@@ -42,10 +42,11 @@ www.emlog.net
 3. 安装过程不会创建数据库，需要您事先创建好 ,点击确认安装，安装成功。
 
 
-## Special thanks
+## 特别感谢
 
 [![JetBrains](https://raw.githubusercontent.com/kainonly/ngx-bit/main/resource/jetbrains.svg)](https://www.jetbrains.com/)
 
+Thanks for non-commercial open source development authorization by JetBrains
 
-## License
+## 授权协议
 发布Emlog软件所依据的许可证是自由软件基金会的GPLv3(或更高版本)：[LICENSE](/license.txt)
