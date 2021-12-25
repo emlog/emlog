@@ -687,7 +687,7 @@ footer .copyright {
     margin: 10px 0;
     padding: 10px 0px;
     font-size: medium;
-    border-bottom: 1px #f7f7f7 solid;
+/*vot*/    border-bottom: 1px #CCC solid;
     overflow: hidden;
     color: #333
 }
@@ -742,7 +742,8 @@ footer .copyright {
 .comment-children {
     margin: 20px 10px 10px 20px;
     clear: both;
-    border: none;
+    border: 0;
+/*vot*/    border-top: 1px solid #CCC;
     padding: 0
 }
 .comment .comment-post {
