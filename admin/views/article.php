@@ -182,7 +182,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 					<?php if ($draft): ?>
 <!--vot-->              <a href="javascript:logact('pub');" class="btn btn-sm btn-success"><?=lang('publish')?></a>
 					<?php else: ?>
-<!--vot-->              <a href="javascript:logact('hide');" class="btn btn-sm btn-success"><?=lang('add_draft')?></a>
+<!--vot-->              <a href="javascript:logact('hide');" class="btn btn-sm btn-primary"><?=lang('add_draft')?></a>
 					<?php endif; ?>
 <!--vot-->          <a href="javascript:logact('del');" class="btn btn-sm btn-danger"><?=lang('delete')?></a>
                 </div>
