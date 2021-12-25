@@ -7,7 +7,6 @@
     <h1 class="h3 mb-0 text-gray-800">多媒体资源</h1>
     <a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#exampleModal"><i class="icofont-plus"></i> 上传图片/文件</a>
 </div>
-
 <form action="media.php?action=operate_media" method="post" name="form_media" id="form_media">
     <div class="row">
 		<?php foreach ($medias as $key => $value):
@@ -15,7 +14,7 @@
 			$media_name = $value['filename'];
 			if (isImage($value['mimetype'])) {
 				$media_icon = getFileUrl($value['filepath_thum']);
-                $imgviewer = 'class="highslide" onclick="return hs.expand(this)"';
+				$imgviewer = 'class="highslide" onclick="return hs.expand(this)"';
 			} else {
 				$media_icon = "./views/images/fnone.png";
 				$imgviewer = '';
@@ -103,9 +102,9 @@
         $("#form_media").submit();
     }
 </script>
+<link rel="stylesheet" type="text/css" href="./views/highslide/highslide.css?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"/>
 <script src="./views/highslide/highslide.min.js?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
-<link rel="stylesheet" type="text/css" href="./views/highslide/highslide.css?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>" />
-<script type="text/javascript">
+<script>
     hs.graphicsDir = './views/highslide/graphics/';
     hs.wrapperClassName = 'rounded-white';
 </script>
