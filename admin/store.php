@@ -41,6 +41,11 @@ if ($action === 'error') {
 if ($action === 'install') {
 	$source = isset($_GET['source']) ? trim($_GET['source']) : '';
 	$source_type = isset($_GET['type']) ? trim($_GET['type']) : '';
+
+	if (!Register::isRegLocal()) {
+		emDirect("./register.php?error_store=1");
+	}
+
 	if (empty($source)) {
 		emDirect("./store.php?error_param=1");
 	}
