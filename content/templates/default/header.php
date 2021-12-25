@@ -14,7 +14,7 @@ require_once View::getView('module');
 <!doctype html>
 <!--vot--><html lang="<?=EMLOG_LANGUAGE?>" dir="<?= EMLOG_LANGUAGE_DIR ?>">
 <head>
-<!--vot--><meta charset="utf-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title><?php echo $site_title; ?></title>
     <meta name="keywords" content="<?php echo $site_key; ?>"/>
