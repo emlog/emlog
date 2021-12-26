@@ -2,7 +2,7 @@
 	exit('error!');
 } ?>
 <?php if (isset($_GET['activated'])): ?>
-    <div class="alert alert-success">保存成功</div><?php endif; ?>
+    <div class="alert alert-success">保存成功</div><?php endif ?>
 <h1 class="h3 mb-4 text-gray-800">侧边栏</h1>
 <div class="card shadow mb-4 mt-2">
     <div class="card-body">
@@ -24,7 +24,7 @@
                             <div class="card-body">
                                 <form action="widgets.php?action=setwg&wg=blogger" method="post" class="form-inline">
                                     <li>
-                                        <input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['blogger']; ?>"/>
+                                        <input type="text" name="title" class="form-control" value="<?= $customWgTitle['blogger'] ?>"/>
                                         <input type="submit" name="" value="保存" class="btn btn-success btn-sm"/>
                                     </li>
                                 </form>
@@ -45,7 +45,7 @@
                             <div class="card-body">
                                 <form action="widgets.php?action=setwg&wg=calendar" method="post" class="form-inline">
                                     <li>
-                                        <input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['calendar']; ?>"/>
+                                        <input type="text" name="title" class="form-control" value="<?= $customWgTitle['calendar'] ?>"/>
                                         <input type="submit" name="" value="保存" class="btn btn-success btn-sm"/>
                                     </li>
                                 </form>
@@ -66,7 +66,7 @@
                             <div class="card-body">
                                 <form action="widgets.php?action=setwg&wg=tag" method="post" class="form-inline">
                                     <li>
-                                        <input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['tag']; ?>"/>
+                                        <input type="text" name="title" class="form-control" value="<?= $customWgTitle['tag'] ?>"/>
                                         <input type="submit" name="" value="保存" class="btn btn-success btn-sm"/>
                                     </li>
                                 </form>
@@ -87,7 +87,7 @@
                             <div class="card-body">
                                 <form action="widgets.php?action=setwg&wg=sort" method="post" class="form-inline">
                                     <li>
-                                        <input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['sort']; ?>"/>
+                                        <input type="text" name="title" class="form-control" value="<?= $customWgTitle['sort'] ?>"/>
                                         <input type="submit" name="" value="保存" class="btn btn-success btn-sm"/>
                                     </li>
                                 </form>
@@ -108,7 +108,7 @@
                             <div class="card-body">
                                 <form action="widgets.php?action=setwg&wg=archive" method="post" class="form-inline">
                                     <li>
-                                        <input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['archive']; ?>"/>
+                                        <input type="text" name="title" class="form-control" value="<?= $customWgTitle['archive'] ?>"/>
                                         <input type="submit" name="" value="保存" class="btn btn-success btn-sm"/>
                                     </li>
                                 </form>
@@ -129,12 +129,12 @@
                             <div class="card-body">
                                 <form action="widgets.php?action=setwg&wg=newcomm" method="post">
                                     <label>标题</label>
-                                    <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['newcomm']; ?>"/></li>
+                                    <li><input type="text" name="title" class="form-control" value="<?= $customWgTitle['newcomm'] ?>"/></li>
                                     <label>最新评论数</label>
-                                    <li><input class="form-control" maxlength="5" size="10" value="<?php echo Option::get('index_comnum'); ?>" name="index_comnum"/></li>
+                                    <li><input class="form-control" maxlength="5" size="10" value="<?= Option::get('index_comnum') ?>" name="index_comnum"/></li>
                                     <label>新近评论截取字节数</label>
                                     <li>
-                                        <input class="form-control" maxlength="5" size="10" value="<?php echo Option::get('comment_subnum'); ?>" name="comment_subnum"/>
+                                        <input class="form-control" maxlength="5" size="10" value="<?= Option::get('comment_subnum') ?>" name="comment_subnum"/>
                                         <input type="submit" name="" value="保存" class="btn btn-success btn-sm"/>
                                     </li>
                                 </form>
@@ -155,10 +155,10 @@
                             <div class="card-body">
                                 <form action="widgets.php?action=setwg&wg=newlog" method="post">
                                     <li>标题</li>
-                                    <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['newlog']; ?>"/></li>
+                                    <li><input type="text" name="title" class="form-control" value="<?= $customWgTitle['newlog'] ?>"/></li>
                                     <li>显示最新文章数</li>
                                     <li>
-                                        <input class="form-control" maxlength="5" size="10" value="<?php echo Option::get('index_newlognum'); ?>" name="index_newlog"/>
+                                        <input class="form-control" maxlength="5" size="10" value="<?= Option::get('index_newlognum') ?>" name="index_newlog"/>
                                         <input type="submit" name="" value="保存" class="btn btn-success btn-sm"/>
                                     </li>
                                 </form>
@@ -179,10 +179,10 @@
                             <div class="card-body">
                                 <form action="widgets.php?action=setwg&wg=hotlog" method="post">
                                     <li>标题</li>
-                                    <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['hotlog']; ?>"/></li>
+                                    <li><input type="text" name="title" class="form-control" value="<?= $customWgTitle['hotlog'] ?>"/></li>
                                     <li>显示热门文章数</li>
                                     <li>
-                                        <input class="form-control" maxlength="5" size="10" value="<?php echo Option::get('index_hotlognum'); ?>" name="index_hotlognum"/>
+                                        <input class="form-control" maxlength="5" size="10" value="<?= Option::get('index_hotlognum') ?>" name="index_hotlognum"/>
                                         <input type="submit" name="" value="保存" class="btn btn-success btn-sm"/>
                                     </li>
                                 </form>
@@ -203,7 +203,7 @@
                             <div class="card-body">
                                 <form action="widgets.php?action=setwg&wg=link" method="post" class="form-inline">
                                     <li>
-                                        <input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['link']; ?>"/>
+                                        <input type="text" name="title" class="form-control" value="<?= $customWgTitle['link'] ?>"/>
                                         <input type="submit" name="" value="保存" class="btn btn-success btn-sm"/>
                                     </li>
                                 </form>
@@ -224,7 +224,7 @@
                             <div class="card-body">
                                 <form action="widgets.php?action=setwg&wg=search" method="post" class="form-inline">
                                     <li>
-                                        <input type="text" name="title" value="<?php echo $customWgTitle['search']; ?>" class="form-control"/>
+                                        <input type="text" name="title" value="<?= $customWgTitle['search'] ?>" class="form-control"/>
                                         <input type="submit" name="" value="保存" class="btn btn-success btn-sm"/>
                                     </li>
                                 </form>
@@ -236,33 +236,33 @@
 						preg_match("/^custom_wg_(\d+)/", $key, $matches);
 						$custom_wg_title = empty($val['title']) ? '未命名组件(' . $matches[1] . ')' : $val['title'];
 						?>
-                        <div class="card" id="<?php echo $key; ?>">
+                        <div class="card" id="<?= $key ?>">
                             <div class="card-header">
                                 <h2 class="mb-0">
-                                    <button class="btn btn-link widget-title" type="button" data-toggle="collapse" data-target="#<?php echo $key; ?>Form" aria-expanded="true"
-                                            aria-controls="collapseOne"><?php echo $custom_wg_title; ?>
+                                    <button class="btn btn-link widget-title" type="button" data-toggle="collapse" data-target="#<?= $key ?>Form" aria-expanded="true"
+                                            aria-controls="collapseOne"><?= $custom_wg_title ?>
                                     </button>
                                     <li class="widget-act-add"></li>
                                     <li class="widget-act-del"></li>
                                 </h2>
                             </div>
-                            <div id="<?php echo $key; ?>Form" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div id="<?= $key ?>Form" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                                 <div class="card-body">
                                     <form action="widgets.php?action=setwg&wg=custom_text" method="post">
                                         <li>
-                                            <input type="hidden" name="custom_wg_id" value="<?php echo $key; ?>"/>
-                                            <input type="text" name="title" class="form-control" value="<?php echo $val['title']; ?>"/><br/>
+                                            <input type="hidden" name="custom_wg_id" value="<?= $key ?>"/>
+                                            <input type="text" name="title" class="form-control" value="<?= $val['title'] ?>"/><br/>
                                         </li>
-                                        <li><textarea class="form-control" name="content" style="overflow:auto; height:260px;"><?php echo $val['content']; ?></textarea><br/></li>
+                                        <li><textarea class="form-control" name="content" style="overflow:auto; height:260px;"><?= $val['content'] ?></textarea><br/></li>
                                         <li>
                                             <input type="submit" class="btn btn-sm btn-success" name="" value="保存"/>
-                                            <a class="btn btn-sm btn-danger" href="widgets.php?action=setwg&wg=custom_text&rmwg=<?php echo $key; ?>">删除</a>
+                                            <a class="btn btn-sm btn-danger" href="widgets.php?action=setwg&wg=custom_text&rmwg=<?= $key ?>">删除</a>
                                         </li>
                                     </form>
                                 </div>
                             </div>
                         </div>
-					<?php endforeach; ?>
+					<?php endforeach ?>
                 </div>
                 <div class="my-3">
                     <a href="#" class="btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> 添加组件</a>
@@ -313,7 +313,7 @@
 								$title = '未命名组件(' . $matches[1] . ')';
 							}
 							?>
-                            <div class="card m-1 active_widget" style="cursor: move" id="em_<?php echo $widget; ?>">
+                            <div class="card m-1 active_widget" style="cursor: move" id="em_<?= $widget ?>">
                                 <div class="card-header">
                                     <div class="mb-0">
                                         <h6>
@@ -323,15 +323,15 @@
 												echo $widgetTitle[$widget];
 											} ?>
                                         </h6>
-                                        <input type="hidden" name="widgets[]" value="<?php echo $widget; ?>"/>
+                                        <input type="hidden" name="widgets[]" value="<?= $widget ?>"/>
                                     </div>
                                 </div>
                             </div>
-						<?php endforeach; ?>
+						<?php endforeach ?>
                     </div>
                     <div class="my-3">
                         <input type="submit" value="保存组件排序" class="btn btn-sm btn-success"/>
-                        <a href="javascript:em_confirm(0, 'reset_widget', '<?php echo LoginAuth::genToken(); ?>');" class="btn btn-sm btn-warning">重置组件</a>
+                        <a href="javascript:em_confirm(0, 'reset_widget', '<?= LoginAuth::genToken() ?>');" class="btn btn-sm btn-warning">重置组件</a>
                     </div>
                 </form>
             </div>

@@ -2,25 +2,25 @@
 	exit('error!');
 } ?>
 <?php if (isset($_GET['active_taxis'])): ?>
-    <div class="alert alert-success">排序更新成功</div><?php endif; ?>
+    <div class="alert alert-success">排序更新成功</div><?php endif ?>
 <?php if (isset($_GET['active_del'])): ?>
-    <div class="alert alert-success">删除导航成功</div><?php endif; ?>
+    <div class="alert alert-success">删除导航成功</div><?php endif ?>
 <?php if (isset($_GET['active_edit'])): ?>
-    <div class="alert alert-success">修改导航成功</div><?php endif; ?>
+    <div class="alert alert-success">修改导航成功</div><?php endif ?>
 <?php if (isset($_GET['active_add'])): ?>
-    <div class="alert alert-success">添加导航成功</div><?php endif; ?>
+    <div class="alert alert-success">添加导航成功</div><?php endif ?>
 <?php if (isset($_GET['error_a'])): ?>
-    <div class="alert alert-danger">导航名称和地址不能为空</div><?php endif; ?>
+    <div class="alert alert-danger">导航名称和地址不能为空</div><?php endif ?>
 <?php if (isset($_GET['error_b'])): ?>
-    <div class="alert alert-danger">没有可排序的导航</div><?php endif; ?>
+    <div class="alert alert-danger">没有可排序的导航</div><?php endif ?>
 <?php if (isset($_GET['error_c'])): ?>
-    <div class="alert alert-danger">默认导航不能删除</div><?php endif; ?>
+    <div class="alert alert-danger">默认导航不能删除</div><?php endif ?>
 <?php if (isset($_GET['error_d'])): ?>
-    <div class="alert alert-danger">请选择要添加的分类</div><?php endif; ?>
+    <div class="alert alert-danger">请选择要添加的分类</div><?php endif ?>
 <?php if (isset($_GET['error_e'])): ?>
-    <div class="alert alert-danger">请选择要添加的页面</div><?php endif; ?>
+    <div class="alert alert-danger">请选择要添加的页面</div><?php endif ?>
 <?php if (isset($_GET['error_f'])): ?>
-    <div class="alert alert-danger">导航地址格式错误(需包含http等前缀)</div><?php endif; ?>
+    <div class="alert alert-danger">导航地址格式错误(需包含http等前缀)</div><?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">导航</h1>
 </div>
@@ -68,25 +68,25 @@
 
 							?>
                             <tr>
-                                <td><input class="form-control em-small" name="navi[<?php echo $value['id']; ?>]" value="<?php echo $value['taxis']; ?>" maxlength="4"/></td>
-                                <td><a href="navbar.php?action=mod&amp;navid=<?php echo $value['id']; ?>"><?php echo $value['naviname']; ?></a></td>
-                                <td><?php echo $value['type_name']; ?></td>
+                                <td><input class="form-control em-small" name="navi[<?= $value['id'] ?>]" value="<?= $value['taxis'] ?>" maxlength="4"/></td>
+                                <td><a href="navbar.php?action=mod&amp;navid=<?= $value['id'] ?>"><?= $value['naviname'] ?></a></td>
+                                <td><?= $value['type_name'] ?></td>
                                 <td>
-                                    <a href="<?php echo $value['url']; ?>" target="_blank">
-                                        <img src="./views/images/<?php echo $value['newtab'] == 'y' ? 'vlog.gif' : 'vlog2.gif'; ?>" align="absbottom" border="0"/>
+                                    <a href="<?= $value['url'] ?>" target="_blank">
+                                        <img src="./views/images/<?= $value['newtab'] == 'y' ? 'vlog.gif' : 'vlog2.gif' ?>" align="absbottom" border="0"/>
                                     </a>
                                 </td>
-                                <td><?php echo $value['url']; ?></td>
+                                <td><?= $value['url'] ?></td>
                                 <td>
 									<?php if ($value['hide'] == 'n'): ?>
-                                        <a href="navbar.php?action=hide&amp;id=<?php echo $value['id']; ?>" class="badge badge-primary">显示</a>
+                                        <a href="navbar.php?action=hide&amp;id=<?= $value['id'] ?>" class="badge badge-primary">显示</a>
 									<?php else: ?>
-                                        <a href="navbar.php?action=show&amp;id=<?php echo $value['id']; ?>" class="badge badge-warning">隐藏</a>
-									<?php endif; ?>
+                                        <a href="navbar.php?action=show&amp;id=<?= $value['id'] ?>" class="badge badge-warning">隐藏</a>
+									<?php endif ?>
 									<?php if ($value['isdefault'] == 'n'): ?>
-                                        <a href="javascript: em_confirm(<?php echo $value['id']; ?>, 'navi', '<?php echo LoginAuth::genToken(); ?>');"
+                                        <a href="javascript: em_confirm(<?= $value['id'] ?>, 'navi', '<?= LoginAuth::genToken() ?>');"
                                            class="badge badge-danger">删除</a>
-									<?php endif; ?>
+									<?php endif ?>
                                 </td>
                             </tr>
 							<?php
@@ -94,32 +94,32 @@
 								foreach ($value['childnavi'] as $val):
 									?>
                                     <tr>
-                                        <td><input class="form-control em-small" name="navi[<?php echo $val['id']; ?>]" value="<?php echo $val['taxis']; ?>" maxlength="4"/></td>
-                                        <td>---- <a href="navbar.php?action=mod&amp;navid=<?php echo $val['id']; ?>"><?php echo $val['naviname']; ?></a></td>
-                                        <td><?php echo $value['type_name']; ?></td>
+                                        <td><input class="form-control em-small" name="navi[<?= $val['id'] ?>]" value="<?= $val['taxis'] ?>" maxlength="4"/></td>
+                                        <td>---- <a href="navbar.php?action=mod&amp;navid=<?= $val['id'] ?>"><?= $val['naviname'] ?></a></td>
+                                        <td><?= $value['type_name'] ?></td>
                                         <td>
-                                            <a href="<?php echo $val['url']; ?>" target="_blank">
-                                                <img src="./views/images/<?php echo $val['newtab'] == 'y' ? 'vlog.gif' : 'vlog2.gif'; ?>" align="absbottom" border="0"/></a>
+                                            <a href="<?= $val['url'] ?>" target="_blank">
+                                                <img src="./views/images/<?= $val['newtab'] == 'y' ? 'vlog.gif' : 'vlog2.gif' ?>" align="absbottom" border="0"/></a>
                                         </td>
-                                        <td><?php echo $val['url']; ?></td>
+                                        <td><?= $val['url'] ?></td>
                                         <td>
 											<?php if ($val['hide'] == 'n'): ?>
-                                                <a href="navbar.php?action=hide&amp;id=<?php echo $val['id']; ?>" class="badge badge-primary">显示</a>
+                                                <a href="navbar.php?action=hide&amp;id=<?= $val['id'] ?>" class="badge badge-primary">显示</a>
 											<?php else: ?>
-                                                <a href="navbar.php?action=show&amp;id=<?php echo $val['id']; ?>" class="badge badge-warning">隐藏</a>
-											<?php endif; ?>
+                                                <a href="navbar.php?action=show&amp;id=<?= $val['id'] ?>" class="badge badge-warning">隐藏</a>
+											<?php endif ?>
 											<?php if ($val['isdefault'] == 'n'): ?>
-                                                <a href="javascript: em_confirm(<?php echo $val['id']; ?>, 'navi', '<?php echo LoginAuth::genToken(); ?>');"
+                                                <a href="javascript: em_confirm(<?= $val['id'] ?>, 'navi', '<?= LoginAuth::genToken() ?>');"
                                                    class="badge badge-danger">删除</a>
-											<?php endif; ?>
+											<?php endif ?>
                                         </td>
                                     </tr>
-								<?php endforeach;endif; ?>
+								<?php endforeach;endif ?>
 						<?php endforeach; else: ?>
                         <tr>
                             <td colspan="4">还没有添加导航</td>
                         </tr>
-					<?php endif; ?>
+					<?php endif ?>
                     </tbody>
                 </table>
             </div>
@@ -150,8 +150,8 @@
 								continue;
 							}
 							?>
-                            <option value="<?php echo $value['id']; ?>"><?php echo $value['naviname']; ?></option>
-						<?php endforeach; ?>
+                            <option value="<?= $value['id'] ?>"><?= $value['naviname'] ?></option>
+						<?php endforeach ?>
                     </select>
                 </div>
                 <div class="form-check">
@@ -177,8 +177,8 @@
 								continue;
 							}
 							?>
-                            <div class="form-group"><input type="checkbox" style="vertical-align:middle;" name="sort_ids[]" value="<?php echo $value['sid']; ?>" class="ids"/>
-								<?php echo $value['sortname']; ?>
+                            <div class="form-group"><input type="checkbox" style="vertical-align:middle;" name="sort_ids[]" value="<?= $value['sid'] ?>" class="ids"/>
+								<?= $value['sortname'] ?>
                             </div>
 							<?php
 							$children = $value['children'];
@@ -186,8 +186,8 @@
 								$value = $sorts[$key];
 								?>
                                 <div class="form-group">
-                                    &nbsp; &nbsp; &nbsp; <input type="checkbox" style="vertical-align:middle;" name="sort_ids[]" value="<?php echo $value['sid']; ?>" class="ids"/>
-									<?php echo $value['sortname']; ?>
+                                    &nbsp; &nbsp; &nbsp; <input type="checkbox" style="vertical-align:middle;" name="sort_ids[]" value="<?= $value['sid'] ?>" class="ids"/>
+									<?= $value['sortname'] ?>
                                 </div>
 							<?php
 							endforeach;
@@ -198,7 +198,7 @@
                         </div>
 					<?php else: ?>
                         还没有分类，<a href="sort.php">新建分类</a>
-					<?php endif; ?>
+					<?php endif ?>
                 </div>
             </form>
         </div>
@@ -214,14 +214,14 @@
 					foreach ($pages as $key => $value):
 						?>
                         <div class="form-group">
-                            <input type="checkbox" style="vertical-align:middle;" name="pages[<?php echo $value['gid']; ?>]" value="<?php echo $value['title']; ?>" class="ids"/>
-							<?php echo $value['title']; ?>
+                            <input type="checkbox" style="vertical-align:middle;" name="pages[<?= $value['gid'] ?>]" value="<?= $value['title'] ?>" class="ids"/>
+							<?= $value['title'] ?>
                         </div>
-					<?php endforeach; ?>
+					<?php endforeach ?>
                     <div class="form-group"><input type="submit" class="btn btn-sm btn-success" name="" value="保存"/></div>
 				<?php else: ?>
                     <div class="form-group">还没页面，<a href="page.php?action=new">新建页面</a></div>
-				<?php endif; ?>
+				<?php endif ?>
             </form>
         </div>
     </div>

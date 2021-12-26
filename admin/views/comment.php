@@ -3,29 +3,29 @@
 } ?>
 
 <?php if (isset($_GET['active_del'])): ?>
-    <div class="alert alert-success">删除成功</div><?php endif; ?>
+    <div class="alert alert-success">删除成功</div><?php endif ?>
 <?php if (isset($_GET['active_show'])): ?>
-    <div class="alert alert-success">审核成功</div><?php endif; ?>
+    <div class="alert alert-success">审核成功</div><?php endif ?>
 <?php if (isset($_GET['active_hide'])): ?>
-    <div class="alert alert-success">隐藏成功</div><?php endif; ?>
+    <div class="alert alert-success">隐藏成功</div><?php endif ?>
 <?php if (isset($_GET['active_top'])): ?>
-    <div class="alert alert-success">置顶成功</div><?php endif; ?>
+    <div class="alert alert-success">置顶成功</div><?php endif ?>
 <?php if (isset($_GET['active_untop'])): ?>
-    <div class="alert alert-success">取消置顶成功</div><?php endif; ?>
+    <div class="alert alert-success">取消置顶成功</div><?php endif ?>
 <?php if (isset($_GET['active_edit'])): ?>
-    <div class="alert alert-success">修改成功</div><?php endif; ?>
+    <div class="alert alert-success">修改成功</div><?php endif ?>
 <?php if (isset($_GET['active_rep'])): ?>
-    <div class="alert alert-success">回复成功</div><?php endif; ?>
+    <div class="alert alert-success">回复成功</div><?php endif ?>
 <?php if (isset($_GET['error_a'])): ?>
-    <div class="alert alert-danger">请选择要执行操作的评论</div><?php endif; ?>
+    <div class="alert alert-danger">请选择要执行操作的评论</div><?php endif ?>
 <?php if (isset($_GET['error_b'])): ?>
-    <div class="alert alert-danger">请选择要执行的操作</div><?php endif; ?>
+    <div class="alert alert-danger">请选择要执行的操作</div><?php endif ?>
 <?php if (isset($_GET['error_c'])): ?>
-    <div class="alert alert-danger">回复内容不能为空</div><?php endif; ?>
+    <div class="alert alert-danger">回复内容不能为空</div><?php endif ?>
 <?php if (isset($_GET['error_d'])): ?>
-    <div class="alert alert-danger">内容过长</div><?php endif; ?>
+    <div class="alert alert-danger">内容过长</div><?php endif ?>
 <?php if (isset($_GET['error_e'])): ?>
-    <div class="alert alert-danger">评论内容不能为空</div><?php endif; ?>
+    <div class="alert alert-danger">评论内容不能为空</div><?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">评论</h1>
 </div>
@@ -34,17 +34,17 @@
         <ul class="nav nav-tabs">
             <li class="nav-item"><a class="nav-link <?php if ($hide == '') {
 					echo 'active';
-				} ?>" href="./comment.php?<?php echo $addUrl_1 ?>">全部</a></li>
+				} ?>" href="./comment.php?<?= $addUrl_1 ?>">全部</a></li>
             <li class="nav-item"><a class="nav-link <?php if ($hide == 'y') {
 					echo 'active';
-				} ?>" href="./comment.php?hide=y&<?php echo $addUrl_1 ?>">待审<?php
+				} ?>" href="./comment.php?hide=y&<?= $addUrl_1 ?>">待审<?php
 					$hidecmnum = ROLE == ROLE_ADMIN ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
 					if ($hidecmnum > 0) echo '(' . $hidecmnum . ')';
 					?></a>
             </li>
         </ul>
     </div>
-<?php endif; ?>
+<?php endif ?>
 <form action="comment.php?action=batch_operation" method="post" name="form_com" id="form_com">
     <div class="card shadow mb-4">
         <div class="card-body">
@@ -76,32 +76,32 @@
 						doAction('adm_comment_display');
 						?>
                         <tr>
-                            <td style="width: 19px;"><input type="checkbox" value="<?php echo $cid; ?>" name="com[]" class="ids"/></td>
+                            <td style="width: 19px;"><input type="checkbox" value="<?= $cid ?>" name="com[]" class="ids"/></td>
                             <td>
                                 <a href="#" data-toggle="modal" data-target="#replyModal"
-                                   data-cid="<?php echo $cid; ?>"
-                                   data-comment="<?php echo $comment; ?>"
-                                   data-hide="<?php echo $value['hide']; ?>"
-                                   data-gid="<?php echo $gid; ?> ">
-									<?php echo $comment; ?>
+                                   data-cid="<?= $cid ?>"
+                                   data-comment="<?= $comment ?>"
+                                   data-hide="<?= $value['hide'] ?>"
+                                   data-gid="<?= $gid ?> ">
+									<?= $comment ?>
                                 </a>
-								<?php echo $ishide; ?>
-								<?php if ($top == 'y'): ?><img src="./views/images/top.png" title="置顶"/><?php endif; ?>
+								<?= $ishide ?>
+								<?php if ($top == 'y'): ?><img src="./views/images/top.png" title="置顶"/><?php endif ?>
                             </td>
                             <td class="small">
-                                <?php echo $poster; ?><?php echo $mail; ?><?php echo $ip_info; ?>
+                                <?= $poster ?><?= $mail ?><?= $ip_info ?>
 								<?php if (ROLE == ROLE_ADMIN): ?>
-                                    <a href="javascript: em_confirm('<?php echo $ip; ?>', 'commentbyip', '<?php echo LoginAuth::genToken(); ?>');"
+                                    <a href="javascript: em_confirm('<?= $ip ?>', 'commentbyip', '<?= LoginAuth::genToken() ?>');"
                                        class="badge badge-pill badge-warning">按IP删除</a>
-								<?php endif; ?>
+								<?php endif ?>
                             </td>
-                            <td class="small"><?php echo $date; ?></td>
+                            <td class="small"><?= $date ?></td>
                             <td class="small">
-                                <a href="<?php echo Url::log($gid); ?>" target="_blank"><?php echo $title; ?></a><br>
-                                <a href="comment.php?gid=<?php echo $gid; ?>" class="badge badge-info">该文所有评论</a>
+                                <a href="<?= Url::log($gid) ?>" target="_blank"><?= $title ?></a><br>
+                                <a href="comment.php?gid=<?= $gid ?>" class="badge badge-info">该文所有评论</a>
                             </td>
                         </tr>
-					<?php endforeach; ?>
+					<?php endforeach ?>
                     </tbody>
                 </table>
             </div>
@@ -115,7 +115,7 @@
                 </div>
                 <input name="operate" id="operate" value="" type="hidden"/>
             </div>
-            <div class="page"><?php echo $pageurl; ?> （有 <?php echo $cmnum; ?> 条评论）</div>
+            <div class="page"><?= $pageurl ?> （有 <?= $cmnum ?> 条评论）</div>
         </div>
     </div>
 </form>

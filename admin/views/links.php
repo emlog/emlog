@@ -2,17 +2,17 @@
 	exit('error!');
 } ?>
 <?php if (isset($_GET['active_taxis'])): ?>
-    <div class="alert alert-success">排序更新成功</div><?php endif; ?>
+    <div class="alert alert-success">排序更新成功</div><?php endif ?>
 <?php if (isset($_GET['active_del'])): ?>
-    <div class="alert alert-success">删除成功</div><?php endif; ?>
+    <div class="alert alert-success">删除成功</div><?php endif ?>
 <?php if (isset($_GET['active_edit'])): ?>
-    <div class="alert alert-success">修改成功</div><?php endif; ?>
+    <div class="alert alert-success">修改成功</div><?php endif ?>
 <?php if (isset($_GET['active_add'])): ?>
-    <div class="alert alert-success">添加成功</div><?php endif; ?>
+    <div class="alert alert-success">添加成功</div><?php endif ?>
 <?php if (isset($_GET['error_a'])): ?>
-    <div class="alert alert-danger">名称和地址不能为空</div><?php endif; ?>
+    <div class="alert alert-danger">名称和地址不能为空</div><?php endif ?>
 <?php if (isset($_GET['error_b'])): ?>
-    <div class="alert alert-danger">没有可排序的链接</div><?php endif; ?>
+    <div class="alert alert-danger">没有可排序的链接</div><?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">友情链接</h1>
     <a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> 添加链接</a>
@@ -37,28 +37,28 @@
 						doAction('adm_link_display');
 						?>
                         <tr>
-                            <td><input class="form-control em-small" name="link[<?php echo $value['id']; ?>]" value="<?php echo $value['taxis']; ?>" maxlength="4"/></td>
+                            <td><input class="form-control em-small" name="link[<?= $value['id'] ?>]" value="<?= $value['taxis'] ?>" maxlength="4"/></td>
                             <td>
                                 <a href="#" data-toggle="modal" data-target="#editModal"
-                                   data-linkid="<?php echo $value['id']; ?>"
-                                   data-sitename="<?php echo $value['sitename']; ?>"
-                                   data-siteurl="<?php echo $value['siteurl']; ?>"
-                                   data-description="<?php echo $value['description']; ?>"><?php echo $value['sitename']; ?></a>
+                                   data-linkid="<?= $value['id'] ?>"
+                                   data-sitename="<?= $value['sitename'] ?>"
+                                   data-siteurl="<?= $value['siteurl'] ?>"
+                                   data-description="<?= $value['description'] ?>"><?= $value['sitename'] ?></a>
                             </td>
-                            <td><?php echo $value['description']; ?></td>
+                            <td><?= $value['description'] ?></td>
                             <td>
-                                <a href="<?php echo $value['siteurl']; ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0"/></a>
+                                <a href="<?= $value['siteurl'] ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0"/></a>
                             </td>
                             <td>
 								<?php if ($value['hide'] == 'n'): ?>
-                                    <a href="link.php?action=hide&amp;linkid=<?php echo $value['id']; ?>" class="badge badge-primary">显示</a>
+                                    <a href="link.php?action=hide&amp;linkid=<?= $value['id'] ?>" class="badge badge-primary">显示</a>
 								<?php else: ?>
-                                    <a href="link.php?action=show&amp;linkid=<?php echo $value['id']; ?>" class="badge badge-warning">隐藏</a>
-								<?php endif; ?>
-                                <a href="javascript: em_confirm(<?php echo $value['id']; ?>, 'link', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-danger">删除</a>
+                                    <a href="link.php?action=show&amp;linkid=<?= $value['id'] ?>" class="badge badge-warning">隐藏</a>
+								<?php endif ?>
+                                <a href="javascript: em_confirm(<?= $value['id'] ?>, 'link', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger">删除</a>
                             </td>
                         </tr>
-					<?php endforeach; ?>
+					<?php endforeach ?>
                     </tbody>
                 </table>
             </div>

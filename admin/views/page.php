@@ -2,13 +2,13 @@
 	exit('error!');
 } ?>
 <?php if (isset($_GET['active_del'])): ?>
-    <div class="alert alert-success">删除页面成功</div><?php endif; ?>
+    <div class="alert alert-success">删除页面成功</div><?php endif ?>
 <?php if (isset($_GET['active_hide_n'])): ?>
-    <div class="alert alert-success">发布页面成功</div><?php endif; ?>
+    <div class="alert alert-success">发布页面成功</div><?php endif ?>
 <?php if (isset($_GET['active_hide_y'])): ?>
-    <div class="alert alert-success">禁用页面成功</div><?php endif; ?>
+    <div class="alert alert-success">禁用页面成功</div><?php endif ?>
 <?php if (isset($_GET['active_pubpage'])): ?>
-    <div class="alert alert-success">页面保存成功</div><?php endif; ?>
+    <div class="alert alert-success">页面保存成功</div><?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">页面</h1>
     <a href="page.php?action=new" class="btn btn-sm btn-success shadow-sm mt-4"><i class="icofont-plus"></i> 新建页面</a>
@@ -38,16 +38,16 @@
 							'<a href="' . $navibar[$value['gid']]['url'] . '" target="_blank" title="查看页面"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>';
 						?>
                         <tr>
-                            <td style="width: 19px;"><input type="checkbox" name="page[]" value="<?php echo $value['gid']; ?>" class="ids"/></td>
+                            <td style="width: 19px;"><input type="checkbox" name="page[]" value="<?= $value['gid'] ?>" class="ids"/></td>
                             <td>
-                                <a href="page.php?action=mod&id=<?php echo $value['gid'] ?>"><?php echo $value['title']; ?></a>
+                                <a href="page.php?action=mod&id=<?= $value['gid'] ?>"><?= $value['title'] ?></a>
                             </td>
-                            <td><?php echo $isHide; ?></td>
-                            <td><?php echo $value['template']; ?></td>
-                            <td><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
-                            <td class="small"><?php echo $value['date']; ?></td>
+                            <td><?= $isHide ?></td>
+                            <td><?= $value['template'] ?></td>
+                            <td><a href="comment.php?gid=<?= $value['gid'] ?>"><?= $value['comnum'] ?></a></td>
+                            <td class="small"><?= $value['date'] ?></td>
                         </tr>
-					<?php endforeach; ?>
+					<?php endforeach ?>
                     </tbody>
                 </table>
             </div>
@@ -57,10 +57,10 @@
                     <a href="javascript:pageact('pub');" class="btn btn-sm btn-success">发布</a>
                     <a href="javascript:pageact('del');" class="btn btn-sm btn-danger">删除</a>
                 </div>
-                <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
+                <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
                 <input name="operate" id="operate" value="" type="hidden"/>
             </div>
-            <div class="page"><?php echo $pageurl; ?> （有 <?php echo $pageNum; ?> 个页面）</div>
+            <div class="page"><?= $pageurl ?> （有 <?= $pageNum ?> 个页面）</div>
         </div>
     </div>
 </form>

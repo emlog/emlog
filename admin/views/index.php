@@ -2,8 +2,8 @@
 	exit('error!');
 } ?>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Hi，<a class="small" href="./blogger.php"><?php echo $user_cache[UID]['name'] ?></a></h1>
-		<?php doAction('adm_main_top'); ?>
+        <h1 class="h3 mb-0 text-gray-800">Hi，<a class="small" href="./blogger.php"><?= $user_cache[UID]['name'] ?></a></h1>
+		<?php doAction('adm_main_top') ?>
     </div>
 <?php if (ROLE == ROLE_ADMIN): ?>
     <div class="row">
@@ -13,19 +13,19 @@
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item d-flex justify-content-between align-items-center">文章
-                            <a href="./article.php"><span class="badge badge-primary badge-pill"><?php echo $sta_cache['lognum']; ?></span></a>
+                            <a href="./article.php"><span class="badge badge-primary badge-pill"><?= $sta_cache['lognum'] ?></span></a>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">草稿
-                            <a href="./article.php?draft=1"><span class="badge badge-primary badge-pill"><?php echo $sta_cache['draftnum']; ?></span></a>
+                            <a href="./article.php?draft=1"><span class="badge badge-primary badge-pill"><?= $sta_cache['draftnum'] ?></span></a>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">评论
-                            <a href="./comment.php"><span class="badge badge-primary badge-pill"><?php echo $sta_cache['comnum_all']; ?></span></a>
+                            <a href="./comment.php"><span class="badge badge-primary badge-pill"><?= $sta_cache['comnum_all'] ?></span></a>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">待审评论
-                            <a href="./comment.php?hide=y"><span class="badge badge-warning badge-pill"><?php echo $sta_cache['hidecomnum']; ?></span></a>
+                            <a href="./comment.php?hide=y"><span class="badge badge-warning badge-pill"><?= $sta_cache['hidecomnum'] ?></span></a>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">用户数
-                            <a href="./user.php"><span class="badge badge-warning badge-pill"><?php echo count($user_cache); ?></span></a>
+                            <a href="./user.php"><span class="badge badge-warning badge-pill"><?= count($user_cache) ?></span></a>
                         </li>
                     </ul>
                 </div>
@@ -38,23 +38,23 @@
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             PHP
-                            <span class="small"><?php echo $php_ver; ?></span>
+                            <span class="small"><?= $php_ver ?></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             MySQL
-                            <span class="small"><?php echo $mysql_ver; ?></span>
+                            <span class="small"><?= $mysql_ver ?></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Web Server
-                            <span class="small"><?php echo $serverapp; ?></span>
+                            <span class="small"><?= $serverapp ?></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             EMLOG
 							<?php if (!Register::isRegLocal()) : ?>
-                                <a href="register.php"><span class="badge badge-danger"><?php echo Option::EMLOG_VERSION; ?> 未注册, 点击去注册</span></a>
+                                <a href="register.php"><span class="badge badge-danger"><?= Option::EMLOG_VERSION ?> 未注册, 点击去注册</span></a>
 							<?php else: ?>
-                                <span class="badge badge-success"><?php echo Option::EMLOG_VERSION; ?> 已注册</span>
-							<?php endif; ?>
+                                <span class="badge badge-success"><?= Option::EMLOG_VERSION ?> 已注册</span>
+							<?php endif ?>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <a id="ckup" href="javascript:checkupdate();" class="badge badge-success">检查更新</a>
@@ -82,7 +82,7 @@
                     </div>
                 </div>
             </div>
-		<?php endif; ?>
+		<?php endif ?>
         <div class="col-lg-6 mb-4">
             <div class="card shadow mb-4">
                 <h6 class="card-header">官方消息</h6>
@@ -145,4 +145,4 @@
                 });
         }
     </script>
-<?php endif; ?>
+<?php endif ?>

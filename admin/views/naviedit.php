@@ -5,15 +5,15 @@
 <form action="navbar.php?action=update" method="post" id="sort_new" style="margin-top: 30px;">
     <div class="form-group">
         <label for="sortname">导航名称</label>
-        <input class="form-control" id="naviname" value="<?php echo $naviname; ?>" name="naviname">
+        <input class="form-control" id="naviname" value="<?= $naviname ?>" name="naviname">
     </div>
     <div class="form-group">
         <label for="alias">导航地址</label>
-        <input class="form-control" id="url" value="<?php echo $url; ?>" name="url" <?php echo $conf_isdefault; ?>>
+        <input class="form-control" id="url" value="<?= $url ?>" name="url" <?= $conf_isdefault ?>>
     </div>
     <div class="form-group">
         <label>在新窗口打开</label>
-        <input type="checkbox" value="y" name="newtab" <?php echo $conf_newtab; ?> />
+        <input type="checkbox" value="y" name="newtab" <?= $conf_newtab ?> />
     </div>
 	<?php if ($type == Navi_Model::navitype_custom && $pid != 0): ?>
         <div class="form-group">
@@ -27,13 +27,13 @@
 					}
 					$flg = $value['id'] == $pid ? 'selected' : '';
 					?>
-                    <option value="<?php echo $value['id']; ?>" <?php echo $flg; ?>><?php echo $value['naviname']; ?></option>
-				<?php endforeach; ?>
+                    <option value="<?= $value['id'] ?>" <?= $flg ?>><?= $value['naviname'] ?></option>
+				<?php endforeach ?>
             </select>
         </div>
-	<?php endif; ?>
-    <input type="hidden" value="<?php echo $naviId; ?>" name="navid"/>
-    <input type="hidden" value="<?php echo $isdefault; ?>" name="isdefault"/>
+	<?php endif ?>
+    <input type="hidden" value="<?= $naviId ?>" name="navid"/>
+    <input type="hidden" value="<?= $isdefault ?>" name="isdefault"/>
     <input type="submit" value="保存" class="btn btn-sm btn-success"/>
     <input type="button" value="取消" class="btn btn-sm btn-secondary" onclick="javascript: window.history.back();"/>
 </form>

@@ -9,10 +9,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name=renderer content=webkit>
     <title>登录</title>
-    <link rel="stylesheet" type="text/css" href="./views/css/bootstrap-sbadmin-4.5.3.css?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>">
-    <script src="./views/js/jquery.min.3.5.1.js?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
-    <script src="./views/js/bootstrap.bundle.min.4.6.js?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
-    <script src="./views/js/common.js?v=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
+    <link rel="stylesheet" type="text/css" href="./views/css/bootstrap-sbadmin-4.5.3.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>">
+    <script src="./views/js/jquery.min.3.5.1.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
+    <script src="./views/js/bootstrap.bundle.min.4.6.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
+    <script src="./views/js/common.js?v=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
 </head>
 <body>
 <div class="container">
@@ -21,13 +21,13 @@
             <div class="card o-hidden border-0 shadow-lg my-5">
                 <div class="card-body p-0">
                     <div class="p-5">
-                        <form method="post" action="./index.php?action=login&s=<?php echo $admin_path_code; ?>">
+                        <form method="post" action="./index.php?action=login&s=<?= $admin_path_code ?>">
 							<?php if ($error_msg): ?>
                                 <div class="alert alert-danger alert-dismissible" role="alert">
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-									<?php echo $error_msg; ?>
+									<?= $error_msg ?>
                                 </div>
-							<?php endif; ?>
+							<?php endif ?>
                             <div class="form-group">
                                 <input type="text" class="form-control form-control-user" id="user" name="user" placeholder="用户名" required autofocus>
                             </div>
@@ -39,7 +39,7 @@
                                     <input type="text" name="imgcode" class="form-control" id="imgcode" placeholder="验证码" required>
                                     <img src="../include/lib/checkcode.php" align="absmiddle" id="checkcode" class="mx-2">
                                 </div>
-							<?php endif; ?>
+							<?php endif ?>
                             <div class="form-group">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="ispersis" id="ispersis" value="1">
@@ -50,7 +50,7 @@
                         </form>
                         <hr>
                         <div class="text-center">
-                            <div class="login-ext"><?php doAction('login_ext'); ?></div>
+                            <div class="login-ext"><?php doAction('login_ext') ?></div>
                             <div><a href="../" class="btn btn-link btn-xs" role="button">&larr;返回首页</a></div>
                         </div>
                     </div>

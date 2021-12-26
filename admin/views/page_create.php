@@ -2,43 +2,43 @@
 	exit('error!');
 } ?>
 <form action="page.php?action=save" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
-    <h1 class="h3 mb-4 text-gray-800"><?php echo $containertitle; ?></h1>
+    <h1 class="h3 mb-4 text-gray-800"><?= $containertitle ?></h1>
     <div class="row">
         <div class="col-xl-12">
             <div id="post" class="form-group">
                 <div>
-                    <input type="text" name="title" id="title" value="<?php echo $title; ?>" class="form-control" placeholder="页面标题"/>
+                    <input type="text" name="title" id="title" value="<?= $title ?>" class="form-control" placeholder="页面标题"/>
                 </div>
                 <div id="post_bar">
                     <a href="#mediaModal" class="text-muted small my-3" data-remote="./media.php?action=lib" data-toggle="modal" data-target="#mediaModal"><i
                                 class="icofont-plus"></i> 插入图文资源</a>
-					<?php doAction('adm_writelog_head'); ?>
+					<?php doAction('adm_writelog_head') ?>
                 </div>
-                <div id="pagecontent"><textarea style="display:none;"><?php echo $content; ?></textarea></div>
+                <div id="pagecontent"><textarea style="display:none;"><?= $content ?></textarea></div>
             </div>
 
             <div class="form-group">
                 <label>链接别名：（用于seo设置 <a href="./seo.php">&rarr;</a>）</label>
-                <input name="alias" id="alias" class="form-control" value="<?php echo $alias; ?>"/>
+                <input name="alias" id="alias" class="form-control" value="<?= $alias ?>"/>
             </div>
             <div class="form-group">
                 <label>页面模板：</label>
-                <input name="template" id="template" class="form-control" value="<?php echo $template; ?>"/>
+                <input name="template" id="template" class="form-control" value="<?= $template ?>"/>
             </div>
             <div class="form-group">
-                <input type="checkbox" value="y" name="allow_remark" id="allow_remark" <?php echo $is_allow_remark; ?> />
+                <input type="checkbox" value="y" name="allow_remark" id="allow_remark" <?= $is_allow_remark ?> />
                 <label for="allow_remark">允许评论</label>
             </div>
 
             <div id="post_button">
-                <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden" />
-                <input type="hidden" name="ishide" id="ishide" value="<?php echo $hide; ?>" />
-                <input type="hidden" name="pageid" value="<?php echo $pageId; ?>" />
+                <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
+                <input type="hidden" name="ishide" id="ishide" value="<?= $hide ?>" />
+                <input type="hidden" name="pageid" value="<?= $pageId ?>" />
 				<?php if ($pageId < 0): ?>
                     <input type="submit" value="发布页面" onclick="return checkform();" class="btn btn-sm btn-success"/>
 				<?php else: ?>
                     <input type="submit" value="保存并返回" onclick="return checkform();" class="btn btn-sm btn-success"/>
-				<?php endif; ?>
+				<?php endif ?>
             </div>
         </div>
     </div>
@@ -64,7 +64,7 @@
     </div>
 </div>
 <div class="dropzone-previews" style="display: none;"></div>
-<script src="./views/js/dropzone.min.js?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
+<script src="./views/js/dropzone.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
 <script>
     // 上传资源
     Dropzone.autoDiscover = false;
@@ -97,7 +97,7 @@
     });
 </script>
 
-<script src="./editor.md/editormd.js?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
+<script src="./editor.md/editormd.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
 <script>
     $("#menu_page").addClass('active');
     checkalias();

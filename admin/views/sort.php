@@ -2,23 +2,23 @@
 	exit('error!');
 } ?>
 <?php if (isset($_GET['active_taxis'])): ?>
-    <div class="alert alert-success">排序更新成功</div><?php endif; ?>
+    <div class="alert alert-success">排序更新成功</div><?php endif ?>
 <?php if (isset($_GET['active_del'])): ?>
-    <div class="alert alert-success">删除分类成功</div><?php endif; ?>
+    <div class="alert alert-success">删除分类成功</div><?php endif ?>
 <?php if (isset($_GET['active_edit'])): ?>
-    <div class="alert alert-success">修改分类成功</div><?php endif; ?>
+    <div class="alert alert-success">修改分类成功</div><?php endif ?>
 <?php if (isset($_GET['active_add'])): ?>
-    <div class="alert alert-success">添加分类成功</div><?php endif; ?>
+    <div class="alert alert-success">添加分类成功</div><?php endif ?>
 <?php if (isset($_GET['error_a'])): ?>
-    <div class="alert alert-danger">分类名称不能为空</div><?php endif; ?>
+    <div class="alert alert-danger">分类名称不能为空</div><?php endif ?>
 <?php if (isset($_GET['error_b'])): ?>
-    <div class="alert alert-danger">没有可排序的分类</div><?php endif; ?>
+    <div class="alert alert-danger">没有可排序的分类</div><?php endif ?>
 <?php if (isset($_GET['error_c'])): ?>
-    <div class="alert alert-danger">别名格式错误</div><?php endif; ?>
+    <div class="alert alert-danger">别名格式错误</div><?php endif ?>
 <?php if (isset($_GET['error_d'])): ?>
-    <div class="alert alert-danger">别名不能重复</div><?php endif; ?>
+    <div class="alert alert-danger">别名不能重复</div><?php endif ?>
 <?php if (isset($_GET['error_e'])): ?>
-    <div class="alert alert-danger">别名不得包含系统保留关键字</div><?php endif; ?>
+    <div class="alert alert-danger">别名不得包含系统保留关键字</div><?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">文章分类</h1>
     <a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#exampleModal"><i class="icofont-plus"></i> 添加分类</a>
@@ -49,21 +49,21 @@
 						?>
                         <tr>
                             <td>
-                                <input type="hidden" value="<?php echo $value['sid']; ?>" class="sort_id"/>
-                                <input class="form-control em-small" name="sort[<?php echo $value['sid']; ?>]" value="<?php echo $value['taxis']; ?>"/>
+                                <input type="hidden" value="<?= $value['sid'] ?>" class="sort_id"/>
+                                <input class="form-control em-small" name="sort[<?= $value['sid'] ?>]" value="<?= $value['taxis'] ?>"/>
                             </td>
                             <td class="sortname">
-                                <a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?></a>
+                                <a href="sort.php?action=mod_sort&sid=<?= $value['sid'] ?>"><?= $value['sortname'] ?></a>
                             </td>
-                            <td><?php echo $value['description']; ?></td>
-                            <td class="alias"><?php echo $value['alias']; ?></td>
-                            <td class="alias"><?php echo $value['template']; ?></td>
+                            <td><?= $value['description'] ?></td>
+                            <td class="alias"><?= $value['alias'] ?></td>
+                            <td class="alias"><?= $value['template'] ?></td>
                             <td>
-                                <a href="<?php echo Url::sort($value['sid']); ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0"/></a>
+                                <a href="<?= Url::sort($value['sid']) ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0"/></a>
                             </td>
-                            <td><a href="article.php?sid=<?php echo $value['sid']; ?>"><?php echo $value['lognum']; ?></a></td>
+                            <td><a href="article.php?sid=<?= $value['sid'] ?>"><?= $value['lognum'] ?></a></td>
                             <td>
-                                <a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-danger">删除</a>
+                                <a href="javascript: em_confirm(<?= $value['sid'] ?>, 'sort', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger">删除</a>
                             </td>
                         </tr>
 						<?php
@@ -73,24 +73,24 @@
 							?>
                             <tr>
                                 <td>
-                                    <input type="hidden" value="<?php echo $value['sid']; ?>" class="sort_id"/>
-                                    <input class="form-control em-small" name="sort[<?php echo $value['sid']; ?>]" value="<?php echo $value['taxis']; ?>"/>
+                                    <input type="hidden" value="<?= $value['sid'] ?>" class="sort_id"/>
+                                    <input class="form-control em-small" name="sort[<?= $value['sid'] ?>]" value="<?= $value['taxis'] ?>"/>
                                 </td>
-                                <td class="sortname">---- <a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?></a></td>
-                                <td><?php echo $value['description']; ?></td>
-                                <td class="alias"><?php echo $value['alias']; ?></td>
-                                <td class="alias"><?php echo $value['template']; ?></td>
+                                <td class="sortname">---- <a href="sort.php?action=mod_sort&sid=<?= $value['sid'] ?>"><?= $value['sortname'] ?></a></td>
+                                <td><?= $value['description'] ?></td>
+                                <td class="alias"><?= $value['alias'] ?></td>
+                                <td class="alias"><?= $value['template'] ?></td>
                                 <td>
-                                    <a href="<?php echo Url::sort($value['sid']); ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0"/></a>
+                                    <a href="<?= Url::sort($value['sid']) ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0"/></a>
                                 </td>
-                                <td><a href="article.php?sid=<?php echo $value['sid']; ?>"><?php echo $value['lognum']; ?></a></td>
+                                <td><a href="article.php?sid=<?= $value['sid'] ?>"><?= $value['lognum'] ?></a></td>
                                 <td>
-                                    <a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort', '<?php echo LoginAuth::genToken(); ?>');"
+                                    <a href="javascript: em_confirm(<?= $value['sid'] ?>, 'sort', '<?= LoginAuth::genToken() ?>');"
                                        class="badge badge-danger">删除</a>
                                 </td>
                             </tr>
-						<?php endforeach; ?>
-					<?php endforeach; ?>
+						<?php endforeach ?>
+					<?php endforeach ?>
                     </tbody>
                 </table>
             </div>
@@ -132,8 +132,8 @@
 									continue;
 								}
 								?>
-                                <option value="<?php echo $key; ?>"><?php echo $value['sortname']; ?></option>
-							<?php endforeach; ?>
+                                <option value="<?= $key ?>"><?= $value['sortname'] ?></option>
+							<?php endforeach ?>
                         </select>
                     </div>
                     <div class="form-group">
@@ -147,7 +147,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
+                    <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
                     <span id="alias_msg_hook"></span>
                     <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
                     <button type="submit" class="btn btn-sm btn-success">保存</button>

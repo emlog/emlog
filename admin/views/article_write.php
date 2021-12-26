@@ -3,25 +3,25 @@
 }
 ?>
 <div id="msg" class="fixed-top alert" style="display: none"></div>
-<h1 class="h3 mb-4 text-gray-800"><?php echo $containertitle; ?></h1>
+<h1 class="h3 mb-4 text-gray-800"><?= $containertitle ?></h1>
 <form action="article_save.php?action=add" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
     <div class="row">
         <div class="col-xl-12">
             <div id="post" class="form-group">
                 <div>
-                    <input type="text" name="title" id="title" value="<?php echo $title; ?>" class="form-control" placeholder="文章标题" autofocus required/>
+                    <input type="text" name="title" id="title" value="<?= $title ?>" class="form-control" placeholder="文章标题" autofocus required/>
                 </div>
                 <div id="post_bar">
                     <a href="#mediaModal" class="text-muted small my-3" data-remote="./media.php?action=lib" data-toggle="modal" data-target="#mediaModal"><i
                                 class="icofont-plus"></i> 插入图文资源</a>
-					<?php doAction('adm_writelog_head'); ?>
+					<?php doAction('adm_writelog_head') ?>
                 </div>
-                <div id="logcontent"><textarea><?php echo $content; ?></textarea></div>
+                <div id="logcontent"><textarea><?= $content ?></textarea></div>
             </div>
 
             <div class="form-group">
                 <label>文章摘要：</label>
-                <div id="logexcerpt"><textarea><?php echo $excerpt; ?></textarea></div>
+                <div id="logexcerpt"><textarea><?= $excerpt ?></textarea></div>
             </div>
 
             <div class="form-group">
@@ -29,10 +29,10 @@
                 <div class="row m-3">
                     <div class="col-md-4">
                         <label for="upload_img">
-                            <img src="<?php echo $cover ?: './views/images/cover.svg'; ?>" id="cover_image" class="rounded"/>
+                            <img src="<?= $cover ?: './views/images/cover.svg' ?>" id="cover_image" class="rounded"/>
                             <input type="file" name="upload_img" class="image" id="upload_img" style="display:none"/>
-                            <input type="hidden" name="cover" id="cover" value="<?php echo $cover; ?>"/>
-                            <button type="button" id="cover_rm" class="btn-sm btn btn-link" <?php if (!$cover): ?>style="display:none"<?php endif; ?>>x</button>
+                            <input type="hidden" name="cover" id="cover" value="<?= $cover ?>"/>
+                            <button type="button" id="cover_rm" class="btn-sm btn btn-link" <?php if (!$cover): ?>style="display:none"<?php endif ?>>x</button>
                         </label>
                     </div>
                 </div>
@@ -52,14 +52,14 @@
 							}
 							$flg = $value['sid'] == $sortid ? 'selected' : '';
 							?>
-                            <option value="<?php echo $value['sid']; ?>" <?php echo $flg; ?>><?php echo $value['sortname']; ?></option>
+                            <option value="<?= $value['sid'] ?>" <?= $flg ?>><?= $value['sortname'] ?></option>
 							<?php
 							$children = $value['children'];
 							foreach ($children as $key):
 								$value = $sorts[$key];
 								$flg = $value['sid'] == $sortid ? 'selected' : '';
 								?>
-                                <option value="<?php echo $value['sid']; ?>" <?php echo $flg; ?>>&nbsp; &nbsp; &nbsp; <?php echo $value['sortname']; ?></option>
+                                <option value="<?= $value['sid'] ?>" <?= $flg ?>>&nbsp; &nbsp; &nbsp; <?= $value['sortname'] ?></option>
 							<?php
 							endforeach;
 						endforeach;
@@ -68,32 +68,32 @@
                 </div>
                 <div class="form-group">
                     <label>标签：</label>
-                    <input name="tag" id="tag" class="form-control" value="<?php echo $tagStr; ?>" placeholder="文章标签，使用逗号分隔"/>
+                    <input name="tag" id="tag" class="form-control" value="<?= $tagStr ?>" placeholder="文章标签，使用逗号分隔"/>
                 </div>
                 <div class="form-group">
                     <label>发布时间：</label>
-                    <input maxlength="200" name="postdate" id="postdate" value="<?php echo $postDate; ?>" class="form-control"/>
+                    <input maxlength="200" name="postdate" id="postdate" value="<?= $postDate ?>" class="form-control"/>
                 </div>
                 <div class="form-group">
                     <label>链接别名：（用于seo设置 <a href="./seo.php">&rarr;</a>）</label>
-                    <input name="alias" id="alias" class="form-control" value="<?php echo $alias; ?>"/>
+                    <input name="alias" id="alias" class="form-control" value="<?= $alias ?>"/>
                 </div>
                 <div class="form-group">
                     <label>访问密码：</label>
-                    <input type="text" name="password" id="password" class="form-control" value="<?php echo $password; ?>"/>
+                    <input type="text" name="password" id="password" class="form-control" value="<?= $password ?>"/>
                 </div>
                 <div class="form-group">
-                    <input type="checkbox" value="y" name="allow_remark" id="allow_remark" <?php echo $is_allow_remark; ?> />
+                    <input type="checkbox" value="y" name="allow_remark" id="allow_remark" <?= $is_allow_remark ?> />
                     <label for="allow_remark">允许评论</label>
                 </div>
             </div>
 
             <div id="post_button">
-                <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
-                <input type="hidden" name="ishide" id="ishide" value="<?php echo $hide; ?>"/>
-                <input type="hidden" name="as_logid" id="as_logid" value="<?php echo $logid; ?>">
-                <input type="hidden" name="gid" value=<?php echo $logid; ?>/>
-                <input type="hidden" name="author" id="author" value=<?php echo $author; ?>/>
+                <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
+                <input type="hidden" name="ishide" id="ishide" value="<?= $hide ?>"/>
+                <input type="hidden" name="as_logid" id="as_logid" value="<?= $logid ?>">
+                <input type="hidden" name="gid" value=<?= $logid ?>/>
+                <input type="hidden" name="author" id="author" value=<?= $author ?>/>
 				<?php if ($logid < 0): ?>
                     <input type="submit" value="发布文章" onclick="return checkform();" class="btn btn-sm btn-success"/>
                     <input type="button" name="savedf" id="savedf" value="保存草稿" onclick="autosave(2);" class="btn btn-sm btn-primary"/>
@@ -102,8 +102,8 @@
                     <input type="button" name="savedf" id="savedf" value="保存" onclick="autosave(2);" class="btn btn-sm btn-primary"/>
 					<?php if ($isdraft) : ?>
                         <input type="submit" name="pubdf" id="pubdf" value="发布" onclick="return checkform();" class="btn btn-sm btn-success"/>
-					<?php endif; ?>
-				<?php endif; ?>
+					<?php endif ?>
+				<?php endif ?>
                 <span id="save_info"></span>
             </div>
         </div>
@@ -130,7 +130,7 @@
     </div>
 </div>
 <div class="dropzone-previews" style="display: none;"></div>
-<script src="./views/js/dropzone.min.js?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
+<script src="./views/js/dropzone.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
 <script>
     // 上传资源
     Dropzone.autoDiscover = false;
@@ -189,7 +189,7 @@
         </div>
     </div>
 </div>
-<script src="./editor.md/editormd.js?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
+<script src="./editor.md/editormd.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
 <script>
     var icon_tog;//如果值为true，则“更多选项”箭头向右
 

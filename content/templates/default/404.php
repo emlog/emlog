@@ -50,7 +50,7 @@ if (!defined('EMLOG_ROOT')) {
 <body>
 <div class="main">
     <p>404 Not Found ！</p>
-    <p><a href="<?php echo BLOG_URL; ?>">首页</a></p>
+    <p><a href="<?= BLOG_URL ?>">首页</a></p>
 </div>
 </body>
 </html>

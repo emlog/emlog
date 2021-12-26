@@ -8,33 +8,33 @@ $isDisplayTag = !$tagId ? "style=\"display:none;\"" : '';
 $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 ?>
 <?php if (isset($_GET['active_del'])): ?>
-    <div class="alert alert-success">删除成功</div><?php endif; ?>
+    <div class="alert alert-success">删除成功</div><?php endif ?>
 <?php if (isset($_GET['active_up'])): ?>
-    <div class="alert alert-success">置顶成功</div><?php endif; ?>
+    <div class="alert alert-success">置顶成功</div><?php endif ?>
 <?php if (isset($_GET['active_down'])): ?>
-    <div class="alert alert-success">取消置顶成功</div><?php endif; ?>
+    <div class="alert alert-success">取消置顶成功</div><?php endif ?>
 <?php if (isset($_GET['error_a'])): ?>
-    <div class="alert alert-danger">请选择要处理的文章</div><?php endif; ?>
+    <div class="alert alert-danger">请选择要处理的文章</div><?php endif ?>
 <?php if (isset($_GET['error_b'])): ?>
-    <div class="alert alert-danger">请选择要执行的操作</div><?php endif; ?>
+    <div class="alert alert-danger">请选择要执行的操作</div><?php endif ?>
 <?php if (isset($_GET['active_post'])): ?>
-    <div class="alert alert-success">发布成功</div><?php endif; ?>
+    <div class="alert alert-success">发布成功</div><?php endif ?>
 <?php if (isset($_GET['active_move'])): ?>
-    <div class="alert alert-success">移动成功</div><?php endif; ?>
+    <div class="alert alert-success">移动成功</div><?php endif ?>
 <?php if (isset($_GET['active_change_author'])): ?>
-    <div class="alert alert-success">更改作者成功</div><?php endif; ?>
+    <div class="alert alert-success">更改作者成功</div><?php endif ?>
 <?php if (isset($_GET['active_hide'])): ?>
-    <div class="alert alert-success">转入草稿箱成功</div><?php endif; ?>
+    <div class="alert alert-success">转入草稿箱成功</div><?php endif ?>
 <?php if (isset($_GET['active_savedraft'])): ?>
-    <div class="alert alert-success">草稿保存成功</div><?php endif; ?>
+    <div class="alert alert-success">草稿保存成功</div><?php endif ?>
 <?php if (isset($_GET['active_savelog'])): ?>
-    <div class="alert alert-success">保存成功</div><?php endif; ?>
+    <div class="alert alert-success">保存成功</div><?php endif ?>
 <?php if (isset($_GET['active_ck'])): ?>
-    <div class="alert alert-success">文章审核成功</div><?php endif; ?>
+    <div class="alert alert-success">文章审核成功</div><?php endif ?>
 <?php if (isset($_GET['active_unck'])): ?>
-    <div class="alert alert-success">文章驳回成功</div><?php endif; ?>
+    <div class="alert alert-success">文章驳回成功</div><?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800"><?php echo $draft ? '草稿箱' : '文章'; ?></h1>
+    <h1 class="h3 mb-0 text-gray-800"><?= $draft ? '草稿箱' : '文章' ?></h1>
     <a href="./article.php?action=write" class="btn btn-sm btn-success shadow-sm mt-4"><i class="icofont-pencil-alt-5"></i> 写新文章</a>
 </div>
 <div class="card shadow mb-4">
@@ -51,19 +51,19 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 							}
 							$flg = $value['sid'] == $sid ? 'selected' : '';
 							?>
-                            <option value="<?php echo $value['sid']; ?>" <?php echo $flg; ?>><?php echo $value['sortname']; ?></option>
+                            <option value="<?= $value['sid'] ?>" <?= $flg ?>><?= $value['sortname'] ?></option>
 							<?php
 							$children = $value['children'];
 							foreach ($children as $key):
 								$value = $sorts[$key];
 								$flg = $value['sid'] == $sid ? 'selected' : '';
 								?>
-                                <option value="<?php echo $value['sid']; ?>" <?php echo $flg; ?>>&nbsp; &nbsp; &nbsp; <?php echo $value['sortname']; ?></option>
+                                <option value="<?= $value['sid'] ?>" <?= $flg ?>>&nbsp; &nbsp; &nbsp; <?= $value['sortname'] ?></option>
 							<?php
 							endforeach;
 						endforeach;
 						?>
-                        <option value="-1" <?php if ($sid == -1) echo 'selected'; ?>>未分类</option>
+                        <option value="-1" <?php if ($sid == -1) echo 'selected' ?>>未分类</option>
                     </select>
                 </div>
 				<?php if (ROLE == ROLE_ADMIN && count($user_cache) > 1): ?>
@@ -74,28 +74,28 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 							foreach ($user_cache as $key => $value):
 								$flg = $key == $uid ? 'selected' : '';
 								?>
-                                <option value="<?php echo $key; ?>" <?php echo $flg; ?>><?php echo $value['name']; ?></option>
-							<?php endforeach; ?>
+                                <option value="<?= $key ?>" <?= $flg ?>><?= $value['name'] ?></option>
+							<?php endforeach ?>
                         </select>
                     </div>
-				<?php endif; ?>
+				<?php endif ?>
             </div>
         </div>
     </div>
     <div class="card-body">
         <form action="article.php?action=operate_log" method="post" name="form_log" id="form_log">
-            <input type="hidden" name="draft" value="<?php echo $draft; ?>">
+            <input type="hidden" name="draft" value="<?= $draft ?>">
             <div class="table-responsive">
                 <table class="table table-bordered table-striped table-hover dataTable no-footer">
                     <thead>
                     <tr>
                         <th><input type="checkbox" id="checkAll"/></th>
                         <th>标题</th>
-                        <th><a href="article.php?sortComm=<?php echo $sortComm . $sorturl; ?>">评论</a></th>
-                        <th><a href="article.php?sortView=<?php echo $sortView . $sorturl; ?>">浏览</a></th>
+                        <th><a href="article.php?sortComm=<?= $sortComm . $sorturl ?>">评论</a></th>
+                        <th><a href="article.php?sortView=<?= $sortView . $sorturl ?>">浏览</a></th>
                         <th>作者</th>
                         <th>分类</th>
-                        <th><a href="article.php?sortDate=<?php echo $sortDate . $sorturl; ?>">时间</a></th>
+                        <th><a href="article.php?sortDate=<?= $sortDate . $sorturl ?>">时间</a></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -105,33 +105,33 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 						$author_role = $user_cache[$value['author']]['role'];
 						?>
                         <tr>
-                            <td style="width: 20px;"><input type="checkbox" name="blog[]" value="<?php echo $value['gid']; ?>" class="ids"/></td>
-                            <td><a href="article.php?action=edit&gid=<?php echo $value['gid']; ?>"><?php echo $value['title']; ?></a>
-								<?php if ($value['top'] == 'y'): ?><img src="./views/images/top.png" title="首页置顶"/><?php endif; ?>
-								<?php if ($value['sortop'] == 'y'): ?><img src="./views/images/sortop.png" title="分类置顶"/><?php endif; ?>
+                            <td style="width: 20px;"><input type="checkbox" name="blog[]" value="<?= $value['gid'] ?>" class="ids"/></td>
+                            <td><a href="article.php?action=edit&gid=<?= $value['gid'] ?>"><?= $value['title'] ?></a>
+								<?php if ($value['top'] == 'y'): ?><img src="./views/images/top.png" title="首页置顶"/><?php endif ?>
+								<?php if ($value['sortop'] == 'y'): ?><img src="./views/images/sortop.png" title="分类置顶"/><?php endif ?>
 								<?php if (!$draft && $value['checked'] == 'n'): ?>
-                                    <span style="color:red;">[待审]</span><?php endif; ?>
+                                    <span style="color:red;">[待审]</span><?php endif ?>
                                 <div>
 									<?php if (!$draft && ROLE == ROLE_ADMIN && $value['checked'] == 'n'): ?>
                                         <a class="badge badge-success"
-                                           href="article.php?action=operate_log&operate=check&gid=<?php echo $value['gid'] ?>&token=<?php echo LoginAuth::genToken(); ?>">审核</a>
+                                           href="article.php?action=operate_log&operate=check&gid=<?= $value['gid'] ?>&token=<?= LoginAuth::genToken() ?>">审核</a>
 									<?php elseif (!$draft && ROLE == ROLE_ADMIN && $author_role == ROLE_WRITER): ?>
                                         <a class="badge badge-danger"
-                                           href="article.php?action=operate_log&operate=uncheck&gid=<?php echo $value['gid'] ?>&token=<?php echo LoginAuth::genToken(); ?>">驳回</a>
-									<?php endif; ?>
+                                           href="article.php?action=operate_log&operate=uncheck&gid=<?= $value['gid'] ?>&token=<?= LoginAuth::genToken() ?>">驳回</a>
+									<?php endif ?>
                                 </div>
                             </td>
-                            <td><a href="comment.php?gid=<?php echo $value['gid']; ?>" class="badge badge-info"><?php echo $value['comnum']; ?></a></td>
-                            <td><a href="<?php echo Url::log($value['gid']); ?>" class="badge badge-secondary" target="_blank"><?php echo $value['views']; ?></a></td>
-                            <td><a href="article.php?uid=<?php echo $value['author'] . $isdraft; ?>"><?php echo $author; ?></a></td>
-                            <td><a href="article.php?sid=<?php echo $value['sortid'] . $isdraft; ?>"><?php echo $sortName; ?></a></td>
-                            <td class="small"><?php echo $value['date']; ?></td>
+                            <td><a href="comment.php?gid=<?= $value['gid'] ?>" class="badge badge-info"><?= $value['comnum'] ?></a></td>
+                            <td><a href="<?= Url::log($value['gid']) ?>" class="badge badge-secondary" target="_blank"><?= $value['views'] ?></a></td>
+                            <td><a href="article.php?uid=<?= $value['author'] . $isdraft ?>"><?= $author ?></a></td>
+                            <td><a href="article.php?sid=<?= $value['sortid'] . $isdraft ?>"><?= $sortName ?></a></td>
+                            <td class="small"><?= $value['date'] ?></td>
                         </tr>
-					<?php endforeach; ?>
+					<?php endforeach ?>
                     </tbody>
                 </table>
             </div>
-            <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
+            <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
             <input name="operate" id="operate" value="" type="hidden"/>
             <div class="form-inline">
 				<?php if (!$draft): ?>
@@ -142,7 +142,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
                             <option value="sortop">分类置顶</option>
                             <option value="notop">取消置顶</option>
                         </select>
-					<?php endif; ?>
+					<?php endif ?>
                     <select name="sort" id="sort" onChange="changeSort(this);" class="form-control m-1">
                         <option value="" selected="selected">移动到分类</option>
 						<?php
@@ -151,14 +151,14 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 								continue;
 							}
 							?>
-                            <option value="<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?></option>
+                            <option value="<?= $value['sid'] ?>"><?= $value['sortname'] ?></option>
 							<?php
 							$children = $value['children'];
 							foreach ($children as $key):
 								$value = $sorts[$key];
 								?>
-                                <option value="<?php echo $value['sid']; ?>">&nbsp; &nbsp;
-                                    &nbsp; <?php echo $value['sortname']; ?></option>
+                                <option value="<?= $value['sid'] ?>">&nbsp; &nbsp;
+                                    &nbsp; <?= $value['sortname'] ?></option>
 							<?php
 							endforeach;
 						endforeach;
@@ -171,29 +171,29 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 							<?php foreach ($user_cache as $key => $val):
 								$val['name'] = $val['name'];
 								?>
-                                <option value="<?php echo $key; ?>"><?php echo $val['name']; ?></option>
-							<?php endforeach; ?>
+                                <option value="<?= $key ?>"><?= $val['name'] ?></option>
+							<?php endforeach ?>
                         </select>
-					<?php endif; ?>
-				<?php endif; ?>
+					<?php endif ?>
+				<?php endif ?>
 
                 <div class="btn-group btn-group-sm" role="group">
 					<?php if ($draft): ?>
                         <a href="javascript:logact('pub');" class="btn btn-sm btn-success">发布</a>
 					<?php else: ?>
                         <a href="javascript:logact('hide');" class="btn btn-sm btn-success">放入草稿箱</a>
-					<?php endif; ?>
+					<?php endif ?>
                     <a href="javascript:logact('del');" class="btn btn-sm btn-danger">删除</a>
                 </div>
             </div>
         </form>
-        <div class="page"><?php echo $pageurl; ?> (有 <?php echo $logNum; ?> 篇<?php echo $draft ? '草稿' : '文章'; ?>)</div>
+        <div class="page"><?= $pageurl ?> (有 <?= $logNum ?> 篇<?= $draft ? '草稿' : '文章' ?>)</div>
     </div>
 </div>
 <script>
     $("#menu_category_content").addClass('active');
     $("#menu_content").addClass('show');
-    $("#menu_<?php echo $draft ? 'draft' : 'log'; ?>").addClass('active');
+    $("#menu_<?= $draft ? 'draft' : 'log' ?>").addClass('active');
     setTimeout(hideActived, 2600);
 
     $(document).ready(function () {
@@ -251,11 +251,11 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 
     // 按分类筛选
     function selectSort(obj) {
-        window.open("./article.php?sid=" + obj.value + "<?php echo $isdraft?>", "_self");
+        window.open("./article.php?sid=" + obj.value + "<?= $isdraft?>", "_self");
     }
 
     // 按用户筛选
     function selectUser(obj) {
-        window.open("./article.php?uid=" + obj.value + "<?php echo $isdraft?>", "_self");
+        window.open("./article.php?uid=" + obj.value + "<?= $isdraft?>", "_self");
     }
 </script>

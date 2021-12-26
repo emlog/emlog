@@ -2,21 +2,21 @@
 	exit('error!');
 } ?>
 <?php if (isset($_GET['active_edit'])): ?>
-    <div class="alert alert-success">资料修改成功</div><?php endif; ?>
+    <div class="alert alert-success">资料修改成功</div><?php endif ?>
 <?php if (isset($_GET['active_del'])): ?>
-    <div class="alert alert-success">头像删除成功</div><?php endif; ?>
+    <div class="alert alert-success">头像删除成功</div><?php endif ?>
 <?php if (isset($_GET['error_a'])): ?>
-    <div class="alert alert-danger">昵称不能太长</div><?php endif; ?>
+    <div class="alert alert-danger">昵称不能太长</div><?php endif ?>
 <?php if (isset($_GET['error_b'])): ?>
-    <div class="alert alert-danger">电子邮件格式错误</div><?php endif; ?>
+    <div class="alert alert-danger">电子邮件格式错误</div><?php endif ?>
 <?php if (isset($_GET['error_c'])): ?>
-    <div class="alert alert-danger">密码长度不得小于6位</div><?php endif; ?>
+    <div class="alert alert-danger">密码长度不得小于6位</div><?php endif ?>
 <?php if (isset($_GET['error_d'])): ?>
-    <div class="alert alert-danger">两次输入的密码不一致</div><?php endif; ?>
+    <div class="alert alert-danger">两次输入的密码不一致</div><?php endif ?>
 <?php if (isset($_GET['error_e'])): ?>
-    <div class="alert alert-danger">该登录名已存在</div><?php endif; ?>
+    <div class="alert alert-danger">该登录名已存在</div><?php endif ?>
 <?php if (isset($_GET['error_f'])): ?>
-    <div class="alert alert-danger">该昵称已存在</div><?php endif; ?>
+    <div class="alert alert-danger">该昵称已存在</div><?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">设置</h1>
 </div>
@@ -31,14 +31,14 @@
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active"><a href="./blogger.php">个人设置</a></li>
         </ul>
-	<?php endif; ?>
+	<?php endif ?>
 </div>
 <div class="card shadow mb-4 mt-2">
     <div class="card-body">
         <div class="row m-5">
             <div class="col-md-4">
                 <label for="upload_image">
-                    <img src="<?php echo $icon; ?>" width="180" id="avatar_image" class="rounded-circle"/>
+                    <img src="<?= $icon ?>" width="180" id="avatar_image" class="rounded-circle"/>
                     <input type="file" name="image" class="image" id="upload_image" style="display:none"/>
                 </label>
             </div>
@@ -48,19 +48,19 @@
             <div class="form-group">
                 <div class="form-group">
                     <label>昵称</label>
-                    <input class="form-control" value="<?php echo $nickname; ?>" name="name">
+                    <input class="form-control" value="<?= $nickname ?>" name="name">
                 </div>
                 <div class="form-group">
                     <label>邮箱</label>
-                    <input name="email" class="form-control" value="<?php echo $email; ?>">
+                    <input name="email" class="form-control" value="<?= $email ?>">
                 </div>
                 <div class="form-group">
                     <label>个人描述</label>
-                    <textarea name="description" class="form-control"><?php echo $description; ?></textarea>
+                    <textarea name="description" class="form-control"><?= $description ?></textarea>
                 </div>
                 <div class="form-group">
                     <label>登录用户名</label>
-                    <input class="form-control" value="<?php echo $username; ?>" name="username">
+                    <input class="form-control" value="<?= $username ?>" name="username">
                 </div>
                 <div class="form-group">
                     <label>新密码（不小于6位，不修改请留空）</label>
@@ -71,9 +71,9 @@
                     <input type="password" class="form-control" value="" name="repeatpass">
                 </div>
                 <div class="form-group">
-					<?php doAction('blogger_ext'); ?>
+					<?php doAction('blogger_ext') ?>
                 </div>
-                <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
+                <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
                 <input type="submit" value="保存资料" class="btn btn-sm btn-success"/>
             </div>
         </form>

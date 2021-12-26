@@ -2,11 +2,11 @@
 	exit('error!');
 } ?>
 <?php if (isset($_GET['active_del'])): ?>
-    <div class="alert alert-success">删除标签成功</div><?php endif; ?>
+    <div class="alert alert-success">删除标签成功</div><?php endif ?>
 <?php if (isset($_GET['active_edit'])): ?>
-    <div class="alert alert-success">修改标签成功</div><?php endif; ?>
+    <div class="alert alert-success">修改标签成功</div><?php endif ?>
 <?php if (isset($_GET['error_a'])): ?>
-    <div class="alert alert-danger">请选择标签</div><?php endif; ?>
+    <div class="alert alert-danger">请选择标签</div><?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">文章标签</h1>
 </div>
@@ -16,15 +16,15 @@
 			<?php if ($tags): ?>
                 <p>
 					<?php foreach ($tags as $key => $value): ?>
-                        <a href="#" class="badge badge-primary" data-toggle="modal" data-target="#editModal" data-tid="<?php echo $value['tid']; ?>"
-                           data-tagname="<?php echo $value['tagname']; ?>">
-							<?php echo $value['tagname']; ?>
+                        <a href="#" class="badge badge-primary" data-toggle="modal" data-target="#editModal" data-tid="<?= $value['tid'] ?>"
+                           data-tagname="<?= $value['tagname'] ?>">
+							<?= $value['tagname'] ?>
                         </a>
-					<?php endforeach; ?>
+					<?php endforeach ?>
                 </p>
 			<?php else: ?>
                 <p style="margin:20px 30px">还没有标签，写文章的时候可以给文章打标签</p>
-			<?php endif; ?>
+			<?php endif ?>
         </div>
     </div>
 </div>
@@ -75,6 +75,6 @@
         if (!confirm('确定要删除所选标签吗？')) {
             return;
         }
-        window.open("./tag.php?action=del_tag&token=<?php echo LoginAuth::genToken(); ?>&tid=" + tid, "_self");
+        window.open("./tag.php?action=del_tag&token=<?= LoginAuth::genToken() ?>&tid=" + tid, "_self");
     }
 </script>
