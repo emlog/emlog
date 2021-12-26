@@ -12,7 +12,7 @@
 </footer>
 </div>
 </div>
-<?php doAction('adm_footer'); ?>
-<script src="./views/js/sb-admin-2.min.js?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
+<?php doAction('adm_footer') ?>
+<script src="./views/js/sb-admin-2.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
 </body>
 </html>
