@@ -2,11 +2,11 @@
 	exit('error!');
 } ?>
 <?php if (isset($_GET['active_del'])): ?>
-<!--vot--><div class="alert alert-success"><?=lang('tag_delete_ok')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-success"><?=lang('tag_delete_ok')?></div><?php endif ?>
 <?php if (isset($_GET['active_edit'])): ?>
-<!--vot--><div class="alert alert-success"><?=lang('tag_modify_ok')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-success"><?=lang('tag_modify_ok')?></div><?php endif ?>
 <?php if (isset($_GET['error_a'])): ?>
-<!--vot--><div class="alert alert-danger"><?=lang('tag_select')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('tag_select')?></div><?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 <!--vot--><h1 class="h3 mb-0 text-gray-800"><?=lang('tag_management')?></h1>
 </div>
@@ -16,15 +16,15 @@
 			<?php if ($tags): ?>
                 <p>
 					<?php foreach ($tags as $key => $value): ?>
-                        <a href="#" class="badge badge-primary" data-toggle="modal" data-target="#editModal" data-tid="<?php echo $value['tid']; ?>"
-                           data-tagname="<?php echo $value['tagname']; ?>">
-							<?php echo $value['tagname']; ?>
+                        <a href="#" class="badge badge-primary" data-toggle="modal" data-target="#editModal" data-tid="<?= $value['tid'] ?>"
+                           data-tagname="<?= $value['tagname'] ?>">
+							<?= $value['tagname'] ?>
                         </a>
-					<?php endforeach; ?>
+					<?php endforeach ?>
                 </p>
 			<?php else: ?>
 <!--vot-->      <p style="margin:20px 30px"><?=lang('tags_no_info')?></p>
-			<?php endif; ?>
+			<?php endif ?>
         </div>
     </div>
 </div>
@@ -75,6 +75,6 @@
 /*vot*/ if (!confirm('<?=lang('tag_delete_sure')?>')) {
             return;
         }
-        window.open("./tag.php?action=del_tag&token=<?php echo LoginAuth::genToken(); ?>&tid=" + tid, "_self");
+        window.open("./tag.php?action=del_tag&token=<?= LoginAuth::genToken() ?>&tid=" + tid, "_self");
     }
 </script>

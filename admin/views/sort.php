@@ -2,23 +2,23 @@
 	exit('error!');
 } ?>
 <?php if (isset($_GET['active_taxis'])): ?>
-<!--vot--><div class="alert alert-success"><?=lang('category_update_ok')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-success"><?=lang('category_update_ok')?></div><?php endif ?>
 <?php if (isset($_GET['active_del'])): ?>
-<!--vot--><div class="alert alert-success"><?=lang('category_deleted_ok')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-success"><?=lang('category_deleted_ok')?></div><?php endif ?>
 <?php if (isset($_GET['active_edit'])): ?>
-<!--vot--><div class="alert alert-success"><?=lang('category_modify_ok')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-success"><?=lang('category_modify_ok')?></div><?php endif ?>
 <?php if (isset($_GET['active_add'])): ?>
-<!--vot--><div class="alert alert-success"><?=lang('category_add_ok')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-success"><?=lang('category_add_ok')?></div><?php endif ?>
 <?php if (isset($_GET['error_a'])): ?>
-<!--vot--><div class="alert alert-danger"><?=lang('category_name_empty')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('category_name_empty')?></div><?php endif ?>
 <?php if (isset($_GET['error_b'])): ?>
-<!--vot--><div class="alert alert-danger"><?=lang('category_no_order')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('category_no_order')?></div><?php endif ?>
 <?php if (isset($_GET['error_c'])): ?>
-<!--vot--><div class="alert alert-danger"><?=lang('alias_format_invalid')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('alias_format_invalid')?></div><?php endif ?>
 <?php if (isset($_GET['error_d'])): ?>
-<!--vot--><div class="alert alert-danger"><?=lang('alias_unique')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('alias_unique')?></div><?php endif ?>
 <?php if (isset($_GET['error_e'])): ?>
-<!--vot--><div class="alert alert-danger"><?=lang('alias_no_keywords')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('alias_no_keywords')?></div><?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 <!--vot--><h1 class="h3 mb-0 text-gray-800"><?=lang('category_management')?></h1>
 <!--vot--><a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#exampleModal"><i class="icofont-plus"></i> <?=lang('category_add')?></a>
@@ -49,21 +49,21 @@
 						?>
                         <tr>
                             <td>
-                                <input type="hidden" value="<?php echo $value['sid']; ?>" class="sort_id"/>
-                                <input class="form-control em-small" name="sort[<?php echo $value['sid']; ?>]" value="<?php echo $value['taxis']; ?>"/>
+                                <input type="hidden" value="<?= $value['sid'] ?>" class="sort_id"/>
+                                <input class="form-control em-small" name="sort[<?= $value['sid'] ?>]" value="<?= $value['taxis'] ?>"/>
                             </td>
                             <td class="sortname">
-                                <a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?></a>
+                                <a href="sort.php?action=mod_sort&sid=<?= $value['sid'] ?>"><?= $value['sortname'] ?></a>
                             </td>
-                            <td><?php echo $value['description']; ?></td>
-                            <td class="alias"><?php echo $value['alias']; ?></td>
-                            <td class="alias"><?php echo $value['template']; ?></td>
+                            <td><?= $value['description'] ?></td>
+                            <td class="alias"><?= $value['alias'] ?></td>
+                            <td class="alias"><?= $value['template'] ?></td>
                             <td>
-                                <a href="<?php echo Url::sort($value['sid']); ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0"/></a>
+                                <a href="<?= Url::sort($value['sid']) ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0"/></a>
                             </td>
-                            <td><a href="article.php?sid=<?php echo $value['sid']; ?>"><?php echo $value['lognum']; ?></a></td>
+                            <td><a href="article.php?sid=<?= $value['sid'] ?>"><?= $value['lognum'] ?></a></td>
                             <td>
-<!--vot-->                      <a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-danger"><?=lang('delete')?></a>
+<!--vot-->                      <a href="javascript: em_confirm(<?= $value['sid'] ?>, 'sort', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger"><?=lang('delete')?></a>
                             </td>
                         </tr>
 						<?php
@@ -73,24 +73,24 @@
 							?>
                             <tr>
                                 <td>
-                                    <input type="hidden" value="<?php echo $value['sid']; ?>" class="sort_id"/>
-                                    <input class="form-control em-small" name="sort[<?php echo $value['sid']; ?>]" value="<?php echo $value['taxis']; ?>"/>
+                                    <input type="hidden" value="<?= $value['sid'] ?>" class="sort_id"/>
+                                    <input class="form-control em-small" name="sort[<?= $value['sid'] ?>]" value="<?= $value['taxis'] ?>"/>
                                 </td>
-                                <td class="sortname">---- <a href="sort.php?action=mod_sort&sid=<?php echo $value['sid']; ?>"><?php echo $value['sortname']; ?></a></td>
-                                <td><?php echo $value['description']; ?></td>
-                                <td class="alias"><?php echo $value['alias']; ?></td>
-                                <td class="alias"><?php echo $value['template']; ?></td>
+                                <td class="sortname">---- <a href="sort.php?action=mod_sort&sid=<?= $value['sid'] ?>"><?= $value['sortname'] ?></a></td>
+                                <td><?= $value['description'] ?></td>
+                                <td class="alias"><?= $value['alias'] ?></td>
+                                <td class="alias"><?= $value['template'] ?></td>
                                 <td>
-                                    <a href="<?php echo Url::sort($value['sid']); ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0"/></a>
+                                    <a href="<?= Url::sort($value['sid']) ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0"/></a>
                                 </td>
-                                <td><a href="article.php?sid=<?php echo $value['sid']; ?>"><?php echo $value['lognum']; ?></a></td>
+                                <td><a href="article.php?sid=<?= $value['sid'] ?>"><?= $value['lognum'] ?></a></td>
                                 <td>
-<!--vot-->                          <a href="javascript: em_confirm(<?php echo $value['sid']; ?>, 'sort', '<?php echo LoginAuth::genToken(); ?>');"
+<!--vot-->                          <a href="javascript: em_confirm(<?= $value['sid'] ?>, 'sort', '<?= LoginAuth::genToken() ?>');"
                                        class="badge badge-danger"><?=lang('delete')?></a>
                                 </td>
                             </tr>
-						<?php endforeach; ?>
-					<?php endforeach; ?>
+						<?php endforeach ?>
+					<?php endforeach ?>
                     </tbody>
                 </table>
             </div>
@@ -132,8 +132,8 @@
 									continue;
 								}
 								?>
-                                <option value="<?php echo $key; ?>"><?php echo $value['sortname']; ?></option>
-							<?php endforeach; ?>
+                                <option value="<?= $key ?>"><?= $value['sortname'] ?></option>
+							<?php endforeach ?>
                         </select>
                     </div>
                     <div class="form-group">
@@ -147,7 +147,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
+                    <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
                     <span id="alias_msg_hook"></span>
 <!--vot-->          <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
 <!--vot-->          <button type="submit" class="btn btn-sm btn-success"><?=lang('save')?></button>

@@ -50,7 +50,7 @@ if (!defined('EMLOG_ROOT')) {
 <body>
 <div class="main">
 <!--vot--><p><?=lang('404_description')?></p>
-<!--vot--><p><a href="<?php echo BLOG_URL; ?>"><?=lang('click_return')?></a></p>
+<!--vot--><p><a href="<?= BLOG_URL ?>"><?=lang('click_return')?></a></p>
 </div>
 </body>
 </html>

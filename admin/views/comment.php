@@ -3,29 +3,29 @@
 } ?>
 
 <?php if (isset($_GET['active_del'])): ?>
-<!--vot--><div class="alert alert-success"><?=lang('comment_delete_ok')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-success"><?=lang('comment_delete_ok')?></div><?php endif ?>
 <?php if (isset($_GET['active_show'])): ?>
-<!--vot--><div class="alert alert-success"><?=lang('comment_audit_ok')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-success"><?=lang('comment_audit_ok')?></div><?php endif ?>
 <?php if (isset($_GET['active_hide'])): ?>
-<!--vot--><div class="alert alert-success"><?=lang('comment_hide_ok')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-success"><?=lang('comment_hide_ok')?></div><?php endif ?>
 <?php if (isset($_GET['active_top'])): ?>
-<!--vot--><div class="alert alert-success"><?=lang('sticked_ok')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-success"><?=lang('sticked_ok')?></div><?php endif ?>
 <?php if (isset($_GET['active_untop'])): ?>
-<!--vot--><div class="alert alert-success"><?=lang('unsticked_ok')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-success"><?=lang('unsticked_ok')?></div><?php endif ?>
 <?php if (isset($_GET['active_edit'])): ?>
-<!--vot--><div class="alert alert-success"><?=lang('comment_edit_ok')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-success"><?=lang('comment_edit_ok')?></div><?php endif ?>
 <?php if (isset($_GET['active_rep'])): ?>
-<!--vot--><div class="alert alert-success"><?=lang('comment_reply_ok')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-success"><?=lang('comment_reply_ok')?></div><?php endif ?>
 <?php if (isset($_GET['error_a'])): ?>
-<!--vot--><div class="alert alert-danger"><?=lang('comment_choose_operation')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('comment_choose_operation')?></div><?php endif ?>
 <?php if (isset($_GET['error_b'])): ?>
-<!--vot--><div class="alert alert-danger"><?=lang('select_action_to_perform')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('select_action_to_perform')?></div><?php endif ?>
 <?php if (isset($_GET['error_c'])): ?>
-<!--vot--><div class="alert alert-danger"><?=lang('reply_is_empty')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('reply_is_empty')?></div><?php endif ?>
 <?php if (isset($_GET['error_d'])): ?>
-<!--vot--><div class="alert alert-danger"><?=lang('comment_too_long')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('comment_too_long')?></div><?php endif ?>
 <?php if (isset($_GET['error_e'])): ?>
-<!--vot--><div class="alert alert-danger"><?=lang('comment_is_empty')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('comment_is_empty')?></div><?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 <!--vot--><h1 class="h3 mb-0 text-gray-800"><?= lang('comment_management') ?></h1>
 </div>
@@ -34,17 +34,17 @@
         <ul class="nav nav-tabs">
             <li class="nav-item"><a class="nav-link <?php if ($hide == '') {
 					echo 'active';
-/*vot*/         } ?>" href="./comment.php?<?php echo $addUrl_1 ?>"><?=lang('all')?></a></li>
+/*vot*/         } ?>" href="./comment.php?<?= $addUrl_1 ?>"><?=lang('all')?></a></li>
             <li class="nav-item"><a class="nav-link <?php if ($hide == 'y') {
 					echo 'active';
-/*vot*/         } ?>" href="./comment.php?hide=y&<?php echo $addUrl_1 ?>"><?=lang('pending')?><?php
+/*vot*/         } ?>" href="./comment.php?hide=y&<?= $addUrl_1 ?>"><?=lang('pending')?><?php
 					$hidecmnum = ROLE == ROLE_ADMIN ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
 					if ($hidecmnum > 0) echo '(' . $hidecmnum . ')';
 					?></a>
             </li>
         </ul>
     </div>
-<?php endif; ?>
+<?php endif ?>
 <form action="comment.php?action=batch_operation" method="post" name="form_com" id="form_com">
     <div class="card shadow mb-4">
         <div class="card-body">
@@ -76,32 +76,32 @@
 						doAction('adm_comment_display');
 						?>
                         <tr>
-                            <td style="width: 19px;"><input type="checkbox" value="<?php echo $cid; ?>" name="com[]" class="ids"/></td>
+                            <td style="width: 19px;"><input type="checkbox" value="<?= $cid ?>" name="com[]" class="ids"/></td>
                             <td>
                                 <a href="#" data-toggle="modal" data-target="#replyModal"
-                                   data-cid="<?php echo $cid; ?>"
-                                   data-comment="<?php echo $comment; ?>"
-                                   data-hide="<?php echo $value['hide']; ?>"
-                                   data-gid="<?php echo $gid; ?> ">
-									<?php echo $comment; ?>
+                                   data-cid="<?= $cid ?>"
+                                   data-comment="<?= $comment ?>"
+                                   data-hide="<?= $value['hide'] ?>"
+                                   data-gid="<?= $gid ?> ">
+									<?= $comment ?>
                                 </a>
-								<?php echo $ishide; ?>
-<!--vot-->							<?php if ($top == 'y'): ?><img src="./views/images/top.png" title="<?=lang('top')?>"/><?php endif; ?>
+								<?= $ishide ?>
+<!--vot-->							<?php if ($top == 'y'): ?><img src="./views/images/top.png" title="<?=lang('top')?>"/><?php endif ?>
                             </td>
                             <td class="small">
-<!--vot-->                      <?php echo $poster; ?> <?php echo $mail; ?> <?php echo $ip_info; ?>
+<!--vot-->                      <?= $poster ?> <?= $mail ?> <?= $ip_info ?>
 								<?php if (ROLE == ROLE_ADMIN): ?>
-<!--vot-->                          <a href="javascript: em_confirm('<?php echo $ip; ?>', 'commentbyip', '<?php echo LoginAuth::genToken(); ?>');"
+<!--vot-->                          <a href="javascript: em_confirm('<?= $ip ?>', 'commentbyip', '<?= LoginAuth::genToken() ?>');"
                                        class="badge badge-pill badge-warning"><?=lang('del_from_ip')?></a>
-								<?php endif; ?>
+								<?php endif ?>
                             </td>
-                            <td class="small"><?php echo $date; ?></td>
+                            <td class="small"><?= $date ?></td>
                             <td class="small">
-                                <a href="<?php echo Url::log($gid); ?>" target="_blank"><?php echo $title; ?></a><br>
-<!--vot-->                      <a href="comment.php?gid=<?php echo $gid; ?>" class="badge badge-info"><?=lang('article_all_comments')?></a>
+                                <a href="<?= Url::log($gid) ?>" target="_blank"><?= $title ?></a><br>
+<!--vot-->                      <a href="comment.php?gid=<?= $gid ?>" class="badge badge-info"><?=lang('article_all_comments')?></a>
                             </td>
                         </tr>
-					<?php endforeach; ?>
+					<?php endforeach ?>
                     </tbody>
                 </table>
             </div>
@@ -115,7 +115,7 @@
                 </div>
                 <input name="operate" id="operate" value="" type="hidden"/>
             </div>
-<!--vot-->  <div class="page"><?php echo $pageurl; ?> (<?=lang('have')?> <?php echo $cmnum; ?> <?=lang('_comments')?>)</div>
+<!--vot-->  <div class="page"><?= $pageurl ?> (<?=lang('have')?> <?= $cmnum ?> <?=lang('_comments')?>)</div>
         </div>
     </div>
 </form>

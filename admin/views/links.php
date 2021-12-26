@@ -2,17 +2,17 @@
 	exit('error!');
 } ?>
 <?php if (isset($_GET['active_taxis'])): ?>
-<!--vot--><div class="alert alert-success"><?=lang('order_update_ok')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-success"><?=lang('order_update_ok')?></div><?php endif ?>
 <?php if (isset($_GET['active_del'])): ?>
-<!--vot--><div class="alert alert-success"><?=lang('deleted_ok')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-success"><?=lang('deleted_ok')?></div><?php endif ?>
 <?php if (isset($_GET['active_edit'])): ?>
-<!--vot--><div class="alert alert-success"><?=lang('edit_ok')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-success"><?=lang('edit_ok')?></div><?php endif ?>
 <?php if (isset($_GET['active_add'])): ?>
-<!--vot--><div class="alert alert-success"><?=lang('add_ok')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-success"><?=lang('add_ok')?></div><?php endif ?>
 <?php if (isset($_GET['error_a'])): ?>
-<!--vot--><div class="alert alert-danger"><?=lang('site_and_url_empty')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('site_and_url_empty')?></div><?php endif ?>
 <?php if (isset($_GET['error_b'])): ?>
-<!--vot--><div class="alert alert-danger"><?=lang('no_link_order')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('no_link_order')?></div><?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 <!--vot--><h1 class="h3 mb-0 text-gray-800"><?= lang('link_management') ?></h1>
 <!--vot--><a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> <?= lang('link_add') ?></a>
@@ -37,28 +37,28 @@
 						doAction('adm_link_display');
 						?>
                         <tr>
-                            <td><input class="form-control em-small" name="link[<?php echo $value['id']; ?>]" value="<?php echo $value['taxis']; ?>" maxlength="4"/></td>
+                            <td><input class="form-control em-small" name="link[<?= $value['id'] ?>]" value="<?= $value['taxis'] ?>" maxlength="4"/></td>
                             <td>
                                 <a href="#" data-toggle="modal" data-target="#editModal"
-                                   data-linkid="<?php echo $value['id']; ?>"
-                                   data-sitename="<?php echo $value['sitename']; ?>"
-                                   data-siteurl="<?php echo $value['siteurl']; ?>"
-                                   data-description="<?php echo $value['description']; ?>"><?php echo $value['sitename']; ?></a>
+                                   data-linkid="<?= $value['id'] ?>"
+                                   data-sitename="<?= $value['sitename'] ?>"
+                                   data-siteurl="<?= $value['siteurl'] ?>"
+                                   data-description="<?= $value['description'] ?>"><?= $value['sitename'] ?></a>
                             </td>
-                            <td><?php echo $value['description']; ?></td>
+                            <td><?= $value['description'] ?></td>
                             <td>
-                                <a href="<?php echo $value['siteurl']; ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0"/></a>
+                                <a href="<?= $value['siteurl'] ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0"/></a>
                             </td>
                             <td>
 								<?php if ($value['hide'] == 'n'): ?>
-<!--vot-->                          <a href="link.php?action=hide&amp;linkid=<?php echo $value['id']; ?>" class="badge badge-primary"><?= lang('visible') ?></a>
+<!--vot-->                          <a href="link.php?action=hide&amp;linkid=<?= $value['id'] ?>" class="badge badge-primary"><?= lang('visible') ?></a>
 								<?php else: ?>
-<!--vot-->                          <a href="link.php?action=show&amp;linkid=<?php echo $value['id']; ?>" class="badge badge-warning"><?= lang('hidden') ?></a>
-								<?php endif; ?>
-<!--vot-->                      <a href="javascript: em_confirm(<?php echo $value['id']; ?>, 'link', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-danger"><?=lang('delete')?></a>
+<!--vot-->                          <a href="link.php?action=show&amp;linkid=<?= $value['id'] ?>" class="badge badge-warning"><?= lang('hidden') ?></a>
+								<?php endif ?>
+<!--vot-->                      <a href="javascript: em_confirm(<?= $value['id'] ?>, 'link', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger"><?=lang('delete')?></a>
                             </td>
                         </tr>
-					<?php endforeach; ?>
+					<?php endforeach ?>
                     </tbody>
                 </table>
             </div>

@@ -8,21 +8,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name=renderer content=webkit>
-<!--vot--><title><?=lang('admin_center')?> - <?php echo Option::get('blogname'); ?></title>
-    <link rel="stylesheet" type="text/css" href="./views/css/style.css?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>">
-    <link rel="stylesheet" type="text/css" href="./editor.md/css/editormd.css?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>">
-    <link rel="stylesheet" type="text/css" href="./views/css/bootstrap-sbadmin-4.5.3.css?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>">
-    <link rel="stylesheet" type="text/css" href="./views/css/css-main.css?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>">
-    <link rel="stylesheet" type="text/css" href="./views/css/icofont/icofont.min.css?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>">
-    <link rel="stylesheet" type="text/css" href="./views/css/dropzone.css?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>">
-    <link rel="stylesheet" type="text/css" href="./views/css/cropper.min.css?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>">
+<!--vot--><title><?=lang('admin_center')?> - <?= Option::get('blogname') ?></title>
+    <link rel="stylesheet" type="text/css" href="./views/css/style.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>">
+    <link rel="stylesheet" type="text/css" href="./editor.md/css/editormd.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>">
+    <link rel="stylesheet" type="text/css" href="./views/css/bootstrap-sbadmin-4.5.3.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>">
+    <link rel="stylesheet" type="text/css" href="./views/css/css-main.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>">
+    <link rel="stylesheet" type="text/css" href="./views/css/icofont/icofont.min.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>">
+    <link rel="stylesheet" type="text/css" href="./views/css/dropzone.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>">
+    <link rel="stylesheet" type="text/css" href="./views/css/cropper.min.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>">
 
-    <script src="./views/js/jquery.min.3.5.1.js?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
-    <script src="./views/js/bootstrap.bundle.min.4.6.js?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
-    <script src="./views/js/jquery-ui.min.js?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
-    <script src="./views/js/js.cookie-2.2.1.min.js?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
-    <script src="./views/js/cropper.min.js?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
-    <script src="./views/js/common.js?t=<?php echo Option::EMLOG_VERSION_TIMESTAMP; ?>"></script>
+    <script src="./views/js/jquery.min.3.5.1.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
+    <script src="./views/js/bootstrap.bundle.min.4.6.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
+    <script src="./views/js/jquery-ui.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
+    <script src="./views/js/js.cookie-2.2.1.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
+    <script src="./views/js/cropper.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
+    <script src="./views/js/common.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
 <!--vot--><script>	var em_lang = '<?= EMLOG_LANGUAGE ?>';</script>
 <!--vot--><script src="<?= BLOG_URL ?>/lang/<?= EMLOG_LANGUAGE ?>/lang_js.js"></script>
 	<?php doAction('adm_head'); ?>
@@ -31,14 +31,14 @@
 <div id="wrapper">
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion sd-hidden" id="accordionSidebar">
         <li class="nav-item active emlog_title" id="menu_home">
-<!--vot-->  <a class="nav-link" href="./">EMLOG PRO <?php if (!Register::isRegLocal()) : ?><?=lang('unregistered')?><?php endif; ?></a>
+<!--vot-->  <a class="nav-link" href="./">EMLOG PRO <?php if (!Register::isRegLocal()) : ?><?=lang('unregistered')?><?php endif ?></a>
         </li>
         <hr class="sidebar-divider my-0">
 		<?php if (ROLE == ROLE_ADMIN): ?>
             <li class="nav-item" id="menu_home">
 <!--vot-->      <a class="nav-link" href="./"><i class="icofont-dashboard icofont-1x"></i><span><?= lang('admincp') ?></span></a>
             </li>
-		<?php endif; ?>
+		<?php endif ?>
         <hr class="sidebar-divider my-0">
         <li class="nav-item" id="menu_category_content">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_content" aria-expanded="true" aria-controls="menu_content">
@@ -52,7 +52,7 @@
 					<?php if (ROLE == ROLE_ADMIN): ?>
 <!--vot-->          <a class="collapse-item" id="menu_sort" href="sort.php"><?=lang('categories')?></a>
 <!--vot-->          <a class="collapse-item" id="menu_tag" href="tag.php"><?=lang('tags')?></a>
-					<?php endif; ?>
+					<?php endif ?>
                 </div>
             </div>
         </li>
@@ -89,7 +89,7 @@
                 <div id="menu_ext" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
 <!--vot-->              <a class="collapse-item" id="menu_plug" href="plugin.php"><?=lang('plugins')?></a>
-						<?php doAction('adm_menu_ext'); ?>
+						<?php doAction('adm_menu_ext') ?>
                     </div>
                 </div>
             </li>
@@ -109,7 +109,7 @@
                     </div>
                 </div>
             </li>
-		<?php endif; ?>
+		<?php endif ?>
         <hr class="sidebar-divider d-none d-md-block">
         <div class="text-center d-none d-md-inline">
             <button class="rounded-circle border-0" id="sidebarToggle"></button>
@@ -144,7 +144,7 @@
                     <li class="nav-item mx-1">
                         <a class="nav-link" href="blogger.php" role="button">
                             <img class="img-profile rounded-circle"
-                                 src="<?php echo empty($user_cache[UID]['avatar']) ? './views/images/avatar.svg' : '../' . $user_cache[UID]['avatar'] ?>">
+                                 src="<?= empty($user_cache[UID]['avatar']) ? './views/images/avatar.svg' : '../' . $user_cache[UID]['avatar'] ?>">
                         </a>
                     </li>
                     <div class="topbar-divider d-none d-sm-block"></div>

@@ -2,30 +2,30 @@
 	exit('error!');
 } ?>
 <?php if (isset($_GET['activated'])): ?>
-<!--vot--><div class="alert alert-success"><?=lang('template_change_ok')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-success"><?=lang('template_change_ok')?></div><?php endif ?>
 <?php if (isset($_GET['activate_install'])): ?>
-<!--vot--><div class="alert alert-success"><?=lang('template_upload_ok')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-success"><?=lang('template_upload_ok')?></div><?php endif ?>
 <?php if (isset($_GET['activate_del'])): ?>
-<!--vot--><div class="alert alert-success"><?=lang('template_delete_ok')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-success"><?=lang('template_delete_ok')?></div><?php endif ?>
 <?php if (isset($_GET['error_f'])): ?>
-<!--vot--><div class="alert alert-danger"><?=lang('template_delete_failed')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('template_delete_failed')?></div><?php endif ?>
 <?php if (!$nonce_templet_data): ?>
-<!--vot--><div class="alert alert-danger"><?=lang('template_current_use')?>(<?php echo $nonce_templet; ?>) <?=lang('template_damaged')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('template_current_use')?>(<?= $nonce_templet ?>) <?=lang('template_damaged')?></div><?php endif ?>
 <?php if (isset($_GET['error_a'])): ?>
-<!--vot--><div class="alert alert-danger"><?=lang('template_zip_support')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('template_zip_support')?></div><?php endif ?>
 <?php if (isset($_GET['error_b'])): ?>
-<!--vot--><div class="alert alert-danger"><?=lang('template_not_writable')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('template_not_writable')?></div><?php endif ?>
 <?php if (isset($_GET['error_d'])): ?>
-<!--vot--><div class="alert alert-danger"><?=lang('template_select_zip')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('template_select_zip')?></div><?php endif ?>
 <?php if (isset($_GET['error_e'])): ?>
-<!--vot--><div class="alert alert-danger"><?=lang('template_non_standard')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('template_non_standard')?></div><?php endif ?>
 <?php if (isset($_GET['error_c'])): ?>
     <div class="alert alert-danger">
 <!--vot-->  <?=lang('template_no_zip')?>
 <!--vot-->  <?=lang('template_install_prompt1')?>
 <!--vot-->  <?=lang('template_install_prompt2')?>
     </div>
-<?php endif; ?>
+<?php endif ?>
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 <!--vot--><h1 class="h3 mb-0 text-gray-800"><?=lang('template_manager')?></h1>
@@ -38,36 +38,36 @@
                 <div class="card-header <?php if ($nonce_templet == $value['tplfile']) {
 					echo "bg-success text-white font-weight-bold";
 				} ?>">
-					<?php echo $value['tplname']; ?>
+					<?= $value['tplname'] ?>
                 </div>
                 <div class="card-body">
-                    <a href="template.php?action=usetpl&tpl=<?php echo $value['tplfile']; ?>&token=<?php echo LoginAuth::genToken(); ?>">
-                        <img class="card-img-top" src="<?php echo TPLS_URL . $value['tplfile']; ?>/preview.jpg" alt="Card image cap">
+                    <a href="template.php?action=usetpl&tpl=<?= $value['tplfile'] ?>&token=<?= LoginAuth::genToken() ?>">
+                        <img class="card-img-top" src="<?= TPLS_URL . $value['tplfile'] ?>/preview.jpg" alt="Card image cap">
                     </a>
                 </div>
                 <div class="card-footer">
 					<?php if ($value['author']): ?>
 <!--vot-->          <div class="small"><?=lang('template_author')?>:
 							<?php if ($value['author_url']): ?>
-                                <a href="<?php echo $value['author_url']; ?>" target="_blank"><?php echo $value['author']; ?></a>
+                                <a href="<?= $value['author_url'] ?>" target="_blank"><?= $value['author'] ?></a>
 							<?php else: ?>
-								<?php echo $value['author']; ?>
-							<?php endif; ?>
+								<?= $value['author'] ?>
+							<?php endif ?>
                     </div>
-					<?php endif; ?>
+					<?php endif ?>
                     <div class="small">
-						<?php echo $value['tpldes']; ?>
+						<?= $value['tpldes'] ?>
 						<?php if ($value['tplurl']): ?>
-<!--vot-->              <a href="<?php echo $value['tplurl']; ?>" target="_blank"><?=lang('more_info')?></a>
-						<?php endif; ?>
+<!--vot-->              <a href="<?= $value['tplurl'] ?>" target="_blank"><?=lang('more_info')?></a>
+						<?php endif ?>
                     </div>
                     <div class="mt-3">
-<!--vot-->              <a class="badge badge-danger" href="javascript: em_confirm('<?php echo $value['tplfile']; ?>', 'tpl', '<?php echo LoginAuth::genToken(); ?>');"><?=lang('delete')?></a>
+<!--vot-->              <a class="badge badge-danger" href="javascript: em_confirm('<?= $value['tplfile'] ?>', 'tpl', '<?= LoginAuth::genToken() ?>');"><?=lang('delete')?></a>
                     </div>
                 </div>
             </div>
         </div>
-	<?php endforeach; ?>
+	<?php endforeach ?>
 </div>
 
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -84,7 +84,7 @@
                     <div>
 <!--vot-->              <p><?=lang('template_upload_prompt')?></p>
                         <p>
-                            <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
+                            <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
                             <input name="tplzip" type="file"/>
                         </p>
                     </div>

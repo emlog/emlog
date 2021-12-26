@@ -2,27 +2,27 @@
 	exit('error!');
 } ?>
 <?php if (isset($_GET['activate_install'])): ?>
-<!--vot--><div class="alert alert-success"><?=lang('plugin_upload_ok')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-success"><?=lang('plugin_upload_ok')?></div><?php endif ?>
 <?php if (isset($_GET['active'])): ?>
-<!--vot--><div class="alert alert-success"><?=lang('plugin_active_ok')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-success"><?=lang('plugin_active_ok')?></div><?php endif ?>
 <?php if (isset($_GET['activate_del'])): ?>
-<!--vot--><div class="alert alert-success"><?=lang('deleted_ok')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-success"><?=lang('deleted_ok')?></div><?php endif ?>
 <?php if (isset($_GET['active_error'])): ?>
-<!--vot--><div class="alert alert-danger"><?=lang('plugin_active_failed')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('plugin_active_failed')?></div><?php endif ?>
 <?php if (isset($_GET['inactive'])): ?>
-<!--vot--><div class="alert alert-success"><?=lang('plugin_disable_ok')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-success"><?=lang('plugin_disable_ok')?></div><?php endif ?>
 <?php if (isset($_GET['error_a'])): ?>
-<!--vot--><div class="alert alert-danger"><?=lang('plugin_delete_failed')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('plugin_delete_failed')?></div><?php endif ?>
 <?php if (isset($_GET['error_b'])): ?>
-<!--vot--><div class="alert alert-danger"><?=lang('plugin_not_writable')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('plugin_not_writable')?></div><?php endif ?>
 <?php if (isset($_GET['error_c'])): ?>
-<!--vot--><div class="alert alert-danger"><?=lang('plugin_zip_nonsupport')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('plugin_zip_nonsupport')?></div><?php endif ?>
 <?php if (isset($_GET['error_d'])): ?>
-<!--vot--><div class="alert alert-danger"><?=lang('plugin_zip_select')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('plugin_zip_select')?></div><?php endif ?>
 <?php if (isset($_GET['error_e'])): ?>
-<!--vot--><div class="alert alert-danger"><?=lang('plugin_wrong_format')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('plugin_wrong_format')?></div><?php endif ?>
 <?php if (isset($_GET['error_f'])): ?>
-<!--vot--><div class="alert alert-danger"><?=lang('plugin_zipped_only')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('plugin_zipped_only')?></div><?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 <!--vot--><h1 class="h3 mb-0 text-gray-800"><?=lang('plugin_manage')?></h1>
 <!--vot--><a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> <?=lang('plugin_new_install')?></a>
@@ -59,35 +59,35 @@
 						}
 						?>
                         <tr>
-                            <td><?php echo $val['Name']; ?></td>
-                            <td id="plugin_<?php echo $i; ?>">
-                                <a href="./plugin.php?action=<?php echo $plug_action; ?>&plugin=<?php echo $key; ?>&token=<?php echo LoginAuth::genToken(); ?>"><img
-                                            src="./views/images/plugin_<?php echo $plug_state; ?>.gif" title="<?php echo $plug_state_des; ?>"></a>
+                            <td><?= $val['Name'] ?></td>
+                            <td id="plugin_<?= $i ?>">
+                                <a href="./plugin.php?action=<?= $plug_action ?>&plugin=<?= $key ?>&token=<?= LoginAuth::genToken() ?>"><img
+                                            src="./views/images/plugin_<?= $plug_state ?>.gif" title="<?= $plug_state_des ?>"></a>
                             </td>
                             <td>
-								<?php echo $val['Description']; ?>
-<!--vot-->                      <?php if ($val['Url'] != ''): ?><a href="<?php echo $val['Url']; ?>" target="_blank"><?=lang('more_info')?></a><?php endif; ?>
+								<?= $val['Description'] ?>
+<!--vot-->                      <?php if ($val['Url'] != ''): ?><a href="<?= $val['Url'] ?>" target="_blank"><?=lang('more_info')?></a><?php endif ?>
                                 <div class="small mt-3">
-<!--vot-->                          <?php if ($val['ForEmlog'] != ''): ?><?=lang('ok_for_emlog')?>: <?php echo $val['ForEmlog']; ?>&nbsp | &nbsp<?php endif; ?>
+<!--vot-->                          <?php if ($val['ForEmlog'] != ''): ?><?=lang('ok_for_emlog')?>: <?= $val['ForEmlog'] ?>&nbsp | &nbsp<?php endif ?>
 									<?php if ($val['Author'] != ''): ?>
 <!--vot-->                              <?=lang('user')?>: <?php if ($val['AuthorUrl'] != ''): ?>
-                                            <a href="<?php echo $val['AuthorUrl']; ?>" target="_blank"><?php echo $val['Author']; ?></a>
+                                            <a href="<?= $val['AuthorUrl'] ?>" target="_blank"><?= $val['Author'] ?></a>
 										<?php else: ?>
-											<?php echo $val['Author']; ?>
-										<?php endif; ?>
-									<?php endif; ?>
+											<?= $val['Author'] ?>
+										<?php endif ?>
+									<?php endif ?>
                                 </div>
                             </td>
-                            <td><?php echo $val['Version']; ?></td>
+                            <td><?= $val['Version'] ?></td>
                             <td>
-<!--vot-->                      <a href="javascript: em_confirm('<?php echo $key; ?>', 'plu', '<?php echo LoginAuth::genToken(); ?>');" class="badge badge-danger"><?=lang('delete')?></a>
+<!--vot-->                      <a href="javascript: em_confirm('<?= $key ?>', 'plu', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger"><?=lang('delete')?></a>
                             </td>
                         </tr>
 					<?php endforeach; else: ?>
                     <tr>
 <!--vot-->              <td colspan="5"><?=lang('plugin_no_installed')?></td>
                     </tr>
-				<?php endif; ?>
+				<?php endif ?>
                 </tbody>
             </table>
         </div>
@@ -116,7 +116,7 @@
                 <div class="modal-footer">
 <!--vot-->          <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
 <!--vot-->          <button type="submit" class="btn btn-sm btn-success"><?=lang('upload')?><button>
-                    <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
+                    <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
                 </div>
             </form>
         </div>

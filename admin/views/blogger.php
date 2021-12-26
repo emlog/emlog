@@ -2,21 +2,21 @@
 	exit('error!');
 } ?>
 <?php if (isset($_GET['active_edit'])): ?>
-<!--vot--><div class="alert alert-success"><?=lang('personal_data_modified_ok')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-success"><?=lang('personal_data_modified_ok')?></div><?php endif ?>
 <?php if (isset($_GET['active_del'])): ?>
-<!--vot--><div class="alert alert-success"><?=lang('avatar_deleted_ok')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-success"><?=lang('avatar_deleted_ok')?></div><?php endif ?>
 <?php if (isset($_GET['error_a'])): ?>
-<!--vot--><div class="alert alert-danger"><?=lang('nickname_too_long')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('nickname_too_long')?></div><?php endif ?>
 <?php if (isset($_GET['error_b'])): ?>
-<!--vot--><div class="alert alert-danger"><?=lang('email_format_invalid')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('email_format_invalid')?></div><?php endif ?>
 <?php if (isset($_GET['error_c'])): ?>
-<!--vot--><div class="alert alert-danger"><?=lang('password_length_short')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('password_length_short')?></div><?php endif ?>
 <?php if (isset($_GET['error_d'])): ?>
-<!--vot--><div class="alert alert-danger"><?=lang('password_not_equal')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('password_not_equal')?></div><?php endif ?>
 <?php if (isset($_GET['error_e'])): ?>
-<!--vot--><div class="alert alert-danger"><?=lang('username_exists')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('username_exists')?></div><?php endif ?>
 <?php if (isset($_GET['error_f'])): ?>
-<!--vot--><div class="alert alert-danger"><?=lang('nickname_exists')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-danger"><?=lang('nickname_exists')?></div><?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800"><?=lang('settings')?></h1>
 </div>
@@ -31,14 +31,14 @@
         <ul class="nav nav-tabs" role="tablist">
 <!--vot-->  <li role="presentation" class="active"><a href="./blogger.php"><?=lang('personal_settings')?></a></li>
         </ul>
-	<?php endif; ?>
+	<?php endif ?>
 </div>
 <div class="card shadow mb-4 mt-2">
     <div class="card-body">
         <div class="row m-5">
             <div class="col-md-4">
                 <label for="upload_image">
-                    <img src="<?php echo $icon; ?>" width="180" id="avatar_image" class="rounded-circle"/>
+                    <img src="<?= $icon ?>" width="180" id="avatar_image" class="rounded-circle"/>
                     <input type="file" name="image" class="image" id="upload_image" style="display:none"/>
                 </label>
             </div>
@@ -48,19 +48,19 @@
             <div class="form-group">
                 <div class="form-group">
 <!--vot-->          <label><?=lang('nickname')?></label>
-                    <input class="form-control" value="<?php echo $nickname; ?>" name="name">
+                    <input class="form-control" value="<?= $nickname ?>" name="name">
                 </div>
                 <div class="form-group">
 <!--vot-->          <label><?=lang('email')?></label>
-                    <input name="email" class="form-control" value="<?php echo $email; ?>">
+                    <input name="email" class="form-control" value="<?= $email ?>">
                 </div>
                 <div class="form-group">
 <!--vot-->          <label><?=lang('personal_description')?></label>
-                    <textarea name="description" class="form-control"><?php echo $description; ?></textarea>
+                    <textarea name="description" class="form-control"><?= $description ?></textarea>
                 </div>
                 <div class="form-group">
 <!--vot-->          <label><?=lang('login_name')?></label>
-                    <input class="form-control" value="<?php echo $username; ?>" name="username">
+                    <input class="form-control" value="<?= $username ?>" name="username">
                 </div>
                 <div class="form-group">
 <!--vot-->          <label><?=lang('new_password_info')?></label>
@@ -71,9 +71,9 @@
                     <input type="password" class="form-control" value="" name="repeatpass">
                 </div>
                 <div class="form-group">
-					<?php doAction('blogger_ext'); ?>
+					<?php doAction('blogger_ext') ?>
                 </div>
-                <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
+                <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
 <!--vot-->      <input type="submit" value="<?=lang('save_data')?>" class="btn btn-sm btn-success"/>
             </div>
         </form>

@@ -13,35 +13,35 @@
 <form action="sort.php?action=update" method="post">
     <div class="form-group">
 <!--vot-->  <label for="sortname"><?=lang('category_name')?></label>
-        <input class="form-control" value="<?php echo $sortname; ?>" name="sortname" id="sortname" required>
+        <input class="form-control" value="<?= $sortname ?>" name="sortname" id="sortname" required>
     </div>
     <div class="form-group">
 <!--vot--><label for="alias"><?=lang('alias')?></label>
-        <input class="form-control" value="<?php echo $alias; ?>" name="alias" id="alias">
+        <input class="form-control" value="<?= $alias ?>" name="alias" id="alias">
 <!--vot--><small class="form-text text-muted"><?=lang('alias_prompt')?></small>
     </div>
     <div class="form-group">
 <!--vot--><label><?=lang('category_parent')?></label>
         <select name="pid" id="pid" class="form-control">
-<!--vot-->  <option value="0" <?php if ($pid == 0): ?> selected="selected"<?php endif; ?>><?=lang('no')?></option>
+<!--vot-->  <option value="0" <?php if ($pid == 0): ?> selected="selected"<?php endif ?>><?=lang('no')?></option>
 			<?php
 			foreach ($sorts as $key => $value):
 				if ($key == $sid || $value['pid'] != 0) continue;
 				?>
-                <option value="<?php echo $key; ?>"<?php if ($pid == $key): ?> selected="selected"<?php endif; ?>><?php echo $value['sortname']; ?></option>
-			<?php endforeach; ?>
+                <option value="<?= $key ?>"<?php if ($pid == $key): ?> selected="selected"<?php endif ?>><?= $value['sortname'] ?></option>
+			<?php endforeach ?>
         </select>
     </div>
     <div class="form-group">
 <!--vot--><label for="template"><?=lang('template')?></label>
-        <input class="form-control" name="template" id="template" value="<?php echo $template; ?>">
+        <input class="form-control" name="template" id="template" value="<?= $template ?>">
 <!--vot--><small class="form-text text-muted"><?=lang('template_info')?></small>
     </div>
     <div class="form-group">
 <!--vot--><label for="description"><?=lang('category_description')?></label>
-        <textarea name="description" type="text" class="form-control"><?php echo $description; ?></textarea>
+        <textarea name="description" type="text" class="form-control"><?= $description ?></textarea>
     </div>
-    <input type="hidden" value="<?php echo $sid; ?>" name="sid"/>
+    <input type="hidden" value="<?= $sid ?>" name="sid"/>
 <!--vot--><input type="submit" value="<?=lang('save')?>" class="btn btn-sm btn-success" id="save"/>
 <!--vot--><input type="button" value="<?=lang('cancel')?>" class="btn btn-sm btn-secondary" onclick="javascript: window.history.back();"/>
     <span id="alias_msg_hook"></span>

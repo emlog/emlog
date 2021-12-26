@@ -2,13 +2,13 @@
 	exit('error!');
 } ?>
 <?php if (isset($_GET['active_del'])): ?>
-<!--vot--><div class="alert alert-success"><?=lang('page_deleted_ok')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-success"><?=lang('page_deleted_ok')?></div><?php endif ?>
 <?php if (isset($_GET['active_hide_n'])): ?>
-<!--vot--><div class="alert alert-success"><?=lang('page_published_ok')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-success"><?=lang('page_published_ok')?></div><?php endif ?>
 <?php if (isset($_GET['active_hide_y'])): ?>
-<!--vot--><div class="alert alert-success"><?=lang('page_disabled_ok')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-success"><?=lang('page_disabled_ok')?></div><?php endif ?>
 <?php if (isset($_GET['active_pubpage'])): ?>
-<!--vot--><div class="alert alert-success"><?=lang('page_saved_ok')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-success"><?=lang('page_saved_ok')?></div><?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 <!--vot--><h1 class="h3 mb-0 text-gray-800"><?=lang('page_management')?></h1>
 <!--vot--><a href="page.php?action=new" class="btn btn-sm btn-success shadow-sm mt-4"><i class="icofont-plus"></i> <?=lang('add_page')?></a>
@@ -38,16 +38,16 @@
 /*vot*/						'<a href="' . $navibar[$value['gid']]['url'] . '" target="_blank" title="' . lang('page_view') . '"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>';
 						?>
                         <tr>
-                            <td style="width: 19px;"><input type="checkbox" name="page[]" value="<?php echo $value['gid']; ?>" class="ids"/></td>
+                            <td style="width: 19px;"><input type="checkbox" name="page[]" value="<?= $value['gid'] ?>" class="ids"/></td>
                             <td>
-                                <a href="page.php?action=mod&id=<?php echo $value['gid'] ?>"><?php echo $value['title']; ?></a>
+                                <a href="page.php?action=mod&id=<?= $value['gid'] ?>"><?= $value['title'] ?></a>
                             </td>
-                            <td><?php echo $isHide; ?></td>
-                            <td><?php echo $value['template']; ?></td>
-                            <td><a href="comment.php?gid=<?php echo $value['gid']; ?>"><?php echo $value['comnum']; ?></a></td>
-                            <td class="small"><?php echo $value['date']; ?></td>
+                            <td><?= $isHide ?></td>
+                            <td><?= $value['template'] ?></td>
+                            <td><a href="comment.php?gid=<?= $value['gid'] ?>"><?= $value['comnum'] ?></a></td>
+                            <td class="small"><?= $value['date'] ?></td>
                         </tr>
-					<?php endforeach; ?>
+					<?php endforeach ?>
                     </tbody>
                 </table>
             </div>
@@ -57,10 +57,10 @@
 <!--vot-->          <a href="javascript:pageact('pub');" class="btn btn-sm btn-success"><?=lang('publish')?></a>
 <!--vot-->          <a href="javascript:pageact('del');" class="btn btn-sm btn-danger"><?=lang('delete')?></a>
                 </div>
-                <input name="token" id="token" value="<?php echo LoginAuth::genToken(); ?>" type="hidden"/>
+                <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
                 <input name="operate" id="operate" value="" type="hidden"/>
             </div>
-<!--vot-->  <div class="page"><?php echo $pageurl; ?> (<?=lang('have')?> <?php echo $pageNum; ?> <?=lang('_pages')?>)</div>
+<!--vot-->  <div class="page"><?= $pageurl ?> (<?=lang('have')?> <?= $pageNum ?> <?=lang('_pages')?>)</div>
         </div>
     </div>
 </form>

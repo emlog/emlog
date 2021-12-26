@@ -2,7 +2,7 @@
 	exit('error!');
 } ?>
 <?php if (isset($_GET['activated'])): ?>
-<!--vot--><div class="alert alert-success"><?=lang('saved_ok')?></div><?php endif; ?>
+<!--vot--><div class="alert alert-success"><?=lang('saved_ok')?></div><?php endif ?>
 <!--vot--><h1 class="h3 mb-4 text-gray-800"><?=lang('widget_manage')?></h1>
 <div class="card shadow mb-4 mt-2">
     <div class="card-body">
@@ -24,7 +24,7 @@
                             <div class="card-body">
                                 <form action="widgets.php?action=setwg&wg=blogger" method="post" class="form-inline">
                                     <li>
-                                        <input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['blogger']; ?>"/>
+                                        <input type="text" name="title" class="form-control" value="<?= $customWgTitle['blogger'] ?>"/>
 <!--vot-->                              <input type="submit" name="" value="<?=lang('save')?>" class="btn btn-success btn-sm"/>
                                     </li>
                                 </form>
@@ -45,7 +45,7 @@
                             <div class="card-body">
                                 <form action="widgets.php?action=setwg&wg=calendar" method="post" class="form-inline">
                                     <li>
-                                        <input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['calendar']; ?>"/>
+                                        <input type="text" name="title" class="form-control" value="<?= $customWgTitle['calendar'] ?>"/>
 <!--vot-->                              <input type="submit" name="" value="<?=lang('save')?>" class="btn btn-success btn-sm"/>
                                     </li>
                                 </form>
@@ -66,7 +66,7 @@
                             <div class="card-body">
                                 <form action="widgets.php?action=setwg&wg=tag" method="post" class="form-inline">
                                     <li>
-                                        <input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['tag']; ?>"/>
+                                        <input type="text" name="title" class="form-control" value="<?= $customWgTitle['tag'] ?>"/>
 <!--vot-->                              <input type="submit" name="" value="<?=lang('save')?>" class="btn btn-success btn-sm"/>
                                     </li>
                                 </form>
@@ -87,7 +87,7 @@
                             <div class="card-body">
                                 <form action="widgets.php?action=setwg&wg=sort" method="post" class="form-inline">
                                     <li>
-                                        <input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['sort']; ?>"/>
+                                        <input type="text" name="title" class="form-control" value="<?= $customWgTitle['sort'] ?>"/>
 <!--vot-->                              <input type="submit" name="" value="<?=lang('save')?>" class="btn btn-success btn-sm"/>
                                     </li>
                                 </form>
@@ -108,7 +108,7 @@
                             <div class="card-body">
                                 <form action="widgets.php?action=setwg&wg=archive" method="post" class="form-inline">
                                     <li>
-                                        <input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['archive']; ?>"/>
+                                        <input type="text" name="title" class="form-control" value="<?= $customWgTitle['archive'] ?>"/>
 <!--vot-->                              <input type="submit" name="" value="<?=lang('save')?>" class="btn btn-success btn-sm"/>
                                     </li>
                                 </form>
@@ -129,12 +129,12 @@
                             <div class="card-body">
                                 <form action="widgets.php?action=setwg&wg=newcomm" method="post">
 <!--vot-->                          <li><?=lang('title')?></li>
-                                    <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['newcomm']; ?>"/></li>
+                                    <li><input type="text" name="title" class="form-control" value="<?= $customWgTitle['newcomm'] ?>"/></li>
 <!--vot-->                          <li><?=lang('last_comments_num')?></li>
-                                    <li><input class="form-control" maxlength="5" size="10" value="<?php echo Option::get('index_comnum'); ?>" name="index_comnum"/></li>
+                                    <li><input class="form-control" maxlength="5" size="10" value="<?= Option::get('index_comnum') ?>" name="index_comnum"/></li>
 <!--vot-->                          <li><?=lang('new_comments_length')?></li>
                                     <li>
-                                        <input class="form-control" maxlength="5" size="10" value="<?php echo Option::get('comment_subnum'); ?>" name="comment_subnum"/>
+                                        <input class="form-control" maxlength="5" size="10" value="<?= Option::get('comment_subnum') ?>" name="comment_subnum"/>
 <!--vot-->                              <input type="submit" name="" value="<?=lang('save')?>" class="btn btn-success btn-sm"/>
                                     </li>
                                 </form>
@@ -155,10 +155,10 @@
                             <div class="card-body">
                                 <form action="widgets.php?action=setwg&wg=newlog" method="post">
 <!--vot-->                  <li><?=lang('title')?></li>
-                                    <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['newlog']; ?>"/></li>
+                                    <li><input type="text" name="title" class="form-control" value="<?= $customWgTitle['newlog'] ?>"/></li>
 <!--vot-->                  <li><?=lang('new_posts_show')?></li>
                                     <li>
-                                        <input class="form-control" maxlength="5" size="10" value="<?php echo Option::get('index_newlognum'); ?>" name="index_newlog"/>
+                                        <input class="form-control" maxlength="5" size="10" value="<?= Option::get('index_newlognum') ?>" name="index_newlog"/>
 <!--vot-->                      <input type="submit" name="" value="<?=lang('save')?>" class="btn btn-success btn-sm"/>
                                     </li>
                                 </form>
@@ -179,10 +179,10 @@
                             <div class="card-body">
                                 <form action="widgets.php?action=setwg&wg=hotlog" method="post">
 <!--vot-->                          <li><?=lang('title')?></li>
-                                    <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['hotlog']; ?>"/></li>
+                                    <li><input type="text" name="title" class="form-control" value="<?= $customWgTitle['hotlog'] ?>"/></li>
 <!--vot-->                          <li><?=lang('hot_posts_home')?></li>
                                     <li>
-                                        <input class="form-control" maxlength="5" size="10" value="<?php echo Option::get('index_hotlognum'); ?>" name="index_hotlognum"/>
+                                        <input class="form-control" maxlength="5" size="10" value="<?= Option::get('index_hotlognum') ?>" name="index_hotlognum"/>
 <!--vot-->                              <input type="submit" name="" value="<?=lang('save')?>" class="btn btn-success btn-sm"/>
                                     </li>
                                 </form>
@@ -203,7 +203,7 @@
                             <div class="card-body">
                                 <form action="widgets.php?action=setwg&wg=link" method="post" class="form-inline">
                                     <li>
-                                        <input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['link']; ?>"/>
+                                        <input type="text" name="title" class="form-control" value="<?= $customWgTitle['link'] ?>"/>
 <!--vot-->                              <input type="submit" name="" value="<?=lang('save')?>" class="btn btn-success btn-sm"/>
                                     </li>
                                 </form>
@@ -224,7 +224,7 @@
                             <div class="card-body">
                                 <form action="widgets.php?action=setwg&wg=search" method="post" class="form-inline">
                                     <li>
-                                        <input type="text" name="title" value="<?php echo $customWgTitle['search']; ?>" class="form-control"/>
+                                        <input type="text" name="title" value="<?= $customWgTitle['search'] ?>" class="form-control"/>
 <!--vot-->                              <input type="submit" name="" value="<?=lang('save')?>" class="btn btn-success btn-sm"/>
                                     </li>
                                 </form>
@@ -236,33 +236,33 @@
 						preg_match("/^custom_wg_(\d+)/", $key, $matches);
 /*vot*/                 $custom_wg_title = empty($val['title']) ? lang('widget_untitled'). ' (' . $matches[1] . ')' : $val['title'];
 						?>
-                        <div class="card" id="<?php echo $key; ?>">
+                        <div class="card" id="<?= $key ?>">
                             <div class="card-header">
                                 <h2 class="mb-0">
-                                    <button class="btn btn-link widget-title" type="button" data-toggle="collapse" data-target="#<?php echo $key; ?>Form" aria-expanded="true"
-                                            aria-controls="collapseOne"><?php echo $custom_wg_title; ?>
+                                    <button class="btn btn-link widget-title" type="button" data-toggle="collapse" data-target="#<?= $key ?>Form" aria-expanded="true"
+                                            aria-controls="collapseOne"><?= $custom_wg_title ?>
                                     </button>
                                     <li class="widget-act-add"></li>
                                     <li class="widget-act-del"></li>
                                 </h2>
                             </div>
-                            <div id="<?php echo $key; ?>Form" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div id="<?= $key ?>Form" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                                 <div class="card-body">
                                     <form action="widgets.php?action=setwg&wg=custom_text" method="post">
                                         <li>
-                                            <input type="hidden" name="custom_wg_id" value="<?php echo $key; ?>"/>
-                                            <input type="text" name="title" class="form-control" value="<?php echo $val['title']; ?>"/><br/>
+                                            <input type="hidden" name="custom_wg_id" value="<?= $key ?>"/>
+                                            <input type="text" name="title" class="form-control" value="<?= $val['title'] ?>"/><br/>
                                         </li>
-                                        <li><textarea class="form-control" name="content" style="overflow:auto; height:260px;"><?php echo $val['content']; ?></textarea><br/></li>
+                                        <li><textarea class="form-control" name="content" style="overflow:auto; height:260px;"><?= $val['content'] ?></textarea><br/></li>
                                         <li>
 <!--vot-->                                  <input type="submit" class="btn btn-sm btn-success" name="" value="<?=lang('save')?>">
-<!--vot-->                                  <a class="btn btn-sm btn-danger" href="widgets.php?action=setwg&wg=custom_text&rmwg=<?php echo $key; ?>"><?=lang('widget_delete')?></a>
+<!--vot-->                                  <a class="btn btn-sm btn-danger" href="widgets.php?action=setwg&wg=custom_text&rmwg=<?= $key ?>"><?=lang('widget_delete')?></a>
                                         </li>
                                     </form>
                                 </div>
                             </div>
                         </div>
-					<?php endforeach; ?>
+					<?php endforeach ?>
                 </div>
                 <div class="my-3">
 <!--vot-->          <a href="#" class="btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> <?=lang('widget_add')?></a>
@@ -313,7 +313,7 @@
 /*vot*/                         $title = lang('widget_untitled'). ' (' . $matches[1] . ')';
 							}
 							?>
-                            <div class="card m-1 active_widget" style="cursor: move" id="em_<?php echo $widget; ?>">
+                            <div class="card m-1 active_widget" style="cursor: move" id="em_<?= $widget ?>">
                                 <div class="card-header">
                                     <div class="mb-0">
                                         <h6>
@@ -323,15 +323,15 @@
 												echo $widgetTitle[$widget];
 											} ?>
                                         </h6>
-                                        <input type="hidden" name="widgets[]" value="<?php echo $widget; ?>"/>
+                                        <input type="hidden" name="widgets[]" value="<?= $widget ?>"/>
                                     </div>
                                 </div>
                             </div>
-						<?php endforeach; ?>
+						<?php endforeach ?>
                     </div>
                     <div class="my-3">
 <!--vot-->              <input type="submit" value="<?=lang('widget_order_save')?>" class="btn btn-sm btn-success"/>
-<!--vot-->              <a href="javascript:em_confirm(0, 'reset_widget', '<?php echo LoginAuth::genToken(); ?>');" class="btn btn-sm btn-warning"><?=lang('widget_setting_reset')?></a>
+<!--vot-->              <a href="javascript:em_confirm(0, 'reset_widget', '<?= LoginAuth::genToken() ?>');" class="btn btn-sm btn-warning"><?=lang('widget_setting_reset')?></a>
                     </div>
                 </form>
             </div>
