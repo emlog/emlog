@@ -226,9 +226,10 @@ function widget_archive($title) {
 /*vot*/	//2008年12月, 2008-12
 /*vot*/	$sep = mb_substr($value['record'],4,1);
 /*vot*/	$da = explode($sep,$value['record']);
-/*vot*/	$value['record'] = lang('month_'.intval($da[1])) . ' ' . $da[0];
+/*vot*/	$value['record'] = lang('month_' . intval($da[1])) . ' ' . $da[0];
 ?>
 		<li><a href="<?= Url::record($value['date']) ?>"><?= $value['record'] ?> (<?= $value['lognum'] ?>)</a></li>
+			<?php endforeach ?>
         </ul>
     </div>
 <?php } ?>
