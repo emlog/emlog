@@ -4,10 +4,10 @@
  * @package EMLOG (www.emlog.net)
  */
 
-/*vot*/ define('EMLOG_LANGUAGE','en'); //sc, tc, en, ru, etc.
+/*vot*/ define('EMLOG_LANGUAGE','en'); //zh-CN, zh-TW, en, ru, etc.
 /*vot*/ define('EMLOG_LANGUAGE_DIR','ltr'); //ltr, rtl 
 
-/*vot*/ const EMLOG_ROOT = str_replace('\\','/',__DIR__);
+/*vot*/ define('EMLOG_ROOT', str_replace('\\','/',__DIR__));
 const DEL_INSTALLER = 0;
 
 require_once EMLOG_ROOT . '/include/lib/function.base.php';
@@ -193,6 +193,9 @@ if ($act == 'install' || $act == 'reinstall') {
 	}
 
 	if ($act != 'reinstall' && $DB->num_rows($DB->query("SHOW TABLES LIKE '{$db_prefix}blog'")) == 1) {
+/*vot*/ $installed = lang('already_installed');
+/*vot*/ $continue = lang('continue');
+/*vot*/ $return_back = lang('return');
 /*vot*/ echo <<<EOT
 <!DOCTYPE html>
 <html>
@@ -218,10 +221,10 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
     <input name="adminpw" type="hidden" class="input" value="$adminpw">
     <input name="adminpw2" type="hidden" class="input" value="$adminpw2">
 <p>
-<!--vot--><?=lang('already_installed')?>
-<!--vot--><input type="submit" value="<?=lang('continue')?>">
+<!--vot-->{$installed}
+<!--vot--><input type="submit" value="{$continue}">
 </p>
-<!--vot--><p><a href="javascript:history.back(-1);"><?=lang('return')?></a></p>
+<!--vot--><p><a href="javascript:history.back(-1);">{$return_back}</a></p>
 </div>
 </form>
 </body>
@@ -355,7 +358,7 @@ INSERT INTO {$db_prefix}comment (gid, date, poster, comment) VALUES (1, '" . tim
 DROP TABLE IF EXISTS {$db_prefix}options;
 CREATE TABLE {$db_prefix}options (
 option_id INT( 11 ) UNSIGNED NOT NULL auto_increment COMMENT 'Cofiguration table',
-option_name VARCHAR( 255 ) NOT NULL COMMENT 'Option name',
+option_name VARCHAR( 75 ) NOT NULL COMMENT 'Option name',
 option_value LONGTEXT NOT NULL COMMENT 'Option value',
 PRIMARY KEY (option_id),
 UNIQUE KEY `option_name_uindex` (`option_name`)
@@ -440,7 +443,7 @@ INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault, type) VALUES 
 INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault, type) VALUES (3, '" . lang('login') . "', 'admin', 3, 'y', 3);
 DROP TABLE IF EXISTS {$db_prefix}tag;
 CREATE TABLE {$db_prefix}tag (
-  tid int(11) unsigned NOT NULL auto_increment COMMENT 'Label table',
+  tid int(11) unsigned NOT NULL auto_increment COMMENT 'Tag table',
   tagname varchar(255) NOT NULL default '' COMMENT 'Tag name',
   gid text NOT NULL COMMENT 'Article ID',
   PRIMARY KEY  (tid),
@@ -489,9 +492,9 @@ INSERT INTO {$db_prefix}user (uid, username, password, nickname, role, create_ti
 DROP TABLE IF EXISTS {$db_prefix}storage;
 CREATE TABLE {$db_prefix}storage (
   `sid` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Object storage table',
-  `plugin` varchar(64) NOT NULL COMMENT 'Plugin name',
-  `name` varchar(255) NOT NULL COMMENT 'Object name',
-  `type` varchar(32) NOT NULL COMMENT 'Object data type',
+  `plugin` varchar(32) NOT NULL COMMENT 'Plugin name',
+  `name` varchar(64) NOT NULL COMMENT 'Object name',
+  `type` varchar(8) NOT NULL COMMENT 'Object data type',
   `value` text NOT NULL COMMENT 'Object value',
   `createdate` int(11) NOT NULL COMMENT 'Create time',
   `lastupdate` int(11) NOT NULL COMMENT 'Update time',
