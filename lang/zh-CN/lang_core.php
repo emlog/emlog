@@ -76,6 +76,7 @@ $lang = array(
 //---------------------------
 //include/lib/option.php
  'blogger'		=> '个人资料',//'Personal info',
+ 'categories'		=> '分类',//'Categories',
  'calendar'		=> '日历',//'Calendar',
  'twitter_latest'	=> '最新微语',//'Latest twits',
  'tags'			=> '标签',//'Tags',
