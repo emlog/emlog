@@ -21,6 +21,8 @@ class Tag_Controller {
 
 		$Tag_Model = new Tag_Model();
 		$blogIdStr = $Tag_Model->getTagByName($tag);
+/*vot*/		$blogIdStr = trim($blogIdStr, ',');
+/*vot*/		$blogIdStr = preg_replace('/\,+/', ',', $blogIdStr);
 		if (!$blogIdStr) {
 			show_404_page();
 		}
