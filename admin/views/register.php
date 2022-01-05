@@ -1,60 +1,65 @@
 <?php if (!defined('EMLOG_ROOT')) {
 	exit('error!');
 } ?>
-<?php if (isset($_GET['active_reg'])): ?>
-    <div class="alert alert-success">恭喜，注册成功了</div><?php endif ?>
-<?php if (isset($_GET['error_b'])): ?>
-    <div class="alert alert-danger">注册失败</div><?php endif ?>
-<?php if (!Register::isRegLocal()) : ?>
-    <div class="container-fluid">
-        <div class="text-center">
-			<?php if (isset($_GET['error_store'])): ?>
-                <p class="lead text-danger mb-4">扩展商店用于下载模板和插件，仅开放给已完成注册用户</p>
-			<?php endif ?>
-			<?php if (isset($_GET['error_article'])): ?>
-                <p class="lead text-danger mb-4">文章数量已经超过未注册版本限额</p>
-			<?php endif ?>
-            <p class="lead text-danger mb-4">抱歉！您的emlog pro尚未完成注册， 完成注册来解锁emlog pro的全部功能</p>
-            <p><a href="<?= OFFICIAL_SERVICE_HOST ?>register" target="_blank">获取注册码&rarr; </a></p>
-            <hr>
-            <a href="#" class="btn btn-sm btn-success shadow-lg" data-toggle="modal" data-target="#exampleModal">开始注册</a>
-        </div>
-    </div>
-<?php else: ?>
-    <div class="container-fluid">
-        <div class="text-center">
-            <p class="lead text-success mb-4">恭喜，您的emlog pro已完成注册！</p>
-        </div>
-    </div>
-<?php endif ?>
-
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">注册EMLOG PRO</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-xl-6 col-lg-10 col-md-9">
+            <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card-body p-0">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="p-5">
+                                <div class="text-center">
+                                    <h1 class="h4 text-gray-900 mb-4">注册账号</h1>
+                                </div>
+                                <form method="post" class="user" action="./index.php?action=login&s=<?= $admin_path_code ?>">
+									<?php if ($error_msg): ?>
+                                        <div class="alert alert-danger alert-dismissible" role="alert">
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+											<?= $error_msg ?>
+                                        </div>
+									<?php endif ?>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control form-control-user" id="user" name="user" aria-describedby="emailHelp" placeholder="用户名" required
+                                               autofocus>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control form-control-user" id="pw" name="pw" placeholder="密码" required>
+                                    </div>
+									<?php if ($ckcode): ?>
+                                        <div class="form-group form-inline">
+                                            <input type="text" name="imgcode" class="form-control form-control-user" id="imgcode" placeholder="验证码" required>
+                                            <img src="../include/lib/checkcode.php" id="checkcode" class="mx-2">
+                                        </div>
+									<?php endif ?>
+                                    <div class="form-group">
+                                        <div class="custom-control custom-checkbox small">
+                                            <input type="checkbox" class="custom-control-input" id="ispersis" name="ispersis" value="1">
+                                            <label class="custom-control-label" for="ispersis">记住我</label>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-primary btn-user btn-block" type="submit">登录</button>
+                                    <div><?php doAction('login_ext') ?></div>
+                                    <hr>
+                                    <div class="text-center"><a class="small" href="forgot-password.html">忘记密码?</a></div>
+                                    <div class="text-center"><a class="small" href="register.html">注册账号</a></div>
+                                    <hr>
+                                    <div class="text-center"><a href="../" class="small" role="button">&larr;返回首页</a></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <form action="register.php?action=register" method="post">
-                <div class="modal-body">
-                    <div class="form-group">
-                        <input class="form-control" id="emkey" name="emkey" placeholder="输入注册码" required>
-                    </div>
-                    <div class="form-group">
-                        <a href="<?= OFFICIAL_SERVICE_HOST ?>register" target="_blank">获取注册码&rarr; </a>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-sm btn-success">注册</button>
-                </div>
-            </form>
         </div>
     </div>
 </div>
-
+</body>
+</html>
 <script>
-    $("#menu_store").addClass('active');
     setTimeout(hideActived, 3600);
+    $('#checkcode').click(function () {
+        var timestamp = new Date().getTime();
+        $(this).attr("src", "../include/lib/checkcode.php?" + timestamp);
+    });
 </script>

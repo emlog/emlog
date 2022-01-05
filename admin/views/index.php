@@ -51,7 +51,7 @@
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             EMLOG
 							<?php if (!Register::isRegLocal()) : ?>
-                                <a href="register.php"><span class="badge badge-danger"><?= Option::EMLOG_VERSION ?> 未注册, 点击去注册</span></a>
+                                <a href="auth.php"><span class="badge badge-danger"><?= Option::EMLOG_VERSION ?> 未注册, 点击去注册</span></a>
 							<?php else: ?>
                                 <span class="badge badge-success"><?= Option::EMLOG_VERSION ?> 已注册</span>
 							<?php endif ?>
@@ -78,7 +78,7 @@
                     </div>
                     <div class="card-footer text-center">
                         <a href="https://emlog.net/register" target="_blank" class="btn btn-sm btn-primary shadow-lg">获取注册码</a>
-                        <a href="register.php" class="btn btn-sm btn-success shadow-lg">去注册</a>
+                        <a href="auth.php" class="btn btn-sm btn-success shadow-lg">去注册</a>
                     </div>
                 </div>
             </div>
@@ -115,7 +115,7 @@
             $.get("./upgrade.php?action=check_update",
                 function (result) {
                     if (result.code == 1001) {
-                        $("#upmsg").html("您的emlog pro尚未注册，<a href=\"register.php\">去注册</a>").removeClass();
+                        $("#upmsg").html("您的emlog pro尚未注册，<a href=\"auth.php\">去注册</a>").removeClass();
                     } else if (result.code == 1002) {
                         $("#upmsg").html("已经是最新版本").removeClass();
                     } else if (result.code == 200) {

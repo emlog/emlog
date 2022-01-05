@@ -43,7 +43,7 @@ if ($action === 'install') {
 	$source_type = isset($_GET['type']) ? trim($_GET['type']) : '';
 
 	if (!Register::isRegLocal()) {
-		emDirect("./register.php?error_store=1");
+		emDirect("./auth.php?error_store=1");
 	}
 
 	if (empty($source)) {

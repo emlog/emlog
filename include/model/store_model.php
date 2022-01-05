@@ -34,7 +34,7 @@ class Store_Model {
 			Option::updateOption('emkey', '');
 			$CACHE = Cache::getInstance();
 			$CACHE->updateCache('options');
-			emDirect("./register.php?error_store=1");
+			emDirect("./auth.php?error_store=1");
 		}
 
 		$data = [];

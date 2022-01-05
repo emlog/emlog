@@ -22,14 +22,14 @@ if ($action === 'register') {
 	$emkey = $_POST['emkey'] ? addslashes(trim($_POST['emkey'])) : '';
 
 	if (empty($emkey)) {
-		emDirect("./register.php?error_b=1");
+		emDirect("./auth.php?error_b=1");
 	}
 
 	if (Register::checkEmKey($emkey) === false) {
-		emDirect("./register.php?error_b=1");
+		emDirect("./auth.php?error_b=1");
 	}
 
 	Option::updateOption("emkey", $emkey);
 	$CACHE->updateCache('options');
-	emDirect("./register.php?active_reg=1");
+	emDirect("./auth.php?active_reg=1");
 }
