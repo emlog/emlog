@@ -61,5 +61,5 @@ if (ROLE === ROLE_WRITER && !in_array($request_uri, array('article_write', 'arti
 }
 
 if (!Register::isRegLocal() && mt_rand(1,15) === 10) {
-	emDirect("register.php");
+	emDirect("auth.php");
 }

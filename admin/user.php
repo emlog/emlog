@@ -25,6 +25,12 @@ if (empty($action)) {
 	View::output();
 }
 
+if ($action == 'reg') {
+	include View::getView('user_head');
+	require_once View::getView('register');
+	View::output();
+}
+
 if ($action == 'new') {
 	$login = isset($_POST['login']) ? addslashes(trim($_POST['login'])) : '';
 	$password = isset($_POST['password']) ? addslashes(trim($_POST['password'])) : '';

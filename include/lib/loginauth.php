@@ -15,7 +15,7 @@ class LoginAuth {
 	 */
 	public static function isLogin() {
 		global $userData;
-		$auth_cookie = '';
+
 		if (isset($_COOKIE[AUTH_COOKIE_NAME])) {
 			$auth_cookie = $_COOKIE[AUTH_COOKIE_NAME];
 		} elseif (isset($_POST[AUTH_COOKIE_NAME])) {
@@ -77,6 +77,7 @@ class LoginAuth {
 				break;
 		}
 
+		require_once View::getView('user_head');
 		require_once View::getView('login');
 		View::output();
 	}
@@ -145,9 +146,7 @@ class LoginAuth {
 		$key = self::emHash($user_login . '|' . $expiration);
 		$hash = hash_hmac('md5', $user_login . '|' . $expiration, $key);
 
-		$cookie = $user_login . '|' . $expiration . '|' . $hash;
-
-		return $cookie;
+		return $user_login . '|' . $expiration . '|' . $hash;
 	}
 
 	/**
@@ -157,8 +156,7 @@ class LoginAuth {
 	 * @return string Hash of $data
 	 */
 	private static function emHash($data) {
-		$key = AUTH_KEY;
-		return hash_hmac('md5', $data, $key);
+		return hash_hmac('md5', $data, AUTH_KEY);
 	}
 
 	/**
