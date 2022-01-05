@@ -33,8 +33,11 @@
 [changelog](https://www.emlog.net/docs/#/changelog)
 
 ## 环境要求
-* PHP7，PHP8 推荐PHP7.4
-* MySQL5.6及以上，推荐5.7
+* PHP7、PHP8，推荐 PHP7.4
+* MySQL5.6及以上，推荐 5.6 ，高配服务器（2G内存及以上）推荐5.7
+* 服务器环境推荐：Linux + nginx
+* 服务器面板软件推荐：宝塔面板
+* 浏览器推荐：Chrome
 
 ## 安装说明
 1. 将解压后的所有文件上传到服务器或者虚拟主机的web根目录，也可以将zip压缩包上传后在线解压。
