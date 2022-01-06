@@ -93,8 +93,13 @@ $lang = array(
  'pro_unregistered'	=> ' Unregistered PRO version',//' 未注册的PRO版本',
 
 //---------------------------
+//include/lib/sendmail.php
+ 'smtp_test'		=> 'Send STMP test mail',//'测试邮件STMP发送',
+
+//---------------------------
 //include/lib/view.php
  'template_not_found'	=> 'The current template has been deleted or corrupted. Please please login as administrator to replace other template.',//'当前使用的模板已被删除或损坏，请登录后台更换其他模板。',
+ 'template_corrupted'	=> 'Background template is corrupted',//'后台模板已损坏',
 
 //---------------------------------------
 //include/lib/mysql.php

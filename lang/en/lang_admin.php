@@ -3,6 +3,14 @@
 $lang = array(
 
 //---------------------------
+//admin/account.php
+'test_headers'		=> 'Test email sending headers',//'测试邮件发送标题',
+'test_sending'		=> 'Test email sending',//'测试邮件发送内容',
+'mail_sent_ok'		=> 'Mail sent successfully',//'邮件发送成功',
+'mail_send_error'	=> 'Mail send error',//'邮件发送失败',
+
+
+//---------------------------
 //admin/article.php
  'drafts'		=> 'Drafts',//'草稿箱',
  '_drafts'		=> ' drafts',//'草稿箱',
@@ -217,6 +225,21 @@ $lang = array(
  'full_size'		=> 'Full size image',//'原图',
  'insert_thumbnail'	=> 'Insert thumbnail',//'插入缩略图',
  'thumbnail'		=> 'Thumbnail',//'缩略图',
+
+//---------------------------
+//admin/views/auth.php
+// 'em_reg_ok'			=> 'Congratulations, the registration is successful',//'恭喜，注册成功了',
+// 'reg_failed'			=> 'Registration failed',//'注册失败',
+ 'ext_store_info'	=> 'The extension store is used to download templates and plug-ins, only open to registered users',//'扩展商店用于下载模板和插件，仅开放给已完成注册用户',
+ 'too_many_articles'	=> 'The number of articles has exceeded the unregistered version limit',//'文章数量已经超过未注册版本限额',
+ 'emlog_notregistered'	=> 'Sorry! Your emlog pro has not been registered, complete the registration to unlock all the functions of emlog pro',//'抱歉！您的emlog pro尚未完成注册， 完成注册来解锁emlog pro的全部功能',
+// 'get_emkey'			=> 'Get registration code',//'获取注册码',
+// 'ok_register_now'	=> 'Start registration',//'开始注册',
+// 'emlog_reg_ok'		=> 'Congratulations, your emlog pro has been registered!',//'恭喜，您的emlog pro已完成注册！',
+// 'register_emlog'		=> 'Register EMLOG PRO',//'注册EMLOG PRO',
+// 'enter_reg_code'	=> 'Enter the registration code',//'输入注册码',
+// 'registered'			=> 'registered',//'注册',
+// 'register'		=> 'Register',//'注册',
 
 //---------------------------
 //admin/views/blogger.php
@@ -589,14 +612,25 @@ $lang = array(
 
 //---------------------------
 //admin/views/register.php
- 'ext_store_info'	=> 'The extension store is used to download templates and plugins and is only open to registered users',//'扩展商店用于下载模板和插件，仅开放给注册用户',
- 'too_many_articles'	=> 'Sorry, the number of your articles has exceeded the limit of unregistered versions',//'抱歉，您的文章数量已经超过未注册版本限额',
- 'emlog_notregistered'	=> 'Unregistered! Your emlog pro has not yet completed the registration, complete the registration to unlock all the functions of emlog pro',//'未注册！您的emlog pro尚未完成注册， 完成注册来解锁emlog pro的全部功能',
+// 'ext_store_info'	=> '扩展商店用于下载模板和插件，仅开放给已完成注册用户',//'The extension store is used to download templates and plug-ins, only open to registered users',
+// 'too_many_articles'	=> '文章数量已经超过未注册版本限额',//'The number of articles has exceeded the unregistered version limit',
+// 'emlog_notregistered'	=> '抱歉！您的emlog pro尚未完成注册， 完成注册来解锁emlog pro的全部功能',//'Sorry! Your emlog pro has not been registered, complete the registration to unlock all the functions of emlog pro',
  'ok_register_now'	=> 'Start registration',//'开始注册',
  'emlog_reg_ok'		=> 'Congratulations, your emlog pro has been registered!',//'恭喜，您的emlog pro已完成注册！',
  'enter_reg_code'	=> 'Enter the registration code',//'输入注册码',
  'register'		=> 'Register',//'注册',
 
+//---------------------------
+//admin/views/reset.php
+ 'retrieve_password'	=> 'Retrieve password',//'找回密码',
+// 'email'			=> 'E-mail',//'邮箱',
+// 'captcha'			=> 'Captcha',//'验证码',
+ 'new_password'		=> 'New password',//'新的密码',
+ 'confirm_password'	=> 'Confirm new password',//'确认新密码',
+// 'submit'		=> 'Submit',//'提交',
+// 'login'		=> 'Login',//'登录',
+// 'back_home'		=> 'Back to home',//'返回首页',
+ 
 //---------------------------
 //admin/views/seo.php
  'htaccess_not_writable'	=> 'Save failed: .htaccess file in the root directory is not writable',//'保存失败：根目录下的.htaccess不可写',

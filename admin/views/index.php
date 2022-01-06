@@ -51,7 +51,7 @@
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             EMLOG
 							<?php if (!Register::isRegLocal()) : ?>
-<!--vot-->                      <a href="register.php"><span class="badge badge-danger"><?= Option::EMLOG_VERSION ?> <?=lang('unregistered')?></span></a>
+<!--vot-->                      <a href="auth.php"><span class="badge badge-danger"><?= Option::EMLOG_VERSION ?> <?=lang('unregistered')?></span></a>
 							<?php else: ?>
 <!--vot-->                      <span class="badge badge-success"><?= Option::EMLOG_VERSION ?> <?=lang('registered')?></span>
 							<?php endif ?>
@@ -78,7 +78,7 @@
                     </div>
                     <div class="card-footer text-center">
 <!--vot-->              <a href="https://emlog.net/register" target="_blank" class="btn btn-sm btn-primary shadow-lg"><?=lang('get_emkey')?></a>
-<!--vot-->              <a href="register.php" class="btn btn-sm btn-success shadow-lg"><?=lang('register_now')?></a>
+<!--vot-->              <a href="auth.php" class="btn btn-sm btn-success shadow-lg"><?=lang('register_now')?></a>
                     </div>
                 </div>
             </div>
@@ -115,7 +115,7 @@
             $.get("./upgrade.php?action=check_update",
                 function (result) {
                     if (result.code == 1001) {
-/*vot*/                 $("#upmsg").html("<?=lang('emlog_unregistered')?>, <a href=\"register.php\"><?=lang('go_to_register')?></a>").removeClass();
+/*vot*/                 $("#upmsg").html("<?=lang('emlog_unregistered')?>, <a href=\"auth.php\"><?=lang('go_to_register')?></a>").removeClass();
                     } else if (result.code == 1002) {
 /*vot*/                 $("#upmsg").html("<?=lang('updates_no')?> ").removeClass();
                     } else if (result.code == 200) {

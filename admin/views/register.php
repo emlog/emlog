@@ -1,60 +1,65 @@
 <?php if (!defined('EMLOG_ROOT')) {
 	exit('error!');
 } ?>
-<?php if (isset($_GET['active_reg'])): ?>
-<!--vot--><div class="alert alert-success"><?=lang('em_reg_ok')?></div><?php endif ?>
-<?php if (isset($_GET['error_b'])): ?>
-<!--vot--><div class="alert alert-danger"><?=lang('reg_failed')?></div><?php endif ?>
-<?php if (!Register::isRegLocal()) : ?>
-    <div class="container-fluid">
-        <div class="text-center">
-			<?php if (isset($_GET['error_store'])): ?>
-<!--vot-->      <p class="lead text-danger mb-4"><?=lang('ext_store_info')?></p>
-			<?php endif ?>
-			<?php if (isset($_GET['error_article'])): ?>
-<!--vot-->      <p class="lead text-danger mb-4"><?=lang('too_many_articles')?></p>
-			<?php endif ?>
-<!--vot-->  <p class="lead text-danger mb-4"><?=lang('emlog_notregistered')?></p>
-<!--vot-->  <p><a href="<?= OFFICIAL_SERVICE_HOST ?>register" target="_blank"><?=lang('get_emkey')?>&rarr; </a></p>
-            <hr>
-<!--vot-->  <a href="#" class="btn btn-sm btn-success shadow-lg" data-toggle="modal" data-target="#exampleModal"><?=lang('ok_register_now')?></a>
-        </div>
-    </div>
-<?php else: ?>
-    <div class="container-fluid">
-        <div class="text-center">
-<!--vot-->  <p class="lead text-success mb-4"><?=lang('emlog_reg_ok')?></p>
-        </div>
-    </div>
-<?php endif ?>
-
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-<!--vot-->      <h5 class="modal-title" id="exampleModalLabel"><?=lang('register_emlog')?></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-xl-6 col-lg-10 col-md-9">
+            <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card-body p-0">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="p-5">
+                                <div class="text-center">
+<!--vot-->                          <h1 class="h4 text-gray-900 mb-4"><?=lang('account_register')?></h1>
+                                </div>
+                                <form method="post" class="user" action="./index.php?action=login&s=<?= $admin_path_code ?>">
+									<?php if ($error_msg): ?>
+                                        <div class="alert alert-danger alert-dismissible" role="alert">
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+											<?= $error_msg ?>
+                                        </div>
+									<?php endif ?>
+                                    <div class="form-group">
+<!--vot-->                              <input type="text" class="form-control form-control-user" id="user" name="user" aria-describedby="emailHelp" placeholder="<?=lang('user_name')?>" required
+                                               autofocus>
+                                    </div>
+                                    <div class="form-group">
+<!--vot-->                              <input type="password" class="form-control form-control-user" id="pw" name="pw" placeholder="<?=lang('password')?>" required>
+                                    </div>
+									<?php if ($ckcode): ?>
+                                        <div class="form-group form-inline">
+<!--vot-->                                  <input type="text" name="imgcode" class="form-control form-control-user" id="imgcode" placeholder="<?=lang('captcha')?>" required>
+                                            <img src="../include/lib/checkcode.php" id="checkcode" class="mx-2">
+                                        </div>
+									<?php endif ?>
+                                    <div class="form-group">
+                                        <div class="custom-control custom-checkbox small">
+                                            <input type="checkbox" class="custom-control-input" id="ispersis" name="ispersis" value="1">
+<!--vot-->                                  <label class="custom-control-label" for="ispersis"><?=lang('remember_me')?></label>
+                                        </div>
+                                    </div>
+<!--vot-->                          <button class="btn btn-primary btn-user btn-block" type="submit"><?=lang('login')?></button>
+                                    <div><?php doAction('login_ext') ?></div>
+                                    <hr>
+<!--vot-->                          <div class="text-center"><a class="small" href="forgot-password.html"><?=lang('password_forget')?></a></div>
+<!--vot-->                          <div class="text-center"><a class="small" href="register.html"><?=lang('account_register')?></a></div>
+                                    <hr>
+<!--vot-->                          <div class="text-center"><a href="../" class="small" role="button">&larr;<?=lang('back_home')?></a></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <form action="register.php?action=register" method="post">
-                <div class="modal-body">
-                    <div class="form-group">
-<!--vot-->              <input class="form-control" id="emkey" name="emkey" placeholder="<?=lang('enter_reg_code')?>" required>
-                    </div>
-                    <div class="form-group">
-<!--vot-->              <a href="<?= OFFICIAL_SERVICE_HOST ?>register" target="_blank"><?=lang('get_emkey')?>&rarr; </a>
-                    </div>
-                </div>
-                <div class="modal-footer">
-<!--vot-->          <button type="submit" class="btn btn-sm btn-success"><?=lang('register')?></button>
-                </div>
-            </form>
         </div>
     </div>
 </div>
-
+</body>
+</html>
 <script>
-    $("#menu_store").addClass('active');
     setTimeout(hideActived, 3600);
+    $('#checkcode').click(function () {
+        var timestamp = new Date().getTime();
+        $(this).attr("src", "../include/lib/checkcode.php?" + timestamp);
+    });
 </script>

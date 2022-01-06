@@ -3,6 +3,14 @@
 $lang = array(
 
 //---------------------------
+//admin/account.php
+'test_headers'		=> '测试邮件发送标题',//'Test email sending headers',
+'test_sending'		=> '测试邮件发送内容',//'Test email sending',
+'mail_sent_ok'		=> '邮件发送成功',//'Mail sent successfully',
+'mail_send_error'	=> '邮件发送失败',//'Mail send error',
+
+
+//---------------------------
 //admin/article.php
  'drafts'		=> '草稿箱',//'Drafts',
  '_drafts'		=> '草稿箱',//' drafts',
@@ -217,6 +225,21 @@ $lang = array(
  'full_size'		=> '原图',//'Full size image',
  'insert_thumbnail'	=> '插入缩略图',//'Insert thumbnail',
  'thumbnail'		=> '缩略图',//'Thumbnail',
+
+//---------------------------
+//admin/views/auth.php
+// 'em_reg_ok'			=> '恭喜，注册成功了',//'Congratulations, the registration is successful',
+// 'reg_failed'			=> '注册失败',//'Registration failed',
+ 'ext_store_info'	=> '扩展商店用于下载模板和插件，仅开放给已完成注册用户',//'The extension store is used to download templates and plug-ins, only open to registered users',
+ 'too_many_articles'	=> '文章数量已经超过未注册版本限额',//'The number of articles has exceeded the unregistered version limit',
+ 'emlog_notregistered'	=> '抱歉！您的emlog pro尚未完成注册， 完成注册来解锁emlog pro的全部功能',//'Sorry! Your emlog pro has not been registered, complete the registration to unlock all the functions of emlog pro',
+// 'get_emkey'			=> '获取注册码',//'Get registration code',
+// 'ok_register_now'	=> '开始注册',//'Start registration',
+// 'emlog_reg_ok'		=> '恭喜，您的emlog pro已完成注册！',//'Congratulations, your emlog pro has been registered!',
+// 'register_emlog'		=> '注册EMLOG PRO',//'Register EMLOG PRO',
+// 'enter_reg_code'	=> '输入注册码',//'Enter the registration code',
+// 'registered'			=> '注册',//'registered',
+// 'register'		=> '注册',//'Register',
 
 //---------------------------
 //admin/views/blogger.php
@@ -483,10 +506,11 @@ $lang = array(
  'login'		=> '登录',//'Login',
  'user_name'		=> '用户名',//'User name',
  'password'		=> '密码',//'Password',
- 'remember_me'		=> '记住登录状态',//'Remember login status',
+ 'remember_me'		=> '记住我',//'Remember me',
  'log_in'		=> ' 登 录 ',//' Log in ',
  'back_home'		=> '返回首页',//'Back to home',
  'password_forget'	=> '忘记密码?',//'Forgot Password?',
+ 'account_register'	=> '注册账号',//'Register an account',
 
 //---------------------------
 //admin/views/media.php
@@ -589,14 +613,25 @@ $lang = array(
 
 //---------------------------
 //admin/views/register.php
- 'ext_store_info'	=> '扩展商店用于下载模板和插件，仅开放给注册用户',//'The extension store is used to download templates and plugins and is only open to registered users',
- 'too_many_articles'	=> '抱歉，您的文章数量已经超过未注册版本限额',//'Sorry, the number of your articles has exceeded the limit of unregistered versions',
- 'emlog_notregistered'	=> '未注册！您的emlog pro尚未完成注册， 完成注册来解锁emlog pro的全部功能',//'Unregistered! Your emlog pro has not yet completed the registration, complete the registration to unlock all the functions of emlog pro',
+// 'ext_store_info'	=> '扩展商店用于下载模板和插件，仅开放给已完成注册用户',//'The extension store is used to download templates and plug-ins, only open to registered users',
+// 'too_many_articles'	=> '文章数量已经超过未注册版本限额',//'The number of articles has exceeded the unregistered version limit',
+// 'emlog_notregistered'	=> '抱歉！您的emlog pro尚未完成注册， 完成注册来解锁emlog pro的全部功能',//'Sorry! Your emlog pro has not been registered, complete the registration to unlock all the functions of emlog pro',
  'ok_register_now'	=> '开始注册',//'Start registration',
  'emlog_reg_ok'		=> '恭喜，您的emlog pro已完成注册！',//'Congratulations, your emlog pro has been registered!',
  'enter_reg_code'	=> '输入注册码',//'Enter the registration code',
  'register'		=> '注册',//'Register',
 
+//---------------------------
+//admin/views/reset.php
+ 'retrieve_password'	=> '找回密码',//'Retrieve password',
+// 'email'			=> '邮箱',//'E-mail',
+// 'captcha'			=> '验证码',//'Captcha',
+ 'new_password'		=> '新的密码',//'New password',
+ 'confirm_password'	=> '确认新密码',//'Confirm new password',
+// 'submit'		=> '提交',//'Submit',
+// 'login'		=> '登录',//'Login',
+// 'back_home'		=> '返回首页',//'Back to home',
+ 
 //---------------------------
 //admin/views/seo.php
  'htaccess_not_writable'	=> '保存失败：根目录下的.htaccess不可写',//'Save failed: .htaccess file in the root directory is not writable',

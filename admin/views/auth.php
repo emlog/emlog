@@ -2,28 +2,28 @@
 	exit('error!');
 } ?>
 <?php if (isset($_GET['active_reg'])): ?>
-    <div class="alert alert-success">恭喜，注册成功了</div><?php endif ?>
+    <div class="alert alert-success"><?=lang('em_reg_ok')?></div><?php endif ?>
 <?php if (isset($_GET['error_b'])): ?>
-    <div class="alert alert-danger">注册失败</div><?php endif ?>
+    <div class="alert alert-danger"><?=lang('reg_failed')?></div><?php endif ?>
 <?php if (!Register::isRegLocal()) : ?>
     <div class="container-fluid">
         <div class="text-center">
 			<?php if (isset($_GET['error_store'])): ?>
-                <p class="lead text-danger mb-4">扩展商店用于下载模板和插件，仅开放给已完成注册用户</p>
+                <p class="lead text-danger mb-4"><?=lang('ext_store_info')?></p>
 			<?php endif ?>
 			<?php if (isset($_GET['error_article'])): ?>
-                <p class="lead text-danger mb-4">文章数量已经超过未注册版本限额</p>
+                <p class="lead text-danger mb-4"><?=lang('too_many_articles')?></p>
 			<?php endif ?>
-            <p class="lead text-danger mb-4">抱歉！您的emlog pro尚未完成注册， 完成注册来解锁emlog pro的全部功能</p>
-            <p><a href="<?= OFFICIAL_SERVICE_HOST ?>register" target="_blank">获取注册码&rarr; </a></p>
+            <p class="lead text-danger mb-4"><?=lang('emlog_notregistered')?></p>
+            <p><a href="<?= OFFICIAL_SERVICE_HOST ?>register" target="_blank"><?=lang('get_emkey')?>&rarr; </a></p>
             <hr>
-            <a href="#" class="btn btn-sm btn-success shadow-lg" data-toggle="modal" data-target="#exampleModal">开始注册</a>
+            <a href="#" class="btn btn-sm btn-success shadow-lg" data-toggle="modal" data-target="#exampleModal"><?=lang('ok_register_now')?></a>
         </div>
     </div>
 <?php else: ?>
     <div class="container-fluid">
         <div class="text-center">
-            <p class="lead text-success mb-4">恭喜，您的emlog pro已完成注册！</p>
+            <p class="lead text-success mb-4"><?=lang('emlog_reg_ok')?></p>
         </div>
     </div>
 <?php endif ?>
@@ -32,7 +32,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">注册EMLOG PRO</h5>
+                <h5 class="modal-title" id="exampleModalLabel"><?=lang('register_emlog')?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -40,14 +40,14 @@
             <form action="auth.php?action=register" method="post">
                 <div class="modal-body">
                     <div class="form-group">
-                        <input class="form-control" id="emkey" name="emkey" placeholder="输入注册码" required>
+                        <input class="form-control" id="emkey" name="emkey" placeholder="<?=lang('enter_reg_code')?>" required>
                     </div>
                     <div class="form-group">
-                        <a href="<?= OFFICIAL_SERVICE_HOST ?>register" target="_blank">获取注册码&rarr; </a>
+                        <a href="<?= OFFICIAL_SERVICE_HOST ?>register" target="_blank"><?=lang('get_emkey')?>&rarr; </a>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-sm btn-success">注册</button>
+                    <button type="submit" class="btn btn-sm btn-success"><?=lang('register')?></button>
                 </div>
             </form>
         </div>

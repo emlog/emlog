@@ -37,7 +37,10 @@ Based on original Chinese Emlog (https://www.emlog.net/) (single Chinese languag
 
 ## Requirements
 * PHP7, PHP8 (PHP7.4 is recommended)
-* MySQL5.6 and above (5.7 is recommended)
+* MySQL5.6 and above, 5.6 is recommended, 5.7 is recommended for high-end servers (2G memory and above)
+* Recommended server environment: Linux + nginx
+* Recommended server panel software: pagoda panel
+* Recommended browser: Chrome
 
 ## Installation
 1. Decompress the installation package and upload all the files to the web root directory of the server or virtual host, or upload the zip compressed package and decompress it online.
