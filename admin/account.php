@@ -51,3 +51,43 @@ if ($action == 'signup') {
 	require_once View::getAdmView('register');
 	View::output();
 }
+
+if ($action == 'reset') {
+	if (ISLOGIN === true) {
+		emDirect("../admin");
+	}
+	include View::getAdmView('user_head');
+	require_once View::getAdmView('reset');
+	View::output();
+}
+
+if ($action == 'reset') {
+	if (ISLOGIN === true) {
+		emDirect("../admin");
+	}
+	include View::getAdmView('user_head');
+	require_once View::getAdmView('reset');
+	View::output();
+}
+
+if ($action == 'reset_password') {
+	if (ISLOGIN === true) {
+		emDirect("../admin");
+	}
+	include View::getAdmView('user_head');
+	require_once View::getAdmView('reset');
+	View::output();
+}
+
+if ($action == 'send_auth_code') {
+	$to_user = "xxxx@gmail.com";
+	$title = "测试邮件发送标题";
+	$content = "测试邮件发送内容";
+	$sendmail_model = new SendMail();
+	$ret = $sendmail_model->send($to_user, $title, $content);
+	if($ret){
+		echo "邮件发送成功";
+	}else{
+		echo "邮件发送失败";
+	}
+}
