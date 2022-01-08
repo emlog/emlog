@@ -15,9 +15,9 @@ $Link_Model = new Link_Model();
 
 if (empty($action)) {
 	$links = $Link_Model->getLinks();
-	include View::getView('header');
-	require_once(View::getView('links'));
-	include View::getView('footer');
+	include View::getAdmView('header');
+	require_once(View::getAdmView('links'));
+	include View::getAdmView('footer');
 	View::output();
 }
 

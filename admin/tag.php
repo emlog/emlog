@@ -15,9 +15,9 @@ $Tag_Model = new Tag_Model();
 
 if (empty($action)) {
 	$tags = $Tag_Model->getTag();
-	include View::getView('header');
-	require_once View::getView('tag');
-	include View::getView('footer');
+	include View::getAdmView('header');
+	require_once View::getAdmView('tag');
+	include View::getAdmView('footer');
 	View::output();
 }
 

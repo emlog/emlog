@@ -15,9 +15,9 @@ $Sort_Model = new Sort_Model();
 $sorts = $CACHE->readCache('sort');
 
 if (empty($action)) {
-    include View::getView('header');
-    require_once View::getView('sort');
-    include View::getView('footer');
+    include View::getAdmView('header');
+    require_once View::getAdmView('sort');
+    include View::getAdmView('footer');
     View::output();
 }
 
@@ -77,9 +77,9 @@ if ($action == 'mod_sort') {
     $sortData = $Sort_Model->getOneSortById($sid);
     extract($sortData);
 
-    include View::getView('header');
-    require_once(View::getView('sortedit'));
-    include View::getView('footer');
+    include View::getAdmView('header');
+    require_once(View::getAdmView('sortedit'));
+    include View::getAdmView('footer');
     View::output();
 }
 

@@ -12,7 +12,7 @@
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">登 录</h1>
                                 </div>
-                                <form method="post" class="user" action="./index.php?action=login&s=<?= $admin_path_code ?>">
+                                <form method="post" class="user" action="./account.php?action=login&s=<?= $admin_path_code ?>">
 									<?php if ($error_msg): ?>
                                         <div class="alert alert-danger alert-dismissible" role="alert">
                                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -41,8 +41,8 @@
                                     <button class="btn btn-primary btn-user btn-block" type="submit">登录</button>
                                     <div><?php doAction('login_ext') ?></div>
                                     <hr>
-                                    <div class="text-center"><a class="small" href="forgot-password.html">忘记密码?</a></div>
-                                    <div class="text-center"><a class="small" href="./user.php?action=reg">注册账号</a></div>
+                                    <div class="text-center"><a class="small" href="./account.php?action=reset">忘记密码?</a></div>
+                                    <div class="text-center"><a class="small" href="./account.php?action=signup">注册账号</a></div>
                                     <hr>
                                     <div class="text-center"><a href="../" class="small" role="button">&larr;返回首页</a></div>
                                 </form>

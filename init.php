@@ -46,6 +46,14 @@ const TPLS_PATH = EMLOG_ROOT . '/content/templates/';
 define('DYNAMIC_BLOGURL', Option::get("blogurl"));
 //前台模板URL
 define('TEMPLATE_URL', TPLS_URL . Option::get('nonce_templet') . '/');
+//后台模板路径
+const ADMIN_TEMPLATE_PATH = EMLOG_ROOT . '/admin/views/';
+//官方服务域名
+const OFFICIAL_SERVICE_HOST = 'https://www.emlog.net/';
+//错误码
+const MSGCODE_EMKEY_INVALID = 1001;  // 错误的注册码
+const MSGCODE_NO_UPUPDATE = 1002;    // 没有可用的版本更新
+const MSGCODE_SUCCESS = 200;         // 成功
 
 $active_plugins = Option::get('active_plugins');
 $emHooks = [];

@@ -12,7 +12,7 @@
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">注册账号</h1>
                                 </div>
-                                <form method="post" class="user" action="./index.php?action=login&s=<?= $admin_path_code ?>">
+                                <form method="post" class="user" action="./account.php?action=register&s=<?= $admin_path_code ?>">
 									<?php if ($error_msg): ?>
                                         <div class="alert alert-danger alert-dismissible" role="alert">
                                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -20,11 +20,14 @@
                                         </div>
 									<?php endif ?>
                                     <div class="form-group">
-                                        <input type="text" class="form-control form-control-user" id="user" name="user" aria-describedby="emailHelp" placeholder="用户名" required
+                                        <input type="email" class="form-control form-control-user" id="user" name="user" aria-describedby="emailHelp" placeholder="邮箱" required
                                                autofocus>
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" class="form-control form-control-user" id="pw" name="pw" placeholder="密码" required>
+                                        <input type="password" class="form-control form-control-user" minlength="6" id="passwd" name="passwd" placeholder="密码" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control form-control-user" minlength="6" id="repasswd" name="repasswd" placeholder="确认密码" required>
                                     </div>
 									<?php if ($ckcode): ?>
                                         <div class="form-group form-inline">
@@ -32,17 +35,10 @@
                                             <img src="../include/lib/checkcode.php" id="checkcode" class="mx-2">
                                         </div>
 									<?php endif ?>
-                                    <div class="form-group">
-                                        <div class="custom-control custom-checkbox small">
-                                            <input type="checkbox" class="custom-control-input" id="ispersis" name="ispersis" value="1">
-                                            <label class="custom-control-label" for="ispersis">记住我</label>
-                                        </div>
-                                    </div>
-                                    <button class="btn btn-primary btn-user btn-block" type="submit">登录</button>
+                                    <button class="btn btn-success btn-user btn-block" type="submit">注册</button>
                                     <div><?php doAction('login_ext') ?></div>
                                     <hr>
-                                    <div class="text-center"><a class="small" href="forgot-password.html">忘记密码?</a></div>
-                                    <div class="text-center"><a class="small" href="register.html">注册账号</a></div>
+                                    <div class="text-center"><a class="small" href="/admin">登录</a></div>
                                     <hr>
                                     <div class="text-center"><a href="../" class="small" role="button">&larr;返回首页</a></div>
                                 </form>

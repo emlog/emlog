@@ -147,7 +147,7 @@
                     </li>
                     <div class="topbar-divider d-none d-sm-block"></div>
                     <li class="nav-item mx-1">
-                        <a class="nav-link" href="?action=logout" title="退出" role="button">
+                        <a class="nav-link" href="account.php?action=logout" title="退出" role="button">
                             <i class="icofont-logout icofont-1x"></i>
                         </a>
                     </li>

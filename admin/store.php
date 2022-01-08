@@ -16,25 +16,25 @@ $Store_Model = new Store_Model();
 if (empty($action)) {
 	$templates = $Store_Model->getTemplates();
 
-	include View::getView('header');
-	require_once(View::getView('store_tpl'));
-	include View::getView('footer');
+	include View::getAdmView('header');
+	require_once(View::getAdmView('store_tpl'));
+	include View::getAdmView('footer');
 	View::output();
 }
 
 if ($action === 'plu') {
 	$plugins = $Store_Model->getPlugins();
 
-	include View::getView('header');
-	require_once(View::getView('store_plu'));
-	include View::getView('footer');
+	include View::getAdmView('header');
+	require_once(View::getAdmView('store_plu'));
+	include View::getAdmView('footer');
 	View::output();
 }
 
 if ($action === 'error') {
-	include View::getView('header');
-	require_once(View::getView('store_tpl'));
-	include View::getView('footer');
+	include View::getAdmView('header');
+	require_once(View::getAdmView('store_tpl'));
+	include View::getAdmView('footer');
 	View::output();
 }
 

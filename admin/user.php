@@ -19,15 +19,9 @@ if (empty($action)) {
 	$usernum = $User_Model->getUserNum();
 	$pageurl = pagination($usernum, Option::get('admin_perpage_num'), $page, "./user.php?page=");
 
-	include View::getView('header');
-	require_once View::getView('user');
-	include View::getView('footer');
-	View::output();
-}
-
-if ($action == 'reg') {
-	include View::getView('user_head');
-	require_once View::getView('register');
+	include View::getAdmView('header');
+	require_once View::getAdmView('user');
+	include View::getAdmView('footer');
 	View::output();
 }
 
@@ -83,9 +77,9 @@ if ($action == 'edit') {
 		$ex4 = 'selected="selected"';
 	}
 
-	include View::getView('header');
-	require_once View::getView('useredit');
-	include View::getView('footer');
+	include View::getAdmView('header');
+	require_once View::getAdmView('useredit');
+	include View::getAdmView('footer');
 	View::output();
 }
 

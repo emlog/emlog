@@ -17,9 +17,9 @@ if (empty($action) && empty($plugin)) {
 	$Plugin_Model = new Plugin_Model();
 	$plugins = $Plugin_Model->getPlugins();
 
-	include View::getView('header');
-	require_once(View::getView('plugin'));
-	include View::getView('footer');
+	include View::getAdmView('header');
+	require_once(View::getAdmView('plugin'));
+	include View::getAdmView('footer');
 	View::output();
 }
 
@@ -47,9 +47,9 @@ if ($action == 'inactive') {
 //加载插件配置页面
 if (empty($action) && $plugin) {
 	require_once "../content/plugins/{$plugin}/{$plugin}_setting.php";
-	include View::getView('header');
+	include View::getAdmView('header');
 	plugin_setting_view();
-	include View::getView('footer');
+	include View::getAdmView('footer');
 }
 
 //保存插件设置

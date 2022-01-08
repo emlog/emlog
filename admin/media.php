@@ -21,9 +21,9 @@ if (empty($action)) {
 	$medias = $Media_Model->getMedias($page, $perpage_count);
 	$count = $Media_Model->getMediaCount();
 	$pageurl = pagination($count, $perpage_count, $page, "media.php?page=");
-	include View::getView('header');
-	require_once(View::getView('media'));
-	include View::getView('footer');
+	include View::getAdmView('header');
+	require_once(View::getAdmView('media'));
+	include View::getAdmView('footer');
 	View::output();
 }
 
@@ -33,7 +33,7 @@ if ($action === 'lib') {
 	$medias = $Media_Model->getMedias($page, $perpage_count);
 	$count = $Media_Model->getMediaCount();
 	$pageurl = pagination($count, $perpage_count, $page, "media.php?page=");
-	require_once(View::getView('media_lib'));
+	require_once(View::getAdmView('media_lib'));
 	View::output();
 }
 

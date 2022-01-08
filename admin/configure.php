@@ -146,9 +146,9 @@ if (empty($action)) {
 		'Etc/GMT+12'           => '(UTC-12:00)国际日期变更线西',
 	);
 
-	include View::getView('header');
-	require_once(View::getView('configure'));
-	include View::getView('footer');
+	include View::getAdmView('header');
+	require_once(View::getAdmView('configure'));
+	include View::getAdmView('footer');
 	View::output();
 }
 

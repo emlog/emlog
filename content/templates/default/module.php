@@ -259,7 +259,7 @@ function blog_navi() {
 				if ($value['url'] == ROLE_ADMIN && (ROLE == ROLE_ADMIN || ROLE == ROLE_WRITER)):
 					?>
                     <li class="list-item list-menu"><a href="<?= BLOG_URL ?>admin/" class="nav-link">管理</a></li>
-                    <li class="list-item list-menu"><a href="<?= BLOG_URL ?>admin/?action=logout" class="nav-link">退出</a></li>
+                    <li class="list-item list-menu"><a href="<?= BLOG_URL ?>admin/account.php?action=logout" class="nav-link">退出</a></li>
 					<?php
 					continue;
 				endif;

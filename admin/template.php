@@ -50,9 +50,9 @@ if ($action === '') {
 	closedir($handle);
 	$tplnums = count($tpls);
 
-	include View::getView('header');
-	require_once View::getView('template');
-	include View::getView('footer');
+	include View::getAdmView('header');
+	require_once View::getAdmView('template');
+	include View::getAdmView('footer');
 	View::output();
 }
 
@@ -85,9 +85,9 @@ if ($action === 'del') {
 
 //安装模板
 if ($action === 'install') {
-	include View::getView('header');
-	require_once View::getView('template_install');
-	include View::getView('footer');
+	include View::getAdmView('header');
+	require_once View::getAdmView('template_install');
+	include View::getAdmView('footer');
 	View::output();
 }
 
