@@ -32,9 +32,9 @@ if ($action === '') {
 		}
 	}
 
-	include View::getView('header');
-	require_once View::getView('widgets');
-	include View::getView('footer');
+	include View::getAdmView('header');
+	require_once View::getAdmView('widgets');
+	include View::getAdmView('footer');
 	View::output();
 }
 

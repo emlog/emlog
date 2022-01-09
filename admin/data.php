@@ -13,9 +13,9 @@ require_once 'globals.php';
 
 if (!$action) {
 	doAction('data_prebakup');
-	include View::getView('header');
-	require_once(View::getView('data'));
-	include View::getView('footer');
+	include View::getAdmView('header');
+	require_once(View::getAdmView('data'));
+	include View::getAdmView('footer');
 	View::output();
 }
 

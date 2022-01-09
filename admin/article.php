@@ -12,6 +12,7 @@
 
 require_once 'globals.php';
 
+
 $Log_Model = new Log_Model();
 $Tag_Model = new Tag_Model();
 $Sort_Model = new Sort_Model();
@@ -74,9 +75,9 @@ if (empty($action)) {
 	}
 	$pageurl = pagination($logNum, Option::get('admin_perpage_num'), $page, "article.php?{$subPage}&page=");
 
-	include View::getView('header');
-	require_once View::getView('article');
-	include View::getView('footer');
+	include View::getAdmView('header');
+	require_once View::getAdmView('article');
+	include View::getAdmView('footer');
 	View::output();
 }
 
@@ -219,9 +220,9 @@ if ($action === 'write') {
 		emDirect("auth.php?error_article=1");
 	}
 
-	include View::getView('header');
-	require_once View::getView('article_write');
-	include View::getView('footer');
+	include View::getAdmView('header');
+	require_once View::getAdmView('article_write');
+	include View::getAdmView('footer');
 	View::output();
 }
 
@@ -251,9 +252,9 @@ if ($action === 'edit') {
 	$is_sortop = $sortop == 'y' ? 'checked="checked"' : '';
 	$is_allow_remark = $allow_remark == 'y' ? 'checked="checked"' : '';
 
-	include View::getView('header');
-	require_once View::getView('article_write');
-	include View::getView('footer');
+	include View::getAdmView('header');
+	require_once View::getAdmView('article_write');
+	include View::getAdmView('footer');
 	View::output();
 }
 

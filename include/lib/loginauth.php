@@ -61,7 +61,9 @@ class LoginAuth {
 	/**
 	 * Login Page
 	 */
-	public static function loginPage($errorCode = NULL, $admin_path_code = '') {
+	public static function loginPage($errorCode = NULL) {
+		$admin_path_code = isset($_GET['s']) ? addslashes(htmlClean($_GET['s'])) : '';
+
 		if (defined('ADMIN_PATH_CODE') && $admin_path_code !== ADMIN_PATH_CODE) {
 			show_404_page(true);
 		}
@@ -77,8 +79,8 @@ class LoginAuth {
 				break;
 		}
 
-		require_once View::getView('user_head');
-		require_once View::getView('login');
+		require_once View::getAdmView('user_head');
+		require_once View::getAdmView('login');
 		View::output();
 	}
 

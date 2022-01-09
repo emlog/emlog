@@ -26,9 +26,9 @@ if (empty($action)) {
 	$isalias = $isalias == 'y' ? 'checked="checked"' : '';
 	$isalias_html = $isalias_html == 'y' ? 'checked="checked"' : '';
 
-	include View::getView('header');
-	require_once(View::getView('seo'));
-	include View::getView('footer');
+	include View::getAdmView('header');
+	require_once(View::getAdmView('seo'));
+	include View::getAdmView('footer');
 	View::output();
 }
 

@@ -12,9 +12,9 @@
 require_once 'globals.php';
 
 if (empty($action)) {
-	include View::getView('header');
-	require_once(View::getView('register'));
-	include View::getView('footer');
+	include View::getAdmView('header');
+	require_once(View::getAdmView('register'));
+	include View::getAdmView('footer');
 	View::output();
 }
 

@@ -42,9 +42,9 @@ if (empty($action)) {
 
 /*vot*/	include EMLOG_ROOT.'/lang/'.EMLOG_LANGUAGE.'/lang_tz.php'; // Load Time Zone List
 
-	include View::getView('header');
-	require_once(View::getView('configure'));
-	include View::getView('footer');
+	include View::getAdmView('header');
+	require_once(View::getAdmView('configure'));
+	include View::getAdmView('footer');
 	View::output();
 }
 

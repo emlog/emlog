@@ -20,9 +20,9 @@ if (empty($action)) {
 	$sorts = $CACHE->readCache('sort');
 	$pages = $emPage->getAllPageList();
 
-	include View::getView('header');
-	require_once(View::getView('navbar'));
-	include View::getView('footer');
+	include View::getAdmView('header');
+	require_once(View::getAdmView('navbar'));
+	include View::getAdmView('footer');
 	View::output();
 }
 
@@ -107,9 +107,9 @@ if ($action == 'mod') {
 	$conf_newtab = $newtab == 'y' ? 'checked="checked"' : '';
 	$conf_isdefault = $type != Navi_Model::navitype_custom ? 'disabled="disabled"' : '';
 
-	include View::getView('header');
-	require_once(View::getView('naviedit'));
-	include View::getView('footer');
+	include View::getAdmView('header');
+	require_once(View::getAdmView('naviedit'));
+	include View::getAdmView('footer');
 	View::output();
 }
 

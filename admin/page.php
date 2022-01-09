@@ -21,9 +21,9 @@ if (empty($action)) {
 
 	$pageurl = pagination($pageNum, Option::get('admin_perpage_num'), $page, "./pages.php?page=");
 
-	include View::getView('header');
-	require_once(View::getView('page'));
-	include View::getView('footer');
+	include View::getAdmView('header');
+	require_once(View::getAdmView('page'));
+	include View::getAdmView('footer');
 	View::output();
 }
 
@@ -45,9 +45,9 @@ if ($action == 'new') {
 	$Media_Model = new Media_Model();
 	$medias = $Media_Model->getMedias();
 
-	include View::getView('header');
-	require_once(View::getView('page_create'));
-	include View::getView('footer');
+	include View::getAdmView('header');
+	require_once(View::getAdmView('page_create'));
+	include View::getAdmView('footer');
 	View::output();
 }
 
@@ -65,9 +65,9 @@ if ($action == 'mod') {
 
 	$is_allow_remark = $allow_remark == 'y' ? 'checked="checked"' : '';
 
-	include View::getView('header');
-	require_once(View::getView('page_create'));
-	include View::getView('footer');
+	include View::getAdmView('header');
+	require_once(View::getAdmView('page_create'));
+	include View::getAdmView('footer');
 	View::output();
 }
 

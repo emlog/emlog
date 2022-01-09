@@ -23,9 +23,9 @@ if (empty($action)) {
 	$pageurl = pagination($twnum, TW_PAGE_COUNT, $page, 'twitter.php?page=');
 	$avatar = empty($user_cache[UID]['avatar']) ? './views/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'];
 
-	include View::getView('header');
-	require_once View::getView('twitter');
-	include View::getView('footer');
+	include View::getAdmView('header');
+	require_once View::getAdmView('twitter');
+	include View::getAdmView('footer');
 	View::output();
 }
 

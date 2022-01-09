@@ -30,9 +30,9 @@ if (empty($action)) {
 /*vot*/		$php_ver .= ', zip';
 	}
 
-	include View::getView('header');
-	require_once(View::getView('index'));
-	include View::getView('footer');
+	include View::getAdmView('header');
+	require_once(View::getAdmView('index'));
+	include View::getAdmView('footer');
 	View::output();
 }
 
