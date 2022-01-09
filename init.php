@@ -46,6 +46,15 @@ const TPLS_PATH = EMLOG_ROOT . '/content/templates/';
 define('DYNAMIC_BLOGURL', Option::get("blogurl"));
 //Front template URL
 define('TEMPLATE_URL', TPLS_URL . Option::get('nonce_templet') . '/');
+//Admin Template Path
+const ADMIN_TEMPLATE_PATH = EMLOG_ROOT . '/admin/views/';
+//Official service domain name
+const OFFICIAL_SERVICE_HOST = 'https://www.emlog.net/';
+//Error code
+const MSGCODE_EMKEY_INVALID = 1001;  // Wrong registration code
+const MSGCODE_NO_UPUPDATE = 1002;    // No version update available
+const MSGCODE_SUCCESS = 200;         // Success
+
 //Access Scheme
 /*vot*/define('SCHEME', isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://');
 /*vot*/define('ROOT_URL', str_replace('\\','/', dirname($_SERVER['PHP_SELF'])));

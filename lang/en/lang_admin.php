@@ -4,10 +4,10 @@ $lang = array(
 
 //---------------------------
 //admin/account.php
-'test_headers'		=> 'Test email sending headers',//'测试邮件发送标题',
-'test_sending'		=> 'Test email sending',//'测试邮件发送内容',
-'mail_sent_ok'		=> 'Mail sent successfully',//'邮件发送成功',
-'mail_send_error'	=> 'Mail send error',//'邮件发送失败',
+//'test_headers'		=> 'Test email sending headers',//'测试邮件发送标题',
+//'test_sending'		=> 'Test email sending',//'测试邮件发送内容',
+//'mail_sent_ok'		=> 'Mail sent successfully',//'邮件发送成功',
+//'mail_send_error'	=> 'Mail send error',//'邮件发送失败',
 
 
 //---------------------------

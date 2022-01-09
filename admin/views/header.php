@@ -149,7 +149,7 @@
                     </li>
                     <div class="topbar-divider d-none d-sm-block"></div>
                     <li class="nav-item mx-1">
-<!--vot-->              <a class="nav-link" href="?action=logout" title="<?= lang('logout') ?>" role="button">
+<!--vot-->              <a class="nav-link" href="account.php?action=logout" title="<?= lang('logout') ?>" role="button">
                             <i class="icofont-logout icofont-1x"></i>
                         </a>
                     </li>

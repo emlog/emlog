@@ -12,7 +12,7 @@
                                 <div class="text-center">
 <!--vot-->                          <h1 class="h4 text-gray-900 mb-4"><?=lang('account_register')?></h1>
                                 </div>
-                                <form method="post" class="user" action="./index.php?action=login&s=<?= $admin_path_code ?>">
+                                <form method="post" class="user" action="./account.php?action=register&s=<?= $admin_path_code ?>">
 									<?php if ($error_msg): ?>
                                         <div class="alert alert-danger alert-dismissible" role="alert">
                                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -20,11 +20,14 @@
                                         </div>
 									<?php endif ?>
                                     <div class="form-group">
-<!--vot-->                              <input type="text" class="form-control form-control-user" id="user" name="user" aria-describedby="emailHelp" placeholder="<?=lang('user_name')?>" required
+<!--vot-->                              <input type="email" class="form-control form-control-user" id="user" name="user" aria-describedby="emailHelp" placeholder="<?=lang('user_name')?>" required
                                                autofocus>
                                     </div>
                                     <div class="form-group">
-<!--vot-->                              <input type="password" class="form-control form-control-user" id="pw" name="pw" placeholder="<?=lang('password')?>" required>
+<!--vot-->                              <input type="password" class="form-control form-control-user" minlength="5" id="passwd" name="passwd" placeholder="<?=lang('password')?>" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control form-control-user" minlength="6" id="repasswd" name="repasswd" placeholder="<?=lang('password_confirm')?>" required>
                                     </div>
 									<?php if ($ckcode): ?>
                                         <div class="form-group form-inline">
@@ -32,17 +35,11 @@
                                             <img src="../include/lib/checkcode.php" id="checkcode" class="mx-2">
                                         </div>
 									<?php endif ?>
-                                    <div class="form-group">
-                                        <div class="custom-control custom-checkbox small">
-                                            <input type="checkbox" class="custom-control-input" id="ispersis" name="ispersis" value="1">
-<!--vot-->                                  <label class="custom-control-label" for="ispersis"><?=lang('remember_me')?></label>
-                                        </div>
-                                    </div>
-<!--vot-->                          <button class="btn btn-primary btn-user btn-block" type="submit"><?=lang('login')?></button>
+
+<!--vot-->                          <button class="btn btn-success btn-user btn-block" type="submit"><?=lang('register')?></button>
                                     <div><?php doAction('login_ext') ?></div>
                                     <hr>
-<!--vot-->                          <div class="text-center"><a class="small" href="forgot-password.html"><?=lang('password_forget')?></a></div>
-<!--vot-->                          <div class="text-center"><a class="small" href="register.html"><?=lang('account_register')?></a></div>
+<!--vot-->                          <div class="text-center"><a class="small" href="./admin"><?=lang('log_in')?></a></div>
                                     <hr>
 <!--vot-->                          <div class="text-center"><a href="../" class="small" role="button">&larr;<?=lang('back_home')?></a></div>
                                 </form>

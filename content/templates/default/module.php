@@ -265,7 +265,7 @@ function blog_navi() {
 				if ($value['url'] == ROLE_ADMIN && (ROLE == ROLE_ADMIN || ROLE == ROLE_WRITER)):
 					?>
 <!--vot-->          <li class="list-item list-menu"><a href="<?= BLOG_URL ?>admin/" class="nav-link"><?=lang('site_management')?></a></li>
-<!--vot-->          <li class="list-item list-menu"><a href="<?= BLOG_URL ?>admin/?action=logout" class="nav-link"><?=lang('logout')?></a></li>
+<!--vot-->          <li class="list-item list-menu"><a href="<?= BLOG_URL ?>admin/account.php?action=logout" class="nav-link"><?=lang('logout')?></a></li>
 					<?php
 					continue;
 				endif;

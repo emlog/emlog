@@ -12,7 +12,7 @@
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4"><?=lang('log_in')?></h1>
                                 </div>
-                                <form method="post" class="user" action="./index.php?action=login&s=<?= $admin_path_code ?>">
+                                <form method="post" class="user" action="./account.php?action=login&s=<?= $admin_path_code ?>">
 									<?php if ($error_msg): ?>
                                         <div class="alert alert-danger alert-dismissible" role="alert">
                                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -41,8 +41,8 @@
 <!--vot-->                          <button class="btn btn-primary btn-user btn-block" type="submit"><?=lang('login')?></button>
                                     <div><?php doAction('login_ext') ?></div>
                                     <hr>
-<!--vot-->                          <div class="text-center"><a class="small" href="forgot-password.html"><?=lang('password_forget')?></a></div>
-<!--vot-->                          <div class="text-center"><a class="small" href="./user.php?action=reg"><?=lang('account_register')?></a></div>
+<!--vot-->                          <div class="text-center"><a class="small" href="./account.php?action=reset"><?=lang('password_forget')?></a></div>
+<!--vot-->                          <div class="text-center"><a class="small" href="./account.php?action=signup"><?=lang('account_register')?></a></div>
                                     <hr>
 <!--vot-->                          <div class="text-center"><a href="../" class="small" role="button">&larr;<?=lang('back_home')?></a></div>
                                 </form>

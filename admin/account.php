@@ -1,6 +1,6 @@
 <?php
 /**
- * 后台全局项加载
+ * Background global item loading
  * @package EMLOG (www.emlog.net)
  */
 
@@ -81,13 +81,13 @@ if ($action == 'reset_password') {
 
 if ($action == 'send_auth_code') {
 	$to_user = "xxxx@gmail.com";
-	$title = "测试邮件发送标题";
-	$content = "测试邮件发送内容";
+/*vot*/	$title = lang('mail_test_header');
+/*vot*/	$content = lang('mail_test_content');
 	$sendmail_model = new SendMail();
 	$ret = $sendmail_model->send($to_user, $title, $content);
 	if($ret){
-		echo "邮件发送成功";
+/*vot*/		echo lang('mail_send_ok');
 	}else{
-		echo "邮件发送失败";
+/*vot*/		echo lang('mail_send_error');
 	}
 }

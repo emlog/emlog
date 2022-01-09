@@ -4,36 +4,36 @@ class SendMail {
 	function send($to, $title, $content) {
 		$mail = new PHPMailer(true);
 
-		$mail->IsSMTP();                          // stmp 使用smtp鉴权方式发送邮件
-		$mail->CharSet = 'UTF-8';                 // 设置邮件的字符编码，这很重要，不然中文乱码
-		$mail->SMTPAuth = true;                   // 开启认证
-		$mail->SMTPSecure = 'ssl';                // 设置使用ssl加密方式登录鉴权
-		$mail->Port = 465;                        // 端口,设置ssl连接smtp服务器的远程服务器端口号，以前的默认是25，但是现在新的好像已经不可用了 可选465或587
-		$mail->Host = "smtp.qq.com";              // 链接qq域名邮箱的服务器地址  smtp.sina.com.cn    smtp.163.com   smtp.qiye.163.co
-		$mail->Hostname = '';                     // 设置发件人的主机域 可有可无 默认为localhost 内容任意，建议使用你的域名
-		$mail->Username = "emlog@qq.com";         // 邮箱账号
-		$mail->Password = "xxxxx";                // STMP授权码  上面提到需要保存使用的
+		$mail->IsSMTP();                          // Use smtp authentication to send email
+		$mail->CharSet = 'UTF-8';                 // Set email charset, this is very important, otherwise the Chinese is garbled
+		$mail->SMTPAuth = true;                   // Enable authentication
+		$mail->SMTPSecure = 'ssl';                // Set up login authentication using ssl encryption
+		$mail->Port = 465;                        // Port. Set the remote server port number for ssl connection to the smtp server, the previous default was 25, but now the new one seems to be unavailable. Optional 465 or 587
+		$mail->Host = "smtp.qq.com";              // SMTP server address: smtp.qq.com,  smtp.sina.com.cn,  smtp.163.com,  smtp.qiye.163.co ...
+		$mail->Hostname = '';                     // Sender host domain, optional. Default is localhost, Content is arbitrary, it is recommended to use your domain name
+		$mail->Username = "emlog@qq.com";         // Email address
+		$mail->Password = "xxxxx";                // STMP authorization code mentioned above needs to be saved and used
 		$mail->From = "emlog@qq.com";
-		$mail->FromName = "测试邮件STMP发送";
-		if (is_array($to)) { #多人接收
+		$mail->FromName = lang('smtp_test');
+		if (is_array($to)) { #Multiple recepients
 			foreach ($to as $value) {
 				$mail->AddAddress($value);
 			}
-		} else {                    #单人接收
-			$mail->AddAddress($to); #抄送
+		} else {                    #Single recepient
+			$mail->AddAddress($to); #cc
 		}
 
 		$mail->Subject = $title;
 
-		//添加邮件正文 上方将isHTML设置成了true，则可以是完整的html字符串 如：使用file_get_contents函数读取本地的html文件
+		//Add the email body. If isHTML is set to true, it can be a complete html string, i.e. you can use the file_get_contents function to read the local html file
 		$mail->Body = $content;
 
-		//为该邮件添加附件 该方法也有两个参数 第一个参数为附件存放的目录（相对目录、或绝对目录均可） 第二参数为在邮件附件中该附件的名称
-		//$mail->addAttachment('./1.png,'图片');
-		//同样该方法可以多次调用 上传多个附件
-		//$mail->addAttachment('./test.php','php文件');
+		//Add an attachment to the email. This method also has two parameters. The first parameter is the directory where the attachment is stored (relative directory or absolute directory can be used). The second parameter is the name of the attachment in the email attachment
+		//$mail->addAttachment('./1.png,'Image');
+		//The same method can be called multiple times to upload multiple attachments
+		//$mail->addAttachment('./test.php','php file');
 
-		$mail->WordWrap = 80; // 设置每行字符串的长度
+		$mail->WordWrap = 80; // Set the length of each line
 		$mail->IsHTML(true);
 		$ret = $mail->Send();
 		return $ret;

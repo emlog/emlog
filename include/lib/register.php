@@ -15,7 +15,7 @@ class Register {
 		$emkey = $options_cache['emkey'] ?? '';
 
 		if (empty($emkey)) {
-			if (defined('DEV_MODE')) {
+/*vot*/			if (defined('DEV_MODE')) {
 				return true;
 			} else {
 				return false;
