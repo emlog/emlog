@@ -326,4 +326,16 @@
             $('#cover_rm').hide();
         });
     });
+
+    // 离开页面时，如果文章内容已做修改，则询问用户是否离开
+    var articleText;
+    hooks.addAction("loaded", function(){
+        articleText = $("textarea[name=logcontent]").text();
+    });
+    window.onbeforeunload = function (e) {
+        if($("textarea[name=logcontent]").text() == articleText) return
+        e = e || window.event;
+        if (e) e.returnValue = '离开页面提示';
+        return '离开页面提示';
+    }
 </script>

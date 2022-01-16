@@ -1,4 +1,4 @@
-  "use strict"
+"use strict"
 
 /**
  * jqurey添加动画扩展。先加速度至配速的50%，再减速到零
@@ -21,9 +21,15 @@ var myBlog = {
         $(".commentform #comment").css("height","140px")
                                   .css('border-radius', '10px')
       }
-      $(".markdown img").attr("data-action","zoom")  // 为摘要、文章、页面中图片添加“查看大图”
-                        .parent().removeAttr("href")
-                        .parent("p").css("text-align","center")
+      for(let num = 0;num < $(".markdown img").length;num++){  // 为正文中的图片添加查看大图，居中功能（默认认为图片父标签<a>中的链接为图片原地址）
+        let $this     = $(".markdown img:eq("+ num +")")
+        let sourceSrc = $(".markdown img:eq("+ num +")").parent().attr('href')
+
+        $this.attr("data-action","zoom")
+             .parent().attr("sourcesrc",sourceSrc)
+             .removeAttr("href")
+             .parent("p").css("text-align","center")
+      }
       $("#commentform").attr("onsubmit","return myBlog.comSubmitTip()")  // 评论提交在表单验证未通过的情况下是不能提交的
     },
     /**
@@ -68,7 +74,7 @@ var myBlog = {
      */
     calMargin : function($t) {
       if (window.outerWidth < 992) return
-      var $fatherLink,$childMenu,menuWidth,count
+      var $childMenu,menuWidth,count
 
       menuWidth     = 135  // 大屏幕端的子导航下拉框宽度(px)，可根据需要修改
       count         = ($t.outerWidth() - menuWidth)/2 + "px"
@@ -89,7 +95,6 @@ var myBlog = {
 
         let isCn       = $('#commentform').attr('is-chinese')
         let comContent = $('#comment').val()
-        let name       = $('#info_n').val()
         let mail       = $('#info_m').val()
         let url        = $('#info_u').val()
 
@@ -131,6 +136,14 @@ var myBlog = {
       $t.attr("src", "./include/lib/checkcode.php?" + timestamp)
     },
     /**
+     * 图片在点击时，将略缩图转化为原图
+     */
+    toggleImgSrc : function($t) {
+      $t.addClass('zoomFocus')
+      $t.attr('src2',$t.attr('src'))
+      $t.attr('src',$t.parent().attr('sourcesrc'))
+    },
+    /**
      * toc 分析
      * 
      * 启用toc目录方式: 在文章最开头写上'[toc]'或者'<!--[toc]-->',最好是单独一行
@@ -169,7 +182,6 @@ var myBlog = {
       }
       this.tocRender()
     },
-
     /**
      * toc 目录渲染
      */ 
@@ -291,5 +303,9 @@ $(document).ready(function(){
 
   $(".form-control").blur(function () {
     myBlog.comSubmitTip('judge')
+  }),
+
+  $(".markdown img").click(function () {
+    myBlog.toggleImgSrc($(this))
   })
 })

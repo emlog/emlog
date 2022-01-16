@@ -64,6 +64,7 @@
                 </div>
                 <div class="form-group">
                     <label>新密码（不小于6位，不修改请留空）</label>
+                    <input type="password" name="hidden-auto-filling" style="width: 0;border: 0;opacity: 0">
                     <input type="password" class="form-control" value="" name="newpass">
                 </div>
                 <div class="form-group">
@@ -80,7 +81,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" data-backdrop="static">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
