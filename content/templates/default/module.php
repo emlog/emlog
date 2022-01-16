@@ -166,7 +166,7 @@ function widget_newlog($title) {
         </div>
         <ul class="unstyle-li">
 			<?php foreach ($newLogs_cache as $value): ?>
-                <li class='blog-lates'><a href="<?= Url::log($value['gid']) ?>"><?= $value['title'] ?></a></li>
+                <li class="blog-lates"><a href="<?= Url::log($value['gid']) ?>"><?= $value['title'] ?></a></li>
 			<?php endforeach ?>
         </ul>
     </div>
@@ -185,7 +185,7 @@ function widget_hotlog($title) {
         </div>
         <ul class="unstyle-li">
 			<?php foreach ($hotLogs as $value): ?>
-                <li><a href="<?= Url::log($value['gid']) ?>"><?= $value['title'] ?></a></li>
+                <li class="blog-hot"><a href="<?= Url::log($value['gid']) ?>"><?= $value['title'] ?></a></li>
 			<?php endforeach ?>
         </ul>
     </div>
@@ -361,7 +361,6 @@ function blog_tag($blogid) {
 		}
 	}
 }
-
 ?>
 <?php
 /**
@@ -376,7 +375,6 @@ function blog_author($uid) {
 	$title = !empty($mail) || !empty($des) ? "title=\"$des $mail\"" : '';
 	echo '<a href="' . Url::author($uid) . "\" $title>$author</a>";
 }
-
 ?>
 <?php
 /**
