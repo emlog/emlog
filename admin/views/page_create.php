@@ -14,7 +14,7 @@
                                 class="icofont-plus"></i> 插入图文资源</a>
 					<?php doAction('adm_writelog_head') ?>
                 </div>
-                <div id="pagecontent"><textarea style="display:none;"><?= $content ?></textarea></div>
+                <div id="pagecontent"><textarea><?= $content ?></textarea></div>
             </div>
 
             <div class="form-group">
@@ -152,16 +152,17 @@
         });
         Editor.setToolbarAutoFixed(false);
 
-        // 离开页面时，如果页面内容已做修改，则询问用户是否离开
-        var pageText;
-        hooks.addAction("page_loaded", function(){
-            pageText = $("textarea").text();
-        });
-        window.onbeforeunload = function (e) {
-            if($("textarea").text() == pageText) return
-            e = e || window.event;
-            if (e) e.returnValue = '离开页面提示';
-            return '离开页面提示';
-        }
+
     });
+    // 离开页面时，如果页面内容已做修改，则询问用户是否离开
+    var pageText;
+    hooks.addAction("page_loaded", function(){
+        pageText = $("textarea").text();
+    });
+    window.onbeforeunload = function (e) {
+        if($("textarea").text() == pageText) return
+        e = e || window.event;
+        if (e) e.returnValue = '离开页面提示';
+        return '离开页面提示';
+    }
 </script>
