@@ -191,7 +191,7 @@
 </div>
 <script src="./editor.md/editormd.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
 <script>
-    var icon_tog;//如果值为true，则“更多选项”箭头向右
+    var icon_tog = false;
 
     $("#alias").keyup(function () {
         checkalias();
@@ -201,7 +201,6 @@
     $("#menu_content").addClass('show');
     $("#menu_write").addClass('active');
 
-    icon_tog = false;
     if (Cookies.get('em_advset') == "hidden") {
         displayToggle('advset', 1);
     } else {
@@ -328,14 +327,25 @@
     });
 
     // 离开页面时，如果文章内容已做修改，则询问用户是否离开
-    var articleText;
+    var articleTextRecord;
     hooks.addAction("loaded", function(){
-        articleText = $("textarea[name=logcontent]").text();
+        articleTextRecord = $("textarea[name=logcontent]").text();
     });
     window.onbeforeunload = function (e) {
-        if($("textarea[name=logcontent]").text() == articleText) return
+        if($("textarea[name=logcontent]").text() == articleTextRecord) return
         e = e || window.event;
         if (e) e.returnValue = '离开页面提示';
         return '离开页面提示';
     }
+
+    // 如果文章内容已做修改，则使网页标题修改为‘已修改’
+    var titleText = $('title').text()
+    hooks.addAction("loaded", function(obj){
+        obj.config({ 
+            onchange : function() {
+                if($("textarea[name=logcontent]").text() == articleTextRecord) return
+                $('title').text('[已修改] ' + titleText);
+            }
+         });
+    });
 </script>
