@@ -553,7 +553,13 @@ textarea {
 }
 
 /* 表格优化 */
-
 .table-responsive table{
     min-width:560px
+}
+
+/* 菜单滚动条（不可见） */
+#accordionSidebar::-webkit-scrollbar{
+    height: 10px;
+    width: 0px;
+    background: rgba(0, 0, 0, 0.0);
 }
