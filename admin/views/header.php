@@ -26,6 +26,7 @@
 	<?php doAction('adm_head') ?>
 </head>
 <body>
+<div id="editor-md-dialog"></div>
 <div id="wrapper">
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion sd-hidden" id="accordionSidebar">
         <li class="nav-item active emlog_title" id="menu_home">
