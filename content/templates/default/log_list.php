@@ -8,7 +8,7 @@ if (!defined('EMLOG_ROOT')) {
 ?>
 <main class="container">
     <div class="row">
-        <div class="column-big">
+        <div class="column-big"> 
 			<?php doAction('index_loglist_top');
 			if (!empty($logs)):
 				foreach ($logs as $value):
@@ -23,6 +23,7 @@ if (!defined('EMLOG_ROOT')) {
                             <h3 class="card-title">
                                 <a href="<?= $value['log_url'] ?>" class="loglist-title"><?= $value['log_title'] ?></a>
 								<?php topflg($value['top'], $value['sortop'], isset($sortid) ? $sortid : '') ?>
+                                <?php bloglist_sort($value['logid']) ?>
                             </h3>
                             <summary class="loglist-content markdown"><?= $value['log_description'] ?></summary>
                             <div class="loglist-tag"><?php blog_tag($value['logid']) ?></div>
