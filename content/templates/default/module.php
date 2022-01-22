@@ -100,7 +100,7 @@ function widget_sort($title) {
 				if ($value['pid'] != 0) continue;
 				?>
                 <li>
-                    <a href="<?= Url::sort($value['sid']) ?>"><?= $value['sortname'] ?>&nbsp;&nbsp;(<?= $value['lognum'] ?>)</a>
+                    <a href="<?= Url::sort($value['sid']) ?>"><?= $value['sortname'] ?>&nbsp;&nbsp;<?= (($value['lognum']) > 0) ? '('.($value['lognum']).')' : '' ?></a>
 					<?php if (!empty($value['children'])): ?>
                         <ul class="log-classify-c">
 							<?php
@@ -109,7 +109,7 @@ function widget_sort($title) {
 								$value = $sort_cache[$key];
 								?>
                                 <li>
-                                    <a href="<?= Url::sort($value['sid']) ?>">-&nbsp;&nbsp;<?= $value['sortname'] ?>
+                                    <a href="<?= Url::sort($value['sid']) ?>">--&nbsp;&nbsp;<?= $value['sortname'] ?>
                                         &nbsp;&nbsp;(<?= $value['lognum'] ?>)</a>
                                 </li>
 							<?php endforeach ?>
@@ -299,8 +299,8 @@ function blog_navi() {
  * 文章列出卡片：置顶标志
  */
 function topflg($top, $sortop = 'n', $sortid = null) {
-	$ishome_flg = '<span title="首页置顶" class="log-topflg" />';
-	$issort_flg = '<span title="分类置顶" class="log-topflg" />';
+	$ishome_flg = '<span title="首页置顶" class="log-topflg" >置顶</span>';
+	$issort_flg = '<span title="分类置顶" class="log-topflg" >分类置顶</span>';
 	if (blog_tool_ishome()) {
 		echo $top == 'y' ? $ishome_flg : '';
 	} elseif ($sortid) {
@@ -321,17 +321,31 @@ function editflg($logid, $author) {
 ?>
 <?php
 /**
- * 文章列出页和文章查看页：分类
+ * 文章查看页：分类
  */
 function blog_sort($blogid) {
 	global $CACHE;
 	$log_cache_sort = $CACHE->readCache('logsort');
 	?>
 	<?php if (!empty($log_cache_sort[$blogid])) { ?>
-        <a href="<?= Url::sort($log_cache_sort[$blogid]['id']) ?>"><?= $log_cache_sort[$blogid]['name'] ?></a>
+        <a href="<?= Url::sort($log_cache_sort[$blogid]['id']) ?>" title="分类：<?= $log_cache_sort[$blogid]['name'] ?>"><?= $log_cache_sort[$blogid]['name'] ?></a>
 	<?php } else { ?>
-        <a href="#">无</a>
+        <a href="#" title="未分类">无</a>
 	<?php }
+} ?>
+<?php
+/**
+ * 文章列出页：分类
+ */
+function bloglist_sort($blogid) {
+	global $CACHE;
+	$log_cache_sort = $CACHE->readCache('logsort');
+	?>
+	<?php if (!empty($log_cache_sort[$blogid])) { ?>
+        <div class="loglist-sort" >
+            <a href="<?= Url::sort($log_cache_sort[$blogid]['id']) ?>" title="分类：<?= $log_cache_sort[$blogid]['name'] ?>"><?= $log_cache_sort[$blogid]['name'] ?></a>
+        </div>
+    <?php }
 } ?>
 <?php
 /**
