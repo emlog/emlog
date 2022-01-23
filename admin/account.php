@@ -21,22 +21,10 @@ $admin_path_code = isset($_GET['s']) ? addslashes(htmlClean($_GET['s'])) : '';
  */
 if ($action == 'signin') {
 	loginAuth::loggedPage();
-	$error_code = isset($_GET['code']) ? (int)$_GET['code'] : '';
-
 	if (defined('ADMIN_PATH_CODE') && $admin_path_code !== ADMIN_PATH_CODE) {
 		show_404_page(true);
 	}
 	$ckcode = Option::get('login_code') == 'y' ? true : false;
-	$error_msg = '';
-	switch ($error_code) {
-		case LoginAuth::LOGIN_ERROR_AUTHCODE:
-			$error_msg = '验证错误，请重新输入';
-			break;
-		case LoginAuth::LOGIN_ERROR_USER:
-		case LoginAuth::LOGIN_ERROR_PASSWD:
-			$error_msg = '用户或密码错误，请重新输入';
-			break;
-	}
 
 	require_once View::getAdmView('user_head');
 	require_once View::getAdmView('login');
@@ -55,14 +43,21 @@ if ($action == 'login') {
 
 	$uid = LoginAuth::checkUser($username, $password, $img_code);
 
-	if ($uid > 0) {
-		Register::isRegServer();
-		$User_Model = new User_Model();
-		$User_Model->updateUser(['ip'=>getIp()], $uid);
-		LoginAuth::setAuthCookie($username, $ispersis);
-		emDirect("./");
-	} else {
-		loginAuth::loginPage($uid);
+	switch ($uid) {
+		case $uid > 0:
+			Register::isRegServer();
+			$User_Model = new User_Model();
+			$User_Model->updateUser(['ip' => getIp()], $uid);
+			LoginAuth::setAuthCookie($username, $ispersis);
+			emDirect("./");
+			break;
+		case LoginAuth::LOGIN_ERROR_AUTHCODE:
+			emDirect("./account.php?action=signin&err_ckcode=1");
+			break;
+		case LoginAuth::LOGIN_ERROR_USER:
+		case LoginAuth::LOGIN_ERROR_PASSWD:
+			emDirect("./account.php?action=signin&err_login=1");
+			break;
 	}
 }
 
@@ -81,13 +76,35 @@ if ($action == 'signup') {
 
 if ($action == 'register') {
 	loginAuth::loggedPage();
+	$User_Model = new User_Model();
 
-	$ckcode = Option::get('login_code') == 'y' ? true : false;
-	$error_msg = '';
+	$username = isset($_POST['user']) ? addslashes(trim($_POST['user'])) : '';
+	$passwd = isset($_POST['passwd']) ? addslashes(trim($_POST['passwd'])) : '';
+	$repasswd = isset($_POST['repasswd']) ? addslashes(trim($_POST['repasswd'])) : '';
+	$img_code = Option::get('login_code') == 'y' && isset($_POST['imgcode']) ? addslashes(trim(strtoupper($_POST['imgcode']))) : '';
 
-	include View::getAdmView('user_head');
-	require_once View::getAdmView('register');
-	View::output();
+	if (!$username) {
+		emDirect('./account.php?action=signup&error_login=1');
+	}
+	if ($User_Model->isUserExist($username)) {
+		emDirect('./account.php?action=signup&error_exist=1');
+	}
+	if (strlen($passwd) < 6) {
+		emDirect('./account.php?action=signup&error_pwd_len=1');
+	}
+	if ($passwd !== $repasswd) {
+		emDirect('./account.php?action=signup&error_pwd2=1');
+	}
+
+	$PHPASS = new PasswordHash(8, true);
+	$passwd = $PHPASS->HashPassword($passwd);
+
+	$role = ROLE_USER;
+	$ischeck = 1;
+
+	$User_Model->addUser($username, $passwd, $role, $ischeck);
+	$CACHE->updateCache(array('sta', 'user'));
+	emDirect("./account.php?action=signin&succ_reg=1");
 }
 
 /**
@@ -121,9 +138,9 @@ if ($action == 'send_auth_code') {
 	$content = "测试邮件发送内容";
 	$sendmail_model = new SendMail();
 	$ret = $sendmail_model->send($to_user, $title, $content);
-	if($ret){
+	if ($ret) {
 		echo "邮件发送成功";
-	}else{
+	} else {
 		echo "邮件发送失败";
 	}
 }

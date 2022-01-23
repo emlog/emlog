@@ -28,10 +28,12 @@ define('ISLOGIN', LoginAuth::isLogin());
 //站点时区
 date_default_timezone_set(Option::get('timezone'));
 
-//用户组:admin管理员, writer联合撰写人, visitor访客
-const ROLE_ADMIN = 'admin';
-const ROLE_WRITER = 'writer';
-const ROLE_VISITOR = 'visitor';
+//用户组
+const ROLE_ADMIN = 'admin';          //管理员
+const ROLE_WRITER = 'writer';        //联合撰写人
+const ROLE_USER = 'user';            //普通用户
+const ROLE_VISITOR = 'visitor';      //游客
+
 //用户角色
 define('ROLE', ISLOGIN === true ? $userData['role'] : ROLE_VISITOR);
 //用户ID

@@ -6,9 +6,9 @@
 
 class LoginAuth {
 
-	const LOGIN_ERROR_USER = -1;
-	const LOGIN_ERROR_PASSWD = -2;
-	const LOGIN_ERROR_AUTHCODE = -3;
+	const LOGIN_ERROR_USER = -1;     //用户不存在
+	const LOGIN_ERROR_PASSWD = -2;   //密码错误
+	const LOGIN_ERROR_AUTHCODE = -3; //验证码错误
 
 	/**
 	 * 验证用户是否处于登录状态
