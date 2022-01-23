@@ -13,12 +13,12 @@ require_once 'globals.php';
 
 if (empty($action)) {
 	include View::getAdmView('header');
-	require_once(View::getAdmView('register'));
+	require_once(View::getAdmView('auth'));
 	include View::getAdmView('footer');
 	View::output();
 }
 
-if ($action === 'register') {
+if ($action === 'auth') {
 	$emkey = $_POST['emkey'] ? addslashes(trim($_POST['emkey'])) : '';
 
 	if (empty($emkey)) {

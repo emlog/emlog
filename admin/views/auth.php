@@ -37,7 +37,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="auth.php?action=register" method="post">
+            <form action="auth.php?action=auth" method="post">
                 <div class="modal-body">
                     <div class="form-group">
                         <input class="form-control" id="emkey" name="emkey" placeholder="输入注册码" required>

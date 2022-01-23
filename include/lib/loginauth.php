@@ -32,6 +32,30 @@ class LoginAuth {
 	}
 
 	/**
+	 * 未登录，跳转用户登录页
+	 */
+	public static function loginPage($error_code = NULL) {
+		if (self::isLogin() === true) {
+			return;
+		}
+		if ($error_code) {
+			emDirect("./account.php?action=signin&code=$error_code");
+		} else {
+			emDirect("./account.php?action=signin");
+		}
+	}
+
+	/**
+	 * 登录，跳转用户（管理）中心
+	 */
+	public static function loggedPage() {
+		if (self::isLogin() === false) {
+			return;
+		}
+		emDirect("./");
+	}
+
+	/**
 	 * 验证密码/用户
 	 */
 	public static function checkUser($username, $password, $imgcode) {
@@ -56,32 +80,6 @@ class LoginAuth {
 		} else {
 			return self::LOGIN_ERROR_PASSWD;
 		}
-	}
-
-	/**
-	 * 登录页面
-	 */
-	public static function loginPage($errorCode = NULL) {
-		$admin_path_code = isset($_GET['s']) ? addslashes(htmlClean($_GET['s'])) : '';
-
-		if (defined('ADMIN_PATH_CODE') && $admin_path_code !== ADMIN_PATH_CODE) {
-			show_404_page(true);
-		}
-		$ckcode = Option::get('login_code') == 'y' ? true : false;
-		$error_msg = '';
-		switch ($errorCode) {
-			case self::LOGIN_ERROR_AUTHCODE:
-				$error_msg = '验证错误，请重新输入';
-				break;
-			case self::LOGIN_ERROR_USER:
-			case self::LOGIN_ERROR_PASSWD:
-				$error_msg = '用户或密码错误，请重新输入';
-				break;
-		}
-
-		require_once View::getAdmView('user_head');
-		require_once View::getAdmView('login');
-		View::output();
 	}
 
 	/**
