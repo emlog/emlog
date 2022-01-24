@@ -164,6 +164,7 @@ footer .copyright {
 @media (min-width:576px) {.container{max-width: 540px}}
 @media (min-width:768px) {.container{max-width: 720px}}
 @media (min-width:992px) {.container {max-width: 960px}}
+@media (min-width:1201px) {.container {max-width: 1140px}}
 /* 设置 container 在小型屏幕上的内外边距 ，使其更符合小型屏幕的观感体验 */
 @media (min-width:768px)  {
     .container{
@@ -179,7 +180,8 @@ footer .copyright {
 @media (min-width:1px) {.rea-width{width: calc(100% - 18px)}}
 @media (min-width:576px) {.rea-width{width: 524px}}
 @media (min-width:768px) {.rea-width{width: 450px}}
-@media (min-width:992px) {.rea-width{width: 610px}}
+@media (min-width:992px) {.rea-width{width: 609px}}
+@media (min-width:1201px) {.rea-width{width: 730px}}
 
 /* 博客头部属性的配置
 ---------------------------------------------------*/
@@ -189,7 +191,7 @@ footer .copyright {
 	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1) /* 阴影 */
 }
 .blog-header-c {
-    max-width: 90%;
+    max-width: 1296px;
     height: 71.63px;
     display: flex;
     justify-content: space-between /* 导航栏为主轴方向两端对齐，即大标题与导航两部分，一个向左靠齐，一个向右靠齐 */
@@ -237,7 +239,7 @@ footer .copyright {
 	}
     .blog-header-toggle {
         display: none
-        }
+    }
 }
 /* 小屏幕 */
 @media (max-width:767px)  {
@@ -449,8 +451,7 @@ footer .copyright {
     margin-bottom: 243px
 }
 #calendar {
-    color: #212529;
-    margin-left: -10px
+    color: #212529
 }
 #calendar a {
     color: #000;
@@ -809,7 +810,7 @@ footer .copyright {
 .log-con {
     background-color: #ffffff;
     border-radius: var(--marRadius);
-    max-width: 800px;
+    max-width: 960px;
     padding: 30px;
     font-size: 16px;
     height: fit-content;
@@ -1100,7 +1101,7 @@ footer .copyright {
 /* 网页足部
 ---------------------------------------------------*/
 .text-center {
-    text-align: center !important;
+    text-align: center !important
 }
 
 /* 图片放大
@@ -1274,8 +1275,8 @@ img.zoom-img {
 @media all and (max-width: 991px) and (min-width: 768px) {
 
     #calendar {
-        transform: scale(0.7);
-        margin-left: -40px;
+        transform: scale(0.8);
+        margin-left: -14px;
         margin-top: -14px
     }
     .unstyle-li form {

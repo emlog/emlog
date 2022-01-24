@@ -364,7 +364,8 @@
   display: inline-block;
 }
 
-.editormd-mask,
+/* 修改：对于更换对话框容器位置后，产生的 ’undefined‘ 错误，这里选择直接隐藏。另外注释了一些会产生错误的样式  */
+/* .editormd-mask,
 .editormd-container-mask,
 .editormd-dialog-mask {
   display: none;
@@ -386,10 +387,12 @@
   position: fixed;
   background: #000;
   opacity: 0.2;
-  /* W3C */
   filter: alpha(opacity=20);
-  /* IE */
   z-index: 99998;
+} */
+
+.editormd-dialog-container .CodeMirror-placeholder {
+  display:none
 }
 
 .editormd-container-mask,
@@ -414,13 +417,13 @@
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2) {
   .editormd-container-mask,
   .editormd-dialog-mask-con {
-    background-image: url(../images/loading@2x.gif);
+    background-image: url(../images/loading.gif);
   }
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 3), only screen and (min-device-pixel-ratio: 3) {
   .editormd-container-mask,
   .editormd-dialog-mask-con {
-    background-image: url(../images/loading@3x.gif);
+    background-image: url(../images/loading.gif);
   }
 }
 .editormd-code-block-dialog textarea,

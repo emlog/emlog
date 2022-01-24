@@ -552,7 +552,7 @@ textarea {
     max-width: 100%;
 }
 
-/* 表格优化 */
+/* 移动端表格优化 */
 .table-responsive table{
     min-width:560px
 }
@@ -561,5 +561,25 @@ textarea {
 #accordionSidebar::-webkit-scrollbar{
     height: 10px;
     width: 0px;
-    background: rgba(0, 0, 0, 0.0);
+    background: rgba(0, 0, 0, 0.0)
+}
+#accordionSidebar{
+    /* 火狐浏览器隐藏滚动条 */
+    scrollbar-width: none
+}
+
+/* 后台置顶标志 */
+.flag-indexTop {
+    font-size: 12px;
+    color: white;
+    padding: 4px;
+    margin: 2px;
+    background: var(--success)
+}
+.flag-sortTop {
+    font-size: 12px;
+    color: white;
+    padding: 4px;
+    margin: 2px;
+    background: var(--warning)
 }

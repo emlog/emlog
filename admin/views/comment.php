@@ -86,7 +86,7 @@
 									<?= $comment ?>
                                 </a>
 								<?= $ishide ?>
-								<?php if ($top == 'y'): ?><img src="./views/images/top.png" title="置顶"/><?php endif ?>
+								<?php if ($top == 'y'): ?><span class="flag-indexTop" title="置顶">置顶</span><?php endif ?>
                             </td>
                             <td class="small">
                                 <?= $poster ?><?= $mail ?><?= $ip_info ?>
