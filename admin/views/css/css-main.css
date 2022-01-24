@@ -567,19 +567,3 @@ textarea {
     /* 火狐浏览器隐藏滚动条 */
     scrollbar-width: none
 }
-
-/* 后台置顶标志 */
-.flag-indexTop {
-    font-size: 12px;
-    color: white;
-    padding: 4px;
-    margin: 2px;
-    background: var(--success)
-}
-.flag-sortTop {
-    font-size: 12px;
-    color: white;
-    padding: 4px;
-    margin: 2px;
-    background: var(--warning)
-}
