@@ -107,8 +107,8 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
                         <tr>
                             <td style="width: 20px;"><input type="checkbox" name="blog[]" value="<?= $value['gid'] ?>" class="ids"/></td>
                             <td><a href="article.php?action=edit&gid=<?= $value['gid'] ?>"><?= $value['title'] ?></a>
-								<?php if ($value['top'] == 'y'): ?><img src="./views/images/top.png" title="首页置顶"/><?php endif ?>
-								<?php if ($value['sortop'] == 'y'): ?><img src="./views/images/sortop.png" title="分类置顶"/><?php endif ?>
+								<?php if ($value['top'] == 'y'): ?><span class="flag-indexTop" title="首页置顶">首页置顶</span><?php endif ?>
+								<?php if ($value['sortop'] == 'y'): ?><span class="flag-sortTop" title="分类置顶">分类置顶</span><?php endif ?>
 								<?php if (!$draft && $value['checked'] == 'n'): ?>
                                     <span style="color:red;">[待审]</span><?php endif ?>
                                 <div>
