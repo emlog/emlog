@@ -16,6 +16,10 @@ $user_cache = $CACHE->readCache('user');
 $action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
 $admin_path_code = isset($_GET['s']) ? addslashes(htmlClean($_GET['s'])) : '';
 
+if (!isset($_SESSION)) {
+	session_start();
+}
+
 /**
  * 登录
  */
@@ -81,7 +85,7 @@ if ($action == 'register') {
 	$username = isset($_POST['user']) ? addslashes(trim($_POST['user'])) : '';
 	$passwd = isset($_POST['passwd']) ? addslashes(trim($_POST['passwd'])) : '';
 	$repasswd = isset($_POST['repasswd']) ? addslashes(trim($_POST['repasswd'])) : '';
-	$img_code = Option::get('login_code') == 'y' && isset($_POST['imgcode']) ? addslashes(trim(strtoupper($_POST['imgcode']))) : '';
+	$img_code = isset($_POST['imgcode']) ? addslashes(trim(strtoupper($_POST['imgcode']))) : '';
 
 	if (!$username) {
 		emDirect('./account.php?action=signup&error_login=1');
@@ -96,13 +100,16 @@ if ($action == 'register') {
 		emDirect('./account.php?action=signup&error_pwd2=1');
 	}
 
+	$session_code = $_SESSION['code'] ?? '';
+	if ((!$img_code || $img_code !== $session_code) && Option::get('login_code') === 'y') {
+		unset($_SESSION['code']);
+		emDirect('./account.php?action=signup&err_ckcode=1');
+	}
+
 	$PHPASS = new PasswordHash(8, true);
 	$passwd = $PHPASS->HashPassword($passwd);
 
-	$role = ROLE_USER;
-	$ischeck = 1;
-
-	$User_Model->addUser($username, $passwd, $role, $ischeck);
+	$User_Model->addUser($username, $passwd, ROLE_WRITER, 1);
 	$CACHE->updateCache(array('sta', 'user'));
 	emDirect("./account.php?action=signin&succ_reg=1");
 }

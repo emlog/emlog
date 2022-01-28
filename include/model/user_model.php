@@ -19,16 +19,16 @@ class User_Model {
 			$startId = ($page - 1) * $perpage_num;
 			$condition = "LIMIT $startId, " . $perpage_num;
 		}
-		$res = $this->db->query("SELECT * FROM " . DB_PREFIX . "user $condition");
+		$res = $this->db->query("SELECT * FROM " . DB_PREFIX . "user order by uid desc $condition");
 		$users = [];
 		while ($row = $this->db->fetch_array($res)) {
 			$row['name'] = htmlspecialchars($row['nickname']);
 			$row['login'] = htmlspecialchars($row['username']);
 			$row['email'] = htmlspecialchars($row['email']);
 			$row['description'] = htmlspecialchars($row['description']);
-			$row['ip'] = $row['ip'];
 			$row['create_time'] = smartDate($row['create_time']);
 			$row['update_time'] = smartDate($row['update_time']);
+			$row['role'] = $row['role'] === ROLE_ADMIN ? ($row['uid'] == 1 ? '创始人' : '管理员') : '注册用户';
 			$users[] = $row;
 		}
 		return $users;

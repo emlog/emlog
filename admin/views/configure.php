@@ -45,18 +45,14 @@
 
             <div class="form-group form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="login_code" id="login_code" <?= $conf_login_code ?> >
-                <label class="form-check-label">登录验证码</label>
+                <label class="form-check-label">登录注册验证码</label>
             </div>
 
             <hr>
 
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="iscomment" id="iscomment" <?= $conf_iscomment ?> />
-                <label>开启评论</label>，
-            </div>
-
-            <div class="form-check form-inline">
-                发表评论间隔 <input class="form-control" value="<?= $comment_interval ?>" name="comment_interval" style="width: 100px;"/>秒
+                <label>开启评论</label>
             </div>
 
             <div class="form-check">
@@ -79,12 +75,17 @@
                 <input class="form-check-input" type="checkbox" value="y" name="comment_paging" id="comment_paging" <?= $conf_comment_paging ?> />
                 <label>评论分页</label>
             </div>
-            <div class="form-check form-inline">
-                每页显示<input maxlength="5" style="width:50px;" class="form-control" value="<?= $comment_pnum ?>" name="comment_pnum"/>条评论，
-                <select name="comment_order" class="form-control" style="width: 100px;">
-                    <option value="newer" <?= $ex3 ?>>较新的</option>
-                    <option value="older" <?= $ex4 ?>>较旧的</option>
-                </select>排在前面
+            <div class="form-group form-inline">
+                每页显示评论条数：<input maxlength="5" style="width:50px;" class="form-control" value="<?= $comment_pnum ?>" name="comment_pnum"/>
+            </div>
+            <div class="form-group form-inline">
+                评论排序方式：<select name="comment_order" class="form-control" style="width: 120px;">
+                    <option value="newer" <?= $ex3 ?>>新的靠前</option>
+                    <option value="older" <?= $ex4 ?>>旧的靠前</option>
+                </select>
+            </div>
+            <div class="form-group form-inline">
+                发表评论间隔（秒）： <input class="form-control mx-sm-3" value="<?= $comment_interval ?>" name="comment_interval" style="width: 100px;"/>
             </div>
 
             <hr>

@@ -140,7 +140,7 @@ if ($action == 'operate_log') {
 		case 'pub':
 			foreach ($logs as $val) {
 				$Log_Model->hideSwitch($val, 'n');
-				if (ROLE == ROLE_ADMIN) {
+				if (user::isAdmin()) {
 					$Log_Model->checkSwitch($val, 'y');
 				}
 			}

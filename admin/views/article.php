@@ -66,7 +66,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
                         <option value="-1" <?php if ($sid == -1) echo 'selected' ?>>未分类</option>
                     </select>
                 </div>
-				<?php if (ROLE == ROLE_ADMIN && count($user_cache) > 1): ?>
+				<?php if (User::isAdmin() && count($user_cache) > 1): ?>
                     <div id="f_t_user" class="mx-1">
                         <select name="byuser" id="byuser" onChange="selectUser(this);" class="form-control">
                             <option value="" selected="selected">按作者查看</option>
@@ -112,10 +112,10 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 								<?php if (!$draft && $value['checked'] == 'n'): ?>
                                     <span style="color:red;">[待审]</span><?php endif ?>
                                 <div>
-									<?php if (!$draft && ROLE == ROLE_ADMIN && $value['checked'] == 'n'): ?>
+									<?php if (!$draft && User::isAdmin() && $value['checked'] == 'n'): ?>
                                         <a class="badge badge-success"
                                            href="article.php?action=operate_log&operate=check&gid=<?= $value['gid'] ?>&token=<?= LoginAuth::genToken() ?>">审核</a>
-									<?php elseif (!$draft && ROLE == ROLE_ADMIN && $author_role == ROLE_WRITER): ?>
+									<?php elseif (!$draft && User::isAdmin() && $author_role == ROLE_WRITER): ?>
                                         <a class="badge badge-danger"
                                            href="article.php?action=operate_log&operate=uncheck&gid=<?= $value['gid'] ?>&token=<?= LoginAuth::genToken() ?>">驳回</a>
 									<?php endif ?>
@@ -135,7 +135,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
             <input name="operate" id="operate" value="" type="hidden"/>
             <div class="form-inline">
 				<?php if (!$draft): ?>
-					<?php if (ROLE == ROLE_ADMIN): ?>
+					<?php if (User::isAdmin()): ?>
                         <select name="top" id="top" onChange="changeTop(this);" class="form-control m-1">
                             <option value="" selected="selected">置顶</option>
                             <option value="top">首页置顶</option>
@@ -165,7 +165,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 						?>
                         <option value="-1">未分类</option>
                     </select>
-					<?php if (ROLE == ROLE_ADMIN && count($user_cache) > 1): ?>
+					<?php if (User::isAdmin() && count($user_cache) > 1): ?>
                         <select name="author" id="author" onChange="changeAuthor(this);" class="form-control m-1">
                             <option value="" selected="selected">更改作者</option>
 							<?php foreach ($user_cache as $key => $val):

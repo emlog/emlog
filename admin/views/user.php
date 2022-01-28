@@ -25,7 +25,7 @@
 </div>
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold">已创建的用户 (<?= $usernum ?>)</h6>
+        <h6 class="m-0 font-weight-bold">用户数 (<?= $usernum ?>)</h6>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -46,7 +46,8 @@
 				<?php
 				foreach ($users as $key => $val):
 					$avatar = empty($user_cache[$val['uid']]['avatar']) ? './views/images/avatar.svg' : '../' . $user_cache[$val['uid']]['avatar'];
-					?>
+
+                ?>
                     <tr>
                         <td><img src="<?= $avatar ?>" height="40" width="40" class="rounded-circle"/></td>
                         <td>
@@ -59,8 +60,7 @@
 							<?= "<br/>" . $val['description'] ?>
                         </td>
                         <td>
-							<?= $val['role'] == ROLE_ADMIN ? ($val['uid'] == 1 ? '创始人' : '管理员') : '作者' ?>
-							<?php if ($val['role'] == ROLE_WRITER && $val['ischeck'] == 'y') echo '(文章需审核)' ?>
+							<?= $val['role'] ?>
                         </td>
                         <td><a href="article.php?uid=<?= $val['uid'] ?>"><?= $sta_cache[$val['uid']]['lognum'] ?></a></td>
                         <td><?= $val['ip'] ?></td>
@@ -95,7 +95,7 @@
                     <div class="form-group">
                         <label for="sortname">角色</label>
                         <select name="role" id="role" class="form-control">
-                            <option value="writer">作者（投稿人）</option>
+                            <option value="writer">注册用户（投稿人）</option>
                             <option value="admin">管理员</option>
                         </select>
                     </div>

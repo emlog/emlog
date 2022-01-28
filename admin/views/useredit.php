@@ -9,7 +9,7 @@
     <div class="alert alert-danger">密码长度不得小于6位</div><?php endif ?>
 <?php if (isset($_GET['error_pwd2'])): ?>
     <div class="alert alert-danger">两次输入密码不一致</div><?php endif ?>
-<h1 class="h3 mb-4 text-gray-800">修改作者资料</h1>
+<h1 class="h3 mb-4 text-gray-800">修改资料</h1>
 <form action="user.php?action=update" method="post">
     <div class="form-group">
         <label for="username">用户名</label>

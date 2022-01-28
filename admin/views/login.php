@@ -20,7 +20,7 @@
                                     <div class="alert alert-danger">用户或密码错误，请重新输入</div><?php endif ?>
                                 <form method="post" class="user" action="./account.php?action=login&s=<?= $admin_path_code ?>">
                                     <div class="form-group">
-                                        <input type="text" class="form-control form-control-user" id="user" name="user" aria-describedby="emailHelp" placeholder="用户名" required
+                                        <input type="text" class="form-control form-control-user" id="user" name="user" aria-describedby="emailHelp" placeholder="用户名\邮箱" required
                                                autofocus>
                                     </div>
                                     <div class="form-group">
@@ -57,7 +57,7 @@
 </body>
 </html>
 <script>
-    setTimeout(hideActived, 3600);
+    setTimeout(hideActived, 5000);
     $('#checkcode').click(function () {
         var timestamp = new Date().getTime();
         $(this).attr("src", "../include/lib/checkcode.php?" + timestamp);

@@ -256,7 +256,7 @@ function blog_navi() {
 				if ($value['pid'] != 0) {
 					continue;
 				}
-				if ($value['url'] == ROLE_ADMIN && (ROLE == ROLE_ADMIN || ROLE == ROLE_WRITER)):
+				if ($value['url'] == ROLE_ADMIN && (User::isAdmin() || ROLE == ROLE_WRITER)):
 					?>
                     <li class="list-item list-menu"><a href="<?= BLOG_URL ?>admin/" class="nav-link">管理</a></li>
                     <li class="list-item list-menu"><a href="<?= BLOG_URL ?>admin/account.php?action=logout" class="nav-link">退出</a></li>
@@ -314,7 +314,7 @@ function topflg($top, $sortop = 'n', $sortid = null) {
  * 文章查看页：编辑链接
  */
 function editflg($logid, $author) {
-	$editflg = ROLE == ROLE_ADMIN || $author == UID ? '<a href="' . BLOG_URL . 'admin/article.php?action=edit&gid=' . $logid . '" target="_blank">&nbsp;&nbsp;&nbsp;编辑</a>' : '';
+	$editflg = User::isAdmin() || $author == UID ? '<a href="' . BLOG_URL . 'admin/article.php?action=edit&gid=' . $logid . '" target="_blank">&nbsp;&nbsp;&nbsp;编辑</a>' : '';
 	echo $editflg;
 }
 

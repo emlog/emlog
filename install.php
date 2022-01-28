@@ -468,7 +468,7 @@ replynum int(10) unsigned NOT NULL default '0' COMMENT '回复数量',
 PRIMARY KEY (id),
 KEY author (author)
 )" . $table_charset_sql . "
-INSERT INTO {$db_prefix}user (uid, username, password, nickname, role, create_time, update_time) VALUES (1,'$admin','" . $adminpw . "', 'emer','admin', " . time() . ", " . time() . ");
+INSERT INTO {$db_prefix}user (uid, username, password, nickname, role, create_time, update_time) VALUES (1,'$admin','" . $adminpw . "', 'emer','founder', " . time() . ", " . time() . ");
 DROP TABLE IF EXISTS {$db_prefix}storage;
 CREATE TABLE {$db_prefix}storage (
   `sid` int(8) NOT NULL AUTO_INCREMENT COMMENT '对象存储表',

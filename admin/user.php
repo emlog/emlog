@@ -142,7 +142,6 @@ if ($action == 'update') {
 
 if ($action == 'del') {
 	LoginAuth::checkToken();
-	$users = $User_Model->getUsers();
 	$uid = isset($_GET['uid']) ? (int)$_GET['uid'] : '';
 
 	if (UID == $uid) {

@@ -133,7 +133,7 @@ class Comment_Model {
 		$andQuery = '1=1';
 		$andQuery .= $blogId ? " and a.gid=$blogId" : '';
 		$andQuery .= $hide ? " and a.hide='$hide'" : '';
-		if (ROLE == ROLE_ADMIN) {
+		if (User::isAdmin()) {
 			$sql = "SELECT count(*) FROM " . DB_PREFIX . "comment as a where $andQuery";
 		} else {
 			$sql = "SELECT count(*) FROM " . DB_PREFIX . "comment as a, " . DB_PREFIX . "blog as b where $andQuery and a.gid=b.gid and b.author=" . UID;
@@ -313,7 +313,7 @@ class Comment_Model {
 	}
 
 	function isYoursComment($cid) {
-		if (ROLE == ROLE_ADMIN || ROLE == ROLE_VISITOR) {
+		if (User::isAdmin() || ROLE == ROLE_VISITOR) {
 			return true;
 		}
 		$query = $this->db->query("SELECT a.cid FROM " . DB_PREFIX . "comment as a," . DB_PREFIX . "blog as b WHERE a.cid=$cid and a.gid=b.gid AND b.author=" . UID);

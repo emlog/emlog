@@ -21,7 +21,7 @@
     <h1 class="h3 mb-0 text-gray-800">设置</h1>
 </div>
 <div class="panel-heading">
-	<?php if (ROLE == ROLE_ADMIN): ?>
+	<?php if (User::isAdmin()): ?>
         <ul class="nav nav-pills">
             <li class="nav-item"><a class="nav-link" href="./configure.php">基本设置</a></li>
             <li class="nav-item"><a class="nav-link" href="./seo.php">SEO设置</a></li>

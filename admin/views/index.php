@@ -5,7 +5,7 @@
         <h1 class="h3 mb-0 text-gray-800">Hi，<a class="small" href="./blogger.php"><?= $user_cache[UID]['name'] ?></a></h1>
 		<?php doAction('adm_main_top') ?>
     </div>
-<?php if (ROLE == ROLE_ADMIN): ?>
+<?php if (User::isAdmin()): ?>
     <div class="row">
         <div class="col-lg-6 mb-4">
             <div class="card shadow mb-4">

@@ -38,7 +38,7 @@
             <li class="nav-item"><a class="nav-link <?php if ($hide == 'y') {
 					echo 'active';
 				} ?>" href="./comment.php?hide=y&<?= $addUrl_1 ?>">待审<?php
-					$hidecmnum = ROLE == ROLE_ADMIN ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
+					$hidecmnum = User::isAdmin() ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
 					if ($hidecmnum > 0) echo '(' . $hidecmnum . ')';
 					?></a>
             </li>
@@ -90,7 +90,7 @@
                             </td>
                             <td class="small">
                                 <?= $poster ?><?= $mail ?><?= $ip_info ?>
-								<?php if (ROLE == ROLE_ADMIN): ?>
+								<?php if (User::isAdmin()): ?>
                                     <a href="javascript: em_confirm('<?= $ip ?>', 'commentbyip', '<?= LoginAuth::genToken() ?>');"
                                        class="badge badge-pill badge-warning">按IP删除</a>
 								<?php endif ?>

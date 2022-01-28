@@ -66,7 +66,7 @@ class LoginAuth {
 			return self::LOGIN_ERROR_USER;
 		}
 		$sessionCode = $_SESSION['code'] ?? '';
-		if (Option::get('login_code') === 'y' && (empty($imgcode) || $imgcode != $sessionCode)) {
+		if ((empty($imgcode) || $imgcode !== $sessionCode) && Option::get('login_code') === 'y') {
 			unset($_SESSION['code']);
 			return self::LOGIN_ERROR_AUTHCODE;
 		}

@@ -29,10 +29,10 @@ define('ISLOGIN', LoginAuth::isLogin());
 date_default_timezone_set(Option::get('timezone'));
 
 //用户组
-const ROLE_ADMIN = 'admin';          //管理员
-const ROLE_WRITER = 'writer';        //联合撰写人
-const ROLE_USER = 'user';            //普通用户
-const ROLE_VISITOR = 'visitor';      //游客
+const ROLE_FOUNDER = 'founder';          //创始人
+const ROLE_ADMIN = 'admin';              //管理员
+const ROLE_WRITER = 'writer';            //用户
+const ROLE_VISITOR = 'visitor';          //游客
 
 //用户角色
 define('ROLE', ISLOGIN === true ? $userData['role'] : ROLE_VISITOR);
@@ -53,9 +53,9 @@ const ADMIN_TEMPLATE_PATH = EMLOG_ROOT . '/admin/views/';
 //官方服务域名
 const OFFICIAL_SERVICE_HOST = 'https://www.emlog.net/';
 //错误码
-const MSGCODE_EMKEY_INVALID = 1001;  // 错误的注册码
-const MSGCODE_NO_UPUPDATE = 1002;    // 没有可用的版本更新
-const MSGCODE_SUCCESS = 200;         // 成功
+const MSGCODE_EMKEY_INVALID = 1001;      // 错误的注册码
+const MSGCODE_NO_UPUPDATE = 1002;        // 没有可用的版本更新
+const MSGCODE_SUCCESS = 200;             // 成功
 
 $active_plugins = Option::get('active_plugins');
 $emHooks = [];

@@ -4,5 +4,4 @@
 
 User-agent: *
 Disallow: /admin/
-Disallow: /include/
 Disallow: /config.php

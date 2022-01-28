@@ -33,7 +33,7 @@
             <a class="nav-link" href="./">EMLOG PRO <?php if (!Register::isRegLocal()) : ?>未注册<?php endif ?></a>
         </li>
         <hr class="sidebar-divider my-0">
-		<?php if (ROLE == ROLE_ADMIN): ?>
+		<?php if (User::isAdmin()): ?>
             <li class="nav-item" id="menu_home">
                 <a class="nav-link" href="./"><i class="icofont-dashboard icofont-1x"></i><span>管理后台</span></a>
             </li>
@@ -48,7 +48,7 @@
                     <a class="collapse-item" id="menu_write" href="article.php?action=write">写文章</a>
                     <a class="collapse-item" id="menu_log" href="article.php">文章</a>
                     <a class="collapse-item" id="menu_draft" href="article.php?draft=1">草稿</a>
-					<?php if (ROLE == ROLE_ADMIN): ?>
+					<?php if (User::isAdmin()): ?>
                         <a class="collapse-item" id="menu_sort" href="sort.php">分类</a>
                         <a class="collapse-item" id="menu_tag" href="tag.php">标签</a>
 					<?php endif ?>
@@ -64,7 +64,10 @@
         <li class="nav-item" id="menu_media">
             <a class="nav-link" href="media.php"><i class="icofont-image"></i><span>资源</span></a>
         </li>
-		<?php if (ROLE == ROLE_ADMIN): ?>
+		<?php if (User::isAdmin()): ?>
+            <li class="nav-item" id="menu_user">
+                <a class="nav-link" href="user.php"><i class="icofont-user"></i><span>用户</span></a>
+            </li>
             <li class="nav-item" id="menu_page">
                 <a class="nav-link" href="page.php"><i class="icofont-page"></i><span>页面</span></a>
             </li>
@@ -102,7 +105,6 @@
                 </a>
                 <div id="menu_sys" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" id="menu_user" href="user.php">用户</a>
                         <a class="collapse-item" id="menu_data" href="data.php">数据</a>
                         <a class="collapse-item" id="menu_setting" href="configure.php">设置</a>
                     </div>

@@ -37,7 +37,7 @@ class Log_Model {
 	 * update article
 	 */
 	function updateLog($logData, $blogId) {
-		$author = ROLE == ROLE_ADMIN ? '' : 'and author=' . UID;
+		$author = User::isAdmin() ? '' : 'and author=' . UID;
 		$Item = [];
 		foreach ($logData as $key => $data) {
 			$Item[] = "$key='$data'";
@@ -61,7 +61,7 @@ class Log_Model {
 		if ($spot == 0) {
 			$author = '';
 		} else {
-			$author = ROLE == ROLE_ADMIN ? '' : 'and author=' . UID;
+			$author = User::isAdmin() ? '' : 'and author=' . UID;
 		}
 
 		$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "blog WHERE type='$type' $hide_state $author $condition");
@@ -137,7 +137,7 @@ class Log_Model {
 	function getLogsForAdmin($condition = '', $hide_state = '', $page = 1, $type = 'blog') {
 		$perpage_num = Option::get('admin_perpage_num');
 		$start_limit = !empty($page) ? ($page - 1) * $perpage_num : 0;
-		$author = ROLE == ROLE_ADMIN ? '' : 'and author=' . UID;
+		$author = User::isAdmin() ? '' : 'and author=' . UID;
 		$hide_state = $hide_state ? "and hide='$hide_state'" : '';
 		$limit = "LIMIT $start_limit, " . $perpage_num;
 		$sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE type='$type' $author $hide_state $condition $limit";
@@ -203,7 +203,7 @@ class Log_Model {
 	 * delete article
 	 */
 	function deleteLog($blogId) {
-		$author = ROLE == ROLE_ADMIN ? '' : 'and author=' . UID;
+		$author = User::isAdmin() ? '' : 'and author=' . UID;
 		$this->db->query("DELETE FROM " . DB_PREFIX . "blog where gid=$blogId $author");
 		if ($this->db->affected_rows() < 1) {
 			emMsg('权限不足！', './');
@@ -222,7 +222,7 @@ class Log_Model {
 	 * @param string $state
 	 */
 	function hideSwitch($blogId, $state) {
-		$author = ROLE == ROLE_ADMIN ? '' : 'and author=' . UID;
+		$author = User::isAdmin() ? '' : 'and author=' . UID;
 		$this->db->query("UPDATE " . DB_PREFIX . "blog SET hide='$state' WHERE gid=$blogId $author");
 		$this->db->query("UPDATE " . DB_PREFIX . "comment SET hide='$state' WHERE gid=$blogId");
 		$Comment_Model = new Comment_Model();
