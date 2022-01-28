@@ -29,12 +29,12 @@ if ($action == 'new') {
 	$login = isset($_POST['login']) ? addslashes(trim($_POST['login'])) : '';
 	$password = isset($_POST['password']) ? addslashes(trim($_POST['password'])) : '';
 	$password2 = isset($_POST['password2']) ? addslashes(trim($_POST['password2'])) : '';
-	$role = isset($_POST['role']) ? addslashes(trim($_POST['role'])) : ROLE_WRITER;
+	$role = isset($_POST['role']) ? addslashes(trim($_POST['role'])) : self::ROLE_WRITER;
 	$ischeck = isset($_POST['ischeck']) ? addslashes(trim($_POST['ischeck'])) : 'n';
 
 	LoginAuth::checkToken();
 
-	if ($role == ROLE_ADMIN) {
+	if (User::isAdmin()) {
 		$ischeck = 'n';
 	}
 
@@ -66,9 +66,9 @@ if ($action == 'edit') {
 	extract($data);
 
 	$ex1 = $ex2 = $ex3 = $ex4 = '';
-	if ($role == ROLE_WRITER) {
+	if ($role == User::ROLE_WRITER) {
 		$ex1 = 'selected="selected"';
-	} elseif ($role == ROLE_ADMIN) {
+	} elseif (User::isAdmin()) {
 		$ex2 = 'selected="selected"';
 	}
 	if ($ischeck == 'n') {
@@ -90,13 +90,13 @@ if ($action == 'update') {
 	$password2 = isset($_POST['password2']) ? addslashes(trim($_POST['password2'])) : '';
 	$email = isset($_POST['email']) ? addslashes(trim($_POST['email'])) : '';
 	$description = isset($_POST['description']) ? addslashes(trim($_POST['description'])) : '';
-	$role = isset($_POST['role']) ? addslashes(trim($_POST['role'])) : ROLE_WRITER;
+	$role = isset($_POST['role']) ? addslashes(trim($_POST['role'])) : User::ROLE_WRITER;
 	$uid = isset($_POST['uid']) ? (int)$_POST['uid'] : '';
 	$ischeck = isset($_POST['ischeck']) ? addslashes(trim($_POST['ischeck'])) : 'n';
 
 	LoginAuth::checkToken();
 
-	if ($role == ROLE_ADMIN) {
+	if (User::isAdmin()) {
 		$ischeck = 'n';
 	}
 

@@ -256,7 +256,7 @@ function blog_navi() {
 				if ($value['pid'] != 0) {
 					continue;
 				}
-				if ($value['url'] == ROLE_ADMIN && (User::isAdmin() || ROLE == ROLE_WRITER)):
+				if ($value['url'] == 'admin' && (User::isVistor())):
 					?>
                     <li class="list-item list-menu"><a href="<?= BLOG_URL ?>admin/" class="nav-link">管理</a></li>
                     <li class="list-item list-menu"><a href="<?= BLOG_URL ?>admin/account.php?action=logout" class="nav-link">退出</a></li>
@@ -497,7 +497,7 @@ function blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allo
                       is-chinese="<?= $isNeedChinese ?>">
                     <input type="hidden" name="gid" value="<?= $logid ?>"/>
                     <textarea class="form-control log_comment" name="comment" id="comment" rows="10" tabindex="4" required></textarea>
-					<?php if (ROLE == ROLE_VISITOR): ?>
+					<?php if (User::isVistor()): ?>
                         <div class="comment-info" id="comment-info">
                             <input class="form-control com_control comment-name" id="info_n" autocomplete="off" type="text" name="comname" maxlength="49"
                                    value="<?= $ckname ?>" size="22"

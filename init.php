@@ -35,7 +35,7 @@ const ROLE_WRITER = 'writer';            //用户
 const ROLE_VISITOR = 'visitor';          //游客
 
 //用户角色
-define('ROLE', ISLOGIN === true ? $userData['role'] : ROLE_VISITOR);
+define('ROLE', ISLOGIN === true ? $userData['role'] : User::ROLE_VISITOR);
 //用户ID
 define('UID', ISLOGIN === true ? $userData['uid'] : '');
 //站点固定地址

@@ -140,7 +140,7 @@ if ($action == 'operate_log') {
 		case 'pub':
 			foreach ($logs as $val) {
 				$Log_Model->hideSwitch($val, 'n');
-				if (user::isAdmin()) {
+				if (User::isAdmin()) {
 					$Log_Model->checkSwitch($val, 'y');
 				}
 			}
@@ -155,7 +155,7 @@ if ($action == 'operate_log') {
 			emDirect("./article.php?active_move=1");
 			break;
 		case 'change_author':
-			if (ROLE != ROLE_ADMIN) {
+			if (!User::isAdmin()) {
 				emMsg('权限不足！', './');
 			}
 			foreach ($logs as $val) {
@@ -165,7 +165,7 @@ if ($action == 'operate_log') {
 			emDirect("./article.php?active_change_author=1");
 			break;
 		case 'check':
-			if (ROLE != ROLE_ADMIN) {
+			if (!User::isAdmin()) {
 				emMsg('权限不足！', './');
 			}
 			$Log_Model->checkSwitch($gid, 'y');
@@ -173,7 +173,7 @@ if ($action == 'operate_log') {
 			emDirect("./article.php?active_ck=1");
 			break;
 		case 'uncheck':
-			if (ROLE != ROLE_ADMIN) {
+			if (!User::isAdmin()) {
 				emMsg('权限不足！', './');
 			}
 			$Log_Model->checkSwitch($gid, 'n');

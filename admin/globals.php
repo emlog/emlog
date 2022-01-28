@@ -18,7 +18,7 @@ $action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
 loginAuth::loginPage();
 
 $request_uri = strtolower(substr(basename($_SERVER['SCRIPT_NAME']), 0, -4));
-if (ROLE === ROLE_WRITER && !in_array($request_uri, array('article_write', 'article', 'twitter', 'media', 'blogger', 'comment', 'index', 'article_save'))) {
+if (ROLE === User::ROLE_WRITER && !in_array($request_uri, array('article_write', 'article', 'twitter', 'media', 'blogger', 'comment', 'index', 'article_save'))) {
 	emMsg('权限不足！', './');
 }
 

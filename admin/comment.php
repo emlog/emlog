@@ -36,7 +36,7 @@ if (!$action) {
 
 if ($action === 'delbyip') {
 	LoginAuth::checkToken();
-	if (ROLE !== ROLE_ADMIN) {
+	if (!User::isAdmin()) {
 		emMsg('权限不足！', './');
 	}
 	$ip = $_GET['ip'] ? addslashes($_GET['ip']) : '';

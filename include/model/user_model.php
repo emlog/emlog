@@ -28,7 +28,7 @@ class User_Model {
 			$row['description'] = htmlspecialchars($row['description']);
 			$row['create_time'] = smartDate($row['create_time']);
 			$row['update_time'] = smartDate($row['update_time']);
-			$row['role'] = $row['role'] === ROLE_ADMIN ? ($row['uid'] == 1 ? '创始人' : '管理员') : '注册用户';
+			$row['role'] = User::getRoleName($row['role']);
 			$users[] = $row;
 		}
 		return $users;

@@ -97,7 +97,7 @@ class Comment_Model {
 			$condition = "LIMIT $startId, " . $perpage_num;
 		}
 
-		$andQuery .= ROLE != ROLE_ADMIN ? ' and b.author=' . UID : '';
+		$andQuery .= !User::isAdmin() ? ' and b.author=' . UID : '';
 		$sql = "SELECT *,a.hide,a.date,a.top FROM " . DB_PREFIX . "comment as a, " . DB_PREFIX . "blog as b where $andQuery and a.gid=b.gid $orderBy $condition";
 
 		$ret = $this->db->query($sql);
@@ -283,7 +283,7 @@ class Comment_Model {
 		}
 
 		$ischkcomment = Option::get('ischkcomment');
-		$hide = ROLE == ROLE_VISITOR ? $ischkcomment : 'n';
+		$hide = User::isVistor() ? $ischkcomment : 'n';
 
 		$sql = 'INSERT INTO ' . DB_PREFIX . "comment (date,poster,gid,comment,mail,url,hide,ip,pid)
                 VALUES ('$utctimestamp','$name','$blogId','$content','$mail','$url','$hide','$ipaddr','$pid')";
@@ -313,7 +313,7 @@ class Comment_Model {
 	}
 
 	function isYoursComment($cid) {
-		if (User::isAdmin() || ROLE == ROLE_VISITOR) {
+		if (User::isAdmin() || User::isVistor()) {
 			return true;
 		}
 		$query = $this->db->query("SELECT a.cid FROM " . DB_PREFIX . "comment as a," . DB_PREFIX . "blog as b WHERE a.cid=$cid and a.gid=b.gid AND b.author=" . UID);

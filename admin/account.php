@@ -109,7 +109,7 @@ if ($action == 'register') {
 	$PHPASS = new PasswordHash(8, true);
 	$passwd = $PHPASS->HashPassword($passwd);
 
-	$User_Model->addUser($username, $passwd, ROLE_WRITER, 1);
+	$User_Model->addUser($username, $passwd, User::ROLE_WRITER, 1);
 	$CACHE->updateCache(array('sta', 'user'));
 	emDirect("./account.php?action=signin&succ_reg=1");
 }

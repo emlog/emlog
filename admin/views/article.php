@@ -115,7 +115,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 									<?php if (!$draft && User::isAdmin() && $value['checked'] == 'n'): ?>
                                         <a class="badge badge-success"
                                            href="article.php?action=operate_log&operate=check&gid=<?= $value['gid'] ?>&token=<?= LoginAuth::genToken() ?>">审核</a>
-									<?php elseif (!$draft && User::isAdmin() && $author_role == ROLE_WRITER): ?>
+									<?php elseif (!$draft && User::isAdmin() && $author_role == User::ROLE_WRITER): ?>
                                         <a class="badge badge-danger"
                                            href="article.php?action=operate_log&operate=uncheck&gid=<?= $value['gid'] ?>&token=<?= LoginAuth::genToken() ?>">驳回</a>
 									<?php endif ?>

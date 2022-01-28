@@ -72,7 +72,7 @@ class Log_Model {
 	 * Get single article for admin
 	 */
 	function getOneLogForAdmin($blogId) {
-		$author = ROLE === ROLE_ADMIN ? '' : 'AND author=' . UID;
+		$author = User::isAdmin() ? '' : 'AND author=' . UID;
 		$sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE gid=$blogId $author";
 		$res = $this->db->query($sql);
 		if ($this->db->affected_rows() < 1) {
