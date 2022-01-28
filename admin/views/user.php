@@ -95,7 +95,7 @@
                     <div class="form-group">
                         <label for="sortname">角色</label>
                         <select name="role" id="role" class="form-control">
-                            <option value="writer">注册用户（投稿人）</option>
+                            <option value="writer">用户</option>
                             <option value="admin">管理员</option>
                         </select>
                     </div>
@@ -137,7 +137,5 @@
         })
     });
     setTimeout(hideActived, 2600);
-    $("#menu_category_sys").addClass('active');
-    $("#menu_sys").addClass('show');
     $("#menu_user").addClass('active');
 </script>
