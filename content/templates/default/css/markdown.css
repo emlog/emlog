@@ -66,6 +66,10 @@
     text-decoration: line-through
 }
 
+.markdown a{
+    text-decoration: underline;
+}
+
 .markdown blockquote {
     color: #666;
     border-left: 4px solid #ddd;

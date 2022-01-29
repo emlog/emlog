@@ -40,9 +40,9 @@ require_once View::getView('module');
         <div class="blog-header-subtitle"><?= $bloginfo ?></div>
         <div class="blog-header-toggle">
             <svg  class="blogtoggle-icon" >
-                <rect x="0.98" y="0.95" fill="#5F5F5F" width="26.05" height="1.66"/>
-                <rect x="1.02" y="8.18" fill="#5F5F5F" width="26.05" height="1.66"/>
-                <rect x="0.98" y="16.23" fill="#5F5F5F" width="26.05" height="1.66"/>
+                <rect x="1" y="1" fill="#5F5F5F" width="26" height="1.6"/>
+                <rect x="1" y="8" fill="#5F5F5F" width="26" height="1.6"/>
+                <rect x="1" y="15" fill="#5F5F5F" width="26" height="1.6"/>
             </svg>
         </div>
 
