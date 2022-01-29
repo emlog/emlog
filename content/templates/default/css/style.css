@@ -214,8 +214,8 @@ footer .copyright {
     padding: 1rem 0.5rem 1rem 0.5rem
 }
 .list-menu {
-		list-style: none
-	}
+	list-style: none
+}
 
 /* Responsive configuration of navigation list
    On screens of different sizes, the navigation menu will have different styles.
@@ -909,58 +909,6 @@ footer .copyright {
 }
 @media (max-width:415px) {.loglist-cover{ height: 160px;overflow: hidden}.loglist-cover img {position:unset;    width: 730px;}}
 @media (max-width:375px) {.loglist-cover{ height: 140px;overflow: hidden}.loglist-cover img {position:unset;    width: 730px;}}
-/* Paper clip */
-.clip,
-.clip::after,
-.clip::before {
-    border-color: white!important;
-}
-.clip {
-    margin-top: -38px;
-    width: 40px;
-    margin-bottom: 40px;
-    border-bottom: none;
-    border-left: 0px solid;
-    border-right: 6px solid;
-    border-top: none;
-    position: relative;
-    z-index: 5;
-    box-shadow: 10px 40px 100px 10px rgb(115 115 115)
-}
-/* Adaptive position so that it is always 95px to the left on the right side of the cover image */
-@media (max-width:575px) {.clip{display: none}}
-@media (min-width:576px) {.clip{left: calc(510px - 95px)}}
-@media (min-width:768px) {.clip{left: calc(450px - 95px)}}
-@media (min-width:992px) {.clip{left: calc(600px - 95px)}}
-@media (min-width:1201px) {.clip{left: calc(730px - 95px)}}
-.clip::before {
-    position: absolute;
-    content: "";
-    top: -5px;
-    right: -9px;
-    width: 14px;
-    height: 33px;
-    border-top-left-radius: 40px;
-    border-top-right-radius: 40px;
-    border-bottom: none;
-    border-left: 6px solid;
-    border-right: 6px solid;
-    border-top: 6px solid
-}
-.clip::after {
-    position: absolute;
-    content: "";
-    bottom: -80px;
-    right: 1px;
-    width: 4px;
-    height: 56px;
-    border-bottom-left-radius: 40px;
-    border-bottom-right-radius: 40px;
-    border-top: none;
-    border-left: 6px solid;
-    border-right: 6px solid;
-    border-bottom: 6px solid
-}
 /* Other contents of the entry */
 .loglist-content {
     font-size: medium;
@@ -1030,6 +978,7 @@ footer .copyright {
 }
 /* Tags in the sidebar widget */
 .tag-container {
+    margin-block: 0;
     text-overflow: ellipsis;
     overflow: hidden
 }
@@ -1040,7 +989,7 @@ footer .copyright {
     white-space: nowrap
 }
 /* The latest article style in the sidebar widget */
-.blog-lates {
+.blog-lates,.blog-hot {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis

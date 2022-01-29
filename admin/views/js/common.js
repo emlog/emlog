@@ -110,10 +110,15 @@ function isalias(a) {
         return 0;
     }
 }
-
 function checkform() {
     var a = $.trim($("#alias").val());
     var t = $.trim($("#title").val());
+
+    if(typeof articleTextRecord !== "undefined"){  // 提交时，重置原文本记录值，防止出现离开提示
+        articleTextRecord = $("textarea[name=logcontent]").text();
+    }else{
+        pageText = $("textarea").text();
+    }
     if (0 == isalias(a)) {
         return true;
     } else {
@@ -215,9 +220,14 @@ function autosave(act) {
         setTimeout("autosave(1)", timeout);
         return;
     }
-
+    // 距离上次保存成功时间小于一秒时不允许手动保存
+    if((new Date().getTime() - Cookies.get('em_saveLastTime')) < 1000 && act != 1){
+        alert("请勿频繁操作！");
+        return;
+    }
     var btname = $("#savedf").val();
 /*vot*/ $("#savedf").val(lang('saving'));
+    $('title').text('[保存中] ' + titleText);
     $("#savedf").attr("disabled", "disabled");
     $.post(url, querystr, function (data) {
         data = $.trim(data);
@@ -231,11 +241,15 @@ function autosave(act) {
             var s = d.getSeconds();
             var tm = (h < 10 ? "0" + h : h) + ":" + (m < 10 ? "0" + m : m) + ":" + (s < 10 ? "0" + s : s);
 /*vot*/     $("#save_info").html(lang('saved_ok_time')+ tm);
+            $('title').text('[保存成功] ' + titleText);
+            articleTextRecord = $("textarea[name=logcontent]").text();  // 保存成功后，将原文本记录值替换为现在的文本
+            Cookies.set('em_saveLastTime',new Date().getTime());  // 把保存成功时间戳记录（或更新）到 cookie 中
             $("#" + nodeid).val(logid);
             $("#savedf").attr("disabled", false).val(btname);
         } else {
             $("#savedf").attr("disabled", false).val(btname);
 /*vot*/     $("#msg").html(lang('save_system_error')).addClass("alert-danger");
+            $('title').text('[保存失败] ' + titleText);
         }
     });
     if (act == 1) {
@@ -312,3 +326,122 @@ var hooks = {
     }
 }
 
+// 粘贴上传图片函数
+function imgPasteExpand(thisEditor){
+    var listenObj    = document.querySelector("textarea").parentNode  // 要监听的对象
+    var postUrl      = './media.php?action=upload';  // emlog 的图片上传地址
+    var emMediaPhpUrl= "./media.php?action=lib";  // emlog 的资源库地址,用于异步获取上传后的图片数据
+
+    // 通过动态配置只读模式,阻止编辑器原有的粘贴动作发生,并恢复光标位置
+    function preventEditorPaste(){
+        let l = thisEditor.getCursor().line;
+        let c = thisEditor.getCursor().ch - 3;
+
+        thisEditor.config({ readOnly: true, });
+        thisEditor.config({ readOnly: false,});
+        thisEditor.setCursor({line:l, ch:c});
+
+        let saveHotKey = {  // 编辑器的 bug , 界面刷新后会删除自定义的热键，所以要重新设置
+            "Ctrl-S": function (cm) {
+                autosave(2);
+            },
+            "Cmd-S": function (cm) {
+                autosave(2);
+            }
+        };
+        thisEditor.addKeyMap(saveHotKey);
+    }
+
+    // 编辑器通过光标处位置前几位来替换文字
+    function replaceByNum(text,num){
+        let l = thisEditor.getCursor().line;
+        let c = thisEditor.getCursor().ch;
+
+        thisEditor.setSelection({line:l, ch:(c - num)}, {line:l, ch:c});
+        thisEditor.replaceSelection(text);
+    }
+
+    // 粘贴事件触发
+    listenObj.addEventListener("paste", function (e) {
+        if ($('.editormd-mask').css('display') == 'block') return;  // 如果编辑器有对话框则退出
+        if ( !(e.clipboardData && e.clipboardData.items) ) return;
+
+        var pasteData = e.clipboardData || window.clipboardData; // 获取剪切板里的全部内容
+        pasteAnalyseResult = new Array;  // 用于储存遍历分析后的结果
+
+        for(var i = 0; i < pasteData.items.length; i++) {  // 遍历分析剪切板里的数据
+            var item = pasteData.items[i];
+
+            if((item.kind == "file") && (item.type.match('^image/'))){
+                var imgData = item.getAsFile();
+                if (imgData.size === 0) return;
+                pasteAnalyseResult['type'] = 'img';
+                pasteAnalyseResult['data'] = imgData;
+                break;  // 当粘贴板中有图片存在时,跳出循环
+            };
+        }
+
+        if(pasteAnalyseResult['type'] == 'img') {  // 如果剪切板中有图片,上传图片
+            preventEditorPaste();
+            uploadImg(pasteAnalyseResult['data']);
+            return;
+        } 
+    }, false);
+
+    // 上传图片
+    function uploadImg(img){
+        var formData = new FormData();
+        var imgName="粘贴上传"+new Date().getTime()+"."+img.name.split(".").pop();
+
+        formData.append('file', img, imgName);
+        thisEditor.insertValue("上传中...");
+        $.ajax({
+            url: postUrl,
+            type: 'post',
+            data: formData,
+            processData: false,
+            contentType: false,
+            xhr: function() { 
+                var xhr = $.ajaxSettings.xhr();
+                if (xhr.upload) {
+                    thisEditor.insertValue("....");
+                    xhr.upload.addEventListener('progress', function(e) {  // 用以显示上传进度  
+                        console.log('进度(byte)：' + e.loaded + ' / ' + e.total);
+                        let percent = Math.floor(e.loaded / e.total * 100);
+                        if(percent < 10){
+                            replaceByNum('..'+percent+'%',4);
+                        }else if(percent < 100){
+                            replaceByNum('.'+percent+'%',4);
+                        }else{
+                            replaceByNum(percent+'%',4);
+                        }
+                    }, false);
+                }
+                return xhr;
+            },
+            success:function(result){
+                if(result == 'success'){
+                    let imgUrl, thumbImgUrl;
+                    console.log('上传成功！正在获取结果...');
+                    $.get(emMediaPhpUrl,function(data){  // 异步获取结果,追加到编辑器
+                        console.log('获取结果成功！');
+                        imgUrl = data.match(/(?<=href\=\").*?(?=\"\s)/)[0];
+                        thumbImgUrl = data.match(/(?<=src\=\").*?(?=\")/)[0];
+                        replaceByNum(`[![](${imgUrl})](${thumbImgUrl})`,10);  // 这里的数字 10 对应着’上传中...100%‘是10个字符
+                    })
+                }else{
+                    alert('未知错误');
+                    replaceByNum('未知错误',6);
+                }
+            },
+            error:function(result){
+                alert('上传失败,图片类型错误或网络错误');
+                replaceByNum('上传失败,图片类型错误或网络错误',6);
+            }
+        })
+    }
+}
+
+// 把粘贴上传图片函数，挂载到位于文章编辑器、页面编辑器处的 js 钩子处
+hooks.addAction("loaded", imgPasteExpand);
+hooks.addAction("page_loaded", imgPasteExpand);

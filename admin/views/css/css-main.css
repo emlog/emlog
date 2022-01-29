@@ -1,4 +1,4 @@
-/*main.css*/
+/* main.css */
 :root {
     overflow-x: hidden
 }
@@ -550,4 +550,10 @@ textarea {
 }
 .img-container img {
     max-width: 100%;
+}
+
+/* 表格优化 */
+
+.table-responsive table{
+    min-width:560px
 }

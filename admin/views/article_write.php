@@ -194,7 +194,7 @@
 <script src="./editor.md/languages/<?=EMLOG_LANGUAGE?>.js"></script>
 <? } ?>
 <script>
-    var icon_tog;//If the value is true, the "advanced options" arrow points to the right
+    var icon_tog = false;//If the value is true, the "advanced options" arrow points to the right
 
     $("#alias").keyup(function () {
         checkalias();
@@ -204,7 +204,6 @@
     $("#menu_content").addClass('show');
     $("#menu_write").addClass('active');
 
-    icon_tog = false;
     if (Cookies.get('em_advset') == "hidden") {
         displayToggle('advset', 1);
     } else {
@@ -328,5 +327,28 @@
             $('#cover').val("");
             $('#cover_rm').hide();
         });
+    });
+
+    // 离开页面时，如果文章内容已做修改，则询问用户是否离开
+    var articleTextRecord;
+    hooks.addAction("loaded", function(){
+        articleTextRecord = $("textarea[name=logcontent]").text();
+    });
+    window.onbeforeunload = function (e) {
+        if($("textarea[name=logcontent]").text() == articleTextRecord) return
+        e = e || window.event;
+        if (e) e.returnValue = '离开页面提示';
+        return '离开页面提示';
+    }
+
+    // 如果文章内容已做修改，则使网页标题修改为‘已修改’
+    var titleText = $('title').text()
+    hooks.addAction("loaded", function(obj){
+        obj.config({ 
+            onchange : function() {
+                if($("textarea[name=logcontent]").text() == articleTextRecord) return
+                $('title').text('[已修改] ' + titleText);
+            }
+         });
     });
 </script>

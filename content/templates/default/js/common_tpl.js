@@ -1,4 +1,4 @@
-  "use strict"
+"use strict"
 
 /**
  * jquery animation extension. First accelerate to 50%, then decelerate to zero
@@ -21,9 +21,15 @@ var myBlog = {
         $(".commentform #comment").css("height","140px")
                                   .css('border-radius', '10px')
       }
-      $(".markdown img").attr("data-action","zoom")  // Add "View Larger Image" for abstracts, articles, and pictures on the page
-                        .parent().removeAttr("href")
-                        .parent("p").css("text-align","center")
+      for(let num = 0;num < $(".markdown img").length;num++){  // Add the function of viewing the large image and centering the image in the text (by default, the link in the parent tag <a> of the image is the original address of the image)
+        let $this     = $(".markdown img:eq("+ num +")")
+        let sourceSrc = $(".markdown img:eq("+ num +")").parent().attr('href')
+
+        $this.attr("data-action","zoom")
+             .parent().attr("sourcesrc",sourceSrc)
+             .removeAttr("href")
+             .parent("p").css("text-align","center")
+      }
       $("#commentform").attr("onsubmit","return myBlog.comSubmitTip()")  // Comment submission cannot be submitted if the form verification fails
     },
     /**
@@ -68,7 +74,7 @@ var myBlog = {
      */
     calMargin : function($t) {
       if (window.outerWidth < 992) return
-      var $fatherLink,$childMenu,menuWidth,count
+      var $childMenu,menuWidth,count
 
       menuWidth     = 135  // The width of the sub-navigation drop-down box on the big screen (px), can be modified as needed
       count         = ($t.outerWidth() - menuWidth)/2 + "px"
@@ -89,7 +95,6 @@ var myBlog = {
 
         let isCn       = $('#commentform').attr('is-chinese')
         let comContent = $('#comment').val()
-        let name       = $('#info_n').val()
         let mail       = $('#info_m').val()
         let url        = $('#info_u').val()
 
@@ -131,6 +136,14 @@ var myBlog = {
       $t.attr("src", "./include/lib/checkcode.php?" + timestamp)
     },
     /**
+     * 图片在点击时，将略缩图转化为原图
+     */
+    toggleImgSrc : function($t) {
+      $t.addClass('zoomFocus')
+      $t.attr('src2',$t.attr('src'))
+      $t.attr('src',$t.parent().attr('sourcesrc'))
+    },
+    /**
      * toc analysis
      * 
      * Enable toc directory method: write '[toc]' or'<!--[toc]-->' at the beginning of the article, preferably on a single line
@@ -169,7 +182,6 @@ var myBlog = {
       }
       this.tocRender()
     },
-
     /**
      * toc directory rendering
      */ 
@@ -291,5 +303,9 @@ $(document).ready(function(){
 
   $(".form-control").blur(function () {
     myBlog.comSubmitTip('judge')
+  }),
+
+  $(".markdown img").click(function () {
+    myBlog.toggleImgSrc($(this))
   })
 })

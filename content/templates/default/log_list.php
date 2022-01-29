@@ -16,10 +16,8 @@ if (!defined('EMLOG_ROOT')) {
                     <div class="shadow-theme bottom-5">
 						<?php if (!empty($value['log_cover'])) : ?>
                             <div class="loglist-cover">
-                                <a href="<?= $value['log_url'] ?>"></a>
                                 <img src="<?= $value['log_cover'] ?>" class="rea-width" data-action="zoom">
                             </div>
-                            <div class="clip"></div>
 						<?php endif ?>
                         <div class="card-padding loglist-body">
                             <h3 class="card-title">
@@ -32,7 +30,7 @@ if (!defined('EMLOG_ROOT')) {
                         <hr class="list-line"/>
                         <div class="row info-row">
                             <div class="log-info">
-<!--vot-->							<?php blog_author($value['author']); ?>&nbsp;<?=lang('post_time')?>&nbsp;<?= gmdate('Y-m-d', $value['date']) ?>&nbsp;<span class="mh"><?= gmdate('H:i', $value['date']) ?></span>
+<!--vot-->							<?php blog_author($value['author']) ?>&nbsp;<?=lang('post_time')?>&nbsp;<?= gmdate('Y-m-d', $value['date']) ?>&nbsp;<span class="mh"><?= date('H:i', $value['date']) ?></span>
                             </div>
                             <div class="log-count">
 <!--vot-->                      <a href="<?= $value['log_url'] ?>#comments"><?=lang('comments')?>: (<?= $value['comnum'] ?>)&nbsp;</a>
