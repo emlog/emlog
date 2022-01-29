@@ -15,7 +15,6 @@ if (empty($action)) {
 	$options_cache = $CACHE->readCache('options');
 	extract($options_cache);
 
-	$conf_login_code = $login_code == 'y' ? 'checked="checked"' : '';
 	$conf_comment_code = $comment_code == 'y' ? 'checked="checked"' : '';
 	$conf_comment_needchinese = $comment_needchinese == 'y' ? 'checked="checked"' : '';
 	$conf_iscomment = $iscomment == 'y' ? 'checked="checked"' : '';
@@ -23,7 +22,6 @@ if (empty($action)) {
 	$conf_isthumbnail = $isthumbnail == 'y' ? 'checked="checked"' : '';
 	$conf_isgravatar = $isgravatar == 'y' ? 'checked="checked"' : '';
 	$conf_comment_paging = $comment_paging == 'y' ? 'checked="checked"' : '';
-	$conf_istreply = $istreply == 'y' ? 'checked="checked"' : '';
 	$conf_reply_code = $reply_code == 'y' ? 'checked="checked"' : '';
 	$conf_ischkreply = $ischkreply == 'y' ? 'checked="checked"' : '';
 	$conf_detect_url = $detect_url == 'y' ? 'checked="checked"' : '';
@@ -147,12 +145,12 @@ if (empty($action)) {
 	);
 
 	include View::getAdmView('header');
-	require_once(View::getAdmView('configure'));
+	require_once(View::getAdmView('setting'));
 	include View::getAdmView('footer');
 	View::output();
 }
 
-if ($action == 'mod_config') {
+if ($action == 'save') {
 	LoginAuth::checkToken();
 	$getData = [
 		'blogname'            => isset($_POST['blogname']) ? addslashes($_POST['blogname']) : '',
@@ -168,8 +166,6 @@ if ($action == 'mod_config') {
 		'comment_interval'    => isset($_POST['comment_interval']) ? (int)$_POST['comment_interval'] : 15,
 		'iscomment'           => isset($_POST['iscomment']) ? addslashes($_POST['iscomment']) : 'n',
 		'ischkcomment'        => isset($_POST['ischkcomment']) ? addslashes($_POST['ischkcomment']) : 'n',
-		'isexcerpt'           => isset($_POST['isexcerpt']) ? addslashes($_POST['isexcerpt']) : 'n',
-		'excerpt_subnum'      => isset($_POST['excerpt_subnum']) ? (int)$_POST['excerpt_subnum'] : '300',
 		'isthumbnail'         => isset($_POST['isthumbnail']) ? addslashes($_POST['isthumbnail']) : 'n',
 		'rss_output_num'      => isset($_POST['rss_output_num']) ? (int)$_POST['rss_output_num'] : 10,
 		'rss_output_fulltext' => isset($_POST['rss_output_fulltext']) ? addslashes($_POST['rss_output_fulltext']) : 'y',
@@ -177,7 +173,6 @@ if ($action == 'mod_config') {
 		'comment_paging'      => isset($_POST['comment_paging']) ? addslashes($_POST['comment_paging']) : 'n',
 		'comment_pnum'        => isset($_POST['comment_pnum']) ? (int)$_POST['comment_pnum'] : '',
 		'comment_order'       => isset($_POST['comment_order']) ? addslashes($_POST['comment_order']) : 'newer',
-		'istreply'            => isset($_POST['istreply']) ? addslashes($_POST['istreply']) : 'n',
 		'ischkreply'          => isset($_POST['ischkreply']) ? addslashes($_POST['ischkreply']) : 'n',
 		'reply_code'          => isset($_POST['reply_code']) ? addslashes($_POST['reply_code']) : 'n',
 		'index_twnum'         => isset($_POST['index_twnum']) ? (int)$_POST['index_twnum'] : 10,
@@ -189,10 +184,10 @@ if ($action == 'mod_config') {
 	];
 
 	if ($getData['login_code'] == 'y' && !function_exists("imagecreate") && !function_exists('imagepng')) {
-		emMsg("开启登录验证码失败!服务器空间不支持GD图形库", "configure.php");
+		emMsg("开启登录验证码失败!服务器空间不支持GD图形库", "setting.php");
 	}
 	if ($getData['comment_code'] == 'y' && !function_exists("imagecreate") && !function_exists('imagepng')) {
-		emMsg("开启评论验证码失败!服务器空间不支持GD图形库", "configure.php");
+		emMsg("开启评论验证码失败!服务器空间不支持GD图形库", "setting.php");
 	}
 	if ($getData['blogurl'] && substr($getData['blogurl'], -1) != '/') {
 		$getData['blogurl'] .= '/';
@@ -205,5 +200,126 @@ if ($action == 'mod_config') {
 		Option::updateOption($key, $val);
 	}
 	$CACHE->updateCache(array('tags', 'options', 'comment', 'record'));
-	emDirect("./configure.php?activated=1");
+	emDirect("./setting.php?activated=1");
+}
+
+if ($action == 'seo') {
+	$options_cache = $CACHE->readCache('options');
+	extract($options_cache);
+
+	$ex0 = $ex1 = $ex2 = $ex3 = '';
+	$t = 'ex' . $isurlrewrite;
+	$$t = 'checked="checked"';
+
+	$opt0 = $opt1 = $opt2 = '';
+	$t = 'opt' . $log_title_style;
+	$$t = 'selected="selected"';
+
+	$isalias = $isalias == 'y' ? 'checked="checked"' : '';
+	$isalias_html = $isalias_html == 'y' ? 'checked="checked"' : '';
+
+	include View::getAdmView('header');
+	require_once(View::getAdmView('setting_seo'));
+	include View::getAdmView('footer');
+	View::output();
+}
+
+if ($action == 'seo_save') {
+	LoginAuth::checkToken();
+	$permalink = isset($_POST['permalink']) ? addslashes($_POST['permalink']) : '0';
+	$isalias = isset($_POST['isalias']) ? addslashes($_POST['isalias']) : 'n';
+	$isalias_html = isset($_POST['isalias_html']) ? addslashes($_POST['isalias_html']) : 'n';
+
+	$getData = array(
+		'site_title'       => isset($_POST['site_title']) ? addslashes($_POST['site_title']) : '',
+		'site_description' => isset($_POST['site_description']) ? addslashes($_POST['site_description']) : '',
+		'site_key'         => isset($_POST['site_key']) ? addslashes($_POST['site_key']) : '',
+		'isurlrewrite'     => isset($_POST['permalink']) ? addslashes($_POST['permalink']) : '0',
+		'isalias'          => isset($_POST['isalias']) ? addslashes($_POST['isalias']) : 'n',
+		'isalias_html'     => isset($_POST['isalias_html']) ? addslashes($_POST['isalias_html']) : 'n',
+		'log_title_style'  => isset($_POST['log_title_style']) ? addslashes($_POST['log_title_style']) : '0',
+	);
+
+	if ($permalink != '0' || $isalias == 'y') {
+		$fp = @fopen(EMLOG_ROOT . '/.htaccess', 'w');
+		$t = parse_url(BLOG_URL);
+		$rw_rule = '<IfModule mod_rewrite.c>
+                       RewriteEngine on
+                       RewriteCond %{REQUEST_FILENAME} !-f
+                       RewriteCond %{REQUEST_FILENAME} !-d
+                       RewriteBase ' . $t['path'] . '
+                       RewriteRule . ' . $t['path'] . 'index.php [L]
+                    </IfModule>';
+		if (!@fwrite($fp, $rw_rule)) {
+			header('Location: ./setting.php?action=seo&error=1');
+			exit;
+		}
+		fclose($fp);
+	}
+
+	foreach ($getData as $key => $val) {
+		Option::updateOption($key, $val);
+	}
+	$CACHE->updateCache(array('options', 'navi'));
+	header('Location: ./setting.php?action=seo&activated=1');
+}
+
+if ($action == 'mail') {
+	$options_cache = $CACHE->readCache('options');
+	$smtp_mail = $options_cache['smtp_mail'];
+	$smtp_pw = $options_cache['smtp_pw'];
+	$smtp_server = $options_cache['smtp_server'];
+	$smtp_port = $options_cache['smtp_port'];
+
+	include View::getAdmView('header');
+	require_once(View::getAdmView('setting_mail'));
+	include View::getAdmView('footer');
+	View::output();
+
+}
+
+if ($action == 'mail_save') {
+	LoginAuth::checkToken();
+	$data = [
+		'smtp_mail'   => isset($_POST['smtp_mail']) ? addslashes($_POST['smtp_mail']) : '',
+		'smtp_pw'     => isset($_POST['smtp_pw']) ? addslashes($_POST['smtp_pw']) : '',
+		'smtp_server' => isset($_POST['smtp_server']) ? addslashes($_POST['smtp_server']) : '',
+		'smtp_port'   => isset($_POST['smtp_port']) ? (int)$_POST['smtp_port'] : '',
+	];
+	foreach ($data as $key => $val) {
+		Option::updateOption($key, $val);
+	}
+	$CACHE->updateCache(array('options'));
+	header('Location: ./setting.php?action=mail&activated=1');
+}
+
+if ($action == 'user') {
+
+	$options_cache = $CACHE->readCache('options');
+	$is_signup = $options_cache['is_signup'];
+	$login_code = $options_cache['login_code'];
+	$writer_permission = $options_cache['writer_permission'];
+
+	$conf_is_signup = $is_signup == 'y' ? 'checked="checked"' : '';
+	$conf_login_code = $login_code == 'y' ? 'checked="checked"' : '';
+
+	include View::getAdmView('header');
+	require_once(View::getAdmView('setting_user'));
+	include View::getAdmView('footer');
+	View::output();
+
+}
+
+if ($action == 'user_save') {
+	LoginAuth::checkToken();
+	$data = [
+		'is_signup'         => isset($_POST['is_signup']) ? addslashes($_POST['is_signup']) : 'n',
+		'login_code'        => isset($_POST['login_code']) ? addslashes($_POST['login_code']) : 'n',
+		'writer_permission' => isset($_POST['writer_permission']) ? addslashes($_POST['writer_permission']) : '',
+	];
+	foreach ($data as $key => $val) {
+		Option::updateOption($key, $val);
+	}
+	$CACHE->updateCache(array('options'));
+	header('Location: ./setting.php?action=user&activated=1');
 }

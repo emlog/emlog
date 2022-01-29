@@ -8,14 +8,17 @@
 </div>
 <div class="panel-heading">
     <ul class="nav nav-pills">
-        <li class="nav-item"><a class="nav-link active" href="./configure.php">基本设置</a></li>
-        <li class="nav-item"><a class="nav-link" href="./seo.php">SEO设置</a></li>
-        <li class="nav-item"><a class="nav-link" href="./blogger.php">个人设置</a></li>
+        <li class="nav-item"><a class="nav-link active" href="./setting.php">基础设置</a></li>
+        <li class="nav-item"><a class="nav-link" href="./setting.php?action=user">用户设置</a></li>
+        <li class="nav-item"><a class="nav-link" href="./setting.php?action=mail">邮件通知</a></li>
+        <li class="nav-item"><a class="nav-link" href="./setting.php?action=seo">SEO优化</a></li>
+        <li class="nav-item"><a class="nav-link" href="./blogger.php">个人信息</a></li>
     </ul>
 </div>
 <div class="card shadow mb-4 mt-2">
     <div class="card-body">
-        <form action="configure.php?action=mod_config" method="post" name="input" id="input">
+        <form action="setting.php?action=save" method="post" name="input" id="input">
+            <h4>站点信息</h4>
             <div class="form-group">
                 <label>站点标题</label>
                 <input class="form-control" value="<?= $blogname ?>" name="blogname">
@@ -43,13 +46,18 @@
                 </select>
             </div>
 
-            <div class="form-group form-check">
-                <input class="form-check-input" type="checkbox" value="y" name="login_code" id="login_code" <?= $conf_login_code ?> >
-                <label class="form-check-label">登录注册验证码</label>
+            <div class="form-group">
+                <label>ICP备案号</label>
+                <input class="form-control" value="<?= $icp ?>" name="icp"/>
+            </div>
+            <div class="form-group">
+                <label>首页底部信息(支持html，可用于添加流量统计代码)</label>
+                <textarea name="footer_info" rows="6" class="form-control"><?= $footer_info ?></textarea>
             </div>
 
             <hr>
 
+            <h4>评论设置</h4>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="iscomment" id="iscomment" <?= $conf_iscomment ?> />
                 <label>开启评论</label>
@@ -90,6 +98,7 @@
 
             <hr>
 
+            <h4>文章设置</h4>
             <div class="form-group form-inline">
                 <label>每页显示文章数量</label>
                 <input class="form-control mx-sm-3" value="<?= $index_lognum ?>" name="index_lognum"/>
@@ -105,6 +114,7 @@
 
             <hr>
 
+            <h4>上传设置</h4>
             <div class="form-group form-inline">
                 文件上传最大限制 <input maxlength="20" style="width:120px;" class="form-control" value="<?= $att_maxsize ?>" name="att_maxsize"/> KB(1M=1024KB)
             </div>
@@ -115,15 +125,6 @@
                 <input type="checkbox" value="y" name="isthumbnail" id="isthumbnail" <?= $conf_isthumbnail ?> />上传图片生成缩略图，最大尺寸：
                 <input maxlength="5" style="width:60px;" class="form-control" value="<?= $att_imgmaxw ?>" name="att_imgmaxw"/> x
                 <input maxlength="5" style="width:60px;" class="form-control" value="<?= $att_imgmaxh ?>" name="att_imgmaxh"/>（单位：像素）
-            </div>
-
-            <div class="form-group">
-                <label>ICP备案号</label>
-                <input class="form-control" value="<?= $icp ?>" name="icp"/>
-            </div>
-            <div class="form-group">
-                <label>首页底部信息(支持html，可用于添加流量统计代码)</label>
-                <textarea name="footer_info" rows="6" class="form-control"><?= $footer_info ?></textarea>
             </div>
             <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
             <input type="submit" value="保存设置" class="btn btn-sm btn-success"/>

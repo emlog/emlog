@@ -10,14 +10,16 @@
 </div>
 <div class="panel-heading">
     <ul class="nav nav-pills">
-        <li class="nav-item"><a class="nav-link" href="./configure.php">基本设置</a></li>
-        <li class="nav-item"><a class="nav-link active" href="./seo.php">SEO设置</a></li>
-        <li class="nav-item"><a class="nav-link" href="./blogger.php">个人设置</a></li>
+        <li class="nav-item"><a class="nav-link" href="./setting.php">基础设置</a></li>
+        <li class="nav-item"><a class="nav-link" href="./setting.php?action=user">用户设置</a></li>
+        <li class="nav-item"><a class="nav-link" href="./setting.php?action=mail">邮件通知</a></li>
+        <li class="nav-item"><a class="nav-link active" href="./setting.php?action=seo">SEO优化</a></li>
+        <li class="nav-item"><a class="nav-link" href="./blogger.php">个人信息</a></li>
     </ul>
 </div>
 <div class="card shadow mb-4 mt-2">
     <div class="card-body">
-        <form action="seo.php?action=update" method="post">
+        <form action="setting.php?action=seo_save" method="post">
             <h4>文章链接</h4>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="permalink" value="0" <?= $ex0 ?>>
