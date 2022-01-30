@@ -363,7 +363,7 @@ function imgPasteExpand(thisEditor){
 
     // 粘贴事件触发
     listenObj.addEventListener("paste", function (e) {
-        if ($('.editormd-mask').css('display') == 'block') return;  // 如果编辑器有对话框则退出
+        if ($('.editormd-dialog').css('display') == 'block') return;  // 如果编辑器有对话框则退出
         if ( !(e.clipboardData && e.clipboardData.items) ) return;
 
         var pasteData = e.clipboardData || window.clipboardData; // 获取剪切板里的全部内容

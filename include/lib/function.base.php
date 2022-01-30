@@ -18,6 +18,8 @@ function emAutoload($class) {
 		require_once(EMLOG_ROOT . '/include/lib/' . $class . '.php');
 	} elseif (file_exists(EMLOG_ROOT . '/include/controller/' . $class . '.php')) {
 		require_once(EMLOG_ROOT . '/include/controller/' . $class . '.php');
+	} elseif (file_exists(EMLOG_ROOT . '/include/service/' . $class . '.php')) {
+		require_once(EMLOG_ROOT . '/include/service/' . $class . '.php');
 	}
 }
 

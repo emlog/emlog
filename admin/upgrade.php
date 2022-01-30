@@ -29,7 +29,7 @@ if ($action === 'check_update') {
 	exit($response);
 }
 
-if ($action === 'update' && ROLE === ROLE_ADMIN) {
+if ($action === 'update' && User::isAdmin()) {
 	$source = isset($_GET['source']) ? trim($_GET['source']) : '';
 	$upsql = isset($_GET['upsql']) ? trim($_GET['upsql']) : '';
 

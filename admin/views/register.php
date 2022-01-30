@@ -12,13 +12,17 @@
                                 <div class="text-center">
 <!--vot-->                          <h1 class="h4 text-gray-900 mb-4"><?=lang('account_register')?></h1>
                                 </div>
-                                <form method="post" class="user" action="./account.php?action=register&s=<?= $admin_path_code ?>">
-									<?php if ($error_msg): ?>
-                                        <div class="alert alert-danger alert-dismissible" role="alert">
-                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-											<?= $error_msg ?>
-                                        </div>
-									<?php endif ?>
+								<?php if (isset($_GET['err_ckcode'])): ?>
+                                    <div class="alert alert-danger">验证错误，请重新输入</div><?php endif ?>
+								<?php if (isset($_GET['error_login'])): ?>
+                                    <div class="alert alert-danger">用户名格式错误</div><?php endif ?>
+								<?php if (isset($_GET['error_exist'])): ?>
+                                    <div class="alert alert-danger">用户名已被占用</div><?php endif ?>
+								<?php if (isset($_GET['error_pwd_len'])): ?>
+                                    <div class="alert alert-danger">密码不小于6位</div><?php endif ?>
+								<?php if (isset($_GET['error_pwd2'])): ?>
+                                    <div class="alert alert-danger">两次输入的密码不一致</div><?php endif ?>
+                                <form method="post" class="user" action="./account.php?action=register">
                                     <div class="form-group">
 <!--vot-->                              <input type="email" class="form-control form-control-user" id="user" name="user" aria-describedby="emailHelp" placeholder="<?=lang('user_name')?>" required
                                                autofocus>
@@ -54,7 +58,7 @@
 </body>
 </html>
 <script>
-    setTimeout(hideActived, 3600);
+    setTimeout(hideActived, 5000);
     $('#checkcode').click(function () {
         var timestamp = new Date().getTime();
         $(this).attr("src", "../include/lib/checkcode.php?" + timestamp);

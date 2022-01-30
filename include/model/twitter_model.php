@@ -48,7 +48,7 @@ class Twitter_Model {
 	}
 
 	function delTwitter($tid) {
-		$author = ROLE == ROLE_ADMIN ? '' : 'and author=' . UID;
+		$author = User::isAdmin() ? '' : 'and author=' . UID;
 		$query = $this->db->query("select img from " . DB_PREFIX . "twitter where id=$tid $author");
 		$row = $this->db->fetch_array($query);
 
