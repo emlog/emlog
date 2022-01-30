@@ -66,7 +66,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 <!--vot-->              <option value="-1" <?php if ($sid == -1) echo 'selected'; ?>><?=lang('uncategorized')?></option>
                     </select>
                 </div>
-				<?php if (ROLE == ROLE_ADMIN && count($user_cache) > 1): ?>
+				<?php if (User::isAdmin() && count($user_cache) > 1): ?>
                     <div id="f_t_user" class="mx-1">
                         <select name="byuser" id="byuser" onChange="selectUser(this);" class="form-control">
 <!--vot-->                  <option value="" selected="selected"><?=lang('view_by_author')?></option>
@@ -108,15 +108,15 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
                         <tr>
                             <td style="width: 20px;"><input type="checkbox" name="blog[]" value="<?= $value['gid'] ?>" class="ids"/></td>
                             <td><a href="article.php?action=edit&gid=<?= $value['gid'] ?>"><?= $value['title'] ?></a>
-<!--vot-->					    <?php if ($value['top'] == 'y'): ?><img src="./views/images/top.png" title="<?=lang('home_top')?>"/><?php endif ?>
-<!--vot-->					    <?php if ($value['sortop'] == 'y'): ?><img src="./views/images/sortop.png" title="<?=lang('category_top')?>"/><?php endif ?>
+<!--vot-->					    <?php if ($value['top'] == 'y'): ?><span class="badge small badge-warning"><?=lang('home_top')?></span><?php endif ?>
+<!--vot-->					    <?php if ($value['sortop'] == 'y'): ?><span class="badge small badge-secondary"><?=lang('category_top')?></span><?php endif ?>
 							    <?php if (!$draft && $value['checked'] == 'n'): ?>
 <!--vot-->                          <span style="color:red;">[<?=lang('pending')?>]</span><?php endif ?>
                                 <div>
-									<?php if (!$draft && ROLE == ROLE_ADMIN && $value['checked'] == 'n'): ?>
+									<?php if (!$draft && User::isAdmin() && $value['checked'] == 'n'): ?>
 <!--vot-->                              <a class="badge badge-success"
                                            href="article.php?action=operate_log&operate=check&gid=<?= $value['gid'] ?>&token=<?= LoginAuth::genToken() ?>"><?=lang('check')?></a>
-									<?php elseif (!$draft && ROLE == ROLE_ADMIN && $author_role == ROLE_WRITER): ?>
+									<?php elseif (!$draft && User::isAdmin() && $author_role == User::ROLE_WRITER): ?>
 <!--vot-->                              <a class="badge badge-danger"
                                            href="article.php?action=operate_log&operate=uncheck&gid=<?= $value['gid'] ?>&token=<?= LoginAuth::genToken() ?>"><?=lang('uncheck')?></a>
 									<?php endif ?>
@@ -136,7 +136,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
             <input name="operate" id="operate" value="" type="hidden"/>
             <div class="form-inline">
 				<?php if (!$draft): ?>
-					<?php if (ROLE == ROLE_ADMIN): ?>
+					<?php if (User::isAdmin()): ?>
                         <select name="top" id="top" onChange="changeTop(this);" class="form-control m-1">
 <!--vot-->                  <option value="" selected="selected"><?=lang('top')?></option>
 <!--vot-->                  <option value="top"><?=lang('home_top')?></option>
@@ -166,7 +166,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 						?>
 <!--vot-->              <option value="-1"><?=lang('uncategorized')?></option>
                     </select>
-					<?php if (ROLE == ROLE_ADMIN && count($user_cache) > 1): ?>
+					<?php if (User::isAdmin() && count($user_cache) > 1): ?>
                         <select name="author" id="author" onChange="changeAuthor(this);" class="form-control m-1">
 <!--vot-->                  <option value="" selected="selected"><?=lang('user_edit')?></option>
 							<?php foreach ($user_cache as $key => $val):

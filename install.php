@@ -202,12 +202,10 @@ if ($act == 'install' || $act == 'reinstall') {
 <head>
 <meta charset="utf-8">
 <title>emlog system message</title>
-<style type="text/css">
-<!--
+<style>
 body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:150%;}
 .main {background-color:#FFFFFF;font-size: 12px;color: #666666;width:750px;margin:10px auto;padding:10px;list-style:none;border:#DFDFDF 1px solid;}
 .main p {line-height: 18px;margin: 5px 20px;}
--->
 </style>
 </head><body>
 <form name="form1" method="post" action="install.php?action=reinstall">
@@ -406,7 +404,6 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('ischkreply'
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isurlrewrite','0');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isalias','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isalias_html','n');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('istreply','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('timezone','UTC');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('active_plugins','$def_plugin');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widget_title','$widget_title');
@@ -414,6 +411,12 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_widg
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widgets1','$def_widgets');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('detect_url','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('emkey','');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('smtp_mail','');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('smtp_pw','');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('smtp_server','');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('smtp_port','');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('is_signup','n');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('writer_permission', '');
 DROP TABLE IF EXISTS {$db_prefix}link;
 CREATE TABLE {$db_prefix}link (
   id int(11) unsigned NOT NULL auto_increment COMMENT 'Link table',
@@ -488,7 +491,7 @@ replynum int(11) unsigned NOT NULL default '0' COMMENT 'Number of replies',
 PRIMARY KEY (id),
 KEY author (author)
 )" . $table_charset_sql . "
-INSERT INTO {$db_prefix}user (uid, username, password, nickname, role, create_time, update_time) VALUES (1,'$admin','" . $adminpw . "', 'emer','admin', " . time() . ", " . time() . ");
+INSERT INTO {$db_prefix}user (uid, username, password, nickname, role, create_time, update_time) VALUES (1,'$admin','" . $adminpw . "', 'emer','founder', " . time() . ", " . time() . ");
 DROP TABLE IF EXISTS {$db_prefix}storage;
 CREATE TABLE {$db_prefix}storage (
   `sid` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Object storage table',

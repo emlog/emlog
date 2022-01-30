@@ -243,7 +243,9 @@ $lang = array(
 
 //---------------------------
 //admin/views/blogger.php
- 'basic_settings'		=> '基本设置',//'Basic Settings',
+ 'basic_settings'		=> '基础设置',//'Basic Settings',
+ 'user_settings'		=> '用户设置',//'User settings',
+ 'email_notify'			=> '邮件通知',//'E-mail notification',
  'seo_settings'			=> 'SEO设置',//'SEO Settings',
  'background_style'		=> '后台风格',//'Background style',
  'personal_settings'		=> '个人设置',//'Personal Settings',

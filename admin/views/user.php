@@ -46,7 +46,8 @@
 				<?php
 				foreach ($users as $key => $val):
 					$avatar = empty($user_cache[$val['uid']]['avatar']) ? './views/images/avatar.svg' : '../' . $user_cache[$val['uid']]['avatar'];
-					?>
+
+                ?>
                     <tr>
                         <td><img src="<?= $avatar ?>" height="40" width="40" class="rounded-circle"/></td>
                         <td>
@@ -59,8 +60,7 @@
 							<?= "<br/>" . $val['description'] ?>
                         </td>
                         <td>
-<!--vot-->                  <?= $val['role'] == ROLE_ADMIN ? ($val['uid'] == 1 ? lang('founder') : lang('admin')) : lang('user') ?>
-<!--vot-->                  <?php if ($val['role'] == ROLE_WRITER && $val['ischeck'] == 'y') echo lang('posts_need_audit'); ?>
+							<?= $val['role'] ?>
                         </td>
                         <td><a href="article.php?uid=<?= $val['uid'] ?>"><?= $sta_cache[$val['uid']]['lognum'] ?></a></td>
                         <td><?= $val['ip'] ?></td>
@@ -137,7 +137,5 @@
         })
     });
     setTimeout(hideActived, 2600);
-    $("#menu_category_sys").addClass('active');
-    $("#menu_sys").addClass('show');
     $("#menu_user").addClass('active');
 </script>

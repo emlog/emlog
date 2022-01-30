@@ -21,11 +21,13 @@
     <h1 class="h3 mb-0 text-gray-800"><?=lang('settings')?></h1>
 </div>
 <div class="panel-heading">
-	<?php if (ROLE == ROLE_ADMIN): ?>
+	<?php if (User::isAdmin()): ?>
         <ul class="nav nav-pills">
-<!--vot--><li class="nav-item"><a class="nav-link" href="./configure.php"><?=lang('basic_settings')?></a></li>
-<!--vot--><li class="nav-item"><a class="nav-link" href="./seo.php"><?=lang('seo_settings')?></a></li>
-<!--vot--><li class="nav-item"><a class="nav-link active" href="./blogger.php"><?=lang('personal_settings')?></a></li>
+            <li class="nav-item"><a class="nav-link" href="./setting.php"><?=lang('basic_settings')?></a></li>
+            <li class="nav-item"><a class="nav-link" href="./setting.php?action=user"><?=lang('user_settings')?></a></li>
+            <li class="nav-item"><a class="nav-link" href="./setting.php?action=mail"><?=lang('email_notify')?></a></li>
+            <li class="nav-item"><a class="nav-link" href="./setting.php?action=seo"><?=lang('seo_settings')?></a></li>
+            <li class="nav-item"><a class="nav-link active" href="./blogger.php"><?=lang('personal_settings')?></a></li>
         </ul>
 	<?php else: ?>
         <ul class="nav nav-tabs" role="tablist">

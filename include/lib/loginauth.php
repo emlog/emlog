@@ -6,9 +6,9 @@
 
 class LoginAuth {
 
-	const LOGIN_ERROR_USER = -1;
-	const LOGIN_ERROR_PASSWD = -2;
-	const LOGIN_ERROR_AUTHCODE = -3;
+	const LOGIN_ERROR_USER = -1;     //用户不存在
+	const LOGIN_ERROR_PASSWD = -2;   //密码错误
+	const LOGIN_ERROR_AUTHCODE = -3; //验证码错误
 
 	/**
 	 * Verify that the user is logged on
@@ -32,6 +32,30 @@ class LoginAuth {
 	}
 
 	/**
+	 * 未登录，跳转用户登录页
+	 */
+	public static function loginPage($error_code = NULL) {
+		if (self::isLogin() === true) {
+			return;
+		}
+		if ($error_code) {
+			emDirect("./account.php?action=signin&code=$error_code");
+		} else {
+			emDirect("./account.php?action=signin");
+		}
+	}
+
+	/**
+	 * 登录，跳转用户（管理）中心
+	 */
+	public static function loggedPage() {
+		if (self::isLogin() === false) {
+			return;
+		}
+		emDirect("./");
+	}
+
+	/**
 	 * Verify User/Password
 	 */
 	public static function checkUser($username, $password, $imgcode) {
@@ -42,7 +66,7 @@ class LoginAuth {
 			return self::LOGIN_ERROR_USER;
 		}
 		$sessionCode = $_SESSION['code'] ?? '';
-		if (Option::get('login_code') === 'y' && (empty($imgcode) || $imgcode != $sessionCode)) {
+		if ((empty($imgcode) || $imgcode !== $sessionCode) && Option::get('login_code') === 'y') {
 			unset($_SESSION['code']);
 			return self::LOGIN_ERROR_AUTHCODE;
 		}
@@ -56,32 +80,6 @@ class LoginAuth {
 		} else {
 			return self::LOGIN_ERROR_PASSWD;
 		}
-	}
-
-	/**
-	 * Login Page
-	 */
-	public static function loginPage($errorCode = NULL) {
-		$admin_path_code = isset($_GET['s']) ? addslashes(htmlClean($_GET['s'])) : '';
-
-		if (defined('ADMIN_PATH_CODE') && $admin_path_code !== ADMIN_PATH_CODE) {
-			show_404_page(true);
-		}
-		$ckcode = Option::get('login_code') == 'y' ? true : false;
-		$error_msg = '';
-		switch ($errorCode) {
-			case self::LOGIN_ERROR_AUTHCODE:
-/*vot*/				$error_msg = lang('captcha_error_reenter');
-				break;
-			case self::LOGIN_ERROR_USER:
-			case self::LOGIN_ERROR_PASSWD:
-/*vot*/				$error_msg = lang('password_wrong_reenter');
-				break;
-		}
-
-		require_once View::getAdmView('user_head');
-		require_once View::getAdmView('login');
-		View::output();
 	}
 
 	/**

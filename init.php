@@ -28,12 +28,14 @@ define('ISLOGIN', LoginAuth::isLogin());
 //Site Time Zone
 date_default_timezone_set(Option::get('timezone'));
 
-//User Groups: admin=Administrator, writer=Co-Author, visitor=Guest
-const ROLE_ADMIN = 'admin';
-const ROLE_WRITER = 'writer';
-const ROLE_VISITOR = 'visitor';
-//User Roles
-define('ROLE', ISLOGIN === true ? $userData['role'] : ROLE_VISITOR);
+//User Groups
+const ROLE_FOUNDER = 'founder';          //Founder
+const ROLE_ADMIN = 'admin';              //Admin
+const ROLE_WRITER = 'writer';            //Writer
+const ROLE_VISITOR = 'visitor';          //Guest
+
+//User Role
+define('ROLE', ISLOGIN === true ? $userData['role'] : User::ROLE_VISITOR);
 //User ID
 define('UID', ISLOGIN === true ? $userData['uid'] : '');
 //Site fixed address

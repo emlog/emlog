@@ -28,13 +28,14 @@
 	<?php doAction('adm_head'); ?>
 </head>
 <body>
+<div id="editor-md-dialog"></div>
 <div id="wrapper">
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion sd-hidden" id="accordionSidebar">
         <li class="nav-item active emlog_title" id="menu_home">
 <!--vot-->  <a class="nav-link" href="./">EMLOG PRO <?php if (!Register::isRegLocal()) : ?><?=lang('unregistered')?><?php endif ?></a>
         </li>
         <hr class="sidebar-divider my-0">
-		<?php if (ROLE == ROLE_ADMIN): ?>
+		<?php if (User::isAdmin()): ?>
             <li class="nav-item" id="menu_home">
 <!--vot-->      <a class="nav-link" href="./"><i class="icofont-dashboard icofont-1x"></i><span><?= lang('admincp') ?></span></a>
             </li>
@@ -49,7 +50,7 @@
 <!--vot-->          <a class="collapse-item" id="menu_write" href="article.php?action=write"><?=lang('post_write')?></a>
 <!--vot-->          <a class="collapse-item" id="menu_log" href="article.php"><?=lang('articles')?></a>
 <!--vot-->          <a class="collapse-item" id="menu_draft" href="article.php?draft=1"><?=lang('drafts')?></a>
-					<?php if (ROLE == ROLE_ADMIN): ?>
+					<?php if (User::isAdmin()): ?>
 <!--vot-->          <a class="collapse-item" id="menu_sort" href="sort.php"><?=lang('categories')?></a>
 <!--vot-->          <a class="collapse-item" id="menu_tag" href="tag.php"><?=lang('tags')?></a>
 					<?php endif ?>
@@ -65,9 +66,12 @@
         <li class="nav-item" id="menu_media">
 <!--vot-->      <a class="nav-link" href="media.php"><i class="icofont-image"></i><span><?= lang('resources') ?></span></a>
         </li>
-		<?php if (ROLE == ROLE_ADMIN): ?>
+		<?php if (User::isAdmin()): ?>
             <li class="nav-item" id="menu_page">
 <!--vot-->      <a class="nav-link" href="page.php"><i class="icofont-page"></i><span><?= lang('pages') ?></span></a>
+            </li>
+            <li class="nav-item" id="menu_user">
+                <a class="nav-link" href="user.php"><i class="icofont-user"></i><span>用户</span></a>
             </li>
             <li class="nav-item" id="menu_category_view">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_view" aria-expanded="true" aria-controls="menu_view">
@@ -103,9 +107,8 @@
                 </a>
                 <div id="menu_sys" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-<!--vot-->          <a class="collapse-item" id="menu_user" href="user.php"><?= lang('users') ?></a>
 <!--vot-->          <a class="collapse-item" id="menu_data" href="data.php"><?= lang('data') ?></a>
-<!--vot-->          <a class="collapse-item" id="menu_setting" href="configure.php"><?= lang('settings') ?></a>
+<!--vot-->          <a class="collapse-item" id="menu_setting" href="setting.php"><?= lang('settings') ?></a>
                     </div>
                 </div>
             </li>

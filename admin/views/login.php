@@ -12,13 +12,13 @@
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4"><?=lang('log_in')?></h1>
                                 </div>
+								<?php if (isset($_GET['succ_reg'])): ?>
+                                    <div class="alert alert-success">注册成功，请登录</div><?php endif ?>
+								<?php if (isset($_GET['err_ckcode'])): ?>
+                                    <div class="alert alert-danger">验证错误，请重新输入</div><?php endif ?>
+								<?php if (isset($_GET['err_login'])): ?>
+                                    <div class="alert alert-danger">用户或密码错误，请重新输入</div><?php endif ?>
                                 <form method="post" class="user" action="./account.php?action=login&s=<?= $admin_path_code ?>">
-									<?php if ($error_msg): ?>
-                                        <div class="alert alert-danger alert-dismissible" role="alert">
-                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-											<?= $error_msg ?>
-                                        </div>
-									<?php endif ?>
                                     <div class="form-group">
 <!--vot-->                              <input type="text" class="form-control form-control-user" id="user" name="user" aria-describedby="emailHelp" placeholder="<?=lang('user_name')?>" required
                                                autofocus>
@@ -39,10 +39,10 @@
                                         </div>
                                     </div>
 <!--vot-->                          <button class="btn btn-primary btn-user btn-block" type="submit"><?=lang('login')?></button>
+<!--vot-->                          <a class="btn btn-success btn-user btn-block" type="button" href="./account.php?action=signup"><?=lang('account_register')?></a>
                                     <div><?php doAction('login_ext') ?></div>
                                     <hr>
 <!--vot-->                          <div class="text-center"><a class="small" href="./account.php?action=reset"><?=lang('password_forget')?></a></div>
-<!--vot-->                          <div class="text-center"><a class="small" href="./account.php?action=signup"><?=lang('account_register')?></a></div>
                                     <hr>
 <!--vot-->                          <div class="text-center"><a href="../" class="small" role="button">&larr;<?=lang('back_home')?></a></div>
                                 </form>
@@ -57,7 +57,7 @@
 </body>
 </html>
 <script>
-    setTimeout(hideActived, 3600);
+    setTimeout(hideActived, 5000);
     $('#checkcode').click(function () {
         var timestamp = new Date().getTime();
         $(this).attr("src", "../include/lib/checkcode.php?" + timestamp);

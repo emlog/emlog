@@ -100,7 +100,7 @@ function widget_sort($title) {
 				if ($value['pid'] != 0) continue;
 				?>
                 <li>
-                    <a href="<?= Url::sort($value['sid']) ?>"><?= $value['sortname'] ?>&nbsp;&nbsp;(<?= $value['lognum'] ?>)</a>
+                    <a href="<?= Url::sort($value['sid']) ?>"><?= $value['sortname'] ?>&nbsp;&nbsp;<?= (($value['lognum']) > 0) ? '('.($value['lognum']).')' : '' ?></a>
 					<?php if (!empty($value['children'])): ?>
                         <ul class="log-classify-c">
 							<?php
@@ -109,7 +109,7 @@ function widget_sort($title) {
 								$value = $sort_cache[$key];
 								?>
                                 <li>
-                                    <a href="<?= Url::sort($value['sid']) ?>">-&nbsp;&nbsp;<?= $value['sortname'] ?>
+                                    <a href="<?= Url::sort($value['sid']) ?>">--&nbsp;&nbsp;<?= $value['sortname'] ?>
                                         &nbsp;&nbsp;(<?= $value['lognum'] ?>)</a>
                                 </li>
 							<?php endforeach ?>
@@ -262,7 +262,7 @@ function blog_navi() {
 				if ($value['pid'] != 0) {
 					continue;
 				}
-				if ($value['url'] == ROLE_ADMIN && (ROLE == ROLE_ADMIN || ROLE == ROLE_WRITER)):
+				if ($value['url'] == 'admin' && (User::isAdmin())):
 					?>
 <!--vot-->          <li class="list-item list-menu"><a href="<?= BLOG_URL ?>admin/" class="nav-link"><?=lang('site_management')?></a></li>
 <!--vot-->          <li class="list-item list-menu"><a href="<?= BLOG_URL ?>admin/account.php?action=logout" class="nav-link"><?=lang('logout')?></a></li>
@@ -305,8 +305,8 @@ function blog_navi() {
  * blog:Top
  */
 function topflg($top, $sortop = 'n', $sortid = null) {
-/*vot*/	$ishome_flg = '<span title="' . lang('home_top') . '" class="log-topflg" />';
-/*vot*/	$issort_flg = '<span title="' . lang('category_top') . '" class="log-topflg" />';
+/*vot*/	$ishome_flg = '<span title="' . lang('home_top') . '" class="log-topflg" >' . lang('top') . '</span>';
+/*vot*/	$issort_flg = '<span title="' . lang('category_top') . '" class="log-topflg" >' . lang('category_top') . '</span>';
 	if (blog_tool_ishome()) {
 		echo $top == 'y' ? $ishome_flg : '';
 	} elseif ($sortid) {
@@ -320,7 +320,7 @@ function topflg($top, $sortop = 'n', $sortid = null) {
  * blog:Editor
  */
 function editflg($logid, $author) {
-/*vot*/	$editflg = ROLE == ROLE_ADMIN || $author == UID ? '<a href="' . BLOG_URL . 'admin/article.php?action=edit&gid=' . $logid . '" target="_blank">&nbsp;&nbsp;&nbsp;' . lang('edit') . '</a>' : '';
+/*vot*/	$editflg = User::isAdmin() || $author == UID ? '<a href="' . BLOG_URL . 'admin/article.php?action=edit&gid=' . $logid . '" target="_blank">&nbsp;&nbsp;&nbsp;' . lang('edit') . '</a>' : '';
 	echo $editflg;
 }
 
@@ -334,10 +334,24 @@ function blog_sort($blogid) {
 	$log_cache_sort = $CACHE->readCache('logsort');
 	?>
 	<?php if (!empty($log_cache_sort[$blogid])) { ?>
-        <a href="<?= Url::sort($log_cache_sort[$blogid]['id']) ?>"><?= $log_cache_sort[$blogid]['name'] ?></a>
+        <a href="<?= Url::sort($log_cache_sort[$blogid]['id']) ?>" title="分类：<?= $log_cache_sort[$blogid]['name'] ?>"><?= $log_cache_sort[$blogid]['name'] ?></a>
 	<?php } else { ?>
-<!--vot--><a href="#"><?=lang('no')?></a>
+<!--vot--><a href="#" title="<?=lang('uncategorized')?>"><?=lang('no')?></a>
 	<?php }
+} ?>
+<?php
+/**
+ * 文章列出页：分类
+ */
+function bloglist_sort($blogid) {
+	global $CACHE;
+	$log_cache_sort = $CACHE->readCache('logsort');
+	?>
+	<?php if (!empty($log_cache_sort[$blogid])) { ?>
+        <div class="loglist-sort" >
+            <a href="<?= Url::sort($log_cache_sort[$blogid]['id']) ?>" title="分类：<?= $log_cache_sort[$blogid]['name'] ?>"><?= $log_cache_sort[$blogid]['name'] ?></a>
+        </div>
+    <?php }
 } ?>
 <?php
 /**
@@ -489,7 +503,7 @@ function blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allo
                       is-chinese="<?= $isNeedChinese ?>">
                     <input type="hidden" name="gid" value="<?= $logid ?>"/>
                     <textarea class="form-control log_comment" name="comment" id="comment" rows="10" tabindex="4" required></textarea>
-					<?php if (ROLE == ROLE_VISITOR): ?>
+					<?php if (User::isVistor()): ?>
                         <div class="comment-info" id="comment-info">
 <!--vot-->                  <input class="form-control com_control comment-name" id="info_n" autocomplete="off" type="text" name="comname" maxlength="49"
                                    value="<?= $ckname ?>" size="22"

@@ -4248,7 +4248,9 @@
         options          = $.extend(true, defaults, options);
         
         var $this        = this;
-        var editor       = this.editor;
+        /* 修改：更换对话框创建的位置 */
+        // var editor       = this.editor;
+        var editor       = $("#editor-md-dialog");
         var classPrefix  = editormd.classPrefix;
         var guid         = (new Date()).getTime();
         var dialogName   = ( (options.name === "") ? classPrefix + "dialog-" + guid : options.name);
@@ -4284,7 +4286,6 @@
         editor.append(html);
 
         var dialog = editor.find("." + dialogName);
-
         dialog.lockScreen = function(lock) {
             if (options.lockScreen)
             {                

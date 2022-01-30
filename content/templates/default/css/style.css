@@ -177,10 +177,10 @@ footer .copyright {
 
 /* In the case of absolute positioning, the full width of the main sidebar (for some objects in the main sidebar whose width is difficult to calculate)
 ---------------------------------------------------*/
-@media (min-width:1px) {.rea-width{width: calc(100% - 30px)}}
-@media (min-width:576px) {.rea-width{width: 510px}}
+@media (min-width:1px) {.rea-width{width: calc(100% - 18px)}}
+@media (min-width:576px) {.rea-width{width: 524px}}
 @media (min-width:768px) {.rea-width{width: 450px}}
-@media (min-width:992px) {.rea-width{width: 610px}}
+@media (min-width:992px) {.rea-width{width: 609px}}
 @media (min-width:1201px) {.rea-width{width: 730px}}
 
 /* Configuration of blog header attributes
@@ -191,6 +191,7 @@ footer .copyright {
 	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1) /* Shadow */
 }
 .blog-header-c {
+    max-width: 1296px;
     height: 71.63px;
     display: flex;
     justify-content: space-between /* The navigation bar is aligned at both ends of the main axis, that is, the heading and the navigation are two parts, one is aligned to the left, and the other is aligned to the right. */
@@ -238,7 +239,7 @@ footer .copyright {
 	}
     .blog-header-toggle {
         display: none
-        }
+    }
 }
 /* Small screen */
 @media (max-width:767px)  {
@@ -388,7 +389,7 @@ footer .copyright {
 }
 .btn:hover {
     color: #50525e
-}
+} 
 .modal-header {
     text-align: center;
     border-bottom: 0px;
@@ -441,9 +442,6 @@ footer .copyright {
     border-radius: var(--marRadius);
     background: #ffffff;
     transition: box-shadow 0.4s
-}
-.shadow-theme:hover {
-    box-shadow: 1px 1px 2px #ddd
 }
 
 /* Calendar style
@@ -797,14 +795,12 @@ footer .copyright {
 /* The sticky pattern in the article entry, using base64 */
 .log-topflg {
     display: inline-block;
-    width: 24px;
     height: 24px;
-    background-size: 100%;
-    background-repeat: no-repeat;
-    vertical-align: middle;
-    user-select: none;
-    background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACYAAAAkCAYAAADl9UilAAAAAXNSR0IArs4c6QAAA+9JREFUWEftmG1MU1cYx/9tKbYFS1nqiC9EI6UJ7SbGBVCM2QdmxChOP0iyT2aLiUsMixizOEPYRCXGYIJRTFEYNviSEBWZqIXoF0kGg2GME9SNZdFC5mUYUmi9t6W3Nc8xLcqM94X5koXzsT3nOb/zf577f869mmg0GsV7ODQzYAqzMqOYQsHw/1bsmKsWZbvLoNPp4HA64G5swOKFC5WK9NL8aSv2c08Pms41oa+vH06nAxzHoWRHCfJzct4dWAyq0d2Iy57LDKSosAgfpqWh3l03LTjViv127x5OuE7CZrchKSmJpTA2vi/7AQG/H1XVVarhVIERVJunHZX7KuGqr8WCBfPjUEajETzPo7BgDdYVrVedVsVg434/Dh6qwsXzzdh7YO9LUFOLipSjuiv+olixcorAeEFA/Sk39nz7HebOnYeG0w2SBb72s0Isyc5GjesYljgm0y21UDYYQe2vPAhXjQtnms7CbJ4tFZv9PzY2DvePp1CwugB5ebn4OCtL1jrZYA2Np7Frxy4WNPYEytoBwNHqo2i75kHR5xtwpPowLCkpkktlgUUiEcyZMw/lFeXIyVXvT2QldCg5HicLzDs0BGfWR/DcaJc86esmUL1du+7578DC4TCczqWwfJAKs9mMQe8gvt6+TVI9qq/SklKkplogRiIY+P0PdHTehMNulzygLMUoCrk81Uq7px3RaAQajVay1sgubv3ayyCoG5C9FG/aKAlFE2SD0eS/Hj3C3xzH2s6LDwEpmpCQ8K8NYwchoGWfLJOVwlgQRWC06MnoKPKXr8LIyEhcMVEU2c1i6qirrcOli81obbuiCEqxYrGNsxzZGOa4SbBwGLpXKEap7O7qQkdnhyJzVQ225cutaP2pNQ5GvZF6ZGyEQiEkJiai9JudrOC7e7uQsWiRrNpSnUpamL/yUzy4/4CBjY2PI0GrgynJxGIKT3mEIyKSk5PjYLfv9CJ9/mSjl0OouMYoaN6KVUyJCy3nQa+lPB+EJXXSzb1eL9LT01mn6Lt7F4+5IRgNBjk88TmqwFavWcdsgBTz+XyYpdfDYHquGI0/BwaQYbOxpzcUCsLnewKtVvvmwWKKEdjExAQGH3phspiRZrVC4AUEg0GkWFIYGM8H4A+MQavRvHmwr7ZuQ0tzS7z4h7lhGE1G0LcGSpler2cQ5GNXW69gdPSft6PYkZrjqCivYG5OIxQMQhTDeCrwECdE9pvVamVeZ7Nn4pfODkVqqbaLO/392LypmG38ukFwdJmUc5uYGkdV8VMQumLT3Z9sIxAIsBcS6gCCIMBgMCDTnomVubmvbFVy5FMNJif4dObMgClVb0YxpYo9A3xJDbNANb8bAAAAAElFTkSuQmCC);
-    margin-top: -22px
+    padding: 2.5px;
+    font-size: 14px;
+    margin-left: 8px;
+    cursor: default;
+    background-color: antiquewhite
 }
 .log-topflg:hover {
     color: black
@@ -815,7 +811,7 @@ footer .copyright {
 .log-con {
     background-color: #ffffff;
     border-radius: var(--marRadius);
-    max-width: 990px;
+    max-width: 960px;
     padding: 30px;
     font-size: 16px;
     height: fit-content;
@@ -907,6 +903,14 @@ footer .copyright {
     transform: scale(1.01);
     clip: rect(50px 730px 250px 0px)
 }
+/* 文章分类 */
+.loglist-sort {
+    display: inline-block;
+    margin-left: 10px;
+    padding: 5px;
+    padding-bottom: 2px;
+    border: 1px solid #e8e8e8
+}
 @media (max-width:415px) {.loglist-cover{ height: 160px;overflow: hidden}.loglist-cover img {position:unset;    width: 730px;}}
 @media (max-width:375px) {.loglist-cover{ height: 140px;overflow: hidden}.loglist-cover img {position:unset;    width: 730px;}}
 /* Other contents of the entry */
@@ -979,8 +983,7 @@ footer .copyright {
 /* Tags in the sidebar widget */
 .tag-container {
     margin-block: 0;
-    text-overflow: ellipsis;
-    overflow: hidden
+    text-overflow: ellipsis
 }
 .tags-side {
     border: 1px solid #e8e8e8;
@@ -1099,7 +1102,7 @@ footer .copyright {
 /* Web footer
 ---------------------------------------------------*/
 .text-center {
-    text-align: center !important;
+    text-align: center !important
 }
 
 /* Image zoom
@@ -1264,13 +1267,17 @@ img.zoom-img {
     .comment-post input {
         padding: 0.5em 0.75em
     }
+    /* 侧边栏日历 */
+    #calendar {
+        margin-left: 0
+    }
 }
 /* The zoom and other adjustment styles made on some unusual devices in the middle size of the tablet */
 @media all and (max-width: 991px) and (min-width: 768px) {
 
     #calendar {
-        transform: scale(0.7);
-        margin-left: -46px;
+        transform: scale(0.8);
+        margin-left: -14px;
         margin-top: -14px
     }
     .unstyle-li form {
@@ -1279,8 +1286,8 @@ img.zoom-img {
         margin-left: -47px
     }
     /* The comment content of the latest comment is slightly smaller */
-    #side-comment{
-        font-size: 12px
+    .logcom-latest-time {
+        max-width: 60px
     }
 
 }

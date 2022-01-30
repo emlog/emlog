@@ -38,7 +38,7 @@
             <li class="nav-item"><a class="nav-link <?php if ($hide == 'y') {
 					echo 'active';
 /*vot*/         } ?>" href="./comment.php?hide=y&<?= $addUrl_1 ?>"><?=lang('pending')?><?php
-					$hidecmnum = ROLE == ROLE_ADMIN ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
+					$hidecmnum = User::isAdmin() ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
 					if ($hidecmnum > 0) echo '(' . $hidecmnum . ')';
 					?></a>
             </li>
@@ -86,11 +86,11 @@
 									<?= $comment ?>
                                 </a>
 								<?= $ishide ?>
-<!--vot-->							<?php if ($top == 'y'): ?><img src="./views/images/top.png" title="<?=lang('top')?>"/><?php endif ?>
+<!--vot-->							<?php if ($top == 'y'): ?><span class="flag-indexTop" title="<?=lang('top')?>"><?=lang('top')?></span><?php endif ?>
                             </td>
                             <td class="small">
 <!--vot-->                      <?= $poster ?> <?= $mail ?> <?= $ip_info ?>
-								<?php if (ROLE == ROLE_ADMIN): ?>
+								<?php if (User::isAdmin()): ?>
 <!--vot-->                          <a href="javascript: em_confirm('<?= $ip ?>', 'commentbyip', '<?= LoginAuth::genToken() ?>');"
                                        class="badge badge-pill badge-warning"><?=lang('del_from_ip')?></a>
 								<?php endif ?>
