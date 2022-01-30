@@ -2,10 +2,10 @@
 
 class User {
 
-	const ROLE_FOUNDER = 'founder';          //创始人
-	const ROLE_ADMIN = 'admin';              //管理员
-	const ROLE_WRITER = 'writer';            //用户
-	const ROLE_VISITOR = 'visitor';          //游客
+	const ROLE_FOUNDER = 'founder';          //Founder
+	const ROLE_ADMIN = 'admin';              //Admin
+	const ROLE_WRITER = 'writer';            //Writer
+	const ROLE_VISITOR = 'visitor';          //Guest
 
 	static function isAdmin($role = ROLE) {
 		if ($role == self::ROLE_ADMIN || $role == self::ROLE_FOUNDER) {
@@ -25,16 +25,16 @@ class User {
 		$role_name = '';
 		switch ($role) {
 			case self::ROLE_FOUNDER:
-				$role_name = '创始人';
+/*vot*/			$role_name = lang(ROLE_FOUNDER);
 				break;
 			case self::ROLE_ADMIN:
-				$role_name = '管理员';
+/*vot*/			$role_name = lang(ROLE_ADMIN);
 				break;
 			case self::ROLE_WRITER:
-				$role_name = '用户';
+/*vot*/			$role_name = lang(ROLE_WRITER);
 				break;
 			case self::ROLE_VISITOR:
-				$role_name = '游客';
+/*vot*/			$role_name = lang(ROLE_VISITOR);
 				break;
 		}
 		return $role_name;

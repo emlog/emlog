@@ -6,9 +6,9 @@
 
 class LoginAuth {
 
-	const LOGIN_ERROR_USER = -1;     //用户不存在
-	const LOGIN_ERROR_PASSWD = -2;   //密码错误
-	const LOGIN_ERROR_AUTHCODE = -3; //验证码错误
+	const LOGIN_ERROR_USER = -1;     //User does not exist
+	const LOGIN_ERROR_PASSWD = -2;   //Wrong password
+	const LOGIN_ERROR_AUTHCODE = -3; //Verification code error
 
 	/**
 	 * Verify that the user is logged on
@@ -32,7 +32,7 @@ class LoginAuth {
 	}
 
 	/**
-	 * 未登录，跳转用户登录页
+	 * Not logged in, jump to the user login page
 	 */
 	public static function loginPage($error_code = NULL) {
 		if (self::isLogin() === true) {
@@ -46,7 +46,7 @@ class LoginAuth {
 	}
 
 	/**
-	 * 登录，跳转用户（管理）中心
+	 * Logged in, jump to the user (management) center
 	 */
 	public static function loggedPage() {
 		if (self::isLogin() === false) {

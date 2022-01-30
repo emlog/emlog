@@ -13,15 +13,15 @@
 <!--vot-->                          <h1 class="h4 text-gray-900 mb-4"><?=lang('account_register')?></h1>
                                 </div>
 								<?php if (isset($_GET['err_ckcode'])): ?>
-                                    <div class="alert alert-danger">验证错误，请重新输入</div><?php endif ?>
+<!--vot-->                          <div class="alert alert-danger"><?=lang('validation_error')?></div><?php endif ?>
 								<?php if (isset($_GET['error_login'])): ?>
-                                    <div class="alert alert-danger">用户名格式错误</div><?php endif ?>
+<!--vot-->                          <div class="alert alert-danger"><?=lang('username_format_error')?></div><?php endif ?>
 								<?php if (isset($_GET['error_exist'])): ?>
-                                    <div class="alert alert-danger">用户名已被占用</div><?php endif ?>
+<!--vot-->                          <div class="alert alert-danger"><?=lang('username_in_use')?></div><?php endif ?>
 								<?php if (isset($_GET['error_pwd_len'])): ?>
-                                    <div class="alert alert-danger">密码不小于6位</div><?php endif ?>
+<!--vot-->                          <div class="alert alert-danger"><?=lang('password_short')?></div><?php endif ?>
 								<?php if (isset($_GET['error_pwd2'])): ?>
-                                    <div class="alert alert-danger">两次输入的密码不一致</div><?php endif ?>
+<!--vot-->                          <div class="alert alert-danger"><?=lang('password_not_equal')?></div><?php endif ?>
                                 <form method="post" class="user" action="./account.php?action=register">
                                     <div class="form-group">
 <!--vot-->                              <input type="email" class="form-control form-control-user" id="user" name="user" aria-describedby="emailHelp" placeholder="<?=lang('user_name')?>" required

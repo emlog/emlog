@@ -334,14 +334,14 @@ function blog_sort($blogid) {
 	$log_cache_sort = $CACHE->readCache('logsort');
 	?>
 	<?php if (!empty($log_cache_sort[$blogid])) { ?>
-        <a href="<?= Url::sort($log_cache_sort[$blogid]['id']) ?>" title="分类：<?= $log_cache_sort[$blogid]['name'] ?>"><?= $log_cache_sort[$blogid]['name'] ?></a>
+<!--vot--><a href="<?= Url::sort($log_cache_sort[$blogid]['id']) ?>" title="<?=lang('category')?>: <?= $log_cache_sort[$blogid]['name'] ?>"><?= $log_cache_sort[$blogid]['name'] ?></a>
 	<?php } else { ?>
 <!--vot--><a href="#" title="<?=lang('uncategorized')?>"><?=lang('no')?></a>
 	<?php }
 } ?>
 <?php
 /**
- * 文章列出页：分类
+ * Article Listing Page: Categories
  */
 function bloglist_sort($blogid) {
 	global $CACHE;
@@ -349,7 +349,7 @@ function bloglist_sort($blogid) {
 	?>
 	<?php if (!empty($log_cache_sort[$blogid])) { ?>
         <div class="loglist-sort" >
-            <a href="<?= Url::sort($log_cache_sort[$blogid]['id']) ?>" title="分类：<?= $log_cache_sort[$blogid]['name'] ?>"><?= $log_cache_sort[$blogid]['name'] ?></a>
+<!--vot-->  <a href="<?= Url::sort($log_cache_sort[$blogid]['id']) ?>" title="<?=lang('category'): <?= $log_cache_sort[$blogid]['name'] ?>"><?= $log_cache_sort[$blogid]['name'] ?></a>
         </div>
     <?php }
 } ?>

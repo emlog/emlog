@@ -71,7 +71,7 @@
 <!--vot-->      <a class="nav-link" href="page.php"><i class="icofont-page"></i><span><?= lang('pages') ?></span></a>
             </li>
             <li class="nav-item" id="menu_user">
-                <a class="nav-link" href="user.php"><i class="icofont-user"></i><span>用户</span></a>
+<!--vot-->      <a class="nav-link" href="user.php"><i class="icofont-user"></i><span><?=lang('users')?></span></a>
             </li>
             <li class="nav-item" id="menu_category_view">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_view" aria-expanded="true" aria-controls="menu_view">

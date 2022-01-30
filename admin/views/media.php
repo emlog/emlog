@@ -109,6 +109,6 @@
         hs.graphicsDir = './views/highslide/graphics/';
         hs.wrapperClassName = 'rounded-white';
     }else{
-        $('.highslide').removeAttr ('onclick')  // 如果是移动端，则不使用 highslide 功能
+        $('.highslide').removeAttr ('onclick')  // If it is a mobile terminal, do not use the highslide function
     }
 </script>

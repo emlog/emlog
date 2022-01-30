@@ -12,12 +12,12 @@
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4"><?=lang('log_in')?></h1>
                                 </div>
-								<?php if (isset($_GET['succ_reg'])): ?>
-                                    <div class="alert alert-success">注册成功，请登录</div><?php endif ?>
+				<?php if (isset($_GET['succ_reg'])): ?>
+<!--vot-->                          <div class="alert alert-success"><?=lang('em_reg_ok')?></div><?php endif ?>
 								<?php if (isset($_GET['err_ckcode'])): ?>
-                                    <div class="alert alert-danger">验证错误，请重新输入</div><?php endif ?>
+<!--vot-->                          <div class="alert alert-danger"><?-lang('validation_error')?></div><?php endif ?>
 								<?php if (isset($_GET['err_login'])): ?>
-                                    <div class="alert alert-danger">用户或密码错误，请重新输入</div><?php endif ?>
+<!--vot-->                          <div class="alert alert-danger"><?=lang('password_invalid')?></div><?php endif ?>
                                 <form method="post" class="user" action="./account.php?action=login&s=<?= $admin_path_code ?>">
                                     <div class="form-group">
 <!--vot-->                              <input type="text" class="form-control form-control-user" id="user" name="user" aria-describedby="emailHelp" placeholder="<?=lang('user_name')?>" required

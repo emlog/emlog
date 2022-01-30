@@ -89,7 +89,7 @@
             <div class="modal-header">
 <!--vot-->      <h5 class="modal-title"><?=lang('crop_upload')?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
+<!--vot-->          <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">

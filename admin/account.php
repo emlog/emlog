@@ -21,7 +21,7 @@ if (!isset($_SESSION)) {
 }
 
 /**
- * 登录
+ * Log in
  */
 if ($action == 'signin') {
 	loginAuth::loggedPage();
@@ -66,7 +66,7 @@ if ($action == 'login') {
 }
 
 /**
- * 注册
+ * Register
  */
 if ($action == 'signup') {
 	loginAuth::loggedPage();
@@ -115,7 +115,7 @@ if ($action == 'register') {
 }
 
 /**
- * 重置密码
+ * Reset Password
  */
 if ($action == 'reset') {
 	if (ISLOGIN === true) {
@@ -153,7 +153,7 @@ if ($action == 'send_auth_code') {
 }
 
 /**
- * 登出
+ * Log out
  */
 if ($action == 'logout') {
 	setcookie(AUTH_COOKIE_NAME, ' ', time() - 31536000, '/');

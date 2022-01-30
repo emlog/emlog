@@ -53,14 +53,14 @@
    document.removeEventListener('click', this._boundClick, true)
    this._activeZoom = null
 
-   /* 修改：在关闭图片后，图片恢复原来的地址 */
+   /* Modification: After closing the picture, the picture is restored to its original address */
    let $zoomImg = $('.zoomFocus')
    $zoomImg.attr('src',$zoomImg.attr('src2'))
            .removeClass('zoomFocus')
 
  }
 
-/* 修改：注释掉了滚轮滚动可关闭图片的设定 */
+/* Modification: Comment out the setting that the scroll wheel can close the picture */
 //  ZoomService.prototype._scrollHandler = function (e) {
 //  if (this._initialScrollPosition === null) this._initialScrollPosition = $(window).scrollTop()
 //  var deltaY = this._initialScrollPosition - $(window).scrollTop()

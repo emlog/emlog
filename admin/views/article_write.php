@@ -170,7 +170,7 @@
             <div class="modal-header">
                 <h5 class="modal-title"><?=lang('crop_upload')?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
+<!--vot-->          <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
@@ -329,7 +329,7 @@
         });
     });
 
-    // 离开页面时，如果文章内容已做修改，则询问用户是否离开
+    // When leaving the page, if the content of the article has been modified, ask the user whether to leave
     var articleTextRecord;
     hooks.addAction("loaded", function(){
         articleTextRecord = $("textarea[name=logcontent]").text();
@@ -337,17 +337,17 @@
     window.onbeforeunload = function (e) {
         if($("textarea[name=logcontent]").text() == articleTextRecord) return
         e = e || window.event;
-        if (e) e.returnValue = '离开页面提示';
-        return '离开页面提示';
+/*vot*/     if (e) e.returnValue = LNG['leave_prompt'];
+/*vot*/ return LNG['leave_prompt'];
     }
 
-    // 如果文章内容已做修改，则使网页标题修改为‘已修改’
+    // If the content of the article has been modified, make the page title modified to 'modified'
     var titleText = $('title').text()
     hooks.addAction("loaded", function(obj){
         obj.config({ 
             onchange : function() {
                 if($("textarea[name=logcontent]").text() == articleTextRecord) return
-                $('title').text('[已修改] ' + titleText);
+/*vot*/         $('title').text(LNG['already_edited'] + titleText);
             }
          });
     });

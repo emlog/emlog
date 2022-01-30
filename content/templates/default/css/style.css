@@ -903,7 +903,7 @@ footer .copyright {
     transform: scale(1.01);
     clip: rect(50px 730px 250px 0px)
 }
-/* 文章分类 */
+/* Article category */
 .loglist-sort {
     display: inline-block;
     margin-left: 10px;
@@ -1267,7 +1267,7 @@ img.zoom-img {
     .comment-post input {
         padding: 0.5em 0.75em
     }
-    /* 侧边栏日历 */
+    /* Sidebar Calendar */
     #calendar {
         margin-left: 0
     }

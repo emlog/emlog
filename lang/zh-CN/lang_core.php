@@ -77,10 +77,10 @@ $lang = array(
 //include/lib/option.php
  'blogger'		=> '个人资料',//'Personal info',
  'categories'		=> '分类',//'Categories',
+ 'category'		=> '分类',//'Category',
  'calendar'		=> '日历',//'Calendar',
  'twitter_latest'	=> '最新微语',//'Latest twits',
  'tags'			=> '标签',//'Tags',
- 'category'		=> '分类',//'Category',
  'archive'		=> '存档',//'Archive',
  'new_comments'		=> '最新评论',//'Latest comments',
  'new_posts'		=> '最新文章',//'Latest posts',
