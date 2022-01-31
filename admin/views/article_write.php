@@ -337,8 +337,8 @@
     window.onbeforeunload = function (e) {
         if($("textarea[name=logcontent]").text() == articleTextRecord) return
         e = e || window.event;
-/*vot*/     if (e) e.returnValue = LNG['leave_prompt'];
-/*vot*/ return LNG['leave_prompt'];
+/*vot*/     if (e) e.returnValue = lang('leave_prompt');
+/*vot*/ return lang('leave_prompt');
     }
 
     // If the content of the article has been modified, make the page title modified to 'modified'
@@ -347,7 +347,7 @@
         obj.config({ 
             onchange : function() {
                 if($("textarea[name=logcontent]").text() == articleTextRecord) return
-/*vot*/         $('title').text(LNG['already_edited'] + titleText);
+/*vot*/         $('title').text(lang('already_edited') + titleText);
             }
          });
     });
