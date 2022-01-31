@@ -4,10 +4,10 @@ $lang = array(
 
 //---------------------------
 //admin/account.php
-//'test_headers'		=> 'Test email sending headers',//'测试邮件发送标题',
-//'test_sending'		=> 'Test email sending',//'测试邮件发送内容',
-//'mail_sent_ok'		=> 'Mail sent successfully',//'邮件发送成功',
-//'mail_send_error'	=> 'Mail send error',//'邮件发送失败',
+//'mail_test_header'	=> 'Test mail sending header',//'测试邮件发送标题',
+//'mail_test_content'	=> 'Test mail sending content',//'测试邮件发送内容',
+//'mail_send_ok'	=> 'Mail sent successfully',//'邮件发送成功',
+//'mail_send_error'	=> 'Mail sending failed',//'邮件发送失败',
 
 
 //---------------------------
@@ -27,13 +27,6 @@ $lang = array(
 //---------------------------
 //admin/blogger.php
  'avatar_delete'	=> 'Delete avatar',//'删除头像',
-
-//---------------------------
-//admin/configure.php
- 'site_address'	=> 'Site address',//'站点地址：',
- 'verification_code_not_supported' => 'Failed to open the login verification code! The server space does not support the GD graphics library',//'开启登录验证码失败!服务器空间不支持GD图形库',
- 'verification_code_comment_not_supported' => 'Failed to open comment verification code! Server space does not support GD graphics library',//'开启评论验证码失败!服务器空间不支持GD图形库',
- 'detect_url' => 'Automatic detection of site address (may be incompatible with some CDN solutions)',//'自动检测站点地址 (可能和部分CDN解决方案不兼容)',
 
 //---------------------------
 //admin/data.php
@@ -66,6 +59,30 @@ $lang = array(
 //admin/plugin.php
  'plugin_upload_error'	=> 'Plugin upload failed',//'插件上传失败',
 
+//---------------------------
+//admin/setting.php
+ 'site_address'			=> 'Site address',//'站点地址：',
+ 'verification_code_not_supported'	=> 'Failed to open the login verification code! The server space does not support the GD graphics library',//'开启登录验证码失败!服务器空间不支持GD图形库',
+ 'verification_code_comment_not_supported'	=> 'Failed to open comment verification code! Server space does not support GD graphics library',//'开启评论验证码失败!服务器空间不支持GD图形库',
+ 'detect_url'			=> 'Automatic detection of site address (may be incompatible with some CDN solutions)',//'自动检测站点地址 (可能和部分CDN解决方案不兼容)',
+
+//---------------------------
+//admin/setting_mail.php
+ 'email_sending'	=> 'Email sending',//'邮件发送',
+ 'email_send'		=> 'Send email',//'发送邮箱',
+ 'smtp_password'	=> 'SMTP password',//'SMTP密码',
+ 'smtp_server'		=> 'SMTP server',//'SMTP服务器',
+ 'port'			=> 'Port',//'端口',
+
+//---------------------------
+//admin/setting_user.php
+ 'registration'		=> 'Registration',//'登录注册',
+ 'registration_open'	=> 'Open registration',//'开启注册',
+ 'registration_captcha'	=> 'Verification code at registration',//'登录注册验证码',
+ 'user_rights'		=> 'User rights',//'用户权限',
+ 'comment_write'	=> 'Post comments',//'发布评论',
+ 'guest_rights'		=> 'Visitor permissions',//'游客权限',
+ 
 //---------------------------
 //admin/store.php
  'template'		=> 'Template',//'模板',
@@ -244,6 +261,8 @@ $lang = array(
 //---------------------------
 //admin/views/blogger.php
  'basic_settings'		=> 'Basic Settings',//'基本设置',
+ 'user_settings'		=> 'User settings',//'用户设置',
+ 'email_notify'			=> 'E-mail notification',//'邮件通知',
  'seo_settings'			=> 'SEO Settings',//'SEO设置',
  'background_style'		=> 'Background style',//'后台风格',
  'personal_settings'		=> 'Personal Settings',//'个人设置',
@@ -279,56 +298,6 @@ $lang = array(
  'operation'		=> 'Operation',//'操作',
  'comment_selected_delete_sure'	=> 'Are you sure you want to delete the selected comments?',//'确定要删除所选评论吗？',
  'article_all_comments'	=> 'All comments on this article',//'该文所有评论',
-
-//---------------------------
-//admin/views/configure.php
- 'settings_saved_ok'	=> 'Settings have been saved successfully',//'设置保存成功',
- 'site_title'		=> 'Site title',//'站点标题',
- 'site_subtitle'	=> 'Site subtitle',//'站点副标题',
- 'site_address	'	=> 'Site address',//'站点地址',
- 'per_page'		=> 'Show per page',//'每页显示',
- 'posts_per_page'	=> 'Number of articles displayed per page',//'每页显示文章数量',
- '_posts'		=> ' posts',//'篇文章',
- 'your_timezone'	=> 'Your time zone',//'你所在时区',
- 'local_time'		=> 'Local Time',//'本地时间',
- 'export'		=> 'Export ',//'输出',
- 'rss_output_num'	=> ' posts, and output',//'篇文章，且输出',
- 'full_text'		=> 'Full Text',//'全文',
- 'summary'		=> 'Summary',//'摘要',
- 'rss_post_num'		=> 'articles (0 is closed), and output',//'篇文章（0为关闭），且输出',
- 'function_switch'		=> 'Function switch',//'功能开关',
- 'login_verification_code'	=> 'Login verification code',//'登录验证码',
- 'gzip_compression'		=> 'Gzip compression',//'Gzip压缩',
- 'offline_writing'		=> 'Offline Writing (Support the use of tools such as Windows Live Writer to write articles)',//'离线写作（支持用Windows Live Writer等工具写文章）',
- 'mobile_access_address'	=> 'Mobile Access version, address',//'手机访问版，地址',
- 'access_site_by_mobile'	=> 'Access to your site using a mobile phone',//'用手机访问你的站点',
- 'auto_summary'			=> 'Automatic summary',//'自动摘要',
- 'auto_summary_length'		=> 'Automatically intercept',//'自动截取',
- 'characters_as_summary'	=> ' characters as a summary',//'个字作为摘要',
- 'reply_verification_code'	=> 'Reply verification code, ',//'回复验证码，',
- 'reply_audit'			=> 'Reply audit',//'回复审核',
- 'enable_comments'		=> 'Enable comments',//'开启评论',
- 'comment_interval'		=> 'Comment interval',//'发表评论间隔',
- 'seconds'			=> 'seconds',//'秒',
- 'comment_moderation'		=> 'Comment moderation',//'评论审核',
- 'comment_verification_code'	=> 'Comments Verification Code',//'评论验证码',
- 'comment_avatar'		=> 'Comments author avatar',//'评论人头像',
- 'comment_must_contain_chinese'	=> 'Comments must contain Chinese',//'评论内容必须包含中文',
- 'comment_per_page'		=> 'Comments per page',//'评论分页，',
- 'newer'			=> 'Newer',//'较新的',
- 'older'			=> 'Older',//'较旧的',
- 'standing_in_front'		=> 'Standing in front',//'排在前面',
- 'upload_max_size'		=> 'Upload attachment maximum size',//'附件上传最大限制',
- 'php_upload_max_size'		=> 'Upload file has been configured by server PHP maximum upload space',//'上传文件还受到服务器空间PHP配置最大上传',
- 'allow_attach_type'		=> 'Allow attachment types to upload',//'允许上传的附件类型',
- 'separate_by_comma'		=> ' (Separate multiple values by a comma)',//'（多个用半角逗号分隔）',
- 'thumbnail_max_size'		=> 'Uploaded pictures generated thumbnail maximum size: ',//'上传图片生成缩略图，最大尺寸：',
- 'unit_pixels'			=> ' (Unit: pixels)',//'（单位：像素）',
- 'icp_reg_no'			=> 'ICP Reg.&nbsp;No.',//'ICP备案号',
- 'home_footer_info'		=> 'Footer info at the Home',//'首页底部信息',
- 'home_footer_info_html'	=> '(HTML supported, can be used to add a traffic statistics code)',//'(支持html，可用于添加流量统计代码)',
- 'save_settings'		=> 'Save Settings',//'保存设置',
- 'before_intercept'		=> 'Intercept before article ',//'截取文章的前',
 
 //---------------------------
 //admin/views/data.php
@@ -510,6 +479,9 @@ $lang = array(
  'log_in'		=> ' Log in ',//' 登 录 ',
  'back_home'		=> 'Back to home',//'返回首页',
  'password_forget'	=> 'Forgot Password?',//'忘记密码?',
+ 'account_register'	=> 'Register an account',//'注册账号',
+ 'validation_error'	=> 'Validation error, please re-enter',//'验证错误，请重新输入',
+ 'password_invalid'	=> 'User or password incorrect, please re-enter',//'用户或密码错误，请重新输入',
 
 //---------------------------
 //admin/views/media.php
@@ -619,6 +591,9 @@ $lang = array(
  'emlog_reg_ok'		=> 'Congratulations, your emlog pro has been registered!',//'恭喜，您的emlog pro已完成注册！',
  'enter_reg_code'	=> 'Enter the registration code',//'输入注册码',
  'register'		=> 'Register',//'注册',
+ 'username_format_error'	=> 'Username format error',//'用户名格式错误',
+ 'username_in_use'	=> 'Username is already in use'//'用户名已被占用',
+ 'password_short'	=> 'Password must not be less than 5 digits',//'密码不小于5位',
 
 //---------------------------
 //admin/views/reset.php
@@ -651,6 +626,61 @@ $lang = array(
  'post_title_site_title'	=> 'Article title - Site title',//'文章标题 - 站点标题',
  'post_title_site_meta_title'	=> 'Article title - Site browser title',//'文章标题 - 站点浏览器标题',
  'nginx_rewrite'		=> 'Please configure the following pseudo-static rules for the Nginx server',//'Nginx服务器请配置如下伪静态规则',
+
+//---------------------------
+//admin/views/setting.php
+ 'settings_saved_ok'	=> 'Settings have been saved successfully',//'设置保存成功',
+ 'site_title'		=> 'Site title',//'站点标题',
+ 'site_subtitle'	=> 'Site subtitle',//'站点副标题',
+ 'site_address	'	=> 'Site address',//'站点地址',
+ 'per_page'		=> 'Show per page',//'每页显示',
+ 'posts_per_page'	=> 'Number of articles displayed per page',//'每页显示文章数量',
+ '_posts'		=> ' posts',//'篇文章',
+ 'your_timezone'	=> 'Your time zone',//'你所在时区',
+ 'local_time'		=> 'Local Time',//'本地时间',
+ 'export'		=> 'Export ',//'输出',
+ 'rss_output_num'	=> ' posts, and output',//'篇文章，且输出',
+ 'full_text'		=> 'Full Text',//'全文',
+ 'summary'		=> 'Summary',//'摘要',
+ 'rss_post_num'		=> 'articles (0 is closed), and output',//'篇文章（0为关闭），且输出',
+ 'function_switch'		=> 'Function switch',//'功能开关',
+ 'login_verification_code'	=> 'Login verification code',//'登录验证码',
+ 'gzip_compression'		=> 'Gzip compression',//'Gzip压缩',
+ 'offline_writing'		=> 'Offline Writing (Support the use of tools such as Windows Live Writer to write articles)',//'离线写作（支持用Windows Live Writer等工具写文章）',
+ 'mobile_access_address'	=> 'Mobile Access version, address',//'手机访问版，地址',
+ 'access_site_by_mobile'	=> 'Access to your site using a mobile phone',//'用手机访问你的站点',
+ 'auto_summary'			=> 'Automatic summary',//'自动摘要',
+ 'auto_summary_length'		=> 'Automatically intercept',//'自动截取',
+ 'characters_as_summary'	=> ' characters as a summary',//'个字作为摘要',
+ 'reply_verification_code'	=> 'Reply verification code, ',//'回复验证码，',
+ 'reply_audit'			=> 'Reply audit',//'回复审核',
+ 'enable_comments'		=> 'Enable comments',//'开启评论',
+ 'comment_interval'		=> 'Comment interval',//'发表评论间隔',
+ 'seconds'			=> 'seconds',//'秒',
+ 'comment_moderation'		=> 'Comment moderation',//'评论审核',
+ 'comment_verification_code'	=> 'Comments Verification Code',//'评论验证码',
+ 'comment_avatar'		=> 'Comments author avatar',//'评论人头像',
+ 'comment_must_contain_chinese'	=> 'Comments must contain Chinese',//'评论内容必须包含中文',
+ 'comment_per_page'		=> 'Comments per page',//'评论分页，',
+ 'comments_per_page'		=> 'Display the number of comments per page',//'每页显示评论条数',
+ 'standing_in_front'		=> 'Standing in front',//'排在前面',
+ 'upload_max_size'		=> 'Upload attachment maximum size',//'附件上传最大限制',
+ 'php_upload_max_size'		=> 'Upload file has been configured by server PHP maximum upload space',//'上传文件还受到服务器空间PHP配置最大上传',
+ 'allow_attach_type'		=> 'Allow attachment types to upload',//'允许上传的附件类型',
+ 'separate_by_comma'		=> ' (Separate multiple values by a comma)',//'（多个用半角逗号分隔）',
+ 'thumbnail_max_size'		=> 'Uploaded pictures generated thumbnail maximum size: ',//'上传图片生成缩略图，最大尺寸：',
+ 'unit_pixels'			=> ' (Unit: pixels)',//'（单位：像素）',
+ 'icp_reg_no'			=> 'ICP Reg.&nbsp;No.',//'ICP备案号',
+ 'home_footer_info'		=> 'Footer info at the Home',//'首页底部信息',
+ 'home_footer_info_html'	=> '(HTML supported, can be used to add a traffic statistics code)',//'(支持html，可用于添加流量统计代码)',
+ 'save_settings'		=> 'Save Settings',//'保存设置',
+ 'before_intercept'		=> 'Intercept before article ',//'截取文章的前',
+ 'comment_sort'			=> 'Sort comments',//'评论排序方式',
+ 'new_first'			=> 'New first',//'新的靠前',
+ 'old_first'			=> 'Old first',//'旧的靠前',
+ 'article_settigs'		=> 'Article Settings',//'文章设置',
+ 'upload_settings'		=> 'Upload settings',//'上传设置',
+ 'comment_settings'		=> 'Comment settings',//'评论设置',
 
 //---------------------------
 //admin/views/sort.php

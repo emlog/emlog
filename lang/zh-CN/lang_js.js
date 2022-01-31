@@ -2,7 +2,7 @@ var LNG = {
 //---------------------------
 //admin/views/article_write.php
  'leave_prompt'		: '离开页面提示',//'Leave page prompt',
- 'already_edited'	: '[已修改] ',//''[already edited] '',
+ 'already_edited'	: '[已修改] ',//'[already edited] ',
 
 //---------------------------
 //admin/views/js/common.js

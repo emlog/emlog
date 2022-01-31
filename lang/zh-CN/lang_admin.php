@@ -61,10 +61,10 @@ $lang = array(
 
 //---------------------------
 //admin/setting.php
- 'site_address'	=> '站点地址：',//'Site address',
- 'verification_code_not_supported' => '开启登录验证码失败!服务器空间不支持GD图形库',//'Failed to open the login verification code! The server space does not support the GD graphics library',
- 'verification_code_comment_not_supported' => '开启评论验证码失败!服务器空间不支持GD图形库',//'Failed to open comment verification code! Server space does not support GD graphics library',
- 'detect_url' => '自动检测站点地址 (可能和部分CDN解决方案不兼容)',//'Automatic detection of site address (may be incompatible with some CDN solutions)',
+ 'site_address'			=> '站点地址：',//'Site address',
+ 'verification_code_not_supported'	=> '开启登录验证码失败!服务器空间不支持GD图形库',//'Failed to open the login verification code! The server space does not support the GD graphics library',
+ 'verification_code_comment_not_supported'	=> '开启评论验证码失败!服务器空间不支持GD图形库',//'Failed to open comment verification code! Server space does not support GD graphics library',
+ 'detect_url'			=> '自动检测站点地址 (可能和部分CDN解决方案不兼容)',//'Automatic detection of site address (may be incompatible with some CDN solutions)',
                   
 //---------------------------
 //admin/setting_mail.php
@@ -677,7 +677,7 @@ $lang = array(
  'before_intercept'		=> '截取文章的前',//'Intercept before article ',
  'comment_sort'			=> '评论排序方式',//'Sort comments',
  'new_first'			=> '新的靠前',//'New first',
- 'old_first'			=>  '旧的靠前',//'Old first',
+ 'old_first'			=> '旧的靠前',//'Old first',
  'article_settigs'		=> '文章设置',//'Article Settings',
  'upload_settings'		=> '上传设置',//'Upload settings',
  'comment_settings'		=> '评论设置',//'Comment settings',

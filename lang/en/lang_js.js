@@ -1,5 +1,10 @@
 var LNG = {
 //---------------------------
+//admin/views/article_write.php
+ 'leave_prompt'		: 'Leave page prompt',//'离开页面提示',
+ 'already_edited'	: '[already edited] ',//'[已修改] ',
+
+//---------------------------
 //admin/views/js/common.js
  'twitter_del_sure'	: 'Are you sure you want to delete this note?',//'确定要删除该笔记吗？',
  'comment_del_sure'	: 'Are you sure you want to delete this comment?',//'确定要删除该评论吗？',
@@ -23,6 +28,17 @@ var LNG = {
  'saving'		: 'Saving...',//'正在保存中...',
  'saved_ok_time'	: 'Saved at ',//'保存于：',
  'save_system_error'	: 'Error while saving... Unable to save.',//'网络或系统出现异常...保存可能失败',
+ 'too_quick'		: 'Do not operate frequently!',//'请勿频繁操作！',
+ 'saving_in'		: '[Saving] ',//'[保存中] ',
+ 'saved_ok'		: '[Saved successfully] ',//'[保存成功] ',
+ 'save_failed'		: '[Save failed] ',//'[保存失败] ',
+ 'paste_upload'		: 'Paste upload ',//'粘贴上传 ',
+ 'uploading'		: 'Uploading...',//'上传中...',
+ 'progress'		: 'Progress (bytes): ',//'进度(bytes): ',
+ 'upload_ok_get_result'	: 'Upload successful! Getting results...',//'上传成功！正在获取结果...',
+ 'result_ok'		: 'Get the result successfully!',//'获取结果成功！',
+ 'unknown_error'	: 'Unknown error',//'未知错误',
+ 'upload_failed_error'	: 'Upload failed, wrong image type or network error',//'上传失败,图片类型错误或网络错误',
 
 //----
  'backup_import_sure'	: 'Are you sure you want to import the backup files?',//'你确定要导入该备份文件吗？',
