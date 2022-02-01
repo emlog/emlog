@@ -349,7 +349,7 @@ function bloglist_sort($blogid) {
 	?>
 	<?php if (!empty($log_cache_sort[$blogid])) { ?>
         <div class="loglist-sort" >
-<!--vot-->  <a href="<?= Url::sort($log_cache_sort[$blogid]['id']) ?>" title="<?=lang('category'): <?= $log_cache_sort[$blogid]['name'] ?>"><?= $log_cache_sort[$blogid]['name'] ?></a>
+<!--vot-->  <a href="<?= Url::sort($log_cache_sort[$blogid]['id']) ?>" title="<?=lang('category')?>: <?= $log_cache_sort[$blogid]['name'] ?>"><?= $log_cache_sort[$blogid]['name'] ?></a>
         </div>
     <?php }
 } ?>
