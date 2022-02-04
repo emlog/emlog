@@ -22,8 +22,6 @@ if (empty($action)) {
 	$conf_isthumbnail = $isthumbnail == 'y' ? 'checked="checked"' : '';
 	$conf_isgravatar = $isgravatar == 'y' ? 'checked="checked"' : '';
 	$conf_comment_paging = $comment_paging == 'y' ? 'checked="checked"' : '';
-	$conf_reply_code = $reply_code == 'y' ? 'checked="checked"' : '';
-	$conf_ischkreply = $ischkreply == 'y' ? 'checked="checked"' : '';
 	$conf_detect_url = $detect_url == 'y' ? 'checked="checked"' : '';
 
 	$ex1 = $ex2 = $ex3 = $ex4 = '';
@@ -160,7 +158,6 @@ if ($action == 'save') {
 		'footer_info'         => isset($_POST['footer_info']) ? addslashes($_POST['footer_info']) : '',
 		'index_lognum'        => isset($_POST['index_lognum']) ? (int)$_POST['index_lognum'] : '',
 		'timezone'            => isset($_POST['timezone']) ? addslashes($_POST['timezone']) : '',
-		'login_code'          => isset($_POST['login_code']) ? addslashes($_POST['login_code']) : 'n',
 		'comment_code'        => isset($_POST['comment_code']) ? addslashes($_POST['comment_code']) : 'n',
 		'comment_needchinese' => isset($_POST['comment_needchinese']) ? addslashes($_POST['comment_needchinese']) : 'n',
 		'comment_interval'    => isset($_POST['comment_interval']) ? (int)$_POST['comment_interval'] : 15,
@@ -173,14 +170,11 @@ if ($action == 'save') {
 		'comment_paging'      => isset($_POST['comment_paging']) ? addslashes($_POST['comment_paging']) : 'n',
 		'comment_pnum'        => isset($_POST['comment_pnum']) ? (int)$_POST['comment_pnum'] : '',
 		'comment_order'       => isset($_POST['comment_order']) ? addslashes($_POST['comment_order']) : 'newer',
-		'ischkreply'          => isset($_POST['ischkreply']) ? addslashes($_POST['ischkreply']) : 'n',
-		'reply_code'          => isset($_POST['reply_code']) ? addslashes($_POST['reply_code']) : 'n',
-		'index_twnum'         => isset($_POST['index_twnum']) ? (int)$_POST['index_twnum'] : 10,
 		'att_maxsize'         => isset($_POST['att_maxsize']) ? (int)$_POST['att_maxsize'] : 20480,
 		'att_type'            => isset($_POST['att_type']) ? str_replace('php', 'x', strtolower(addslashes($_POST['att_type']))) : '',
 		'att_imgmaxw'         => isset($_POST['att_imgmaxw']) ? (int)$_POST['att_imgmaxw'] : 420,
 		'att_imgmaxh'         => isset($_POST['att_imgmaxh']) ? (int)$_POST['att_imgmaxh'] : 460,
-		'detect_url'          => isset($_POST['detect_url']) ? addslashes($_POST['detect_url']) : 'n',
+		'detect_url'          => isset($_POST['detect_url']) ? addslashes($_POST['detect_url']) : 'n', // 自动检测站点地址
 	];
 
 	if ($getData['login_code'] == 'y' && !function_exists("imagecreate") && !function_exists('imagepng')) {
