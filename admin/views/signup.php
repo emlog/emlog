@@ -24,7 +24,7 @@
                                     <div class="alert alert-danger">两次输入的密码不一致</div><?php endif ?>
                                 <form method="post" class="user" action="./account.php?action=dosignup">
                                     <div class="form-group">
-                                        <input type="email" class="form-control form-control-user" id="user" name="user" aria-describedby="emailHelp" placeholder="邮箱" required
+                                        <input type="email" class="form-control form-control-user" id="mail" name="mail" aria-describedby="emailHelp" placeholder="邮箱" required
                                                autofocus>
                                     </div>
                                     <div class="form-group">
@@ -40,7 +40,6 @@
                                         </div>
 									<?php endif ?>
                                     <button class="btn btn-success btn-user btn-block" type="submit">注册</button>
-                                    <div><?php doAction('login_ext') ?></div>
                                     <hr>
                                     <div class="text-center"><a class="small" href="/admin">登录</a></div>
                                     <hr>

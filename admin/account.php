@@ -91,15 +91,15 @@ if ($action == 'dosignup') {
 		return;
 	}
 
-	$username = isset($_POST['user']) ? addslashes(trim($_POST['user'])) : '';
+	$mail = isset($_POST['mail']) ? addslashes(trim($_POST['mail'])) : '';
 	$passwd = isset($_POST['passwd']) ? addslashes(trim($_POST['passwd'])) : '';
 	$repasswd = isset($_POST['repasswd']) ? addslashes(trim($_POST['repasswd'])) : '';
 	$login_code = isset($_POST['login_code']) ? addslashes(trim(strtoupper($_POST['login_code']))) : ''; //登录注册验证码
 
-	if (!$username) {
+	if (!$mail) {
 		emDirect('./account.php?action=signup&error_login=1');
 	}
-	if ($User_Model->isUserExist($username)) {
+	if ($User_Model->isUserExist($mail)) {
 		emDirect('./account.php?action=signup&error_exist=1');
 	}
 	if (strlen($passwd) < 6) {
@@ -118,7 +118,7 @@ if ($action == 'dosignup') {
 	$PHPASS = new PasswordHash(8, true);
 	$passwd = $PHPASS->HashPassword($passwd);
 
-	$User_Model->addUser($username, $passwd, User::ROLE_WRITER, 1);
+	$User_Model->addUser($mail, $passwd, User::ROLE_WRITER, 1);
 	$CACHE->updateCache(array('sta', 'user'));
 	emDirect("./account.php?action=signin&succ_reg=1");
 }
@@ -131,7 +131,7 @@ if ($action == 'reset') {
 		emDirect("../admin");
 	}
 
-	$ckcode = Option::get('login_code') == 'y' ? true : false;
+	$login_code = Option::get('login_code') === 'y';
 	$error_msg = '';
 
 	include View::getAdmView('user_head');
@@ -140,15 +140,46 @@ if ($action == 'reset') {
 }
 
 if ($action == 'doreset') {
+	loginAuth::loggedPage();
+	$User_Model = new User_Model();
+
+	if (Option::get('is_signup') !== 'y') {
+		return;
+	}
+
+	$mail = isset($_POST['mail']) ? addslashes(trim($_POST['mail'])) : '';
+	$login_code = isset($_POST['login_code']) ? addslashes(trim(strtoupper($_POST['login_code']))) : ''; //登录注册验证码
+
+	if (!$mail) {
+		emDirect('./account.php?action=reset&error_login=1');
+	}
+
+	$session_code = $_SESSION['code'] ?? '';
+	if ((!$login_code || $login_code !== $session_code) && Option::get('login_code') === 'y') {
+		unset($_SESSION['code']);
+		emDirect('./account.php?action=reset&err_ckcode=1');
+	}
+
+	if ($User_Model->isUserExist($mail)) {
+		// emDirect('./account.php?action=reset&error_exist=1');
+	}
+
+	var_dump($mail);
+
+	$ret = User::sendResetMail($mail);
+
+	if ($ret) {
+		emDirect("./account.php?action=reset&succ_reg=1");
+	} else {
+		emDirect("./account.php?action=reset2&succ_reg=1");
+	}
+}
+
+if ($action == 'reset2') {
 	if (ISLOGIN === true) {
 		emDirect("../admin");
 	}
-	include View::getAdmView('user_head');
-	require_once View::getAdmView('reset');
-	View::output();
-}
 
-if ($action == 'send_auth_code') {
 	$to_user = "xxxx@gmail.com";
 	$title = "测试邮件发送标题";
 	$content = "测试邮件发送内容";
@@ -159,6 +190,22 @@ if ($action == 'send_auth_code') {
 	} else {
 		echo "邮件发送失败";
 	}
+
+	$ckcode = Option::get('login_code') == 'y' ? true : false;
+	$error_msg = '';
+
+	include View::getAdmView('user_head');
+	require_once View::getAdmView('reset');
+	View::output();
+}
+
+if ($action == 'doreset2') {
+	if (ISLOGIN === true) {
+		emDirect("../admin");
+	}
+	include View::getAdmView('user_head');
+	require_once View::getAdmView('reset');
+	View::output();
 }
 
 /**

@@ -40,4 +40,16 @@ class User {
 		return $role_name;
 	}
 
+	static function sendResetMail($mail) {
+		$title = "找回密码邮件验证码";
+		$content = "邮件验证码是：" . rand(100000, 999999);
+		$sendmail_model = new SendMail();
+		$ret = $sendmail_model->send($mail, $title, $content);
+		if ($ret) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 }

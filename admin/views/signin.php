@@ -38,9 +38,9 @@
                                             <label class="custom-control-label" for="ispersis">记住我</label>
                                         </div>
                                     </div>
-                                    <button class="btn btn-primary btn-user btn-block" type="submit">登录</button>
+                                    <button class="btn btn-primary btn-user btn-block" type="submit">登 录</button>
                                     <?php if($is_signup): ?>
-                                    <a class="btn btn-success btn-user btn-block" type="button" href="./account.php?action=signup">注册账号</a>
+                                    <a class="btn btn-success btn-user btn-block" type="button" href="./account.php?action=signup">注 册</a>
                                     <?php endif ?>
                                     <div><?php doAction('login_ext') ?></div>
                                     <hr>

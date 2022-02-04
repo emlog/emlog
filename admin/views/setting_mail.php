@@ -20,20 +20,20 @@
         <form action="setting.php?action=mail_save" method="post" name="input" id="input">
             <h4>邮件发送</h4>
             <div class="form-group">
-                <label>发送邮箱</label>
-                <input class="form-control" value="<?= $smtp_mail ?>" name="smtp_mail">
+                <label>发送人邮箱</label>
+                <input type="email" class="form-control" value="<?= $smtp_mail ?>" name="smtp_mail" required>
             </div>
             <div class="form-group">
-                <label>SMTP密码 ：</label>
-                <input name="smtp_pw" cols="" rows="3" class="form-control" value="<?= $smtp_pw ?>">
+                <label>SMTP密码</label>
+                <input type="password" name="smtp_pw" cols="" rows="3" class="form-control" value="<?= $smtp_pw ?>" required>
             </div>
             <div class="form-group">
-                <label>SMTP服务器：</label>
-                <input class="form-control" value="<?= $smtp_server ?>" name="smtp_server">
+                <label>SMTP服务器（如QQ邮箱服务：smtp.qq.com）</label>
+                <input class="form-control" value="<?= $smtp_server ?>" name="smtp_server" required>
             </div>
             <div class="form-group">
-                <label>端口：</label>
-                <input class="form-control" value="<?= $smtp_port ?>" name="smtp_port">
+                <label>端口（如QQ邮箱服务端口：465）</label>
+                <input class="form-control" value="<?= $smtp_port ?>" name="smtp_port" required>
             </div>
             <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
             <input type="submit" value="保存设置" class="btn btn-sm btn-success"/>

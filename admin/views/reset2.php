@@ -10,9 +10,9 @@
                         <div class="col-lg-12">
                             <div class="p-5">
                                 <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-4">找回密码：验证邮箱</h1>
+                                    <h1 class="h4 text-gray-900 mb-4">找回密码：重置密码</h1>
                                 </div>
-                                <form method="post" class="user" action="./account.php?action=doreset">
+                                <form method="post" class="user" action="./account.php?action=doreset2">
 									<?php if ($error_msg): ?>
                                         <div class="alert alert-danger alert-dismissible" role="alert">
                                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -20,12 +20,17 @@
                                         </div>
 									<?php endif ?>
                                     <div class="form-group">
-                                        <input type="email" class="form-control form-control-user" id="mail" name="mail" aria-describedby="emailHelp" placeholder="邮箱" required
-                                               autofocus>
+                                        <input type="password" class="form-control form-control-user" minlength="6" id="passwd" name="passwd" placeholder="邮件验证码" required>
                                     </div>
-									<?php if ($login_code): ?>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control form-control-user" minlength="6" id="passwd" name="passwd" placeholder="新的密码" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control form-control-user" minlength="6" id="repasswd" name="repasswd" placeholder="确认新密码" required>
+                                    </div>
+									<?php if ($ckcode): ?>
                                         <div class="form-group form-inline">
-                                            <input type="text" name="login_code" class="form-control form-control-user" id="login_code" placeholder="验证码" required>
+                                            <input type="text" name="imgcode" class="form-control form-control-user" id="imgcode" placeholder="验证码" required>
                                             <img src="../include/lib/checkcode.php" id="checkcode" class="mx-2">
                                         </div>
 									<?php endif ?>
