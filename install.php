@@ -376,7 +376,6 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('att_imgmaxh
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_paging','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_pnum','10');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_order','newer');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('login_code','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('reply_code','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('iscomment','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('ischkcomment','y');
@@ -390,13 +389,13 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widget_titl
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_widget','a:0:{}');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widgets1','$def_widgets');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('detect_url','n');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('emkey','');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('emkey','TloSegqBLj6P4CiWF5bxZGNVYEtU3XRp');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('login_code','n');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('is_signup','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('smtp_mail','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('smtp_pw','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('smtp_server','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('smtp_port','');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('is_signup','n');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('writer_permission', '');
 DROP TABLE IF EXISTS {$db_prefix}link;
 CREATE TABLE {$db_prefix}link (
   id int(10) unsigned NOT NULL auto_increment COMMENT '链接表',

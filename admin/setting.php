@@ -298,7 +298,6 @@ if ($action == 'user') {
 	$options_cache = $CACHE->readCache('options');
 	$is_signup = $options_cache['is_signup'];
 	$login_code = $options_cache['login_code'];
-	$writer_permission = $options_cache['writer_permission'];
 
 	$conf_is_signup = $is_signup == 'y' ? 'checked="checked"' : '';
 	$conf_login_code = $login_code == 'y' ? 'checked="checked"' : '';
@@ -315,7 +314,6 @@ if ($action == 'user_save') {
 	$data = [
 		'is_signup'         => isset($_POST['is_signup']) ? addslashes($_POST['is_signup']) : 'n',
 		'login_code'        => isset($_POST['login_code']) ? addslashes($_POST['login_code']) : 'n',
-		'writer_permission' => isset($_POST['writer_permission']) ? addslashes($_POST['writer_permission']) : '',
 	];
 	foreach ($data as $key => $val) {
 		Option::updateOption($key, $val);

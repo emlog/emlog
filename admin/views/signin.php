@@ -18,7 +18,7 @@
                                     <div class="alert alert-danger">验证错误，请重新输入</div><?php endif ?>
 								<?php if (isset($_GET['err_login'])): ?>
                                     <div class="alert alert-danger">用户或密码错误，请重新输入</div><?php endif ?>
-                                <form method="post" class="user" action="./account.php?action=login&s=<?= $admin_path_code ?>">
+                                <form method="post" class="user" action="./account.php?action=dosignin&s=<?= $admin_path_code ?>">
                                     <div class="form-group">
                                         <input type="text" class="form-control form-control-user" id="user" name="user" aria-describedby="emailHelp" placeholder="用户名\邮箱" required
                                                autofocus>
@@ -26,9 +26,9 @@
                                     <div class="form-group">
                                         <input type="password" class="form-control form-control-user" id="pw" name="pw" placeholder="密码" required>
                                     </div>
-									<?php if ($ckcode): ?>
+									<?php if ($login_code): ?>
                                         <div class="form-group form-inline">
-                                            <input type="text" name="imgcode" class="form-control form-control-user" id="imgcode" placeholder="验证码" required>
+                                            <input type="text" name="login_code" class="form-control form-control-user" id="login_code" placeholder="验证码" required>
                                             <img src="../include/lib/checkcode.php" id="checkcode" class="mx-2">
                                         </div>
 									<?php endif ?>
@@ -39,7 +39,9 @@
                                         </div>
                                     </div>
                                     <button class="btn btn-primary btn-user btn-block" type="submit">登录</button>
+                                    <?php if($is_signup): ?>
                                     <a class="btn btn-success btn-user btn-block" type="button" href="./account.php?action=signup">注册账号</a>
+                                    <?php endif ?>
                                     <div><?php doAction('login_ext') ?></div>
                                     <hr>
                                     <div class="text-center"><a class="small" href="./account.php?action=reset">忘记密码?</a></div>

@@ -22,7 +22,7 @@
                                     <div class="alert alert-danger">密码不小于6位</div><?php endif ?>
 								<?php if (isset($_GET['error_pwd2'])): ?>
                                     <div class="alert alert-danger">两次输入的密码不一致</div><?php endif ?>
-                                <form method="post" class="user" action="./account.php?action=register">
+                                <form method="post" class="user" action="./account.php?action=dosignup">
                                     <div class="form-group">
                                         <input type="email" class="form-control form-control-user" id="user" name="user" aria-describedby="emailHelp" placeholder="邮箱" required
                                                autofocus>
@@ -33,9 +33,9 @@
                                     <div class="form-group">
                                         <input type="password" class="form-control form-control-user" minlength="6" id="repasswd" name="repasswd" placeholder="确认密码" required>
                                     </div>
-									<?php if ($ckcode): ?>
+									<?php if ($login_code): ?>
                                         <div class="form-group form-inline">
-                                            <input type="text" name="imgcode" class="form-control form-control-user" id="imgcode" placeholder="验证码" required>
+                                            <input type="text" name="login_code" class="form-control form-control-user" id="login_code" placeholder="验证码" required>
                                             <img src="../include/lib/checkcode.php" id="checkcode" class="mx-2">
                                         </div>
 									<?php endif ?>

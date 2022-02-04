@@ -28,14 +28,15 @@ if ($action == 'signin') {
 	if (defined('ADMIN_PATH_CODE') && $admin_path_code !== ADMIN_PATH_CODE) {
 		show_404_page(true);
 	}
-	$ckcode = Option::get('login_code') == 'y' ? true : false;
+	$login_code = Option::get('login_code') === 'y';
+	$is_signup = Option::get('is_signup') === 'y';
 
 	require_once View::getAdmView('user_head');
-	require_once View::getAdmView('login');
+	require_once View::getAdmView('signin');
 	View::output();
 }
 
-if ($action == 'login') {
+if ($action == 'dosignin') {
 	loginAuth::loggedPage();
 	if (defined('ADMIN_PATH_CODE') && $admin_path_code !== ADMIN_PATH_CODE) {
 		show_404_page(true);
@@ -43,9 +44,9 @@ if ($action == 'login') {
 	$username = isset($_POST['user']) ? addslashes(trim($_POST['user'])) : '';
 	$password = isset($_POST['pw']) ? addslashes(trim($_POST['pw'])) : '';
 	$ispersis = isset($_POST['ispersis']) ? (int)$_POST['ispersis'] : 0;
-	$img_code = Option::get('login_code') == 'y' && isset($_POST['imgcode']) ? addslashes(trim(strtoupper($_POST['imgcode']))) : '';
+	$login_code = Option::get('login_code') == 'y' && isset($_POST['login_code']) ? addslashes(trim(strtoupper($_POST['login_code']))) : '';
 
-	$uid = LoginAuth::checkUser($username, $password, $img_code);
+	$uid = LoginAuth::checkUser($username, $password, $login_code);
 
 	switch ($uid) {
 		case $uid > 0:
@@ -70,22 +71,30 @@ if ($action == 'login') {
  */
 if ($action == 'signup') {
 	loginAuth::loggedPage();
-	$ckcode = Option::get('login_code') == 'y' ? true : false;
+	$login_code = Option::get('login_code') == 'y' ? true : false;
 	$error_msg = '';
 
+	if (Option::get('is_signup') !== 'y') {
+		emMsg('系统已关闭注册！');
+	}
+
 	include View::getAdmView('user_head');
-	require_once View::getAdmView('register');
+	require_once View::getAdmView('signup');
 	View::output();
 }
 
-if ($action == 'register') {
+if ($action == 'dosignup') {
 	loginAuth::loggedPage();
 	$User_Model = new User_Model();
+
+	if (Option::get('is_signup') !== 'y') {
+		return;
+	}
 
 	$username = isset($_POST['user']) ? addslashes(trim($_POST['user'])) : '';
 	$passwd = isset($_POST['passwd']) ? addslashes(trim($_POST['passwd'])) : '';
 	$repasswd = isset($_POST['repasswd']) ? addslashes(trim($_POST['repasswd'])) : '';
-	$img_code = isset($_POST['imgcode']) ? addslashes(trim(strtoupper($_POST['imgcode']))) : '';
+	$login_code = isset($_POST['login_code']) ? addslashes(trim(strtoupper($_POST['login_code']))) : ''; //登录注册验证码
 
 	if (!$username) {
 		emDirect('./account.php?action=signup&error_login=1');
@@ -101,7 +110,7 @@ if ($action == 'register') {
 	}
 
 	$session_code = $_SESSION['code'] ?? '';
-	if ((!$img_code || $img_code !== $session_code) && Option::get('login_code') === 'y') {
+	if ((!$login_code || $login_code !== $session_code) && Option::get('login_code') === 'y') {
 		unset($_SESSION['code']);
 		emDirect('./account.php?action=signup&err_ckcode=1');
 	}
@@ -130,7 +139,7 @@ if ($action == 'reset') {
 	View::output();
 }
 
-if ($action == 'reset_password') {
+if ($action == 'doreset') {
 	if (ISLOGIN === true) {
 		emDirect("../admin");
 	}
