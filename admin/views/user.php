@@ -101,10 +101,12 @@
                     </div>
                     <div class="form-group">
                         <label for="sortname">用户名</label>
+                        <input class="hidden-auto-filling" name="name" style="width: 0;border: 0;opacity: 0">
                         <input class="form-control" id="username" name="username" required>
                     </div>
                     <div class="form-group">
                         <label for="alias">密码 (大于6位)</label>
+                        <input class="hidden-auto-filling" type="password" name="psw" style="width: 0;border: 0;opacity: 0">
                         <input class="form-control" id="password" name="password" type="password" required>
                     </div>
                     <div class="form-group">
