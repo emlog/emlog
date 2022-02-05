@@ -13,6 +13,7 @@
 <form action="user.php?action=update" method="post">
     <div class="form-group">
         <label for="username">用户名</label>
+        <input class="hidden-auto-filling" name="name" style="width: 0;border: 0;opacity: 0">
         <input class="form-control" value="<?= $username ?>" name="username" id="username" required>
     </div>
     <div class="form-group">
@@ -21,6 +22,7 @@
     </div>
     <div class="form-group">
         <label for="password">新密码(不修改请留空)</label>
+        <input class="hidden-auto-filling" type="password" name="psw" style="width: 0;border: 0;opacity: 0">
         <input type="password" class="form-control" name="password" id="password">
     </div>
     <div class="form-group">
