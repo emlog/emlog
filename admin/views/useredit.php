@@ -13,7 +13,8 @@
 <form action="user.php?action=update" method="post">
     <div class="form-group">
 <!--vot--><label for="username"><?=lang('user_name')?></label>
-<!--vot--><input class="form-control" value="<?= $username ?>" name="username" id="username" required>
+        <input class="hidden-auto-filling" name="name" style="width: 0;border: 0;opacity: 0">
+        <input class="form-control" value="<?= $username ?>" name="username" id="username" required>
     </div>
     <div class="form-group">
 <!--vot--><label for="nickname"><?=lang('nickname')?></label>
@@ -21,6 +22,7 @@
     </div>
     <div class="form-group">
 <!--vot--><label for="password"><?=lang('password_new')?></label>
+        <input class="hidden-auto-filling" type="password" name="psw" style="width: 0;border: 0;opacity: 0">
         <input type="password" class="form-control" name="password" id="password">
     </div>
     <div class="form-group">

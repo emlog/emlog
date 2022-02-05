@@ -10,36 +10,26 @@
                         <div class="col-lg-12">
                             <div class="p-5">
                                 <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-4"><?=lang('retrieve_password')?></h1>
+<!--vot-->                          <h1 class="h4 text-gray-900 mb-4"><?=lang('retrieve_password')?></h1>
                                 </div>
-                                <form method="post" class="user" action="./account.php?action=register&s=<?= $admin_path_code ?>">
-									<?php if ($error_msg): ?>
-                                        <div class="alert alert-danger alert-dismissible" role="alert">
-                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-											<?= $error_msg ?>
-                                        </div>
-									<?php endif ?>
+                                <form method="post" class="user" action="./account.php?action=doreset">
+									<?php if (isset($_GET['error_mail'])): ?>
+                                        <div class="alert alert-danger">错误的注册邮箱</div><?php endif ?>
+									<?php if (isset($_GET['error_sendmail'])): ?>
+                                        <div class="alert alert-danger">邮件验证码发送失败，请检查邮件通知设置</div><?php endif ?>
+									<?php if (isset($_GET['err_ckcode'])): ?>
+                                        <div class="alert alert-danger">验证码错误</div><?php endif ?>
                                     <div class="form-group">
-                                        <input type="email" class="form-control form-control-user" id="user" name="user" aria-describedby="emailHelp" placeholder="<?=lang('email')?>" required
+                                        <input type="email" class="form-control form-control-user" id="mail" name="mail" aria-describedby="emailHelp" placeholder="<?=lang('email_enter')?>" required
                                                autofocus>
                                     </div>
-                                    <div class="form-group">
-                                        <input type="password" class="form-control form-control-user" minlength="6" id="passwd" name="passwd" placeholder="<?=lang('captcha')?>" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="password" class="form-control form-control-user" minlength="6" id="passwd" name="passwd" placeholder="<?=lang('new_password')?>" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="password" class="form-control form-control-user" minlength="6" id="repasswd" name="repasswd" placeholder="<?=lang('confirm_password')?>" required>
-                                    </div>
-									<?php if ($ckcode): ?>
+									<?php if ($login_code): ?>
                                         <div class="form-group form-inline">
-                                            <input type="text" name="imgcode" class="form-control form-control-user" id="imgcode" placeholder="<?=lang('captcha')?>" required>
+                                            <input type="text" name="login_code" class="form-control form-control-user" id="login_code" placeholder="验证码" required>
                                             <img src="../include/lib/checkcode.php" id="checkcode" class="mx-2">
                                         </div>
 									<?php endif ?>
                                     <button class="btn btn-success btn-user btn-block" type="submit"><?=lang('submit')?></button>
-                                    <div><?php doAction('login_ext') ?></div>
                                     <hr>
                                     <div class="text-center"><a class="small" href="/admin"><?=lang('login')?></a></div>
                                     <hr>
@@ -59,6 +49,6 @@
     setTimeout(hideActived, 3600);
     $('#checkcode').click(function () {
         var timestamp = new Date().getTime();
-        $(this).attr("src", "../include/include/lib/checkcode.php?" + timestamp);
+        $(this).attr("src", "../include/lib/checkcode.php?" + timestamp);
     });
 </script>

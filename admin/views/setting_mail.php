@@ -20,20 +20,20 @@
         <form action="setting.php?action=mail_save" method="post" name="input" id="input">
 <!--vot-->  <h4><?=lang('email_sending')?></h4>
             <div class="form-group">
-<!--vot-->      <label><?=lang('email_send')?></label>
-                <input class="form-control" value="<?= $smtp_mail ?>" name="smtp_mail">
+<!--vot-->      <label><?=lang('sender_email')?></label>
+                <input type="email" class="form-control" value="<?= $smtp_mail ?>" name="smtp_mail" required>
             </div>
             <div class="form-group">
 <!--vot-->      <label><?=lang('smtp_password')?>:</label>
-                <input name="smtp_pw" cols="" rows="3" class="form-control" value="<?= $smtp_pw ?>">
+                <input type="password" name="smtp_pw" cols="" rows="3" class="form-control" value="<?= $smtp_pw ?>" required>
             </div>
             <div class="form-group">
 <!--vot-->      <label><?=lang('smtp_server')?>:</label>
-                <input class="form-control" value="<?= $smtp_server ?>" name="smtp_server">
+                <input class="form-control" value="<?= $smtp_server ?>" name="smtp_server" required>
             </div>
             <div class="form-group">
 <!--vot-->      <label><?=lang('port')?>：</label>
-                <input class="form-control" value="<?= $smtp_port ?>" name="smtp_port">
+                <input class="form-control" value="<?= $smtp_port ?>" name="smtp_port" required>
             </div>
             <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
 <!--vot-->  <input type="submit" value="<?=lang('save_settings')?>" class="btn btn-sm btn-success"/>

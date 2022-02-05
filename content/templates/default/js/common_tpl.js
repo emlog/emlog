@@ -21,14 +21,13 @@ var myBlog = {
         $(".commentform #comment").css("height","140px")
                                   .css('border-radius', '10px')
       }
-      for(let num = 0;num < $(".markdown img").length;num++){  // Add the function of viewing the large image and centering the image in the text (by default, the link in the parent tag <a> of the image is the original address of the image)
+      for(let num = 0;num < $(".markdown img").length;num++){  // Add the function of viewing the large image in the text (by default, the link in the parent tag <a> of the image is the original address of the image)
         let $this     = $(".markdown img:eq("+ num +")")
         let sourceSrc = $(".markdown img:eq("+ num +")").parent().attr('href')
 
         $this.attr("data-action","zoom")
              .parent().attr("sourcesrc",sourceSrc)
              .removeAttr("href")
-             .parent("p").css("text-align","center")
       }
       $("#commentform").attr("onsubmit","return myBlog.comSubmitTip()")  // Comment submission cannot be submitted if the form verification fails
     },

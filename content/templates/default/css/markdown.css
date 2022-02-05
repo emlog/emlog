@@ -1,5 +1,5 @@
 /**
- *markdown
+ * markdown output style
  */
  
  .markdown {
@@ -152,9 +152,10 @@
 }
 
 .markdown img {
+    display: block;
+    margin: auto;
     box-sizing: border-box;
-    border: 0;
-    vertical-align: middle
+    border: 0
 }
 
 .markdown hr {

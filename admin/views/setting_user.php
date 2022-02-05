@@ -18,7 +18,6 @@
 <div class="card shadow mb-4 mt-2">
     <div class="card-body">
         <form action="setting.php?action=user_save" method="post" name="input" id="input">
-<!--vot-->  <h4><?=lang('registration')?></h4>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="is_signup" id="is_signup" <?= $conf_is_signup ?> />
 <!--vot-->      <label><?=lang('registration_open')?></label>
@@ -26,18 +25,6 @@
             <div class="form-group form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="login_code" id="login_code" <?= $conf_login_code ?> >
 <!--vot-->      <label class="form-check-label"><?=lang('registration_captcha')?></label>
-            </div>
-<!--vot-->  <h4><?=lang('user_rights')?></h4>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="y" name="writer_permission" id="writer_permission" <?= $writer_permission ?> />
-<!--vot-->      <label><?=lang('post_publish')?></label>
-                <input class="form-check-input" type="checkbox" value="y" name="writer_permission" id="writer_permission" <?= $writer_permission ?> />
-<!--vot-->      <label><?=lang('comment_write')?></label>
-            </div>
-<!--vot-->  <h4><?=lang('guest_rights')?></h4>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="y" name="writer_permission" id="writer_permission" <?= $writer_permission ?> />
-<!--vot-->      <label><?=lang('comment_write')?></label>
             </div>
             <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
 <!--vot-->  <input type="submit" value="<?=lang('save_settings')?>" class="btn btn-sm btn-success"/>

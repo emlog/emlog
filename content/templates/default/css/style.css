@@ -191,7 +191,7 @@ footer .copyright {
 	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1) /* Shadow */
 }
 .blog-header-c {
-    max-width: 1296px;
+    max-width: 1193px;
     height: 71.63px;
     display: flex;
     justify-content: space-between /* The navigation bar is aligned at both ends of the main axis, that is, the heading and the navigation are two parts, one is aligned to the left, and the other is aligned to the right. */
@@ -780,14 +780,6 @@ footer .copyright {
 
 /*Some styles in article entries
 ---------------------------------------------------*/
-/* "Read the full text" style */
-.readmore {
-    margin-left: 10px;
-}
-.readmore a {
-    color: #929292;
-    font-size: small
-}
 /* Title of article entry */
 .card-title {
     margin-bottom: 30px
@@ -795,8 +787,10 @@ footer .copyright {
 /* The sticky pattern in the article entry, using base64 */
 .log-topflg {
     display: inline-block;
-    height: 24px;
-    padding: 2.5px;
+    position: relative;
+    height: 26px;
+    padding: 3px 4.5px;
+    bottom: 3.5px;
     font-size: 14px;
     margin-left: 8px;
     cursor: default;
@@ -823,6 +817,9 @@ footer .copyright {
 }
 .log-con .date {
     margin-bottom: 0px
+}
+.log-con article {
+    margin-inline: 5px;
 }
 .loglist-content h1 {
     font-size: medium;
@@ -906,9 +903,11 @@ footer .copyright {
 /* Article category */
 .loglist-sort {
     display: inline-block;
+    position: relative;
     margin-left: 10px;
-    padding: 5px;
-    padding-bottom: 2px;
+    bottom: 2px;
+    padding: 6px;
+    padding-bottom: 3px;
     border: 1px solid #e8e8e8
 }
 @media (max-width:415px) {.loglist-cover{ height: 160px;overflow: hidden}.loglist-cover img {position:unset;    width: 730px;}}
@@ -1234,14 +1233,8 @@ img.zoom-img {
     .log-con {
         padding: 30px 16px
     }
-	.comment .avatar {
-        margin-right: 13px
-    }
     .commentform .comment-info {
         width: 100%
-    }
-    .comment .avatar {
-        margin-bottom: 13px
     }
 
     /* After expanding the menu, the bottom margin of the blog head becomes larger */
@@ -1391,7 +1384,8 @@ img.zoom-img {
         font-size: 14px
     }
     .comment .avatar {
-        margin: 8px;
-        width: 30px
+        margin: 6px 8px;
+        height: 30px;
+        width: 30px;
     }
 }

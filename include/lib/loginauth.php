@@ -8,7 +8,6 @@ class LoginAuth {
 
 	const LOGIN_ERROR_USER = -1;     //User does not exist
 	const LOGIN_ERROR_PASSWD = -2;   //Wrong password
-	const LOGIN_ERROR_AUTHCODE = -3; //Verification code error
 
 	/**
 	 * Verify that the user is logged on
@@ -58,17 +57,9 @@ class LoginAuth {
 	/**
 	 * Verify User/Password
 	 */
-	public static function checkUser($username, $password, $imgcode) {
-		if (!isset($_SESSION)) {
-			session_start();
-		}
+	public static function checkUser($username, $password) {
 		if (empty($username) || empty($password)) {
 			return self::LOGIN_ERROR_USER;
-		}
-		$sessionCode = $_SESSION['code'] ?? '';
-		if ((empty($imgcode) || $imgcode !== $sessionCode) && Option::get('login_code') === 'y') {
-			unset($_SESSION['code']);
-			return self::LOGIN_ERROR_AUTHCODE;
 		}
 		$userData = self::getUserDataByLogin($username);
 		if (false === $userData) {
@@ -83,22 +74,25 @@ class LoginAuth {
 	}
 
 	/**
-	 * Check the User data by login name
-	 *
-	 * @param string $userLogin User's username
-	 * @return bool|object False on failure, User DB row object
+	 * Query administrator information by login name (username or email)
 	 */
-	public static function getUserDataByLogin($userLogin) {
+	public static function getUserDataByLogin($account) {
 		$DB = Database::getInstance();
-		if (empty($userLogin)) {
+		if (empty($account)) {
 			return false;
 		}
-		$userData = $DB->once_fetch_array("SELECT * FROM " . DB_PREFIX . "user WHERE username = '$userLogin'");
-		if (!$userData) {
-			return false;
+		$ret = $DB->once_fetch_array("SELECT * FROM " . DB_PREFIX . "user WHERE username = '$account'");
+		if (!$ret) {
+			$ret = $DB->once_fetch_array("SELECT * FROM " . DB_PREFIX . "user WHERE email = '$account'");
+			if (!$ret) {
+				return false;
+			}
 		}
-		$userData['nickname'] = htmlspecialchars($userData['nickname']);
-		$userData['username'] = htmlspecialchars($userData['username']);
+		$userData['nickname'] = htmlspecialchars($ret['nickname']);
+		$userData['username'] = htmlspecialchars($ret['username']);
+		$userData['password'] = $ret['password'];
+		$userData['uid'] = $ret['uid'];
+		$userData['role'] = $ret['role'];
 		return $userData;
 	}
 
@@ -114,8 +108,7 @@ class LoginAuth {
 		if (empty($em_hasher)) {
 			$em_hasher = new PasswordHash(8, true);
 		}
-		$check = $em_hasher->CheckPassword($password, $hash);
-		return $check;
+		return $em_hasher->CheckPassword($password, $hash);
 	}
 
 	/**

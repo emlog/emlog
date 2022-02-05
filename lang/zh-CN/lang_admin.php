@@ -69,16 +69,16 @@ $lang = array(
 //---------------------------
 //admin/setting_mail.php
  'email_sending'	=> '邮件发送',//'Email sending',
- 'email_send'		=> '发送邮箱',//'Send email',
+ 'sender_email'		=> '发送人邮箱',//'Sender email',
  'smtp_password'	=> 'SMTP密码',//'SMTP password',
- 'smtp_server'		=> 'SMTP服务器',//'SMTP server',
- 'port'			=> '端口',//'Port',
+ 'smtp_server'		=> 'SMTP服务器（如QQ邮箱服务：smtp.qq.com）',//'SMTP server (such as QQ mailbox service: smtp.qq.com)',
+ 'port'			=> '端口（如QQ邮箱服务端口：465）',//'Port (such as QQ mailbox service port: 465)',
 
 //---------------------------
 //admin/setting_user.php
  'registration'		=> '登录注册',//'Registration',
- 'registration_open'	=> '开启注册',//'Open registration',
- 'registration_captcha'	=> '登录注册验证码',//'Verification code at registration',
+ 'registration_open'	=> '开启用户注册',//'Open user registration',
+ 'registration_captcha'	=> '开启登录注册验证码',//'Enable captcha at registration',
  'user_rights'		=> '用户权限',//'User rights',
  'comment_write'	=> '发布评论',//'Post comments',
  'guest_rights'		=> '游客权限',//'Visitor permissions',
@@ -380,6 +380,7 @@ $lang = array(
  'search'		=> 'Search',//'Search',
  'resources'		=> '资源',//'Resources',
  'twitters'		=> '笔记',//'Notes',
+ 'user_center'		=> '用户中心',//'User Center',
 
 //---------------------------
 //admin/views/index.php
@@ -497,6 +498,7 @@ $lang = array(
  'resource_del_selected'	=> '删除所选资源',//'Delete selected resources',
  'resource_select'	=> '请选择要删除的资源',//'Please select the resource to be deleted',
  'resource_del_sure'	=> '确定要删除所选资源吗？',//'Are you sure you want to delete the selected resource?',
+ 'founder'		=> '创建人',//'Founder',
 
 //---------------------------
 //admin/views/media_lib.php
@@ -605,6 +607,7 @@ $lang = array(
 // 'submit'		=> '提交',//'Submit',
 // 'login'		=> '登录',//'Login',
 // 'back_home'		=> '返回首页',//'Back to home',
+ 'email_enter'		=> '输入注册邮箱',//'Enter registered email',
  
 //---------------------------
 //admin/views/seo.php
@@ -850,7 +853,7 @@ $lang = array(
  'users_total'		=> '已创建的用户',//'Users created',
  'role'			=> '角色',//'Role',
  'last_login_ip'	=> '最近登录IP',//'Last logged in IP',
- 'last_login_time'	=> '更新/登录时间',//'Update/login time',
+ 'last_login_time'	=> '更新/登录时间',//'Last active time',
 
 //---------------------------
 //admin/views/useredit.php

@@ -30,8 +30,8 @@
             <li class="nav-item"><a class="nav-link active" href="./blogger.php"><?=lang('personal_settings')?></a></li>
         </ul>
 	<?php else: ?>
-        <ul class="nav nav-tabs" role="tablist">
-<!--vot-->  <li role="presentation" class="active"><a href="./blogger.php"><?=lang('personal_settings')?></a></li>
+        <ul class="nav nav-pills">
+<!--vot-->  <li class="nav-item"><a class="nav-link active" href="./blogger.php"><?=lang('personal_settings')?></a></li>
         </ul>
 	<?php endif ?>
 </div>

@@ -32,7 +32,11 @@
 <div id="wrapper">
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion sd-hidden" id="accordionSidebar">
         <li class="nav-item active emlog_title" id="menu_home">
-<!--vot-->  <a class="nav-link" href="./">EMLOG PRO <?php if (!Register::isRegLocal()) : ?><?=lang('unregistered')?><?php endif ?></a>
+			<?php if (User::isAdmin()): ?>
+<!--vot-->      <a class="nav-link" href="./">EMLOG PRO <?php if (!Register::isRegLocal()) : ?><?=lang('unregistered')?><?php endif ?></a>
+			<?php else: ?>
+                <a class="nav-link" href="./"><?=lang('user_center')?></a>
+			<?php endif ?>
         </li>
         <hr class="sidebar-divider my-0">
 		<?php if (User::isAdmin()): ?>

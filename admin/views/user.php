@@ -46,8 +46,7 @@
 				<?php
 				foreach ($users as $key => $val):
 					$avatar = empty($user_cache[$val['uid']]['avatar']) ? './views/images/avatar.svg' : '../' . $user_cache[$val['uid']]['avatar'];
-
-                ?>
+					?>
                     <tr>
                         <td><img src="<?= $avatar ?>" height="40" width="40" class="rounded-circle"/></td>
                         <td>
@@ -101,10 +100,12 @@
                     </div>
                     <div class="form-group">
 <!--vot-->              <label for="sortname"><?=lang('user_name')?></label>
-                        <input class="form-control" id="login" name="login" required>
+                        <input class="hidden-auto-filling" name="name" style="width: 0;border: 0;opacity: 0">
+                        <input class="form-control" id="username" name="username" required>
                     </div>
                     <div class="form-group">
 <!--vot-->              <label for="alias"><?=lang('password_min_length')?></label>
+                        <input class="hidden-auto-filling" type="password" name="psw" style="width: 0;border: 0;opacity: 0">
                         <input class="form-control" id="password" name="password" type="password" required>
                     </div>
                     <div class="form-group">

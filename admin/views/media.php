@@ -12,6 +12,7 @@
 		<?php foreach ($medias as $key => $value):
 			$media_url = rmUrlParams(getFileUrl($value['filepath']));
 			$media_name = $value['filename'];
+			$author = $user_cache[$value['author']]['name'];
 			if (isImage($value['mimetype'])) {
 				$media_icon = getFileUrl($value['filepath_thum']);
 				$imgviewer = 'class="highslide" onclick="return hs.expand(this)"';
@@ -26,8 +27,9 @@
                     <div class="card-body">
                         <p class="card-text text-muted small">
 							<?= $media_name ?><br>
-<!--vot-->              <?=lang('create_time')?>: <?= $value['addtime'] ?><br>
-<!--vot-->              <?=lang('file_size')?>: <?= $value['attsize'] ?>,
+<!--vot-->                  <?=lang('create_time')?>: <?= $value['addtime'] ?><br>
+<!--vot-->                  <?=lang(founder)?>: <?= $author ?><br>
+<!--vot-->                  <?=lang('file_size')?>: <?= $value['attsize'] ?>,
 							<?php if ($value['width'] && $value['height']): ?>
 <!--vot-->              <?=lang('img_size')?>: <?= $value['width'] ?>x<?= $value['height'] ?>
 							<?php endif ?>
