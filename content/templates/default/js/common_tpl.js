@@ -132,7 +132,7 @@ var myBlog = {
      */
     captchaRefresh : function($t) {
       var timestamp   = new Date().getTime()
-      $t.attr("src", "./include/include/lib/checkcode.php?" + timestamp)
+      $t.attr("src", "./include/lib/checkcode.php?" + timestamp)
     },
     /**
      * 图片在点击时，将略缩图转化为原图
