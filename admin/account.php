@@ -43,18 +43,17 @@ if ($action == 'dosignin') {
 	$ispersis = isset($_POST['ispersis']) ? (int)$_POST['ispersis'] : 0;
 	$login_code = Option::get('login_code') === 'y' && isset($_POST['login_code']) ? addslashes(strtoupper(trim($_POST['login_code']))) : '';
 
-	$uid = LoginAuth::checkUser($username, $password, $login_code);
+	if (!User::checkLoginCode($login_code)) {
+		emDirect('./account.php?action=signin&err_ckcode=1');
+	}
 
+	$uid = LoginAuth::checkUser($username, $password);
 	switch ($uid) {
 		case $uid > 0:
 			Register::isRegServer();
-			$User_Model = new User_Model();
 			$User_Model->updateUser(['ip' => getIp()], $uid);
 			LoginAuth::setAuthCookie($username, $ispersis);
 			emDirect("./");
-			break;
-		case LoginAuth::LOGIN_ERROR_AUTHCODE:
-			emDirect("./account.php?action=signin&err_ckcode=1");
 			break;
 		case LoginAuth::LOGIN_ERROR_USER:
 		case LoginAuth::LOGIN_ERROR_PASSWD:
