@@ -101,7 +101,7 @@
                     </div>
                     <div class="form-group">
                         <label for="sortname">用户名</label>
-                        <input class="form-control" id="login" name="login" required>
+                        <input class="form-control" id="username" name="username" required>
                     </div>
                     <div class="form-group">
                         <label for="alias">密码 (大于6位)</label>
