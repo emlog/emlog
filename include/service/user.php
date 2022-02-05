@@ -48,8 +48,8 @@ class User {
 		$_SESSION['code'] = $randCode;
 		$_SESSION['mail'] = $mail;
 
-		$title = "找回密码邮件验证码";
-		$content = "邮件验证码是：" . $randCode;
+/*vot*/		$title = lang('reset_password_code');
+/*vot*/		$content = lang('email_verify_code') . $randCode;
 		$sendmail_model = new SendMail();
 		$ret = $sendmail_model->send($mail, $title, $content);
 		if ($ret) {

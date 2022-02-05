@@ -137,6 +137,11 @@ $lang = array(
 //include/model/media_model.php
 'del_failed'	=> '删除失败!',//'Failed to delete!',
 
+//---------------------------------------
+//include/service/user.php
+'reset_password_code'	=> '找回密码邮件验证码',//'Recover Password Email Verification Code',
+'email_verify_code'	=> '邮件验证码是: ',//'Email verification code is',
+
 //---------------------------
 //content/templates/default/404.php
  '404_error'		=> '错误提示-页面未找到',//'Error - page not found.',

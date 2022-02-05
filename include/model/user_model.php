@@ -121,7 +121,7 @@ class User_Model {
 	}
 
 	/**
-	 * 邮箱是否存在
+	 * Check if mailbox exist
 	 *
 	 * @param string $mail
 	 * @return boolean

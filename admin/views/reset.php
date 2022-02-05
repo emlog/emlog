@@ -14,18 +14,18 @@
                                 </div>
                                 <form method="post" class="user" action="./account.php?action=doreset">
 									<?php if (isset($_GET['error_mail'])): ?>
-                                        <div class="alert alert-danger">错误的注册邮箱</div><?php endif ?>
+                                        <div class="alert alert-danger"><?=lang('email_invalid')?></div><?php endif ?>
 									<?php if (isset($_GET['error_sendmail'])): ?>
-                                        <div class="alert alert-danger">邮件验证码发送失败，请检查邮件通知设置</div><?php endif ?>
+                                        <div class="alert alert-danger"><?=lang('email_send_error')?></div><?php endif ?>
 									<?php if (isset($_GET['err_ckcode'])): ?>
-                                        <div class="alert alert-danger">验证码错误</div><?php endif ?>
+                                        <div class="alert alert-danger"><?=lang('verification_error')?></div><?php endif ?>
                                     <div class="form-group">
                                         <input type="email" class="form-control form-control-user" id="mail" name="mail" aria-describedby="emailHelp" placeholder="<?=lang('email_enter')?>" required
                                                autofocus>
                                     </div>
 									<?php if ($login_code): ?>
                                         <div class="form-group form-inline">
-                                            <input type="text" name="login_code" class="form-control form-control-user" id="login_code" placeholder="验证码" required>
+                                            <input type="text" name="login_code" class="form-control form-control-user" id="login_code" placeholder="<?=lang('captcha')?>" required>
                                             <img src="../include/lib/checkcode.php" id="checkcode" class="mx-2">
                                         </div>
 									<?php endif ?>

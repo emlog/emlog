@@ -28,7 +28,7 @@ if ($action == 'signin') {
 	$login_code = Option::get('login_code') === 'y';
 	$is_signup = Option::get('is_signup') === 'y';
 
-	$page_title = '登录';
+/*vot*/	$page_title = lang('login');
 	require_once View::getAdmView('user_head');
 	require_once View::getAdmView('signin');
 	View::output();
@@ -72,10 +72,10 @@ if ($action == 'signup') {
 	$error_msg = '';
 
 	if (Option::get('is_signup') !== 'y') {
-		emMsg('系统已关闭注册！');
+/*vot*/		emMsg(lang('registration_disabled'));
 	}
 
-	$page_title = '注册账号';
+/*vot*/	$page_title = lang('account_register');
 	include View::getAdmView('user_head');
 	require_once View::getAdmView('signup');
 	View::output();
@@ -91,7 +91,7 @@ if ($action == 'dosignup') {
 	$mail = isset($_POST['mail']) ? addslashes(trim($_POST['mail'])) : '';
 	$passwd = isset($_POST['passwd']) ? addslashes(trim($_POST['passwd'])) : '';
 	$repasswd = isset($_POST['repasswd']) ? addslashes(trim($_POST['repasswd'])) : '';
-	$login_code = isset($_POST['login_code']) ? addslashes(strtoupper(trim($_POST['login_code']))) : ''; //登录注册验证码
+/*vot*/	$login_code = isset($_POST['login_code']) ? addslashes(strtoupper(trim($_POST['login_code']))) : ''; //Registration captcha
 
 	if (!checkMail($mail)) {
 		emDirect('./account.php?action=signup&error_login=1');
@@ -128,7 +128,7 @@ if ($action == 'reset') {
 	$login_code = Option::get('login_code') === 'y';
 	$error_msg = '';
 
-	$page_title = '找回密码';
+/*vot*/	$page_title = lang('retrieve_password');
 	include View::getAdmView('user_head');
 	require_once View::getAdmView('reset');
 	View::output();
@@ -163,7 +163,7 @@ if ($action == 'reset2') {
 	$login_code = Option::get('login_code') === 'y';
 	$error_msg = '';
 
-	$page_title = '找回密码';
+/*vot*/	$page_title = lang('retrieve_password');
 	include View::getAdmView('user_head');
 	require_once View::getAdmView('reset2');
 	View::output();
@@ -173,7 +173,7 @@ if ($action == 'doreset2') {
 	$mail_code = isset($_POST['mail_code']) ? addslashes(trim($_POST['mail_code'])) : '';
 	$passwd = isset($_POST['passwd']) ? addslashes(trim($_POST['passwd'])) : '';
 	$repasswd = isset($_POST['repasswd']) ? addslashes(trim($_POST['repasswd'])) : '';
-	$login_code = isset($_POST['login_code']) ? addslashes(strtoupper(trim($_POST['login_code']))) : ''; //登录注册验证码
+/*vot*/	$login_code = isset($_POST['login_code']) ? addslashes(strtoupper(trim($_POST['login_code']))) : ''; //Registration captcha
 
 	if (!$mail_code) {
 		emDirect('./account.php?action=reset2&error_login=1');

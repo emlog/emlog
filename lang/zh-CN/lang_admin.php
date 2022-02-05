@@ -8,7 +8,7 @@ $lang = array(
 //'mail_test_content'	=> '测试邮件发送内容',//'Test mail sending content',
 //'mail_send_ok'	=> '邮件发送成功',//'Mail sent successfully',
 //'mail_send_error'	=> '邮件发送失败',//'Mail sending failed',
-
+ 'registration_disabled' => '系统已关闭注册！',//'The system has closed registration!',
 
 //---------------------------
 //admin/article.php
@@ -608,7 +608,10 @@ $lang = array(
 // 'login'		=> '登录',//'Login',
 // 'back_home'		=> '返回首页',//'Back to home',
  'email_enter'		=> '输入注册邮箱',//'Enter registered email',
- 
+ 'email_invalid'	=> '错误的注册邮箱',//'Wrong registered email',
+ 'email_send_error'	=> '邮件验证码发送失败，请检查邮件通知设置',//'Failed to send email verification code, please check email notification settings',
+ 'verification_error'	=> '验证码错误',//'Verification code error',
+
 //---------------------------
 //admin/views/seo.php
  'htaccess_not_writable'	=> '保存失败：根目录下的.htaccess不可写',//'Save failed: .htaccess file in the root directory is not writable',
@@ -846,7 +849,7 @@ $lang = array(
  'user_add'		=> '添加用户',//'Add user',
  'author_contributor'	=> '作者（投稿人）',//'Author (Contributor)',
  'password_min_length'	=> '密码 (大于6位)',//'Password (not less than 6 characters)',
- 'password_repeat'	=> '重复密码',//'Repeat password',
+ 'password_repeat'	=> '再次输入密码',//'Enter the password again',
  'posts_not_need_audit'	=> '文章不需要审核',//'Posts not need to be verified',
  'posts_need_audit'	=> '文章需要审核',//'Posts need to be verified',
  'publish_permission'	=> '发布权限',//'Publishing permissions',
