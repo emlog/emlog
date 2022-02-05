@@ -8,7 +8,7 @@ $lang = array(
 //'mail_test_content'	=> 'Test mail sending content',//'测试邮件发送内容',
 //'mail_send_ok'	=> 'Mail sent successfully',//'邮件发送成功',
 //'mail_send_error'	=> 'Mail sending failed',//'邮件发送失败',
-
+ 'registration_disabled' => 'The system has closed registration!',//'系统已关闭注册！',
 
 //---------------------------
 //admin/article.php
@@ -69,16 +69,16 @@ $lang = array(
 //---------------------------
 //admin/setting_mail.php
  'email_sending'	=> 'Email sending',//'邮件发送',
- 'email_send'		=> 'Send email',//'发送邮箱',
+ 'sender_email'		=> 'Sender email',//'发送人邮箱',
  'smtp_password'	=> 'SMTP password',//'SMTP密码',
- 'smtp_server'		=> 'SMTP server',//'SMTP服务器',
- 'port'			=> 'Port',//'端口',
+ 'smtp_server'		=> 'SMTP server (such as QQ mailbox service: smtp.qq.com)',//'SMTP服务器（如QQ邮箱服务：smtp.qq.com）',
+ 'smtp_port'		=> 'Port (such as QQ mailbox service port: 465)',//'端口（如QQ邮箱服务端口：465）',
 
 //---------------------------
 //admin/setting_user.php
  'registration'		=> 'Registration',//'登录注册',
- 'registration_open'	=> 'Open registration',//'开启注册',
- 'registration_captcha'	=> 'Verification code at registration',//'登录注册验证码',
+ 'registration_open'	=> 'Open user registration',//'开启用户注册',
+ 'registration_captcha'	=> 'Enable captcha at registration',//'开启登录注册验证码',
  'user_rights'		=> 'User rights',//'用户权限',
  'comment_write'	=> 'Post comments',//'发布评论',
  'guest_rights'		=> 'Visitor permissions',//'游客权限',
@@ -380,6 +380,7 @@ $lang = array(
  'search'		=> 'Search',//'Search',
  'resources'		=> 'Resources',//'资源',
  'twitters'		=> 'Notes',//'笔记',
+ 'user_center'		=> 'User Center',//'用户中心',
 
 //---------------------------
 //admin/views/index.php
@@ -497,6 +498,7 @@ $lang = array(
  'resource_del_selected'	=> 'Delete selected resources',//'删除所选资源',
  'resource_select'	=> 'Please select the resource to be deleted',//'请选择要删除的资源',
  'resource_del_sure'	=> 'Are you sure you want to delete the selected resource?',//'确定要删除所选资源吗？',
+ 'founder'		=> 'Founder',//'创建人',
 
 //---------------------------
 //admin/views/media_lib.php
@@ -605,7 +607,17 @@ $lang = array(
 // 'submit'		=> 'Submit',//'提交',
 // 'login'		=> 'Login',//'登录',
 // 'back_home'		=> 'Back to home',//'返回首页',
- 
+ 'email_enter'		=> 'Enter registered email',//'输入注册邮箱',
+ 'email_invalid'	=> 'Wrong registered email',//'错误的注册邮箱',
+ 'email_send_error'	=> 'Failed to send email verification code, please check email notification settings',//'邮件验证码发送失败，请检查邮件通知设置',
+ 'verification_error'	=> 'Verification code error',//'验证码错误',
+
+//---------------------------
+//admin/views/reset2.php
+ 'password_recover'		=> 'Recover Password: Reset Password',//'找回密码：重置密码',
+ 'enter_code_from_email'	=> 'The email verification code has been sent to your email, please check and fill in',//'邮件验证码已发送到你的邮箱，请查收后填写',
+ 'email_verification_code'	=> 'Email verification code',//'邮件验证码',
+
 //---------------------------
 //admin/views/seo.php
  'htaccess_not_writable'	=> 'Save failed: .htaccess file in the root directory is not writable',//'保存失败：根目录下的.htaccess不可写',
@@ -681,6 +693,12 @@ $lang = array(
  'article_settigs'		=> 'Article Settings',//'文章设置',
  'upload_settings'		=> 'Upload settings',//'上传设置',
  'comment_settings'		=> 'Comment settings',//'评论设置',
+
+//---------------------------
+//admin/views/signin.php
+// 'em_reg_ok'		=> 'Registration is successful, please log in',//'注册成功，请登录',
+ 'password_reset_ok'	=> 'Password reset successfully, please log in',//'密码重置成功，请登录',
+
 
 //---------------------------
 //admin/views/sort.php
@@ -843,14 +861,14 @@ $lang = array(
  'user_add'		=> 'Add user',//'添加用户',
  'author_contributor'	=> 'Author (Contributor)',//'作者（投稿人）',
  'password_min_length'	=> 'Password (not less than 5 characters)',//'密码 (大于5位)',
- 'password_repeat'	=> 'Repeat password',//'重复密码',
+ 'password_repeat'	=> 'Enter the password again',//'再次输入密码',
  'posts_not_need_audit'	=> 'Posts not need to be verified',//'文章不需要审核',
  'posts_need_audit'	=> 'Posts need to be verified',//'文章需要审核',
  'publish_permission'	=> 'Publishing permissions',//'发布权限',
  'users_total'		=> 'Users created',//'已创建的用户',
  'role'			=> 'Role',//'角色',
  'last_login_ip'	=> 'Last logged in IP',//'最近登录IP',
- 'last_login_time'	=> 'Update/login time',//'更新/登录时间',
+ 'last_login_time'	=> 'Last active time',//'更新/登录时间',
 
 //---------------------------
 //admin/views/useredit.php

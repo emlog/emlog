@@ -72,7 +72,7 @@ $lang = array(
  'sender_email'		=> '发送人邮箱',//'Sender email',
  'smtp_password'	=> 'SMTP密码',//'SMTP password',
  'smtp_server'		=> 'SMTP服务器（如QQ邮箱服务：smtp.qq.com）',//'SMTP server (such as QQ mailbox service: smtp.qq.com)',
- 'port'			=> '端口（如QQ邮箱服务端口：465）',//'Port (such as QQ mailbox service port: 465)',
+ 'smtp_port'		=> '端口（如QQ邮箱服务端口：465）',//'Port (such as QQ mailbox service port: 465)',
 
 //---------------------------
 //admin/setting_user.php
@@ -614,7 +614,7 @@ $lang = array(
 
 //---------------------------
 //admin/views/reset2.php
- 'password_recover'	=> '找回密码：重置密码',//'Recover Password: Reset Password',
+ 'password_recover'		=> '找回密码：重置密码',//'Recover Password: Reset Password',
  'enter_code_from_email'	=> '邮件验证码已发送到你的邮箱，请查收后填写',//'The email verification code has been sent to your email, please check and fill in',
  'email_verification_code'	=> '邮件验证码',//'Email verification code',
 
@@ -696,7 +696,7 @@ $lang = array(
 
 //---------------------------
 //admin/views/signin.php
-// 'em_reg_ok'			=> '注册成功，请登录',//'Registration is successful, please log in',
+// 'em_reg_ok'		=> '注册成功，请登录',//'Registration is successful, please log in',
  'password_reset_ok'	=> '密码重置成功，请登录',//'Password reset successfully, please log in',
 
 

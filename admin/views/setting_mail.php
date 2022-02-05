@@ -32,7 +32,7 @@
                 <input class="form-control" value="<?= $smtp_server ?>" name="smtp_server" required>
             </div>
             <div class="form-group">
-<!--vot-->      <label><?=lang('port')?>:</label>
+<!--vot-->      <label><?=lang('smtp_port')?>:</label>
                 <input class="form-control" value="<?= $smtp_port ?>" name="smtp_port" required>
             </div>
             <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
