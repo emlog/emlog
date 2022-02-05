@@ -599,7 +599,7 @@ $lang = array(
 
 //---------------------------
 //admin/views/reset.php
- 'retrieve_password'	=> 'Восстановить пароль',//'找回密码',
+ 'retrieve_password'	=> 'Восстановление пароля',//'找回密码',
 // 'email'			=> 'E-mail',//'邮箱',
 // 'captcha'			=> 'Captcha',//'验证码',
  'new_password'		=> 'Новый пароль',//'新的密码',
