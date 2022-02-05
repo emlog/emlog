@@ -30,8 +30,8 @@
             <li class="nav-item"><a class="nav-link active" href="./blogger.php">个人信息</a></li>
         </ul>
 	<?php else: ?>
-        <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="./blogger.php">个人设置</a></li>
+        <ul class="nav nav-pills">
+            <li class="nav-item"><a class="nav-link active" href="./blogger.php">个人信息</a></li>
         </ul>
 	<?php endif ?>
 </div>
@@ -70,7 +70,7 @@
                     <input type="password" class="form-control" value="" name="newpass">
                 </div>
                 <div class="form-group">
-                    <label>再输入一次新密码</label>
+                    <label>再次输入新密码</label>
                     <input type="password" class="form-control" value="" name="repeatpass">
                 </div>
                 <div class="form-group">

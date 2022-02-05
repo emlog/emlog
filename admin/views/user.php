@@ -37,7 +37,7 @@
                     <th>角色</th>
                     <th>文章数</th>
                     <th>最近登录IP</th>
-                    <th>更新/登录时间</th>
+                    <th>活跃时间</th>
                     <th>创建时间</th>
                     <th>操作</th>
                 </tr>
@@ -46,8 +46,7 @@
 				<?php
 				foreach ($users as $key => $val):
 					$avatar = empty($user_cache[$val['uid']]['avatar']) ? './views/images/avatar.svg' : '../' . $user_cache[$val['uid']]['avatar'];
-
-                ?>
+					?>
                     <tr>
                         <td><img src="<?= $avatar ?>" height="40" width="40" class="rounded-circle"/></td>
                         <td>
@@ -108,7 +107,7 @@
                         <input class="form-control" id="password" name="password" type="password" required>
                     </div>
                     <div class="form-group">
-                        <label for="template">重复密码</label>
+                        <label for="template">再次输入密码</label>
                         <input class="form-control" id="password2" name="password2" type="password" required>
                     </div>
                     <div class="form-group" id="ischeck">

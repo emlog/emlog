@@ -30,7 +30,11 @@
 <div id="wrapper">
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion sd-hidden" id="accordionSidebar">
         <li class="nav-item active emlog_title" id="menu_home">
-            <a class="nav-link" href="./">EMLOG PRO <?php if (!Register::isRegLocal()) : ?>未注册<?php endif ?></a>
+			<?php if (User::isAdmin()): ?>
+                <a class="nav-link" href="./">EMLOG PRO <?php if (!Register::isRegLocal()) : ?>未注册<?php endif ?></a>
+			<?php else: ?>
+                <a class="nav-link" href="./">用户中心</a>
+			<?php endif ?>
         </li>
         <hr class="sidebar-divider my-0">
 		<?php if (User::isAdmin()): ?>
