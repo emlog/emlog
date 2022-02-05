@@ -31,7 +31,7 @@
                                         <input type="password" class="form-control form-control-user" minlength="6" id="passwd" name="passwd" placeholder="密码" required>
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" class="form-control form-control-user" minlength="6" id="repasswd" name="repasswd" placeholder="确认密码" required>
+                                        <input type="password" class="form-control form-control-user" minlength="6" id="repasswd" name="repasswd" placeholder="再次输入密码" required>
                                     </div>
 									<?php if ($login_code): ?>
                                         <div class="form-group form-inline">
