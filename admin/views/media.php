@@ -12,6 +12,7 @@
 		<?php foreach ($medias as $key => $value):
 			$media_url = rmUrlParams(getFileUrl($value['filepath']));
 			$media_name = $value['filename'];
+			$author = $user_cache[$value['author']]['name'];
 			if (isImage($value['mimetype'])) {
 				$media_icon = getFileUrl($value['filepath_thum']);
 				$imgviewer = 'class="highslide" onclick="return hs.expand(this)"';
@@ -26,7 +27,8 @@
                     <div class="card-body">
                         <p class="card-text text-muted small">
 							<?= $media_name ?><br>
-                            创建时间：<?= $value['addtime'] ?><br>
+                            时间：<?= $value['addtime'] ?><br>
+                            创建人：<?= $author ?><br>
                             文件大小：<?= $value['attsize'] ?>，
 							<?php if ($value['width'] && $value['height']): ?>
                                 图片尺寸：<?= $value['width'] ?>x<?= $value['height'] ?>
