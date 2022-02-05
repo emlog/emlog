@@ -150,7 +150,7 @@ if ($action == 'doreset') {
 	if ($ret) {
 		emDirect("./account.php?action=reset2&succ_mail=1");
 	} else {
-		emDirect("./account.php?action=reset&error_mail=1");
+		emDirect("./account.php?action=reset&error_sendmail=1");
 	}
 }
 

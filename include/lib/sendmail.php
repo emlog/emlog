@@ -45,7 +45,12 @@ class SendMail {
 
 		$mail->WordWrap = 80; // 设置每行字符串的长度
 		$mail->IsHTML(true);
-		return $mail->Send();
+
+		try {
+			return $mail->Send();
+		} catch (Exception $exc) {
+			return false;
+		}
 	}
 
 }
