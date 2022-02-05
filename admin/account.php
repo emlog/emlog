@@ -15,10 +15,7 @@ $sta_cache = $CACHE->readCache('sta');
 $user_cache = $CACHE->readCache('user');
 $action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
 $admin_path_code = isset($_GET['s']) ? addslashes(htmlClean($_GET['s'])) : '';
-
-if (!isset($_SESSION)) {
-	session_start();
-}
+$User_Model = new User_Model();
 
 /**
  * 登录
@@ -85,7 +82,6 @@ if ($action == 'signup') {
 
 if ($action == 'dosignup') {
 	loginAuth::loggedPage();
-	$User_Model = new User_Model();
 
 	if (Option::get('is_signup') !== 'y') {
 		return;
@@ -109,9 +105,7 @@ if ($action == 'dosignup') {
 		emDirect('./account.php?action=signup&error_pwd2=1');
 	}
 
-	$session_code = $_SESSION['code'] ?? '';
-	if ((!$login_code || $login_code !== $session_code) && Option::get('login_code') === 'y') {
-		unset($_SESSION['code']);
+	if (!User::checkLoginCode($login_code)) {
 		emDirect('./account.php?action=signup&err_ckcode=1');
 	}
 
@@ -141,19 +135,16 @@ if ($action == 'reset') {
 
 if ($action == 'doreset') {
 	loginAuth::loggedPage();
-	$User_Model = new User_Model();
 
 	$mail = isset($_POST['mail']) ? addslashes(trim($_POST['mail'])) : '';
 	$login_code = isset($_POST['login_code']) ? addslashes(strtoupper(trim($_POST['login_code']))) : ''; //登录注册验证码
 
-	$session_code = $_SESSION['code'] ?? '';
-	if ((!$login_code || $login_code !== $session_code) && Option::get('login_code') === 'y') {
-		unset($_SESSION['code']);
+	if (!User::checkLoginCode($login_code)) {
 		emDirect('./account.php?action=reset&err_ckcode=1');
 	}
 
 	if (!$mail || !$User_Model->isMailExist($mail)) {
-		 emDirect('./account.php?action=reset&error_mail=1');
+		emDirect('./account.php?action=reset&error_mail=1');
 	}
 
 	$ret = User::sendResetMail($mail);
@@ -193,18 +184,20 @@ if ($action == 'doreset2') {
 		emDirect('./account.php?action=reset2&error_pwd2=1');
 	}
 
-	$session_code = $_SESSION['code'] ?? '';
-	if ((!$login_code || $login_code !== $session_code) && Option::get('login_code') === 'y') {
-		unset($_SESSION['code']);
+	if (!User::checkLoginCode($login_code)) {
 		emDirect('./account.php?action=reset2&err_ckcode=1');
 	}
 
 	$PHPASS = new PasswordHash(8, true);
 	$passwd = $PHPASS->HashPassword($passwd);
 
-	$User_Model->updateUser(['passwd'=>$passwd]);
-	$CACHE->updateCache(array('sta', 'user'));
-	emDirect("./account.php?action=signin&succ_reg=1");
+	if (!isset($_SESSION)) {
+		session_start();
+	}
+	$mail = $_SESSION['mail'] ?? '';
+
+	$User_Model->updateUserByMail(['password' => $passwd], $mail);
+	emDirect("./account.php?action=signin&succ_reset=1");
 }
 
 /**

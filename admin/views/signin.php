@@ -14,6 +14,8 @@
                                 </div>
 								<?php if (isset($_GET['succ_reg'])): ?>
                                     <div class="alert alert-success">注册成功，请登录</div><?php endif ?>
+								<?php if (isset($_GET['succ_reset'])): ?>
+                                    <div class="alert alert-success">密码重置成功，请登录</div><?php endif ?>
 								<?php if (isset($_GET['err_ckcode'])): ?>
                                     <div class="alert alert-danger">验证错误，请重新输入</div><?php endif ?>
 								<?php if (isset($_GET['err_login'])): ?>

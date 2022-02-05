@@ -41,12 +41,12 @@ class User {
 	}
 
 	static function sendResetMail($mail) {
-
 		if (!isset($_SESSION)) {
 			session_start();
 		}
-		$randCode = mt_rand(10000000, 99999999);
+		$randCode = getRandStr(8, false);
 		$_SESSION['code'] = $randCode;
+		$_SESSION['mail'] = $mail;
 
 		$title = "找回密码邮件验证码";
 		$content = "邮件验证码是：" . $randCode;
@@ -58,5 +58,18 @@ class User {
 			return false;
 		}
 	}
+
+	static function checkLoginCode($login_code) {
+		if (!isset($_SESSION)) {
+			session_start();
+		}
+		$session_code = $_SESSION['code'] ?? '';
+		if ((!$login_code || $login_code !== $session_code) && Option::get('login_code') === 'y') {
+			unset($_SESSION['code']);
+			return false;
+		}
+		return true;
+	}
+
 
 }

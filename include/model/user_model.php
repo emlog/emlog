@@ -61,6 +61,16 @@ class User_Model {
 		$this->db->query("update " . DB_PREFIX . "user set $upStr where uid=$uid");
 	}
 
+	function updateUserByMail($userData, $mail) {
+		$timestamp = time();
+		$Item = ["update_time=$timestamp"];
+		foreach ($userData as $key => $data) {
+			$Item[] = "$key='$data'";
+		}
+		$upStr = implode(',', $Item);
+		$this->db->query("update " . DB_PREFIX . "user set $upStr where email='$mail'");
+	}
+
 	function addUser($username, $mail, $password, $role) {
 		$timestamp = time();
 		$sql = "insert into " . DB_PREFIX . "user (username,email,password,role,create_time,update_time) values('$username','$mail','$password','$role', $timestamp, $timestamp)";
