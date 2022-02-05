@@ -28,6 +28,7 @@ if ($action == 'signin') {
 	$login_code = Option::get('login_code') === 'y';
 	$is_signup = Option::get('is_signup') === 'y';
 
+	$page_title = '登录';
 	require_once View::getAdmView('user_head');
 	require_once View::getAdmView('signin');
 	View::output();
@@ -74,6 +75,7 @@ if ($action == 'signup') {
 		emMsg('系统已关闭注册！');
 	}
 
+	$page_title = '注册';
 	include View::getAdmView('user_head');
 	require_once View::getAdmView('signup');
 	View::output();
@@ -127,6 +129,7 @@ if ($action == 'reset') {
 	$login_code = Option::get('login_code') === 'y';
 	$error_msg = '';
 
+	$page_title = '找回密码';
 	include View::getAdmView('user_head');
 	require_once View::getAdmView('reset');
 	View::output();
@@ -162,6 +165,7 @@ if ($action == 'reset2') {
 	$login_code = Option::get('login_code') === 'y';
 	$error_msg = '';
 
+	$page_title = '找回密码';
 	include View::getAdmView('user_head');
 	require_once View::getAdmView('reset2');
 	View::output();
