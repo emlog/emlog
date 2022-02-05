@@ -75,7 +75,7 @@ if ($action == 'signup') {
 		emMsg('系统已关闭注册！');
 	}
 
-	$page_title = '注册';
+	$page_title = '注册账号';
 	include View::getAdmView('user_head');
 	require_once View::getAdmView('signup');
 	View::output();
@@ -93,8 +93,11 @@ if ($action == 'dosignup') {
 	$repasswd = isset($_POST['repasswd']) ? addslashes(trim($_POST['repasswd'])) : '';
 	$login_code = isset($_POST['login_code']) ? addslashes(strtoupper(trim($_POST['login_code']))) : ''; //登录注册验证码
 
-	if (!$mail) {
+	if (!checkMail($mail)) {
 		emDirect('./account.php?action=signup&error_login=1');
+	}
+	if (!User::checkLoginCode($login_code)) {
+		emDirect('./account.php?action=signup&err_ckcode=1');
 	}
 	if ($User_Model->isUserExist($mail)) {
 		emDirect('./account.php?action=signup&error_exist=1');
@@ -104,10 +107,6 @@ if ($action == 'dosignup') {
 	}
 	if ($passwd !== $repasswd) {
 		emDirect('./account.php?action=signup&error_pwd2=1');
-	}
-
-	if (!User::checkLoginCode($login_code)) {
-		emDirect('./account.php?action=signup&err_ckcode=1');
 	}
 
 	$PHPASS = new PasswordHash(8, true);
@@ -139,12 +138,11 @@ if ($action == 'doreset') {
 	loginAuth::loggedPage();
 
 	$mail = isset($_POST['mail']) ? addslashes(trim($_POST['mail'])) : '';
-	$login_code = isset($_POST['login_code']) ? addslashes(strtoupper(trim($_POST['login_code']))) : ''; //登录注册验证码
+	$login_code = isset($_POST['login_code']) ? addslashes(strtoupper(trim($_POST['login_code']))) : '';
 
 	if (!User::checkLoginCode($login_code)) {
 		emDirect('./account.php?action=reset&err_ckcode=1');
 	}
-
 	if (!$mail || !$User_Model->isMailExist($mail)) {
 		emDirect('./account.php?action=reset&error_mail=1');
 	}
@@ -186,7 +184,6 @@ if ($action == 'doreset2') {
 	if ($passwd !== $repasswd) {
 		emDirect('./account.php?action=reset2&error_pwd2=1');
 	}
-
 	if (!User::checkLoginCode($login_code)) {
 		emDirect('./account.php?action=reset2&err_ckcode=1');
 	}
