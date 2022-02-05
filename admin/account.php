@@ -1,6 +1,6 @@
 <?php
 /**
- * 后台全局项加载
+ * account administration
  * @package EMLOG (www.emlog.net)
  */
 
@@ -44,7 +44,7 @@ if ($action == 'dosignin') {
 	$username = isset($_POST['user']) ? addslashes(trim($_POST['user'])) : '';
 	$password = isset($_POST['pw']) ? addslashes(trim($_POST['pw'])) : '';
 	$ispersis = isset($_POST['ispersis']) ? (int)$_POST['ispersis'] : 0;
-	$login_code = Option::get('login_code') == 'y' && isset($_POST['login_code']) ? addslashes(trim(strtoupper($_POST['login_code']))) : '';
+	$login_code = Option::get('login_code') === 'y' && isset($_POST['login_code']) ? addslashes(strtoupper(trim($_POST['login_code']))) : '';
 
 	$uid = LoginAuth::checkUser($username, $password, $login_code);
 
@@ -71,7 +71,7 @@ if ($action == 'dosignin') {
  */
 if ($action == 'signup') {
 	loginAuth::loggedPage();
-	$login_code = Option::get('login_code') == 'y' ? true : false;
+	$login_code = Option::get('login_code') === 'y';
 	$error_msg = '';
 
 	if (Option::get('is_signup') !== 'y') {
@@ -94,7 +94,7 @@ if ($action == 'dosignup') {
 	$mail = isset($_POST['mail']) ? addslashes(trim($_POST['mail'])) : '';
 	$passwd = isset($_POST['passwd']) ? addslashes(trim($_POST['passwd'])) : '';
 	$repasswd = isset($_POST['repasswd']) ? addslashes(trim($_POST['repasswd'])) : '';
-	$login_code = isset($_POST['login_code']) ? addslashes(trim(strtoupper($_POST['login_code']))) : ''; //登录注册验证码
+	$login_code = isset($_POST['login_code']) ? addslashes(strtoupper(trim($_POST['login_code']))) : ''; //登录注册验证码
 
 	if (!$mail) {
 		emDirect('./account.php?action=signup&error_login=1');
@@ -118,7 +118,7 @@ if ($action == 'dosignup') {
 	$PHPASS = new PasswordHash(8, true);
 	$passwd = $PHPASS->HashPassword($passwd);
 
-	$User_Model->addUser($mail, $passwd, User::ROLE_WRITER, 1);
+	$User_Model->addUser('', $mail, $passwd, User::ROLE_WRITER);
 	$CACHE->updateCache(array('sta', 'user'));
 	emDirect("./account.php?action=signin&succ_reg=1");
 }
@@ -143,16 +143,8 @@ if ($action == 'doreset') {
 	loginAuth::loggedPage();
 	$User_Model = new User_Model();
 
-	if (Option::get('is_signup') !== 'y') {
-		return;
-	}
-
 	$mail = isset($_POST['mail']) ? addslashes(trim($_POST['mail'])) : '';
-	$login_code = isset($_POST['login_code']) ? addslashes(trim(strtoupper($_POST['login_code']))) : ''; //登录注册验证码
-
-	if (!$mail) {
-		emDirect('./account.php?action=reset&error_login=1');
-	}
+	$login_code = isset($_POST['login_code']) ? addslashes(strtoupper(trim($_POST['login_code']))) : ''; //登录注册验证码
 
 	$session_code = $_SESSION['code'] ?? '';
 	if ((!$login_code || $login_code !== $session_code) && Option::get('login_code') === 'y') {
@@ -160,18 +152,15 @@ if ($action == 'doreset') {
 		emDirect('./account.php?action=reset&err_ckcode=1');
 	}
 
-	if ($User_Model->isUserExist($mail)) {
-		// emDirect('./account.php?action=reset&error_exist=1');
+	if (!$mail || !$User_Model->isMailExist($mail)) {
+		 emDirect('./account.php?action=reset&error_mail=1');
 	}
 
-	var_dump($mail);
-
 	$ret = User::sendResetMail($mail);
-
 	if ($ret) {
-		emDirect("./account.php?action=reset&succ_reg=1");
+		emDirect("./account.php?action=reset2&succ_mail=1");
 	} else {
-		emDirect("./account.php?action=reset2&succ_reg=1");
+		emDirect("./account.php?action=reset&error_mail=1");
 	}
 }
 
@@ -180,32 +169,42 @@ if ($action == 'reset2') {
 		emDirect("../admin");
 	}
 
-	$to_user = "xxxx@gmail.com";
-	$title = "测试邮件发送标题";
-	$content = "测试邮件发送内容";
-	$sendmail_model = new SendMail();
-	$ret = $sendmail_model->send($to_user, $title, $content);
-	if ($ret) {
-		echo "邮件发送成功";
-	} else {
-		echo "邮件发送失败";
-	}
-
-	$ckcode = Option::get('login_code') == 'y' ? true : false;
+	$login_code = Option::get('login_code') === 'y';
 	$error_msg = '';
 
 	include View::getAdmView('user_head');
-	require_once View::getAdmView('reset');
+	require_once View::getAdmView('reset2');
 	View::output();
 }
 
 if ($action == 'doreset2') {
-	if (ISLOGIN === true) {
-		emDirect("../admin");
+	$mail_code = isset($_POST['mail_code']) ? addslashes(trim($_POST['mail_code'])) : '';
+	$passwd = isset($_POST['passwd']) ? addslashes(trim($_POST['passwd'])) : '';
+	$repasswd = isset($_POST['repasswd']) ? addslashes(trim($_POST['repasswd'])) : '';
+	$login_code = isset($_POST['login_code']) ? addslashes(strtoupper(trim($_POST['login_code']))) : ''; //登录注册验证码
+
+	if (!$mail_code) {
+		emDirect('./account.php?action=reset2&error_login=1');
 	}
-	include View::getAdmView('user_head');
-	require_once View::getAdmView('reset');
-	View::output();
+	if (strlen($passwd) < 6) {
+		emDirect('./account.php?action=reset2&error_pwd_len=1');
+	}
+	if ($passwd !== $repasswd) {
+		emDirect('./account.php?action=reset2&error_pwd2=1');
+	}
+
+	$session_code = $_SESSION['code'] ?? '';
+	if ((!$login_code || $login_code !== $session_code) && Option::get('login_code') === 'y') {
+		unset($_SESSION['code']);
+		emDirect('./account.php?action=reset2&err_ckcode=1');
+	}
+
+	$PHPASS = new PasswordHash(8, true);
+	$passwd = $PHPASS->HashPassword($passwd);
+
+	$User_Model->updateUser(['passwd'=>$passwd]);
+	$CACHE->updateCache(array('sta', 'user'));
+	emDirect("./account.php?action=signin&succ_reg=1");
 }
 
 /**

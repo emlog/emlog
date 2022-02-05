@@ -8,7 +8,7 @@ class User_Model {
 
 	private $db;
 
-	function __construct() {
+	public function __construct() {
 		$this->db = Database::getInstance();
 	}
 
@@ -61,9 +61,9 @@ class User_Model {
 		$this->db->query("update " . DB_PREFIX . "user set $upStr where uid=$uid");
 	}
 
-	function addUser($login, $password, $role, $ischeck) {
-		$utctimestamp = time();
-		$sql = "insert into " . DB_PREFIX . "user (username,password,role,ischeck, create_time, update_time) values('$login','$password','$role','$ischeck', $utctimestamp, $utctimestamp)";
+	function addUser($username, $mail, $password, $role) {
+		$timestamp = time();
+		$sql = "insert into " . DB_PREFIX . "user (username,email,password,role,create_time,update_time) values('$username','$mail','$password','$role', $timestamp, $timestamp)";
 		$this->db->query($sql);
 	}
 
@@ -73,15 +73,15 @@ class User_Model {
 	}
 
 	/**
-	 * 判断用户名是否存在
+	 * 用户名是否存在
 	 *
-	 * @param string $login
+	 * @param string $user_name
 	 * @param int $uid 兼容更新作者资料时用户名未变更情况
 	 * @return boolean
 	 */
-	function isUserExist($login, $uid = '') {
+	function isUserExist($user_name, $uid = '') {
 		$subSql = $uid ? 'and uid!=' . $uid : '';
-		$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "user WHERE username='$login' $subSql");
+		$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "user WHERE username='$user_name' $subSql");
 		if ($data['total'] > 0) {
 			return true;
 		} else {
@@ -90,7 +90,7 @@ class User_Model {
 	}
 
 	/**
-	 * 判断用户昵称是否存在
+	 * 昵称是否存在
 	 *
 	 * @param string $nickname
 	 * @param int $uid 兼容更新作者资料时用户名未变更情况
@@ -102,6 +102,24 @@ class User_Model {
 		}
 		$subSql = $uid ? 'and uid!=' . $uid : '';
 		$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "user WHERE nickname='$nickname' $subSql");
+		if ($data['total'] > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	 * 邮箱是否存在
+	 *
+	 * @param string $mail
+	 * @return boolean
+	 */
+	function isMailExist($mail) {
+		if (empty($mail)) {
+			return FALSE;
+		}
+		$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "user WHERE email='$mail'");
 		if ($data['total'] > 0) {
 			return true;
 		} else {

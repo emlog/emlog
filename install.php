@@ -457,7 +457,8 @@ CREATE TABLE {$db_prefix}user (
   create_time int(11) NOT NULL COMMENT '创建时间',
   update_time int(11) NOT NULL COMMENT '更新时间',
 PRIMARY KEY  (uid),
-KEY username (username)
+KEY username (username),
+KEY email (email)         
 )" . $table_charset_sql . "
 DROP TABLE IF EXISTS {$db_prefix}twitter;
 CREATE TABLE {$db_prefix}twitter (

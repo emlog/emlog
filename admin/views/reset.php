@@ -13,12 +13,10 @@
                                     <h1 class="h4 text-gray-900 mb-4">找回密码：验证邮箱</h1>
                                 </div>
                                 <form method="post" class="user" action="./account.php?action=doreset">
-									<?php if ($error_msg): ?>
-                                        <div class="alert alert-danger alert-dismissible" role="alert">
-                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-											<?= $error_msg ?>
-                                        </div>
-									<?php endif ?>
+									<?php if (isset($_GET['error_mail'])): ?>
+                                        <div class="alert alert-danger">错误的注册邮箱</div><?php endif ?>
+									<?php if (isset($_GET['err_ckcode'])): ?>
+                                        <div class="alert alert-danger">验证码错误</div><?php endif ?>
                                     <div class="form-group">
                                         <input type="email" class="form-control form-control-user" id="mail" name="mail" aria-describedby="emailHelp" placeholder="邮箱" required
                                                autofocus>

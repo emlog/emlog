@@ -54,7 +54,7 @@ if ($action == 'new') {
 	$PHPASS = new PasswordHash(8, true);
 	$password = $PHPASS->HashPassword($password);
 
-	$User_Model->addUser($login, $password, $role, $ischeck);
+	$User_Model->addUser($login, '', $password, $role);
 	$CACHE->updateCache(array('sta', 'user'));
 	emDirect('./user.php?active_add=1');
 }

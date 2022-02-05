@@ -41,8 +41,15 @@ class User {
 	}
 
 	static function sendResetMail($mail) {
+
+		if (!isset($_SESSION)) {
+			session_start();
+		}
+		$randCode = mt_rand(10000000, 99999999);
+		$_SESSION['code'] = $randCode;
+
 		$title = "找回密码邮件验证码";
-		$content = "邮件验证码是：" . rand(100000, 999999);
+		$content = "邮件验证码是：" . $randCode;
 		$sendmail_model = new SendMail();
 		$ret = $sendmail_model->send($mail, $title, $content);
 		if ($ret) {
