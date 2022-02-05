@@ -21,14 +21,13 @@ var myBlog = {
         $(".commentform #comment").css("height","140px")
                                   .css('border-radius', '10px')
       }
-      for(let num = 0;num < $(".markdown img").length;num++){  // 为正文中的图片添加查看大图，居中功能（默认认为图片父标签<a>中的链接为图片原地址）
+      for(let num = 0;num < $(".markdown img").length;num++){  // 为正文中的图片添加查看大图（默认认为图片父标签<a>中的链接是图片原地址）
         let $this     = $(".markdown img:eq("+ num +")")
         let sourceSrc = $(".markdown img:eq("+ num +")").parent().attr('href')
 
         $this.attr("data-action","zoom")
              .parent().attr("sourcesrc",sourceSrc)
              .removeAttr("href")
-             .parent("p").css("text-align","center")
       }
       $("#commentform").attr("onsubmit","return myBlog.comSubmitTip()")  // 评论提交在表单验证未通过的情况下是不能提交的
     },

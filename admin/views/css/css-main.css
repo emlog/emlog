@@ -556,6 +556,9 @@ textarea {
 .table-responsive table{
     min-width:560px
 }
+.table th, .table td {
+    max-width: 350px
+}
 
 /* 菜单滚动条（不可见） */
 #accordionSidebar::-webkit-scrollbar{
@@ -566,4 +569,9 @@ textarea {
 #accordionSidebar{
     /* 火狐浏览器隐藏滚动条 */
     scrollbar-width: none
+}
+
+/* 组件排序显示优化 */
+#sortable .card-header {
+    padding: 13px 17.5px 7px 17.5px
 }

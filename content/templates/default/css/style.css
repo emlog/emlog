@@ -191,7 +191,7 @@ footer .copyright {
 	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1) /* 阴影 */
 }
 .blog-header-c {
-    max-width: 1296px;
+    max-width: 1193px;
     height: 71.63px;
     display: flex;
     justify-content: space-between /* 导航栏为主轴方向两端对齐，即大标题与导航两部分，一个向左靠齐，一个向右靠齐 */
@@ -779,14 +779,6 @@ footer .copyright {
 
 /*文章条目中的部分样式
 ---------------------------------------------------*/
-/* “阅读全文”的样式 */
-.readmore {
-    margin-left: 10px;
-}
-.readmore a {
-    color: #929292;
-    font-size: small
-}
 /* 文章条目的标题 */
 .card-title {
     margin-bottom: 30px
@@ -794,8 +786,10 @@ footer .copyright {
 /* 文章条目中的置顶图案，采用base64 */
 .log-topflg {
     display: inline-block;
-    height: 24px;
-    padding: 2.5px;
+    position: relative;
+    height: 26px;
+    padding: 3px 4.5px;
+    bottom: 3.5px;
     font-size: 14px;
     margin-left: 8px;
     cursor: default;
@@ -822,6 +816,9 @@ footer .copyright {
 }
 .log-con .date {
     margin-bottom: 0px
+}
+.log-con article {
+    margin-inline: 5px;
 }
 .loglist-content h1 {
     font-size: medium;
@@ -905,9 +902,11 @@ footer .copyright {
 /* 文章分类 */
 .loglist-sort {
     display: inline-block;
+    position: relative;
     margin-left: 10px;
-    padding: 5px;
-    padding-bottom: 2px;
+    bottom: 2px;
+    padding: 6px;
+    padding-bottom: 3px;
     border: 1px solid #e8e8e8
 }
 @media (max-width:415px) {.loglist-cover{ height: 160px;overflow: hidden}.loglist-cover img {position:unset;    width: 730px;}}
@@ -1233,14 +1232,8 @@ img.zoom-img {
     .log-con {
         padding: 30px 16px
     }
-	.comment .avatar {
-        margin-right: 13px
-    }
     .commentform .comment-info {
         width: 100%
-    }
-    .comment .avatar {
-        margin-bottom: 13px
     }
 
     /* 展开菜单后，博客头部的下边距变大 */
@@ -1390,7 +1383,8 @@ img.zoom-img {
         font-size: 14px
     }
     .comment .avatar {
-        margin: 8px;
-        width: 30px
+        margin: 6px 8px;
+        height: 30px;
+        width: 30px;
     }
 }
