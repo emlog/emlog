@@ -613,6 +613,12 @@ $lang = array(
  'verification_error'	=> '验证码错误',//'Verification code error',
 
 //---------------------------
+//admin/views/reset2.php
+ 'password_recover'	=> '找回密码：重置密码',//'Recover Password: Reset Password',
+ 'enter_code_from_email'	=> '邮件验证码已发送到你的邮箱，请查收后填写',//'The email verification code has been sent to your email, please check and fill in',
+ 'email_verification_code'	=> '邮件验证码',//'Email verification code',
+
+//---------------------------
 //admin/views/seo.php
  'htaccess_not_writable'	=> '保存失败：根目录下的.htaccess不可写',//'Save failed: .htaccess file in the root directory is not writable',
  'post_url_settings'		=> '文章链接设置',//'Post URL settings',
@@ -687,6 +693,12 @@ $lang = array(
  'article_settigs'		=> '文章设置',//'Article Settings',
  'upload_settings'		=> '上传设置',//'Upload settings',
  'comment_settings'		=> '评论设置',//'Comment settings',
+
+//---------------------------
+//admin/views/signin.php
+// 'em_reg_ok'			=> '注册成功，请登录',//'Registration is successful, please log in',
+ 'password_reset_ok'	=> '密码重置成功，请登录',//'Password reset successfully, please log in',
+
 
 //---------------------------
 //admin/views/sort.php
