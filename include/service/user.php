@@ -40,4 +40,36 @@ class User {
 		return $role_name;
 	}
 
+	static function sendResetMail($mail) {
+		if (!isset($_SESSION)) {
+			session_start();
+		}
+		$randCode = getRandStr(8, false);
+		$_SESSION['code'] = $randCode;
+		$_SESSION['mail'] = $mail;
+
+		$title = "找回密码邮件验证码";
+		$content = "邮件验证码是：" . $randCode;
+		$sendmail_model = new SendMail();
+		$ret = $sendmail_model->send($mail, $title, $content);
+		if ($ret) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	static function checkLoginCode($login_code) {
+		if (!isset($_SESSION)) {
+			session_start();
+		}
+		$session_code = $_SESSION['code'] ?? '';
+		if ((!$login_code || $login_code !== $session_code) && Option::get('login_code') === 'y') {
+			unset($_SESSION['code']);
+			return false;
+		}
+		return true;
+	}
+
+
 }

@@ -15,9 +15,9 @@ class Media_Model {
 	/**
 	 * Get a list of resources
 	 */
-	function getMedias($page = 1, $perpage_count = 24) {
+	function getMedias($page = 1, $perpage_count = 24, $uid = UID) {
 		$startId = ($page - 1) * $perpage_count;
-		$author = 'and author=' . UID;
+		$author = $uid ? 'and author=' . UID : '';
 		$limit = "LIMIT $startId, " . $perpage_count;
 
 		$sql = "SELECT * FROM " . DB_PREFIX . "attachment WHERE thumfor = 0 $author order by aid desc $limit";
@@ -34,6 +34,7 @@ class Media_Model {
 				'width'         => $row['width'],
 				'height'        => $row['height'],
 				'mimetype'      => $row['mimetype'],
+				'author'        => $row['author'],
 			];
 		}
 		return $medias;

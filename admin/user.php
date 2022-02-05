@@ -26,7 +26,7 @@ if (empty($action)) {
 }
 
 if ($action == 'new') {
-	$login = isset($_POST['login']) ? addslashes(trim($_POST['login'])) : '';
+	$username = isset($_POST['username']) ? addslashes(trim($_POST['username'])) : '';
 	$password = isset($_POST['password']) ? addslashes(trim($_POST['password'])) : '';
 	$password2 = isset($_POST['password2']) ? addslashes(trim($_POST['password2'])) : '';
 	$role = isset($_POST['role']) ? addslashes(trim($_POST['role'])) : self::ROLE_WRITER;
@@ -38,10 +38,10 @@ if ($action == 'new') {
 		$ischeck = 'n';
 	}
 
-	if ($login == '') {
+	if ($username == '') {
 		emDirect('./user.php?error_login=1');
 	}
-	if ($User_Model->isUserExist($login)) {
+	if ($User_Model->isUserExist($username)) {
 		emDirect('./user.php?error_exist=1');
 	}
 	if (strlen($password) < 6) {
@@ -54,7 +54,7 @@ if ($action == 'new') {
 	$PHPASS = new PasswordHash(8, true);
 	$password = $PHPASS->HashPassword($password);
 
-	$User_Model->addUser($login, $password, $role, $ischeck);
+	$User_Model->addUser($username, '', $password, $role);
 	$CACHE->updateCache(array('sta', 'user'));
 	emDirect('./user.php?active_add=1');
 }

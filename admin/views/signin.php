@@ -10,41 +10,45 @@
                         <div class="col-lg-12">
                             <div class="p-5">
                                 <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-4"><?=lang('log_in')?></h1>
+                                    <h1 class="h4 text-gray-900 mb-4">登 录</h1>
                                 </div>
-				<?php if (isset($_GET['succ_reg'])): ?>
-<!--vot-->                          <div class="alert alert-success"><?=lang('em_reg_ok')?></div><?php endif ?>
+								<?php if (isset($_GET['succ_reg'])): ?>
+                                    <div class="alert alert-success">注册成功，请登录</div><?php endif ?>
+								<?php if (isset($_GET['succ_reset'])): ?>
+                                    <div class="alert alert-success">密码重置成功，请登录</div><?php endif ?>
 								<?php if (isset($_GET['err_ckcode'])): ?>
-<!--vot-->                          <div class="alert alert-danger"><?-lang('validation_error')?></div><?php endif ?>
+                                    <div class="alert alert-danger">验证错误，请重新输入</div><?php endif ?>
 								<?php if (isset($_GET['err_login'])): ?>
-<!--vot-->                          <div class="alert alert-danger"><?=lang('password_invalid')?></div><?php endif ?>
-                                <form method="post" class="user" action="./account.php?action=login&s=<?= $admin_path_code ?>">
+                                    <div class="alert alert-danger">用户或密码错误，请重新输入</div><?php endif ?>
+                                <form method="post" class="user" action="./account.php?action=dosignin&s=<?= $admin_path_code ?>">
                                     <div class="form-group">
-<!--vot-->                              <input type="text" class="form-control form-control-user" id="user" name="user" aria-describedby="emailHelp" placeholder="<?=lang('user_name')?>" required
+                                        <input type="text" class="form-control form-control-user" id="user" name="user" aria-describedby="emailHelp" placeholder="用户名\邮箱" required
                                                autofocus>
                                     </div>
                                     <div class="form-group">
-<!--vot-->                              <input type="password" class="form-control form-control-user" id="pw" name="pw" placeholder="<?=lang('password')?>" required>
+                                        <input type="password" class="form-control form-control-user" id="pw" name="pw" placeholder="密码" required>
                                     </div>
-									<?php if ($ckcode): ?>
+									<?php if ($login_code): ?>
                                         <div class="form-group form-inline">
-<!--vot-->                                  <input type="text" name="imgcode" class="form-control form-control-user" id="imgcode" placeholder="<?=lang('captcha')?>" required>
+                                            <input type="text" name="login_code" class="form-control form-control-user" id="login_code" placeholder="验证码" required>
                                             <img src="../include/lib/checkcode.php" id="checkcode" class="mx-2">
                                         </div>
 									<?php endif ?>
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox small">
                                             <input type="checkbox" class="custom-control-input" id="ispersis" name="ispersis" value="1">
-<!--vot-->                                  <label class="custom-control-label" for="ispersis"><?=lang('remember_me')?></label>
+                                            <label class="custom-control-label" for="ispersis">记住我</label>
                                         </div>
                                     </div>
-<!--vot-->                          <button class="btn btn-primary btn-user btn-block" type="submit"><?=lang('login')?></button>
-<!--vot-->                          <a class="btn btn-success btn-user btn-block" type="button" href="./account.php?action=signup"><?=lang('account_register')?></a>
+                                    <button class="btn btn-primary btn-user btn-block" type="submit">登 录</button>
+                                    <?php if($is_signup): ?>
+                                    <a class="btn btn-success btn-user btn-block" type="button" href="./account.php?action=signup">注 册</a>
+                                    <?php endif ?>
                                     <div><?php doAction('login_ext') ?></div>
                                     <hr>
-<!--vot-->                          <div class="text-center"><a class="small" href="./account.php?action=reset"><?=lang('password_forget')?></a></div>
+                                    <div class="text-center"><a class="small" href="./account.php?action=reset">忘记密码?</a></div>
                                     <hr>
-<!--vot-->                          <div class="text-center"><a href="../" class="small" role="button">&larr;<?=lang('back_home')?></a></div>
+                                    <div class="text-center"><a href="../" class="small" role="button">&larr;返回首页</a></div>
                                 </form>
                             </div>
                         </div>
