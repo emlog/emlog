@@ -31,7 +31,7 @@
 									<?php endif ?>
                                     <button class="btn btn-success btn-user btn-block" type="submit"><?=lang('submit')?></button>
                                     <hr>
-                                    <div class="text-center"><a class="small" href="/admin"><?=lang('login')?></a></div>
+<!--vot-->                          <div class="text-center"><a class="small" href="../admin"><?=lang('login')?></a></div>
                                     <hr>
                                     <div class="text-center"><a href="../" class="small" role="button">&larr;<?=lang('back_home')?></a></div>
                                 </form>
