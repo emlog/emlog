@@ -212,6 +212,7 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
     <input name="username" type="hidden" class="input" value="$username">
     <input name="password" type="hidden" class="input" value="$password">
     <input name="repassword" type="hidden" class="input" value="$repassword">
+    <input name="email" type="hidden" class="input" value="$email">
 <p>
 你的emlog看起来已经安装过了。继续安装将会覆盖原有数据，确定要继续吗？
 <input type="submit" value="继续&raquo;">
