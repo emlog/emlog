@@ -99,25 +99,18 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="sortname">用户名</label>
+                        <label for="username">用户名</label>
                         <input class="hidden-auto-filling" name="name" style="width: 0;border: 0;opacity: 0">
                         <input class="form-control" id="username" name="username" required>
                     </div>
                     <div class="form-group">
-                        <label for="alias">密码 (大于6位)</label>
+                        <label for="password">密码 (大于6位)</label>
                         <input class="hidden-auto-filling" type="password" name="psw" style="width: 0;border: 0;opacity: 0">
                         <input class="form-control" id="password" name="password" type="password" required>
                     </div>
                     <div class="form-group">
-                        <label for="template">再次输入密码</label>
+                        <label for="password2">再次输入密码</label>
                         <input class="form-control" id="password2" name="password2" type="password" required>
-                    </div>
-                    <div class="form-group" id="ischeck">
-                        <label for="template">发布权限</label>
-                        <select name="ischeck" class="form-control">
-                            <option value="n">文章不需要审核</option>
-                            <option value="y">文章需要审核</option>
-                        </select>
                     </div>
                 </div>
                 <div class="modal-footer">

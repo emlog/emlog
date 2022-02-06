@@ -26,10 +26,6 @@
                 <input class="form-check-input" type="checkbox" value="y" name="login_code" id="login_code" <?= $conf_login_code ?> >
                 <label class="form-check-label">开启登录注册验证码</label>
             </div>
-            <div class="form-group form-check">
-                <input class="form-check-input" type="checkbox" value="y" name="login_code" id="login_code" <?= $conf_login_code ?> >
-                <label class="form-check-label">用户发布文章需要审核</label>
-            </div>
             <div class="form-group">
                 <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
                 <input type="submit" value="保存设置" class="btn btn-sm btn-success"/>

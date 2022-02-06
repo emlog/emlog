@@ -395,7 +395,6 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('smtp_mail',
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('smtp_pw','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('smtp_server','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('smtp_port','');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('user_article_audit','n');
 DROP TABLE IF EXISTS {$db_prefix}link;
 CREATE TABLE {$db_prefix}link (
   id int(10) unsigned NOT NULL auto_increment COMMENT '链接表',

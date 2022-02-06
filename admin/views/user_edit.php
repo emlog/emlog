@@ -21,33 +21,28 @@
         <input class="form-control" value="<?= $nickname ?>" name="nickname" id="nickname">
     </div>
     <div class="form-group">
-        <label for="password">新密码(不修改请留空)</label>
-        <input class="hidden-auto-filling" type="password" name="psw" style="width: 0;border: 0;opacity: 0">
-        <input type="password" class="form-control" name="password" id="password">
-    </div>
-    <div class="form-group">
-        <label for="password2">重复新密码</label>
-        <input type="password" class="form-control" name="password2" id="password2">
-    </div>
-    <div class="form-group">
-        <label for="email">电子邮件</label>
+        <label for="email">邮箱</label>
         <input class="form-control" value="<?= $email ?>" name="email" id="email">
     </div>
     <div class="form-group">
+        <label for="role">角色</label>
         <select name="role" id="role" class="form-control">
-            <option value="writer" <?= $ex1 ?>>作者</option>
+            <option value="writer" <?= $ex1 ?>>用户</option>
             <option value="admin" <?= $ex2 ?>>管理员</option>
-        </select>
-    </div>
-    <div class="form-group" id="ischeck">
-        <select name="ischeck" class="form-control">
-            <option value="n" <?= $ex3 ?>>文章不需要审核</option>
-            <option value="y" <?= $ex4 ?>>文章需要审核</option>
         </select>
     </div>
     <div class="form-group">
         <label for="description">个人描述</label>
         <textarea name="description" type="text" class="form-control"><?= $description ?></textarea>
+    </div>
+    <div class="form-group">
+        <label for="password">新密码(不修改请留空)</label>
+        <input class="hidden-auto-filling" type="password" name="psw" style="width: 0;border: 0;opacity: 0">
+        <input type="password" class="form-control" name="password" id="password">
+    </div>
+    <div class="form-group">
+        <label for="password2">再次输入新密码</label>
+        <input type="password" class="form-control" name="password2" id="password2">
     </div>
     <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
     <input type="hidden" value="<?= $uid ?>" name="uid"/>
