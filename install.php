@@ -101,23 +101,23 @@ if (!$act) {
             <div class="b">
                 <p class="title2">MySQL数据库设置</p>
                 <li>
-                    数据库地址： <br/>
+                    数据库地址<br/>
                     <input name="hostname" type="text" class="input" value="127.0.0.1">
                     <span class="care">(通常为 127.0.0.1 或者指定端口 127.0.0.1:3306)</span>
                 </li>
                 <li>
-                    数据库用户名：<br/><input name="dbuser" type="text" class="input" value="">
+                    数据库用户名<br/><input name="dbuser" type="text" class="input" value="">
                 </li>
                 <li>
-                    数据库密码：<br/><input name="password" type="password" class="input">
+                    数据库密码<br/><input name="dbpasswd" type="password" class="input">
                 </li>
                 <li>
-                    数据库名：<br/>
+                    数据库名<br/>
                     <input name="dbname" type="text" class="input" value="">
                     <span class="care">(程序不会自动创建数据库，请提前创建一个空数据库或使用已有数据库)</span>
                 </li>
                 <li>
-                    数据库表前缀：<br/>
+                    数据库表前缀<br/>
                     <input name="dbprefix" type="text" class="input" value="emlog_">
                     <span class="care"> (通常默认即可，不必修改。由英文字母、数字、下划线组成，且必须以下划线结束)</span>
                 </li>
@@ -125,17 +125,21 @@ if (!$act) {
             <div class="c">
                 <p class="title2">管理员设置</p>
                 <li>
-                    登录名：<br/>
-                    <input name="admin" type="text" class="input">
+                    登录名<br/>
+                    <input name="username" type="text" class="input">
                 </li>
                 <li>
-                    登录密码：<br/>
-                    <input name="adminpw" type="password" class="input">
+                    密码<br/>
+                    <input name="password" type="password" class="input">
                     <span class="care">(不小于6位)</span>
                 </li>
                 <li>
-                    再次输入登录密码：<br/>
-                    <input name="adminpw2" type="password" class="input">
+                    再次输入密码<br/>
+                    <input name="repassword" type="password" class="input">
+                </li>
+                <li>
+                    邮箱（可用于找回密码，建议填写）<br/>
+                    <input name="email" type="text" class="input">
                 </li>
             </div>
             <div>
@@ -150,23 +154,23 @@ if (!$act) {
 if ($act == 'install' || $act == 'reinstall') {
 	$db_host = isset($_POST['hostname']) ? addslashes(trim($_POST['hostname'])) : '';
 	$db_user = isset($_POST['dbuser']) ? addslashes(trim($_POST['dbuser'])) : '';
-	$db_pw = isset($_POST['password']) ? addslashes(trim($_POST['password'])) : '';
+	$db_pw = isset($_POST['dbpasswd']) ? addslashes(trim($_POST['dbpasswd'])) : '';
 	$db_name = isset($_POST['dbname']) ? addslashes(trim($_POST['dbname'])) : '';
 	$db_prefix = isset($_POST['dbprefix']) ? addslashes(trim($_POST['dbprefix'])) : '';
-	$admin = isset($_POST['admin']) ? addslashes(trim($_POST['admin'])) : '';
-	$adminpw = isset($_POST['adminpw']) ? addslashes(trim($_POST['adminpw'])) : '';
-	$adminpw2 = isset($_POST['adminpw2']) ? addslashes(trim($_POST['adminpw2'])) : '';
-	$result = '';
+	$username = isset($_POST['username']) ? addslashes(trim($_POST['username'])) : '';
+	$password = isset($_POST['password']) ? addslashes(trim($_POST['password'])) : '';
+	$repassword = isset($_POST['repassword']) ? addslashes(trim($_POST['repassword'])) : '';
+	$email = isset($_POST['email']) ? addslashes(trim($_POST['email'])) : '';
 
 	if ($db_prefix === '') {
 		emMsg('数据库表前缀不能为空!');
 	} elseif (!preg_match("/^[\w_]+_$/", $db_prefix)) {
 		emMsg('数据库表前缀格式错误!');
-	} elseif ($admin == '' || $adminpw == '') {
+	} elseif (!$username || !$password) {
 		emMsg('登录名和密码不能为空!');
-	} elseif (strlen($adminpw) < 6) {
+	} elseif (strlen($password) < 6) {
 		emMsg('登录密码不得小于6位');
-	} elseif ($adminpw != $adminpw2) {
+	} elseif ($password != $repassword) {
 		emMsg('两次输入的密码不一致');
 	}
 
@@ -202,12 +206,12 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
 <div class="main">
     <input name="hostname" type="hidden" class="input" value="$db_host">
     <input name="dbuser" type="hidden" class="input" value="$db_user">
-    <input name="password" type="hidden" class="input" value="$db_pw">
+    <input name="dbpasswd" type="hidden" class="input" value="$db_pw">
     <input name="dbname" type="hidden" class="input" value="$db_name">
     <input name="dbprefix" type="hidden" class="input" value="$db_prefix">
-    <input name="admin" type="hidden" class="input" value="$admin">
-    <input name="adminpw" type="hidden" class="input" value="$adminpw">
-    <input name="adminpw2" type="hidden" class="input" value="$adminpw2">
+    <input name="username" type="hidden" class="input" value="$username">
+    <input name="password" type="hidden" class="input" value="$password">
+    <input name="repassword" type="hidden" class="input" value="$repassword">
 <p>
 你的emlog看起来已经安装过了。继续安装将会覆盖原有数据，确定要继续吗？
 <input type="submit" value="继续&raquo;">
@@ -254,7 +258,7 @@ EOT;
 
 	//密码加密存储
 	$PHPASS = new PasswordHash(8, true);
-	$adminpw = $PHPASS->HashPassword($adminpw);
+	$password = $PHPASS->HashPassword($password);
 
 	$table_charset_sql = 'ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;';
 	$DB->query("ALTER DATABASE `{$db_name}` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;", true);
@@ -355,10 +359,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('rss_output_
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('rss_output_fulltext','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_lognum','10');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_comnum','10');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_twnum','10');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_newtwnum','5');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_newlognum','5');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_randlognum','5');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_hotlognum','5');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_subnum','20');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('nonce_templet','default');
@@ -376,10 +377,8 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('att_imgmaxh
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_paging','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_pnum','10');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_order','newer');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('reply_code','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('iscomment','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('ischkcomment','y');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('ischkreply','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isurlrewrite','0');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isalias','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isalias_html','n');
@@ -389,13 +388,14 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widget_titl
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_widget','a:0:{}');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widgets1','$def_widgets');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('detect_url','n');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('emkey','TloSegqBLj6P4CiWF5bxZGNVYEtU3XRp');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('emkey','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('login_code','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('is_signup','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('smtp_mail','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('smtp_pw','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('smtp_server','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('smtp_port','');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('user_article_audit','n');
 DROP TABLE IF EXISTS {$db_prefix}link;
 CREATE TABLE {$db_prefix}link (
   id int(10) unsigned NOT NULL auto_increment COMMENT '链接表',
@@ -460,6 +460,7 @@ PRIMARY KEY  (uid),
 KEY username (username),
 KEY email (email)         
 )" . $table_charset_sql . "
+INSERT INTO {$db_prefix}user (uid, username, email, password, nickname, role, create_time, update_time) VALUES (1,'$username','$email','$password', 'emer','founder', " . time() . ", " . time() . ");
 DROP TABLE IF EXISTS {$db_prefix}twitter;
 CREATE TABLE {$db_prefix}twitter (
 id INT NOT NULL AUTO_INCREMENT COMMENT '笔记表',
@@ -471,7 +472,6 @@ replynum int(10) unsigned NOT NULL default '0' COMMENT '回复数量',
 PRIMARY KEY (id),
 KEY author (author)
 )" . $table_charset_sql . "
-INSERT INTO {$db_prefix}user (uid, username, password, nickname, role, create_time, update_time) VALUES (1,'$admin','" . $adminpw . "', 'emer','founder', " . time() . ", " . time() . ");
 DROP TABLE IF EXISTS {$db_prefix}storage;
 CREATE TABLE {$db_prefix}storage (
   `sid` int(8) NOT NULL AUTO_INCREMENT COMMENT '对象存储表',
@@ -494,10 +494,11 @@ CREATE TABLE {$db_prefix}storage (
 	}
 	//重建缓存
 	$CACHE->updateCache();
+	$result = '';
 	$result .= "
         <p style=\"font-size:24px; border-bottom:1px solid #E6E6E6; padding:10px 0px;\">恭喜，安装成功！</p>
         <p>您的emlog已经安装好了，现在可以开始您的创作了，就这么简单!</p>
-        <p><b>用户名</b>：{$admin}</p>
+        <p><b>用户名</b>：{$username}</p>
         <p><b>密 码</b>：您刚才设定的密码</p>";
 	if ((DEL_INSTALLER === 1 && !@unlink('./install.php')) || DEL_INSTALLER === 0) {
 		$result .= '<p style="color:#ff0000;margin:10px 20px;">警告：请手动删除根目录下安装文件：install.php</p> ';

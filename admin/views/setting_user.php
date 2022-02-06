@@ -18,7 +18,7 @@
 <div class="card shadow mb-4 mt-2">
     <div class="card-body">
         <form action="setting.php?action=user_save" method="post" name="input" id="input">
-            <div class="form-check">
+            <div class="form-group form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="is_signup" id="is_signup" <?= $conf_is_signup ?> />
                 <label>开启用户注册</label>
             </div>
@@ -26,8 +26,14 @@
                 <input class="form-check-input" type="checkbox" value="y" name="login_code" id="login_code" <?= $conf_login_code ?> >
                 <label class="form-check-label">开启登录注册验证码</label>
             </div>
-            <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
-            <input type="submit" value="保存设置" class="btn btn-sm btn-success"/>
+            <div class="form-group form-check">
+                <input class="form-check-input" type="checkbox" value="y" name="login_code" id="login_code" <?= $conf_login_code ?> >
+                <label class="form-check-label">用户发布文章需要审核</label>
+            </div>
+            <div class="form-group">
+                <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
+                <input type="submit" value="保存设置" class="btn btn-sm btn-success"/>
+            </div>
         </form>
     </div>
 </div>

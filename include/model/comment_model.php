@@ -273,9 +273,9 @@ class Comment_Model {
 		}
 	}
 
-	function addComment($name, $content, $mail, $url, $imgcode, $blogId, $pid) {
+	function addComment($uid, $name, $content, $mail, $url, $blogId, $pid) {
 		$ipaddr = getIp();
-		$utctimestamp = time();
+		$timestamp = time();
 
 		if ($pid != 0) {
 			$comment = $this->getOneComment($pid);
@@ -285,8 +285,8 @@ class Comment_Model {
 		$ischkcomment = Option::get('ischkcomment');
 		$hide = User::isVistor() ? $ischkcomment : 'n';
 
-		$sql = 'INSERT INTO ' . DB_PREFIX . "comment (date,poster,gid,comment,mail,url,hide,ip,pid)
-                VALUES ('$utctimestamp','$name','$blogId','$content','$mail','$url','$hide','$ipaddr','$pid')";
+		$sql = 'INSERT INTO ' . DB_PREFIX . "comment (uid,date,poster,gid,comment,mail,url,hide,ip,pid)
+                VALUES ($uid, '$timestamp','$name','$blogId','$content','$mail','$url','$hide','$ipaddr','$pid')";
 		$this->db->query($sql);
 		$cid = $this->db->insert_id();
 		$CACHE = Cache::getInstance();
