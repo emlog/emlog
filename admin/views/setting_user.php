@@ -18,7 +18,7 @@
 <div class="card shadow mb-4 mt-2">
     <div class="card-body">
         <form action="setting.php?action=user_save" method="post" name="input" id="input">
-            <div class="form-check">
+            <div class="form-group form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="is_signup" id="is_signup" <?= $conf_is_signup ?> />
 <!--vot-->      <label><?=lang('registration_open')?></label>
             </div>
@@ -26,9 +26,17 @@
                 <input class="form-check-input" type="checkbox" value="y" name="login_code" id="login_code" <?= $conf_login_code ?> >
 <!--vot-->      <label class="form-check-label"><?=lang('registration_captcha')?></label>
             </div>
-            <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
+            <div class="form-group">
+                <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
 <!--vot-->  <input type="submit" value="<?=lang('save_settings')?>" class="btn btn-sm btn-success"/>
+            </div>
         </form>
+        <div class="alert alert-warning">
+<!--vot-->  <b><?=lang('groups_about')?></b><br>
+<!--vot-->  <?=lang('groups_about1')?><br>
+<!--vot-->  <?=lang('groups_about2')?><br>
+<!--vot-->  <?=lang('groups_about3')?><br>
+        </div>
     </div>
 </div>
 <script>

@@ -115,7 +115,7 @@ if (!$act) {
 <!--vot-->          <?= lang('db_user') ?>:<br><input name="dbuser" type="text" class="input" value="">
                 </li>
                 <li>
-<!--vot-->          <?= lang('db_password') ?>:<br><input name="password" type="password" class="input">
+<!--vot-->          <?= lang('db_password') ?>:<br><input name="dbpassw" type="password" class="input">
                 </li>
                 <li>
 <!--vot-->          <?= lang('db_name') ?>:<br>
@@ -132,16 +132,20 @@ if (!$act) {
 <!--vot-->      <p class="title2"><?= lang('admin_settings') ?></p>
                 <li>
 <!--vot-->          <?= lang('admin_name') ?>:<br>
-                    <input name="admin" type="text" class="input">
+                    <input name="username" type="text" class="input">
                 </li>
                 <li>
 <!--vot-->          <?= lang('admin_password') ?>:<br>
-                    <input name="adminpw" type="password" class="input">
+                    <input name="password" type="password" class="input">
 <!--vot-->          <span class="care"><?= lang('admin_password_info') ?></span>
                 </li>
                 <li>
-<!--vot-->          <?= lang('admin_password_repeat') ?>:<br>
-                    <input name="adminpw2" type="password" class="input">
+<!--vot-->          <?= lang('admin_password_repeat') ?>:<br/>
+                    <input name="repassword" type="password" class="input">
+                </li>
+                <li>
+<!--vot-->          <?=lang('email_prompt')?><br/>
+                    <input name="email" type="text" class="input">
                 </li>
             </div>
             <div>
@@ -156,23 +160,23 @@ if (!$act) {
 if ($act == 'install' || $act == 'reinstall') {
 	$db_host = isset($_POST['hostname']) ? addslashes(trim($_POST['hostname'])) : '';
 	$db_user = isset($_POST['dbuser']) ? addslashes(trim($_POST['dbuser'])) : '';
-	$db_pw = isset($_POST['password']) ? addslashes(trim($_POST['password'])) : '';
+	$db_pw = isset($_POST['dbpasswd']) ? addslashes(trim($_POST['dbpasswd'])) : '';
 	$db_name = isset($_POST['dbname']) ? addslashes(trim($_POST['dbname'])) : '';
 	$db_prefix = isset($_POST['dbprefix']) ? addslashes(trim($_POST['dbprefix'])) : '';
-	$admin = isset($_POST['admin']) ? addslashes(trim($_POST['admin'])) : '';
-	$adminpw = isset($_POST['adminpw']) ? addslashes(trim($_POST['adminpw'])) : '';
-	$adminpw2 = isset($_POST['adminpw2']) ? addslashes(trim($_POST['adminpw2'])) : '';
-	$result = '';
+	$username = isset($_POST['username']) ? addslashes(trim($_POST['username'])) : '';
+	$password = isset($_POST['password']) ? addslashes(trim($_POST['password'])) : '';
+	$repassword = isset($_POST['repassword']) ? addslashes(trim($_POST['repassword'])) : '';
+	$email = isset($_POST['email']) ? addslashes(trim($_POST['email'])) : '';
 
 	if ($db_prefix === '') {
 /*vot*/        emMsg(lang('db_prefix_empty'));
 	} elseif (!preg_match("/^[\w_]+_$/", $db_prefix)) {
 /*vot*/        emMsg(lang('db_prefix_empty'));
-	} elseif ($admin == '' || $adminpw == '') {
+	} elseif (!$username || !$password) {
 /*vot*/        emMsg(lang('username_password_empty'));
-/*vot*/    } elseif (strlen($adminpw) < 5) {
+/*vot*/    } elseif (strlen($password) < 5) {
 /*vot*/        emMsg(lang('password_short'));
-	} elseif ($adminpw != $adminpw2) {
+	} elseif ($password != $repassword) {
 /*vot*/        emMsg(lang('password_not_equal'));
 	}
 
@@ -212,12 +216,13 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
 <div class="main">
     <input name="hostname" type="hidden" class="input" value="$db_host">
     <input name="dbuser" type="hidden" class="input" value="$db_user">
-    <input name="password" type="hidden" class="input" value="$db_pw">
+    <input name="dbpasswd" type="hidden" class="input" value="$db_pw">
     <input name="dbname" type="hidden" class="input" value="$db_name">
     <input name="dbprefix" type="hidden" class="input" value="$db_prefix">
-    <input name="admin" type="hidden" class="input" value="$admin">
-    <input name="adminpw" type="hidden" class="input" value="$adminpw">
-    <input name="adminpw2" type="hidden" class="input" value="$adminpw2">
+    <input name="username" type="hidden" class="input" value="$username">
+    <input name="password" type="hidden" class="input" value="$password">
+    <input name="repassword" type="hidden" class="input" value="$repassword">
+    <input name="email" type="hidden" class="input" value="$email">
 <p>
 <!--vot-->{$installed}
 <!--vot--><input type="submit" value="{$continue}">
@@ -274,7 +279,7 @@ EOT;
 
 	//Encrypt Password
 	$PHPASS = new PasswordHash(8, true);
-	$adminpw = $PHPASS->HashPassword($adminpw);
+	$password = $PHPASS->HashPassword($password);
 
 	$table_charset_sql = 'ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;';
 	$DB->query("ALTER DATABASE `{$db_name}` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;", true);
@@ -375,10 +380,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('rss_output_
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('rss_output_fulltext','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_lognum','10');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_comnum','10');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_twnum','10');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_newtwnum','5');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_newlognum','5');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_randlognum','5');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_hotlognum','5');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_subnum','20');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('nonce_templet','default');
@@ -396,10 +398,8 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('att_imgmaxh
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_paging','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_pnum','10');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_order','newer');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('reply_code','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('iscomment','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('ischkcomment','y');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('ischkreply','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isurlrewrite','0');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isalias','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isalias_html','n');
@@ -409,7 +409,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widget_titl
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_widget','a:0:{}');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widgets1','$def_widgets');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('detect_url','n');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('emkey','TloSegqBLj6P4CiWF5bxZGNVYEtU3XRp');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('emkey','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('login_code','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('is_signup','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('smtp_mail','');
@@ -480,6 +480,7 @@ PRIMARY KEY  (uid),
 KEY username (username),
 KEY email (email)         
 )" . $table_charset_sql . "
+INSERT INTO {$db_prefix}user (uid, username, email, password, nickname, role, create_time, update_time) VALUES (1,'$username','$email','$password', 'emer','founder', " . time() . ", " . time() . ");
 DROP TABLE IF EXISTS {$db_prefix}twitter;
 CREATE TABLE {$db_prefix}twitter (
 id INT NOT NULL AUTO_INCREMENT COMMENT 'Note ID',
@@ -491,7 +492,6 @@ replynum int(11) unsigned NOT NULL default '0' COMMENT 'Number of replies',
 PRIMARY KEY (id),
 KEY author (author)
 )" . $table_charset_sql . "
-INSERT INTO {$db_prefix}user (uid, username, password, nickname, role, create_time, update_time) VALUES (1,'$admin','" . $adminpw . "', 'emer','founder', " . time() . ", " . time() . ");
 DROP TABLE IF EXISTS {$db_prefix}storage;
 CREATE TABLE {$db_prefix}storage (
   `sid` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Object storage table',
@@ -514,11 +514,12 @@ CREATE TABLE {$db_prefix}storage (
 	}
 	//Rebuild cache
 	$CACHE->updateCache();
+	$result = '';
 /*vot*/    $result .= "
         <p style=\"font-size:24px; border-bottom:1px solid #E6E6E6; padding:10px 0px;\">".lang('emlog_installed')."</p>
         <p>" . lang('emlog_installed_info') . "</p>
-        <p><b>" . lang('user_name') . "</b>: {$admin}</p>
-        <p><b>" . lang('password')."</b>: " . lang('password_entered') . "</p>";
+        <p><b>" . lang('user_name') . "</b>: {$username}</p>
+        <p><b>" . lang('password')."</b>: " . lang('password_entered') . "</p>";       
 	if ((DEL_INSTALLER === 1 && !@unlink('./install.php')) || DEL_INSTALLER === 0) {
 /*vot*/        $result .= '<p style="color:#ff0000;margin:10px 20px;">' . lang('delete_install') . '</p> ';
 	}

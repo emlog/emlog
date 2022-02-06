@@ -23,7 +23,7 @@ $excerpt = isset($_POST['logexcerpt']) ? addslashes(trim($_POST['logexcerpt'])) 
 $author = isset($_POST['author']) && User::isAdmin() ? (int)trim($_POST['author']) : UID;
 /*vot*/ $blogid = isset($_POST['as_logid']) ? (int)trim($_POST['as_logid']) : -1;//If it is automatically saved as a draft, there is a blog id number
 $alias = isset($_POST['alias']) ? addslashes(trim($_POST['alias'])) : '';
-$allow_remark = isset($_POST['allow_remark']) ? addslashes(trim($_POST['allow_remark'])) : 'n'; //允许评论
+$allow_remark = isset($_POST['allow_remark']) ? addslashes(trim($_POST['allow_remark'])) : 'n'; //Allow comments
 $ishide = isset($_POST['ishide']) && !empty($_POST['ishide']) && !isset($_POST['pubdf']) ? addslashes($_POST['ishide']) : 'n';
 $password = isset($_POST['password']) ? addslashes(trim($_POST['password'])) : '';
 $cover = isset($_POST['cover']) ? addslashes(trim($_POST['cover'])) : '';
@@ -47,7 +47,7 @@ $logData = array(
 	'date'         => $postDate,
 	'allow_remark' => $allow_remark,
 	'hide'         => $ishide,
-	'checked'      => user::isAdmin() ? 'y' : 'n', //管理员发布默认通过审核
+	'checked'      => user::isAdmin() ? 'y' : 'n', //Admin posts are approved by default
 	'password'     => $password
 );
 

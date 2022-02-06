@@ -226,7 +226,7 @@
             flowChart: false,
             autoFocus: false,
             sequenceDiagram: false,
-            imageUpload: false,
+            imageUpload: true,
             imageFormats: ["jpg", "jpeg", "gif", "png"],
             imageUploadURL: "media.php?action=upload&editor=1",
             syncScrolling: "single",

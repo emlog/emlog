@@ -38,19 +38,11 @@ if ($action === 'lib') {
 }
 
 if ($action === 'upload') {
-	$editor = isset($_GET['editor']) ? 1 : 0; // 是否来自Markdown编辑器的上传
 	$attach = $_FILES['file'] ?? '';
-	if ($editor) {
-		$attach = $_FILES['editormd-image-file'] ?? '';
-	}
 
 	if (!$attach || $attach['error'] === 4) {
-		if ($editor) {
-			echo json_encode(['success' => 0, 'message' => 'upload error']);
-		} else {
-			header("HTTP/1.0 400 Bad Request");
-			echo "upload error";
-		}
+		header("HTTP/1.0 400 Bad Request");
+		echo "upload error";
 		exit;
 	}
 
@@ -60,22 +52,14 @@ if ($action === 'upload') {
 	doOnceAction('upload_media', $attach, $ret);
 
 	if (empty($ret['success'])) {
-		if ($editor) {
-			echo json_encode($ret);
-		} else {
-			header("HTTP/1.0 400 Bad Request");
-			echo $ret['message'];
-		}
+		header("HTTP/1.0 400 Bad Request");
+		echo $ret['message'];
 		exit;
 	}
 
 	// Write attachment information
 	$aid = $Media_Model->addMedia($ret['file_info']);
-	if ($editor) {
-		echo json_encode($ret);
-	} else {
-		echo 'success';
-	}
+	echo 'success';
 }
 
 if ($action === 'delete') {

@@ -695,6 +695,13 @@ $lang = array(
  'comment_settings'		=> '评论设置',//'Comment settings',
 
 //---------------------------
+//admin/views/setting_user.php
+ 'groups_about'		=> '关于用户组',//'About user groups',
+ 'groups_about1'	=> '1、创始人：只有一个，拥有控制站点全部权限',//'1. Founder: only one, with full authority to control the site',
+ 'groups_about2'	=> '2、管理员：由创始人或者其他管理员创建，拥有控制站点全部权限',//'2. Administrator: Created by the founder or other administrators, with full authority to control the site',
+ 'groups_about3'	=> '3、用户：普通注册用户，可以发布文章，但是需要管理员审核',//'3. Users: ordinary registered users can publish articles, but need to be reviewed by administrators',
+
+//---------------------------
 //admin/views/signin.php
 // 'em_reg_ok'		=> '注册成功，请登录',//'Registration is successful, please log in',
  'password_reset_ok'	=> '密码重置成功，请登录',//'Password reset successfully, please log in',
@@ -871,10 +878,11 @@ $lang = array(
  'last_login_time'	=> '更新/登录时间',//'Last active time',
 
 //---------------------------
-//admin/views/useredit.php
+//admin/views/user_edit.php
  'user_manage'		=> '修改作者资料',//'User management',
  'password_new'		=> '新密码(不修改请留空)',//'New password (leave blank, if you do not want to modify)',
  'password_new_repeat'	=> '重复新密码',//'Repeat new password',
+ 'user_role'		=> '用户组',//'User role',
 
 //---------------------------
 //admin/views/widgets.php

@@ -99,25 +99,18 @@
                         </select>
                     </div>
                     <div class="form-group">
-<!--vot-->              <label for="sortname"><?=lang('user_name')?></label>
+<!--vot-->              <label for="username"><?=lang('user_name')?></label>
                         <input class="hidden-auto-filling" name="name" style="width: 0;border: 0;opacity: 0">
                         <input class="form-control" id="username" name="username" required>
                     </div>
                     <div class="form-group">
-<!--vot-->              <label for="alias"><?=lang('password_min_length')?></label>
+<!--vot-->              <label for="password"><?=lang('password_min_length')?></label>
                         <input class="hidden-auto-filling" type="password" name="psw" style="width: 0;border: 0;opacity: 0">
                         <input class="form-control" id="password" name="password" type="password" required>
                     </div>
                     <div class="form-group">
-<!--vot-->              <label for="template"><?=lang('password_repeat')?></label>
+<!--vot-->              <label for="password2"><?=lang('password_repeat')?></label>
                         <input class="form-control" id="password2" name="password2" type="password" required>
-                    </div>
-                    <div class="form-group" id="ischeck">
-<!--vot-->                  <label for="template"><?=lang('publish_permission')?></label>
-                        <select name="ischeck" class="form-control">
-<!--vot-->                  <option value="n"><?=lang('posts_not_need_audit')?></option>
-<!--vot-->                  <option value="y"><?=lang('posts_need_audit')?></option>
-                        </select>
                     </div>
                 </div>
                 <div class="modal-footer">
