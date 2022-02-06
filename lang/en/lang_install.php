@@ -21,6 +21,7 @@ $lang = array(
  'admin_password'	=> 'Password',//'登录密码',
  'admin_password_info'	=> '(Minimum 5 characters)',//'(不小于5位)',
  'admin_password_repeat'	=> 'Confirm password',//'再次输入登录密码',
+ 'email_prompt'		=> 'Email (can be used to retrieve the password, it is recommended to fill in)',//'邮箱（可用于找回密码，建议填写）',
  'install_emlog'	=> 'Install emlog!',//'开始安装emlog',
  'db_prefix_empty'	=> 'Database prefix can not be empty!',//'数据库前缀不能为空!',
  'db_prefix_invalid'	=> 'Database prefix is incorrect!',//'数据库前缀格式错误!',
