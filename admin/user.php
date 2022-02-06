@@ -30,7 +30,6 @@ if ($action == 'new') {
 	$password = isset($_POST['password']) ? addslashes(trim($_POST['password'])) : '';
 	$password2 = isset($_POST['password2']) ? addslashes(trim($_POST['password2'])) : '';
 	$role = isset($_POST['role']) ? addslashes(trim($_POST['role'])) : self::ROLE_WRITER;
-	$ischeck = isset($_POST['ischeck']) ? addslashes(trim($_POST['ischeck'])) : 'n';
 
 	LoginAuth::checkToken();
 
@@ -78,7 +77,7 @@ if ($action == 'edit') {
 	}
 
 	include View::getAdmView('header');
-	require_once View::getAdmView('useredit');
+	require_once View::getAdmView('user_edit');
 	include View::getAdmView('footer');
 	View::output();
 }
@@ -92,13 +91,8 @@ if ($action == 'update') {
 	$description = isset($_POST['description']) ? addslashes(trim($_POST['description'])) : '';
 	$role = isset($_POST['role']) ? addslashes(trim($_POST['role'])) : User::ROLE_WRITER;
 	$uid = isset($_POST['uid']) ? (int)$_POST['uid'] : '';
-	$ischeck = isset($_POST['ischeck']) ? addslashes(trim($_POST['ischeck'])) : 'n';
 
 	LoginAuth::checkToken();
-
-	if (User::isAdmin()) {
-		$ischeck = 'n';
-	}
 
 	if (UID == $uid) {
 		emDirect('./user.php');
@@ -126,7 +120,6 @@ if ($action == 'update') {
 		'email'       => $email,
 		'description' => $description,
 		'role'        => $role,
-		'ischeck'     => $ischeck,
 	);
 
 	if (!empty($password)) {

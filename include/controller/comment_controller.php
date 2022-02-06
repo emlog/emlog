@@ -14,6 +14,7 @@ class Comment_Controller {
 		$imgcode = isset($_POST['imgcode']) ? addslashes(strtoupper(trim($_POST['imgcode']))) : '';
 		$blogId = isset($_POST['gid']) ? (int)$_POST['gid'] : -1;
 		$pid = isset($_POST['pid']) ? (int)$_POST['pid'] : 0;
+		$uid = 0;
 
 		if (ISLOGIN === true) {
 			$CACHE = Cache::getInstance();
@@ -21,6 +22,7 @@ class Comment_Controller {
 			$name = addslashes($user_cache[UID]['name_orig']);
 			$mail = addslashes($user_cache[UID]['mail']);
 			$url = addslashes(BLOG_URL);
+			$uid = UID;
 		}
 
 		if ($url && strncasecmp($url, 'http', 4)) {
@@ -58,6 +60,6 @@ class Comment_Controller {
 		}
 
 		$_SESSION['code'] = null;
-		$Comment_Model->addComment($name, $content, $mail, $url, $imgcode, $blogId, $pid);
+		$Comment_Model->addComment($uid, $name, $content, $mail, $url, $blogId, $pid);
 	}
 }
