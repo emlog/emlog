@@ -29,8 +29,7 @@ class Log_Model {
 		$field = implode(',', $kItem);
 		$values = "'" . implode("','", $dItem) . "'";
 		$this->db->query("INSERT INTO " . DB_PREFIX . "blog ($field) VALUES ($values)");
-		$logid = $this->db->insert_id();
-		return $logid;
+		return $this->db->insert_id();
 	}
 
 	/**

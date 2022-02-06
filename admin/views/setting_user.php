@@ -31,6 +31,12 @@
                 <input type="submit" value="保存设置" class="btn btn-sm btn-success"/>
             </div>
         </form>
+        <div class="alert alert-warning">
+            <b>关于用户组</b><br>
+            1、创始人：只有一个，拥有控制站点全部权限<br>
+            2、管理员：由创始人或者其他管理员创建，拥有控制站点全部权限<br>
+            3、用户：普通注册用户，可以发布文章，但是需要管理员审核<br>
+        </div>
     </div>
 </div>
 <script>

@@ -19,7 +19,7 @@ loginAuth::loginPage();
 
 $request_uri = strtolower(substr(basename($_SERVER['SCRIPT_NAME']), 0, -4));
 if (ROLE === User::ROLE_WRITER && !in_array($request_uri, array('article_write', 'article', 'twitter', 'media', 'blogger', 'comment', 'index', 'article_save'))) {
-	emMsg('权限不足！', './');
+	emMsg('你所在的用户组无法使用该功能，请联系管理员', './');
 }
 
 if (!Register::isRegLocal() && mt_rand(1, 15) === 10) {

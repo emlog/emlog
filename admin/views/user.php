@@ -34,7 +34,7 @@
                 <tr>
                     <th></th>
                     <th>用户</th>
-                    <th>角色</th>
+                    <th>用户组</th>
                     <th>文章数</th>
                     <th>最近登录IP</th>
                     <th>活跃时间</th>
@@ -92,7 +92,7 @@
             <form action="user.php?action=new" method="post">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="sortname">角色</label>
+                        <label for="sortname">用户组</label>
                         <select name="role" id="role" class="form-control">
                             <option value="writer">用户</option>
                             <option value="admin">管理员</option>

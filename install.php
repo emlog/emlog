@@ -447,7 +447,7 @@ CREATE TABLE {$db_prefix}user (
   username varchar(32) NOT NULL default '' COMMENT '用户名',
   password varchar(64) NOT NULL default '' COMMENT '用户密码',
   nickname varchar(20) NOT NULL default '' COMMENT '昵称',
-  role varchar(60) NOT NULL default '' COMMENT '角色',
+  role varchar(60) NOT NULL default '' COMMENT '用户组',
   ischeck enum('n','y') NOT NULL default 'n' COMMENT '内容是否需要管理员审核',
   photo varchar(255) NOT NULL default '' COMMENT '头像',
   email varchar(60) NOT NULL default '' COMMENT '邮箱',

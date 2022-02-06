@@ -34,7 +34,7 @@ const ROLE_ADMIN = 'admin';              //管理员
 const ROLE_WRITER = 'writer';            //用户
 const ROLE_VISITOR = 'visitor';          //游客
 
-//用户角色
+//用户组
 define('ROLE', ISLOGIN === true ? $userData['role'] : User::ROLE_VISITOR);
 //用户ID
 define('UID', ISLOGIN === true ? $userData['uid'] : '');

@@ -25,7 +25,7 @@
         <input class="form-control" value="<?= $email ?>" name="email" id="email">
     </div>
     <div class="form-group">
-        <label for="role">角色</label>
+        <label for="role">用户组</label>
         <select name="role" id="role" class="form-control">
             <option value="writer" <?= $ex1 ?>>用户</option>
             <option value="admin" <?= $ex2 ?>>管理员</option>
