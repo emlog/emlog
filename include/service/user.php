@@ -49,9 +49,9 @@ class User {
 		$_SESSION['mail'] = $mail;
 
 		$title = "找回密码邮件验证码";
-		$content = "邮件验证码是：" . $randCode;
-		$sendmail_model = new SendMail();
-		$ret = $sendmail_model->send($mail, $title, $content);
+		$content = "邮件验证码：" . $randCode;
+		$sendmail = new SendMail();
+		$ret = $sendmail->send($mail, $title, $content);
 		if ($ret) {
 			return true;
 		} else {
@@ -70,6 +70,5 @@ class User {
 		}
 		return true;
 	}
-
 
 }
