@@ -232,50 +232,26 @@ class Cache {
 	 */
 	private function mc_tags() {
 		$tag_cache = [];
-		$query = $this->db->query("SELECT gid FROM " . DB_PREFIX . "tag");
-		$tagnum = 0;
-		$maxuse = 0;
+		$tagnum = 100;
+		$maxuse = 20;
 		$minuse = 0;
-		while ($row = $this->db->fetch_array($query)) {
-			$usenum = substr_count($row['gid'], ',') - 1;
-			if ($maxuse == 0) {
-				$maxuse = $minuse = $usenum;
-			}
-			if ($usenum > $maxuse) {
-				$maxuse = $usenum;
-			}
-			if ($usenum < $minuse) {
-				$minuse = $usenum;
-			}
-			$tagnum++;
-		}
-		$spread = ($tagnum > 12 ? 12 : $tagnum);
+		$spread = (min($tagnum, 12));
 		$rank = $maxuse - $minuse;
 		$rank = ($rank == 0 ? 1 : $rank);
 		$rank = $spread / $rank;
-		// 获取草稿id
-		$hideGids = [];
-		$query = $this->db->query("SELECT gid FROM " . DB_PREFIX . "blog where (hide='y' or checked='n') and type='blog'");
+		$query = $this->db->query("SELECT tagname,gid FROM " . DB_PREFIX . "tag order by tid desc limit 100");
 		while ($row = $this->db->fetch_array($query)) {
-			$hideGids[] = $row['gid'];
-		}
-		$query = $this->db->query("SELECT tagname,gid FROM " . DB_PREFIX . "tag");
-		while ($show_tag = $this->db->fetch_array($query)) {
-			// 排除草稿在tag文章数里的统计
-			foreach ($hideGids as $val) {
-				$show_tag['gid'] = str_replace(',' . $val . ',', ',', $show_tag['gid']);
-			}
-			if ($show_tag['gid'] == ',') {
+			if ($row['gid'] == ',') {
 				continue;
 			}
-			$usenum = substr_count($show_tag['gid'], ',') - 1;
+			$usenum = empty($row['gid']) ? 0 : substr_count($row['gid'], ',') + 1;
 			$fontsize = 10 + round(($usenum - $minuse) * $rank); //maxfont:22pt,minfont:10pt
-			$tag_cache[] = array(
-				'tagurl'   => urlencode($show_tag['tagname']),
-				'tagname'  => htmlspecialchars($show_tag['tagname']),
+			$tag_cache[] = [
+				'tagurl'   => urlencode($row['tagname']),
+				'tagname'  => htmlspecialchars($row['tagname']),
 				'fontsize' => $fontsize,
 				'usenum'   => $usenum
-			);
+			];
 		}
 		$cacheData = serialize($tag_cache);
 		$this->cacheWrite($cacheData, 'tags');

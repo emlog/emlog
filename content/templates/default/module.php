@@ -78,7 +78,7 @@ function widget_tag($title) {
         <ul class="unstyle-li tag-container">
 			<?php foreach ($tag_cache as $value): ?>
                 <span style="font-size:<?= $value['fontsize'] ?>pt; line-height:30px;">
-            <a href="<?= Url::tag($value['tagurl']) ?>" title="<?= $value['usenum'] + 2 ?> 篇文章" class='tags-side'><?= $value['tagname'] ?></a></span>
+            <a href="<?= Url::tag($value['tagurl']) ?>" title="<?= $value['usenum'] ?> 篇文章" class='tags-side'><?= $value['tagname'] ?></a></span>
 			<?php endforeach ?>
         </ul>
     </div>
