@@ -99,7 +99,7 @@ class Log_Model {
 		$res = $this->db->query($sql);
 		$row = $this->db->fetch_array($res);
 		if ($row) {
-			$logData = array(
+			return [
 				'log_title'    => htmlspecialchars($row['title']),
 				'timestamp'    => $row['date'],
 				'date'         => $row['date'],
@@ -117,8 +117,7 @@ class Log_Model {
 				'allow_remark' => Option::get('iscomment') == 'y' ? $row['allow_remark'] : 'n',
 				'password'     => $row['password'],
 				'template'     => $row['template'],
-			);
-			return $logData;
+			];
 		} else {
 			return false;
 		}

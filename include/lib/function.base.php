@@ -306,7 +306,8 @@ function addAction($hook, $actionFunc) {
 }
 
 /**
- * 执行挂在钩子上的函数,支持多参数 eg:doAction('post_comment', $author, $email, $url, $comment);
+ * 挂载执行方式1（插入式挂载）：执行挂在钩子上的函数,支持多参数 eg:doAction('post_comment', $author, $email, $url, $comment);
+ * eg：在挂载点插入扩展内容
  */
 function doAction($hook) {
 	global $emHooks;
@@ -319,7 +320,8 @@ function doAction($hook) {
 }
 
 /**
- * 执行挂在钩子上的第一个函数,仅支持行一次，且ret采用引用传递
+ * 挂载执行方式2（单次接管式挂载）：执行挂在钩子上的第一个函数,仅执行行一次，接收输入input，且会修改传入的变量$ret
+ * eg：接管文件上传函数，将上传本地改为上传云端
  */
 function doOnceAction($hook, $input, &$ret) {
 	global $emHooks;
@@ -327,6 +329,21 @@ function doOnceAction($hook, $input, &$ret) {
 	$func = !empty($emHooks[$hook][0]) ? $emHooks[$hook][0] : '';
 	if ($func) {
 		call_user_func_array($func, $args);
+	}
+}
+
+/**
+ * 挂载执行方式3（轮流接管式挂载）：执行挂在钩子上的所有函数，上一个执行结果作为下一个的输入，且会修改传入的变量$ret
+ * eg：不同插件对文章内容进行不同的修改替换。
+ */
+function doMultiAction($hook, $input, &$ret) {
+	global $emHooks;
+	$args = [$input, &$ret];
+	if (isset($emHooks[$hook])) {
+		foreach ($emHooks[$hook] as $function) {
+			call_user_func_array($function, $args);
+			$args = [&$ret, &$ret];
+		}
 	}
 }
 

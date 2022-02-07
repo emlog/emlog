@@ -31,7 +31,8 @@
                             创建人：<?= $author ?><br>
                             文件大小：<?= $value['attsize'] ?>，
 							<?php if ($value['width'] && $value['height']): ?>
-                                图片尺寸：<?= $value['width'] ?>x<?= $value['height'] ?>
+                                图片尺寸：<?= $value['width'] ?>x<?= $value['height'] ?><br>
+                                原图地址：<span class="text-gray-400"><?= $media_url ?></span>
 							<?php endif ?>
                         </p>
                         <p class="card-text d-flex justify-content-between">
