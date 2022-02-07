@@ -15,7 +15,7 @@ $sta_cache = $CACHE->readCache('sta');
 $user_cache = $CACHE->readCache('user');
 $action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
 
-loginAuth::loginPage();
+loginAuth::checkLogin();
 
 User::checkRolePermission();
 

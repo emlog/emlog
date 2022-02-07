@@ -31,9 +31,9 @@ class LoginAuth {
 	}
 
 	/**
-	 * 未登录，跳转用户登录页
+	 * 如果未登录跳登录页
 	 */
-	public static function loginPage($error_code = NULL) {
+	public static function checkLogin($error_code = NULL) {
 		if (self::isLogin() === true) {
 			return;
 		}
@@ -45,9 +45,9 @@ class LoginAuth {
 	}
 
 	/**
-	 * 登录，跳转用户（管理）中心
+	 * 如果已登录跳后台首页
 	 */
-	public static function loggedPage() {
+	public static function checkLogged() {
 		if (self::isLogin() === false) {
 			return;
 		}

@@ -21,7 +21,7 @@ $User_Model = new User_Model();
  * 登录
  */
 if ($action == 'signin') {
-	loginAuth::loggedPage();
+	loginAuth::checkLogged();
 	if (defined('ADMIN_PATH_CODE') && $admin_path_code !== ADMIN_PATH_CODE) {
 		show_404_page(true);
 	}
@@ -35,7 +35,7 @@ if ($action == 'signin') {
 }
 
 if ($action == 'dosignin') {
-	loginAuth::loggedPage();
+	loginAuth::checkLogged();
 	if (defined('ADMIN_PATH_CODE') && $admin_path_code !== ADMIN_PATH_CODE) {
 		show_404_page(true);
 	}
@@ -67,7 +67,7 @@ if ($action == 'dosignin') {
  * 注册
  */
 if ($action == 'signup') {
-	loginAuth::loggedPage();
+	loginAuth::checkLogged();
 	$login_code = Option::get('login_code') === 'y';
 	$error_msg = '';
 
@@ -82,7 +82,7 @@ if ($action == 'signup') {
 }
 
 if ($action == 'dosignup') {
-	loginAuth::loggedPage();
+	loginAuth::checkLogged();
 
 	if (Option::get('is_signup') !== 'y') {
 		return;
@@ -99,7 +99,7 @@ if ($action == 'dosignup') {
 	if (!User::checkLoginCode($login_code)) {
 		emDirect('./account.php?action=signup&err_ckcode=1');
 	}
-	if ($User_Model->isUserExist($mail)) {
+	if ($User_Model->isMailExist($mail)) {
 		emDirect('./account.php?action=signup&error_exist=1');
 	}
 	if (strlen($passwd) < 6) {
@@ -135,7 +135,7 @@ if ($action == 'reset') {
 }
 
 if ($action == 'doreset') {
-	loginAuth::loggedPage();
+	loginAuth::checkLogged();
 
 	$mail = isset($_POST['mail']) ? addslashes(trim($_POST['mail'])) : '';
 	$login_code = isset($_POST['login_code']) ? addslashes(strtoupper(trim($_POST['login_code']))) : '';

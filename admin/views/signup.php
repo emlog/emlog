@@ -15,9 +15,9 @@
 								<?php if (isset($_GET['err_ckcode'])): ?>
                                     <div class="alert alert-danger">验证错误，请重新输入</div><?php endif ?>
 								<?php if (isset($_GET['error_login'])): ?>
-                                    <div class="alert alert-danger">用户名格式错误</div><?php endif ?>
+                                    <div class="alert alert-danger">错误的邮箱格式</div><?php endif ?>
 								<?php if (isset($_GET['error_exist'])): ?>
-                                    <div class="alert alert-danger">用户名已被占用</div><?php endif ?>
+                                    <div class="alert alert-danger">该邮箱已被注册</div><?php endif ?>
 								<?php if (isset($_GET['error_pwd_len'])): ?>
                                     <div class="alert alert-danger">密码不小于6位</div><?php endif ?>
 								<?php if (isset($_GET['error_pwd2'])): ?>
@@ -56,7 +56,7 @@
 </body>
 </html>
 <script>
-    setTimeout(hideActived, 5000);
+    setTimeout(hideActived, 6000);
     $('#checkcode').click(function () {
         var timestamp = new Date().getTime();
         $(this).attr("src", "../include/lib/checkcode.php?" + timestamp);
