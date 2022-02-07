@@ -17,10 +17,7 @@ $action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
 
 loginAuth::loginPage();
 
-$request_uri = strtolower(substr(basename($_SERVER['SCRIPT_NAME']), 0, -4));
-if (ROLE === User::ROLE_WRITER && !in_array($request_uri, array('article_write', 'article', 'twitter', 'media', 'blogger', 'comment', 'index', 'article_save'))) {
-	emMsg('你所在的用户组无法使用该功能，请联系管理员', './');
-}
+User::checkRolePermission();
 
 if (!Register::isRegLocal() && mt_rand(1, 15) === 10) {
 	emDirect("auth.php");

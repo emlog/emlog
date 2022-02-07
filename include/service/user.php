@@ -59,6 +59,7 @@ class User {
 		}
 	}
 
+	// 检查图片验证码
 	static function checkLoginCode($login_code) {
 		if (!isset($_SESSION)) {
 			session_start();
@@ -69,6 +70,14 @@ class User {
 			return false;
 		}
 		return true;
+	}
+
+	// 检查用户权限
+	static function checkRolePermission() {
+		$request_uri = strtolower(substr(basename($_SERVER['SCRIPT_NAME']), 0, -4));
+		if (ROLE === self::ROLE_WRITER && !in_array($request_uri, ['article', 'twitter', 'media', 'blogger', 'comment', 'index', 'article_save'])) {
+			emMsg('你所在的用户组无法使用该功能，请联系管理员', './');
+		}
 	}
 
 }
