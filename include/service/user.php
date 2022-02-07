@@ -45,7 +45,7 @@ class User {
 			session_start();
 		}
 		$randCode = getRandStr(8, false);
-		$_SESSION['code'] = $randCode;
+		$_SESSION['mail_code'] = $randCode;
 		$_SESSION['mail'] = $mail;
 
 		$title = "找回密码邮件验证码";
@@ -66,6 +66,19 @@ class User {
 		}
 		$session_code = $_SESSION['code'] ?? '';
 		if ((!$login_code || $login_code !== $session_code) && Option::get('login_code') === 'y') {
+			unset($_SESSION['code']);
+			return false;
+		}
+		return true;
+	}
+
+	// 检查邮箱验证码
+	static function checkMailCode($mail_code) {
+		if (!isset($_SESSION)) {
+			session_start();
+		}
+		$session_code = $_SESSION['mail_code'] ?? '';
+		if (!$mail_code || $mail_code !== $session_code) {
 			unset($_SESSION['code']);
 			return false;
 		}

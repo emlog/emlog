@@ -173,7 +173,6 @@ if ($action == 'doreset2') {
 	$mail_code = isset($_POST['mail_code']) ? addslashes(trim($_POST['mail_code'])) : '';
 	$passwd = isset($_POST['passwd']) ? addslashes(trim($_POST['passwd'])) : '';
 	$repasswd = isset($_POST['repasswd']) ? addslashes(trim($_POST['repasswd'])) : '';
-	$login_code = isset($_POST['login_code']) ? addslashes(strtoupper(trim($_POST['login_code']))) : ''; //登录注册验证码
 
 	if (!$mail_code) {
 		emDirect('./account.php?action=reset2&error_login=1');
@@ -184,8 +183,8 @@ if ($action == 'doreset2') {
 	if ($passwd !== $repasswd) {
 		emDirect('./account.php?action=reset2&error_pwd2=1');
 	}
-	if (!User::checkLoginCode($login_code)) {
-		emDirect('./account.php?action=reset2&err_ckcode=1');
+	if (!User::checkMailCode($mail_code)) {
+		emDirect('./account.php?action=reset2&err_mail_code=1');
 	}
 
 	$PHPASS = new PasswordHash(8, true);
