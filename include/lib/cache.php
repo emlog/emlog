@@ -24,7 +24,7 @@ class Cache {
 	private $logsort_cache;
 	private $logalias_cache;
 
-	private function __construct() {
+	protected function __construct() {
 		$this->db = Database::getInstance();
 	}
 
@@ -107,12 +107,12 @@ class Cache {
 				$photo['src'] = htmlspecialchars($photosrc);
 				$photo['width'] = $imgsize['w'];
 				$photo['height'] = $imgsize['h'];
-
 				$avatar = strstr($photosrc, 'thum') ? str_replace('thum', 'thum52', $photosrc) : preg_replace("/^(.*)\/(.*)$/", "\$1/thum52-\$2", $photosrc);
 				$avatar = file_exists('../' . $avatar) ? $avatar : $photosrc;
 			}
 			$row['nickname'] = empty($row['nickname']) ? $row['username'] : $row['nickname'];
-			$user_cache[$row['uid']] = array(
+			$user_cache[$row['uid']] = [
+				'uid'       => $row['uid'],
 				'photo'     => $photo,
 				'avatar'    => $avatar,
 				'name_orig' => $row['nickname'],
@@ -121,7 +121,7 @@ class Cache {
 				'des'       => htmlClean($row['description']),
 				'ischeck'   => htmlspecialchars($row['ischeck']),
 				'role'      => $row['role'],
-			);
+			];
 		}
 		$cacheData = serialize($user_cache);
 		$this->cacheWrite($cacheData, 'user');
@@ -469,11 +469,11 @@ class Cache {
 	/**
 	 * 写入缓存
 	 */
-	function cacheWrite($cacheData, $cacheName) {
+	public function cacheWrite($cacheData, $cacheName) {
 		$cachefile = EMLOG_ROOT . '/content/cache/' . $cacheName . '.php';
 		$cacheData = "<?php exit;//" . $cacheData;
 		@ $fp = fopen($cachefile, 'wb') or emMsg('读取缓存失败');
-		@ $fw = fwrite($fp, $cacheData) or emMsg('写入缓存失败，缓存目录 (content/cache) 不可写');
+		@ fwrite($fp, $cacheData) or emMsg('写入缓存失败，缓存目录 (content/cache) 不可写');
 		$this->{$cacheName . '_cache'} = null;
 		fclose($fp);
 	}
@@ -481,7 +481,7 @@ class Cache {
 	/**
 	 * 读取缓存文件
 	 */
-	function readCache($cacheName) {
+	public function readCache($cacheName) {
 		if ($this->{$cacheName . '_cache'} != null) {
 			return $this->{$cacheName . '_cache'};
 		} else {
