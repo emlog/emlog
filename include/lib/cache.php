@@ -220,6 +220,7 @@ class Cache {
 				'date'    => $show_com['date'],
 				'page'    => $com_page,
 				'mail'    => $show_com['mail'],
+				'uid'     => $show_com['uid'],
 				'content' => htmlClean(subString($show_com['comment'], 0, $comment_subnum), false),
 			);
 		}
