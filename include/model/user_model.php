@@ -28,7 +28,7 @@ class User_Model {
 			$row['description'] = htmlspecialchars($row['description']);
 			$row['create_time'] = smartDate($row['create_time']);
 			$row['update_time'] = smartDate($row['update_time']);
-			$row['role'] = User::getRoleName($row['role']);
+			$row['role'] = User::getRoleName($row['role'], (int)$row['uid']);
 			$users[] = $row;
 		}
 		return $users;

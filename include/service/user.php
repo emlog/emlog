@@ -2,13 +2,12 @@
 
 class User {
 
-	const ROLE_FOUNDER = 'founder';          //创始人
 	const ROLE_ADMIN = 'admin';              //管理员
 	const ROLE_WRITER = 'writer';            //用户
 	const ROLE_VISITOR = 'visitor';          //游客
 
 	static function isAdmin($role = ROLE) {
-		if ($role == self::ROLE_ADMIN || $role == self::ROLE_FOUNDER) {
+		if ($role == self::ROLE_ADMIN) {
 			return true;
 		}
 		return false;
@@ -21,14 +20,11 @@ class User {
 		return false;
 	}
 
-	static function getRoleName($role) {
+	static function getRoleName($role, $uid = 0) {
 		$role_name = '';
 		switch ($role) {
-			case self::ROLE_FOUNDER:
-				$role_name = '创始人';
-				break;
 			case self::ROLE_ADMIN:
-				$role_name = '管理员';
+				$role_name = $uid === 1 ? '创始人' : '管理员';
 				break;
 			case self::ROLE_WRITER:
 				$role_name = '用户';

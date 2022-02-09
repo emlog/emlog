@@ -29,7 +29,6 @@ define('ISLOGIN', LoginAuth::isLogin());
 date_default_timezone_set(Option::get('timezone'));
 
 //用户组
-const ROLE_FOUNDER = 'founder';          //创始人
 const ROLE_ADMIN = 'admin';              //管理员
 const ROLE_WRITER = 'writer';            //用户
 const ROLE_VISITOR = 'visitor';          //游客
