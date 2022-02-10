@@ -480,7 +480,7 @@ PRIMARY KEY  (uid),
 KEY username (username),
 KEY email (email)         
 )" . $table_charset_sql . "
-INSERT INTO {$db_prefix}user (uid, username, email, password, nickname, role, create_time, update_time) VALUES (1,'$username','$email','$password', 'emer','founder', " . time() . ", " . time() . ");
+INSERT INTO {$db_prefix}user (uid, username, email, password, nickname, role, create_time, update_time) VALUES (1,'$username','$email','$password', 'emer','admin', " . time() . ", " . time() . ");
 DROP TABLE IF EXISTS {$db_prefix}twitter;
 CREATE TABLE {$db_prefix}twitter (
 id INT NOT NULL AUTO_INCREMENT COMMENT 'Note ID',
