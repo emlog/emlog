@@ -2,13 +2,12 @@
 
 class User {
 
-	const ROLE_FOUNDER = 'founder';          //Founder
 	const ROLE_ADMIN = 'admin';              //Admin
 	const ROLE_WRITER = 'writer';            //Writer
 	const ROLE_VISITOR = 'visitor';          //Guest
 
 	static function isAdmin($role = ROLE) {
-		if ($role == self::ROLE_ADMIN || $role == self::ROLE_FOUNDER) {
+		if ($role == self::ROLE_ADMIN) {
 			return true;
 		}
 		return false;
@@ -21,14 +20,11 @@ class User {
 		return false;
 	}
 
-	static function getRoleName($role) {
+	static function getRoleName($role, $uid = 0) {
 		$role_name = '';
 		switch ($role) {
-			case self::ROLE_FOUNDER:
-/*vot*/			$role_name = lang(ROLE_FOUNDER);
-				break;
 			case self::ROLE_ADMIN:
-/*vot*/			$role_name = lang(ROLE_ADMIN);
+/*vot*/				$role_name = $uid === 1 ? lang(ROLE_FOUNDER) : lang(ROLE_ADMIN);
 				break;
 			case self::ROLE_WRITER:
 /*vot*/			$role_name = lang(ROLE_WRITER);

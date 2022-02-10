@@ -699,10 +699,7 @@ $lang = array(
 
 //---------------------------
 //admin/views/setting_user.php
- 'groups_about'		=> '关于用户组',//'About user groups',
- 'groups_about1'	=> '1、创始人：只有一个，拥有控制站点全部权限',//'1. Founder: only one, with full authority to control the site',
- 'groups_about2'	=> '2、管理员：由创始人或者其他管理员创建，拥有控制站点全部权限',//'2. Administrator: Created by the founder or other administrators, with full authority to control the site',
- 'groups_about3'	=> '3、用户：普通注册用户，可以发布文章，但是需要管理员审核',//'3. Users: ordinary registered users can publish articles, but need to be reviewed by administrators',
+ 'groups_about'		=> '用户注册后可以发布文章，但是需要管理员审核通过后才能在前台展示。',//'Users can publish articles after registration, but they need to be approved by the administrator before they can be displayed in the foreground.',
 
 //---------------------------
 //admin/views/signin.php

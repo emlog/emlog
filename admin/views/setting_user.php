@@ -32,10 +32,7 @@
             </div>
         </form>
         <div class="alert alert-warning">
-<!--vot-->  <b><?=lang('groups_about')?></b><br>
-<!--vot-->  <?=lang('groups_about1')?><br>
-<!--vot-->  <?=lang('groups_about2')?><br>
-<!--vot-->  <?=lang('groups_about3')?><br>
+<!--vot-->  <?=lang('groups_about')?><br>
         </div>
     </div>
 </div>
