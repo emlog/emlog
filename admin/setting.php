@@ -310,7 +310,7 @@ if ($action == 'mail_test') {
 	$mail->Host = $data["smtp_server"];                    // STMP 服务器地址
 	$mail->Username = $data["smtp_mail"];                  // 邮箱账号
 	$mail->Password = $data["smtp_pw"];                    // SMTP 授权码
-	$mail->From = $data["smtp_mail"];    				   // 发送方
+	$mail->From = $data["smtp_mail"];                      // 发送方
 	$mail->AddAddress($data["testTo"]);                    // 接收方
 
 	$mail->Subject = "测试邮件";
