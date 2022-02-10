@@ -97,6 +97,8 @@ class Log_Controller {
 		$ckurl = isset($_COOKIE['posterurl']) ? htmlspecialchars($_COOKIE['posterurl']) : '';
 		$comments = $Comment_Model->getComments($logid, 'n', $comment_page);
 
+		doMultiAction('article_content_echo', $log_content, $log_content);
+
 		include View::getView('header');
 		if ($type == 'blog') {
 			$Log_Model->updateViewCount($logid);

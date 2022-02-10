@@ -48,7 +48,7 @@
 					$avatar = empty($user_cache[$val['uid']]['avatar']) ? './views/images/avatar.svg' : '../' . $user_cache[$val['uid']]['avatar'];
 					?>
                     <tr>
-                        <td><img src="<?= $avatar ?>" height="40" width="40" class="rounded-circle"/></td>
+                        <td><img src="<?= $avatar ?>" height="35" width="35" class="rounded-circle"/></td>
                         <td>
 							<?php
 							if (UID != $val['uid']): ?>
