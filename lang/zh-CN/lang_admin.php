@@ -79,6 +79,7 @@ $lang = array(
  'registration'		=> '登录注册',//'Registration',
  'registration_open'	=> '开启用户注册',//'Open user registration',
  'registration_captcha'	=> '开启登录注册验证码',//'Enable captcha at registration',
+ 'registration_captcha_info'	=>  '（提高安全性，建议开启）',//'(to improve security, it is recommended to open)',
  'user_rights'		=> '用户权限',//'User rights',
  'comment_write'	=> '发布评论',//'Post comments',
  'guest_rights'		=> '游客权限',//'Visitor permissions',
@@ -128,7 +129,7 @@ $lang = array(
  'add_page'		=> '新建页面',//'Add page',
  'page_title_info'	=> '输入页面标题',//'Enter the page title',
  'upload_insert'	=> '上传插入',//'Insert upload',
- 'link_alias'		=> '链接别名：（用于seo设置 <a href="./seo.php">&rarr;</a>）',//'Link alias: (used for <a href="./seo.php">SEO settings &rarr;</a>)',
+ 'link_alias'		=> '链接别名：（用于seo设置 <a href="./setting.php?action=seo">&rarr;</a>）',//'Link alias: (for seo settings <a href="./setting.php?action=seo">&rarr;</a>)',
  'link_alias_info'	=> '用于自定义该页面的链接地址。需要',//'The page link custom address. Required',
  'link_alias_enable'	=> '启用链接别名',//'Enable Link Alias',
  'page_template'	=> '页面模板',//'Page template',
@@ -212,6 +213,7 @@ $lang = array(
  'article_cover'	=> '文章封面',//'Article cover',
  'crop_upload'		=> '裁剪并上传',//'Crop and upload',
  'uploading'		=> '上传中……',//'Uploading...',
+'链接别名',//'',
 
 //---------------------------
 //admin/views/admin_page.php
@@ -499,6 +501,7 @@ $lang = array(
  'resource_select'	=> '请选择要删除的资源',//'Please select the resource to be deleted',
  'resource_del_sure'	=> '确定要删除所选资源吗？',//'Are you sure you want to delete the selected resource?',
  'founder'		=> '创建人',//'Founder',
+ 'image_address_original'	=> '原图地址：',//'Original image address',
 
 //---------------------------
 //admin/views/media_lib.php
@@ -593,8 +596,8 @@ $lang = array(
  'emlog_reg_ok'		=> '恭喜，您的emlog pro已完成注册！',//'Congratulations, your emlog pro has been registered!',
  'enter_reg_code'	=> '输入注册码',//'Enter the registration code',
  'register'		=> '注册',//'Register',
- 'username_format_error'	=> '用户名格式错误',//'Username format error',
- 'username_in_use'	=> '用户名已被占用',//'Username is already in use'
+ 'email_format_error'	=> '错误的邮箱格式',//'Email format error',
+ 'email_in_use'		=> '该邮箱已被注册',//'Email is already in use'
  'password_short'	=> '密码不小于5位',//'Password must not be less than 5 digits',
 
 //---------------------------
@@ -610,7 +613,7 @@ $lang = array(
  'email_enter'		=> '输入注册邮箱',//'Enter registered email',
  'email_invalid'	=> '错误的注册邮箱',//'Wrong registered email',
  'email_send_error'	=> '邮件验证码发送失败，请检查邮件通知设置',//'Failed to send email verification code, please check email notification settings',
- 'verification_error'	=> '验证码错误',//'Verification code error',
+ 'verification_error'	=> '邮件验证码错误',//'Email verification code error',
 
 //---------------------------
 //admin/views/reset2.php

@@ -33,7 +33,7 @@ class LoginAuth {
 	/**
 	 * Not logged in, jump to the user login page
 	 */
-	public static function loginPage($error_code = NULL) {
+	public static function checkLogin($error_code = NULL) {
 		if (self::isLogin() === true) {
 			return;
 		}
@@ -47,7 +47,7 @@ class LoginAuth {
 	/**
 	 * Logged in, jump to the user (management) center
 	 */
-	public static function loggedPage() {
+	public static function checkLogged() {
 		if (self::isLogin() === false) {
 			return;
 		}

@@ -312,6 +312,7 @@ function addAction($hook, $actionFunc) {
 
 /**
  * Implementation of the hanging hook function, support multi-parameter eg:doAction('post_comment', $author, $email, $url, $comment);
+ * eg: Insert extended content at the mount point
  */
 function doAction($hook) {
 	global $emHooks;
@@ -325,6 +326,7 @@ function doAction($hook) {
 
 /**
  * Execute the first function hung on the hook, only supports one line, and ret is passed by reference
+ * eg: Take over the file upload function and change the upload locally to upload to the cloud
  */
 function doOnceAction($hook, $input, &$ret) {
 	global $emHooks;
@@ -332,6 +334,21 @@ function doOnceAction($hook, $input, &$ret) {
 	$func = !empty($emHooks[$hook][0]) ? $emHooks[$hook][0] : '';
 	if ($func) {
 		call_user_func_array($func, $args);
+	}
+}
+
+/**
+ * Mounting execution mode 3 (take-over mount): execute all functions on the hook, the previous execution result is used as the input of the next one, and the incoming variable $ret will be modified
+ * eg: Different plugins modify and replace the content of the article differently.
+ */
+function doMultiAction($hook, $input, &$ret) {
+	global $emHooks;
+	$args = [$input, &$ret];
+	if (isset($emHooks[$hook])) {
+		foreach ($emHooks[$hook] as $function) {
+			call_user_func_array($function, $args);
+			$args = [&$ret, &$ret];
+		}
 	}
 }
 

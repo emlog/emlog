@@ -32,6 +32,7 @@
 <!--vot-->                  <?=lang('file_size')?>: <?= $value['attsize'] ?>,
 							<?php if ($value['width'] && $value['height']): ?>
 <!--vot-->              <?=lang('img_size')?>: <?= $value['width'] ?>x<?= $value['height'] ?>
+<!--vot-->                      <?=lang('image_address_original')?>: <span class="text-gray-400"><?= $media_url ?></span>
 							<?php endif ?>
                         </p>
                         <p class="card-text d-flex justify-content-between">

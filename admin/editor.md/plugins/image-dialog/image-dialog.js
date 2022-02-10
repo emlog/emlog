@@ -20,7 +20,9 @@
             var _this       = this;
             var cm          = this.cm;
             var lang        = this.lang;
-            var editor      = this.editor;
+            /* 修改：更换对话框创建的位置 */
+            // var editor       = this.editor;
+            var editor       = $("#editor-md-dialog");
             var settings    = this.settings;
             var cursor      = cm.getCursor();
             var selection   = cm.getSelection();

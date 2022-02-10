@@ -45,13 +45,13 @@ class User {
 			session_start();
 		}
 		$randCode = getRandStr(8, false);
-		$_SESSION['code'] = $randCode;
+		$_SESSION['mail_code'] = $randCode;
 		$_SESSION['mail'] = $mail;
 
 /*vot*/		$title = lang('reset_password_code');
 /*vot*/		$content = lang('email_verify_code') . $randCode;
-		$sendmail_model = new SendMail();
-		$ret = $sendmail_model->send($mail, $title, $content);
+		$sendmail = new SendMail();
+		$ret = $sendmail->send($mail, $title, $content);
 		if ($ret) {
 			return true;
 		} else {
@@ -59,6 +59,7 @@ class User {
 		}
 	}
 
+		// Check image verification code
 	static function checkLoginCode($login_code) {
 		if (!isset($_SESSION)) {
 			session_start();
@@ -71,5 +72,25 @@ class User {
 		return true;
 	}
 
+	// Check email verification code
+	static function checkMailCode($mail_code) {
+		if (!isset($_SESSION)) {
+			session_start();
+		}
+		$session_code = $_SESSION['mail_code'] ?? '';
+		if (!$mail_code || $mail_code !== $session_code) {
+			unset($_SESSION['code']);
+			return false;
+		}
+		return true;
+	}
+
+	// Check user permissions
+	static function checkRolePermission() {
+		$request_uri = strtolower(substr(basename($_SERVER['SCRIPT_NAME']), 0, -4));
+		if (ROLE === self::ROLE_WRITER && !in_array($request_uri, ['article', 'twitter', 'media', 'blogger', 'comment', 'index', 'article_save'])) {
+/*vot*/			emMsg(lang('group_no_permission'), './');
+		}
+	}
 
 }

@@ -24,7 +24,7 @@
             </div>
             <div class="form-group form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="login_code" id="login_code" <?= $conf_login_code ?> >
-<!--vot-->      <label class="form-check-label"><?=lang('registration_captcha')?></label>
+<!--vot-->      <label class="form-check-label"><?=lang('registration_captcha')?> <?=lang('registration_captcha_info')?></label>
             </div>
             <div class="form-group">
                 <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>

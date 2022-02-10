@@ -140,7 +140,8 @@ $lang = array(
 //---------------------------------------
 //include/service/user.php
 'reset_password_code'	=> '找回密码邮件验证码',//'Recover Password Email Verification Code',
-'email_verify_code'	=> '邮件验证码是: ',//'Email verification code is',
+'email_verify_code'	=> '邮件验证码: ',//'Email verification code',
+'group_no_permission'	=> '你所在的用户组无法使用该功能，请联系管理员',//'The user group you are in cannot use this function, please contact the administrator',
 
 //---------------------------
 //content/templates/default/404.php

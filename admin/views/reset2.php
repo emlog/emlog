@@ -15,7 +15,7 @@
                                 <form method="post" class="user" action="./account.php?action=doreset2">
 									<?php if (isset($_GET['succ_mail'])): ?>
                                         <div class="alert alert-success"><?=lang('enter_code_from_email')?></div><?php endif ?>
-									<?php if (isset($_GET['err_ckcode'])): ?>
+									<?php if (isset($_GET['err_mail_code'])): ?>
                                         <div class="alert alert-danger"><?=lang('verification_error')?></div><?php endif ?>
                                     <div class="form-group">
                                         <input type="text" class="form-control form-control-user" id="mail_code" name="mail_code" placeholder="<?=lang('email_verification_code')?>" required>
@@ -26,12 +26,6 @@
                                     <div class="form-group">
                                         <input type="password" class="form-control form-control-user" minlength="6" id="repasswd" name="repasswd" placeholder="<?=lang('confirm_password')?>" required>
                                     </div>
-									<?php if ($login_code): ?>
-                                        <div class="form-group form-inline">
-                                            <input type="text" name="login_code" class="form-control form-control-user" id="login_code" placeholder="<?=lang('captcha')?>" required>
-                                            <img src="../include/lib/checkcode.php" id="checkcode" class="mx-2">
-                                        </div>
-									<?php endif ?>
                                     <button class="btn btn-success btn-user btn-block" type="submit"><?=lang('submit')?></button>
                                     <hr>
                                     <div class="text-center"><a class="small" href="/admin"><?=lang('login')?></a></div>
@@ -49,7 +43,7 @@
 </body>
 </html>
 <script>
-    setTimeout(hideActived, 5000);
+    setTimeout(hideActived, 6000);
     $('#checkcode').click(function () {
         var timestamp = new Date().getTime();
         $(this).attr("src", "../include/lib/checkcode.php?" + timestamp);

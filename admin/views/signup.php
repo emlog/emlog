@@ -15,9 +15,9 @@
 								<?php if (isset($_GET['err_ckcode'])): ?>
 <!--vot-->                          <div class="alert alert-danger"><?=lang('validation_error')?></div><?php endif ?>
 								<?php if (isset($_GET['error_login'])): ?>
-<!--vot-->                          <div class="alert alert-danger"><?=lang('username_format_error')?></div><?php endif ?>
+<!--vot-->                          <div class="alert alert-danger"><?=lang('email_format_error')?></div><?php endif ?>
 								<?php if (isset($_GET['error_exist'])): ?>
-<!--vot-->                          <div class="alert alert-danger"><?=lang('username_in_use')?></div><?php endif ?>
+<!--vot-->                          <div class="alert alert-danger"><?=lang('email_in_use')?></div><?php endif ?>
 								<?php if (isset($_GET['error_pwd_len'])): ?>
 <!--vot-->                          <div class="alert alert-danger"><?=lang('password_short')?></div><?php endif ?>
 								<?php if (isset($_GET['error_pwd2'])): ?>
@@ -57,7 +57,7 @@
 </body>
 </html>
 <script>
-    setTimeout(hideActived, 5000);
+    setTimeout(hideActived, 6000);
     $('#checkcode').click(function () {
         var timestamp = new Date().getTime();
         $(this).attr("src", "../include/lib/checkcode.php?" + timestamp);

@@ -24,7 +24,7 @@ class Cache {
 	private $logsort_cache;
 	private $logalias_cache;
 
-	private function __construct() {
+	protected function __construct() {
 		$this->db = Database::getInstance();
 	}
 
@@ -107,12 +107,12 @@ class Cache {
 				$photo['src'] = htmlspecialchars($photosrc);
 				$photo['width'] = $imgsize['w'];
 				$photo['height'] = $imgsize['h'];
-
 				$avatar = strstr($photosrc, 'thum') ? str_replace('thum', 'thum52', $photosrc) : preg_replace("/^(.*)\/(.*)$/", "\$1/thum52-\$2", $photosrc);
 				$avatar = file_exists('../' . $avatar) ? $avatar : $photosrc;
 			}
 			$row['nickname'] = empty($row['nickname']) ? $row['username'] : $row['nickname'];
-			$user_cache[$row['uid']] = array(
+			$user_cache[$row['uid']] = [
+				'uid'       => $row['uid'],
 				'photo'     => $photo,
 				'avatar'    => $avatar,
 				'name_orig' => $row['nickname'],
@@ -121,7 +121,7 @@ class Cache {
 				'des'       => htmlClean($row['description']),
 				'ischeck'   => htmlspecialchars($row['ischeck']),
 				'role'      => $row['role'],
-			);
+			];
 		}
 		$cacheData = serialize($user_cache);
 		$this->cacheWrite($cacheData, 'user');
@@ -232,50 +232,26 @@ class Cache {
 	 */
 	private function mc_tags() {
 		$tag_cache = [];
-		$query = $this->db->query("SELECT gid FROM " . DB_PREFIX . "tag");
-		$tagnum = 0;
-		$maxuse = 0;
+		$tagnum = 100;
+		$maxuse = 20;
 		$minuse = 0;
-		while ($row = $this->db->fetch_array($query)) {
-			$usenum = substr_count($row['gid'], ',') - 1;
-			if ($maxuse == 0) {
-				$maxuse = $minuse = $usenum;
-			}
-			if ($usenum > $maxuse) {
-				$maxuse = $usenum;
-			}
-			if ($usenum < $minuse) {
-				$minuse = $usenum;
-			}
-			$tagnum++;
-		}
-		$spread = ($tagnum > 12 ? 12 : $tagnum);
+		$spread = (min($tagnum, 12));
 		$rank = $maxuse - $minuse;
 		$rank = ($rank == 0 ? 1 : $rank);
 		$rank = $spread / $rank;
-		// Get draft id
-		$hideGids = [];
-		$query = $this->db->query("SELECT gid FROM " . DB_PREFIX . "blog where (hide='y' or checked='n') and type='blog'");
+		$query = $this->db->query("SELECT tagname,gid FROM " . DB_PREFIX . "tag order by tid desc limit 100");
 		while ($row = $this->db->fetch_array($query)) {
-			$hideGids[] = $row['gid'];
-		}
-		$query = $this->db->query("SELECT tagname,gid FROM " . DB_PREFIX . "tag");
-		while ($show_tag = $this->db->fetch_array($query)) {
-			// Exclude draft post tags from the statistics
-			foreach ($hideGids as $val) {
-				$show_tag['gid'] = str_replace(',' . $val . ',', ',', $show_tag['gid']);
-			}
-			if ($show_tag['gid'] == ',') {
+			if ($row['gid'] == ',') {
 				continue;
 			}
-			$usenum = substr_count($show_tag['gid'], ',') - 1;
+			$usenum = empty($row['gid']) ? 0 : substr_count($row['gid'], ',') + 1;
 			$fontsize = 10 + round(($usenum - $minuse) * $rank); //maxfont:22pt,minfont:10pt
-			$tag_cache[] = array(
-				'tagurl'   => urlencode($show_tag['tagname']),
-				'tagname'  => htmlspecialchars($show_tag['tagname']),
+			$tag_cache[] = [
+				'tagurl'   => urlencode($row['tagname']),
+				'tagname'  => htmlspecialchars($row['tagname']),
 				'fontsize' => $fontsize,
 				'usenum'   => $usenum
-			);
+			];
 		}
 		$cacheData = serialize($tag_cache);
 		$this->cacheWrite($cacheData, 'tags');
@@ -493,11 +469,11 @@ class Cache {
 	/**
 	 * Write cache
 	 */
-	function cacheWrite($cacheData, $cacheName) {
+	public function cacheWrite($cacheData, $cacheName) {
 		$cachefile = EMLOG_ROOT . '/content/cache/' . $cacheName . '.php';
 		$cacheData = "<?php exit;//" . $cacheData;
 /*vot*/		@ $fp = fopen($cachefile, 'wb') or emMsg(lang('cache_read_error'));
-/*vot*/		@ $fw = fwrite($fp, $cacheData) or emMsg(lang('cache_not_writable'));
+/*vot*/		@ fwrite($fp, $cacheData) or emMsg(lang('cache_not_writable'));
 		$this->{$cacheName . '_cache'} = null;
 		fclose($fp);
 	}
@@ -505,7 +481,7 @@ class Cache {
 	/**
 	 * Read cache file
 	 */
-	function readCache($cacheName) {
+	public function readCache($cacheName) {
 		if ($this->{$cacheName . '_cache'} != null) {
 			return $this->{$cacheName . '_cache'};
 		} else {

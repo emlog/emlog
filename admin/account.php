@@ -23,7 +23,7 @@ $User_Model = new User_Model();
  * Log in
  */
 if ($action == 'signin') {
-	loginAuth::loggedPage();
+	loginAuth::checkLogged();
 	if (defined('ADMIN_PATH_CODE') && $admin_path_code !== ADMIN_PATH_CODE) {
 		show_404_page(true);
 	}
@@ -37,7 +37,7 @@ if ($action == 'signin') {
 }
 
 if ($action == 'dosignin') {
-	loginAuth::loggedPage();
+	loginAuth::checkLogged();
 	if (defined('ADMIN_PATH_CODE') && $admin_path_code !== ADMIN_PATH_CODE) {
 		show_404_page(true);
 	}
@@ -69,7 +69,7 @@ if ($action == 'dosignin') {
  * Register
  */
 if ($action == 'signup') {
-	loginAuth::loggedPage();
+	loginAuth::checkLogged();
 	$login_code = Option::get('login_code') === 'y';
 	$error_msg = '';
 
@@ -84,7 +84,7 @@ if ($action == 'signup') {
 }
 
 if ($action == 'dosignup') {
-	loginAuth::loggedPage();
+	loginAuth::checkLogged();
 
 	if (Option::get('is_signup') !== 'y') {
 		return;
@@ -101,7 +101,7 @@ if ($action == 'dosignup') {
 	if (!User::checkLoginCode($login_code)) {
 		emDirect('./account.php?action=signup&err_ckcode=1');
 	}
-	if ($User_Model->isUserExist($mail)) {
+	if ($User_Model->isMailExist($mail)) {
 		emDirect('./account.php?action=signup&error_exist=1');
 	}
 	if (strlen($passwd) < 6) {
@@ -137,7 +137,7 @@ if ($action == 'reset') {
 }
 
 if ($action == 'doreset') {
-	loginAuth::loggedPage();
+	loginAuth::checkLogged();
 
 	$mail = isset($_POST['mail']) ? addslashes(trim($_POST['mail'])) : '';
 	$login_code = isset($_POST['login_code']) ? addslashes(strtoupper(trim($_POST['login_code']))) : '';
@@ -175,7 +175,6 @@ if ($action == 'doreset2') {
 	$mail_code = isset($_POST['mail_code']) ? addslashes(trim($_POST['mail_code'])) : '';
 	$passwd = isset($_POST['passwd']) ? addslashes(trim($_POST['passwd'])) : '';
 	$repasswd = isset($_POST['repasswd']) ? addslashes(trim($_POST['repasswd'])) : '';
-/*vot*/	$login_code = isset($_POST['login_code']) ? addslashes(strtoupper(trim($_POST['login_code']))) : ''; //Registration captcha
 
 	if (!$mail_code) {
 		emDirect('./account.php?action=reset2&error_login=1');
@@ -186,8 +185,8 @@ if ($action == 'doreset2') {
 	if ($passwd !== $repasswd) {
 		emDirect('./account.php?action=reset2&error_pwd2=1');
 	}
-	if (!User::checkLoginCode($login_code)) {
-		emDirect('./account.php?action=reset2&err_ckcode=1');
+	if (!User::checkMailCode($mail_code)) {
+		emDirect('./account.php?action=reset2&err_mail_code=1');
 	}
 
 	$PHPASS = new PasswordHash(8, true);
