@@ -213,7 +213,6 @@ $lang = array(
  'article_cover'	=> '文章封面',//'Article cover',
  'crop_upload'		=> '裁剪并上传',//'Crop and upload',
  'uploading'		=> '上传中……',//'Uploading...',
-'链接别名',//'',
 
 //---------------------------
 //admin/views/admin_page.php
@@ -501,7 +500,7 @@ $lang = array(
  'resource_select'	=> '请选择要删除的资源',//'Please select the resource to be deleted',
  'resource_del_sure'	=> '确定要删除所选资源吗？',//'Are you sure you want to delete the selected resource?',
  'founder'		=> '创建人',//'Founder',
- 'image_address_original'	=> '原图地址：',//'Original image address',
+ 'image_address_original'	=> '原图地址',//'Original image address',
 
 //---------------------------
 //admin/views/media_lib.php

@@ -79,6 +79,7 @@ $lang = array(
  'registration'		=> 'Registration',//'登录注册',
  'registration_open'	=> 'Open user registration',//'开启用户注册',
  'registration_captcha'	=> 'Enable captcha at registration',//'开启登录注册验证码',
+ 'registration_captcha_info'	=>  '(to improve security, it is recommended to open)',//'（提高安全性，建议开启）',
  'user_rights'		=> 'User rights',//'用户权限',
  'comment_write'	=> 'Post comments',//'发布评论',
  'guest_rights'		=> 'Visitor permissions',//'游客权限',
@@ -128,7 +129,7 @@ $lang = array(
  'add_page'		=> 'Add page',//'新建页面',
  'page_title_info'	=> 'Enter the page title',//'输入页面标题',
  'upload_insert'	=> 'Insert upload',//'上传插入',
- 'link_alias'		=> 'Link alias: (used for <a href="./seo.php">SEO settings &rarr;</a>)',//'链接别名：（用于seo设置 <a href="./seo.php">&rarr;</a>）',
+ 'link_alias'		=> 'Link alias: (for seo settings <a href="./setting.php?action=seo">&rarr;</a>)',//'链接别名：（用于seo设置 <a href="./setting.php?action=seo">&rarr;</a>）',
  'link_alias_info'	=> 'The page link custom address. Required',//'用于自定义该页面的链接地址。需要',
  'link_alias_enable'	=> 'Enable Link Alias',//'启用链接别名',
  'page_template'	=> 'Page template',//'页面模板',
@@ -499,6 +500,7 @@ $lang = array(
  'resource_select'	=> 'Please select the resource to be deleted',//'请选择要删除的资源',
  'resource_del_sure'	=> 'Are you sure you want to delete the selected resource?',//'确定要删除所选资源吗？',
  'founder'		=> 'Founder',//'创建人',
+ 'image_address_original'	=> 'Original image address',//'原图地址',
 
 //---------------------------
 //admin/views/media_lib.php
@@ -593,8 +595,8 @@ $lang = array(
  'emlog_reg_ok'		=> 'Congratulations, your emlog pro has been registered!',//'恭喜，您的emlog pro已完成注册！',
  'enter_reg_code'	=> 'Enter the registration code',//'输入注册码',
  'register'		=> 'Register',//'注册',
- 'username_format_error'	=> 'Username format error',//'用户名格式错误',
- 'username_in_use'	=> 'Username is already in use'//'用户名已被占用',
+ 'email_format_error'	=> 'Email format error',//'错误的邮箱格式',
+ 'email_in_use'		=> 'Email is already in use'//'该邮箱已被注册',
  'password_short'	=> 'Password must not be less than 5 digits',//'密码不小于5位',
 
 //---------------------------
@@ -610,7 +612,7 @@ $lang = array(
  'email_enter'		=> 'Enter registered email',//'输入注册邮箱',
  'email_invalid'	=> 'Wrong registered email',//'错误的注册邮箱',
  'email_send_error'	=> 'Failed to send email verification code, please check email notification settings',//'邮件验证码发送失败，请检查邮件通知设置',
- 'verification_error'	=> 'Verification code error',//'验证码错误',
+ 'verification_error'	=> 'Email verification code error',//'邮件验证码错误',
 
 //---------------------------
 //admin/views/reset2.php
@@ -696,10 +698,7 @@ $lang = array(
 
 //---------------------------
 //admin/views/setting_user.php
- 'groups_about'		=> 'About user groups',//'关于用户组',
- 'groups_about1'	=> '1. Founder: only one, with full authority to control the site',//'1、创始人：只有一个，拥有控制站点全部权限',
- 'groups_about2'	=> '2. Administrator: Created by the founder or other administrators, with full authority to control the site',//'2、管理员：由创始人或者其他管理员创建，拥有控制站点全部权限',
- 'groups_about3'	=> '3. Users: ordinary registered users can publish articles, but need to be reviewed by administrators',//'3、用户：普通注册用户，可以发布文章，但是需要管理员审核',
+ 'groups_about'		=> 'Users can publish articles after registration, but they need to be approved by the administrator before they can be displayed in the foreground.',//'用户注册后可以发布文章，但是需要管理员审核通过后才能在前台展示。',
 
 //---------------------------
 //admin/views/signin.php
