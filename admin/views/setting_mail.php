@@ -28,14 +28,26 @@
                 <input type="password" name="smtp_pw" cols="" rows="3" class="form-control" value="<?= $smtp_pw ?>" required>
             </div>
             <div class="form-group">
-                <label>SMTP服务器（如QQ邮箱服务：smtp.qq.com）</label>
+                <label>SMTP服务器</label>
                 <input class="form-control" value="<?= $smtp_server ?>" name="smtp_server" required>
             </div>
             <div class="form-group">
-                <label>端口（如QQ邮箱服务端口：465）</label>
+                <label>端口</label>
                 <input class="form-control" value="<?= $smtp_port ?>" name="smtp_port" required>
             </div>
-
+            <div class="form-group">
+                <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
+                <input type="submit" value="保存设置" class="btn btn-sm btn-success"/>
+                <input type="button" value="发送测试" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#testMail"/>
+            </div>
+            <div class="alert alert-warning">
+                <b>以QQ邮箱配置为例</b><br>
+                发送人邮箱：你的QQ邮箱<br>
+                SMTP密码：见QQ邮箱顶部设置-> 账户 -> 开启IMAP/SMTP服务 -> 生成授权码（即为SMTP密码）<br>
+                SMTP服务器：smtp.qq.com<br>
+                端口：465
+                <br>
+            </div>
             <!-- 设置接收邮箱的模态框 -->
             <div class="modal fade" id="testMail">
                 <div class="modal-dialog modal-sm">
@@ -57,13 +69,8 @@
                     </div>
                 </div>
             </div>
-
-            <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
-            <input type="submit" value="保存设置" class="btn btn-sm btn-success"/>
-            <input type="button" value="发送测试" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#testMail" />
         </form>
     </div>
-
 </div>
 <script>
     $("#menu_category_sys").addClass('active');
@@ -72,15 +79,15 @@
     setTimeout(hideActived, 2600);
 
     $("#testSendBtn").click(function () {
-        $("#testMailMsg").html("<small class='text-success'>发送中...<small>");
+        $("#testMailMsg").html("<small class='text-secondary'>发送中...<small>");
 
-        $.post("setting.php?action=mail_test", $("#mail_config").serialize(),function(data){
-            if(data == ''){
+        $.post("setting.php?action=mail_test", $("#mail_config").serialize(), function (data) {
+            if (data == '') {
                 $("#testMailMsg").html("<small class='text-success'>发送成功</small>");
-            }else{
+            } else {
                 $("#testMailMsg").html(data);
             }
-            
+
         });
     })
 </script>

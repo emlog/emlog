@@ -256,7 +256,7 @@ function blog_navi() {
 				if ($value['pid'] != 0) {
 					continue;
 				}
-				if ($value['url'] == 'admin' && (User::isAdmin())):
+				if ($value['url'] == 'admin' && (!User::isVistor())):
 					?>
                     <li class="list-item list-menu"><a href="<?= BLOG_URL ?>admin/" class="nav-link">管理</a></li>
                     <li class="list-item list-menu"><a href="<?= BLOG_URL ?>admin/account.php?action=logout" class="nav-link">退出</a></li>
