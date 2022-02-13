@@ -785,6 +785,7 @@ footer .copyright {
 }
 /* 文章条目中的置顶图案，采用base64 */
 .log-topflg {
+    user-select: none;
     display: inline-block;
     position: relative;
     height: 26px;
@@ -794,9 +795,6 @@ footer .copyright {
     margin-left: 8px;
     cursor: default;
     background-color: antiquewhite
-}
-.log-topflg:hover {
-    color: black
 }
 
 /* 文章内容页样式
@@ -901,6 +899,7 @@ footer .copyright {
 }
 /* 文章分类 */
 .loglist-sort {
+    user-select: none;
     display: inline-block;
     position: relative;
     margin-left: 10px;
@@ -1181,7 +1180,10 @@ img.zoom-img {
 .toc-con div::-webkit-scrollbar-thumb {
     background-color: rgb(0 0 0 / 10%)
 }
-
+/* page 页面 */
+#page{
+    margin-bottom: 24px
+}
 /* 一些适应各屏幕尺寸显示效果的样式
 ---------------------------------------------------*/
 @media all and (max-width: 1200px) and (min-width: 992px) {
