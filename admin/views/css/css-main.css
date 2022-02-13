@@ -575,3 +575,11 @@ textarea {
 #sortable .card-header {
     padding: 13px 17.5px 7px 17.5px
 }
+
+/* 邮件测试发送的提示 */
+#testMailMsg {
+    position: absolute;
+    width: calc(100% - 135px);
+    float: left;
+    right: 105px;
+}

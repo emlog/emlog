@@ -420,7 +420,6 @@ function imgPasteExpand(thisEditor){
                 return xhr;
             },
             success:function(result){
-                if(result == 'success'){
                     let imgUrl, thumbImgUrl;
                     console.log('上传成功！正在获取结果...');
                     $.get(emMediaPhpUrl,function(data){  // 异步获取结果,追加到编辑器
@@ -429,10 +428,6 @@ function imgPasteExpand(thisEditor){
                         thumbImgUrl = data.match(/(?<=src\=\").*?(?=\")/)[0];
                         replaceByNum(`[![](${imgUrl})](${thumbImgUrl})`,10);  // 这里的数字 10 对应着’上传中...100%‘是10个字符
                     })
-                }else{
-                    alert('未知错误');
-                    replaceByNum('未知错误',6);
-                }
             },
             error:function(result){
                 alert('上传失败,图片类型错误或网络错误');

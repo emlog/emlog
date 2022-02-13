@@ -25,7 +25,7 @@ if (!defined('EMLOG_ROOT')) {
 								<?php topflg($value['top'], $value['sortop'], isset($sortid) ? $sortid : '') ?>
                                 <?php bloglist_sort($value['logid']) ?>
                             </h3>
-                            <summary class="loglist-content markdown"><?= $value['log_description'] ?></summary>
+                            <summary class="loglist-content markdown"><?= subContent($value['log_description'], 120, 1); ?></summary>
                             <div class="loglist-tag"><?php blog_tag($value['logid']) ?></div>
                         </div>
                         <hr class="list-line"/>
