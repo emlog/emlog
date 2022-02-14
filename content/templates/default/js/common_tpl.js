@@ -28,7 +28,6 @@ var myBlog = {
         $this.attr("data-action","zoom")
              .parent().attr("sourcesrc",sourceSrc)
              .removeAttr("href")
-             .parent("p").css("text-align","center")
       }
       $("#commentform").attr("onsubmit","return myBlog.comSubmitTip()")  // 评论提交在表单验证未通过的情况下是不能提交的
     },
