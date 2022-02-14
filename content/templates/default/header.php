@@ -20,6 +20,7 @@ require_once View::getView('module');
     <meta name="keywords" content="<?= $site_key ?>"/>
     <meta name="description" content="<?= $site_description ?>"/>
     <meta name="generator" content="emlog"/>
+    <base href="<?= BLOG_URL ?>" />
     <link rel="shortcut icon" href="<?= BLOG_URL ?>favicon.ico"/>
     <link rel="bookmark" href="<?= BLOG_URL ?>favicon.ico" type="image/x-icon" 　/>
     <link rel="alternate" title="RSS" href="<?= BLOG_URL ?>rss.php" type="application/rss+xml"/>
