@@ -132,7 +132,9 @@ var myBlog = {
      */
     captchaRefresh : function($t) {
       var timestamp   = new Date().getTime()
-      $t.attr("src", "./include/lib/checkcode.php?" + timestamp)
+      var blogUrl = $("base").attr("href")
+
+      $t.attr("src", blogUrl + "/include/lib/checkcode.php?" + timestamp)
     },
     /**
      * 图片在点击时，将略缩图转化为原图
@@ -271,7 +273,7 @@ var myBlog = {
 }
 
 /**
- * 监听
+ * 事件监听
  */
 $(document).ready(function(){
   myBlog.init()
@@ -297,7 +299,11 @@ $(document).ready(function(){
   }),
 
   $('#comment_submit[type="button"], #close-modal').click(function () {
-    myBlog.viewModal()
+    myBlog.comSubmitTip('judge')
+    if (myBlog.comSubmitTip()) {  // 在显示模态框前，先校验一下评论区内容
+      myBlog.viewModal()
+    }
+    
   }),
 
   $(".form-control").blur(function () {
