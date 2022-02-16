@@ -277,16 +277,15 @@ class Comment_Model {
 		$ipaddr = getIp();
 		$timestamp = time();
 
-		if ($pid != 0) {
+		if ($pid > 0) {
 			$comment = $this->getOneComment($pid);
 			$content = '@' . addslashes($comment['poster']) . '：' . $content;
 		}
 
-		$ischkcomment = Option::get('ischkcomment');
-		$hide = User::isVistor() ? $ischkcomment : 'n';
+		$hide = Option::get('ischkcomment') == 'y' && !User::isAdmin() ? 'y' : 'n';
 
 		$sql = 'INSERT INTO ' . DB_PREFIX . "comment (uid,date,poster,gid,comment,mail,url,hide,ip,pid)
-                VALUES ($uid, '$timestamp','$name','$blogId','$content','$mail','$url','$hide','$ipaddr','$pid')";
+                VALUES ($uid,'$timestamp','$name','$blogId','$content','$mail','$url','$hide','$ipaddr','$pid')";
 		$this->db->query($sql);
 		$cid = $this->db->insert_id();
 		$CACHE = Cache::getInstance();
