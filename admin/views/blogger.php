@@ -102,7 +102,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="bt btn-sm btn-secondary" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
                 <button type="button" id="crop" class="btn btn-sm btn-success">保存</button>
             </div>
         </div>
