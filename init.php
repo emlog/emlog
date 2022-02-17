@@ -30,7 +30,7 @@ date_default_timezone_set(Option::get('timezone'));
 
 //用户组
 const ROLE_ADMIN = 'admin';              //管理员
-const ROLE_WRITER = 'writer';            //用户
+const ROLE_WRITER = 'writer';            //注册用户
 const ROLE_VISITOR = 'visitor';          //游客
 
 //用户组

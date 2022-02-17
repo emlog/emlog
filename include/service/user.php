@@ -3,7 +3,7 @@
 class User {
 
 	const ROLE_ADMIN = 'admin';              //管理员
-	const ROLE_WRITER = 'writer';            //用户
+	const ROLE_WRITER = 'writer';            //注册用户
 	const ROLE_VISITOR = 'visitor';          //游客
 
 	static function isAdmin($role = ROLE) {
@@ -27,7 +27,7 @@ class User {
 				$role_name = $uid === 1 ? '创始人' : '管理员';
 				break;
 			case self::ROLE_WRITER:
-				$role_name = '用户';
+				$role_name = '注册用户';
 				break;
 			case self::ROLE_VISITOR:
 				$role_name = '游客';

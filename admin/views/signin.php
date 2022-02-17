@@ -41,11 +41,12 @@
                                         </div>
                                     </div>
                                     <button class="btn btn-primary btn-user btn-block" type="submit">登 录</button>
+                                    <hr>
                                     <?php if($is_signup): ?>
-                                    <a class="btn btn-success btn-user btn-block" type="button" href="./account.php?action=signup">注 册</a>
+                                        <div class="text-center mt-3"><a href="./account.php?action=signup">注册账号</a></div>
+                                        <hr>
                                     <?php endif ?>
                                     <div><?php doAction('login_ext') ?></div>
-                                    <hr>
                                     <div class="text-center"><a class="small" href="./account.php?action=reset">忘记密码?</a></div>
                                     <hr>
                                     <div class="text-center"><a href="../" class="small" role="button">&larr;返回首页</a></div>

@@ -20,11 +20,15 @@
         <form action="setting.php?action=user_save" method="post" name="input" id="input">
             <div class="form-group form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="is_signup" id="is_signup" <?= $conf_is_signup ?> />
-                <label>开启用户注册</label>
+                <label class="form-check-label">开启用户注册</label>
             </div>
             <div class="form-group form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="login_code" id="login_code" <?= $conf_login_code ?> >
                 <label class="form-check-label">开启登录注册验证码（提高安全性，建议开启）</label>
+            </div>
+            <div class="form-group form-check">
+                <input class="form-check-input" type="checkbox" value="y" name="ischkarticle" id="ischkarticle" <?= $conf_ischkarticle ?> />
+                <label class="form-check-label">注册用户发布文章需要审核</label>
             </div>
             <div class="form-group">
                 <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
@@ -32,7 +36,9 @@
             </div>
         </form>
         <div class="alert alert-warning">
-            用户注册后可以发布文章，但是需要管理员审核通过后才能在前台展示。<br>
+            <b>用户组</b><br>
+            注册用户：通过注册产生，可以发布文章、笔记、上传图片等<br>
+            管理员：拥有站点全部管理权限，可以管理用户、进行系统设置等<br>
         </div>
     </div>
 </div>

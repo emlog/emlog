@@ -392,6 +392,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('detect_url'
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('emkey','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('login_code','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('is_signup','y');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('ischkarticle','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('smtp_mail','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('smtp_pw','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('smtp_server','');
