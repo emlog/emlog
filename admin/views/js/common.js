@@ -424,8 +424,8 @@ function imgPasteExpand(thisEditor){
                     console.log('上传成功！正在获取结果...');
                     $.get(emMediaPhpUrl,function(data){  // 异步获取结果,追加到编辑器
                         console.log('获取结果成功！');
-                        imgUrl = data.match(/(?<=href\=\").*?(?=\"\s)/)[0];
-                        thumbImgUrl = data.match(/(?<=src\=\").*?(?=\")/)[0];
+                        imgUrl = data.match(/[a-zA-z]+:\/[^\s\"\']*/g)[0];
+                        thumbImgUrl = data.match(/[a-zA-z]+:\/[^\s\"\']*/g)[1];
                         replaceByNum(`[![](${imgUrl})](${thumbImgUrl})`,10);  // 这里的数字 10 对应着’上传中...100%‘是10个字符
                     })
             },
