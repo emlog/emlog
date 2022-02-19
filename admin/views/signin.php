@@ -41,11 +41,12 @@
                                         </div>
                                     </div>
 <!--vot-->                          <button class="btn btn-primary btn-user btn-block" type="submit"><?=lang('login')?></button>
+                                    <hr>
                                     <?php if($is_signup): ?>
-<!--vot-->                          <a class="btn btn-success btn-user btn-block" type="button" href="./account.php?action=signup"><?=lang('account_register')?></a>
+<!--vot-->                              <div class="text-center mt-3"><a href="./account.php?action=signup"><?=lang('account_register')?></a></div>
+                                        <hr>
                                     <?php endif ?>
                                     <div><?php doAction('login_ext') ?></div>
-                                    <hr>
 <!--vot-->                          <div class="text-center"><a class="small" href="./account.php?action=reset"><?=lang('password_forget')?></a></div>
                                     <hr>
 <!--vot-->                          <div class="text-center"><a href="../" class="small" role="button">&larr;<?=lang('back_home')?></a></div>

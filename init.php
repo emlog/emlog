@@ -30,7 +30,7 @@ date_default_timezone_set(Option::get('timezone'));
 
 //User Groups
 const ROLE_ADMIN = 'admin';              //Admin
-const ROLE_WRITER = 'writer';            //Writer
+const ROLE_WRITER = 'writer';            //Registered user
 const ROLE_VISITOR = 'visitor';          //Guest
 
 //User Role

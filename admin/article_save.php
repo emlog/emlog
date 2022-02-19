@@ -36,6 +36,9 @@ if (!empty($alias)) {
 	$alias = $Log_Model->checkAlias($alias, $logalias_cache, $blogid);
 }
 
+//管理员发文不审核,注册用户受开关控制
+$checked = Option::get('ischkarticle') == 'y' && !User::isAdmin() ? 'n' : 'y';
+
 $logData = array(
 	'title'        => $title,
 	'alias'        => $alias,
@@ -47,7 +50,7 @@ $logData = array(
 	'date'         => $postDate,
 	'allow_remark' => $allow_remark,
 	'hide'         => $ishide,
-	'checked'      => user::isAdmin() ? 'y' : 'n', //Admin posts are approved by default
+	'checked'      => $checked,
 	'password'     => $password
 );
 

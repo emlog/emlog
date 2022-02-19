@@ -424,8 +424,8 @@ function imgPasteExpand(thisEditor){
 /*vot*/             console.log(lang('upload_ok_get_result'));
                     $.get(emMediaPhpUrl,function(data){  // Get the result asynchronously, append to the editor
 /*vot*/                 console.log(lang('result_ok'));
-                        imgUrl = data.match(/(?<=href\=\").*?(?=\"\s)/)[0];
-                        thumbImgUrl = data.match(/(?<=src\=\").*?(?=\")/)[0];
+                        imgUrl = data.match(/[a-zA-z]+:\/[^\s\"\']*/g)[0];
+                        thumbImgUrl = data.match(/[a-zA-z]+:\/[^\s\"\']*/g)[1];
                         replaceByNum(`[![](${imgUrl})](${thumbImgUrl})`,10);  // The number 10 here corresponds to 'Uploading...100%' which is 10 characters
                     })
             },

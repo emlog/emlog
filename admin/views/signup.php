@@ -42,7 +42,7 @@
 									<?php endif ?>
 <!--vot-->                          <button class="btn btn-success btn-user btn-block" type="submit"><?=lang('register')?></button>
                                     <hr>
-<!--vot-->                          <div class="text-center"><a class="small" href="./admin"><?=lang('log_in')?></a></div>
+<!--vot-->         <!--vot-->       <div class="text-center"><a <!--href="./admin"><?=lang('log_in')?></a></div>
                                     <hr>
 <!--vot-->                          <div class="text-center"><a href="../" class="small" role="button">&larr;<?=lang('back_home')?></a></div>
                                 </form>

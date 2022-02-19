@@ -220,19 +220,19 @@ if ($action == 'mail_test') {
 }
 
 if ($action == 'user') {
-
 	$options_cache = $CACHE->readCache('options');
 /*vot*/	$is_signup = @$options_cache['is_signup'];
 /*vot*/	$login_code = @$options_cache['login_code'];
+	$ischkarticle = $options_cache['ischkarticle'];
 
 	$conf_is_signup = $is_signup == 'y' ? 'checked="checked"' : '';
 	$conf_login_code = $login_code == 'y' ? 'checked="checked"' : '';
+	$conf_ischkarticle = $ischkarticle == 'y' ? 'checked="checked"' : '';
 
 	include View::getAdmView('header');
 	require_once(View::getAdmView('setting_user'));
 	include View::getAdmView('footer');
 	View::output();
-
 }
 
 if ($action == 'user_save') {
@@ -240,6 +240,7 @@ if ($action == 'user_save') {
 	$data = [
 		'is_signup'  => isset($_POST['is_signup']) ? addslashes($_POST['is_signup']) : 'n',
 		'login_code' => isset($_POST['login_code']) ? addslashes($_POST['login_code']) : 'n',
+		'ischkarticle' => isset($_POST['ischkarticle']) ? addslashes($_POST['ischkarticle']) : 'n',
 	];
 	foreach ($data as $key => $val) {
 		Option::updateOption($key, $val);

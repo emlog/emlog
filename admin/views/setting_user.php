@@ -20,11 +20,15 @@
         <form action="setting.php?action=user_save" method="post" name="input" id="input">
             <div class="form-group form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="is_signup" id="is_signup" <?= $conf_is_signup ?> />
-<!--vot-->      <label><?=lang('registration_open')?></label>
+<!--vot-->      <label class="form-check-label"><?=lang('registration_open')?></label>
             </div>
             <div class="form-group form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="login_code" id="login_code" <?= $conf_login_code ?> >
 <!--vot-->      <label class="form-check-label"><?=lang('registration_captcha')?> <?=lang('registration_captcha_info')?></label>
+            </div>
+            <div class="form-group form-check">
+                <input class="form-check-input" type="checkbox" value="y" name="ischkarticle" id="ischkarticle" <?= $conf_ischkarticle ?> />
+                <label class="form-check-label">注册用户发布文章需要审核</label>
             </div>
             <div class="form-group">
                 <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
@@ -32,7 +36,7 @@
             </div>
         </form>
         <div class="alert alert-warning">
-<!--vot-->  <?=lang('groups_about')?><br>
+<!--vot-->  <?=lang('groups_about')?>
         </div>
     </div>
 </div>

@@ -3,7 +3,7 @@
 class User {
 
 	const ROLE_ADMIN = 'admin';              //Admin
-	const ROLE_WRITER = 'writer';            //Writer
+	const ROLE_WRITER = 'writer';            //Registered user
 	const ROLE_VISITOR = 'visitor';          //Guest
 
 	static function isAdmin($role = ROLE) {

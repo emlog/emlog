@@ -698,7 +698,7 @@ $lang = array(
 
 //---------------------------
 //admin/views/setting_user.php
- 'groups_about'		=> '用户注册后可以发布文章，但是需要管理员审核通过后才能在前台展示。',//'Users can publish articles after registration, but they need to be approved by the administrator before they can be displayed in the foreground.',
+ 'groups_about'		=> '<b>用户组</b><br>注册用户：通过注册产生，可以发布文章、笔记、上传图片等<br>管理员：拥有站点全部管理权限，可以管理用户、进行系统设置等<br>',//'<b>User Groups</b><br>Registered user: generated through registration, can publish articles, notes, upload pictures, etc.<br>Administrator: Has all site management rights, can manage users, perform system settings, etc.<br>',
 
 //---------------------------
 //admin/views/signin.php

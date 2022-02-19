@@ -183,7 +183,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-<!--vot-->      <button type="button" class="bt btn-sm btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
+<!--vot-->      <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
 <!--vot-->      <button type="button" id="crop" class="btn btn-sm btn-success"><?=lang('save')?></button>
             </div>
         </div>
