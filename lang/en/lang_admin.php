@@ -607,7 +607,7 @@ $lang = array(
  'enter_reg_code'	=> 'Enter the registration code',//'输入注册码',
  'register'		=> 'Register',//'注册',
  'email_format_error'	=> 'Email format error',//'错误的邮箱格式',
- 'email_in_use'		=> 'Email is already in use'//'该邮箱已被注册',
+ 'email_in_use'		=> 'Email is already in use',//'该邮箱已被注册',
  'password_short'	=> 'Password must not be less than 5 digits',//'密码不小于5位',
 
 //---------------------------

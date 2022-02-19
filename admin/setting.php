@@ -36,8 +36,8 @@ if (empty($action)) {
 		$ex4 = 'selected="selected"';
 	}
 
-/*vot*/	include EMLOG_ROOT.'/lang/'.EMLOG_LANGUAGE.'/lang_tz.php'; // Load Time Zone List
 //vot	$tzlist = array( .... // Moved to lang_tz.php
+/*vot*/	include EMLOG_ROOT.'/lang/'.EMLOG_LANGUAGE.'/lang_tz.php'; // Load Time Zone List
 
 	include View::getAdmView('header');
 	require_once(View::getAdmView('setting'));
@@ -223,7 +223,7 @@ if ($action == 'user') {
 	$options_cache = $CACHE->readCache('options');
 /*vot*/	$is_signup = @$options_cache['is_signup'];
 /*vot*/	$login_code = @$options_cache['login_code'];
-	$ischkarticle = $options_cache['ischkarticle'];
+/*vot*/	$ischkarticle = @$options_cache['ischkarticle'];
 
 	$conf_is_signup = $is_signup == 'y' ? 'checked="checked"' : '';
 	$conf_login_code = $login_code == 'y' ? 'checked="checked"' : '';
