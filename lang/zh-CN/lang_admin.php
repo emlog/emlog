@@ -69,7 +69,7 @@ $lang = array(
  'test_mail_subj'		=> '测试邮件',//'Test mail',
  'test_mail_body'		=> '这是一封测试邮件',//'This is a test email',
  'test_mail_failed'		=> '发送失败',//'Failed to send',
-                  
+
 //---------------------------
 //admin/setting_mail.php
  'email_sending'	=> '邮件发送',//'Email sending',
