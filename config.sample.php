@@ -1,7 +1,7 @@
 <?php
 header("location: ./install.php");exit;
 //mysql database address
-const DB_HOST = '127.0.0.1';
+const DB_HOST = '127.0.0.1';// or 'localhost'
 //mysql database user
 const DB_USER = 'root';
 //database password
@@ -14,5 +14,11 @@ const DB_PREFIX = 'emlog_';
 const AUTH_KEY = 'emlog-key';
 //cookie name
 const AUTH_COOKIE_NAME = 'emlog-cookie';
-//管理后台安全入口：/admin/account.php?action=signin&s=xxx （xxx只能是字母数字，不要包含特殊字符）
+//Management background security entry: /admin/account.php?action=signin&s=xxx (xxx can only be alphanumeric, do not contain special characters)
 //const ADMIN_PATH_CODE = 'xxx';
+
+//vot: blog language
+define('EMLOG_LANGUAGE','en'); //'en', 'ru', 'zh-CN', 'zh-TW', etc.
+
+//vot: blog language direction
+define('EMLOG_LANGUAGE_DIR','ltr'); //'ltr', 'rtl'

@@ -16,51 +16,51 @@ function em_confirm(id, property, token) {
     switch (property) {
         case 'tw':
             var urlreturn = "twitter.php?action=del&id=" + id;
-            var msg = "确定要删除该笔记吗？";
+/*vot*/     var msg = lang('twitter_del_sure');
             break;
         case 'comment':
             var urlreturn = "comment.php?action=del&id=" + id;
-            var msg = "确定要删除该评论吗？";
+/*vot*/     var msg = lang('comment_del_sure');
             break;
         case 'commentbyip':
             var urlreturn = "comment.php?action=delbyip&ip=" + id;
-            var msg = "确定要删除来自该IP的所有评论吗？";
+/*vot*/     var msg = lang('comment_ip_del_sure');
             break;
         case 'link':
             var urlreturn = "link.php?action=dellink&linkid=" + id;
-            var msg = "确定要删除该链接吗？";
+/*vot*/     var msg = lang('link_del_sure');
             break;
         case 'navi':
             var urlreturn = "navbar.php?action=del&id=" + id;
-            var msg = "确定要删除该导航吗？";
+/*vot*/     var msg = lang('navi_del_sure');
             break;
         case 'media':
             var urlreturn = "media.php?action=delete&aid=" + id;
-            var msg = "确定要删除该媒体文件吗？";
+/*vot*/     var msg = lang('attach_del_sure');
             break;
         case 'avatar':
             var urlreturn = "blogger.php?action=delicon";
-            var msg = "确定要删除头像吗？";
+/*vot*/     var msg = lang('avatar_del_sure');
             break;
         case 'sort':
             var urlreturn = "sort.php?action=del&sid=" + id;
-            var msg = "确定要删除该分类吗？";
+/*vot*/     var msg = lang('category_del_sure');
             break;
         case 'user':
             var urlreturn = "user.php?action=del&uid=" + id;
-            var msg = "确定要删除该用户吗？";
+/*vot*/     var msg = lang('user_del_sure');
             break;
         case 'tpl':
             var urlreturn = "template.php?action=del&tpl=" + id;
-            var msg = "确定要删除该模板吗？";
+/*vot*/     var msg = lang('template_del_sure');
             break;
         case 'reset_widget':
             var urlreturn = "widgets.php?action=reset";
-            var msg = "确定要恢复组件设置到初始状态吗？这样会丢失你自定义的组件。";
+/*vot*/     var msg = lang('plugin_reset_sure');
             break;
         case 'plu':
             var urlreturn = "plugin.php?action=del&plugin=" + id;
-            var msg = "确定要删除该插件吗？";
+/*vot*/     var msg = lang('plugin_del_sure');
             break;
     }
     if (confirm(msg)) {
@@ -114,7 +114,7 @@ function checkform() {
     var a = $.trim($("#alias").val());
     var t = $.trim($("#title").val());
 
-    if(typeof articleTextRecord !== "undefined"){  // 提交时，重置原文本记录值，防止出现离开提示
+    if(typeof articleTextRecord !== "undefined"){  // When submitting, reset the original text record value to prevent the leaving prompt from appearing
         articleTextRecord = $("textarea[name=logcontent]").text();
     }else{
         pageText = $("textarea").text();
@@ -122,7 +122,7 @@ function checkform() {
     if (0 == isalias(a)) {
         return true;
     } else {
-        alert("链接别名错误");
+/*vot*/ alert(lang('alias_link_error'));
         $("#alias").focus();
         return false;
     }
@@ -131,13 +131,13 @@ function checkform() {
 function checkalias() {
     var a = $.trim($("#alias").val());
     if (1 == isalias(a)) {
-        $("#alias_msg_hook").html('<span id="input_error">别名错误，应由字母、数字、下划线、短横线组成</span>');
+/*vot*/ $("#alias_msg_hook").html('<span id="input_error">'+lang('alias_invalid_chars')+'</span>');
     } else if (2 == isalias(a)) {
-        $("#alias_msg_hook").html('<span id="input_error">别名错误，不能为纯数字</span>');
+/*vot*/ $("#alias_msg_hook").html('<span id="input_error">'+lang('alias_digital')+'</span>');
     } else if (3 == isalias(a)) {
-        $("#alias_msg_hook").html('<span id="input_error">别名错误，不能为\'post\'或\'post-数字\'</span>');
+/*vot*/ $("#alias_msg_hook").html('<span id="input_error">'+lang('alias_format_must_be')+'</span>');
     } else if (4 == isalias(a)) {
-        $("#alias_msg_hook").html('<span id="input_error">别名错误，与系统链接冲突</span>');
+/*vot*/ $("#alias_msg_hook").html('<span id="input_error">'+lang('alias_system_conflict')+'</span>');
     } else {
         $("#alias_msg_hook").html('');
         $("#msg").html('');
@@ -162,7 +162,7 @@ function insert_conver(imgsrc) {
     $('#cover_rm').show();
 }
 
-// act: 1 auto save, 2 manual save：click save button to save,
+// act: 1 auto save, 2 manual save: click save button to save
 function autosave(act) {
     var nodeid = "as_logid";
     var timeout = 30000;
@@ -203,31 +203,31 @@ function autosave(act) {
         + "&ishide=" + ishide
         + "&as_logid=" + logid;
 
-    // 检查别名
+    // check alias
     if (alias != '' && 0 != isalias(alias)) {
-        $("#msg").show().html("链接别名错误，自动保存失败");
+/*vot*/ $("#msg").show().html(lang('alias_link_error_not_saved'));
         if (act == 0) {
             setTimeout("autosave(1)", timeout);
         }
         return;
     }
-    // 编辑发布状态的文章时不自动保存
+    // Do not automatically save when editing published article
     if (act == 1 && ishide == 'n') {
         return;
     }
-    // 内容为空时不自动保存
+    // Do not save automatically when the content is empty 
     if (act == 1 && content == "") {
         setTimeout("autosave(1)", timeout);
         return;
     }
-    // 距离上次保存成功时间小于一秒时不允许手动保存
+    // Manual saving is not allowed when the last successful save time is less than one second
     if((new Date().getTime() - Cookies.get('em_saveLastTime')) < 1000 && act != 1){
-        alert("请勿频繁操作！");
+/*vot*/ alert(lang('too_quick'));
         return;
     }
     var btname = $("#savedf").val();
-    $("#savedf").val("正在保存中...");
-    $('title').text('[保存中] ' + titleText);
+/*vot*/ $("#savedf").val(lang('saving'));
+/*vot*/ $('title').text(lang('saving_in') + titleText);
     $("#savedf").attr("disabled", "disabled");
     $.post(url, querystr, function (data) {
         data = $.trim(data);
@@ -240,16 +240,16 @@ function autosave(act) {
             var m = d.getMinutes();
             var s = d.getSeconds();
             var tm = (h < 10 ? "0" + h : h) + ":" + (m < 10 ? "0" + m : m) + ":" + (s < 10 ? "0" + s : s);
-            $("#save_info").html("保存于：" + tm);
-            $('title').text('[保存成功] ' + titleText);
-            articleTextRecord = $("textarea[name=logcontent]").text();  // 保存成功后，将原文本记录值替换为现在的文本
-            Cookies.set('em_saveLastTime',new Date().getTime());  // 把保存成功时间戳记录（或更新）到 cookie 中
+/*vot*/     $("#save_info").html(lang('saved_ok_time')+ tm);
+/*vot*/     $('title').text(lang('saved_ok') + titleText);
+/*vot*/     articleTextRecord = $("textarea[name=logcontent]").text();  // After the save is successful, replace the original text record value with the current text
+/*vot*/     Cookies.set('em_saveLastTime',new Date().getTime());  // Put (or update) the save success timestamp into a cookie
             $("#" + nodeid).val(logid);
             $("#savedf").attr("disabled", false).val(btname);
         } else {
             $("#savedf").attr("disabled", false).val(btname);
-            $("#msg").html("网络或系统出现异常...保存可能失败").addClass("alert-danger");
-            $('title').text('[保存失败] ' + titleText);
+/*vot*/     $("#msg").html(lang('save_system_error')).addClass("alert-danger");
+/*vot*/     $('title').text(lang('save_failed') + titleText);
         }
     });
     if (act == 1) {
@@ -268,22 +268,22 @@ $.fn.toggleClick = function () {
     });
 };
 
-// 过滤HTML标签
+// Filter HTML tags
 function removeHTMLTag(str) {
-    str = str.replace(/<\/?[^>]*>/g, ''); //去除HTML tag
-    str = str.replace(/[ | ]*\n/g, '\n'); //去除行尾空白
+/*vot*/ str = str.replace(/<\/?[^>]*>/g, ''); //Remove HTML tags
+/*vot*/ str = str.replace(/[ | ]*\n/g, '\n'); //Trim white spaces
     str = str.replace(/ /ig, '');
     return str;
 }
 
-// 表格全选
+// Select all forms
 $(function () {
     $('#checkAll').click(function (event) {
         let tr_checkbox = $('table tbody tr').find('input[type=checkbox]');
         tr_checkbox.prop('checked', $(this).prop('checked'));
         event.stopPropagation();
     });
-    // 点击表格每一行的checkbox，表格所有选中的checkbox数 = 表格行数时，则将表头的‘checkAll’单选框置为选中，否则置为未选中
+    // Click on the checkbox in each row of the table, and when the number of checkboxes selected in the table = the number of table rows, set the "checkAll" radio box in the header of the table to be selected, otherwise it is unselected
     $('table tbody tr').find('input[type=checkbox]').click(function (event) {
         let tbr = $('table tbody tr');
         $('#checkAll').prop('checked', tbr.find('input[type=checkbox]:checked').length == tbr.length ? true : false);
@@ -291,7 +291,7 @@ $(function () {
     });
 });
 
-// 卡片全选
+// Select all cards
 $(function () {
     $('#checkAllCard').click(function (event) {
         let card_checkbox = $('.card-body').find('input[type=checkbox]');
@@ -305,7 +305,7 @@ $(function () {
     });
 });
 
-// editor.md 的js钩子
+// editor.md js hook
 var queue = new Array();
 var hooks = {
     addAction: function (hook, func) {
@@ -326,13 +326,13 @@ var hooks = {
     }
 }
 
-// 粘贴上传图片函数
+// Paste upload image
 function imgPasteExpand(thisEditor){
-    var listenObj    = document.querySelector("textarea").parentNode  // 要监听的对象
-    var postUrl      = './media.php?action=upload';  // emlog 的图片上传地址
-    var emMediaPhpUrl= "./media.php?action=lib";  // emlog 的资源库地址,用于异步获取上传后的图片数据
+    var listenObj    = document.querySelector("textarea").parentNode  // Object to listen for
+    var postUrl      = './media.php?action=upload';  // emlog image upload address
+    var emMediaPhpUrl= "./media.php?action=lib";  // The resource library address of emlog, which is used to asynchronously obtain the uploaded image data
 
-    // 通过动态配置只读模式,阻止编辑器原有的粘贴动作发生,并恢复光标位置
+    // By dynamically configuring the read-only mode, the original paste action of the editor is prevented and the cursor position is restored
     function preventEditorPaste(){
         let l = thisEditor.getCursor().line;
         let c = thisEditor.getCursor().ch - 3;
@@ -341,7 +341,7 @@ function imgPasteExpand(thisEditor){
         thisEditor.config({ readOnly: false,});
         thisEditor.setCursor({line:l, ch:c});
 
-        let saveHotKey = {  // 编辑器的 bug , 界面刷新后会删除自定义的热键，所以要重新设置
+        let saveHotKey = {  // Editor bug , the custom hotkey will be deleted after the interface is refreshed, so it needs to be reset
             "Ctrl-S": function (cm) {
                 autosave(2);
             },
@@ -352,7 +352,7 @@ function imgPasteExpand(thisEditor){
         thisEditor.addKeyMap(saveHotKey);
     }
 
-    // 编辑器通过光标处位置前几位来替换文字
+    // The editor replaces the text by the first few digits of the cursor position
     function replaceByNum(text,num){
         let l = thisEditor.getCursor().line;
         let c = thisEditor.getCursor().ch;
@@ -361,15 +361,15 @@ function imgPasteExpand(thisEditor){
         thisEditor.replaceSelection(text);
     }
 
-    // 粘贴事件触发
+    // Paste event fires
     listenObj.addEventListener("paste", function (e) {
-        if ($('.editormd-dialog').css('display') == 'block') return;  // 如果编辑器有对话框则退出
+        if ($('.editormd-dialog').css('display') == 'block') return;  // Exit if editor has dialog
         if ( !(e.clipboardData && e.clipboardData.items) ) return;
 
-        var pasteData = e.clipboardData || window.clipboardData; // 获取剪切板里的全部内容
-        pasteAnalyseResult = new Array;  // 用于储存遍历分析后的结果
+        var pasteData = e.clipboardData || window.clipboardData; // Get the entire contents of the clipboard
+        pasteAnalyseResult = new Array;  // Used to store the results of traversal analysis
 
-        for(var i = 0; i < pasteData.items.length; i++) {  // 遍历分析剪切板里的数据
+        for(var i = 0; i < pasteData.items.length; i++) {  // Traverse the data in the analysis clipboard
             var item = pasteData.items[i];
 
             if((item.kind == "file") && (item.type.match('^image/'))){
@@ -377,24 +377,24 @@ function imgPasteExpand(thisEditor){
                 if (imgData.size === 0) return;
                 pasteAnalyseResult['type'] = 'img';
                 pasteAnalyseResult['data'] = imgData;
-                break;  // 当粘贴板中有图片存在时,跳出循环
+                break;  // When there is a picture in the pasteboard, jump out of the loop
             };
         }
 
-        if(pasteAnalyseResult['type'] == 'img') {  // 如果剪切板中有图片,上传图片
+        if(pasteAnalyseResult['type'] == 'img') {  // If there is a picture in the clipboard, upload the picture
             preventEditorPaste();
             uploadImg(pasteAnalyseResult['data']);
             return;
         } 
     }, false);
 
-    // 上传图片
+    // Upload image
     function uploadImg(img){
         var formData = new FormData();
-        var imgName="粘贴上传"+new Date().getTime()+"."+img.name.split(".").pop();
+/*vot*/ var imgName=lang('paste_upload')+new Date().getTime()+"."+img.name.split(".").pop();
 
         formData.append('file', img, imgName);
-        thisEditor.insertValue("上传中...");
+/*vot*/ thisEditor.insertValue(lang('uploading'));
         $.ajax({
             url: postUrl,
             type: 'post',
@@ -405,8 +405,8 @@ function imgPasteExpand(thisEditor){
                 var xhr = $.ajaxSettings.xhr();
                 if (xhr.upload) {
                     thisEditor.insertValue("....");
-                    xhr.upload.addEventListener('progress', function(e) {  // 用以显示上传进度  
-                        console.log('进度(byte)：' + e.loaded + ' / ' + e.total);
+                    xhr.upload.addEventListener('progress', function(e) {  // Show upload progress
+/*vot*/                 console.log(lang('progress') + e.loaded + ' / ' + e.total);
                         let percent = Math.floor(e.loaded / e.total * 100);
                         if(percent < 10){
                             replaceByNum('..'+percent+'%',4);
@@ -421,22 +421,22 @@ function imgPasteExpand(thisEditor){
             },
             success:function(result){
                     let imgUrl, thumbImgUrl;
-                    console.log('上传成功！正在获取结果...');
-                    $.get(emMediaPhpUrl,function(data){  // 异步获取结果,追加到编辑器
-                        console.log('获取结果成功！');
+/*vot*/             console.log(lang('upload_ok_get_result'));
+                    $.get(emMediaPhpUrl,function(data){  // Get the result asynchronously, append to the editor
+/*vot*/                 console.log(lang('result_ok'));
                         imgUrl = data.match(/(?<=href\=\").*?(?=\"\s)/)[0];
                         thumbImgUrl = data.match(/(?<=src\=\").*?(?=\")/)[0];
-                        replaceByNum(`[![](${imgUrl})](${thumbImgUrl})`,10);  // 这里的数字 10 对应着’上传中...100%‘是10个字符
+                        replaceByNum(`[![](${imgUrl})](${thumbImgUrl})`,10);  // The number 10 here corresponds to 'Uploading...100%' which is 10 characters
                     })
             },
             error:function(result){
-                alert('上传失败,图片类型错误或网络错误');
-                replaceByNum('上传失败,图片类型错误或网络错误',6);
+/*vot*/         alert(lang('upload_failed_error'));
+/*vot*/         replaceByNum(lang('upload_failed_error'),6);
             }
         })
     }
 }
 
-// 把粘贴上传图片函数，挂载到位于文章编辑器、页面编辑器处的 js 钩子处
+// Attach the paste upload image function to the js hook located in the article editor and page editor
 hooks.addAction("loaded", imgPasteExpand);
 hooks.addAction("page_loaded", imgPasteExpand);
