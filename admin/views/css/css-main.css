@@ -576,7 +576,7 @@ textarea {
     padding: 13px 17.5px 7px 17.5px
 }
 
-/* 邮件测试发送的提示 */
+/* Tips for Email Test Sending */
 #testMailMsg {
     position: absolute;
     width: calc(100% - 135px);

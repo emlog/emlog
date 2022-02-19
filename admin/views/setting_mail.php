@@ -38,33 +38,28 @@
             <div class="form-group">
                 <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
 <!--vot-->  <input type="submit" value="<?=lang('save_settings')?>" class="btn btn-sm btn-success"/>
-                <input type="button" value="发送测试" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#testMail"/>
+<!--vot-->      <input type="button" value="<?=lang('send_test')?>" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#testMail"/>
             </div>
             <div class="alert alert-warning">
-                <b>以QQ邮箱配置为例</b><br>
-                发送人邮箱：你的QQ邮箱<br>
-                SMTP密码：见QQ邮箱顶部设置-> 账户 -> 开启IMAP/SMTP服务 -> 生成授权码（即为SMTP密码）<br>
-                SMTP服务器：smtp.qq.com<br>
-                端口：465 (只支持 SSL 端口)
-                <br>
+<!--vot-->      <?=lang('send_test_prompt')?>
             </div>
-            <!-- 设置接收邮箱的模态框 -->
+            <!-- Set the modal box for receiving mailboxes -->
             <div class="modal fade" id="testMail">
                 <div class="modal-dialog modal-sm">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title">发送测试</h4>
+<!--vot-->                  <h4 class="modal-title"><?=lang('send_test')?></h4>
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
                         <div class="modal-body">
                             <div class="form-group">
-                                <input class="form-control" type="email" name="testTo" placeholder="输入接收邮箱">
+<!--vot-->                      <input class="form-control" type="email" name="testTo" placeholder="<?=lang('recepient_email_enter')?>">
                             </div>
                         </div>
                         <div class="modal-footer">
                             <div id="testMailMsg"></div>
-                            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">关闭</button>
-                            <button type="button" class="btn btn-success btn-sm" id="testSendBtn">发送</button>
+<!--vot-->                  <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal"><?=lang('close')?></button>
+<!--vot-->                  <button type="button" class="btn btn-success btn-sm" id="testSendBtn"><?=lang('send')?></button>
                         </div>
                     </div>
                 </div>
@@ -79,11 +74,11 @@
     setTimeout(hideActived, 2600);
 
     $("#testSendBtn").click(function () {
-        $("#testMailMsg").html("<small class='text-secondary'>发送中...<small>");
+/*vot*/ $("#testMailMsg").html("<small class='text-secondary'><?=lang('sending')?>...<small>");
 
         $.post("setting.php?action=mail_test", $("#mail_config").serialize(), function (data) {
             if (data == '') {
-                $("#testMailMsg").html("<small class='text-success'>发送成功</small>");
+/*vot*/         $("#testMailMsg").html("<small class='text-success'><?=lang('send_ok')?></small>");
             } else {
                 $("#testMailMsg").html(data);
             }

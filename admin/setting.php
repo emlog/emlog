@@ -71,7 +71,7 @@ if ($action == 'save') {
 		'att_type'            => isset($_POST['att_type']) ? str_replace('php', 'x', strtolower(addslashes($_POST['att_type']))) : '',
 		'att_imgmaxw'         => isset($_POST['att_imgmaxw']) ? (int)$_POST['att_imgmaxw'] : 420,
 		'att_imgmaxh'         => isset($_POST['att_imgmaxh']) ? (int)$_POST['att_imgmaxh'] : 460,
-		'detect_url'          => isset($_POST['detect_url']) ? addslashes($_POST['detect_url']) : 'n', // Automatically detect site URL
+/*vot*/		'detect_url'          => isset($_POST['detect_url']) ? addslashes($_POST['detect_url']) : 'n', // Automatically detect site URL
 	];
 
 	if ($getData['login_code'] == 'y' && !function_exists("imagecreate") && !function_exists('imagepng')) {
@@ -194,27 +194,27 @@ if ($action == 'mail_test') {
 	];
 
 	if (empty($data["testTo"])) {
-		exit("<small class='text-info'>请填写邮箱</small>");
+/*vot*/		exit("<small class='text-info'>" . lang('email_enter_please') . "</small>");
 	}
 
 	$mail = new PHPMailer(true);
-	$mail->IsSMTP();                                       // SMTP 使用smtp鉴权方式发送邮件
-	$mail->CharSet = 'UTF-8';                              // 字符编码
-	$mail->SMTPAuth = true;                                // 开启认证
-	$mail->SMTPSecure = 'ssl';                             // 设置使用 ssl 加密方式登录鉴权
-	$mail->Port = $data["smtp_port"];                      // 端口
-	$mail->Host = $data["smtp_server"];                    // STMP 服务器地址
-	$mail->Username = $data["smtp_mail"];                  // 邮箱账号
-	$mail->Password = $data["smtp_pw"];                    // SMTP 授权码
-	$mail->From = $data["smtp_mail"];                      // 发送方
-	$mail->AddAddress($data["testTo"]);                    // 接收方
-	$mail->Subject = "测试邮件";
-	$mail->Body = "这是一封测试邮件";
+	$mail->IsSMTP();                                       // Use SMTP authentication to send mail
+	$mail->CharSet = 'UTF-8';                              // Character Encoding
+	$mail->SMTPAuth = true;                                // Enable authentication
+	$mail->SMTPSecure = 'ssl';                             // Set up login authentication using ssl encryption
+	$mail->Port = $data["smtp_port"];                      // SMTP Port
+	$mail->Host = $data["smtp_server"];                    // STMP server address
+	$mail->Username = $data["smtp_mail"];                  // Email address
+	$mail->Password = $data["smtp_pw"];                    // SMTP authorization password
+	$mail->From = $data["smtp_mail"];                      // Sender Email
+	$mail->AddAddress($data["testTo"]);                    // Recipient Email
+	$mail->Subject = lang('test_mail_subj');
+	$mail->Body = lang('test_mail_body');
 
 	try {
 		return $mail->Send();
 	} catch (Exception $exc) {
-		exit("<small class='text-danger'>发送失败</small>");
+/*vot*/		exit("<small class='text-danger'>" . lang('test_mail_failed') . "</small>");
 		return false;
 	}
 }

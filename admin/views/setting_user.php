@@ -28,7 +28,7 @@
             </div>
             <div class="form-group form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="ischkarticle" id="ischkarticle" <?= $conf_ischkarticle ?> />
-                <label class="form-check-label">注册用户发布文章需要审核</label>
+<!--vot-->      <label class="form-check-label"><?=lang('writer_need_approve')?></label>
             </div>
             <div class="form-group">
                 <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>

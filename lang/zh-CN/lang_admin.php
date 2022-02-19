@@ -65,6 +65,10 @@ $lang = array(
  'verification_code_not_supported'	=> '开启登录验证码失败!服务器空间不支持GD图形库',//'Failed to open the login verification code! The server space does not support the GD graphics library',
  'verification_code_comment_not_supported'	=> '开启评论验证码失败!服务器空间不支持GD图形库',//'Failed to open comment verification code! Server space does not support GD graphics library',
  'detect_url'			=> '自动检测站点地址 (可能和部分CDN解决方案不兼容)',//'Automatic detection of site address (may be incompatible with some CDN solutions)',
+ 'email_enter_please'		=> '请填写邮箱',//'Please enter your email',
+ 'test_mail_subj'		=> '测试邮件',//'Test mail',
+ 'test_mail_body'		=> '这是一封测试邮件',//'This is a test email',
+ 'test_mail_failed'		=> '发送失败',//'Failed to send',
                   
 //---------------------------
 //admin/setting_mail.php
@@ -73,6 +77,10 @@ $lang = array(
  'smtp_password'	=> 'SMTP密码',//'SMTP password',
  'smtp_server'		=> 'SMTP服务器',//'SMTP server',
  'smtp_port'		=> '端口',//'Port',
+ 'send_test'		=> '发送测试',//'Send test',
+ 'send_test_prompt'	=> '<b>以QQ邮箱配置为例</b><br>发送人邮箱：你的QQ邮箱<br>SMTP密码：见QQ邮箱顶部设置-> 账户 -> 开启IMAP/SMTP服务 -> 生成授权码（即为SMTP密码）<br>SMTP服务器：smtp.qq.com<br>端口：465 (只支持 SSL 端口)<br>',//'<b>Let take QQ mailbox configuration as an example</b><br>Sender mailbox: your QQ mailbox<br>SMTP password: see the settings at the top of QQ mailbox -&gt; Account -&gt; Enable IMAP/SMTP service -&gt; Generate authorization code (i.e. SMTP password)<br>SMTP server: smtp.qq.com<br>Port: 465 (only SSL port is supported)<br>',
+ 'recepient_email_enter'	=> '输入接收邮箱',//'Enter recepient email',
+ 'send'			=> '发送',//'Send',
 
 //---------------------------
 //admin/setting_user.php
@@ -83,6 +91,9 @@ $lang = array(
  'user_rights'		=> '用户权限',//'User rights',
  'comment_write'	=> '发布评论',//'Post comments',
  'guest_rights'		=> '游客权限',//'Visitor permissions',
+ 'writer_need_approve'	=> '注册用户发布文章需要审核',//'Articles published by registered users need to be reviewed',
+ 'sending'		=> '发送中',//'Sending',
+ 'send_ok'		=> '发送成功',//'Sent successfully',
  
 //---------------------------
 //admin/store.php
@@ -397,7 +408,7 @@ $lang = array(
  'pending_requests'	=> 'Pending Requests',
  'emlog_official'	=> '采用emlog系统',//'Emlog official site',
  'logout_sure'		=> 'Ready to Leave?',
- 'close'		=> 'Close',
+ 'close'		=> '关闭',//'Close',
  'logout_prompt'	=> 'Select "Logout" below if you are ready to end your current session.',
  'system'		=> '系统',//'System',
  'cancel'			=> '取消',//'Cancel',
