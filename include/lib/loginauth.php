@@ -93,6 +93,12 @@ class LoginAuth {
 		$userData['password'] = $ret['password'];
 		$userData['uid'] = $ret['uid'];
 		$userData['role'] = $ret['role'];
+		$userData['photo'] = $ret['photo'];
+		$userData['email'] = $ret['email'];
+		$userData['description'] = $ret['description'];
+		$userData['ip'] = $ret['ip'];
+		$userData['create_time'] = $ret['create_time'];
+		$userData['update_time'] = $ret['update_time'];
 		return $userData;
 	}
 

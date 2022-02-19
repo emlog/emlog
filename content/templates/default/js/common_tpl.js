@@ -1,7 +1,7 @@
 "use strict"
 
 /**
- * jquery animation extension. First accelerate to 50%, then decelerate to zero
+ * jqurey添加动画扩展。先加速度至配速的50%，再减速到零
  */
  jQuery.extend( jQuery.easing,
 {
@@ -13,15 +13,15 @@
 
 var myBlog = {
     /**
-     * Initialization
+     * 初始化
      */
     init : function(){
-      this.tocAnalyse()  // TOC catalog generation
-      if ($("#comment-info").length == 0) {  // Large screen login status, the bottom two corners of the comment box are rounded 
+      this.tocAnalyse()  // toc目录生成
+      if ($("#comment-info").length == 0) {  // 大屏幕登录状态，评论框下两角变圆角 
         $(".commentform #comment").css("height","140px")
                                   .css('border-radius', '10px')
       }
-      for(let num = 0;num < $(".markdown img").length;num++){  // Add the function of viewing the large image in the text (by default, the link in the parent tag <a> of the image is the original address of the image)
+      for(let num = 0;num < $(".markdown img").length;num++){  // 为正文中的图片添加查看大图（默认认为图片父标签<a>中的链接是图片原地址）
         let $this     = $(".markdown img:eq("+ num +")")
         let sourceSrc = $(".markdown img:eq("+ num +")").parent().attr('href')
 
@@ -29,10 +29,10 @@ var myBlog = {
              .parent().attr("sourcesrc",sourceSrc)
              .removeAttr("href")
       }
-      $("#commentform").attr("onsubmit","return myBlog.comSubmitTip()")  // Comment submission cannot be submitted if the form verification fails
+      $("#commentform").attr("onsubmit","return myBlog.comSubmitTip()")  // 评论提交在表单验证未通过的情况下是不能提交的
     },
     /**
-     * Reply
+     * 回复
      */
     comReply : function($t) {
       var $ele,getpid,$com_board
@@ -46,7 +46,7 @@ var myBlog = {
       $("#comment-place").toggleClass("com-bottom")
     },
     /**
-     * Cancel reply
+     * 取消回复
      */
     cancelReply : function($t) {
       $("#comment-pid").attr("value","0")
@@ -55,7 +55,7 @@ var myBlog = {
                          .toggleClass("com-bottom")
     },
     /**
-     * Click on the mobile phone to expand the navigation button
+     * 手机点击展开导航按钮
      */
     navToggle : function($t) {
       var time,effect,$navbar,$nav_c,nav_height
@@ -69,13 +69,13 @@ var myBlog = {
       $navbar.slideToggle(time,effect)
     },
     /**
-     * Locate the position of the navigation drop-down box in the large screen state
+     * 定位大屏状态下的导航下拉框位置
      */
     calMargin : function($t) {
       if (window.outerWidth < 992) return
       var $childMenu,menuWidth,count
 
-      menuWidth     = 135  // The width of the sub-navigation drop-down box on the big screen (px), can be modified as needed
+      menuWidth     = 135  // 大屏幕端的子导航下拉框宽度(px)，可根据需要修改
       count         = ($t.outerWidth() - menuWidth)/2 + "px"
       $childMenu    = $t.siblings('.dropdown-menus')
 
@@ -83,7 +83,7 @@ var myBlog = {
                 .css("margin-left",count)
     },
     /**
-     * Validation of the form before submitting the comment
+     * 提交评论前对表单的验证
      */
     comTip        : '',
     comSubmitTip  : function(value) {
@@ -98,11 +98,11 @@ var myBlog = {
         let url        = $('#info_u').val()
 
         if(isCn == 'y' && !cnReg.test(comContent)){
-/*vot*/   this.comTip = lang('chinese_must_have')
+          this.comTip = "评论内容需要包含中文！"
         }else if(typeof mail !== "undefined" && mail != '' && !mailReg.test(mail)){
-/*vot*/   this.comTip = lang('email_invalid')
+          this.comTip = "邮箱格式错误！"
         }else if(typeof url !== "undefined" && url != '' && !urlReg.test(url)){
-/*vot*/   this.comTip = lang('url_invalid')
+          this.comTip = "网址格式错误！"
         }else {
           this.comTip = ''
         }
@@ -116,7 +116,7 @@ var myBlog = {
       }
     },
     /**
-     * Show (hide) the verification code modal window
+     * 显示(隐藏)验证码模态窗
      */
     viewModal : function() {
       var $modal,$lock
@@ -128,14 +128,16 @@ var myBlog = {
       $("input[name='imgcode']").attr("autocomplete","off")
     },
     /**
-     * Click Refresh verification code
+     * 点击刷新验证码
      */
     captchaRefresh : function($t) {
       var timestamp   = new Date().getTime()
-      $t.attr("src", "./include/lib/checkcode.php?" + timestamp)
+      var blogUrl = $("base").attr("href")
+
+      $t.attr("src", blogUrl + "/include/lib/checkcode.php?" + timestamp)
     },
     /**
-     * When the image is clicked, the thumbnail will be converted to the original image
+     * 图片在点击时，将略缩图转化为原图
      */
     toggleImgSrc : function($t) {
       $t.addClass('zoomFocus')
@@ -143,19 +145,19 @@ var myBlog = {
       $t.attr('src',$t.parent().attr('sourcesrc'))
     },
     /**
-     * toc analysis
+     * toc 分析
      * 
-     * Enable toc directory method: write '[toc]' or'<!--[toc]-->' at the beginning of the article, preferably on a single line
+     * 启用toc目录方式: 在文章最开头写上'[toc]'或者'<!--[toc]-->',最好是单独一行
      */
-    tocFlag     : /\[toc\]/gi,  // Regular expression to determine whether toc is declared
-    tocArray    : new Array(),  // Array to store toc
+    tocFlag     : /\[toc\]/gi,  // 判断toc是否声明的正则表达式
+    tocArray    : new Array(),  // 储存toc的数组
     tocAnalyse  : function() {
       var tocFlag   = document.querySelector("#emlogEchoLog p")
 
-      if ($("#emlogEchoLog").length == 0) return  // Not reading the page, Exit
-      if (!this.tocFlag.test($('#emlogEchoLog').html().substring(0,30))) return  // No toc tag declared, Exit
-      tocFlag.innerHTML = tocFlag.innerHTML.replace(this.tocFlag,"")  // Remove toc statement
-      if (window.outerWidth < 1275)       return  // The screen is smaller than 1275px exit
+      if ($("#emlogEchoLog").length == 0) return  // 不在阅读页面  退出
+      if (!this.tocFlag.test($('#emlogEchoLog').html().substring(0,30))) return  // 未声明toc标签  退出
+      tocFlag.innerHTML = tocFlag.innerHTML.replace(this.tocFlag,"")  // 去除toc声明
+      if (window.outerWidth < 1275)       return  // 屏幕小于 1275px  退出
 
       var $logCon   = $(".log-con")
       var logConMar = parseInt($logCon.css("margin-left"))
@@ -163,13 +165,13 @@ var myBlog = {
       var arr       = this.tocArray
 
       if($titles.length > 0){
-        $logCon.css("margin-left",logConMar + 150 + 'px')  // The text of the article is offset 150px to the right
+        $logCon.css("margin-left",logConMar + 150 + 'px')  // 文章正文向右偏移150px
       }else{
-        return  // No title found (h tag), Exit
+        return  // 未发现标题（h标签） 退出
       }
       
       $titles.attr("toc-date","title")
-      for(var i = 0 ;i < $titles.length;i++){  // Store the label data in the array one by one
+      for(var i = 0 ;i < $titles.length;i++){  // 将标签数据依次存入数组
         let $tit      = $("#emlogEchoLog [toc-date='title']:eq("+ i +")")
         arr[i]        = new Array()
 
@@ -182,7 +184,7 @@ var myBlog = {
       this.tocRender()
     },
     /**
-     * toc directory rendering
+     * toc 目录渲染
      */ 
     tocRender : function()  {
       var tocHtml = ''
@@ -196,7 +198,7 @@ var myBlog = {
       for (var i =0;i < data.length; i++){
         if(data[i]['type'] < minType) minType = data[i]['type']
       }
-      tocHtml = tocHtml + '<div class="toc-con" style="left:'+ padNum +'px" id="toc-con">'   // Rendering
+      tocHtml = tocHtml + '<div class="toc-con" style="left:'+ padNum +'px" id="toc-con">'   // 渲染
       tocHtml = tocHtml + '<div style="height:calc(100vh - 70px);overflow-y:scroll;" ><lu>'
       for(var i = 0 ;i < data.length ; i++) {
         let k         = minType
@@ -220,7 +222,7 @@ var myBlog = {
       tocHtml = tocHtml + '</lu></div></div>'
       $logcon.before(tocHtml)
 
-      for(var i = 0 ;i < data.length ; i++) {  // Add listening events in batches
+      for(var i = 0 ;i < data.length ; i++) {  // 批量添加监听事件
         let tempPos = data[i]["pos"]
         $('#to' + i).bind("click",function(){
           window.onscroll = function(){tocSetPos()} 
@@ -230,7 +232,7 @@ var myBlog = {
           })
         })
       }
-      function tocSetPos() {  // Determine location and set positioning style
+      function tocSetPos() {  // 判断位置和设置定位样式
         if (document.documentElement.scrollTop > 200) {
           $("#toc-con").css("position","fixed")
                        .css("top","0px")
@@ -239,7 +241,7 @@ var myBlog = {
                        .css("top","200px")
         }
       }
-      function tocGetPos() {  // Get the position and change the color of the specified title
+      function tocGetPos() {  // 获取位置并改变指定标题颜色
         let $tempItem
         $('#toc-con li').css('color','unset').attr('isRed','n')
         for(var i = 0;i < data.length;i++) {
@@ -251,7 +253,7 @@ var myBlog = {
         let redScreenPos = $("li[isred='y']").offset().top - document.documentElement.scrollTop
         let tocHeight    = $("#toc-con div").outerHeight()
         let tocPos       = $("#toc-con div").scrollTop()
-        if(redScreenPos > tocHeight){  // Adjust the position of the toc scroll bar according to the reading position of the article
+        if(redScreenPos > tocHeight){  // 根据文章阅读位置来调整 toc 滚动条位置
           $("#toc-con div").scrollTop($("li[isred='y']").offset().top - tocHeight)
         }else if(redScreenPos < 0){
           $("#toc-con div").scrollTop(tocPos + redScreenPos - (tocHeight/2))
@@ -261,8 +263,8 @@ var myBlog = {
         }
       }
       tocSetPos()
-      window.onscroll = function(){tocSetPos();tocGetPos()}  // Wheel event
-      $('#toc-con div').mouseover(function(){  // Adjust the wheel event according to the mouse position
+      window.onscroll = function(){tocSetPos();tocGetPos()}  // 滚轮事件
+      $('#toc-con div').mouseover(function(){  // 根据鼠标位置来调整滚轮事件
         window.onscroll = function(){tocSetPos()} 
       }).mouseout(function(){
         window.onscroll = function(){tocSetPos();tocGetPos()} 
@@ -271,7 +273,7 @@ var myBlog = {
 }
 
 /**
- * Monitor
+ * 事件监听
  */
 $(document).ready(function(){
   myBlog.init()
@@ -297,7 +299,11 @@ $(document).ready(function(){
   }),
 
   $('#comment_submit[type="button"], #close-modal').click(function () {
-    myBlog.viewModal()
+    myBlog.comSubmitTip('judge')
+    if (myBlog.comSubmitTip()) {  // 在显示模态框前，先校验一下评论区内容
+      myBlog.viewModal()
+    }
+    
   }),
 
   $(".form-control").blur(function () {

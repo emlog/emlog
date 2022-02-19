@@ -45,7 +45,7 @@
                 发送人邮箱：你的QQ邮箱<br>
                 SMTP密码：见QQ邮箱顶部设置-> 账户 -> 开启IMAP/SMTP服务 -> 生成授权码（即为SMTP密码）<br>
                 SMTP服务器：smtp.qq.com<br>
-                端口：465
+                端口：465 (只支持 SSL 端口)
                 <br>
             </div>
             <!-- 设置接收邮箱的模态框 -->
@@ -62,7 +62,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <div style="width: 154px;" id="testMailMsg"></div>
+                            <div id="testMailMsg"></div>
                             <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">关闭</button>
                             <button type="button" class="btn btn-success btn-sm" id="testSendBtn">发送</button>
                         </div>

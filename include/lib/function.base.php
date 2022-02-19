@@ -764,12 +764,12 @@ function emFetchFile($source) {
 	$temp_file = tempnam(EMLOG_ROOT . '/content/cache/', 'emtemp_');
 	$wh = fopen($temp_file, 'w+b');
 
-	$data = http_build_query(array ('emkey' => Option::get('emkey')));
+	$data = http_build_query(array('emkey' => Option::get('emkey')));
 	$ctx_opt = [
 		'http' => [
 			'timeout' => 60,
-			'method' => 'POST',
-			'header'=> "Content-type: application/x-www-form-urlencoded\r\n"
+			'method'  => 'POST',
+			'header'  => "Content-type: application/x-www-form-urlencoded\r\n"
 				. "Content-Length: " . strlen($data) . "\r\n",
 			'content' => $data
 		]
@@ -891,12 +891,12 @@ EOT;
 }
 
 function show_404_page($show_404_only = false) {
-	if (is_file(TEMPLATE_PATH . '404.php')) {
+	if ($show_404_only) {
+		header("HTTP/1.1 404 Not Found");
+		exit;
+	} elseif (is_file(TEMPLATE_PATH . '404.php')) {
 		header("HTTP/1.1 404 Not Found");
 		include View::getView('404');
-		exit;
-	} elseif ($show_404_only) {
-		header("HTTP/1.1 404 Not Found");
 		exit;
 	} else {
 		emMsg('404', BLOG_URL);
