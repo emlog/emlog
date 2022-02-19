@@ -262,7 +262,7 @@ function blog_navi() {
 				if ($value['pid'] != 0) {
 					continue;
 				}
-				if ($value['url'] == 'admin' && (User::isAdmin())):
+				if ($value['url'] == 'admin' && (!User::isVistor())):
 					?>
 <!--vot-->          <li class="list-item list-menu"><a href="<?= BLOG_URL ?>admin/" class="nav-link"><?=lang('site_management')?></a></li>
 <!--vot-->          <li class="list-item list-menu"><a href="<?= BLOG_URL ?>admin/account.php?action=logout" class="nav-link"><?=lang('logout')?></a></li>

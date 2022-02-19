@@ -184,6 +184,41 @@ if ($action == 'mail_save') {
 	header('Location: ./setting.php?action=mail&activated=1');
 }
 
+if ($action == 'mail_test') {
+	$data = [
+		'smtp_mail'   => isset($_POST['smtp_mail']) ? addslashes($_POST['smtp_mail']) : '',
+		'smtp_pw'     => isset($_POST['smtp_pw']) ? addslashes($_POST['smtp_pw']) : '',
+		'smtp_server' => isset($_POST['smtp_server']) ? addslashes($_POST['smtp_server']) : '',
+		'smtp_port'   => isset($_POST['smtp_port']) ? (int)$_POST['smtp_port'] : '',
+		'testTo'      => $_POST['testTo'] ?? '',
+	];
+
+	if (empty($data["testTo"])) {
+		exit("<small class='text-info'>请填写邮箱</small>");
+	}
+
+	$mail = new PHPMailer(true);
+	$mail->IsSMTP();                                       // SMTP 使用smtp鉴权方式发送邮件
+	$mail->CharSet = 'UTF-8';                              // 字符编码
+	$mail->SMTPAuth = true;                                // 开启认证
+	$mail->SMTPSecure = 'ssl';                             // 设置使用 ssl 加密方式登录鉴权
+	$mail->Port = $data["smtp_port"];                      // 端口
+	$mail->Host = $data["smtp_server"];                    // STMP 服务器地址
+	$mail->Username = $data["smtp_mail"];                  // 邮箱账号
+	$mail->Password = $data["smtp_pw"];                    // SMTP 授权码
+	$mail->From = $data["smtp_mail"];                      // 发送方
+	$mail->AddAddress($data["testTo"]);                    // 接收方
+	$mail->Subject = "测试邮件";
+	$mail->Body = "这是一封测试邮件";
+
+	try {
+		return $mail->Send();
+	} catch (Exception $exc) {
+		exit("<small class='text-danger'>发送失败</small>");
+		return false;
+	}
+}
+
 if ($action == 'user') {
 
 	$options_cache = $CACHE->readCache('options');
@@ -203,8 +238,8 @@ if ($action == 'user') {
 if ($action == 'user_save') {
 	LoginAuth::checkToken();
 	$data = [
-		'is_signup'         => isset($_POST['is_signup']) ? addslashes($_POST['is_signup']) : 'n',
-		'login_code'        => isset($_POST['login_code']) ? addslashes($_POST['login_code']) : 'n',
+		'is_signup'  => isset($_POST['is_signup']) ? addslashes($_POST['is_signup']) : 'n',
+		'login_code' => isset($_POST['login_code']) ? addslashes($_POST['login_code']) : 'n',
 	];
 	foreach ($data as $key => $val) {
 		Option::updateOption($key, $val);
