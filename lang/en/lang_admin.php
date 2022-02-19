@@ -71,8 +71,8 @@ $lang = array(
  'email_sending'	=> 'Email sending',//'邮件发送',
  'sender_email'		=> 'Sender email',//'发送人邮箱',
  'smtp_password'	=> 'SMTP password',//'SMTP密码',
- 'smtp_server'		=> 'SMTP server (such as QQ mailbox service: smtp.qq.com)',//'SMTP服务器（如QQ邮箱服务：smtp.qq.com）',
- 'smtp_port'		=> 'Port (such as QQ mailbox service port: 465)',//'端口（如QQ邮箱服务端口：465）',
+ 'smtp_server'		=> 'SMTP server',//'SMTP服务器',
+ 'smtp_port'		=> 'SMTP port',//'端口',
 
 //---------------------------
 //admin/setting_user.php

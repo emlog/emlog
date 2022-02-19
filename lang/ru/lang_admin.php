@@ -71,8 +71,8 @@ $lang = array(
  'email_sending'	=> 'Отправка Email',//'邮件发送',
  'sender_email'		=> 'Email отправителя',//'发送人邮箱',
  'smtp_password'	=> 'SMTP пароль',//'SMTP密码',
- 'smtp_server'		=> 'SMTP сервер (например smtp.mail.ru)',//'SMTP服务器',
- 'smtp_port'		=> 'SMTP порт (например для mail.ru: 465)',//'端口（如QQ邮箱服务端口：465）',
+ 'smtp_server'		=> 'SMTP сервер',//'SMTP服务器',
+ 'smtp_port'		=> 'SMTP порт',//'端口',
 
 //---------------------------
 //admin/setting_user.php
