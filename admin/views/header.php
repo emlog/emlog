@@ -127,16 +127,6 @@
                 <button id="sidebarToggleTop" class="btn d-md-none rounded-circle mr-3">
                     <i class="icofont-navigation-menu"></i>
                 </button>
-                <form action="article.php" method="get" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                    <div class="input-group">
-                        <input type="text" name="keyword" class="form-control bg-light border-0 small" placeholder="查找文章..." aria-label="Search" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-sm btn-success" type="submit">
-                                <i class="icofont-search-2"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown no-arrow mx-1">
                         <a class="nav-link" href=".." target="_blank" role="button">
