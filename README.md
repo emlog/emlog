@@ -1,3 +1,16 @@
+<p align="center">
+  <img src="https://oss.emlog.net/img/logo.png" width=100 />
+</p>
+<p align="center">
+	<a href="https://github.com/emlog/emlog/releases/latest"><img src="https://img.shields.io/github/v/release/emlog/emlog?logo=github" alt="GitHub release" /></a>
+	<a href="https://www.emlog.net/docs/#/"><img src="https://img.shields.io/badge/docsify-%E8%AF%A6%E7%BB%86%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3-brightgreen" alt="Document" /></a>
+  <a href="#"><img src="https://img.shields.io/badge/QQ%20%E7%BE%A4-460197406-red" alt="QQ群" /></a>
+</p>
+<p align="center">
+  Chinese | <a href="./README.en.md">English</a>
+</p>
+
+
 # emlog
 
 一款基于PHP和MySQL的功能强大的博客及内容知识管理系统，追求快速、稳定、简单、舒适的建站体验。
