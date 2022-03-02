@@ -7,7 +7,7 @@
   <a href="#"><img src="https://img.shields.io/badge/QQ%20%E7%BE%A4-460197406-red" alt="QQ群" /></a>
 </p>
 <p align="center">
-  Chinese | <a href="./README.en.md">English</a>
+  中文 | <a href="./README.en.md">English</a>
 </p>
 
 
