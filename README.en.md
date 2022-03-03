@@ -7,7 +7,7 @@
   <a href="#"><img src="https://img.shields.io/badge/QQ Group-460197406-red" alt="QQ Group" /></a>
 </p>
 <p align="center">
-  <a href="./README.md">中文</a> | English
+  <a href="#/README.md">中文</a> | English
 </p>
 
 
@@ -15,31 +15,27 @@
 A powerful blog and content knowledge management system based on PHP and MySQL, pursuing a fast, stable, simple and comfortable website building experience.
 
 ## Function introduction
-* Markdown editor
-* Multi-screen size adaptation, compatible with pc and mobile devices
-* One-click template replacement, convenient and quick to create a personalized site
-* Support powerful plug-in extension functions, choose practical plug-ins at will, make your site infinite possibilities
-* Support log URL customization, link style is more suitable for SEO
-* Refreshing log writing page, with automatic saving, writing blog posts is more comfortable and worry-free
-* Log draft box function, easy to save your unfinished log
-* Flexible sidebar component (widgets) management, easy to combine and customize your favorite components
-* Customize pages, easily create pages such as message boards, navigation bars, personal introductions, etc.
-* Multi-person co-writing, easy management of multiple writers in the background
-* Support flexible tag classification, as well as traditional classification methods
-* Resource (image, video, file) upload and management
-* Uploaded pictures can be embedded in the log content at will and intuitively, so that your log is full of pictures and texts
-* Site data backup/restore function
+- [x] Markdown editor, auto save, more comfortable and worry-free creation
+- [x] User registration, login, contribution, management
+- [x] Multimedia resource manager, support upload management of pictures, audio, video, files, etc.
+- [x] Draft box function to save your unfinished articles
+- [x] Template themes to create a personalized site
+- [x] Rich plugin extensions to provide more functions
+- [x] Support article URL customization, better SEO effect
+- [x] Flexible sidebar component (widgets) management, easy to combine and customize your favorite components
+- [x] Custom pages to easily create message boards, navigation bars, personal profiles, etc.
+- [x] Multi-person co-writing, easy management of multiple writers in the background
+- [x] tag, secondary classification
+- [x] Data caching technology, faster site access
+- [x] Site data backup/restore function
 
-## Documentation
-[Simplified Chinese](https://www.emlog.net/docs/#/install)
+## Download
+[Download emlog pro](https://www.emlog.net/download)
 
-## Installation package
-[Download pro installation package](https://www.emlog.net/download)
-
-## update record
+## Changelog
 [changelog](https://www.emlog.net/docs/#/changelog)
 
-## Environmental requirements
+## Requirements
 * PHP7, PHP8, PHP7.4 recommended
 * My SQL5.6 and above, 5.6 is recommended, high-end server (2G memory and above) is recommended 5.7
 * Recommended server environment: Linux + nginx
@@ -49,7 +45,7 @@ A powerful blog and content knowledge management system based on PHP and MySQL, 
 2. Visit the pre-resolved domain name on the browser, the program will automatically jump to the emlog installation page, and follow the prompts to install it.
 3. The installation process will not create a database, you need to create it in advance, click to confirm the installation, the installation is successful.
 
-## Special thanks to
+## Special thanks
 [![Jet Brains](https://raw.githubusercontent.com/kainonly/ngx-bit/main/resource/jetbrains.svg)](https://www.jetbrains.com/)
 
 Thanks for non - commercial open source development authorization by Jet Brains
