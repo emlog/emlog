@@ -11,7 +11,7 @@ if (!defined('EMLOG_ROOT')) {
 <head>
     <meta charset="utf-8">
     <title>错误提示-页面未找到</title>
-    <style type="text/css">
+    <style>
         body {
             background-color: #F7F7F7;
             font-family: Arial;
