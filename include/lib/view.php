@@ -19,6 +19,13 @@ class View {
 		return ADMIN_TEMPLATE_PATH . $template . $ext;
 	}
 
+	public static function isTplExist($template, $ext = '.php') {
+		if (file_exists(TEMPLATE_PATH . $template . $ext)) {
+			return true;
+		}
+		return false;
+	}
+
 	public static function output() {
 		$content = ob_get_clean();
 		ob_start();

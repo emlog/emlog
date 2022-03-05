@@ -6,6 +6,10 @@
  */
 
 class Log_Controller {
+
+	/*
+	 * home page
+	 */
 	function display($params) {
 		$Log_Model = new Log_Model();
 		$CACHE = Cache::getInstance();
@@ -31,6 +35,9 @@ class Log_Controller {
 		include View::getView('log_list');
 	}
 
+	/*
+	 * article page
+	 */
 	function displayContent($params) {
 		$comment_page = isset($params[4]) && $params[4] == 'comment-page' ? (int)$params[5] : 1;
 

@@ -98,29 +98,30 @@ class Log_Model {
 		$sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE gid=$blogId AND hide='n' AND checked='y'";
 		$res = $this->db->query($sql);
 		$row = $this->db->fetch_array($res);
-		if ($row) {
-			return [
-				'log_title'    => htmlspecialchars($row['title']),
-				'timestamp'    => $row['date'],
-				'date'         => $row['date'],
-				'logid'        => (int)$row['gid'],
-				'sortid'       => (int)$row['sortid'],
-				'type'         => $row['type'],
-				'author'       => $row['author'],
-				'log_cover'    => $row['cover'] ? getFileUrl($row['cover']) : '',
-				'log_content'  => $this->Parsedown->text($row['content']),
-				'views'        => (int)$row['views'],
-				'comnum'       => (int)$row['comnum'],
-				'top'          => $row['top'],
-				'sortop'       => $row['sortop'],
-				'attnum'       => (int)$row['attnum'],
-				'allow_remark' => Option::get('iscomment') == 'y' ? $row['allow_remark'] : 'n',
-				'password'     => $row['password'],
-				'template'     => $row['template'],
-			];
-		} else {
+
+		if (!$row) {
 			return false;
 		}
+
+		return [
+			'log_title'    => htmlspecialchars($row['title']),
+			'timestamp'    => $row['date'],
+			'date'         => $row['date'],
+			'logid'        => (int)$row['gid'],
+			'sortid'       => (int)$row['sortid'],
+			'type'         => $row['type'],
+			'author'       => $row['author'],
+			'log_cover'    => $row['cover'] ? getFileUrl($row['cover']) : '',
+			'log_content'  => $this->Parsedown->text($row['content']),
+			'views'        => (int)$row['views'],
+			'comnum'       => (int)$row['comnum'],
+			'top'          => $row['top'],
+			'sortop'       => $row['sortop'],
+			'attnum'       => (int)$row['attnum'],
+			'allow_remark' => Option::get('iscomment') == 'y' ? $row['allow_remark'] : 'n',
+			'password'     => $row['password'],
+			'template'     => $row['template'],
+		];
 	}
 
 	/**
@@ -338,7 +339,10 @@ class Log_Model {
 		$url = BLOG_URL;
 		$pwd = $cookiePwd ?: $postPwd;
 		if ($pwd !== addslashes($logPwd)) {
-			echo <<<EOT
+			if (view::isTplExist('pw')) {
+				include view::getView('pw');
+			} else {
+				echo <<<EOT
 <!doctype html>
 <html lang="zh-cn">
 <head>
@@ -346,7 +350,7 @@ class Log_Model {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name=renderer  content=webkit>
-<title>emlog</title>
+<title>请输入文章访问密码</title>
 <link rel="stylesheet" type="text/css" href="{$url}admin/views/css/bootstrap.min.css">
 </head>
 <body class="text-center">
@@ -358,6 +362,7 @@ class Log_Model {
 </body>
 </html>
 EOT;
+			}
 			if ($cookiePwd) {
 				setcookie('em_logpwd_' . $logid, ' ', time() - 31536000);
 			}
