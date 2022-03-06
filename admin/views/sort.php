@@ -137,9 +137,9 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="template">模板</label>
+                        <label for="template">模板名</label>
                         <input class="form-control" id="template" name="template">
-                        <small class="form-text text-muted">(用于自定义分类页面模板，对应模板目录下.php文件，默认：log_list.php，可不填)</small>
+                        <small class="form-text text-muted">(用于自定义分类页面模板，对应模板目录下xxx.php文件，xxx即为模板名，可不填)</small>
                     </div>
                     <div class="form-group">
                         <label for="alias">分类描述</label>
