@@ -12,14 +12,17 @@ class User_Model {
 		$this->db = Database::getInstance();
 	}
 
-	function getUsers($page = null) {
-		$condition = '';
+	function getUsers($email = '', $page = 1) {
+		$condition = $limit =  '';
+		if ($email) {
+			$condition = " and email like '$email%'";
+		}
 		if ($page) {
 			$perpage_num = Option::get('admin_perpage_num');
 			$startId = ($page - 1) * $perpage_num;
-			$condition = "LIMIT $startId, " . $perpage_num;
+			$limit = "LIMIT $startId, " . $perpage_num;
 		}
-		$res = $this->db->query("SELECT * FROM " . DB_PREFIX . "user order by uid desc $condition");
+		$res = $this->db->query("SELECT * FROM " . DB_PREFIX . "user where 1=1 $condition order by uid desc $limit");
 		$users = [];
 		while ($row = $this->db->fetch_array($res)) {
 			$row['name'] = htmlspecialchars($row['nickname']);

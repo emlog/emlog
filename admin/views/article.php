@@ -39,8 +39,8 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 </div>
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <div class="filters">
-            <div id="f_title" class="row form-inline">
+        <div class="row justify-content-between">
+            <div class="form-inline">
                 <div id="f_t_sort" class="mx-1">
                     <select name="bysort" id="bysort" onChange="selectSort(this);" class="form-control">
 <!--vot-->              <option value="" selected="selected"><?=lang('category_view')?></option>
@@ -80,6 +80,16 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
                     </div>
 				<?php endif ?>
             </div>
+            <form action="article.php" method="get">
+                <div class="form-inline">
+                    <input type="text" name="keyword" class="form-control bg-light border-0 small" placeholder="查找文章..." aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-sm btn-success" type="submit">
+                            <i class="icofont-search-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
     <div class="card-body">

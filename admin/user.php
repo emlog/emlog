@@ -15,7 +15,9 @@ $User_Model = new User_Model();
 
 if (empty($action)) {
 	$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-	$users = $User_Model->getUsers($page);
+	$email = isset($_GET['email']) ? htmlspecialchars(addslashes($_GET['email'])) : '';
+
+	$users = $User_Model->getUsers($email, $page);
 	$usernum = $User_Model->getUserNum();
 	$pageurl = pagination($usernum, Option::get('admin_perpage_num'), $page, "./user.php?page=");
 
