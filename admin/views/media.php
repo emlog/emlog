@@ -84,8 +84,9 @@
         window.location.reload();
     })
     Dropzone.options.myAwesomeDropzone = {
-        maxFilesize: 2048,// Unit: M
+        maxFilesize: 2048,// MB
         paramName: "file",
+        timeout: 3600000,// milliseconds
         init: function () {
             this.on("error", function (file, response) {
                 // alert(response);
@@ -108,10 +109,10 @@
 <link rel="stylesheet" type="text/css" href="./views/highslide/highslide.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"/>
 <script src="./views/highslide/highslide.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
 <script>
-    if(window.outerWidth > 767){
+    if (window.outerWidth > 767) {
         hs.graphicsDir = './views/highslide/graphics/';
         hs.wrapperClassName = 'rounded-white';
-    }else{
-        $('.highslide').removeAttr ('onclick')  // If it is a mobile terminal, do not use the highslide function
+    } else {
+        $('.highslide').removeAttr('onclick')  // If it is a mobile terminal, do not use the highslide function
     }
 </script>

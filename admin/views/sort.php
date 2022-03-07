@@ -137,7 +137,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-<!--vot-->              <label for="template"><?=lang('template')?></label>
+<!--vot-->              <label for="template"><?=lang('template_name')?></label>
                         <input class="form-control" id="template" name="template">
 <!--vot-->              <small class="form-text text-muted"><?=lang('template_info')?></small>
                     </div>

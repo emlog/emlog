@@ -11,7 +11,7 @@ if (!defined('EMLOG_ROOT')) {
 <head>
     <meta charset="utf-8">
 <!--vot--><title><?=lang('404_error')?></title>
-    <style type="text/css">
+    <style>
         body {
             background-color: #F7F7F7;
             font-family: Arial;

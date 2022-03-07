@@ -726,6 +726,7 @@ $lang = array(
  'submit'		=> '提交',//'Submit',
  'category_add'		=> '添加分类',//'添加分类+',//'Add Category',
  'tag_add'		=> '新建标签',//'Add Tag',
+ 'template_name'	=> '模板名',//'Template name',
 
 //---------------------------
 //admin/views/store.php

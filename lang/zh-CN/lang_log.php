@@ -43,7 +43,7 @@ $lang = array(
 // 'no_title'		=> '无标题',//'Untitled',
 // 'no_permission'	=> '权限不足！',//'Insufficient permissions!',
 // 'no_permission'	=> '权限不足！',//'Insufficient permissions!',
- 'page_password_enter'	=> '请输入文章的访问密码',//'Please enter the article access password',
+ 'page_password_enter'	=> '请输入文章访问密码',//'Please enter the article access password',
  'submit_password'	=> '进入..',//'Enter..',
  'back_home'		=> '&laquo;返回首页',//'&laquo; Back to home',
                                            
