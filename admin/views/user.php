@@ -25,7 +25,22 @@
 </div>
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-<!--vot--><h6 class="m-0 font-weight-bold"><?=lang('users_total')?> (<?= $usernum ?>)</h6>
+        <div class="row justify-content-between">
+            <div class="form-inline">
+<!--vot-->      <h6 class="m-0 font-weight-bold"><?=lang('users_total')?> (<?= $usernum ?>)</h6>
+
+            </div>
+            <form action="user.php" method="get">
+                <div class="form-inline">
+<!--vot-->          <input type="text" name="email" value="<?= $email ?>" class="form-control bg-light border-0 small" placeholder="<?=lang('search_by_email')?>">
+                    <div class="input-group-append">
+                        <button class="btn btn-sm btn-success" type="submit">
+                            <i class="icofont-search-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -56,7 +71,7 @@
 							<?php else: ?>
                                 <a href="blogger.php"><?= empty($val['name']) ? $val['login'] : $val['name'] ?></a>
 							<?php endif ?>
-							<?= "<br/>" . $val['description'] ?>
+                            <span class="small"><?= "<br/>" . $val['email'] ?></span>
                         </td>
                         <td>
 							<?= $val['role'] ?>

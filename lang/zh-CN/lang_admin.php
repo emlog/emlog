@@ -886,7 +886,8 @@ $lang = array(
  'role'			=> '角色',//'Role',
  'last_login_ip'	=> '最近登录IP',//'Last logged in IP',
  'last_login_time'	=> '更新/登录时间',//'Last active time',
-
+ 'search_by_email'	=> '按邮箱搜索用户...',//'Search users by email',
+ 
 //---------------------------
 //admin/views/user_edit.php
  'user_manage'		=> '修改作者资料',//'User management',
