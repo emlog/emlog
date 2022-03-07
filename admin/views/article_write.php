@@ -138,8 +138,9 @@
         url: "./media.php?action=upload",
         addRemoveLinks: false,
         method: 'post',
-        maxFilesize: 2048,//M
+        maxFilesize: 2048,//MB
         filesizeBase: 1024,
+        timeout: 3600000,// milliseconds
         previewsContainer: ".dropzone-previews",
         sending: function (file, xhr, formData) {
             formData.append("filesize", file.size);

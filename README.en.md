@@ -14,7 +14,7 @@
 # emlog
 A powerful blog and content knowledge management system based on PHP and MySQL, pursuing a fast, stable, simple and comfortable website building experience.
 
-## Function introduction
+## Overview
 - [x] Markdown editor, auto save, more comfortable and worry-free creation
 - [x] User registration, login, contribution, management
 - [x] Multimedia resource manager, support upload management of pictures, audio, video, files, etc.
