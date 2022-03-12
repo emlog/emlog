@@ -73,8 +73,12 @@ class Media_Model {
 	}
 
 	function deleteMedia($media_id) {
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "attachment WHERE aid = $media_id ");
+		$author = User::isAdmin() ? '' : 'and author=' . UID;
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "attachment WHERE aid = $media_id $author");
 		$attach = $this->db->fetch_array($query);
+		if (empty($attach)) {
+			return;
+		}
 		$filepath_thum = $attach['filepath'];
 		$filepath = str_replace("thum-", "", $attach['filepath']);
 		if (file_exists($filepath_thum)) {
@@ -84,7 +88,7 @@ class Media_Model {
 			@unlink($filepath) or emMsg("删除失败!");
 		}
 
-		return $this->db->query("DELETE FROM " . DB_PREFIX . "attachment WHERE aid = {$media_id} ");
+		return $this->db->query("DELETE FROM " . DB_PREFIX . "attachment WHERE aid = $media_id $author");
 	}
 
 }
