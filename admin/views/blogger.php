@@ -14,9 +14,11 @@
 <?php if (isset($_GET['error_d'])): ?>
     <div class="alert alert-danger">两次输入的密码不一致</div><?php endif ?>
 <?php if (isset($_GET['error_e'])): ?>
-    <div class="alert alert-danger">该登录名已存在</div><?php endif ?>
+    <div class="alert alert-danger">该登录名已被占用</div><?php endif ?>
 <?php if (isset($_GET['error_f'])): ?>
-    <div class="alert alert-danger">该昵称已存在</div><?php endif ?>
+    <div class="alert alert-danger">该昵称已被占用</div><?php endif ?>
+<?php if (isset($_GET['error_g'])): ?>
+    <div class="alert alert-danger">该邮箱已被占用</div><?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">设置</h1>
 </div>

@@ -2,9 +2,11 @@
 	exit('error!');
 } ?>
 <?php if (isset($_GET['error_login'])): ?>
-    <div class="alert alert-danger">用户名不能为空</div><?php endif ?>
+    <div class="alert alert-danger">用户名和邮箱不能都为空</div><?php endif ?>
 <?php if (isset($_GET['error_exist'])): ?>
-    <div class="alert alert-danger">该用户名已存在</div><?php endif ?>
+    <div class="alert alert-danger">用户名已被占用</div><?php endif ?>
+<?php if (isset($_GET['error_exist_email'])): ?>
+    <div class="alert alert-danger">邮箱已被占用</div><?php endif ?>
 <?php if (isset($_GET['error_pwd_len'])): ?>
     <div class="alert alert-danger">密码长度不得小于6位</div><?php endif ?>
 <?php if (isset($_GET['error_pwd2'])): ?>
@@ -27,7 +29,7 @@
     <div class="form-group">
         <label for="role">用户组</label>
         <select name="role" id="role" class="form-control">
-            <option value="writer" <?= $ex1 ?>>用户</option>
+            <option value="writer" <?= $ex1 ?>>注册用户</option>
             <option value="admin" <?= $ex2 ?>>管理员</option>
         </select>
     </div>

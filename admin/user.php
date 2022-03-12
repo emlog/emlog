@@ -103,11 +103,14 @@ if ($action == 'update') {
 	if ($uid == 1) {
 		emDirect('./user.php?error_del_b=1');
 	}
-	if ($login == '') {
+	if ($login == '' && $email == '') {
 		emDirect("./user.php?action=edit&uid={$uid}&error_login=1");
 	}
 	if ($User_Model->isUserExist($login, $uid)) {
 		emDirect("./user.php?action=edit&uid={$uid}&error_exist=1");
+	}
+	if ($User_Model->isMailExist($email, $uid)) {
+		emDirect("./user.php?action=edit&uid={$uid}&error_exist_email=1");
 	}
 	if (strlen($password) > 0 && strlen($password) < 6) {
 		emDirect("./user.php?action=edit&uid={$uid}&error_pwd_len=1");
@@ -116,13 +119,13 @@ if ($action == 'update') {
 		emDirect("./user.php?action=edit&uid={$uid}&error_pwd2=1");
 	}
 
-	$userData = array(
+	$userData = [
 		'username'    => $login,
 		'nickname'    => $nickname,
 		'email'       => $email,
 		'description' => $description,
 		'role'        => $role,
-	);
+	];
 
 	if (!empty($password)) {
 		$PHPASS = new PasswordHash(8, true);

@@ -13,7 +13,7 @@ class User_Model {
 	}
 
 	function getUsers($email = '', $page = 1) {
-		$condition = $limit =  '';
+		$condition = $limit = '';
 		if ($email) {
 			$condition = " and email like '$email%'";
 		}
@@ -76,7 +76,7 @@ class User_Model {
 
 	function addUser($username, $mail, $password, $role) {
 		$timestamp = time();
-		$nickname = 'emer_' . getRandStr(6,false);
+		$nickname = 'emer_' . getRandStr(6, false);
 		$sql = "insert into " . DB_PREFIX . "user (username,email,password,nickname,role,create_time,update_time) values('$username','$mail','$password','$nickname','$role',$timestamp,$timestamp)";
 		$this->db->query($sql);
 	}
@@ -103,13 +103,6 @@ class User_Model {
 		}
 	}
 
-	/**
-	 * 昵称是否存在
-	 *
-	 * @param string $nickname
-	 * @param int $uid 兼容更新作者资料时用户名未变更情况
-	 * @return boolean
-	 */
 	function isNicknameExist($nickname, $uid = '') {
 		if (empty($nickname)) {
 			return FALSE;
@@ -123,17 +116,12 @@ class User_Model {
 		}
 	}
 
-	/**
-	 * 邮箱是否存在
-	 *
-	 * @param string $mail
-	 * @return boolean
-	 */
-	function isMailExist($mail) {
+	function isMailExist($mail, $uid = '') {
 		if (empty($mail)) {
 			return FALSE;
 		}
-		$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "user WHERE email='$mail'");
+		$subSql = $uid ? 'and uid!=' . $uid : '';
+		$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "user WHERE email='$mail' $subSql");
 		if ($data['total'] > 0) {
 			return true;
 		} else {

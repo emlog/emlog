@@ -108,7 +108,7 @@
                     <div class="form-group">
                         <label for="sortname">用户组</label>
                         <select name="role" id="role" class="form-control">
-                            <option value="writer">用户</option>
+                            <option value="writer">注册用户</option>
                             <option value="admin">管理员</option>
                         </select>
                     </div>

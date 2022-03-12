@@ -49,19 +49,30 @@ if ($action == 'update') {
 		emDirect("./blogger.php?error_e=1");
 	} elseif ($User_Model->isNicknameExist($nickname, UID)) {
 		emDirect("./blogger.php?error_f=1");
+	} elseif ($User_Model->isMailExist($email, UID)) {
+		emDirect("./blogger.php?error_g=1");
 	}
+
+	$d = [
+		'nickname' => $nickname,
+		'description' => $description
+	];
 
 	if (!empty($newpass)) {
 		$PHPASS = new PasswordHash(8, true);
 		$newpass = $PHPASS->HashPassword($newpass);
-		$User_Model->updateUser(array('password' => $newpass), UID);
+		$d['password'] = $newpass;
 	}
 
 	if (!empty($login)) {
-		$User_Model->updateUser(array('username' => $login), UID);
+		$d['username'] = $login;
 	}
 
-	$User_Model->updateUser(array('nickname' => $nickname, 'email' => $email, 'description' => $description), UID);
+	if (!empty($email)) {
+		$d['email'] = $email;
+	}
+
+	$User_Model->updateUser($d, UID);
 	$CACHE->updateCache('user');
 	emDirect("./blogger.php?active_edit=1");
 }
