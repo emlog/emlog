@@ -71,6 +71,9 @@ class Log_Controller {
 		if ($logData === false) {
 			show_404_page();
 		}
+
+		doMultiAction('article_content_echo', $logData, $logData);
+
 		extract($logData);
 
 		if (!empty($password)) {
@@ -103,8 +106,6 @@ class Log_Controller {
 		$ckmail = isset($_COOKIE['postermail']) ? htmlspecialchars($_COOKIE['postermail']) : '';
 		$ckurl = isset($_COOKIE['posterurl']) ? htmlspecialchars($_COOKIE['posterurl']) : '';
 		$comments = $Comment_Model->getComments($logid, 'n', $comment_page);
-
-		doMultiAction('article_content_echo', $log_content, $log_content);
 
 		include View::getView('header');
 		if ($type == 'blog') {
