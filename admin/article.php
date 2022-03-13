@@ -23,7 +23,7 @@ if (empty($action)) {
 	$tagId = isset($_GET['tagid']) ? (int)$_GET['tagid'] : '';
 	$sid = isset($_GET['sid']) ? (int)$_GET['sid'] : '';
 	$uid = isset($_GET['uid']) ? (int)$_GET['uid'] : '';
-	$keyword = isset($_GET['keyword']) ? addslashes($_GET['keyword']) : '';
+	$keyword = isset($_GET['keyword']) ? addslashes(trim($_GET['keyword'])) : '';
 	$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 	$checked = isset($_GET['checked']) ? addslashes($_GET['checked']) : '';
 

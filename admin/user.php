@@ -15,7 +15,7 @@ $User_Model = new User_Model();
 
 if (empty($action)) {
 	$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-	$email = isset($_GET['email']) ? htmlspecialchars(addslashes($_GET['email'])) : '';
+	$email = isset($_GET['email']) ? htmlspecialchars(addslashes(trim($_GET['email']))) : '';
 
 	$users = $User_Model->getUsers($email, $page);
 	$usernum = $User_Model->getUserNum();
