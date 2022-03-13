@@ -76,7 +76,7 @@ class User_Model {
 
 	function addUser($username, $mail, $password, $role) {
 		$timestamp = time();
-		$nickname = 'emer_' . getRandStr(6, false);
+		$nickname = '用户' . getRandStr(6, false);
 		$sql = "insert into " . DB_PREFIX . "user (username,email,password,nickname,role,create_time,update_time) values('$username','$mail','$password','$nickname','$role',$timestamp,$timestamp)";
 		$this->db->query($sql);
 	}

@@ -32,14 +32,15 @@ if ($action == 'update') {
 	$nickname = isset($_POST['name']) ? addslashes(trim($_POST['name'])) : '';
 	$email = isset($_POST['email']) ? addslashes(trim($_POST['email'])) : '';
 	$description = isset($_POST['description']) ? addslashes(trim($_POST['description'])) : '';
-
 	$login = isset($_POST['username']) ? addslashes(trim($_POST['username'])) : '';
 	$newpass = isset($_POST['newpass']) ? addslashes(trim($_POST['newpass'])) : '';
 	$repeatpass = isset($_POST['repeatpass']) ? addslashes(trim($_POST['repeatpass'])) : '';
 
-	if (strlen($nickname) > 20) {
+	if (empty($nickname)) {
 		emDirect("./blogger.php?error_a=1");
-	} else if ($email != '' && !checkMail($email)) {
+	} elseif (empty($email)) {
+		emDirect("./blogger.php?error_email=1");
+	} elseif (!checkMail($email)) {
 		emDirect("./blogger.php?error_b=1");
 	} elseif (strlen($newpass) > 0 && strlen($newpass) < 6) {
 		emDirect("./blogger.php?error_c=1");
@@ -54,22 +55,16 @@ if ($action == 'update') {
 	}
 
 	$d = [
-		'nickname' => $nickname,
-		'description' => $description
+		'nickname'    => $nickname,
+		'description' => $description,
+		'email'       => $email,
+		'username'       => $login,
 	];
 
 	if (!empty($newpass)) {
 		$PHPASS = new PasswordHash(8, true);
 		$newpass = $PHPASS->HashPassword($newpass);
 		$d['password'] = $newpass;
-	}
-
-	if (!empty($login)) {
-		$d['username'] = $login;
-	}
-
-	if (!empty($email)) {
-		$d['email'] = $email;
 	}
 
 	$User_Model->updateUser($d, UID);

@@ -7,10 +7,10 @@
     <div class="alert alert-success">修改用户资料成功</div><?php endif ?>
 <?php if (isset($_GET['active_add'])): ?>
     <div class="alert alert-success">添加用户成功</div><?php endif ?>
-<?php if (isset($_GET['error_login'])): ?>
-    <div class="alert alert-danger">用户名不能为空</div><?php endif ?>
-<?php if (isset($_GET['error_exist'])): ?>
-    <div class="alert alert-danger">该用户名已存在</div><?php endif ?>
+<?php if (isset($_GET['error_email'])): ?>
+    <div class="alert alert-danger">邮箱不能为空</div><?php endif ?>
+<?php if (isset($_GET['error_exist_email'])): ?>
+    <div class="alert alert-danger">该邮箱已被占用</div><?php endif ?>
 <?php if (isset($_GET['error_pwd_len'])): ?>
     <div class="alert alert-danger">密码长度不得小于6位</div><?php endif ?>
 <?php if (isset($_GET['error_pwd2'])): ?>
@@ -48,9 +48,9 @@
                 <tr>
                     <th></th>
                     <th>用户</th>
-                    <th>用户组</th>
-                    <th>文章数</th>
-                    <th>最近登录IP</th>
+                    <th>邮箱</th>
+                    <th>文章</th>
+                    <th>登录IP</th>
                     <th>活跃时间</th>
                     <th>创建时间</th>
                     <th>操作</th>
@@ -70,10 +70,10 @@
 							<?php else: ?>
                                 <a href="blogger.php"><?= empty($val['name']) ? $val['login'] : $val['name'] ?></a>
 							<?php endif ?>
-                            <span class="small"><?= "<br/>" . $val['email'] ?></span>
+                            <span class="small"><?= "<br/>" . $val['role'] ?></span>
                         </td>
                         <td>
-							<?= $val['role'] ?>
+							<?= $val['email'] ?>
                         </td>
                         <td><a href="article.php?uid=<?= $val['uid'] ?>"><?= $sta_cache[$val['uid']]['lognum'] ?></a></td>
                         <td><?= $val['ip'] ?></td>
@@ -113,9 +113,9 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="username">用户名</label>
-                        <input class="hidden-auto-filling" name="name" style="width: 0;border: 0;opacity: 0">
-                        <input class="form-control" id="username" name="username" required>
+                        <label for="username">登录邮箱</label>
+                        <input class="hidden-auto-filling" name="email" style="width: 0;border: 0;opacity: 0">
+                        <input type="email" name="email" class="form-control" value="<?= $email ?>" required>
                     </div>
                     <div class="form-group">
                         <label for="password">密码 (大于6位)</label>

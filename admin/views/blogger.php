@@ -6,9 +6,11 @@
 <?php if (isset($_GET['active_del'])): ?>
     <div class="alert alert-success">头像删除成功</div><?php endif ?>
 <?php if (isset($_GET['error_a'])): ?>
-    <div class="alert alert-danger">昵称不能太长</div><?php endif ?>
+    <div class="alert alert-danger">昵称不能为空</div><?php endif ?>
 <?php if (isset($_GET['error_b'])): ?>
     <div class="alert alert-danger">电子邮件格式错误</div><?php endif ?>
+<?php if (isset($_GET['error_email'])): ?>
+    <div class="alert alert-danger">邮箱不能都为空</div><?php endif ?>
 <?php if (isset($_GET['error_c'])): ?>
     <div class="alert alert-danger">密码长度不得小于6位</div><?php endif ?>
 <?php if (isset($_GET['error_d'])): ?>
@@ -52,18 +54,18 @@
             <div class="form-group">
                 <div class="form-group">
                     <label>昵称</label>
-                    <input class="form-control" value="<?= $nickname ?>" name="name">
+                    <input class="form-control" value="<?= $nickname ?>" name="name" maxlength="20" required>
                 </div>
                 <div class="form-group">
                     <label>邮箱</label>
-                    <input name="email" class="form-control" value="<?= $email ?>">
+                    <input type="email" name="email" class="form-control" value="<?= $email ?>" required>
                 </div>
                 <div class="form-group">
                     <label>个人描述</label>
                     <textarea name="description" class="form-control"><?= $description ?></textarea>
                 </div>
                 <div class="form-group">
-                    <label>登录用户名</label>
+                    <label>登录用户名（为空则使用邮箱登录）</label>
                     <input class="form-control" value="<?= $username ?>" name="username">
                 </div>
                 <div class="form-group">

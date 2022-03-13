@@ -1,8 +1,10 @@
 <?php if (!defined('EMLOG_ROOT')) {
 	exit('error!');
 } ?>
-<?php if (isset($_GET['error_login'])): ?>
-    <div class="alert alert-danger">用户名和邮箱不能都为空</div><?php endif ?>
+<?php if (isset($_GET['error_nickname'])): ?>
+    <div class="alert alert-danger">昵称不能都为空</div><?php endif ?>
+<?php if (isset($_GET['error_email'])): ?>
+    <div class="alert alert-danger">邮箱不能都为空</div><?php endif ?>
 <?php if (isset($_GET['error_exist'])): ?>
     <div class="alert alert-danger">用户名已被占用</div><?php endif ?>
 <?php if (isset($_GET['error_exist_email'])): ?>
@@ -14,17 +16,12 @@
 <h1 class="h3 mb-4 text-gray-800">修改资料</h1>
 <form action="user.php?action=update" method="post">
     <div class="form-group">
-        <label for="username">用户名</label>
-        <input class="hidden-auto-filling" name="name" style="width: 0;border: 0;opacity: 0">
-        <input class="form-control" value="<?= $username ?>" name="username" id="username" required>
-    </div>
-    <div class="form-group">
         <label for="nickname">昵称</label>
-        <input class="form-control" value="<?= $nickname ?>" name="nickname" id="nickname">
+        <input class="form-control" value="<?= $nickname ?>" name="nickname" id="nickname" maxlength="20" required>
     </div>
     <div class="form-group">
         <label for="email">邮箱</label>
-        <input class="form-control" value="<?= $email ?>" name="email" id="email">
+        <input type="email" class="form-control" value="<?= $email ?>" name="email" id="email" required>
     </div>
     <div class="form-group">
         <label for="role">用户组</label>
@@ -36,6 +33,11 @@
     <div class="form-group">
         <label for="description">个人描述</label>
         <textarea name="description" type="text" class="form-control"><?= $description ?></textarea>
+    </div>
+    <div class="form-group">
+        <label for="username">用户名（为空则使用邮箱登录）</label>
+        <input class="hidden-auto-filling" name="name" style="width: 0;border: 0;opacity: 0">
+        <input class="form-control" value="<?= $username ?>" name="username" id="username">
     </div>
     <div class="form-group">
         <label for="password">新密码(不修改请留空)</label>
