@@ -58,7 +58,7 @@ if ($action == 'update') {
 		'nickname'    => $nickname,
 		'description' => $description,
 		'email'       => $email,
-		'username'       => $login,
+		'username'    => $login,
 	];
 
 	if (!empty($newpass)) {
