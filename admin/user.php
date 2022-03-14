@@ -15,7 +15,7 @@ $User_Model = new User_Model();
 
 if (empty($action)) {
 	$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-	$email = isset($_GET['email']) ? htmlspecialchars(addslashes($_GET['email'])) : '';
+	$email = isset($_GET['email']) ? htmlspecialchars(addslashes(trim($_GET['email']))) : '';
 
 	$users = $User_Model->getUsers($email, $page);
 	$usernum = $User_Model->getUserNum();
@@ -28,7 +28,7 @@ if (empty($action)) {
 }
 
 if ($action == 'new') {
-	$username = isset($_POST['username']) ? addslashes(trim($_POST['username'])) : '';
+	$email = isset($_POST['email']) ? addslashes(trim($_POST['email'])) : '';
 	$password = isset($_POST['password']) ? addslashes(trim($_POST['password'])) : '';
 	$password2 = isset($_POST['password2']) ? addslashes(trim($_POST['password2'])) : '';
 	$role = isset($_POST['role']) ? addslashes(trim($_POST['role'])) : self::ROLE_WRITER;
@@ -39,11 +39,11 @@ if ($action == 'new') {
 		$ischeck = 'n';
 	}
 
-	if ($username == '') {
-		emDirect('./user.php?error_login=1');
+	if ($email == '') {
+		emDirect('./user.php?error_email=1');
 	}
-	if ($User_Model->isUserExist($username)) {
-		emDirect('./user.php?error_exist=1');
+	if ($User_Model->isMailExist($email)) {
+		emDirect("./user.php?error_exist_email=1");
 	}
 	if (strlen($password) < 6) {
 		emDirect('./user.php?error_pwd_len=1');
@@ -55,7 +55,7 @@ if ($action == 'new') {
 	$PHPASS = new PasswordHash(8, true);
 	$password = $PHPASS->HashPassword($password);
 
-	$User_Model->addUser($username, '', $password, $role);
+	$User_Model->addUser('', $email, $password, $role);
 	$CACHE->updateCache(array('sta', 'user'));
 	emDirect('./user.php?active_add=1');
 }
@@ -103,10 +103,16 @@ if ($action == 'update') {
 	if ($uid == 1) {
 		emDirect('./user.php?error_del_b=1');
 	}
-	if ($login == '') {
-		emDirect("./user.php?action=edit&uid={$uid}&error_login=1");
+	if (empty($nickname)) {
+		emDirect("./user.php?action=edit&uid={$uid}&error_nickname=1");
 	}
-	if ($User_Model->isUserExist($login, $uid)) {
+	if (empty($email)) {
+		emDirect("./user.php?action=edit&uid={$uid}&error_email=1");
+	}
+	if ($User_Model->isMailExist($email, $uid)) {
+		emDirect("./user.php?action=edit&uid={$uid}&error_exist_email=1");
+	}
+	if ($login && $User_Model->isUserExist($login, $uid)) {
 		emDirect("./user.php?action=edit&uid={$uid}&error_exist=1");
 	}
 	if (strlen($password) > 0 && strlen($password) < 6) {
@@ -116,13 +122,13 @@ if ($action == 'update') {
 		emDirect("./user.php?action=edit&uid={$uid}&error_pwd2=1");
 	}
 
-	$userData = array(
+	$userData = [
 		'username'    => $login,
 		'nickname'    => $nickname,
 		'email'       => $email,
 		'description' => $description,
 		'role'        => $role,
-	);
+	];
 
 	if (!empty($password)) {
 		$PHPASS = new PasswordHash(8, true);
