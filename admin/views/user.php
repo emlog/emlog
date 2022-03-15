@@ -7,10 +7,10 @@
 <!--vot--><div class="alert alert-success"><?=lang('user_modify_ok')?></div><?php endif ?>
 <?php if (isset($_GET['active_add'])): ?>
 <!--vot--><div class="alert alert-success"><?=lang('user_add_ok')?></div><?php endif ?>
-<?php if (isset($_GET['error_login'])): ?>
-<!--vot--><div class="alert alert-danger"><?=lang('user_name_empty')?></div><?php endif ?>
-<?php if (isset($_GET['error_exist'])): ?>
-<!--vot--><div class="alert alert-danger"><?=lang('user_name_exists')?></div><?php endif ?>
+<?php if (isset($_GET['error_email'])): ?>
+<!--vot--><div class="alert alert-danger"><?=lang('email_in_use')?></div><?php endif ?>
+<?php if (isset($_GET['error_exist_email'])): ?>
+<!--vot--><div class="alert alert-danger"><?=lang('email_empty')?></div><?php endif ?>
 <?php if (isset($_GET['error_pwd_len'])): ?>
 <!--vot--><div class="alert alert-danger"><?=lang('password_length_short')?></div><?php endif ?>
 <?php if (isset($_GET['error_pwd2'])): ?>
@@ -49,9 +49,9 @@
                 <tr>
                     <th></th>
 <!--vot-->          <th><?=lang('user')?></th>
-<!--vot-->          <th><?=lang('description')?></th>
+<!--vot-->          <th><?=lang('email')?></th>
 <!--vot-->          <th><?=lang('posts')?></th>
-<!--vot-->          <th><?=lang('last_login_ip')?></th>
+<!--vot-->          <th><?=lang('login_ip')?></th>
 <!--vot-->          <th><?=lang('last_login_time')?></th>
 <!--vot-->          <th><?=lang('create_time')?></th>
 <!--vot-->          <th><?=lang('operation')?></th>
@@ -71,10 +71,10 @@
 							<?php else: ?>
                                 <a href="blogger.php"><?= empty($val['name']) ? $val['login'] : $val['name'] ?></a>
 							<?php endif ?>
-                            <span class="small"><?= "<br/>" . $val['email'] ?></span>
+                            <span class="small"><?= "<br/>" . $val['role'] ?></span>
                         </td>
                         <td>
-							<?= $val['role'] ?>
+							<?= $val['email'] ?>
                         </td>
                         <td><a href="article.php?uid=<?= $val['uid'] ?>"><?= $sta_cache[$val['uid']]['lognum'] ?></a></td>
                         <td><?= $val['ip'] ?></td>
@@ -109,14 +109,14 @@
                     <div class="form-group">
 <!--vot-->              <label for="sortname"><?=lang('role')?></label>
                         <select name="role" id="role" class="form-control">
-<!--vot-->                  <option value="writer"><?=lang('author_contributor')?></option>
+<!--vot-->                  <option value="writer"><?=lang('registered_user')?></option>
 <!--vot-->                  <option value="admin"><?=lang('admin')?></option>
                         </select>
                     </div>
                     <div class="form-group">
-<!--vot-->              <label for="username"><?=lang('user_name')?></label>
-                        <input class="hidden-auto-filling" name="name" style="width: 0;border: 0;opacity: 0">
-                        <input class="form-control" id="username" name="username" required>
+<!--vot-->              <label for="username"><?=lang('email')?></label>
+                        <input class="hidden-auto-filling" name="email" style="width: 0;border: 0;opacity: 0">
+                        <input type="email" name="email" class="form-control" value="<?= $email ?>" required>
                     </div>
                     <div class="form-group">
 <!--vot-->              <label for="password"><?=lang('password_min_length')?></label>

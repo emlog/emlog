@@ -6,9 +6,11 @@
 <?php if (isset($_GET['active_del'])): ?>
 <!--vot--><div class="alert alert-success"><?=lang('avatar_deleted_ok')?></div><?php endif ?>
 <?php if (isset($_GET['error_a'])): ?>
-<!--vot--><div class="alert alert-danger"><?=lang('nickname_too_long')?></div><?php endif ?>
+<!--vot--><div class="alert alert-danger"><?=lang('nickname_is_empty')?></div><?php endif ?>
 <?php if (isset($_GET['error_b'])): ?>
 <!--vot--><div class="alert alert-danger"><?=lang('email_format_invalid')?></div><?php endif ?>
+<?php if (isset($_GET['error_email'])): ?>
+    <div class="alert alert-danger"><?=lang('email_empty')?></div><?php endif ?>
 <?php if (isset($_GET['error_c'])): ?>
 <!--vot--><div class="alert alert-danger"><?=lang('password_length_short')?></div><?php endif ?>
 <?php if (isset($_GET['error_d'])): ?>
@@ -17,6 +19,8 @@
 <!--vot--><div class="alert alert-danger"><?=lang('username_exists')?></div><?php endif ?>
 <?php if (isset($_GET['error_f'])): ?>
 <!--vot--><div class="alert alert-danger"><?=lang('nickname_exists')?></div><?php endif ?>
+<?php if (isset($_GET['error_g'])): ?>
+    <div class="alert alert-danger"><?=lang('email_is_used')?></div><?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800"><?=lang('settings')?></h1>
 </div>
@@ -50,11 +54,11 @@
             <div class="form-group">
                 <div class="form-group">
 <!--vot-->          <label><?=lang('nickname')?></label>
-                    <input class="form-control" value="<?= $nickname ?>" name="name">
+                    <input class="form-control" value="<?= $nickname ?>" name="name" maxlength="20" required>
                 </div>
                 <div class="form-group">
 <!--vot-->          <label><?=lang('email')?></label>
-                    <input name="email" class="form-control" value="<?= $email ?>">
+                    <input type="email" name="email" class="form-control" value="<?= $email ?>" required>
                 </div>
                 <div class="form-group">
 <!--vot-->          <label><?=lang('personal_description')?></label>

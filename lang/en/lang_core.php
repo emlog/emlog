@@ -143,7 +143,7 @@ $lang = array(
 'email_verify_code'	=> 'Email verification code',//'邮件验证码: ',
 'group_no_permission'	=> 'The user group you are in cannot use this function, please contact the administrator',//'你所在的用户组无法使用该功能，请联系管理员',
 'admin'			=> 'Administrator',//'管理员',
-'writer'		=> 'Registered user',//'注册用户',
+'registered_user'	=> 'Registered user',//'注册用户',
 'visitor'		=> 'Guest',//'游客',
 
 //---------------------------

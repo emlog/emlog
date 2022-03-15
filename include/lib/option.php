@@ -50,6 +50,7 @@ class Option {
 		$options_cache['site_description'] = $options_cache['site_description'] ?: $options_cache['bloginfo'];
 		if (empty($options_cache['emkey'])) {
 /*vot*/			$options_cache['footer_info'] .= defined('DEV_MODE') ? (lang('powered_by_emlog') . ' ' . Option::EMLOG_VERSION) : lang('pro_unregistered');
+/*vot*/			$options_cache['site_title'] = defined('DEV_MODE') ? $options_cache['site_title'] : lang('pro_unregistered') . ' ' . $options_cache['site_title'];
 		}
 		return $options_cache;
 	}

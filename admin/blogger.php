@@ -32,14 +32,15 @@ if ($action == 'update') {
 	$nickname = isset($_POST['name']) ? addslashes(trim($_POST['name'])) : '';
 	$email = isset($_POST['email']) ? addslashes(trim($_POST['email'])) : '';
 	$description = isset($_POST['description']) ? addslashes(trim($_POST['description'])) : '';
-
 	$login = isset($_POST['username']) ? addslashes(trim($_POST['username'])) : '';
 	$newpass = isset($_POST['newpass']) ? addslashes(trim($_POST['newpass'])) : '';
 	$repeatpass = isset($_POST['repeatpass']) ? addslashes(trim($_POST['repeatpass'])) : '';
 
-/*vot*/	if (strlen($nickname) > 128) {
+	if (empty($nickname)) {
 		emDirect("./blogger.php?error_a=1");
-	} else if ($email != '' && !checkMail($email)) {
+	} elseif (empty($email)) {
+		emDirect("./blogger.php?error_email=1");
+	} elseif (!checkMail($email)) {
 		emDirect("./blogger.php?error_b=1");
 	} elseif (strlen($newpass) > 0 && strlen($newpass) < 6) {
 		emDirect("./blogger.php?error_c=1");
@@ -49,19 +50,24 @@ if ($action == 'update') {
 		emDirect("./blogger.php?error_e=1");
 	} elseif ($User_Model->isNicknameExist($nickname, UID)) {
 		emDirect("./blogger.php?error_f=1");
+	} elseif ($User_Model->isMailExist($email, UID)) {
+		emDirect("./blogger.php?error_g=1");
 	}
+
+	$d = [
+		'nickname'    => $nickname,
+		'description' => $description,
+		'email'       => $email,
+		'username'    => $login,
+	];
 
 	if (!empty($newpass)) {
 		$PHPASS = new PasswordHash(8, true);
 		$newpass = $PHPASS->HashPassword($newpass);
-		$User_Model->updateUser(array('password' => $newpass), UID);
+		$d['password'] = $newpass;
 	}
 
-	if (!empty($login)) {
-		$User_Model->updateUser(array('username' => $login), UID);
-	}
-
-	$User_Model->updateUser(array('nickname' => $nickname, 'email' => $email, 'description' => $description), UID);
+	$User_Model->updateUser($d, UID);
 	$CACHE->updateCache('user');
 	emDirect("./blogger.php?active_edit=1");
 }
