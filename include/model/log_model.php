@@ -84,11 +84,9 @@ class Log_Model {
 			$row['excerpt'] = htmlspecialchars($row['excerpt']);
 			$row['password'] = htmlspecialchars($row['password']);
 			$row['template'] = !empty($row['template']) ? htmlspecialchars(trim($row['template'])) : 'page';
-			$logData = $row;
-			return $logData;
-		} else {
-			return false;
+			return $row;
 		}
+		return false;
 	}
 
 	/**

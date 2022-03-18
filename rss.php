@@ -1,6 +1,6 @@
 <?php
 /**
- * RSS输出
+ * RSS
  * @package EMLOG (www.emlog.net)
  */
 
@@ -11,7 +11,7 @@ header('Content-type: application/xml');
 $sort = isset($_GET['sort']) ? (int)$_GET['sort'] : '';
 
 $URL = BLOG_URL;
-$blog = getBlog($sort);
+$blog = getArticleList($sort);
 
 echo '<?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0">
@@ -48,16 +48,15 @@ echo <<< END
 </rss>
 END;
 
-/**
- * 获取文章信息
- *
- * @return array
- */
-function getBlog($sortid = null) {
+function getArticleList($sortid = null) {
+	$parsedown = new Parsedown();
+	$parsedown->setBreaksEnabled(true); //automatic line wrapping
+
 	$rss_output_num = Option::get('rss_output_num');
-	if ($rss_output_num == 0) {
-		return array();
+	if ($rss_output_num <= 0) {
+		return [];
 	}
+
 	$DB = Database::getInstance();
 	$sorts = Cache::getInstance()->readCache('sort');
 	if (isset($sorts[$sortid])) {
@@ -73,12 +72,11 @@ function getBlog($sortid = null) {
 	}
 	$sql = "SELECT * FROM " . DB_PREFIX . "blog  WHERE hide='n' and type='blog' $subsql ORDER BY date DESC limit 0," . $rss_output_num;
 	$result = $DB->query($sql);
-	$blog = [];
+	$d = [];
 	while ($re = $DB->fetch_array($result)) {
 		$re['id'] = $re['gid'];
 		$re['title'] = htmlspecialchars($re['title']);
-		$re['date'] = $re['date'];
-		$re['content'] = $re['content'];
+		$re['content'] = $parsedown->text($re['content']);
 		if (!empty($re['password'])) {
 			$re['content'] = '<p>[该文章已设置加密]</p>';
 		} elseif (Option::get('rss_output_fulltext') == 'n') {
@@ -90,7 +88,7 @@ function getBlog($sortid = null) {
 			$re['content'] .= ' <a href="' . Url::log($re['id']) . '">阅读全文&gt;&gt;</a>';
 		}
 
-		$blog[] = $re;
+		$d[] = $re;
 	}
-	return $blog;
+	return $d;
 }
