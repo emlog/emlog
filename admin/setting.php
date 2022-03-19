@@ -193,7 +193,7 @@ if ($action == 'mail_test') {
 		'testTo'      => $_POST['testTo'] ?? '',
 	];
 
-	if (empty($data["testTo"])) {
+	if (!checkMail($data["testTo"])) {
 /*vot*/		exit("<small class='text-info'>" . lang('email_enter_please') . "</small>");
 	}
 
@@ -238,8 +238,8 @@ if ($action == 'user') {
 if ($action == 'user_save') {
 	LoginAuth::checkToken();
 	$data = [
-		'is_signup'  => isset($_POST['is_signup']) ? addslashes($_POST['is_signup']) : 'n',
-		'login_code' => isset($_POST['login_code']) ? addslashes($_POST['login_code']) : 'n',
+		'is_signup'    => isset($_POST['is_signup']) ? addslashes($_POST['is_signup']) : 'n',
+		'login_code'   => isset($_POST['login_code']) ? addslashes($_POST['login_code']) : 'n',
 		'ischkarticle' => isset($_POST['ischkarticle']) ? addslashes($_POST['ischkarticle']) : 'n',
 	];
 	foreach ($data as $key => $val) {
