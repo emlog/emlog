@@ -7,10 +7,8 @@
     <div class="alert alert-success">头像删除成功</div><?php endif ?>
 <?php if (isset($_GET['error_a'])): ?>
     <div class="alert alert-danger">昵称不能为空</div><?php endif ?>
-<?php if (isset($_GET['error_b'])): ?>
-    <div class="alert alert-danger">电子邮件格式错误</div><?php endif ?>
 <?php if (isset($_GET['error_email'])): ?>
-    <div class="alert alert-danger">邮箱不能都为空</div><?php endif ?>
+    <div class="alert alert-danger">请正确填写邮箱</div><?php endif ?>
 <?php if (isset($_GET['error_c'])): ?>
     <div class="alert alert-danger">密码长度不得小于6位</div><?php endif ?>
 <?php if (isset($_GET['error_d'])): ?>
