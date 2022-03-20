@@ -94,6 +94,9 @@ class User_Model {
 	 * @return boolean
 	 */
 	function isUserExist($user_name, $uid = '') {
+		if (empty($user_name)) {
+			return false;
+		}
 		$subSql = $uid ? 'and uid!=' . $uid : '';
 		$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "user WHERE username='$user_name' $subSql");
 		if ($data['total'] > 0) {

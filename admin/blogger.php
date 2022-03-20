@@ -38,10 +38,8 @@ if ($action == 'update') {
 
 	if (empty($nickname)) {
 		emDirect("./blogger.php?error_a=1");
-	} elseif (empty($email)) {
-		emDirect("./blogger.php?error_email=1");
 	} elseif (!checkMail($email)) {
-		emDirect("./blogger.php?error_b=1");
+		emDirect("./blogger.php?error_email=1");
 	} elseif (strlen($newpass) > 0 && strlen($newpass) < 6) {
 		emDirect("./blogger.php?error_c=1");
 	} elseif (!empty($newpass) && $newpass != $repeatpass) {

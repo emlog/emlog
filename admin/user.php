@@ -112,7 +112,7 @@ if ($action == 'update') {
 	if ($User_Model->isMailExist($email, $uid)) {
 		emDirect("./user.php?action=edit&uid={$uid}&error_exist_email=1");
 	}
-	if ($login && $User_Model->isUserExist($login, $uid)) {
+	if ($User_Model->isUserExist($login, $uid)) {
 		emDirect("./user.php?action=edit&uid={$uid}&error_exist=1");
 	}
 	if (strlen($password) > 0 && strlen($password) < 6) {
