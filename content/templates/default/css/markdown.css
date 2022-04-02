@@ -3,7 +3,8 @@
  */
  
  .markdown {
-    overflow-wrap: break-word
+    overflow-wrap: break-word;
+    text-align: justify
  }
 
 .markdown h1 {
