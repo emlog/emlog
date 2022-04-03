@@ -82,7 +82,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
             </div>
             <form action="article.php" method="get">
                 <div class="form-inline">
-                    <input type="text" name="keyword" class="form-control bg-light border-0 small" placeholder="查找文章..." aria-label="Search" aria-describedby="basic-addon2">
+                    <input type="text" name="keyword" class="form-control bg-light m-1 small" placeholder="查找文章..." aria-label="Search" aria-describedby="basic-addon2">
                     <div class="input-group-append">
                         <button class="btn btn-sm btn-success" type="submit">
                             <i class="icofont-search-2"></i>
