@@ -4,10 +4,12 @@
 
 <?php foreach ($medias as $key => $value):
 	$media_path = $value['filepath'];
-	$media_url =rmUrlParams(getFileUrl($media_path));
+	$media_url = rmUrlParams(getFileUrl($media_path));
 	$media_name = $value['filename'];
 	if (isImage($value['mimetype'])) {
 		$media_icon = getFileUrl($value['filepath_thum']);
+	} elseif (isZip($value['filename'])) {
+		$media_icon = "./views/images/zip.jpg";
 	} else {
 		$media_icon = "./views/images/fnone.png";
 	}

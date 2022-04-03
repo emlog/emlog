@@ -248,8 +248,19 @@ function isImage($mimetype) {
  * 根据文件名后缀判断是否视频
  */
 function isVideo($fileName) {
-	$extension = getFileSuffix($fileName);
-	if (in_array($extension, array('mp4'))) {
+	$suffix = getFileSuffix($fileName);
+	if ($suffix == 'mp4') {
+		return true;
+	}
+	return false;
+}
+
+/**
+ * 根据文件名后缀判断是否压缩包
+ */
+function isZip($fileName) {
+	$suffix = getFileSuffix($fileName);
+	if (in_array($suffix, ['zip', 'rar'])) {
 		return true;
 	}
 	return false;
