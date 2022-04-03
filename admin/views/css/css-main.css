@@ -532,6 +532,11 @@ textarea {
     .sd_menu_hd {
         display: none;
     }
+
+    /* 用户查询搜索框和按钮两个元素在移动端不换行 */
+    .form-inline {
+        flex-flow: nowrap
+    }    
 }
 
 /* 图片裁剪 */
@@ -583,3 +588,7 @@ textarea {
     float: left;
     right: 105px;
 }
+.user_search {
+    margin: 5px;
+}
+

@@ -133,7 +133,7 @@ function widget_newcomm($title) {
         <div class="widget-title">
             <h3><?= $title ?></h3>
         </div>
-        <hr style="margin-bottom: 4px;"/>
+        <hr>
         <ul class="unstyle-li">
 			<?php
 			foreach ($com_cache as $value):

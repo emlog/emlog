@@ -191,7 +191,6 @@ footer .copyright {
 	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1) /* 阴影 */
 }
 .blog-header-c {
-    max-width: 1193px;
     height: 71.63px;
     display: flex;
     justify-content: space-between /* 导航栏为主轴方向两端对齐，即大标题与导航两部分，一个向左靠齐，一个向右靠齐 */
@@ -205,7 +204,7 @@ footer .copyright {
     font-size: small;
     letter-spacing: 0.2rem;
     position: absolute;
-    padding-top: 45px;
+    padding-top: 48px;
     z-index: 0
 }
 
@@ -251,10 +250,9 @@ footer .copyright {
     .blog-header-title {
         position: absolute;
         left: 17px;
-        top: 15px
+        top: 18px
     }
     .blog-header-subtitle {
-
         padding-top: 60px;
         left: 17px;
         top: -11px
@@ -364,8 +362,7 @@ footer .copyright {
 /* 验证码模态窗的配置 */
 .modal-dialog {
     display:none;
-    background-color: white;
-    
+    background-color: white; 
     border-radius: var(--marRadius);
     border: 1px solid #dedede;
     position: fixed;
@@ -885,7 +882,6 @@ footer .copyright {
 }
 .loglist-cover img {
     position: absolute;
-    /* width: 730px; */
     opacity: 0.8;
     border-radius: var(--marRadius) 10px 0 0;
     transition: all 0.4s;
@@ -1222,6 +1218,10 @@ img.zoom-img {
     .mh {
         display: none
     }
+    .loglist-title {
+        font-size: 18px;
+        font-weight: 500
+    }
     .bloggerinfo {
         margin-bottom: 0px
     }
@@ -1301,7 +1301,6 @@ img.zoom-img {
     .bloginfo-name {
         font-size: small
     }
-
 }
 /* 普通移动设备的显示样式 */
 @media all and (max-width: 577px) {
