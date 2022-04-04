@@ -440,3 +440,19 @@ function imgPasteExpand(thisEditor){
 // 把粘贴上传图片函数，挂载到位于文章编辑器、页面编辑器处的 js 钩子处
 hooks.addAction("loaded", imgPasteExpand);
 hooks.addAction("page_loaded", imgPasteExpand);
+
+// 设置界面，如果设置“自动检测地址”，则设置 input 为只读，以表示该项是无效的
+$(document).ready(function(){
+    // 网页加载完先检查一遍
+    if ($("#detect_url").prop("checked")){
+        $("[name=blogurl]").attr("readonly","readonly")
+    }
+
+    $("#detect_url").click(function(){
+      if ($(this).prop("checked")){
+        $("[name=blogurl]").attr("readonly","readonly")
+      }else{
+        $("[name=blogurl]").removeAttr("readonly")
+      }
+    })
+})

@@ -699,3 +699,7 @@ textarea {
     right: 105px;
 }
 
+/* 评论界面回复模态窗中的评论内容，需要自动换行 */
+.comment-replay-content {
+    overflow-wrap: break-word
+}

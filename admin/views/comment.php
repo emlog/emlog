@@ -130,7 +130,7 @@
             </div>
             <form action="comment.php?action=doreply" method="post">
                 <div class="modal-body">
-                    <p></p>
+                    <p class="comment-replay-content"></p>
                     <div class="form-group">
                         <input type="hidden" value="" name="cid" id="cid"/>
                         <input type="hidden" value="" name="gid" id="gid"/>
@@ -170,7 +170,7 @@
         var gid = button.data('gid')
         var hide = button.data('hide')
         var modal = $(this)
-        modal.find('.modal-body p').html(removeHTMLTag(comment))
+        modal.find('.modal-body p').html(comment)
         modal.find('.modal-body #cid').val(cid)
         modal.find('.modal-body #gid').val(gid)
         modal.find('.modal-body #hide').val(hide)
