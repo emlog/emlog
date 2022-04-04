@@ -68,7 +68,8 @@
 						$cid = $value['cid'];
 						$ip_info = $ip ? "<br />来自IP：{$ip}" : '';
 						$comment = $value['comment'];
-						$poster = $value['poster'] ?: '';
+                        $url = $value['url'];
+						$poster = !empty($value['url']) ? '<a href="'.$value['url'].'" target="_blank">'. $value['poster'].'</a>' : $value['poster'];
 						$title = subString($value['title'], 0, 42);
 						$hide = $value['hide'];
 						$date = $value['date'];
@@ -165,12 +166,12 @@
 
     $('#replyModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget)
-        var comment = button.data('comment')
+        var comment = button.html()
         var cid = button.data('cid')
         var gid = button.data('gid')
         var hide = button.data('hide')
         var modal = $(this)
-        modal.find('.modal-body p').text(comment)
+        modal.find('.modal-body p').html(comment)
         modal.find('.modal-body #cid').val(cid)
         modal.find('.modal-body #gid').val(gid)
         modal.find('.modal-body #hide').val(hide)
