@@ -170,7 +170,7 @@
         var gid = button.data('gid')
         var hide = button.data('hide')
         var modal = $(this)
-        modal.find('.modal-body p').html(comment)
+        modal.find('.modal-body p').text(comment)
         modal.find('.modal-body #cid').val(cid)
         modal.find('.modal-body #gid').val(gid)
         modal.find('.modal-body #hide').val(hide)
