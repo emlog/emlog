@@ -614,7 +614,7 @@ textarea {
     }
 
     #content-wrapper {
-        min-height: 100vh;
+        min-height: 752px;
         position: absolute;
     }
 
