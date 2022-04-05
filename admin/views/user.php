@@ -30,7 +30,7 @@
                 <h6 class="m-0 font-weight-bold">总用户数 (<?= $usernum ?>)</h6>
             </div>
             <form action="user.php" method="get">
-                <div class="form-inline">
+                <div class="form-inline search-inputs-nowrap">
                     <input type="text" name="email" value="<?= $email ?>" class="form-control m-1 small" placeholder="按邮箱搜索用户...">
                     <div class="input-group-append">
                         <button class="btn btn-sm btn-success" type="submit">
