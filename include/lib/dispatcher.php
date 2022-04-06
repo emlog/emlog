@@ -33,12 +33,12 @@ class Dispatcher {
 	 */
 	private $_path = NULL;
 
-    public static function getInstance() {
-        if (!self::$_instance instanceof self) {
-            self::$_instance = new self();
-        }
-        return self::$_instance;
-    }
+	public static function getInstance() {
+		if (!self::$_instance instanceof self) {
+			self::$_instance = new self();
+		}
+		return self::$_instance;
+	}
 
 	private function __construct() {
 		$this->_path = $this->setPath();
@@ -76,17 +76,14 @@ class Dispatcher {
 	}
 
 	public static function setPath() {
-		$path = '';
-		if (isset($_SERVER['HTTP_X_REWRITE_URL'])) { //iis
+		if (isset($_SERVER['HTTP_X_REWRITE_URL'])) { // for iis
 			$path = $_SERVER['HTTP_X_REWRITE_URL'];
 		} elseif (isset($_SERVER['REQUEST_URI'])) {
 			$path = $_SERVER['REQUEST_URI'];
+		} elseif (isset($_SERVER['argv'])) {
+			$path = $_SERVER['PHP_SELF'] . '?' . $_SERVER['argv'][0];
 		} else {
-			if (isset($_SERVER['argv'])) {
-				$path = $_SERVER['PHP_SELF'] . '?' . $_SERVER['argv'][0];
-			} else {
-				$path = $_SERVER['PHP_SELF'] . '?' . $_SERVER['QUERY_STRING'];
-			}
+			$path = $_SERVER['PHP_SELF'] . '?' . $_SERVER['QUERY_STRING'];
 		}
 
 		//for iis6 path is GBK

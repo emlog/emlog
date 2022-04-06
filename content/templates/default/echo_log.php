@@ -11,8 +11,8 @@ if (!defined('EMLOG_ROOT')) {
     <span class="back-top mh" onclick="history.go(-1);">&laquo;</span>
     <header class="log-title"><?php topflg($top) ?><?= $log_title ?></header>
     <p class="date">
-<!--vot--><b><?=lang('time')?>:</b> <?= gmdate('Y-m-d', $date) ?>&nbsp;&nbsp;&nbsp;
-<!--vot--><b><?=lang('author')?>:</b> <?php blog_author($author); ?>&nbsp;&nbsp;&nbsp;
+<!--vot--><b><?=lang('time')?>:</b> <?= gmdate('Y-m-d', $date) ?>&nbsp;&nbsp;&nbsp;&nbsp;
+<!--vot--><b><?=lang('author')?>:</b> <?php blog_author($author); ?>&nbsp;&nbsp;&nbsp;&nbsp;
 <!--vot--><b><?=lang('category')?>:</b> <?php blog_sort($logid); ?>
 
 		<?php editflg($logid, $author) ?>

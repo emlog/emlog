@@ -81,8 +81,8 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 				<?php endif ?>
             </div>
             <form action="article.php" method="get">
-                <div class="form-inline">
-<!--vot-->          <input type="text" name="keyword" class="form-control bg-light border-0 small" placeholder="<?=lang('search_for')?>" aria-label="<?=lang('search')?>" aria-describedby="basic-addon2">
+                <div class="form-inline search-inputs-nowrap">
+<!--vot-->          <input type="text" name="keyword" class="form-control m-1 small" placeholder="<?=lang('search_for')?>" aria-label="<?=lang('search')?>" aria-describedby="basic-addon2">
                     <div class="input-group-append">
                         <button class="btn btn-sm btn-success" type="submit">
                             <i class="icofont-search-2"></i>

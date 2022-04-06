@@ -31,8 +31,8 @@
 
             </div>
             <form action="user.php" method="get">
-                <div class="form-inline">
-<!--vot-->          <input type="text" name="email" value="<?= $email ?>" class="form-control bg-light border-0 small" placeholder="<?=lang('search_by_email')?>">
+                <div class="form-inline search-inputs-nowrap">
+<!--vot-->          <input type="text" name="email" value="<?= $email ?>" class="form-control m-1 small" placeholder="<?=lang('search_by_email')?>">
                     <div class="input-group-append">
                         <button class="btn btn-sm btn-success" type="submit">
                             <i class="icofont-search-2"></i>

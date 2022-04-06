@@ -16,6 +16,9 @@
 			if (isImage($value['mimetype'])) {
 				$media_icon = getFileUrl($value['filepath_thum']);
 				$imgviewer = 'class="highslide" onclick="return hs.expand(this)"';
+			} elseif (isZip($value['filename'])) {
+				$media_icon = "./views/images/zip.jpg";
+				$imgviewer = '';
 			} else {
 				$media_icon = "./views/images/fnone.png";
 				$imgviewer = '';
