@@ -26,12 +26,12 @@
 
             <div class="form-group">
                 <label>文章封面：</label>
-                <div class="row m-3">
+                <input name="cover" id="cover" class="form-control" placeholder="封面图地址URL" value="<?= $cover ?>"/>
+                <div class="row mt-3">
                     <div class="col-md-4">
                         <label for="upload_img">
                             <img src="<?= $cover ?: './views/images/cover.svg' ?>" id="cover_image" class="rounded"/>
                             <input type="file" name="upload_img" class="image" id="upload_img" style="display:none"/>
-                            <input type="hidden" name="cover" id="cover" value="<?= $cover ?>"/>
                             <button type="button" id="cover_rm" class="btn-sm btn btn-link" <?php if (!$cover): ?>style="display:none"<?php endif ?>>x</button>
                         </label>
                     </div>
@@ -329,11 +329,11 @@
 
     // 离开页面时，如果文章内容已做修改，则询问用户是否离开
     var articleTextRecord;
-    hooks.addAction("loaded", function(){
+    hooks.addAction("loaded", function () {
         articleTextRecord = $("textarea[name=logcontent]").text();
     });
     window.onbeforeunload = function (e) {
-        if($("textarea[name=logcontent]").text() == articleTextRecord) return
+        if ($("textarea[name=logcontent]").text() == articleTextRecord) return
         e = e || window.event;
         if (e) e.returnValue = '离开页面提示';
         return '离开页面提示';
@@ -341,12 +341,12 @@
 
     // 如果文章内容已做修改，则使网页标题修改为‘已修改’
     var titleText = $('title').text()
-    hooks.addAction("loaded", function(obj){
-        obj.config({ 
-            onchange : function() {
-                if($("textarea[name=logcontent]").text() == articleTextRecord) return
+    hooks.addAction("loaded", function (obj) {
+        obj.config({
+            onchange: function () {
+                if ($("textarea[name=logcontent]").text() == articleTextRecord) return
                 $('title').text('[已修改] ' + titleText);
             }
-         });
+        });
     });
 </script>
