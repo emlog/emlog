@@ -26,7 +26,7 @@
 
             <div class="form-group">
                 <label>文章封面：</label>
-                <input name="cover" id="cover" class="form-control" placeholder="封面图地址URL" value="<?= $cover ?>"/>
+                <input name="cover" id="cover" class="form-control" placeholder="封面图地址URL，可手动填写或点击下方图片区域上传" value="<?= $cover ?>"/>
                 <div class="row mt-3">
                     <div class="col-md-4">
                         <label for="upload_img">
