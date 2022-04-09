@@ -26,7 +26,7 @@
 
             <div class="form-group">
                 <label>文章封面：</label>
-                <input name="cover" id="cover" class="form-control" placeholder="封面图地址URL，可手动填写或点击下方图片区域上传" value="<?= $cover ?>"/>
+                <input name="cover" id="cover" class="form-control" placeholder="封面图地址URL，手动填写或点击下方图片区域上传" value="<?= $cover ?>"/>
                 <div class="row mt-3">
                     <div class="col-md-4">
                         <label for="upload_img">
@@ -326,6 +326,36 @@
             $('#cover_rm').hide();
         });
     });
+
+    $('#cover').blur(function () {
+            c = $('#cover').val();
+            if (!validateImage(c)) {
+                $('#cover_image').attr('src', "./views/images/cover.svg");
+                $('#cover_rm').hide();
+                return
+            }
+            $('#cover_image').attr('src', c);
+            $('#cover_rm').show();
+        }
+    );
+
+    function validateImage(url) {
+        if (!url) {
+            return false;
+        }
+        var xmlHttp;
+        if (window.ActiveXObject) {
+            xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+        } else if (window.XMLHttpRequest) {
+            xmlHttp = new XMLHttpRequest();
+        }
+        xmlHttp.open("Get", url, false);
+        xmlHttp.send();
+        if (xmlHttp.status == 404)
+            return false;
+        else
+            return true;
+    }
 
     // 离开页面时，如果文章内容已做修改，则询问用户是否离开
     var articleTextRecord;
