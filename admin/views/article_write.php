@@ -30,7 +30,7 @@
                 <div class="row mt-3">
                     <div class="col-md-4">
                         <label for="upload_img">
-                            <img src="<?= $cover ?: './views/images/cover.svg' ?>" id="cover_image" class="rounded"/>
+                            <img src="<?= $cover ?: './views/images/cover.svg' ?>" id="cover_image" class="rounded" title="封面图片"/>
                             <input type="file" name="upload_img" class="image" id="upload_img" style="display:none"/>
                             <button type="button" id="cover_rm" class="btn-sm btn btn-link" <?php if (!$cover): ?>style="display:none"<?php endif ?>>x</button>
                         </label>
@@ -329,7 +329,7 @@
 
     $('#cover').blur(function () {
             c = $('#cover').val();
-            if (!validateImage(c)) {
+            if (!c) {
                 $('#cover_image').attr('src', "./views/images/cover.svg");
                 $('#cover_rm').hide();
                 return
@@ -338,24 +338,6 @@
             $('#cover_rm').show();
         }
     );
-
-    function validateImage(url) {
-        if (!url) {
-            return false;
-        }
-        var xmlHttp;
-        if (window.ActiveXObject) {
-            xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
-        } else if (window.XMLHttpRequest) {
-            xmlHttp = new XMLHttpRequest();
-        }
-        xmlHttp.open("Get", url, false);
-        xmlHttp.send();
-        if (xmlHttp.status == 404)
-            return false;
-        else
-            return true;
-    }
 
     // 离开页面时，如果文章内容已做修改，则询问用户是否离开
     var articleTextRecord;
