@@ -1,4 +1,10 @@
 <?php
+/**
+ * Service: User
+ *
+ * @package EMLOG
+ * @link https://www.emlog.net
+ */
 
 class User {
 

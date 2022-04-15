@@ -1,7 +1,8 @@
 <?php
 /**
  * links model
- * @package EMLOG (www.emlog.net)
+ * @package EMLOG
+ * @link https://www.emlog.net
  */
 
 class Link_Model {

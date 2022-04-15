@@ -1,7 +1,8 @@
 <?php
 /**
  * article sort model
- * @package EMLOG (www.emlog.net)
+ * @package EMLOG
+ * @link https://www.emlog.net
  */
 
 class Sort_Model {

@@ -2,7 +2,8 @@
 /**
  * MySQLi数据库操作类
  *
- * @package EMLOG (www.emlog.net)
+ * @package EMLOG
+ * @link https://www.emlog.net
  */
 
 class MySqlii {

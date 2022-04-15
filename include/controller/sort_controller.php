@@ -2,7 +2,8 @@
 /**
  * 查看分类文章
  *
- * @package EMLOG (www.emlog.net)
+ * @package EMLOG
+ * @link https://www.emlog.net
  */
 
 class Sort_Controller {

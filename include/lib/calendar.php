@@ -1,7 +1,8 @@
 <?php
 /**
  * 日历
- * @package EMLOG (www.emlog.net)
+ * @package EMLOG
+ * @link https://www.emlog.net
  */
 
 class Calendar {

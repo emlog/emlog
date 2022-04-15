@@ -1,8 +1,11 @@
 <?php
-
 /**
- * 数据存储接口 - 数据类型枚举
+ * 数据存储类
+ *
+ * @package EMLOG
+ * @link https://www.emlog.net
  */
+
 class StorageType {
 	/**
 	 * 字符串

@@ -2,7 +2,8 @@
 /**
  * 笔记
  *
- * @package EMLOG (www.emlog.net)
+ * @package EMLOG
+ * @link https://www.emlog.net
  */
 
 class Twitter_Model {

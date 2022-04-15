@@ -1,7 +1,8 @@
 <?php
 /**
  * 图片验证码生成
- * @package EMLOG (www.emlog.net)
+ * @package EMLOG
+ * @link https://www.emlog.net
  */
 
 if (!isset($_SESSION)) {

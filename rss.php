@@ -1,7 +1,8 @@
 <?php
 /**
  * RSS
- * @package EMLOG (www.emlog.net)
+ * @package EMLOG
+ * @link https://www.emlog.net
  */
 
 require_once './init.php';

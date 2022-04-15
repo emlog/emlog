@@ -1,7 +1,8 @@
 <?php
 /**
  * 路由分发器
- * @package EMLOG (www.emlog.net)
+ * @package EMLOG
+ * @link https://www.emlog.net
  */
 
 class Dispatcher {

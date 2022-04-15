@@ -2,7 +2,8 @@
 /**
  * 前台加载插件页面
  *
- * @package EMLOG (www.emlog.net)
+ * @package EMLOG
+ * @link https://www.emlog.net
  */
 
 class Plugin_Controller {

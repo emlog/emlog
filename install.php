@@ -1,7 +1,8 @@
 <?php
 /**
  * 安装程序
- * @package EMLOG (www.emlog.net)
+ * @package EMLOG
+ * @link https://www.emlog.net
  */
 
 const EMLOG_ROOT = __DIR__;

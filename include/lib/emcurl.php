@@ -1,4 +1,10 @@
 <?php
+/**
+ * curl wrapper class
+ *
+ * @package EMLOG
+ * @link https://www.emlog.net
+ */
 
 class EmCurl {
 	protected $_useragent = 'emlog pro';
