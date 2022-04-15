@@ -116,12 +116,12 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 						?>
                         <tr>
                             <td style="width: 20px;"><input type="checkbox" name="blog[]" value="<?= $value['gid'] ?>" class="ids"/></td>
-                            <td><a href="article.php?action=edit&gid=<?= $value['gid'] ?>"><?= $value['title'] ?></a>
+                            <td>
+                                <a href="article.php?action=edit&gid=<?= $value['gid'] ?>"><?= $value['title'] ?></a><br>
 								<?php if ($value['top'] == 'y'): ?><span class="badge small badge-warning">首页置顶</span><?php endif ?>
 								<?php if ($value['sortop'] == 'y'): ?><span class="badge small badge-secondary">分类置顶</span><?php endif ?>
 								<?php if ($value['password']): ?><span class="small">🔒</span><?php endif ?>
-								<?php if (!$draft && $value['checked'] == 'n'): ?>
-                                    <span style="color:red;">[待审]</span><?php endif ?>
+								<?php if (!$draft && $value['checked'] == 'n'): ?><span style="color:red;">[待审]</span><?php endif ?>
                                 <div>
 									<?php if (!$draft && User::isAdmin() && $value['checked'] == 'n'): ?>
                                         <a class="badge badge-success"

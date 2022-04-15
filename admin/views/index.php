@@ -118,6 +118,8 @@
                         $("#upmsg").html("您的emlog pro尚未注册，<a href=\"auth.php\">去注册</a>").removeClass();
                     } else if (result.code == 1002) {
                         $("#upmsg").html("已经是最新版本").removeClass();
+                    } else if (result.code == 1003) {
+                        $("#upmsg").html("更新服务已到期，<a href=\"https://www.emlog.net/\" target=\"_blank\">登录官网续期</a>").removeClass();
                     } else if (result.code == 200) {
                         $("#upmsg").html("有可用的新版本 " + result.data.version + "，<a href=\"https://www.emlog.net/docs/#/changelog\" target=\"_blank\">查看更新内容</a>，<a id=\"doup\" href=\"javascript:doup('" + result.data.file + "','" + result.data.sql + "');\">现在更新</a>").removeClass();
                     } else {
@@ -148,5 +150,5 @@
 <?php endif ?>
 
 <div class="row">
-    <?php doAction('adm_main_content') ?>
+	<?php doAction('adm_main_content') ?>
 </div>
