@@ -28,7 +28,7 @@
     <div class="card">
         <h5 class="card-header">备份数据库</h5>
         <div class="card-body">
-            <form action="data.php?action=bakstart" method="post">
+            <form action="data.php?action=backup" method="post">
                 <div id="backup">
                     <p>将站点内容数据库备份到自己电脑上。</p>
                     <p id="local_bakzip">压缩成zip包：<input type="checkbox" style="vertical-align:middle;" value="y" name="zipbak" id="zipbak"></p>

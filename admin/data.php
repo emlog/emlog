@@ -12,7 +12,6 @@
 require_once 'globals.php';
 
 if (!$action) {
-	doAction('data_prebakup');
 	include View::getAdmView('header');
 	require_once(View::getAdmView('data'));
 	include View::getAdmView('footer');
@@ -20,7 +19,7 @@ if (!$action) {
 }
 
 // 备份到本地
-if ($action === 'bakstart') {
+if ($action === 'backup') {
 	LoginAuth::checkToken();
 	$zipbak = $_POST['zipbak'] ?? 'n';
 
@@ -37,6 +36,8 @@ if ($action === 'bakstart') {
 		'twitter',
 		'user'
 	];
+
+	doAction('data_backup');
 
 	$bakfname = 'emlog_' . date('Ymd') . '_' . substr(md5(AUTH_KEY . uniqid('', true)), 0, 18);
 	$filename = '';
