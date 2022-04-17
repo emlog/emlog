@@ -1,6 +1,6 @@
 <?php
 /**
- * 路由分发器
+ * router
  * @package EMLOG
  * @link https://www.emlog.net
  */
@@ -32,7 +32,7 @@ class Dispatcher {
 	/**
 	 * 访问路径
 	 */
-	private $_path = NULL;
+	private $_path;
 
 	public static function getInstance() {
 		if (!self::$_instance instanceof self) {
@@ -47,11 +47,7 @@ class Dispatcher {
 
 		$urlMode = Option::get('isurlrewrite');
 		foreach ($this->_routingTable as $route) {
-			if (!isset($route['reg_' . $urlMode])) {
-				$reg = isset($route['reg']) ? $route['reg'] : $route['reg_0'];
-			} else {
-				$reg = $route['reg_' . $urlMode];
-			}
+			$reg = $route['reg_' . $urlMode] ?? ($route['reg'] ?? $route['reg_0']);
 			if (preg_match($reg, $this->_path, $matches)) {
 				$this->_model = $route['model'];
 				$this->_method = $route['method'];

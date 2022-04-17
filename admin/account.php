@@ -19,7 +19,7 @@ $admin_path_code = isset($_GET['s']) ? addslashes(htmlClean($_GET['s'])) : '';
 $User_Model = new User_Model();
 
 /**
- * 登录
+ * login
  */
 if ($action == 'signin') {
 	loginAuth::checkLogged();
@@ -65,7 +65,7 @@ if ($action == 'dosignin') {
 }
 
 /**
- * 注册
+ * register
  */
 if ($action == 'signup') {
 	loginAuth::checkLogged();
@@ -119,7 +119,7 @@ if ($action == 'dosignup') {
 }
 
 /**
- * 重置密码
+ * reset password
  */
 if ($action == 'reset') {
 	if (ISLOGIN === true) {
@@ -200,9 +200,6 @@ if ($action == 'doreset2') {
 	emDirect("./account.php?action=signin&succ_reset=1");
 }
 
-/**
- * 登出
- */
 if ($action == 'logout') {
 	setcookie(AUTH_COOKIE_NAME, ' ', time() - 31536000, '/');
 	emDirect("../");
