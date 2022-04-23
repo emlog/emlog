@@ -183,6 +183,38 @@ class Log_Model {
 	}
 
 	/**
+	 * get rss article list
+	 *
+	 * @param int $perPageNum
+	 * @return array
+	 */
+	function getLogsForRss($perPageNum = 10) {
+		if ($perPageNum <= 0) {
+			return [];
+		}
+		$sql = "SELECT * FROM " . DB_PREFIX . "blog  WHERE hide='n' and checked='y' and type='blog' ORDER BY date DESC limit 0," . $perPageNum;
+		$result = $this->db->query($sql);
+		$d = [];
+		while ($re = $this->db->fetch_array($result)) {
+			$re['id'] = $re['gid'];
+			$re['title'] = htmlspecialchars($re['title']);
+			$re['content'] = $this->Parsedown->text($re['content']);
+			if (!empty($re['password'])) {
+				$re['content'] = '<p>[该文章已设置加密]</p>';
+			} elseif (Option::get('rss_output_fulltext') == 'n') {
+				if (!empty($re['excerpt'])) {
+					$re['content'] = $re['excerpt'];
+				} else {
+					$re['content'] = extractHtmlData($re['content'], 330);
+				}
+				$re['content'] .= ' <a href="' . Url::log($re['id']) . '">阅读全文&gt;&gt;</a>';
+			}
+			$d[] = $re;
+		}
+		return $d;
+	}
+
+	/**
 	 * 获取全部页面列表
 	 */
 	function getAllPageList() {

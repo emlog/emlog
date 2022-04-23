@@ -8,21 +8,20 @@
 require_once './init.php';
 
 header('Content-type: application/xml');
-
-$URL = BLOG_URL;
-$blog = getArticleList();
+$Log_Model = new Log_Model();
+$articles = $Log_Model->getLogsForRss(Option::get('rss_output_num'));
 
 echo '<?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0">
 <channel>
 <title><![CDATA[' . Option::get('blogname') . ']]></title> 
 <description><![CDATA[' . Option::get('bloginfo') . ']]></description>
-<link>' . $URL . '</link>
+<link>' . BLOG_URL . '</link>
 <language>zh-cn</language>
 <generator>www.emlog.net</generator>';
-if (!empty($blog)) {
+if (!empty($articles)) {
 	$user_cache = $CACHE->readCache('user');
-	foreach ($blog as $value) {
+	foreach ($articles as $value) {
 		$link = Url::log($value['id']);
 		$abstract = str_replace('[break]', '', $value['content']);
 		$pubdate = date('r', $value['date']);
@@ -37,7 +36,6 @@ if (!empty($blog)) {
     <pubDate>$pubdate</pubDate>
     <author>$author</author>
     <guid>$link</guid>
-
 </item>
 END;
 	}
@@ -46,36 +44,3 @@ echo <<< END
 </channel>
 </rss>
 END;
-
-function getArticleList() {
-	$parsedown = new Parsedown();
-	$parsedown->setBreaksEnabled(true); //automatic line wrapping
-
-	$rss_output_num = Option::get('rss_output_num');
-	if ($rss_output_num <= 0) {
-		return [];
-	}
-
-	$DB = Database::getInstance();
-	$sql = "SELECT * FROM " . DB_PREFIX . "blog  WHERE hide='n' and checked='y' and type='blog' ORDER BY date DESC limit 0," . $rss_output_num;
-	$result = $DB->query($sql);
-	$d = [];
-	while ($re = $DB->fetch_array($result)) {
-		$re['id'] = $re['gid'];
-		$re['title'] = htmlspecialchars($re['title']);
-		$re['content'] = $parsedown->text($re['content']);
-		if (!empty($re['password'])) {
-			$re['content'] = '<p>[该文章已设置加密]</p>';
-		} elseif (Option::get('rss_output_fulltext') == 'n') {
-			if (!empty($re['excerpt'])) {
-				$re['content'] = $re['excerpt'];
-			} else {
-				$re['content'] = extractHtmlData($re['content'], 330);
-			}
-			$re['content'] .= ' <a href="' . Url::log($re['id']) . '">阅读全文&gt;&gt;</a>';
-		}
-
-		$d[] = $re;
-	}
-	return $d;
-}
