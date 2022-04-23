@@ -9,10 +9,8 @@ require_once './init.php';
 
 header('Content-type: application/xml');
 
-$sort = isset($_GET['sort']) ? (int)$_GET['sort'] : '';
-
 $URL = BLOG_URL;
-$blog = getArticleList($sort);
+$blog = getArticleList();
 
 echo '<?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0">
@@ -49,7 +47,7 @@ echo <<< END
 </rss>
 END;
 
-function getArticleList($sortid = null) {
+function getArticleList() {
 	$parsedown = new Parsedown();
 	$parsedown->setBreaksEnabled(true); //automatic line wrapping
 
@@ -59,19 +57,7 @@ function getArticleList($sortid = null) {
 	}
 
 	$DB = Database::getInstance();
-	$sorts = Cache::getInstance()->readCache('sort');
-	if (isset($sorts[$sortid])) {
-		$sort = $sorts[$sortid];
-		if ($sort['pid'] != 0 || empty($sort['children'])) {
-			$subsql = "and sortid=$sortid";
-		} else {
-			$sortids = array_merge(array($sortid), $sort['children']);
-			$subsql = "and sortid in (" . implode(',', $sortids) . ")";
-		}
-	} else {
-		$subsql = $sortid ? "and sortid=$sortid" : '';
-	}
-	$sql = "SELECT * FROM " . DB_PREFIX . "blog  WHERE hide='n' and type='blog' $subsql ORDER BY date DESC limit 0," . $rss_output_num;
+	$sql = "SELECT * FROM " . DB_PREFIX . "blog  WHERE hide='n' and checked='y' and type='blog' ORDER BY date DESC limit 0," . $rss_output_num;
 	$result = $DB->query($sql);
 	$d = [];
 	while ($re = $DB->fetch_array($result)) {
