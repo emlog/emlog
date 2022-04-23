@@ -1,6 +1,6 @@
 <?php
 /**
- * links
+ * store
  * @package EMLOG
  * @link https://www.emlog.net
  */

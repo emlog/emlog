@@ -1,6 +1,6 @@
 <?php
 /**
- * 链接管理
+ * navbar menu items
  * @package EMLOG
  * @link https://www.emlog.net
  */

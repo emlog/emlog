@@ -1,6 +1,6 @@
 <?php
 /**
- * 全局项加载
+ * init.
  * @package EMLOG
  * @link https://www.emlog.net
  */

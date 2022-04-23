@@ -1,6 +1,6 @@
 <?php
 /**
- * 配置项
+ * Configuration item
  * @package EMLOG
  * @link https://www.emlog.net
  */

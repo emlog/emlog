@@ -1,6 +1,6 @@
 <?php
 /**
- * 数据库操作路由
+ * Database operation routing
  *
  * @package EMLOG
  * @link https://www.emlog.net

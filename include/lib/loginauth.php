@@ -1,6 +1,6 @@
 <?php
 /**
- * 登录验证
+ * Login authentication
  * @package EMLOG
  * @link https://www.emlog.net
  */

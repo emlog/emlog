@@ -1,6 +1,6 @@
 <?php
 /**
- * 查看分类文章
+ * sort
  *
  * @package EMLOG
  * @link https://www.emlog.net

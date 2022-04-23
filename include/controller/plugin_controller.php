@@ -1,6 +1,6 @@
 <?php
 /**
- * 前台加载插件页面
+ * loading plug-in page
  *
  * @package EMLOG
  * @link https://www.emlog.net

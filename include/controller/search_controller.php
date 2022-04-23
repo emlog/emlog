@@ -1,6 +1,6 @@
 <?php
 /**
- * 搜索文章
+ * search
  *
  * @package EMLOG
  * @link https://www.emlog.net

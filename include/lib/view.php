@@ -1,6 +1,6 @@
 <?php
 /**
- * 视图控制
+ * View control
  * @package EMLOG
  * @link https://www.emlog.net
  */

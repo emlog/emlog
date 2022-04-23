@@ -1,6 +1,6 @@
 <?php
 /**
- * 图片验证码生成
+ * Captcha
  * @package EMLOG
  * @link https://www.emlog.net
  */

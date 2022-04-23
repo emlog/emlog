@@ -1,6 +1,6 @@
 <?php
 /**
- * 生成文本缓存类
+ * Cache
  *
  * @package EMLOG
  * @link https://www.emlog.net

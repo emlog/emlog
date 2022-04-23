@@ -1,6 +1,6 @@
 <?php
 /**
- * MySQLi数据库操作类
+ * MySQLi Database Class
  *
  * @package EMLOG
  * @link https://www.emlog.net

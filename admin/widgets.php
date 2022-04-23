@@ -1,6 +1,6 @@
 <?php
 /**
- * Widgets 侧边栏目管理
+ * Widgets
  * @package EMLOG
  * @link https://www.emlog.net
  */
@@ -12,7 +12,6 @@
 
 require_once 'globals.php';
 
-//显示组件管理面板
 if ($action === '') {
 	$widgets = Option::get('widgets1');
 	$widgetTitle = Option::get('widget_title');
@@ -39,7 +38,6 @@ if ($action === '') {
 	View::output();
 }
 
-//修改组件设置
 if ($action === 'setwg') {
 	$widgetTitle = Option::get('widget_title'); //当前所有组件标题
 	$widget = $_GET['wg'] ?? '';                //要修改的组件
@@ -123,7 +121,6 @@ if ($action === 'setwg') {
 	emDirect("./widgets.php?activated=1");
 }
 
-//保存组件排序
 if ($action === 'compages') {
 	$widgets = isset($_POST['widgets']) ? addslashes(serialize($_POST['widgets'])) : '';
 	Option::updateOption("widgets1", $widgets);
@@ -131,7 +128,6 @@ if ($action === 'compages') {
 	emDirect("./widgets.php?activated=1");
 }
 
-//恢复组件设置到初始安装状态
 if ($action === 'reset') {
 	LoginAuth::checkToken();
 	$widget_title = serialize(Option::getWidgetTitle());

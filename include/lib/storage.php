@@ -1,6 +1,6 @@
 <?php
 /**
- * 数据存储类
+ * Data storage class
  *
  * @package EMLOG
  * @link https://www.emlog.net

@@ -1,6 +1,6 @@
 <?php
 /**
- * 查看标签文章
+ * tags
  *
  * @package EMLOG
  * @link https://www.emlog.net

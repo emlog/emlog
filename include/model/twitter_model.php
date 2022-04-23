@@ -1,6 +1,6 @@
 <?php
 /**
- * 笔记
+ * notes model
  *
  * @package EMLOG
  * @link https://www.emlog.net

@@ -1,6 +1,6 @@
 <?php
 /**
- * 标签管理
+ * tags
  * @package EMLOG
  * @link https://www.emlog.net
  */
@@ -22,7 +22,6 @@ if (empty($action)) {
 	View::output();
 }
 
-//标签修改
 if ($action == 'update_tag') {
 	$tagName = isset($_POST['tagname']) ? addslashes($_POST['tagname']) : '';
 	$tagId = isset($_POST['tid']) ? (int)$_POST['tid'] : '';
@@ -36,7 +35,6 @@ if ($action == 'update_tag') {
 	emDirect("./tag.php?active_edit=1");
 }
 
-//删除标签
 if ($action == 'del_tag') {
 	$tid = isset($_GET['tid']) ? (int)$_GET['tid'] : '';
 

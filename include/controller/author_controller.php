@@ -1,6 +1,6 @@
 <?php
 /**
- * 查看作者文章
+ * author's articles
  *
  * @package EMLOG
  * @link https://www.emlog.net

@@ -1,6 +1,6 @@
 <?php
 /**
- * 插件管理
+ * plugin management
  * @package EMLOG
  * @link https://www.emlog.net
  */
@@ -24,7 +24,6 @@ if (empty($action) && empty($plugin)) {
 	View::output();
 }
 
-//开启
 if ($action == 'active') {
 	LoginAuth::checkToken();
 	$Plugin_Model = new Plugin_Model();
@@ -36,7 +35,6 @@ if ($action == 'active') {
 	}
 }
 
-//禁用
 if ($action == 'inactive') {
 	LoginAuth::checkToken();
 	$Plugin_Model = new Plugin_Model();
@@ -45,7 +43,7 @@ if ($action == 'inactive') {
 	emDirect("./plugin.php?inactive=1");
 }
 
-//加载插件配置页面
+// Load plug-in configuration page
 if (empty($action) && $plugin) {
 	require_once "../content/plugins/{$plugin}/{$plugin}_setting.php";
 	include View::getAdmView('header');
@@ -53,7 +51,7 @@ if (empty($action) && $plugin) {
 	include View::getAdmView('footer');
 }
 
-//保存插件设置
+// Save plug-in settings
 if ($action == 'setting') {
 	if (!empty($_POST)) {
 		require_once "../content/plugins/{$plugin}/{$plugin}_setting.php";
@@ -67,7 +65,6 @@ if ($action == 'setting') {
 	}
 }
 
-//删除插件
 if ($action == 'del') {
 	LoginAuth::checkToken();
 	$Plugin_Model = new Plugin_Model();
@@ -81,7 +78,6 @@ if ($action == 'del') {
 	}
 }
 
-//上传zip插件
 if ($action == 'upload_zip') {
 	LoginAuth::checkToken();
 	$zipfile = $_FILES['pluzip'] ?? '';

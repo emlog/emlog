@@ -19,7 +19,6 @@ if (!$action) {
 	View::output();
 }
 
-// 备份到本地
 if ($action === 'backup') {
 	LoginAuth::checkToken();
 	$zipbak = $_POST['zipbak'] ?? 'n';
@@ -76,7 +75,6 @@ if ($action === 'backup') {
 	echo $dumpfile;
 }
 
-//导入本地备份文件
 if ($action === 'import') {
 	LoginAuth::checkToken();
 	$sqlfile = $_FILES['sqlfile'] ?? '';
@@ -115,9 +113,6 @@ if ($action === 'import') {
 	emDirect('./data.php?active_import=1');
 }
 
-/**
- * 检查备份文件头信息
- */
 function checkSqlFileInfo($sqlfile) {
 	$fp = @fopen($sqlfile, 'r');
 	if (!$fp) {
@@ -149,9 +144,7 @@ function checkSqlFileInfo($sqlfile) {
 }
 
 /**
- * 执行备份文件的SQL语句
- *
- * @param string $filename
+ * Execute SQL statement of backup file
  */
 function bakindata($filename) {
 	$DB = Database::getInstance();
@@ -179,9 +172,9 @@ function bakindata($filename) {
 }
 
 /**
- * 备份数据库结构和所有数据
+ * Backup database structure and all data
  *
- * @param string $table 数据库表名
+ * @param string $table table name
  * @return string
  */
 function dataBak($table) {
@@ -207,17 +200,13 @@ function dataBak($table) {
 }
 
 /**
- * 检查文件是否包含BOM(byte-order mark)
+ * check BOM (byte order mark)
  */
 function checkBOM($contents) {
 	$charset[1] = substr($contents, 0, 1);
 	$charset[2] = substr($contents, 1, 1);
 	$charset[3] = substr($contents, 2, 1);
-	if (ord($charset[1]) == 239 && ord($charset[2]) == 187 && ord($charset[3]) == 191) {
-		return true;
-	} else {
-		return false;
-	}
+	return ord($charset[1]) == 239 && ord($charset[2]) == 187 && ord($charset[3]) == 191;
 }
 
 if ($action == 'Cache') {

@@ -7,10 +7,6 @@
  */
 
 class Comment_Controller {
-
-	/*
-	 * post comment
-	 */
 	function addComment($params) {
 		$name = isset($_POST['comname']) ? addslashes(trim($_POST['comname'])) : '';
 		$content = isset($_POST['comment']) ? addslashes(trim($_POST['comment'])) : '';

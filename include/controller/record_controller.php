@@ -1,6 +1,6 @@
 <?php
 /**
- * 查看归档文章
+ * Article archiving
  *
  * @package EMLOG
  * @link https://www.emlog.net

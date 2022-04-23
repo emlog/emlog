@@ -1,6 +1,6 @@
 <?php
 /**
- * 后台全局项加载
+ * global
  * @package EMLOG
  * @link https://www.emlog.net
  */

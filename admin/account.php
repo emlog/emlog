@@ -18,9 +18,6 @@ $action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
 $admin_path_code = isset($_GET['s']) ? addslashes(htmlClean($_GET['s'])) : '';
 $User_Model = new User_Model();
 
-/**
- * login
- */
 if ($action == 'signin') {
 	loginAuth::checkLogged();
 	if (defined('ADMIN_PATH_CODE') && $admin_path_code !== ADMIN_PATH_CODE) {
@@ -64,9 +61,6 @@ if ($action == 'dosignin') {
 	}
 }
 
-/**
- * register
- */
 if ($action == 'signup') {
 	loginAuth::checkLogged();
 	$login_code = Option::get('login_code') === 'y';
@@ -118,9 +112,6 @@ if ($action == 'dosignup') {
 	emDirect("./account.php?action=signin&succ_reg=1");
 }
 
-/**
- * reset password
- */
 if ($action == 'reset') {
 	if (ISLOGIN === true) {
 		emDirect("../admin");

@@ -1,6 +1,6 @@
 <?php
 /**
- * URL处理
+ * URL
  * @package EMLOG
  * @link https://www.emlog.net
  */

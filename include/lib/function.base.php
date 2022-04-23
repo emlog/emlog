@@ -1,7 +1,6 @@
 <?php
-
 /**
- * 基础函数库
+ * Basic function library
  * @package EMLOG
  * @link https://www.emlog.net
  */
