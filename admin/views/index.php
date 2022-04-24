@@ -118,6 +118,8 @@
 /*vot*/                 $("#upmsg").html("<?=lang('emlog_unregistered')?>, <a href=\"auth.php\"><?=lang('go_to_register')?></a>").removeClass();
                     } else if (result.code == 1002) {
 /*vot*/                 $("#upmsg").html("<?=lang('updates_no')?> ").removeClass();
+                    } else if (result.code == 1003) {
+                        $("#upmsg").html("更新服务已到期，<a href=\"https://www.emlog.net/\" target=\"_blank\">登录官网续期</a>").removeClass();
                     } else if (result.code == 200) {
 /*vot*/                 $("#upmsg").html("<?=lang('update_exists')?> " + result.data.version + ", <a href=\"https://www.emlog.net/docs/#/changelog\" target=\"_blank\"><?=lang('view_changelog')?></a>, <a id=\"doup\" href=\"javascript:doup('" + result.data.file + "','" + result.data.sql + "');\"><?=lang('update_now')?></a>").removeClass();
                     } else {
@@ -148,5 +150,5 @@
 <?php endif ?>
 
 <div class="row">
-    <?php doAction('adm_main_content') ?>
+	<?php doAction('adm_main_content') ?>
 </div>

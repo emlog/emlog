@@ -1,7 +1,8 @@
 <?php
 /**
- * Notes
- * @package EMLOG (www.emlog.net)
+ * notes
+ * @package EMLOG
+ * @link https://www.emlog.net
  */
 
 /**

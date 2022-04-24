@@ -26,12 +26,12 @@
 
             <div class="form-group">
 <!--vot-->      <label><?=lang('article_cover')?>:</label>
-                <div class="row m-3">
+                <input name="cover" id="cover" class="form-control" placeholder="封面图地址URL，手动填写或点击下方图片区域上传" value="<?= $cover ?>"/>
+                <div class="row mt-3">
                     <div class="col-md-4">
                         <label for="upload_img">
-                            <img src="<?= $cover ?: './views/images/cover.svg' ?>" id="cover_image" class="rounded"/>
+                            <img src="<?= $cover ?: './views/images/cover.svg' ?>" id="cover_image" class="rounded" title="封面图片"/>
                             <input type="file" name="upload_img" class="image" id="upload_img" style="display:none"/>
-                            <input type="hidden" name="cover" id="cover" value="<?= $cover ?>"/>
                             <button type="button" id="cover_rm" class="btn-sm btn btn-link" <?php if (!$cover): ?>style="display:none"<?php endif ?>>x</button>
                         </label>
                     </div>
@@ -330,13 +330,25 @@
         });
     });
 
+    $('#cover').blur(function () {
+            c = $('#cover').val();
+            if (!c) {
+                $('#cover_image').attr('src', "./views/images/cover.svg");
+                $('#cover_rm').hide();
+                return
+            }
+            $('#cover_image').attr('src', c);
+            $('#cover_rm').show();
+        }
+    );
+
     // When leaving the page, if the content of the article has been modified, ask the user whether to leave
     var articleTextRecord;
-    hooks.addAction("loaded", function(){
+    hooks.addAction("loaded", function () {
         articleTextRecord = $("textarea[name=logcontent]").text();
     });
     window.onbeforeunload = function (e) {
-        if($("textarea[name=logcontent]").text() == articleTextRecord) return
+        if ($("textarea[name=logcontent]").text() == articleTextRecord) return
         e = e || window.event;
 /*vot*/     if (e) e.returnValue = lang('leave_prompt');
 /*vot*/ return lang('leave_prompt');
@@ -344,12 +356,12 @@
 
     // If the content of the article has been modified, make the page title modified to 'modified'
     var titleText = $('title').text()
-    hooks.addAction("loaded", function(obj){
-        obj.config({ 
-            onchange : function() {
-                if($("textarea[name=logcontent]").text() == articleTextRecord) return
+    hooks.addAction("loaded", function (obj) {
+        obj.config({
+            onchange: function () {
+                if ($("textarea[name=logcontent]").text() == articleTextRecord) return
 /*vot*/         $('title').text(lang('already_edited') + titleText);
             }
-         });
+        });
     });
 </script>

@@ -117,11 +117,13 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 						?>
                         <tr>
                             <td style="width: 20px;"><input type="checkbox" name="blog[]" value="<?= $value['gid'] ?>" class="ids"/></td>
-                            <td><a href="article.php?action=edit&gid=<?= $value['gid'] ?>"><?= $value['title'] ?></a>
-<!--vot-->					    <?php if ($value['top'] == 'y'): ?><span class="badge small badge-warning"><?=lang('home_top')?></span><?php endif ?>
-<!--vot-->					    <?php if ($value['sortop'] == 'y'): ?><span class="badge small badge-secondary"><?=lang('category_top')?></span><?php endif ?>
-							    <?php if (!$draft && $value['checked'] == 'n'): ?>
-<!--vot-->                          <span style="color:red;">[<?=lang('pending')?>]</span><?php endif ?>
+                            <td>
+                                <a href="article.php?action=edit&gid=<?= $value['gid'] ?>"><?= $value['title'] ?></a><br>
+<!--vot-->					                <?php if ($value['top'] == 'y'): ?><span class="badge small badge-warning"><?=lang('home_top')?></span><?php endif ?>
+<!--vot-->							<?php if ($value['sortop'] == 'y'): ?><span class="badge small badge-secondary"><?=lang('category_top')?></span><?php endif ?>
+								<?php if ($value['password']): ?><span class="small">🔒</span><?php endif ?>
+							        <?php if (!$draft && $value['checked'] == 'n'): ?>
+<!--vot-->							<?php if (!$draft && $value['checked'] == 'n'): ?><span style="color:red;">[<?=lang('pending')?>]</span><?php endif ?>
                                 <div>
 									<?php if (!$draft && User::isAdmin() && $value['checked'] == 'n'): ?>
 <!--vot-->                              <a class="badge badge-success"

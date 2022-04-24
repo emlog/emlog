@@ -1,7 +1,8 @@
 <?php
 /**
- * Plugin management
- * @package EMLOG (www.emlog.net)
+ * plugin management
+ * @package EMLOG
+ * @link https://www.emlog.net
  */
 
 /**
@@ -23,7 +24,6 @@ if (empty($action) && empty($plugin)) {
 	View::output();
 }
 
-//Enable
 if ($action == 'active') {
 	LoginAuth::checkToken();
 	$Plugin_Model = new Plugin_Model();
@@ -35,7 +35,6 @@ if ($action == 'active') {
 	}
 }
 
-//Disable
 if ($action == 'inactive') {
 	LoginAuth::checkToken();
 	$Plugin_Model = new Plugin_Model();
@@ -44,7 +43,7 @@ if ($action == 'inactive') {
 	emDirect("./plugin.php?inactive=1");
 }
 
-//Load the plug-in configuration page
+// Load plug-in configuration page
 if (empty($action) && $plugin) {
 	require_once "../content/plugins/{$plugin}/{$plugin}_setting.php";
 	include View::getAdmView('header');
@@ -52,7 +51,7 @@ if (empty($action) && $plugin) {
 	include View::getAdmView('footer');
 }
 
-//Save plug-in settings
+// Save plug-in settings
 if ($action == 'setting') {
 	if (!empty($_POST)) {
 		require_once "../content/plugins/{$plugin}/{$plugin}_setting.php";
@@ -66,7 +65,6 @@ if ($action == 'setting') {
 	}
 }
 
-//Delete Plugin
 if ($action == 'del') {
 	LoginAuth::checkToken();
 	$Plugin_Model = new Plugin_Model();
@@ -80,7 +78,6 @@ if ($action == 'del') {
 	}
 }
 
-//Upload zipped plugin
 if ($action == 'upload_zip') {
 	LoginAuth::checkToken();
 	$zipfile = $_FILES['pluzip'] ?? '';

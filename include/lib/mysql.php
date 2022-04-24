@@ -2,7 +2,8 @@
 /**
  * Database operation routing (only compatible with old plug-ins, not recommended)
  *
- * @package EMLOG (www.emlog.net)
+ * @package EMLOG
+ * @link https://www.emlog.net
  */
 
 class MySql {

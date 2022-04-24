@@ -1,7 +1,8 @@
 <?php
 /**
  * Calendar
- * @package EMLOG (www.emlog.net)
+ * @package EMLOG
+ * @link https://www.emlog.net
  */
 
 class Calendar {
@@ -14,9 +15,6 @@ class Calendar {
 		return $calendarUrl;
 	}
 
-	/**
-	 * Generate calendar
-	 */
 	static function generate() {
 		$DB = Database::getInstance();
 

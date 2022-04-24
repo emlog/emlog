@@ -1,7 +1,8 @@
 <?php
 /**
- * Widgets sidebar Management
- * @package EMLOG (www.emlog.net)
+ * Widgets
+ * @package EMLOG
+ * @link https://www.emlog.net
  */
 
 /**
@@ -11,7 +12,6 @@
 
 require_once 'globals.php';
 
-//Display widget management panel
 if ($action === '') {
 	$widgets = Option::get('widgets1');
 	$widgetTitle = Option::get('widget_title');
@@ -38,7 +38,6 @@ if ($action === '') {
 	View::output();
 }
 
-//Modify the widget settings
 if ($action === 'setwg') {
 /*vot*/	$widgetTitle = Option::get('widget_title'); //Widget Title
 /*vot*/	$widget = $_GET['wg'] ?? '';                //Edit widget
@@ -122,7 +121,6 @@ if ($action === 'setwg') {
 	emDirect("./widgets.php?activated=1");
 }
 
-//Save component to sort
 if ($action === 'compages') {
 	$widgets = isset($_POST['widgets']) ? addslashes(serialize($_POST['widgets'])) : '';
 	Option::updateOption("widgets1", $widgets);
@@ -130,7 +128,6 @@ if ($action === 'compages') {
 	emDirect("./widgets.php?activated=1");
 }
 
-//Reset Widget settings to the initial values
 if ($action === 'reset') {
 	LoginAuth::checkToken();
 	$widget_title = serialize(Option::getWidgetTitle());

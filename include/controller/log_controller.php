@@ -2,14 +2,11 @@
 /**
  * Showing page content
  *
- * @package EMLOG (www.emlog.net)
+ * @package EMLOG
+ * @link https://www.emlog.net
  */
 
 class Log_Controller {
-
-	/*
-	 * home page
-	 */
 	function display($params) {
 		$Log_Model = new Log_Model();
 		$CACHE = Cache::getInstance();
@@ -26,7 +23,7 @@ class Log_Controller {
 		$pageurl .= Url::logPage();
 		$total_pages = ceil($lognum / $index_lognum);
 		if ($page > $total_pages) {
-			$page = $total_pages;
+			show_404_page();
 		}
 		$logs = $Log_Model->getLogsForHome($sqlSegment, $page, $index_lognum);
 		$page_url = pagination($lognum, $index_lognum, $page, $pageurl);
@@ -35,9 +32,6 @@ class Log_Controller {
 		include View::getView('log_list');
 	}
 
-	/*
-	 * article page
-	 */
 	function displayContent($params) {
 		$comment_page = isset($params[4]) && $params[4] == 'comment-page' ? (int)$params[5] : 1;
 
@@ -101,7 +95,7 @@ class Log_Controller {
 			}
 		}
 		//comments
-		$verifyCode = ISLOGIN == false && $comment_code == 'y' ? "<img src=\"".BLOG_URL."include/lib/checkcode.php\" id=\"captcha\" /><input name=\"imgcode\" type=\"text\" class=\"input\" size=\"5\" tabindex=\"5\" />" : '';
+		$verifyCode = ISLOGIN == false && $comment_code == 'y' ? "<img src=\"" . BLOG_URL . "include/lib/checkcode.php\" id=\"captcha\" /><input name=\"imgcode\" type=\"text\" class=\"input\" size=\"5\" tabindex=\"5\" />" : '';
 		$ckname = isset($_COOKIE['commentposter']) ? htmlspecialchars(stripslashes($_COOKIE['commentposter'])) : '';
 		$ckmail = isset($_COOKIE['postermail']) ? htmlspecialchars($_COOKIE['postermail']) : '';
 		$ckurl = isset($_COOKIE['posterurl']) ? htmlspecialchars($_COOKIE['posterurl']) : '';

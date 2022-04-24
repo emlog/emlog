@@ -1,8 +1,9 @@
 <?php
 /**
- * Route database operations
+ * Database operation routing
  *
- * @package EMLOG (www.emlog.net)
+ * @package EMLOG
+ * @link https://www.emlog.net
  */
 
 class Database {

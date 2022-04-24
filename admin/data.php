@@ -1,7 +1,8 @@
 <?php
 /**
  * data backup
- * @package EMLOG (www.emlog.net)
+ * @package EMLOG
+ * @link https://www.emlog.net
  */
 
 /**
@@ -12,15 +13,13 @@
 require_once 'globals.php';
 
 if (!$action) {
-	doAction('data_prebakup');
 	include View::getAdmView('header');
 	require_once(View::getAdmView('data'));
 	include View::getAdmView('footer');
 	View::output();
 }
 
-// Backup to local
-if ($action === 'bakstart') {
+if ($action === 'backup') {
 	LoginAuth::checkToken();
 	$zipbak = $_POST['zipbak'] ?? 'n';
 
@@ -37,6 +36,8 @@ if ($action === 'bakstart') {
 		'twitter',
 		'user'
 	];
+
+	doAction('data_backup');
 
 	$bakfname = 'emlog_' . date('Ymd') . '_' . substr(md5(AUTH_KEY . uniqid('', true)), 0, 18);
 	$filename = '';
@@ -74,7 +75,6 @@ if ($action === 'bakstart') {
 	echo $dumpfile;
 }
 
-//Import local backup file
 if ($action === 'import') {
 	LoginAuth::checkToken();
 	$sqlfile = $_FILES['sqlfile'] ?? '';
@@ -113,9 +113,6 @@ if ($action === 'import') {
 	emDirect('./data.php?active_import=1');
 }
 
-/**
- * Check the backup file header information
- */
 function checkSqlFileInfo($sqlfile) {
 	$fp = @fopen($sqlfile, 'r');
 	if (!$fp) {
@@ -147,9 +144,7 @@ function checkSqlFileInfo($sqlfile) {
 }
 
 /**
- * Perform the backup file SQL statements
- *
- * @param string $filename
+ * Execute SQL statement of backup file
  */
 function bakindata($filename) {
 	$DB = Database::getInstance();
@@ -177,9 +172,9 @@ function bakindata($filename) {
 }
 
 /**
- * Backup your database structure and all the data
+ * Backup database structure and all data
  *
- * @param string $table Database table name
+ * @param string $table table name
  * @return string
  */
 function dataBak($table) {
@@ -205,17 +200,13 @@ function dataBak($table) {
 }
 
 /**
- * Check the file contains BOM (Byte-Order Mark)
+ * check BOM (byte order mark)
  */
 function checkBOM($contents) {
 	$charset[1] = substr($contents, 0, 1);
 	$charset[2] = substr($contents, 1, 1);
 	$charset[3] = substr($contents, 2, 1);
-	if (ord($charset[1]) == 239 && ord($charset[2]) == 187 && ord($charset[3]) == 191) {
-		return true;
-	} else {
-		return false;
-	}
+	return ord($charset[1]) == 239 && ord($charset[2]) == 187 && ord($charset[3]) == 191;
 }
 
 if ($action == 'Cache') {

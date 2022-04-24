@@ -1,8 +1,8 @@
 <?php
-
 /**
- * Basic Function library
- * @package EMLOG (www.emlog.net)
+ * Basic function library
+ * @package EMLOG
+ * @link https://www.emlog.net
  */
 
 // Load the core Lang File

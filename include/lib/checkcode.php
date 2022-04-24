@@ -1,7 +1,8 @@
 <?php
 /**
- * Verification Code Image generation
- * @package EMLOG (www.emlog.net)
+ * Captcha
+ * @package EMLOG
+ * @link https://www.emlog.net
  */
 
 if (!isset($_SESSION)) {

@@ -1,8 +1,9 @@
 <?php
 /**
- * View Post Tags
+ * tags
  *
- * @package EMLOG (www.emlog.net)
+ * @package EMLOG
+ * @link https://www.emlog.net
  */
 
 class Tag_Controller {

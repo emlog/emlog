@@ -1,8 +1,11 @@
 <?php
-
 /**
- * Data storage interface - data type enumeration
+ * Data storage class
+ *
+ * @package EMLOG
+ * @link https://www.emlog.net
  */
+
 class StorageType {
 	/**
 	 * String

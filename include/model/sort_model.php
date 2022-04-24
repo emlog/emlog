@@ -1,7 +1,8 @@
 <?php
 /**
  * Model: Blog Categories
- * @package EMLOG (www.emlog.net)
+ * @package EMLOG
+ * @link https://www.emlog.net
  */
 
 class Sort_Model {

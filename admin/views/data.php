@@ -28,7 +28,7 @@
     <div class="card">
 <!--vot-->  <h5 class="card-header"><?=lang('db_backup')?></h5>
         <div class="card-body">
-            <form action="data.php?action=bakstart" method="post">
+            <form action="data.php?action=backup" method="post">
                 <div id="backup">
 <!--vot-->          <p><?=lang('backup_prompt')?></p>
 <!--vot-->          <p id="local_bakzip"><?=lang('compress_zip')?>: <input type="checkbox" style="vertical-align:middle;" value="y" name="zipbak" id="zipbak"></p>

@@ -1,7 +1,8 @@
 <?php
 /**
  * user model
- * @package EMLOG (www.emlog.net)
+ * @package EMLOG
+ * @link https://www.emlog.net
  */
 
 class User_Model {

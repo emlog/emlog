@@ -1,7 +1,8 @@
 <?php
 /**
- * Install
- * @package EMLOG (www.emlog.net)
+ * install
+ * @package EMLOG
+ * @link https://www.emlog.net
  */
 
 /*vot*/ define('EMLOG_LANGUAGE','en'); //zh-CN, zh-TW, en, ru, etc.
@@ -192,7 +193,7 @@ if ($act == 'install' || $act == 'reinstall') {
 
 	$v = $DB->getMysqlVersion();
 
-    // Since the release of MySQL 5.5.5 in 2010, InnoDB replaced MyISAM as MySQL's default table type
+	// Since the release of MySQL 5.5.5 in 2010, InnoDB replaced MyISAM as MySQL's default table type
 	if ($v < '5.5.5') {
 /*vot*/		emMsg(sprintf(lang('mysql_required'), $v));
 	}

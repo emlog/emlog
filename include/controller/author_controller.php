@@ -1,8 +1,9 @@
 <?php
 /**
- * View Post author
+ * author's articles
  *
- * @package EMLOG (www.emlog.net)
+ * @package EMLOG
+ * @link https://www.emlog.net
  */
 
 class Author_Controller {

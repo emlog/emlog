@@ -2,7 +2,8 @@
 /**
  * The article management
  *
- * @package EMLOG (www.emlog.net)
+ * @package EMLOG
+ * @link https://www.emlog.net
  */
 
 /**
@@ -183,7 +184,6 @@ if ($action == 'operate_log') {
 	}
 }
 
-//write article page
 if ($action === 'write') {
 	$blogData = [
 		'logid'    => -1,
@@ -226,7 +226,6 @@ if ($action === 'write') {
 	View::output();
 }
 
-// edit article page
 if ($action === 'edit') {
 	$logid = isset($_GET['gid']) ? (int)$_GET['gid'] : '';
 	$blogData = $Log_Model->getOneLogForAdmin($logid);

@@ -1,7 +1,8 @@
 <?php
 /**
- * Link Manager
- * @package EMLOG (www.emlog.net)
+ * navbar menu items
+ * @package EMLOG
+ * @link https://www.emlog.net
  */
 
 /**

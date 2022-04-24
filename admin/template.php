@@ -1,7 +1,8 @@
 <?php
 /**
- * Template Management
- * @package EMLOG (www.emlog.net)
+ * templates
+ * @package EMLOG
+ * @link https://www.emlog.net
  */
 
 /**
@@ -15,7 +16,6 @@ if ($action === '') {
 	$nonce_templet = Option::get('nonce_templet');
 	$nonce_templet_data = @file(TPLS_PATH . $nonce_templet . '/header.php');
 
-	//Template List
 	$tpls = [];
 	$handle = @opendir(TPLS_PATH) or die('emlog template path error!');
 	$i = 1;
@@ -56,7 +56,6 @@ if ($action === '') {
 	View::output();
 }
 
-//Using a template
 if ($action === 'usetpl') {
 	LoginAuth::checkToken();
 	$tplName = isset($_GET['tpl']) ? addslashes($_GET['tpl']) : '';
@@ -66,7 +65,6 @@ if ($action === 'usetpl') {
 	emDirect("./template.php?activated=1");
 }
 
-//Remove Template
 if ($action === 'del') {
 	LoginAuth::checkToken();
 	$tplName = isset($_GET['tpl']) ? addslashes($_GET['tpl']) : '';
@@ -83,7 +81,6 @@ if ($action === 'del') {
 	}
 }
 
-//Install template
 if ($action === 'install') {
 	include View::getAdmView('header');
 	require_once View::getAdmView('template_install');
@@ -91,7 +88,6 @@ if ($action === 'install') {
 	View::output();
 }
 
-//Upload zip Template
 if ($action === 'upload_zip') {
 	LoginAuth::checkToken();
 	$zipfile = $_FILES['tplzip'] ?? '';

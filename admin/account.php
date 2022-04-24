@@ -1,7 +1,8 @@
 <?php
 /**
  * account administration
- * @package EMLOG (www.emlog.net)
+ * @package EMLOG
+ * @link https://www.emlog.net
  */
 
 /**
@@ -19,9 +20,6 @@ $action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
 $admin_path_code = isset($_GET['s']) ? addslashes(htmlClean($_GET['s'])) : '';
 $User_Model = new User_Model();
 
-/**
- * Log in
- */
 if ($action == 'signin') {
 	loginAuth::checkLogged();
 	if (defined('ADMIN_PATH_CODE') && $admin_path_code !== ADMIN_PATH_CODE) {
@@ -65,9 +63,6 @@ if ($action == 'dosignin') {
 	}
 }
 
-/**
- * Register
- */
 if ($action == 'signup') {
 	loginAuth::checkLogged();
 	$login_code = Option::get('login_code') === 'y';
@@ -119,9 +114,6 @@ if ($action == 'dosignup') {
 	emDirect("./account.php?action=signin&succ_reg=1");
 }
 
-/**
- * Reset Password
- */
 if ($action == 'reset') {
 	if (ISLOGIN === true) {
 		emDirect("../admin");
@@ -201,9 +193,6 @@ if ($action == 'doreset2') {
 	emDirect("./account.php?action=signin&succ_reset=1");
 }
 
-/**
- * Log out
- */
 if ($action == 'logout') {
 	setcookie(AUTH_COOKIE_NAME, ' ', time() - 31536000, '/');
 	emDirect("../");

@@ -1,7 +1,8 @@
 <?php
 /**
- * Load Global Items
- * @package EMLOG (www.emlog.net)
+ * init.
+ * @package EMLOG
+ * @link https://www.emlog.net
  */
 
 error_reporting(E_ALL);
@@ -24,19 +25,14 @@ $CACHE = Cache::getInstance();
 $userData = [];
 
 define('ISLOGIN', LoginAuth::isLogin());
-
-//Site Time Zone
 date_default_timezone_set(Option::get('timezone'));
 
-//User Groups
 /*vot*/ const ROLE_FOUNDER = 'founder';          //Founder
 const ROLE_ADMIN = 'admin';              //Admin
 const ROLE_WRITER = 'writer';            //Registered user
 const ROLE_VISITOR = 'visitor';          //Guest
 
-//User Role
 define('ROLE', ISLOGIN === true ? $userData['role'] : User::ROLE_VISITOR);
-//User ID
 define('UID', ISLOGIN === true ? $userData['uid'] : '');
 //Site fixed address
 define('BLOG_URL', Option::get('blogurl'));
@@ -50,12 +46,11 @@ define('DYNAMIC_BLOGURL', Option::get("blogurl"));
 define('TEMPLATE_URL', TPLS_URL . Option::get('nonce_templet') . '/');
 //Admin Template Path
 const ADMIN_TEMPLATE_PATH = EMLOG_ROOT . '/admin/views/';
-//Official service domain name
 const OFFICIAL_SERVICE_HOST = 'https://www.emlog.net/';
 //Error code
-const MSGCODE_EMKEY_INVALID = 1001;  // Wrong registration code
-const MSGCODE_NO_UPUPDATE = 1002;    // No version update available
-const MSGCODE_SUCCESS = 200;         // Success
+const MSGCODE_EMKEY_INVALID = 1001;
+const MSGCODE_NO_UPUPDATE = 1002;
+const MSGCODE_SUCCESS = 200;
 
 //Access Scheme
 /*vot*/define('SCHEME', isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://');
