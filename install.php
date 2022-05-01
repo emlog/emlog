@@ -457,6 +457,7 @@ CREATE TABLE {$db_prefix}user (
   email varchar(60) NOT NULL default '' COMMENT '邮箱',
   description varchar(255) NOT NULL default '' COMMENT '备注',
   ip varchar(128) NOT NULL default '' COMMENT 'ip地址',
+  state tinyint NOT NULL DEFAULT '0' COMMENT '用户状态 0正常 1禁用',
   create_time int(11) NOT NULL COMMENT '创建时间',
   update_time int(11) NOT NULL COMMENT '更新时间',
 PRIMARY KEY  (uid),

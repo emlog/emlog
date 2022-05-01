@@ -82,9 +82,9 @@ class LoginAuth {
 		if (empty($account)) {
 			return false;
 		}
-		$ret = $DB->once_fetch_array("SELECT * FROM " . DB_PREFIX . "user WHERE username = '$account'");
+		$ret = $DB->once_fetch_array("SELECT * FROM " . DB_PREFIX . "user WHERE username = '$account' AND state = 0");
 		if (!$ret) {
-			$ret = $DB->once_fetch_array("SELECT * FROM " . DB_PREFIX . "user WHERE email = '$account'");
+			$ret = $DB->once_fetch_array("SELECT * FROM " . DB_PREFIX . "user WHERE email = '$account'  AND state = 0");
 			if (!$ret) {
 				return false;
 			}

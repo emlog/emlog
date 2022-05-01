@@ -1,5 +1,5 @@
 function getChecked(node) {
-    var re = false;
+    let re = false;
     $('input.' + node).each(function (i) {
         if (this.checked) {
             re = true;
@@ -13,58 +13,63 @@ function timestamp() {
 }
 
 function em_confirm(id, property, token) {
+    let url, msg;
     switch (property) {
         case 'tw':
-            var urlreturn = "twitter.php?action=del&id=" + id;
-            var msg = "确定要删除该笔记吗？";
+            url = 'twitter.php?action=del&id=' + id;
+            msg = '确定要删除该笔记吗？';
             break;
         case 'comment':
-            var urlreturn = "comment.php?action=del&id=" + id;
-            var msg = "确定要删除该评论吗？";
+            url = 'comment.php?action=del&id=' + id;
+            msg = '确定要删除该评论吗？';
             break;
         case 'commentbyip':
-            var urlreturn = "comment.php?action=delbyip&ip=" + id;
-            var msg = "确定要删除来自该IP的所有评论吗？";
+            url = 'comment.php?action=delbyip&ip=' + id;
+            msg = '确定要删除来自该IP的所有评论吗？';
             break;
         case 'link':
-            var urlreturn = "link.php?action=dellink&linkid=" + id;
-            var msg = "确定要删除该链接吗？";
+            url = 'link.php?action=dellink&linkid=' + id;
+            msg = '确定要删除该链接吗？';
             break;
         case 'navi':
-            var urlreturn = "navbar.php?action=del&id=" + id;
-            var msg = "确定要删除该导航吗？";
+            url = 'navbar.php?action=del&id=' + id;
+            msg = '确定要删除该导航吗？';
             break;
         case 'media':
-            var urlreturn = "media.php?action=delete&aid=" + id;
-            var msg = "确定要删除该媒体文件吗？";
+            url = 'media.php?action=delete&aid=' + id;
+            msg = '确定要删除该媒体文件吗？';
             break;
         case 'avatar':
-            var urlreturn = "blogger.php?action=delicon";
-            var msg = "确定要删除头像吗？";
+            url = 'blogger.php?action=delicon';
+            msg = '确定要删除头像吗？';
             break;
         case 'sort':
-            var urlreturn = "sort.php?action=del&sid=" + id;
-            var msg = "确定要删除该分类吗？";
+            url = 'sort.php?action=del&sid=' + id;
+            msg = '确定要删除该分类吗？';
             break;
-        case 'user':
-            var urlreturn = "user.php?action=del&uid=" + id;
-            var msg = "确定要删除该用户吗？";
+        case 'del_user':
+            url = 'user.php?action=del&uid=' + id;
+            msg = '确定要删除该用户吗？';
+            break;
+        case 'forbid_user':
+            url = 'user.php?action=forbid&uid=' + id;
+            msg = '确定要禁用该用户吗？';
             break;
         case 'tpl':
-            var urlreturn = "template.php?action=del&tpl=" + id;
-            var msg = "确定要删除该模板吗？";
+            url = 'template.php?action=del&tpl=' + id;
+            msg = '确定要删除该模板吗？';
             break;
         case 'reset_widget':
-            var urlreturn = "widgets.php?action=reset";
-            var msg = "确定要恢复组件设置到初始状态吗？这样会丢失你自定义的组件。";
+            url = 'widgets.php?action=reset';
+            msg = '确定要恢复组件设置到初始状态吗？这样会丢失你自定义的组件。';
             break;
         case 'plu':
-            var urlreturn = "plugin.php?action=del&plugin=" + id;
-            var msg = "确定要删除该插件吗？";
+            url = 'plugin.php?action=del&plugin=' + id;
+            msg = '确定要删除该插件吗？';
             break;
     }
     if (confirm(msg)) {
-        window.location = urlreturn + "&token=" + token;
+        window.location = url + '&token=' + token;
     } else {
         return;
     }
@@ -110,13 +115,14 @@ function isalias(a) {
         return 0;
     }
 }
+
 function checkform() {
     var a = $.trim($("#alias").val());
     var t = $.trim($("#title").val());
 
-    if(typeof articleTextRecord !== "undefined"){  // 提交时，重置原文本记录值，防止出现离开提示
+    if (typeof articleTextRecord !== "undefined") {  // 提交时，重置原文本记录值，防止出现离开提示
         articleTextRecord = $("textarea[name=logcontent]").text();
-    }else{
+    } else {
         pageText = $("textarea").text();
     }
     if (0 == isalias(a)) {
@@ -221,7 +227,7 @@ function autosave(act) {
         return;
     }
     // 距离上次保存成功时间小于一秒时不允许手动保存
-    if((new Date().getTime() - Cookies.get('em_saveLastTime')) < 1000 && act != 1){
+    if ((new Date().getTime() - Cookies.get('em_saveLastTime')) < 1000 && act != 1) {
         alert("请勿频繁操作！");
         return;
     }
@@ -243,7 +249,7 @@ function autosave(act) {
             $("#save_info").html("保存于：" + tm);
             $('title').text('[保存成功] ' + titleText);
             articleTextRecord = $("textarea[name=logcontent]").text();  // 保存成功后，将原文本记录值替换为现在的文本
-            Cookies.set('em_saveLastTime',new Date().getTime());  // 把保存成功时间戳记录（或更新）到 cookie 中
+            Cookies.set('em_saveLastTime', new Date().getTime());  // 把保存成功时间戳记录（或更新）到 cookie 中
             $("#" + nodeid).val(logid);
             $("#savedf").attr("disabled", false).val(btname);
         } else {
@@ -327,19 +333,19 @@ var hooks = {
 }
 
 // 粘贴上传图片函数
-function imgPasteExpand(thisEditor){
-    var listenObj    = document.querySelector("textarea").parentNode  // 要监听的对象
-    var postUrl      = './media.php?action=upload';  // emlog 的图片上传地址
-    var emMediaPhpUrl= "./media.php?action=lib";  // emlog 的资源库地址,用于异步获取上传后的图片数据
+function imgPasteExpand(thisEditor) {
+    var listenObj = document.querySelector("textarea").parentNode  // 要监听的对象
+    var postUrl = './media.php?action=upload';  // emlog 的图片上传地址
+    var emMediaPhpUrl = "./media.php?action=lib";  // emlog 的资源库地址,用于异步获取上传后的图片数据
 
     // 通过动态配置只读模式,阻止编辑器原有的粘贴动作发生,并恢复光标位置
-    function preventEditorPaste(){
+    function preventEditorPaste() {
         let l = thisEditor.getCursor().line;
         let c = thisEditor.getCursor().ch - 3;
 
-        thisEditor.config({ readOnly: true, });
-        thisEditor.config({ readOnly: false,});
-        thisEditor.setCursor({line:l, ch:c});
+        thisEditor.config({readOnly: true,});
+        thisEditor.config({readOnly: false,});
+        thisEditor.setCursor({line: l, ch: c});
 
         let saveHotKey = {  // 编辑器的 bug , 界面刷新后会删除自定义的热键，所以要重新设置
             "Ctrl-S": function (cm) {
@@ -353,45 +359,46 @@ function imgPasteExpand(thisEditor){
     }
 
     // 编辑器通过光标处位置前几位来替换文字
-    function replaceByNum(text,num){
+    function replaceByNum(text, num) {
         let l = thisEditor.getCursor().line;
         let c = thisEditor.getCursor().ch;
 
-        thisEditor.setSelection({line:l, ch:(c - num)}, {line:l, ch:c});
+        thisEditor.setSelection({line: l, ch: (c - num)}, {line: l, ch: c});
         thisEditor.replaceSelection(text);
     }
 
     // 粘贴事件触发
     listenObj.addEventListener("paste", function (e) {
         if ($('.editormd-dialog').css('display') == 'block') return;  // 如果编辑器有对话框则退出
-        if ( !(e.clipboardData && e.clipboardData.items) ) return;
+        if (!(e.clipboardData && e.clipboardData.items)) return;
 
         var pasteData = e.clipboardData || window.clipboardData; // 获取剪切板里的全部内容
         pasteAnalyseResult = new Array;  // 用于储存遍历分析后的结果
 
-        for(var i = 0; i < pasteData.items.length; i++) {  // 遍历分析剪切板里的数据
+        for (var i = 0; i < pasteData.items.length; i++) {  // 遍历分析剪切板里的数据
             var item = pasteData.items[i];
 
-            if((item.kind == "file") && (item.type.match('^image/'))){
+            if ((item.kind == "file") && (item.type.match('^image/'))) {
                 var imgData = item.getAsFile();
                 if (imgData.size === 0) return;
                 pasteAnalyseResult['type'] = 'img';
                 pasteAnalyseResult['data'] = imgData;
                 break;  // 当粘贴板中有图片存在时,跳出循环
-            };
+            }
+            ;
         }
 
-        if(pasteAnalyseResult['type'] == 'img') {  // 如果剪切板中有图片,上传图片
+        if (pasteAnalyseResult['type'] == 'img') {  // 如果剪切板中有图片,上传图片
             preventEditorPaste();
             uploadImg(pasteAnalyseResult['data']);
             return;
-        } 
+        }
     }, false);
 
     // 上传图片
-    function uploadImg(img){
+    function uploadImg(img) {
         var formData = new FormData();
-        var imgName="粘贴上传"+new Date().getTime()+"."+img.name.split(".").pop();
+        var imgName = "粘贴上传" + new Date().getTime() + "." + img.name.split(".").pop();
 
         formData.append('file', img, imgName);
         thisEditor.insertValue("上传中...");
@@ -401,37 +408,37 @@ function imgPasteExpand(thisEditor){
             data: formData,
             processData: false,
             contentType: false,
-            xhr: function() { 
+            xhr: function () {
                 var xhr = $.ajaxSettings.xhr();
                 if (xhr.upload) {
                     thisEditor.insertValue("....");
-                    xhr.upload.addEventListener('progress', function(e) {  // 用以显示上传进度  
+                    xhr.upload.addEventListener('progress', function (e) {  // 用以显示上传进度
                         console.log('进度(byte)：' + e.loaded + ' / ' + e.total);
                         let percent = Math.floor(e.loaded / e.total * 100);
-                        if(percent < 10){
-                            replaceByNum('..'+percent+'%',4);
-                        }else if(percent < 100){
-                            replaceByNum('.'+percent+'%',4);
-                        }else{
-                            replaceByNum(percent+'%',4);
+                        if (percent < 10) {
+                            replaceByNum('..' + percent + '%', 4);
+                        } else if (percent < 100) {
+                            replaceByNum('.' + percent + '%', 4);
+                        } else {
+                            replaceByNum(percent + '%', 4);
                         }
                     }, false);
                 }
                 return xhr;
             },
-            success:function(result){
-                    let imgUrl, thumbImgUrl;
-                    console.log('上传成功！正在获取结果...');
-                    $.get(emMediaPhpUrl,function(data){  // 异步获取结果,追加到编辑器
-                        console.log('获取结果成功！');
-                        imgUrl = data.match(/[a-zA-z]+:\/[^\s\"\']*/g)[0];
-                        thumbImgUrl = data.match(/[a-zA-z]+:\/[^\s\"\']*/g)[1];
-                        replaceByNum(`[![](${imgUrl})](${thumbImgUrl})`,10);  // 这里的数字 10 对应着’上传中...100%‘是10个字符
-                    })
+            success: function (result) {
+                let imgUrl, thumbImgUrl;
+                console.log('上传成功！正在获取结果...');
+                $.get(emMediaPhpUrl, function (data) {  // 异步获取结果,追加到编辑器
+                    console.log('获取结果成功！');
+                    imgUrl = data.match(/[a-zA-z]+:\/[^\s\"\']*/g)[0];
+                    thumbImgUrl = data.match(/[a-zA-z]+:\/[^\s\"\']*/g)[1];
+                    replaceByNum(`[![](${imgUrl})](${thumbImgUrl})`, 10);  // 这里的数字 10 对应着’上传中...100%‘是10个字符
+                })
             },
-            error:function(result){
+            error: function (result) {
                 alert('上传失败,图片类型错误或网络错误');
-                replaceByNum('上传失败,图片类型错误或网络错误',6);
+                replaceByNum('上传失败,图片类型错误或网络错误', 6);
             }
         })
     }
@@ -442,17 +449,17 @@ hooks.addAction("loaded", imgPasteExpand);
 hooks.addAction("page_loaded", imgPasteExpand);
 
 // 设置界面，如果设置“自动检测地址”，则设置 input 为只读，以表示该项是无效的
-$(document).ready(function(){
+$(document).ready(function () {
     // 网页加载完先检查一遍
-    if ($("#detect_url").prop("checked")){
-        $("[name=blogurl]").attr("readonly","readonly")
+    if ($("#detect_url").prop("checked")) {
+        $("[name=blogurl]").attr("readonly", "readonly")
     }
 
-    $("#detect_url").click(function(){
-      if ($(this).prop("checked")){
-        $("[name=blogurl]").attr("readonly","readonly")
-      }else{
-        $("[name=blogurl]").removeAttr("readonly")
-      }
+    $("#detect_url").click(function () {
+        if ($(this).prop("checked")) {
+            $("[name=blogurl]").attr("readonly", "readonly")
+        } else {
+            $("[name=blogurl]").removeAttr("readonly")
+        }
     })
 })

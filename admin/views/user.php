@@ -3,6 +3,10 @@
 } ?>
 <?php if (isset($_GET['active_del'])): ?>
     <div class="alert alert-success">删除成功</div><?php endif ?>
+<?php if (isset($_GET['active_fb'])): ?>
+    <div class="alert alert-success">禁用成功，该用户无法再登录</div><?php endif ?>
+<?php if (isset($_GET['active_unfb'])): ?>
+    <div class="alert alert-success">解禁成功</div><?php endif ?>
 <?php if (isset($_GET['active_update'])): ?>
     <div class="alert alert-success">修改用户资料成功</div><?php endif ?>
 <?php if (isset($_GET['active_add'])): ?>
@@ -60,17 +64,20 @@
 				<?php
 				foreach ($users as $key => $val):
 					$avatar = empty($user_cache[$val['uid']]['avatar']) ? './views/images/avatar.svg' : '../' . $user_cache[$val['uid']]['avatar'];
+					$forbid = $val['state'] == 1;
 					?>
                     <tr>
                         <td><img src="<?= $avatar ?>" height="35" width="35" class="rounded-circle"/></td>
                         <td>
-							<?php
-							if (UID != $val['uid']): ?>
+							<?php if (UID != $val['uid']): ?>
                                 <a href="user.php?action=edit&uid=<?= $val['uid'] ?>"><?= empty($val['name']) ? $val['login'] : $val['name'] ?></a>
 							<?php else: ?>
                                 <a href="blogger.php"><?= empty($val['name']) ? $val['login'] : $val['name'] ?></a>
 							<?php endif ?>
                             <span class="small"><?= "<br/>" . $val['role'] ?></span>
+							<?php if ($forbid): ?>
+                                <span class="badge badge-warning">已禁用</span>
+							<?php endif ?>
                         </td>
                         <td>
 							<?= $val['email'] ?>
@@ -80,9 +87,13 @@
                         <td><?= $val['update_time'] ?></td>
                         <td><?= $val['create_time'] ?></td>
                         <td>
-							<?php
-							if (UID != $val['uid']): ?>
-                                <a href="javascript: em_confirm(<?= $val['uid'] ?>, 'user', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger">删除</a>
+							<?php if (UID != $val['uid']): ?>
+                                <a href="javascript: em_confirm(<?= $val['uid'] ?>, 'del_user', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger">删除</a>
+								<?php if ($forbid): ?>
+                                    <a href="user.php?action=unforbid&uid=<?= $val['uid'] ?>&token=<?= LoginAuth::genToken() ?>" class="badge badge-success">解禁</a>
+								<?php else: ?>
+                                    <a href="javascript: em_confirm(<?= $val['uid'] ?>, 'forbid_user', '<?= LoginAuth::genToken() ?>');" class="badge badge-warning">禁用</a>
+								<?php endif ?>
 							<?php endif ?>
                         </td>
                     </tr>

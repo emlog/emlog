@@ -159,3 +159,28 @@ if ($action == 'del') {
 	$CACHE->updateCache(array('sta', 'user'));
 	emDirect('./user.php?active_del=1');
 }
+
+if ($action == 'forbid') {
+	LoginAuth::checkToken();
+	$uid = isset($_GET['uid']) ? (int)$_GET['uid'] : '';
+
+	if (UID == $uid) {
+		emDirect('./user.php');
+	}
+
+	//创始人账户不能被禁用
+	if ($uid == 1) {
+		emDirect('./user.php');
+	}
+
+	$User_Model->forbidUser($uid);
+	emDirect('./user.php?active_fb=1');
+}
+
+if ($action == 'unforbid') {
+	LoginAuth::checkToken();
+	$uid = isset($_GET['uid']) ? (int)$_GET['uid'] : '';
+
+	$User_Model->unforbidUser($uid);
+	emDirect('./user.php?active_unfb=1');
+}
