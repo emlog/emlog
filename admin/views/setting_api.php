@@ -41,8 +41,8 @@
         </form>
         <div class="alert alert-warning">
             <b>API接口列表：</b><br>
-            1. 文章发布 <br><br>
-            <a href="https://www.emlog.net/docs/#/api" target="_blank" class="small">详见接口文档</a>
+            1. 文章发布 (可用于对接内容发布软件)<br><br>
+            <a href="https://www.emlog.net/docs/#/api" target="_blank" class="small">详见接口文档→</a>
         </div>
     </div>
 </div>
