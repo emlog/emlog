@@ -24,6 +24,7 @@ class Output {
 	public static function error($msg) {
 
 		header('Content-Type: application/json; charset=UTF-8');
+		header("HTTP/1.1 400 Bad Request");
 
 		$result = [
 			'code' => 1,

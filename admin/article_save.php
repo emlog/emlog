@@ -40,7 +40,7 @@ if (!empty($alias)) {
 //管理员发文不审核,注册用户受开关控制
 $checked = Option::get('ischkarticle') == 'y' && !User::isAdmin() ? 'n' : 'y';
 
-$logData = array(
+$logData = [
 	'title'        => $title,
 	'alias'        => $alias,
 	'content'      => $content,
@@ -53,7 +53,7 @@ $logData = array(
 	'hide'         => $ishide,
 	'checked'      => $checked,
 	'password'     => $password
-);
+];
 
 if ($blogid > 0) {//自动保存草稿后,添加变为更新
 	$Log_Model->updateLog($logData, $blogid);
