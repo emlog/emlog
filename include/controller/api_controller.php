@@ -18,9 +18,12 @@ class Api_Controller {
 	function starter($params) {
 
 		$_func = isset($_GET['rest-api']) ? addslashes($_GET['rest-api']) : '';
-
 		if (empty($_func)) {
 			Output::error('error router');
+		}
+
+		if (Option::get('is_openapi') === 'n') {
+			Output::error('api is closed');
 		}
 
 		if (method_exists($this, $_func)) {
@@ -55,7 +58,7 @@ class Api_Controller {
 			'content' => $content,
 			'excerpt' => $excerpt,
 			'author'  => $author_uid,
-			'sort'    => $sort,
+			'sortid'  => $sort,
 			'cover'   => $cover,
 			'date'    => strtotime($post_date ?: date('Y-m-d H:i:s')),
 		];

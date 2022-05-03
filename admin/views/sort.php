@@ -33,8 +33,8 @@
                         <th>排序</th>
                         <th>名称</th>
                         <th>描述</th>
+                        <th>分类ID</th>
                         <th>别名</th>
-                        <th>模板</th>
                         <th>查看</th>
                         <th>文章</th>
                         <th>操作</th>
@@ -56,8 +56,8 @@
                                 <a href="sort.php?action=mod_sort&sid=<?= $value['sid'] ?>"><?= $value['sortname'] ?></a>
                             </td>
                             <td><?= $value['description'] ?></td>
+                            <td><?= $value['sid'] ?></td>
                             <td class="alias"><?= $value['alias'] ?></td>
-                            <td class="alias"><?= $value['template'] ?></td>
                             <td>
                                 <a href="<?= Url::sort($value['sid']) ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0"/></a>
                             </td>

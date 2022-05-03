@@ -27,7 +27,7 @@
             </div>
             <p>API秘钥：</p>
             <div class="input-group">
-                <input type="text" class="form-control" value="<?= $apikey ?>" aria-label="Recipient's username" aria-describedby="button-addon2">
+                <input type="text" class="form-control" disabled value="<?= $apikey ?>" aria-label="Recipient's username" aria-describedby="button-addon2">
                 <div class="input-group-append">
                     <button class="btn btn-outline-success" type="button"
                             onclick="javascript:window.location.href='setting.php?action=api_reset&token=<?= LoginAuth::genToken() ?>'" id="button-addon2">重置API秘钥
@@ -41,8 +41,8 @@
         </form>
         <div class="alert alert-warning">
             <b>API接口列表：</b><br>
-            1. 文章发布<br>
-            2. 文章列表（开发中）<br>
+            1. 文章发布 <br><br>
+            <a href="https://www.emlog.net/docs/#/api" target="_blank" class="small">详见接口文档</a>
         </div>
     </div>
 </div>

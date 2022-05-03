@@ -51,8 +51,9 @@
                 <thead>
                 <tr>
                     <th></th>
-                    <th>用户</th>
+                    <th>用户名</th>
                     <th>邮箱</th>
+                    <th>用户ID</th>
                     <th>文章</th>
                     <th>登录IP</th>
                     <th>活跃时间</th>
@@ -79,9 +80,8 @@
                                 <span class="badge badge-warning">已禁用</span>
 							<?php endif ?>
                         </td>
-                        <td>
-							<?= $val['email'] ?>
-                        </td>
+                        <td><?= $val['email'] ?></td>
+                        <td><?= $val['uid'] ?></td>
                         <td><a href="article.php?uid=<?= $val['uid'] ?>"><?= $sta_cache[$val['uid']]['lognum'] ?></a></td>
                         <td><?= $val['ip'] ?></td>
                         <td><?= $val['update_time'] ?></td>
