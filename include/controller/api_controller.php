@@ -9,12 +9,8 @@
 class Api_Controller {
 
 	public $Log_Model;
-
 	public $Cache;
 
-	/**
-	 * starter
-	 */
 	function starter($params) {
 
 		$_func = isset($_GET['rest-api']) ? addslashes($_GET['rest-api']) : '';
@@ -64,6 +60,7 @@ class Api_Controller {
 		];
 
 		$article_id = $this->Log_Model->addlog($logData);
+
 		$this->Cache->updateCache();
 
 		output::ok([
