@@ -27,7 +27,7 @@ class Option {
 					if (!empty($options_cache[$option])) {
 						return @unserialize($options_cache[$option]);
 					} else {
-						return array();
+						return [];
 					}
 					break;
 				case 'blogurl':

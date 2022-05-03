@@ -349,6 +349,37 @@ if ($action == 'user_save') {
 	foreach ($data as $key => $val) {
 		Option::updateOption($key, $val);
 	}
-	$CACHE->updateCache(array('options'));
+	$CACHE->updateCache('options');
 	header('Location: ./setting.php?action=user&activated=1');
+}
+
+if ($action == 'api') {
+	$apikey = Option::get('apikey');
+	$is_openapi = Option::get('is_openapi');
+	$conf_is_openapi = $is_openapi == 'y' ? 'checked="checked"' : '';
+
+	include View::getAdmView('header');
+	require_once(View::getAdmView('setting_api'));
+	include View::getAdmView('footer');
+	View::output();
+
+}
+
+if ($action == 'api_save') {
+	LoginAuth::checkToken();
+
+	$is_openapi = isset($_POST['is_openapi']) ? addslashes($_POST['is_openapi']) : 'n';
+	Option::updateOption('is_openapi', $is_openapi);
+	$CACHE->updateCache('options');
+	header('Location: ./setting.php?action=api&ok=1');
+}
+
+if ($action == 'api_reset') {
+	LoginAuth::checkToken();
+
+	$apikey = md5(getRandStr(32));
+
+	Option::updateOption('apikey', $apikey);
+	$CACHE->updateCache('options');
+	header('Location: ./setting.php?action=api&ok_reset=1');
 }

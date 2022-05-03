@@ -270,6 +270,8 @@ EOT;
 	$def_widgets = serialize(Option::getDefWidget());
 	$def_plugin = serialize(Option::getDefPlugin());
 
+	$apikey = md5(getRandStr(32));
+
 	define('BLOG_URL', realUrl());
 
 	$sql = "
@@ -399,6 +401,8 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('smtp_mail',
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('smtp_pw','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('smtp_server','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('smtp_port','');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('is_openapi','y');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('apikey','$apikey');
 DROP TABLE IF EXISTS {$db_prefix}link;
 CREATE TABLE {$db_prefix}link (
   id int(10) unsigned NOT NULL auto_increment COMMENT '链接表',

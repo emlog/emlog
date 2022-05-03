@@ -29,6 +29,7 @@
             <li class="nav-item"><a class="nav-link" href="./setting.php?action=user">用户设置</a></li>
             <li class="nav-item"><a class="nav-link" href="./setting.php?action=mail">邮件通知</a></li>
             <li class="nav-item"><a class="nav-link" href="./setting.php?action=seo">SEO优化</a></li>
+            <li class="nav-item"><a class="nav-link" href="./setting.php?action=api">API接口</a></li>
             <li class="nav-item"><a class="nav-link active" href="./blogger.php">个人信息</a></li>
         </ul>
 	<?php else: ?>
