@@ -40,7 +40,7 @@ class Api_Controller {
 		$excerpt = isset($_POST['excerpt']) ? addslashes(trim($_POST['excerpt'])) : '';
 		$author_uid = isset($_POST['author_uid']) ? (int)trim($_POST['author_uid']) : 1;
 		$post_date = isset($_POST['post_date']) ? trim($_POST['post_date']) : '';
-		$sort = isset($_POST['sort']) ? (int)$_POST['sort'] : -1;
+		$sort_id = isset($_POST['sort_id']) ? (int)$_POST['sort_id'] : -1;
 		$cover = isset($_POST['cover']) ? addslashes(trim($_POST['cover'])) : '';
 
 		if (empty($req_sign) || empty($req_time) || empty($title) || empty($content)) {
@@ -54,7 +54,7 @@ class Api_Controller {
 			'content' => $content,
 			'excerpt' => $excerpt,
 			'author'  => $author_uid,
-			'sortid'  => $sort,
+			'sortid'  => $sort_id,
 			'cover'   => $cover,
 			'date'    => strtotime($post_date ?: date('Y-m-d H:i:s')),
 		];
