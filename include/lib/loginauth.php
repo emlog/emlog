@@ -10,9 +10,7 @@ class LoginAuth {
 	const LOGIN_ERROR_USER = -1;     //用户不存在
 	const LOGIN_ERROR_PASSWD = -2;   //密码错误
 
-	/**
-	 * 验证用户是否处于登录状态
-	 */
+
 	public static function isLogin() {
 		global $userData;
 
@@ -69,9 +67,8 @@ class LoginAuth {
 		$hash = $userData['password'];
 		if (true === self::checkPassword($password, $hash)) {
 			return $userData['uid'];
-		} else {
-			return self::LOGIN_ERROR_PASSWD;
 		}
+		return self::LOGIN_ERROR_PASSWD;
 	}
 
 	/**

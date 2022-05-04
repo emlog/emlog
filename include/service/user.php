@@ -8,22 +8,16 @@
 
 class User {
 
-	const ROLE_ADMIN = 'admin';              //管理员
-	const ROLE_WRITER = 'writer';            //注册用户
-	const ROLE_VISITOR = 'visitor';          //游客
+	const ROLE_ADMIN = 'admin';
+	const ROLE_WRITER = 'writer';
+	const ROLE_VISITOR = 'visitor';
 
 	static function isAdmin($role = ROLE) {
-		if ($role == self::ROLE_ADMIN) {
-			return true;
-		}
-		return false;
+		return $role == self::ROLE_ADMIN;
 	}
 
 	static function isVistor($role = ROLE) {
-		if ($role == self::ROLE_VISITOR) {
-			return true;
-		}
-		return false;
+		return $role == self::ROLE_VISITOR;
 	}
 
 	static function getRoleName($role, $uid = 0) {
@@ -56,12 +50,10 @@ class User {
 		$ret = $sendmail->send($mail, $title, $content);
 		if ($ret) {
 			return true;
-		} else {
-			return false;
 		}
+		return false;
 	}
 
-	// 检查图片验证码
 	static function checkLoginCode($login_code) {
 		if (!isset($_SESSION)) {
 			session_start();
@@ -74,7 +66,6 @@ class User {
 		return true;
 	}
 
-	// 检查邮箱验证码
 	static function checkMailCode($mail_code) {
 		if (!isset($_SESSION)) {
 			session_start();
@@ -87,11 +78,13 @@ class User {
 		return true;
 	}
 
-	// 检查用户权限
 	static function checkRolePermission() {
 		$request_uri = strtolower(substr(basename($_SERVER['SCRIPT_NAME']), 0, -4));
 		if (ROLE === self::ROLE_WRITER && !in_array($request_uri, ['article', 'twitter', 'media', 'blogger', 'comment', 'index', 'article_save'])) {
 			emMsg('你所在的用户组无法使用该功能，请联系管理员', './');
+		}
+		if (!Register::isRegLocal() && mt_rand(1, 15) === 10) {
+			emDirect("auth.php");
 		}
 	}
 
