@@ -85,11 +85,18 @@ if (!$act) {
                 padding: 10px 0px;
             }
 
-            .foot {
+            .next_btn {
+                margin: 50px 0px 10px 0px;
+                text-align: center;
+            }
+
+            .footer {
+                margin: 20px 0px 30px 0px;
                 text-align: center;
             }
 
             .main li {
+                margin: 40px 0px 20px 0px;
                 margin: 20px 0px;
             }
         </style>
@@ -139,15 +146,17 @@ if (!$act) {
                     <input name="repassword" type="password" class="input">
                 </li>
                 <li>
-                    邮箱（可用于找回密码，建议填写）<br/>
+                    邮箱<br/>
                     <input name="email" type="text" class="input">
+                    <span class="care"> (可用于找回密码，建议填写)</span>
                 </li>
             </div>
-            <div>
-                <p class="foot"><input type="submit" class="submit" value="开始安装emlog"></p>
+            <div class="next_btn">
+                <input type="submit" class="submit" value="下一步，开始安装">
             </div>
         </div>
     </form>
+    <div class="footer">Powered by <a href="http://www.emlog.net">emlog</a></div>
     </body>
     </html>
 	<?php
