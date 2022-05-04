@@ -83,7 +83,7 @@ class User {
 		if (ROLE === self::ROLE_WRITER && !in_array($request_uri, ['article', 'twitter', 'media', 'blogger', 'comment', 'index', 'article_save'])) {
 			emMsg('你所在的用户组无法使用该功能，请联系管理员', './');
 		}
-		if (!Register::isRegLocal() && mt_rand(1, 15) === 10) {
+		if (!Register::isRegLocal() && mt_rand(1, 16) === 8) {
 			emDirect("auth.php");
 		}
 	}
