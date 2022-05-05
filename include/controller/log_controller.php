@@ -21,7 +21,7 @@ class Log_Controller {
 		$sta_cache = $CACHE->readCache('sta');
 		$lognum = $sta_cache['lognum'];
 		$pageurl .= Url::logPage();
-		$total_pages = ceil($lognum / $index_lognum);
+		$total_pages = $lognum > 0 ? ceil($lognum / $index_lognum) : 1;
 		if ($page > $total_pages) {
 			show_404_page();
 		}
