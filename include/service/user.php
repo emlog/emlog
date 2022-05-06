@@ -8,22 +8,16 @@
 
 class User {
 
-	const ROLE_ADMIN = 'admin';              //Admin
-	const ROLE_WRITER = 'writer';            //Registered user
-	const ROLE_VISITOR = 'visitor';          //Guest
+	const ROLE_ADMIN = 'admin';
+	const ROLE_WRITER = 'writer';
+	const ROLE_VISITOR = 'visitor';
 
 	static function isAdmin($role = ROLE) {
-		if ($role == self::ROLE_ADMIN) {
-			return true;
-		}
-		return false;
+		return $role == self::ROLE_ADMIN;
 	}
 
 	static function isVistor($role = ROLE) {
-		if ($role == self::ROLE_VISITOR) {
-			return true;
-		}
-		return false;
+		return $role == self::ROLE_VISITOR;
 	}
 
 	static function getRoleName($role, $uid = 0) {
@@ -56,12 +50,10 @@ class User {
 		$ret = $sendmail->send($mail, $title, $content);
 		if ($ret) {
 			return true;
-		} else {
-			return false;
 		}
+		return false;
 	}
 
-		// Check image verification code
 	static function checkLoginCode($login_code) {
 		if (!isset($_SESSION)) {
 			session_start();
@@ -74,7 +66,6 @@ class User {
 		return true;
 	}
 
-	// Check email verification code
 	static function checkMailCode($mail_code) {
 		if (!isset($_SESSION)) {
 			session_start();
@@ -87,11 +78,13 @@ class User {
 		return true;
 	}
 
-	// Check user permissions
 	static function checkRolePermission() {
 		$request_uri = strtolower(substr(basename($_SERVER['SCRIPT_NAME']), 0, -4));
 		if (ROLE === self::ROLE_WRITER && !in_array($request_uri, ['article', 'twitter', 'media', 'blogger', 'comment', 'index', 'article_save'])) {
 /*vot*/			emMsg(lang('group_no_permission'), './');
+		}
+		if (!Register::isRegLocal() && mt_rand(1, 16) === 8) {
+			emDirect("auth.php");
 		}
 	}
 

@@ -30,9 +30,9 @@
                 <table class="table table-bordered table-striped table-hover" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                     <tr>
-<!--vot-->              <th><?=lang('order')?></th>
 <!--vot-->              <th><?=lang('name')?></th>
 <!--vot-->              <th><?=lang('description')?></th>
+                        <th>分类ID</th>
 <!--vot-->              <th><?=lang('alias')?></th>
 <!--vot-->              <th><?=lang('template')?></th>
 <!--vot-->              <th><?=lang('view')?></th>
@@ -56,8 +56,8 @@
                                 <a href="sort.php?action=mod_sort&sid=<?= $value['sid'] ?>"><?= $value['sortname'] ?></a>
                             </td>
                             <td><?= $value['description'] ?></td>
+                            <td><?= $value['sid'] ?></td>
                             <td class="alias"><?= $value['alias'] ?></td>
-                            <td class="alias"><?= $value['template'] ?></td>
                             <td>
                                 <a href="<?= Url::sort($value['sid']) ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0"/></a>
                             </td>

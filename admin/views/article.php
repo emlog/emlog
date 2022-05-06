@@ -111,9 +111,10 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
                     </thead>
                     <tbody>
 					<?php foreach ($logs as $key => $value):
-/*vot*/	    			$sortName = $value['sortid'] == -1 && !array_key_exists($value['sortid'], $sorts) ? lang('uncategorized') : $sorts[$value['sortid']]['sortname'];
-						$author = $user_cache[$value['author']]['name'];
-						$author_role = $user_cache[$value['author']]['role'];
+/*vot*/	    					$sortName = $sorts[$value['sortid']]['sortname'] ?? lang('uncategorized');
+/*vot*/						$sortName = $value['sortid'] == -1 ? lang('uncategorized') : $sortName;
+						$author = $user_cache[$value['author']]['name'] ?? '未知作者';
+						$author_role = $user_cache[$value['author']]['role'] ?? '未知角色';
 						?>
                         <tr>
                             <td style="width: 20px;"><input type="checkbox" name="blog[]" value="<?= $value['gid'] ?>" class="ids"/></td>

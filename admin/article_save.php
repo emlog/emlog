@@ -40,7 +40,7 @@ if (!empty($alias)) {
 //The administrator does not review the post, and the registered user is controlled by the switch
 $checked = Option::get('ischkarticle') == 'y' && !User::isAdmin() ? 'n' : 'y';
 
-$logData = array(
+$logData = [
 	'title'        => $title,
 	'alias'        => $alias,
 	'content'      => $content,
@@ -53,7 +53,7 @@ $logData = array(
 	'hide'         => $ishide,
 	'checked'      => $checked,
 	'password'     => $password
-);
+];
 
 /*vot*/ if ($blogid > 0) {//After the draft is automatically saved, the addition becomes the update
 	$Log_Model->updateLog($logData, $blogid);

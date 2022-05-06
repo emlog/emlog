@@ -31,7 +31,9 @@
             <li class="nav-item"><a class="nav-link" href="./setting.php?action=user"><?=lang('user_settings')?></a></li>
             <li class="nav-item"><a class="nav-link" href="./setting.php?action=mail"><?=lang('email_notify')?></a></li>
             <li class="nav-item"><a class="nav-link" href="./setting.php?action=seo"><?=lang('seo_settings')?></a></li>
+            <li class="nav-item"><a class="nav-link" href="./setting.php?action=api">API接口</a></li>
             <li class="nav-item"><a class="nav-link active" href="./blogger.php"><?=lang('personal_settings')?></a></li>
+            <li class="nav-item"><a class="nav-link active" href="./blogger.php">个人信息</a></li>
         </ul>
 	<?php else: ?>
         <ul class="nav nav-pills">

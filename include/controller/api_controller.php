@@ -8,37 +8,75 @@
 
 class Api_Controller {
 
-	/**
-	 * starter
-	 */
+	public $Log_Model;
+	public $Cache;
+
 	function starter($params) {
 
-		if (empty($params[1]) || $params[1] != 'rest-api' || empty($_GET['rest-api'])) {
-			show_404_page();
+		$_func = isset($_GET['rest-api']) ? addslashes($_GET['rest-api']) : '';
+		if (empty($_func)) {
+			Output::error('error router');
 		}
 
-		$_func = $_GET['rest-api'];
+		if (Option::get('is_openapi') === 'n') {
+			Output::error('api is closed');
+		}
 
 		if (method_exists($this, $_func)) {
+			$this->Log_Model = new Log_Model();
+			$this->Cache = Cache::getInstance();
 			$this->$_func();
 		} else {
-			show_404_page();
+			Output::error('API function is not exist');
 		}
 
 	}
 
-	private function article_getlist() {
-		$Log_Model = new Log_Model();
-		$CACHE = Cache::getInstance();
+	private function article_post() {
+		$req_sign = isset($_POST['req_sign']) ? addslashes(trim($_POST['req_sign'])) : '';
+		$req_time = isset($_POST['req_time']) ? addslashes(trim($_POST['req_time'])) : '';
+		$title = isset($_POST['title']) ? addslashes(trim($_POST['title'])) : '';
+		$content = isset($_POST['content']) ? addslashes(trim($_POST['content'])) : '';
+		$excerpt = isset($_POST['excerpt']) ? addslashes(trim($_POST['excerpt'])) : '';
+		$author_uid = isset($_POST['author_uid']) ? (int)trim($_POST['author_uid']) : 1;
+		$post_date = isset($_POST['post_date']) ? trim($_POST['post_date']) : '';
+		$sort_id = isset($_POST['sort_id']) ? (int)$_POST['sort_id'] : -1;
+		$cover = isset($_POST['cover']) ? addslashes(trim($_POST['cover'])) : '';
 
-		$page = isset($params[1]) && $params[1] == 'page' ? abs((int)$params[2]) : 1;
-		$index_lognum = 20;
+		if (empty($req_sign) || empty($req_time) || empty($title) || empty($content)) {
+			Output::error('parameter error');
+		}
 
-		$sqlSegment = 'ORDER BY top DESC ,date DESC';
-		$sta_cache = $CACHE->readCache('sta');
-		$logs = $Log_Model->getLogsForHome($sqlSegment, $page, $index_lognum);
+		$this->checkApiKey($req_sign, $req_time);
 
-		Output::ok($logs);
+		$logData = [
+			'title'   => $title,
+			'content' => $content,
+			'excerpt' => $excerpt,
+			'author'  => $author_uid,
+			'sortid'  => $sort_id,
+			'cover'   => $cover,
+			'date'    => strtotime($post_date ?: date('Y-m-d H:i:s')),
+		];
+
+		$article_id = $this->Log_Model->addlog($logData);
+
+		$this->Cache->updateCache();
+
+		output::ok([
+			'article_id' => $article_id,
+		]);
+
 	}
+
+	private function checkApiKey($req_sign, $req_time) {
+		$apikey = Option::get('apikey');
+		$sign = md5($req_time . $apikey);
+
+		if ($sign !== $req_sign) {
+			Output::error('sign error');
+		}
+	}
+
 
 }

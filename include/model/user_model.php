@@ -87,6 +87,14 @@ class User_Model {
 		$this->db->query("delete from " . DB_PREFIX . "user where uid=$uid");
 	}
 
+	function forbidUser($uid) {
+		$this->db->query("update " . DB_PREFIX . "user set state=1 where uid=$uid");
+	}
+
+	function unforbidUser($uid) {
+		$this->db->query("update " . DB_PREFIX . "user set state=0 where uid=$uid");
+	}
+
 	/**
 	 * Check the User name exists
 	 *

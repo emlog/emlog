@@ -1,5 +1,5 @@
 function getChecked(node) {
-    var re = false;
+    let re = false;
     $('input.' + node).each(function (i) {
         if (this.checked) {
             re = true;
@@ -13,58 +13,63 @@ function timestamp() {
 }
 
 function em_confirm(id, property, token) {
+    let url, msg;
     switch (property) {
         case 'tw':
-            var urlreturn = "twitter.php?action=del&id=" + id;
-/*vot*/     var msg = lang('twitter_del_sure');
+            url = 'twitter.php?action=del&id=' + id;
+/*vot*/     msg = lang('twitter_del_sure');
             break;
         case 'comment':
-            var urlreturn = "comment.php?action=del&id=" + id;
-/*vot*/     var msg = lang('comment_del_sure');
+            url = 'comment.php?action=del&id=' + id;
+/*vot*/     msg = lang('comment_del_sure');
             break;
         case 'commentbyip':
-            var urlreturn = "comment.php?action=delbyip&ip=" + id;
-/*vot*/     var msg = lang('comment_ip_del_sure');
+            url = 'comment.php?action=delbyip&ip=' + id;
+/*vot*/     msg = lang('comment_ip_del_sure');
             break;
         case 'link':
-            var urlreturn = "link.php?action=dellink&linkid=" + id;
-/*vot*/     var msg = lang('link_del_sure');
+            url = 'link.php?action=dellink&linkid=' + id;
+/*vot*/     msg = lang('link_del_sure');
             break;
         case 'navi':
-            var urlreturn = "navbar.php?action=del&id=" + id;
-/*vot*/     var msg = lang('navi_del_sure');
+            url = 'navbar.php?action=del&id=' + id;
+/*vot*/     msg = lang('navi_del_sure');
             break;
         case 'media':
-            var urlreturn = "media.php?action=delete&aid=" + id;
-/*vot*/     var msg = lang('attach_del_sure');
+            url = 'media.php?action=delete&aid=' + id;
+/*vot*/     msg = lang('attach_del_sure');
             break;
         case 'avatar':
-            var urlreturn = "blogger.php?action=delicon";
-/*vot*/     var msg = lang('avatar_del_sure');
+            url = 'blogger.php?action=delicon';
+/*vot*/     msg = lang('avatar_del_sure');
             break;
         case 'sort':
-            var urlreturn = "sort.php?action=del&sid=" + id;
-/*vot*/     var msg = lang('category_del_sure');
+            url = 'sort.php?action=del&sid=' + id;
+/*vot*/     msg = lang('category_del_sure');
             break;
-        case 'user':
-            var urlreturn = "user.php?action=del&uid=" + id;
-/*vot*/     var msg = lang('user_del_sure');
+        case 'del_user':
+            url = 'user.php?action=del&uid=' + id;
+/*vot*/     msg = lang('user_del_sure');
+            break;
+        case 'forbid_user':
+            url = 'user.php?action=forbid&uid=' + id;
+            msg = '确定要禁用该用户吗？';
             break;
         case 'tpl':
-            var urlreturn = "template.php?action=del&tpl=" + id;
-/*vot*/     var msg = lang('template_del_sure');
+            url = 'template.php?action=del&tpl=' + id;
+/*vot*/     msg = lang('template_del_sure');
             break;
         case 'reset_widget':
-            var urlreturn = "widgets.php?action=reset";
-/*vot*/     var msg = lang('plugin_reset_sure');
+            url = 'widgets.php?action=reset';
+/*vot*/     msg = lang('plugin_reset_sure');
             break;
         case 'plu':
-            var urlreturn = "plugin.php?action=del&plugin=" + id;
-/*vot*/     var msg = lang('plugin_del_sure');
+            url = 'plugin.php?action=del&plugin=' + id;
+/*vot*/     msg = lang('plugin_del_sure');
             break;
     }
     if (confirm(msg)) {
-        window.location = urlreturn + "&token=" + token;
+        window.location = url + '&token=' + token;
     } else {
         return;
     }
@@ -110,13 +115,14 @@ function isalias(a) {
         return 0;
     }
 }
+
 function checkform() {
     var a = $.trim($("#alias").val());
     var t = $.trim($("#title").val());
 
-    if(typeof articleTextRecord !== "undefined"){  // When submitting, reset the original text record value to prevent the leaving prompt from appearing
+    if (typeof articleTextRecord !== "undefined") {  // When submitting, reset the original text record value to prevent the leaving prompt from appearing
         articleTextRecord = $("textarea[name=logcontent]").text();
-    }else{
+    } else {
         pageText = $("textarea").text();
     }
     if (0 == isalias(a)) {
@@ -221,7 +227,7 @@ function autosave(act) {
         return;
     }
     // Manual saving is not allowed when the last successful save time is less than one second
-    if((new Date().getTime() - Cookies.get('em_saveLastTime')) < 1000 && act != 1){
+    if ((new Date().getTime() - Cookies.get('em_saveLastTime')) < 1000 && act != 1) {
 /*vot*/ alert(lang('too_quick'));
         return;
     }
@@ -243,7 +249,7 @@ function autosave(act) {
 /*vot*/     $("#save_info").html(lang('saved_ok_time')+ tm);
 /*vot*/     $('title').text(lang('saved_ok') + titleText);
 /*vot*/     articleTextRecord = $("textarea[name=logcontent]").text();  // After the save is successful, replace the original text record value with the current text
-/*vot*/     Cookies.set('em_saveLastTime',new Date().getTime());  // Put (or update) the save success timestamp into a cookie
+/*vot*/     Cookies.set('em_saveLastTime', new Date().getTime());  // Put (or update) the save success timestamp into a cookie
             $("#" + nodeid).val(logid);
             $("#savedf").attr("disabled", false).val(btname);
         } else {
@@ -327,19 +333,19 @@ var hooks = {
 }
 
 // Paste upload image
-function imgPasteExpand(thisEditor){
-    var listenObj    = document.querySelector("textarea").parentNode  // Object to listen for
-    var postUrl      = './media.php?action=upload';  // emlog image upload address
-    var emMediaPhpUrl= "./media.php?action=lib";  // The resource library address of emlog, which is used to asynchronously obtain the uploaded image data
+function imgPasteExpand(thisEditor) {
+    var listenObj = document.querySelector("textarea").parentNode  // Object to listen for
+    var postUrl = './media.php?action=upload';  // emlog image upload address
+    var emMediaPhpUrl = "./media.php?action=lib";  // The resource library address of emlog, which is used to asynchronously obtain the uploaded image data
 
     // By dynamically configuring the read-only mode, the original paste action of the editor is prevented and the cursor position is restored
-    function preventEditorPaste(){
+    function preventEditorPaste() {
         let l = thisEditor.getCursor().line;
         let c = thisEditor.getCursor().ch - 3;
 
-        thisEditor.config({ readOnly: true, });
-        thisEditor.config({ readOnly: false,});
-        thisEditor.setCursor({line:l, ch:c});
+        thisEditor.config({readOnly: true,});
+        thisEditor.config({readOnly: false,});
+        thisEditor.setCursor({line: l, ch: c});
 
         let saveHotKey = {  // Editor bug , the custom hotkey will be deleted after the interface is refreshed, so it needs to be reset
             "Ctrl-S": function (cm) {
@@ -353,18 +359,18 @@ function imgPasteExpand(thisEditor){
     }
 
     // The editor replaces the text by the first few digits of the cursor position
-    function replaceByNum(text,num){
+    function replaceByNum(text, num) {
         let l = thisEditor.getCursor().line;
         let c = thisEditor.getCursor().ch;
 
-        thisEditor.setSelection({line:l, ch:(c - num)}, {line:l, ch:c});
+        thisEditor.setSelection({line: l, ch: (c - num)}, {line: l, ch: c});
         thisEditor.replaceSelection(text);
     }
 
     // Paste event fires
     listenObj.addEventListener("paste", function (e) {
         if ($('.editormd-dialog').css('display') == 'block') return;  // Exit if editor has dialog
-        if ( !(e.clipboardData && e.clipboardData.items) ) return;
+        if (!(e.clipboardData && e.clipboardData.items)) return;
 
         var pasteData = e.clipboardData || window.clipboardData; // Get the entire contents of the clipboard
         pasteAnalyseResult = new Array;  // Used to store the results of traversal analysis
@@ -372,26 +378,27 @@ function imgPasteExpand(thisEditor){
         for(var i = 0; i < pasteData.items.length; i++) {  // Traverse the data in the analysis clipboard
             var item = pasteData.items[i];
 
-            if((item.kind == "file") && (item.type.match('^image/'))){
+            if ((item.kind == "file") && (item.type.match('^image/'))) {
                 var imgData = item.getAsFile();
                 if (imgData.size === 0) return;
                 pasteAnalyseResult['type'] = 'img';
                 pasteAnalyseResult['data'] = imgData;
                 break;  // When there is a picture in the pasteboard, jump out of the loop
-            };
+            }
+            ;
         }
 
-        if(pasteAnalyseResult['type'] == 'img') {  // If there is a picture in the clipboard, upload the picture
+        if (pasteAnalyseResult['type'] == 'img') {  // If there is a picture in the clipboard, upload the picture
             preventEditorPaste();
             uploadImg(pasteAnalyseResult['data']);
             return;
-        } 
+        }
     }, false);
 
     // Upload image
-    function uploadImg(img){
+    function uploadImg(img) {
         var formData = new FormData();
-/*vot*/ var imgName=lang('paste_upload')+new Date().getTime()+"."+img.name.split(".").pop();
+/*vot*/ var imgName = lang('paste_upload') + new Date().getTime() + "." + img.name.split(".").pop();
 
         formData.append('file', img, imgName);
 /*vot*/ thisEditor.insertValue(lang('uploading'));
@@ -401,37 +408,37 @@ function imgPasteExpand(thisEditor){
             data: formData,
             processData: false,
             contentType: false,
-            xhr: function() { 
+            xhr: function () {
                 var xhr = $.ajaxSettings.xhr();
                 if (xhr.upload) {
                     thisEditor.insertValue("....");
-                    xhr.upload.addEventListener('progress', function(e) {  // Show upload progress
+                    xhr.upload.addEventListener('progress', function (e) {  // Show upload progress
 /*vot*/                 console.log(lang('progress') + e.loaded + ' / ' + e.total);
                         let percent = Math.floor(e.loaded / e.total * 100);
-                        if(percent < 10){
-                            replaceByNum('..'+percent+'%',4);
-                        }else if(percent < 100){
-                            replaceByNum('.'+percent+'%',4);
-                        }else{
-                            replaceByNum(percent+'%',4);
+                        if (percent < 10) {
+                            replaceByNum('..' + percent + '%', 4);
+                        } else if (percent < 100) {
+                            replaceByNum('.' + percent + '%', 4);
+                        } else {
+                            replaceByNum(percent + '%', 4);
                         }
                     }, false);
                 }
                 return xhr;
             },
-            success:function(result){
-                    let imgUrl, thumbImgUrl;
-/*vot*/             console.log(lang('upload_ok_get_result'));
-                    $.get(emMediaPhpUrl,function(data){  // Get the result asynchronously, append to the editor
-/*vot*/                 console.log(lang('result_ok'));
-                        imgUrl = data.match(/[a-zA-z]+:\/[^\s\"\']*/g)[0];
-                        thumbImgUrl = data.match(/[a-zA-z]+:\/[^\s\"\']*/g)[1];
-                        replaceByNum(`[![](${imgUrl})](${thumbImgUrl})`,10);  // The number 10 here corresponds to 'Uploading...100%' which is 10 characters
-                    })
+            success: function (result) {
+                let imgUrl, thumbImgUrl;
+/*vot*/         console.log(lang('upload_ok_get_result'));
+                $.get(emMediaPhpUrl, function( data) {  // Get the result asynchronously, append to the editor
+/*vot*/             console.log(lang('result_ok'));
+                    imgUrl = data.match(/[a-zA-z]+:\/[^\s\"\']*/g)[0];
+                    thumbImgUrl = data.match(/[a-zA-z]+:\/[^\s\"\']*/g)[1];
+                        replaceByNum(`[![](${imgUrl})](${thumbImgUrl})`, 10);  // The number 10 here corresponds to 'Uploading...100%' which is 10 characters
+                })
             },
-            error:function(result){
+            error: function (result) {
 /*vot*/         alert(lang('upload_failed_error'));
-/*vot*/         replaceByNum(lang('upload_failed_error'),6);
+/*vot*/         replaceByNum(lang('upload_failed_error'), 6);
             }
         })
     }
@@ -442,17 +449,17 @@ hooks.addAction("loaded", imgPasteExpand);
 hooks.addAction("page_loaded", imgPasteExpand);
 
 // 设置界面，如果设置“自动检测地址”，则设置 input 为只读，以表示该项是无效的
-$(document).ready(function(){
+$(document).ready(function () {
     // 网页加载完先检查一遍
-    if ($("#detect_url").prop("checked")){
-        $("[name=blogurl]").attr("readonly","readonly")
+    if ($("#detect_url").prop("checked")) {
+        $("[name=blogurl]").attr("readonly", "readonly")
     }
 
-    $("#detect_url").click(function(){
-      if ($(this).prop("checked")){
-        $("[name=blogurl]").attr("readonly","readonly")
-      }else{
-        $("[name=blogurl]").removeAttr("readonly")
-      }
+    $("#detect_url").click(function () {
+        if ($(this).prop("checked")) {
+            $("[name=blogurl]").attr("readonly", "readonly")
+        } else {
+            $("[name=blogurl]").removeAttr("readonly")
+        }
     })
 })

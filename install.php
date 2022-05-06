@@ -91,11 +91,18 @@ if (!$act) {
                 padding: 10px 0px;
             }
 
-            .foot {
+            .next_btn {
+                margin: 50px 0px 10px 0px;
+                text-align: center;
+            }
+
+            .footer {
+                margin: 20px 0px 30px 0px;
                 text-align: center;
             }
 
             .main li {
+                margin: 40px 0px 20px 0px;
                 margin: 20px 0px;
             }
         </style>
@@ -145,15 +152,17 @@ if (!$act) {
                     <input name="repassword" type="password" class="input">
                 </li>
                 <li>
-<!--vot-->          <?=lang('email_prompt')?><br/>
+<!--vot-->          <?=lang('email')?><br/>
                     <input name="email" type="text" class="input">
+<!--vot-->          <span class="care"> <?=lang('email_prompt')?></span>
                 </li>
             </div>
-            <div>
-<!--vot-->      <p class="foot"><input type="submit" class="submit" value=<?= lang('install_emlog') ?>"></p>
+            <div class="next_btn">
+<!--vot-->      <input type="submit" class="submit" value=<?= lang('install_emlog') ?>">
             </div>
         </div>
     </form>
+    <div class="footer">Powered by <a href="http://www.emlog.net">emlog</a></div>
     </body>
     </html>
 	<?php
@@ -290,6 +299,8 @@ EOT;
 	$def_widgets = serialize(Option::getDefWidget());
 	$def_plugin = serialize(Option::getDefPlugin());
 
+	$apikey = md5(getRandStr(32));
+
 	define('BLOG_URL', realUrl());
 
 /*vot*/	$sql = "
@@ -419,6 +430,8 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('smtp_mail',
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('smtp_pw','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('smtp_server','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('smtp_port','');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('is_openapi','y');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('apikey','$apikey');
 DROP TABLE IF EXISTS {$db_prefix}link;
 CREATE TABLE {$db_prefix}link (
   id int(11) unsigned NOT NULL auto_increment COMMENT 'Link table',
@@ -477,6 +490,7 @@ CREATE TABLE {$db_prefix}user (
   email varchar(255) NOT NULL default '' COMMENT 'Email',
   description varchar(255) NOT NULL default '' COMMENT 'Description',
   ip varchar(128) NOT NULL default '' COMMENT 'IP address',
+  state tinyint NOT NULL DEFAULT '0' COMMENT '用户状态 0正常 1禁用',
   create_time int(11) NOT NULL COMMENT 'Create time',
   update_time int(11) NOT NULL COMMENT 'Update time',
 PRIMARY KEY  (uid),

@@ -443,6 +443,9 @@ class Cache {
 			if ($row['sortid'] > 0) {
 				$res = $this->db->query("SELECT sid,sortname,alias FROM " . DB_PREFIX . "sort where sid=" . $row['sortid']);
 				$srow = $this->db->fetch_array($res);
+				if (empty($srow)) {
+					continue;
+				}
 				$log_cache_sort[$row['gid']] = array(
 					'name'  => htmlspecialchars($srow['sortname']),
 					'id'    => htmlspecialchars($srow['sid']),

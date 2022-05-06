@@ -12,6 +12,7 @@
 <!--vot--><li class="nav-item"><a class="nav-link active" href="./setting.php?action=user"><?=lang('user_settings')?></a></li>
 <!--vot--><li class="nav-item"><a class="nav-link" href="./setting.php?action=mail"><?=lang('email_notify')?></a></li>
 <!--vot--><li class="nav-item"><a class="nav-link" href="./setting.php?action=seo"><?=lang('seo_settings')?></a></li>
+        <li class="nav-item"><a class="nav-link" href="./setting.php?action=api">API接口</a></li>
 <!--vot--><li class="nav-item"><a class="nav-link" href="./blogger.php"><?=lang('personal_settings')?></a></li>
     </ul>
 </div>

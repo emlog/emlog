@@ -10,9 +10,7 @@ class LoginAuth {
 	const LOGIN_ERROR_USER = -1;     //User does not exist
 	const LOGIN_ERROR_PASSWD = -2;   //Wrong password
 
-	/**
-	 * Verify that the user is logged on
-	 */
+
 	public static function isLogin() {
 		global $userData;
 
@@ -69,9 +67,8 @@ class LoginAuth {
 		$hash = $userData['password'];
 		if (true === self::checkPassword($password, $hash)) {
 			return $userData['uid'];
-		} else {
-			return self::LOGIN_ERROR_PASSWD;
 		}
+		return self::LOGIN_ERROR_PASSWD;
 	}
 
 	/**
@@ -82,9 +79,9 @@ class LoginAuth {
 		if (empty($account)) {
 			return false;
 		}
-		$ret = $DB->once_fetch_array("SELECT * FROM " . DB_PREFIX . "user WHERE username = '$account'");
+		$ret = $DB->once_fetch_array("SELECT * FROM " . DB_PREFIX . "user WHERE username = '$account' AND state = 0");
 		if (!$ret) {
-			$ret = $DB->once_fetch_array("SELECT * FROM " . DB_PREFIX . "user WHERE email = '$account'");
+			$ret = $DB->once_fetch_array("SELECT * FROM " . DB_PREFIX . "user WHERE email = '$account'  AND state = 0");
 			if (!$ret) {
 				return false;
 			}

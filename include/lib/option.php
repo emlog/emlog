@@ -7,8 +7,8 @@
 
 class Option {
 
-	const EMLOG_VERSION = 'pro 1.2.2';               //Version number
-	const EMLOG_VERSION_TIMESTAMP = 1647681359;      //Version timestamp
+	const EMLOG_VERSION = 'pro 1.3.0';               //Version number
+	const EMLOG_VERSION_TIMESTAMP = 1651624944;      //Version timestamp
 	const ICON_MAX_W = 160;                          //Maximum avatar thumbnail width
 	const ICON_MAX_H = 160;                          //Maximum avatar thumbnail height
 	const UPLOADFILE_PATH = '../content/uploadfile/';//Upload path
@@ -27,7 +27,7 @@ class Option {
 					if (!empty($options_cache[$option])) {
 						return @unserialize($options_cache[$option]);
 					} else {
-						return array();
+						return [];
 					}
 					break;
 				case 'blogurl':
