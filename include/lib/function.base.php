@@ -680,19 +680,20 @@ function getMonthDayNum($month, $year) {
 	$months_map = array(1 => 31, 3 => 31, 4 => 30, 5 => 31, 6 => 30, 7 => 31, 8 => 31, 9 => 30, 10 => 31, 11 => 30, 12 => 31);
 	if (array_key_exists($month, $months_map)) {
 		return $months_map[$month];
-	} else {
-		if ($year % 100 === 0) {
-			if ($year % 400 === 0) {
-				return 29;
-			} else {
-				return 28;
-			}
-		} else if ($year % 4 === 0) {
-			return 29;
-		} else {
-			return 28;
-		}
 	}
+
+	if ($year % 100 === 0) {
+		if ($year % 400 === 0) {
+			return 29;
+		}
+		return 28;
+	}
+
+	if ($year % 4 === 0) {
+		return 29;
+	}
+
+	return 28;
 }
 
 /**
@@ -715,19 +716,22 @@ function emUnZip($zipfile, $path, $type = 'tpl') {
 	switch ($type) {
 		case 'tpl':
 			$re = $zip->getFromName($dir . 'header.php');
-			if (false === $re)
+			if (false === $re) {
 				return -2;
+			}
 			break;
 		case 'plugin':
 			$plugin_name = substr($dir, 0, -1);
 			$re = $zip->getFromName($dir . $plugin_name . '.php');
-			if (false === $re)
+			if (false === $re) {
 				return -1;
+			}
 			break;
 		case 'backup':
 			$sql_name = substr($dir, 0, -1);
-			if (getFileSuffix($sql_name) != 'sql')
+			if (getFileSuffix($sql_name) != 'sql') {
 				return -3;
+			}
 			break;
 		case 'update':
 			break;
@@ -735,9 +739,9 @@ function emUnZip($zipfile, $path, $type = 'tpl') {
 	if (true === @$zip->extractTo($path)) {
 		$zip->close();
 		return 0;
-	} else {
-		return 1;//文件权限问题
 	}
+
+	return 1; //文件权限问题
 }
 
 /**
@@ -756,9 +760,9 @@ function emZip($orig_fname, $content) {
 		$zip_content = file_get_contents($tempzip);
 		unlink($tempzip);
 		return $zip_content;
-	} else {
-		return false;
 	}
+
+	return false;
 }
 
 /**
@@ -794,6 +798,35 @@ function emFetchFile($source) {
 	}
 	fclose($rh);
 	fclose($wh);
+	return $temp_file;
+}
+
+function emDownFile($source) {
+	$data = http_build_query(['emkey' => Option::get('emkey')]);
+	$ctx_opt = [
+		'http' => [
+			'timeout' => 120,
+			'method'  => 'POST',
+			'header'  => "Content-type: application/x-www-form-urlencoded\r\n"
+				. "Content-Length: " . strlen($data) . "\r\n",
+			'content' => $data
+		]
+	];
+	$context = stream_context_create($ctx_opt);
+	$content = file_get_contents($source, false, $context);
+	if ($content === false) {
+		return false;
+	}
+
+	$temp_file = tempnam(EMLOG_ROOT . '/content/cache/', 'tmp_');
+	if ($temp_file === false) {
+		emMsg('emDownFile：Failed to create temporary file.');
+	}
+	$ret = file_put_contents($temp_file, $content);
+	if ($ret === false) {
+		emMsg('emDownFile：Failed to write temporary file.');
+	}
+
 	return $temp_file;
 }
 
