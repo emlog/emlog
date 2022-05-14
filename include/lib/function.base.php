@@ -766,24 +766,15 @@ function emZip($orig_fname, $content) {
 }
 
 /**
- * 获取远程文件
- * @param string $source 远程文件地址
- * @return string 临时文件地址
+ * Download remote files
+ * @param string $source file url
+ * @return string Temporary file path
  */
 function emFetchFile($source) {
 	$temp_file = tempnam(EMLOG_ROOT . '/content/cache/', 'emtemp_');
 	$wh = fopen($temp_file, 'w+b');
 
-	$data = http_build_query(array('emkey' => Option::get('emkey')));
-	$ctx_opt = [
-		'http' => [
-			'timeout' => 60,
-			'method'  => 'POST',
-			'header'  => "Content-type: application/x-www-form-urlencoded\r\n"
-				. "Content-Length: " . strlen($data) . "\r\n",
-			'content' => $data
-		]
-	];
+	$ctx_opt = set_ctx_option();
 	$ctx = stream_context_create($ctx_opt);
 	$rh = fopen($source, 'rb', false, $ctx);
 
@@ -801,17 +792,13 @@ function emFetchFile($source) {
 	return $temp_file;
 }
 
+/**
+ * Download remote files
+ * @param string $source file url
+ * @return string Temporary file path
+ */
 function emDownFile($source) {
-	$data = http_build_query(['emkey' => Option::get('emkey')]);
-	$ctx_opt = [
-		'http' => [
-			'timeout' => 120,
-			'method'  => 'POST',
-			'header'  => "Content-type: application/x-www-form-urlencoded\r\n"
-				. "Content-Length: " . strlen($data) . "\r\n",
-			'content' => $data
-		]
-	];
+	$ctx_opt = set_ctx_option();
 	$context = stream_context_create($ctx_opt);
 	$content = file_get_contents($source, false, $context);
 	if ($content === false) {
@@ -828,6 +815,21 @@ function emDownFile($source) {
 	}
 
 	return $temp_file;
+}
+
+function set_ctx_option(): array {
+	$data = http_build_query(['emkey' => Option::get('emkey')]);
+	return [
+		'http' => [
+			'timeout' => 120,
+			'method'  => 'POST',
+			'header'  => "Content-type: application/x-www-form-urlencoded\r\n"
+				. "Content-Length: " . strlen($data) . "\r\n"
+				. "Referer: " . BLOG_URL . "\r\n"
+				. "User-Agent: emlog pro\r\n",
+			'content' => $data
+		]
+	];
 }
 
 /**
