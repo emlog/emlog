@@ -828,6 +828,10 @@ function set_ctx_option(): array {
 				. "Referer: " . BLOG_URL . "\r\n"
 				. "User-Agent: emlog pro\r\n",
 			'content' => $data
+		],
+		"ssl"  => [
+			"verify_peer"      => false,
+			"verify_peer_name" => false,
 		]
 	];
 }
