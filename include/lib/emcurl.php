@@ -7,7 +7,7 @@
  */
 
 class EmCurl {
-	protected $_useragent = 'emlog pro';
+	protected $_useragent = 'emlog ';
 	protected $_url;
 	protected $_followlocation = false;
 	protected $_timeout;
@@ -68,7 +68,7 @@ class EmCurl {
 			curl_setopt($s, CURLOPT_NOBODY, true);
 		}
 
-		curl_setopt($s, CURLOPT_USERAGENT, $this->_useragent);
+		curl_setopt($s, CURLOPT_USERAGENT, $this->_useragent . Option::EMLOG_VERSION);
 		curl_setopt($s, CURLOPT_REFERER, $this->_referer);
 
 		$this->_response = curl_exec($s);

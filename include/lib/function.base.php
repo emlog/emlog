@@ -771,7 +771,7 @@ function emZip($orig_fname, $content) {
  * @return string Temporary file path
  */
 function emFetchFile($source) {
-	$temp_file = tempnam(EMLOG_ROOT . '/content/cache/', 'emtemp_');
+	$temp_file = tempnam(EMLOG_ROOT . '/content/cache/', 'tmp_');
 	$wh = fopen($temp_file, 'w+b');
 
 	$ctx_opt = set_ctx_option();
@@ -826,7 +826,7 @@ function set_ctx_option(): array {
 			'header'  => "Content-type: application/x-www-form-urlencoded\r\n"
 				. "Content-Length: " . strlen($data) . "\r\n"
 				. "Referer: " . BLOG_URL . "\r\n"
-				. "User-Agent: emlog pro\r\n",
+				. "User-Agent: emlog " . Option::EMLOG_VERSION . "\r\n",
 			'content' => $data
 		],
 		"ssl"  => [
