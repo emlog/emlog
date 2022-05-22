@@ -67,7 +67,7 @@ if ($blogid > 0) {//自动保存草稿后,添加变为更新
 	$dftnum = $Log_Model->getLogNum('y', '', 'blog', 1);
 }
 
-$CACHE->updateCache();
+$CACHE->updateArticleCache();
 
 doAction('save_log', $blogid);
 

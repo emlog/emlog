@@ -26,20 +26,15 @@ class Option {
 				case 'custom_topimgs':
 					if (!empty($options_cache[$option])) {
 						return @unserialize($options_cache[$option]);
-					} else {
-						return [];
 					}
-					break;
+					return [];
 				case 'blogurl':
 					if ($options_cache['detect_url'] == 'y') {
 						return realUrl();
-					} else {
-						return $options_cache['blogurl'];
 					}
-					break;
+					return $options_cache['blogurl'];
 				default:
 					return $options_cache[$option];
-					break;
 			}
 		}
 	}
