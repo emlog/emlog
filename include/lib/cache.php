@@ -80,6 +80,36 @@ class Cache {
 		$this->updateCache(['sta', 'tags', 'sort', 'newlog', 'record', 'logtags', 'logsort', 'logalias']);
 	}
 
+	public function cacheWrite($cacheData, $cacheName) {
+		$cachefile = EMLOG_ROOT . '/content/cache/' . $cacheName . '.php';
+		$cacheData = "<?php exit;//" . $cacheData;
+		@ $fp = fopen($cachefile, 'wb') or emMsg('读取缓存失败');
+		@ fwrite($fp, $cacheData) or emMsg('写入缓存失败，缓存目录 (content/cache) 不可写');
+		$this->{$cacheName . '_cache'} = null;
+		fclose($fp);
+	}
+
+	public function readCache($cacheName) {
+		if ($this->{$cacheName . '_cache'} != null) {
+			return $this->{$cacheName . '_cache'};
+		}
+
+		$cachefile = EMLOG_ROOT . '/content/cache/' . $cacheName . '.php';
+		// 如果缓存文件不存在则自动生成缓存文件
+		if (!is_file($cachefile) || filesize($cachefile) <= 0) {
+			if (method_exists($this, 'mc_' . $cacheName)) {
+				$this->{'mc_' . $cacheName}();
+			}
+		}
+		if ($fp = fopen($cachefile, 'r')) {
+			$data = fread($fp, filesize($cachefile));
+			fclose($fp);
+			clearstatcache();
+			$this->{$cacheName . '_cache'} = unserialize(str_replace("<?php exit;//", '', $data));
+			return $this->{$cacheName . '_cache'};
+		}
+	}
+
 	/**
 	 * 站点配置缓存
 	 * 注意更新缓存的方法必须为mc开头
@@ -98,7 +128,7 @@ class Cache {
 	}
 
 	/**
-	 * 用户信息缓存 (性能问题仅缓存1000个用户)
+	 * 用户信息缓存
 	 */
 	private function mc_user() {
 		$user_cache = [];
@@ -475,41 +505,5 @@ class Cache {
 		}
 		$cacheData = serialize($log_cache_sort);
 		$this->cacheWrite($cacheData, 'logsort');
-	}
-
-	/**
-	 * 写入缓存
-	 */
-	public function cacheWrite($cacheData, $cacheName) {
-		$cachefile = EMLOG_ROOT . '/content/cache/' . $cacheName . '.php';
-		$cacheData = "<?php exit;//" . $cacheData;
-		@ $fp = fopen($cachefile, 'wb') or emMsg('读取缓存失败');
-		@ fwrite($fp, $cacheData) or emMsg('写入缓存失败，缓存目录 (content/cache) 不可写');
-		$this->{$cacheName . '_cache'} = null;
-		fclose($fp);
-	}
-
-	/**
-	 * 读取缓存文件
-	 */
-	public function readCache($cacheName) {
-		if ($this->{$cacheName . '_cache'} != null) {
-			return $this->{$cacheName . '_cache'};
-		}
-
-		$cachefile = EMLOG_ROOT . '/content/cache/' . $cacheName . '.php';
-		// 如果缓存文件不存在则自动生成缓存文件
-		if (!is_file($cachefile) || filesize($cachefile) <= 0) {
-			if (method_exists($this, 'mc_' . $cacheName)) {
-				call_user_func(array($this, 'mc_' . $cacheName));
-			}
-		}
-		if ($fp = fopen($cachefile, 'r')) {
-			$data = fread($fp, filesize($cachefile));
-			fclose($fp);
-			clearstatcache();
-			$this->{$cacheName . '_cache'} = unserialize(str_replace("<?php exit;//", '', $data));
-			return $this->{$cacheName . '_cache'};
-		}
 	}
 }
