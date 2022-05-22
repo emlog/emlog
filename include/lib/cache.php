@@ -472,9 +472,9 @@ class Cache {
 			foreach ($logs as $gid => $sortid) {
 				$log_cache_sort[$gid] = $sorts[$sortid] ?? [];
 			}
-			$cacheData = serialize($log_cache_sort);
-			$this->cacheWrite($cacheData, 'logsort');
 		}
+		$cacheData = serialize($log_cache_sort);
+		$this->cacheWrite($cacheData, 'logsort');
 	}
 
 	/**
