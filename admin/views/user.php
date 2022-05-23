@@ -67,6 +67,7 @@
 				foreach ($users as $key => $val):
 					$avatar = empty($user_cache[$val['uid']]['avatar']) ? './views/images/avatar.svg' : '../' . $user_cache[$val['uid']]['avatar'];
 					$forbid = $val['state'] == 1;
+					$user_log_num = $sta_cache[$val['uid']]['lognum'] ?? 0;
 					?>
                     <tr>
                         <td><img src="<?= $avatar ?>" height="35" width="35" class="rounded-circle"/></td>
@@ -83,7 +84,7 @@
                         </td>
                         <td><?= $val['email'] ?></td>
                         <td><?= $val['uid'] ?></td>
-                        <td><a href="article.php?uid=<?= $val['uid'] ?>"><?= $sta_cache[$val['uid']]['lognum'] ?></a></td>
+                        <td><a href="article.php?uid=<?= $val['uid'] ?>"><?= $user_log_num ?></a></td>
                         <td><?= $val['ip'] ?></td>
                         <td><?= $val['update_time'] ?></td>
                         <td><?= $val['create_time'] ?></td>

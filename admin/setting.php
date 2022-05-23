@@ -158,10 +158,10 @@ if ($action == 'seo_save') {
 
 if ($action == 'mail') {
 	$options_cache = $CACHE->readCache('options');
-/*vot*/	$smtp_mail = @$options_cache['smtp_mail'];
-/*vot*/	$smtp_pw = @$options_cache['smtp_pw'];
-/*vot*/	$smtp_server = @$options_cache['smtp_server'];
-/*vot*/	$smtp_port = @$options_cache['smtp_port'];
+	$smtp_mail = $options_cache['smtp_mail'] ?? '';
+	$smtp_pw = $options_cache['smtp_pw'] ?? '';
+	$smtp_server = $options_cache['smtp_server'] ?? '';
+	$smtp_port = $options_cache['smtp_port'] ?? '';
 
 	include View::getAdmView('header');
 	require_once(View::getAdmView('setting_mail'));
@@ -222,9 +222,9 @@ if ($action == 'mail_test') {
 
 if ($action == 'user') {
 	$options_cache = $CACHE->readCache('options');
-/*vot*/	$is_signup = @$options_cache['is_signup'];
-/*vot*/	$login_code = @$options_cache['login_code'];
-/*vot*/	$ischkarticle = @$options_cache['ischkarticle'];
+	$is_signup = $options_cache['is_signup'] ?? '';
+	$login_code = $options_cache['login_code'] ?? '';
+	$ischkarticle = $options_cache['ischkarticle'] ?? '';
 
 	$conf_is_signup = $is_signup == 'y' ? 'checked="checked"' : '';
 	$conf_login_code = $login_code == 'y' ? 'checked="checked"' : '';

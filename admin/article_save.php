@@ -67,7 +67,7 @@ $logData = [
 	$dftnum = $Log_Model->getLogNum('y', '', 'blog', 1);
 }
 
-$CACHE->updateCache();
+$CACHE->updateArticleCache();
 
 doAction('save_log', $blogid);
 

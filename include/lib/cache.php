@@ -44,35 +44,69 @@ class Cache {
 	/**
 	 * Update cache
 	 *
-	 * @param array/string $cacheMethodName need to update the cache, Update multiple uses an array of methods: array('options', 'user'), Using a single string by:  'options', blank for All
-	 * @return unknown_type
+	 * @param mixed $cacheMethodName need to update the cache, Update multiple uses an array of methods: array('options', 'user'), Using a single string by:  'options', blank for All
 	 */
-	function updateCache($cacheMethodName = null) {
+	public function updateCache($cacheMethodName = null) {
 		// Update a single cache
 		if (is_string($cacheMethodName)) {
-			if (method_exists($this, 'mc_' . $cacheMethodName)) {
-				call_user_func(array($this, 'mc_' . $cacheMethodName));
+			$method = 'mc_' . $cacheMethodName;
+			if (method_exists($this, $method)) {
+				$this->$method();
 			}
 			return;
 		}
 		// Update multiple cache
 		if (is_array($cacheMethodName)) {
 			foreach ($cacheMethodName as $name) {
-				if (method_exists($this, 'mc_' . $name)) {
-					call_user_func(array($this, 'mc_' . $name));
+				$method = 'mc_' . $name;
+				if (method_exists($this, $method)) {
+					$this->$method();
 				}
 			}
 			return;
 		}
 		// Update all cache
-		if ($cacheMethodName == null) {
-			// Automatically run all the cache update methods (Such method name must start with the mc_)
+		if (!$cacheMethodName) {
 			$cacheMethodNames = get_class_methods($this);
 			foreach ($cacheMethodNames as $method) {
-				if (preg_match('/^mc_/', $method)) {
-					call_user_func(array($this, $method));
+				if (0 === strpos($method, 'mc_')) {
+					$this->$method();
 				}
 			}
+		}
+	}
+
+	public function updateArticleCache() {
+		$this->updateCache(['sta', 'tags', 'sort', 'newlog', 'record', 'logtags', 'logsort', 'logalias']);
+	}
+
+	public function cacheWrite($cacheData, $cacheName) {
+		$cachefile = EMLOG_ROOT . '/content/cache/' . $cacheName . '.php';
+		$cacheData = "<?php exit;//" . $cacheData;
+		@ $fp = fopen($cachefile, 'wb') or emMsg('读取缓存失败');
+		@ fwrite($fp, $cacheData) or emMsg('写入缓存失败，缓存目录 (content/cache) 不可写');
+		$this->{$cacheName . '_cache'} = null;
+		fclose($fp);
+	}
+
+	public function readCache($cacheName) {
+		if ($this->{$cacheName . '_cache'} != null) {
+			return $this->{$cacheName . '_cache'};
+		}
+
+		$cachefile = EMLOG_ROOT . '/content/cache/' . $cacheName . '.php';
+		// 如果缓存文件不存在则自动生成缓存文件
+		if (!is_file($cachefile) || filesize($cachefile) <= 0) {
+			if (method_exists($this, 'mc_' . $cacheName)) {
+				$this->{'mc_' . $cacheName}();
+			}
+		}
+		if ($fp = fopen($cachefile, 'r')) {
+			$data = fread($fp, filesize($cachefile));
+			fclose($fp);
+			clearstatcache();
+			$this->{$cacheName . '_cache'} = unserialize(str_replace("<?php exit;//", '', $data));
+			return $this->{$cacheName . '_cache'};
 		}
 	}
 
@@ -132,19 +166,14 @@ class Cache {
 	 * Site Statistics cache
 	 */
 	private function mc_sta() {
-		$sta_cache = [];
 		$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "blog WHERE type='blog' AND hide='n' AND checked='y' ");
 		$lognum = $data['total'];
-
 		$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "blog WHERE type='blog' AND hide='y'");
 		$draftnum = $data['total'];
-
 		$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "blog WHERE type='blog' AND hide='n' AND checked='n' ");
 		$checknum = $data['total'];
-
 		$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "comment WHERE hide='n' ");
 		$comnum = $data['total'];
-
 		$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "comment WHERE hide='y' ");
 		$hidecom = $data['total'];
 
@@ -157,26 +186,24 @@ class Cache {
 			'checknum'   => $checknum,
 		);
 
-		$query = $this->db->query("SELECT uid FROM " . DB_PREFIX . "user");
+		// 性能问题仅缓存最近1000个用户的信息
+		$query = $this->db->query("SELECT uid FROM " . DB_PREFIX . "user order by uid desc limit 1000");
 		while ($row = $this->db->fetch_array($query)) {
 			$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "blog WHERE author={$row['uid']} AND hide='n' and type='blog'");
 			$logNum = $data['total'];
-
 			$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "blog WHERE author={$row['uid']} AND hide='y' AND type='blog'");
 			$draftNum = $data['total'];
-
 			$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "comment AS a, " . DB_PREFIX . "blog AS b WHERE a.gid = b.gid AND b.author={$row['uid']}");
 			$commentNum = $data['total'];
-
 			$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "comment AS a, " . DB_PREFIX . "blog AS b WHERE a.gid=b.gid and a.hide='y' AND b.author={$row['uid']}");
 			$hidecommentNum = $data['total'];
 
-			$sta_cache[$row['uid']] = array(
+			$sta_cache[$row['uid']] = [
 				'lognum'         => $logNum,
 				'draftnum'       => $draftNum,
 				'commentnum'     => $commentNum,
 				'hidecommentnum' => $hidecommentNum,
-			);
+			];
 		}
 
 		$cacheData = serialize($sta_cache);
@@ -352,8 +379,10 @@ class Cache {
 	 * Latest Posts
 	 */
 	private function mc_newlog() {
-		$row = $this->db->fetch_array($this->db->query("SELECT option_value FROM " . DB_PREFIX . "options where option_name='index_newlognum'"));
-		$index_newlognum = $row['option_value'];
+		$index_newlognum = Option::get('index_newlognum');
+		if ($index_newlognum <= 0) {
+			$index_newlognum = 10;
+		}
 		$sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' and checked='y' and type='blog' ORDER BY date DESC LIMIT 0, $index_newlognum";
 		$res = $this->db->query($sql);
 		$logs = [];
@@ -404,6 +433,20 @@ class Cache {
 	}
 
 	/**
+	 * 文章别名缓存
+	 */
+	private function mc_logalias() {
+		$sql = "SELECT gid,alias FROM " . DB_PREFIX . "blog where alias!=''";
+		$query = $this->db->query($sql);
+		$log_cache_alias = [];
+		while ($row = $this->db->fetch_array($query)) {
+			$log_cache_alias[$row['gid']] = $row['alias'];
+		}
+		$cacheData = serialize($log_cache_alias);
+		$this->cacheWrite($cacheData, 'logalias');
+	}
+
+	/**
 	 * Post tags cache
 	 */
 	private function mc_logtags() {
@@ -436,74 +479,31 @@ class Cache {
 	 * Blog Categories cache
 	 */
 	private function mc_logsort() {
-		$sql = "SELECT gid,sortid FROM " . DB_PREFIX . "blog where type='blog'";
+		$sql = "SELECT gid,sortid FROM " . DB_PREFIX . "blog where type='blog' order by top DESC, sortop DESC, date DESC";
 		$query = $this->db->query($sql);
 		$log_cache_sort = [];
+		$logs = [];
+		$sorts = [];
 		while ($row = $this->db->fetch_array($query)) {
 			if ($row['sortid'] > 0) {
-				$res = $this->db->query("SELECT sid,sortname,alias FROM " . DB_PREFIX . "sort where sid=" . $row['sortid']);
-				$srow = $this->db->fetch_array($res);
-				if (empty($srow)) {
-					continue;
-				}
-				$log_cache_sort[$row['gid']] = array(
+				$logs[$row['gid']] = $row['sortid'];
+			}
+		}
+
+		if ($logs) {
+			$query = $this->db->query("SELECT sid,sortname,alias FROM " . DB_PREFIX . "sort");
+			while ($srow = $this->db->fetch_array($query)) {
+				$sorts[$srow['sid']] = [
 					'name'  => htmlspecialchars($srow['sortname']),
 					'id'    => htmlspecialchars($srow['sid']),
 					'alias' => htmlspecialchars($srow['alias']),
-				);
+				];
+			}
+			foreach ($logs as $gid => $sortid) {
+				$log_cache_sort[$gid] = $sorts[$sortid] ?? [];
 			}
 		}
 		$cacheData = serialize($log_cache_sort);
 		$this->cacheWrite($cacheData, 'logsort');
-	}
-
-	/**
-	 * Post aliases cache
-	 */
-	private function mc_logalias() {
-		$sql = "SELECT gid,alias FROM " . DB_PREFIX . "blog where alias!=''";
-		$query = $this->db->query($sql);
-		$log_cache_alias = [];
-		while ($row = $this->db->fetch_array($query)) {
-			$log_cache_alias[$row['gid']] = $row['alias'];
-		}
-		$cacheData = serialize($log_cache_alias);
-		$this->cacheWrite($cacheData, 'logalias');
-	}
-
-	/**
-	 * Write cache
-	 */
-	public function cacheWrite($cacheData, $cacheName) {
-		$cachefile = EMLOG_ROOT . '/content/cache/' . $cacheName . '.php';
-		$cacheData = "<?php exit;//" . $cacheData;
-/*vot*/		@ $fp = fopen($cachefile, 'wb') or emMsg(lang('cache_read_error'));
-/*vot*/		@ fwrite($fp, $cacheData) or emMsg(lang('cache_not_writable'));
-		$this->{$cacheName . '_cache'} = null;
-		fclose($fp);
-	}
-
-	/**
-	 * Read cache file
-	 */
-	public function readCache($cacheName) {
-		if ($this->{$cacheName . '_cache'} != null) {
-			return $this->{$cacheName . '_cache'};
-		} else {
-			$cachefile = EMLOG_ROOT . '/content/cache/' . $cacheName . '.php';
-			// If the cache file does not exist, the cache file is automatically generated
-			if (!is_file($cachefile) || filesize($cachefile) <= 0) {
-				if (method_exists($this, 'mc_' . $cacheName)) {
-					call_user_func(array($this, 'mc_' . $cacheName));
-				}
-			}
-			if ($fp = fopen($cachefile, 'r')) {
-				$data = fread($fp, filesize($cachefile));
-				fclose($fp);
-				clearstatcache();
-				$this->{$cacheName . '_cache'} = unserialize(str_replace("<?php exit;//", '', $data));
-				return $this->{$cacheName . '_cache'};
-			}
-		}
 	}
 }

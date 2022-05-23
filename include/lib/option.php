@@ -7,8 +7,8 @@
 
 class Option {
 
-	const EMLOG_VERSION = 'pro 1.3.0';               //Version number
-	const EMLOG_VERSION_TIMESTAMP = 1651624944;      //Version timestamp
+	const EMLOG_VERSION = 'pro 1.3.1';               //Version number
+	const EMLOG_VERSION_TIMESTAMP = 1653222821;      //Version timestamp
 	const ICON_MAX_W = 160;                          //Maximum avatar thumbnail width
 	const ICON_MAX_H = 160;                          //Maximum avatar thumbnail height
 	const UPLOADFILE_PATH = '../content/uploadfile/';//Upload path
@@ -26,20 +26,15 @@ class Option {
 				case 'custom_topimgs':
 					if (!empty($options_cache[$option])) {
 						return @unserialize($options_cache[$option]);
-					} else {
-						return [];
 					}
-					break;
+					return [];
 				case 'blogurl':
 /*vot*/				 if (@$options_cache['detect_url'] == 'y') {
 						return realUrl();
-					} else {
-						return $options_cache['blogurl'];
 					}
-					break;
+					return $options_cache['blogurl'];
 				default:
 					return $options_cache[$option];
-					break;
 			}
 		}
 	}
