@@ -490,7 +490,7 @@ CREATE TABLE {$db_prefix}user (
   email varchar(255) NOT NULL default '' COMMENT 'Email',
   description varchar(255) NOT NULL default '' COMMENT 'Description',
   ip varchar(128) NOT NULL default '' COMMENT 'IP address',
-  state tinyint NOT NULL DEFAULT '0' COMMENT '用户状态 0正常 1禁用',
+  state tinyint NOT NULL DEFAULT '0' COMMENT 'User status: 0 normal, 1 disabled',
   create_time int(11) NOT NULL COMMENT 'Create time',
   update_time int(11) NOT NULL COMMENT 'Update time',
 PRIMARY KEY  (uid),

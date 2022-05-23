@@ -168,7 +168,7 @@ if ($action == 'forbid') {
 		emDirect('./user.php');
 	}
 
-	//创始人账户不能被禁用
+	// Founder account cannot be disabled
 	if ($uid == 1) {
 		emDirect('./user.php');
 	}

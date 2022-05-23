@@ -448,9 +448,9 @@ function imgPasteExpand(thisEditor) {
 hooks.addAction("loaded", imgPasteExpand);
 hooks.addAction("page_loaded", imgPasteExpand);
 
-// 设置界面，如果设置“自动检测地址”，则设置 input 为只读，以表示该项是无效的
+// Setting interface, if you set "Automatic address detection", set input to read-only to indicate that this item is invalid
 $(document).ready(function () {
-    // 网页加载完先检查一遍
+    // Check the page after loading
     if ($("#detect_url").prop("checked")) {
         $("[name=blogurl]").attr("readonly", "readonly")
     }

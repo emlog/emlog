@@ -614,7 +614,7 @@ textarea {
     }
 
     #content-wrapper {
-        /* 使移动端页面的高度始终大于菜单栏高度，小于屏幕高度，以防止露出菜单栏  */
+        /* Make the height of the mobile page always larger than the height of the menu bar and smaller than the height of the screen to prevent the menu bar from being exposed */
         min-height: 800px;
         height: 100vh;
         position: absolute;
@@ -641,7 +641,7 @@ textarea {
         display: none;
     }
 
-    /* 用户查询搜索框和按钮两个元素在移动端不换行 */
+    /* User query search box and button two elements do not wrap on mobile */
     .search-inputs-nowrap {
         flex-flow: nowrap
     }
@@ -701,7 +701,7 @@ textarea {
     right: 105px;
 }
 
-/* 评论界面回复模态窗中的评论内容，需要自动换行 */
+/* The comment interface responds to the comment content in the modal window, which needs to be automatically wrapped */
 .comment-replay-content {
     overflow-wrap: break-word
 }

@@ -261,7 +261,7 @@ function isVideo($fileName) {
 }
 
 /**
- * 根据文件名后缀判断是否压缩包
+ * Determine whether to compress the package according to the file name suffix
  */
 function isZip($fileName) {
 	$suffix = getFileSuffix($fileName);

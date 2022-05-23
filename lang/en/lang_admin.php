@@ -207,6 +207,8 @@ $lang = array(
  'tags_no'		=> 'No tags',//'还没有标签',
  'tag_by_view'		=> 'View by tags',//'按标签查看',
  'top'			=> 'Top',//'置顶',
+ 'unknown_author'	=> 'Unknown author',//'未知作者',
+ 'unknown_role'		=> 'Unknown role',//'未知角色',
 
 //---------------------------
 //admin/views/article_write.php

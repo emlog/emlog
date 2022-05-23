@@ -95,7 +95,7 @@ class Cache {
 		}
 
 		$cachefile = EMLOG_ROOT . '/content/cache/' . $cacheName . '.php';
-		// 如果缓存文件不存在则自动生成缓存文件
+		// Automatically generate cache file if cache file does not exist
 		if (!is_file($cachefile) || filesize($cachefile) <= 0) {
 			if (method_exists($this, 'mc_' . $cacheName)) {
 				$this->{'mc_' . $cacheName}();
@@ -186,7 +186,7 @@ class Cache {
 			'checknum'   => $checknum,
 		);
 
-		// 性能问题仅缓存最近1000个用户的信息
+		// Performance issue only caching information for the last 1000 users
 		$query = $this->db->query("SELECT uid FROM " . DB_PREFIX . "user order by uid desc limit 1000");
 		while ($row = $this->db->fetch_array($query)) {
 			$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "blog WHERE author={$row['uid']} AND hide='n' and type='blog'");
@@ -433,7 +433,7 @@ class Cache {
 	}
 
 	/**
-	 * 文章别名缓存
+	 * Article alias cache
 	 */
 	private function mc_logalias() {
 		$sql = "SELECT gid,alias FROM " . DB_PREFIX . "blog where alias!=''";
