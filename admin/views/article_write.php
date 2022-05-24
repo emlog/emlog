@@ -26,11 +26,11 @@
 
             <div class="form-group">
 <!--vot-->      <label><?=lang('article_cover')?>:</label>
-                <input name="cover" id="cover" class="form-control" placeholder="封面图地址URL，手动填写或点击下方图片区域上传" value="<?= $cover ?>"/>
+                <input name="cover" id="cover" class="form-control" placeholder="<?=lang('cover_placeholder')?>" value="<?= $cover ?>"/>
                 <div class="row mt-3">
                     <div class="col-md-4">
                         <label for="upload_img">
-                            <img src="<?= $cover ?: './views/images/cover.svg' ?>" id="cover_image" class="rounded" title="封面图片"/>
+                            <img src="<?= $cover ?: './views/images/cover.svg' ?>" id="cover_image" class="rounded" title="<?=lang('cover_image')?>"/>
                             <input type="file" name="upload_img" class="image" id="upload_img" style="display:none"/>
                             <button type="button" id="cover_rm" class="btn-sm btn btn-link" <?php if (!$cover): ?>style="display:none"<?php endif ?>>x</button>
                         </label>

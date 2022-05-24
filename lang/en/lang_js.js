@@ -46,6 +46,7 @@ var LNG = {
  'title_empty'		: 'Title can not be empty',//'标题不能为空',
  'wysiwyg_switch'		: 'Please, switch to WYSIWYG mode',//'请先切换到所见所得模式',
  'click_view_fullsize'		: 'Click to view full size',//'点击查看原图',
+ 'user_disable_sure'		: 'Are you sure you want to disable this user?',//'确定要禁用该用户吗？',
 
 //---------------------------
 //include/lib/js/common_tpl.js

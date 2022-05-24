@@ -226,6 +226,8 @@ $lang = array(
  'article_cover'	=> 'Article cover',//'文章封面',
  'crop_upload'		=> 'Crop and upload',//'裁剪并上传',
  'uploading'		=> 'Uploading...',//'上传中……',
+ 'cover_placeholder'	=> 'Cover image URL, fill in manually or click the area below to upload image',//'封面图地址URL，手动填写或点击下方图片区域上传',
+ 'cover_image'		=> 'Cover image',//'封面图片',
 
 //---------------------------
 //admin/views/admin_page.php
@@ -279,7 +281,7 @@ $lang = array(
  'email_notify'			=> 'E-mail notification',//'邮件通知',
  'seo_settings'			=> 'SEO Settings',//'SEO设置',
  'background_style'		=> 'Background style',//'后台风格',
- 'personal_settings'		=> 'Personal Settings',//'个人设置',
+ 'personal_settings'		=> 'Personal Info',//'个人信息',
  'personal_data_modified_ok'	=> 'Data modified successfully',//'资料修改成功',
  'avatar_deleted_ok'		=> 'Avatar deleted successfully',//'头像删除成功',
  'nickname_is_empty'		=> 'Nickname can not be empty',//'昵称不能为空',
@@ -297,6 +299,7 @@ $lang = array(
  'new_password_info'		=> 'New Password (not less than 5 characters, left blank if do not need to modify)',//'新密码（不小于5位，不修改请留空）',
  'new_password_repeat'		=> 'Repeat new password',//'再输入一次新密码',
  'save_data'			=> 'Save Data',//'保存资料',
+ 'api_interface'		=> 'API interface',//'API接口',
 
 //---------------------------
 //admin/views/comment.php
@@ -468,6 +471,8 @@ $lang = array(
  'pending_review'		=> 'Review pendings',//'待审评论',
  'user_num'			=> 'Number of users',//'用户数',
  'go_to_register'		=> 'Go to register',//'去注册',
+ 'update_expired'		=> 'The update service has expired, ',//'更新服务已到期，',
+ 'log_in_to_renew'		=> 'Log in to the official website to renew',//'登录官网续期',
 
 //---------------------------
 //admin/views/links.php

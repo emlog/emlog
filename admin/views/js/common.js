@@ -53,7 +53,7 @@ function em_confirm(id, property, token) {
             break;
         case 'forbid_user':
             url = 'user.php?action=forbid&uid=' + id;
-            msg = '确定要禁用该用户吗？';
+/*vot*/     msg = lang('user_disable_sure');
             break;
         case 'tpl':
             url = 'template.php?action=del&tpl=' + id;
