@@ -812,11 +812,11 @@ function emDownFile($source) {
 
 	$temp_file = tempnam(EMLOG_ROOT . '/content/cache/', 'tmp_');
 	if ($temp_file === false) {
-		emMsg('emDownFile：Failed to create temporary file.');
+		emMsg('emDownFile: Failed to create temporary file.');
 	}
 	$ret = file_put_contents($temp_file, $content);
 	if ($ret === false) {
-		emMsg('emDownFile：Failed to write temporary file.');
+		emMsg('emDownFile: Failed to write temporary file.');
 	}
 
 	return $temp_file;

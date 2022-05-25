@@ -61,7 +61,7 @@ $lang = array(
 
 //---------------------------
 //admin/setting.php
- 'site_address'			=> 'Site address',//'站点地址：',
+ 'site_address'			=> 'Site address',//'站点地址',
  'verification_code_not_supported'	=> 'Failed to open the login verification code! The server space does not support the GD graphics library',//'开启登录验证码失败!服务器空间不支持GD图形库',
  'verification_code_comment_not_supported'	=> 'Failed to open comment verification code! Server space does not support GD graphics library',//'开启评论验证码失败!服务器空间不支持GD图形库',
  'detect_url'			=> 'Automatic detection of site address (may be incompatible with some CDN solutions)',//'自动检测站点地址 (可能和部分CDN解决方案不兼容)',
@@ -746,6 +746,7 @@ $lang = array(
  'category_add'		=> 'Add Category',//'添加分类',
  'tag_add'		=> 'Add Tag',//'新建标签',
  'template_name'	=> 'Template name',//'模板名',
+ 'category_id'		=> 'Category ID',//'分类ID',
 
 //---------------------------
 //admin/views/store.php
@@ -909,6 +910,12 @@ $lang = array(
  'search_by_email'	=> 'Search users by email',//'按邮箱搜索用户...',
  'email_empty'		=> 'E-mail can not be empty',//'邮箱不能为空',
  'email_is_used'	=> 'This email is used already',//'该邮箱已被占用',
+ 'user_ban_ok'		=> 'Locked successfully, the user can no longer log in',//'禁用成功，该用户无法再登录',
+ 'user_unban_ok'	=> 'Unlocked successfully',//'解禁成功',
+ 'user_id'		=> 'User ID',//'用户ID',
+ 'ban'			=> 'Ban',//'解禁',
+ 'banned'		=> 'Banned',//'已禁用',
+ 'unban'		=> 'Unban',//'解禁',
 
 //---------------------------
 //admin/views/user_edit.php

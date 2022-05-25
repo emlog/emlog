@@ -4,9 +4,9 @@
 <?php if (isset($_GET['active_del'])): ?>
 <!--vot--><div class="alert alert-success"><?=lang('deleted_ok')?></div><?php endif ?>
 <?php if (isset($_GET['active_fb'])): ?>
-    <div class="alert alert-success">禁用成功，该用户无法再登录</div><?php endif ?>
+<!--vot--><div class="alert alert-success"><?=lang('user_ban_ok')?></div><?php endif ?>
 <?php if (isset($_GET['active_unfb'])): ?>
-    <div class="alert alert-success">解禁成功</div><?php endif ?>
+<!--vot--><div class="alert alert-success"><?=lang('user_unban_ok')?></div><?php endif ?>
 <?php if (isset($_GET['active_update'])): ?>
 <!--vot--><div class="alert alert-success"><?=lang('user_modify_ok')?></div><?php endif ?>
 <?php if (isset($_GET['active_add'])): ?>
@@ -54,7 +54,7 @@
                     <th></th>
 <!--vot-->          <th><?=lang('user_name')?></th>
 <!--vot-->          <th><?=lang('email')?></th>
-                    <th>用户ID</th>
+<!--vot-->          <th><?=lang('user_id')?></th>
 <!--vot-->          <th><?=lang('posts')?></th>
 <!--vot-->          <th><?=lang('login_ip')?></th>
 <!--vot-->          <th><?=lang('last_login_time')?></th>
@@ -79,7 +79,7 @@
 							<?php endif ?>
                             <span class="small"><?= "<br/>" . $val['role'] ?></span>
 							<?php if ($forbid): ?>
-                                <span class="badge badge-warning">已禁用</span>
+<!--vot-->                      <span class="badge badge-warning"><?=lang('disabled')?></span>
 							<?php endif ?>
                         </td>
                         <td><?= $val['email'] ?></td>
@@ -92,9 +92,9 @@
 							<?php if (UID != $val['uid']): ?>
 <!--vot-->                      <a href="javascript: em_confirm(<?= $val['uid'] ?>, 'del_user', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger"><?=lang('delete')?></a>
 								<?php if ($forbid): ?>
-                                    <a href="user.php?action=unforbid&uid=<?= $val['uid'] ?>&token=<?= LoginAuth::genToken() ?>" class="badge badge-success">解禁</a>
+<!--vot-->                          <a href="user.php?action=unforbid&uid=<?= $val['uid'] ?>&token=<?= LoginAuth::genToken() ?>" class="badge badge-success"><?=lang('unban')?></a>
 								<?php else: ?>
-                                    <a href="javascript: em_confirm(<?= $val['uid'] ?>, 'forbid_user', '<?= LoginAuth::genToken() ?>');" class="badge badge-warning">禁用</a>
+<!--vot-->                          <a href="javascript: em_confirm(<?= $val['uid'] ?>, 'forbid_user', '<?= LoginAuth::genToken() ?>');" class="badge badge-warning"><?=lang('ban')?></a>
 								<?php endif ?>
 							<?php endif ?>
                         </td>

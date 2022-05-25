@@ -32,7 +32,7 @@
                     <tr>
 <!--vot-->              <th><?=lang('name')?></th>
 <!--vot-->              <th><?=lang('description')?></th>
-                        <th>分类ID</th>
+<!--vot-->              <th><?=lang('category_id')?></th>
 <!--vot-->              <th><?=lang('alias')?></th>
 <!--vot-->              <th><?=lang('template')?></th>
 <!--vot-->              <th><?=lang('view')?></th>

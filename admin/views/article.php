@@ -122,7 +122,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
                                 <a href="article.php?action=edit&gid=<?= $value['gid'] ?>"><?= $value['title'] ?></a><br>
 <!--vot-->					                <?php if ($value['top'] == 'y'): ?><span class="badge small badge-warning"><?=lang('home_top')?></span><?php endif ?>
 <!--vot-->							<?php if ($value['sortop'] == 'y'): ?><span class="badge small badge-secondary"><?=lang('category_top')?></span><?php endif ?>
-								<?php if ($value['password']): ?><span class="small">🔒</span><?php endif ?>
+<!--DO NOT TRANSLATE!-->								<?php if ($value['password']): ?><span class="small">🔒</span><?php endif ?>
 							        <?php if (!$draft && $value['checked'] == 'n'): ?>
 <!--vot-->							<?php if (!$draft && $value['checked'] == 'n'): ?><span style="color:red;">[<?=lang('pending')?>]</span><?php endif ?>
                                 <div>

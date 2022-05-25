@@ -200,14 +200,14 @@ class Log_Model {
 			$re['title'] = htmlspecialchars($re['title']);
 			$re['content'] = $this->Parsedown->text($re['content']);
 			if (!empty($re['password'])) {
-				$re['content'] = '<p>[该文章已设置加密]</p>';
+/*vot*/				$re['content'] = '<p>' . lang('article_encrypted') . ']</p>';
 			} elseif (Option::get('rss_output_fulltext') == 'n') {
 				if (!empty($re['excerpt'])) {
 					$re['content'] = $re['excerpt'];
 				} else {
 					$re['content'] = extractHtmlData($re['content'], 330);
 				}
-				$re['content'] .= ' <a href="' . Url::log($re['id']) . '">阅读全文&gt;&gt;</a>';
+/*vot*/				$re['content'] .= ' <a href="' . Url::log($re['id']) . '">' . lang('read_more') . '</a>';
 			}
 			$d[] = $re;
 		}
