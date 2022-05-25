@@ -715,6 +715,18 @@ $lang = array(
  'comment_settings'		=> 'Comment settings',//'评论设置',
 
 //---------------------------
+//admin/views/setting_api.php
+ 'api_key_reset_ok'	=> 'Interface key was reset successfully',//'接口秘钥重置成功',
+//'basic_settings'	=> 'Basic Settings',//'基本设置',//'基础设置',
+//'seo_settings'	=> 'SEO Settings',//'SEO设置',//'SEO优化',
+ 'api_enable'		=> 'Enable API',//'开启API',
+ 'api_key'		=> 'API key',//'API秘钥',
+ 'api_key_reset'	=> 'Reset API key',//'重置API秘钥',
+ 'api_list'		=> 'List of API interfaces',//'API接口列表',
+ 'api_1'		=> 'Article publishing (can be used for docking with content publishing software)',//'文章发布 (可用于对接内容发布软件)',
+ 'api_1_docs'		=> 'See the interface documentation for details→',//'详见接口文档→',
+
+//---------------------------
 //admin/views/setting_user.php
  'groups_about'		=> '<b>User Groups</b><br>Registered user: generated through registration, can publish articles, notes, upload pictures, etc.<br>Administrator: Has all site management rights, can manage users, perform system settings, etc.<br>',//'<b>用户组</b><br>注册用户：通过注册产生，可以发布文章、笔记、上传图片等<br>管理员：拥有站点全部管理权限，可以管理用户、进行系统设置等<br>',
 
