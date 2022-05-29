@@ -59,7 +59,7 @@
                             <td><?= $value['sid'] ?></td>
                             <td class="alias"><?= $value['alias'] ?></td>
                             <td>
-                                <a href="<?= Url::sort($value['sid']) ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0"/></a>
+                                <a href="<?= Url::sort($value['sid']) ?>" target="_blank"><img src="./views/images/vlog.gif"/></a>
                             </td>
                             <td><a href="article.php?sid=<?= $value['sid'] ?>"><?= $value['lognum'] ?></a></td>
                             <td>
@@ -78,15 +78,14 @@
                                 </td>
                                 <td class="sortname">---- <a href="sort.php?action=mod_sort&sid=<?= $value['sid'] ?>"><?= $value['sortname'] ?></a></td>
                                 <td><?= $value['description'] ?></td>
+                                <td><?= $value['sid'] ?></td>
                                 <td class="alias"><?= $value['alias'] ?></td>
-                                <td class="alias"><?= $value['template'] ?></td>
                                 <td>
-                                    <a href="<?= Url::sort($value['sid']) ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0"/></a>
+                                    <a href="<?= Url::sort($value['sid']) ?>" target="_blank"><img src="./views/images/vlog.gif"/></a>
                                 </td>
                                 <td><a href="article.php?sid=<?= $value['sid'] ?>"><?= $value['lognum'] ?></a></td>
                                 <td>
-                                    <a href="javascript: em_confirm(<?= $value['sid'] ?>, 'sort', '<?= LoginAuth::genToken() ?>');"
-                                       class="badge badge-danger">删除</a>
+                                    <a href="javascript: em_confirm(<?= $value['sid'] ?>, 'sort', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger">删除</a>
                                 </td>
                             </tr>
 						<?php endforeach ?>
