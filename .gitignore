@@ -20,4 +20,6 @@ config.php
 .dockerignore
 nginx.conf
 Dockerfile
+docker-compose.yml
+db_data/*
 
