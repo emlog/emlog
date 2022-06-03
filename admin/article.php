@@ -20,7 +20,7 @@ $Sort_Model = new Sort_Model();
 $User_Model = new User_Model();
 
 if (empty($action)) {
-	$draft = isset($_GET['draft']) ? 1 : 0;
+	$draft = isset($_GET['draft']) ? (int)$_GET['draft'] : 0;
 	$tagId = isset($_GET['tagid']) ? (int)$_GET['tagid'] : '';
 	$sid = isset($_GET['sid']) ? (int)$_GET['sid'] : '';
 	$uid = isset($_GET['uid']) ? (int)$_GET['uid'] : '';
@@ -107,36 +107,32 @@ if ($action == 'operate_log') {
 				doAction('del_log', $val);
 			}
 			$CACHE->updateCache();
-			if ($draft) {
-				emDirect("./article.php?draft=1&active_del=1");
-			} else {
-				emDirect("./article.php?active_del=1");
-			}
+			emDirect("./article.php?draft=1&active_del=1&draft=$draft");
 			break;
 		case 'top':
 			foreach ($logs as $val) {
 				$Log_Model->updateLog(array('top' => 'y'), $val);
 			}
-			emDirect("./article.php?active_up=1");
+			emDirect("./article.php?active_up=1&draft=$draft");
 			break;
 		case 'sortop':
 			foreach ($logs as $val) {
 				$Log_Model->updateLog(array('sortop' => 'y'), $val);
 			}
-			emDirect("./article.php?active_up=1");
+			emDirect("./article.php?active_up=1&draft=$draft");
 			break;
 		case 'notop':
 			foreach ($logs as $val) {
 				$Log_Model->updateLog(array('top' => 'n', 'sortop' => 'n'), $val);
 			}
-			emDirect("./article.php?active_down=1");
+			emDirect("./article.php?active_down=1&draft=$draft");
 			break;
 		case 'hide':
 			foreach ($logs as $val) {
 				$Log_Model->hideSwitch($val, 'y');
 			}
 			$CACHE->updateCache();
-			emDirect("./article.php?active_hide=1");
+			emDirect("./article.php?active_hide=1&draft=$draft");
 			break;
 		case 'pub':
 			foreach ($logs as $val) {
@@ -146,14 +142,14 @@ if ($action == 'operate_log') {
 				}
 			}
 			$CACHE->updateCache();
-			emDirect("./article.php?draft=1&active_post=1");
+			emDirect("./article.php?draft=1&active_post=1&draft=$draft");
 			break;
 		case 'move':
 			foreach ($logs as $val) {
 				$Log_Model->updateLog(array('sortid' => $sort), $val);
 			}
 			$CACHE->updateCache(array('sort', 'logsort'));
-			emDirect("./article.php?active_move=1");
+			emDirect("./article.php?active_move=1&draft=$draft");
 			break;
 		case 'change_author':
 			if (!User::isAdmin()) {
@@ -163,7 +159,7 @@ if ($action == 'operate_log') {
 				$Log_Model->updateLog(array('author' => $author), $val);
 			}
 			$CACHE->updateCache('sta');
-			emDirect("./article.php?active_change_author=1");
+			emDirect("./article.php?active_change_author=1&draft=$draft");
 			break;
 		case 'check':
 			if (!User::isAdmin()) {
@@ -171,7 +167,7 @@ if ($action == 'operate_log') {
 			}
 			$Log_Model->checkSwitch($gid, 'y');
 			$CACHE->updateCache();
-			emDirect("./article.php?active_ck=1");
+			emDirect("./article.php?active_ck=1&draft=$draft");
 			break;
 		case 'uncheck':
 			if (!User::isAdmin()) {
@@ -179,7 +175,7 @@ if ($action == 'operate_log') {
 			}
 			$Log_Model->checkSwitch($gid, 'n');
 			$CACHE->updateCache();
-			emDirect("./article.php?active_unck=1");
+			emDirect("./article.php?active_unck=1&draft=$draft");
 			break;
 	}
 }
@@ -207,6 +203,7 @@ if ($action === 'write') {
 	$orig_date = '';
 	$sorts = $CACHE->readCache('sort');
 	$tagStr = '';
+	$tags = $Tag_Model->getTags();
 	$is_top = '';
 	$is_sortop = '';
 	$is_allow_remark = 'checked="checked"';
@@ -242,6 +239,8 @@ if ($action === 'edit') {
 		$tags[] = $val['tagname'];
 	}
 	$tagStr = implode(',', $tags);
+	//old tag
+	$tags = $Tag_Model->getTags();
 
 	//media
 	$Media_Model = new Media_Model();

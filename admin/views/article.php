@@ -146,47 +146,45 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
             <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
             <input name="operate" id="operate" value="" type="hidden"/>
             <div class="form-inline">
-				<?php if (!$draft): ?>
-					<?php if (User::isAdmin()): ?>
-                        <select name="top" id="top" onChange="changeTop(this);" class="form-control m-1">
-                            <option value="" selected="selected">置顶</option>
-                            <option value="top">首页置顶</option>
-                            <option value="sortop">分类置顶</option>
-                            <option value="notop">取消置顶</option>
-                        </select>
-					<?php endif ?>
-                    <select name="sort" id="sort" onChange="changeSort(this);" class="form-control m-1">
-                        <option value="" selected="selected">移动到分类</option>
-						<?php
-						foreach ($sorts as $key => $value):
-							if ($value['pid'] != 0) {
-								continue;
-							}
-							?>
-                            <option value="<?= $value['sid'] ?>"><?= $value['sortname'] ?></option>
-							<?php
-							$children = $value['children'];
-							foreach ($children as $key):
-								$value = $sorts[$key];
-								?>
-                                <option value="<?= $value['sid'] ?>">&nbsp; &nbsp;
-                                    &nbsp; <?= $value['sortname'] ?></option>
-							<?php
-							endforeach;
-						endforeach;
-						?>
-                        <option value="-1">未分类</option>
+				<?php if (User::isAdmin()): ?>
+                    <select name="top" id="top" onChange="changeTop(this);" class="form-control m-1">
+                        <option value="" selected="selected">置顶</option>
+                        <option value="top">首页置顶</option>
+                        <option value="sortop">分类置顶</option>
+                        <option value="notop">取消置顶</option>
                     </select>
-					<?php if (User::isAdmin() && count($user_cache) > 1): ?>
-                        <select name="author" id="author" onChange="changeAuthor(this);" class="form-control m-1">
-                            <option value="" selected="selected">更改作者</option>
-							<?php foreach ($user_cache as $key => $val):
-								$val['name'] = $val['name'];
-								?>
-                                <option value="<?= $key ?>"><?= $val['name'] ?></option>
-							<?php endforeach ?>
-                        </select>
-					<?php endif ?>
+				<?php endif ?>
+                <select name="sort" id="sort" onChange="changeSort(this);" class="form-control m-1">
+                    <option value="" selected="selected">移动到分类</option>
+					<?php
+					foreach ($sorts as $key => $value):
+						if ($value['pid'] != 0) {
+							continue;
+						}
+						?>
+                        <option value="<?= $value['sid'] ?>"><?= $value['sortname'] ?></option>
+						<?php
+						$children = $value['children'];
+						foreach ($children as $key):
+							$value = $sorts[$key];
+							?>
+                            <option value="<?= $value['sid'] ?>">&nbsp; &nbsp;
+                                &nbsp; <?= $value['sortname'] ?></option>
+						<?php
+						endforeach;
+					endforeach;
+					?>
+                    <option value="-1">未分类</option>
+                </select>
+				<?php if (User::isAdmin() && count($user_cache) > 1): ?>
+                    <select name="author" id="author" onChange="changeAuthor(this);" class="form-control m-1">
+                        <option value="" selected="selected">更改作者</option>
+						<?php foreach ($user_cache as $key => $val):
+							$val['name'] = $val['name'];
+							?>
+                            <option value="<?= $key ?>"><?= $val['name'] ?></option>
+						<?php endforeach ?>
+                    </select>
 				<?php endif ?>
 
                 <div class="btn-group btn-group-sm" role="group">

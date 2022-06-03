@@ -172,7 +172,7 @@ class Tag_Model {
 	 * @return int|bool 标签ID | FALSE(未找到标签)
 	 */
 	function getIdFromName($tagName) {
-		$sql = "SELECT `tid` FROM `" . DB_PREFIX . "tag` WHERE `tagname` = '" . $tagName. "'";
+		$sql = "SELECT `tid` FROM `" . DB_PREFIX . "tag` WHERE `tagname` = '" . $tagName . "'";
 		$query = $this->db->query($sql);
 
 		if ($this->db->num_rows($query) === 0) {
@@ -302,6 +302,21 @@ class Tag_Model {
 		if ($this->db->num_rows($query) > 0) {
 			while ($result = $this->db->fetch_array($query)) {
 				$tags [] = $result['tid'];
+			}
+		}
+
+		return $tags;
+	}
+
+	function getTags($count = 50) {
+		$tags = [];
+
+		$sql = "SELECT `tid`,`tagname` FROM `" . DB_PREFIX . "tag` ORDER BY `tid` DESC LIMIT $count";
+		$query = $this->db->query($sql);
+
+		if ($this->db->num_rows($query) > 0) {
+			while ($result = $this->db->fetch_array($query)) {
+				$tags [] = $result;
 			}
 		}
 

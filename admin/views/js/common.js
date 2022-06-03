@@ -88,7 +88,7 @@ function hideActived() {
 }
 
 function displayToggle(id, keep) {
-    $("#" + id).toggleClass(id + "_hidden");
+    $("#" + id).toggle();
     icon_tog ? $(".icofont-simple-right").attr("class", "icofont-simple-down") : $(".icofont-simple-down").attr("class", "icofont-simple-right");
     icon_tog = !icon_tog;
     if (keep == 1) {
@@ -97,6 +97,23 @@ function displayToggle(id, keep) {
     if (keep == 2) {
         Cookies.set('em_' + id, $("#" + id).css('visibility'))
     }
+}
+
+function doToggle(id) {
+    $("#" + id).toggle();
+}
+
+function insertTag(tag, boxId) {
+    var targetinput = $("#" + boxId).val();
+    if (targetinput == '') {
+        targetinput += tag;
+    } else {
+        var n = ',' + tag;
+        targetinput += n;
+    }
+    $("#" + boxId).val(targetinput);
+    if (boxId == "tag")
+        $("#tag_label").hide();
 }
 
 function isalias(a) {
