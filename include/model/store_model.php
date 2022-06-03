@@ -7,19 +7,19 @@
 
 class Store_Model {
 
-	public function getTemplates() {
-		return $this->reqEmStore('tpl');
+	public function getTemplates($tag, $keyword) {
+		return $this->reqEmStore('tpl', $tag, $keyword);
 	}
 
-	public function getPlugins() {
-		return $this->reqEmStore('plu');
+	public function getPlugins($tag, $keyword) {
+		return $this->reqEmStore('plu', $tag, $keyword);
 	}
 
 	// Get application store data
-	public function reqEmStore($type) {
+	public function reqEmStore($type, $tag = '', $keyword = '') {
 		$url = OFFICIAL_SERVICE_HOST . 'store/pro';
 		$emcurl = new EmCurl();
-		$emcurl->setPost(['emkey' => Option::get('emkey'), 'ver' => Option::EMLOG_VERSION, 'type' => $type]);
+		$emcurl->setPost(['emkey' => Option::get('emkey'), 'ver' => Option::EMLOG_VERSION, 'type' => $type, 'tag' => $tag, 'keyword' => $keyword]);
 		$emcurl->request($url);
 
 		$retStatus = $emcurl->getHttpStatus();
