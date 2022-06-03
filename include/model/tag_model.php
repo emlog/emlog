@@ -308,10 +308,13 @@ class Tag_Model {
 		return $tags;
 	}
 
-	function getTags($count = 50) {
+	function getTags($page_count = 50, $page = 1) {
+		$startId = ($page - 1) * $page_count;
+		$limit = "LIMIT $startId, " . $page_count;
+
 		$tags = [];
 
-		$sql = "SELECT `tid`,`tagname` FROM `" . DB_PREFIX . "tag` ORDER BY `tid` DESC LIMIT $count";
+		$sql = "SELECT `tid`,`tagname` FROM `" . DB_PREFIX . "tag` ORDER BY `tid` DESC $limit";
 		$query = $this->db->query($sql);
 
 		if ($this->db->num_rows($query) > 0) {
@@ -321,6 +324,11 @@ class Tag_Model {
 		}
 
 		return $tags;
+	}
+
+	function getTagsCount() {
+		$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "tag");
+		return $data['total'];
 	}
 
 

@@ -27,11 +27,21 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">应用商店</h1>
     </div>
-    <div class="panel-heading mb-4">
+    <div class="row mb-4 ml-1 justify-content-between">
         <ul class="nav nav-pills">
             <li class="nav-item"><a class="nav-link" href="./store.php">模板主题</a></li>
             <li class="nav-item"><a class="nav-link active" href="./store.php?action=plu">扩展插件</a></li>
         </ul>
+        <form action="user.php" method="get">
+            <div class="form-inline search-inputs-nowrap">
+                <input type="text" name="email" value="" class="form-control m-1 small" placeholder="搜索插件">
+                <div class="input-group-append">
+                    <button class="btn btn-sm btn-success" type="submit">
+                        <i class="icofont-search-2"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
     </div>
     <div class="row">
 		<?php foreach ($plugins as $k => $v):
