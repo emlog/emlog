@@ -82,6 +82,17 @@ if (empty($action)) {
 	View::output();
 }
 
+if ($action == 'del') {
+	$draft = isset($_GET['draft']) ? (int)$_GET['draft'] : 0;
+	$gid = isset($_GET['gid']) ? (int)$_GET['gid'] : '';
+
+	LoginAuth::checkToken();
+
+	$Log_Model->deleteLog($gid);
+	$CACHE->updateCache();
+	emDirect("./article.php?&active_del=1&draft=$draft");
+}
+
 if ($action == 'operate_log') {
 	$operate = $_REQUEST['operate'] ?? '';
 	$draft = isset($_POST['draft']) ? (int)$_POST['draft'] : 0;

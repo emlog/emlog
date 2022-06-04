@@ -15,6 +15,14 @@ function timestamp() {
 function em_confirm(id, property, token) {
     let url, msg;
     switch (property) {
+        case 'article':
+            url = 'article.php?action=del&gid=' + id;
+            msg = '确定要删除该篇文章吗？';
+            break;
+        case 'draft':
+            url = 'article.php?action=del&draft=1&gid=' + id;
+            msg = '确定要删除该篇草稿吗？';
+            break;
         case 'tw':
             url = 'twitter.php?action=del&id=' + id;
             msg = '确定要删除该笔记吗？';
@@ -112,8 +120,7 @@ function insertTag(tag, boxId) {
         targetinput += n;
     }
     $("#" + boxId).val(targetinput);
-    if (boxId == "tag")
-        $("#tag_label").hide();
+    if (boxId == "tag") $("#tag_label").hide();
 }
 
 function isalias(a) {
@@ -208,23 +215,7 @@ function autosave(act) {
     var ishide = $.trim($("#ishide").val());
     var token = $.trim($("#token").val());
     var ishide = ishide == "" ? "y" : ishide;
-    var querystr = "logcontent=" + encodeURIComponent(content)
-        + "&logexcerpt=" + encodeURIComponent(excerpt)
-        + "&title=" + encodeURIComponent(title)
-        + "&cover=" + encodeURIComponent(cover)
-        + "&alias=" + encodeURIComponent(alias)
-        + "&author=" + author
-        + "&sort=" + sort
-        + "&postdate=" + postdate
-        + "&date=" + date
-        + "&tag=" + encodeURIComponent(tag)
-        + "&top=" + top
-        + "&sortop=" + sortop
-        + "&allow_remark=" + allow_remark
-        + "&password=" + password
-        + "&token=" + token
-        + "&ishide=" + ishide
-        + "&as_logid=" + logid;
+    var querystr = "logcontent=" + encodeURIComponent(content) + "&logexcerpt=" + encodeURIComponent(excerpt) + "&title=" + encodeURIComponent(title) + "&cover=" + encodeURIComponent(cover) + "&alias=" + encodeURIComponent(alias) + "&author=" + author + "&sort=" + sort + "&postdate=" + postdate + "&date=" + date + "&tag=" + encodeURIComponent(tag) + "&top=" + top + "&sortop=" + sortop + "&allow_remark=" + allow_remark + "&password=" + password + "&token=" + token + "&ishide=" + ishide + "&as_logid=" + logid;
 
     // 检查别名
     if (alias != '' && 0 != isalias(alias)) {
@@ -338,8 +329,7 @@ var hooks = {
         if (typeof func == 'function') {
             queue[hook].push(func);
         }
-    },
-    doAction: function (hook, obj) {
+    }, doAction: function (hook, obj) {
         try {
             for (var i = 0; i < queue[hook].length; i++) {
                 queue[hook][i](obj);
@@ -367,8 +357,7 @@ function imgPasteExpand(thisEditor) {
         let saveHotKey = {  // 编辑器的 bug , 界面刷新后会删除自定义的热键，所以要重新设置
             "Ctrl-S": function (cm) {
                 autosave(2);
-            },
-            "Cmd-S": function (cm) {
+            }, "Cmd-S": function (cm) {
                 autosave(2);
             }
         };
@@ -420,12 +409,7 @@ function imgPasteExpand(thisEditor) {
         formData.append('file', img, imgName);
         thisEditor.insertValue("上传中...");
         $.ajax({
-            url: postUrl,
-            type: 'post',
-            data: formData,
-            processData: false,
-            contentType: false,
-            xhr: function () {
+            url: postUrl, type: 'post', data: formData, processData: false, contentType: false, xhr: function () {
                 var xhr = $.ajaxSettings.xhr();
                 if (xhr.upload) {
                     thisEditor.insertValue("....");
@@ -442,8 +426,7 @@ function imgPasteExpand(thisEditor) {
                     }, false);
                 }
                 return xhr;
-            },
-            success: function (result) {
+            }, success: function (result) {
                 let imgUrl, thumbImgUrl;
                 console.log('上传成功！正在获取结果...');
                 $.get(emMediaPhpUrl, function (data) {  // 异步获取结果,追加到编辑器
@@ -452,8 +435,7 @@ function imgPasteExpand(thisEditor) {
                     thumbImgUrl = data.match(/[a-zA-z]+:\/[^\s\"\']*/g)[1];
                     replaceByNum(`[![](${imgUrl})](${thumbImgUrl})`, 10);  // 这里的数字 10 对应着’上传中...100%‘是10个字符
                 })
-            },
-            error: function (result) {
+            }, error: function (result) {
                 alert('上传失败,图片类型错误或网络错误');
                 replaceByNum('上传失败,图片类型错误或网络错误', 6);
             }

@@ -106,6 +106,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
                         <th>作者</th>
                         <th>分类</th>
                         <th><a href="article.php?sortDate=<?= $sortDate . $sorturl ?>">时间</a></th>
+                        <th>操作</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -122,22 +123,27 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 								<?php if ($value['top'] == 'y'): ?><span class="badge small badge-warning">首页置顶</span><?php endif ?>
 								<?php if ($value['sortop'] == 'y'): ?><span class="badge small badge-secondary">分类置顶</span><?php endif ?>
 								<?php if ($value['password']): ?><span class="small">🔒</span><?php endif ?>
-								<?php if (!$draft && $value['checked'] == 'n'): ?><span style="color:red;">[待审]</span><?php endif ?>
-                                <div>
-									<?php if (!$draft && User::isAdmin() && $value['checked'] == 'n'): ?>
-                                        <a class="badge badge-success"
-                                           href="article.php?action=operate_log&operate=check&gid=<?= $value['gid'] ?>&token=<?= LoginAuth::genToken() ?>">审核</a>
-									<?php elseif (!$draft && User::isAdmin() && $author_role == User::ROLE_WRITER): ?>
-                                        <a class="badge badge-danger"
-                                           href="article.php?action=operate_log&operate=uncheck&gid=<?= $value['gid'] ?>&token=<?= LoginAuth::genToken() ?>">驳回</a>
-									<?php endif ?>
-                                </div>
+								<?php if (!$draft && $value['checked'] == 'n'): ?><span class="badge small badge-danger">待审核</span><?php endif ?>
                             </td>
                             <td><a href="comment.php?gid=<?= $value['gid'] ?>" class="badge badge-info"><?= $value['comnum'] ?></a></td>
                             <td><a href="<?= Url::log($value['gid']) ?>" class="badge badge-secondary" target="_blank"><?= $value['views'] ?></a></td>
                             <td><a href="article.php?uid=<?= $value['author'] . $isdraft ?>"><?= $author ?></a></td>
                             <td><a href="article.php?sid=<?= $value['sortid'] . $isdraft ?>"><?= $sortName ?></a></td>
                             <td class="small"><?= $value['date'] ?></td>
+                            <td>
+								<?php if (!$draft && User::isAdmin() && $value['checked'] == 'n'): ?>
+                                    <a class="badge badge-success"
+                                       href="article.php?action=operate_log&operate=check&gid=<?= $value['gid'] ?>&token=<?= LoginAuth::genToken() ?>">审核</a>
+								<?php elseif (!$draft && User::isAdmin() && $author_role == User::ROLE_WRITER): ?>
+                                    <a class="badge badge-warning"
+                                       href="article.php?action=operate_log&operate=uncheck&gid=<?= $value['gid'] ?>&token=<?= LoginAuth::genToken() ?>">驳回</a>
+								<?php endif ?>
+								<?php if ($draft): ?>
+                                    <a href="javascript: em_confirm(<?= $value['gid'] ?>, 'draft', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger">删除</a>
+								<?php else: ?>
+                                    <a href="javascript: em_confirm(<?= $value['gid'] ?>, 'article', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger">删除</a>
+								<?php endif ?>
+                            </td>
                         </tr>
 					<?php endforeach ?>
                     </tbody>
