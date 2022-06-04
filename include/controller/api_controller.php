@@ -9,6 +9,7 @@
 class Api_Controller {
 
 	public $Log_Model;
+	public $Tag_Model;
 	public $Cache;
 
 	function starter($params) {
@@ -24,6 +25,7 @@ class Api_Controller {
 
 		if (method_exists($this, $_func)) {
 			$this->Log_Model = new Log_Model();
+			$this->Tag_Model = new Tag_Model();
 			$this->Cache = Cache::getInstance();
 			$this->$_func();
 		} else {
@@ -41,6 +43,7 @@ class Api_Controller {
 		$author_uid = isset($_POST['author_uid']) ? (int)trim($_POST['author_uid']) : 1;
 		$post_date = isset($_POST['post_date']) ? trim($_POST['post_date']) : '';
 		$sort_id = isset($_POST['sort_id']) ? (int)$_POST['sort_id'] : -1;
+		$tags = isset($_POST['tags']) ? addslashes(trim($_POST['tags'])) : '';
 		$cover = isset($_POST['cover']) ? addslashes(trim($_POST['cover'])) : '';
 
 		if (empty($req_sign) || empty($req_time) || empty($title) || empty($content)) {
@@ -60,6 +63,7 @@ class Api_Controller {
 		];
 
 		$article_id = $this->Log_Model->addlog($logData);
+		$this->Tag_Model->addTag($tags, $article_id);
 
 		$this->Cache->updateCache();
 
