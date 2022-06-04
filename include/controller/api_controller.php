@@ -126,7 +126,7 @@ class Api_Controller {
 				'sort_id'     => (int)$r['sortid'],
 				'sort_name'   => $sort_cache[$r['sortid']]['sortname'] ?? '',
 				'type'        => $r['type'],
-				'author_id'   => $r['author'],
+				'author_id'   => (int)$r['author'],
 				'author_name' => $author_cache[$r['author']]['name'] ?? '',
 				'content'     => $r['log_content'],
 				'cover'       => $r['log_cover'],
