@@ -1,0 +1,14 @@
+.idea/
+.git/
+
+content/uploadfile/
+content/cache/
+content/backup/
+
+license.txt
+README.en.md
+README.md
+auto_install.json
+config.php
+.htaccess
+.gitignore

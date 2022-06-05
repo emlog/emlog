@@ -17,9 +17,5 @@ config.php
 .DS_Store
 
 # docker
-.dockerignore
-nginx.conf
-Dockerfile
-docker-compose.yml
 db_data/*
 

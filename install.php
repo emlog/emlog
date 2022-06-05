@@ -18,6 +18,11 @@ if (PHP_VERSION < '7.0') {
 
 $act = isset($_GET['action']) ? $_GET['action'] : '';
 
+$env_db_host = getenv('EMLOG_DB_HOST');
+$env_db_name = getenv('EMLOG_DB_NAME');
+$env_db_user = getenv('EMLOG_DB_USER');
+$env_db_password = getenv('EMLOG_DB_PASSWORD');
+
 if (!$act) {
 	?>
     <!doctype html>
@@ -106,30 +111,40 @@ if (!$act) {
         <div class="main">
             <p class="logo"></p>
             <p class="title">emlog <?php echo Option::EMLOG_VERSION ?></p>
-            <div class="b">
-                <p class="title2">MySQL数据库设置</p>
-                <li>
-                    数据库地址<br/>
-                    <input name="hostname" type="text" class="input" value="127.0.0.1">
-                    <span class="care">(通常为 127.0.0.1 或者指定端口 127.0.0.1:3306)</span>
-                </li>
-                <li>
-                    数据库用户名<br/><input name="dbuser" type="text" class="input" value="">
-                </li>
-                <li>
-                    数据库密码<br/><input name="dbpasswd" type="password" class="input">
-                </li>
-                <li>
-                    数据库名<br/>
-                    <input name="dbname" type="text" class="input" value="">
-                    <span class="care">(程序不会自动创建数据库，请提前创建一个空数据库或使用已有数据库)</span>
-                </li>
-                <li>
-                    数据库表前缀<br/>
-                    <input name="dbprefix" type="text" class="input" value="emlog_">
-                    <span class="care"> (通常默认即可，不必修改。由英文字母、数字、下划线组成，且必须以下划线结束)</span>
-                </li>
-            </div>
+			<?php if ($env_db_user): ?>
+                <div class="b">
+                    <input name="hostname" type="hidden" value="<?= $env_db_host ?>">
+                    <input name="dbuser" type="hidden" value="<?= $env_db_user ?>">
+                    <input name="dbpasswd" type="hidden" value="<?= $env_db_password ?>">
+                    <input name="dbname" type="hidden" value="<?= $env_db_name ?>">
+                    <input name="dbprefix" type="hidden" value="emlog_">
+                </div>
+			<?php else: ?>
+                <div class="b">
+                    <p class="title2">MySQL数据库设置</p>
+                    <li>
+                        数据库地址<br/>
+                        <input name="hostname" type="text" class="input" value="127.0.0.1">
+                        <span class="care">(通常为 127.0.0.1 或者指定端口 127.0.0.1:3306)</span>
+                    </li>
+                    <li>
+                        数据库用户名<br/><input name="dbuser" type="text" class="input" value="">
+                    </li>
+                    <li>
+                        数据库密码<br/><input name="dbpasswd" type="password" class="input">
+                    </li>
+                    <li>
+                        数据库名<br/>
+                        <input name="dbname" type="text" class="input" value="">
+                        <span class="care">(程序不会自动创建数据库，请提前创建一个空数据库或使用已有数据库)</span>
+                    </li>
+                    <li>
+                        数据库表前缀<br/>
+                        <input name="dbprefix" type="text" class="input" value="emlog_">
+                        <span class="care"> (通常默认即可，不必修改。由英文字母、数字、下划线组成，且必须以下划线结束)</span>
+                    </li>
+                </div>
+			<?php endif; ?>
             <div class="c">
                 <p class="title2">管理员设置</p>
                 <li>
