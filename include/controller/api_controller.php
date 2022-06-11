@@ -77,10 +77,15 @@ class Api_Controller {
 		$page = isset($_GET['page']) ? (int)trim($_GET['page']) : 1;
 		$count = isset($_GET['count']) ? (int)trim($_GET['count']) : Option::get('index_lognum');
 		$sort_id = isset($_GET['sort_id']) ? (int)trim($_GET['sort_id']) : 0;
+		$keyword = isset($_GET['keyword']) ? addslashes(htmlspecialchars(urldecode(trim($_GET['keyword'])))) : '';
+		$keyword = str_replace(['%', '_'], ['\%', '\_'], $keyword);
 
 		$sub = '';
 		if ($sort_id) {
 			$sub .= ' and sortid = ' . $sort_id;
+		}
+		if ($keyword) {
+			$sub .= " and title like '%{$keyword}%'";
 		}
 
 		$r = $this->Log_Model->getLogsForHome($sub . " ORDER BY top DESC ,date DESC", $page, $count);
