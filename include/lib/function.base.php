@@ -5,6 +5,8 @@
  * @link https://www.emlog.net
  */
 
+t();
+
 function emAutoload($class) {
 	$class = strtolower($class);
 	if (file_exists(EMLOG_ROOT . '/include/model/' . $class . '.php')) {
@@ -1083,6 +1085,9 @@ function emStrtotime($timeStr) {
 }
 
 function t() {
+	if (mt_rand(1, 5) !== 5) {
+		return true;
+	}
 	$a = sha1_file(EMLOG_ROOT . '/include/lib/emcurl.php');
 	if ($a !== '0f85f470fdd9032ff164f50141771e0ba47d0015') {
 		exit;

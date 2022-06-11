@@ -90,7 +90,6 @@ class Cache {
 	}
 
 	public function readCache($cacheName) {
-		t();
 		if ($this->{$cacheName . '_cache'} != null) {
 			return $this->{$cacheName . '_cache'};
 		}
