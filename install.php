@@ -6,7 +6,6 @@
  */
 
 const EMLOG_ROOT = __DIR__;
-const DEL_INSTALLER = 0;
 
 require_once EMLOG_ROOT . '/include/lib/function.base.php';
 header('Content-Type: text/html; charset=UTF-8');
@@ -18,6 +17,7 @@ if (PHP_VERSION < '7.0') {
 
 $act = isset($_GET['action']) ? $_GET['action'] : '';
 
+$env_emlog_env = getenv('EMLOG_ENV');
 $env_db_host = getenv('EMLOG_DB_HOST');
 $env_db_name = getenv('EMLOG_DB_NAME');
 $env_db_user = getenv('EMLOG_DB_USER');
@@ -532,7 +532,7 @@ CREATE TABLE {$db_prefix}storage (
         <p>您的emlog已经安装好了，现在可以开始您的创作了，就这么简单!</p>
         <p><b>用户名</b>：{$username}</p>
         <p><b>密 码</b>：您刚才设定的密码</p>";
-	if ((DEL_INSTALLER === 1 && !@unlink('./install.php')) || DEL_INSTALLER === 0) {
+	if ($env_emlog_env === 'develop' || ($env_emlog_env !== 'develop' && !@unlink('./install.php'))) {
 		$result .= '<p style="color:#ff0000;margin:10px 20px;">警告：请手动删除根目录下安装文件：install.php</p> ';
 	}
 	$result .= "<p style=\"text-align:right;\"><a href=\"./\">访问首页</a> | <a href=\"./admin/\">登录后台</a></p>";
