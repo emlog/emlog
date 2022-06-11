@@ -41,12 +41,9 @@ const TPLS_URL = BLOG_URL . 'content/templates/';
 const TPLS_PATH = EMLOG_ROOT . '/content/templates/';
 //解决前台多域名ajax跨域
 define('DYNAMIC_BLOGURL', Option::get("blogurl"));
-//前台模板URL
 define('TEMPLATE_URL', TPLS_URL . Option::get('nonce_templet') . '/');
-//后台模板路径
 const ADMIN_TEMPLATE_PATH = EMLOG_ROOT . '/admin/views/';
-const OFFICIAL_SERVICE_HOST = 'https://www.emlog.net/';
-//错误码
+
 const MSGCODE_EMKEY_INVALID = 1001;
 const MSGCODE_NO_UPUPDATE = 1002;
 const MSGCODE_SUCCESS = 200;

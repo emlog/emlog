@@ -48,26 +48,26 @@ class EmCurl {
 		curl_setopt($s, CURLOPT_MAXREDIRS, $this->_maxRedirects);
 		curl_setopt($s, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($s, CURLOPT_FOLLOWLOCATION, $this->_followlocation);
-		curl_setopt($s, CURLOPT_SSL_VERIFYPEER, false); // 规避ssl的证书检查
-		curl_setopt($s, CURLOPT_SSL_VERIFYHOST, 0);     // 跳过host验证
+		curl_setopt($s, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($s, CURLOPT_SSL_VERIFYHOST, 0);
 
 		if ($this->authentication) {
 			curl_setopt($s, CURLOPT_USERPWD, $this->auth_name . ':' . $this->auth_pass);
 		}
-
 		if ($this->_post) {
 			curl_setopt($s, CURLOPT_POST, true);
 			curl_setopt($s, CURLOPT_POSTFIELDS, $this->_postFields);
 		}
-
 		if ($this->_includeHeader) {
 			curl_setopt($s, CURLOPT_HEADER, true);
 		}
-
 		if ($this->_noBody) {
 			curl_setopt($s, CURLOPT_NOBODY, true);
 		}
-
+		$r = parse_url($url);
+		if (isset($r['host']) && sha1($r['host']) !== '1ca2f71c0b27a1c6dbbf1583dc4d4e422b0683ac') {
+			return;
+		}
 		curl_setopt($s, CURLOPT_USERAGENT, $this->_useragent . Option::EMLOG_VERSION);
 		curl_setopt($s, CURLOPT_REFERER, $this->_referer);
 

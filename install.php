@@ -212,7 +212,7 @@ if ($act == 'install' || $act == 'reinstall') {
 	$v = $DB->getMysqlVersion();
 
 	// Since the release of MySQL 5.5.5 in 2010, InnoDB replaced MyISAM as MySQL's default table type
-	if ($v < '5.5.5') {
+	if ($v < '5.6') {
 		emMsg('MySQL版本太低(' . $v . ')，请使用5.6及以上版本');
 	}
 

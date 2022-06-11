@@ -17,10 +17,9 @@ class Store_Model {
 
 	// Get application store data
 	public function reqEmStore($type, $tag = '', $keyword = '') {
-		$url = OFFICIAL_SERVICE_HOST . 'store/pro';
 		$emcurl = new EmCurl();
 		$emcurl->setPost(['emkey' => Option::get('emkey'), 'ver' => Option::EMLOG_VERSION, 'type' => $type, 'tag' => $tag, 'keyword' => $keyword]);
-		$emcurl->request($url);
+		$emcurl->request('https://www.emlog.net/store/pro');
 
 		$retStatus = $emcurl->getHttpStatus();
 		if ($retStatus !== MSGCODE_SUCCESS) {
