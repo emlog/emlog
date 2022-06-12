@@ -5,8 +5,6 @@
  * @link https://www.emlog.net
  */
 
-t();
-
 function emAutoload($class) {
 	$class = strtolower($class);
 	if (file_exists(EMLOG_ROOT . '/include/model/' . $class . '.php')) {
@@ -1132,3 +1130,5 @@ function uploadCropImg() {
 	}
 	return $ret;
 }
+
+t();
