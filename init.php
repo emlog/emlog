@@ -5,7 +5,12 @@
  * @link https://www.emlog.net
  */
 
-error_reporting(E_ALL);
+if (getenv('EMLOG_ENV') === 'develop') {
+	error_reporting(E_ALL);
+} else {
+	error_reporting(1);
+}
+
 ob_start();
 header('Content-Type: text/html; charset=UTF-8');
 
@@ -27,9 +32,9 @@ $userData = [];
 define('ISLOGIN', LoginAuth::isLogin());
 date_default_timezone_set(Option::get('timezone'));
 
-const ROLE_ADMIN = 'admin';              //管理员
-const ROLE_WRITER = 'writer';            //注册用户
-const ROLE_VISITOR = 'visitor';          //游客
+const ROLE_ADMIN = 'admin';
+const ROLE_WRITER = 'writer';
+const ROLE_VISITOR = 'visitor';
 
 define('ROLE', ISLOGIN === true ? $userData['role'] : User::ROLE_VISITOR);
 define('UID', ISLOGIN === true ? $userData['uid'] : '');
