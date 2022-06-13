@@ -107,6 +107,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 <!--vot-->          <th><?=lang('user')?></th>
 <!--vot-->          <th><?=lang('category')?></th>
 <!--vot-->          <th><a href="article.php?sortDate=<?= $sortDate . $sorturl ?>"><?=lang('time')?></a></th>
+<!--vot-->          <th><?=lang'operation')?></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -123,23 +124,27 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 <!--vot-->					                <?php if ($value['top'] == 'y'): ?><span class="badge small badge-warning"><?=lang('home_top')?></span><?php endif ?>
 <!--vot-->							<?php if ($value['sortop'] == 'y'): ?><span class="badge small badge-secondary"><?=lang('category_top')?></span><?php endif ?>
 <!--DO NOT TRANSLATE!-->								<?php if ($value['password']): ?><span class="small">🔒</span><?php endif ?>
-							        <?php if (!$draft && $value['checked'] == 'n'): ?>
-<!--vot-->							<?php if (!$draft && $value['checked'] == 'n'): ?><span style="color:red;">[<?=lang('pending')?>]</span><?php endif ?>
-                                <div>
-									<?php if (!$draft && User::isAdmin() && $value['checked'] == 'n'): ?>
-<!--vot-->                              <a class="badge badge-success"
-                                           href="article.php?action=operate_log&operate=check&gid=<?= $value['gid'] ?>&token=<?= LoginAuth::genToken() ?>"><?=lang('check')?></a>
-									<?php elseif (!$draft && User::isAdmin() && $author_role == User::ROLE_WRITER): ?>
-<!--vot-->                              <a class="badge badge-danger"
-                                           href="article.php?action=operate_log&operate=uncheck&gid=<?= $value['gid'] ?>&token=<?= LoginAuth::genToken() ?>"><?=lang('uncheck')?></a>
-									<?php endif ?>
-                                </div>
+								<?php if (!$draft && $value['checked'] == 'n'): ?><span class="badge small badge-danger">待审核</span><?php endif ?>
                             </td>
                             <td><a href="comment.php?gid=<?= $value['gid'] ?>" class="badge badge-info"><?= $value['comnum'] ?></a></td>
                             <td><a href="<?= Url::log($value['gid']) ?>" class="badge badge-secondary" target="_blank"><?= $value['views'] ?></a></td>
                             <td><a href="article.php?uid=<?= $value['author'] . $isdraft ?>"><?= $author ?></a></td>
                             <td><a href="article.php?sid=<?= $value['sortid'] . $isdraft ?>"><?= $sortName ?></a></td>
                             <td class="small"><?= $value['date'] ?></td>
+                            <td>
+								<?php if (!$draft && User::isAdmin() && $value['checked'] == 'n'): ?>
+<!--vot-->                              <a class="badge badge-success"
+                                           href="article.php?action=operate_log&operate=check&gid=<?= $value['gid'] ?>&token=<?= LoginAuth::genToken() ?>"><?=lang('check')?></a>
+								<?php elseif (!$draft && User::isAdmin() && $author_role == User::ROLE_WRITER): ?>
+<!--vot-->                              <a class="badge badge-warning"
+                                           href="article.php?action=operate_log&operate=uncheck&gid=<?= $value['gid'] ?>&token=<?= LoginAuth::genToken() ?>"><?=lang('uncheck')?></a>
+								<?php endif ?>
+								<?php if ($draft): ?>
+                                    <a href="javascript: em_confirm(<?= $value['gid'] ?>, 'draft', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger">删除</a>
+								<?php else: ?>
+                                    <a href="javascript: em_confirm(<?= $value['gid'] ?>, 'article', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger">删除</a>
+								<?php endif ?>
+                            </td>
                         </tr>
 					<?php endforeach ?>
                     </tbody>
@@ -148,47 +153,45 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
             <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
             <input name="operate" id="operate" value="" type="hidden"/>
             <div class="form-inline">
-				<?php if (!$draft): ?>
-					<?php if (User::isAdmin()): ?>
-                        <select name="top" id="top" onChange="changeTop(this);" class="form-control m-1">
+				<?php if (User::isAdmin()): ?>
+                    <select name="top" id="top" onChange="changeTop(this);" class="form-control m-1">
 <!--vot-->                  <option value="" selected="selected"><?=lang('top')?></option>
 <!--vot-->                  <option value="top"><?=lang('home_top')?></option>
 <!--vot-->                  <option value="sortop"><?=lang('category_top')?></option>
 <!--vot-->                  <option value="notop"><?=lang('unstick')?></option>
-                        </select>
-					<?php endif ?>
-                    <select name="sort" id="sort" onChange="changeSort(this);" class="form-control m-1">
-<!--vot-->              <option value="" selected="selected"><?=lang('move_to_category')?></option>
-						<?php
-						foreach ($sorts as $key => $value):
-							if ($value['pid'] != 0) {
-								continue;
-							}
-							?>
-                            <option value="<?= $value['sid'] ?>"><?= $value['sortname'] ?></option>
-							<?php
-							$children = $value['children'];
-							foreach ($children as $key):
-								$value = $sorts[$key];
-								?>
-                                <option value="<?= $value['sid'] ?>">&nbsp; &nbsp;
-                                    &nbsp; <?= $value['sortname'] ?></option>
-							<?php
-							endforeach;
-						endforeach;
-						?>
-<!--vot-->              <option value="-1"><?=lang('uncategorized')?></option>
                     </select>
-					<?php if (User::isAdmin() && count($user_cache) > 1): ?>
-                        <select name="author" id="author" onChange="changeAuthor(this);" class="form-control m-1">
+				<?php endif ?>
+                <select name="sort" id="sort" onChange="changeSort(this);" class="form-control m-1">
+<!--vot-->              <option value="" selected="selected"><?=lang('move_to_category')?></option>
+					<?php
+					foreach ($sorts as $key => $value):
+						if ($value['pid'] != 0) {
+							continue;
+						}
+						?>
+                        <option value="<?= $value['sid'] ?>"><?= $value['sortname'] ?></option>
+						<?php
+						$children = $value['children'];
+						foreach ($children as $key):
+							$value = $sorts[$key];
+							?>
+                            <option value="<?= $value['sid'] ?>">&nbsp; &nbsp;
+                                &nbsp; <?= $value['sortname'] ?></option>
+						<?php
+						endforeach;
+					endforeach;
+					?>
+<!--vot-->              <option value="-1"><?=lang('uncategorized')?></option>
+                </select>
+				<?php if (User::isAdmin() && count($user_cache) > 1): ?>
+                    <select name="author" id="author" onChange="changeAuthor(this);" class="form-control m-1">
 <!--vot-->                  <option value="" selected="selected"><?=lang('user_edit')?></option>
-							<?php foreach ($user_cache as $key => $val):
-								$val['name'] = $val['name'];
-								?>
-                                <option value="<?= $key ?>"><?= $val['name'] ?></option>
-							<?php endforeach ?>
-                        </select>
-					<?php endif ?>
+						<?php foreach ($user_cache as $key => $val):
+							$val['name'] = $val['name'];
+							?>
+                            <option value="<?= $key ?>"><?= $val['name'] ?></option>
+						<?php endforeach ?>
+                    </select>
 				<?php endif ?>
 
                 <div class="btn-group btn-group-sm" role="group">

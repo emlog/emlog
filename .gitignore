@@ -1,13 +1,13 @@
-# 相关程序生成的文件
+# emlog
 .htaccess
 config.php
 /content/backup/*.sql
 /content/cache/*.php
 /content/uploadfile/*
-/content/uploadfile/*
 /content/plugins/cloud_storage
 /content/templates/chen
-# 开发工具文件
+
+# IDE
 .project
 .settings
 .buildpath
@@ -15,3 +15,7 @@ config.php
 .idea
 .netbeans
 .DS_Store
+
+# docker
+db_data/*
+

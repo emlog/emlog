@@ -14,18 +14,17 @@
     <div class="card-body">
         <div>
 			<?php if ($tags): ?>
-                <p>
-					<?php foreach ($tags as $key => $value): ?>
-                        <a href="#" class="badge badge-primary" data-toggle="modal" data-target="#editModal" data-tid="<?= $value['tid'] ?>"
-                           data-tagname="<?= $value['tagname'] ?>">
-							<?= $value['tagname'] ?>
-                        </a>
-					<?php endforeach ?>
-                </p>
+				<?php foreach ($tags as $key => $value): ?>
+                    <a href="#" class="badge badge-primary m-2" data-toggle="modal" data-target="#editModal" data-tid="<?= $value['tid'] ?>"
+                       data-tagname="<?= $value['tagname'] ?>">
+						<?= $value['tagname'] ?>
+                    </a>
+				<?php endforeach ?>
 			<?php else: ?>
 <!--vot-->      <p style="margin:20px 30px"><?=lang('tags_no_info')?></p>
 			<?php endif ?>
         </div>
+        <div class="page"><?= $pageurl ?> （有 <?= $tags_count ?> 个标签）</div>
     </div>
 </div>
 

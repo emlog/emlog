@@ -15,7 +15,12 @@ require_once 'globals.php';
 $Tag_Model = new Tag_Model();
 
 if (empty($action)) {
-	$tags = $Tag_Model->getTag();
+	$page_count = 260;
+	$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+	$tags = $Tag_Model->getTags($page_count, $page);
+	$tags_count = $Tag_Model->getTagsCount();
+	$pageurl = pagination($tags_count, $page_count, $page, "./tag.php?page=");
+
 	include View::getAdmView('header');
 	require_once View::getAdmView('tag');
 	include View::getAdmView('footer');

@@ -69,6 +69,16 @@
                 <div class="form-group">
 <!--vot-->          <label><?=lang('tags')?>:</label>
 <!--vot-->          <input name="tag" id="tag" class="form-control" value="<?= $tagStr ?>" placeholder="<?=lang('post_tags_separated')?>"/>
+					<?php if ($tags): ?>
+                        <span class="small"><a href="javascript:doToggle('tags', 1);">近期使用的+</a></span>
+                        <div id="tags" style="display: none">
+							<?php
+							foreach ($tags as $val) {
+								echo " <a class=\"badge badge-primary\" href=\"javascript: insertTag('{$val['tagname']}','tag');\">{$val['tagname']}</a> ";
+							}
+							?>
+                        </div>
+					<?php endif; ?>
                 </div>
                 <div class="form-group">
 <!--vot-->          <label><?=lang('publish_time')?>:</label>

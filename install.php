@@ -9,7 +9,6 @@
 /*vot*/ define('EMLOG_LANGUAGE_DIR','ltr'); //ltr, rtl 
 
 /*vot*/ define('EMLOG_ROOT', str_replace('\\','/',__DIR__));
-const DEL_INSTALLER = 0;
 
 require_once EMLOG_ROOT . '/include/lib/function.base.php';
 
@@ -23,6 +22,12 @@ if (PHP_VERSION < '7.0') {
 }
 
 $act = isset($_GET['action']) ? $_GET['action'] : '';
+
+$env_emlog_env = getenv('EMLOG_ENV');
+$env_db_host = getenv('EMLOG_DB_HOST');
+$env_db_name = getenv('EMLOG_DB_NAME');
+$env_db_user = getenv('EMLOG_DB_USER');
+$env_db_password = getenv('EMLOG_DB_PASSWORD');
 
 if (!$act) {
 	?>
@@ -112,30 +117,40 @@ if (!$act) {
         <div class="main">
             <p class="logo"></p>
 <!--vot-->  <p class="title">emlog <?php echo Option::EMLOG_VERSION ?></p>
-            <div class="b">
+			<?php if ($env_db_user): ?>
+                <div class="b">
+                    <input name="hostname" type="hidden" value="<?= $env_db_host ?>">
+                    <input name="dbuser" type="hidden" value="<?= $env_db_user ?>">
+                    <input name="dbpasswd" type="hidden" value="<?= $env_db_password ?>">
+                    <input name="dbname" type="hidden" value="<?= $env_db_name ?>">
+                    <input name="dbprefix" type="hidden" value="emlog_">
+                </div>
+			<?php else: ?>
+                <div class="b">
 <!--vot-->      <p class="title2"><?= lang('mysql_settings') ?></p>
-                <li>
+                    <li>
 <!--vot-->          <?= lang('db_hostname') ?>:<br>
-                    <input name="hostname" type="text" class="input" value="127.0.0.1">
+                        <input name="hostname" type="text" class="input" value="127.0.0.1">
 <!--vot-->          <span class="care"><?= lang('db_hostname_info') ?></span>
-                </li>
-                <li>
+                    </li>
+                    <li>
 <!--vot-->          <?= lang('db_user') ?>:<br><input name="dbuser" type="text" class="input" value="">
-                </li>
-                <li>
+                    </li>
+                    <li>
 <!--vot-->          <?= lang('db_password') ?>:<br><input name="dbpassw" type="password" class="input">
-                </li>
-                <li>
+                    </li>
+                    <li>
 <!--vot-->          <?= lang('db_name') ?>:<br>
-                    <input name="dbname" type="text" class="input" value="">
+                        <input name="dbname" type="text" class="input" value="">
 <!--vot-->          <span class="care"><?= lang('db_name_info') ?></span>
-                </li>
-                <li>
+                    </li>
+                    <li>
 <!--vot-->          <?= lang('db_prefix') ?>:<br>
-                    <input name="dbprefix" type="text" class="input" value="emlog_">
+                        <input name="dbprefix" type="text" class="input" value="emlog_">
 <!--vot-->          <span class="care"><?= lang('db_prefix_info') ?></span>
-                </li>
-            </div>
+                    </li>
+                </div>
+			<?php endif; ?>
             <div class="c">
 <!--vot-->      <p class="title2"><?= lang('admin_settings') ?></p>
                 <li>
@@ -203,7 +218,7 @@ if ($act == 'install' || $act == 'reinstall') {
 	$v = $DB->getMysqlVersion();
 
 	// Since the release of MySQL 5.5.5 in 2010, InnoDB replaced MyISAM as MySQL's default table type
-	if ($v < '5.5.5') {
+	if ($v < '5.6') {
 /*vot*/		emMsg(sprintf(lang('mysql_required'), $v));
 	}
 
@@ -537,7 +552,7 @@ CREATE TABLE {$db_prefix}storage (
         <p>" . lang('emlog_installed_info') . "</p>
         <p><b>" . lang('user_name') . "</b>: {$username}</p>
         <p><b>" . lang('password')."</b>: " . lang('password_entered') . "</p>";       
-	if ((DEL_INSTALLER === 1 && !@unlink('./install.php')) || DEL_INSTALLER === 0) {
+	if ($env_emlog_env === 'develop' || ($env_emlog_env !== 'develop' && !@unlink('./install.php'))) {
 /*vot*/        $result .= '<p style="color:#ff0000;margin:10px 20px;">' . lang('delete_install') . '</p> ';
 	}
 /*vot*/	$result .= "<p style=\"text-align:right;\"><a href=\"./\">" . lang('go_to_front') . "</a> | <a href=\"./admin/\">" . lang('go_to_admincp') . "</a></p>";

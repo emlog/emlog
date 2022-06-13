@@ -5,7 +5,12 @@
  * @link https://www.emlog.net
  */
 
-error_reporting(E_ALL);
+if (getenv('EMLOG_ENV') === 'develop') {
+	error_reporting(E_ALL);
+} else {
+	error_reporting(1);
+}
+
 ob_start();
 header('Content-Type: text/html; charset=UTF-8');
 
@@ -46,7 +51,7 @@ define('DYNAMIC_BLOGURL', Option::get("blogurl"));
 define('TEMPLATE_URL', TPLS_URL . Option::get('nonce_templet') . '/');
 //Admin Template Path
 const ADMIN_TEMPLATE_PATH = EMLOG_ROOT . '/admin/views/';
-const OFFICIAL_SERVICE_HOST = 'https://www.emlog.net/';
+
 //Error code
 const MSGCODE_EMKEY_INVALID = 1001;
 const MSGCODE_NO_UPUPDATE = 1002;

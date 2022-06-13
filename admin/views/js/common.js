@@ -15,6 +15,14 @@ function timestamp() {
 function em_confirm(id, property, token) {
     let url, msg;
     switch (property) {
+        case 'article':
+            url = 'article.php?action=del&gid=' + id;
+            msg = '确定要删除该篇文章吗？';
+            break;
+        case 'draft':
+            url = 'article.php?action=del&draft=1&gid=' + id;
+            msg = '确定要删除该篇草稿吗？';
+            break;
         case 'tw':
             url = 'twitter.php?action=del&id=' + id;
 /*vot*/     msg = lang('twitter_del_sure');
@@ -88,7 +96,7 @@ function hideActived() {
 }
 
 function displayToggle(id, keep) {
-    $("#" + id).toggleClass(id + "_hidden");
+    $("#" + id).toggle();
     icon_tog ? $(".icofont-simple-right").attr("class", "icofont-simple-down") : $(".icofont-simple-down").attr("class", "icofont-simple-right");
     icon_tog = !icon_tog;
     if (keep == 1) {
@@ -97,6 +105,22 @@ function displayToggle(id, keep) {
     if (keep == 2) {
         Cookies.set('em_' + id, $("#" + id).css('visibility'))
     }
+}
+
+function doToggle(id) {
+    $("#" + id).toggle();
+}
+
+function insertTag(tag, boxId) {
+    var targetinput = $("#" + boxId).val();
+    if (targetinput == '') {
+        targetinput += tag;
+    } else {
+        var n = ',' + tag;
+        targetinput += n;
+    }
+    $("#" + boxId).val(targetinput);
+    if (boxId == "tag") $("#tag_label").hide();
 }
 
 function isalias(a) {
@@ -191,23 +215,7 @@ function autosave(act) {
     var ishide = $.trim($("#ishide").val());
     var token = $.trim($("#token").val());
     var ishide = ishide == "" ? "y" : ishide;
-    var querystr = "logcontent=" + encodeURIComponent(content)
-        + "&logexcerpt=" + encodeURIComponent(excerpt)
-        + "&title=" + encodeURIComponent(title)
-        + "&cover=" + encodeURIComponent(cover)
-        + "&alias=" + encodeURIComponent(alias)
-        + "&author=" + author
-        + "&sort=" + sort
-        + "&postdate=" + postdate
-        + "&date=" + date
-        + "&tag=" + encodeURIComponent(tag)
-        + "&top=" + top
-        + "&sortop=" + sortop
-        + "&allow_remark=" + allow_remark
-        + "&password=" + password
-        + "&token=" + token
-        + "&ishide=" + ishide
-        + "&as_logid=" + logid;
+    var querystr = "logcontent=" + encodeURIComponent(content) + "&logexcerpt=" + encodeURIComponent(excerpt) + "&title=" + encodeURIComponent(title) + "&cover=" + encodeURIComponent(cover) + "&alias=" + encodeURIComponent(alias) + "&author=" + author + "&sort=" + sort + "&postdate=" + postdate + "&date=" + date + "&tag=" + encodeURIComponent(tag) + "&top=" + top + "&sortop=" + sortop + "&allow_remark=" + allow_remark + "&password=" + password + "&token=" + token + "&ishide=" + ishide + "&as_logid=" + logid;
 
     // check alias
     if (alias != '' && 0 != isalias(alias)) {
@@ -321,8 +329,7 @@ var hooks = {
         if (typeof func == 'function') {
             queue[hook].push(func);
         }
-    },
-    doAction: function (hook, obj) {
+    }, doAction: function (hook, obj) {
         try {
             for (var i = 0; i < queue[hook].length; i++) {
                 queue[hook][i](obj);
@@ -350,8 +357,7 @@ function imgPasteExpand(thisEditor) {
         let saveHotKey = {  // Editor bug , the custom hotkey will be deleted after the interface is refreshed, so it needs to be reset
             "Ctrl-S": function (cm) {
                 autosave(2);
-            },
-            "Cmd-S": function (cm) {
+            }, "Cmd-S": function (cm) {
                 autosave(2);
             }
         };
@@ -403,12 +409,7 @@ function imgPasteExpand(thisEditor) {
         formData.append('file', img, imgName);
 /*vot*/ thisEditor.insertValue(lang('uploading'));
         $.ajax({
-            url: postUrl,
-            type: 'post',
-            data: formData,
-            processData: false,
-            contentType: false,
-            xhr: function () {
+            url: postUrl, type: 'post', data: formData, processData: false, contentType: false, xhr: function () {
                 var xhr = $.ajaxSettings.xhr();
                 if (xhr.upload) {
                     thisEditor.insertValue("....");
@@ -425,8 +426,7 @@ function imgPasteExpand(thisEditor) {
                     }, false);
                 }
                 return xhr;
-            },
-            success: function (result) {
+            }, success: function (result) {
                 let imgUrl, thumbImgUrl;
 /*vot*/         console.log(lang('upload_ok_get_result'));
                 $.get(emMediaPhpUrl, function( data) {  // Get the result asynchronously, append to the editor
@@ -435,8 +435,7 @@ function imgPasteExpand(thisEditor) {
                     thumbImgUrl = data.match(/[a-zA-z]+:\/[^\s\"\']*/g)[1];
                         replaceByNum(`[![](${imgUrl})](${thumbImgUrl})`, 10);  // The number 10 here corresponds to 'Uploading...100%' which is 10 characters
                 })
-            },
-            error: function (result) {
+            }, error: function (result) {
 /*vot*/         alert(lang('upload_failed_error'));
 /*vot*/         replaceByNum(lang('upload_failed_error'), 6);
             }

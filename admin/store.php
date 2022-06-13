@@ -15,7 +15,9 @@ require_once 'globals.php';
 $Store_Model = new Store_Model();
 
 if (empty($action)) {
-	$templates = $Store_Model->getTemplates();
+	$tag = isset($_GET['tag']) ? addslashes($_GET['tag']) : '';
+	$keyword = isset($_GET['keyword']) ? addslashes($_GET['keyword']) : '';
+	$templates = $Store_Model->getTemplates($tag, $keyword);
 
 	include View::getAdmView('header');
 	require_once(View::getAdmView('store_tpl'));
@@ -24,7 +26,9 @@ if (empty($action)) {
 }
 
 if ($action === 'plu') {
-	$plugins = $Store_Model->getPlugins();
+	$tag = isset($_GET['tag']) ? addslashes($_GET['tag']) : '';
+	$keyword = isset($_GET['keyword']) ? addslashes($_GET['keyword']) : '';
+	$plugins = $Store_Model->getPlugins($tag, $keyword);
 
 	include View::getAdmView('header');
 	require_once(View::getAdmView('store_plu'));
@@ -51,7 +55,7 @@ if ($action === 'install') {
 		emDirect("./store.php?error_param=1");
 	}
 
-	$temp_file = emFetchFile(OFFICIAL_SERVICE_HOST . $source);
+	$temp_file = emFetchFile('https://www.emlog.net/' . $source);
 	if (!$temp_file) {
 		emDirect("./store.php?error_down=1");
 	}

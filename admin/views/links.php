@@ -47,7 +47,7 @@
                             </td>
                             <td><?= $value['description'] ?></td>
                             <td>
-                                <a href="<?= $value['siteurl'] ?>" target="_blank"><img src="./views/images/vlog.gif" align="absbottom" border="0"/></a>
+                                <a href="<?= $value['siteurl'] ?>" target="_blank"><img src="./views/images/vlog.gif"/></a>
                             </td>
                             <td>
 								<?php if ($value['hide'] == 'n'): ?>

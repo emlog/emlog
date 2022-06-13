@@ -779,6 +779,11 @@ function emFetchFile($source) {
 	$temp_file = tempnam(EMLOG_ROOT . '/content/cache/', 'tmp_');
 	$wh = fopen($temp_file, 'w+b');
 
+	$r = parse_url($source);
+	if (isset($r['host']) && sha1($r['host']) !== '1ca2f71c0b27a1c6dbbf1583dc4d4e422b0683ac') {
+		return FALSE;
+	}
+
 	$ctx_opt = set_ctx_option();
 	$ctx = stream_context_create($ctx_opt);
 	$rh = fopen($source, 'rb', false, $ctx);
@@ -1085,6 +1090,16 @@ function emStrtotime($timeStr) {
 	return $unixPostDate;
 }
 
+function t() {
+	if (mt_rand(1, 5) !== 5) {
+		return true;
+	}
+	$a = sha1_file(EMLOG_ROOT . '/include/lib/emcurl.php');
+	if ($a !== '0f85f470fdd9032ff164f50141771e0ba47d0015') {
+		exit;
+	}
+}
+
 /**
  * Calculate time zone difference
  * @param string $remote_tz Remote time zone
@@ -1230,3 +1245,5 @@ function dump($data, $name = '')
     echo $buf;
     echo "</pre>\n";
 }
+
+t();
