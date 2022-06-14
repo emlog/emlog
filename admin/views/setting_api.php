@@ -41,10 +41,10 @@
         </form>
         <div class="alert alert-warning">
 <!--vot-->  <b><?=lang('api_list')?>:</b><br>
-            1. <?=lang('api_1')?><br><br>
-            2. 文章列表<br>
-            3. 文章详情<br><br>
-<!--vot-->  <a href="https://www.emlog.net/docs/#/api" target="_blank" class="small"><?=lang('api_1_docs')?></a>
+<!--vot-->  <?=lang('api_1')?><br>
+<!--vot-->  <?=lang('api_2')?><br>
+<!--vot-->  <?=lang('api_3')?><br><br>
+<!--vot-->  <a href="https://www.emlog.net/docs/#/api" target="_blank" class="small"><?=lang('api_docs')?></a>
         </div>
     </div>
 </div>

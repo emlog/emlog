@@ -32,7 +32,7 @@
     </ul>
     <form action="./store.php" method="get">
         <div class="form-inline search-inputs-nowrap">
-            <input type="text" name="keyword" value="<?= $keyword ?>" class="form-control m-1 small" placeholder="搜索模板...">
+<!--vot-->  <input type="text" name="keyword" value="<?= $keyword ?>" class="form-control m-1 small" placeholder="<?=lang('temlate_search')?>">
             <div class="input-group-append">
                 <button class="btn btn-sm btn-success" type="submit">
                     <i class="icofont-search-2"></i>
@@ -42,8 +42,8 @@
     </form>
 </div>
 <div class="row mb-3 ml-1">
-    <a href="./store.php" class="badge badge-secondary m-1">全部</a>
-    <a href="./store.php?tag=free" class="badge badge-success m-1">仅看免费</a>
+<!--vot--><a href="./store.php" class="badge badge-secondary m-1"><?=lang('all')?></a>
+<!--vot--><a href="./store.php?tag=free" class="badge badge-success m-1"><?=lang('show_free_only')?></a>
 </div>
 <div class="row">
 	<?php if (!empty($templates)): ?>
@@ -57,7 +57,7 @@
                     </a>
                     <div class="card-body">
 <!--vot-->              <p class="card-text"><?= $v['name'] ?>
-							<?= $v['price'] > 0 ? '<span class="badge badge-warning">' . $v['price'] . '元</span>' : '<span class="badge badge-success">' . lang('free') . '</span>' ?>
+<!--vot yuan-->						<?= $v['price'] > 0 ? '<span class="badge badge-warning">' . $v['price'] . '元</span>' : '<span class="badge badge-success">' . lang('free') . '</span>' ?>
                         </p>
                         <p class="card-text text-muted small">
                             <span class="small"><?= $v['info'] ?></span><br><br>
@@ -67,7 +67,7 @@
                         </p>
                         <p class="card-text text-right">
 							<?php if ($v['price'] > 0): ?>
-<!--vot-->                  <a href="<?= $v['buy_url'] ?>" class="btn btn-sm btn-warning btn-sm" target="_blank">￥<?= $v['price'] ?>, <?=lang('go_buy')?></a>
+<!--vot yuan-->             <a href="<?= $v['buy_url'] ?>" class="btn btn-sm btn-warning btn-sm" target="_blank">￥<?= $v['price'] ?>, <?=lang('go_buy')?></a>
 							<?php else: ?>
 <!--vot-->                  <a href="./store.php?action=install&source=<?= urlencode($v['download_url']) ?>&type=tpl" class="btn btn-success btn-sm"><?=lang('install_free')?></a>
 							<?php endif ?>
@@ -78,7 +78,7 @@
 		<?php endforeach ?>
 	<?php else: ?>
         <div class="col-md-12">
-            <div class="alert alert-info">暂未找到结果，应用商店进货中，敬请期待：）</div>
+<!--vot-->  <div class="alert alert-info"><?=lang('store_no_results')?></div>
         </div>
 	<?php endif ?>
 </div>

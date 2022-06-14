@@ -70,7 +70,7 @@
 <!--vot-->          <label><?=lang('tags')?>:</label>
 <!--vot-->          <input name="tag" id="tag" class="form-control" value="<?= $tagStr ?>" placeholder="<?=lang('post_tags_separated')?>"/>
 					<?php if ($tags): ?>
-                        <span class="small"><a href="javascript:doToggle('tags', 1);">近期使用的+</a></span>
+<!--vot-->              <span class="small"><a href="javascript:doToggle('tags', 1);"><?=lang('recently_used')?></a></span>
                         <div id="tags" style="display: none">
 							<?php
 							foreach ($tags as $val) {

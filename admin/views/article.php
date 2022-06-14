@@ -124,7 +124,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 <!--vot-->					                <?php if ($value['top'] == 'y'): ?><span class="badge small badge-warning"><?=lang('home_top')?></span><?php endif ?>
 <!--vot-->							<?php if ($value['sortop'] == 'y'): ?><span class="badge small badge-secondary"><?=lang('category_top')?></span><?php endif ?>
 <!--DO NOT TRANSLATE!-->								<?php if ($value['password']): ?><span class="small">🔒</span><?php endif ?>
-								<?php if (!$draft && $value['checked'] == 'n'): ?><span class="badge small badge-danger">待审核</span><?php endif ?>
+<!--vot-->							<?php if (!$draft && $value['checked'] == 'n'): ?><span class="badge small badge-danger"><?=lang('is_pending')?></span><?php endif ?>
                             </td>
                             <td><a href="comment.php?gid=<?= $value['gid'] ?>" class="badge badge-info"><?= $value['comnum'] ?></a></td>
                             <td><a href="<?= Url::log($value['gid']) ?>" class="badge badge-secondary" target="_blank"><?= $value['views'] ?></a></td>
@@ -140,9 +140,9 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
                                            href="article.php?action=operate_log&operate=uncheck&gid=<?= $value['gid'] ?>&token=<?= LoginAuth::genToken() ?>"><?=lang('uncheck')?></a>
 								<?php endif ?>
 								<?php if ($draft): ?>
-                                    <a href="javascript: em_confirm(<?= $value['gid'] ?>, 'draft', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger">删除</a>
+<!--vot-->                              <a href="javascript: em_confirm(<?= $value['gid'] ?>, 'draft', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger"><?=lang('delete')?></a>
 								<?php else: ?>
-                                    <a href="javascript: em_confirm(<?= $value['gid'] ?>, 'article', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger">删除</a>
+<!--vot-->                          <a href="javascript: em_confirm(<?= $value['gid'] ?>, 'article', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger"><?=lang('delete')?></a>
 								<?php endif ?>
                             </td>
                         </tr>

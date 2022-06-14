@@ -17,11 +17,11 @@ function em_confirm(id, property, token) {
     switch (property) {
         case 'article':
             url = 'article.php?action=del&gid=' + id;
-            msg = '确定要删除该篇文章吗？';
+/*vot*/     msg = lang('article_del_sure');
             break;
         case 'draft':
             url = 'article.php?action=del&draft=1&gid=' + id;
-            msg = '确定要删除该篇草稿吗？';
+/*vot*/     msg = lang('draft_del_sure');
             break;
         case 'tw':
             url = 'twitter.php?action=del&id=' + id;

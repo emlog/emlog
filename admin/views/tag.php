@@ -24,7 +24,7 @@
 <!--vot-->      <p style="margin:20px 30px"><?=lang('tags_no_info')?></p>
 			<?php endif ?>
         </div>
-        <div class="page"><?= $pageurl ?> （有 <?= $tags_count ?> 个标签）</div>
+<!--vot--><div class="page"><?= $pageurl ?> (<?=lang('have')?> <?= $tags_count ?> <?=lang('_tags')?>)</div>
     </div>
 </div>
 

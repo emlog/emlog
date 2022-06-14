@@ -181,6 +181,7 @@ $lang = array(
  'comments'		=> 'Comments',//'评论',
  'attachment_num'	=> 'Attachments',//'附件',
  'pending'		=> 'Pending',//'待审',
+ 'is_pending'		=> 'pending',//'待审核',
  'reject'		=> 'Reject',//'驳回',
  'open_new_window'	=> 'Open in a new window',//'在新窗口查看',
  'yet_no_posts'		=> 'Yet no entries',//'还没有文章',
@@ -228,6 +229,7 @@ $lang = array(
  'uploading'		=> 'Uploading...',//'上传中……',
  'cover_placeholder'	=> 'Cover image URL, fill in manually or click the area below to upload image',//'封面图地址URL，手动填写或点击下方图片区域上传',
  'cover_image'		=> 'Cover image',//'封面图片',
+ 'recently_used'	=> 'Recently used+',//'近期使用的+',
 
 //---------------------------
 //admin/views/admin_page.php
@@ -723,8 +725,10 @@ $lang = array(
  'api_key'		=> 'API key',//'API秘钥',
  'api_key_reset'	=> 'Reset API key',//'重置API秘钥',
  'api_list'		=> 'List of API interfaces',//'API接口列表',
- 'api_1'		=> 'Article publishing (can be used for docking with content publishing software)',//'文章发布 (可用于对接内容发布软件)',
- 'api_1_docs'		=> 'See the interface documentation for details→',//'详见接口文档→',
+ 'api_1'		=> '1. Article publishing (can be used for docking with content publishing software)',//'文章发布 (可用于对接内容发布软件)',
+ 'api_2'		=> '2. Article list',//'文章列表',
+ 'api_3'		=> '3. Article Details',//'3. 文章详情',
+ 'api_docs'		=> 'See the interface documentation for details→',//'详见接口文档→',
 
 //---------------------------
 //admin/views/setting_user.php
@@ -790,7 +794,25 @@ $lang = array(
  'return_app_center'		=> 'Return to app center',//'返回应用中心',
  'install_failed_zip_nonsupport'	=> 'Installation failed. It seems your server does not support zip module. Please, download and install manually.',//'安装失败，可能是你的服务器空间不支持zip模块，请手动下载安装，',
  'install_failed_folder_nonwritable'	=> 'Installation failed. Probably, directory is not wirtable.',//'安装失败，可能是应用目录不可写，',
- 'install_failed'		=> 'Installation failed.',//'安装失败，',
+ 'install_failed'			=> 'Installation failed.',//'安装失败，',
+
+//---------------------------
+//admin/views/store_plu.php
+ 'install_free'			=> 'Install for free',//'免费安装',
+ 'plugin_search'		=> 'Search plugin',//搜索插件',
+ 'show_free_only'		=> 'Show only free',//'仅看免费',
+ 'store_no_results'		=> 'No results have been found yet, the app store is in stock, so stay tuned :)',//'暂未找到结果，应用商店进货中，敬请期待：）',
+
+//---------------------------
+//admin/views/store_tpl.php
+ 'temlate_search'	=> 'Search Templates...',//'搜索模板...',
+ ''	=> '',//'',
+ ''	=> '',//'',
+ ''	=> '',//'',
+ ''	=> '',//'',
+ ''	=> '',//'',
+ ''	=> '',//'',
+
 
 //---------------------------
 //admin/views/style.php
@@ -803,6 +825,7 @@ $lang = array(
  '_cancel_'	=> ' Cancel ',//'取 消',
  'tag_select'	=> 'Please select a tag',//'请选择标签',
  'tag_delete_sure'	=> 'Are you sure you want to delete the selected tags?',//'你确定要删除所选标签吗？',
+ '_tags'		=> ' tags',//'个标签', 
 
 //---------------------------
 //admin/views/template.php
