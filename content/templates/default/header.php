@@ -21,7 +21,6 @@ require_once View::getView('module');
     <meta name="description" content="<?= $site_description ?>"/>
     <base href="<?= BLOG_URL ?>"/>
     <link rel="shortcut icon" href="<?= BLOG_URL ?>favicon.ico"/>
-    <link rel="bookmark" href="<?= BLOG_URL ?>favicon.ico" type="image/x-icon" 　/>
     <link rel="alternate" title="RSS" href="<?= BLOG_URL ?>rss.php" type="application/rss+xml"/>
     <link href="<?= TEMPLATE_URL ?>css/style.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>" rel="stylesheet" type="text/css"/>
     <link href="<?= TEMPLATE_URL ?>css/markdown.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>" rel="stylesheet" type="text/css"/>
@@ -50,3 +49,4 @@ require_once View::getView('module');
 
     </div>
 </nav>
+
