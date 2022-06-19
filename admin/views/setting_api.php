@@ -43,7 +43,8 @@
             <b>API接口列表：</b><br>
             1. 文章发布 (可用于对接内容发布软件)<br>
             2. 文章列表<br>
-            3. 文章详情<br><br>
+            3. 文章详情<br>
+            4. 分类列表<br><br>
             <a href="https://www.emlog.net/docs/#/api" target="_blank" class="small">详见接口文档→</a>
         </div>
     </div>
