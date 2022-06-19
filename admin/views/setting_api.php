@@ -44,7 +44,7 @@
 <!--vot-->  <?=lang('api_1')?><br>
 <!--vot-->  <?=lang('api_2')?><br>
 <!--vot-->  <?=lang('api_3')?><br>
-            4. 分类列表<br><br>
+<!--vot-->  <?=lang('api_4')?><br><br>
 <!--vot-->  <a href="https://www.emlog.net/docs/#/api" target="_blank" class="small"><?=lang('api_docs')?></a>
         </div>
     </div>

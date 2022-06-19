@@ -728,6 +728,7 @@ $lang = array(
  'api_1'		=> '1. Article publishing (can be used for docking with content publishing software)',//'文章发布 (可用于对接内容发布软件)',
  'api_2'		=> '2. Article list',//'文章列表',
  'api_3'		=> '3. Article Details',//'3. 文章详情',
+ 'api_4'		=> '4. Category list',//'4. 分类列表',
  'api_docs'		=> 'See the interface documentation for details→',//'详见接口文档→',
 
 //---------------------------
