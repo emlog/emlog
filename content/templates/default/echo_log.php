@@ -7,9 +7,9 @@ if (!defined('EMLOG_ROOT')) {
 }
 ?>
 
-<main class="container log-con">
+<article class="container log-con">
     <span class="back-top mh" onclick="history.go(-1);">&laquo;</span>
-    <header class="log-title"><?php topflg($top) ?><?= $log_title ?></header>
+    <h1 class="log-title"><?php topflg($top) ?><?= $log_title ?></h1>
     <p class="date">
         <b>时间：</b><?= date('Y-n-j', $date) ?>&nbsp;&nbsp;&nbsp;&nbsp;
         <b>作者：</b><?php blog_author($author) ?>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -19,7 +19,7 @@ if (!defined('EMLOG_ROOT')) {
 
     </p>
     <hr class="bottom-5"/>
-    <article class="markdown" id="emlogEchoLog"><?= $log_content ?></article>
+    <div class="markdown" id="emlogEchoLog"><?= $log_content ?></div>
     <p class="top-5"><?php blog_tag($logid) ?></p>
 
 	<?php doAction('log_related', $logData) ?>
@@ -30,6 +30,6 @@ if (!defined('EMLOG_ROOT')) {
 	<?php blog_comments($comments) ?>
 
     <div style="clear:both;"></div>
-</main>
+</article>
 
 <?php include View::getView('footer') ?>

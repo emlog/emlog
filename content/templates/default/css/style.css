@@ -812,7 +812,7 @@ footer .copyright {
 .log-con .date {
     margin-bottom: 0px
 }
-.log-con article {
+.log-con .markdown {
     margin-inline: 5px;
 }
 .loglist-content h1 {
@@ -885,13 +885,13 @@ footer .copyright {
     opacity: 0.8;
     border-radius: var(--marRadius) 10px 0 0;
     transition: all 0.4s;
-    clip: rect(50px 730px 250px 0px);
+    clip: rect(50px,730px,250px,0px);
     margin-top: -50px
 }
 .loglist-cover img:hover {
     opacity: 0.7;
     transform: scale(1.01);
-    clip: rect(50px 730px 250px 0px)
+    clip: rect(50px,730px,250px,0px)
 }
 /* 文章分类 */
 .loglist-sort {
@@ -947,7 +947,7 @@ footer .copyright {
     margin-top: 15px;
     margin-bottom: 0px
 }
-.bloginfo-cache {
+.bloginfo-descript {
     margin-top: 20px;
     margin-bottom: 15px;
     color: #929292
@@ -979,7 +979,6 @@ footer .copyright {
     text-overflow: ellipsis
 }
 .tags-side {
-    border: 1px solid #e8e8e8;
     padding: 2px 6px;
     border-radius: 4px;
     white-space: nowrap
@@ -1127,14 +1126,12 @@ img.zoom-img {
     right: 0;
     bottom: 0;
     pointer-events: none;
-    filter: "alpha(opacity=0)";
     opacity: 0;
     -webkit-transition:      opacity 300ms;
          -o-transition:      opacity 300ms;
             transition:      opacity 300ms;
   }
 .zoom-overlay-open .zoom-overlay {
-    filter: "alpha(opacity=100)";
     opacity: 1;
   }
 .zoom-overlay-open,
@@ -1240,7 +1237,7 @@ img.zoom-img {
 
     /* 展开菜单后，博客头部的下边距变大 */
     .bottom-change {
-        margin-bottom: 13pxs
+        margin-bottom: 13px
     }
 
     /* 为文章列出页卡片在小屏幕的观感体验优化 */

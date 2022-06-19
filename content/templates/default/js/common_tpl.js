@@ -300,10 +300,9 @@ $(document).ready(function(){
 
   $('#comment_submit[type="button"], #close-modal').click(function () {
     myBlog.comSubmitTip('judge')
-    if (myBlog.comSubmitTip()) {  // 在显示模态框前，先校验一下评论区内容
+    if (myBlog.comSubmitTip()) {  // 在显示评论的验证码模态框前，先校验一下评论区内容
       myBlog.viewModal()
     }
-    
   }),
 
   $(".form-control").blur(function () {
