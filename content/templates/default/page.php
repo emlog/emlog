@@ -7,13 +7,13 @@ if (!defined('EMLOG_ROOT')) {
 }
 ?>
 
-<main class="container">
+<article class="container">
     <div class="row">
         <div class="column-big log-con " id="page">
-            <header class="page-title"><?= $log_title ?></header>
-            <article class="markdown">
+            <h1 class="page-title"><?= $log_title ?></h1>
+            <div class="markdown">
                 <?= $log_content ?>
-            </article>
+            </div>
 		    <?php blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allow_remark) ?>
             <?php blog_comments($comments) ?>
         </div>
@@ -21,7 +21,7 @@ if (!defined('EMLOG_ROOT')) {
 		include View::getView('side');
 		?>
     </div>
-</main>
+</article>
 <?php
 include View::getView('footer');
 ?>

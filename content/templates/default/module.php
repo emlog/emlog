@@ -38,15 +38,15 @@ function widget_blogger($title) {
         <div class="widget-title">
             <h3><?= $title ?></h3>
         </div>
-        <ul class="unstyle-li bloggerinfo">
+        <div class="unstyle-li bloggerinfo"> 
+        <?php if (!empty($user_cache[1]['photo']['src'])): ?>
             <div>
-				<?php if (!empty($user_cache[1]['photo']['src'])): ?>
-                    <img class='bloggerinfo-img' src="<?= BLOG_URL . $user_cache[1]['photo']['src'] ?>" alt="blogger"/>
-				<?php endif ?>
+                <img class='bloggerinfo-img' src="<?= BLOG_URL . $user_cache[1]['photo']['src'] ?>" alt="blogger"/>
             </div>
-            <p class='bloginfo-name'><b><?= $name ?></b></p>
-            <p class='bloginfo-cache'> <?= $user_cache[1]['des'] ?></p>
-        </ul>
+        <?php endif ?>
+            <div class='bloginfo-name'><b><?= $name ?></b></div>
+            <div class='bloginfo-descript'><?= $user_cache[1]['des'] ?></div>
+        </div>
     </div>
 <?php } ?>
 <?php
@@ -58,10 +58,10 @@ function widget_calendar($title) { ?>
         <div class="widget-title m">
             <h3><?= $title ?></h3>
         </div>
-        <ul class="unstyle-li">
+        <div class="unstyle-li">
             <div id="calendar"></div>
             <script>sendinfo('<?= Calendar::url() ?>', 'calendar');</script>
-        </ul>
+        </div>
     </div>
 <?php } ?>
 <?php
@@ -75,12 +75,12 @@ function widget_tag($title) {
         <div class="widget-title m">
             <h3><?= $title ?></h3>
         </div>
-        <ul class="unstyle-li tag-container">
+        <div class="unstyle-li tag-container">
 			<?php foreach ($tag_cache as $value): ?>
                 <span style="font-size:<?= $value['fontsize'] ?>pt; line-height:30px;">
 <!--vot-->	<a href="<?= Url::tag($value['tagurl']) ?>" title="<?= $value['usenum'] + 2 ?> <?=lang('_posts')?>" class='tags_side' ><?= $value['tagname'] ?></a></span>
 			<?php endforeach ?>
-        </ul>
+        </div>
     </div>
 <?php } ?>
 <?php
@@ -139,9 +139,9 @@ function widget_newcomm($title) {
 			foreach ($com_cache as $value):
 				$url = Url::comment($value['gid'], $value['page'], $value['cid']);
 				?>
-                <li class='comment-info' id="side-comment">
+                <li class="comment-info">
                 <?php if ($isGravatar == 'y'): ?>
-                    <img class='comment-info_img' src="<?= getGravatar($value['mail']) ?>"/>
+                    <img class='comment-info_img' src="<?= getGravatar($value['mail']) ?>" alt="commentator" />
                 <?php endif ?>
                     <span class='comm-lates-name'><?= $value['name'] ?></span>
                     <span class='logcom-latest-time'><?= smartDate($value['date']) ?></span><br/>
@@ -199,12 +199,12 @@ function widget_search($title) { ?>
         <div class="widget-title">
             <h3><?= $title ?></h3>
         </div>
-        <ul class="unstyle-li" style="text-align: center;">
+        <div class="unstyle-li" style="text-align: center;">
             <form name="keyform" method="get" action="<?= BLOG_URL ?>index.php">
                 <input name="keyword" class="search form-control" autocomplete="off" type="text"/>
 <!--vot-->	<input type="submit" value="<?=lang('search')?>">
             </form>
-        </ul>
+        </div>
     </div>
 <?php } ?>
 <?php
@@ -276,7 +276,7 @@ function blog_navi() {
 				<?php if (!empty($value['children']) || !empty($value['childnavi'])) : ?>
                 <li class="list-item list-menu">
 					<?php if (!empty($value['children'])): ?>
-                        <a class='nav-link has-down' id="nav_link""  <?= $newtab ?>><?= $value['naviname'] ?> <b class="caret"></b></a>
+                        <a class="nav-link has-down" id="nav_link" <?= $newtab ?>><?= $value['naviname'] ?> <b class="caret"></b></a>
                         <ul class="dropdown-menus">
 							<?php foreach ($value['children'] as $row) {
 								echo '<li class="list-item list-menu"><a class="nav-link" href="' . Url::sort($row['sid']) . '">' . $row['sortname'] . '</a></li>';
@@ -348,9 +348,9 @@ function bloglist_sort($blogid) {
 	$log_cache_sort = $CACHE->readCache('logsort');
 	?>
 	<?php if (!empty($log_cache_sort[$blogid])) { ?>
-        <div class="loglist-sort" >
+        <span class="loglist-sort" >
 <!--vot-->  <a href="<?= Url::sort($log_cache_sort[$blogid]['id']) ?>" title="<?=lang('category')?>: <?= $log_cache_sort[$blogid]['name'] ?>"><?= $log_cache_sort[$blogid]['name'] ?></a>
-        </div>
+        </span>
     <?php }
 } ?>
 <?php
@@ -416,8 +416,6 @@ function neighbor_log($neighborLog) {
 function blog_comments($comments) {
 	extract($comments);
 	if ($commentStacks): ?>
-    
-        <a name="comments"></a>
 <!--vot-->    <div class="comment-header"><b><?=lang('comments')?>:</b></div>
 	<?php endif ?>
 	<?php
@@ -428,7 +426,6 @@ function blog_comments($comments) {
 		$comment['poster'] = $comment['url'] ? '<a href="' . $comment['url'] . '" target="_blank">' . $comment['poster'] . '</a>' : $comment['poster'];
 		?>
         <div class="comment" id="comment-<?= $comment['cid'] ?>">
-            <a name="<?= $comment['cid'] ?>"></a>
 			<?php if ($isGravatar == 'y'): ?>
                 <div class="avatar"><img src="<?= getGravatar($comment['mail']) ?>"/></div>
             <div class="comment-infos">
@@ -462,9 +459,8 @@ function blog_comments_children($comments, $children) {
 		$comment['poster'] = $comment['url'] ? '<a href="' . $comment['url'] . '" target="_blank">' . $comment['poster'] . '</a>' : $comment['poster'];
 		?>
         <div class="comment comment-children" id="comment-<?= $comment['cid'] ?>">
-            <a name="<?= $comment['cid'] ?>"></a>
 			<?php if ($isGravatar == 'y'): ?>
-            <div class="avatar"><img src="<?= getGravatar($comment['mail']) ?>"/></div>
+            <div class="avatar"><img src="<?= getGravatar($comment['mail']) ?>" alt="commentator" /></div>
             <div class="comment-infos">
                 <div class="arrow"></div>
                 <b><?= $comment['poster'] ?> </b><span class="comment-time"><?= $comment['date'] ?></span>
@@ -492,13 +488,10 @@ function blog_comments_children($comments, $children) {
  */
 function blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allow_remark) {
 	$isNeedChinese = Option::get('comment_needchinese');
-
 	if ($allow_remark == 'y'): ?>
         <div id="comment-place">
             <div class="comment-post" id="comment-post">
 <!--vot-->      <div class="cancel-reply" id="cancel-reply" style="display:none"><a><?=lang('cancel_reply')?></a></div>
-                <p class="comment-header">
-                    <a name="respond"></a><br></p>
                 <form class="commentform" method="post" name="commentform" action="<?= BLOG_URL ?>index.php?action=addcom" id="commentform"
                       is-chinese="<?= $isNeedChinese ?>">
                     <input type="hidden" name="gid" value="<?= $logid ?>"/>
@@ -540,7 +533,7 @@ function blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allo
                         </div>
 			<!-- Verification window (end)  -->
 					<?php } ?>
-                    <input type="hidden" name="pid" id="comment-pid" value="0" size="22" tabindex="1"/>
+                    <input type="hidden" name="pid" id="comment-pid" value="0" tabindex="1"/>
                 </form>
             </div>
         </div>

@@ -576,6 +576,10 @@ textarea {
         width: 100%;
         position: fixed;
         z-index: 1;
+        height: 50px;
+        /* 顶部导航条磨砂效果 */
+        background-color: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(4px);
     }
 
     .ml-md-3, .mx-md-3 {

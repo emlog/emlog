@@ -127,7 +127,7 @@
                     "bold", "del", "italic", "quote", "|",
                     "h1", "h2", "h3", "|",
                     "list-ul", "list-ol", "hr", "|",
-                    "link", "image", "preformatted-text", "table", "|", "watch"]
+                    "link", "image", "preformatted-text", "table", "|", "watch","help"]
             },
             path: "editor.md/lib/",
             tex: false,

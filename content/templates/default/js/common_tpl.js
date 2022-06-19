@@ -300,10 +300,9 @@ $(document).ready(function(){
 
   $('#comment_submit[type="button"], #close-modal').click(function () {
     myBlog.comSubmitTip('judge')
-    if (myBlog.comSubmitTip()) {  // Before displaying the modal box, check the content of the comment area
+    if (myBlog.comSubmitTip()) {  // Before displaying the verification code modal box of the comment, check the content of the comment area first
       myBlog.viewModal()
     }
-    
   }),
 
   $(".form-control").blur(function () {
