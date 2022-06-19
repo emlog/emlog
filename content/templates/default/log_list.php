@@ -25,7 +25,7 @@ if (!defined('EMLOG_ROOT')) {
 								<?php topflg($value['top'], $value['sortop'], isset($sortid) ? $sortid : '') ?>
                                 <?php bloglist_sort($value['logid']) ?>
                             </h3>
-                            <summary class="loglist-content markdown"><?= $value['log_description'] ?></summary>
+                            <div class="loglist-content markdown"><?= $value['log_description'] ?></div>
                             <div class="loglist-tag"><?php blog_tag($value['logid']) ?></div>
                         </div>
                         <hr class="list-line"/>
@@ -45,9 +45,9 @@ if (!defined('EMLOG_ROOT')) {
 				?>
                 <p>抱歉，暂时还没有内容。</p>
 			<?php endif ?>
-            <ul class="pagination bottom-5">
+            <div class="pagination bottom-5">
 				<?= $page_url ?>
-            </ul>
+            </div>
         </div>
 		<?php include View::getView('side') ?>
     </div>
