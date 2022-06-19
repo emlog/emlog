@@ -146,8 +146,25 @@ class Api_Controller {
 		]);
 	}
 
-	private
-	function checkApiKey($req_sign, $req_time) {
+	function sort_list() {
+		$sort_cache = $this->Cache->readCache('sort');
+		$data = [];
+		foreach ($sort_cache as $sort_id => $value) {
+			unset($value['children']);
+			if ($value['pid'] === 0) {
+				$data[$sort_id] = $value;
+			} else {
+				$data[$value['pid']]['children'][] = $value;
+			}
+		}
+		sort($data);
+
+		output::ok([
+			'sorts' => $data,
+		]);
+	}
+
+	private function checkApiKey($req_sign, $req_time) {
 		$apikey = Option::get('apikey');
 		$sign = md5($req_time . $apikey);
 
