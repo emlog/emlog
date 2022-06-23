@@ -1,6 +1,6 @@
 <?php
 /**
- * 显示首页、内容
+ * homepage & article detail
  *
  * @package EMLOG
  * @link https://www.emlog.net
