@@ -1,6 +1,6 @@
 <?php
 /**
- * Showing page content
+ * homepage & article detail
  *
  * @package EMLOG
  * @link https://www.emlog.net

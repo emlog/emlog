@@ -1,11 +1,11 @@
 /**
  * markdown output style
  */
- 
- .markdown {
+
+.markdown {
     overflow-wrap: break-word;
     text-align: justify
- }
+}
 
 .markdown h1 {
     font-size: 1.8rem !important;
@@ -67,7 +67,7 @@
     text-decoration: line-through
 }
 
-.markdown a{
+.markdown a {
     text-decoration: underline;
 }
 
@@ -142,7 +142,7 @@
     background: #f6f6f6;
     border-radius: 3px;
     font-size: 14px;
-    padding: 5px;
+    padding: 5px 0;
     margin-right: 4px
 }
 

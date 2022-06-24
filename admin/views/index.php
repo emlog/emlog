@@ -25,7 +25,7 @@
                             <a href="./comment.php?hide=y"><span class="badge badge-warning badge-pill"><?= $sta_cache['hidecomnum'] ?></span></a>
                         </li>
 <!--vot-->              <li class="list-group-item d-flex justify-content-between align-items-center"><?=lang('user_num')?>
-                            <a href="./user.php"><span class="badge badge-warning badge-pill"><?= count($user_cache) ?></span></a>
+                            <a href="./user.php"><span class="badge badge-primary badge-pill"><?= count($user_cache) ?></span></a>
                         </li>
                     </ul>
                 </div>

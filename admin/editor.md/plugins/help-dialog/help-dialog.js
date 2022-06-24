@@ -19,7 +19,9 @@
 		exports.fn.helpDialog = function() {
 			var _this       = this;
 			var lang        = this.lang;
-			var editor      = this.editor;
+			/* 修改：更换对话框创建的位置 */
+			// var editor       = this.editor;
+			var editor       = $("#editor-md-dialog");
 			var settings    = this.settings;
 			var path        = settings.pluginPath + pluginName + "/";
 			var classPrefix = this.classPrefix;
@@ -43,11 +45,11 @@
 				<table>
 					<thead>
 					<tr>
-					<th style="text-align: center;"><strong><strong>CTRL + S</strong></strong></th>
+					<th style="text-align: center;"><strong><strong>Ctrl + S</strong></strong></th>
 					<th style="text-align: center;">保存</th>
 					<th style="text-align: center;"><strong><strong>F9</strong></strong></th>
 					<th style="text-align: center;">切换实时预览</th>
-					<th style="text-align: center;"><strong><strong>CTRL + SHIFT + R</strong></strong></th>
+					<th style="text-align: center;"><strong><strong>Ctrl + Shift + R</strong></strong></th>
 					<th style="text-align: center;">全部替换</th>
 					</tr>
 					</thead>
