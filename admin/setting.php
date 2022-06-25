@@ -38,7 +38,7 @@ if (empty($action)) {
 	}
 
 //vot	$tzlist = array( .... // Moved to lang_tz.php
-/*vot*/	include EMLOG_ROOT.'/lang/'.EMLOG_LANGUAGE.'/lang_tz.php'; // Load Time Zone List
+/*vot*/	include EMLOG_ROOT . '/lang/' . EMLOG_LANGUAGE . '/lang_tz.php'; // Load Time Zone List
 
 	include View::getAdmView('header');
 	require_once(View::getAdmView('setting'));

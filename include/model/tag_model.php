@@ -346,7 +346,6 @@ class Tag_Model {
 		$blogs = [];
 
 /*vot*/	if(!empty($tagId)) {
-
 		$sql = "SELECT `gid` FROM `" . DB_PREFIX . "tag` WHERE `tid` = " . $tagId;
 		$query = $this->db->query($sql);
 

@@ -16,20 +16,20 @@ class SendMail {
 
 	function send($to, $title, $content) {
 		$mail = new PHPMailer(true);
-		$mail->IsSMTP();                                       // Use smtp authentication to send email
+		$mail->IsSMTP();                          // Use smtp authentication to send email
 		$mail->CharSet = 'UTF-8';                 // Set email charset, this is very important, otherwise the Chinese is garbled
 		$mail->SMTPAuth = true;                   // Enable authentication
 		$mail->SMTPSecure = 'ssl';                // Set up login authentication using ssl encryption
-		$mail->Port = $this->smtp_port;                        // Port. Set the remote server port number for ssl connection to the smtp server, the previous default was 25, but now the new one seems to be unavailable. Optional 465 or 587
-		$mail->Host = $this->smtp_host;                        // SMTP server address: smtp.qq.com,  smtp.sina.com.cn,  smtp.163.com,  smtp.qiye.163.co ...
-		$mail->Username = $this->smtp_username;                // Email address
-		$mail->Password = $this->smtp_password;                // TMP authorization code mentioned above needs to be saved and used
+		$mail->Port = $this->smtp_port;           // Port. Set the remote server port number for ssl connection to the smtp server, the previous default was 25, but now the new one seems to be unavailable. Optional 465 or 587
+		$mail->Host = $this->smtp_host;           // SMTP server address: smtp.qq.com,  smtp.sina.com.cn,  smtp.163.com,  smtp.qiye.163.co ...
+		$mail->Username = $this->smtp_username;   // Email address
+		$mail->Password = $this->smtp_password;   // TMP authorization code mentioned above needs to be saved and used
 		$mail->From = $this->smtp_username;
 		if (is_array($to)) { //Multiple recepients
 			foreach ($to as $value) {
 				$mail->AddAddress($value);
 			}
-		} else {                    //Single recepient
+		} else {                        //Single recepient
 			$mail->AddAddress($to); //cc
 		}
 

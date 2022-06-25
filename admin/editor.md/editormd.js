@@ -69,9 +69,9 @@
             "bold", "del", "italic", "quote", "ucwords", "uppercase", "lowercase", "|", 
             "h1", "h2", "h3", "h4", "h5", "h6", "|", 
             "list-ul", "list-ol", "hr", "|",
-            "link", "reference-link", "image", "code", "preformatted-text", "code-block", "table", "datetime", "emoji", "html-entities", "pagebreak", "|",
-            "goto-line", "watch", "preview", "fullscreen", "clear", "search", "|",
-            "help", "info"
+/*vot*/     "link", "reference-link", "image", "code", "preformatted-text", "code-block", "table", "datetime", "emoji", "html-entities", "pagebreak", "|",
+/*vot*/     "goto-line", "watch", "preview", "fullscreen", "clear", "search", "|",
+/*vot*/     "help", "info"
         ],
         simple : [
             "undo", "redo", "|", 
@@ -415,7 +415,7 @@
 
             if (typeof markdownTextarea.attr("name") === "undefined" || markdownTextarea.attr("name") === "")
             {
-                markdownTextarea.attr("name", (settings.name !== "") ? settings.name : id);
+                markdownTextarea.attr("name", (settings.name !== "") ? settings.name : id );
 //vot           markdownTextarea.attr("name", (settings.name !== "") ? settings.name : id + "-markdown-doc");
             }
             

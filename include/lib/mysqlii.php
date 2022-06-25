@@ -34,7 +34,7 @@ class MySqlii {
 
 	private function __construct() {
 		if (!class_exists('mysqli')) {
-/*vot*/	 emMsg(lang('mysqli_not_supported'));
+/*vot*/			emMsg(lang('mysqli_not_supported'));
 		}
 
 		@$this->conn = new mysqli(DB_HOST, DB_USER, DB_PASSWD, DB_NAME);

@@ -32,10 +32,10 @@ $userData = [];
 define('ISLOGIN', LoginAuth::isLogin());
 date_default_timezone_set(Option::get('timezone'));
 
-/*vot*/ const ROLE_FOUNDER = 'founder';          //Founder
 const ROLE_ADMIN = 'admin';              //Admin
 const ROLE_WRITER = 'writer';            //Registered user
 const ROLE_VISITOR = 'visitor';          //Guest
+/*vot*/ const ROLE_FOUNDER = 'founder';          //Founder
 
 define('ROLE', ISLOGIN === true ? $userData['role'] : User::ROLE_VISITOR);
 define('UID', ISLOGIN === true ? $userData['uid'] : '');

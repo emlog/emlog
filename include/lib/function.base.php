@@ -817,11 +817,11 @@ function emDownFile($source) {
 
 	$temp_file = tempnam(EMLOG_ROOT . '/content/cache/', 'tmp_');
 	if ($temp_file === false) {
-		emMsg('emDownFile: Failed to create temporary file.');
+/*vot*/		emMsg('emDownFile: Failed to create temporary file.');
 	}
 	$ret = file_put_contents($temp_file, $content);
 	if ($ret === false) {
-		emMsg('emDownFile: Failed to write temporary file.');
+/*vot*/		emMsg('emDownFile: Failed to write temporary file.');
 	}
 
 	return $temp_file;
@@ -1150,12 +1150,12 @@ function uploadCropImg() {
  * @return unix style path
  * @author Valery Votintsev, codersclub.org
  */
-function udir($file='', $remove_drive = false) {
-  $file = str_replace('\\','/',$file);
-  if($remove_drive) {
-    $file = preg_replace("/^\w:/",'',$file);
-  }
-  return $file;
+function udir($file = '', $remove_drive = false) {
+    $file = str_replace('\\', '/', $file);
+    if ($remove_drive) {
+        $file = preg_replace("/^\w:/", '', $file);
+    }
+    return $file;
 }
 
 
@@ -1166,35 +1166,36 @@ function udir($file='', $remove_drive = false) {
  * @return none
  * @author Valery Votintsev, codersclub.org
  */
-function load_language($model='') {
-  global $LANGUAGE;
-  global $LANGLIST;
+function load_language($model = '') {
+    global $LANGUAGE;
+    global $LANGLIST;
 
     $model = strtolower($model);
-    $model = str_replace('_controller','',$model);
-    $model = str_replace('_model','',$model);
+    $model = str_replace('_controller', '', $model);
+    $model = str_replace('_model', '', $model);
 
-  if(!isset($LANGUAGE)) {$LANGUAGE = array();}
-  if(!isset($LANGLIST)) {$LANGLIST = array();}
-
-/*vot*/  if($model && !isset($LANGLIST[$model])) {
-
-    $file = EMLOG_ROOT.'/lang/'.EMLOG_LANGUAGE.'/lang_'.$model.'.php';
-
-    if(is_file($file)) {
-
-      $lang = array();
-      $ok = @require_once $file;
-
-      // Language file must contain $lang = array(...);
-      $LANGUAGE = array_merge($LANGUAGE, $lang);
-
-      unset($lang);
-
-      $LANGLIST[$model] = 1;
-
+    if (!isset($LANGUAGE)) {
+        $LANGUAGE = array();
     }
-  }
+    if (!isset($LANGLIST)) {
+        $LANGLIST = array();
+    }
+
+    if ($model && !isset($LANGLIST[$model])) {
+        $file = EMLOG_ROOT . '/lang/' . EMLOG_LANGUAGE . '/lang_' . $model . '.php';
+
+        if (is_file($file)) {
+            $lang = array();
+            $ok = @require_once $file;
+
+            // Language file must contain $lang = array(...);
+            $LANGUAGE = array_merge($LANGUAGE, $lang);
+
+            unset($lang);
+
+            $LANGLIST[$model] = 1;
+        }
+    }
 }
 
 /**
@@ -1204,9 +1205,9 @@ function load_language($model='') {
  * @return string //Language Value
  * @author Valery Votintsev, codersclub.org
  */
-function lang($key='') {
-  global $LANGUAGE;
-  return isset($LANGUAGE[$key]) ? $LANGUAGE[$key] : '{'.$key.'}';
+function lang($key = '') {
+    global $LANGUAGE;
+    return isset($LANGUAGE[$key]) ? $LANGUAGE[$key] : '{' . $key . '}';
 }
 
 /**
@@ -1217,11 +1218,10 @@ function lang($key='') {
  * @return string Formatted date
  * @author Valery Votintsev, codersclub.org
  */
-function emdate($date=0, $show_time=0) {
+function emdate($date = 0, $show_time = 0) {
+    $format = $show_time ? 'date_time_format' : 'date_format';
 
-  $format = $show_time ? 'date_time_format' : 'date_format';
-
-  return gmdate(lang($format), $date);
+    return gmdate(lang($format), $date);
 }
 
 /**
@@ -1229,8 +1229,7 @@ function emdate($date=0, $show_time=0) {
  * @param $data
  * @param string $name
  */
-function dump($data, $name = '')
-{
+function dump($data, $name = '') {
     $buf = var_export($data, true);
 
     $buf = str_replace('\\r', '', $buf);

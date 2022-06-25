@@ -32,7 +32,7 @@ class Mysqlpdo {
 
 	private function __construct() {
 		if (!class_exists('PDO')) {
-/*vot*/		emMsg(lang('pdo_not_supported'));
+/*vot*/			emMsg(lang('pdo_not_supported'));
 		}
 
 		try {

@@ -161,13 +161,13 @@ function checkform() {
 function checkalias() {
     var a = $.trim($("#alias").val());
     if (1 == isalias(a)) {
-/*vot*/ $("#alias_msg_hook").html('<span id="input_error">'+lang('alias_invalid_chars')+'</span>');
+/*vot*/ $("#alias_msg_hook").html('<span id="input_error">' + lang('alias_invalid_chars') + '</span>');
     } else if (2 == isalias(a)) {
-/*vot*/ $("#alias_msg_hook").html('<span id="input_error">'+lang('alias_digital')+'</span>');
+/*vot*/ $("#alias_msg_hook").html('<span id="input_error">' + lang('alias_digital') + '</span>');
     } else if (3 == isalias(a)) {
-/*vot*/ $("#alias_msg_hook").html('<span id="input_error">'+lang('alias_format_must_be')+'</span>');
+/*vot*/ $("#alias_msg_hook").html('<span id="input_error">' + lang('alias_format_must_be') + '</span>');
     } else if (4 == isalias(a)) {
-/*vot*/ $("#alias_msg_hook").html('<span id="input_error">'+lang('alias_system_conflict')+'</span>');
+/*vot*/ $("#alias_msg_hook").html('<span id="input_error">' + lang('alias_system_conflict') + '</span>');
     } else {
         $("#alias_msg_hook").html('');
         $("#msg").html('');
@@ -429,11 +429,11 @@ function imgPasteExpand(thisEditor) {
             }, success: function (result) {
                 let imgUrl, thumbImgUrl;
 /*vot*/         console.log(lang('upload_ok_get_result'));
-                $.get(emMediaPhpUrl, function( data) {  // Get the result asynchronously, append to the editor
+                $.get(emMediaPhpUrl, function (data) {  // Get the result asynchronously, append to the editor
 /*vot*/             console.log(lang('result_ok'));
                     imgUrl = data.match(/[a-zA-z]+:\/[^\s\"\']*/g)[0];
                     thumbImgUrl = data.match(/[a-zA-z]+:\/[^\s\"\']*/g)[1];
-                        replaceByNum(`[![](${imgUrl})](${thumbImgUrl})`, 10);  // The number 10 here corresponds to 'Uploading...100%' which is 10 characters
+                    replaceByNum(`[![](${imgUrl})](${thumbImgUrl})`, 10);  // The number 10 here corresponds to 'Uploading...100%' which is 10 characters
                 })
             }, error: function (result) {
 /*vot*/         alert(lang('upload_failed_error'));

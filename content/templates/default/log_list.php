@@ -31,7 +31,7 @@ if (!defined('EMLOG_ROOT')) {
                         <hr class="list-line"/>
                         <div class="row info-row">
                             <div class="log-info">
-<!--vot-->							<?php blog_author($value['author']) ?>&nbsp;<?=lang('post_time')?>&nbsp;<?= gmdate('Y-m-d', $value['date']) ?>&nbsp;<span class="mh"><?= date('H:i', $value['date']) ?></span>
+<!--vot-->			<?php blog_author($value['author']) ?>&nbsp;<?=lang('post_time')?>&nbsp;<?= gmdate('Y-m-d', $value['date']) ?>&nbsp;<span class="mh"><?= date('H:i', $value['date']) ?></span>
                             </div>
                             <div class="log-count">
 <!--vot-->                      <a href="<?= $value['log_url'] ?>#comments"><?=lang('comments')?>: (<?= $value['comnum'] ?>)&nbsp;</a>

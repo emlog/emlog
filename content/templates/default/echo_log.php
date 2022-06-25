@@ -12,8 +12,8 @@ if (!defined('EMLOG_ROOT')) {
     <h1 class="log-title"><?php topflg($top) ?><?= $log_title ?></h1>
     <p class="date">
 <!--vot--><b><?=lang('time')?>:</b> <?= gmdate('Y-m-d', $date) ?>&nbsp;&nbsp;&nbsp;&nbsp;
-<!--vot--><b><?=lang('author')?>:</b> <?php blog_author($author); ?>&nbsp;&nbsp;&nbsp;&nbsp;
-<!--vot--><b><?=lang('category')?>:</b> <?php blog_sort($logid); ?>
+<!--vot--><b><?=lang('author')?>:</b> <?php blog_author($author) ?>&nbsp;&nbsp;&nbsp;&nbsp;
+<!--vot--><b><?=lang('category')?>:</b> <?php blog_sort($logid) ?>
 
 		<?php editflg($logid, $author) ?>
 

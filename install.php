@@ -5,10 +5,9 @@
  * @link https://www.emlog.net
  */
 
+/*vot*/ define('EMLOG_ROOT', str_replace('\\','/',__DIR__));
 /*vot*/ define('EMLOG_LANGUAGE','en'); //zh-CN, zh-TW, en, ru, etc.
 /*vot*/ define('EMLOG_LANGUAGE_DIR','ltr'); //ltr, rtl 
-
-/*vot*/ define('EMLOG_ROOT', str_replace('\\','/',__DIR__));
 
 require_once EMLOG_ROOT . '/include/lib/function.base.php';
 
@@ -226,7 +225,7 @@ if ($act == 'install' || $act == 'reinstall') {
 /*vot*/ $installed = lang('already_installed');
 /*vot*/ $continue = lang('continue');
 /*vot*/ $return_back = lang('return');
-/*vot*/ echo <<<EOT
+		echo <<<EOT
 <!DOCTYPE html>
 <html>
 <head>
@@ -318,7 +317,8 @@ EOT;
 
 	define('BLOG_URL', realUrl());
 
-/*vot*/	$sql = "
+/*vot*/
+	$sql = "
 DROP TABLE IF EXISTS {$db_prefix}blog;
 CREATE TABLE {$db_prefix}blog (
   gid int(11) unsigned NOT NULL auto_increment COMMENT 'Article table',
@@ -547,7 +547,8 @@ CREATE TABLE {$db_prefix}storage (
 	//Rebuild cache
 	$CACHE->updateCache();
 	$result = '';
-/*vot*/    $result .= "
+/*vot*/
+	$result .= "
         <p style=\"font-size:24px; border-bottom:1px solid #E6E6E6; padding:10px 0px;\">".lang('emlog_installed')."</p>
         <p>" . lang('emlog_installed_info') . "</p>
         <p><b>" . lang('user_name') . "</b>: {$username}</p>

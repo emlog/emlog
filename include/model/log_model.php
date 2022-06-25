@@ -49,7 +49,7 @@ class Log_Model {
 	/**
 	 * Gets the number of articles for the specified condition
 	 *
-	 * @param int $spot 0: foreground 1: background
+	 * @param int $spot (0: foreground, 1: background)
 	 * @param string $hide
 	 * @param string $condition
 	 * @param string $type
@@ -170,7 +170,7 @@ class Log_Model {
 			$row['logid'] = $row['gid'];
 			$cookiePassword = isset($_COOKIE['em_logpwd_' . $row['gid']]) ? addslashes(trim($_COOKIE['em_logpwd_' . $row['gid']])) : '';
 			if (!empty($row['password']) && $cookiePassword != $row['password']) {
-/*vot*/				$row['excerpt'] = '<p>['.lang('post_protected_by_password_click_title').']</p>';
+/*vot*/				$row['excerpt'] = '<p>[' . lang('post_protected_by_password_click_title') . ']</p>';
 			}
 
 			$row['log_description'] = $this->Parsedown->text(empty($row['excerpt']) ? $row['content'] : $row['excerpt']);
@@ -283,7 +283,7 @@ class Log_Model {
 	}
 
 	/**
-         * Determine whether the repeated posting
+	 * Determine whether the repeated posting
 	 */
 	function isRepeatPost($title, $time) {
 		$sql = "SELECT gid FROM " . DB_PREFIX . "blog WHERE title='$title' and date='$time' LIMIT 1";
@@ -295,7 +295,7 @@ class Log_Model {
 	/**
 	 * Make Link to the nearest posts
 	 *
-	 * @param int $date //unix Timestamp
+	 * @param int $date unix Timestamp
 	 * @return array
 	 */
 	function neighborLog($date) {
