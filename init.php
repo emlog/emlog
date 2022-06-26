@@ -5,7 +5,8 @@
  * @link https://www.emlog.net
  */
 
-if (getenv('EMLOG_ENV') === 'develop') {
+if (getenv('EMLOG_ENV') === 'develop'
+    || defined('DEV_MODE')) {
 	error_reporting(E_ALL);
 } else {
 	error_reporting(1);

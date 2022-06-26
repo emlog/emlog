@@ -31,7 +31,7 @@
                         <p class="card-text text-muted small">
 							<?= $media_name ?><br>
 <!--vot-->                  <?=lang('create_time')?>: <?= $value['addtime'] ?><br>
-<!--vot-->                  <?=lang(founder)?>: <?= $author ?><br>
+<!--vot-->                  <?=lang('founder')?>: <?= $author ?><br>
 <!--vot-->                  <?=lang('file_size')?>: <?= $value['attsize'] ?>,
 							<?php if ($value['width'] && $value['height']): ?>
 <!--vot-->              <?=lang('img_size')?>: <?= $value['width'] ?>x<?= $value['height'] ?>

@@ -107,7 +107,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 <!--vot-->          <th><?=lang('user')?></th>
 <!--vot-->          <th><?=lang('category')?></th>
 <!--vot-->          <th><a href="article.php?sortDate=<?= $sortDate . $sorturl ?>"><?=lang('time')?></a></th>
-<!--vot-->          <th><?=lang'operation')?></th>
+<!--vot-->          <th><?=lang('operation')?></th>
                     </tr>
                     </thead>
                     <tbody>

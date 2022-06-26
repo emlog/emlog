@@ -7,6 +7,7 @@
 
 // Load the core Lang File
 /*vot*/ load_language('core');
+
 function emAutoload($class) {
 	$class = strtolower($class);
 
