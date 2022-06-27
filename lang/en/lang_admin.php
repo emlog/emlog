@@ -800,20 +800,13 @@ $lang = array(
 //---------------------------
 //admin/views/store_plu.php
  'install_free'			=> 'Install for free',//'免费安装',
- 'plugin_search'		=> 'Search plugin',//搜索插件',
+ 'plugin_search'		=> 'Search plugin',//'搜索插件',
  'show_free_only'		=> 'Show only free',//'仅看免费',
  'store_no_results'		=> 'No results have been found yet, the app store is in stock, so stay tuned :)',//'暂未找到结果，应用商店进货中，敬请期待：）',
 
 //---------------------------
 //admin/views/store_tpl.php
  'temlate_search'	=> 'Search Templates...',//'搜索模板...',
- ''	=> '',//'',
- ''	=> '',//'',
- ''	=> '',//'',
- ''	=> '',//'',
- ''	=> '',//'',
- ''	=> '',//'',
-
 
 //---------------------------
 //admin/views/style.php

@@ -44,8 +44,11 @@ var LNG = {
  'backup_import_sure'	: '你确定要导入该备份文件吗？',//'Are you sure you want to import the backup files?',
  'page_del_sure'	: '你确定要删除该页面吗？',//'Are you sure you want to delete this page?',
  'title_empty'		: '标题不能为空',//'Title can not be empty',
- 'wysiwyg_switch'		: '请先切换到所见所得模式',//'Please, switch to WYSIWYG mode',
- 'click_view_fullsize'		: '点击查看原图',//'Click to view full size',
+ 'wysiwyg_switch'	: '请先切换到所见所得模式',//'Please, switch to WYSIWYG mode',
+ 'click_view_fullsize'	: '点击查看原图',//'Click to view full size',
+ 'user_disable_sure'	: '确定要禁用该用户吗？',//'Are you sure you want to disable this user?',
+ 'article_del_sure'	: '确定要删除该篇文章吗？',//'Are you sure you want to delete this article?',
+ 'draft_del_sure'	: '确定要删除该篇草稿吗？',//'Are you sure you want to delete this draft? ',
 
 //---------------------------
 //include/lib/js/common_tpl.js

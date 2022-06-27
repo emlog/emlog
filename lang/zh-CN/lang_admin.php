@@ -181,6 +181,7 @@ $lang = array(
  'comments'		=> '评论',//'Comments',
  'attachment_num'	=> '附件',//'Attachments',
  'pending'		=> '待审',//'Pending',
+ 'is_pending'		=> '待审核',//'pending',
  'reject'		=> '驳回',//'Reject',
  'open_new_window'	=> '在新窗口查看',//'Open in a new window',
  'yet_no_posts'		=> '还没有文章',//'Yet no entries',
@@ -207,6 +208,8 @@ $lang = array(
  'tags_no'		=> '还没有标签',//'No tags',
  'tag_by_view'		=> '按标签查看',//'View by tags',
  'top'			=> '置顶',//'Top',
+ 'unknown_author'	=> '未知作者',//'Unknown author',
+ 'unknown_role'		=> '未知角色',//'Unknown role',
 
 //---------------------------
 //admin/views/article_write.php
@@ -224,6 +227,9 @@ $lang = array(
  'article_cover'	=> '文章封面',//'Article cover',
  'crop_upload'		=> '裁剪并上传',//'Crop and upload',
  'uploading'		=> '上传中……',//'Uploading...',
+ 'cover_placeholder'	=> '封面图地址URL，手动填写或点击下方图片区域上传',//'Cover image URL, fill in manually or click the area below to upload image',
+ 'cover_image'		=> '封面图片',//'Cover image',
+ 'recently_used'	=> '近期使用的+',//'Recently used+',
 
 //---------------------------
 //admin/views/admin_page.php
@@ -295,6 +301,7 @@ $lang = array(
  'new_password_info'		=> '新密码（不小于5位，不修改请留空）',//'New Password (not less than 5 characters, left blank if do not need to modify)',
  'new_password_repeat'		=> '再输入一次新密码',//'Repeat new password',
  'save_data'			=> '保存资料',//'Save Data',
+ 'api_interface'		=> 'API接口',//'API interface',
 
 //---------------------------
 //admin/views/comment.php
@@ -466,6 +473,8 @@ $lang = array(
  'pending_review'		=> '待审评论',//'Review pendings',
  'user_num'			=> '用户数',//'Number of users',
  'go_to_register'		=> '去注册',//'Go to register',
+ 'update_expired'		=> '更新服务已到期，',//'The update service has expired, ',
+ 'log_in_to_renew'		=> '登录官网续期',//'Log in to the official website to renew',
 
 //---------------------------
 //admin/views/links.php
@@ -708,6 +717,21 @@ $lang = array(
  'comment_settings'		=> '评论设置',//'Comment settings',
 
 //---------------------------
+//admin/views/setting_api.php
+ 'api_key_reset_ok'	=> '接口秘钥重置成功',//'Interface key was reset successfully',
+//'basic_settings'	=> '基本设置',//'基础设置',//'Basic Settings',
+//'seo_settings'	=> 'SEO设置',//'SEO优化',//'SEO Settings',
+ 'api_enable'		=> '开启API',//'Enable API',
+ 'api_key'		=> 'API秘钥',//'API key',
+ 'api_key_reset'	=> '重置API秘钥',//'Reset API key',
+ 'api_list'		=> 'API接口列表',//'List of API interfaces',
+ 'api_1'		=> '1. 文章发布 (可用于对接内容发布软件)',//'1. Article publishing (can be used for docking with content publishing software)',
+ 'api_2'		=> '2. 文章列表','2. Article list',
+ 'api_3'		=> '3. 文章详情',//'3. Article Details',
+ 'api_4'		=> '4. 分类列表',//'4. Category list',
+ 'api_docs'		=> '详见接口文档→',//'See the interface documentation for details→',
+
+//---------------------------
 //admin/views/setting_user.php
  'groups_about'		=> '<b>用户组</b><br>注册用户：通过注册产生，可以发布文章、笔记、上传图片等<br>管理员：拥有站点全部管理权限，可以管理用户、进行系统设置等<br>',//'<b>User Groups</b><br>Registered user: generated through registration, can publish articles, notes, upload pictures, etc.<br>Administrator: Has all site management rights, can manage users, perform system settings, etc.<br>',
 
@@ -727,6 +751,7 @@ $lang = array(
  'category_add'		=> '添加分类',//'添加分类+',//'Add Category',
  'tag_add'		=> '新建标签',//'Add Tag',
  'template_name'	=> '模板名',//'Template name',
+ 'category_id'		=> '分类ID',//'Category ID',
 
 //---------------------------
 //admin/views/store.php
@@ -773,6 +798,17 @@ $lang = array(
  'install_failed'		=> '安装失败，',//'Installation failed.',
 
 //---------------------------
+//admin/views/store_plu.php
+ 'install_free'			=> '免费安装',//'Install for free',
+ 'plugin_search'		=> '搜索插件',//'Search plugin',
+ 'show_free_only'		=> '仅看免费',//'Show only free',
+ 'store_no_results'		=> '暂未找到结果，应用商店进货中，敬请期待：）',//'No results have been found yet, the app store is in stock, so stay tuned :)',
+
+//---------------------------
+//admin/views/store_tpl.php
+ 'temlate_search'	=> 'Search Templates...',//'搜索模板...',
+
+//---------------------------
 //admin/views/style.php
  'use_this_style'	=> '点击使用该风格',//'Click to use this style',
 
@@ -783,6 +819,7 @@ $lang = array(
  '_cancel_'	=> '取 消',//' Cancel ',
  'tag_select'	=> '请选择标签',//'Please select a tag',
  'tag_delete_sure'	=> '你确定要删除所选标签吗？',//'Are you sure you want to delete the selected tags?',
+ '_tags'		=> '个标签', //' tags',
 
 //---------------------------
 //admin/views/template.php
@@ -890,6 +927,12 @@ $lang = array(
  'search_by_email'	=> '按邮箱搜索用户...',//'Search users by email',
  'email_empty'		=> '邮箱不能为空',//'E-mail can not be empty',
  'email_is_used'	=> '该邮箱已被占用',//'This email is used already',
+ 'user_ban_ok'		=> '禁用成功，该用户无法再登录',//'Locked successfully, the user can no longer log in',
+ 'user_unban_ok'	=> '解禁成功',//'Unlocked successfully',
+ 'user_id'		=> '用户ID',//'User ID',
+ 'ban'			=> '解禁',//'Ban',
+ 'banned'		=> '已禁用',//'Banned',
+ 'unban'		=> '解禁',//'Unban',
 
 //---------------------------
 //admin/views/user_edit.php

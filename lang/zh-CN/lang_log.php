@@ -46,5 +46,5 @@ $lang = array(
  'page_password_enter'	=> '请输入文章访问密码',//'Please enter the article access password',
  'submit_password'	=> '进入..',//'Enter..',
  'back_home'		=> '&laquo;返回首页',//'&laquo; Back to home',
-                                           
+ 'article_encrypted'	=> '该文章已设置加密',//'This article has been encrypted',
 );
