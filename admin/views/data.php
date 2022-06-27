@@ -56,7 +56,7 @@
         </div>
     </div>
     <div class="card">
-<!--vot-->  <h5 class="card-title"><?=lang('cache_update')?></h5>
+<!--vot-->  <h5 class="card-header"><?=lang('cache_update')?></h5>
         <div class="card-body">
             <div id="cache">
 <!--vot-->      <p class="des"><?=lang('cache_update_info')?></p>
