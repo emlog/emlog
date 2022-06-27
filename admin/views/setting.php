@@ -85,10 +85,10 @@
 <!--vot-->      <label><?=lang('comment_per_page')?></label>
             </div>
             <div class="form-group form-inline">
-<!--vot-->      <?=lang('comments_per_page')?>: <input maxlength="5" style="width:50px;" class="form-control" value="<?= $comment_pnum ?>" name="comment_pnum"/>
+<!--vot-->      <?=lang('comments_per_page')?>: <input maxlength="5" style="width:50px;" class="form-control mx-sm-3" value="<?= $comment_pnum ?>" name="comment_pnum"/>
             </div>
             <div class="form-group form-inline">
-<!--vot-->      <?=lang('comment_sort')?>: <select name="comment_order" class="form-control" style="width: 120px;">
+<!--vot-->      <?=lang('comment_sort')?>: <select name="comment_order" class="form-control mx-sm-3" style="width: 120px;">
 <!--vot-->          <option value="newer" <?= $ex3 ?>><?=lang('new_first')?></option>
 <!--vot-->          <option value="older" <?= $ex4 ?>><?=lang('old_first')?></option>
                 </select>
@@ -106,8 +106,8 @@
             </div>
 
             <div class="form-group form-inline">
-<!--vot-->      RSS <?=lang('export')?> <input maxlength="5" style="width:50px;" value="<?= $rss_output_num ?>" class="form-control" name="rss_output_num"/> <?=lang('rss_output_num')?>
-                <select name="rss_output_fulltext" class="form-control">
+<!--vot-->      RSS <?=lang('export')?> <input maxlength="5" style="width:50px;" value="<?= $rss_output_num ?>" class="form-control mx-sm-3" name="rss_output_num"/> <?=lang('rss_output_num')?>
+                <select name="rss_output_fulltext" class="form-control mx-sm-3">
 <!--vot-->          <option value="y" <?= $ex1 ?>><?=lang('full_text')?></option>
 <!--vot-->          <option value="n" <?= $ex2 ?>><?=lang('summary')?></option>
                 </select>
@@ -117,15 +117,15 @@
 
 <!--vot-->  <h4><?=lang('upload_settings')?></h4>
             <div class="form-group form-inline">
-<!--vot-->      <?=lang('php_upload_max_size')?> <input maxlength="20" style="width:120px;" class="form-control" value="<?= $att_maxsize ?>" name="att_maxsize"/> KB (1M=1024KB)
+<!--vot-->      <?=lang('php_upload_max_size')?> <input maxlength="20" style="width:120px;" class="form-control mx-sm-3" value="<?= $att_maxsize ?>" name="att_maxsize"/> KB (1M=1024KB)
             </div>
             <div class="form-group form-inline">
-<!--vot-->      <?=lang('allow_attach_type')?> <input maxlength="200" style="width:500px;" class="form-control" value="<?= $att_type ?>" name="att_type"/> <?=lang('separate_by_comma')?>
+<!--vot-->      <?=lang('allow_attach_type')?> <input maxlength="200" style="width:500px;" class="form-control mx-sm-3" value="<?= $att_type ?>" name="att_type"/> <?=lang('separate_by_comma')?>
             </div>
             <div class="form-group form-inline">
 <!--vot-->      <input type="checkbox" value="y" name="isthumbnail" id="isthumbnail" <?= $conf_isthumbnail ?> /> <?=lang('thumbnail_max_size')?>
-                <input maxlength="5" style="width:60px;" class="form-control" value="<?= $att_imgmaxw ?>" name="att_imgmaxw"/> x
-<!--vot-->      <input maxlength="5" style="width:60px;" class="form-control" value="<?= $att_imgmaxh ?>" name="att_imgmaxh"/> <?=lang('unit_pixels')?>
+                <input maxlength="5" style="width:60px;" class="form-control mx-sm-3" value="<?= $att_imgmaxw ?>" name="att_imgmaxw"/> x
+<!--vot-->      <input maxlength="5" style="width:60px;" class="form-control mx-sm-3" value="<?= $att_imgmaxh ?>" name="att_imgmaxh"/> <?=lang('unit_pixels')?>
             </div>
             <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
 <!--vot-->  <input type="submit" value="<?=lang('save_settings')?>" class="btn btn-sm btn-success"/>
