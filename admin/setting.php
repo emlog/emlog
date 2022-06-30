@@ -265,7 +265,6 @@ if ($action == 'mail') {
 	$smtp_pw = $options_cache['smtp_pw'] ?? '';
 	$smtp_server = $options_cache['smtp_server'] ?? '';
 	$smtp_port = $options_cache['smtp_port'] ?? '';
-	$smtp_ssl = $options_cache['smtp_ssl'] ?? '';
 
 	include View::getAdmView('header');
 	require_once(View::getAdmView('setting_mail'));
@@ -281,7 +280,6 @@ if ($action == 'mail_save') {
 		'smtp_pw'     => isset($_POST['smtp_pw']) ? addslashes($_POST['smtp_pw']) : '',
 		'smtp_server' => isset($_POST['smtp_server']) ? addslashes($_POST['smtp_server']) : '',
 		'smtp_port'   => isset($_POST['smtp_port']) ? (int)$_POST['smtp_port'] : '',
-		'smtp_ssl'   => isset($_POST['smtp_ssl']) ? addslashes($_POST['smtp_ssl']) : '',
 	];
 	foreach ($data as $key => $val) {
 		Option::updateOption($key, $val);
@@ -296,7 +294,6 @@ if ($action == 'mail_test') {
 		'smtp_pw'     => isset($_POST['smtp_pw']) ? addslashes($_POST['smtp_pw']) : '',
 		'smtp_server' => isset($_POST['smtp_server']) ? addslashes($_POST['smtp_server']) : '',
 		'smtp_port'   => isset($_POST['smtp_port']) ? (int)$_POST['smtp_port'] : '',
-		'smtp_ssl'   => isset($_POST['smtp_ssl']) ? addslashes($_POST['smtp_ssl']) : '',
 		'testTo'      => $_POST['testTo'] ?? '',
 	];
 
@@ -305,16 +302,16 @@ if ($action == 'mail_test') {
 	}
 
 	$mail = new PHPMailer(true);
-	$mail->IsSMTP();                                       // SMTP 使用smtp鉴权方式发送邮件
-	$mail->CharSet = 'UTF-8';                              // 字符编码
-	$mail->SMTPAuth = true;                                // 开启认证
-	$mail->SMTPSecure = $data["smtp_ssl"];                 // 设置加密方式登录鉴权,如 SSL 或者 STARTTLS 等
-	$mail->Port = $data["smtp_port"];                      // 端口
-	$mail->Host = $data["smtp_server"];                    // STMP 服务器地址
-	$mail->Username = $data["smtp_mail"];                  // 邮箱账号
-	$mail->Password = $data["smtp_pw"];                    // SMTP 授权码
-	$mail->From = $data["smtp_mail"];                      // 发送方
-	$mail->AddAddress($data["testTo"]);                    // 接收方
+	$mail->IsSMTP();                                                                                  // SMTP 使用smtp鉴权方式发送邮件
+	$mail->CharSet = 'UTF-8';                                                                         // 字符编码
+	$mail->SMTPAuth = true;                                                                           // 开启认证
+	$mail->SMTPSecure = $data["smtp_port"] == '587' ? 'STARTTLS' : 'ssl';                             // 设置使用 ssl 加密方式登录鉴权
+	$mail->Port = $data["smtp_port"];                                                                 // 端口
+	$mail->Host = $data["smtp_server"];                                                               // STMP 服务器地址
+	$mail->Username = $data["smtp_mail"];                                                             // 邮箱账号
+	$mail->Password = $data["smtp_pw"];                                                               // SMTP 授权码
+	$mail->From = $data["smtp_mail"];                                                                 // 发送方
+	$mail->AddAddress($data["testTo"]);                                                               // 接收方
 	$mail->Subject = "测试邮件";
 	$mail->Body = "这是一封测试邮件";
 

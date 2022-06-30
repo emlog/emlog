@@ -16,14 +16,14 @@ class SendMail {
 
 	function send($to, $title, $content) {
 		$mail = new PHPMailer(true);
-		$mail->IsSMTP();                                       // SMTP 使用smtp鉴权方式发送邮件
-		$mail->CharSet = 'UTF-8';                              // 设置邮件的字符编码，这很重要，不然中文乱码
-		$mail->SMTPAuth = true;                                // 开启认证
-		$mail->SMTPSecure = 'ssl';                             // 设置使用ssl加密方式登录鉴权
-		$mail->Port = $this->smtp_port;                        // 端口,设置ssl连接smtp服务器的远程服务器端口号，以前的默认是25，但是现在新的好像已经不可用了 可选465或587
-		$mail->Host = $this->smtp_host;                        // 链接qq域名邮箱的服务器地址  smtp.sina.com.cn    smtp.163.com   smtp.qiye.163.co
-		$mail->Username = $this->smtp_username;                // 邮箱账号
-		$mail->Password = $this->smtp_password;                // SMTP授权码  上面提到需要保存使用的
+		$mail->IsSMTP();                                                                                 // SMTP 使用smtp鉴权方式发送邮件
+		$mail->CharSet = 'UTF-8';                                                                        // 设置邮件的字符编码，这很重要，不然中文乱码
+		$mail->SMTPAuth = true;                                                                          // 开启认证
+		$mail->SMTPSecure = $this->smtp_port == '587' ? 'STARTTLS' : 'ssl';                              // 设置使用ssl加密方式登录鉴权
+		$mail->Port = $this->smtp_port;                                                                  // 端口,设置ssl连接smtp服务器的远程服务器端口号，以前的默认是25，但是现在新的好像已经不可用了 可选465或587
+		$mail->Host = $this->smtp_host;                                                                  // 链接qq域名邮箱的服务器地址  smtp.sina.com.cn    smtp.163.com   smtp.qiye.163.co
+		$mail->Username = $this->smtp_username;                                                          // 邮箱账号
+		$mail->Password = $this->smtp_password;                                                          // SMTP授权码  上面提到需要保存使用的
 		$mail->From = $this->smtp_username;
 		if (is_array($to)) { #多人接收
 			foreach ($to as $value) {
