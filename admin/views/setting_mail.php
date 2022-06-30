@@ -36,6 +36,10 @@
                 <label>端口</label>
                 <input class="form-control" value="<?= $smtp_port ?>" name="smtp_port" required>
             </div>
+	    <div class="form-group">
+                <label>协议</label>
+                <input class="form-control" value="<?= $smtp_ssl ?>" name="smtp_ssl" required>
+            </div>
             <div class="form-group">
                 <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
                 <input type="submit" value="保存设置" class="btn btn-sm btn-success"/>
@@ -47,6 +51,8 @@
                 SMTP密码：见QQ邮箱顶部设置-> 账户 -> 开启IMAP/SMTP服务 -> 生成授权码（即为SMTP密码）<br>
                 SMTP服务器：smtp.qq.com<br>
                 端口：465 (只支持 SSL 端口)
+                <br>
+		常见SMTP加密协议为: SSL(465端口 QQ邮箱，网易邮箱等),STARTTLS(587端口，Outlook 邮箱)
                 <br>
             </div>
             <!-- 设置接收邮箱的模态框 -->
