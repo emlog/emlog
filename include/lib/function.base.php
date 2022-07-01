@@ -1131,4 +1131,10 @@ function uploadCropImg() {
 	return $ret;
 }
 
+if (!function_exists('split')) {
+	function split($str, $delimiter) {
+		return preg_split($str, $delimiter);
+	}
+}
+
 t();
