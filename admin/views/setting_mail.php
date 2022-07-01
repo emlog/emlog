@@ -33,7 +33,7 @@
                 <input class="form-control" value="<?= $smtp_server ?>" name="smtp_server" required>
             </div>
             <div class="form-group">
-                <label>端口 (465：QQ邮箱，网易邮箱等，587：Outlook邮箱)</label>
+                <label>端口 (465：ssl协议，如QQ邮箱，网易邮箱等，587：STARTTLS协议 如：Outlook邮箱)</label>
                 <input class="form-control" value="<?= $smtp_port ?>" name="smtp_port" required>
             </div>
             <div class="form-group">
