@@ -68,7 +68,7 @@
 						$cid = $value['cid'];
 						$ip_info = $ip ? "<br />来自IP：{$ip}" : '';
 						$comment = $value['comment'];
-						$poster = !empty($value['url']) ? '<a href="'.$value['url'].'" target="_blank">'. $value['poster'].'</a>' : $value['poster'];
+						$poster = !empty($value['url']) ? '<a href="' . $value['url'] . '" target="_blank">' . $value['poster'] . '</a>' : $value['poster'];
 						$title = subString($value['title'], 0, 42);
 						$hide = $value['hide'];
 						$date = $value['date'];
@@ -89,11 +89,12 @@
 								<?php if ($top == 'y'): ?><span class="flag-indexTop" title="置顶">置顶</span><?php endif ?>
                             </td>
                             <td class="small">
-                                <?= $poster ?><?= $mail ?><?= $ip_info ?>
+								<?= $poster ?><?= $mail ?><?= $ip_info ?>
 								<?php if (User::isAdmin()): ?>
                                     <a href="javascript: em_confirm('<?= $ip ?>', 'commentbyip', '<?= LoginAuth::genToken() ?>');"
                                        class="badge badge-pill badge-warning">按IP删除</a>
 								<?php endif ?>
+                                <br><?= $value['os'] ?> - <?= $value['browse'] ?>
                             </td>
                             <td class="small"><?= $date ?></td>
                             <td class="small">

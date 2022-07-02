@@ -1138,3 +1138,39 @@ if (!function_exists('split')) {
 }
 
 t();
+
+function get_os($user_agent) {
+	if (false !== stripos($user_agent, "win")) {
+		$os = 'Windows';
+	} else if (false !== stripos($user_agent, "mac")) {
+		$os = 'MAC';
+	} else if (false !== stripos($user_agent, "linux")) {
+		$os = 'Linux';
+	} else if (false !== stripos($user_agent, "unix")) {
+		$os = 'Unix';
+	} else if (false !== stripos($user_agent, "bsd")) {
+		$os = 'BSD';
+	} else {
+		$os = 'unknown';
+	}
+	return $os;
+}
+
+function get_browse($user_agent) {
+	if (false !== stripos($user_agent, "MSIE")) {
+		$br = 'MSIE';
+	} else if (false !== stripos($user_agent, "Edg")) {
+		$br = 'Edge';
+	} else if (false !== stripos($user_agent, "Firefox")) {
+		$br = 'Firefox';
+	} else if (false !== stripos($user_agent, "Chrome")) {
+		$br = 'Chrome';
+	} else if (false !== stripos($user_agent, "Safari")) {
+		$br = 'Safari';
+	} else if (false !== stripos($user_agent, "Opera")) {
+		$br = 'Opera';
+	} else {
+		$br = 'unknown';
+	}
+	return $br;
+}
