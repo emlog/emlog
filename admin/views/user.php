@@ -121,8 +121,8 @@
                         <label for="sortname">用户组</label>
                         <select name="role" id="role" class="form-control">
                             <option value="writer">注册用户</option>
-                            <option value="admin">管理员</option>
                             <option value="editor">内容编辑</option>
+                            <option value="admin">管理员</option>
                         </select>
                     </div>
                     <div class="form-group">

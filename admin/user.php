@@ -65,18 +65,20 @@ if ($action == 'edit') {
 	$uid = isset($_GET['uid']) ? (int)$_GET['uid'] : '';
 
 	$data = $User_Model->getOneUser($uid);
-	extract($data);
 
-	$ex1 = $ex2 = $ex3 = $ex4 = '';
-	if ($role == User::ROLE_WRITER) {
+	$nickname = $data['nickname'];
+	$role = $data['role'];
+	$description = $data['description'];
+	$username = $data['username'];
+	$email = $data['email'];
+
+	$ex1 = $ex2 = $ex3 = '';
+	if (user::isVistor($role)) {
 		$ex1 = 'selected="selected"';
-	} elseif (User::isAdmin()) {
+	} elseif (User::isEditor($role)) {
 		$ex2 = 'selected="selected"';
-	}
-	if ($ischeck == 'n') {
+	} elseif (User::isAdmin($role)) {
 		$ex3 = 'selected="selected"';
-	} elseif ($ischeck == 'y') {
-		$ex4 = 'selected="selected"';
 	}
 
 	include View::getAdmView('header');

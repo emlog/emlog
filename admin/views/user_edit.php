@@ -27,7 +27,8 @@
         <label for="role">用户组</label>
         <select name="role" id="role" class="form-control">
             <option value="writer" <?= $ex1 ?>>注册用户</option>
-            <option value="admin" <?= $ex2 ?>>管理员</option>
+            <option value="editor" <?= $ex2 ?>>内容编辑</option>
+            <option value="admin" <?= $ex3 ?>>管理员</option>
         </select>
     </div>
     <div class="form-group">
