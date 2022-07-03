@@ -87,7 +87,7 @@
                     </div>
                     <div class="form-group">
                         <label for="template">地址</label>
-                        <input class="form-control" id="siteurl" name="siteurl" maxlength="255" required>
+                        <input class="form-control" id="siteurl" name="siteurl" maxlength="255" placeholder="https://" required>
                     </div>
                     <div class="form-group">
                         <label for="alias">描述</label>

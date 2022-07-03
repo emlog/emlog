@@ -7,8 +7,8 @@
 
 class Option {
 
-	const EMLOG_VERSION = 'pro 1.4.0';               //版本编号
-	const EMLOG_VERSION_TIMESTAMP = 1654994454;      //版本时间戳
+	const EMLOG_VERSION = 'pro 1.4.1';               //版本编号
+	const EMLOG_VERSION_TIMESTAMP = 1656816883;      //版本时间戳
 	const ICON_MAX_W = 160;                          //头像缩略图最大宽
 	const ICON_MAX_H = 160;                          //头像缩略图最大高
 	const UPLOADFILE_PATH = '../content/uploadfile/';//上传路径
