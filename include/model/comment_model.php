@@ -98,7 +98,7 @@ class Comment_Model {
 			$condition = "LIMIT $startId, " . $perpage_num;
 		}
 
-		$andQuery .= !User::isAdmin() ? ' and b.author=' . UID : '';
+		$andQuery .= !User::haveEditPermission() ? ' and b.author=' . UID : '';
 		$sql = "SELECT *,a.hide,a.date,a.top FROM " . DB_PREFIX . "comment as a, " . DB_PREFIX . "blog as b where $andQuery and a.gid=b.gid $orderBy $condition";
 
 		$ret = $this->db->query($sql);
@@ -136,7 +136,7 @@ class Comment_Model {
 		$andQuery = '1=1';
 		$andQuery .= $blogId ? " and a.gid=$blogId" : '';
 		$andQuery .= $hide ? " and a.hide='$hide'" : '';
-		if (User::isAdmin()) {
+		if (User::haveEditPermission()) {
 			$sql = "SELECT count(*) FROM " . DB_PREFIX . "comment as a where $andQuery";
 		} else {
 			$sql = "SELECT count(*) FROM " . DB_PREFIX . "comment as a, " . DB_PREFIX . "blog as b where $andQuery and a.gid=b.gid and b.author=" . UID;
@@ -286,7 +286,7 @@ class Comment_Model {
 			$content = '@' . addslashes($comment['poster']) . '：' . $content;
 		}
 
-		$hide = Option::get('ischkcomment') == 'y' && !User::isAdmin() ? 'y' : 'n';
+		$hide = Option::get('ischkcomment') == 'y' && !User::haveEditPermission() ? 'y' : 'n';
 
 		$sql = 'INSERT INTO ' . DB_PREFIX . "comment (uid,date,poster,gid,comment,mail,url,hide,ip,agent,pid)
                 VALUES ($uid,'$timestamp','$name','$blogId','$content','$mail','$url','$hide','$ipaddr','$useragent','$pid')";
@@ -316,7 +316,7 @@ class Comment_Model {
 	}
 
 	function isYoursComment($cid) {
-		if (User::isAdmin() || User::isVistor()) {
+		if (User::haveEditPermission() || User::isVistor()) {
 			return true;
 		}
 		$query = $this->db->query("SELECT a.cid FROM " . DB_PREFIX . "comment as a," . DB_PREFIX . "blog as b WHERE a.cid=$cid and a.gid=b.gid AND b.author=" . UID);

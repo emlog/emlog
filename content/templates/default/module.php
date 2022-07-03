@@ -38,12 +38,12 @@ function widget_blogger($title) {
         <div class="widget-title">
             <h3><?= $title ?></h3>
         </div>
-        <div class="unstyle-li bloggerinfo"> 
-        <?php if (!empty($user_cache[1]['photo']['src'])): ?>
-            <div>
-                <img class='bloggerinfo-img' src="<?= BLOG_URL . $user_cache[1]['photo']['src'] ?>" alt="blogger"/>
-            </div>
-        <?php endif ?>
+        <div class="unstyle-li bloggerinfo">
+			<?php if (!empty($user_cache[1]['photo']['src'])): ?>
+                <div>
+                    <img class='bloggerinfo-img' src="<?= BLOG_URL . $user_cache[1]['photo']['src'] ?>" alt="blogger"/>
+                </div>
+			<?php endif ?>
             <div class='bloginfo-name'><b><?= $name ?></b></div>
             <div class='bloginfo-descript'><?= $user_cache[1]['des'] ?></div>
         </div>
@@ -100,7 +100,7 @@ function widget_sort($title) {
 				if ($value['pid'] != 0) continue;
 				?>
                 <li>
-                    <a href="<?= Url::sort($value['sid']) ?>"><?= $value['sortname'] ?>&nbsp;&nbsp;<?= (($value['lognum']) > 0) ? '('.($value['lognum']).')' : '' ?></a>
+                    <a href="<?= Url::sort($value['sid']) ?>"><?= $value['sortname'] ?>&nbsp;&nbsp;<?= (($value['lognum']) > 0) ? '(' . ($value['lognum']) . ')' : '' ?></a>
 					<?php if (!empty($value['children'])): ?>
                         <ul class="log-classify-c">
 							<?php
@@ -126,8 +126,8 @@ function widget_sort($title) {
  */
 function widget_newcomm($title) {
 	global $CACHE;
-	$com_cache  = $CACHE->readCache('comment');
-    $isGravatar = Option::get('isgravatar');
+	$com_cache = $CACHE->readCache('comment');
+	$isGravatar = Option::get('isgravatar');
 	?>
     <div class="widget shadow-theme">
         <div class="widget-title">
@@ -140,9 +140,9 @@ function widget_newcomm($title) {
 				$url = Url::comment($value['gid'], $value['page'], $value['cid']);
 				?>
                 <li class="comment-info">
-                <?php if ($isGravatar == 'y'): ?>
-                    <img class='comment-info_img' src="<?= getGravatar($value['mail']) ?>" alt="commentator" />
-                <?php endif ?>
+					<?php if ($isGravatar == 'y'): ?>
+                        <img class='comment-info_img' src="<?= getGravatar($value['mail']) ?>" alt="commentator"/>
+					<?php endif ?>
                     <span class='comm-lates-name'><?= $value['name'] ?></span>
                     <span class='logcom-latest-time'><?= smartDate($value['date']) ?></span><br/>
                     <a href="<?= $url ?>" style="color: #989898;"><?= $value['content'] ?></a>
@@ -314,7 +314,7 @@ function topflg($top, $sortop = 'n', $sortid = null) {
  * 文章查看页：编辑链接
  */
 function editflg($logid, $author) {
-	$editflg = User::isAdmin() || $author == UID ? '<a href="' . BLOG_URL . 'admin/article.php?action=edit&gid=' . $logid . '" target="_blank">&nbsp;&nbsp;&nbsp;编辑</a>' : '';
+	$editflg = User::haveEditPermission() || $author == UID ? '<a href="' . BLOG_URL . 'admin/article.php?action=edit&gid=' . $logid . '" target="_blank">&nbsp;&nbsp;&nbsp;编辑</a>' : '';
 	echo $editflg;
 }
 
@@ -342,10 +342,10 @@ function bloglist_sort($blogid) {
 	$log_cache_sort = $CACHE->readCache('logsort');
 	?>
 	<?php if (!empty($log_cache_sort[$blogid])) { ?>
-        <span class="loglist-sort" >
+        <span class="loglist-sort">
             <a href="<?= Url::sort($log_cache_sort[$blogid]['id']) ?>" title="分类：<?= $log_cache_sort[$blogid]['name'] ?>"><?= $log_cache_sort[$blogid]['name'] ?></a>
         </span>
-    <?php }
+	<?php }
 } ?>
 <?php
 /**
@@ -358,7 +358,7 @@ function blog_tag($blogid) {
 	$log_cache_tags = $CACHE->readCache('logtags');
 	if (!empty($log_cache_tags[$blogid])) {
 		$tag = '';
-        echo '标签：';
+		echo '标签：';
 		foreach ($log_cache_tags[$blogid] as $value) {
 			$tag .= "	<a href=\"" . Url::tag($value['tagurl']) . "\" class='tags'  title='标签' >" . $value['tagname'] . '</a>';
 		}
@@ -375,6 +375,7 @@ function blog_tag($blogid) {
 		}
 	}
 }
+
 ?>
 <?php
 /**
@@ -389,6 +390,7 @@ function blog_author($uid) {
 	$title = !empty($mail) || !empty($des) ? "title=\"$des $mail\"" : '';
 	echo '<a href="' . Url::author($uid) . "\" $title>$author</a>";
 }
+
 ?>
 <?php
 /**
@@ -422,19 +424,19 @@ function blog_comments($comments) {
         <div class="comment" id="comment-<?= $comment['cid'] ?>">
 			<?php if ($isGravatar == 'y'): ?>
                 <div class="avatar"><img src="<?= getGravatar($comment['mail']) ?>"/></div>
-            <div class="comment-infos">
-                <div class="arrow"></div>
-                <b><?= $comment['poster'] ?> </b><span class="comment-time"><?= $comment['date'] ?></span>
-                <div class="comment-content"><?= $comment['content'] ?></div>
-                <div class="comment-reply"><a class="com-reply">回复</a></div>
-            </div>
-            <?php else: ?>
-            <div class="comment-infos-unGravatar">
-                <b><?= $comment['poster'] ?> </b><span class="comment-time"><?= $comment['date'] ?></span>
-                <div class="comment-content"><?= $comment['content'] ?></div>
-                <div class="comment-reply"><a class="com-reply">回复</a></div>
-            </div>
-            <?php endif ?>
+                <div class="comment-infos">
+                    <div class="arrow"></div>
+                    <b><?= $comment['poster'] ?> </b><span class="comment-time"><?= $comment['date'] ?></span>
+                    <div class="comment-content"><?= $comment['content'] ?></div>
+                    <div class="comment-reply"><a class="com-reply">回复</a></div>
+                </div>
+			<?php else: ?>
+                <div class="comment-infos-unGravatar">
+                    <b><?= $comment['poster'] ?> </b><span class="comment-time"><?= $comment['date'] ?></span>
+                    <div class="comment-content"><?= $comment['content'] ?></div>
+                    <div class="comment-reply"><a class="com-reply">回复</a></div>
+                </div>
+			<?php endif ?>
 			<?php blog_comments_children($comments, $comment['children']) ?>
         </div>
 	<?php endforeach ?>
@@ -454,24 +456,24 @@ function blog_comments_children($comments, $children) {
 		?>
         <div class="comment comment-children" id="comment-<?= $comment['cid'] ?>">
 			<?php if ($isGravatar == 'y'): ?>
-            <div class="avatar"><img src="<?= getGravatar($comment['mail']) ?>" alt="commentator" /></div>
-            <div class="comment-infos">
-                <div class="arrow"></div>
-                <b><?= $comment['poster'] ?> </b><span class="comment-time"><?= $comment['date'] ?></span>
-                <div class="comment-content"><?= $comment['content'] ?></div>
-				<?php if ($comment['level'] < 4): ?>
-                <div class="comment-reply"><a class="com-reply">回复</a>
-                </div><?php endif ?>
-            </div>
-            <?php else: ?>
-            <div class="comment-infos-unGravatar">
-                <b><?= $comment['poster'] ?> </b><span class="comment-time"><?= $comment['date'] ?></span>
-                <div class="comment-content"><?= $comment['content'] ?></div>
-                <?php if ($comment['level'] < 4): ?>
-                <div class="comment-reply"><a class="com-reply">回复</a>
-                </div><?php endif ?>
-            </div>
-            <?php endif ?>
+                <div class="avatar"><img src="<?= getGravatar($comment['mail']) ?>" alt="commentator"/></div>
+                <div class="comment-infos">
+                    <div class="arrow"></div>
+                    <b><?= $comment['poster'] ?> </b><span class="comment-time"><?= $comment['date'] ?></span>
+                    <div class="comment-content"><?= $comment['content'] ?></div>
+					<?php if ($comment['level'] < 4): ?>
+                        <div class="comment-reply"><a class="com-reply">回复</a>
+                        </div><?php endif ?>
+                </div>
+			<?php else: ?>
+                <div class="comment-infos-unGravatar">
+                    <b><?= $comment['poster'] ?> </b><span class="comment-time"><?= $comment['date'] ?></span>
+                    <div class="comment-content"><?= $comment['content'] ?></div>
+					<?php if ($comment['level'] < 4): ?>
+                        <div class="comment-reply"><a class="com-reply">回复</a>
+                        </div><?php endif ?>
+                </div>
+			<?php endif ?>
 			<?php blog_comments_children($comments, $comment['children']) ?>
         </div>
 	<?php endforeach ?>
@@ -544,4 +546,5 @@ function blog_tool_ishome() {
 		return FALSE;
 	}
 }
+
 ?>

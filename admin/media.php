@@ -19,7 +19,7 @@ $Media_Model = new Media_Model();
 if (empty($action)) {
 	$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 	$perpage_count = 24;
-	$medias = $Media_Model->getMedias($page, $perpage_count, User::isAdmin() ? null : UID);
+	$medias = $Media_Model->getMedias($page, $perpage_count, User::haveEditPermission() ? null : UID);
 	$count = $Media_Model->getMediaCount();
 	$pageurl = pagination($count, $perpage_count, $page, "media.php?page=");
 	include View::getAdmView('header');

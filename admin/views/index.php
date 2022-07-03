@@ -2,10 +2,13 @@
 	exit('error!');
 } ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">欢迎，<a class="small" href="./blogger.php"><?= $user_cache[UID]['name'] ?></a></h1>
+    <div class="mb-0 text-gray-800">
+        <sapn class="h3">欢迎，<a class="small" href="./blogger.php"><?= $user_cache[UID]['name'] ?></a></sapn>
+        <span class="badge badge-success ml-2"><?= $role_name ?></span>
+    </div>
 	<?php doAction('adm_main_top') ?>
 </div>
-<?php if (User::isAdmin()): ?>
+<?php if (User::haveEditPermission()): ?>
     <div class="row">
         <div class="col-lg-6 mb-4">
             <div class="card shadow mb-4">
@@ -31,6 +34,7 @@
                 </div>
             </div>
         </div>
+		<?php if (User::isAdmin()): ?>
         <div class="col-lg-6 mb-4">
             <div class="card shadow mb-4">
                 <h6 class="card-header">软件信息</h6>
@@ -57,7 +61,7 @@
 							<?php endif ?>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <a id="ckup" href="javascript:checkupdate();" class="badge badge-success">检查更新</a>
+                            <a id="ckup" href="javascript:checkupdate();" class="btn btn-success btn-sm">检查更新</a>
                             <span id="upmsg"></span>
                         </li>
                     </ul>
@@ -147,6 +151,7 @@
                 });
         }
     </script>
+<?php endif ?>
 <?php endif ?>
 
 <div class="row">

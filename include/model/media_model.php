@@ -74,7 +74,7 @@ class Media_Model {
 	}
 
 	function deleteMedia($media_id) {
-		$author = User::isAdmin() ? '' : 'and author=' . UID;
+		$author = User::haveEditPermission() ? '' : 'and author=' . UID;
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "attachment WHERE aid = $media_id $author");
 		$attach = $this->db->fetch_array($query);
 		if (empty($attach)) {

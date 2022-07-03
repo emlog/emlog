@@ -33,6 +33,7 @@ define('ISLOGIN', LoginAuth::isLogin());
 date_default_timezone_set(Option::get('timezone'));
 
 const ROLE_ADMIN = 'admin';
+const ROLE_EDITOR = 'editor';
 const ROLE_WRITER = 'writer';
 const ROLE_VISITOR = 'visitor';
 
