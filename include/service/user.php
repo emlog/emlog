@@ -11,6 +11,7 @@ class User {
 	const ROLE_ADMIN = 'admin';
 	const ROLE_WRITER = 'writer';
 	const ROLE_VISITOR = 'visitor';
+	const ROLE_EDITOR = 'editor';
 
 	static function isAdmin($role = ROLE) {
 		return $role == self::ROLE_ADMIN;
@@ -20,11 +21,27 @@ class User {
 		return $role == self::ROLE_VISITOR;
 	}
 
+	static function isEditor($role = ROLE) {
+		return $role == self::ROLE_EDITOR;
+	}
+
+	static function haveEditPermission($role = ROLE) {
+		if (self::isAdmin($role)) {
+			return true;
+		}
+		if (self::isEditor($role)) {
+			return true;
+		}
+	}
+
 	static function getRoleName($role, $uid = 0) {
 		$role_name = '';
 		switch ($role) {
 			case self::ROLE_ADMIN:
-/*vot*/				$role_name = $uid === 1 ? lang(ROLE_FOUNDER) : lang(ROLE_ADMIN);
+/*vot*/				$role_name = $uid == 1 ? lang(ROLE_FOUNDER) : lang(ROLE_ADMIN);
+				break;
+			case self::ROLE_EDITOR:
+				$role_name = '内容编辑';
 				break;
 			case self::ROLE_WRITER:
 /*vot*/			$role_name = lang(ROLE_WRITER);
@@ -81,6 +98,9 @@ class User {
 	static function checkRolePermission() {
 		$request_uri = strtolower(substr(basename($_SERVER['SCRIPT_NAME']), 0, -4));
 		if (ROLE === self::ROLE_WRITER && !in_array($request_uri, ['article', 'twitter', 'media', 'blogger', 'comment', 'index', 'article_save'])) {
+/*vot*/			emMsg(lang('group_no_permission'), './');
+		}
+		if (ROLE === self::ROLE_EDITOR && !in_array($request_uri, ['article', 'twitter', 'media', 'blogger', 'comment', 'index', 'article_save'])) {
 /*vot*/			emMsg(lang('group_no_permission'), './');
 		}
 		if (!Register::isRegLocal() && mt_rand(1, 16) === 8) {

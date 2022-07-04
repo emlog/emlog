@@ -33,7 +33,7 @@
                 <input class="form-control" value="<?= $smtp_server ?>" name="smtp_server" required>
             </div>
             <div class="form-group">
-<!--vot-->      <label><?=lang('smtp_port')?>:</label>
+<!--vot-->      <label><?=lang('smtp_port')?> <?=lang('smtp_port_info')?></label>
                 <input class="form-control" value="<?= $smtp_port ?>" name="smtp_port" required>
             </div>
             <div class="form-group">

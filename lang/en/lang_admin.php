@@ -77,8 +77,9 @@ $lang = array(
  'smtp_password'	=> 'SMTP password',//'SMTP密码',
  'smtp_server'		=> 'SMTP server',//'SMTP服务器',
  'smtp_port'		=> 'SMTP port',//'端口',
+ 'smtp_port_info'	=> '(465: ssl protocol, used by QQ mailbox, Netease mailbox, etc.; 587: STARTTLS protocol used by: Outlook mailbox)',//'(465：ssl协议，如QQ邮箱，网易邮箱等，587：STARTTLS协议 如：Outlook邮箱)',
  'send_test'		=> 'Send test',//'发送测试',
- 'send_test_prompt'	=> '<b>Let take QQ mailbox configuration as an example</b><br>Sender mailbox: your QQ mailbox<br>SMTP password: see the settings at the top of QQ mailbox -&gt; Account -&gt; Enable IMAP/SMTP service -&gt; Generate authorization code (i.e. SMTP password)<br>SMTP server: smtp.qq.com<br>Port: 465 (only SSL port is supported)<br>',//'<b>以QQ邮箱配置为例</b><br>发送人邮箱：你的QQ邮箱<br>SMTP密码：见QQ邮箱顶部设置-> 账户 -> 开启IMAP/SMTP服务 -> 生成授权码（即为SMTP密码）<br>SMTP服务器：smtp.qq.com<br>端口：465 (只支持 SSL 端口)<br>',
+ 'send_test_prompt'	=> '<b>Let take QQ mailbox configuration as an example</b><br>Sender mailbox: your QQ mailbox<br>SMTP password: see the settings at the top of QQ mailbox -&gt; Account -&gt; Enable IMAP/SMTP service -&gt; Generate authorization code (i.e. SMTP password)<br>SMTP server: smtp.qq.com<br>Port: 465<br>',//'<b>以QQ邮箱配置为例</b><br>发送人邮箱：你的QQ邮箱<br>SMTP密码：见QQ邮箱顶部设置-> 账户 -> 开启IMAP/SMTP服务 -> 生成授权码（即为SMTP密码）<br>SMTP服务器：smtp.qq.com<br>端口：465<br>',
  'recepient_email_enter'	=> 'Enter recepient email',//'输入接收邮箱',
  'send'			=> 'Send',//'发送',
 

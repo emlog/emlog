@@ -202,7 +202,7 @@ if ($action == 'mail_test') {
 	$mail->IsSMTP();                                       // Use SMTP authentication to send mail
 	$mail->CharSet = 'UTF-8';                              // Character Encoding
 	$mail->SMTPAuth = true;                                // Enable authentication
-	$mail->SMTPSecure = 'ssl';                             // Set up login authentication using ssl encryption
+	$mail->SMTPSecure = $data["smtp_port"] == '587' ? 'STARTTLS' : 'ssl';  // Set up login authentication using ssl encryption
 	$mail->Port = $data["smtp_port"];                      // SMTP Port
 	$mail->Host = $data["smtp_server"];                    // STMP server address
 	$mail->Username = $data["smtp_mail"];                  // Email address

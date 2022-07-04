@@ -103,7 +103,7 @@ if ($action == 'operate_log') {
 
 	LoginAuth::checkToken();
 
-	if ($operate == '') {
+	if (!$operate) {
 		emDirect("./article.php?draft=$draft&error_b=1");
 	}
 	if (empty($logs) && empty($gid)) {
@@ -148,7 +148,7 @@ if ($action == 'operate_log') {
 		case 'pub':
 			foreach ($logs as $val) {
 				$Log_Model->hideSwitch($val, 'n');
-				if (User::isAdmin()) {
+				if (User::haveEditPermission()) {
 					$Log_Model->checkSwitch($val, 'y');
 				}
 			}
@@ -163,7 +163,7 @@ if ($action == 'operate_log') {
 			emDirect("./article.php?active_move=1&draft=$draft");
 			break;
 		case 'change_author':
-			if (!User::isAdmin()) {
+			if (!User::haveEditPermission()) {
 /*vot*/				emMsg(lang('no_permission'), './');
 			}
 			foreach ($logs as $val) {
@@ -173,7 +173,7 @@ if ($action == 'operate_log') {
 			emDirect("./article.php?active_change_author=1&draft=$draft");
 			break;
 		case 'check':
-			if (!User::isAdmin()) {
+			if (!User::haveEditPermission()) {
 /*vot*/				emMsg(lang('no_permission'), './');
 			}
 			$Log_Model->checkSwitch($gid, 'y');
@@ -181,7 +181,7 @@ if ($action == 'operate_log') {
 			emDirect("./article.php?active_ck=1&draft=$draft");
 			break;
 		case 'uncheck':
-			if (!User::isAdmin()) {
+			if (!User::haveEditPermission()) {
 /*vot*/				emMsg(lang('no_permission'), './');
 			}
 			$Log_Model->checkSwitch($gid, 'n');

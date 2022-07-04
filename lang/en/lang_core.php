@@ -145,6 +145,7 @@ $lang = array(
 'admin'			=> 'Administrator',//'管理员',
 'registered_user'	=> 'Registered user',//'注册用户',
 'visitor'		=> 'Guest',//'游客',
+'editor'		=> 'Content Editor',//'内容编辑',
 
 //---------------------------
 //content/templates/default/404.php

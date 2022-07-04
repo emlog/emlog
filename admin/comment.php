@@ -37,7 +37,7 @@ if (!$action) {
 
 if ($action === 'delbyip') {
 	LoginAuth::checkToken();
-	if (!User::isAdmin()) {
+	if (!User::haveEditPermission()) {
 /*vot*/		emMsg(lang('no_permission'), './');
 	}
 	$ip = $_GET['ip'] ? addslashes($_GET['ip']) : '';

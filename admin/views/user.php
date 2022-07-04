@@ -122,6 +122,7 @@
 <!--vot-->              <label for="sortname"><?=lang('role')?></label>
                         <select name="role" id="role" class="form-control">
 <!--vot-->                  <option value="writer"><?=lang('registered_user')?></option>
+<!--vot-->                  <option value="editor"><?=lang('editor')?></option>
 <!--vot-->                  <option value="admin"><?=lang('admin')?></option>
                         </select>
                     </div>

@@ -87,7 +87,7 @@
                     </div>
                     <div class="form-group">
 <!--vot-->              <label for="template"><?=lang('link_url')?></label>
-                        <input class="form-control" id="siteurl" name="siteurl" maxlength="255" required>
+                        <input class="form-control" id="siteurl" name="siteurl" maxlength="255" placeholder="https://" required>
                     </div>
                     <div class="form-group">
 <!--vot-->              <label for="alias"><?=lang('description')?></label>

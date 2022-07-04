@@ -53,7 +53,9 @@ class Dispatcher {
 				$this->_method = $route['method'];
 				$this->_params = $matches;
 				break;
-			} elseif (preg_match($route['reg_0'], $this->_path, $matches)) {
+			}
+
+			if (preg_match($route['reg_0'], $this->_path, $matches)) {
 				$this->_model = $route['model'];
 				$this->_method = $route['method'];
 				$this->_params = $matches;

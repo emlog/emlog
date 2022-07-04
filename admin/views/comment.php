@@ -38,7 +38,7 @@
             <li class="nav-item"><a class="nav-link <?php if ($hide == 'y') {
 					echo 'active';
 /*vot*/         } ?>" href="./comment.php?hide=y&<?= $addUrl_1 ?>"><?=lang('pending')?><?php
-					$hidecmnum = User::isAdmin() ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
+					$hidecmnum = User::haveEditPermission() ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
 					if ($hidecmnum > 0) echo '(' . $hidecmnum . ')';
 					?></a>
             </li>
@@ -68,7 +68,7 @@
 						$cid = $value['cid'];
 /*vot*/					$ip_info = $ip ? '<br />' . lang('from_ip') . ': ' . $ip : '';
 						$comment = $value['comment'];
-						$poster = !empty($value['url']) ? '<a href="'.$value['url'].'" target="_blank">'. $value['poster'].'</a>' : $value['poster'];
+						$poster = !empty($value['url']) ? '<a href="' . $value['url'] . '" target="_blank">' . $value['poster'] . '</a>' : $value['poster'];
 						$title = subString($value['title'], 0, 42);
 						$hide = $value['hide'];
 						$date = $value['date'];
@@ -90,10 +90,11 @@
                             </td>
                             <td class="small">
 <!--vot-->                      <?= $poster ?> <?= $mail ?> <?= $ip_info ?>
-								<?php if (User::isAdmin()): ?>
+								<?php if (User::haveEditPermission()): ?>
 <!--vot-->                          <a href="javascript: em_confirm('<?= $ip ?>', 'commentbyip', '<?= LoginAuth::genToken() ?>');"
                                        class="badge badge-pill badge-warning"><?=lang('del_from_ip')?></a>
 								<?php endif ?>
+                                <br><?= $value['os'] ?> - <?= $value['browse'] ?>
                             </td>
                             <td class="small"><?= $date ?></td>
                             <td class="small">

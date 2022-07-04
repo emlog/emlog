@@ -378,6 +378,7 @@ CREATE TABLE {$db_prefix}comment (
   mail varchar(255) NOT NULL default '' COMMENT 'Email',
   url varchar(255) NOT NULL default '' COMMENT 'Homepage URL',
   ip varchar(128) NOT NULL default '' COMMENT 'IP address',
+  agent varchar(512) NOT NULL default '' COMMENT 'User agent',
   hide enum('n','y') NOT NULL default 'n' COMMENT 'Hide or not',
   date bigint(20) NOT NULL COMMENT 'Creation time',
   PRIMARY KEY  (cid),

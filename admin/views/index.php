@@ -2,10 +2,13 @@
 	exit('error!');
 } ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-<!--vot--><h1 class="h3 mb-0 text-gray-800"><?=lang('welcome')?>, <a class="small" href="./blogger.php"><?= $user_cache[UID]['name'] ?></a></h1>
+    <div class="mb-0 text-gray-800">
+<!--vot--><span class="h3"><?=lang('welcome')?>, <a class="small" href="./blogger.php"><?= $user_cache[UID]['name'] ?></a></span>
+        <span class="badge badge-success ml-2"><?= $role_name ?></span>
+    </div>
 	<?php doAction('adm_main_top') ?>
 </div>
-<?php if (User::isAdmin()): ?>
+<?php if (User::haveEditPermission()): ?>
     <div class="row">
         <div class="col-lg-6 mb-4">
             <div class="card shadow mb-4">
@@ -31,6 +34,7 @@
                 </div>
             </div>
         </div>
+		<?php if (User::isAdmin()): ?>
         <div class="col-lg-6 mb-4">
             <div class="card shadow mb-4">
 <!--vot-->  <h6 class="card-header"><?=lang('software_info')?></h6>
@@ -57,7 +61,7 @@
 							<?php endif ?>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-<!--vot-->                  <a id="ckup" href="javascript:checkupdate();" class="badge badge-success"><?=lang('update_check')?></a>
+<!--vot-->                  <a id="ckup" href="javascript:checkupdate();" class="btn btn-success btn-sm"><?=lang('update_check')?></a>
                             <span id="upmsg"></span>
                         </li>
                     </ul>
@@ -147,6 +151,7 @@
                 });
         }
     </script>
+<?php endif ?>
 <?php endif ?>
 
 <div class="row">

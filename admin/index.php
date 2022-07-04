@@ -15,6 +15,7 @@ require_once 'globals.php';
 if (empty($action)) {
 	$avatar = empty($user_cache[UID]['avatar']) ? './views/images/avatar.svg' : '../' . $user_cache[UID]['avatar'];
 	$name = $user_cache[UID]['name'];
+	$role = $user_cache[UID]['role'];
 
 	$serverapp = $_SERVER['SERVER_SOFTWARE'];
 	$DB = Database::getInstance();
@@ -23,6 +24,7 @@ if (empty($action)) {
 	$max_execution_time = ini_get('max_execution_time') ?: '';
 	$max_upload_size = ini_get('upload_max_filesize') ?: '';
 /*vot*/	$php_ver = PHP_VERSION . ', ' . $max_execution_time . 's, ' . $max_upload_size;
+	$role_name = User::getRoleName($role, UID);
 	if (function_exists("curl_init")) {
 		$c = curl_version();
 /*vot*/		$php_ver .= ", curl" . $c['version'];

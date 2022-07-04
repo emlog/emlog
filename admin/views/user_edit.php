@@ -27,6 +27,7 @@
 <!--vot--><label for="role"><?=lang('user_role')?></label>
         <select name="role" id="role" class="form-control">
 <!--vot-->  <option value="writer" <?= $ex1 ?>><?=lang('registered_user')?></option>
+<!--vot-->  <option value="editor" <?= $ex2 ?>><?=lang('editor')?></option>
 <!--vot-->  <option value="admin" <?= $ex2 ?>><?=lang('admin')?></option>
         </select>
     </div>
