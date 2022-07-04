@@ -41,13 +41,13 @@ class User {
 /*vot*/				$role_name = $uid == 1 ? lang(ROLE_FOUNDER) : lang(ROLE_ADMIN);
 				break;
 			case self::ROLE_EDITOR:
-				$role_name = '内容编辑';
+/*vot*/				$role_name = lang(ROLE_EDITOR);
 				break;
 			case self::ROLE_WRITER:
-/*vot*/			$role_name = lang(ROLE_WRITER);
+/*vot*/				$role_name = lang(ROLE_WRITER);
 				break;
 			case self::ROLE_VISITOR:
-/*vot*/			$role_name = lang(ROLE_VISITOR);
+/*vot*/				$role_name = lang(ROLE_VISITOR);
 				break;
 		}
 		return $role_name;

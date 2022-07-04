@@ -734,7 +734,7 @@ $lang = array(
 
 //---------------------------
 //admin/views/setting_user.php
- 'groups_about'		=> '<b>User Groups</b><br>Registered user: generated through registration, can publish articles, notes, upload pictures, etc.<br>Administrator: Has all site management rights, can manage users, perform system settings, etc.<br>',//'<b>用户组</b><br>注册用户：通过注册产生，可以发布文章、笔记、上传图片等<br>管理员：拥有站点全部管理权限，可以管理用户、进行系统设置等<br>',
+ 'groups_about'		=> '<b>User Group</b><br>Registered users: generated through registration, can publish articles, notes, upload pictures, etc.<br>Content editor: responsible for the management of articles, resources, comments, etc.<br>Administrator: Has all site management rights, can manage users, perform system settings, etc.<br>',//'<b>用户组</b><br>注册用户：通过注册产生，可以发布文章、笔记、上传图片等<br>内容编辑：负责文章、资源、评论等内容的管理<br>管理员：拥有站点全部管理权限，可以管理用户、进行系统设置等<br>',
 
 //---------------------------
 //admin/views/signin.php

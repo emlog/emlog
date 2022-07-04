@@ -38,7 +38,6 @@
         </form>
         <div class="alert alert-warning">
 <!--vot-->  <?=lang('groups_about')?>
-            内容编辑：负责文章、资源、评论等内容的管理<br>
         </div>
     </div>
 </div>
