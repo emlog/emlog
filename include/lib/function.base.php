@@ -603,27 +603,21 @@ function imageCropAndResize($src_image, $dst_path, $dst_x, $dst_y, $src_x, $src_
 			if (function_exists('imagepng') && imagepng($new_img, $dst_path)) {
 				ImageDestroy($new_img);
 				return true;
-			} else {
-				return false;
 			}
-			break;
+			return false;
 		case 'jpg':
 		default:
 			if (function_exists('imagejpeg') && imagejpeg($new_img, $dst_path)) {
 				ImageDestroy($new_img);
 				return true;
-			} else {
-				return false;
 			}
-			break;
+			return false;
 		case 'gif':
 			if (function_exists('imagegif') && imagegif($new_img, $dst_path)) {
 				ImageDestroy($new_img);
 				return true;
-			} else {
-				return false;
 			}
-			break;
+			return false;
 	}
 }
 
@@ -845,17 +839,21 @@ function set_ctx_option(): array {
  * 删除文件或目录
  */
 function emDeleteFile($file) {
-	if (empty($file))
+	if (empty($file)) {
 		return false;
-	if (@is_file($file))
+	}
+	if (@is_file($file)) {
 		return @unlink($file);
+	}
 	$ret = true;
 	if ($handle = @opendir($file)) {
 		while ($filename = @readdir($handle)) {
-			if ($filename == '.' || $filename == '..')
+			if ($filename == '.' || $filename == '..') {
 				continue;
-			if (!emDeleteFile($file . '/' . $filename))
+			}
+			if (!emDeleteFile($file . '/' . $filename)) {
 				$ret = false;
+			}
 		}
 	} else {
 		$ret = false;
@@ -941,13 +939,15 @@ function show_404_page($show_404_only = false) {
 	if ($show_404_only) {
 		header("HTTP/1.1 404 Not Found");
 		exit;
-	} elseif (is_file(TEMPLATE_PATH . '404.php')) {
+	}
+
+	if (is_file(TEMPLATE_PATH . '404.php')) {
 		header("HTTP/1.1 404 Not Found");
 		include View::getView('404');
 		exit;
-	} else {
-		emMsg('404', BLOG_URL);
 	}
+
+	emMsg('404', BLOG_URL);
 }
 
 /**
@@ -1099,10 +1099,8 @@ function t() {
  *
  */
 function getTimeZoneOffset($remote_tz, $origin_tz = 'UTC') {
-	if ($origin_tz === null) {
-		if (!is_string($origin_tz = date_default_timezone_get())) {
-			return false; // A UTC timestamp was returned -- bail out!
-		}
+	if (($origin_tz === null) && !is_string($origin_tz = date_default_timezone_get())) {
+		return false; // A UTC timestamp was returned -- bail out!
 	}
 	$origin_dtz = new DateTimeZone($origin_tz);
 	$remote_dtz = new DateTimeZone($remote_tz);

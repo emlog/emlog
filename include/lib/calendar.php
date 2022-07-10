@@ -7,9 +7,6 @@
 
 class Calendar {
 
-	/**
-	 * 日历调用地址
-	 */
 	static function url() {
 		$calendarUrl = isset($GLOBALS['record']) ? DYNAMIC_BLOGURL . '?action=cal&record=' . (int)$GLOBALS['record'] : DYNAMIC_BLOGURL . '?action=cal';
 		return $calendarUrl;
@@ -124,10 +121,10 @@ class Calendar {
 						}
 					}
 				}
-			}//内循环结束
+			}
 			$calendar .= '</tr>';
 			$w += 7;
-		}//外循环结束
+		}
 		$calendar .= '</table>';
 		echo $calendar;
 	}
