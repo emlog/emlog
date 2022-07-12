@@ -22,6 +22,11 @@ if (PHP_VERSION < '7.0') {
 
 $act = isset($_GET['action']) ? $_GET['action'] : '';
 
+$bt_db_host = 'localhost';
+$bt_db_username = 'BT_DB_USERNAME';
+$bt_db_password = 'BT_DB_PASSWORD';
+$bt_db_name = 'BT_DB_NAME';
+
 $env_emlog_env = getenv('EMLOG_ENV');
 $env_db_host = getenv('EMLOG_DB_HOST');
 $env_db_name = getenv('EMLOG_DB_NAME');
@@ -122,6 +127,14 @@ if (!$act) {
                     <input name="dbuser" type="hidden" value="<?= $env_db_user ?>">
                     <input name="dbpasswd" type="hidden" value="<?= $env_db_password ?>">
                     <input name="dbname" type="hidden" value="<?= $env_db_name ?>">
+                    <input name="dbprefix" type="hidden" value="emlog_">
+                </div>
+			<?php elseif (strpos($bt_db_username, 'BT_DB_') === false): ?>
+                <div class="b">
+                    <input name="hostname" type="hidden" value="<?= $bt_db_host ?>">
+                    <input name="dbuser" type="hidden" value="<?= $bt_db_username ?>">
+                    <input name="dbpasswd" type="hidden" value="<?= $bt_db_password ?>">
+                    <input name="dbname" type="hidden" value="<?= $bt_db_name ?>">
                     <input name="dbprefix" type="hidden" value="emlog_">
                 </div>
 			<?php else: ?>

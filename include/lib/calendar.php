@@ -7,9 +7,6 @@
 
 class Calendar {
 
-	/**
-	 * Calendar call address
-	 */
 	static function url() {
 		$calendarUrl = isset($GLOBALS['record']) ? DYNAMIC_BLOGURL . '?action=cal&record=' . (int)$GLOBALS['record'] : DYNAMIC_BLOGURL . '?action=cal';
 		return $calendarUrl;
@@ -124,10 +121,10 @@ class Calendar {
 						}
 					}
 				}
-			}//End of inner loop
+			}
 			$calendar .= '</tr>';
 			$w += 7;
-		}//End of outer loop
+		}
 		$calendar .= '</table>';
 		echo $calendar;
 	}

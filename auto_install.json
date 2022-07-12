@@ -3,9 +3,9 @@
   "chmod":[],
   "success_url": "/index.php",
   "php_versions": "70,71,72,73,74,80",
-  "db_config": "",
-  "admin_username": "",
-  "admin_password": "",
+  "db_config": "install.php",
+  "admin_username": "******",
+  "admin_password": "******",
   "run_path": "/",
   "remove_file": ["/install", "/temp", "/.user.ini"],
   "enable_functions":[]

@@ -4,7 +4,7 @@
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <div class="mb-0 text-gray-800">
 <!--vot--><span class="h3"><?=lang('welcome')?>, <a class="small" href="./blogger.php"><?= $user_cache[UID]['name'] ?></a></span>
-        <span class="badge badge-success ml-2"><?= $role_name ?></span>
+        <span class="badge badge-primary ml-2"><?= $role_name ?></span>
     </div>
 	<?php doAction('adm_main_top') ?>
 </div>
