@@ -5,6 +5,8 @@
  * @link https://www.emlog.net
  */
 
+/*vot*/ session_start();
+
 if (getenv('EMLOG_ENV') === 'develop'
     || defined('DEV_MODE')) {
 	error_reporting(E_ALL);
@@ -25,6 +27,19 @@ require_once EMLOG_ROOT . '/config.php';
 require_once EMLOG_ROOT . '/include/lib/function.base.php';
 
 spl_autoload_register("emAutoload");
+
+
+// Interface language
+/*vot*/ define('LANG', isset($_SESSION['LANG']) ? $_SESSION['LANG'] : DEFAULT_LANG);
+//dump(LANG, 'LANG');
+
+//vot: blog language direction
+define('LANG_DIR', LANG_LIST[LANG]['dir']); //'ltr', 'rtl'
+//dump(LANG_DIR, 'LANG_DIR');
+
+// Load the core Lang File
+/*vot*/ load_language('core');
+
 
 $CACHE = Cache::getInstance();
 

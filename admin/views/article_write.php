@@ -201,8 +201,8 @@
     </div>
 </div>
 <script src="./editor.md/editormd.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
-<? if (EMLOG_LANGUAGE !== 'zh-cn') { ?>
-<script src="./editor.md/languages/<?=EMLOG_LANGUAGE?>.js"></script>
+<? if (strtolower(LANG) !== 'zh-cn') { ?>
+<script src="./editor.md/languages/<?=strtolower(LANG)?>.js"></script>
 <? } ?>
 <script>
     var icon_tog = false;//If the value is true, the "advanced options" arrow points to the right

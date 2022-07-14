@@ -7,7 +7,7 @@ if (!defined('EMLOG_ROOT')) {
 }
 ?>
 <!doctype html>
-<!--vot--><html dir="<?= EMLOG_LANGUAGE_DIR ?>" lang="<?=EMLOG_LANGUAGE?>">
+<!--vot--><html lang="<?=LANG?>" dir="<?= LANG_DIR ?>">
 <head>
     <meta charset="utf-8">
 <!--vot--><title><?=lang('404_error')?></title>

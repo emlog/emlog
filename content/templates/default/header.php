@@ -12,7 +12,7 @@ if (!defined('EMLOG_ROOT')) {
 require_once View::getView('module');
 ?>
 <!doctype html>
-<!--vot--><html lang="<?=EMLOG_LANGUAGE?>" dir="<?= EMLOG_LANGUAGE_DIR ?>">
+<!--vot--><html lang="<?=LANG?>" dir="<?= LANG_DIR ?>">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">

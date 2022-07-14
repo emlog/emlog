@@ -2,7 +2,7 @@
 	exit('error!');
 } ?>
 <!doctype html>
-<!--vot--><html lang="<?=EMLOG_LANGUAGE?>" dir="<?= EMLOG_LANGUAGE_DIR ?>">
+<!--vot--><html lang="<?=LANG?>" dir="<?= LANG_DIR ?>">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -24,8 +24,8 @@
     <script src="./views/js/js.cookie-2.2.1.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
     <script src="./views/js/cropper.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
     <script src="./views/js/common.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
-<!--vot--><script>	var em_lang = '<?= EMLOG_LANGUAGE ?>';</script>
-<!--vot--><script src="<?= BLOG_URL ?>/lang/<?= EMLOG_LANGUAGE ?>/lang_js.js"></script>
+<!--vot--><script>	var em_lang = '<?= LANG ?>';</script>
+<!--vot--><script src="<?= BLOG_URL ?>/lang/<?= LANG ?>/lang_js.js"></script>
 	<?php doAction('adm_head'); ?>
 </head>
 <body>

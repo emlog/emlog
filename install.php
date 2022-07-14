@@ -6,8 +6,8 @@
  */
 
 /*vot*/ define('EMLOG_ROOT', str_replace('\\','/',__DIR__));
-/*vot*/ define('EMLOG_LANGUAGE','en'); //zh-CN, zh-TW, en, ru, etc.
-/*vot*/ define('EMLOG_LANGUAGE_DIR','ltr'); //ltr, rtl 
+/*vot*/ define('LANG','en'); //zh-CN, zh-TW, en, ru, etc.
+/*vot*/ define('LANG_DIR','ltr'); //ltr, rtl 
 
 require_once EMLOG_ROOT . '/include/lib/function.base.php';
 
@@ -36,7 +36,7 @@ $env_db_password = getenv('EMLOG_DB_PASSWORD');
 if (!$act) {
 	?>
     <!doctype html>
-<!--vot--><html dir="<?= EMLOG_LANGUAGE_DIR ?>" lang="<?= EMLOG_LANGUAGE ?>">
+<!--vot--><html dir="<?= LANG_DIR ?>" lang="<?= LANG ?>">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -302,10 +302,35 @@ EOT;
 		. "const AUTH_COOKIE_NAME = 'EM_AUTHCOOKIE_" . getRandStr(32, false) . "';"
 /*vot*/		. "\n//Safety admin entry: /admin/?s=xxx\n"
 /*vot*/		. "//const ADMIN_PATH_CODE = 'xxx';"
-/*vot*/		. "//blog language\n"
-/*vot*/		. "\ndefine('EMLOG_"."LANGUAGE','".EMLOG_LANGUAGE."'); //zh-CN, zh-TW, en, ru, etc."
-/*vot*/		. "\n//blog language direction //vot\n"
-/*vot*/		. "define('EMLOG_"."LANGUAGE_DIR','".EMLOG_LANGUAGE_DIR."'); //ltr, rtl"
+
+
+/*vot*/		. "\n\n// Default blog language"
+/*vot*/		. "\ndefine('DEFAULT_LANG', 'en'); //'en', 'ru', 'zh-CN', 'zh-TW', 'pt-BR', etc."
+/*vot*/		. "\n// Enabled language list"
+/*vot*/		. "\ndefine('LANG_LIST', ["
+/*vot*/		. "\n	'en' => ["
+/*vot*/		. "\n		'name'=>'English',"
+/*vot*/		. "\n		'title'=>'English',"
+/*vot*/		. "\n		'dir'=>'ltr',"
+/*vot*/		. "\n	],"
+/*vot*/		. "\n	'ru' => ["
+/*vot*/		. "\n		'name'=>'Русский',"
+/*vot*/		. "\n		'title'=>'Russian',"
+/*vot*/		. "\n		'dir'=>'ltr',"
+/*vot*/		. "\n	],"
+/*vot*/		. "\n	'zh-CN' => ["
+/*vot*/		. "\n		'name'=>'简体中文',"
+/*vot*/		. "\n		'title'=>'Simplified Chinese',"
+/*vot*/		. "\n		'dir'=>'ltr',"
+/*vot*/		. "\n	],"
+/*vot*/		. "\n/*"
+/*vot*/		. "\n	'ar' => ["
+/*vot*/		. "\n		'name'=>'العربية',"
+/*vot*/		. "\n		'title'=>'Arabic',"
+/*vot*/		. "\n		'dir'=>'rtl',"
+/*vot*/		. "\n	],"
+/*vot*/		. "\n*/"
+/*vot*/		. "\n]);"
 /*vot*/		. "\n";
 
 	$fp = @fopen('config.php', 'w');

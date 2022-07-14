@@ -98,8 +98,8 @@
 </script>
 
 <script src="./editor.md/editormd.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
-<? /*vot*/ if (EMLOG_LANGUAGE !== 'zh-cn') { ?>
-<script src="./editor.md/languages/<?=EMLOG_LANGUAGE?>.js"></script>
+<? /*vot*/ if (strtolower(LANG) !== 'zh-cn') { ?>
+<script src="./editor.md/languages/<?=strtolower(LANG)?>.js"></script>
 <? } ?>
 <script>
     $("#menu_page").addClass('active');
