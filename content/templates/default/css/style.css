@@ -23,7 +23,7 @@ body {
     font-size: 16px;
     color: #5a5c69;
     background: #f5f5f6;
-    font-family: -apple-system, SF UI Text, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei, WenQuanYi Micro Hei, sans-serif
+    font-family: -apple-system, SF UI Text, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei, WenQuanYi Micro Hei, Verdana, Arial, sans-serif;
 }
 h1, h2, h3, h4, h5, h6 {
     margin-top: 0;
@@ -215,6 +215,47 @@ footer .copyright {
 }
 .list-menu {
 	list-style: none
+}
+
+/* Dropdown */
+.drop {
+  position: relative;
+  display: inline-block;
+}
+.drop .toggle {
+  cursor: pointer;
+  color: #333333;
+  padding: 1rem 0.5rem 1rem 0.5rem;
+}
+.down {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  width: 100px;
+  min-width: 24px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+.down.right {
+  right: 0;
+}
+.down a {
+  color: black;
+  padding: 4px;
+  text-align: left;
+  text-decoration: none;
+  display: block;
+}
+.down a:hover {
+  background-color: #f0f0f0;
+}
+.drop:hover .down {
+  display: block;
+}
+.drop:hover .toggle {
+}
+/* Change language */
+.language {
 }
 
 /* Responsive configuration of navigation list

@@ -297,6 +297,17 @@ function blog_navi() {
                 <li class="list-item list-menu"><a class="nav-link" href="<?= $value['url'] ?>" <?= $newtab ?>><?= $value['naviname'] ?></a></li>
 			<?php endif ?>
 			<?php endforeach ?>
+
+<!--vot-->  <li class="list-item list-menu drop">
+                <span class="toggle"><?= lang('language') ?>: <img src="<?= ROOT_URL ?>/lang/<?= LANG ?>/flag.gif"></span>
+                <div class="down"><!-- RIGHT -->
+                <?php foreach(LANG_LIST as $l=>$lng) {
+                $selected = ($_SESSION['LANG'] == $l) ? 'selected="selected"' : '';
+?>
+                <a href="?language=<?= $l ?>" title="<?= LANG_LIST[$l]['title'] ?>"><img src="<?= ROOT_URL ?>/lang/<?= $l ?>/flag.gif"> <?= LANG_LIST[$l]['name'] ?></a>
+                <?php } ?>
+                </div>
+<!--vot-->  </li>
         </ul>
     </div>
 <?php } ?>

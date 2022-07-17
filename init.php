@@ -29,13 +29,21 @@ require_once EMLOG_ROOT . '/include/lib/function.base.php';
 spl_autoload_register("emAutoload");
 
 
-// Interface language
-/*vot*/ define('LANG', isset($_SESSION['LANG']) ? $_SESSION['LANG'] : DEFAULT_LANG);
-//dump(LANG, 'LANG');
+//vot: Set Interface language
+$url = $_SERVER['REQUEST_URI'];
+if (isset($_GET['language'])) {
+    $url = removeParam('language', $url);
+    $_SESSION['LANG'] = $_GET['language'];
+    emDirect($url);
+}
+
+if (empty($_SESSION['LANG'])) {
+    $_SESSION['LANG'] = DEFAULT_LANG;
+}
+define('LANG', $_SESSION['LANG']);
 
 //vot: blog language direction
 define('LANG_DIR', LANG_LIST[LANG]['dir']); //'ltr', 'rtl'
-//dump(LANG_DIR, 'LANG_DIR');
 
 // Load the core Lang File
 /*vot*/ load_language('core');

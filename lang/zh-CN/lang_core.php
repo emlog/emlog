@@ -3,6 +3,10 @@
 $lang = array(
 
 //---------------------------
+//init.php
+'language'		=> '语言',//'Language',
+
+//---------------------------
 //include/controller/comment_controller.php
 'mail_test_header'	=> '测试邮件发送标题',//'Test mail sending header',
 'mail_test_content'	=> '测试邮件发送内容',//'Test mail sending content',
