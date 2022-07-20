@@ -146,6 +146,17 @@
                         </a>
                     </li>
                     <div class="topbar-divider d-none d-sm-block"></div>
+<!--vot-->          <li class="nav-item mx-1 drop">
+                <span class="nav-link toggle"><?= lang('language') ?>:&nbsp;<img src="<?= BLOG_URL ?>/lang/<?= LANG ?>/flag.gif"></span>
+                <div class="down"><!-- RIGHT -->
+                <?php foreach(LANG_LIST as $l=>$lng) {
+                $selected = ($_SESSION['LANG'] == $l) ? 'selected="selected"' : '';
+?>
+                <a href="?language=<?= $l ?>" title="<?= LANG_LIST[$l]['title'] ?>"><img src="<?= BLOG_URL ?>/lang/<?= $l ?>/flag.gif"> <?= LANG_LIST[$l]['name'] ?></a>
+                <?php } ?>
+                </div>
+<!--vot-->          </li>
+                    <div class="topbar-divider d-none d-sm-block"></div>
                     <li class="nav-item mx-1">
 <!--vot-->              <a class="nav-link" href="account.php?action=logout" title="<?= lang('logout') ?>" role="button">
                             <i class="icofont-logout icofont-1x"></i>
