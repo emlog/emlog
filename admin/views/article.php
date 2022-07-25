@@ -158,7 +158,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 <!--vot-->                  <option value="" selected="selected"><?=lang('top')?></option>
 <!--vot-->                  <option value="top"><?=lang('home_top')?></option>
 <!--vot-->                  <option value="sortop"><?=lang('category_top')?></option>
-<!--vot-->                  <option value="notop"><?=lang('unstick')?></option>
+<!--vot-->                  <option value="notop"><?=lang('untop')?></option>
                     </select>
 				<?php endif ?>
                 <select name="sort" id="sort" onChange="changeSort(this);" class="form-control m-1">

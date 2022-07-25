@@ -109,7 +109,7 @@
             <div class="list_footer">
                 <div class="btn-group btn-group-sm" role="group">
 <!--vot-->          <a href="javascript:commentact('top');" class="btn btn-sm btn-primary"><?=lang('top')?></a>
-<!--vot-->          <a href="javascript:commentact('untop');" class="btn btn-sm btn-secondary"><?=lang('unstick')?></a>
+<!--vot-->          <a href="javascript:commentact('untop');" class="btn btn-sm btn-secondary"><?=lang('untop')?></a>
 <!--vot-->        <a href="javascript:commentact('hide');" class="btn btn-sm btn-warning"><?=lang('hide')?></a>
 <!--vot-->        <a href="javascript:commentact('pub');" class="btn btn-sm btn-success"><?=lang('approve')?></a>
 <!--vot-->        <a href="javascript:commentact('del');" class="btn btn-sm btn-danger"><?=lang('delete')?></a>
