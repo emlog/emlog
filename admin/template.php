@@ -90,7 +90,7 @@ if ($action === 'install') {
 
 if ($action === 'upload_zip') {
 	LoginAuth::checkToken();
-	$zipfile = $_FILES['tplzip'] ?? '';
+	$zipfile = isset($_FILES['tplzip']) ? $_FILES['tplzip'] : '';
 
 	if ($zipfile['error'] === 4) {
 		emDirect("./template.php?error_d=1");

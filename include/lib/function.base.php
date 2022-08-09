@@ -80,7 +80,7 @@ function realUrl() {
 	$max_deep = count($path_element);
 
 	while ($current_deep < $max_deep) {
-		$this_match = $this_match . $path_element[$current_deep] . DIRECTORY_SEPARATOR;
+		$this_match .= $path_element[$current_deep] . DIRECTORY_SEPARATOR;
 
 		if (substr($emlog_path, strlen($this_match) * (-1)) === $this_match) {
 			$best_match = $this_match;
@@ -104,9 +104,9 @@ function realUrl() {
 function checkPlugin($plugin) {
 	if (is_string($plugin) && preg_match("/^[\w\-\/]+\.php$/", $plugin) && file_exists(EMLOG_ROOT . '/content/plugins/' . $plugin)) {
 		return true;
-	} else {
-		return false;
 	}
+
+	return false;
 }
 
 /**
@@ -115,9 +115,9 @@ function checkPlugin($plugin) {
 function checkMail($email) {
 	if (preg_match("/^[\w\.\-]+@\w+([\.\-]\w+)*\.\w+$/", $email) && strlen($email) <= 60) {
 		return true;
-	} else {
-		return false;
 	}
+
+	return false;
 }
 
 /**
@@ -816,7 +816,7 @@ function emDownFile($source) {
 	return $temp_file;
 }
 
-function set_ctx_option(): array {
+function set_ctx_option() {
 	$data = http_build_query(['emkey' => Option::get('emkey')]);
 	return [
 		'http' => [
@@ -1114,7 +1114,7 @@ function getTimeZoneOffset($remote_tz, $origin_tz = 'UTC') {
  * 上传裁剪后的图片（封面、头像）
  */
 function uploadCropImg() {
-	$attach = $_FILES['image'] ?? '';
+	$attach = isset($_FILES['image']) ? $_FILES['image'] : '';
 	if (!$attach || $attach['error'] === 4) {
 		echo "error";
 		exit;

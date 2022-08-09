@@ -12,7 +12,7 @@
 
 require_once 'globals.php';
 
-$plugin = $_GET['plugin'] ?? '';
+$plugin = isset($_GET['plugin']) ? $_GET['plugin'] : '';
 
 if (empty($action) && empty($plugin)) {
 	$Plugin_Model = new Plugin_Model();
@@ -80,7 +80,7 @@ if ($action == 'del') {
 
 if ($action == 'upload_zip') {
 	LoginAuth::checkToken();
-	$zipfile = $_FILES['pluzip'] ?? '';
+	$zipfile = isset($_FILES['pluzip']) ? $_FILES['pluzip'] : '';
 
 	if ($zipfile['error'] === 4) {
 		emDirect("./plugin.php?error_d=1");

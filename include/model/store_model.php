@@ -40,10 +40,10 @@ class Store_Model {
 		$data = [];
 		switch ($type) {
 			case 'tpl':
-				$data = $ret['data']['templates'] ?? [];
+				$data = isset($ret['data']['templates']) ? $ret['data']['templates'] : [];
 				break;
 			case 'plu':
-				$data = $ret['data']['plugins'] ?? [];
+				$data = isset($ret['data']['plugins']) ? $ret['data']['plugins'] : [];
 				break;
 		}
 		return $data;

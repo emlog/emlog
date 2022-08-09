@@ -11,8 +11,8 @@ require_once EMLOG_ROOT . '/include/lib/function.base.php';
 header('Content-Type: text/html; charset=UTF-8');
 spl_autoload_register("emAutoload");
 
-if (PHP_VERSION < '7.0') {
-	emMsg('PHP版本太低，请使用7.0及以上版本(推荐7.4)');
+if (PHP_VERSION < '5.6') {
+	emMsg('PHP版本太低，请使用5.6及以上版本(推荐7.4)');
 }
 
 $act = isset($_GET['action']) ? $_GET['action'] : '';

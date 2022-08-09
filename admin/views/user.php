@@ -66,7 +66,7 @@
 				foreach ($users as $key => $val):
 					$avatar = empty($user_cache[$val['uid']]['avatar']) ? './views/images/avatar.svg' : '../' . $user_cache[$val['uid']]['avatar'];
 					$forbid = $val['state'] == 1;
-					$user_log_num = $sta_cache[$val['uid']]['lognum'] ?? 0;
+					$user_log_num = isset($sta_cache[$val['uid']]['lognum']) ? $sta_cache[$val['uid']]['lognum'] : 0;
 					?>
                     <tr>
                         <td><img src="<?= $avatar ?>" height="35" width="35" class="rounded-circle"/></td>

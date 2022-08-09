@@ -47,7 +47,7 @@ class Dispatcher {
 
 		$urlMode = Option::get('isurlrewrite');
 		foreach ($this->_routingTable as $route) {
-			$reg = $route['reg_' . $urlMode] ?? ($route['reg'] ?? $route['reg_0']);
+			$reg = isset($route['reg_' . $urlMode]) ? $route['reg_' . $urlMode] : (isset($route['reg']) ? $route['reg'] : $route['reg_0']);
 			if (preg_match($reg, $this->_path, $matches)) {
 				$this->_model = $route['model'];
 				$this->_method = $route['method'];
@@ -86,7 +86,7 @@ class Dispatcher {
 		}
 
 		//for iis6 path is GBK
-		if (isset($_SERVER['SERVER_SOFTWARE']) && false !== stristr($_SERVER['SERVER_SOFTWARE'], 'IIS')) {
+		if (isset($_SERVER['SERVER_SOFTWARE']) && stripos($_SERVER['SERVER_SOFTWARE'], 'IIS') !== false) {
 			if (function_exists('mb_convert_encoding')) {
 				$path = mb_convert_encoding($path, 'UTF-8', 'GBK');
 			} else {

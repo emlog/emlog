@@ -37,7 +37,7 @@ class MySqlii {
 			emMsg('服务器PHP不支持mysqli函数');
 		}
 
-		@$this->conn = new mysqli(DB_HOST, DB_USER, DB_PASSWD, DB_NAME);
+		$this->conn = new mysqli(DB_HOST, DB_USER, DB_PASSWD, DB_NAME);
 		if ($this->conn->connect_error) {
 			switch ($this->conn->connect_errno) {
 				case 1044:
@@ -53,7 +53,7 @@ class MySqlii {
 					emMsg("连接MySQL数据库失败，数据库地址错误或者数据库服务器不可用");
 					break;
 				default :
-					emMsg("连接MySQL数据库失败，请检查数据库信息。错误编号：" . $this->conn->connect_errno);
+					emMsg("连接MySQL数据库失败，请检查数据库信息。错误信息：" . $this->conn->connect_error);
 					break;
 			}
 		}

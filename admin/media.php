@@ -40,9 +40,9 @@ if ($action === 'lib') {
 
 if ($action === 'upload') {
 	$editor = isset($_GET['editor']) ? 1 : 0; // 是否来自Markdown编辑器的上传
-	$attach = $_FILES['file'] ?? '';
+	$attach = isset($_FILES['file']) ? $_FILES['file'] : '';
 	if ($editor) {
-		$attach = $_FILES['editormd-image-file'] ?? '';
+		$attach = isset($_FILES['editormd-image-file']) ? $_FILES['editormd-image-file'] : '';
 	}
 
 	if (!$attach || $attach['error'] === 4) {
@@ -87,7 +87,7 @@ if ($action === 'delete') {
 }
 
 if ($action == 'operate_media') {
-	$operate = $_POST['operate'] ?? '';
+	$operate = isset($_POST['operate']) ? $_POST['operate'] : '';
 	$aids = isset($_POST['aids']) ? array_map('intval', $_POST['aids']) : array();
 
 	LoginAuth::checkToken();

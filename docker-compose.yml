@@ -3,7 +3,7 @@ services:
 
   db:
     image: mysql/mysql-server:5.7
-    container_name: mysql5.7
+    container_name: mysql
     command:
       - --default_authentication_plugin=mysql_native_password
       - --character-set-server=utf8mb4
@@ -33,7 +33,8 @@ services:
     ports:
       - "9000:9000"
     environment:
-      EMLOG_DB_HOST: db:3306
+      EMLOG_ENV: develop
+      EMLOG_DB_HOST: mysql
       EMLOG_DB_USER: emlog
       EMLOG_DB_NAME: emlog
       EMLOG_DB_PASSWORD: emlog

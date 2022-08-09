@@ -47,7 +47,7 @@ if ($action === 'delbyip') {
 }
 
 if ($action === 'batch_operation') {
-	$operate = $_POST['operate'] ?? '';
+	$operate = isset($_POST['operate']) ? $_POST['operate'] : '';
 	$comments = isset($_POST['com']) ? array_map('intval', $_POST['com']) : [];
 
 	if (empty($comments)) {
