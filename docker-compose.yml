@@ -46,7 +46,7 @@ services:
       - ./:/app/emlog
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
     ports:
-      - "8080:80"
+      - "80:80"
     networks:
       - emlog_network
     depends_on:
