@@ -37,7 +37,7 @@ class MySqlii {
 			emMsg('服务器PHP不支持mysqli函数');
 		}
 
-		$this->conn = new mysqli(DB_HOST, DB_USER, DB_PASSWD, DB_NAME);
+		@$this->conn = new mysqli(DB_HOST, DB_USER, DB_PASSWD, DB_NAME);
 		if ($this->conn->connect_error) {
 			switch ($this->conn->connect_errno) {
 				case 1044:

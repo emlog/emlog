@@ -45,7 +45,7 @@
 
 ## 环境要求
 
-* PHP7、PHP8，推荐 PHP7.4
+* PHP5.6、PHP7、PHP8，推荐 PHP7.4
 * MySQL5.6及以上，推荐 5.6 ，高配服务器（2G内存及以上）推荐5.7
 * 服务器环境推荐：Linux + nginx
 * 服务器面板软件推荐：宝塔面板
@@ -60,7 +60,7 @@
 ## Docker
 
 1. docker-compose up
-2. http://dev.emlog.cn
+2. http://localhost:8080
 
 ## 特别感谢
 
