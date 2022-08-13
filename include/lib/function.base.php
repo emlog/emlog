@@ -912,20 +912,24 @@ body {
     border-radius: 10px;
     padding:30px 10px;
     list-style:none;
-    border:#DFDFDF 1px solid;
+    border:#DFDFDF 2px solid;
 }
 .main p {
     line-height: 18px;
-    margin: 5px 20px;
+    margin: 10px 20px;
+}
+a {
+	color: #333333;
 }
 </style>
 </head>
 <body>
 <div class="main">
+<p style="font-size: 16px;">抱歉，出错了 :-(</p>
 <p>$msg</p>
 EOT;
 	if ($url != 'none') {
-		echo '<p><a href="' . $url . '">&larr;点击返回</a></p>';
+		echo '<p><a href="' . $url . '">&larr; 点击返回</a></p>';
 	}
 	echo <<<EOT
 </div>

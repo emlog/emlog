@@ -89,7 +89,7 @@ class MySqlii {
 			emMsg("连接数据库失败，请填写数据库名");
 		}
 		if (!$ignore_err && !$this->result) {
-			emMsg("SQL语句执行错误: {$sql}<br />" . $this->geterror());
+			emMsg("SQL执行错误: $sql<br />" . $this->geterror());
 		} else {
 			return $this->result;
 		}
