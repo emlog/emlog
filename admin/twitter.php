@@ -39,13 +39,13 @@ if ($action == 'post') {
 		emDirect("twitter.php?error_a=1");
 	}
 
-	$tdata = [
+	$data = [
 		'content' => $t,
 		'author'  => UID,
 		'date'    => time(),
 	];
 
-	$twid = $Twitter_Model->addTwitter($tdata);
+	$Twitter_Model->addTwitter($data);
 	$CACHE->updateCache(array('sta', 'newtw'));
 	emDirect("twitter.php?active_t=1");
 }
