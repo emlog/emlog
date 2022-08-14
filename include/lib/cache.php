@@ -500,7 +500,7 @@ class Cache {
 				];
 			}
 			foreach ($logs as $gid => $sortid) {
-				$log_cache_sort[$gid] = $sorts[$sortid] ?? [];
+				$log_cache_sort[$gid] = isset($sorts[$sortid]) ? $sorts[$sortid] : [];
 			}
 		}
 		$cacheData = serialize($log_cache_sort);

@@ -23,7 +23,7 @@ if (empty($action)) {
 }
 
 if ($action == 'link_taxis') {
-	$link = $_POST['link'] ?? '';
+	$link = isset($_POST['link']) ? $_POST['link'] : '';
 
 	if (empty($link)) {
 		emDirect("./link.php?error_b=1");

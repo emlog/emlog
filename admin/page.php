@@ -127,7 +127,7 @@ if ($action == 'save') {
 }
 
 if ($action == 'operate_page') {
-	$operate = $_POST['operate'] ?? '';
+	$operate = isset($_POST['operate']) ? $_POST['operate'] : '';
 	$pages = isset($_POST['page']) ? array_map('intval', $_POST['page']) : array();
 
 	LoginAuth::checkToken();

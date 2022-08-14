@@ -21,7 +21,7 @@ if (!$action) {
 
 if ($action === 'backup') {
 	LoginAuth::checkToken();
-	$zipbak = $_POST['zipbak'] ?? 'n';
+	$zipbak = isset($_POST['zipbak']) ? $_POST['zipbak'] : 'n';
 
 	$tables = [
 		'attachment',
@@ -77,7 +77,7 @@ if ($action === 'backup') {
 
 if ($action === 'import') {
 	LoginAuth::checkToken();
-	$sqlfile = $_FILES['sqlfile'] ?? '';
+	$sqlfile = isset($_FILES['sqlfile']) ? $_FILES['sqlfile'] : '';
 	if (!$sqlfile) {
 /*vot*/		emMsg(lang('info_illegal'));
 	}

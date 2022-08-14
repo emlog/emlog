@@ -81,7 +81,7 @@ if ($action == 'add_sort') {
 }
 
 if ($action == 'add_page') {
-	$pages = $_POST['pages'] ?? array();
+	$pages = isset($_POST['pages']) ? $_POST['pages'] : array();
 
 	if (empty($pages)) {
 		emDirect("./navbar.php?error_e=1");

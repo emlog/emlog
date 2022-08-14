@@ -111,7 +111,7 @@ class Mysqlpdo {
 			$result = $this->conn->query($sql);
 
 			$resultDb = $result->fetchAll(PDO::FETCH_ASSOC);
-			return $resultDb[0] ?? [];
+			return isset($resultDb[0]) ? $resultDb[0] : [];
 		} catch (\PDOException $e) {
 			emMsg($e->getMessage());
 		}
@@ -131,7 +131,7 @@ class Mysqlpdo {
 	 */
 	function num_rows($query) {
 		$rows = $query->fetch(PDO::FETCH_NUM);
-		return $rows[0] ?? 0;
+		return isset($rows[0]) ? $rows[0] : 0;
 	}
 
 	/**

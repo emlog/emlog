@@ -75,7 +75,7 @@ class User {
 		if (!isset($_SESSION)) {
 			session_start();
 		}
-		$session_code = $_SESSION['code'] ?? '';
+		$session_code = isset($_SESSION['code']) ? $_SESSION['code'] : '';
 		if ((!$login_code || $login_code !== $session_code) && Option::get('login_code') === 'y') {
 			unset($_SESSION['code']);
 			return false;
@@ -87,7 +87,7 @@ class User {
 		if (!isset($_SESSION)) {
 			session_start();
 		}
-		$session_code = $_SESSION['mail_code'] ?? '';
+		$session_code = isset($_SESSION['mail_code']) ? $_SESSION['mail_code'] : '';
 		if (!$mail_code || $mail_code !== $session_code) {
 			unset($_SESSION['code']);
 			return false;
@@ -103,7 +103,7 @@ class User {
 		if (ROLE === self::ROLE_EDITOR && !in_array($request_uri, ['article', 'twitter', 'media', 'blogger', 'comment', 'index', 'article_save'])) {
 /*vot*/			emMsg(lang('group_no_permission'), './');
 		}
-		if (!Register::isRegLocal() && mt_rand(1, 16) === 8) {
+		if (!Register::isRegLocal() && mt_rand(1, 20) === 8) {
 			emDirect("auth.php");
 		}
 	}

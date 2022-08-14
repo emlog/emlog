@@ -16,7 +16,7 @@ require_once EMLOG_ROOT . '/include/lib/function.base.php';
 header('Content-Type: text/html; charset=UTF-8');
 spl_autoload_register("emAutoload");
 
-if (PHP_VERSION < '7.0') {
+if (PHP_VERSION < '5.6') {
 /*vot*/    emMsg(lang('php_required'));
 }
 

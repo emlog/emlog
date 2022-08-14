@@ -94,7 +94,7 @@ if ($action == 'del') {
 }
 
 if ($action == 'operate_log') {
-	$operate = $_REQUEST['operate'] ?? '';
+	$operate = isset($_REQUEST['operate']) ? $_REQUEST['operate'] : '';
 	$draft = isset($_POST['draft']) ? (int)$_POST['draft'] : 0;
 	$logs = isset($_POST['blog']) ? array_map('intval', $_POST['blog']) : array();
 	$sort = isset($_POST['sort']) ? (int)$_POST['sort'] : '';

@@ -83,7 +83,7 @@ function realUrl() {
 	$max_deep = count($path_element);
 
 	while ($current_deep < $max_deep) {
-/*vot*/		$this_match = $this_match . $path_element[$current_deep] . '/';
+/*vot*/		$this_match .= $path_element[$current_deep] . '/';
 
 		if (substr($emlog_path, strlen($this_match) * (-1)) === $this_match) {
 			$best_match = $this_match;
@@ -107,9 +107,9 @@ function realUrl() {
 function checkPlugin($plugin) {
 	if (is_string($plugin) && preg_match("/^[\w\-\/]+\.php$/", $plugin) && file_exists(EMLOG_ROOT . '/content/plugins/' . $plugin)) {
 		return true;
-	} else {
-		return false;
 	}
+
+	return false;
 }
 
 /**
@@ -118,9 +118,9 @@ function checkPlugin($plugin) {
 function checkMail($email) {
 	if (preg_match("/^[\w\.\-]+@\w+([\.\-]\w+)*\.\w+$/", $email) && strlen($email) <= 60) {
 		return true;
-	} else {
-		return false;
 	}
+
+	return false;
 }
 
 /**
@@ -819,7 +819,7 @@ function emDownFile($source) {
 	return $temp_file;
 }
 
-function set_ctx_option(): array {
+function set_ctx_option() {
 	$data = http_build_query(['emkey' => Option::get('emkey')]);
 	return [
 		'http' => [
@@ -918,11 +918,14 @@ body {
     border-radius: 10px;
     padding:30px 10px;
     list-style:none;
-    border:#DFDFDF 1px solid;
+    border:#DFDFDF 2px solid;
 }
 .main p {
     line-height: 18px;
-    margin: 5px 20px;
+    margin: 10px 20px;
+}
+a {
+	color: #333333;
 }
 </style>
 </head>
@@ -1088,7 +1091,7 @@ function emStrtotime($timeStr) {
 	return $unixPostDate;
 }
 
-function t() {
+function u() {
 	if (mt_rand(1, 5) !== 5) {
 		return true;
 	}
@@ -1120,7 +1123,7 @@ function getTimeZoneOffset($remote_tz, $origin_tz = 'UTC') {
  * Upload and Crop image
  */
 function uploadCropImg() {
-	$attach = $_FILES['image'] ?? '';
+	$attach = isset($_FILES['image']) ? $_FILES['image'] : '';
 	if (!$attach || $attach['error'] === 4) {
 		echo "error";
 		exit;
@@ -1247,7 +1250,7 @@ if (!function_exists('split')) {
 	}
 }
 
-//vot t();
+//vot u();
 
 function get_os($user_agent) {
 	if (false !== stripos($user_agent, "win")) {

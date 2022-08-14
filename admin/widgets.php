@@ -39,12 +39,12 @@ if ($action === '') {
 }
 
 if ($action === 'setwg') {
-/*vot*/	$widgetTitle = Option::get('widget_title'); //Widget Title
-/*vot*/	$widget = $_GET['wg'] ?? '';                //Edit widget
-/*vot*/	$wgTitle = $_POST['title'] ?? '';           //New widget name
+	$widgetTitle = Option::get('widget_title');                                             //当前所有组件标题
+	$widget = isset($_GET['wg']) ? $_GET['wg'] : '';                                        //要修改的组件
+	$wgTitle = isset($_POST['title']) ? $_POST['title'] : '';                               //新组件名
 
 	preg_match("/^(.*)\s\(.*/", $widgetTitle[$widget], $matchs);
-	$realWgTitle = $matchs[1] ?? $widgetTitle[$widget];
+	$realWgTitle = isset($matchs[1]) ? $matchs[1] : $widgetTitle[$widget];
 
 	$widgetTitle[$widget] = $realWgTitle != $wgTitle ? $realWgTitle . ' (' . $wgTitle . ')' : $realWgTitle;
 	$widgetTitle = addslashes(serialize($widgetTitle));
@@ -70,11 +70,11 @@ if ($action === 'setwg') {
 			break;
 		case 'custom_text':
 			$custom_widget = Option::get('custom_widget');
-			$title = $_POST['title'] ?? '';
-			$content = $_POST['content'] ?? '';
-/*vot*/			$custom_wg_id = $_POST['custom_wg_id'] ?? '';//Edit widget id
-			$new_title = $_POST['new_title'] ?? '';
-			$new_content = $_POST['new_content'] ?? '';
+			$title = isset($_POST['title']) ? $_POST['title'] : '';
+			$content = isset($_POST['content']) ? $_POST['content'] : '';
+/*vot*/			$custom_wg_id = isset($_POST['custom_wg_id']) ? $_POST['custom_wg_id'] : '';//Edit widget id
+			$new_title = isset($_POST['new_title']) ? $_POST['new_title'] : '';
+			$new_content = isset($_POST['new_content']) ? $_POST['new_content'] : '';
 /*vot*/			$rmwg = isset($_GET['rmwg']) ? addslashes($_GET['rmwg']) : '';//Delete widget id
 			//Add a new custom widget
 			if ($new_content) {

@@ -13,7 +13,7 @@ class Register {
 	public static function isRegLocal() {
 		$CACHE = Cache::getInstance();
 		$options_cache = $CACHE->readCache('options');
-		$emkey = $options_cache['emkey'] ?? '';
+		$emkey = isset($options_cache['emkey']) ? $options_cache['emkey'] : '';
 
 		if (empty($emkey)) {
 /*vot*/			if (defined('DEV_MODE')) {
@@ -31,7 +31,7 @@ class Register {
 	public static function isRegServer() {
 		$CACHE = Cache::getInstance();
 		$options_cache = $CACHE->readCache('options');
-		$emkey = $options_cache['emkey'] ?? '';
+		$emkey = isset($options_cache['emkey']) ? $options_cache['emkey'] : '';
 		return self::checkEmKey($emkey);
 	}
 

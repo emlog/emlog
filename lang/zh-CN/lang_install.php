@@ -4,7 +4,7 @@ $lang = array(
 //---------------------------
 //install.php
 
- 'php_required'		=> 'PHP版本太低，请使用7.0及以上版本(推荐7.4)',//'PHP version is too low, please use version 7.0 and above (7.4 recommended)',
+ 'php_required'		=> 'PHP版本太低，请使用5.6及以上版本(推荐7.4)',//'PHP version is too low, please use 5.6 or above (7.4 recommended)',
  'installation'		=> '安装程序emlog ',//'Install Emlog v.',
  'mysql_settings'	=> 'MySQL数据库设置',//'MySQL settings',
  'mysql_required'	=> 'MySQL版本太低(%s)，请使用5.6及以上版本',//'MySQL version is too low (%s), please use version 5.6 and above',

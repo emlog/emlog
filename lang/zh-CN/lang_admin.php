@@ -730,7 +730,9 @@ $lang = array(
  'api_2'		=> '2. 文章列表','2. Article list',
  'api_3'		=> '3. 文章详情',//'3. Article Details',
  'api_4'		=> '4. 分类列表',//'4. Category list',
- 'api_docs'		=> '详见接口文档→',//'See the interface documentation for details→',
+ 'api_5'		=> '5. 笔记发布',//'5. Notes publishing',
+ 'api_more'		=> '更多接口',//'More info',
+ 'api_docs'		=> '详见接口文档→',//'See the API documentation for details→',
 
 //---------------------------
 //admin/views/setting_user.php

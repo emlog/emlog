@@ -158,10 +158,10 @@ if ($action == 'seo_save') {
 
 if ($action == 'mail') {
 	$options_cache = $CACHE->readCache('options');
-	$smtp_mail = $options_cache['smtp_mail'] ?? '';
-	$smtp_pw = $options_cache['smtp_pw'] ?? '';
-	$smtp_server = $options_cache['smtp_server'] ?? '';
-	$smtp_port = $options_cache['smtp_port'] ?? '';
+	$smtp_mail = isset($options_cache['smtp_mail']) ? $options_cache['smtp_mail'] : '';
+	$smtp_pw = isset($options_cache['smtp_pw']) ? $options_cache['smtp_pw'] : '';
+	$smtp_server = isset($options_cache['smtp_server']) ? $options_cache['smtp_server'] : '';
+	$smtp_port = isset($options_cache['smtp_port']) ? $options_cache['smtp_port'] : '';
 
 	include View::getAdmView('header');
 	require_once(View::getAdmView('setting_mail'));
@@ -191,7 +191,7 @@ if ($action == 'mail_test') {
 		'smtp_pw'     => isset($_POST['smtp_pw']) ? addslashes($_POST['smtp_pw']) : '',
 		'smtp_server' => isset($_POST['smtp_server']) ? addslashes($_POST['smtp_server']) : '',
 		'smtp_port'   => isset($_POST['smtp_port']) ? (int)$_POST['smtp_port'] : '',
-		'testTo'      => $_POST['testTo'] ?? '',
+		'testTo'      => isset($_POST['testTo']) ? $_POST['testTo'] : '',
 	];
 
 	if (!checkMail($data["testTo"])) {
@@ -222,9 +222,9 @@ if ($action == 'mail_test') {
 
 if ($action == 'user') {
 	$options_cache = $CACHE->readCache('options');
-	$is_signup = $options_cache['is_signup'] ?? '';
-	$login_code = $options_cache['login_code'] ?? '';
-	$ischkarticle = $options_cache['ischkarticle'] ?? '';
+	$is_signup = isset($options_cache['is_signup']) ? $options_cache['is_signup'] : '';
+	$login_code = isset($options_cache['login_code']) ? $options_cache['login_code'] : '';
+	$ischkarticle = isset($options_cache['ischkarticle']) ? $options_cache['ischkarticle'] : '';
 
 	$conf_is_signup = $is_signup == 'y' ? 'checked="checked"' : '';
 	$conf_login_code = $login_code == 'y' ? 'checked="checked"' : '';

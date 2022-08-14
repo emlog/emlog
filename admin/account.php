@@ -187,7 +187,7 @@ if ($action == 'doreset2') {
 	if (!isset($_SESSION)) {
 		session_start();
 	}
-	$mail = $_SESSION['mail'] ?? '';
+	$mail = isset($_SESSION['mail']) ? $_SESSION['mail'] : '';
 
 	$User_Model->updateUserByMail(['password' => $passwd], $mail);
 	emDirect("./account.php?action=signin&succ_reset=1");

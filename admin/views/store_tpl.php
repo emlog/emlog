@@ -23,12 +23,12 @@
     </div>
 <?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-<!--vot--><h1 class="h3 mb-0 text-gray-800"><?=lang('app_store')?></h1>
+<!--vot--><h1 class="h3 mb-0 text-gray-800"><?=lang('app_store')?> - <?= $sub_title ?></h1>
 </div>
 <div class="row mb-4 ml-1 justify-content-between">
     <ul class="nav nav-pills">
-<!--vot-->  <li class="nav-item"><a class="nav-link active" href="./store.php"><?=lang('ext_store_templates')?></a></li>
-<!--vot-->  <li class="nav-item"><a class="nav-link" href="./store.php?action=plu"><?=lang('ext_store_plugins')?></a></li>
+<!--vot-->  <li class="nav-item"><a class="nav-link active" href="./store.php?tag=free"><?=lang('ext_store_templates')?></a></li>
+<!--vot-->  <li class="nav-item"><a class="nav-link" href="./store.php?action=plu&tag=free"><?=lang('ext_store_plugins')?></a></li>
     </ul>
     <form action="./store.php" method="get">
         <div class="form-inline search-inputs-nowrap">
@@ -42,8 +42,8 @@
     </form>
 </div>
 <div class="row mb-3 ml-1">
-<!--vot--><a href="./store.php" class="badge badge-secondary m-1"><?=lang('all')?></a>
-<!--vot--><a href="./store.php?tag=free" class="badge badge-success m-1"><?=lang('show_free_only')?></a>
+    <a href="./store.php?tag=free" class="badge badge-success m-1">免费区</a>
+    <a href="./store.php?tag=paid" class="badge badge-warning m-1">付费区</a>
 </div>
 <div class="row">
 	<?php if (!empty($templates)): ?>

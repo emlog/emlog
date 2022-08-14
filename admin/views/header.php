@@ -104,7 +104,7 @@
             </li>
             <hr class="sidebar-divider d-none d-md-block">
             <li class="nav-item" id="menu_store">
-<!--vot-->      <a class="nav-link" href="store.php"><i class="icofont-shopping-cart"></i><span><?= lang('store') ?></span></a>
+<!--vot-->      <a class="nav-link" href="store.php?tag=free"><i class="icofont-shopping-cart"></i><span><?= lang('store') ?></span></a>
             </li>
             <li class="nav-item" id="menu_category_sys">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_sys" aria-expanded="true" aria-controls="menu_sys">

@@ -9,11 +9,11 @@
 class Api_Controller {
 
 	public $Log_Model;
+	public $Twitter_Model;
 	public $Tag_Model;
 	public $Cache;
 
 	function starter($params) {
-
 		$_func = isset($_GET['rest-api']) ? addslashes($_GET['rest-api']) : '';
 		if (empty($_func)) {
 			Output::error('error router');
@@ -26,12 +26,12 @@ class Api_Controller {
 		if (method_exists($this, $_func)) {
 			$this->Log_Model = new Log_Model();
 			$this->Tag_Model = new Tag_Model();
+			$this->Twitter_Model = new Twitter_Model();
 			$this->Cache = Cache::getInstance();
 			$this->$_func();
 		} else {
 			Output::error('API function is not exist');
 		}
-
 	}
 
 	private function article_post() {
@@ -70,7 +70,6 @@ class Api_Controller {
 		output::ok([
 			'article_id' => $article_id,
 		]);
-
 	}
 
 	private function article_list() {
@@ -101,9 +100,9 @@ class Api_Controller {
 				'description' => $value['log_description'],
 				'date'        => date('Y-m-d H:i:s', $value['date']),
 				'author_id'   => (int)$value['author'],
-				'author_name' => $author_cache[$value['author']]['name'] ?? '',
+				'author_name' => isset($author_cache[$value['author']]['name']) ? $author_cache[$value['author']]['name'] : '',
 				'sort_id'     => (int)$value['sortid'],
-				'sort_name'   => $sort_cache[$value['sortid']]['sortname'] ?? '',
+				'sort_name'   => isset($sort_cache[$value['sortid']]['sortname']) ? $sort_cache[$value['sortid']]['sortname'] : '',
 				'views'       => (int)$value['views'],
 				'comnum'      => (int)$value['comnum'],
 				'top'         => $value['top'],
@@ -129,10 +128,10 @@ class Api_Controller {
 				'date'        => date('Y-m-d H:i:s', $r['date']),
 				'id'          => (int)$r['logid'],
 				'sort_id'     => (int)$r['sortid'],
-				'sort_name'   => $sort_cache[$r['sortid']]['sortname'] ?? '',
+				'sort_name'   => isset($sort_cache[$r['sortid']]['sortname']) ? $sort_cache[$r['sortid']]['sortname'] : '',
 				'type'        => $r['type'],
 				'author_id'   => (int)$r['author'],
-				'author_name' => $author_cache[$r['author']]['name'] ?? '',
+				'author_name' => isset($author_cache[$r['author']]['name']) ? $author_cache[$r['author']]['name'] : '',
 				'content'     => $r['log_content'],
 				'cover'       => $r['log_cover'],
 				'views'       => (int)$r['views'],
@@ -164,6 +163,31 @@ class Api_Controller {
 		]);
 	}
 
+	function note_post() {
+		$req_sign = isset($_POST['req_sign']) ? addslashes(trim($_POST['req_sign'])) : '';
+		$req_time = isset($_POST['req_time']) ? addslashes(trim($_POST['req_time'])) : '';
+		$t = isset($_POST['t']) ? addslashes(trim($_POST['t'])) : '';
+		$author_uid = isset($_POST['author_uid']) ? (int)trim($_POST['author_uid']) : 1;
+
+		if (empty($req_sign) || empty($req_time) || empty($t)) {
+			Output::error('parameter error');
+		}
+
+		$this->checkApiKey($req_sign, $req_time);
+
+		$data = [
+			'content' => $t,
+			'author'  => $author_uid,
+			'date'    => time(),
+		];
+
+		$id = $this->Twitter_Model->addTwitter($data);
+		$this->Cache->updateCache(array('sta', 'newtw'));
+		output::ok([
+			'note_id' => $id,
+		]);
+	}
+
 	private function checkApiKey($req_sign, $req_time) {
 		$apikey = Option::get('apikey');
 		$sign = md5($req_time . $apikey);
@@ -172,6 +196,4 @@ class Api_Controller {
 			Output::error('sign error');
 		}
 	}
-
-
 }
