@@ -925,7 +925,6 @@ a {
 </head>
 <body>
 <div class="main">
-<p style="font-size: 16px;">抱歉，出错了 :-(</p>
 <p>$msg</p>
 EOT;
 	if ($url != 'none') {
@@ -1086,7 +1085,7 @@ function emStrtotime($timeStr) {
 	return $unixPostDate;
 }
 
-function t() {
+function u() {
 	if (mt_rand(1, 5) !== 5) {
 		return true;
 	}
@@ -1139,7 +1138,7 @@ if (!function_exists('split')) {
 	}
 }
 
-t();
+u();
 
 function get_os($user_agent) {
 	if (false !== stripos($user_agent, "win")) {
