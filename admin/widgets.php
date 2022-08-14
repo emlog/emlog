@@ -39,9 +39,9 @@ if ($action === '') {
 }
 
 if ($action === 'setwg') {
-	$widgetTitle = Option::get('widget_title');                                             //当前所有组件标题
-	$widget = isset($_GET['wg']) ? $_GET['wg'] : '';                                        //要修改的组件
-	$wgTitle = isset($_POST['title']) ? $_POST['title'] : '';                               //新组件名
+	$widgetTitle = Option::get('widget_title');                                             //All widget titles
+	$widget = isset($_GET['wg']) ? $_GET['wg'] : '';                                        //Widget to modify
+	$wgTitle = isset($_POST['title']) ? $_POST['title'] : '';                               //New widget title
 
 	preg_match("/^(.*)\s\(.*/", $widgetTitle[$widget], $matchs);
 	$realWgTitle = isset($matchs[1]) ? $matchs[1] : $widgetTitle[$widget];

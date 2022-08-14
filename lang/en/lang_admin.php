@@ -104,6 +104,8 @@ $lang = array(
  'plugin'		=> 'Plug-in',//'插件',
  'plugins'		=> 'Plug-ins',//'插件',
  'plugin_view'		=> 'View Plugin',//'查看插件',
+ 'free_zone'		=> 'free zone',//'免费区',
+ 'paid_zone'		=> 'paid zone',//'付费区',
 
 //---------------------------
 //admin/style.php

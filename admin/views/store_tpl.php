@@ -42,8 +42,8 @@
     </form>
 </div>
 <div class="row mb-3 ml-1">
-    <a href="./store.php?tag=free" class="badge badge-success m-1">免费区</a>
-    <a href="./store.php?tag=paid" class="badge badge-warning m-1">付费区</a>
+<!--vot--> <a href="./store.php?tag=free" class="badge badge-success m-1"><?=lang('free_zone')?></a>
+<!--vot--> <a href="./store.php?tag=paid" class="badge badge-warning m-1"><?=lang('paid_zone')?></a>
 </div>
 <div class="row">
 	<?php if (!empty($templates)): ?>

@@ -112,10 +112,10 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
                     </thead>
                     <tbody>
 					<?php foreach ($logs as $key => $value):
-/*vot*/	    					$sortName = isset($sorts[$value['sortid']]['sortname']) ? $sorts[$value['sortid']]['sortname'] : lang('uncategorized');
-/*vot*/						$sortName = $value['sortid'] == -1 ? lang('uncategorized') : $sortName;
-						$author = isset($user_cache[$value['author']]['name']) ? $user_cache[$value['author']]['name'] : '未知作者';
-						$author_role = isset($user_cache[$value['author']]['role']) ? $user_cache[$value['author']]['role'] : '未知角色';
+/*vot*/					$sortName = isset($sorts[$value['sortid']]['sortname']) ? $sorts[$value['sortid']]['sortname'] : lang('uncategorized');
+/*vot*/					$sortName = $value['sortid'] == -1 ? lang('uncategorized') : $sortName;
+/*vot*/					$author = isset($user_cache[$value['author']]['name']) ? $user_cache[$value['author']]['name'] : lang('unknown_author');
+/*vot*/					$author_role = isset($user_cache[$value['author']]['role']) ? $user_cache[$value['author']]['role'] : lang('unknown_role');
 						?>
                         <tr>
                             <td style="width: 20px;"><input type="checkbox" name="blog[]" value="<?= $value['gid'] ?>" class="ids"/></td>
