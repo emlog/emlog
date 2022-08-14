@@ -24,12 +24,12 @@
 <?php endif ?>
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">应用商店</h1>
+    <h1 class="h3 mb-0 text-gray-800">应用商店 - <?= $sub_title ?></h1>
 </div>
 <div class="row mb-4 ml-1 justify-content-between">
     <ul class="nav nav-pills">
-        <li class="nav-item"><a class="nav-link" href="./store.php">模板主题</a></li>
-        <li class="nav-item"><a class="nav-link active" href="./store.php?action=plu">扩展插件</a></li>
+        <li class="nav-item"><a class="nav-link" href="./store.php?tag=free">模板主题</a></li>
+        <li class="nav-item"><a class="nav-link active" href="./store.php?action=plu&tag=free">扩展插件</a></li>
     </ul>
     <form action="./store.php" method="get">
         <div class="form-inline search-inputs-nowrap">
@@ -44,8 +44,8 @@
     </form>
 </div>
 <div class="row mb-3 ml-1">
-    <a href="./store.php?action=plu" class="badge badge-secondary m-1">全部</a>
-    <a href="./store.php?action=plu&tag=free" class="badge badge-success m-1">仅看免费</a>
+    <a href="./store.php?action=plu&tag=free" class="badge badge-success m-1">免费区</a>
+    <a href="./store.php?action=plu&tag=paid" class="badge badge-warning m-1">付费区</a>
 </div>
 <div class="row">
 	<?php if (!empty($plugins)): ?>
