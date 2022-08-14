@@ -112,9 +112,9 @@ $lang = array(
  'db_port_invalid'		=> 'Database connection error: The database port is invalid.',//'连接数据库失败，数据库端口错误',
  'db_server_unavailable'	=> 'Database connection error: The database server is unavailable.',//'连接数据库失败，数据库服务器不可用',
  'db_credential_error'		=> 'Database connection error: Wrong username or password.',//'连接数据库失败，数据库用户名或密码错误',
- 'db_error_code'		=> 'Database connection error: Please, check database information. Error code: ',//'连接数据库失败，请检查数据库信息。错误编号：',
+ 'db_error_code'		=> 'Failed to connect to the MySQL database, please check the database information. Error message: ',//'连接MySQL数据库失败，请检查数据库信息。错误信息：',
  'db_not_found'			=> 'Database connection failed. The database you filled in was not found.',//'连接数据库失败，未找到您填写的数据库',
- 'db_sql_error'			=> 'SQL statement execution error',//'SQL语句执行错误',
+ 'db_sql_error'			=> 'SQL execution error',//'SQL执行错误',
 
 //---------------------------------------
 //include/lib/mysqlii.php
