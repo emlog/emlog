@@ -12,7 +12,7 @@ header('Content-Type: text/html; charset=UTF-8');
 spl_autoload_register("emAutoload");
 
 if (PHP_VERSION < '5.6') {
-	emMsg('PHP版本太低，请使用5.6及以上版本(推荐7.4)');
+	emMsg('PHP版本太低，请使用PHP5.6及以上版本(推荐7.4)');
 }
 
 $act = isset($_GET['action']) ? $_GET['action'] : '';
@@ -221,13 +221,6 @@ if ($act == 'install' || $act == 'reinstall') {
 
 	$DB = Database::getInstance();
 	$CACHE = Cache::getInstance();
-
-	$v = $DB->getMysqlVersion();
-
-	// Since the release of MySQL 5.5.5 in 2010, InnoDB replaced MyISAM as MySQL's default table type
-	if ($v < '5.6') {
-		emMsg('MySQL版本太低(' . $v . ')，请使用5.6及以上版本');
-	}
 
 	if ($act != 'reinstall' && $DB->num_rows($DB->query("SHOW TABLES LIKE '{$db_prefix}blog'")) == 1) {
 		echo <<<EOT
