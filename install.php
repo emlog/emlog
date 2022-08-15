@@ -227,13 +227,6 @@ if ($act == 'install' || $act == 'reinstall') {
 	$DB = Database::getInstance();
 	$CACHE = Cache::getInstance();
 
-	$v = $DB->getMysqlVersion();
-
-	// Since the release of MySQL 5.5.5 in 2010, InnoDB replaced MyISAM as MySQL's default table type
-	if ($v < '5.6') {
-/*vot*/		emMsg(sprintf(lang('mysql_required'), $v));
-	}
-
 	if ($act != 'reinstall' && $DB->num_rows($DB->query("SHOW TABLES LIKE '{$db_prefix}blog'")) == 1) {
 /*vot*/ $installed = lang('already_installed');
 /*vot*/ $continue = lang('continue');
