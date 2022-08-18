@@ -1,6 +1,6 @@
 # Emlog.ML
 
-![logo.png]
+![](admin/views/images/logo.gif)
 
 Emlog.ML is a simple yet powerful blogging engine built with PHP, MySQL and Bootstrap 4.  
 It is convenient to create personal sites easily and quickly.
