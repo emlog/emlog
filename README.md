@@ -39,7 +39,7 @@ Based on original Chinese Emlog (https://www.emlog.net/) (single Chinese languag
 ## Requirements
 
 * PHP5.6, PHP7, PHP8 (PHP7.4 is recommended)
-* MySQL5.6 and above, 5.6 is recommended, 5.7 is recommended for high-end servers (2G memory and above)
+* MySQL5.6 and above (5.6 is recommended, 5.7 is recommended for high-end servers using 2G+ of memory)
 * Recommended server environment: Linux + nginx
 * Recommended server management panel: pagoda panel
 * Recommended browser: Chrome
@@ -52,8 +52,10 @@ Based on original Chinese Emlog (https://www.emlog.net/) (single Chinese languag
 
 ## Docker
 
-1. docker-compose up
-2. http://localhost:8080
+1. cp config.sample.php config.php
+2. docker network create emlog_network
+3. docker-compose up
+4. http://localhost:8080
 
 ## Special thanks
 
