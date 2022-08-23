@@ -36,8 +36,8 @@ A powerful blog and content knowledge management system based on PHP and MySQL, 
 [changelog](https://www.emlog.net/docs/#/changelog)
 
 ## Requirements
-* PHP7, PHP8, PHP7.4 recommended
-* My SQL5.6 and above, 5.6 is recommended, high-end server (2G memory and above) is recommended 5.7
+* PHP5.6\PHP7\PHP8, PHP7.4 recommended
+* MySQL5.6+, 5.6 is recommended
 * Recommended server environment: Linux + nginx
 
 ## Installation Notes
