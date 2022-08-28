@@ -65,4 +65,4 @@ Thanks for non-commercial open source development authorization by JetBrains
 
 ## License Agreement
 
-The license under which the Emlog software is released is GPLv3 (or later) of the Free Software Foundation: [LICENSE](/license.txt)
+Emlog software is released under Free Software Foundation's license GPLv3 (or later): [LICENSE](/license.txt)
