@@ -9,7 +9,7 @@ services:
       - --character-set-server=utf8mb4
       - --collation-server=utf8mb4_unicode_ci
     volumes:
-      - ./db_data:/var/lib/mysql
+      - ./db_data/mysql:/var/lib/mysql
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: 12345678
@@ -19,11 +19,27 @@ services:
     networks:
       - emlog_network
 
+  # You can also use MariaDB
+  #  db:
+  #    image: mariadb:latest
+  #    container_name: mariadb
+  #    command:
+  #      - --default_authentication_plugin=mysql_native_password
+  #      - --character-set-server=utf8mb4
+  #      - --collation-server=utf8mb4_unicode_ci
+  #    volumes:
+  #      - ./db_data/mariadb:/var/lib/mysql
+  #    restart: always
+  #    environment:
+  #      MARIADB_ROOT_PASSWORD: 12345678
+  #      MARIADB_DATABASE: emlog
+  #      MARIADB_USER: emlog
+  #      MARIADB_PASSWORD: emlog
+  #    networks:
+  #      - emlog_network
+
   php:
-    # image: php:8.0.12-fpm-alpine
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: emlog/emlog:pro-php7.4
     container_name: php
     volumes:
       - ./:/app/emlog
@@ -34,7 +50,7 @@ services:
       - "9000:9000"
     environment:
       EMLOG_ENV: develop
-      EMLOG_DB_HOST: mysql
+      EMLOG_DB_HOST: db
       EMLOG_DB_USER: emlog
       EMLOG_DB_NAME: emlog
       EMLOG_DB_PASSWORD: emlog
