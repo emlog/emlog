@@ -226,7 +226,7 @@ if ($act == 'install' || $act == 'reinstall') {
 		echo <<<EOT
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta charset="utf-8">
 <title>emlog system message</title>
 <style>
 body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:150%;}
