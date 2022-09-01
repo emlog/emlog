@@ -889,7 +889,7 @@ function emMsg($msg, $url = 'javascript:history.back(-1);', $isAutoGo = false) {
 <!doctype html>
 <html lang="zh-cn">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta charset="utf-8">
 EOT;
 	if ($isAutoGo) {
 		echo "<meta http-equiv=\"refresh\" content=\"2;url=$url\" />";
