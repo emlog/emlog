@@ -8,9 +8,11 @@
 class Media_Model {
 
 	private $db;
+	private $table;
 
 	function __construct() {
 		$this->db = Database::getInstance();
+		$this->table = DB_PREFIX . 'attachment';
 	}
 
 	/**
@@ -21,17 +23,17 @@ class Media_Model {
 		$author = $uid ? 'and author=' . UID : '';
 		$limit = "LIMIT $startId, " . $perpage_count;
 
-		$sql = "SELECT * FROM " . DB_PREFIX . "attachment WHERE thumfor = 0 $author order by aid desc $limit";
+		$sql = "SELECT * FROM " . $this->table . " WHERE thumfor = 0 $author order by aid desc $limit";
 		$query = $this->db->query($sql);
 		$medias = [];
 		while ($row = $this->db->fetch_array($query)) {
 			$medias[$row['aid']] = [
 				'attsize'       => changeFileSize($row['filesize']),
 				'filename'      => htmlspecialchars($row['filename']),
-				'addtime'       => date("Y-m-d H:i:s", $row['addtime']),
+				'addtime'       => date("Y - m - d H:i:s", $row['addtime']),
 				'aid'           => $row['aid'],
 				'filepath_thum' => $row['filepath'],
-				'filepath'      => str_replace("thum-", '', $row['filepath']),
+				'filepath'      => str_replace("thum - ", '', $row['filepath']),
 				'width'         => $row['width'],
 				'height'        => $row['height'],
 				'mimetype'      => $row['mimetype'],
@@ -43,16 +45,11 @@ class Media_Model {
 
 	function getMediaCount() {
 		$author = 'and author=' . UID;
-		$sql = "SELECT count(*) as count FROM " . DB_PREFIX . "attachment WHERE thumfor = 0 $author";
+		$sql = "SELECT count(*) as count FROM " . $this->table . " WHERE thumfor = 0 $author";
 		$res = $this->db->once_fetch_array($sql);
 		return $res['count'];
 	}
 
-	/**
-	 * @param $file_info
-	 * @param int $thumfor
-	 * @return int|string
-	 */
 	function addMedia($file_info) {
 		$file_name = $file_info['file_name'];
 		$file_size = $file_info['size'];
@@ -66,8 +63,8 @@ class Media_Model {
 			$file_path = $file_info['thum_file'];
 		}
 
-		$query = "INSERT INTO " . DB_PREFIX . "attachment (author, filename, filesize, filepath, addtime, width, height, mimetype, thumfor)
-		 VALUES ('%d','%s','%s','%s','%s','%s','%s','%s','%s')";
+		$query = "INSERT INTO " . $this->table . "(author, filename, filesize, filepath, addtime, width, height, mimetype, thumfor)
+		 VALUES('%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')";
 		$query = sprintf($query, UID, $file_name, $file_size, $file_path, $create_time, $img_width, $img_height, $file_mime_type, 0);
 		$this->db->query($query);
 		return $this->db->insert_id();
@@ -75,13 +72,13 @@ class Media_Model {
 
 	function deleteMedia($media_id) {
 		$author = User::haveEditPermission() ? '' : 'and author=' . UID;
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "attachment WHERE aid = $media_id $author");
+		$query = $this->db->query("SELECT * FROM " . $this->table . " WHERE aid = $media_id $author");
 		$attach = $this->db->fetch_array($query);
 		if (empty($attach)) {
 			return;
 		}
 		$filepath_thum = $attach['filepath'];
-		$filepath = str_replace("thum-", "", $attach['filepath']);
+		$filepath = str_replace("thum - ", "", $attach['filepath']);
 		if (file_exists($filepath_thum)) {
 			@unlink($filepath_thum) or emMsg("删除失败!");
 		}
@@ -89,7 +86,7 @@ class Media_Model {
 			@unlink($filepath) or emMsg("删除失败!");
 		}
 
-		return $this->db->query("DELETE FROM " . DB_PREFIX . "attachment WHERE aid = $media_id $author");
+		return $this->db->query("DELETE FROM " . $this->table . " WHERE aid = $media_id $author");
 	}
 
 }

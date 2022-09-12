@@ -3,9 +3,26 @@
 } ?>
 <?php if (isset($_GET['active_del'])): ?>
     <div class="alert alert-success">删除成功</div><?php endif ?>
+<?php if (isset($_GET['active_add'])): ?>
+    <div class="alert alert-success">分类添加成功</div><?php endif ?>
+<?php if (isset($_GET['error_a'])): ?>
+    <div class="alert alert-danger">分类名称不能为空</div><?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">多媒体资源</h1>
     <a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#exampleModal"><i class="icofont-plus"></i> 上传图片/文件</a>
+</div>
+<div class="row mb-3 ml-1">
+	<?php foreach ($sorts as $key => $val): ?>
+        <div class="btn-group mr-1">
+            <button type="button" class="btn btn-primary btn-sm"><?= $val['sortname'] ?></button>
+            <button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false"></button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="<?= $val['id'] ?>">编辑</a>
+                <a class="dropdown-item" href="media.php?action=del_media_sort&id=<?= $val['id'] ?>">删除</a>
+            </div>
+        </div>
+	<?php endforeach ?>
+    <a href="#" class="btn btn-success btn-sm" data-toggle="modal" data-target="#mediaSortModal"><i class="icofont-plus"></i>添加分类</a>
 </div>
 <form action="media.php?action=operate_media" method="post" name="form_media" id="form_media">
     <div class="row">
@@ -79,6 +96,61 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade bd-example-modal-lg" id="mediaSortModal" tabindex="-1" role="dialog" aria-labelledby="mediaSortModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="mediaSortModalLabel">添加资源分类</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="media.php?action=add_media_sort" method="post">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="alias">分类名称</label>
+                        <input class="form-control" id="sortname" maxlength="255" name="sortname" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" value="" name="linkid" id="linkid"/>
+                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-sm btn-success">保存</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">修改</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post" action="tag.php?action=update_tag">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="tagname" name="tagname" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" value="" id="tid" name="tid"/>
+                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-sm btn-success">保存</button>
+                    <a class="btn btn-sm btn-outline-danger" href="javascript:deltags();">删除</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <script src="./views/js/dropzone.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
 <script>
     $("#menu_media").addClass('active');
