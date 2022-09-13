@@ -385,6 +385,7 @@ DROP TABLE IF EXISTS {$db_prefix}attachment;
 CREATE TABLE {$db_prefix}attachment (
   aid int(11) unsigned NOT NULL auto_increment COMMENT 'Resource file table',
   author int(11) unsigned NOT NULL default '1' COMMENT 'Author UID',
+  sortid int(11) NOT NULL default '0' COMMENT 'Category ID',
   blogid int(11) unsigned NOT NULL default '0' COMMENT 'Post ID (obsolete)',
   filename varchar(255) NOT NULL default '' COMMENT 'File name',
   filesize int(11) NOT NULL default '0' COMMENT 'File size',
@@ -396,6 +397,12 @@ CREATE TABLE {$db_prefix}attachment (
   thumfor int(11) NOT NULL default 0 COMMENT 'Thumbnail for original resource ID (obsolete)',
   PRIMARY KEY  (aid),
   KEY thum_uid (thumfor,author)
+)" . $table_charset_sql . "
+DROP TABLE IF EXISTS {$db_prefix}media_sort;
+CREATE TABLE {$db_prefix}media_sort (
+  id int(10) unsigned NOT NULL auto_increment COMMENT 'Media Category ID',
+  sortname varchar(255) NOT NULL default '' COMMENT 'Media Category Name',
+  PRIMARY KEY  (id)
 )" . $table_charset_sql . "
 DROP TABLE IF EXISTS {$db_prefix}comment;
 CREATE TABLE {$db_prefix}comment (

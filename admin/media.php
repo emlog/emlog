@@ -15,6 +15,7 @@ require_once 'globals.php';
 $DB = Database::getInstance();
 
 $Media_Model = new Media_Model();
+$MediaSortModel = new MediaSort_Model();
 
 if (empty($action)) {
 	$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
@@ -22,6 +23,9 @@ if (empty($action)) {
 	$medias = $Media_Model->getMedias($page, $perpage_count, User::haveEditPermission() ? null : UID);
 	$count = $Media_Model->getMediaCount();
 	$pageurl = pagination($count, $perpage_count, $page, "media.php?page=");
+
+	$sorts = $MediaSortModel->getSorts();
+
 	include View::getAdmView('header');
 	require_once(View::getAdmView('media'));
 	include View::getAdmView('footer');
@@ -86,7 +90,7 @@ if ($action === 'delete') {
 	emDirect("media.php?active_del=1");
 }
 
-if ($action == 'operate_media') {
+if ($action === 'operate_media') {
 	$operate = isset($_POST['operate']) ? $_POST['operate'] : '';
 	$aids = isset($_POST['aids']) ? array_map('intval', $_POST['aids']) : array();
 
@@ -99,4 +103,22 @@ if ($action == 'operate_media') {
 			emDirect("media.php?active_del=1");
 			break;
 	}
+}
+
+if ($action === "add_media_sort") {
+	$sortname = isset($_POST['sortname']) ? addslashes(trim($_POST['sortname'])) : '';
+
+	if (empty($sortname)) {
+		emDirect("./media.php?error_a=1");
+	}
+
+	$MediaSortModel->addSort($sortname);
+	emDirect("./media.php?active_add=1");
+}
+
+if ($action === "del_media_sort") {
+	$id = isset($_GET['id']) ? (int)$_GET['id'] : '';
+
+	$MediaSortModel->deleteSort($id);
+	emDirect("./media.php?active_del=1");
 }

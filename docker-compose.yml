@@ -10,6 +10,8 @@ services:
       - --collation-server=utf8mb4_unicode_ci
     volumes:
       - ./db_data/mysql:/var/lib/mysql
+    ports:
+      - "5506:3306"
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: 12345678
@@ -29,6 +31,8 @@ services:
   #      - --collation-server=utf8mb4_unicode_ci
   #    volumes:
   #      - ./db_data/mariadb:/var/lib/mysql
+  #    ports:
+  #      - "5506:3306"
   #    restart: always
   #    environment:
   #      MARIADB_ROOT_PASSWORD: 12345678
