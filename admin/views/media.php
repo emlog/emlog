@@ -4,9 +4,9 @@
 <?php if (isset($_GET['active_del'])): ?>
 <!--vot--><div class="alert alert-success"><?=lang('deleted_ok')?></div><?php endif ?>
 <?php if (isset($_GET['active_add'])): ?>
-    <div class="alert alert-success">分类添加成功</div><?php endif ?>
+<!--vot--><div class="alert alert-success"><?=lang('media_category_add_ok')?></div><?php endif ?>
 <?php if (isset($_GET['error_a'])): ?>
-    <div class="alert alert-danger">分类名称不能为空</div><?php endif ?>
+<!--vot--><div class="alert alert-danger"><?=lang('category_name_empty')?></div><?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 <!--vot--><h1 class="h3 mb-0 text-gray-800"><?=lang('resource_manage')?></h1>
 <!--vot--><a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#exampleModal"><i class="icofont-plus"></i> <?=lang('upload_files')?></a>
@@ -17,12 +17,12 @@
             <button type="button" class="btn btn-primary btn-sm"><?= $val['sortname'] ?></button>
             <button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false"></button>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="<?= $val['id'] ?>">编辑</a>
-                <a class="dropdown-item" href="media.php?action=del_media_sort&id=<?= $val['id'] ?>">删除</a>
+<!--vot-->      <a class="dropdown-item" href="<?= $val['id'] ?>"><?=lang('edit')?></a>
+<!--vot-->      <a class="dropdown-item" href="media.php?action=del_media_sort&id=<?= $val['id'] ?>"><?=lang('delete')?></a>
             </div>
         </div>
 	<?php endforeach ?>
-    <a href="#" class="btn btn-success btn-sm" data-toggle="modal" data-target="#mediaSortModal"><i class="icofont-plus"></i>添加分类</a>
+<!--vot--><a href="#" class="btn btn-success btn-sm" data-toggle="modal" data-target="#mediaSortModal"><i class="icofont-plus"></i><?=lang('category_add')?></a>
 </div>
 <form action="media.php?action=operate_media" method="post" name="form_media" id="form_media">
     <div class="row">
@@ -101,7 +101,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="mediaSortModalLabel">添加资源分类</h5>
+<!--vot-->      <h5 class="modal-title" id="mediaSortModalLabel"><?=lang('media_category_add')?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -109,14 +109,14 @@
             <form action="media.php?action=add_media_sort" method="post">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="alias">分类名称</label>
+<!--vot-->              <label for="alias"><?=lang('category_name')?></label>
                         <input class="form-control" id="sortname" maxlength="255" name="sortname" required>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <input type="hidden" value="" name="linkid" id="linkid"/>
-                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
-                    <button type="submit" class="btn btn-sm btn-success">保存</button>
+<!--vot-->          <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
+<!--vot-->          <button type="submit" class="btn btn-sm btn-success"><?=lang('save')?></button>
                 </div>
             </form>
 
@@ -129,7 +129,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">修改</h5>
+<!--vot-->      <h5 class="modal-title" id="exampleModalLabel"><?=lang('modify')?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -142,9 +142,9 @@
                 </div>
                 <div class="modal-footer">
                     <input type="hidden" value="" id="tid" name="tid"/>
-                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
-                    <button type="submit" class="btn btn-sm btn-success">保存</button>
-                    <a class="btn btn-sm btn-outline-danger" href="javascript:deltags();">删除</a>
+<!--vot-->          <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
+<!--vot-->          <button type="submit" class="btn btn-sm btn-success"><?=lang('save')?></button>
+<!--vot-->          <a class="btn btn-sm btn-outline-danger" href="javascript:deltags();"><?=lang('delete')?></a>
                 </div>
             </form>
         </div>

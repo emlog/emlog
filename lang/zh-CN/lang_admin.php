@@ -104,6 +104,8 @@ $lang = array(
  'plugin'		=> '插件',//'Plug-in',
  'plugins'		=> '插件',//'Plug-ins',
  'plugin_view'		=> '查看插件',//'View Plugin',
+ 'free_zone'		=> '免费区',//'Free zone',
+ 'paid_zone'		=> '付费区',//'Paid zone',
 
 //---------------------------
 //admin/style.php
@@ -518,10 +520,14 @@ $lang = array(
  'media_deleted_ok'	=> '媒体文件删除成功',//'Media file deleted successfully',
  '_resources'		=> '个资源',//'resources',
  'resource_del_selected'	=> '删除所选资源',//'Delete selected resources',
- 'resource_select'	=> '请选择要删除的资源',//'Please select the resource to be deleted',
- 'resource_del_sure'	=> '确定要删除所选资源吗？',//'Are you sure you want to delete the selected resource?',
- 'founder'		=> '创建人',//'Founder',
+ 'resource_select'		=> '请选择要删除的资源',//'Please select the resource to be deleted',
+ 'resource_del_sure'		=> '确定要删除所选资源吗？',//'Are you sure you want to delete the selected resource?',
+ 'founder'			=> '创建人',//'Founder',
  'image_address_original'	=> '原图地址',//'Original image address',
+ 'media_category_add_ok'	=> '分类添加成功',//'Category added successfully',
+ 'media_category_add'		=> '添加资源分类',//'Add media category',
+ 'category_name'		=> '分类名称',//'Category Name',
+ 'modify'			=> '修改',//'Modify',
 
 //---------------------------
 //admin/views/media_lib.php
@@ -798,7 +804,7 @@ $lang = array(
  'return_app_center'		=> '返回应用中心',//'Return to app center',
  'install_failed_zip_nonsupport'	=> '安装失败，可能是你的服务器空间不支持zip模块，请手动下载安装，',//'Installation failed. It seems your server does not support zip module. Please, download and install manually.',
  'install_failed_folder_nonwritable'	=> '安装失败，可能是应用目录不可写，',//'Installation failed. Probably, directory is not wirtable.',
- 'install_failed'		=> '安装失败，',//'Installation failed.',
+ 'install_failed'			=> '安装失败，',//'Installation failed.',
 
 //---------------------------
 //admin/views/store_plu.php

@@ -104,8 +104,8 @@ $lang = array(
  'plugin'		=> 'Plug-in',//'插件',
  'plugins'		=> 'Plug-ins',//'插件',
  'plugin_view'		=> 'View Plugin',//'查看插件',
- 'free_zone'		=> 'free zone',//'免费区',
- 'paid_zone'		=> 'paid zone',//'付费区',
+ 'free_zone'		=> 'Free zone',//'免费区',
+ 'paid_zone'		=> 'Paid zone',//'付费区',
 
 //---------------------------
 //admin/style.php
@@ -520,10 +520,14 @@ $lang = array(
  'media_deleted_ok'	=> 'Media file deleted successfully',//'媒体文件删除成功',
  '_resources'		=> 'resources',//'个资源',
  'resource_del_selected'	=> 'Delete selected resources',//'删除所选资源',
- 'resource_select'	=> 'Please select the resource to be deleted',//'请选择要删除的资源',
- 'resource_del_sure'	=> 'Are you sure you want to delete the selected resource?',//'确定要删除所选资源吗？',
- 'founder'		=> 'Founder',//'创建人',
+ 'resource_select'		=> 'Please select the resource to be deleted',//'请选择要删除的资源',
+ 'resource_del_sure'		=> 'Are you sure you want to delete the selected resource?',//'确定要删除所选资源吗？',
+ 'founder'			=> 'Founder',//'创建人',
  'image_address_original'	=> 'Original image address',//'原图地址',
+ 'media_category_add_ok'	=> 'Category added successfully',//'分类添加成功',
+ 'media_category_add'		=> 'Add media category',//'添加资源分类',
+ 'category_name'		=> 'Category Name',//'分类名称',
+ 'modify'			=> 'Modify',//'修改',
 
 //---------------------------
 //admin/views/media_lib.php
@@ -611,9 +615,9 @@ $lang = array(
 
 //---------------------------
 //admin/views/register.php
-// 'ext_store_info'	=> '扩展商店用于下载模板和插件，仅开放给已完成注册用户',//'The extension store is used to download templates and plug-ins, only open to registered users',
-// 'too_many_articles'	=> '文章数量已经超过未注册版本限额',//'The number of articles has exceeded the unregistered version limit',
-// 'emlog_notregistered'	=> '抱歉！您的emlog pro尚未完成注册， 完成注册来解锁emlog pro的全部功能',//'Sorry! Your emlog pro has not been registered, complete the registration to unlock all the functions of emlog pro',
+// 'ext_store_info'	=> 'The extension store is used to download templates and plug-ins, only open to registered users',//'扩展商店用于下载模板和插件，仅开放给已完成注册用户',
+// 'too_many_articles'	=> 'The number of articles has exceeded the unregistered version limit',//'文章数量已经超过未注册版本限额',
+// 'emlog_notregistered'	=> 'Sorry! Your emlog pro has not been registered, complete the registration to unlock all the functions of emlog pro',//'抱歉！您的emlog pro尚未完成注册， 完成注册来解锁emlog pro的全部功能',
  'ok_register_now'	=> 'Start registration',//'开始注册',
  'emlog_reg_ok'		=> 'Congratulations, your emlog pro has been registered!',//'恭喜，您的emlog pro已完成注册！',
  'enter_reg_code'	=> 'Enter the registration code',//'输入注册码',

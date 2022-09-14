@@ -53,7 +53,7 @@ class MediaSort_Model {
 			$row = $this->db->fetch_array($res);
 			$sortName = htmlspecialchars($row['sortname']);
 		} else {
-			$sortName = '未分类';
+/*vot*/			$sortName = lang('uncategorized');
 		}
 		return $sortName;
 	}
