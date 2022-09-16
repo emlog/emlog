@@ -17,7 +17,7 @@ class Calendar {
 
 		//建立文章时间写入数组
 		$logdate = [];
-		$query = $DB->query("SELECT date FROM " . DB_PREFIX . "blog WHERE hide='n' and checked='y' and type='blog'");
+		$query = $DB->query("SELECT date FROM " . DB_PREFIX . "blog WHERE hide='n' AND checked='y' AND type='blog'");
 		while ($date = $DB->fetch_array($query)) {
 			$logdate[] = date("Ymd", $date['date']);
 		}

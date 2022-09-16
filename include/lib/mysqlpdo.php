@@ -177,7 +177,7 @@ class Mysqlpdo {
 	 * 取得数据库版本信息
 	 */
 	function getMysqlVersion() {
-		return $this->conn->query('select version()')->fetchColumn();
+		return $this->conn->query('SELECT VERSION()')->fetchColumn();
 	}
 
 	/**

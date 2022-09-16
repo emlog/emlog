@@ -185,7 +185,7 @@ class Option {
 	static function updateOption($name, $value, $isSyntax = false) {
 		$DB = Database::getInstance();
 		$value = $isSyntax ? $value : "'$value'";
-		$sql = 'INSERT INTO ' . DB_PREFIX . "options (option_name, option_value) values ('$name', $value) ON DUPLICATE KEY UPDATE option_value=$value, option_name='$name'";
+		$sql = 'INSERT INTO ' . DB_PREFIX . "options (option_name, option_value) VALUES ('$name', $value) ON DUPLICATE KEY UPDATE option_value=$value, option_name='$name'";
 		$DB->query($sql);
 	}
 }

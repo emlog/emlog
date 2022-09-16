@@ -30,7 +30,7 @@ class Record_Controller {
 			$record_stime = strtotime($record);
 			$record_etime = $record_stime + 3600 * 24;
 		}
-		$sqlSegment = "and date>=$record_stime and date<$record_etime order by date desc";
+		$sqlSegment = "AND date>=$record_stime AND date<$record_etime ORDER BY date DESC";
 		$lognum = $Log_Model->getLogNum('n', $sqlSegment);
 
 		$total_pages = ceil($lognum / $index_lognum);

@@ -25,7 +25,7 @@ class Tag_Controller {
 		if (!$blogIdStr) {
 			show_404_page();
 		}
-		$sqlSegment = "and gid IN ($blogIdStr) order by date desc";
+		$sqlSegment = "AND gid IN ($blogIdStr) ORDER BY date DESC";
 		$lognum = $Log_Model->getLogNum('n', $sqlSegment);
 		$total_pages = ceil($lognum / $index_lognum);
 		if ($page > $total_pages) {

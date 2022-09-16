@@ -23,7 +23,7 @@ class Media_Model {
 		$author = $uid ? 'and author=' . UID : '';
 		$limit = "LIMIT $startId, " . $perpage_count;
 
-		$sql = "SELECT * FROM " . $this->table . " WHERE thumfor = 0 $author order by aid desc $limit";
+		$sql = "SELECT * FROM " . $this->table . " WHERE thumfor = 0 $author ORDER BY aid DESC $limit";
 		$query = $this->db->query($sql);
 		$medias = [];
 		while ($row = $this->db->fetch_array($query)) {

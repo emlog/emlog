@@ -187,15 +187,15 @@ class Cache {
 		);
 
 		// 性能问题仅缓存最近1000个用户的信息
-		$query = $this->db->query("SELECT uid FROM " . DB_PREFIX . "user order by uid desc limit 1000");
+		$query = $this->db->query("SELECT uid FROM " . DB_PREFIX . "user ORDER BY uid DESC LIMIT 1000");
 		while ($row = $this->db->fetch_array($query)) {
-			$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "blog WHERE author={$row['uid']} AND hide='n' and type='blog'");
+			$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "blog WHERE author={$row['uid']} AND hide='n' AND type='blog'");
 			$logNum = $data['total'];
 			$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "blog WHERE author={$row['uid']} AND hide='y' AND type='blog'");
 			$draftNum = $data['total'];
 			$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "comment AS a, " . DB_PREFIX . "blog AS b WHERE a.gid = b.gid AND b.author={$row['uid']}");
 			$commentNum = $data['total'];
-			$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "comment AS a, " . DB_PREFIX . "blog AS b WHERE a.gid=b.gid and a.hide='y' AND b.author={$row['uid']}");
+			$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "comment AS a, " . DB_PREFIX . "blog AS b WHERE a.gid=b.gid AND a.hide='y' AND b.author={$row['uid']}");
 			$hidecommentNum = $data['total'];
 
 			$sta_cache[$row['uid']] = [
@@ -268,7 +268,7 @@ class Cache {
 		$rank = $maxuse - $minuse;
 		$rank = ($rank == 0 ? 1 : $rank);
 		$rank = $spread / $rank;
-		$query = $this->db->query("SELECT tagname,gid FROM " . DB_PREFIX . "tag order by tid desc limit 100");
+		$query = $this->db->query("SELECT tagname,gid FROM " . DB_PREFIX . "tag ORDER BY tid DESC LIMIT 100");
 		while ($row = $this->db->fetch_array($query)) {
 			if ($row['gid'] == ',') {
 				continue;
@@ -383,7 +383,7 @@ class Cache {
 		if ($index_newlognum <= 0) {
 			$index_newlognum = 10;
 		}
-		$sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' and checked='y' and type='blog' ORDER BY date DESC LIMIT 0, $index_newlognum";
+		$sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' AND checked='y' AND type='blog' ORDER BY date DESC LIMIT 0, $index_newlognum";
 		$res = $this->db->query($sql);
 		$logs = [];
 		while ($row = $this->db->fetch_array($res)) {
@@ -399,7 +399,7 @@ class Cache {
 	 * 文章归档缓存
 	 */
 	private function mc_record() {
-		$query = $this->db->query('select date from ' . DB_PREFIX . "blog WHERE hide='n' and checked='y' and type='blog' ORDER BY date DESC");
+		$query = $this->db->query('SELECT date FROM ' . DB_PREFIX . "blog WHERE hide='n' AND checked='y' AND type='blog' ORDER BY date DESC");
 		$record = 'xxxx_x';
 		$p = 0;
 		$lognum = 1;
@@ -436,7 +436,7 @@ class Cache {
 	 * 文章别名缓存
 	 */
 	private function mc_logalias() {
-		$sql = "SELECT gid,alias FROM " . DB_PREFIX . "blog where alias!=''";
+		$sql = "SELECT gid,alias FROM " . DB_PREFIX . "blog WHERE alias!=''";
 		$query = $this->db->query($sql);
 		$log_cache_alias = [];
 		while ($row = $this->db->fetch_array($query)) {
@@ -479,7 +479,7 @@ class Cache {
 	 * 文章分类缓存
 	 */
 	private function mc_logsort() {
-		$sql = "SELECT gid,sortid FROM " . DB_PREFIX . "blog where type='blog' order by top DESC, sortop DESC, date DESC";
+		$sql = "SELECT gid,sortid FROM " . DB_PREFIX . "blog WHERE type='blog' ORDER BY top DESC, sortop DESC, date DESC";
 		$query = $this->db->query($sql);
 		$log_cache_sort = [];
 		$logs = [];
