@@ -163,7 +163,7 @@ class Tag_Model {
 			$this->removeTagIdFromBlog($blogId, $tagId);
 		}
 
-		$this->db->query("DELETE FROM " . DB_PREFIX . "tag where tid=$tagId");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "tag WHERE tid=$tagId");
 	}
 
 	/**

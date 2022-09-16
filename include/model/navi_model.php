@@ -55,19 +55,19 @@ class Navi_Model {
 			$Item[] = "$key='$data'";
 		}
 		$upStr = implode(',', $Item);
-		$this->db->query("update " . DB_PREFIX . "navi set $upStr where id=$navid");
+		$this->db->query("UPDATE " . DB_PREFIX . "navi SET $upStr WHERE id=$navid");
 	}
 
 	function addNavi($name, $url, $taxis, $pid, $newtab, $type = 0, $typeId = 0) {
 		if ($taxis > 30000 || $taxis < 0) {
 			$taxis = 0;
 		}
-		$sql = "insert into " . DB_PREFIX . "navi (naviname,url,taxis,pid,newtab,type,type_id) values('$name','$url', $taxis, $pid, '$newtab', $type, $typeId)";
+		$sql = "INSERT INTO " . DB_PREFIX . "navi (naviname,url,taxis,pid,newtab,type,type_id) VALUES('$name','$url', $taxis, $pid, '$newtab', $type, $typeId)";
 		$this->db->query($sql);
 	}
 
 	function getOneNavi($navid) {
-		$sql = "select * from " . DB_PREFIX . "navi where id=$navid ";
+		$sql = "SELECT * FROM " . DB_PREFIX . "navi WHERE id=$navid ";
 		$res = $this->db->query($sql);
 		$row = $this->db->fetch_array($res);
 		$naviData = [];
@@ -110,8 +110,8 @@ class Navi_Model {
 	}
 
 	function deleteNavi($navid) {
-		$this->db->query("DELETE FROM " . DB_PREFIX . "navi where id=$navid");
-		$this->db->query("UPDATE " . DB_PREFIX . "navi set pid=0 where pid=$navid");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "navi WHERE id=$navid");
+		$this->db->query("UPDATE " . DB_PREFIX . "navi SET pid=0 WHERE pid=$navid");
 	}
 
 }

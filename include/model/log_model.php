@@ -135,8 +135,8 @@ class Log_Model {
 	function getLogsForAdmin($condition = '', $hide_state = '', $page = 1, $type = 'blog') {
 		$perpage_num = Option::get('admin_perpage_num');
 		$start_limit = !empty($page) ? ($page - 1) * $perpage_num : 0;
-		$author = User::haveEditPermission() ? '' : 'and author=' . UID;
-		$hide_state = $hide_state ? "and hide='$hide_state'" : '';
+		$author = User::haveEditPermission() ? '' : 'AND author=' . UID;
+		$hide_state = $hide_state ? "AND hide='$hide_state'" : '';
 		$limit = "LIMIT $start_limit, " . $perpage_num;
 		$sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE type='$type' $author $hide_state $condition $limit";
 		$res = $this->db->query($sql);
@@ -160,7 +160,7 @@ class Log_Model {
 	function getLogsForHome($condition = '', $page = 1, $perPageNum = 10) {
 		$start_limit = !empty($page) ? ($page - 1) * $perPageNum : 0;
 		$limit = $perPageNum ? "LIMIT $start_limit, $perPageNum" : '';
-		$sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE type='blog' and hide='n' and checked='y' $condition $limit";
+		$sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE type='blog' AND hide='n' AND checked='y' $condition $limit";
 		$res = $this->db->query($sql);
 		$logs = [];
 		while ($row = $this->db->fetch_array($res)) {
@@ -192,7 +192,7 @@ class Log_Model {
 		if ($perPageNum <= 0) {
 			return [];
 		}
-		$sql = "SELECT * FROM " . DB_PREFIX . "blog  WHERE hide='n' and checked='y' and type='blog' ORDER BY date DESC limit 0," . $perPageNum;
+		$sql = "SELECT * FROM " . DB_PREFIX . "blog  WHERE hide='n' AND checked='y' AND type='blog' ORDER BY date DESC LIMIT 0," . $perPageNum;
 		$result = $this->db->query($sql);
 		$d = [];
 		while ($re = $this->db->fetch_array($result)) {
@@ -233,13 +233,13 @@ class Log_Model {
 	 * delete article
 	 */
 	function deleteLog($blogId) {
-		$author = User::haveEditPermission() ? '' : 'and author=' . UID;
-		$this->db->query("DELETE FROM " . DB_PREFIX . "blog where gid=$blogId $author");
+/*vot*/		$author = User::haveEditPermission() ? '' : 'AND author=' . UID;
+/*vot*/		$this->db->query("DELETE FROM " . DB_PREFIX . "blog WHERE gid=$blogId $author");
 		if ($this->db->affected_rows() < 1) {
 /*vot*/			emMsg(lang('no_permission'), './');
 		}
 		// comment
-		$this->db->query("DELETE FROM " . DB_PREFIX . "comment where gid=$blogId");
+/*vot*/		$this->db->query("DELETE FROM " . DB_PREFIX . "comment WHERE gid=$blogId");
 		// tag
 		$this->db->query("UPDATE " . DB_PREFIX . "tag SET gid= REPLACE(gid,',$blogId,',',') WHERE gid LIKE '%" . $blogId . "%' ");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "tag WHERE gid=',' ");
@@ -286,7 +286,7 @@ class Log_Model {
 	 * Determine whether the repeated posting
 	 */
 	function isRepeatPost($title, $time) {
-		$sql = "SELECT gid FROM " . DB_PREFIX . "blog WHERE title='$title' and date='$time' LIMIT 1";
+		$sql = "SELECT gid FROM " . DB_PREFIX . "blog WHERE title='$title' AND date='$time' LIMIT 1";
 		$res = $this->db->query($sql);
 		$row = $this->db->fetch_array($res);
 		return isset($row['gid']) ? (int)$row['gid'] : false;
@@ -319,7 +319,7 @@ class Log_Model {
 		$sta_cache = $CACHE->readCache('sta');
 		$lognum = $sta_cache['lognum'];
 		$start = $lognum > $num ? mt_rand(0, $lognum - $num) : 0;
-		$sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' and checked='y' and type='blog' LIMIT $start, $num";
+		$sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' AND checked='y' AND type='blog' LIMIT $start, $num";
 		$res = $this->db->query($sql);
 		$logs = [];
 		while ($row = $this->db->fetch_array($res)) {
@@ -334,7 +334,7 @@ class Log_Model {
 	 * Get Hot Posts
 	 */
 	function getHotLog($num) {
-		$sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' and checked='y' and type='blog' ORDER BY views DESC, comnum DESC LIMIT 0, $num";
+		$sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' AND checked='y' AND type='blog' ORDER BY views DESC, comnum DESC LIMIT 0, $num";
 		$res = $this->db->query($sql);
 		$logs = [];
 		while ($row = $this->db->fetch_array($res)) {

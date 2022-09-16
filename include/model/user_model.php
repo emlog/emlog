@@ -16,14 +16,14 @@ class User_Model {
 	function getUsers($email = '', $page = 1) {
 		$condition = $limit = '';
 		if ($email) {
-			$condition = " and email like '$email%'";
+			$condition = " AND email LIKE '$email%'";
 		}
 		if ($page) {
 			$perpage_num = Option::get('admin_perpage_num');
 			$startId = ($page - 1) * $perpage_num;
 			$limit = "LIMIT $startId, " . $perpage_num;
 		}
-		$res = $this->db->query("SELECT * FROM " . DB_PREFIX . "user where 1=1 $condition order by uid desc $limit");
+		$res = $this->db->query("SELECT * FROM " . DB_PREFIX . "user WHERE 1=1 $condition ORDER BY uid DESC $limit");
 		$users = [];
 		while ($row = $this->db->fetch_array($res)) {
 			$row['name'] = htmlspecialchars($row['nickname']);
@@ -39,7 +39,7 @@ class User_Model {
 	}
 
 	function getOneUser($uid) {
-		$row = $this->db->once_fetch_array("select * from " . DB_PREFIX . "user where uid=$uid");
+		$row = $this->db->once_fetch_array("SELECT * FROM " . DB_PREFIX . "user WHERE uid=$uid");
 		$userData = [];
 		if ($row) {
 			$userData = array(
@@ -62,7 +62,7 @@ class User_Model {
 			$Item[] = "$key='$data'";
 		}
 		$upStr = implode(',', $Item);
-		$this->db->query("update " . DB_PREFIX . "user set $upStr where uid=$uid");
+		$this->db->query("UPDATE " . DB_PREFIX . "user SET $upStr WHERE uid=$uid");
 	}
 
 	function updateUserByMail($userData, $mail) {
@@ -72,27 +72,27 @@ class User_Model {
 			$Item[] = "$key='$data'";
 		}
 		$upStr = implode(',', $Item);
-		$this->db->query("update " . DB_PREFIX . "user set $upStr where email='$mail'");
+		$this->db->query("UPDATE " . DB_PREFIX . "user SET $upStr WHERE email='$mail'");
 	}
 
 	function addUser($username, $mail, $password, $role) {
 		$timestamp = time();
 		$nickname = getRandStr(8, false);
-		$sql = "insert into " . DB_PREFIX . "user (username,email,password,nickname,role,create_time,update_time) values('$username','$mail','$password','$nickname','$role',$timestamp,$timestamp)";
+		$sql = "INSERT INTO " . DB_PREFIX . "user (username,email,password,nickname,role,create_time,update_time) VALUES('$username','$mail','$password','$nickname','$role',$timestamp,$timestamp)";
 		$this->db->query($sql);
 	}
 
 	function deleteUser($uid) {
-		$this->db->query("update " . DB_PREFIX . "blog set author=1, checked='y' where author=$uid");
-		$this->db->query("delete from " . DB_PREFIX . "user where uid=$uid");
+		$this->db->query("UPDATE " . DB_PREFIX . "blog SET author=1, checked='y' WHERE author=$uid");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "user WHERE uid=$uid");
 	}
 
 	function forbidUser($uid) {
-		$this->db->query("update " . DB_PREFIX . "user set state=1 where uid=$uid");
+		$this->db->query("UPDATE " . DB_PREFIX . "user SET state=1 WHERE uid=$uid");
 	}
 
 	function unforbidUser($uid) {
-		$this->db->query("update " . DB_PREFIX . "user set state=0 where uid=$uid");
+		$this->db->query("UPDATE " . DB_PREFIX . "user SET state=0 WHERE uid=$uid");
 	}
 
 	/**
