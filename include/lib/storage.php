@@ -109,7 +109,7 @@ class Storage {
 
 			$this->db_conn->query($sql);
 		} else {
-			$sql = "INSERT INTO " . DB_PREFIX . "storage (`plugin`, `name`, `type`, `value`, `createdate`, `lastupdate`) VALUE (";
+			$sql = "INSERT INTO " . DB_PREFIX . "storage (`plugin`, `name`, `type`, `value`, `createdate`, `lastupdate`) VALUES (";
 			$sql .= "'" . $this->db_conn->escape_string($this->plugin_name) . "', ";
 			$sql .= "'" . $this->db_conn->escape_string($name) . "', ";
 			$sql .= "'{$type}', ";
