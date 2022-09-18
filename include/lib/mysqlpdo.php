@@ -177,7 +177,7 @@ class Mysqlpdo {
 	 * Get database version information
 	 */
 	function getMysqlVersion() {
-		return $this->conn->query('select version()')->fetchColumn();
+		return $this->conn->query('SELECT VERSION()')->fetchColumn();
 	}
 
 	/**

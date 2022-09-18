@@ -28,14 +28,14 @@ class Twitter_Model {
 	}
 
 	function getTwitterNum() {
-		$author = 'and author=' . UID;
+		$author = 'AND author=' . UID;
 		$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "twitter WHERE 1=1 $author");
 		return $data['total'];
 	}
 
 	function getTwitters($page = 1, $perpage_num = 20) {
 		$start_limit = !empty($page) ? ($page - 1) * $perpage_num : 0;
-		$author = 'and author=' . UID;
+		$author = 'AND author=' . UID;
 		$limit = "LIMIT $start_limit, " . $perpage_num;
 		$sql = "SELECT * FROM " . DB_PREFIX . "twitter WHERE 1=1 $author ORDER BY id DESC $limit";
 		$res = $this->db->query($sql);
@@ -50,11 +50,11 @@ class Twitter_Model {
 
 	function delTwitter($tid) {
 		$author = User::haveEditPermission() ? '' : 'and author=' . UID;
-		$query = $this->db->query("select img from " . DB_PREFIX . "twitter where id=$tid $author");
+		$query = $this->db->query("SELECT img FROM " . DB_PREFIX . "twitter WHERE id=$tid $author");
 		$row = $this->db->fetch_array($query);
 
 		// del tw
-		$this->db->query("DELETE FROM " . DB_PREFIX . "twitter where id=$tid $author");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "twitter WHERE id=$tid $author");
 		if ($this->db->affected_rows() < 1) {
 /*vot*/			emMsg(lang('no_permission'), './');
 		}
