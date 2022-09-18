@@ -1096,10 +1096,30 @@ function u() {
 }
 
 /**
+ * 加载jQuery
+ */
+function emLoadJQuery() {
+	static $isJQueryLoaded = false;
+	if (!$isJQueryLoaded) {
+		global $emHooks;
+		if (!isset($emHooks['index_head'])) {
+			$emHooks['index_head'] = array();
+		}
+		array_unshift($emHooks['index_head'], 'loadJQuery');
+		$isJQueryLoaded = true;
+
+		function loadJQuery() {
+			echo '<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>';
+		}
+	}
+}
+
+/**
  * 计算时区的时差
  * @param string $remote_tz 远程时区
  * @param string $origin_tz 标准时区
  *
+ * @throws Exception
  */
 function getTimeZoneOffset($remote_tz, $origin_tz = 'UTC') {
 	if (($origin_tz === null) && !is_string($origin_tz = date_default_timezone_get())) {
@@ -1109,8 +1129,7 @@ function getTimeZoneOffset($remote_tz, $origin_tz = 'UTC') {
 	$remote_dtz = new DateTimeZone($remote_tz);
 	$origin_dt = new DateTime('now', $origin_dtz);
 	$remote_dt = new DateTime('now', $remote_dtz);
-	$offset = $origin_dtz->getOffset($origin_dt) - $remote_dtz->getOffset($remote_dt);
-	return $offset;
+	return $origin_dtz->getOffset($origin_dt) - $remote_dtz->getOffset($remote_dt);
 }
 
 /**
