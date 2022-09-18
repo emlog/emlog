@@ -67,7 +67,9 @@
 		exports.fn.tableDialog = function() {
 			var _this       = this;
 			var cm          = this.cm;
-			var editor      = this.editor;
+			/* 修改：更换对话框创建的位置 */
+			// var editor       = this.editor;
+			var editor       = $("#editor-md-dialog");
 			var settings    = this.settings;
 			var path        = settings.path + "../plugins/" + pluginName +"/";
 			var classPrefix = this.classPrefix;
