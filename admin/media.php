@@ -18,9 +18,10 @@ $Media_Model = new Media_Model();
 $MediaSortModel = new MediaSort_Model();
 
 if (empty($action)) {
+	$sid = isset($_GET['sid']) ? (int)$_GET['sid'] : 0;
 	$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 	$perpage_count = 24;
-	$medias = $Media_Model->getMedias($page, $perpage_count, User::haveEditPermission() ? null : UID);
+	$medias = $Media_Model->getMedias($page, $perpage_count, User::haveEditPermission() ? null : UID, $sid);
 	$count = $Media_Model->getMediaCount();
 	$pageurl = pagination($count, $perpage_count, $page, "media.php?page=");
 

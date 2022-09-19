@@ -12,9 +12,10 @@
     <a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#exampleModal"><i class="icofont-plus"></i> 上传图片/文件</a>
 </div>
 <div class="row mb-3 ml-1">
+    <a href="media.php" class="btn btn-primary btn-sm mr-1">全部资源</a>
 	<?php foreach ($sorts as $key => $val): ?>
         <div class="btn-group mr-1">
-            <button type="button" class="btn btn-primary btn-sm"><?= $val['sortname'] ?></button>
+            <a href="media.php?sid=<?= $val['id'] ?>" type="button" class="btn btn-primary btn-sm"><?= $val['sortname'] ?></a>
             <button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false"></button>
             <div class="dropdown-menu">
                 <a class="dropdown-item" href="<?= $val['id'] ?>">编辑</a>
@@ -28,6 +29,7 @@
     <div class="row">
 		<?php foreach ($medias as $key => $value):
 			$media_url = rmUrlParams(getFileUrl($value['filepath']));
+			$sort_name = $value['sortname'];
 			$media_name = $value['filename'];
 			$author = $user_cache[$value['author']]['name'];
 			if (isImage($value['mimetype'])) {
@@ -46,7 +48,7 @@
                     <a href="<?= $media_url ?>" <?= $imgviewer ?> target="_blank"><img class="card-img-top" src="<?= $media_icon ?>"/></a>
                     <div class="card-body">
                         <p class="card-text text-muted small">
-							<?= $media_name ?><br>
+							<?= $media_name ?> <span class="badge badge-primary"><?= $sort_name ?></span><br>
                             时间：<?= $value['addtime'] ?><br>
                             创建人：<?= $author ?><br>
                             文件大小：<?= $value['attsize'] ?>，
