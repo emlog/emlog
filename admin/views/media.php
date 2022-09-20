@@ -3,6 +3,8 @@
 } ?>
 <?php if (isset($_GET['active_del'])): ?>
     <div class="alert alert-success">删除成功</div><?php endif ?>
+<?php if (isset($_GET['active_edit'])): ?>
+    <div class="alert alert-success">修改成功</div><?php endif ?>
 <?php if (isset($_GET['active_add'])): ?>
     <div class="alert alert-success">分类添加成功</div><?php endif ?>
 <?php if (isset($_GET['error_a'])): ?>
@@ -12,14 +14,14 @@
     <a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#exampleModal"><i class="icofont-plus"></i> 上传图片/文件</a>
 </div>
 <div class="row mb-3 ml-1">
-    <a href="media.php" class="btn btn-primary btn-sm mr-1">全部资源</a>
+    <a href="media.php" class="btn btn-primary btn-sm mr-2">全部资源</a>
 	<?php foreach ($sorts as $key => $val): ?>
-        <div class="btn-group mr-1">
+        <div class="btn-group mr-2">
             <a href="media.php?sid=<?= $val['id'] ?>" type="button" class="btn btn-primary btn-sm"><?= $val['sortname'] ?></a>
             <button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false"></button>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="<?= $val['id'] ?>">编辑</a>
-                <a class="dropdown-item" href="media.php?action=del_media_sort&id=<?= $val['id'] ?>">删除</a>
+                <a href="#" class="dropdown-item" data-toggle="modal" data-target="#editModal" data-id="<?= $val['id'] ?>" data-sortname="<?= $val['sortname'] ?>">编辑</a>
+                <a class="dropdown-item text-danger" href="javascript: em_confirm(<?= $val['id'] ?>, 'media_sort', '<?= LoginAuth::genToken() ?>');">删除</a>
             </div>
         </div>
 	<?php endforeach ?>
@@ -116,7 +118,6 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <input type="hidden" value="" name="linkid" id="linkid"/>
                     <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
                     <button type="submit" class="btn btn-sm btn-success">保存</button>
                 </div>
@@ -126,27 +127,25 @@
     </div>
 </div>
 
-
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">修改</h5>
+                <h5 class="modal-title" id="exampleModalLabel">修改资源分类</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="post" action="tag.php?action=update_tag">
+            <form method="post" action="media.php?action=update_media_sort">
                 <div class="modal-body">
                     <div class="form-group">
-                        <input type="text" class="form-control" id="tagname" name="tagname" required>
+                        <input type="text" class="form-control" id="sortname" name="sortname" required>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <input type="hidden" value="" id="tid" name="tid"/>
+                    <input type="hidden" value="" id="id" name="id"/>
                     <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
                     <button type="submit" class="btn btn-sm btn-success">保存</button>
-                    <a class="btn btn-sm btn-outline-danger" href="javascript:deltags();">删除</a>
                 </div>
             </form>
         </div>
@@ -182,6 +181,15 @@
         $("#operate").val(act);
         $("#form_media").submit();
     }
+
+    $('#editModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget)
+        var sortname = button.data('sortname')
+        var id = button.data('id')
+        var modal = $(this)
+        modal.find('.modal-body input').val(sortname)
+        modal.find('.modal-footer input').val(id)
+    })
 </script>
 <link rel="stylesheet" type="text/css" href="./views/highslide/highslide.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"/>
 <script src="./views/highslide/highslide.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>

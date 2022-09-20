@@ -28,13 +28,13 @@ class MediaSort_Model {
 		return $sorts;
 	}
 
-	function updateSort($sortData, $sid) {
+	function updateSort($sortData, $id) {
 		$Item = [];
 		foreach ($sortData as $key => $data) {
 			$Item[] = "$key='$data'";
 		}
 		$upStr = implode(',', $Item);
-		$this->db->query("update " . DB_PREFIX . "sort set $upStr where sid=$sid");
+		$this->db->query("update $this->table set $upStr where id=$id");
 	}
 
 	function addSort($name) {
@@ -45,17 +45,6 @@ class MediaSort_Model {
 	function deleteSort($id) {
 		$this->db->query("update " . $this->table_media . " set sortid=0 where sortid=$id");
 		$this->db->query("DELETE FROM " . $this->table . " where id=$id");
-	}
-
-	function getSortName($sid) {
-		if ($sid > 0) {
-			$res = $this->db->query("SELECT sortname FROM " . $this->table . " WHERE sid = $sid");
-			$row = $this->db->fetch_array($res);
-			$sortName = htmlspecialchars($row['sortname']);
-		} else {
-			$sortName = '未分类';
-		}
-		return $sortName;
 	}
 
 }

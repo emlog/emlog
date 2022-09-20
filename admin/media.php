@@ -117,8 +117,22 @@ if ($action === "add_media_sort") {
 	emDirect("./media.php?active_add=1");
 }
 
+if ($action == 'update_media_sort') {
+	$sortname = isset($_POST['sortname']) ? addslashes(trim($_POST['sortname'])) : '';
+	$id = isset($_POST['id']) ? (int)$_POST['id'] : '';
+
+	if (empty($sortname)) {
+		emDirect("./media.php?error_a=1");
+	}
+
+	$MediaSortModel->updateSort(["sortname" => $sortname], $id);
+	emDirect("./media.php?active_edit=1");
+}
+
 if ($action === "del_media_sort") {
 	$id = isset($_GET['id']) ? (int)$_GET['id'] : '';
+
+	LoginAuth::checkToken();
 
 	$MediaSortModel->deleteSort($id);
 	emDirect("./media.php?active_del=1");

@@ -75,11 +75,13 @@ function em_confirm(id, property, token) {
             url = 'plugin.php?action=del&plugin=' + id;
             msg = '确定要删除该插件吗？';
             break;
+        case 'media_sort':
+            url = 'media.php?action=del_media_sort&id=' + id;
+            msg = '确定要删除该资源分类吗？';
+            break;
     }
     if (confirm(msg)) {
         window.location = url + '&token=' + token;
-    } else {
-        return;
     }
 }
 
