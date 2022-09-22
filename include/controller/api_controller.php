@@ -67,9 +67,7 @@ class Api_Controller {
 
 		$this->Cache->updateCache();
 
-		output::ok([
-			'article_id' => $article_id,
-		]);
+		output::ok(['article_id' => $article_id,]);
 	}
 
 	private function article_list() {
@@ -110,9 +108,7 @@ class Api_Controller {
 			];
 		}
 
-		output::ok([
-			'articles' => $articles,
-		]);
+		output::ok(['articles' => $articles,]);
 	}
 
 	private function article_detail() {
@@ -122,27 +118,28 @@ class Api_Controller {
 		$sort_cache = $this->Cache->readCache('sort');
 		$author_cache = $this->Cache->readCache('user');
 		$article = '';
-		if ($r) {
-			$article = [
-				'title'       => $r['log_title'],
-				'date'        => date('Y-m-d H:i:s', $r['date']),
-				'id'          => (int)$r['logid'],
-				'sort_id'     => (int)$r['sortid'],
-				'sort_name'   => isset($sort_cache[$r['sortid']]['sortname']) ? $sort_cache[$r['sortid']]['sortname'] : '',
-				'type'        => $r['type'],
-				'author_id'   => (int)$r['author'],
-				'author_name' => isset($author_cache[$r['author']]['name']) ? $author_cache[$r['author']]['name'] : '',
-				'content'     => $r['log_content'],
-				'cover'       => $r['log_cover'],
-				'views'       => (int)$r['views'],
-				'comnum'      => (int)$r['comnum'],
-				'top'         => $r['top'],
-				'sortop'      => $r['sortop'],
-			];
+		if (empty($r)) {
+			output::ok(['article' => $article,]);
 		}
-		output::ok([
-			'article' => $article,
-		]);
+
+		$article = [
+			'title'       => $r['log_title'],
+			'date'        => date('Y-m-d H:i:s', $r['date']),
+			'id'          => (int)$r['logid'],
+			'sort_id'     => (int)$r['sortid'],
+			'sort_name'   => isset($sort_cache[$r['sortid']]['sortname']) ? $sort_cache[$r['sortid']]['sortname'] : '',
+			'type'        => $r['type'],
+			'author_id'   => (int)$r['author'],
+			'author_name' => isset($author_cache[$r['author']]['name']) ? $author_cache[$r['author']]['name'] : '',
+			'content'     => $r['log_content'],
+			'cover'       => $r['log_cover'],
+			'views'       => (int)$r['views'],
+			'comnum'      => (int)$r['comnum'],
+			'top'         => $r['top'],
+			'sortop'      => $r['sortop'],
+		];
+
+		output::ok(['article' => $article,]);
 	}
 
 	function sort_list() {
@@ -157,10 +154,7 @@ class Api_Controller {
 			}
 		}
 		sort($data);
-
-		output::ok([
-			'sorts' => $data,
-		]);
+		output::ok(['sorts' => $data,]);
 	}
 
 	function note_post() {
@@ -183,9 +177,7 @@ class Api_Controller {
 
 		$id = $this->Twitter_Model->addTwitter($data);
 		$this->Cache->updateCache(array('sta', 'newtw'));
-		output::ok([
-			'note_id' => $id,
-		]);
+		output::ok(['note_id' => $id,]);
 	}
 
 	private function checkApiKey($req_sign, $req_time) {

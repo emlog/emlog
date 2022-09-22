@@ -18,9 +18,10 @@ $Media_Model = new Media_Model();
 $MediaSortModel = new MediaSort_Model();
 
 if (empty($action)) {
+	$sid = isset($_GET['sid']) ? (int)$_GET['sid'] : 0;
 	$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 	$perpage_count = 24;
-	$medias = $Media_Model->getMedias($page, $perpage_count, User::haveEditPermission() ? null : UID);
+	$medias = $Media_Model->getMedias($page, $perpage_count, User::haveEditPermission() ? null : UID, $sid);
 	$count = $Media_Model->getMediaCount();
 	$pageurl = pagination($count, $perpage_count, $page, "media.php?page=");
 
@@ -116,8 +117,22 @@ if ($action === "add_media_sort") {
 	emDirect("./media.php?active_add=1");
 }
 
+if ($action == 'update_media_sort') {
+	$sortname = isset($_POST['sortname']) ? addslashes(trim($_POST['sortname'])) : '';
+	$id = isset($_POST['id']) ? (int)$_POST['id'] : '';
+
+	if (empty($sortname)) {
+		emDirect("./media.php?error_a=1");
+	}
+
+	$MediaSortModel->updateSort(["sortname" => $sortname], $id);
+	emDirect("./media.php?active_edit=1");
+}
+
 if ($action === "del_media_sort") {
 	$id = isset($_GET['id']) ? (int)$_GET['id'] : '';
+
+	LoginAuth::checkToken();
 
 	$MediaSortModel->deleteSort($id);
 	emDirect("./media.php?active_del=1");

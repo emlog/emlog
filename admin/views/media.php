@@ -3,6 +3,8 @@
 } ?>
 <?php if (isset($_GET['active_del'])): ?>
 <!--vot--><div class="alert alert-success"><?=lang('deleted_ok')?></div><?php endif ?>
+<?php if (isset($_GET['active_edit'])): ?>
+    <div class="alert alert-success">修改成功</div><?php endif ?>
 <?php if (isset($_GET['active_add'])): ?>
 <!--vot--><div class="alert alert-success"><?=lang('media_category_add_ok')?></div><?php endif ?>
 <?php if (isset($_GET['error_a'])): ?>
@@ -12,13 +14,14 @@
 <!--vot--><a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#exampleModal"><i class="icofont-plus"></i> <?=lang('upload_files')?></a>
 </div>
 <div class="row mb-3 ml-1">
+    <a href="media.php" class="btn btn-primary btn-sm mr-2">全部资源</a>
 	<?php foreach ($sorts as $key => $val): ?>
-        <div class="btn-group mr-1">
-            <button type="button" class="btn btn-primary btn-sm"><?= $val['sortname'] ?></button>
+        <div class="btn-group mr-2">
+            <a href="media.php?sid=<?= $val['id'] ?>" type="button" class="btn btn-primary btn-sm"><?= $val['sortname'] ?></a>
             <button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false"></button>
             <div class="dropdown-menu">
-<!--vot-->      <a class="dropdown-item" href="<?= $val['id'] ?>"><?=lang('edit')?></a>
-<!--vot-->      <a class="dropdown-item" href="media.php?action=del_media_sort&id=<?= $val['id'] ?>"><?=lang('delete')?></a>
+<!--vot-->      <a href="#" class="dropdown-item" data-toggle="modal" data-target="#editModal" data-id="<?= $val['id'] ?>" data-sortname="<?= $val['sortname'] ?>"><?=lang('edit')?></a>
+<!--vot-->      <a class="dropdown-item text-danger" href="javascript: em_confirm(<?= $val['id'] ?>, 'media_sort', '<?= LoginAuth::genToken() ?>');"><?=lang('delete')?></a>
             </div>
         </div>
 	<?php endforeach ?>
@@ -28,6 +31,7 @@
     <div class="row">
 		<?php foreach ($medias as $key => $value):
 			$media_url = rmUrlParams(getFileUrl($value['filepath']));
+			$sort_name = $value['sortname'];
 			$media_name = $value['filename'];
 			$author = $user_cache[$value['author']]['name'];
 			if (isImage($value['mimetype'])) {
@@ -46,7 +50,7 @@
                     <a href="<?= $media_url ?>" <?= $imgviewer ?> target="_blank"><img class="card-img-top" src="<?= $media_icon ?>"/></a>
                     <div class="card-body">
                         <p class="card-text text-muted small">
-							<?= $media_name ?><br>
+							<?= $media_name ?> <span class="badge badge-primary"><?= $sort_name ?></span><br>
 <!--vot-->                  <?=lang('create_time')?>: <?= $value['addtime'] ?><br>
 <!--vot-->                  <?=lang('founder')?>: <?= $author ?><br>
 <!--vot-->                  <?=lang('file_size')?>: <?= $value['attsize'] ?>,
@@ -114,7 +118,6 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <input type="hidden" value="" name="linkid" id="linkid"/>
 <!--vot-->          <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
 <!--vot-->          <button type="submit" class="btn btn-sm btn-success"><?=lang('save')?></button>
                 </div>
@@ -124,27 +127,25 @@
     </div>
 </div>
 
-
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-<!--vot-->      <h5 class="modal-title" id="exampleModalLabel"><?=lang('modify')?></h5>
+<!--vot-->      <h5 class="modal-title" id="exampleModalLabel"><?=lang('change_media_category')?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="post" action="tag.php?action=update_tag">
+            <form method="post" action="media.php?action=update_media_sort">
                 <div class="modal-body">
                     <div class="form-group">
-                        <input type="text" class="form-control" id="tagname" name="tagname" required>
+                        <input type="text" class="form-control" id="sortname" name="sortname" required>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <input type="hidden" value="" id="tid" name="tid"/>
+                    <input type="hidden" value="" id="id" name="id"/>
 <!--vot-->          <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
 <!--vot-->          <button type="submit" class="btn btn-sm btn-success"><?=lang('save')?></button>
-<!--vot-->          <a class="btn btn-sm btn-outline-danger" href="javascript:deltags();"><?=lang('delete')?></a>
                 </div>
             </form>
         </div>
@@ -180,6 +181,15 @@
         $("#operate").val(act);
         $("#form_media").submit();
     }
+
+    $('#editModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget)
+        var sortname = button.data('sortname')
+        var id = button.data('id')
+        var modal = $(this)
+        modal.find('.modal-body input').val(sortname)
+        modal.find('.modal-footer input').val(id)
+    })
 </script>
 <link rel="stylesheet" type="text/css" href="./views/highslide/highslide.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"/>
 <script src="./views/highslide/highslide.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>

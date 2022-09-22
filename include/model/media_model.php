@@ -9,21 +9,24 @@ class Media_Model {
 
 	private $db;
 	private $table;
+	private $table_sort;
 
 	function __construct() {
 		$this->db = Database::getInstance();
 		$this->table = DB_PREFIX . 'attachment';
+		$this->table_sort = DB_PREFIX . 'media_sort';
 	}
 
 	/**
 	 * Get a list of resources
 	 */
-	function getMedias($page = 1, $perpage_count = 24, $uid = UID) {
+	function getMedias($page = 1, $perpage_count = 24, $uid = UID, $sid = 0) {
 		$startId = ($page - 1) * $perpage_count;
 		$author = $uid ? 'and author=' . UID : '';
+		$sort = $sid ? 'and sortid=' . $sid : '';
 		$limit = "LIMIT $startId, " . $perpage_count;
 
-		$sql = "SELECT * FROM " . $this->table . " WHERE thumfor = 0 $author ORDER BY aid DESC $limit";
+		$sql = "SELECT * FROM $this->table m LEFT JOIN $this->table_sort s ON m.sortid=s.id WHERE m.thumfor = 0 $author $sort order by m.aid desc $limit";
 		$query = $this->db->query($sql);
 		$medias = [];
 		while ($row = $this->db->fetch_array($query)) {
@@ -38,6 +41,8 @@ class Media_Model {
 				'height'        => $row['height'],
 				'mimetype'      => $row['mimetype'],
 				'author'        => $row['author'],
+				'sortid'        => $row['sortid'],
+				'sortname'      => $row['sortname'],
 			];
 		}
 		return $medias;
@@ -45,7 +50,7 @@ class Media_Model {
 
 	function getMediaCount() {
 		$author = 'and author=' . UID;
-		$sql = "SELECT count(*) as count FROM " . $this->table . " WHERE thumfor = 0 $author";
+		$sql = "SELECT count(*) as count FROM $this->table WHERE thumfor = 0 $author";
 		$res = $this->db->once_fetch_array($sql);
 		return $res['count'];
 	}
@@ -63,7 +68,7 @@ class Media_Model {
 			$file_path = $file_info['thum_file'];
 		}
 
-		$query = "INSERT INTO " . $this->table . "(author, filename, filesize, filepath, addtime, width, height, mimetype, thumfor)
+		$query = "INSERT INTO $this->table (author, filename, filesize, filepath, addtime, width, height, mimetype, thumfor)
 		 VALUES('%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')";
 		$query = sprintf($query, UID, $file_name, $file_size, $file_path, $create_time, $img_width, $img_height, $file_mime_type, 0);
 		$this->db->query($query);
@@ -72,7 +77,7 @@ class Media_Model {
 
 	function deleteMedia($media_id) {
 		$author = User::haveEditPermission() ? '' : 'and author=' . UID;
-		$query = $this->db->query("SELECT * FROM " . $this->table . " WHERE aid = $media_id $author");
+		$query = $this->db->query("SELECT * FROM $this->table WHERE aid = $media_id $author");
 		$attach = $this->db->fetch_array($query);
 		if (empty($attach)) {
 			return;
@@ -86,7 +91,7 @@ class Media_Model {
 /*vot*/			@unlink($filepath) or emMsg(lang('del_failed'));
 		}
 
-		return $this->db->query("DELETE FROM " . $this->table . " WHERE aid = $media_id $author");
+		return $this->db->query("DELETE FROM $this->table WHERE aid = $media_id $author");
 	}
 
 }
