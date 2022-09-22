@@ -528,6 +528,7 @@ $lang = array(
  'media_category_add'		=> 'Добавить категорию медиа-файлов',//'添加资源分类',
  'category_name'		=> 'Имя категории',//'分类名称',
  'modify'			=> 'Изменить',//'修改',
+ 'change_media_category'	=> 'Изменить категорию',//'修改资源分类',
 
 //---------------------------
 //admin/views/media_lib.php

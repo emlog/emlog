@@ -49,6 +49,7 @@ var LNG = {
  'user_disable_sure'	: '确定要禁用该用户吗？',//'Are you sure you want to disable this user?',
  'article_del_sure'	: '确定要删除该篇文章吗？',//'Are you sure you want to delete this article?',
  'draft_del_sure'	: '确定要删除该篇草稿吗？',//'Are you sure you want to delete this draft? ',
+ 'media_category_del_sure' : '确定要删除该资源分类吗？',//'Are you sure you want to delete this media category?',
 
 //---------------------------
 //include/lib/js/common_tpl.js
