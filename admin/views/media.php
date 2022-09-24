@@ -3,6 +3,8 @@
 } ?>
 <?php if (isset($_GET['active_del'])): ?>
     <div class="alert alert-success">删除成功</div><?php endif ?>
+<?php if (isset($_GET['active_mov'])): ?>
+    <div class="alert alert-success">移动成功</div><?php endif ?>
 <?php if (isset($_GET['active_edit'])): ?>
     <div class="alert alert-success">修改成功</div><?php endif ?>
 <?php if (isset($_GET['active_add'])): ?>
@@ -71,8 +73,15 @@
     <div class="form-row align-items-center">
         <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
         <input name="operate" id="operate" value="" type="hidden"/>
-        <div class="col-auto my-1">
+        <div class="col-auto my-1 form-inline">
             <a href="javascript:mediaact('del');" class="btn btn-sm btn-danger">删除所选资源</a>
+            <select name="sort" id="sort" onChange="changeSort(this);" class="form-control m-1">
+                <option value="" selected="selected">移动到</option>
+				<?php foreach ($sorts as $key => $value): ?>
+                    <option value="<?= $value['id'] ?>"><?= $value['sortname'] ?></option>
+				<?php endforeach; ?>
+                <option value="0">未分类</option>
+            </select>
         </div>
         <div class="col-auto my-1">
             <div class="custom-control custom-checkbox mr-sm-2">
@@ -190,6 +199,17 @@
         modal.find('.modal-body input').val(sortname)
         modal.find('.modal-footer input').val(id)
     })
+
+    // 更改分类
+    function changeSort(obj) {
+        if (getChecked('aids') == false) {
+            alert('请选择要移动的资源');
+            return;
+        }
+        if ($('#sort').val() == '') return;
+        $("#operate").val('move');
+        $("#form_media").submit();
+    }
 </script>
 <link rel="stylesheet" type="text/css" href="./views/highslide/highslide.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"/>
 <script src="./views/highslide/highslide.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>

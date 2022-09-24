@@ -93,6 +93,7 @@ if ($action === 'delete') {
 
 if ($action === 'operate_media') {
 	$operate = isset($_POST['operate']) ? $_POST['operate'] : '';
+	$sort = isset($_POST['sort']) ? (int)$_POST['sort'] : '';
 	$aids = isset($_POST['aids']) ? array_map('intval', $_POST['aids']) : array();
 
 	LoginAuth::checkToken();
@@ -102,6 +103,12 @@ if ($action === 'operate_media') {
 				$Media_Model->deleteMedia($value);
 			}
 			emDirect("media.php?active_del=1");
+			break;
+		case 'move':
+			foreach ($aids as $id) {
+				$Media_Model->updateMedia(['sortid' => $sort], $id);
+			}
+			emDirect("media.php?active_mov=1");
 			break;
 	}
 }

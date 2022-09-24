@@ -94,4 +94,17 @@ class Media_Model {
 		return $this->db->query("DELETE FROM $this->table WHERE aid = $media_id $author");
 	}
 
+	/**
+	 * update media
+	 */
+	function updateMedia($data, $media_id) {
+		$author = User::haveEditPermission() ? '' : 'and author=' . UID;
+		$Item = [];
+		foreach ($data as $key => $val) {
+			$Item[] = "$key='$val'";
+		}
+		$upStr = implode(',', $Item);
+		$this->db->query("UPDATE $this->table SET $upStr WHERE aid=$media_id $author");
+	}
+
 }
