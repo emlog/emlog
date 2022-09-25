@@ -15,20 +15,22 @@
     <h1 class="h3 mb-0 text-gray-800">多媒体资源</h1>
     <a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#exampleModal"><i class="icofont-plus"></i> 上传图片/文件</a>
 </div>
-<div class="row mb-3 ml-1">
-    <a href="media.php" class="btn btn-primary btn-sm mr-2">全部资源</a>
-	<?php foreach ($sorts as $key => $val): ?>
-        <div class="btn-group mr-2">
-            <a href="media.php?sid=<?= $val['id'] ?>" type="button" class="btn btn-primary btn-sm"><?= $val['sortname'] ?></a>
-            <button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false"></button>
-            <div class="dropdown-menu">
-                <a href="#" class="dropdown-item" data-toggle="modal" data-target="#editModal" data-id="<?= $val['id'] ?>" data-sortname="<?= $val['sortname'] ?>">编辑</a>
-                <a class="dropdown-item text-danger" href="javascript: em_confirm(<?= $val['id'] ?>, 'media_sort', '<?= LoginAuth::genToken() ?>');">删除</a>
+<?php if (User::isAdmin()): ?>
+    <div class="row mb-3 ml-1">
+        <a href="media.php" class="btn btn-primary btn-sm mr-2">全部资源</a>
+		<?php foreach ($sorts as $key => $val): ?>
+            <div class="btn-group mr-2">
+                <a href="media.php?sid=<?= $val['id'] ?>" type="button" class="btn btn-primary btn-sm"><?= $val['sortname'] ?></a>
+                <button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false"></button>
+                <div class="dropdown-menu">
+                    <a href="#" class="dropdown-item" data-toggle="modal" data-target="#editModal" data-id="<?= $val['id'] ?>" data-sortname="<?= $val['sortname'] ?>">编辑</a>
+                    <a class="dropdown-item text-danger" href="javascript: em_confirm(<?= $val['id'] ?>, 'media_sort', '<?= LoginAuth::genToken() ?>');">删除</a>
+                </div>
             </div>
-        </div>
-	<?php endforeach ?>
-    <a href="#" class="btn btn-success btn-sm" data-toggle="modal" data-target="#mediaSortModal"><i class="icofont-plus"></i>添加分类</a>
-</div>
+		<?php endforeach ?>
+        <a href="#" class="btn btn-success btn-sm" data-toggle="modal" data-target="#mediaSortModal"><i class="icofont-plus"></i>添加分类</a>
+    </div>
+<?php endif; ?>
 <form action="media.php?action=operate_media" method="post" name="form_media" id="form_media">
     <div class="row">
 		<?php foreach ($medias as $key => $value):
@@ -75,13 +77,15 @@
         <input name="operate" id="operate" value="" type="hidden"/>
         <div class="col-auto my-1 form-inline">
             <a href="javascript:mediaact('del');" class="btn btn-sm btn-danger">删除所选资源</a>
-            <select name="sort" id="sort" onChange="changeSort(this);" class="form-control m-1">
-                <option value="" selected="selected">移动到</option>
-				<?php foreach ($sorts as $key => $value): ?>
-                    <option value="<?= $value['id'] ?>"><?= $value['sortname'] ?></option>
-				<?php endforeach; ?>
-                <option value="0">未分类</option>
-            </select>
+			<?php if (User::isAdmin()): ?>
+                <select name="sort" id="sort" onChange="changeSort(this);" class="form-control m-1">
+                    <option value="" selected="selected">移动到</option>
+					<?php foreach ($sorts as $key => $value): ?>
+                        <option value="<?= $value['id'] ?>"><?= $value['sortname'] ?></option>
+					<?php endforeach; ?>
+                    <option value="0">未分类</option>
+                </select>
+			<?php endif; ?>
         </div>
         <div class="col-auto my-1">
             <div class="custom-control custom-checkbox mr-sm-2">

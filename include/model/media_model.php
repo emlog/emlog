@@ -48,9 +48,10 @@ class Media_Model {
 		return $medias;
 	}
 
-	function getMediaCount() {
-		$author = 'and author=' . UID;
-		$sql = "SELECT count(*) as count FROM $this->table WHERE thumfor = 0 $author";
+	function getMediaCount($uid, $sid) {
+		$author = $uid ? 'and author=' . UID : '';
+		$sort = $sid ? 'and sortid=' . $sid : '';
+		$sql = "SELECT count(*) as count FROM $this->table WHERE thumfor = 0 $author $sort";
 		$res = $this->db->once_fetch_array($sql);
 		return $res['count'];
 	}
