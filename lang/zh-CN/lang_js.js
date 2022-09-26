@@ -50,6 +50,7 @@ var LNG = {
  'article_del_sure'	: '确定要删除该篇文章吗？',//'Are you sure you want to delete this article?',
  'draft_del_sure'	: '确定要删除该篇草稿吗？',//'Are you sure you want to delete this draft? ',
  'media_category_del_sure' : '确定要删除该资源分类吗？',//'Are you sure you want to delete this media category?',
+ 'media_select'		: '请选择要移动的资源',//'Please select a media file to move',
 
 //---------------------------
 //include/lib/js/common_tpl.js

@@ -4,9 +4,9 @@
 <?php if (isset($_GET['active_del'])): ?>
 <!--vot--><div class="alert alert-success"><?=lang('deleted_ok')?></div><?php endif ?>
 <?php if (isset($_GET['active_mov'])): ?>
-    <div class="alert alert-success">移动成功</div><?php endif ?>
+<!--vot--><div class="alert alert-success"><?=lang('moved_ok')?></div><?php endif ?>
 <?php if (isset($_GET['active_edit'])): ?>
-    <div class="alert alert-success">修改成功</div><?php endif ?>
+<!--vot--><div class="alert alert-success"><?=lang('modified_ok')?></div><?php endif ?>
 <?php if (isset($_GET['active_add'])): ?>
 <!--vot--><div class="alert alert-success"><?=lang('media_category_add_ok')?></div><?php endif ?>
 <?php if (isset($_GET['error_a'])): ?>
@@ -17,18 +17,18 @@
 </div>
 <?php if (User::isAdmin()): ?>
     <div class="row mb-4 ml-1">
-        <a href="media.php" class="btn btn-primary btn-sm mr-2">全部资源</a>
+<!--vot--><a href="media.php" class="btn btn-primary btn-sm mr-2"><?=lang('modified_ok')?></a>
 		<?php foreach ($sorts as $key => $val): ?>
             <div class="btn-group mr-2">
                 <a href="media.php?sid=<?= $val['id'] ?>" type="button" class="btn btn-primary btn-sm"><?= $val['sortname'] ?></a>
                 <button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false"></button>
                 <div class="dropdown-menu">
-                    <a href="#" class="dropdown-item" data-toggle="modal" data-target="#editModal" data-id="<?= $val['id'] ?>" data-sortname="<?= $val['sortname'] ?>">编辑</a>
-                    <a class="dropdown-item text-danger" href="javascript: em_confirm(<?= $val['id'] ?>, 'media_sort', '<?= LoginAuth::genToken() ?>');">删除</a>
+<!--vot-->          <a href="#" class="dropdown-item" data-toggle="modal" data-target="#editModal" data-id="<?= $val['id'] ?>" data-sortname="<?= $val['sortname'] ?>"><?=lang('edit')?></a>
+<!--vot-->          <a class="dropdown-item text-danger" href="javascript: em_confirm(<?= $val['id'] ?>, 'media_sort', '<?= LoginAuth::genToken() ?>');"><?=lang('delete')?></a>
                 </div>
             </div>
 		<?php endforeach ?>
-        <a href="#" class="btn btn-success btn-sm" data-toggle="modal" data-target="#mediaSortModal"><i class="icofont-plus"></i>添加分类</a>
+<!--vot--><a href="#" class="btn btn-success btn-sm" data-toggle="modal" data-target="#mediaSortModal"><i class="icofont-plus"></i><?=lang('category_add')?></a>
     </div>
 <?php endif; ?>
 <form action="media.php?action=operate_media" method="post" name="form_media" id="form_media">
@@ -79,11 +79,11 @@
 <!--vot-->  <a href="javascript:mediaact('del');" class="btn btn-sm btn-danger"><?= lang('resource_del_selected') ?></a>
 			<?php if (User::isAdmin()): ?>
                 <select name="sort" id="sort" onChange="changeSort(this);" class="form-control m-1">
-                    <option value="" selected="selected">移动到</option>
+<!--vot-->          <option value="" selected="selected"><?=lang('move_to')?></option>
 					<?php foreach ($sorts as $key => $value): ?>
                         <option value="<?= $value['id'] ?>"><?= $value['sortname'] ?></option>
 					<?php endforeach; ?>
-                    <option value="0">未分类</option>
+<!--vot-->          <option value="0"><?=lang('uncategorized')?></option>
                 </select>
 			<?php endif; ?>
         </div>
@@ -204,10 +204,10 @@
         modal.find('.modal-footer input').val(id)
     })
 
-    // 更改分类
+    // Change category
     function changeSort(obj) {
         if (getChecked('aids') == false) {
-            alert('请选择要移动的资源');
+/*vot*/     alert(lang('media_select'));
             return;
         }
         if ($('#sort').val() == '') return;

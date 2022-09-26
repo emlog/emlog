@@ -7,7 +7,7 @@
   <a href="#"><img src="https://img.shields.io/badge/QQ Group-460197406-red" alt="QQ Group" /></a>
 </p>
 <p align="center">
-  <a href="#/README.md">中文</a> | English
+  <a href="#/README.cn.md">Chinese</a> | English
 </p>
 
 # emlog

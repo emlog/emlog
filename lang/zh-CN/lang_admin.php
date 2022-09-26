@@ -529,6 +529,9 @@ $lang = array(
  'category_name'		=> '分类名称',//'Category Name',
  'modify'			=> '修改',//'Modify',
  'change_media_category'	=> '修改资源分类',//'Change media category',
+ 'modified_ok'			=> '修改成功',//'Successfully modified',
+ 'media_all'			=> '全部资源',//'All media files',
+ 'move_to'			=> '移动到',//'Move to',
 
 //---------------------------
 //admin/views/media_lib.php

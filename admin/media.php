@@ -116,7 +116,7 @@ if ($action === 'operate_media') {
 
 if ($action === 'add_media_sort') {
 	if (!User::isAdmin()) {
-		emMsg('权限不足！', './');
+/*vot*/		emMsg(lang('no_permission'), './');
 	}
 	$sortname = isset($_POST['sortname']) ? addslashes(trim($_POST['sortname'])) : '';
 	if (empty($sortname)) {
@@ -129,7 +129,7 @@ if ($action === 'add_media_sort') {
 
 if ($action === 'update_media_sort') {
 	if (!User::isAdmin()) {
-		emMsg('权限不足！', './');
+/*vot*/		emMsg(lang('no_permission'), './');
 	}
 	$sortname = isset($_POST['sortname']) ? addslashes(trim($_POST['sortname'])) : '';
 	$id = isset($_POST['id']) ? (int)$_POST['id'] : '';
@@ -144,7 +144,7 @@ if ($action === 'update_media_sort') {
 
 if ($action === 'del_media_sort') {
 	if (!User::isAdmin()) {
-		emMsg('权限不足！', './');
+/*vot*/		emMsg(lang('no_permission'), './');
 	}
 	$id = isset($_GET['id']) ? (int)$_GET['id'] : '';
 
