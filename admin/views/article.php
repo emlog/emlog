@@ -186,9 +186,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 				<?php if (User::haveEditPermission() && count($user_cache) > 1): ?>
                     <select name="author" id="author" onChange="changeAuthor(this);" class="form-control m-1">
 <!--vot-->                  <option value="" selected="selected"><?=lang('user_edit')?></option>
-						<?php foreach ($user_cache as $key => $val):
-							$val['name'] = $val['name'];
-							?>
+						<?php foreach ($user_cache as $key => $val): ?>
                             <option value="<?= $key ?>"><?= $val['name'] ?></option>
 						<?php endforeach ?>
                     </select>

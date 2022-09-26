@@ -8,10 +8,10 @@
 
 class User {
 
-	const ROLE_ADMIN = 'admin';
-	const ROLE_WRITER = 'writer';
-	const ROLE_VISITOR = 'visitor';
-	const ROLE_EDITOR = 'editor';
+	const ROLE_ADMIN = 'admin';     // 管理员、创始人
+	const ROLE_WRITER = 'writer';   // 注册用户
+	const ROLE_VISITOR = 'visitor'; // 游客
+	const ROLE_EDITOR = 'editor';   // 内容编辑
 
 	static function isAdmin($role = ROLE) {
 		return $role == self::ROLE_ADMIN;

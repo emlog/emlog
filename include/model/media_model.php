@@ -48,9 +48,10 @@ class Media_Model {
 		return $medias;
 	}
 
-	function getMediaCount() {
-		$author = 'and author=' . UID;
-		$sql = "SELECT count(*) as count FROM $this->table WHERE thumfor = 0 $author";
+	function getMediaCount($uid, $sid) {
+		$author = $uid ? 'and author=' . UID : '';
+		$sort = $sid ? 'and sortid=' . $sid : '';
+		$sql = "SELECT count(*) as count FROM $this->table WHERE thumfor = 0 $author $sort";
 		$res = $this->db->once_fetch_array($sql);
 		return $res['count'];
 	}
@@ -92,6 +93,19 @@ class Media_Model {
 		}
 
 		return $this->db->query("DELETE FROM $this->table WHERE aid = $media_id $author");
+	}
+
+	/**
+	 * update media
+	 */
+	function updateMedia($data, $media_id) {
+		$author = User::haveEditPermission() ? '' : 'and author=' . UID;
+		$Item = [];
+		foreach ($data as $key => $val) {
+			$Item[] = "$key='$val'";
+		}
+		$upStr = implode(',', $Item);
+		$this->db->query("UPDATE $this->table SET $upStr WHERE aid=$media_id $author");
 	}
 
 }

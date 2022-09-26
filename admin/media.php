@@ -21,8 +21,9 @@ if (empty($action)) {
 	$sid = isset($_GET['sid']) ? (int)$_GET['sid'] : 0;
 	$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 	$perpage_count = 24;
-	$medias = $Media_Model->getMedias($page, $perpage_count, User::haveEditPermission() ? null : UID, $sid);
-	$count = $Media_Model->getMediaCount();
+	$uid = User::haveEditPermission() ? null : UID;
+	$medias = $Media_Model->getMedias($page, $perpage_count, $uid, $sid);
+	$count = $Media_Model->getMediaCount($uid, $sid);
 	$pageurl = pagination($count, $perpage_count, $page, "media.php?page=");
 
 	$sorts = $MediaSortModel->getSorts();
@@ -93,6 +94,7 @@ if ($action === 'delete') {
 
 if ($action === 'operate_media') {
 	$operate = isset($_POST['operate']) ? $_POST['operate'] : '';
+	$sort = isset($_POST['sort']) ? (int)$_POST['sort'] : '';
 	$aids = isset($_POST['aids']) ? array_map('intval', $_POST['aids']) : array();
 
 	LoginAuth::checkToken();
@@ -103,12 +105,20 @@ if ($action === 'operate_media') {
 			}
 			emDirect("media.php?active_del=1");
 			break;
+		case 'move':
+			foreach ($aids as $id) {
+				$Media_Model->updateMedia(['sortid' => $sort], $id);
+			}
+			emDirect("media.php?active_mov=1");
+			break;
 	}
 }
 
-if ($action === "add_media_sort") {
+if ($action === 'add_media_sort') {
+	if (!User::isAdmin()) {
+		emMsg('权限不足！', './');
+	}
 	$sortname = isset($_POST['sortname']) ? addslashes(trim($_POST['sortname'])) : '';
-
 	if (empty($sortname)) {
 		emDirect("./media.php?error_a=1");
 	}
@@ -117,7 +127,10 @@ if ($action === "add_media_sort") {
 	emDirect("./media.php?active_add=1");
 }
 
-if ($action == 'update_media_sort') {
+if ($action === 'update_media_sort') {
+	if (!User::isAdmin()) {
+		emMsg('权限不足！', './');
+	}
 	$sortname = isset($_POST['sortname']) ? addslashes(trim($_POST['sortname'])) : '';
 	$id = isset($_POST['id']) ? (int)$_POST['id'] : '';
 
@@ -129,7 +142,10 @@ if ($action == 'update_media_sort') {
 	emDirect("./media.php?active_edit=1");
 }
 
-if ($action === "del_media_sort") {
+if ($action === 'del_media_sort') {
+	if (!User::isAdmin()) {
+		emMsg('权限不足！', './');
+	}
 	$id = isset($_GET['id']) ? (int)$_GET['id'] : '';
 
 	LoginAuth::checkToken();

@@ -3,6 +3,8 @@
 } ?>
 <?php if (isset($_GET['active_del'])): ?>
 <!--vot--><div class="alert alert-success"><?=lang('deleted_ok')?></div><?php endif ?>
+<?php if (isset($_GET['active_mov'])): ?>
+    <div class="alert alert-success">移动成功</div><?php endif ?>
 <?php if (isset($_GET['active_edit'])): ?>
     <div class="alert alert-success">修改成功</div><?php endif ?>
 <?php if (isset($_GET['active_add'])): ?>
@@ -13,20 +15,22 @@
 <!--vot--><h1 class="h3 mb-0 text-gray-800"><?=lang('resource_manage')?></h1>
 <!--vot--><a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#exampleModal"><i class="icofont-plus"></i> <?=lang('upload_files')?></a>
 </div>
-<div class="row mb-3 ml-1">
-    <a href="media.php" class="btn btn-primary btn-sm mr-2">全部资源</a>
-	<?php foreach ($sorts as $key => $val): ?>
-        <div class="btn-group mr-2">
-            <a href="media.php?sid=<?= $val['id'] ?>" type="button" class="btn btn-primary btn-sm"><?= $val['sortname'] ?></a>
-            <button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false"></button>
-            <div class="dropdown-menu">
-<!--vot-->      <a href="#" class="dropdown-item" data-toggle="modal" data-target="#editModal" data-id="<?= $val['id'] ?>" data-sortname="<?= $val['sortname'] ?>"><?=lang('edit')?></a>
-<!--vot-->      <a class="dropdown-item text-danger" href="javascript: em_confirm(<?= $val['id'] ?>, 'media_sort', '<?= LoginAuth::genToken() ?>');"><?=lang('delete')?></a>
+<?php if (User::isAdmin()): ?>
+    <div class="row mb-4 ml-1">
+        <a href="media.php" class="btn btn-primary btn-sm mr-2">全部资源</a>
+		<?php foreach ($sorts as $key => $val): ?>
+            <div class="btn-group mr-2">
+                <a href="media.php?sid=<?= $val['id'] ?>" type="button" class="btn btn-primary btn-sm"><?= $val['sortname'] ?></a>
+                <button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false"></button>
+                <div class="dropdown-menu">
+                    <a href="#" class="dropdown-item" data-toggle="modal" data-target="#editModal" data-id="<?= $val['id'] ?>" data-sortname="<?= $val['sortname'] ?>">编辑</a>
+                    <a class="dropdown-item text-danger" href="javascript: em_confirm(<?= $val['id'] ?>, 'media_sort', '<?= LoginAuth::genToken() ?>');">删除</a>
+                </div>
             </div>
-        </div>
-	<?php endforeach ?>
-<!--vot--><a href="#" class="btn btn-success btn-sm" data-toggle="modal" data-target="#mediaSortModal"><i class="icofont-plus"></i><?=lang('category_add')?></a>
-</div>
+		<?php endforeach ?>
+        <a href="#" class="btn btn-success btn-sm" data-toggle="modal" data-target="#mediaSortModal"><i class="icofont-plus"></i>添加分类</a>
+    </div>
+<?php endif; ?>
 <form action="media.php?action=operate_media" method="post" name="form_media" id="form_media">
     <div class="row">
 		<?php foreach ($medias as $key => $value):
@@ -71,8 +75,17 @@
     <div class="form-row align-items-center">
         <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
         <input name="operate" id="operate" value="" type="hidden"/>
-        <div class="col-auto my-1">
+        <div class="col-auto my-1 form-inline">
 <!--vot-->  <a href="javascript:mediaact('del');" class="btn btn-sm btn-danger"><?= lang('resource_del_selected') ?></a>
+			<?php if (User::isAdmin()): ?>
+                <select name="sort" id="sort" onChange="changeSort(this);" class="form-control m-1">
+                    <option value="" selected="selected">移动到</option>
+					<?php foreach ($sorts as $key => $value): ?>
+                        <option value="<?= $value['id'] ?>"><?= $value['sortname'] ?></option>
+					<?php endforeach; ?>
+                    <option value="0">未分类</option>
+                </select>
+			<?php endif; ?>
         </div>
         <div class="col-auto my-1">
             <div class="custom-control custom-checkbox mr-sm-2">
@@ -190,6 +203,17 @@
         modal.find('.modal-body input').val(sortname)
         modal.find('.modal-footer input').val(id)
     })
+
+    // 更改分类
+    function changeSort(obj) {
+        if (getChecked('aids') == false) {
+            alert('请选择要移动的资源');
+            return;
+        }
+        if ($('#sort').val() == '') return;
+        $("#operate").val('move');
+        $("#form_media").submit();
+    }
 </script>
 <link rel="stylesheet" type="text/css" href="./views/highslide/highslide.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"/>
 <script src="./views/highslide/highslide.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
