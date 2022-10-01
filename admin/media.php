@@ -45,6 +45,7 @@ if ($action === 'lib') {
 }
 
 if ($action === 'upload') {
+	$sid = isset($_GET['sid']) ? (int)$_GET['sid'] : 0;
 	$editor = isset($_GET['editor']) ? 1 : 0; // 是否来自Markdown编辑器的上传
 	$attach = isset($_FILES['file']) ? $_FILES['file'] : '';
 	if ($editor) {
@@ -77,7 +78,7 @@ if ($action === 'upload') {
 	}
 
 	// 写入资源信息
-	$aid = $Media_Model->addMedia($ret['file_info']);
+	$aid = $Media_Model->addMedia($ret['file_info'], $sid);
 	if ($editor) {
 		echo json_encode($ret);
 	} else {

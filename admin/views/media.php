@@ -13,22 +13,24 @@
     <div class="alert alert-danger">分类名称不能为空</div><?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">多媒体资源</h1>
-    <a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#exampleModal"><i class="icofont-plus"></i> 上传图片/文件</a>
+    <a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target=" #exampleModal"><i class="icofont-plus"></i> 上传图片/文件</a>
 </div>
 <?php if (User::isAdmin()): ?>
     <div class="row mb-4 ml-1">
-        <a href="media.php" class="btn btn-primary btn-sm mr-2">全部资源</a>
-		<?php foreach ($sorts as $key => $val): ?>
-            <div class="btn-group mr-2">
-                <a href="media.php?sid=<?= $val['id'] ?>" type="button" class="btn btn-primary btn-sm"><?= $val['sortname'] ?></a>
-                <button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false"></button>
+        <a href="media.php" class="btn btn-sm btn-primary mr-2 my-1">全部资源</a>
+		<?php foreach ($sorts as $key => $val):
+			$cur_tab = $val['id'] == $sid ? "btn-success" : "btn-primary";
+			?>
+            <div class="btn-group mr-2 my-1">
+                <a href="media.php?sid=<?= $val['id'] ?>" class="btn btn-sm <?= $cur_tab ?>"><?= $val['sortname'] ?></a>
+                <button type="button" class="btn <?= $cur_tab ?> btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false"></button>
                 <div class="dropdown-menu">
                     <a href="#" class="dropdown-item" data-toggle="modal" data-target="#editModal" data-id="<?= $val['id'] ?>" data-sortname="<?= $val['sortname'] ?>">编辑</a>
                     <a class="dropdown-item text-danger" href="javascript: em_confirm(<?= $val['id'] ?>, 'media_sort', '<?= LoginAuth::genToken() ?>');">删除</a>
                 </div>
             </div>
 		<?php endforeach ?>
-        <a href="#" class="btn btn-success btn-sm" data-toggle="modal" data-target="#mediaSortModal"><i class="icofont-plus"></i>添加分类</a>
+        <a href="#" class="btn btn-success btn-sm my-1" data-toggle="modal" data-target="#mediaSortModal"><i class="icofont-plus"></i></a>
     </div>
 <?php endif; ?>
 <form action="media.php?action=operate_media" method="post" name="form_media" id="form_media">
@@ -107,7 +109,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="./media.php?action=upload" class="dropzone" id="my-awesome-dropzone"></form>
+                <form action="./media.php?action=upload<?= '&sid=' . $sid ?>" class="dropzone" id="my-awesome-dropzone"></form>
             </div>
 
         </div>
@@ -184,7 +186,7 @@
     };
 
     function mediaact(act) {
-        if (getChecked('aids') == false) {
+        if (getChecked('aids') === false) {
             alert('请选择要删除的资源');
             return;
         }
@@ -206,7 +208,7 @@
 
     // 更改分类
     function changeSort(obj) {
-        if (getChecked('aids') == false) {
+        if (getChecked('aids') === false) {
             alert('请选择要移动的资源');
             return;
         }
