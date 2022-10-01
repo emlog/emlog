@@ -7,9 +7,6 @@
 
 class Register {
 
-	/**
-	 * Check user is registered on the local side
-	 */
 	public static function isRegLocal() {
 		$CACHE = Cache::getInstance();
 		$options_cache = $CACHE->readCache('options');
@@ -21,9 +18,12 @@ class Register {
 		return true;
 	}
 
-	/**
-	 * Check user is registered on the server side
-	 */
+	public static function getRegType() {
+		$CACHE = Cache::getInstance();
+		$options_cache = $CACHE->readCache('options');
+		return isset($options_cache['emkey_type']) ? (int)$options_cache['emkey_type'] : '';
+	}
+
 	public static function isRegServer() {
 		$CACHE = Cache::getInstance();
 		$options_cache = $CACHE->readCache('options');
@@ -31,9 +31,6 @@ class Register {
 		return self::checkEmKey($emkey);
 	}
 
-	/**
-	 * check emkey
-	 */
 	public static function checkEmKey($emkey) {
 		if (empty($emkey)) {
 			return false;
@@ -54,7 +51,7 @@ class Register {
 			return false;
 		}
 
-		return true;
+		return $response;
 	}
 
 }
