@@ -10,9 +10,11 @@ class Log_Model {
 
 	private $db;
 	private $Parsedown;
+	private $table;
 
 	function __construct() {
 		$this->db = Database::getInstance();
+		$this->table = DB_PREFIX . 'blog';
 		$this->Parsedown = new Parsedown();
 		$this->Parsedown->setBreaksEnabled(true); //automatic line wrapping
 	}
@@ -29,7 +31,7 @@ class Log_Model {
 		}
 		$field = implode(',', $kItem);
 		$values = "'" . implode("','", $dItem) . "'";
-		$this->db->query("INSERT INTO " . DB_PREFIX . "blog ($field) VALUES ($values)");
+		$this->db->query("INSERT INTO $this->table ($field) VALUES ($values)");
 		return $this->db->insert_id();
 	}
 
@@ -43,7 +45,7 @@ class Log_Model {
 			$Item[] = "$key='$data'";
 		}
 		$upStr = implode(',', $Item);
-		$this->db->query("UPDATE " . DB_PREFIX . "blog SET $upStr WHERE gid=$blogId $author");
+		$this->db->query("UPDATE $this->table SET $upStr WHERE gid=$blogId $author");
 	}
 
 	/**
@@ -59,12 +61,15 @@ class Log_Model {
 		$hide_state = $hide ? "and hide='$hide'" : '';
 
 		if ($spot == 0) {
+			$now = time();
+			$date_state = "and date<=$now";
 			$author = '';
 		} else {
+			$date_state = '';
 			$author = User::haveEditPermission() ? '' : 'and author=' . UID;
 		}
 
-		$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "blog WHERE type='$type' $hide_state $author $condition");
+		$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM $this->table WHERE type='$type' $date_state $hide_state $author $condition");
 		return $data['total'];
 	}
 
@@ -73,7 +78,7 @@ class Log_Model {
 	 */
 	function getOneLogForAdmin($blogId) {
 		$author = User::haveEditPermission() ? '' : 'AND author=' . UID;
-		$sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE gid=$blogId $author";
+		$sql = "SELECT * FROM $this->table WHERE gid=$blogId $author";
 		$res = $this->db->query($sql);
 		if ($this->db->affected_rows() < 1) {
 			emMsg('权限不足！', './');
@@ -94,7 +99,7 @@ class Log_Model {
 	 * get single article
 	 */
 	function getOneLogForHome($blogId) {
-		$sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE gid=$blogId AND hide='n' AND checked='y'";
+		$sql = "SELECT * FROM $this->table WHERE gid=$blogId AND hide='n' AND checked='y'";
 		$res = $this->db->query($sql);
 		$row = $this->db->fetch_array($res);
 
@@ -138,10 +143,11 @@ class Log_Model {
 		$author = User::haveEditPermission() ? '' : 'and author=' . UID;
 		$hide_state = $hide_state ? "and hide='$hide_state'" : '';
 		$limit = "LIMIT $start_limit, " . $perpage_num;
-		$sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE type='$type' $author $hide_state $condition $limit";
+		$sql = "SELECT * FROM $this->table WHERE type='$type' $author $hide_state $condition $limit";
 		$res = $this->db->query($sql);
 		$logs = [];
 		while ($row = $this->db->fetch_array($res)) {
+			$row['timestamp'] = $row['date'];
 			$row['date'] = date("Y-m-d H:i", $row['date']);
 			$row['title'] = !empty($row['title']) ? htmlspecialchars($row['title']) : '无标题';
 			$logs[] = $row;
@@ -160,7 +166,8 @@ class Log_Model {
 	function getLogsForHome($condition = '', $page = 1, $perPageNum = 10) {
 		$start_limit = !empty($page) ? ($page - 1) * $perPageNum : 0;
 		$limit = $perPageNum ? "LIMIT $start_limit, $perPageNum" : '';
-		$sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE type='blog' and hide='n' and checked='y' $condition $limit";
+		$now = time();
+		$sql = "SELECT * FROM $this->table WHERE type='blog' and hide='n' and checked='y' and date<= $now $condition $limit";
 		$res = $this->db->query($sql);
 		$logs = [];
 		while ($row = $this->db->fetch_array($res)) {
@@ -192,7 +199,9 @@ class Log_Model {
 		if ($perPageNum <= 0) {
 			return [];
 		}
-		$sql = "SELECT * FROM " . DB_PREFIX . "blog  WHERE hide='n' and checked='y' and type='blog' ORDER BY date DESC limit 0," . $perPageNum;
+		$now = time();
+		$date_state = "and date<=$now";
+		$sql = "SELECT * FROM $this->table  WHERE hide='n' and checked='y' and type='blog' $date_state ORDER BY date DESC limit 0," . $perPageNum;
 		$result = $this->db->query($sql);
 		$d = [];
 		while ($re = $this->db->fetch_array($result)) {
@@ -218,7 +227,7 @@ class Log_Model {
 	 * 获取全部页面列表
 	 */
 	function getAllPageList() {
-		$sql = "SELECT * FROM " . DB_PREFIX . "blog WHERE type='page'";
+		$sql = "SELECT * FROM $this->table WHERE type='page'";
 		$res = $this->db->query($sql);
 		$pages = [];
 		while ($row = $this->db->fetch_array($res)) {
@@ -234,7 +243,7 @@ class Log_Model {
 	 */
 	function deleteLog($blogId) {
 		$author = User::haveEditPermission() ? '' : 'and author=' . UID;
-		$this->db->query("DELETE FROM " . DB_PREFIX . "blog where gid=$blogId $author");
+		$this->db->query("DELETE FROM $this->table where gid=$blogId $author");
 		if ($this->db->affected_rows() < 1) {
 			emMsg('权限不足！', './');
 		}
@@ -253,7 +262,7 @@ class Log_Model {
 	 */
 	function hideSwitch($blogId, $state) {
 		$author = User::haveEditPermission() ? '' : 'and author=' . UID;
-		$this->db->query("UPDATE " . DB_PREFIX . "blog SET hide='$state' WHERE gid=$blogId $author");
+		$this->db->query("UPDATE $this->table SET hide='$state' WHERE gid=$blogId $author");
 		$this->db->query("UPDATE " . DB_PREFIX . "comment SET hide='$state' WHERE gid=$blogId");
 		$Comment_Model = new Comment_Model();
 		$Comment_Model->updateCommentNum($blogId);
@@ -266,7 +275,7 @@ class Log_Model {
 	 * @param string $state
 	 */
 	function checkSwitch($blogId, $state) {
-		$this->db->query("UPDATE " . DB_PREFIX . "blog SET checked='$state' WHERE gid=$blogId");
+		$this->db->query("UPDATE $this->table SET checked='$state' WHERE gid=$blogId");
 		$state = $state == 'y' ? 'n' : 'y';
 		$this->db->query("UPDATE " . DB_PREFIX . "comment SET hide='$state' WHERE gid=$blogId");
 		$Comment_Model = new Comment_Model();
@@ -279,14 +288,14 @@ class Log_Model {
 	 * @param int $blogId
 	 */
 	function updateViewCount($blogId) {
-		$this->db->query("UPDATE " . DB_PREFIX . "blog SET views=views+1 WHERE gid=$blogId");
+		$this->db->query("UPDATE $this->table SET views=views+1 WHERE gid=$blogId");
 	}
 
 	/**
 	 * 判断是否重复发文
 	 */
 	function isRepeatPost($title, $time) {
-		$sql = "SELECT gid FROM " . DB_PREFIX . "blog WHERE title='$title' and date='$time' LIMIT 1";
+		$sql = "SELECT gid FROM $this->table WHERE title='$title' and date='$time' LIMIT 1";
 		$res = $this->db->query($sql);
 		$row = $this->db->fetch_array($res);
 		return isset($row['gid']) ? (int)$row['gid'] : false;
@@ -299,9 +308,11 @@ class Log_Model {
 	 * @return array
 	 */
 	function neighborLog($date) {
+		$now = time();
+		$date_state = "and date<=$now";
 		$neighborlog = [];
-		$neighborlog['nextLog'] = $this->db->once_fetch_array("SELECT title,gid FROM " . DB_PREFIX . "blog WHERE date < $date and hide = 'n' and checked='y' and type='blog' ORDER BY date DESC LIMIT 1");
-		$neighborlog['prevLog'] = $this->db->once_fetch_array("SELECT title,gid FROM " . DB_PREFIX . "blog WHERE date > $date and hide = 'n' and checked='y' and type='blog' ORDER BY date LIMIT 1");
+		$neighborlog['nextLog'] = $this->db->once_fetch_array("SELECT title,gid FROM $this->table WHERE date < $date and hide = 'n' and checked='y' and type='blog' $date_state ORDER BY date DESC LIMIT 1");
+		$neighborlog['prevLog'] = $this->db->once_fetch_array("SELECT title,gid FROM $this->table WHERE date > $date and hide = 'n' and checked='y' and type='blog' $date_state ORDER BY date LIMIT 1");
 		if ($neighborlog['nextLog']) {
 			$neighborlog['nextLog']['title'] = htmlspecialchars($neighborlog['nextLog']['title']);
 		}
@@ -316,10 +327,12 @@ class Log_Model {
 	 */
 	function getRandLog($num) {
 		global $CACHE;
+		$now = time();
+		$date_state = "and date<=$now";
 		$sta_cache = $CACHE->readCache('sta');
 		$lognum = $sta_cache['lognum'];
 		$start = $lognum > $num ? mt_rand(0, $lognum - $num) : 0;
-		$sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' and checked='y' and type='blog' LIMIT $start, $num";
+		$sql = "SELECT gid,title FROM $this->table WHERE hide='n' and checked='y' and type='blog' $date_state LIMIT $start, $num";
 		$res = $this->db->query($sql);
 		$logs = [];
 		while ($row = $this->db->fetch_array($res)) {
@@ -334,7 +347,9 @@ class Log_Model {
 	 * 获取热门文章
 	 */
 	function getHotLog($num) {
-		$sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' and checked='y' and type='blog' ORDER BY views DESC, comnum DESC LIMIT 0, $num";
+		$now = time();
+		$date_state = "and date<=$now";
+		$sql = "SELECT gid,title FROM $this->table WHERE hide='n' and checked='y' and type='blog' $date_state ORDER BY views DESC, comnum DESC LIMIT 0, $num";
 		$res = $this->db->query($sql);
 		$logs = [];
 		while ($row = $this->db->fetch_array($res)) {
