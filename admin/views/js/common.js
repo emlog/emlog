@@ -77,7 +77,7 @@ function em_confirm(id, property, token) {
             break;
         case 'media_sort':
             url = 'media.php?action=del_media_sort&id=' + id;
-            msg = '确定要删除该资源分类吗？';
+            msg = '确定要删除该资源分类吗（不会删除资源文件）？';
             break;
     }
     if (confirm(msg)) {

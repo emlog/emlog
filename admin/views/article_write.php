@@ -81,7 +81,7 @@
 					<?php endif; ?>
                 </div>
                 <div class="form-group">
-                    <label>发布时间：</label>
+                    <label>发布时间：（当设置未来的时间点时，文章将在该时间点后定时发布）</label>
                     <input maxlength="200" name="postdate" id="postdate" value="<?= $postDate ?>" class="form-control"/>
                 </div>
                 <div class="form-group">
