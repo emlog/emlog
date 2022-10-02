@@ -308,11 +308,7 @@ class Comment_Model {
 
 	function isCommentExist($blogId, $name, $content) {
 		$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "comment WHERE gid=$blogId AND poster='$name' AND comment='$content'");
-		if ($data['total'] > 0) {
-			return true;
-		} else {
-			return false;
-		}
+		return $data['total'] > 0;
 	}
 
 	function isYoursComment($cid) {
@@ -345,9 +341,9 @@ class Comment_Model {
 		$show_remark = $this->db->fetch_array($query);
 		if ($show_remark['allow_remark'] == 'n' || $show_remark === false) {
 			return false;
-		} else {
-			return true;
 		}
+
+		return true;
 	}
 
 	function isCommentTooFast() {

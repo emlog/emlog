@@ -29,8 +29,6 @@ class Plugin_Model {
 			$active_plugins = serialize($active_plugins);
 			Option::updateOption('active_plugins', $active_plugins);
 			$ret = true;
-		} else {
-			$ret = false;
 		}
 
 		//run init callback functions
