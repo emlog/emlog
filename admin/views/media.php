@@ -97,7 +97,7 @@
         </div>
     </div>
 </form>
-<div class="page my-5"><?= $pageurl ?> （有 <?= $count ?> 个资源）</div>
+<div class="page my-5"><?= $page ?> （有 <?= $count ?> 个资源）</div>
 
 <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
