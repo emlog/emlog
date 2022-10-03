@@ -378,7 +378,8 @@ CREATE TABLE {$db_prefix}blog (
   KEY views (views),
   KEY comnum (comnum),
   KEY sortid (sortid),
-  KEY top (top,date)
+  KEY top (top,date),
+  KEY date (date)
 )" . $table_charset_sql . "
 INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,author,views,comnum,attnum,top,sortop,hide,allow_remark,password) VALUES (1, '" . lang('emlog_welcome') . "', '" . time() . "', '" . lang('emlog_install_congratulation') . "', '', 1, 0, 1, 0, 'n', 'n', 'n', 'y', '');
 DROP TABLE IF EXISTS {$db_prefix}attachment;

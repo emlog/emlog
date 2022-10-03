@@ -81,7 +81,7 @@
 					<?php endif; ?>
                 </div>
                 <div class="form-group">
-<!--vot-->          <label><?=lang('publish_time')?>:</label>
+<!--vot-->          <label><?=lang('publish_time')?>: <?=lang('publish_time_tips')?></label>
                     <input maxlength="200" name="postdate" id="postdate" value="<?= $postDate ?>" class="form-control"/>
                 </div>
                 <div class="form-group">

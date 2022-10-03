@@ -20,11 +20,12 @@ $MediaSortModel = new MediaSort_Model();
 if (empty($action)) {
 	$sid = isset($_GET['sid']) ? (int)$_GET['sid'] : 0;
 	$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-	$perpage_count = 24;
 	$uid = User::haveEditPermission() ? null : UID;
-	$medias = $Media_Model->getMedias($page, $perpage_count, $uid, $sid);
+	$page_count = 24;
+	$page_url = $sid ? "media.php?sid=$sid&page=" : "media.php?page=";
+	$medias = $Media_Model->getMedias($page, $page_count, $uid, $sid);
 	$count = $Media_Model->getMediaCount($uid, $sid);
-	$pageurl = pagination($count, $perpage_count, $page, "media.php?page=");
+	$page = pagination($count, $page_count, $page, $page_url);
 
 	$sorts = $MediaSortModel->getSorts();
 
@@ -45,6 +46,7 @@ if ($action === 'lib') {
 }
 
 if ($action === 'upload') {
+	$sid = isset($_GET['sid']) ? (int)$_GET['sid'] : 0;
 	$editor = isset($_GET['editor']) ? 1 : 0; // Whether the upload is from the Markdown editor
 	$attach = isset($_FILES['file']) ? $_FILES['file'] : '';
 	if ($editor) {
@@ -77,7 +79,7 @@ if ($action === 'upload') {
 	}
 
 	// Write attachment information
-	$aid = $Media_Model->addMedia($ret['file_info']);
+	$aid = $Media_Model->addMedia($ret['file_info'], $sid);
 	if ($editor) {
 		echo json_encode($ret);
 	} else {

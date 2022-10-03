@@ -383,7 +383,9 @@ class Cache {
 		if ($index_newlognum <= 0) {
 			$index_newlognum = 10;
 		}
-		$sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' AND checked='y' AND type='blog' ORDER BY date DESC LIMIT 0, $index_newlognum";
+		$now = time();
+		$date_state = "and date<=$now";
+/*vot*/		$sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' AND checked='y' AND type='blog' $date_state ORDER BY date DESC LIMIT 0, $index_newlognum";
 		$res = $this->db->query($sql);
 		$logs = [];
 		while ($row = $this->db->fetch_array($res)) {

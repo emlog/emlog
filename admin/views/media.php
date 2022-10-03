@@ -13,22 +13,24 @@
 <!--vot--><div class="alert alert-danger"><?=lang('category_name_empty')?></div><?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 <!--vot--><h1 class="h3 mb-0 text-gray-800"><?=lang('resource_manage')?></h1>
-<!--vot--><a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#exampleModal"><i class="icofont-plus"></i> <?=lang('upload_files')?></a>
+<!--vot--><a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target=" #exampleModal"><i class="icofont-plus"></i> <?=lang('upload_files')?></a>
 </div>
 <?php if (User::isAdmin()): ?>
     <div class="row mb-4 ml-1">
-<!--vot--><a href="media.php" class="btn btn-primary btn-sm mr-2"><?=lang('modified_ok')?></a>
-		<?php foreach ($sorts as $key => $val): ?>
-            <div class="btn-group mr-2">
-                <a href="media.php?sid=<?= $val['id'] ?>" type="button" class="btn btn-primary btn-sm"><?= $val['sortname'] ?></a>
-                <button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false"></button>
+<!--vot--><a href="media.php" class="btn btn-sm btn-primary mr-2 my-1"><?=lang('modified_ok')?></a>
+		<?php foreach ($sorts as $key => $val):
+			$cur_tab = $val['id'] == $sid ? "btn-success" : "btn-primary";
+			?>
+            <div class="btn-group mr-2 my-1">
+                <a href="media.php?sid=<?= $val['id'] ?>" class="btn btn-sm <?= $cur_tab ?>"><?= $val['sortname'] ?></a>
+                <button type="button" class="btn <?= $cur_tab ?> btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false"></button>
                 <div class="dropdown-menu">
 <!--vot-->          <a href="#" class="dropdown-item" data-toggle="modal" data-target="#editModal" data-id="<?= $val['id'] ?>" data-sortname="<?= $val['sortname'] ?>"><?=lang('edit')?></a>
 <!--vot-->          <a class="dropdown-item text-danger" href="javascript: em_confirm(<?= $val['id'] ?>, 'media_sort', '<?= LoginAuth::genToken() ?>');"><?=lang('delete')?></a>
                 </div>
             </div>
 		<?php endforeach ?>
-<!--vot--><a href="#" class="btn btn-success btn-sm" data-toggle="modal" data-target="#mediaSortModal"><i class="icofont-plus"></i><?=lang('category_add')?></a>
+        <a href="#" class="btn btn-success btn-sm my-1" data-toggle="modal" data-target="#mediaSortModal"><i class="icofont-plus"></i></a>
     </div>
 <?php endif; ?>
 <form action="media.php?action=operate_media" method="post" name="form_media" id="form_media">
@@ -95,7 +97,7 @@
         </div>
     </div>
 </form>
-<!--vot--><div class="page my-5"><?= $pageurl ?> (<?=lang('have')?> <?= $count ?> <?=lang('_resources')?>)</div>
+<!--vot--><div class="page my-5"><?= $page ?> (<?=lang('have')?> <?= $count ?> <?=lang('_resources')?>)</div>
 
 <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -107,7 +109,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="./media.php?action=upload" class="dropzone" id="my-awesome-dropzone"></form>
+                <form action="./media.php?action=upload<?= '&sid=' . $sid ?>" class="dropzone" id="my-awesome-dropzone"></form>
             </div>
 
         </div>
@@ -184,7 +186,7 @@
     };
 
     function mediaact(act) {
-        if (getChecked('aids') == false) {
+        if (getChecked('aids') === false) {
 /*vot*/     alert('<?= lang('resource_select') ?>');
             return;
         }
@@ -206,7 +208,7 @@
 
     // Change category
     function changeSort(obj) {
-        if (getChecked('aids') == false) {
+        if (getChecked('aids') === false) {
 /*vot*/     alert(lang('media_select'));
             return;
         }

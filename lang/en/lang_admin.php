@@ -217,6 +217,7 @@ $lang = array(
 //---------------------------
 //admin/views/article_write.php
  'publish_time'		=> 'Publish time',//'发布时间',
+ 'publish_time_tips'	=> '(When a future time point is set, the article will be published regularly after that time point)',//'（当设置未来的时间点时，文章将在该时间点后定时发布）',
  'access_password'	=> 'Access Password',//'访问密码',
  'choose_file'		=> 'Choose a file for upload...',//'选择文件上传...',
  'tags_have'		=> 'Have tags+',//'已有标签+',

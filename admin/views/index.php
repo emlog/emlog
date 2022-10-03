@@ -58,6 +58,7 @@
 <!--vot-->                      <a href="auth.php"><span class="badge badge-danger"><?= Option::EMLOG_VERSION ?> <?=lang('unregistered')?></span></a>
 							<?php else: ?>
 <!--vot-->                      <span class="badge badge-success"><?= Option::EMLOG_VERSION ?> <?=lang('registered')?></span>
+<!--vot-->                      <span class="badge <?php if (Register::getRegType() === 2): ?>badge-warning<?php else: ?>badge-success<?php endif; ?>"><?= Option::EMLOG_VERSION ?> <?=lang('registered')?></span>
 							<?php endif ?>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">

@@ -26,8 +26,14 @@ if ($action === 'auth') {
 		emDirect("./auth.php?error_b=1");
 	}
 
-	if (Register::checkEmKey($emkey) === false) {
+	$r = Register::checkEmKey($emkey);
+
+	if ($r === false) {
 		emDirect("./auth.php?error_b=1");
+	}
+
+	if (isset($r['type'])) {
+		Option::updateOption("emkey_type", $r['type']);
 	}
 
 	Option::updateOption("emkey", $emkey);

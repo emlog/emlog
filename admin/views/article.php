@@ -121,9 +121,10 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
                             <td style="width: 20px;"><input type="checkbox" name="blog[]" value="<?= $value['gid'] ?>" class="ids"/></td>
                             <td>
                                 <a href="article.php?action=edit&gid=<?= $value['gid'] ?>"><?= $value['title'] ?></a><br>
-<!--vot-->					                <?php if ($value['top'] == 'y'): ?><span class="badge small badge-warning"><?=lang('home_top')?></span><?php endif ?>
-<!--vot-->							<?php if ($value['sortop'] == 'y'): ?><span class="badge small badge-secondary"><?=lang('category_top')?></span><?php endif ?>
+<!--vot-->					                <?php if ($value['top'] == 'y'): ?><span class="badge small badge-success"><?=lang('home_top')?></span><?php endif ?>
+<!--vot-->							<?php if ($value['sortop'] == 'y'): ?><span class="badge small badge-info"><?=lang('category_top')?></span><?php endif ?>
 <!--DO NOT TRANSLATE!-->								<?php if ($value['password']): ?><span class="small">🔒</span><?php endif ?>
+								<?php if ($value['timestamp'] > time()): ?><span class="badge small badge-warning">定时发布</span><?php endif ?>
 <!--vot-->							<?php if (!$draft && $value['checked'] == 'n'): ?><span class="badge small badge-danger"><?=lang('is_pending')?></span><?php endif ?>
                             </td>
                             <td><a href="comment.php?gid=<?= $value['gid'] ?>" class="badge badge-info"><?= $value['comnum'] ?></a></td>
