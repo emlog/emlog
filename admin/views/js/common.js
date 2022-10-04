@@ -435,7 +435,7 @@ function imgPasteExpand(thisEditor) {
                     console.log('获取结果成功！');
                     imgUrl = data.match(/[a-zA-z]+:\/[^\s\"\']*/g)[0];
                     thumbImgUrl = data.match(/[a-zA-z]+:\/[^\s\"\']*/g)[1];
-                    replaceByNum(`[![](${imgUrl})](${thumbImgUrl})`, 10);  // 这里的数字 10 对应着’上传中...100%‘是10个字符
+                    replaceByNum(`[![](${thumbImgUrl})](${imgUrl})`, 10);  // 这里的数字 10 对应着’上传中...100%‘是10个字符
                 })
             }, error: function (result) {
                 alert('上传失败,图片类型错误或网络错误');
