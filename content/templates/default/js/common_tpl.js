@@ -24,7 +24,7 @@ var myBlog = {
             let $this = $(".markdown img:eq(" + num + ")")
             let sourceSrc = $(".markdown img:eq(" + num + ")").parent().attr('href')
 
-            if (sourceSrc.match(/\.(jpeg|jpg|gif|png)$/i) == null) {
+            if (typeof sourceSrc == "undefined" || sourceSrc.match(/\.(jpeg|jpg|gif|png)$/i) == null) {
                 continue
             }
 
