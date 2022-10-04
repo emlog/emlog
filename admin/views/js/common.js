@@ -435,7 +435,7 @@ function imgPasteExpand(thisEditor) {
 /*vot*/             console.log(lang('result_ok'));
                     imgUrl = data.match(/[a-zA-z]+:\/[^\s\"\']*/g)[0];
                     thumbImgUrl = data.match(/[a-zA-z]+:\/[^\s\"\']*/g)[1];
-                    replaceByNum(`[![](${imgUrl})](${thumbImgUrl})`, 10);  // The number 10 here corresponds to 'Uploading...100%' which is 10 characters
+/*vot*/             replaceByNum(`[![](${thumbImgUrl})](${imgUrl})`, 10);  // The number 10 here corresponds to 'Uploading...100%' which is 10 characters/*vot*/
                 })
             }, error: function (result) {
 /*vot*/         alert(lang('upload_failed_error'));
