@@ -213,6 +213,7 @@ $lang = array(
  'top'			=> 'Top',//'置顶',
  'unknown_author'	=> 'Unknown author',//'未知作者',
  'unknown_role'		=> 'Unknown role',//'未知角色',
+ 'publish_regular'	=> 'Regular publishing',//'定时发布',
 
 //---------------------------
 //admin/views/article_write.php

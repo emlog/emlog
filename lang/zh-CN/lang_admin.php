@@ -213,10 +213,12 @@ $lang = array(
  'top'			=> '置顶',//'Top',
  'unknown_author'	=> '未知作者',//'Unknown author',
  'unknown_role'		=> '未知角色',//'Unknown role',
+ 'publish_regular'	=> '定时发布',//'Regular publishing',
 
 //---------------------------
 //admin/views/article_write.php
  'publish_time'		=> '发布时间',//'Publish time',
+ 'publish_time_tips'	=> '（当设置未来的时间点时，文章将在该时间点后定时发布）',//'(When a future time point is set, the article will be published regularly after that time point)',
  'access_password'	=> '访问密码',//'Access Password',
  'choose_file'		=> '选择文件上传...',//'Choose a file for upload...',
  'tags_have'		=> '已有标签+',//'Have tags+',
