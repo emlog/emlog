@@ -150,7 +150,6 @@ var myBlog = {
       if ($("#emlogEchoLog").length == 0) return  // Not reading the page, Exit
       if (!this.tocFlag.test($('#emlogEchoLog').html().substring(0,30))) return  // No toc tag declared, Exit
       tocFlag.innerHTML = tocFlag.innerHTML.replace(this.tocFlag,"")  // Remove toc statement
-      if (window.outerWidth < 1275)       return  // The screen is smaller than 1275px exit
 
         var $logCon = $(".log-con")
         var logConMar = parseInt($logCon.css("margin-left"))
@@ -158,7 +157,9 @@ var myBlog = {
         var arr = this.tocArray
 
         if ($titles.length > 0) {
-            $logCon.css("margin-left", logConMar + 150 + 'px')  // The text of the article is offset 150px to the right
+            if (window.outerWidth > 1275){
+                $logCon.css("margin-left", logConMar + 150 + 'px')  // The text of the article is offset 150px to the right
+            }
         } else {
             return  // No title found (h tag), Exit
         }
@@ -175,6 +176,7 @@ var myBlog = {
             $tit.attr("id", arr[i]['id'])
         }
         this.tocRender()
+        this.tocMobileSet()
     }, /**
      * toc directory rendering
      */
@@ -182,7 +184,7 @@ var myBlog = {
         var tocHtml = ''
         var data = this.tocArray
         var $logcon = $(".log-con")
-        var padNum = parseInt($logcon.css("margin-left")) - 270
+        var padNum = (window.outerWidth < 1276) ? 0 : parseInt($logcon.css("margin-left")) - 270
         var judgeN = 0
         var chilPad = 4
         var minType = 6
@@ -231,12 +233,14 @@ var myBlog = {
         }
 
       function tocSetPos() {  // Determine location and set positioning style
-            if (document.documentElement.scrollTop > 200) {
+            let articleTop = 200
+            
+            if (document.documentElement.scrollTop > articleTop) {
                 $("#toc-con").css("position", "fixed")
                     .css("top", "0px")
             } else {
                 $("#toc-con").css("position", "absolute")
-                    .css("top", "200px")
+                    .css("top", articleTop + "px")
             }
         }
 
@@ -247,8 +251,11 @@ var myBlog = {
                 let winPos = document.documentElement.scrollTop + 30
                 if (winPos > data[i]['pos']) $tempItem = $('#to' + i)
             }
-            if ($tempItem) $tempItem.css('color', 'red').attr('isRed', 'y')
-
+            if ($tempItem){
+                $tempItem.css('color', 'red').attr('isRed', 'y')
+            } else {
+                return
+            }
             let redScreenPos = $("li[isred='y']").offset().top - document.documentElement.scrollTop
             let tocHeight = $("#toc-con div").outerHeight()
             let tocPos = $("#toc-con div").scrollTop()
@@ -276,6 +283,25 @@ var myBlog = {
                 tocSetPos();
                 tocGetPos()
             }
+        })
+    },/**
+     * toc 目录移动端的部分设置
+     */
+    tocMobileSet: function () {
+        if (window.outerWidth > 1275) return
+        $(".toc-con").toggle()
+        $("[toc-date='title']").append('<a class="toc-link">[目录]</a>')
+
+        $(".toc-link").click(function (e) {  // 添加监听事件
+            $(".toc-con").show()
+            e.stopPropagation()  // 阻止事件冒泡
+        }),
+
+        $("html").click(function (e) {
+            if($(".toc-con") && $(".toc-con").css("display") == "block") {
+                $(".toc-con").hide()
+            }
+            e.stopPropagation() 
         })
     }
 }

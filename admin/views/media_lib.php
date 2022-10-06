@@ -26,7 +26,7 @@
                 <p class="card-text d-flex justify-content-between">
 					<?php if (isImage($value['mimetype'])): ?>
 <!--vot-->              <a href="javascript:insert_media_img('<?= $media_url ?>', '<?= $media_icon ?>')" class="btn" title="<?=lang('insert_into')?>"><i class="icofont-plus"></i></a>
-<!--vot-->              <a href="javascript:insert_conver('<?= $media_path ?>')" class="btn" title="<?=lang('set_cover')?>"><i class="icofont-image"></i></a>
+<!--vot-->              <a href="javascript:insert_cover('<?= $media_path ?>')" class="btn" title="<?=lang('set_cover')?>"><i class="icofont-image"></i></a>
 					<?php elseif (isVideo($value['filepath'])): ?>
                         <a href="javascript:insert_media_video('<?= $media_url ?>')"><i class="icofont-plus"></i></a>
 					<?php else: ?>

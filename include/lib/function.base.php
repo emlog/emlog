@@ -660,7 +660,6 @@ function chImageSize($img, $max_w, $max_h) {
 
 /**
  * Get Gravatar Avatar
- * http://en.gravatar.com/site/implement/images/
  */
 function getGravatar($email, $s = 40) {
 	$hash = md5($email);
