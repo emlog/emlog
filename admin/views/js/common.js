@@ -188,7 +188,7 @@ function insert_media(fileurl, filename) {
     Editor.insertValue('[' + filename + '](' + fileurl + ')\n\n');
 }
 
-function insert_conver(imgsrc) {
+function insert_cover(imgsrc) {
     $('#cover_image').attr('src', imgsrc);
     $('#cover').val(imgsrc);
     $('#cover_rm').show();
