@@ -31,6 +31,7 @@ if ($action === 'backup') {
 		'navi',
 		'sort',
 		'link',
+		'media_sort',
 		'storage',
 		'tag',
 		'twitter',
