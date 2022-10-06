@@ -1431,17 +1431,17 @@ img.zoom-img {
         width: 30px;
     }
 }
-/* 为 toc 移动端设立的样式 */
+/* Styles for mobile toc */
 @media all and (max-width: 1274px) {
     .toc-con {
         height: 100vh;
         width: 60%;
         max-width: 300px;
         padding-right: 30px;
-        /* 磨砂效果 */
+        /* frozen effect */
         background: rgba(237, 237, 237, 0.8);
         backdrop-filter: blur(2px);
-        /* 始终固定位置 */
+        /* always fixed position */
         z-index: 2;
         position: fixed!important;
         top: 0!important
@@ -1451,7 +1451,7 @@ img.zoom-img {
         font-size: 10px;
         padding-left: 10px;
     }
-    /* toc 在 iPhone 等苹果设备上的磨砂效果  */
+    /* The toc frozen effect on Apple devices i.e. iPhone  */
     @supports ((-webkit-backdrop-filter: saturate(180%) blur(20px)) or(backdrop-filter: saturate(180%) blur(20px))) {
         .toc-con {
             background: rgba(237, 237, 237, 0.8);

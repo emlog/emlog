@@ -66,6 +66,7 @@ var LNG = {
  'chinese_must_have'	: '评论内容需要包含中文！',//'The comment content must contain Chinese characters!',
  'email_invalid'	: '邮箱格式错误！',//'The email format is wrong!',
  'url_invalid'		: '网址格式错误！',//'URL format is wrong!',
+ 'toc'			: '目录',//'Table of contents',
 
 //---------------------------
 //admin/views/js/dropzone.min.js

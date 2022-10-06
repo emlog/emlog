@@ -285,16 +285,16 @@ var myBlog = {
             }
         })
     },/**
-     * toc 目录移动端的部分设置
+     * Some settings of the mobile toc
      */
     tocMobileSet: function () {
         if (window.outerWidth > 1275) return
         $(".toc-con").toggle()
-        $("[toc-date='title']").append('<a class="toc-link">[目录]</a>')
+        $("[toc-date='title']").append('<a class="toc-link">[' + lang('toc') + ']</a>')
 
-        $(".toc-link").click(function (e) {  // 添加监听事件
+        $(".toc-link").click(function (e) {  // Add event listener
             $(".toc-con").show()
-            e.stopPropagation()  // 阻止事件冒泡
+            e.stopPropagation()  // Prevent events from bubbling up
         }),
 
         $("html").click(function (e) {
