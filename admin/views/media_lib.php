@@ -10,6 +10,8 @@
 		$media_icon = getFileUrl($value['filepath_thum']);
 	} elseif (isZip($value['filename'])) {
 		$media_icon = "./views/images/zip.jpg";
+	} elseif (isVideo($value['filename'])) {
+		$media_icon = "./views/images/video.png";
 	} else {
 		$media_icon = "./views/images/fnone.png";
 	}
@@ -28,9 +30,9 @@
                         <a href="javascript:insert_media_img('<?= $media_url ?>', '<?= $media_icon ?>')" class="btn" title="插入文章"><i class="icofont-plus"></i></a>
                         <a href="javascript:insert_cover('<?= $media_path ?>')" class="btn" title="设为封面"><i class="icofont-image"></i></a>
 					<?php elseif (isVideo($value['filepath'])): ?>
-                        <a href="javascript:insert_media_video('<?= $media_url ?>')"><i class="icofont-plus"></i></a>
+                        <a href="javascript:insert_media_video('<?= $media_url ?>')" class="btn" title="插入文章"><i class="icofont-plus"></i></a>
 					<?php else: ?>
-                        <a href="javascript:insert_media('<?= $media_url ?>', '<?= $media_name ?>')"><i class="icofont-plus"></i></a>
+                        <a href="javascript:insert_media('<?= $media_url ?>', '<?= $media_name ?>')" class="btn" title="插入文章"><i class="icofont-plus"></i></a>
 					<?php endif ?>
                 </p>
             </div>
