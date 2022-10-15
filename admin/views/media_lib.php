@@ -30,9 +30,9 @@
 <!--vot-->              <a href="javascript:insert_media_img('<?= $media_url ?>', '<?= $media_icon ?>')" class="btn" title="<?=lang('insert_into')?>"><i class="icofont-plus"></i></a>
 <!--vot-->              <a href="javascript:insert_cover('<?= $media_path ?>')" class="btn" title="<?=lang('set_cover')?>"><i class="icofont-image"></i></a>
 					<?php elseif (isVideo($value['filepath'])): ?>
-                        <a href="javascript:insert_media_video('<?= $media_url ?>')" class="btn" title="插入文章"><i class="icofont-plus"></i></a>
+<!--vot-->              <a href="javascript:insert_media_video('<?= $media_url ?>')" class="btn" title="<?=lang('article_insert')?>"><i class="icofont-plus"></i></a>
 					<?php else: ?>
-                        <a href="javascript:insert_media('<?= $media_url ?>', '<?= $media_name ?>')" class="btn" title="插入文章"><i class="icofont-plus"></i></a>
+<!--vot-->              <a href="javascript:insert_media('<?= $media_url ?>', '<?= $media_name ?>')" class="btn" title="<?=lang('article_insert')?>"><i class="icofont-plus"></i></a>
 					<?php endif ?>
                 </p>
             </div>

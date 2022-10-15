@@ -540,6 +540,7 @@ $lang = array(
  'upload_time'		=> '上传时间',//'Upload time',
  'insert_into'		=> '插入到文章',//'Insert into article',
  'set_cover'		=> '设为封面',//'Set as cover',
+ 'article_insert'	=> '插入文章',//'Insert article',
 
 //---------------------------
 //admin/views/navbar.php
