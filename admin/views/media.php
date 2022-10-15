@@ -46,6 +46,9 @@
 			} elseif (isZip($value['filename'])) {
 				$media_icon = "./views/images/zip.jpg";
 				$imgviewer = '';
+			} elseif (isVideo($value['filename'])) {
+				$media_icon = "./views/images/video.png";
+				$imgviewer = '';
 			} else {
 				$media_icon = "./views/images/fnone.png";
 				$imgviewer = '';

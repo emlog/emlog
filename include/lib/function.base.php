@@ -252,10 +252,7 @@ function isImage($mimetype) {
  */
 function isVideo($fileName) {
 	$suffix = getFileSuffix($fileName);
-	if ($suffix == 'mp4') {
-		return true;
-	}
-	return false;
+	return $suffix === 'mp4';
 }
 
 /**

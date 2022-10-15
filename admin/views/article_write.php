@@ -228,7 +228,7 @@
             height: 640,
             toolbarIcons: function () {
                 return ["undo", "redo", "|", "bold", "del", "italic", "quote", "|", "h1", "h2", "h3", "|", "list-ul", "list-ol", "hr", "|",
-                    "link", "image", "preformatted-text", "code-block", "table", "|", "search", "watch", "help"]
+                    "link", "image", "video", "preformatted-text", "code-block", "table", "|", "search", "watch", "help"]
             },
             path: "editor.md/lib/",
             tex: false,
@@ -240,6 +240,7 @@
             imageUpload: true,
             imageFormats: ["jpg", "jpeg", "gif", "png"],
             imageUploadURL: "media.php?action=upload&editor=1",
+            videoUpload: false, //开启视频上传
             syncScrolling: "single",
             onload: function () {
                 hooks.doAction("loaded", this);
