@@ -657,7 +657,8 @@ function chImageSize($img, $max_w, $max_h) {
  */
 function getGravatar($email, $s = 40) {
 	$hash = md5($email);
-	return "//gravatar.loli.net/avatar/$hash?s=$s";
+//	return "//gravatar.loli.net/avatar/$hash?s=$s";
+	return "//sdn.geekzu.org/avatar/$hash?s=$s";
 }
 
 /**
