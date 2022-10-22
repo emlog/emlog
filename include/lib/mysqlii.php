@@ -89,7 +89,7 @@ class MySqlii {
 /*vot*/			emMsg(lang('db_error_name'));
 		}
 		if (!$ignore_err && !$this->result) {
-/*vot*/			emMsg(lang('db_sql_error'). ": $sql<br>" . $this->geterror());
+/*vot*/			emMsg(lang('db_sql_error'). ": $sql<br /><br />" . $this->geterror());
 		} else {
 			return $this->result;
 		}

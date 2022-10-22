@@ -1,6 +1,6 @@
 <?php
 /**
- * control pannel
+ * control panel
  * @package EMLOG
  * @link https://www.emlog.net
  */

@@ -16,7 +16,7 @@ $Store_Model = new Store_Model();
 
 if (empty($action)) {
 	$tag = isset($_GET['tag']) ? addslashes($_GET['tag']) : '';
-	$keyword = isset($_GET['keyword']) ? addslashes($_GET['keyword']) : '';
+	$keyword = isset($_GET['keyword']) ? htmlspecialchars(addslashes($_GET['keyword'])) : '';
 	$templates = $Store_Model->getTemplates($tag, $keyword);
 /*vot*/	$sub_title = lang('template') . ' ' . ($tag === 'free' ? lang('free_zone') : lang('paid_zone'));
 
@@ -28,7 +28,7 @@ if (empty($action)) {
 
 if ($action === 'plu') {
 	$tag = isset($_GET['tag']) ? addslashes($_GET['tag']) : '';
-	$keyword = isset($_GET['keyword']) ? addslashes($_GET['keyword']) : '';
+	$keyword = isset($_GET['keyword']) ? htmlspecialchars(addslashes($_GET['keyword'])) : '';
 	$plugins = $Store_Model->getPlugins($tag, $keyword);
 /*vot*/	$sub_title = lang('plugin') . ' ' . ($tag === 'free' ? lang('free_zone') : lang('paid_zone'));
 
