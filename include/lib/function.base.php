@@ -894,7 +894,7 @@ EOT;
 <title>提示信息</title>
 <style>
 body {
-    background-color:#F7F7F7;
+    background-color:#4e73df;
     font-family: Arial;
     font-size: 12px;
     line-height:150%;
@@ -906,9 +906,9 @@ body {
     width:650px;
     margin:60px auto 0px;
     border-radius: 10px;
-    padding:30px 10px;
+    padding:10px;
     list-style:none;
-    border:#DFDFDF 2px solid;
+    border:#DFDFDF 1px solid;
 }
 .main p {
     line-height: 18px;
