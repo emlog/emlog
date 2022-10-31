@@ -1082,7 +1082,7 @@ function emStrtotime($timeStr) {
 	return $unixPostDate;
 }
 
-function u() {
+function em_v() {
 	if (mt_rand(1, 5) !== 5) {
 		return true;
 	}
@@ -1154,7 +1154,7 @@ if (!function_exists('split')) {
 	}
 }
 
-u();
+em_v();
 
 function get_os($user_agent) {
 	if (false !== stripos($user_agent, "win")) {
