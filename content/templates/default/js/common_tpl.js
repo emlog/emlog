@@ -138,172 +138,190 @@ var myBlog = {
         $t.attr('src2', $t.attr('src'))
         $t.attr('src', $t.parent().attr('sourcesrc'))
     }, /**
-     * toc 分析
-     *
-     * 启用toc目录方式: 在文章最开头写上'[toc]'或者'<!--[toc]-->',最好是单独一行
-     */
-    tocFlag: /\[toc\]/gi,  // 判断toc是否声明的正则表达式
-    tocArray: new Array(),  // 储存toc的数组
-    tocAnalyse: function () {
-        var tocFlag = document.querySelector("#emlogEchoLog p")
+    * toc 效果
+    *
+    * 启用 toc 目录方式: 在文章最开头写上'[toc]'或者'<!--[toc]-->',最好是单独一行
+    */
+   tocFlag: /\[toc\]/gi,  // 判断toc是否声明的正则表达式
+   tocArray: new Array(),  // 储存toc的数组
+   tocSetArray: function(){  // 设置toc的数组内填数据
+       var $titles = $("#emlogEchoLog h1,h2,h3,h4,h5,h6:eq(0)")
 
-        if ($("#emlogEchoLog").length == 0) return  // 不在阅读页面  退出
-        if (!this.tocFlag.test($('#emlogEchoLog').html().substring(0, 30))) return  // 未声明toc标签  退出
-        tocFlag.innerHTML = tocFlag.innerHTML.replace(this.tocFlag, "")  // 去除toc声明
+       for (var i = 0; i < $titles.length; i++) {  // 将标签数据依次存入数组
+           let $tit = $("#emlogEchoLog [toc-date='title']:eq(" + i + ")")
+           myBlog.tocArray[i] = new Array()
 
-        var $logCon = $(".log-con")
-        var logConMar = parseInt($logCon.css("margin-left"))
-        var $titles = $("#emlogEchoLog h1,h2,h3,h4,h5,h6:eq(0)")
-        var arr = this.tocArray
+           myBlog.tocArray[i]['type'] = $tit.prop('tagName').substring(1)
+           myBlog.tocArray[i]['content'] = $tit.text()
+           myBlog.tocArray[i]['pos'] = $tit.offset().top
+           myBlog.tocArray[i]['id'] = $tit.text()
+           $tit.attr("id", myBlog.tocArray[i]['id'])
+       }
+   }, /**
+    * toc 分析（toc 效果程序的入口）
+    */
+   tocAnalyse: function () {
+       var tocFlag = document.querySelector("#emlogEchoLog p")
 
-        if ($titles.length > 0) {
-            if (window.outerWidth > 1275){
-                $logCon.css("margin-left", logConMar + 150 + 'px')  // 文章正文向右偏移150px
-            }
-        } else {
-            return  // 未发现标题（h标签） 退出
-        }
+       if ($("#emlogEchoLog").length == 0) return  // 不在阅读页面  退出
+       if (!this.tocFlag.test($('#emlogEchoLog').html().substring(0, 30))) return  // 未声明 toc 标签，退出
+       tocFlag.innerHTML = tocFlag.innerHTML.replace(this.tocFlag, "")  // 去除 toc 声明
 
-        $titles.attr("toc-date", "title")
-        for (var i = 0; i < $titles.length; i++) {  // 将标签数据依次存入数组
-            let $tit = $("#emlogEchoLog [toc-date='title']:eq(" + i + ")")
-            arr[i] = new Array()
+       var $logCon = $(".log-con")
+       var logConMar = parseInt($logCon.css("margin-left"))
+       var $titles = $("#emlogEchoLog h1,h2,h3,h4,h5,h6:eq(0)")
 
-            arr[i]['type'] = $tit.prop('tagName').substring(1)
-            arr[i]['content'] = $tit.text()
-            arr[i]['pos'] = $tit.offset().top
-            arr[i]['id'] = $tit.text()
-            $tit.attr("id", arr[i]['id'])
-        }
-        this.tocRender()
-        this.tocMobileSet()
-    }, /**
-     * toc 目录渲染
-     */
-    tocRender: function () {
-        var tocHtml = ''
-        var data = this.tocArray
-        var $logcon = $(".log-con")
-        var padNum = (window.outerWidth < 1276) ? 0 : parseInt($logcon.css("margin-left")) - 270
-        var judgeN = 0
-        var chilPad = 4
-        var minType = 6
+       if ($titles.length > 0) {
+           if (window.outerWidth > 1275){
+               $logCon.css("margin-left", logConMar + 150 + 'px')  // 文章正文向右偏移 150px
+           }
+       } else {
+           return  // 未发现标题（h标签） 退出
+       }
 
-        for (var i = 0; i < data.length; i++) {
-            if (data[i]['type'] < minType) minType = data[i]['type']
-        }
-        tocHtml = tocHtml + '<div class="toc-con" style="left:' + padNum + 'px" id="toc-con">'   // 渲染
-        tocHtml = tocHtml + '<div style="height:calc(100vh - 70px);overflow-y:scroll;" ><lu>'
-        for (var i = 0; i < data.length; i++) {
-            let k = minType
-            let itemType = data[i]['type']
-            let isPadding = ''
-            let isBold = ['', '']
+       $titles.attr("toc-date", "title")
+       this.tocSetArray()
+       this.tocRender()
+       this.tocMobileSet()
+   },/**
+    * toc 目录渲染
+    */
+   tocRender: function() {
+       var tocHtml = ''
+       var data = this.tocArray
+       var $logcon = $(".log-con")
+       var padNum = (window.outerWidth < 1276) ? 0 : parseInt($logcon.css("margin-left")) - 270
+       var judgeN = 0
+       var chilPad = 4
+       var minType = 6
 
-            if (itemType != judgeN) isPadding = 'style="padding-top:' + chilPad + 'px"'
-            tocHtml = tocHtml + '<li ' + isPadding + ' id="to' + i + '" title="' + data[i]['content'] + '" >'
-            if (itemType == minType) {
-                isBold[0] = '<b>'
-                isBold[1] = '</b>'
-            }
-            while (k < itemType) {
-                tocHtml = tocHtml + '&nbsp;&nbsp;&nbsp;&nbsp;'
-                k++
-            }
-            tocHtml = tocHtml + isBold[0] + data[i]['content'] + isBold[1] + '</li>'
-            judgeN = itemType
-        }
-        tocHtml = tocHtml + '</lu></div></div>'
-        $logcon.before(tocHtml)
+       for (var i = 0; i < data.length; i++) {
+           if (data[i]['type'] < minType) minType = data[i]['type']
+       }
+       tocHtml = tocHtml + '<div class="toc-con" style="left:' + padNum + 'px" id="toc-con">'   // 渲染
+       tocHtml = tocHtml + '<div style="height:calc(100vh - 70px);overflow-y:scroll;" ><lu>'
+       for (var i = 0; i < data.length; i++) {
+           let k = minType
+           let itemType = data[i]['type']
+           let isPadding = ''
+           let isBold = ['', '']
 
-        for (var i = 0; i < data.length; i++) {  // 批量添加监听事件
-            let tempPos = data[i]["pos"]
-            $('#to' + i).bind("click", function () {
-                window.onscroll = function () {
-                    tocSetPos()
-                }
-                $('body,html').animate({scrollTop: tempPos}, 300, function () {
-                    tocGetPos()
-                    window.onscroll = function () {
-                        tocSetPos();
-                        tocGetPos()
-                    }
-                })
-            })
-        }
+           if (itemType != judgeN) isPadding = 'style="padding-top:' + chilPad + 'px"'
+           tocHtml = tocHtml + '<li ' + isPadding + ' id="to' + i + '" title="' + data[i]['content'] + '" >'
+           if (itemType == minType) {
+               isBold[0] = '<b>'
+               isBold[1] = '</b>'
+           }
+           while (k < itemType) {
+               tocHtml = tocHtml + '&nbsp;&nbsp;&nbsp;&nbsp;'
+               k++
+           }
+           tocHtml = tocHtml + isBold[0] + data[i]['content'] + isBold[1] + '</li>'
+           judgeN = itemType
+       }
+       tocHtml = tocHtml + '</lu></div></div>'
+       $logcon.before(tocHtml)
 
-        function tocSetPos() {  // 判断位置和设置定位样式
-            let articleTop = 200
-            
-            if (document.documentElement.scrollTop > articleTop) {
-                $("#toc-con").css("position", "fixed")
-                    .css("top", "0px")
-            } else {
-                $("#toc-con").css("position", "absolute")
-                    .css("top", articleTop + "px")
-            }
-        }
+       function tocSetListen(){  // 批量添加监听事件
+           for (var i = 0; i < data.length; i++) {
+               let tempPos = myBlog.tocArray[i]["pos"]
+               $('#to' + i).off("click");
+               $('#to' + i).bind("click", function () {
+                   window.onscroll = function () {
+                       tocSetPos()
+                   }
+                   $('body,html').animate({scrollTop: tempPos}, 300, function () {
+                       tocGetPos()
+                       window.onscroll = function () {
+                           tocSetPos();
+                           tocGetPos()
+                       }
+                   })
+               })
+           }
+       }
 
-        function tocGetPos() {  // 获取位置并改变指定标题颜色
-            let $tempItem
-            $('#toc-con li').css('color', 'unset').attr('isRed', 'n')
-            for (var i = 0; i < data.length; i++) {
-                let winPos = document.documentElement.scrollTop + 30
-                if (winPos > data[i]['pos']) $tempItem = $('#to' + i)
-            }
-            if ($tempItem){
-                $tempItem.css('color', 'red').attr('isRed', 'y')
-            } else {
-                return
-            }
-            let redScreenPos = $("li[isred='y']").offset().top - document.documentElement.scrollTop
-            let tocHeight = $("#toc-con div").outerHeight()
-            let tocPos = $("#toc-con div").scrollTop()
-            if (redScreenPos > tocHeight) {  // 根据文章阅读位置来调整 toc 滚动条位置
-                $("#toc-con div").scrollTop($("li[isred='y']").offset().top - tocHeight)
-            } else if (redScreenPos < 0) {
-                $("#toc-con div").scrollTop(tocPos + redScreenPos - (tocHeight / 2))
-            } else {
-                if (redScreenPos > (tocHeight / 2)) $("#toc-con div").scrollTop(tocPos + 10)
-                if (redScreenPos < (tocHeight / 2 - 40)) $("#toc-con div").scrollTop(tocPos - 10)
-            }
-        }
+       function tocSetPos() {  // 判断位置和设置定位样式
+           let articleTop = 200
+           
+           if (document.documentElement.scrollTop > articleTop) {
+               $("#toc-con").css("position", "fixed")
+                   .css("top", "0px")
+           } else {
+               $("#toc-con").css("position", "absolute")
+                   .css("top", articleTop + "px")
+           }
+       }
 
-        tocSetPos()
-        window.onscroll = function () {
-            tocSetPos();
-            tocGetPos()
-        }  // 滚轮事件
-        $('#toc-con div').mouseover(function () {  // 根据鼠标位置来调整滚轮事件
-            window.onscroll = function () {
-                tocSetPos()
-            }
-        }).mouseout(function () {
-            window.onscroll = function () {
-                tocSetPos();
-                tocGetPos()
-            }
-        })
-    },/**
-     * toc 目录移动端的部分设置
-     */
-    tocMobileSet: function () {
-        if (window.outerWidth > 1275) return
-        $(".toc-con").toggle()
-        $("[toc-date='title']").append('<a class="toc-link">[目录]</a>')
+       function tocGetPos() {  // 获取位置并改变指定标题颜色
+           let $tempItem
+           let dataArr = myBlog.tocArray
 
-        $(".toc-link").click(function (e) {  // 添加监听事件
-            $(".toc-con").show()
-            e.stopPropagation()  // 阻止事件冒泡
-        }),
+           $('#toc-con li').css('color', 'unset').attr('isRed', 'n')
+           for (var i = 0; i < dataArr.length; i++) {
+               let winPos = document.documentElement.scrollTop + 30
+               if (winPos > dataArr[i]['pos']) $tempItem = $('#to' + i)
+           }
+           if ($tempItem){
+               $tempItem.css('color', 'red').attr('isRed', 'y')
+           } else {
+               return
+           }
+           let redScreenPos = $("li[isred='y']").offset().top - document.documentElement.scrollTop
+           let tocHeight = $("#toc-con div").outerHeight()
+           let tocPos = $("#toc-con div").scrollTop()
 
-        $("html").click(function (e) {
-            if($(".toc-con") && $(".toc-con").css("display") == "block") {
-                $(".toc-con").hide()
-            }
-            e.stopPropagation() 
-        })
-    }
+           if (redScreenPos > tocHeight) {  // 根据文章阅读位置来调整 toc 滚动条位置
+               $("#toc-con div").scrollTop($("li[isred='y']").offset().top - tocHeight)
+           } else if (redScreenPos < 0) {
+               $("#toc-con div").scrollTop(tocPos + redScreenPos - (tocHeight / 2))
+           } else {
+               if (redScreenPos > (tocHeight / 2)) $("#toc-con div").scrollTop(tocPos + 10)
+               if (redScreenPos < (tocHeight / 2 - 40)) $("#toc-con div").scrollTop(tocPos - 10)
+           }
+       }
+
+       tocSetListen()
+       tocSetPos()
+       window.onscroll = function () {
+           tocSetPos();
+           tocGetPos()
+       }  // 滚轮事件
+       $('#toc-con div').mouseover(function () {  // 根据鼠标位置来调整滚轮事件
+           window.onscroll = function () {
+               tocSetPos()
+           }
+       }).mouseout(function () {
+           window.onscroll = function () {
+               tocSetPos();
+               tocGetPos()
+           }
+       })
+
+       setInterval(function(){  // 每 1.5 秒刷新一次 toc 监听事件和 toc 目录坐标
+           tocSetListen()
+           myBlog.tocSetArray()
+       }, 1500)
+   },/**
+    * toc 目录移动端的部分设置
+    */
+   tocMobileSet: function () {
+       if (window.outerWidth > 1275) return
+       $(".toc-con").toggle()
+       $("[toc-date='title']").append('<a class="toc-link">[目录]</a>')
+
+       $(".toc-link").click(function (e) {  // 添加监听事件
+           $(".toc-con").show()
+           e.stopPropagation()  // 阻止事件冒泡
+       }),
+
+       $("html").click(function (e) {
+           if($(".toc-con") && $(".toc-con").css("display") == "block") {
+               $(".toc-con").hide()
+           }
+           e.stopPropagation() 
+       })
+   }
 }
 
 /**
