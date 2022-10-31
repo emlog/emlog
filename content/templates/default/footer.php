@@ -9,7 +9,11 @@ if (!defined('EMLOG_ROOT')) {
     <footer>
         <div class="container">
             <p class="text-center">
-                <a href="https://beian.miit.gov.cn/" target="_blank"><?= $icp ?></a><br>
+                <?php
+                    if(!empty($icp)){
+                        echo '<div><a href="https://beian.miit.gov.cn/" target="_blank">'.$icp.'</a></div>';
+                    }
+                ?>
                 <?= $footer_info ?>
                 <?php doAction('index_footer') ?>
             </p>
