@@ -186,7 +186,7 @@ footer .copyright {
 /* 博客头部属性的配置
 ---------------------------------------------------*/
 .blog-header {
-	margin-bottom: 2.4rem;
+	margin-bottom: 2.3rem;
 	background: #ffffff; /* 背景颜色颜色白色 */
 	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1) /* 阴影 */
 }
@@ -255,7 +255,7 @@ footer .copyright {
     .blog-header-subtitle {
         padding-top: 60px;
         left: 17px;
-        top: -11px
+        top: -9px
     }
 	/* 仅在小屏幕上显示切换菜单边框和切换菜单 */
 	.blog-header-toggle {
@@ -465,7 +465,7 @@ footer .copyright {
     font-weight: 100 !important
 }
 .calendar {
-    margin-bottom: -25px;
+    margin-bottom: -10px;
     width: 100%
 }
 .calendar td {
@@ -780,7 +780,7 @@ footer .copyright {
 .card-title {
     margin-bottom: 30px
 }
-/* 文章条目中的置顶图案，采用base64 */
+/* 文章条目中的置顶图案 */
 .log-topflg {
     user-select: none;
     display: inline-block;
@@ -998,8 +998,8 @@ footer .copyright {
     margin-left: -90px;
     position: absolute;
     top: 151px;
-    border: 1px solid #e6e6e6;
-    color: #e6e6e6;
+    border: 1px solid #dcdcdd;
+    color: #dcdcdd;
     border-radius: 50%;
     cursor: pointer
 }
@@ -1094,7 +1094,9 @@ footer .copyright {
 /* 网页足部
 ---------------------------------------------------*/
 .text-center {
-    text-align: center !important
+        line-height: 2;
+    margin-block: 30px;
+    text-align: center !important;
 }
 
 /* 图片放大
@@ -1211,7 +1213,7 @@ img.zoom-img {
         margin: -2px;
         padding-left: 2px
     }
-	/* 方便在中、小屏幕隐藏元素的class */
+	/* 方便在中、小屏幕隐藏元素的 class */
     .mh {
         display: none
     }
