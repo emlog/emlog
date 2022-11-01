@@ -36,7 +36,7 @@ class Media_Model {
 				'addtime'       => date("Y - m - d H:i:s", $row['addtime']),
 				'aid'           => $row['aid'],
 				'filepath_thum' => $row['filepath'],
-				'filepath'      => str_replace("thum - ", '', $row['filepath']),
+				'filepath'      => str_replace("thum-", '', $row['filepath']),
 				'width'         => $row['width'],
 				'height'        => $row['height'],
 				'mimetype'      => $row['mimetype'],
