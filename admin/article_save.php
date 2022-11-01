@@ -82,6 +82,9 @@ switch ($action) {
 			emDirect("./article.php?pid=draft&active_savedraft=1");
 		}
 		if ($action == 'add' || isset($_POST['pubdf'])) {
+			if ($checked == 'n') {
+				notice::sendNewPostMail($title);
+			}
 			emDirect("./article.php?active_post=1");//文章发布成功
 		} else {
 			emDirect("./article.php?active_savelog=1");//文章保存成功

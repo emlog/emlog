@@ -53,24 +53,6 @@ class User {
 		return $role_name;
 	}
 
-	static function sendResetMail($mail) {
-		if (!isset($_SESSION)) {
-			session_start();
-		}
-		$randCode = getRandStr(8, false);
-		$_SESSION['mail_code'] = $randCode;
-		$_SESSION['mail'] = $mail;
-
-		$title = "找回密码邮件验证码";
-		$content = "邮件验证码：" . $randCode;
-		$sendmail = new SendMail();
-		$ret = $sendmail->send($mail, $title, $content);
-		if ($ret) {
-			return true;
-		}
-		return false;
-	}
-
 	static function checkLoginCode($login_code) {
 		if (!isset($_SESSION)) {
 			session_start();

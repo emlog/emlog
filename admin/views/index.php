@@ -147,7 +147,7 @@
     </div>
     <script>
         setTimeout(hideActived, 2600);
-        $("#menu_home").addClass('active');
+        $("#menu_panel").addClass('active');
         $(document).ready(function () {
             $("#admindex_msg ul").html("").addClass("spinner-border text-primary");
             $.get("./index.php?action=get_news",

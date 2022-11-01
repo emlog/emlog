@@ -27,10 +27,10 @@
             </div>
             <p>API秘钥：</p>
             <div class="input-group">
-                <input type="text" class="form-control" disabled value="<?= $apikey ?>" aria-label="Recipient's username" aria-describedby="button-addon2">
+                <input type="text" class="form-control" disabled value="<?= $apikey ?>">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-success" type="button"
-                            onclick="javascript:window.location.href='setting.php?action=api_reset&token=<?= LoginAuth::genToken() ?>'" id="button-addon2">重置API秘钥
+                    <button class="btn btn-outline-success" type="button" onclick="window.location.href='setting.php?action=api_reset&token=<?= LoginAuth::genToken() ?>'">
+                        重置API秘钥
                     </button>
                 </div>
             </div>
