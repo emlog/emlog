@@ -139,7 +139,7 @@ if ($action == 'doreset') {
 		emDirect('./account.php?action=reset&error_mail=1');
 	}
 
-	$ret = User::sendResetMail($mail);
+	$ret = Notice::sendResetMail($mail);
 	if ($ret) {
 		emDirect("./account.php?action=reset2&succ_mail=1");
 	} else {
