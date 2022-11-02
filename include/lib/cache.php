@@ -9,7 +9,7 @@
 class Cache {
 
 	private $db;
-	private static $instance = null;
+	private static $instance;
 
 	private $options_cache;
 	private $user_cache;

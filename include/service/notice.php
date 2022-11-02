@@ -9,6 +9,9 @@
 class Notice {
 
 	public static function sendResetMail($mail) {
+		if (!self::smtpServerReady()) {
+			return false;
+		}
 		if (!isset($_SESSION)) {
 			session_start();
 		}
@@ -27,15 +30,16 @@ class Notice {
 	}
 
 	public static function sendNewPostMail($post_title) {
+		if (!self::smtpServerReady()) {
+			return false;
+		}
 		if (Option::get('mail_notice_post') === 'n') {
 			return false;
 		}
-		$CACHE = Cache::getInstance();
-		$user_cache = $CACHE->readCache('user');
-		if (empty($user_cache[1]['mail'])) {
+		$email = self::getFounderEmail();
+		if (!$email) {
 			return false;
 		}
-		$email = $user_cache[1]['mail'];
 		$title = "你的站点收到新的待审核文章投稿";
 		$content = "文章标题是：" . $post_title;
 		$sendmail = new SendMail();
@@ -47,13 +51,14 @@ class Notice {
 	}
 
 	public static function sendNewCommentMail($comment) {
+		if (!self::smtpServerReady()) {
+			return false;
+		}
 		if (Option::get('mail_notice_comment') === 'n') {
 			return false;
 		}
-		$CACHE = Cache::getInstance();
-		$user_cache = $CACHE->readCache('user');
-		$email = $user_cache[1]['mail'];
-		if (empty($user_cache[1]['mail'])) {
+		$email = self::getFounderEmail();
+		if (!$email) {
 			return false;
 		}
 		$title = "你的站点收到新的评论";
@@ -64,6 +69,22 @@ class Notice {
 			return true;
 		}
 		return false;
+	}
+
+	private static function smtpServerReady() {
+		if (empty(Option::get('smtp_pw')) || empty(Option::get('smtp_mail'))) {
+			return false;
+		}
+		return true;
+	}
+
+	private static function getFounderEmail() {
+		$CACHE = Cache::getInstance();
+		$user_cache = $CACHE->readCache('user');
+		if (empty($user_cache[1]['mail'])) {
+			return false;
+		}
+		return $user_cache[1]['mail'];
 	}
 
 }
