@@ -124,10 +124,11 @@
                 <div class="card bg-danger text-white shadow">
                     <div class="card-body">
                         <h4>您安装的emlog pro尚未注册，注册后将获得：</h4>
-                        <div>1、一键升级功能，获得来自官方的安全和功能更新。</div>
-                        <div>2、解锁扩展商店，获得更多模板和插件。</div>
-                        <div>3、解除使用限制和所有未注册提示。</div>
-                        <div>4、"投我以桃，报之以李"，支持我们把emlog做的更好。</div>
+                        <div>1、解锁在线升级功能，一键升级到最新版本，获得来自官方的安全和功能更新。</div>
+                        <div>2、解锁应用商店，获得更多模板和扩展插件。</div>
+                        <div>3、去除所有未注册提示及功能限制。</div>
+                        <div>4、加入专属Q群，获得官方技术指导问题解答。</div>
+                        <div>5、投我以桃，报之以李，您的支持让emlog变的更好。</div>
                     </div>
                     <div class="card-footer text-center">
                         <a href="https://emlog.net/register" target="_blank" class="btn btn-sm btn-primary shadow-lg">获取注册码</a>
