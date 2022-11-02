@@ -427,15 +427,18 @@ $lang = array(
  'site_info'			=> '站点信息',//'Site Info',
  '_comments'			=> '条评论',//' comments',
  'db_prefix'			=> '数据库表前缀',//'Database table prefix',
+ 'database'			=> '数据库',//'Database',
+ 'web_server'			=> 'web服务',//'Web Server',
  'php_version'			=> 'PHP版本',//'PHP version',
  'emlog_version'		=> 'EMLOG版本',//'EMLOG version',
  'unregistered'			=> '未注册',//'unregistered',
  'emlog_unregistered'		=> '您的emlog pro尚未注册',//'Your emlog pro is not registered yet',
  'emlog_reg_advantages'		=> '您安装的emlog pro尚未注册，注册后将获得：',//'Your emlog pro is not registered, please complete the registration first and you will have:',
- 'advantage1'			=> '1、一键升级，获得来自官方的安全和功能更新。',//'1. One-click upgrade to get official security and function updates.',
- 'advantage2'			=> '2、解锁扩展商店，获得更多模板和插件。',//'2. Unlock the extended store to get more templates and plugins.',
- 'advantage3'			=> '3、解除使用限制和所有未注册提示',//'3. Remove the usage restrictions and all unregistered prompts.',
- 'advantage4'			=> '4、投我以桃，报之以李，支持我们把emlog做的更好。',//'4. Vote me as a peach, give me a reward, and support us to make emlog better.',
+ 'advantage1'			=> '1、解锁在线升级功能，一键升级到最新版本，获得来自官方的安全和功能更新。',//'1. Unlock the online upgrade function, upgrade to the latest version with one click, and get official security and function updates.',
+ 'advantage2'			=> '2、解锁应用商店，获得更多模板和扩展插件。',//'2. Unlock the app store to get more templates and extensions.',
+ 'advantage3'			=> '3、去除所有未注册提示及功能限制。',//'3. Remove all unregistered prompts and function restrictions.',
+ 'advantage4'			=> '4、加入专属Q群，获得官方技术指导问题解答。',//'4. Join the exclusive QQ group to get official technical guidance questions and answers.',
+ 'advantage5'			=> '5、投我以桃，报之以李，您的支持让emlog变的更好。',//'5. Vote for me with peaches and return for Lee. Your support makes emlog better.',
  'register_now'			=> '现在去注册',//'Register now',
  'emlog_registered_ok'		=> '恭喜，您的EMLOG已经完成注册。',//'Congratulations, your EMLOG has been registered.',
  'em_reg_ok'			=> '注册成功，请登录',//'Registration is successful, please log in',
@@ -480,6 +483,7 @@ $lang = array(
  'go_to_register'		=> '去注册',//'Go to register',
  'update_expired'		=> '更新服务已到期，',//'The update service has expired, ',
  'log_in_to_renew'		=> '登录官网续期',//'Log in to the official website to renew',
+ 'articles_pending'		=> '待审文章',//'Pending Articles',
 
 //---------------------------
 //admin/views/links.php
@@ -746,6 +750,11 @@ $lang = array(
  'api_5'		=> '5. 笔记发布',//'5. Notes publishing',
  'api_more'		=> '更多接口',//'More info',
  'api_docs'		=> '详见接口文档→',//'See the API documentation for details→',
+
+//---------------------------
+//admin/views/setting_mail.php
+ 'comment_new_notify'	=> '新评论邮件通知（仅发送到创始人邮箱）',//'Email notification of new comments (sent to founder email only)',
+ 'article_new_notify'	=> '新文章投稿邮件通知（仅发送到创始人邮箱）',//'Email notification of new articles submitted (sent to founder email only)',
 
 //---------------------------
 //admin/views/setting_user.php

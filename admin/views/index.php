@@ -21,7 +21,7 @@
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col">
-                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">待审文章</div>
+<!--vot-->                                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"><?=lang('articles_pending')?></div>
                                                 <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="./article.php"><?= $sta_cache['checknum'] ?></a></div>
                                             </div>
                                             <div class="col-auto">
@@ -38,7 +38,7 @@
                                         <div class="row no-gutters align-items-center">
                                             <div class="col">
                                                 <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                    待审评论
+<!--vot-->                                          <?=lang('pending_review')?>
                                                 </div>
                                                 <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="./comment.php?hide=y"><?= $sta_cache['hidecomnum'] ?></a></div>
                                             </div>
@@ -55,7 +55,7 @@
                                         <div class="row no-gutters align-items-center">
                                             <div class="col">
                                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                    用户数
+<!--vot-->                                          <?=lang('user_num')?>
                                                 </div>
                                                 <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="./user.php"><?= count($user_cache) ?></a></div>
                                             </div>
@@ -68,15 +68,15 @@
                             </div>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <a href="./article.php">文章</a>
+<!--vot-->                  <a href="./article.php"><?=lang('articles')?></a>
                             <a href="./article.php"><span class="badge badge-primary badge-pill"><?= $sta_cache['lognum'] ?></span></a>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <a href="./twitter.php">笔记</a>
+<!--vot-->                  <a href="./twitter.php"><?=lang('twitters')?></a>
                             <a href="./twitter.php"><span class="badge badge-primary badge-pill"><?= $sta_cache['note_num'] ?></span></a>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <a href="./comment.php">评论</a>
+<!--vot-->                  <a href="./comment.php"><?=lang('comments')?></a>
                             <a href="./comment.php"><span class="badge badge-primary badge-pill"><?= $sta_cache['comnum_all'] ?></span></a>
                         </li>
                     </ul>
@@ -94,11 +94,11 @@
                             <span class="small"><?= $php_ver ?></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            数据库
+<!--vot-->                  <?=lang('database')?>
                             <span class="small">MySQL <?= $mysql_ver ?></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            web服务
+<!--vot-->                  <?=lang('web_server')?>
                             <span class="small"><?= $serverapp ?></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -106,7 +106,6 @@
 							<?php if (!Register::isRegLocal()) : ?>
 <!--vot-->                      <a href="auth.php"><span class="badge badge-danger"><?= Option::EMLOG_VERSION ?> <?=lang('unregistered')?></span></a>
 							<?php else: ?>
-<!--vot-->                      <span class="badge badge-success"><?= Option::EMLOG_VERSION ?> <?=lang('registered')?></span>
 <!--vot-->                      <span class="badge <?php if (Register::getRegType() === 2): ?>badge-warning<?php else: ?>badge-success<?php endif; ?>"><?= Option::EMLOG_VERSION ?> <?=lang('registered')?></span>
 							<?php endif ?>
                         </li>

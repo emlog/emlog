@@ -95,11 +95,11 @@ var myBlog = {
             let url = $('#info_u').val()
 
             if (isCn == 'y' && !cnReg.test(comContent)) {
-/*vot*/   this.comTip = lang('chinese_must_have')
+/*vot*/         this.comTip = lang('chinese_must_have')
             } else if (typeof mail !== "undefined" && mail != '' && !mailReg.test(mail)) {
-/*vot*/   this.comTip = lang('email_invalid')
+/*vot*/         this.comTip = lang('email_invalid')
             } else if (typeof url !== "undefined" && url != '' && !urlReg.test(url)) {
-/*vot*/   this.comTip = lang('url_invalid')
+/*vot*/         this.comTip = lang('url_invalid')
             } else {
                 this.comTip = ''
             }
@@ -138,16 +138,16 @@ var myBlog = {
         $t.attr('src2', $t.attr('src'))
         $t.attr('src', $t.parent().attr('sourcesrc'))
     }, /**
-     * toc analysis
+    * toc analysis
     *
-     * Enable toc directory method: write '[toc]' or'<!--[toc]-->' at the beginning of the article, preferably on a single line
+    * Enable toc directory method: write '[toc]' or'<!--[toc]-->' at the beginning of the article, preferably on a single line
     */
-    tocFlag : /\[toc\]/gi,  // Regular expression to determine whether toc is declared
-    tocArray : new Array(),  // Array to store toc
-   tocSetArray: function(){  // 设置toc的数组内填数据
+   tocFlag: /\[toc\]/gi,  // Regular expression to determine whether toc is declared
+   tocArray: new Array(),  // Array to store toc
+   tocSetArray: function(){  // Fill the toc array with data
        var $titles = $("#emlogEchoLog h1,h2,h3,h4,h5,h6:eq(0)")
 
-       for (var i = 0; i < $titles.length; i++) {  // 将标签数据依次存入数组
+       for (var i = 0; i < $titles.length; i++) {  // Store the label data into an array in sequence
            let $tit = $("#emlogEchoLog [toc-date='title']:eq(" + i + ")")
            myBlog.tocArray[i] = new Array()
 
@@ -158,14 +158,14 @@ var myBlog = {
            $tit.attr("id", myBlog.tocArray[i]['id'])
        }
    }, /**
-    * toc 分析（toc 效果程序的入口）
+    * toc analysis (entrance to the toc effect program)
     */
    tocAnalyse: function () {
        var tocFlag = document.querySelector("#emlogEchoLog p")
 
-      if ($("#emlogEchoLog").length == 0) return  // Not reading the page, Exit
-      if (!this.tocFlag.test($('#emlogEchoLog').html().substring(0,30))) return  // Toc tag bot detected, Exit
-      tocFlag.innerHTML = tocFlag.innerHTML.replace(this.tocFlag,"")  // Remove toc statement
+       if ($("#emlogEchoLog").length == 0) return  // Not reading the page, Exit
+       if (!this.tocFlag.test($('#emlogEchoLog').html().substring(0,30))) return  // Toc tag bot detected, Exit
+       tocFlag.innerHTML = tocFlag.innerHTML.replace(this.tocFlag,"")  // Remove toc statement
 
        var $logCon = $(".log-con")
        var logConMar = parseInt($logCon.css("margin-left"))
@@ -173,10 +173,10 @@ var myBlog = {
 
        if ($titles.length > 0) {
            if (window.outerWidth > 1275){
-                $logCon.css("margin-left", logConMar + 150 + 'px')  // The text of the article is offset 150px to the right
+               $logCon.css("margin-left", logConMar + 150 + 'px')  // The text of the article is offset 150px to the right
            }
        } else {
-            return  // No title found (h tag), Exit
+           return  // No title found (h tag), Exit
        }
 
        $titles.attr("toc-date", "title")
@@ -184,7 +184,7 @@ var myBlog = {
        this.tocRender()
        this.tocMobileSet()
    },/**
-     * toc directory rendering
+    * toc directory rendering
     */
    tocRender: function() {
        var tocHtml = ''
@@ -198,7 +198,7 @@ var myBlog = {
        for (var i = 0; i < data.length; i++) {
            if (data[i]['type'] < minType) minType = data[i]['type']
        }
-        tocHtml = tocHtml + '<div class="toc-con" style="left:' + padNum + 'px" id="toc-con">'   // Rendering
+       tocHtml = tocHtml + '<div class="toc-con" style="left:' + padNum + 'px" id="toc-con">'   // Rendering
        tocHtml = tocHtml + '<div style="height:calc(100vh - 70px);overflow-y:scroll;" ><lu>'
        for (var i = 0; i < data.length; i++) {
            let k = minType
@@ -241,7 +241,7 @@ var myBlog = {
            }
        }
 
-      function tocSetPos() {  // Determine location and set positioning style
+       function tocSetPos() {  // Determine location and set positioning style
            let articleTop = 200
            
            if (document.documentElement.scrollTop > articleTop) {
@@ -253,7 +253,7 @@ var myBlog = {
            }
        }
 
-      function tocGetPos() {  // Get the position and change the color of the specified title
+       function tocGetPos() {  // Get the position and change the color of the specified title
            let $tempItem
            let dataArr = myBlog.tocArray
 
@@ -271,7 +271,7 @@ var myBlog = {
            let tocHeight = $("#toc-con div").outerHeight()
            let tocPos = $("#toc-con div").scrollTop()
 
-            if (redScreenPos > tocHeight) {  // Adjust the position of the toc scroll bar according to the reading position of the article
+           if (redScreenPos > tocHeight) {  // Adjust the position of the toc scroll bar according to the reading position of the article
                $("#toc-con div").scrollTop($("li[isred='y']").offset().top - tocHeight)
            } else if (redScreenPos < 0) {
                $("#toc-con div").scrollTop(tocPos + redScreenPos - (tocHeight / 2))
@@ -286,8 +286,8 @@ var myBlog = {
        window.onscroll = function () {
            tocSetPos();
            tocGetPos()
-        }  // Wheel event
-        $('#toc-con div').mouseover(function (){  // Adjust the wheel event according to the mouse position
+       }  // Wheel event
+       $('#toc-con div').mouseover(function (){  // Adjust the wheel event according to the mouse position
            window.onscroll = function () {
                tocSetPos()
            }
@@ -298,21 +298,21 @@ var myBlog = {
            }
        })
 
-       setInterval(function(){  // 每 1.5 秒刷新一次 toc 监听事件和 toc 目录坐标
+       setInterval(function(){  // Refresh toc listener events and toc directory coordinates every 1.5 seconds
            tocSetListen()
            myBlog.tocSetArray()
        }, 1500)
    },/**
-     * Some settings of the mobile toc
+    * Some settings of the mobile toc
     */
    tocMobileSet: function () {
        if (window.outerWidth > 1275) return
        $(".toc-con").toggle()
 /*vot*/ $("[toc-date='title']").append('<a class="toc-link">[' + lang('toc') + ']</a>')
 
-        $(".toc-link").click(function (e) {  // Add event listener
+       $(".toc-link").click(function (e) {  // Add event listener
            $(".toc-con").show()
-            e.stopPropagation()  // Prevent events from bubbling up
+           e.stopPropagation()  // Prevent events from bubbling up
        }),
 
        $("html").click(function (e) {

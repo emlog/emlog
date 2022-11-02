@@ -64,18 +64,18 @@
                 </div>
             </div>
 
-            <h4>邮件通知</h4>
+<!--vot-->  <h4><?=lang('email_notify')?></h4>
             <div class="form-group form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="mail_notice_comment" id="mail_notice_comment" <?= $conf_mail_notice_comment ?> />
-                <label class="form-check-label">新评论邮件通知（仅发送到创始人邮箱）</label>
+<!--vot-->      <label class="form-check-label"><?=lang('comment_new_notify')?></label>
             </div>
             <div class="form-group form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="mail_notice_post" id="mail_notice_post" <?= $conf_mail_notice_post ?> >
-                <label class="form-check-label">新文章投稿邮件通知（仅发送到创始人邮箱）</label>
+<!--vot-->      <label class="form-check-label"><?=lang('article_new_notify')?></label>
             </div>
             <div class="form-group">
                 <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
-                <input type="submit" value="保存设置" class="btn btn-sm btn-success"/>
+<!--vot-->      <input type="submit" value="<?=lang('save_settings')?>" class="btn btn-sm btn-success"/>
             </div>
         </form>
     </div>

@@ -142,9 +142,16 @@ $lang = array(
 'del_failed'	=> 'Failed to delete!',//'删除失败!',
 
 //---------------------------------------
+//include/service/notice.php
+'new_article_review'	=> 'Your site has received new submissions for review',//'你的站点收到新的待审核文章投稿',
+'new_article_title'	=> 'The article title is: ',//'文章标题是：',
+'new_comment_review'	=> 'Your site has received new comments',//'你的站点收到新的评论',
+'new_comment_is'	=> 'The comment is: ',//'评论内容是：',
+
+//---------------------------------------
 //include/service/user.php
 'reset_password_code'	=> 'Recover Password Email Verification Code',//'找回密码邮件验证码',
-'email_verify_code'	=> 'Email verification code',//'邮件验证码: ',
+'email_verify_code'	=> 'Email verification code: ',//'邮件验证码: ',
 'group_no_permission'	=> 'The user group you are in cannot use this function, please contact the administrator',//'你所在的用户组无法使用该功能，请联系管理员',
 'admin'			=> 'Administrator',//'管理员',
 'registered_user'	=> 'Registered user',//'注册用户',

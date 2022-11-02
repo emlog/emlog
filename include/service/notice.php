@@ -19,8 +19,8 @@ class Notice {
 		$_SESSION['mail_code'] = $randCode;
 		$_SESSION['mail'] = $mail;
 
-		$title = "找回密码邮件验证码";
-		$content = "邮件验证码：" . $randCode;
+/*vot*/		$title = lang('reset_password_code');
+/*vot*/		$content = lang('email_verify_code') . $randCode;
 		$sendmail = new SendMail();
 		$ret = $sendmail->send($mail, $title, $content);
 		if ($ret) {
@@ -40,8 +40,8 @@ class Notice {
 		if (!$email) {
 			return false;
 		}
-		$title = "你的站点收到新的待审核文章投稿";
-		$content = "文章标题是：" . $post_title;
+/*vot*/		$title = lang('new_article_review');
+/*vot*/		$content = lang('new_article_title') . $post_title;
 		$sendmail = new SendMail();
 		$ret = $sendmail->send($email, $title, $content);
 		if ($ret) {
@@ -61,8 +61,8 @@ class Notice {
 		if (!$email) {
 			return false;
 		}
-		$title = "你的站点收到新的评论";
-		$content = "评论内容是：" . $comment;
+/*vot*/		$title = lang('new_comment_review');
+/*vot*/		$content = lang('new_comment_is') . $comment;
 		$sendmail = new SendMail();
 		$ret = $sendmail->send($email, $title, $content);
 		if ($ret) {

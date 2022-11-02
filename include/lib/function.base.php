@@ -1270,7 +1270,7 @@ if (!function_exists('split')) {
 	}
 }
 
-em_v();
+//vot em_v();
 
 if (!function_exists('get_os')) {
 	function get_os($user_agent) {
