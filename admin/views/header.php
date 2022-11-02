@@ -41,7 +41,7 @@
         </li>
         <hr class="sidebar-divider my-0">
 		<?php if (User::isAdmin()): ?>
-            <li class="nav-item" id="menu_home">
+            <li class="nav-item" id="menu_panel">
 <!--vot-->      <a class="nav-link" href="./"><i class="icofont-dashboard icofont-1x"></i><span><?= lang('admincp') ?></span></a>
             </li>
 		<?php endif ?>

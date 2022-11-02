@@ -72,7 +72,7 @@ $lang = array(
 
 //---------------------------
 //admin/setting_mail.php
- 'email_sending'	=> '邮件发送',//'Email sending',
+ 'email_service'	=> '邮件服务',//'Email Service',
  'sender_email'		=> '发送人邮箱',//'Sender email',
  'smtp_password'	=> 'SMTP密码',//'SMTP password',
  'smtp_server'		=> 'SMTP服务器',//'SMTP server',

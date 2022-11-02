@@ -41,12 +41,14 @@ function htmlClean($content, $nl2br = true) {
 /**
  * Get User Ip
  */
-function getIp() {
-	$ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
-	if (!filter_var($ip, FILTER_VALIDATE_IP)) {
-		$ip = '';
+if (!function_exists('getIp')) {
+	function getIp() {
+		$ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
+		if (!filter_var($ip, FILTER_VALIDATE_IP)) {
+			$ip = '';
+		}
+		return $ip;
 	}
-	return $ip;
 }
 
 /**
@@ -658,9 +660,12 @@ function chImageSize($img, $max_w, $max_h) {
 /**
  * Get Gravatar Avatar
  */
-function getGravatar($email, $s = 40) {
-	$hash = md5($email);
+if (!function_exists('getGravatar')) {
+	function getGravatar($email, $s = 40) {
+		$hash = md5($email);
+//	return "//gravatar.loli.net/avatar/$hash?s=$s";		
 /*vot*/ return "https://www.gravatar.com/avatar/$hash?s=$s";
+	}
 }
 
 /**
@@ -1087,7 +1092,7 @@ function emStrtotime($timeStr) {
 	return $unixPostDate;
 }
 
-function u() {
+function em_v() {
 	if (mt_rand(1, 5) !== 5) {
 		return true;
 	}
@@ -1265,42 +1270,45 @@ if (!function_exists('split')) {
 	}
 }
 
-//vot u();
+em_v();
 
-function get_os($user_agent) {
-	if (false !== stripos($user_agent, "win")) {
-		$os = 'Windows';
-	} else if (false !== stripos($user_agent, "mac")) {
-		$os = 'MAC';
-	} else if (false !== stripos($user_agent, "linux")) {
-		$os = 'Linux';
-	} else if (false !== stripos($user_agent, "unix")) {
-		$os = 'Unix';
-	} else if (false !== stripos($user_agent, "bsd")) {
-		$os = 'BSD';
-	} else {
-		$os = 'unknown';
+if (!function_exists('get_os')) {
+	function get_os($user_agent) {
+		if (false !== stripos($user_agent, "win")) {
+			$os = 'Windows';
+		} else if (false !== stripos($user_agent, "mac")) {
+			$os = 'MAC';
+		} else if (false !== stripos($user_agent, "linux")) {
+			$os = 'Linux';
+		} else if (false !== stripos($user_agent, "unix")) {
+			$os = 'Unix';
+		} else if (false !== stripos($user_agent, "bsd")) {
+			$os = 'BSD';
+		} else {
+			$os = 'unknown';
+		}
+		return $os;
 	}
-	return $os;
 }
 
-function get_browse($user_agent) {
-	if (false !== stripos($user_agent, "MSIE")) {
-		$br = 'MSIE';
-	} else if (false !== stripos($user_agent, "Edg")) {
-		$br = 'Edge';
-	} else if (false !== stripos($user_agent, "Firefox")) {
-		$br = 'Firefox';
-	} else if (false !== stripos($user_agent, "Chrome")) {
-		$br = 'Chrome';
-	} else if (false !== stripos($user_agent, "Safari")) {
-		$br = 'Safari';
-	} else if (false !== stripos($user_agent, "Opera")) {
-		$br = 'Opera';
-	} else {
-		$br = 'unknown';
-	}
-	return $br;
+if (!function_exists('get_browse')) {
+	function get_browse($user_agent) {
+		if (false !== stripos($user_agent, "MSIE")) {
+			$br = 'MSIE';
+		} else if (false !== stripos($user_agent, "Edg")) {
+			$br = 'Edge';
+		} else if (false !== stripos($user_agent, "Firefox")) {
+			$br = 'Firefox';
+		} else if (false !== stripos($user_agent, "Chrome")) {
+			$br = 'Chrome';
+		} else if (false !== stripos($user_agent, "Safari")) {
+			$br = 'Safari';
+		} else if (false !== stripos($user_agent, "Opera")) {
+			$br = 'Opera';
+		} else {
+			$br = 'unknown';
+		}
+		return $br;
 }
 
 function backtrace() {
@@ -1396,4 +1404,6 @@ function build_url($parsed_url) {
   $query    = ($query == '?') ? '' : $query;
   $fragment = isset($parsed_url['fragment']) ? '#' . $parsed_url['fragment'] : '';
   return "$scheme$user$pass$host$port$path$query$fragment";
+	}
 }
+

@@ -53,24 +53,6 @@ class User {
 		return $role_name;
 	}
 
-	static function sendResetMail($mail) {
-		if (!isset($_SESSION)) {
-			session_start();
-		}
-		$randCode = getRandStr(8, false);
-		$_SESSION['mail_code'] = $randCode;
-		$_SESSION['mail'] = $mail;
-
-/*vot*/		$title = lang('reset_password_code');
-/*vot*/		$content = lang('email_verify_code') . $randCode;
-		$sendmail = new SendMail();
-		$ret = $sendmail->send($mail, $title, $content);
-		if ($ret) {
-			return true;
-		}
-		return false;
-	}
-
 	static function checkLoginCode($login_code) {
 		if (!isset($_SESSION)) {
 			session_start();

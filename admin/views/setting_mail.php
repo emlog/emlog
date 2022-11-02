@@ -19,7 +19,7 @@
 <div class="card shadow mb-4 mt-2">
     <div class="card-body">
         <form action="setting.php?action=mail_save" method="post" name="input" id="mail_config">
-<!--vot-->  <h4><?=lang('email_sending')?></h4>
+<!--vot-->  <h4><?=lang('email_service')?></h4>
             <div class="form-group">
 <!--vot-->      <label><?=lang('sender_email')?></label>
                 <input type="email" class="form-control" value="<?= $smtp_mail ?>" name="smtp_mail" required>
@@ -37,8 +37,6 @@
                 <input class="form-control" value="<?= $smtp_port ?>" name="smtp_port" required>
             </div>
             <div class="form-group">
-                <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
-<!--vot-->  <input type="submit" value="<?=lang('save_settings')?>" class="btn btn-sm btn-success"/>
 <!--vot-->      <input type="button" value="<?=lang('send_test')?>" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#testMail"/>
             </div>
             <div class="alert alert-warning">
@@ -64,6 +62,20 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <h4>邮件通知</h4>
+            <div class="form-group form-check">
+                <input class="form-check-input" type="checkbox" value="y" name="mail_notice_comment" id="mail_notice_comment" <?= $conf_mail_notice_comment ?> />
+                <label class="form-check-label">新评论邮件通知（仅发送到创始人邮箱）</label>
+            </div>
+            <div class="form-group form-check">
+                <input class="form-check-input" type="checkbox" value="y" name="mail_notice_post" id="mail_notice_post" <?= $conf_mail_notice_post ?> >
+                <label class="form-check-label">新文章投稿邮件通知（仅发送到创始人邮箱）</label>
+            </div>
+            <div class="form-group">
+                <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
+                <input type="submit" value="保存设置" class="btn btn-sm btn-success"/>
             </div>
         </form>
     </div>

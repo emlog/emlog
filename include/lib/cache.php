@@ -9,7 +9,7 @@
 class Cache {
 
 	private $db;
-	private static $instance = null;
+	private static $instance;
 
 	private $options_cache;
 	private $user_cache;
@@ -167,40 +167,45 @@ class Cache {
 	 */
 	private function mc_sta() {
 		$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "blog WHERE type='blog' AND hide='n' AND checked='y' ");
-		$lognum = $data['total'];
-		$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "blog WHERE type='blog' AND hide='y'");
-		$draftnum = $data['total'];
-		$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "blog WHERE type='blog' AND hide='n' AND checked='n' ");
-		$checknum = $data['total'];
-		$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "comment WHERE hide='n' ");
-		$comnum = $data['total'];
-		$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "comment WHERE hide='y' ");
-		$hidecom = $data['total'];
+		$log_num = $data['total'];
 
-		$sta_cache = array(
-			'lognum'     => $lognum,
-			'draftnum'   => $draftnum,
-			'comnum'     => $comnum,
-			'comnum_all' => $comnum + $hidecom,
-			'hidecomnum' => $hidecom,
-			'checknum'   => $checknum,
-		);
+		$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "blog WHERE type='blog' AND hide='n' AND checked='n' ");
+		$check_num = $data['total'];
+
+		$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "twitter");
+		$note_num = $data['total'];
+
+		$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "comment WHERE hide='n' ");
+		$com_num = $data['total'];
+
+		$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "comment WHERE hide='y' ");
+		$hide_com_num = $data['total'];
+
+		$sta_cache = [
+			'lognum'     => $log_num,
+			'draftnum'   => 0, // todo: del this after some versions
+			'comnum'     => $com_num,
+			'comnum_all' => $com_num + $hide_com_num,
+			'hidecomnum' => $hide_com_num,
+			'checknum'   => $check_num,
+			'note_num'   => $note_num,
+		];
 
 		// Performance issue only caching information for the last 1000 users
 /*vot*/		$query = $this->db->query("SELECT uid FROM " . DB_PREFIX . "user ORDER BY uid DESC LIMIT 1000");
 		while ($row = $this->db->fetch_array($query)) {
 /*vot*/			$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "blog WHERE author={$row['uid']} AND hide='n' AND type='blog'");
 			$logNum = $data['total'];
-			$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "blog WHERE author={$row['uid']} AND hide='y' AND type='blog'");
-			$draftNum = $data['total'];
+
 			$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "comment AS a, " . DB_PREFIX . "blog AS b WHERE a.gid = b.gid AND b.author={$row['uid']}");
 			$commentNum = $data['total'];
+
 /*vot*/			$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "comment AS a, " . DB_PREFIX . "blog AS b WHERE a.gid=b.gid AND a.hide='y' AND b.author={$row['uid']}");
 			$hidecommentNum = $data['total'];
 
 			$sta_cache[$row['uid']] = [
 				'lognum'         => $logNum,
-				'draftnum'       => $draftNum,
+				'draftnum'       => 0, // todo: del this after some versions
 				'commentnum'     => $commentNum,
 				'hidecommentnum' => $hidecommentNum,
 			];

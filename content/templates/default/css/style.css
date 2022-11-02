@@ -186,7 +186,7 @@ footer .copyright {
 /* Configuration of blog header attributes
 ---------------------------------------------------*/
 .blog-header {
-	margin-bottom: 2.4rem;
+	margin-bottom: 2.3rem;
 	background: #ffffff; /* Background white color */
 	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1) /* Shadow */
 }
@@ -297,7 +297,7 @@ footer .copyright {
     .blog-header-subtitle {
         padding-top: 60px;
         left: 17px;
-        top: -11px
+        top: -9px
     }
 	/* Display the toggle menu border and toggle menu only on the small screen */
 	.blog-header-toggle {
@@ -507,7 +507,7 @@ footer .copyright {
     font-weight: 100 !important
 }
 .calendar {
-    margin-bottom: -25px;
+    margin-bottom: -10px;
     width: 100%
 }
 .calendar td {
@@ -823,7 +823,7 @@ footer .copyright {
 .card-title {
     margin-bottom: 30px
 }
-/* The sticky pattern in the article entry, using base64 */
+/* The sticky pattern in the article entry */
 .log-topflg {
     user-select: none;
     display: inline-block;
@@ -1041,8 +1041,8 @@ footer .copyright {
     margin-left: -90px;
     position: absolute;
     top: 151px;
-    border: 1px solid #e6e6e6;
-    color: #e6e6e6;
+    border: 1px solid #dcdcdd;
+    color: #dcdcdd;
     border-radius: 50%;
     cursor: pointer
 }
@@ -1137,7 +1137,9 @@ footer .copyright {
 /* Web footer
 ---------------------------------------------------*/
 .text-center {
-    text-align: center !important
+        line-height: 2;
+    margin-block: 30px;
+    text-align: center !important;
 }
 
 /* Image zoom

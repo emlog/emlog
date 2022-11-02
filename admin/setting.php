@@ -163,6 +163,12 @@ if ($action == 'mail') {
 	$smtp_server = isset($options_cache['smtp_server']) ? $options_cache['smtp_server'] : '';
 	$smtp_port = isset($options_cache['smtp_port']) ? $options_cache['smtp_port'] : '';
 
+	$mail_notice_comment = isset($options_cache['mail_notice_comment']) ? $options_cache['mail_notice_comment'] : '';
+	$mail_notice_post = isset($options_cache['mail_notice_post']) ? $options_cache['mail_notice_post'] : '';
+
+	$conf_mail_notice_comment = $mail_notice_comment == 'y' ? 'checked="checked"' : '';
+	$conf_mail_notice_post = $mail_notice_post == 'y' ? 'checked="checked"' : '';
+
 	include View::getAdmView('header');
 	require_once(View::getAdmView('setting_mail'));
 	include View::getAdmView('footer');
@@ -173,10 +179,12 @@ if ($action == 'mail') {
 if ($action == 'mail_save') {
 	LoginAuth::checkToken();
 	$data = [
-		'smtp_mail'   => isset($_POST['smtp_mail']) ? addslashes($_POST['smtp_mail']) : '',
-		'smtp_pw'     => isset($_POST['smtp_pw']) ? addslashes($_POST['smtp_pw']) : '',
-		'smtp_server' => isset($_POST['smtp_server']) ? addslashes($_POST['smtp_server']) : '',
-		'smtp_port'   => isset($_POST['smtp_port']) ? (int)$_POST['smtp_port'] : '',
+		'smtp_mail'           => isset($_POST['smtp_mail']) ? addslashes($_POST['smtp_mail']) : '',
+		'smtp_pw'             => isset($_POST['smtp_pw']) ? addslashes($_POST['smtp_pw']) : '',
+		'smtp_server'         => isset($_POST['smtp_server']) ? addslashes($_POST['smtp_server']) : '',
+		'smtp_port'           => isset($_POST['smtp_port']) ? (int)$_POST['smtp_port'] : '',
+		'mail_notice_comment' => isset($_POST['mail_notice_comment']) ? $_POST['mail_notice_comment'] : 'n',
+		'mail_notice_post'    => isset($_POST['mail_notice_post']) ? $_POST['mail_notice_post'] : 'n',
 	];
 	foreach ($data as $key => $val) {
 		Option::updateOption($key, $val);

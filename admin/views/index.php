@@ -15,20 +15,69 @@
 <!--vot-->      <h6 class="card-header"><?= lang('site_info') ?></h6>
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
-<!--vot-->              <li class="list-group-item d-flex justify-content-between align-items-center"><?=lang('posts')?>
+                        <li class="row">
+                            <div class="col-xl-4 col-md-6 mb-1">
+                                <div class="card border-left-primary shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col">
+                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">待审文章</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="./article.php"><?= $sta_cache['checknum'] ?></a></div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="icofont-pencil-alt-5 fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-4 col-md-6 mb-1">
+                                <div class="card border-left-warning shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col">
+                                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                    待审评论
+                                                </div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="./comment.php?hide=y"><?= $sta_cache['hidecomnum'] ?></a></div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="icofont-comment fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-md-6 mb-1">
+                                <div class="card border-left-success shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col">
+                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                    用户数
+                                                </div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="./user.php"><?= count($user_cache) ?></a></div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="icofont-user fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <a href="./article.php">文章</a>
                             <a href="./article.php"><span class="badge badge-primary badge-pill"><?= $sta_cache['lognum'] ?></span></a>
                         </li>
-<!--vot-->              <li class="list-group-item d-flex justify-content-between align-items-center"><?=lang('drafts')?>
-                            <a href="./article.php?draft=1"><span class="badge badge-primary badge-pill"><?= $sta_cache['draftnum'] ?></span></a>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <a href="./twitter.php">笔记</a>
+                            <a href="./twitter.php"><span class="badge badge-primary badge-pill"><?= $sta_cache['note_num'] ?></span></a>
                         </li>
-<!--vot-->              <li class="list-group-item d-flex justify-content-between align-items-center"><?=lang('comments')?>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <a href="./comment.php">评论</a>
                             <a href="./comment.php"><span class="badge badge-primary badge-pill"><?= $sta_cache['comnum_all'] ?></span></a>
-                        </li>
-<!--vot-->              <li class="list-group-item d-flex justify-content-between align-items-center"><?=lang('pending_review')?>
-                            <a href="./comment.php?hide=y"><span class="badge badge-warning badge-pill"><?= $sta_cache['hidecomnum'] ?></span></a>
-                        </li>
-<!--vot-->              <li class="list-group-item d-flex justify-content-between align-items-center"><?=lang('user_num')?>
-                            <a href="./user.php"><span class="badge badge-primary badge-pill"><?= count($user_cache) ?></span></a>
                         </li>
                     </ul>
                 </div>
@@ -45,11 +94,11 @@
                             <span class="small"><?= $php_ver ?></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            MySQL
-                            <span class="small"><?= $mysql_ver ?></span>
+                            数据库
+                            <span class="small">MySQL <?= $mysql_ver ?></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Web Server
+                            web服务
                             <span class="small"><?= $serverapp ?></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -75,11 +124,12 @@
             <div class="col-lg-6 mb-4">
                 <div class="card bg-danger text-white shadow">
                     <div class="card-body">
-<!--vot-->          <h4><?=lang('emlog_reg_advantages')?></h4>
-<!--vot-->          <div><?=lang('advantage1')?></div>
-<!--vot-->          <div><?=lang('advantage2')?></div>
-<!--vot-->          <div><?=lang('advantage3')?></div>
-<!--vot-->          <div><?=lang('advantage4')?></div>
+<!--vot-->              <h4><?=lang('emlog_reg_advantages')?></h4>
+<!--vot-->              <div><?=lang('advantage1')?></div>
+<!--vot-->              <div><?=lang('advantage2')?></div>
+<!--vot-->              <div><?=lang('advantage3')?></div>
+<!--vot-->              <div><?=lang('advantage4')?></div>
+<!--vot-->              <div><?=lang('advantage5')?></div>
                     </div>
                     <div class="card-footer text-center">
 <!--vot-->              <a href="https://emlog.net/register" target="_blank" class="btn btn-sm btn-primary shadow-lg"><?=lang('get_emkey')?></a>
@@ -99,7 +149,7 @@
     </div>
     <script>
         setTimeout(hideActived, 2600);
-        $("#menu_home").addClass('active');
+        $("#menu_panel").addClass('active');
         $(document).ready(function () {
             $("#admindex_msg ul").html("").addClass("spinner-border text-primary");
             $.get("./index.php?action=get_news",

@@ -27,10 +27,10 @@
             </div>
 <!--vot-->  <p><?=lang('api_key')?>:</p>
             <div class="input-group">
-                <input type="text" class="form-control" disabled value="<?= $apikey ?>" aria-label="Recipient's username" aria-describedby="button-addon2">
+                <input type="text" class="form-control" disabled value="<?= $apikey ?>">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-success" type="button"
-<!--vot-->                  onclick="javascript:window.location.href='setting.php?action=api_reset&token=<?= LoginAuth::genToken() ?>'" id="button-addon2"><?=lang('api_key_reset')?>
+                    <button class="btn btn-outline-success" type="button" onclick="window.location.href='setting.php?action=api_reset&token=<?= LoginAuth::genToken() ?>'">
+<?//vot?>               <?=lang('api_key_reset')?>
                     </button>
                 </div>
             </div>
