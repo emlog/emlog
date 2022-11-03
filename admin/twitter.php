@@ -46,7 +46,7 @@ if ($action == 'post') {
 	];
 
 	$Twitter_Model->addTwitter($data);
-	$CACHE->updateCache(array('sta', 'newtw'));
+	$CACHE->updateCache('sta');
 	emDirect("twitter.php?active_t=1");
 }
 
@@ -54,6 +54,6 @@ if ($action == 'del') {
 	LoginAuth::checkToken();
 	$id = isset($_GET['id']) ? (int)$_GET['id'] : '';
 	$Twitter_Model->delTwitter($id);
-	$CACHE->updateCache(array('sta', 'newtw'));
+	$CACHE->updateCache('sta');
 	emDirect("twitter.php?active_del=1");
 }

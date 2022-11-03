@@ -176,7 +176,7 @@ class Api_Controller {
 		];
 
 		$id = $this->Twitter_Model->addTwitter($data);
-		$this->Cache->updateCache(array('sta', 'newtw'));
+		$this->Cache->updateCache('sta');
 		output::ok(['note_id' => $id,]);
 	}
 
