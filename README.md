@@ -39,10 +39,10 @@ Based on original Chinese Emlog (https://www.emlog.net/) (single Chinese languag
 ## Requirements
 
 * PHP5.6, PHP7, PHP8 (PHP7.4 is recommended)
-* MySQL5.6 and above (5.6 is recommended, 5.7 is recommended for high-end servers using 2G+ of memory)
+* MySQL5.6 and above (5.6 is recommended)
 * Recommended server environment: Linux + nginx
 * Recommended server management panel: pagoda panel
-* Recommended browser: Chrome
+* Recommended browser: Chrome, Edge
 
 ## Installation Notes
 
