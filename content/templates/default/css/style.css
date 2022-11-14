@@ -1093,8 +1093,8 @@ footer .copyright {
 
 /* 网页足部
 ---------------------------------------------------*/
-.text-center {
-        line-height: 2;
+.footinfo {
+    line-height: 2;
     margin-block: 30px;
     text-align: center !important;
 }
