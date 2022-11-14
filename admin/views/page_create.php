@@ -139,15 +139,15 @@
                     if($(window).width() > 767){
                         this.watch();
                     }
-                    //添加Ctrl(Cmd)+S快捷键保存文章内容
-                    var articleSave = {
+                    //添加Ctrl(Cmd)+S快捷键保存页面内容
+                    var pageSave = {
                     "Ctrl-S": function(cm) {
-                    	autosave(2);
+                    	pagesave();
                     },
                     "Cmd-S": function(cm) {
-                    	autosave(2);
+                    	pagesave();
                     }};
-                    this.addKeyMap(articleSave);  
+                    this.addKeyMap(pageSave);  
             }
         });
         Editor.setToolbarAutoFixed(false);

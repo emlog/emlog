@@ -194,7 +194,7 @@ function insert_cover(imgsrc) {
     $('#cover_rm').show();
 }
 
-// act: 1 auto save, 2 manual save：click save button to save,
+// act 参数各值的含义 1：定时自动保存。 2：普通保存。
 function autosave(act) {
     var nodeid = "as_logid";
     var timeout = 30000;
@@ -266,11 +266,34 @@ function autosave(act) {
             $("#savedf").attr("disabled", false).val(btname);
             $("#msg").html("网络或系统出现异常...保存可能失败").addClass("alert-danger");
             $('title').text('[保存失败] ' + titleText);
+            alert("保存失败，请备份内容和刷新页面后重试！")
         }
     });
     if (act == 1) {
         setTimeout("autosave(1)", timeout);
     }
+}
+
+// “页面”的 editor.md 编辑器 Ctrl + S 快捷键的自动保存动作
+function pagesave(){
+    document.addEventListener('keydown', function(e){  // 阻止自动保存产生的浏览器默认动作
+        if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)){
+            e.preventDefault();
+        }
+    });
+
+    let url = "page.php?action=save";
+
+    $.post(url, $("#addlog").serialize(), function (data) {
+        let titleText = $('title').text();
+        $('title').text('[保存成功] ' + titleText);
+        setTimeout(function(){
+            $('title').text(titleText);
+        }, 2000);
+    }).fail(function(){
+        $('title').text('[保存失败] ' + $('title').text());
+        alert("保存失败！")
+    });
 }
 
 // toggle plugin
@@ -321,7 +344,7 @@ $(function () {
     });
 });
 
-// editor.md 的js钩子
+// editor.md 的 js 钩子
 var queue = new Array();
 var hooks = {
     addAction: function (hook, func) {
