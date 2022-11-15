@@ -266,7 +266,7 @@ function autosave(act) {
             $("#savedf").attr("disabled", false).val(btname);
 /*vot*/     $("#msg").html(lang('save_system_error')).addClass("alert-danger");
 /*vot*/     $('title').text(lang('save_failed') + titleText);
-            alert("保存失败，请备份内容和刷新页面后重试！")
+/*vot*/     alert(lang('save_failed_prompt'))
         }
     });
     if (act == 1) {
@@ -274,9 +274,9 @@ function autosave(act) {
     }
 }
 
-// “页面”的 editor.md 编辑器 Ctrl + S 快捷键的自动保存动作
+// editor.md: Page AutoSave shortcut: Ctrl + S
 function pagesave(){
-    document.addEventListener('keydown', function(e){  // 阻止自动保存产生的浏览器默认动作
+    document.addEventListener('keydown', function(e){  // Prevents the browser default action from autosave
         if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)){
             e.preventDefault();
         }
@@ -286,13 +286,13 @@ function pagesave(){
 
     $.post(url, $("#addlog").serialize(), function (data) {
         let titleText = $('title').text();
-        $('title').text('[保存成功] ' + titleText);
+/*vot*/ $('title').text(lang('saved_ok') + titleText);
         setTimeout(function(){
             $('title').text(titleText);
         }, 2000);
     }).fail(function(){
-        $('title').text('[保存失败] ' + $('title').text());
-        alert("保存失败！")
+/*vot*/ $('title').text(lang('save_failed') + $('title').text());
+/*vot*/ alert(lang('save_failed!'))
     });
 }
 
