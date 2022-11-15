@@ -27,7 +27,7 @@
 </div>
 <div class="row mb-4 ml-1 justify-content-between">
     <ul class="nav nav-pills">
-        <li class="nav-item"><a class="nav-link active" href="./store.php?tag=free">模板主题</a></li>
+        <li class="nav-item"><a class="nav-link active" href="./store.php?tag=free"><i class="icofont-paint"></i> 模板主题</a></li>
         <li class="nav-item"><a class="nav-link" href="./store.php?action=plu&tag=free">扩展插件</a></li>
     </ul>
     <form action="./store.php" method="get">
@@ -43,7 +43,8 @@
 </div>
 <div class="row mb-3 ml-1">
     <a href="./store.php?tag=free" class="badge badge-success m-1">免费区</a>
-    <a href="./store.php?tag=paid" class="badge badge-warning m-1">付费区</a>
+    <a href="./store.php?tag=paid" class="badge badge-warning m-1 ml-2">付费区</a>
+    <a href="https://www.emlog.net/template/add" class="badge badge-primary my-1 ml-3" target="_blank"><i class="icofont-plus"></i> 发布模板</a>
 </div>
 <div class="row">
 	<?php if (!empty($templates)): ?>
