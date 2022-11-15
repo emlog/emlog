@@ -142,15 +142,15 @@
                     if($(window).width() > 767){
                         this.watch();
                     }
-                    //Add Ctrl(Cmd)+S shortcut key to save article content
-                    var articleSave = {
+                    //Add Ctrl(Cmd)+S shortcut key to save the page content
+                    var pageSave = {
                     "Ctrl-S": function(cm) {
-                    	autosave(2);
+                    	pagesave();
                     },
                     "Cmd-S": function(cm) {
-                    	autosave(2);
+                    	pagesave();
                     }};
-                    this.addKeyMap(articleSave);  
+                    this.addKeyMap(pageSave);  
             }
         });
         Editor.setToolbarAutoFixed(false);

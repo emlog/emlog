@@ -1136,8 +1136,8 @@ footer .copyright {
 
 /* Web footer
 ---------------------------------------------------*/
-.text-center {
-        line-height: 2;
+.footinfo {
+    line-height: 2;
     margin-block: 30px;
     text-align: center !important;
 }

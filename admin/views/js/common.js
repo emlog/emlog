@@ -194,7 +194,7 @@ function insert_cover(imgsrc) {
     $('#cover_rm').show();
 }
 
-// act: 1 auto save, 2 manual save: click save button to save
+// act: 1 - Automatically save at regular intervals. 2 - Normal save.
 function autosave(act) {
     var nodeid = "as_logid";
     var timeout = 30000;
@@ -266,11 +266,34 @@ function autosave(act) {
             $("#savedf").attr("disabled", false).val(btname);
 /*vot*/     $("#msg").html(lang('save_system_error')).addClass("alert-danger");
 /*vot*/     $('title').text(lang('save_failed') + titleText);
+            alert("保存失败，请备份内容和刷新页面后重试！")
         }
     });
     if (act == 1) {
         setTimeout("autosave(1)", timeout);
     }
+}
+
+// “页面”的 editor.md 编辑器 Ctrl + S 快捷键的自动保存动作
+function pagesave(){
+    document.addEventListener('keydown', function(e){  // 阻止自动保存产生的浏览器默认动作
+        if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)){
+            e.preventDefault();
+        }
+    });
+
+    let url = "page.php?action=save";
+
+    $.post(url, $("#addlog").serialize(), function (data) {
+        let titleText = $('title').text();
+        $('title').text('[保存成功] ' + titleText);
+        setTimeout(function(){
+            $('title').text(titleText);
+        }, 2000);
+    }).fail(function(){
+        $('title').text('[保存失败] ' + $('title').text());
+        alert("保存失败！")
+    });
 }
 
 // toggle plugin

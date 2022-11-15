@@ -562,7 +562,6 @@ textarea {
 
     .container, .container-fluid, .container-sm, .container-md, .container-lg, .container-xl {
         width: auto;
-        padding-top: 80px;
         padding-left: 218px;
     }
 
@@ -574,7 +573,6 @@ textarea {
 
     .navbar {
         width: 100%;
-        position: fixed;
         z-index: 1;
         height: 50px;
         /* Top navigation bar frosted effect */
