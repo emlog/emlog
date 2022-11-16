@@ -42,9 +42,9 @@
     </form>
 </div>
 <div class="row mb-3 ml-1">
-    <a href="./store.php?tag=free" class="badge badge-success m-1">免费区</a>
-    <a href="./store.php?tag=paid" class="badge badge-warning m-1 ml-2">付费区</a>
-    <a href="https://www.emlog.net/template/add" class="badge badge-primary my-1 ml-3" target="_blank"><i class="icofont-plus"></i> 发布模板</a>
+    <a href="./store.php?tag=free" class="badge badge-success m-1 p-2">免费区</a>
+    <a href="./store.php?tag=paid" class="badge badge-warning m-1 ml-2 p-2">付费区</a>
+    <a href="https://www.emlog.net/template/add" class="badge badge-primary my-1 ml-3 p-2" target="_blank"><i class="icofont-plus"></i> 发布模板</a>
 </div>
 <div class="row">
 	<?php if (!empty($templates)): ?>
