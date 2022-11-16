@@ -91,20 +91,9 @@
                     </div>
                 </div>
             </li>
-            <li class="nav-item" id="menu_category_ext">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_ext" aria-expanded="true" aria-controls="menu_ext">
-<!--vot-->          <i class="icofont-plugin"></i><span><?=lang('extensions')?></span>
-                </a>
-                <div id="menu_ext" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-<!--vot-->              <a class="collapse-item" id="menu_plug" href="plugin.php"><?=lang('plugins')?></a>
-						<?php doAction('adm_menu_ext') ?>
-                    </div>
-                </div>
-            </li>
             <hr class="sidebar-divider d-none d-md-block">
             <li class="nav-item" id="menu_store">
-<!--vot-->      <a class="nav-link" href="store.php?tag=free"><i class="icofont-shopping-cart"></i><span><?= lang('store') ?></span></a>
+<!--vot-->      <a class="nav-link" href="store.php?tag=free"><i class="icofont-shopping-cart"></i><span><?= lang('app_store') ?></span></a>
             </li>
             <li class="nav-item" id="menu_category_sys">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_sys" aria-expanded="true" aria-controls="menu_sys">
@@ -114,6 +103,17 @@
                     <div class="bg-white py-2 collapse-inner rounded">
 <!--vot-->          <a class="collapse-item" id="menu_data" href="data.php"><?= lang('data') ?></a>
 <!--vot-->          <a class="collapse-item" id="menu_setting" href="setting.php"><?= lang('settings') ?></a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item" id="menu_category_ext">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_ext" aria-expanded="true" aria-controls="menu_ext">
+<!--vot-->          <i class="icofont-plugin"></i><span><?=lang('extensions')?></span>
+                </a>
+                <div id="menu_ext" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+<!--vot-->              <a class="collapse-item" id="menu_plug" href="plugin.php"><?=lang('plugins')?></a>
+						<?php doAction('adm_menu_ext') ?>
                     </div>
                 </div>
             </li>

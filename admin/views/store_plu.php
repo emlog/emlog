@@ -29,7 +29,7 @@
 <div class="row mb-4 ml-1 justify-content-between">
     <ul class="nav nav-pills">
 <!--vot-->  <li class="nav-item"><a class="nav-link" href="./store.php?tag=free"><?=lang('ext_store_templates')?></a></li>
-<!--vot-->  <li class="nav-item"><a class="nav-link active" href="./store.php?action=plu&tag=free"><?=lang('ext_store_plugins')?></a></li>
+<!--vot-->  <li class="nav-item"><a class="nav-link active" href="./store.php?action=plu&tag=free"><i class="icofont-plugin"></i> <?=lang('ext_store_plugins')?></a></li>
     </ul>
     <form action="./store.php" method="get">
         <div class="form-inline search-inputs-nowrap">
@@ -44,8 +44,9 @@
     </form>
 </div>
 <div class="row mb-3 ml-1">
-<!--vot--> <a href="./store.php?action=plu&tag=free" class="badge badge-success m-1"><?=lang('free_zone')?></a>
-<!--vot--> <a href="./store.php?action=plu&tag=paid" class="badge badge-warning m-1"><?=lang('paid_zone')?></a>
+<!--vot--> <a href="./store.php?action=plu&tag=free" class="badge badge-success m-1 p-2"><?=lang('free_zone')?></a>
+<!--vot--> <a href="./store.php?action=plu&tag=paid" class="badge badge-warning m-1 ml-2 p-2"><?=lang('paid_zone')?></a>
+<!--vot--> <a href="https://www.emlog.net/plugin/add" class="badge badge-primary my-1 ml-3 p-2" target="_blank"><i class="icofont-plus"></i> <?=lang('plugin_publish')?></a>
 </div>
 <div class="row">
 	<?php if (!empty($plugins)): ?>
