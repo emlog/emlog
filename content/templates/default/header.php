@@ -35,7 +35,7 @@ require_once View::getView('module');
 <nav class="blog-header">
     <div class="blog-header-c container">
         <a class="blog-header-title" href="<?= BLOG_URL ?>"><?= $blogname ?></a>
-        <div class="blog-header-subtitle subtitle-overflow"><?= $bloginfo ?></div>
+        <div class="blog-header-subtitle subtitle-overflow" title="<?= $bloginfo ?>"><?= $bloginfo ?></div>
         <div class="blog-header-toggle">
             <svg class="blogtoggle-icon">
                 <rect x="1" y="1" fill="#5F5F5F" width="26" height="1.6"/>
