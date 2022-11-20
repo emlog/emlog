@@ -7,7 +7,7 @@ if (!defined('EMLOG_ROOT')) {
 }
 ?>
 
-<article class="container log-con">
+<article class="container log-con blog-container">
     <span class="back-top mh" onclick="history.go(-1);">&laquo;</span>
     <h1 class="log-title"><?php topflg($top) ?><?= $log_title ?></h1>
     <p class="date">
