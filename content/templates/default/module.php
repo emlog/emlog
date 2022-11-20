@@ -220,11 +220,11 @@ function widget_archive($title) {
         <div class="widget-title m">
             <h3><?= $title ?></h3>
         </div>
-        <ul class="unstyle-li">
+        <select id="archive" class="archive">
 			<?php foreach ($record_cache as $value): ?>
-                <li><a href="<?= Url::record($value['date']) ?>"><?= $value['record'] ?>(<?= $value['lognum'] ?>)</a></li>
-			<?php endforeach ?>
-        </ul>
+                <option value="<?= Url::record($value['date']) ?>"><?= $value['record'] ?>&nbsp;(<?= $value['lognum'] ?>)</option>
+            <?php endforeach ?>
+        </select>
     </div>
 <?php } ?>
 <?php
