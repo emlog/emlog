@@ -23,7 +23,7 @@ body {
     font-size: 16px;
     color: #5a5c69;
     background: #f5f5f6;
-    font-family: -apple-system, SF UI Text, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei, WenQuanYi Micro Hei, sans-serif
+    font-family: helvetica neue,Helvetica,Arial,sans-serif
 }
 h1, h2, h3, h4, h5, h6 {
     margin-top: 0;
@@ -65,7 +65,8 @@ textarea {
     padding: 1rem 0.75rem
 }
 footer {
-    padding: 0px 50px;
+    margin-top: 30px;
+    background-color: white;
 } 
 footer .list-inline {
     margin: 0;
@@ -571,6 +572,9 @@ footer .copyright {
     .commentform {
         height: 250px
     }
+}
+#comment-place {
+    margin-top: 80px;
 }
 .comment-name {
     float: left;
@@ -1095,7 +1099,7 @@ footer .copyright {
 ---------------------------------------------------*/
 .footinfo {
     line-height: 2;
-    margin-block: 30px;
+    padding-block: 10px;
     text-align: center !important;
 }
 
@@ -1179,6 +1183,16 @@ img.zoom-img {
 #page{
     margin-bottom: 24px
 }
+
+/* 网站副标题的溢出（overflow）操作 
+---------------------------------------------------*/
+.subtitle-overflow {
+    max-width: 50%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
 /* 一些适应各屏幕尺寸显示效果的样式
 ---------------------------------------------------*/
 @media all and (max-width: 1200px) and (min-width: 992px) {
@@ -1303,7 +1317,6 @@ img.zoom-img {
 }
 /* 普通移动设备的显示样式 */
 @media all and (max-width: 577px) {
-
     .dropdown-menus .list-menu{
         padding-bottom : 0px
     }
@@ -1386,6 +1399,15 @@ img.zoom-img {
         margin: 6px 8px;
         height: 30px;
         width: 30px;
+    }
+    /* 网站副标题的溢出（overflow）操作 在 小屏幕上要截得多一点 */
+    .subtitle-overflow {
+        max-width: 80%
+    }
+    /* 网页顶部的下拉菜单在移动端的显示优化 */
+    .dropdown-menus .list-menu{
+        padding: 0px;
+        letter-spacing: 2px
     }
 }
 /* 为 toc 移动端设立的样式 */
