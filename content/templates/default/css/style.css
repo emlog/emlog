@@ -1187,7 +1187,7 @@ img.zoom-img {
 /* 摘要的溢出（overflow）操作 
 ---------------------------------------------------*/
 .subtitle-overflow {
-    max-width: 50%;
+    max-width: 700px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis
