@@ -220,11 +220,11 @@ function widget_archive($title) {
         <div class="widget-title m">
             <h3><?= $title ?></h3>
         </div>
-        <ul class="unstyle-li">
+        <select id="archive" class="archive">
 			<?php foreach ($record_cache as $value): ?>
-                <li><a href="<?= Url::record($value['date']) ?>"><?= $value['record'] ?>(<?= $value['lognum'] ?>)</a></li>
-			<?php endforeach ?>
-        </ul>
+                <option value="<?= Url::record($value['date']) ?>"><?= $value['record'] ?>&nbsp;(<?= $value['lognum'] ?>)</option>
+            <?php endforeach ?>
+        </select>
     </div>
 <?php } ?>
 <?php
@@ -314,7 +314,7 @@ function topflg($top, $sortop = 'n', $sortid = null) {
  * 文章查看页：编辑链接
  */
 function editflg($logid, $author) {
-	$editflg = User::haveEditPermission() || $author == UID ? '<a href="' . BLOG_URL . 'admin/article.php?action=edit&gid=' . $logid . '" target="_blank">&nbsp;&nbsp;&nbsp;编辑</a>' : '';
+	$editflg = User::haveEditPermission() || $author == UID ? '&nbsp;&nbsp;&nbsp;<a href="' . BLOG_URL . 'admin/article.php?action=edit&gid=' . $logid . '" target="_blank">编辑</a>' : '';
 	echo $editflg;
 }
 

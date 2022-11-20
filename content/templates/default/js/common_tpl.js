@@ -138,6 +138,11 @@ var myBlog = {
         $t.attr('src2', $t.attr('src'))
         $t.attr('src', $t.parent().attr('sourcesrc'))
     }, /**
+     * 归档下拉框的值被改变，跳转到相应日期文章的链接
+     */
+    jumpLink: function ($t) {
+        $(window).attr("location",$t.val())
+    },/**
     * toc 效果
     *
     * 启用 toc 目录方式: 在文章最开头写上'[toc]'或者'<!--[toc]-->',最好是单独一行
@@ -334,34 +339,38 @@ $(document).ready(function () {
         myBlog.comReply($(this))
     }),
 
-        $(".cancel-reply").click(function () {
-            myBlog.cancelReply($(this))
-        }),
+    $(".cancel-reply").click(function () {
+        myBlog.cancelReply($(this))
+    }),
 
-        $(".blog-header-toggle").click(function () {
-            myBlog.navToggle($(this))
-        }),
+    $(".blog-header-toggle").click(function () {
+        myBlog.navToggle($(this))
+    }),
 
-        $(".has-down").mouseenter(function () {
-            myBlog.calMargin($(this))
-        }),
+    $(".has-down").mouseenter(function () {
+        myBlog.calMargin($(this))
+    }),
 
-        $("#captcha").click(function () {
-            myBlog.captchaRefresh($(this))
-        }),
+    $("#captcha").click(function () {
+        myBlog.captchaRefresh($(this))
+    }),
 
-        $('#comment_submit[type="button"], #close-modal').click(function () {
-            myBlog.comSubmitTip('judge')
-            if (myBlog.comSubmitTip()) {  // 在显示评论的验证码模态框前，先校验一下评论区内容
-                myBlog.viewModal()
-            }
-        }),
+    $('#comment_submit[type="button"], #close-modal').click(function () {
+        myBlog.comSubmitTip('judge')
+        if (myBlog.comSubmitTip()) {  // 在显示评论的验证码模态框前，先校验一下评论区内容
+            myBlog.viewModal()
+        }
+    }),
 
-        $(".form-control").blur(function () {
-            myBlog.comSubmitTip('judge')
-        }),
+    $(".form-control").blur(function () {
+        myBlog.comSubmitTip('judge')
+    }),
 
-        $(".markdown img").click(function () {
-            myBlog.toggleImgSrc($(this))
-        })
+    $(".markdown img").click(function () {
+        myBlog.toggleImgSrc($(this))
+    }),
+
+    $("#archive").change(function () {
+        myBlog.jumpLink($(this))
+    })
 })

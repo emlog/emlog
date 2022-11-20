@@ -378,15 +378,6 @@ function imgPasteExpand(thisEditor) {
         thisEditor.config({readOnly: true,});
         thisEditor.config({readOnly: false,});
         thisEditor.setCursor({line: l, ch: c});
-
-        let saveHotKey = {  // 编辑器的 bug , 界面刷新后会删除自定义的热键，所以要重新设置
-            "Ctrl-S": function (cm) {
-                autosave(2);
-            }, "Cmd-S": function (cm) {
-                autosave(2);
-            }
-        };
-        thisEditor.addKeyMap(saveHotKey);
     }
 
     // 编辑器通过光标处位置前几位来替换文字
