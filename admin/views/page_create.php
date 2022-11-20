@@ -134,20 +134,11 @@
             sequenceDiagram: false,
             syncScrolling : "single",
             onload: function () {
-                    hooks.doAction("page_loaded",this);
-                    //在大屏模式下，编辑器默认显示预览
-                    if($(window).width() > 767){
-                        this.watch();
-                    }
-                    //添加Ctrl(Cmd)+S快捷键保存页面内容
-                    var pageSave = {
-                    "Ctrl-S": function(cm) {
-                    	pagesave();
-                    },
-                    "Cmd-S": function(cm) {
-                    	pagesave();
-                    }};
-                    this.addKeyMap(pageSave);  
+                hooks.doAction("page_loaded",this);
+                //在大屏模式下，编辑器默认显示预览
+                if($(window).width() > 767){
+                    this.watch();
+                }
             }
         });
         Editor.setToolbarAutoFixed(false);
@@ -165,4 +156,12 @@
         if (e) e.returnValue = '离开页面提示';
         return '离开页面提示';
     }
+
+    // 页面编辑界面全局快捷键 Ctrl（Cmd）+ S 保存内容
+    document.addEventListener('keydown', function(e){
+		if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)){
+			e.preventDefault();
+            pagesave();
+		}
+	});
 </script>
