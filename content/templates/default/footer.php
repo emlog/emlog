@@ -7,7 +7,7 @@ if (!defined('EMLOG_ROOT')) {
 }
 ?>
     <footer>
-        <div class="container footinfo">
+        <div class="container footinfo blog-footer">
                 <?php
                     if(!empty($icp)){
                         echo '<div><a href="https://beian.miit.gov.cn/" target="_blank">'.$icp.'</a></div>';
