@@ -7,9 +7,9 @@ if (!defined('EMLOG_ROOT')) {
 }
 ?>
 
-<article class="container">
+<article class="container blog-container">
     <div class="row">
-        <div class="column-big log-con " id="page">
+        <div class="column-big log-con blog-container" id="page">
             <h1 class="page-title"><?= $log_title ?></h1>
             <div class="markdown">
                 <?= $log_content ?>
