@@ -138,6 +138,11 @@ var myBlog = {
         $t.attr('src2', $t.attr('src'))
         $t.attr('src', $t.parent().attr('sourcesrc'))
     }, /**
+     * 归档下拉框的值被改变，跳转到相应日期文章的链接
+     */
+    jumpLink: function ($t) {
+        $(window).attr("location",$t.val())
+    },/**
     * toc 效果
     *
     * 启用 toc 目录方式: 在文章最开头写上'[toc]'或者'<!--[toc]-->',最好是单独一行
@@ -363,5 +368,9 @@ $(document).ready(function () {
 
     $(".markdown img").click(function () {
         myBlog.toggleImgSrc($(this))
+    }),
+
+    $("#archive").change(function () {
+        myBlog.jumpLink($(this))
     })
 })
