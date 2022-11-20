@@ -314,7 +314,7 @@ function topflg($top, $sortop = 'n', $sortid = null) {
  * 文章查看页：编辑链接
  */
 function editflg($logid, $author) {
-	$editflg = User::haveEditPermission() || $author == UID ? '<a href="' . BLOG_URL . 'admin/article.php?action=edit&gid=' . $logid . '" target="_blank">&nbsp;&nbsp;&nbsp;编辑</a>' : '';
+	$editflg = User::haveEditPermission() || $author == UID ? '&nbsp;&nbsp;&nbsp;<a href="' . BLOG_URL . 'admin/article.php?action=edit&gid=' . $logid . '" target="_blank">编辑</a>' : '';
 	echo $editflg;
 }
 
