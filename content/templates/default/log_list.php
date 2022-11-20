@@ -6,7 +6,7 @@ if (!defined('EMLOG_ROOT')) {
 	exit('error!');
 }
 ?>
-<main class="container">
+<main class="container blog-container">
     <div class="row">
         <div class="column-big"> 
 			<?php doAction('index_loglist_top');
