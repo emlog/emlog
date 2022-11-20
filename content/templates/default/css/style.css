@@ -1184,13 +1184,20 @@ img.zoom-img {
     margin-bottom: 24px
 }
 
-/* 网站副标题的溢出（overflow）操作 
+/* 摘要的溢出（overflow）操作 
 ---------------------------------------------------*/
 .subtitle-overflow {
     max-width: 50%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis
+}
+
+/* 「归档」的样式 
+---------------------------------------------------*/
+.archive {
+    font-size: 16px;
+    padding: 4px
 }
 
 /* 一些适应各屏幕尺寸显示效果的样式
@@ -1400,7 +1407,7 @@ img.zoom-img {
         height: 30px;
         width: 30px;
     }
-    /* 网站副标题的溢出（overflow）操作 在 小屏幕上要截得多一点 */
+    /* 摘要的溢出（overflow）操作 在 小屏幕上要截得多一点 */
     .subtitle-overflow {
         max-width: 80%
     }
