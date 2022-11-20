@@ -184,6 +184,23 @@ footer .copyright {
 @media (min-width:992px) {.rea-width{width: 609px}}
 @media (min-width:1201px) {.rea-width{width: 730px}}
 
+/* 博客页面底部（footer）没有空隙（即防止 footer 在页面中间位置出现的诡异现象）
+---------------------------------------------------*/
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+.blog-header {
+    flex: 0 0 auto;
+}
+.blog-container {
+    flex: 1 0 auto;
+}
+.blog-footer {
+    flex: 0 0 auto;
+}
+
 /* 博客头部属性的配置
 ---------------------------------------------------*/
 .blog-header {
