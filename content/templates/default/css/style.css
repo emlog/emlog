@@ -1458,6 +1458,7 @@ img.zoom-img {
 		/* 磨砂效果 */
 		background: rgba(237, 237, 237, 0.8);
 		backdrop-filter: blur(2px);
+		/* 兼容 Safari 磨砂效果 */
 		-webkit-backdrop-filter: blur(2px);
 		/* 始终固定位置 */
 		z-index: 2;
