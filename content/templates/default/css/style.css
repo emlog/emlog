@@ -654,7 +654,6 @@ body {
 .comment-post .cancel-reply {
 	float: right;
 	cursor: pointer;
-	_cursor: hand;
 	padding-right: 10%
 }
 .comment-post .cancel-reply:hover {
@@ -1128,16 +1127,14 @@ body {
 ---------------------------------------------------*/
 .footinfo {
 	line-height: 2;
-	padding-block: 10px;
+	padding-block: 20px;
 	text-align: center !important;
 }
 
 /* 图片放大
 ---------------------------------------------------*/
 img[data-action="zoom"] {
-	cursor: pointer;
-	cursor: -webkit-zoom-in;
-	cursor: -moz-zoom-in;
+	cursor: zoom-in
   }
 .zoom-img,
 .zoom-img-wrap {
@@ -1148,9 +1145,7 @@ img[data-action="zoom"] {
 			transition: all 300ms;
   }
 img.zoom-img {
-	cursor: pointer;
-	cursor: -webkit-zoom-out;
-	cursor: -moz-zoom-out;
+	cursor: zoom-out
   }
 .zoom-overlay {
 	z-index: 420;
@@ -1463,6 +1458,8 @@ img.zoom-img {
 		/* 磨砂效果 */
 		background: rgba(237, 237, 237, 0.8);
 		backdrop-filter: blur(2px);
+		/* 兼容 Safari 磨砂效果 */
+		-webkit-backdrop-filter: blur(2px);
 		/* 始终固定位置 */
 		z-index: 2;
 		position: fixed!important;
@@ -1472,13 +1469,5 @@ img.zoom-img {
 		color: rgb(189, 189, 189);
 		font-size: 10px;
 		padding-left: 10px;
-	}
-	/* toc 在 iPhone 等苹果设备上的磨砂效果  */
-	@supports ((-webkit-backdrop-filter: saturate(180%) blur(20px)) or(backdrop-filter: saturate(180%) blur(20px))) {
-		.toc-con {
-			background: rgba(237, 237, 237, 0.8);
-			-webkit-backdrop-filter: saturate(180%) blur(2px);
-			backdrop-filter: blur(2px);
-		}
 	}
 }

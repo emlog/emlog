@@ -34,11 +34,11 @@ if (!defined('EMLOG_ROOT')) {
 								<?php blog_author($value['author']) ?>&nbsp;发布于&nbsp;
 								<?= date('Y-n-j', $value['date']) ?>&nbsp;
 								<span class="mh"><?= date('H:i', $value['date']) ?></span>
+								<span class="mh"><?php editflg($value['logid'], $value['author']) ?></span>
 							</div>
 							<div class="log-count">
 								<a href="<?= $value['log_url'] ?>#comments">评论(<?= $value['comnum'] ?>)&nbsp;</a>
 								<a href="<?= $value['log_url'] ?>">浏览(<?= $value['views'] ?>)</a>
-								<span class="loglist-article-edit"><?php editflg($value['logid'], $value['author']) ?></span>
 							</div>
 						</div>
 					</div>
