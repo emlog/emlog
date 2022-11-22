@@ -423,18 +423,18 @@ function blog_comments($comments) {
 		?>
 		<div class="comment" id="<?= $comment['cid'] ?>">
 			<?php if ($isGravatar == 'y'): ?>
-				<div class="avatar"><img src="<?= getGravatar($comment['mail']) ?>"/></div>
+				<div class="avatar"><img src="<?= getGravatar($comment['mail']) ?>" alt="<?= $comment['poster'] ?> avatar" /></div>
 				<div class="comment-infos">
 					<div class="arrow"></div>
 					<b><?= $comment['poster'] ?> </b><span class="comment-time"><?= $comment['date'] ?></span>
 					<div class="comment-content"><?= $comment['content'] ?></div>
-					<div class="comment-reply"><a class="com-reply">回复</a></div>
+					<div class="comment-reply"><button class="com-reply comment-replay-btn">回复</button></div>
 				</div>
 			<?php else: ?>
 				<div class="comment-infos-unGravatar">
 					<b><?= $comment['poster'] ?> </b><span class="comment-time"><?= $comment['date'] ?></span>
 					<div class="comment-content"><?= $comment['content'] ?></div>
-					<div class="comment-reply"><a class="com-reply">回复</a></div>
+					<div class="comment-reply"><button class="com-reply comment-replay-btn">回复</button></div>
 				</div>
 			<?php endif ?>
 			<?php blog_comments_children($comments, $comment['children']) ?>
@@ -462,7 +462,7 @@ function blog_comments_children($comments, $children) {
 					<b><?= $comment['poster'] ?> </b><span class="comment-time"><?= $comment['date'] ?></span>
 					<div class="comment-content"><?= $comment['content'] ?></div>
 					<?php if ($comment['level'] < 4): ?>
-						<div class="comment-reply"><a class="com-reply">回复</a>
+						<div class="comment-reply"><button class="com-reply comment-replay-btn">回复</button>
 						</div><?php endif ?>
 				</div>
 			<?php else: ?>
@@ -470,7 +470,7 @@ function blog_comments_children($comments, $children) {
 					<b><?= $comment['poster'] ?> </b><span class="comment-time"><?= $comment['date'] ?></span>
 					<div class="comment-content"><?= $comment['content'] ?></div>
 					<?php if ($comment['level'] < 4): ?>
-						<div class="comment-reply"><a class="com-reply">回复</a>
+						<div class="comment-reply"><button class="com-reply comment-replay-btn">回复</button>
 						</div><?php endif ?>
 				</div>
 			<?php endif ?>
@@ -487,7 +487,7 @@ function blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allo
 	if ($allow_remark == 'y'): ?>
 		<div id="comment-place">
 			<div class="comment-post" id="comment-post">
-				<div class="cancel-reply" id="cancel-reply" style="display:none"><a>取消回复</a></div>
+				<div class="cancel-reply" id="cancel-reply" style="display:none"><button class="comment-replay-btn">取消回复</button></div>
 				<form class="commentform" method="post" name="commentform" action="<?= BLOG_URL ?>index.php?action=addcom" id="commentform"
 					  is-chinese="<?= $isNeedChinese ?>">
 					<input type="hidden" name="gid" value="<?= $logid ?>"/>
