@@ -794,6 +794,18 @@ body {
 	border-radius: 0 3px 3px 0;
 	padding: 0
 }
+/* 评论区的 回复、取消回复 按钮 */
+.comment-replay-btn {
+	border: none;
+	cursor: pointer;
+	padding: 0;
+	background-color: unset
+}
+.comment-replay-btn:hover {
+	color: #f6607d;
+	text-decoration: underline;
+	transition: all 0.2s
+}
 
 /*文章条目中的部分样式
 ---------------------------------------------------*/
@@ -1216,6 +1228,12 @@ img.zoom-img {
 	font-size: 16px;
 	padding: 4px;
 	border-color: #ced4da
+}
+
+/* 文章列出页 编辑 链接的样式 
+---------------------------------------------------*/
+.loglist-article-edit a {
+	color: #929292
 }
 
 /* 一些适应各屏幕尺寸显示效果的样式
