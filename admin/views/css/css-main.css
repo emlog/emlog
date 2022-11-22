@@ -597,7 +597,8 @@ textarea {
     }
 
     footer.sticky-footer {
-        background-color: unset !important;
+        margin-top: 2rem;
+        padding: 1rem 0;
     }
 
 }

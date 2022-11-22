@@ -378,15 +378,6 @@ function imgPasteExpand(thisEditor) {
         thisEditor.config({readOnly: true,});
         thisEditor.config({readOnly: false,});
         thisEditor.setCursor({line: l, ch: c});
-
-        let saveHotKey = {  // Editor bug , the custom hotkey will be deleted after the interface is refreshed, so it needs to be reset
-            "Ctrl-S": function (cm) {
-                autosave(2);
-            }, "Cmd-S": function (cm) {
-                autosave(2);
-            }
-        };
-        thisEditor.addKeyMap(saveHotKey);
     }
 
     // The editor replaces the text by the first few digits of the cursor position

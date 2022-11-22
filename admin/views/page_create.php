@@ -137,20 +137,11 @@
             sequenceDiagram: false,
             syncScrolling : "single",
             onload: function () {
-                    hooks.doAction("page_loaded",this);
+                hooks.doAction("page_loaded",this);
                     //In the large screen mode, the editor displays the preview by default
-                    if($(window).width() > 767){
-                        this.watch();
-                    }
-                    //Add Ctrl(Cmd)+S shortcut key to save the page content
-                    var pageSave = {
-                    "Ctrl-S": function(cm) {
-                    	pagesave();
-                    },
-                    "Cmd-S": function(cm) {
-                    	pagesave();
-                    }};
-                    this.addKeyMap(pageSave);  
+                if($(window).width() > 767){
+                    this.watch();
+                }
             }
         });
         Editor.setToolbarAutoFixed(false);
@@ -168,4 +159,12 @@
         if (e) e.returnValue = lang('leave_prompt');
         return lang('leave_prompt');
     }
+
+    // 页面编辑界面全局快捷键 Ctrl（Cmd）+ S 保存内容
+    document.addEventListener('keydown', function(e){
+		if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)){
+			e.preventDefault();
+            pagesave();
+		}
+	});
 </script>

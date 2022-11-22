@@ -6,7 +6,7 @@
 ---------------------------------------------------*/
 /* Disable scroll bar for a page overflow */
 :root {
-    overflow-x: hidden
+	overflow-x: hidden
 }
 /* Some variables */
 * {
@@ -14,78 +14,79 @@
 }
 /* Define width = (border+padding) for all elements to facilitate subsequent calculations */
 * { 
-    box-sizing: border-box
+	box-sizing: border-box
 }
 /* Initialization */
 body {
-    margin: 0;
-    line-height: 1.5;
-    font-size: 16px;
-    color: #5a5c69;
-    background: #f5f5f6;
-    font-family: -apple-system, SF UI Text, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei, WenQuanYi Micro Hei, Verdana, Arial, sans-serif;
+	margin: 0;
+	line-height: 1.5;
+	font-size: 16px;
+	color: #5a5c69;
+	background: #f5f5f6;
+	font-family: helvetica neue,Helvetica,Arial,sans-serif
 }
 h1, h2, h3, h4, h5, h6 {
-    margin-top: 0;
-    font-weight: 400
+	margin-top: 0;
+	font-weight: 400
 }
 p {
-    line-height: 2;
-    margin: 30px 0
+	line-height: 2;
+	margin: 30px 0
 }
 a {
-    color: #333333;
-    transition: all 0.2s;
-    text-decoration: none 
+	color: #333333;
+	transition: all 0.2s;
+	text-decoration: none 
 }
 a:focus, a:hover {
-    color: #f6607d;
-    text-decoration: none
+	color: #f6607d;
+	text-decoration: none
 }
 img {
-    max-width: 100%
+	max-width: 100%
 }
 hr {
-    border: 0;
-    border-top: 1px solid rgba(0,0,0,.1)
+	border: 0;
+	border-top: 1px solid rgba(0,0,0,.1)
 }
 blockquote {
-    font-style: italic;
-    color: #868e96
+	font-style: italic;
+	color: #868e96
 }
 input,textarea {
-    font-family: inherit;
-    color: #495057;
-    outline:none
+	font-family: inherit;
+	color: #495057;
+	outline:none
 }
 input[type="submit"] {
-    cursor: pointer
+	cursor: pointer
 }
 textarea {
-    padding: 1rem 0.75rem
+	padding: 1rem 0.75rem
 }
 footer {
-    padding: 0px 50px;
+	margin-top: 60px;
+	background-color: white;
 } 
 footer .list-inline {
-    margin: 0;
-    padding: 0
+	margin: 0;
+	padding: 0
 }
 footer .copyright {
-    font-size: 14px;
-    margin-bottom: 0;
-    text-align: center
+	font-size: 14px;
+	margin-bottom: 0;
+	text-align: center
 }
 /* Non styled list  */
 .unstyle-li {
-    padding-left: 0px;
-    list-style: none;
-    margin-block: 8px;
-    font-size: medium
+	padding-left: 0px;
+	list-style: none;
+	margin-block: 8px;
+	font-size: medium
 }
 /* Card attributes. The page is composed of cards, which are directly configured here, so that the cards on the entire page have a uniform inner margin. */
 .card-padding {
-    padding: 1.25rem
+	padding: 1.25rem
 }
 
 /* Layout
@@ -93,69 +94,69 @@ footer .copyright {
    Column (col) needs to be configured separately according to the size of the screen. This is the most important part of the web page and the skeleton of the entire web page.
 ---------------------------------------------------*/
 .row {
-    display: flex;
-    flex-wrap: wrap;
+	display: flex;
+	flex-wrap: wrap;
 }
 /* Columns under the big screen */
 @media (min-width:768px)  {
-    .column-big {
-        padding-right: 10px;
-        flex: 0 0 66.666667%;
-        max-width: 66.666667%
-    }
+	.column-big {
+		padding-right: 10px;
+		flex: 0 0 66.666667%;
+		max-width: 66.666667%
+	}
     /* Toolbar */
-    .column-small {
-        font-size: medium;
-        padding-left: 20px;
-        -ms-flex: 0 0 33.333333%;
-        flex: 0 0 33.333333%;
-        max-width: 33.333333%
-    }
+	.column-small {
+		font-size: medium;
+		padding-left: 20px;
+		-ms-flex: 0 0 33.333333%;
+		flex: 0 0 33.333333%;
+		max-width: 33.333333%
+	}
     /* The configuration of the two columns of article publication time and article reading comments */
-    .info-row {
-        padding: 1rem !important
-    }
-    .log-info {
-        flex: 0 0 66.666667%;
-        max-width: 66.666667%
-    }
-    .log-count {
-        flex: 0 0 33.333333%;
-        max-width: 33.333333%;
-        text-align: right
-    }
+	.info-row {
+		padding: 1rem !important
+	}
+	.log-info {
+		flex: 0 0 66.666667%;
+		max-width: 66.666667%
+	}
+	.log-count {
+		flex: 0 0 33.333333%;
+		max-width: 33.333333%;
+		text-align: right
+	}
 }
 /* Columns under the small screen */
 @media (max-width:767px) {
 
-    .column-big {
-        padding-right: 8px;
-        padding-left: 8px;
-        width:100%
-    }
+	.column-big {
+		padding-right: 8px;
+		padding-left: 8px;
+		width:100%
+	}
     /* Toolbar */
-    .column-small {
-        padding-right: 8px;
-        padding-left: 8px;
-        width:100%
-    }
+	.column-small {
+		padding-right: 8px;
+		padding-left: 8px;
+		width:100%
+	}
     /* The configuration of the two columns of article publication time and article reading comment number */
-    .log-info {
-        flex: 0 0 60%;
-        max-width: 60%
-    }
-    .log-count {
-        white-space: nowrap;
-        flex: 0 0 40%;
-        max-width: 40%;
-        text-align: right
-    }
+	.log-info {
+		flex: 0 0 60%;
+		max-width: 60%
+	}
+	.log-count {
+		white-space: nowrap;
+		flex: 0 0 40%;
+		max-width: 40%;
+		text-align: right
+	}
 }
 
 /* Responsive configuration of the outermost overall container, namely container configuration
 ---------------------------------------------------*/
 .container{
-    width: 100%;
+	width: 100%;
     align-items: center;/* The webpage container is vertically centered throughout the webpage */
 	margin-right: auto;
 	margin-left: auto
@@ -167,12 +168,12 @@ footer .copyright {
 @media (min-width:1201px) {.container {max-width: 1140px}}
 /* Set the inner and outer margins of the container on the small screen to make it more in line with the look and feel of the small screen */
 @media (min-width:768px)  {
-    .container{
-        padding-right: 15px;
-        padding-left: 15px;
-        margin-right: auto;
-        margin-left: auto
-    }
+	.container{
+		padding-right: 15px;
+		padding-left: 15px;
+		margin-right: auto;
+		margin-left: auto
+	}
 }
 
 /* In the case of absolute positioning, the full width of the main sidebar (for some objects in the main sidebar whose width is difficult to calculate)
@@ -183,6 +184,23 @@ footer .copyright {
 @media (min-width:992px) {.rea-width{width: 609px}}
 @media (min-width:1201px) {.rea-width{width: 730px}}
 
+/* There is no gap at the bottom (footer) of the blog page (that is, to prevent the weird phenomenon that the footer appears in the middle of the page)
+---------------------------------------------------*/
+body {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+}
+.blog-header {
+	flex: 0 0 auto;
+}
+.blog-container {
+	flex: 1 0 auto;
+}
+.blog-footer {
+	flex: 0 0 auto;
+}
+
 /* Configuration of blog header attributes
 ---------------------------------------------------*/
 .blog-header {
@@ -191,27 +209,27 @@ footer .copyright {
 	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1) /* Shadow */
 }
 .blog-header-c {
-    height: 71.63px;
-    display: flex;
+	height: 71.63px;
+	display: flex;
     justify-content: space-between /* The navigation bar is aligned at both ends of the main axis, that is, the heading and the navigation are two parts, one is aligned to the left, and the other is aligned to the right. */
 }
 /* Blog title and subtitle */
 .blog-header-title {
-    font-size: 26px;
-    z-index: 1
+	font-size: 26px;
+	z-index: 1
 }
 .blog-header-subtitle {
-    font-size: small;
-    letter-spacing: 0.2rem;
-    position: absolute;
-    padding-top: 48px;
-    z-index: 0
+	font-size: small;
+	letter-spacing: 0.2rem;
+	position: absolute;
+	padding-top: 48px;
+	z-index: 0
 }
 
 /* The padding-block of the navigation link should be large, so that the sub-navigation label can still be evoked after the cursor leaves the character for a certain distance
  * In addition, the list item of the li tag is marked as empty (list-style: none) */
 .nav-link {
-    padding: 1rem 0.5rem 1rem 0.5rem
+	padding: 1rem 0.5rem 1rem 0.5rem
 }
 .list-menu {
 	list-style: none
@@ -265,9 +283,9 @@ footer .copyright {
 ---------------------------------------------------*/
 /* Large screen */
 @media (min-width:768px)  {
-    .nav-list {
-        display: flex;
-        padding-block: 4.5px;
+	.nav-list {
+		display: flex;
+		padding-block: 4.5px;
 		text-align: center
 	}
 	/* Large screen list style */
@@ -278,109 +296,109 @@ footer .copyright {
 	.list-menu:last-child { 
 		border-bottom: unset
 	}
-    .blog-header-toggle {
-        display: none
-    }
+	.blog-header-toggle {
+		display: none
+	}
 }
 /* Small screen */
 @media (max-width:767px)  {
 	.header {
-        padding: 0.6rem 1rem;
-        margin-bottom: 30px!important;
-        height:80px
-    }
-    .blog-header-title {
-        position: absolute;
-        left: 17px;
-        top: 18px
-    }
-    .blog-header-subtitle {
-        padding-top: 60px;
-        left: 17px;
-        top: -9px
-    }
+		padding: 0.6rem 1rem;
+		margin-bottom: 30px!important;
+		height:80px
+	}
+	.blog-header-title {
+		position: absolute;
+		left: 17px;
+		top: 18px
+	}
+	.blog-header-subtitle {
+		padding-top: 60px;
+		left: 17px;
+		top: -9px
+	}
 	/* Display the toggle menu border and toggle menu only on the small screen */
 	.blog-header-toggle {
-        cursor: pointer;
-        position: absolute;
-        top: 25px;
-        right: 25px;
-    }
-    .blogtoggle-icon {
-        display: inline-block;
-        width: 28px;
-        height: 19px;
-        margin-top: -3px;
-        vertical-align: middle;
+		cursor: pointer;
+		position: absolute;
+		top: 25px;
+		right: 25px;
+	}
+	.blogtoggle-icon {
+		display: inline-block;
+		width: 28px;
+		height: 19px;
+		margin-top: -3px;
+		vertical-align: middle;
 	}
 	/* The navigation of the small screen becomes a drop-down box */
-    .blog-header-nav {
-        display: none;
-        z-index: 999;
-        position: absolute;
-        width: calc(100% - 4px);
-        background: white;
-        top: 72px;
-        left: 0
-    }
+	.blog-header-nav {
+		display: none;
+		z-index: 999;
+		position: absolute;
+		width: calc(100% - 4px);
+		background: white;
+		top: 72px;
+		left: 0
+	}
 	/* List style of the header on the small screen */
-    .nav-list {
-        margin-top: 0px;
-        margin-bottom: 10px
-    }
-    .list-menu {
-        line-height: 28px;
-        width: 90%
-    }
+	.nav-list {
+		margin-top: 0px;
+		margin-bottom: 10px
+	}
+	.list-menu {
+		line-height: 28px;
+		width: 90%
+	}
 }
 
 /* The drop-down box style under the big screen, the transparency set here is 0 (opacity: 0.0;). But in the small screen state
  * There is no hidden, so the following will cover this attribute in the small screen part, that is, the part below 767px. */
 .dropdown-menus {
-    background: white;
-    opacity: 0.0;
-    z-index: 4;
-    list-style: none;
-    margin-left: -26px;
-    position: absolute;
-    padding-left: 0px;
-    border: 1px solid #f1f1f1;
-    border-radius: 4px;
-    top: -3000px;
-    margin-bottom: -34px;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1)
+	background: white;
+	opacity: 0.0;
+	z-index: 4;
+	list-style: none;
+	margin-left: -26px;
+	position: absolute;
+	padding-left: 0px;
+	border: 1px solid #f1f1f1;
+	border-radius: 4px;
+	top: -3000px;
+	margin-bottom: -34px;
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1)
 }
 .dropdown-menus .list-menu{
-    padding: 6px
+	padding: 6px
 }
 
 /* For the small screen attribute of the top menu bar, "small screen" is defined at 767px and below. Of course, this also includes the drop-down box style of the small screen. */
 @media all and (max-width: 767px) {
-    .nav-list {
-        text-align: left !important;
-        padding-left: 10%;
-        letter-spacing: 3px;
-        line-height: 17px
-    }
+	.nav-list {
+		text-align: left !important;
+		padding-left: 10%;
+		letter-spacing: 3px;
+		line-height: 17px
+	}
 	.dropdown-menus {
-        opacity: 1;
-        margin-left: 0px;
-        position: unset;
-        padding-left: 30px;
-        border: 0px solid #f1f1f1;
-        width: auto;
-        top: 0px;
-        margin-bottom: 0px;
-        box-shadow: 0 0 0 0 white;
-        font-size: smaller
-    }
+		opacity: 1;
+		margin-left: 0px;
+		position: unset;
+		padding-left: 30px;
+		border: 0px solid #f1f1f1;
+		width: auto;
+		top: 0px;
+		margin-bottom: 0px;
+		box-shadow: 0 0 0 0 white;
+		font-size: smaller
+	}
 }
 
 /* The style of the drop-down box */
 .list-menu:hover .dropdown-menus {
-    opacity: 0.95;
-    top: 56px;
-    transition: opacity 0.2s
+	opacity: 0.95;
+	top: 56px;
+	transition: opacity 0.2s
 }
 
 /* List articles (or article entries) page
@@ -388,86 +406,86 @@ footer .copyright {
  /* Attributes of the article publication time on the card */
 .info-row {
 	padding: 1rem;
-    padding-bottom: 8px !important
+	padding-bottom: 8px !important
 }
 
 /* Article reading page
 ---------------------------------------------------*/
  /* The attribute of the hr horizontal line under the article author, time and other information, set the margin-bottom to level four */
 .bottom-5{
-    margin-bottom: 1.5rem !important
+	margin-bottom: 1.5rem !important
 }
 /* Label attributes, set margin-top to level three */
 .top-5, .mtop-5 {
-    margin-top: 3rem !important
+	margin-top: 3rem !important
 }
 /* Configuration of verification code modal window */
 .modal-dialog {
-    display:none;
-    background-color: white; 
-    border-radius: var(--marRadius);
-    border: 1px solid #dedede;
-    position: fixed;
-    z-index: 100;
+	display:none;
+	background-color: white; 
+	border-radius: var(--marRadius);
+	border: 1px solid #dedede;
+	position: fixed;
+	z-index: 100;
     /* Position */
-    top: 35%;
-    left: 50%;
-    transform: translate3d(-50%,-50%,0)
+	top: 35%;
+	left: 50%;
+	transform: translate3d(-50%,-50%,0)
 }
 /* The button of the verification code modal window */
 .btn {
-    cursor: pointer;
-    color: #848798;
-    background-color: white;
-    padding: 8px 11px;
-    font-weight: 800;
-    border-radius: var(--marRadius);
-    margin-block: 12px;
-    margin-inline: 17.5px;
-    border: 1px solid #dedede
+	cursor: pointer;
+	color: #848798;
+	background-color: white;
+	padding: 8px 11px;
+	font-weight: 800;
+	border-radius: var(--marRadius);
+	margin-block: 12px;
+	margin-inline: 17.5px;
+	border: 1px solid #dedede
 }
 .btn:hover {
-    color: #50525e
+	color: #50525e
 } 
 .modal-header {
-    text-align: center;
-    border-bottom: 0px;
-    width: 250px;
-    padding: 20px
+	text-align: center;
+	border-bottom: 0px;
+	width: 250px;
+	padding: 20px
 }
 .modal-content img {
-    float: left;
-    height: 32px;
-    margin-left: 20px;
-    margin-block: 30px
+	float: left;
+	height: 32px;
+	margin-left: 20px;
+	margin-block: 30px
 }
 .modal-content input[name="imgcode"] {
-    padding: 6px 8px !important;
-    margin-right: 20px;
-    margin-left: 8px;
-    text-align: left;
-    margin-block: 30px;
-    border: 1px solid #dedede
+	padding: 6px 8px !important;
+	margin-right: 20px;
+	margin-left: 8px;
+	text-align: left;
+	margin-block: 30px;
+	border: 1px solid #dedede
 }
 .modal-content .modal-footer {
-    padding: 10px;
-    text-align: center
+	padding: 10px;
+	text-align: center
 }
 /* After the verification code modal window pops up, the screen background should be locked */
 .lock-screen {
 	display:none;
-    z-index: 99;
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    background-color: #2d2d2b;
-    top: 0;
-    left: 0;
-    opacity: 0.5
+	z-index: 99;
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	background-color: #2d2d2b;
+	top: 0;
+	left: 0;
+	opacity: 0.5
 }
 /* Click style of verification code */
 #captcha {
-    cursor: pointer
+	cursor: pointer
 }
 
 /* No scrolling */
@@ -477,988 +495,1021 @@ footer .copyright {
    The shadow of the article summary card and the sidebar component card of the article list page and the shadow after the mouse is floating
 ---------------------------------------------------*/
 .shadow-theme {
-    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.02);
-    border-radius: var(--marRadius);
-    background: #ffffff;
-    transition: box-shadow 0.4s
+	box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.02);
+	border-radius: var(--marRadius);
+	background: #ffffff;
+	transition: box-shadow 0.4s
 }
 
 /* Calendar style
 ---------------------------------------------------*/
 /* The loading style of the calendar prevents too much visual changes caused by page turning */
 .cal_loading {
-    margin-bottom: 243px
+	margin-bottom: 243px
 }
 #calendar {
-    color: #212529
+	color: #212529
 }
 #calendar a {
-    color: #000;
-    font-weight: bolder
+	color: #000;
+	font-weight: bolder
 }
 .calendartop {
-    letter-spacing: 3px;
-    width: 100%;
-    text-align: center;
-    margin-bottom: 10px;
-    color: #000
+	letter-spacing: 3px;
+	width: 100%;
+	text-align: center;
+	margin-bottom: 10px;
+	color: #000
 }
 .calendartop a {
-    font-weight: 100 !important
+	font-weight: 100 !important
 }
 .calendar {
-    margin-bottom: -10px;
-    width: 100%
+	margin-bottom: -10px;
+	width: 100%
 }
 .calendar td {
-    text-align: center;
-    padding: 1px 10px;
-    line-height: 1.6
+	text-align: center;
+	padding: 1px 10px;
+	line-height: 1.6
 }
 .calendar td a:link {
-    color: #886353;
-    text-decoration: none
+	color: #886353;
+	text-decoration: none
 }
 .calendar td a:hover {
-    color: #886353;
-    text-decoration: none
+	color: #886353;
+	text-decoration: none
 }
 .calendar tr {
-    height: 40px
+	height: 40px
 }
 .day {
-    color: #212529;
-    background: #eaeaea;
-    border-radius: var(--marRadius)
+	color: #212529;
+	background: #eaeaea;
+	border-radius: var(--marRadius)
 }
 .sun {
-    color: #333
+	color: #333
 }
 .week {
-    color: #333
+	color: #333
 }
 
 /* Sidebar card style
 ---------------------------------------------------*/
 /* Card inner and outer margins */
 .side-bar {
-    font-size: medium
+	font-size: medium
 }
 .side-bar .widget {
-    margin-bottom: 24px;
-    padding: 20px
+	margin-bottom: 24px;
+	padding: 20px
 }
 /* The title of the sidebar component */
 .side-bar h3 {
-    position: relative;
-    font-size: 17px;
-    font-weight: 600;
-    margin-bottom: 20px
+	position: relative;
+	font-size: 17px;
+	font-weight: 600;
+	margin-bottom: 20px
 }
 .side-bar .widget li {
-    position: relative;
-    color: #6f6f6f;
-    line-height: 2
+	position: relative;
+	color: #6f6f6f;
+	line-height: 2
 }
 
 /* Pagination button style
 ---------------------------------------------------*/
 .pagination {
-    font-size: 14px;
-    padding: 10px;
-    text-align: center
+	font-size: 14px;
+	padding: 10px;
+	text-align: center
 }
 .pagination span {
-    padding: 5.5px 6px 3px 6px;
-    margin: 0 5px;
-    border-radius: 8px;
-    line-height: 3;
-    color: #858796
+	padding: 5.5px 6px 3px 6px;
+	margin: 0 5px;
+	border-radius: 8px;
+	line-height: 3;
+	color: #858796
 }
 .pagination a {
-    color: #c0bcbc;
-    padding: 5.5px 10px 3px 10px;
-    background: white;
-    margin: 0 5px;
-    line-height: 3;
-    border-radius: 8px
+	color: #c0bcbc;
+	padding: 5.5px 10px 3px 10px;
+	background: white;
+	margin: 0 5px;
+	line-height: 3;
+	border-radius: 8px
 }
 .pagination a:hover {
-    text-decoration: none
+	text-decoration: none
 }
 #pagenavi {
-    text-align: center;
-    font-size: 14px
+	text-align: center;
+	font-size: 14px
 }
 #pagenavi span {
-    padding: 4.5px 9px 4px 9px;
-    margin: 0 5px;
-    line-height: 3;
-    border-radius: var(--marRadius);
-    color: #000
+	padding: 4.5px 9px 4px 9px;
+	margin: 0 5px;
+	line-height: 3;
+	border-radius: var(--marRadius);
+	color: #000
 }
 #pagenavi a {
-    color: #c0bcbc;
-    padding: 4.5px 9px 4px 9px;
-    font-family: serif, monospace;
-    margin: 0 5px;
-    line-height: 3;
-    border-radius: var(--marRadius)
+	color: #c0bcbc;
+	padding: 4.5px 9px 4px 9px;
+	font-family: serif, monospace;
+	margin: 0 5px;
+	line-height: 3;
+	border-radius: var(--marRadius)
 }
 
 /* Comment style
 ---------------------------------------------------*/
 /* Post comment form style */
 @media (min-width:768px)  {
-    .commentform {
-        height: 250px
-    }
+	.commentform {
+		height: 250px
+	}
+}
+#comment-place {
+	margin-top: 80px;
 }
 .comment-name {
-    float: left;
-    border-bottom-left-radius: 10px !important
+	float: left;
+	border-bottom-left-radius: 10px !important
 }
 .comment-mail {
-    float: left
+	float: left
 }
 .comment-url {
-    border-right: 1px #d6d6d6 solid !important;
-    border-bottom-right-radius: 10px !important
+	border-right: 1px #d6d6d6 solid !important;
+	border-bottom-right-radius: 10px !important
 }
 .form-controls {
-    display: block;
-    height: calc(1.5em + 0.75rem + 2px);
-    padding: 0.375rem 0.75rem;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #495057;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #ced4da;
-    border-radius: 0.25rem;
-    transition: border-color 0.15s ease-out, box-shadow 0.15s ease-in-out
+	display: block;
+	height: calc(1.5em + 0.75rem + 2px);
+	padding: 0.375rem 0.75rem;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #495057;
+	background-color: #fff;
+	background-clip: padding-box;
+	border: 1px solid #ced4da;
+	border-radius: 0.25rem;
+	transition: border-color 0.15s ease-out, box-shadow 0.15s ease-in-out
 }
 .comment-info {
-    width: auto
+	width: auto
 }
 .com_control {
-    display: block;
-    border-radius: 0px;
-    border: 1px #d6d6d6 solid;
-    border-right: 0px;
-    height: 50px
+	display: block;
+	border-radius: 0px;
+	border: 1px #d6d6d6 solid;
+	border-right: 0px;
+	height: 50px
 } 
 
 /* The input box prompt in the comment section, centered and hidden */
 .com_control:focus::-webkit-input-placeholder{
-    color: rgba(255, 255, 255, 0)
+	color: rgba(255, 255, 255, 0)
 } 
 .com_control::-webkit-input-placeholder {
-    color: rgba(116, 116, 116, 0.336)
+	color: rgba(116, 116, 116, 0.336)
 }
 @media (min-width:578px) {
-    .com_control::-webkit-input-placeholder {
-        text-align: center
-    }
+	.com_control::-webkit-input-placeholder {
+		text-align: center
+	}
 }
 .comment-header {
-    margin-block: 30px;
-    height: 0
+	margin-block: 30px;
+	height: 0
 }
 .comment-post {
-    clear: both
+	clear: both
 }
 .comment-post p {
-    margin: 5px 0px
+	margin: 5px 0px
 }
 .comment-post .cancel-reply {
-    float: right;
-    cursor: pointer;
-    _cursor: hand;
-    padding-right: 10%
+	float: right;
+	cursor: pointer;
+	padding-right: 10%
 }
 .comment-post .cancel-reply:hover {
-    text-decoration: underline
+	text-decoration: underline
 }
 .comment-post small {
-    font-size: 12px;
-    color: #999
+	font-size: 12px;
+	color: #999
 }
 .comment-post input {
-    padding: 7px 40px;
-    font-size: small;
-    color: #848797;
-    width: 33.3333334%
+	padding: 7px 40px;
+	font-size: small;
+	color: #848797;
+	width: 33.3333334%
 }
 .comment-post #comment {
-    width: 100%;
-    border: 1px #d6d6d6 solid;
-    font-size: small;
-    border-radius: var(--marRadius) 10px 0 0;
-    height: 130px;
-    resize: none
+	width: 100%;
+	border: 1px #d6d6d6 solid;
+	font-size: small;
+	border-radius: var(--marRadius) 10px 0 0;
+	height: 130px;
+	resize: none
 }
 .comment-post #comment_submit {
 /*vot    width: 84px; */
-    height: 35px;
-    text-align: center;
-    font-size: 14px;
-    margin: 10px 0px;
-    float: right;
-    margin-right: 1px;
-    border-radius: 8px;
-    border: 1px solid #dedede;
-    padding: 7px 10px;
-    justify-content: center
+	height: 35px;
+	text-align: center;
+	font-size: 14px;
+	margin: 10px 0px;
+	float: right;
+	margin-right: 1px;
+	border-radius: 8px;
+	border: 1px solid #dedede;
+	padding: 7px 10px;
+	justify-content: center
 }
 .comment-post #comment_submit:hover {
-    cursor: pointer;
-    color: #fff;
-    background-color: #007bff
+	cursor: pointer;
+	color: #fff;
+	background-color: #007bff
 }
 .comment-post .input {
-    width: 100px
+	width: 100px
 }
 .comment {
-    margin: 10px 0;
-    padding: 10px 0px;
-    font-size: medium;
+	margin: 10px 0;
+	padding: 10px 0px;
+	font-size: medium;
 /*vot*/    border-bottom: 1px #CCC solid;
-    overflow: hidden;
-    color: #333
+	overflow: hidden;
+	color: #333
 }
 .comment span {
-    color: #ff7a15
+	color: #ff7a15
 }
 .comment .comment-time {
-    color: #999999;
-    display: inline;
-    font-size: 10px
+	color: #999999;
+	display: inline;
+	font-size: 10px
 }
 .comment .avatar {
-    float: left;
-    margin: 5px 4px
+	float: left;
+	margin: 5px 4px
 }
 .comment .comment-infos {
-    background: #f7f7f7;
-    padding: 12px;
-    padding-bottom: 5px;
-    border-radius: var(--marRadius);
-    margin-top: 9px;
-    margin-left: 58px
+	background: #f7f7f7;
+	padding: 12px;
+	padding-bottom: 5px;
+	border-radius: var(--marRadius);
+	margin-top: 9px;
+	margin-left: 58px
 }
 .comment .comment-infos-unGravatar {
-    padding: 5px
+	padding: 5px
 }
 .com-bottom {
-    margin-bottom: 80px;
+	margin-bottom: 80px;
 }
 /* Arrow pointing to the commenter's avatar in the comment list */
 .arrow {
-    position: absolute;
-    margin-top: 3px;
-    margin-left: -34px;
-    border-width: 13px;
-    border-style: solid;
-    border-color: transparent #f7f7f7 transparent transparent
+	position: absolute;
+	margin-top: 3px;
+	margin-left: -34px;
+	border-width: 13px;
+	border-style: solid;
+	border-color: transparent #f7f7f7 transparent transparent
 }
 .comment .comment-content {
-    margin: 8px 0px 0px 0px;
-    word-break: break-word
+	margin: 8px 0px 0px 0px;
+	word-break: break-word
 }
 .comment .comment-reply {
-    float: right;
-    font-size: 12px;
-    cursor: pointer;
-    margin-top: -15px
+	float: right;
+	font-size: 12px;
+	cursor: pointer;
+	margin-top: -15px
 }
 .comment .comment-reply:hover {
-    text-decoration: underline
+	text-decoration: underline
 }
 .comment-children {
-    margin: 20px 10px 10px 20px;
-    clear: both;
-    border: 0;
+	margin: 20px 10px 10px 20px;
+	clear: both;
+	border: none;
 /*vot*/    border-top: 1px solid #CCC;
-    padding: 0
+	padding: 0
 }
 .comment .comment-post {
-    width: 90%;
-    margin: 15px auto
+	width: 90%;
+	margin: 15px auto
 }
 .comment-info {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    margin-top: -8px;
-    white-space: nowrap
+	text-overflow: ellipsis;
+	overflow: hidden;
+	margin-top: -8px;
+	white-space: nowrap
 }
 /* The margin-top of the latest comment information in the sidebar should be 0 */
 .unstyle-li .comment-info {
-    margin-top: 4px
+	margin-top: 4px
 }
 .cancel-reply {
-    font-size: large
+	font-size: large
 }
 /* Commenter's avatar */
 .avatar img {
-    margin-top: 9px;
-    margin-right: 4px;
-    border-radius: 50%
+	margin-top: 9px;
+	margin-right: 4px;
+	border-radius: 50%
 }
 .unstyle-li input[type="submit"] {
-    background-color: #313131;
-    color: #FFFFFF;
-    margin-left: -25px;
-    height: 39px;
-    width: 55px;
-    border: 0;
-    border-radius: 0 3px 3px 0;
-    padding: 0
+	background-color: #313131;
+	color: #FFFFFF;
+	margin-left: -25px;
+	height: 39px;
+	width: 55px;
+	border: 0;
+	border-radius: 0 3px 3px 0;
+	padding: 0
+}
+/* 评论区的 回复、取消回复 按钮 */
+.comment-replay-btn {
+	border: none;
+	cursor: pointer;
+	padding: 0;
+	background-color: unset
+}
+.comment-replay-btn:hover {
+	color: #f6607d;
+	text-decoration: underline;
+	transition: all 0.2s
 }
 
 /*Some styles in article entries
 ---------------------------------------------------*/
 /* Title of article entry */
 .card-title {
-    margin-bottom: 30px
+	margin-bottom: 30px
 }
 /* The sticky pattern in the article entry */
 .log-topflg {
-    user-select: none;
-    display: inline-block;
-    position: relative;
-    height: 26px;
-    padding: 3px 4.5px;
-    bottom: 3.5px;
-    font-size: 14px;
-    margin-left: 8px;
-    cursor: default;
-    background-color: antiquewhite
+	user-select: none;
+	display: inline-block;
+	position: relative;
+	height: 26px;
+	padding: 3px 4.5px;
+	bottom: 3.5px;
+	font-size: 14px;
+	margin-left: 8px;
+	cursor: default;
+	background-color: antiquewhite
 }
 
 /* Article content page style
 ---------------------------------------------------*/
 .log-con {
-    background-color: #ffffff;
-    border-radius: var(--marRadius);
-    max-width: 960px;
-    padding: 30px;
-    font-size: 16px;
-    height: fit-content;
-    letter-spacing: 0.5px
+	background-color: #ffffff;
+	border-radius: var(--marRadius);
+	max-width: 960px;
+	padding: 30px;
+	font-size: 16px;
+	height: fit-content;
+	letter-spacing: 0.5px
 }
 .log-con p {
-    margin-top: 0;
-    margin-bottom: 16px
+	margin-top: 0;
+	margin-bottom: 16px
 }
 .log-con .date {
-    margin-bottom: 0px
+	margin-bottom: 0px
 }
 .log-con .markdown {
-    margin-inline: 5px;
+	margin-inline: 5px;
 }
 .loglist-content h1 {
-    font-size: medium;
-    font-family: inherit;
-    letter-spacing: 0.5px;
-    margin: 0
+	font-size: medium;
+	font-family: inherit;
+	letter-spacing: 0.5px;
+	margin: 0
 }
 .loglist-content h2 {
-    font-size: medium;
-    font-family: inherit;
-    letter-spacing: 0.5px;
-    margin: 0
+	font-size: medium;
+	font-family: inherit;
+	letter-spacing: 0.5px;
+	margin: 0
 }
 .loglist-content h3 {
-    font-size: medium;
-    font-family: inherit;
-    letter-spacing: 0.5px;
-    margin: 0
+	font-size: medium;
+	font-family: inherit;
+	letter-spacing: 0.5px;
+	margin: 0
 }
 .loglist-content h4 {
-    font-size: medium;
-    font-family: inherit;
-    letter-spacing: 0.5px;
-    margin: 0
+	font-size: medium;
+	font-family: inherit;
+	letter-spacing: 0.5px;
+	margin: 0
 }
 .loglist-content h5 {
-    font-size: medium;
-    font-family: inherit;
-    letter-spacing: 0.5px;
-    margin: 0
+	font-size: medium;
+	font-family: inherit;
+	letter-spacing: 0.5px;
+	margin: 0
 }
 .loglist-content p {
-    font-size: medium;
-    font-family: inherit;
-    margin: 0
+	font-size: medium;
+	font-family: inherit;
+	margin: 0
 }
 /* Need to change the name, the friendship link attribute of the sidebar link card */
 .no-margin-bottom {
-    font-size: medium;
-    padding-left: 10px
+	font-size: medium;
+	padding-left: 10px
 }
 /* Abstract content section */
 .loglist-body {
-    margin-bottom: -22px;
-    font-size: small
+	margin-bottom: -22px;
+	font-size: small
 }
 .loglist-body p {
-    margin: 0 -6px 0 0
+	margin: 0 -6px 0 0
 }
 /* Article title and tags, etc. */
 .loglist-title {
-    font-size: x-large
+	font-size: x-large
 }
 .loglist-tag {
-    margin-top: 30px;
-    line-height: 2;
-    color: #000000
+	margin-top: 30px;
+	line-height: 2;
+	color: #000000
 }
 .loglist-tag a {
-    color: #929292
+	color: #929292
 }
 .loglist-cover {
-    width: 100%;
-    height: 205px;
-    border-radius: var(--marRadius) 10px 0 0
+	width: 100%;
+	height: 205px;
+	border-radius: var(--marRadius) 10px 0 0
 }
 .loglist-cover img {
-    position: absolute;
-    opacity: 0.8;
-    border-radius: var(--marRadius) 10px 0 0;
-    transition: all 0.4s;
-    clip: rect(50px,730px,250px,0px);
-    margin-top: -50px
+	position: absolute;
+	opacity: 0.8;
+	border-radius: var(--marRadius) 10px 0 0;
+	transition: all 0.4s;
+	clip: rect(50px,730px,250px,0px);
+	margin-top: -50px
 }
 .loglist-cover img:hover {
-    opacity: 0.7;
-    transform: scale(1.01);
-    clip: rect(50px,730px,250px,0px)
+	opacity: 0.7;
+	transform: scale(1.01);
+	clip: rect(50px,730px,250px,0px)
 }
 /* Article category */
 .loglist-sort {
-    user-select: none;
-    display: inline-block;
-    position: relative;
-    margin-left: 10px;
-    bottom: 2px;
-    padding: 6px;
-    padding-bottom: 3px;
-    border: 1px solid #e8e8e8
+	user-select: none;
+	display: inline-block;
+	position: relative;
+	margin-left: 10px;
+	bottom: 2px;
+	padding: 6px;
+	padding-bottom: 3px;
+	border: 1px solid #e8e8e8
 }
-@media (max-width:415px) {.loglist-cover{ height: 160px;overflow: hidden}.loglist-cover img {position:unset;    width: 730px;}}
-@media (max-width:375px) {.loglist-cover{ height: 140px;overflow: hidden}.loglist-cover img {position:unset;    width: 730px;}}
+@media (max-width:415px) {.loglist-cover{ height: 160px;overflow: hidden}.loglist-cover img {position:unset;	width: 730px;}}
+@media (max-width:375px) {.loglist-cover{ height: 140px;overflow: hidden}.loglist-cover img {position:unset;	width: 730px;}}
 /* Other contents of the entry */
 .loglist-content {
-    font-size: medium;
-    margin-left: 1px;
-    margin-bottom: 5px;
-    margin-right: 3px;
-    margin-top: 30px
+	font-size: medium;
+	margin-left: 1px;
+	margin-bottom: 5px;
+	margin-right: 3px;
+	margin-top: 30px
 }
 .log-info {
-    font-size: small;
-    letter-spacing: 0.5px;
-    color: #404040 !important
+	font-size: small;
+	letter-spacing: 0.5px;
+	color: #404040 !important
 }
 .log-info a {
-    color: #929292
+	color: #929292
 }
 .log-count {
-    font-size: small
+	font-size: small
 }
 .log-count a {
-    color: #252525
+	color: #252525
 }
 /* Some styles of sidebar components */
 .bloggerinfo {
-    margin-bottom: -10px;
-    text-align: center
+	margin-bottom: -10px;
+	text-align: center
 }
 .bloggerinfo-img {
-    width: 100px;
-    height: 100px;
-    border: 0px solid #c2a9a9;
-    border-radius: 50%
+	width: 100px;
+	height: 100px;
+	border: 0px solid #c2a9a9;
+	border-radius: 50%
 }
 .comm-lates-name {
-    font-weight: bolder
+	font-weight: bolder
 }
 .bloginfo-name {
-    font-size: x-large;
-    margin-top: 15px;
-    margin-bottom: 0px
+	font-size: x-large;
+	margin-top: 15px;
+	margin-bottom: 0px
 }
 .bloginfo-descript {
-    margin-top: 20px;
-    margin-bottom: 15px;
-    color: #929292
+	margin-top: 20px;
+	margin-bottom: 15px;
+	color: #929292
 }
 /* Search bar */
 .search {
-    width: 80%;
-    box-shadow: none;
-    float: left;
-    font-size: 1rem;
-    padding: 0.4rem 0.75rem;
-    line-height: 1.5;
-    color: #495057;
-    border: 1px solid #ced4da;
+	width: 80%;
+	box-shadow: none;
+	float: left;
+	font-size: 1rem;
+	padding: 0.4rem 0.75rem;
+	line-height: 1.5;
+	color: #495057;
+	border: 1px solid #ced4da;
     /* Compatible with Safari, Safari default input will have 1px top and bottom margins */
-    margin-block: 0;
-    border-radius: 0.25rem
+	margin-block: 0;
+	border-radius: 0.25rem
 }
 /* Article reading and article tags */
 .tags {
-    border: 1px solid #e8e8e8;
-    padding: 1px 6px;
-    border-radius: 4px;
-    white-space: nowrap
+	border: 1px solid #e8e8e8;
+	padding: 1px 6px;
+	border-radius: 4px;
+	white-space: nowrap
 }
 /* Tags in the sidebar widget */
 .tag-container {
-    margin-block: 0;
-    text-overflow: ellipsis
+	margin-block: 0;
+	text-overflow: ellipsis
 }
 .tags-side {
-    padding: 2px 6px;
-    border-radius: 4px;
-    white-space: nowrap
+	padding: 2px 6px;
+	border-radius: 4px;
+	white-space: nowrap
 }
 /* The latest article style in the sidebar widget */
 .blog-lates,.blog-hot {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis
 }
 /* Back to the previous page icon */
 .back-top {
-    font-size: 20px;
-    text-align: center;
-    height: 34px;
-    width: 34px;
-    margin-left: -90px;
-    position: absolute;
-    top: 151px;
-    border: 1px solid #dcdcdd;
-    color: #dcdcdd;
-    border-radius: 50%;
-    cursor: pointer
+	font-size: 20px;
+	text-align: center;
+	height: 34px;
+	width: 34px;
+	margin-left: -90px;
+	position: absolute;
+	top: 151px;
+	border: 1px solid #dcdcdd;
+	color: #dcdcdd;
+	border-radius: 50%;
+	cursor: pointer
 }
 .back-top:hover {
-    border: 1px solid #bbbbbb;
-    color: #bbbbbb
+	border: 1px solid #bbbbbb;
+	color: #bbbbbb
 }
 /* Dividing lines in article entries */
 .list-line {
-    border: 0;
-    margin-top: 12px;
-    margin-bottom: -7px;
-    border-top: 2px solid rgb(245, 245, 246)
+	border: 0;
+	margin-top: 12px;
+	margin-bottom: -7px;
+	border-top: 2px solid rgb(245, 245, 246)
 }
 /* Article categories in the sidebar */
 .log-classify-f {
-    letter-spacing: 1px;
-    font-size: 16px;
-    font-weight: 400
+	letter-spacing: 1px;
+	font-size: 16px;
+	font-weight: 400
 }
 .log-classify-c {
-    margin-left: -27px;
-    list-style: none;
-    font-size: medium
+	margin-left: -27px;
+	list-style: none;
+	font-size: medium
 }
 /* Latest comments in the sidebar */
 .logcom-latest-time {
-    position: absolute;
-    right: 10px;
-    color: #b5b5b5;
-    margin-left: 10px;
-    font-size: small
+	position: absolute;
+	right: 10px;
+	color: #b5b5b5;
+	margin-left: 10px;
+	font-size: small
 }
 .comment-info_img {
-    width: 27px;
-    margin-bottom: 4px;
-    margin-right: 3px;
-    border-radius: 50%;
-    vertical-align: middle;
-    border-style: none
+	width: 27px;
+	margin-bottom: 4px;
+	margin-right: 3px;
+	border-radius: 50%;
+	vertical-align: middle;
+	border-style: none
 }
 /* Date text style everywhere */
 .date {
-    margin: 0;
-    text-align: center;
-    color: #7f7f7f
+	margin: 0;
+	text-align: center;
+	color: #7f7f7f
 }
 .date a {
-    color: #7f7f7f
+	color: #7f7f7f
 }
 .log-con .date {
-    font-size: small
+	font-size: small
 }
 .log-title {
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 1.75rem
+	text-align: center;
+	margin-bottom: 30px;
+	font-size: 1.75rem
 }
 .page-title {
-    margin-bottom: 30px;
-    font-size: 1.75rem
+	margin-bottom: 30px;
+	font-size: 1.75rem
 }
 /* The style of the adjacent article button */
 .neighbor-log {
-    overflow: hidden;
-    margin-block: 20px
+	overflow: hidden;
+	margin-block: 20px
 }
 .prev-log {
-    margin: 3px 0px;
-    float: left;
-    padding: 6px 6px 4px 6px;
-    font-size: medium;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 50rem
+	margin: 3px 0px;
+	float: left;
+	padding: 6px 6px 4px 6px;
+	font-size: medium;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	border-radius: 50rem
 }
 .next-log {
-    margin: 3px 0px;
-    float: right;
-    padding: 6px 6px 4px 6px;
-    font-size: medium;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 50rem
+	margin: 3px 0px;
+	float: right;
+	padding: 6px 6px 4px 6px;
+	font-size: medium;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	border-radius: 50rem
 }
 .comment-info a {
-    color: #4c4c4c;
-    padding-left: 5px
+	color: #4c4c4c;
+	padding-left: 5px
 }
 .comment-info hr {
-    margin: 4px 0px
+	margin: 4px 0px
 }
 
 /* Web footer
 ---------------------------------------------------*/
 .footinfo {
-    line-height: 2;
-    margin-block: 30px;
-    text-align: center !important;
+	line-height: 2;
+	padding-block: 20px;
+	text-align: center !important;
 }
 
 /* Image zoom
 ---------------------------------------------------*/
 img[data-action="zoom"] {
-    cursor: pointer;
-    cursor: -webkit-zoom-in;
-    cursor: -moz-zoom-in;
+	cursor: zoom-in
   }
 .zoom-img,
 .zoom-img-wrap {
-    position: relative;
-    z-index: 666;
-    -webkit-transition: all 300ms;
-         -o-transition: all 300ms;
-            transition: all 300ms;
+	position: relative;
+	z-index: 666;
+	-webkit-transition: all 300ms;
+		 -o-transition: all 300ms;
+			transition: all 300ms;
   }
 img.zoom-img {
-    cursor: pointer;
-    cursor: -webkit-zoom-out;
-    cursor: -moz-zoom-out;
+	cursor: zoom-out
   }
 .zoom-overlay {
-    z-index: 420;
-    background: #fff;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    pointer-events: none;
-    opacity: 0;
-    -webkit-transition:      opacity 300ms;
-         -o-transition:      opacity 300ms;
-            transition:      opacity 300ms;
+	z-index: 420;
+	background: #fff;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	pointer-events: none;
+	opacity: 0;
+	-webkit-transition:	  opacity 300ms;
+		 -o-transition:	  opacity 300ms;
+			transition:	  opacity 300ms;
   }
 .zoom-overlay-open .zoom-overlay {
-    opacity: 1;
+	opacity: 1;
   }
 .zoom-overlay-open,
 .zoom-overlay-transitioning {
-    cursor: default;
+	cursor: default;
   }
 .cover-unclip {
     /* The enlarged image has no cropping, no rounded corners, and no transparency */
-    clip: unset!important;
-    border-radius: unset!important;
-    opacity: 1!important
+	clip: unset!important;
+	border-radius: unset!important;
+	opacity: 1!important
 }
 /* toc
 ---------------------------------------------------*/
 .toc-con {
-    padding: 30px;
-    padding-right: 50px;
-    left: 150px;
-    width: 300px;
-    position: absolute;
-    top: 200px
+	padding: 30px;
+	padding-right: 50px;
+	left: 150px;
+	width: 300px;
+	position: absolute;
+	top: 200px
 }
 .toc-con li{
-    font-size: 14px;
-    line-height: 1.8rem;
-    cursor: pointer;
-    list-style: none;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap
+	font-size: 14px;
+	line-height: 1.8rem;
+	cursor: pointer;
+	list-style: none;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap
 }
 .toc-con div {
-    scrollbar-color: #0000002b #fff0
+	scrollbar-color: #0000002b #fff0
 }
 .toc-con div::-webkit-scrollbar {
-    width: 5px;
-    background-color: rgb(0 0 0 / 0%)
+	width: 5px;
+	background-color: rgb(0 0 0 / 0%)
 }
 .toc-con div::-webkit-scrollbar-thumb {
-    background-color: rgb(0 0 0 / 10%)
+	background-color: rgb(0 0 0 / 10%)
 }
 /* page style */
 #page{
-    margin-bottom: 24px
+	margin-bottom: 24px
 }
-/* Some styles that adapt to the display effect of each screen size
-    margin-bottom: 24px
+
+/* summary overflow operation
+---------------------------------------------------*/
+.subtitle-overflow {
+	max-width: 700px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis
 }
+
+/* "archive" style
+---------------------------------------------------*/
+.archive {
+	font-size: 16px;
+	padding: 4px;
+	border-color: #ced4da
+}
+
+/* Article Listing Page Edit Link Styles 
+---------------------------------------------------*/
+.loglist-article-edit a {
+	color: #929292
+}
+
 ---------------------------------------------------*/
 @media all and (max-width: 1200px) and (min-width: 992px) {
 
 	/* Class that is convenient for hiding elements on medium and small screens */
-    .mh {
-        display: none
-    }
-    .bloggerinfo-img {
-        width: 70px;
-        height: 70px
-    }
-    .bloginfo-name {
-        margin-top: 32px
-    }
+	.mh {
+		display: none
+	}
+	.bloggerinfo-img {
+		width: 70px;
+		height: 70px
+	}
+	.bloginfo-name {
+		margin-top: 32px
+	}
     /* Calendar in medium screen state */
-    #calendar {
-        margin-left: -8px;
-    }
+	#calendar {
+		margin-left: -8px;
+	}
 }
 
 @media all and (max-width: 991px) {
     /* Header width without container */
-    .blog-header-c {
-        max-width: unset !important
-    } 
-    .blog-header-c {
-        height: 74px
-    }
-    body {
-        width: 100%;
-        margin: -2px;
-        padding-left: 2px
-    }
+	.blog-header-c {
+		max-width: unset !important
+	} 
+	.blog-header-c {
+		height: 74px
+	}
+	body {
+		width: 100%;
+		margin: -2px;
+		padding-left: 2px
+	}
 	/* Class that is convenient for hiding elements on medium and small screens */
-    .mh {
-        display: none
-    }
-    .loglist-title {
-        font-size: 18px;
-        font-weight: 500
-    }
-    .bloggerinfo {
-        margin-bottom: 0px
-    }
-    .mb-5, .mtop-5 {
-        margin-bottom: 2rem !important
-    }
-    .log-title {
-        text-align: left
-    }
-    .log-con {
-        padding: 30px 16px
-    }
-    .commentform .comment-info {
-        width: 100%
-    }
+	.mh {
+		display: none
+	}
+	.loglist-title {
+		font-size: 18px;
+		font-weight: 500
+	}
+	.bloggerinfo {
+		margin-bottom: 0px
+	}
+	.mb-5, .mtop-5 {
+		margin-bottom: 2rem !important
+	}
+	.log-title {
+		text-align: left
+	}
+	.log-con {
+		padding: 30px 16px
+	}
+	.commentform .comment-info {
+		width: 100%
+	}
 
     /* After expanding the menu, the bottom margin of the blog head becomes larger */
-    .bottom-change {
-        margin-bottom: 13px
-    }
+	.bottom-change {
+		margin-bottom: 13px
+	}
 
     /* Optimize the look and feel of the page cards for the article on the small screen */
-    .card-title {
-        margin-bottom: 10px
-    }
-    .loglist-content {
-        margin-top: 10px
-    }
-    .loglist-tag {
-        margin-top: 10px
-    }
+	.card-title {
+		margin-bottom: 10px
+	}
+	.loglist-content {
+		margin-top: 10px
+	}
+	.loglist-tag {
+		margin-top: 10px
+	}
     /* The bottom margin of the blog header */
-    .blog-header {
-        margin-bottom: 1.6rem
-    }
+	.blog-header {
+		margin-bottom: 1.6rem
+	}
     /* Changes in the comment column */
-    .comment-post input {
-        padding: 0.5em 0.75em
-    }
+	.comment-post input {
+		padding: 0.5em 0.75em
+	}
     /* Sidebar Calendar */
-    #calendar {
-        margin-left: 0
-    }
+	#calendar {
+		margin-left: 0
+	}
 }
 /* The zoom and other adjustment styles made on some unusual devices in the middle size of the tablet */
 @media all and (max-width: 991px) and (min-width: 768px) {
 
-    #calendar {
-        transform: scale(0.8);
-        margin-left: -14px;
-        margin-top: -14px
-    }
-    .unstyle-li form {
-        transform: scale(0.7);
-        width: 255px;
-        margin-left: -47px
-    }
+	#calendar {
+		transform: scale(0.8);
+		margin-left: -14px;
+		margin-top: -14px
+	}
+	.unstyle-li form {
+		transform: scale(0.7);
+		width: 255px;
+		margin-left: -47px
+	}
     /* The comment content of the latest comment is slightly smaller */
-    .logcom-latest-time {
-        max-width: 60px
-    }
+	.logcom-latest-time {
+		max-width: 60px
+	}
 
 }
 /* Compromise zooming and other adjustments made to some extremely small screens */
 @media all and (max-width: 349px) {
 
-    #calendar {
-        transform: scale(0.7);
-        margin-left: -46px;
-        margin-top: -14px
-    }
-    .unstyle-li form {
-        transform: scale(0.7);
-        width: 255px;
-        margin-left: -47px
-    }
-    .bloginfo-name {
-        font-size: small
-    }
+	#calendar {
+		transform: scale(0.7);
+		margin-left: -46px;
+		margin-top: -14px
+	}
+	.unstyle-li form {
+		transform: scale(0.7);
+		width: 255px;
+		margin-left: -47px
+	}
+	.bloginfo-name {
+		font-size: small
+	}
 }
 /* The display style of ordinary mobile devices */
 @media all and (max-width: 577px) {
-
-    .dropdown-menus .list-menu{
-        padding-bottom : 0px
-    }
-    .nav-link {
-        padding: 8px;
-    }
+	.dropdown-menus .list-menu{
+		padding-bottom : 0px
+	}
+	.nav-link {
+		padding: 8px;
+	}
     /* The inner margin of the card container is slightly smaller */
-    .card-padding {
-        padding: 14px;
-    }
-    .side-bar .widget {
-        margin-bottom: 1.5rem
-    }
-    .pagination:after {
-        content: "";
-        margin-bottom: 20px;
-        display: block;
-        clear: both
-    }
-    .bar_top_line {
-        display: block;
-        margin-bottom: 23px
-    }
-    .pagination span {
-        padding: 5.5px 9px 3px 9px
-    }
-    .pagination a {
-        padding: 5.5px 9px 3px 9px
-    }
-    .comment .comment-info {
-        float: left;
-        margin-left: unset;
-        width: 100%
-    }
-    .com_control {
-        height: 44px
-    }
-    .mb-5, .mtop-5 {
-        margin-bottom: 1.6rem !important
-    }
-    #pagenavi {
-        line-height: 45px
-    }
-    .loglist-content p {
-        font-size: 14px;
-    }
+	.card-padding {
+		padding: 14px;
+	}
+	.side-bar .widget {
+		margin-bottom: 1.5rem
+	}
+	.pagination:after {
+		content: "";
+		margin-bottom: 20px;
+		display: block;
+		clear: both
+	}
+	.bar_top_line {
+		display: block;
+		margin-bottom: 23px
+	}
+	.pagination span {
+		padding: 5.5px 9px 3px 9px
+	}
+	.pagination a {
+		padding: 5.5px 9px 3px 9px
+	}
+	.comment .comment-info {
+		float: left;
+		margin-left: unset;
+		width: 100%
+	}
+	.com_control {
+		height: 44px
+	}
+	.mb-5, .mtop-5 {
+		margin-bottom: 1.6rem !important
+	}
+	#pagenavi {
+		line-height: 45px
+	}
+	.loglist-content p {
+		font-size: 14px;
+	}
 	/* Comment related */
-    .comment-post #comment {
-        border-radius: 6px;
-    }
-    .comment-post input {
-        width: 100%
-    }
-    .commentform .comment-info {
-        margin-top: -5px
-    }
-    #comment-place {
-        margin-bottom: 80px
-    }
-    .com_control {
-        border: 1px solid #ced4da;
-        border-radius: 6px !important;
-        margin-top: 10px
-    }
-    .comment-mail {
-        margin-bottom: 10px;
-    }
-    .comment .comment-post {
-        display: table
-    }
+	.comment-post #comment {
+		border-radius: 6px;
+	}
+	.comment-post input {
+		width: 100%
+	}
+	.commentform .comment-info {
+		margin-top: -5px
+	}
+	#comment-place {
+		margin-bottom: 80px
+	}
+	.com_control {
+		border: 1px solid #ced4da;
+		border-radius: 6px !important;
+		margin-top: 10px
+	}
+	.comment-mail {
+		margin-bottom: 10px;
+	}
+	.comment .comment-post {
+		display: table
+	}
     /* New style of comment list */
-    .arrow {
-        display: none
-    }
-    .comment .comment-infos {
-        margin-left: 0;
-        font-size: 14px
-    }
-    .comment .avatar {
-        margin: 6px 8px;
-        height: 30px;
-        width: 30px;
-    }
+	.arrow {
+		display: none
+	}
+	.comment .comment-infos {
+		margin-left: 0;
+		font-size: 14px
+	}
+	.comment .avatar {
+		margin: 6px 8px;
+		height: 30px;
+		width: 30px;
+	}
+	/* 摘要的溢出（overflow）操作 在 小屏幕上要截得多一点 */
+	.subtitle-overflow {
+		max-width: 80%
+	}
+	/* 网页顶部的下拉菜单在移动端的显示优化 */
+	.dropdown-menus .list-menu{
+		padding: 0px;
+		letter-spacing: 2px
+	}
 }
 /* Styles for mobile toc */
 @media all and (max-width: 1274px) {
-    .toc-con {
-        height: 100vh;
-        width: 60%;
-        max-width: 300px;
-        padding-right: 30px;
+	.toc-con {
+		height: 100vh;
+		width: 60%;
+		max-width: 300px;
+		padding-right: 30px;
         /* frozen effect */
-        background: rgba(237, 237, 237, 0.8);
-        backdrop-filter: blur(2px);
-        /* always fixed position */
-        z-index: 2;
-        position: fixed!important;
-        top: 0!important
-    }
-    .toc-link {
-        color: rgb(189, 189, 189);
-        font-size: 10px;
-        padding-left: 10px;
-    }
-    /* The toc frozen effect on Apple devices i.e. iPhone  */
-    @supports ((-webkit-backdrop-filter: saturate(180%) blur(20px)) or(backdrop-filter: saturate(180%) blur(20px))) {
-        .toc-con {
-            background: rgba(237, 237, 237, 0.8);
-            -webkit-backdrop-filter: saturate(180%) blur(2px);
-            backdrop-filter: blur(2px);
-        }
-    }
+		background: rgba(237, 237, 237, 0.8);
+		backdrop-filter: blur(2px);
+		/* Compatible with Safari matte effect */
+		-webkit-backdrop-filter: blur(2px);
+		/* always fixed position */
+		z-index: 2;
+		position: fixed!important;
+		top: 0!important
+	}
+	.toc-link {
+		color: rgb(189, 189, 189);
+		font-size: 10px;
+		padding-left: 10px;
+	}
 }

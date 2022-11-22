@@ -29,4 +29,3 @@ if (!defined('EMLOG_ROOT')) {
 	}
 	?>
 </div>
- 

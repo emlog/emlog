@@ -248,16 +248,6 @@
                 if ($(window).width() > 767) {
                     this.watch();
                 }
-                //Add Ctrl(Cmd)+S shortcut key to save article content
-                var articleSave = {
-                    "Ctrl-S": function (cm) {
-                        autosave(2);
-                    },
-                    "Cmd-S": function (cm) {
-                        autosave(2);
-                    }
-                };
-                this.addKeyMap(articleSave);
             }
         });
         Editor_summary = editormd("logexcerpt", {
@@ -375,4 +365,12 @@
             }
         });
     });
+
+    // 文章编辑界面全局快捷键 Ctrl（Cmd）+ S 保存内容
+    document.addEventListener('keydown', function(e){
+		if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)){
+			e.preventDefault();
+            autosave(2);
+		}
+	});
 </script>
