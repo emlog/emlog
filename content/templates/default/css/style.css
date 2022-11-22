@@ -796,8 +796,8 @@ body {
 /* 评论区的 回复、取消回复 按钮 */
 .comment-replay-btn {
 	border: none;
-    cursor: pointer;
-    padding: 0;
+	cursor: pointer;
+	padding: 0;
 	background-color: unset
 }
 .comment-replay-btn:hover {
