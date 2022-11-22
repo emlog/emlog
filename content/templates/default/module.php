@@ -423,7 +423,7 @@ function blog_comments($comments) {
 		?>
 		<div class="comment" id="<?= $comment['cid'] ?>">
 			<?php if ($isGravatar == 'y'): ?>
-				<div class="avatar"><img src="<?= getGravatar($comment['mail']) ?>" alt="<?= $comment['poster'] ?> avatar" /></div>
+				<div class="avatar"><img src="<?= getGravatar($comment['mail']) ?>" alt="avatar" /></div>
 				<div class="comment-infos">
 					<div class="arrow"></div>
 					<b><?= $comment['poster'] ?> </b><span class="comment-time"><?= $comment['date'] ?></span>
@@ -454,7 +454,7 @@ function blog_comments_children($comments, $children) {
 		$comment = $comments[$child];
 		$comment['poster'] = $comment['url'] ? '<a href="' . $comment['url'] . '" target="_blank">' . $comment['poster'] . '</a>' : $comment['poster'];
 		?>
-		<div class="comment comment-children" id="comment-<?= $comment['cid'] ?>">
+		<div class="comment comment-children" id="<?= $comment['cid'] ?>">
 			<?php if ($isGravatar == 'y'): ?>
 				<div class="avatar"><img src="<?= getGravatar($comment['mail']) ?>" alt="commentator"/></div>
 				<div class="comment-infos">
