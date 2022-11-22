@@ -366,7 +366,7 @@
         });
     });
 
-    // 文章编辑界面全局快捷键 Ctrl（Cmd）+ S 保存内容
+    // The global shortcut key of the article editing interface Ctrl (Cmd) + S to save the content
     document.addEventListener('keydown', function(e){
 		if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)){
 			e.preventDefault();

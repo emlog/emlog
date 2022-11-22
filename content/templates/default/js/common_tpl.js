@@ -138,7 +138,7 @@ var myBlog = {
 		$t.attr('src2', $t.attr('src'))
 		$t.attr('src', $t.parent().attr('sourcesrc'))
 	}, /**
-	* 归档下拉框的值被改变，跳转到相应日期文章的链接
+	* The value of the archive drop-down box is changed, jumping to the link of the corresponding date article
 	*/
 	jumpLink: function ($t) {
 		$(window).attr("location",$t.val())

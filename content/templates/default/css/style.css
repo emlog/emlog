@@ -836,7 +836,7 @@ body {
 	border-radius: 0 3px 3px 0;
 	padding: 0
 }
-/* 评论区的 回复、取消回复 按钮 */
+/* Reply, Cancel reply buttons in the comment area */
 .comment-replay-btn {
 	border: none;
 	cursor: pointer;
@@ -1480,11 +1480,11 @@ img.zoom-img {
 		height: 30px;
 		width: 30px;
 	}
-	/* 摘要的溢出（overflow）操作 在 小屏幕上要截得多一点 */
+	/* Summary overflow peration is a bit more cropped on small screens */
 	.subtitle-overflow {
 		max-width: 80%
 	}
-	/* 网页顶部的下拉菜单在移动端的显示优化 */
+	/* Optimize the display of the drop-down menu at the top of the webpage on the mobile terminal */
 	.dropdown-menus .list-menu{
 		padding: 0px;
 		letter-spacing: 2px
@@ -1497,7 +1497,7 @@ img.zoom-img {
 		width: 60%;
 		max-width: 300px;
 		padding-right: 30px;
-        /* frozen effect */
+		/* frozen effect */
 		background: rgba(237, 237, 237, 0.8);
 		backdrop-filter: blur(2px);
 		/* Compatible with Safari matte effect */
