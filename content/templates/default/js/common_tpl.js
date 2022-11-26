@@ -33,7 +33,8 @@ var myBlog = {
 				.removeAttr("href")
 		}
 		$("#commentform").attr("onsubmit", "return myBlog.comSubmitTip()")  // 评论提交在表单验证未通过的情况下是不能提交的
-	}, /**
+	},
+	/**
 	* 回复
 	*/
 	comReply: function ($t) {
@@ -46,7 +47,8 @@ var myBlog = {
 		$("#comment-pid").attr("value", getpid)
 		$("#cancel-reply").css("display", "unset")
 		$("#comment-place").toggleClass("com-bottom")
-	}, /**
+	},
+	/**
 	* 取消回复
 	*/
 	cancelReply: function ($t) {
@@ -54,7 +56,8 @@ var myBlog = {
 		$("#cancel-reply").css("display", "none")
 		$("#comment-place").append($("#comment-post"))
 			.toggleClass("com-bottom")
-	}, /**
+	},
+	/**
 	* 手机点击展开导航按钮
 	*/
 	navToggle: function ($t) {
@@ -67,7 +70,8 @@ var myBlog = {
 
 		$nav_c.animate({height: nav_height + 'px'}, time, effect)
 		$navbar.slideToggle(time, effect)
-	}, /**
+	},
+	/**
 	* 定位大屏状态下的导航下拉框位置
 	*/
 	calMargin: function ($t) {
@@ -80,7 +84,8 @@ var myBlog = {
 
 		$childMenu.css("width", menuWidth + "px")
 			.css("margin-left", count)
-	}, /**
+	},
+	/**
 	* 提交评论前对表单的验证
 	*/
 	comTip: '', comSubmitTip: function (value) {
@@ -111,7 +116,8 @@ var myBlog = {
 				return true
 			}
 		}
-	}, /**
+	},
+	/**
 	* 显示(隐藏)验证码模态窗
 	*/
 	viewModal: function () {
@@ -122,7 +128,8 @@ var myBlog = {
 		$('body,html').toggleClass('scroll-fix')
 		$modal.fadeToggle()
 		$("input[name='imgcode']").attr("autocomplete", "off")
-	}, /**
+	},
+	/**
 	* 点击刷新验证码
 	*/
 	captchaRefresh: function ($t) {
@@ -130,19 +137,22 @@ var myBlog = {
 		var blogUrl = $("base").attr("href")
 
 		$t.attr("src", blogUrl + "/include/lib/checkcode.php?" + timestamp)
-	}, /**
+	},
+	/**
 	* 图片在点击时，将略缩图转化为原图
 	*/
 	toggleImgSrc: function ($t) {
 		$t.addClass('zoomFocus')
 		$t.attr('src2', $t.attr('src'))
 		$t.attr('src', $t.parent().attr('sourcesrc'))
-	}, /**
+	},
+	/**
 	* 归档下拉框的值被改变，跳转到相应日期文章的链接
 	*/
 	jumpLink: function ($t) {
 		$(window).attr("location",$t.val())
-	},/**
+	},
+	/**
 	* toc 效果
 	*
 	* 启用 toc 目录方式: 在文章最开头写上'[toc]'或者'<!--[toc]-->',最好是单独一行
@@ -162,7 +172,8 @@ var myBlog = {
 			myBlog.tocArray[i]['id'] = $tit.text()
 			$tit.attr("id", myBlog.tocArray[i]['id'])
 		}
-	}, /**
+	},
+	/**
 	* toc 分析（toc 效果程序的入口）
 	*/
 	tocAnalyse: function () {
@@ -188,7 +199,8 @@ var myBlog = {
 		this.tocSetArray()
 		this.tocRender()
 		this.tocMobileSet()
-	},/**
+	},
+	/**
 	* toc 目录渲染
 	*/
 	tocRender: function() {
