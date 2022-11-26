@@ -660,8 +660,10 @@ function chImageSize($img, $max_w, $max_h) {
 if (!function_exists('getGravatar')) {
 	function getGravatar($email, $s = 40) {
 		$hash = md5($email);
-//	return "//gravatar.loli.net/avatar/$hash?s=$s";
-		return "//sdn.geekzu.org/avatar/$hash?s=$s";
+		$gravatar_url = "//cravatar.cn/avatar/$hash?s=$s";
+		doOnceAction('get_Gravatar', $email, $gravatar_url);
+
+		return $gravatar_url;
 	}
 }
 
@@ -1199,4 +1201,3 @@ if (!function_exists('get_browse')) {
 		return $br;
 	}
 }
-

@@ -1,5 +1,5 @@
 /**
- * 模版样式表
+ * 模板样式表
  */
 
 /* 全局样式
@@ -1220,6 +1220,7 @@ img.zoom-img {
 /* 「归档」的样式 
 ---------------------------------------------------*/
 .archive {
+	color: #929292;
 	font-size: 16px;
 	padding: 4px;
 	border-color: #ced4da
@@ -1235,7 +1236,7 @@ img.zoom-img {
 ---------------------------------------------------*/
 @media all and (max-width: 1200px) and (min-width: 992px) {
 
-	/* 方便在中、小屏幕隐藏元素的class */
+	/* mh 是方便在中、小屏幕隐藏元素的 class */
 	.mh {
 		display: none
 	}
@@ -1265,7 +1266,7 @@ img.zoom-img {
 		margin: -2px;
 		padding-left: 2px
 	}
-	/* 方便在中、小屏幕隐藏元素的 class */
+	/* mh 是方便在中、小屏幕隐藏元素的 class */
 	.mh {
 		display: none
 	}
