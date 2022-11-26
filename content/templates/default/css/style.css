@@ -779,6 +779,7 @@ body {
 }
 /* 评论人的头像 */
 .avatar img {
+	width:40px;
 	margin-top: 9px;
 	margin-right: 4px;
 	border-radius: 50%
