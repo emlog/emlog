@@ -7,7 +7,7 @@
 
 const EMLOG_ROOT = __DIR__;
 
-require_once EMLOG_ROOT . '/include/lib/function.base.php';
+require_once EMLOG_ROOT . '/include/lib/common.php';
 header('Content-Type: text/html; charset=UTF-8');
 spl_autoload_register("emAutoload");
 

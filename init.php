@@ -21,7 +21,7 @@ if (extension_loaded('mbstring')) {
 }
 
 require_once EMLOG_ROOT . '/config.php';
-require_once EMLOG_ROOT . '/include/lib/function.base.php';
+require_once EMLOG_ROOT . '/include/lib/common.php';
 
 spl_autoload_register("emAutoload");
 

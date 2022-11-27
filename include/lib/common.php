@@ -19,11 +19,7 @@ function emAutoload($class) {
 }
 
 /**
- * 转换HTML代码函数
- *
- * @param unknown_type $content
- * @param unknown_type $wrap 是否换行
- * @return string
+ * Convert HTML Code
  */
 function htmlClean($content, $nl2br = true) {
 	$content = htmlspecialchars($content, ENT_QUOTES, 'UTF-8');
@@ -35,9 +31,6 @@ function htmlClean($content, $nl2br = true) {
 	return $content;
 }
 
-/**
- * 获取用户ip地址
- */
 if (!function_exists('getIp')) {
 	function getIp() {
 		$ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
@@ -164,9 +157,6 @@ function subString($strings, $start, $length) {
 
 /**
  * 从可能包含html标记的内容中萃取纯文本摘要
- *
- * @param string $data
- * @param int $len
  */
 function extractHtmlData($data, $len) {
 	$data = subString(strip_tags($data), 0, $len + 30);
@@ -215,8 +205,6 @@ function getFileSuffix($fileName) {
 
 /**
  * 将相对路径转换为完整URL，eg：../content/uploadfile/xxx.jpeg
- * @param $filePath
- * @return string
  */
 function getFileUrl($filePath) {
 	if (!stristr($filePath, 'http')) {
@@ -240,7 +228,7 @@ function rmUrlParams($url) {
  * 根据文件名后缀判断是否图片
  */
 function isImage($mimetype) {
-	if (strstr($mimetype, "image")) {
+	if (strpos($mimetype, "image") !== false) {
 		return true;
 	}
 	return false;
@@ -301,10 +289,6 @@ function pagination($count, $perlogs, $page, $url, $anchor = '') {
 
 /**
  * 该函数在插件中调用,挂载插件函数到预留的钩子上
- *
- * @param string $hook
- * @param string $actionFunc
- * @return boolearn
  */
 function addAction($hook, $actionFunc) {
 	// 通过全局变量来存储挂载点上挂载的插件函数
@@ -369,10 +353,6 @@ function subContent($content, $len, $clean = 0) {
 
 /**
  * 时间转化函数
- *
- * @param $datetemp
- * @param $dstr
- * @return string
  */
 function smartDate($datetemp, $dstr = 'Y-m-d H:i') {
 	$sec = time() - $datetemp;
@@ -392,9 +372,6 @@ function smartDate($datetemp, $dstr = 'Y-m-d H:i') {
 	return $op;
 }
 
-/**
- * 生成一个随机的字符串
- */
 function getRandStr($length = 12, $special_chars = true) {
 	$chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 	if ($special_chars) {
@@ -742,7 +719,7 @@ function emUnZip($zipfile, $path, $type = 'tpl') {
 }
 
 /**
- * zip压缩
+ * Zip compression
  */
 function emZip($orig_fname, $content) {
 	if (!class_exists('ZipArchive', FALSE)) {
@@ -989,8 +966,6 @@ if (!function_exists('hash_hmac')) {
 
 /**
  * 根据文件后缀获取其mine类型
- * @param string $extension
- * @return string
  */
 function get_mimetype($extension) {
 	$ct['htm'] = 'text/html';
