@@ -46,7 +46,6 @@
 <div class="row mb-3 ml-1">
 <!--vot--> <a href="./store.php?action=plu&tag=free" class="badge badge-success m-1 p-2"><?=lang('free_zone')?></a>
 <!--vot--> <a href="./store.php?action=plu&tag=paid" class="badge badge-warning m-1 ml-2 p-2"><?=lang('paid_zone')?></a>
-<!--vot--> <a href="https://www.emlog.net/plugin/add" class="badge badge-primary my-1 ml-3 p-2" target="_blank"><i class="icofont-plus"></i> <?=lang('plugin_publish')?></a>
 </div>
 <div class="row">
 	<?php if (!empty($plugins)): ?>

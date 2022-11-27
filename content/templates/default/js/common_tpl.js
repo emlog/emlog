@@ -33,8 +33,9 @@ var myBlog = {
 				.removeAttr("href")
 		}
       $("#commentform").attr("onsubmit", "return myBlog.comSubmitTip()")  // Comment submission cannot be submitted if the form verification fails
-	}, /**
-     * Reply
+	},
+	/**
+	* Reply
 	*/
 	comReply: function ($t) {
 		var $ele, getpid, $com_board
@@ -46,16 +47,18 @@ var myBlog = {
 		$("#comment-pid").attr("value", getpid)
 		$("#cancel-reply").css("display", "unset")
 		$("#comment-place").toggleClass("com-bottom")
-	}, /**
-     * Cancel reply
+	},
+	/**
+	* Cancel reply
 	*/
 	cancelReply: function ($t) {
 		$("#comment-pid").attr("value", "0")
 		$("#cancel-reply").css("display", "none")
 		$("#comment-place").append($("#comment-post"))
 			.toggleClass("com-bottom")
-	}, /**
-     * Click on the mobile phone to expand the navigation button
+	},
+	/**
+	* Click on the mobile phone to expand the navigation button
 	*/
 	navToggle: function ($t) {
 		var time, effect, $navbar, $nav_c, nav_height
@@ -67,8 +70,9 @@ var myBlog = {
 
 		$nav_c.animate({height: nav_height + 'px'}, time, effect)
 		$navbar.slideToggle(time, effect)
-	}, /**
-     * Locate the position of the navigation drop-down box in the large screen state
+	},
+	/**
+	* Locate the position of the navigation drop-down box in the large screen state
 	*/
 	calMargin: function ($t) {
 		if (window.outerWidth < 992) return
@@ -80,8 +84,9 @@ var myBlog = {
 
 		$childMenu.css("width", menuWidth + "px")
 			.css("margin-left", count)
-	}, /**
-     * Validation of the form before submitting the comment
+	},
+	/**
+	* Validation of the form before submitting the comment
 	*/
 	comTip: '', comSubmitTip: function (value) {
 		if (value == 'judge') {
@@ -111,8 +116,9 @@ var myBlog = {
 				return true
 			}
 		}
-	}, /**
-     * Show (hide) the verification code modal window
+	},
+	/**
+	* Show (hide) the verification code modal window
 	*/
 	viewModal: function () {
 		var $modal, $lock
@@ -122,37 +128,41 @@ var myBlog = {
 		$('body,html').toggleClass('scroll-fix')
 		$modal.fadeToggle()
 		$("input[name='imgcode']").attr("autocomplete", "off")
-	}, /**
-     * Click Refresh verification code
+	},
+	/**
+	* Click Refresh verification code
 	*/
 	captchaRefresh: function ($t) {
 		var timestamp = new Date().getTime()
 		var blogUrl = $("base").attr("href")
 
 		$t.attr("src", blogUrl + "/include/lib/checkcode.php?" + timestamp)
-	}, /**
-     * When the image is clicked, the thumbnail will be converted to the original image
+	},
+	/**
+	* When the image is clicked, the thumbnail will be converted to the original image
 	*/
 	toggleImgSrc: function ($t) {
 		$t.addClass('zoomFocus')
 		$t.attr('src2', $t.attr('src'))
 		$t.attr('src', $t.parent().attr('sourcesrc'))
-	}, /**
+	},
+	/**
 	* The value of the archive drop-down box is changed, jumping to the link of the corresponding date article
 	*/
 	jumpLink: function ($t) {
 		$(window).attr("location",$t.val())
-	},/**
+	},
+	/**
 	* toc analysis
 	*
-    * Enable toc directory method: write '[toc]' or'<!--[toc]-->' at the beginning of the article, preferably on a single line
+	* Enable toc directory method: write '[toc]' or'<!--[toc]-->' at the beginning of the article, preferably on a single line
 	*/
-   tocFlag: /\[toc\]/gi,  // Regular expression to determine whether toc is declared
-   tocArray: new Array(),  // Array to store toc
-   tocSetArray: function(){  // Fill the toc array with data
+	tocFlag: /\[toc\]/gi,  // Regular expression to determine whether toc is declared
+	tocArray: new Array(),  // Array to store toc
+	tocSetArray: function(){  // Fill the toc array with data
 		var $titles = $("#emlogEchoLog h1,h2,h3,h4,h5,h6:eq(0)")
 
-       for (var i = 0; i < $titles.length; i++) {  // Store the label data into an array in sequence
+		for (var i = 0; i < $titles.length; i++) {  // Store the label data into an array in sequence
 			let $tit = $("#emlogEchoLog [toc-date='title']:eq(" + i + ")")
 			myBlog.tocArray[i] = new Array()
 
@@ -162,8 +172,9 @@ var myBlog = {
 			myBlog.tocArray[i]['id'] = $tit.text()
 			$tit.attr("id", myBlog.tocArray[i]['id'])
 		}
-	}, /**
-    * toc analysis (entrance to the toc effect program)
+	},
+	/**
+	* toc analysis (entrance to the toc effect program)
 	*/
 	tocAnalyse: function () {
 		var tocFlag = document.querySelector("#emlogEchoLog p")
@@ -188,8 +199,9 @@ var myBlog = {
 		this.tocSetArray()
 		this.tocRender()
 		this.tocMobileSet()
-	},/**
-    * toc directory rendering
+	},
+	/**
+	* toc directory rendering
 	*/
 	tocRender: function() {
 		var tocHtml = ''
@@ -203,7 +215,7 @@ var myBlog = {
 		for (var i = 0; i < data.length; i++) {
 			if (data[i]['type'] < minType) minType = data[i]['type']
 		}
-       tocHtml = tocHtml + '<div class="toc-con" style="left:' + padNum + 'px" id="toc-con">'   // Rendering
+		tocHtml = tocHtml + '<div class="toc-con" style="left:' + padNum + 'px" id="toc-con">'	// 渲染
 		tocHtml = tocHtml + '<div style="height:calc(100vh - 70px);overflow-y:scroll;" ><lu>'
 		for (var i = 0; i < data.length; i++) {
 			let k = minType
@@ -227,7 +239,7 @@ var myBlog = {
 		tocHtml = tocHtml + '</lu></div></div>'
 		$logcon.before(tocHtml)
 
-       function tocSetListen(){  // Add listening events in batches
+		function tocSetListen(){  // Add listening events in batches
 			for (var i = 0; i < data.length; i++) {
 				let tempPos = myBlog.tocArray[i]["pos"]
 				$('#to' + i).off("click");

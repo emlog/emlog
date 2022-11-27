@@ -9,7 +9,7 @@
 /*vot*/ define('LANG','en'); //zh-CN, zh-TW, en, ru, etc.
 /*vot*/ define('LANG_DIR','ltr'); //ltr, rtl 
 
-require_once EMLOG_ROOT . '/include/lib/function.base.php';
+require_once EMLOG_ROOT . '/include/lib/common.php';
 
 /*vot*/ load_language('install');
 

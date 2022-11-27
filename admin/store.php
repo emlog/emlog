@@ -74,7 +74,7 @@ if ($action === 'install') {
 	@unlink($temp_file);
 	switch ($ret) {
 		case 0:
-			emDirect($store_path . 'active=1');
+			emDirect($store_path . 'active=1&tag=free');
 		case 1:
 		case 2:
 			emDirect($store_path . 'error_dir=1');

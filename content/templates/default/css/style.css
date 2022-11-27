@@ -822,6 +822,7 @@ body {
 }
 /* Commenter's avatar */
 .avatar img {
+	width:40px;
 	margin-top: 9px;
 	margin-right: 4px;
 	border-radius: 50%
@@ -1263,6 +1264,7 @@ img.zoom-img {
 /* "archive" style
 ---------------------------------------------------*/
 .archive {
+	color: #929292;
 	font-size: 16px;
 	padding: 4px;
 	border-color: #ced4da
@@ -1277,7 +1279,7 @@ img.zoom-img {
 ---------------------------------------------------*/
 @media all and (max-width: 1200px) and (min-width: 992px) {
 
-	/* Class that is convenient for hiding elements on medium and small screens */
+	/* mh is a class that is convenient for hiding elements on medium and small screens */
 	.mh {
 		display: none
 	}
@@ -1307,7 +1309,7 @@ img.zoom-img {
 		margin: -2px;
 		padding-left: 2px
 	}
-	/* Class that is convenient for hiding elements on medium and small screens */
+	/* mh is a class that is convenient for hiding elements on medium and small screens */
 	.mh {
 		display: none
 	}
