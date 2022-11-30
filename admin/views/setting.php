@@ -112,6 +112,9 @@
                     <option value="n" <?= $ex2 ?>>摘要</option>
                 </select>
             </div>
+            <div class="alert alert-primary">
+                RSS地址(用于RSS阅读器订阅你的站点内容)：<?= $blogurl . 'rss.php' ?>
+            </div>
 
             <hr>
 

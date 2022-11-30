@@ -1,6 +1,6 @@
 <?php
 /**
- * Basic function library
+ * Common function library
  * @package EMLOG
  * @link https://www.emlog.net
  */
@@ -1111,7 +1111,7 @@ function getTimeZoneOffset($remote_tz, $origin_tz = 'UTC') {
 }
 
 /**
- * 上传裁剪后的图片（封面、头像）
+ * Upload the cut pictures (cover and avatar)
  */
 function uploadCropImg() {
 	$attach = isset($_FILES['image']) ? $_FILES['image'] : '';
