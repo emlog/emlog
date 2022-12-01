@@ -1,6 +1,6 @@
 <?php
 /**
- * 数据库操作路由 (仅仅兼容旧的插件，不推荐使用)
+ * Database operation routing (only compatible with old version, not recommended)
  *
  * @package EMLOG
  * @link https://www.emlog.net

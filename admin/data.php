@@ -23,20 +23,8 @@ if ($action === 'backup') {
 	LoginAuth::checkToken();
 	$zipbak = isset($_POST['zipbak']) ? $_POST['zipbak'] : 'n';
 
-	$tables = [
-		'attachment',
-		'blog',
-		'comment',
-		'options',
-		'navi',
-		'sort',
-		'link',
-		'media_sort',
-		'storage',
-		'tag',
-		'twitter',
-		'user'
-	];
+	$DB = Database::getInstance();
+	$tables = $DB->listTables();
 
 	doAction('data_backup');
 
@@ -45,7 +33,7 @@ if ($action === 'backup') {
 	$sqldump = '';
 
 	foreach ($tables as $table) {
-		$sqldump .= dataBak(DB_PREFIX . $table);
+		$sqldump .= dataBak($table);
 	}
 
 	$dumpfile = '#version:emlog ' . Option::EMLOG_VERSION . "\n";

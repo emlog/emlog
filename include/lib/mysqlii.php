@@ -9,28 +9,24 @@
 class MySqlii {
 
 	/**
-	 * 查询次数
 	 * @var int
 	 */
 	private $queryCount = 0;
 
 	/**
-	 * 内部数据连接对象
 	 * @var mysqli
 	 */
 	private $conn;
 
 	/**
-	 * 内部数据结果
 	 * @var mysqli_result
 	 */
 	private $result;
 
 	/**
-	 * 内部实例对象
 	 * @var object MySql
 	 */
-	private static $instance = null;
+	private static $instance;
 
 	private function __construct() {
 		if (!class_exists('mysqli')) {
@@ -61,9 +57,6 @@ class MySqlii {
 		$this->conn->set_charset('utf8mb4');
 	}
 
-	/**
-	 * 静态方法，返回数据库连接实例
-	 */
 	public static function getInstance() {
 		if (self::$instance === null) {
 			self::$instance = new MySqlii();
@@ -72,109 +65,91 @@ class MySqlii {
 		return self::$instance;
 	}
 
-	/**
-	 * 关闭数据库连接
-	 */
-	function close() {
+	public function close() {
 		return $this->conn->close();
 	}
 
-	/**
-	 * 发送查询语句
-	 */
-	function query($sql, $ignore_err = FALSE) {
+	public function query($sql, $ignore_err = FALSE) {
 		$this->result = $this->conn->query($sql);
 		$this->queryCount++;
-		if (!$ignore_err && 1046 == $this->geterrno()) {
+		if (!$ignore_err && 1046 == $this->getErrNo()) {
 			emMsg("连接数据库失败，请填写数据库名");
 		}
 		if (!$ignore_err && !$this->result) {
-			emMsg("SQL执行错误: $sql<br /><br />" . $this->geterror());
+			emMsg("SQL执行错误: $sql<br /><br />" . $this->getError());
 		} else {
 			return $this->result;
 		}
 	}
 
-	/**
-	 * 从结果集中取得一行作为关联数组/数字索引数组
-	 */
-	function fetch_array(mysqli_result $query, $type = MYSQLI_ASSOC) {
+	public function fetch_array(mysqli_result $query, $type = MYSQLI_ASSOC) {
 		return $query->fetch_array($type);
 	}
 
-	function once_fetch_array($sql) {
+	public function once_fetch_array($sql) {
 		$this->result = $this->query($sql);
 		return $this->fetch_array($this->result);
 	}
 
-	/**
-	 * 从结果集中取得一行作为数字索引数组
-	 */
-	function fetch_row(mysqli_result $query) {
+	public function fetch_row(mysqli_result $query) {
 		return $query->fetch_row();
 	}
 
-	/**
-	 * 取得行的数目
-	 *
-	 */
-	function num_rows(mysqli_result $query) {
+	public function num_rows(mysqli_result $query) {
 		return $query->num_rows;
 	}
 
-	/**
-	 * 取得结果集中字段的数目
-	 */
-	function num_fields(mysqli_result $query) {
+	public function num_fields(mysqli_result $query) {
 		return $query->field_count;
 	}
 
-	/**
-	 * 取得上一步 INSERT 操作产生的 ID
-	 */
-	function insert_id() {
+	public function insert_id() {
 		return $this->conn->insert_id;
 	}
 
 	/**
-	 * 获取mysql错误
+	 * Get mysql error
 	 */
-	function geterror() {
+	public function getError() {
 		return $this->conn->error;
 	}
 
 	/**
-	 * 获取mysql错误编码
+	 * Get mysql error code
 	 */
-	function geterrno() {
+	public function getErrNo() {
 		return $this->conn->errno;
 	}
 
 	/**
 	 * Get number of affected rows in previous MySQL operation
 	 */
-	function affected_rows() {
+	public function affected_rows() {
 		return $this->conn->affected_rows;
 	}
 
-	/**
-	 * 取得数据库版本信息
-	 */
-	function getMysqlVersion() {
+	public function getMysqlVersion() {
 		return $this->conn->server_info;
 	}
 
-	/**
-	 * 取得数据库查询次数
-	 */
-	function getQueryCount() {
+	public function getQueryCount() {
 		return $this->queryCount;
 	}
 
 	/**
 	 *  Escapes special characters
 	 */
-	function escape_string($sql) {
+	public function escape_string($sql) {
 		return $this->conn->real_escape_string($sql);
 	}
+
+	public function listTables() {
+		$rs = $this->query("SHOW TABLES FROM " . DB_NAME);
+		$tables = [];
+		while ($row = $this->fetch_row($rs)) {
+			$tables[] = isset($row[0]) ? $row[0] : '';
+		}
+		return $tables;
+	}
+
 }
