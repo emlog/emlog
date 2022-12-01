@@ -36,7 +36,7 @@ if ($action == 'update_tag') {
 	}
 
 	$Tag_Model->updateTagName($tagId, $tagName);
-	$CACHE->updateCache(array('tags', 'logtags'));
+	$CACHE->updateCache(tags);
 	emDirect("./tag.php?active_edit=1");
 }
 
@@ -51,6 +51,6 @@ if ($action == 'del_tag') {
 
 	$Tag_Model->deleteTag($tid);
 
-	$CACHE->updateCache(array('tags', 'logtags'));
+	$CACHE->updateCache('tags');
 	emDirect("./tag.php?active_del=1");
 }

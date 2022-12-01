@@ -88,12 +88,7 @@ class Log_Controller {
 				break;
 		}
 		$site_description = extractHtmlData($log_content, 90);
-		$log_cache_tags = $CACHE->readCache('logtags');
-		if (!empty($log_cache_tags[$logid])) {
-			foreach ($log_cache_tags[$logid] as $value) {
-				$site_key .= ',' . $value['tagname'];
-			}
-		}
+
 		//comments
 		$verifyCode = ISLOGIN == false && $comment_code == 'y' ? "<img src=\"" . BLOG_URL . "include/lib/checkcode.php\" id=\"captcha\" /><input name=\"imgcode\" type=\"text\" class=\"input\" size=\"5\" tabindex=\"5\" />" : '';
 		$ckname = isset($_COOKIE['commentposter']) ? htmlspecialchars(stripslashes($_COOKIE['commentposter'])) : '';

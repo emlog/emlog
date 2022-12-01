@@ -77,7 +77,7 @@ class Cache {
 	}
 
 	public function updateArticleCache() {
-		$this->updateCache(['sta', 'tags', 'sort', 'newlog', 'record', 'logtags', 'logsort', 'logalias']);
+		$this->updateCache(['sta', 'tags', 'sort', 'newlog', 'record', 'logsort', 'logalias']);
 	}
 
 	public function cacheWrite($cacheData, $cacheName) {
@@ -454,31 +454,10 @@ class Cache {
 	}
 
 	/**
-	 * 文章标签缓存
+	 * 文章标签缓存 [已废弃]
 	 */
 	private function mc_logtags() {
-		$tag_model = new Tag_Model();
-		$newlog = $this->readCache("newlog");
-
-		$log_cache_tags = [];
-		foreach ($newlog as $each) {
-			$gid = $each['gid'];
-			$tag_ids = $tag_model->getTagIdsFromBlogId($gid);
-			$tag_names = $tag_model->getNamesFromIds($tag_ids);
-
-			$tags = [];
-			foreach ($tag_names as $key => $value) {
-				$tag = [];
-				$tag['tagurl'] = rawurlencode($value);
-				$tag['tagname'] = htmlspecialchars($value);
-				$tag['tid'] = (int)$key;
-				$tags[] = $tag;
-			}
-
-			$log_cache_tags[$gid] = $tags;
-		}
-
-		$cacheData = serialize($log_cache_tags);
+		$cacheData = serialize([]);
 		$this->cacheWrite($cacheData, 'logtags');
 	}
 

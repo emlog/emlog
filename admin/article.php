@@ -68,7 +68,6 @@ if (empty($action)) {
 	$logNum = $Log_Model->getLogNum($hide_state, $sqlSegment, 'blog', 1);
 	$logs = $Log_Model->getLogsForAdmin($sqlSegment, $hide_state, $page);
 	$sorts = $CACHE->readCache('sort');
-	$log_cache_tags = $CACHE->readCache('logtags');
 
 	$subPage = '';
 	foreach ($_GET as $key => $val) {

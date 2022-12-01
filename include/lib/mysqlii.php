@@ -88,9 +88,6 @@ class MySqlii {
 		if (!$ignore_err && 1046 == $this->geterrno()) {
 			emMsg("连接数据库失败，请填写数据库名");
 		}
-		if (!$ignore_err && 1286 == $this->geterrno()) {
-			emMsg("数据库不支持InnoDB引擎，建议使用MySQL5.6或更高版本");
-		}
 		if (!$ignore_err && !$this->result) {
 			emMsg("SQL执行错误: $sql<br /><br />" . $this->geterror());
 		} else {

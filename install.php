@@ -293,7 +293,7 @@ EOT;
 	$PHPASS = new PasswordHash(8, true);
 	$password = $PHPASS->HashPassword($password);
 
-	$table_charset_sql = 'ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;';
+	$table_charset_sql = 'DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;';
 	$DB->query("ALTER DATABASE `{$db_name}` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;", true);
 
 	$widget_title = serialize(Option::getWidgetTitle());
@@ -544,9 +544,9 @@ CREATE TABLE {$db_prefix}storage (
 	$result = '';
 	$result .= "
         <p style=\"font-size:24px; border-bottom:1px solid #E6E6E6; padding:10px 0px;\">恭喜，安装成功！</p>
-        <p>您的emlog已经安装好了，现在可以开始您的创作了，就这么简单!</p>
+        <p>emlog已经安装好了，现在可以开始你的创作了。</p>
         <p><b>用户名</b>：{$username}</p>
-        <p><b>密 码</b>：您刚才设定的密码</p>";
+        <p><b>密 码</b>：刚才你设定的密码</p>";
 	if ($env_emlog_env === 'develop' || ($env_emlog_env !== 'develop' && !@unlink('./install.php'))) {
 		$result .= '<p style="color:#ff0000;margin:10px 20px;">警告：请手动删除根目录下安装文件：install.php</p> ';
 	}

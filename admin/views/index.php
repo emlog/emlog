@@ -150,56 +150,8 @@
         setTimeout(hideActived, 2600);
         $("#menu_panel").addClass('active');
         $(document).ready(function () {
-            $("#admindex_msg ul").html("").addClass("spinner-border text-primary");
-            $.get("./index.php?action=get_news",
-                function (data) {
-                    $.each(data.items, function (i, item) {
-                        var image = '';
-                        if (item.image != '') {
-                            image = "<a href=\"" + item.url + "\" target=\"_blank\" title=\"" + item.title + "\"><img src=\"" + item.image + "\"></a><br />";
-                        }
-                        $("#admindex_msg ul").append("<li class=\"msg_type_" + item.type + "\">" + image + "<span>" + item.date + "</span><a href=\"" + item.url + "\" target=\"_blank\">" + item.title + "</a></li>");
-                    });
-                    $("#admindex_msg ul").removeClass();
-                });
+            getNews();
         });
-
-        function checkupdate() {
-            $("#upmsg").html("").addClass("spinner-border text-primary");
-            $.get("./upgrade.php?action=check_update",
-                function (result) {
-                    if (result.code == 1001) {
-                        $("#upmsg").html("您的emlog pro尚未注册，<a href=\"auth.php\">去注册</a>").removeClass();
-                    } else if (result.code == 1002) {
-                        $("#upmsg").html("已经是最新版本").removeClass();
-                    } else if (result.code == 1003) {
-                        $("#upmsg").html("更新服务已到期，<a href=\"https://www.emlog.net/\" target=\"_blank\">登录官网续期</a>").removeClass();
-                    } else if (result.code == 200) {
-                        $("#upmsg").html("有可用的新版本 " + result.data.version + "，<a href=\"https://www.emlog.net/docs/#/changelog\" target=\"_blank\">查看更新内容</a>，<a id=\"doup\" href=\"javascript:doup('" + result.data.file + "','" + result.data.sql + "');\">现在更新</a>").removeClass();
-                    } else {
-                        $("#upmsg").html("检查失败，可能是网络问题").removeClass();
-                    }
-                });
-        }
-
-        function doup(source, upsql) {
-            $("#upmsg").html("正在更新中，请耐心等待").addClass("ajaxload");
-            $.get('./upgrade.php?action=update&source=' + source + "&upsql=" + upsql,
-                function (data) {
-                    $("#upmsg").removeClass();
-                    if (data.match("succ")) {
-                        $("#upmsg").html('恭喜您！更新成功了，请<a href="./">刷新页面</a>开始体验新版emlog');
-                    } else if (data.match("error_down")) {
-                        $("#upmsg").html('下载更新失败，可能是服务器网络问题');
-                    } else if (data.match("error_zip")) {
-                        $("#upmsg").html('解压更新失败，可能是你的服务器空间不支持zip模块');
-                    } else if (data.match("error_dir")) {
-                        $("#upmsg").html('更新失败，目录不可写');
-                    } else {
-                        $("#upmsg").html('更新失败');
-                    }
-                });
-        }
     </script>
 <?php endif ?>
 <?php endif ?>

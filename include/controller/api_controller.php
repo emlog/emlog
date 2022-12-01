@@ -76,6 +76,7 @@ class Api_Controller {
 		$sort_id = isset($_GET['sort_id']) ? (int)trim($_GET['sort_id']) : 0;
 		$keyword = isset($_GET['keyword']) ? addslashes(htmlspecialchars(urldecode(trim($_GET['keyword'])))) : '';
 		$keyword = str_replace(['%', '_'], ['\%', '\_'], $keyword);
+		$tag = isset($_GET['tag']) ? addslashes(urldecode(trim($_GET['tag']))) : '';
 
 		$sub = '';
 		if ($sort_id) {
@@ -83,6 +84,12 @@ class Api_Controller {
 		}
 		if ($keyword) {
 			$sub .= " and title like '%{$keyword}%'";
+		}
+		if ($tag) {
+			$blogIdStr = $this->Tag_Model->getTagByName($tag);
+			if ($blogIdStr) {
+				$sub .= "and gid IN ($blogIdStr)";
+			}
 		}
 
 		$r = $this->Log_Model->getLogsForHome($sub . " ORDER BY top DESC ,date DESC", $page, $count);
@@ -105,6 +112,7 @@ class Api_Controller {
 				'comnum'      => (int)$value['comnum'],
 				'top'         => $value['top'],
 				'sortop'      => $value['sortop'],
+				'tags'        => $this->getTags((int)$value['gid']),
 			];
 		}
 
@@ -137,6 +145,7 @@ class Api_Controller {
 			'comnum'      => (int)$r['comnum'],
 			'top'         => $r['top'],
 			'sortop'      => $r['sortop'],
+			'tags'        => $this->getTags($id),
 		];
 
 		output::ok(['article' => $article,]);
@@ -178,6 +187,21 @@ class Api_Controller {
 		$id = $this->Twitter_Model->addTwitter($data);
 		$this->Cache->updateCache('sta');
 		output::ok(['note_id' => $id,]);
+	}
+
+	private function getTags($id) {
+		$tag_ids = $this->Tag_Model->getTagIdsFromBlogId($id);
+		$tag_names = $this->Tag_Model->getNamesFromIds($tag_ids);
+		$tags = [];
+		if (!empty($tag_names)) {
+			foreach ($tag_names as $value) {
+				$tags[] = [
+					'name' => htmlspecialchars($value),
+					'url'  => Url::tag(rawurlencode($value)),
+				];
+			}
+		}
+		return $tags;
 	}
 
 	private function checkApiKey($req_sign, $req_time) {
