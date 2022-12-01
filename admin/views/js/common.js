@@ -518,11 +518,7 @@ function getNews() {
     $("#admindex_msg ul").html("").addClass("spinner-border text-primary");
     $.get("./index.php?action=get_news", function (data) {
         $.each(data.items, function (i, item) {
-            var image = '';
-            if (item.image != '') {
-                image = "<a href=\"https://www.emlog.net/" + item.uri + "\" target=\"_blank\" title=\"" + item.title + "\"><img src=\"" + item.image + "\"></a><br />";
-            }
-            $("#admindex_msg ul").append("<li class=\"msg_type_" + item.type + "\">" + image + "<span>" + item.date + "</span><a href=\"https://www.emlog.net/" + item.url + "\" target=\"_blank\">" + item.title + "</a></li>");
+            $("#admindex_msg ul").append("<li class=\"msg_type_0\"><a href=\"https://www.emlog.net/" + item.uri + "\" target=\"_blank\">" + item.title + "</a></li>");
         });
         $("#admindex_msg ul").removeClass();
     });
