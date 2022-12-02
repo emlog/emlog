@@ -40,7 +40,7 @@
             <form action="auth.php?action=auth" method="post">
                 <div class="modal-body">
                     <div class="form-group">
-                        <input class="form-control" id="emkey" name="emkey" placeholder="输入注册码" required>
+                        <input class="form-control" id="emkey" name="emkey" placeholder="输入注册码" minlength="32" maxlength="32" required>
                     </div>
                     <div class="form-group">
                         <a href="https://www.emlog.net/register" target="_blank">获取注册码&rarr; </a>

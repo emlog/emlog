@@ -7,8 +7,8 @@
 
 class LoginAuth {
 
-	const LOGIN_ERROR_USER = -1;     //用户不存在
-	const LOGIN_ERROR_PASSWD = -2;   //密码错误
+	const LOGIN_ERROR_USER = -1;
+	const LOGIN_ERROR_PASSWD = -2;
 
 
 	public static function isLogin() {
@@ -24,14 +24,11 @@ class LoginAuth {
 
 		if (($userData = self::validateAuthCookie($auth_cookie)) === false) {
 			return false;
-		} else {
-			return true;
 		}
+
+		return true;
 	}
 
-	/**
-	 * 如果未登录跳登录页
-	 */
 	public static function checkLogin($error_code = NULL) {
 		if (self::isLogin() === true) {
 			return;
@@ -43,9 +40,6 @@ class LoginAuth {
 		}
 	}
 
-	/**
-	 * 如果已登录跳后台首页
-	 */
 	public static function checkLogged() {
 		if (self::isLogin() === false) {
 			return;
@@ -53,9 +47,6 @@ class LoginAuth {
 		emDirect("./");
 	}
 
-	/**
-	 * 验证密码/用户
-	 */
 	public static function checkUser($username, $password) {
 		if (empty($username) || empty($password)) {
 			return self::LOGIN_ERROR_USER;
@@ -71,9 +62,6 @@ class LoginAuth {
 		return self::LOGIN_ERROR_PASSWD;
 	}
 
-	/**
-	 * 通过登录名(用户名or邮箱)查询管理员信息
-	 */
 	public static function getUserDataByLogin($account) {
 		$DB = Database::getInstance();
 		if (empty($account)) {
@@ -100,13 +88,6 @@ class LoginAuth {
 		return $userData;
 	}
 
-	/**
-	 * 将明文密码和数据库加密后的密码进行验证
-	 *
-	 * @param string $password Plaintext user's password
-	 * @param string $hash Hash of the user's password to check against.
-	 * @return bool False, if the $password does not match the hashed password
-	 */
 	public static function checkPassword($password, $hash) {
 		global $em_hasher;
 		if (empty($em_hasher)) {
@@ -115,12 +96,6 @@ class LoginAuth {
 		return $em_hasher->CheckPassword($password, $hash);
 	}
 
-	/**
-	 * 写用于登录验证cookie
-	 *
-	 * @param int $user_id User ID
-	 * @param bool $remember Whether to remember the user or not
-	 */
 	public static function setAuthCookie($user_login, $ispersis = false) {
 		if ($ispersis) {
 			$expiration = time() + 3600 * 24 * 30 * 12;
@@ -132,13 +107,6 @@ class LoginAuth {
 		setcookie($auth_cookie_name, $auth_cookie, $expiration, '/', '', false, true);
 	}
 
-	/**
-	 * 生成登录验证cookie
-	 *
-	 * @param int $user_id user login
-	 * @param int $expiration Cookie expiration in seconds
-	 * @return string Authentication cookie contents
-	 */
 	private static function generateAuthCookie($user_login, $expiration) {
 		$key = self::emHash($user_login . '|' . $expiration);
 		$hash = hash_hmac('md5', $user_login . '|' . $expiration, $key);
@@ -146,23 +114,10 @@ class LoginAuth {
 		return $user_login . '|' . $expiration . '|' . $hash;
 	}
 
-	/**
-	 * Get hash of given string.
-	 *
-	 * @param string $data Plain text to hash
-	 * @return string Hash of $data
-	 */
 	private static function emHash($data) {
 		return hash_hmac('md5', $data, AUTH_KEY);
 	}
 
-	/**
-	 * 验证cookie
-	 * Validates authentication cookie.
-	 *
-	 * @param string $cookie Optional. If used, will validate contents instead of cookie's
-	 * @return bool|int False if invalid cookie, User ID if valid.
-	 */
 	private static function validateAuthCookie($cookie = '') {
 		if (empty($cookie)) {
 			return false;
@@ -193,9 +148,6 @@ class LoginAuth {
 		return $user;
 	}
 
-	/**
-	 * 生成token，防御CSRF攻击
-	 */
 	public static function genToken() {
 		if (!isset($_SESSION)) {
 			session_start();
@@ -208,13 +160,10 @@ class LoginAuth {
 		return $token;
 	}
 
-	/**
-	 * 检查token，防御CSRF攻击
-	 */
 	public static function checkToken() {
 		$token = isset($_REQUEST['token']) ? addslashes($_REQUEST['token']) : '';
 		if ($token !== self::genToken()) {
-			emMsg('权限不足，token error');
+			emMsg('权限不足 token error');
 		}
 	}
 }
