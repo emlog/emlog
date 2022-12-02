@@ -202,8 +202,6 @@
 </div>
 <script src="./editor.md/editormd.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
 <script>
-    var icon_tog = false;
-
     $("#alias").keyup(function () {
         checkalias();
     });
