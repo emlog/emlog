@@ -15,7 +15,7 @@ class Plugin_Model {
 	}
 
 	/**
-	 * 开启插件
+	 * start plug-in
 	 */
 	function activePlugin($plugin) {
 		$active_plugins = Option::get('active_plugins');
@@ -45,7 +45,7 @@ class Plugin_Model {
 	}
 
 	/**
-	 * 禁用插件
+	 * stop plug-in
 	 */
 	function inactivePlugin($plugin) {
 		$active_plugins = Option::get('active_plugins');
@@ -70,12 +70,6 @@ class Plugin_Model {
 		}
 	}
 
-	/**
-	 * 获取所有插件列表，未定义插件名称的插件将不予获取
-	 * 插件目录：content\plugins
-	 * 仅识别 插件目录/插件/插件.php 目录结构的插件
-	 * @return array
-	 */
 	function getPlugins() {
 		global $emPlugins;
 		if (isset($emPlugins)) {
@@ -119,12 +113,6 @@ class Plugin_Model {
 		return $emPlugins;
 	}
 
-	/**
-	 * 获取插件信息
-	 *
-	 * @param string $pluginFile
-	 * @return array
-	 */
 	function getPluginData($pluginFile) {
 		$pluginPath = EMLOG_ROOT . '/content/plugins/';
 		$pluginData = implode('', file($pluginPath . $pluginFile));

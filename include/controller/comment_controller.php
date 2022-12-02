@@ -27,7 +27,7 @@ class Comment_Controller {
 		}
 
 		if ($url && strncasecmp($url, 'http', 4)) {
-			$url = 'http://' . $url;
+			$url = 'https://' . $url;
 		}
 
 		doAction('comment_post');
@@ -44,9 +44,9 @@ class Comment_Controller {
 			emMsg('评论失败：请填写姓名');
 		} elseif (strlen($name) > 20) {
 			emMsg('评论失败：姓名不符合规范');
-		} elseif ($mail != '' && !checkMail($mail)) {
+		} elseif ($mail !== '' && !checkMail($mail)) {
 			emMsg('评论失败：邮件地址不符合规范');
-		} elseif (ISLOGIN == false && $Comment_Model->isNameAndMailValid($name, $mail) === false) {
+		} elseif (ISLOGIN === false && $Comment_Model->isNameAndMailValid($name, $mail) === false) {
 			emMsg('评论失败：禁止使用管理员昵称或邮箱评论');
 		} elseif (!empty($url) && preg_match("/^(http|https)\:\/\/[^<>'\"]*$/", $url) == false) {
 			emMsg('评论失败：主页地址不符合规范', 'javascript:history.back(-1);');
@@ -56,7 +56,7 @@ class Comment_Controller {
 			emMsg('评论失败：内容不符合规范');
 		} elseif (User::isVistor() && Option::get('comment_needchinese') == 'y' && !preg_match('/[\x{4e00}-\x{9fa5}]/iu', $content)) {
 			emMsg('评论失败：评论内容需包含中文');
-		} elseif (ISLOGIN == false && Option::get('comment_code') == 'y' && session_start() && (empty($imgcode) || $imgcode !== $_SESSION['code'])) {
+		} elseif (ISLOGIN === false && Option::get('comment_code') == 'y' && session_start() && (empty($imgcode) || $imgcode !== $_SESSION['code'])) {
 			emMsg('评论失败：验证码错误');
 		}
 

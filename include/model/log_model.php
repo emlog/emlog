@@ -12,7 +12,7 @@ class Log_Model {
 	private $Parsedown;
 	private $table;
 
-	function __construct() {
+	public function __construct() {
 		$this->db = Database::getInstance();
 		$this->table = DB_PREFIX . 'blog';
 		$this->Parsedown = new Parsedown();
@@ -22,9 +22,8 @@ class Log_Model {
 	/**
 	 * create article
 	 */
-	function addlog($logData) {
-		$kItem = [];
-		$dItem = [];
+	public function addlog($logData) {
+		$kItem = $dItem = [];
 		foreach ($logData as $key => $data) {
 			$kItem[] = $key;
 			$dItem[] = $data;
@@ -38,7 +37,7 @@ class Log_Model {
 	/**
 	 * update article
 	 */
-	function updateLog($logData, $blogId, $uid = UID) {
+	public function updateLog($logData, $blogId, $uid = UID) {
 		$author = User::haveEditPermission() ? '' : 'and author=' . $uid;
 		$Item = [];
 		foreach ($logData as $key => $data) {
@@ -51,13 +50,13 @@ class Log_Model {
 	/**
 	 * Gets the number of articles for the specified condition
 	 *
-	 * @param int $spot 0:前台 1:后台
+	 * @param int $spot 0:homepage 1:admin
 	 * @param string $hide
 	 * @param string $condition
 	 * @param string $type
 	 * @return int
 	 */
-	function getLogNum($hide = 'n', $condition = '', $type = 'blog', $spot = 0) {
+	public function getLogNum($hide = 'n', $condition = '', $type = 'blog', $spot = 0) {
 		$hide_state = $hide ? "and hide='$hide'" : '';
 
 		if ($spot == 0) {
@@ -73,10 +72,7 @@ class Log_Model {
 		return $data['total'];
 	}
 
-	/**
-	 * Get single article for admin
-	 */
-	function getOneLogForAdmin($blogId) {
+	public function getOneLogForAdmin($blogId) {
 		$author = User::haveEditPermission() ? '' : 'AND author=' . UID;
 		$sql = "SELECT * FROM $this->table WHERE gid=$blogId $author";
 		$res = $this->db->query($sql);
@@ -98,7 +94,7 @@ class Log_Model {
 	/**
 	 * get single article
 	 */
-	function getOneLogForHome($blogId) {
+	public function getOneLogForHome($blogId) {
 		$sql = "SELECT * FROM $this->table WHERE gid=$blogId AND hide='n' AND checked='y'";
 		$res = $this->db->query($sql);
 		$row = $this->db->fetch_array($res);
@@ -128,16 +124,7 @@ class Log_Model {
 		];
 	}
 
-	/**
-	 * 后台获取文章列表
-	 *
-	 * @param string $condition
-	 * @param string $hide_state
-	 * @param int $page
-	 * @param string $type
-	 * @return array
-	 */
-	function getLogsForAdmin($condition = '', $hide_state = '', $page = 1, $type = 'blog') {
+	public function getLogsForAdmin($condition = '', $hide_state = '', $page = 1, $type = 'blog') {
 		$perpage_num = Option::get('admin_perpage_num');
 		$start_limit = !empty($page) ? ($page - 1) * $perpage_num : 0;
 		$author = User::haveEditPermission() ? '' : 'and author=' . UID;
@@ -155,15 +142,7 @@ class Log_Model {
 		return $logs;
 	}
 
-	/**
-	 * 前台获取文章列表
-	 *
-	 * @param string $condition
-	 * @param int $page
-	 * @param int $perPageNum
-	 * @return array
-	 */
-	function getLogsForHome($condition = '', $page = 1, $perPageNum = 10) {
+	public function getLogsForHome($condition = '', $page = 1, $perPageNum = 10) {
 		$start_limit = !empty($page) ? ($page - 1) * $perPageNum : 0;
 		$limit = $perPageNum ? "LIMIT $start_limit, $perPageNum" : '';
 		$now = time();
@@ -183,7 +162,7 @@ class Log_Model {
 			$row['log_description'] = $this->Parsedown->text(empty($row['excerpt']) ? $row['content'] : $row['excerpt']);
 			$row['attachment'] = '';
 			$row['tag'] = '';
-			$row['tbcount'] = 0;//兼容未删除引用的模板
+			$row['tbcount'] = 0;
 			$logs[] = $row;
 		}
 		return $logs;
@@ -191,11 +170,8 @@ class Log_Model {
 
 	/**
 	 * get rss article list
-	 *
-	 * @param int $perPageNum
-	 * @return array
 	 */
-	function getLogsForRss($perPageNum = 10) {
+	public function getLogsForRss($perPageNum = 10) {
 		if ($perPageNum <= 0) {
 			return [];
 		}
@@ -223,10 +199,7 @@ class Log_Model {
 		return $d;
 	}
 
-	/**
-	 * 获取全部页面列表
-	 */
-	function getAllPageList() {
+	public function getAllPageList() {
 		$sql = "SELECT * FROM $this->table WHERE type='page'";
 		$res = $this->db->query($sql);
 		$pages = [];
@@ -238,10 +211,7 @@ class Log_Model {
 		return $pages;
 	}
 
-	/**
-	 * delete article
-	 */
-	function deleteLog($blogId) {
+	public function deleteLog($blogId) {
 		$author = User::haveEditPermission() ? '' : 'and author=' . UID;
 		$this->db->query("DELETE FROM $this->table where gid=$blogId $author");
 		if ($this->db->affected_rows() < 1) {
@@ -254,13 +224,7 @@ class Log_Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "tag WHERE gid=',' ");
 	}
 
-	/**
-	 * 隐藏/显示文章
-	 *
-	 * @param int $blogId
-	 * @param string $state
-	 */
-	function hideSwitch($blogId, $state) {
+	public function hideSwitch($blogId, $state) {
 		$author = User::haveEditPermission() ? '' : 'and author=' . UID;
 		$this->db->query("UPDATE $this->table SET hide='$state' WHERE gid=$blogId $author");
 		$this->db->query("UPDATE " . DB_PREFIX . "comment SET hide='$state' WHERE gid=$blogId");
@@ -268,13 +232,7 @@ class Log_Model {
 		$Comment_Model->updateCommentNum($blogId);
 	}
 
-	/**
-	 * 审核/驳回作者文章
-	 *
-	 * @param int $blogId
-	 * @param string $state
-	 */
-	function checkSwitch($blogId, $state) {
+	public function checkSwitch($blogId, $state) {
 		$this->db->query("UPDATE $this->table SET checked='$state' WHERE gid=$blogId");
 		$state = $state == 'y' ? 'n' : 'y';
 		$this->db->query("UPDATE " . DB_PREFIX . "comment SET hide='$state' WHERE gid=$blogId");
@@ -282,32 +240,18 @@ class Log_Model {
 		$Comment_Model->updateCommentNum($blogId);
 	}
 
-	/**
-	 * 增加阅读次数
-	 *
-	 * @param int $blogId
-	 */
-	function updateViewCount($blogId) {
+	public function updateViewCount($blogId) {
 		$this->db->query("UPDATE $this->table SET views=views+1 WHERE gid=$blogId");
 	}
 
-	/**
-	 * 判断是否重复发文
-	 */
-	function isRepeatPost($title, $time) {
+	public function isRepeatPost($title, $time) {
 		$sql = "SELECT gid FROM $this->table WHERE title='$title' and date='$time' LIMIT 1";
 		$res = $this->db->query($sql);
 		$row = $this->db->fetch_array($res);
 		return isset($row['gid']) ? (int)$row['gid'] : false;
 	}
 
-	/**
-	 * 获取相邻文章
-	 *
-	 * @param int $date unix时间戳
-	 * @return array
-	 */
-	function neighborLog($date) {
+	public function neighborLog($date) {
 		$now = time();
 		$date_state = "and date<=$now";
 		$neighborlog = [];
@@ -322,10 +266,7 @@ class Log_Model {
 		return $neighborlog;
 	}
 
-	/**
-	 * 随机获取指定数量文章
-	 */
-	function getRandLog($num) {
+	public function getRandLog($num) {
 		global $CACHE;
 		$now = time();
 		$date_state = "and date<=$now";
@@ -343,10 +284,7 @@ class Log_Model {
 		return $logs;
 	}
 
-	/**
-	 * 获取热门文章
-	 */
-	function getHotLog($num) {
+	public function getHotLog($num) {
 		$now = time();
 		$date_state = "and date<=$now";
 		$sql = "SELECT gid,title FROM $this->table WHERE hide='n' and checked='y' and type='blog' $date_state ORDER BY views DESC, comnum DESC LIMIT 0, $num";
@@ -360,10 +298,7 @@ class Log_Model {
 		return $logs;
 	}
 
-	/**
-	 * 处理文章别名，防止别名重复
-	 */
-	function checkAlias($alias, $logalias_cache, $logid) {
+	public function checkAlias($alias, $logalias_cache, $logid) {
 		static $i = 2;
 		$key = array_search($alias, $logalias_cache);
 		if (false !== $key && $key != $logid) {
@@ -378,10 +313,7 @@ class Log_Model {
 		return $alias;
 	}
 
-	/**
-	 * 加密文章访问验证
-	 */
-	function authPassword($postPwd, $cookiePwd, $logPwd, $logid) {
+	public function authPassword($postPwd, $cookiePwd, $logPwd, $logid) {
 		$url = BLOG_URL;
 		$pwd = $cookiePwd ?: $postPwd;
 		if ($pwd !== addslashes($logPwd)) {
@@ -413,8 +345,8 @@ EOT;
 				setcookie('em_logpwd_' . $logid, ' ', time() - 31536000);
 			}
 			exit;
-		} else {
-			setcookie('em_logpwd_' . $logid, $logPwd);
 		}
+
+		setcookie('em_logpwd_' . $logid, $logPwd);
 	}
 }

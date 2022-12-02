@@ -96,7 +96,7 @@ class User_Model {
 	}
 
 	/**
-	 * 用户名是否存在
+	 * check the username exists
 	 *
 	 * @param string $user_name
 	 * @param int $uid 兼容更新作者资料时用户名未变更情况
@@ -108,11 +108,7 @@ class User_Model {
 		}
 		$subSql = $uid ? 'and uid!=' . $uid : '';
 		$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "user WHERE username='$user_name' $subSql");
-		if ($data['total'] > 0) {
-			return true;
-		} else {
-			return false;
-		}
+		return $data['total'] > 0;
 	}
 
 	function isNicknameExist($nickname, $uid = '') {
@@ -121,11 +117,7 @@ class User_Model {
 		}
 		$subSql = $uid ? 'and uid!=' . $uid : '';
 		$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "user WHERE nickname='$nickname' $subSql");
-		if ($data['total'] > 0) {
-			return true;
-		} else {
-			return false;
-		}
+		return $data['total'] > 0;
 	}
 
 	function isMailExist($mail, $uid = '') {
@@ -134,11 +126,7 @@ class User_Model {
 		}
 		$subSql = $uid ? 'and uid!=' . $uid : '';
 		$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "user WHERE email='$mail' $subSql");
-		if ($data['total'] > 0) {
-			return true;
-		} else {
-			return false;
-		}
+		return $data['total'] > 0;
 	}
 
 	function getUserNum() {

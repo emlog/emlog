@@ -17,9 +17,6 @@ class Media_Model {
 		$this->table_sort = DB_PREFIX . 'media_sort';
 	}
 
-	/**
-	 * 获取资源列表
-	 */
 	function getMedias($page = 1, $perpage_count = 24, $uid = UID, $sid = 0) {
 		$startId = ($page - 1) * $perpage_count;
 		$author = $uid ? 'and author=' . UID : '';
@@ -95,9 +92,6 @@ class Media_Model {
 		return $this->db->query("DELETE FROM $this->table WHERE aid = $media_id $author");
 	}
 
-	/**
-	 * update media
-	 */
 	function updateMedia($data, $media_id) {
 		$author = User::haveEditPermission() ? '' : 'and author=' . UID;
 		$Item = [];
