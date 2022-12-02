@@ -97,16 +97,19 @@ function hideActived() {
     $(".alert-danger").slideUp(300);
 }
 
-function displayToggle(id, keep) {
-    $("#" + id).toggle();
-    icon_tog ? $(".icofont-simple-right").attr("class", "icofont-simple-down") : $(".icofont-simple-down").attr("class", "icofont-simple-right");
-    icon_tog = !icon_tog;
-    if (keep == 1) {
-        Cookies.set('em_' + id, $("#" + id).css('visibility'), {expires: 365})
-    }
-    if (keep == 2) {
-        Cookies.set('em_' + id, $("#" + id).css('visibility'))
-    }
+// Click action of [More Options] 
+let icon_mod = "down";
+function displayToggle(id) {
+	$("#" + id).toggle();
+	if (icon_mod === "down") {
+		icon_mod = "right";
+		$(".icofont-simple-down").attr("class", "icofont-simple-right")
+	} else {
+		icon_mod = "down";
+		$(".icofont-simple-right").attr("class", "icofont-simple-down")
+	} 
+
+	Cookies.set('em_' + id, icon_mod, {expires: 365})
 }
 
 function doToggle(id) {
