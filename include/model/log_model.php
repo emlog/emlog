@@ -38,8 +38,8 @@ class Log_Model {
 	/**
 	 * update article
 	 */
-	function updateLog($logData, $blogId) {
-		$author = User::haveEditPermission() ? '' : 'and author=' . UID;
+	function updateLog($logData, $blogId, $uid = UID) {
+		$author = User::haveEditPermission() ? '' : 'and author=' . $uid;
 		$Item = [];
 		foreach ($logData as $key => $data) {
 			$Item[] = "$key='$data'";
