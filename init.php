@@ -39,13 +39,13 @@ const ROLE_VISITOR = 'visitor';
 
 define('ROLE', ISLOGIN === true ? $userData['role'] : User::ROLE_VISITOR);
 define('UID', ISLOGIN === true ? $userData['uid'] : '');
-//站点固定地址
+
 define('BLOG_URL', Option::get('blogurl'));
-//模板库地址
+
 const TPLS_URL = BLOG_URL . 'content/templates/';
-//模板库路径
+
 const TPLS_PATH = EMLOG_ROOT . '/content/templates/';
-//解决前台多域名ajax跨域
+
 define('DYNAMIC_BLOGURL', Option::get("blogurl"));
 define('TEMPLATE_URL', TPLS_URL . Option::get('nonce_templet') . '/');
 const ADMIN_TEMPLATE_PATH = EMLOG_ROOT . '/admin/views/';

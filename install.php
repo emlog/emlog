@@ -212,7 +212,6 @@ if ($act == 'install' || $act == 'reinstall') {
 		emMsg('两次输入的密码不一致');
 	}
 
-	//初始化数据库类
 	define('DB_HOST', $db_host);
 	define('DB_USER', $db_user);
 	define('DB_PASSWD', $db_pw);
@@ -265,22 +264,20 @@ EOT;
 		emMsg('缓存目录（content/cache）不可写。请检查文件权限。');
 	}
 	$config = "<?php\n"
-		. "//MySQL数据库地址\n"
+		. "//MySQL database host\n"
 		. "const DB_HOST = '$db_host';"
-		. "\n//数据库用户名\n"
+		. "\n//Database username\n"
 		. "const DB_USER = '$db_user';"
-		. "\n//数据库用户密码\n"
+		. "\n//Database user password\n"
 		. "const DB_PASSWD = '$db_pw';"
-		. "\n//数据库名\n"
+		. "\n//Database name\n"
 		. "const DB_NAME = '$db_name';"
-		. "\n//数据库表前缀\n"
+		. "\n//Database Table Prefix\n"
 		. "const DB_PREFIX = '$db_prefix';"
-		. "\n//auth key\n"
+		. "\n//Auth key\n"
 		. "const AUTH_KEY = '" . getRandStr(32) . md5($_SERVER['HTTP_USER_AGENT']) . "';"
-		. "\n//cookie name\n"
-		. "const AUTH_COOKIE_NAME = 'EM_AUTHCOOKIE_" . getRandStr(32, false) . "';"
-		. "\n//管理后台安全入口（字母数字，不要包含特殊字符）：/admin/?s=xxx\n"
-		. "//const ADMIN_PATH_CODE = 'xxx';";
+		. "\n//Cookie name\n"
+		. "const AUTH_COOKIE_NAME = 'EM_AUTHCOOKIE_" . getRandStr(32, false) . "';";
 
 	$fp = @fopen('config.php', 'w');
 	$fw = @fwrite($fp, $config);
@@ -289,7 +286,6 @@ EOT;
 	}
 	fclose($fp);
 
-	//密码加密存储
 	$PHPASS = new PasswordHash(8, true);
 	$password = $PHPASS->HashPassword($password);
 
@@ -539,7 +535,6 @@ CREATE TABLE {$db_prefix}storage (
 			$DB->query($sql);
 		}
 	}
-	//重建缓存
 	$CACHE->updateCache();
 	$result = '';
 	$result .= "
