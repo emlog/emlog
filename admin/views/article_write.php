@@ -38,7 +38,7 @@
                 </div>
             </div>
 
-            <div class="show_advset" id="displayToggle" onclick="displayToggle('advset', 1);">更多选项<i class="icofont-simple-right"></i></div>
+            <div class="show_advset" id="displayToggle" onclick="displayToggle('advset');">更多选项<i class="icofont-simple-right"></i></div>
 
             <div id="advset" class="shadow-sm p-3 mb-2 bg-white rounded">
                 <div class="form-group">
@@ -202,8 +202,6 @@
 </div>
 <script src="./editor.md/editormd.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
 <script>
-    var icon_tog = false;
-
     $("#alias").keyup(function () {
         checkalias();
     });
@@ -212,11 +210,6 @@
     $("#menu_content").addClass('show');
     $("#menu_write").addClass('active');
 
-    if (Cookies.get('em_advset') == "hidden") {
-        displayToggle('advset', 1);
-    } else {
-        $(".icofont-simple-right").attr("class", "icofont-simple-down");
-    }
     // 编辑器
     var Editor, Editor_summary;
     $(function () {
@@ -370,4 +363,11 @@
             autosave(2);
 		}
 	});
+
+	// Use cookie to decide whether to collapse [More Options]
+    if(Cookies.get('em_advset') === "right") {
+        $("#advset").toggle();
+        icon_mod = "right";
+	    $(".icofont-simple-down").attr("class", "icofont-simple-right")
+    }
 </script>
