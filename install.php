@@ -258,10 +258,10 @@ EOT;
 	}
 
 	if (!is_writable('config.php')) {
-		emMsg('配置文件(config.php)不可写，请检查文件权限。');
+		emMsg('配置文件(config.php)不可写，请调整文件读写权限。');
 	}
 	if (!is_writable(EMLOG_ROOT . '/content/cache')) {
-		emMsg('缓存目录（content/cache）不可写。请检查文件权限。');
+		emMsg('缓存目录（content/cache）不可写。请检查目录读写权限。');
 	}
 	$config = "<?php\n"
 		. "//MySQL database host\n"
@@ -282,7 +282,7 @@ EOT;
 	$fp = @fopen('config.php', 'w');
 	$fw = @fwrite($fp, $config);
 	if (!$fw) {
-		emMsg('配置文件(config.php)不可写。如果您使用的是Unix/Linux主机，请修改该文件的权限为777。如果您使用的是Windows主机，请联系管理员，将此文件设为可写');
+		emMsg('配置文件(config.php)不可写，请调整文件读写权限。');
 	}
 	fclose($fp);
 
@@ -538,7 +538,7 @@ CREATE TABLE {$db_prefix}storage (
 	$CACHE->updateCache();
 	$result = '';
 	$result .= "
-        <p style=\"font-size:24px; border-bottom:1px solid #E6E6E6; padding:10px 0px;\">恭喜，安装成功！</p>
+        <p style=\"font-size:24px; border-bottom:1px solid #E6E6E6; padding:10px 0px;\">恭喜，安装成功</p>
         <p>emlog已经安装好了，现在可以开始你的创作了。</p>
         <p><b>用户名</b>：{$username}</p>
         <p><b>密 码</b>：刚才你设定的密码</p>";

@@ -99,17 +99,18 @@ function hideActived() {
 
 // Click action of [More Options] 
 let icon_mod = "down";
-function displayToggle(id) {
-	$("#" + id).toggle();
-	if (icon_mod === "down") {
-		icon_mod = "right";
-		$(".icofont-simple-down").attr("class", "icofont-simple-right")
-	} else {
-		icon_mod = "down";
-		$(".icofont-simple-right").attr("class", "icofont-simple-down")
-	} 
 
-	Cookies.set('em_' + id, icon_mod, {expires: 365})
+function displayToggle(id) {
+    $("#" + id).toggle();
+    if (icon_mod === "down") {
+        icon_mod = "right";
+        $(".icofont-simple-down").attr("class", "icofont-simple-right")
+    } else {
+        icon_mod = "down";
+        $(".icofont-simple-right").attr("class", "icofont-simple-down")
+    }
+
+    Cookies.set('em_' + id, icon_mod, {expires: 365})
 }
 
 function doToggle(id) {
@@ -197,7 +198,7 @@ function insert_cover(imgsrc) {
     $('#cover_rm').show();
 }
 
-// act 参数各值的含义 1：定时自动保存。 2：普通保存。
+// act 1：auto save 2：save
 function autosave(act) {
     var nodeid = "as_logid";
     var timeout = 30000;
@@ -222,7 +223,6 @@ function autosave(act) {
     var ishide = ishide == "" ? "y" : ishide;
     var querystr = "logcontent=" + encodeURIComponent(content) + "&logexcerpt=" + encodeURIComponent(excerpt) + "&title=" + encodeURIComponent(title) + "&cover=" + encodeURIComponent(cover) + "&alias=" + encodeURIComponent(alias) + "&author=" + author + "&sort=" + sort + "&postdate=" + postdate + "&date=" + date + "&tag=" + encodeURIComponent(tag) + "&top=" + top + "&sortop=" + sortop + "&allow_remark=" + allow_remark + "&password=" + password + "&token=" + token + "&ishide=" + ishide + "&as_logid=" + logid;
 
-    // 检查别名
     if (alias != '' && 0 != isalias(alias)) {
         $("#msg").show().html("链接别名错误，自动保存失败");
         if (act == 0) {
@@ -310,7 +310,6 @@ $.fn.toggleClick = function () {
     });
 };
 
-// 过滤HTML标签
 function removeHTMLTag(str) {
     str = str.replace(/<\/?[^>]*>/g, ''); //去除HTML tag
     str = str.replace(/[ | ]*\n/g, '\n'); //去除行尾空白
@@ -514,15 +513,5 @@ function doup(source, upsql) {
         } else {
             $("#upmsg").html('更新失败');
         }
-    });
-}
-
-function getNews() {
-    $("#admindex_msg ul").html("").addClass("spinner-border text-primary");
-    $.get("./index.php?action=get_news", function (data) {
-        $.each(data.items, function (i, item) {
-            $("#admindex_msg ul").append("<li class=\"msg_type_0\"><a href=\"https://www.emlog.net/" + item.uri + "\" target=\"_blank\">" + item.title + "</a></li>");
-        });
-        $("#admindex_msg ul").removeClass();
     });
 }

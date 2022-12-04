@@ -38,14 +38,3 @@ if (empty($action)) {
 	include View::getAdmView('footer');
 	View::output();
 }
-
-if ($action === 'get_news') {
-	$emcurl = new EmCurl();
-	$emcurl->request('https://www.emlog.net/services/messenger_pro.php');
-	header('Content-Type: application/json; charset=UTF-8');
-	if ($emcurl->getHttpStatus() !== 200) {
-		exit('{"result":"fail"}');
-	}
-	$response = $emcurl->getRespone();
-	exit($response);
-}

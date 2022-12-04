@@ -41,12 +41,13 @@
         </form>
         <div class="alert alert-warning">
             <b>API接口列表：</b><br>
-            1. 文章发布 (可用于对接内容发布软件)<br>
-            2. 文章列表<br>
-            3. 文章详情<br>
-            4. 分类列表<br>
-            5. 笔记发布<br><br>
-            更多接口：<a href="https://www.emlog.net/docs/#/api" target="_blank">详见接口文档→</a>
+            文章发布 (可用于对接内容发布软件)<br>
+            文章编辑<br>
+            文章列表<br>
+            文章详情<br>
+            分类列表<br>
+            笔记发布<br><br>
+            详细接口说明：<a href="https://www.emlog.net/docs/#/api" target="_blank">API接口文档→</a>
         </div>
     </div>
 </div>

@@ -231,7 +231,6 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
         $("#form_log").submit();
     }
 
-    // 更改分类
     function changeSort(obj) {
         if (getChecked('ids') == false) {
             alert('请选择要操作的文章');
@@ -242,7 +241,6 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
         $("#form_log").submit();
     }
 
-    // 更改作者
     function changeAuthor(obj) {
         if (getChecked('ids') == false) {
             alert('请选择要操作的文章');
@@ -253,7 +251,6 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
         $("#form_log").submit();
     }
 
-    // 置顶
     function changeTop(obj) {
         if (getChecked('ids') == false) {
             alert('请选择要操作的文章');
@@ -264,12 +261,10 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
         $("#form_log").submit();
     }
 
-    // 按分类筛选
     function selectSort(obj) {
         window.open("./article.php?sid=" + obj.value + "<?= $isdraft?>", "_self");
     }
 
-    // 按用户筛选
     function selectUser(obj) {
         window.open("./article.php?uid=" + obj.value + "<?= $isdraft?>", "_self");
     }
