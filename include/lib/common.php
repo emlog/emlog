@@ -34,7 +34,11 @@ function htmlClean($content, $nl2br = true) {
 if (!function_exists('getIp')) {
 	function getIp() {
 		$ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
-		if (!filter_var($ip, FILTER_VALIDATE_IP)) {
+		if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+			$list = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
+			$ip = $list[0];
+		}
+		if (!ip2long($ip)) {
 			$ip = '';
 		}
 		return $ip;
