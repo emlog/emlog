@@ -1,6 +1,6 @@
 <?php
 /**
- * 阅读文章页面
+ * Read the Post page
  */
 if (!defined('EMLOG_ROOT')) {
 	exit('error!');
@@ -11,9 +11,9 @@ if (!defined('EMLOG_ROOT')) {
 	<span class="back-top mh" onclick="history.go(-1);">&laquo;</span>
 	<h1 class="log-title"><?php topflg($top) ?><?= $log_title ?></h1>
 	<p class="date">
-		<b>时间：</b><?= date('Y-n-j', $date) ?>&nbsp;&nbsp;&nbsp;&nbsp;
-		<b>作者：</b><?php blog_author($author) ?>&nbsp;&nbsp;&nbsp;&nbsp;
-		<b>分类：</b><?php blog_sort($logid) ?>
+          <b><?=lang('time')?>:</b> <?= gmdate('Y-m-d', $date) ?>&nbsp;&nbsp;&nbsp;&nbsp;
+          <b><?=lang('author')?>:</b> <?php blog_author($author) ?>&nbsp;&nbsp;&nbsp;&nbsp;
+          <b><?=lang('category')?>:</b> <?php blog_sort($logid) ?>
 
 		<?php editflg($logid, $author) ?>
 

@@ -20,7 +20,7 @@ class Search_Controller {
 
 		$pageurl = '';
 
-		$sqlSegment = "and title like '%{$keyword}%' order by date desc";
+		$sqlSegment = "AND title LIKE '%{$keyword}%' ORDER BY date DESC";
 		$lognum = $Log_Model->getLogNum('n', $sqlSegment);
 		$total_pages = ceil($lognum / $index_lognum);
 		if ($page > $total_pages) {

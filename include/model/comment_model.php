@@ -168,7 +168,7 @@ class Comment_Model {
 		$row = $this->db->once_fetch_array("SELECT gid FROM " . DB_PREFIX . "comment WHERE cid=$commentId");
 		$blogId = (int)$row['gid'];
 		$commentIds = array($commentId);
-		/* 获取子评论ID */
+		/* Get sub-comment ID */
 		$query = $this->db->query("SELECT cid,pid FROM " . DB_PREFIX . "comment WHERE gid=$blogId AND cid>$commentId ");
 		while ($row = $this->db->fetch_array($query)) {
 			if (in_array($row['pid'], $commentIds)) {
@@ -214,7 +214,7 @@ class Comment_Model {
 			$utctimestamp = time();
 			if ($pid != 0) {
 				$comment = $this->getOneComment($pid);
-				$content = '@' . addslashes($comment['poster']) . '：' . $content;
+				$content = '@' . addslashes($comment['poster']) . ': ' . $content;
 			}
 			$this->db->query("INSERT INTO " . DB_PREFIX . "comment (date,poster,gid,comment,mail,url,hide,ip,pid)
                     VALUES ('$utctimestamp','$name','$blogId','$content','$mail','$url','$hide','$ipaddr','$pid')");
@@ -273,7 +273,7 @@ class Comment_Model {
 
 		if ($pid > 0) {
 			$comment = $this->getOneComment($pid);
-			$content = '@' . addslashes($comment['poster']) . '：' . $content;
+			$content = '@' . addslashes($comment['poster']) . ': ' . $content;
 		}
 
 		$hide = Option::get('ischkcomment') == 'y' && !User::haveEditPermission() ? 'y' : 'n';
@@ -292,7 +292,7 @@ class Comment_Model {
 		} else {
 			$CACHE->updateCache('sta');
 			doAction('comment_saved', $cid);
-			emMsg('评论发表成功，请等待管理员审核', Url::log($blogId));
+			emMsg(lang('comment_wait_approve'), Url::log($blogId));
 		}
 	}
 
@@ -308,7 +308,7 @@ class Comment_Model {
 		$query = $this->db->query("SELECT a.cid FROM " . DB_PREFIX . "comment as a," . DB_PREFIX . "blog as b WHERE a.cid=$cid and a.gid=b.gid AND b.author=" . UID);
 		$result = $this->db->num_rows($query);
 		if ($result <= 0) {
-			emMsg('权限不足！', './');
+			emMsg(lang('no_permission'), './');
 		}
 	}
 

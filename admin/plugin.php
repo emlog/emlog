@@ -86,7 +86,7 @@ if ($action == 'upload_zip') {
 		emDirect("./plugin.php?error_d=1");
 	}
 	if (!$zipfile || $zipfile['error'] >= 1 || empty($zipfile['tmp_name'])) {
-		emMsg('插件上传失败， 错误码：' . $zipfile['error']);
+		emMsg(lang('plugin_upload_error') . $zipfile['error']);
 	}
 	if (getFileSuffix($zipfile['name']) != 'zip') {
 		emDirect("./plugin.php?error_f=1");

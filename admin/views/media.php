@@ -2,22 +2,22 @@
 	exit('error!');
 } ?>
 <?php if (isset($_GET['active_del'])): ?>
-    <div class="alert alert-success">删除成功</div><?php endif ?>
+          <div class="alert alert-success"><?=lang('deleted_ok')?></div><?php endif ?>
 <?php if (isset($_GET['active_mov'])): ?>
-    <div class="alert alert-success">移动成功</div><?php endif ?>
+          <div class="alert alert-success"><?=lang('moved_ok')?></div><?php endif ?>
 <?php if (isset($_GET['active_edit'])): ?>
-    <div class="alert alert-success">修改成功</div><?php endif ?>
+          <div class="alert alert-success"><?=lang('modified_ok')?></div><?php endif ?>
 <?php if (isset($_GET['active_add'])): ?>
-    <div class="alert alert-success">分类添加成功</div><?php endif ?>
+          <div class="alert alert-success"><?=lang('media_category_add_ok')?></div><?php endif ?>
 <?php if (isset($_GET['error_a'])): ?>
-    <div class="alert alert-danger">分类名称不能为空</div><?php endif ?>
+          <div class="alert alert-danger"><?=lang('category_name_empty')?></div><?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">多媒体资源</h1>
-    <a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target=" #exampleModal"><i class="icofont-plus"></i> 上传图片/文件</a>
+          <h1 class="h3 mb-0 text-gray-800"><?=lang('resource_manage')?></h1>
+          <a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target=" #exampleModal"><i class="icofont-plus"></i> <?=lang('upload_files')?></a>
 </div>
 <?php if (User::isAdmin()): ?>
     <div class="row mb-4 ml-1">
-        <a href="media.php" class="btn btn-sm btn-primary mr-2 my-1">全部资源</a>
+          <a href="media.php" class="btn btn-sm btn-primary mr-2 my-1"><?=lang('modified_ok')?></a>
 		<?php foreach ($sorts as $key => $val):
 			$cur_tab = $val['id'] == $sid ? "btn-success" : "btn-primary";
 			?>
@@ -25,8 +25,8 @@
                 <a href="media.php?sid=<?= $val['id'] ?>" class="btn btn-sm <?= $cur_tab ?>"><?= $val['sortname'] ?></a>
                 <button type="button" class="btn <?= $cur_tab ?> btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false"></button>
                 <div class="dropdown-menu">
-                    <a href="#" class="dropdown-item" data-toggle="modal" data-target="#editModal" data-id="<?= $val['id'] ?>" data-sortname="<?= $val['sortname'] ?>">编辑</a>
-                    <a class="dropdown-item text-danger" href="javascript: em_confirm(<?= $val['id'] ?>, 'media_sort', '<?= LoginAuth::genToken() ?>');">删除</a>
+                    <a href="#" class="dropdown-item" data-toggle="modal" data-target="#editModal" data-id="<?= $val['id'] ?>" data-sortname="<?= $val['sortname'] ?>"><?=lang('edit')?></a>
+                    <a class="dropdown-item text-danger" href="javascript: em_confirm(<?= $val['id'] ?>, 'media_sort', '<?= LoginAuth::genToken() ?>');"><?=lang('delete')?></a>
                 </div>
             </div>
 		<?php endforeach ?>
@@ -60,16 +60,16 @@
                     <div class="card-body">
                         <p class="card-text text-muted small">
 							<?= $media_name ?> <span class="badge badge-primary"><?= $sort_name ?></span><br>
-                            时间：<?= $value['addtime'] ?><br>
-                            创建人：<?= $author ?><br>
-                            文件大小：<?= $value['attsize'] ?>，
+                            <?=lang('create_time')?>: <?= $value['addtime'] ?><br>
+                            <?=lang('founder')?>: <?= $author ?><br>
+                            <?=lang('file_size')?>: <?= $value['attsize'] ?>,
 							<?php if ($value['width'] && $value['height']): ?>
-                                图片尺寸：<?= $value['width'] ?>x<?= $value['height'] ?><br>
-                                原图地址：<span class="text-gray-400"><?= $media_url ?></span>
+                        <?=lang('img_size')?>: <?= $value['width'] ?>x<?= $value['height'] ?>
+                                <?=lang('image_address_original')?>: <span class="text-gray-400"><?= $media_url ?></span>
 							<?php endif ?>
                         </p>
                         <p class="card-text d-flex justify-content-between">
-                            <a href="javascript: em_confirm(<?= $value['aid'] ?>, 'media', '<?= LoginAuth::genToken() ?>');" class="text-danger small">删除</a>
+                        <a href="javascript: em_confirm(<?= $value['aid'] ?>, 'media', '<?= LoginAuth::genToken() ?>');" class="text-danger small"><?=lang('delete')?></a>
                             <input type="checkbox" name="aids[]" value="<?= $value['aid'] ?>" class="aids"/>
                         </p>
                     </div>
@@ -81,32 +81,32 @@
         <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
         <input name="operate" id="operate" value="" type="hidden"/>
         <div class="col-auto my-1 form-inline">
-            <a href="javascript:mediaact('del');" class="btn btn-sm btn-danger">删除所选资源</a>
+            <a href="javascript:mediaact('del');" class="btn btn-sm btn-danger"><?= lang('resource_del_selected') ?></a>
 			<?php if (User::isAdmin()): ?>
                 <select name="sort" id="sort" onChange="changeSort(this);" class="form-control m-1">
-                    <option value="" selected="selected">移动到</option>
+                    <option value="" selected="selected"><?=lang('move_to')?></option>
 					<?php foreach ($sorts as $key => $value): ?>
                         <option value="<?= $value['id'] ?>"><?= $value['sortname'] ?></option>
 					<?php endforeach; ?>
-                    <option value="0">未分类</option>
+                    <option value="0"><?=lang('uncategorized')?></option>
                 </select>
 			<?php endif; ?>
         </div>
         <div class="col-auto my-1">
             <div class="custom-control custom-checkbox mr-sm-2">
                 <input type="checkbox" class="custom-control-input" id="checkAllCard">
-                <label class="custom-control-label" for="checkAllCard">全选</label>
+                <label class="custom-control-label" for="checkAllCard"><?=lang('select_all')?></label>
             </div>
         </div>
     </div>
 </form>
-<div class="page my-5"><?= $page ?> （有 <?= $count ?> 个资源）</div>
+          <div class="page my-5"><?= $page ?> (<?=lang('have')?> <?= $count ?> <?=lang('_resources')?>)</div>
 
 <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">上传图片/文件</h5>
+                <h5 class="modal-title" id="exampleModalLabel"><?=lang('upload_files')?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -123,7 +123,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="mediaSortModalLabel">添加资源分类</h5>
+                <h5 class="modal-title" id="mediaSortModalLabel"><?=lang('media_category_add')?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -131,13 +131,13 @@
             <form action="media.php?action=add_media_sort" method="post">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="alias">分类名称</label>
+                        <label for="alias"><?=lang('category_name')?></label>
                         <input class="form-control" id="sortname" maxlength="255" name="sortname" required>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
-                    <button type="submit" class="btn btn-sm btn-success">保存</button>
+                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
+                    <button type="submit" class="btn btn-sm btn-success"><?=lang('save')?></button>
                 </div>
             </form>
 
@@ -149,7 +149,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">修改资源分类</h5>
+                <h5 class="modal-title" id="exampleModalLabel"><?=lang('change_media_category')?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -162,8 +162,8 @@
                 </div>
                 <div class="modal-footer">
                     <input type="hidden" value="" id="id" name="id"/>
-                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
-                    <button type="submit" class="btn btn-sm btn-success">保存</button>
+                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
+                    <button type="submit" class="btn btn-sm btn-success"><?=lang('save')?></button>
                 </div>
             </form>
         </div>
@@ -190,10 +190,10 @@
 
     function mediaact(act) {
         if (getChecked('aids') === false) {
-            alert('请选择要删除的资源');
+    alert('<?= lang('resource_select') ?>');
             return;
         }
-        if (act == 'del' && !confirm('确定要删除所选资源吗？')) {
+if (act == 'del' && !confirm('<?= lang('resource_del_sure') ?>')) {
             return;
         }
         $("#operate").val(act);
@@ -209,10 +209,10 @@
         modal.find('.modal-footer input').val(id)
     })
 
-    // 更改分类
+    // Change category
     function changeSort(obj) {
         if (getChecked('aids') === false) {
-            alert('请选择要移动的资源');
+    alert(lang('media_select'));
             return;
         }
         if ($('#sort').val() == '') return;
@@ -227,6 +227,6 @@
         hs.graphicsDir = './views/highslide/graphics/';
         hs.wrapperClassName = 'rounded-white';
     } else {
-        $('.highslide').removeAttr('onclick')  // 如果是移动端，则不使用 highslide 功能
+        $('.highslide').removeAttr('onclick')  // If it is a mobile terminal, do not use the highslide function
     }
 </script>

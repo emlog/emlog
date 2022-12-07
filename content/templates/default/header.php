@@ -1,9 +1,9 @@
 <?php
 /*
-Template Name:默认模板
-Template Url:https://www.emlog.net/template/
-Description:这是emlog pro的默认模板
-Author:emlog官方
+Template Name: Default template
+Template Url: https://www.emlog.net/template/
+Description: Emlog Pro Default template
+Author: emlog official
 Author Url:https://www.emlog.net
 */
 if (!defined('EMLOG_ROOT')) {
@@ -12,7 +12,7 @@ if (!defined('EMLOG_ROOT')) {
 require_once View::getView('module');
 ?>
 <!doctype html>
-<html lang="zh-cn">
+          <html lang="<?=LANG?>" dir="<?= LANG_DIR ?>">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -25,7 +25,7 @@ require_once View::getView('module');
 	<link href="<?= TEMPLATE_URL ?>css/style.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>" rel="stylesheet" type="text/css"/>
 	<link href="<?= TEMPLATE_URL ?>css/markdown.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>" rel="stylesheet" type="text/css"/>
 	<script src="<?= TEMPLATE_URL ?>js/jquery.min.3.5.1.js?v=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
-	<script>function sendinfo(url) {  // 日历生成和翻页
+          <script>function sendinfo(url) {  // Calendar generation and page turning
 			$("#calendar").load(url)
 		}</script>
 	<?php doAction('index_head') ?>

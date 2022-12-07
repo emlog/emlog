@@ -8,10 +8,10 @@
 
 class User {
 
-	const ROLE_ADMIN = 'admin';     // 管理员、创始人
-	const ROLE_WRITER = 'writer';   // 注册用户
-	const ROLE_VISITOR = 'visitor'; // 游客
-	const ROLE_EDITOR = 'editor';   // 内容编辑
+	const ROLE_ADMIN = 'admin';     // Administrator, Founder
+	const ROLE_WRITER = 'writer';   // Registered user
+	const ROLE_VISITOR = 'visitor'; // Guest
+	const ROLE_EDITOR = 'editor';   // Content editor
 
 	static function isAdmin($role = ROLE) {
 		return $role == self::ROLE_ADMIN;
@@ -38,16 +38,16 @@ class User {
 		$role_name = '';
 		switch ($role) {
 			case self::ROLE_ADMIN:
-				$role_name = $uid == 1 ? '创始人' : '管理员';
+				$role_name = $uid == 1 ? lang(ROLE_FOUNDER) : lang(ROLE_ADMIN);
 				break;
 			case self::ROLE_EDITOR:
-				$role_name = '内容编辑';
+				$role_name = lang(ROLE_EDITOR);
 				break;
 			case self::ROLE_WRITER:
-				$role_name = '注册用户';
+				$role_name = lang(ROLE_WRITER);
 				break;
 			case self::ROLE_VISITOR:
-				$role_name = '游客';
+				$role_name = lang(ROLE_VISITOR);
 				break;
 		}
 		return $role_name;
@@ -80,10 +80,10 @@ class User {
 	static function checkRolePermission() {
 		$request_uri = strtolower(substr(basename($_SERVER['SCRIPT_NAME']), 0, -4));
 		if (ROLE === self::ROLE_WRITER && !in_array($request_uri, ['article', 'twitter', 'media', 'blogger', 'comment', 'index', 'article_save'])) {
-			emMsg('你所在的用户组无法使用该功能，请联系管理员', './');
+			emMsg(lang('group_no_permission'), './');
 		}
 		if (ROLE === self::ROLE_EDITOR && !in_array($request_uri, ['article', 'twitter', 'media', 'blogger', 'comment', 'index', 'article_save'])) {
-			emMsg('你所在的用户组无法使用该功能，请联系管理员', './');
+			emMsg(lang('group_no_permission'), './');
 		}
 	}
 

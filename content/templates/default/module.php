@@ -1,6 +1,6 @@
 <?php
 /**
- * 侧边栏组件、页面模块
+ * Sidebar components, modules page
  */
 if (!defined('EMLOG_ROOT')) {
 	exit('error!');
@@ -8,12 +8,12 @@ if (!defined('EMLOG_ROOT')) {
 ?>
 <?php
 /**
- * 侧边栏：链接
+ * widget:link
  */
 function widget_link($title) {
 	global $CACHE;
 	$link_cache = $CACHE->readCache('link');
-	//if (!blog_tool_ishome()) return;#只在首页显示友链去掉双斜杠注释即可
+	//if (!blog_tool_ishome()) return;#Only show the friend link on the homepage and remove the double slash comment
 	?>
     <div class="widget shadow-theme">
         <div class="widget-title">
@@ -28,7 +28,7 @@ function widget_link($title) {
 <?php } ?>
 <?php
 /**
- * 侧边栏：个人资料
+ * widget:blogger
  */
 function widget_blogger($title) {
 	global $CACHE;
@@ -51,7 +51,7 @@ function widget_blogger($title) {
 <?php } ?>
 <?php
 /**
- * 侧边栏：日历
+ * widget:calendar
  */
 function widget_calendar($title) { ?>
     <div class="widget shadow-theme">
@@ -66,7 +66,7 @@ function widget_calendar($title) { ?>
 <?php } ?>
 <?php
 /**
- * 侧边栏：标签
+ * widget:Tags
  */
 function widget_tag($title) {
 	global $CACHE;
@@ -77,15 +77,15 @@ function widget_tag($title) {
         </div>
         <div class="unstyle-li tag-container">
 			<?php foreach ($tag_cache as $value): ?>
-                <span style="font-size:<?= $value['fontsize'] ?>pt; line-height:30px;">
-			<a href="<?= Url::tag($value['tagurl']) ?>" title="<?= $value['usenum'] ?> 篇文章" class='tags-side'><?= $value['tagname'] ?></a></span>
+				<span style="font-size:<?= $value['fontsize'] ?>pt; line-height:30px;">
+          	<a href="<?= Url::tag($value['tagurl']) ?>" title="<?= $value['usenum'] ?> <?=lang('_posts')?>" class='tags_side' ><?= $value['tagname'] ?></a></span>
 			<?php endforeach ?>
         </div>
     </div>
 <?php } ?>
 <?php
 /**
- * 侧边栏：分类
+ * widget:Sort
  */
 function widget_sort($title) {
 	global $CACHE;
@@ -122,7 +122,7 @@ function widget_sort($title) {
 <?php } ?>
 <?php
 /**
- * 侧边栏：最新评论
+ * widget:Latest Comments
  */
 function widget_newcomm($title) {
 	global $CACHE;
@@ -154,7 +154,7 @@ function widget_newcomm($title) {
 <?php } ?>
 <?php
 /**
- * 侧边栏：最新文章
+ * widget:Latest Posts
  */
 function widget_newlog($title) {
 	global $CACHE;
@@ -173,7 +173,7 @@ function widget_newlog($title) {
 <?php } ?>
 <?php
 /**
- * 侧边栏：热门文章
+ * widget:Popular Posts
  */
 function widget_hotlog($title) {
 	$index_hotlognum = Option::get('index_hotlognum');
@@ -195,21 +195,21 @@ function widget_hotlog($title) {
  * 侧边栏：搜索
  */
 function widget_search($title) { ?>
-    <div class="widget shadow-theme">
-        <div class="widget-title">
-            <h3><?= $title ?></h3>
-        </div>
-        <div class="unstyle-li" style="text-align: center;">
-            <form name="keyform" method="get" action="<?= BLOG_URL ?>index.php">
-                <input name="keyword" class="search form-control" autocomplete="off" type="text"/>
-                <input type="submit" value="搜索">
-            </form>
-        </div>
-    </div>
+	<div class="widget shadow-theme">
+		<div class="widget-title">
+			<h3><?= $title ?></h3>
+		</div>
+		<div class="unstyle-li" style="text-align: center;">
+			<form name="keyform" method="get" action="<?= BLOG_URL ?>index.php">
+				<input name="keyword" class="search form-control" autocomplete="off" type="text"/>
+          	<input type="submit" value="<?=lang('search')?>">
+			</form>
+		</div>
+	</div>
 <?php } ?>
 <?php
 /**
- * 侧边栏：归档
+ * widget:Archive
  */
 function widget_archive($title) {
 	$bar_id = "36";
@@ -229,7 +229,7 @@ function widget_archive($title) {
 <?php } ?>
 <?php
 /**
- * 侧边栏：自定义组件
+ * widget:Custom widget
  */
 function widget_custom_text($title, $content) { ?>
     <div class="widget shadow-theme">
@@ -243,7 +243,7 @@ function widget_custom_text($title, $content) { ?>
 <?php } ?>
 <?php
 /**
- * 页顶：导航
+ * blog:Navigation
  */
 function blog_navi() {
 	global $CACHE;
@@ -258,8 +258,8 @@ function blog_navi() {
 				}
 				if ($value['url'] == 'admin' && (!User::isVistor())):
 					?>
-                    <li class="list-item list-menu"><a href="<?= BLOG_URL ?>admin/" class="nav-link">管理</a></li>
-                    <li class="list-item list-menu"><a href="<?= BLOG_URL ?>admin/account.php?action=logout" class="nav-link">退出</a></li>
+                    <li class="list-item list-menu"><a href="<?= BLOG_URL ?>admin/" class="nav-link"><?=lang('site_management')?></a></li>
+                    <li class="list-item list-menu"><a href="<?= BLOG_URL ?>admin/account.php?action=logout" class="nav-link"><?=lang('logout')?></a></li>
 					<?php
 					continue;
 				endif;
@@ -296,11 +296,11 @@ function blog_navi() {
 <?php } ?>
 <?php
 /**
- * 文章列出卡片：置顶标志
+ * blog:Top
  */
 function topflg($top, $sortop = 'n', $sortid = null) {
-	$ishome_flg = '<span title="首页置顶" class="log-topflg" >置顶</span>';
-	$issort_flg = '<span title="分类置顶" class="log-topflg" >分类置顶</span>';
+	$ishome_flg = '<span title="' . lang('home_top') . '" class="log-topflg" >' . lang('top') . '</span>';
+	$issort_flg = '<span title="' . lang('category_top') . '" class="log-topflg" >' . lang('category_top') . '</span>';
 	if (blog_tool_ishome()) {
 		echo $top == 'y' ? $ishome_flg : '';
 	} elseif ($sortid) {
@@ -311,45 +311,45 @@ function topflg($top, $sortop = 'n', $sortid = null) {
 ?>
 <?php
 /**
- * 文章查看页：编辑链接
+ * blog:Editor
  */
 function editflg($logid, $author) {
-	$editflg = User::haveEditPermission() || $author == UID ? '&nbsp;&nbsp;&nbsp;<a href="' . BLOG_URL . 'admin/article.php?action=edit&gid=' . $logid . '" target="_blank">编辑</a>' : '';
+	$editflg = User::haveEditPermission() || $author == UID ? '<a href="' . BLOG_URL . 'admin/article.php?action=edit&gid=' . $logid . '" target="_blank">' . lang('edit') . '</a>' : '';
 	echo $editflg;
 }
 
 ?>
 <?php
 /**
- * 文章查看页：分类
+ * blog:Category
  */
 function blog_sort($blogid) {
 	global $CACHE;
 	$log_cache_sort = $CACHE->readCache('logsort');
 	?>
 	<?php if (!empty($log_cache_sort[$blogid])) { ?>
-        <a href="<?= Url::sort($log_cache_sort[$blogid]['id']) ?>" title="分类：<?= $log_cache_sort[$blogid]['name'] ?>"><?= $log_cache_sort[$blogid]['name'] ?></a>
+          <a href="<?= Url::sort($log_cache_sort[$blogid]['id']) ?>" title="<?=lang('category')?>: <?= $log_cache_sort[$blogid]['name'] ?>"><?= $log_cache_sort[$blogid]['name'] ?></a>
 	<?php } else { ?>
-        <a href="#" title="未分类">无</a>
+          <a href="#" title="<?=lang('uncategorized')?>"><?=lang('no')?></a>
 	<?php }
 } ?>
 <?php
 /**
- * 文章列出页：分类
+ * Article Listing Page: Categories
  */
 function bloglist_sort($blogid) {
 	global $CACHE;
 	$log_cache_sort = $CACHE->readCache('logsort');
 	?>
 	<?php if (!empty($log_cache_sort[$blogid])) { ?>
-        <span class="loglist-sort">
-			<a href="<?= Url::sort($log_cache_sort[$blogid]['id']) ?>" title="分类：<?= $log_cache_sort[$blogid]['name'] ?>"><?= $log_cache_sort[$blogid]['name'] ?></a>
+		<span class="loglist-sort">
+            <a href="<?= Url::sort($log_cache_sort[$blogid]['id']) ?>" title="<?=lang('category')?>: <?= $log_cache_sort[$blogid]['name'] ?>"><?= $log_cache_sort[$blogid]['name'] ?></a>
 		</span>
 	<?php }
 } ?>
 <?php
 /**
- * 文章列出页和文章查看页：标签
+ * blog:Post Tags
  */
 function blog_tag($blogid) {
 	$tag_model = new Tag_Model();
@@ -367,7 +367,7 @@ function blog_tag($blogid) {
 ?>
 <?php
 /**
- * 文章列出页和文章查看页：作者
+ * blog:Post author
  */
 function blog_author($uid) {
 	global $CACHE;
@@ -382,25 +382,25 @@ function blog_author($uid) {
 ?>
 <?php
 /**
- * 文章查看页：相邻文章
+ * blog:Neighbor Post
  */
 function neighbor_log($neighborLog) {
 	extract($neighborLog) ?>
 	<?php if ($prevLog): ?>
-        <span class="prev-log"><a href="<?= Url::log($prevLog['gid']) ?>" title="<?= $prevLog['title'] ?>">上一篇</a></span>
+          <span class="prev-log"><a href="<?= Url::log($prevLog['gid']) ?>" title="<?= $prevLog['title'] ?>"><?=lang('prev')?></a></span>
 	<?php endif ?>
 	<?php if ($nextLog): ?>
-        <span class="next-log"><a href="<?= Url::log($nextLog['gid']) ?>" title="<?= $nextLog['title'] ?>">下一篇</a></span>
+          <span class="next-log"><a href="<?= Url::log($nextLog['gid']) ?>" title="<?= $nextLog['title'] ?>"><?=lang('next')?></a></span>
 	<?php endif ?>
 <?php } ?>
 <?php
 /**
- * 文章查看页：评论列表
+ * blog:comment list
  */
 function blog_comments($comments) {
 	extract($comments);
 	if ($commentStacks): ?>
-        <div class="comment-header"><b>评论：</b></div>
+              <div class="comment-header"><b><?=lang('comments')?>:</b></div>
 	<?php endif ?>
 	<?php
 	$isGravatar = Option::get('isgravatar');
@@ -438,7 +438,7 @@ function blog_comments($comments) {
 <?php } ?>
 <?php
 /**
- * 文章查看页：子评论
+ * blog:sub-comment list
  */
 function blog_comments_children($comments, $children) {
 	$isGravatar = Option::get('isgravatar');
@@ -454,19 +454,17 @@ function blog_comments_children($comments, $children) {
                     <b><?= $comment['poster'] ?> </b><span class="comment-time"><?= $comment['date'] ?></span>
                     <div class="comment-content"><?= $comment['content'] ?></div>
 					<?php if ($comment['level'] < 4): ?>
-                        <div class="comment-reply">
-                            <button class="com-reply comment-replay-btn">回复</button>
-                        </div><?php endif ?>
-                </div>
+          				<div class="comment-reply"><button class="com-reply comment-replay-btn"><?=lang('reply')?></button>
+						</div><?php endif ?>
+				</div>
 			<?php else: ?>
                 <div class="comment-infos-unGravatar">
                     <b><?= $comment['poster'] ?> </b><span class="comment-time"><?= $comment['date'] ?></span>
                     <div class="comment-content"><?= $comment['content'] ?></div>
 					<?php if ($comment['level'] < 4): ?>
-                        <div class="comment-reply">
-                            <button class="com-reply comment-replay-btn">回复</button>
-                        </div><?php endif ?>
-                </div>
+          					<div class="comment-reply"><button class="com-reply comment-replay-btn"><?=lang('reply')?></button>
+						</div><?php endif ?>
+				</div>
 			<?php endif ?>
 			<?php blog_comments_children($comments, $comment['children']) ?>
         </div>
@@ -474,56 +472,54 @@ function blog_comments_children($comments, $children) {
 <?php } ?>
 <?php
 /**
- * 文章查看页：评论表单
+ * blog:Post a comment form
  */
 function blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allow_remark) {
 	$isNeedChinese = Option::get('comment_needchinese');
 	if ($allow_remark == 'y'): ?>
-        <div id="comment-place">
-            <div class="comment-post" id="comment-post">
-                <div class="cancel-reply" id="cancel-reply" style="display:none">
-                    <button class="comment-replay-btn">取消回复</button>
-                </div>
-                <form class="commentform" method="post" name="commentform" action="<?= BLOG_URL ?>index.php?action=addcom" id="commentform"
-                      is-chinese="<?= $isNeedChinese ?>">
-                    <input type="hidden" name="gid" value="<?= $logid ?>"/>
-                    <textarea class="form-control log_comment" name="comment" id="comment" rows="10" tabindex="4" required></textarea>
+		<div id="comment-place">
+			<div class="comment-post" id="comment-post">
+          			<div class="cancel-reply" id="cancel-reply" style="display:none"><button class="comment-replay-btn"><?=lang('cancel_reply')?></button></div>
+				<form class="commentform" method="post" name="commentform" action="<?= BLOG_URL ?>index.php?action=addcom" id="commentform"
+					  is-chinese="<?= $isNeedChinese ?>">
+					<input type="hidden" name="gid" value="<?= $logid ?>"/>
+					<textarea class="form-control log_comment" name="comment" id="comment" rows="10" tabindex="4" required></textarea>
 					<?php if (User::isVistor()): ?>
-                        <div class="comment-info" id="comment-info">
-                            <input class="form-control com_control comment-name" id="info_n" autocomplete="off" type="text" name="comname" maxlength="49"
-                                   value="<?= $ckname ?>" size="22"
-                                   tabindex="1" placeholder="昵称*" required/>
+						<div class="comment-info" id="comment-info">
+          							<input class="form-control com_control comment-name" id="info_n" autocomplete="off" type="text" name="comname" maxlength="49"
+								   value="<?= $ckname ?>" size="22"
+                                   tabindex="1" placeholder="<?=lang('nickname')?>*" required/>
                             <input class="form-control com_control comment-mail" id="info_m" autocomplete="off" type="text" name="commail" maxlength="128"
-                                   value="<?= $ckmail ?>" size="22"
-                                   tabindex="2" placeholder="邮件地址"/>
+								   value="<?= $ckmail ?>" size="22"
+                                   tabindex="2" placeholder="<?=lang('homepage')?>" />
                             <input class="form-control com_control comment-url" id="info_u" autocomplete="off" type="text" name="comurl" maxlength="128"
-                                   value="<?= $ckurl ?>" size="22"
-                                   tabindex="3" placeholder="个人主页"/>
-                        </div>
+								   value="<?= $ckurl ?>" size="22"
+                                   tabindex="3" placeholder="<?=lang('homepage')?>"/>
+						</div>
 					<?php endif ?>
 
-                    <span class="com_submit_p">
-						<input class="btn"<?php if ($verifyCode != "") { ?> type="button" data-toggle="modal" data-target="#myModal"<?php } else { ?> type="submit"<?php } ?>
-							   id="comment_submit" value="发布评论" tabindex="6"/>
+					<span class="com_submit_p">
+                        <input class="btn"<?php if ($verifyCode != "") { ?> type="button" data-toggle="modal" data-target="#myModal"<?php } else { ?> type="submit"<?php } ?>
+                               id="comment_submit" value="<?=lang('comment_leave')?>" tabindex="6"/>
 					</span>
 					<?php if ($verifyCode != "") { ?>
-                        <!-- 验证窗口 -->
-                        <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content" style="display: table-cell;">
+			<!-- Verification window -->
+						<div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content" style="display: table-cell;">
                                     <div class="modal-header" style="border-bottom: 0px;">
-                                        输入验证码
-                                    </div>
+					<?=lang('enter_captcha')?>
+									</div>
 									<?= $verifyCode ?>
-                                    <div class="modal-footer" style="border-top: 0px;">
-                                        <button type="button" class="btn" id="close-modal" data-dismiss="modal">关闭</button>
-                                        <button type="submit" class="btn" id="comment_submit2">提交</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="lock-screen"></div>
-                        </div>
-                        <!-- 验证窗口(end) -->
+									<div class="modal-footer" style="border-top: 0px;">
+          				<button type="button" class="btn" id="close-modal" data-dismiss="modal"><?=lang('close')?></button>
+          				<button type="submit" class="btn" id="comment_submit2"><?=lang('submit')?></button>
+									</div>
+								</div>
+							</div>
+							<div class="lock-screen"></div>
+						</div>
+			<!-- Verification window (end)  -->
 					<?php } ?>
                     <input type="hidden" name="pid" id="comment-pid" value="0" tabindex="1"/>
                 </form>
@@ -533,7 +529,7 @@ function blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allo
 <?php } ?>
 <?php
 /**
- * 判断函数：是否是首页
+ * blog-tool: Determine whether it is the Home
  */
 function blog_tool_ishome() {
 	if (BLOG_URL . trim(Dispatcher::setPath(), '/') == BLOG_URL) {

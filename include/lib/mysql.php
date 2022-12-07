@@ -13,7 +13,7 @@ class MySql {
 			return MySqlii::getInstance();
 		}
 
-		emMsg('服务器空间PHP不支持MySql数据库');
+		emMsg('mysql_not_supported');
 	}
 
 }

@@ -9,28 +9,28 @@
         <div class="col-xl-12">
             <div id="post" class="form-group">
                 <div>
-                    <input type="text" name="title" id="title" value="<?= $title ?>" class="form-control" placeholder="文章标题" autofocus required/>
+                    <input type="text" name="title" id="title" value="<?= $title ?>" class="form-control" placeholder="<?=lang('post_title')?>" autofocus required/>
                 </div>
                 <div id="post_bar">
                     <a href="#mediaModal" class="text-muted small my-3" data-remote="./media.php?action=lib" data-toggle="modal" data-target="#mediaModal"><i
-                                class="icofont-plus"></i> 插入图文资源</a>
+                                class="icofont-plus"></i> <?=lang('upload_insert')?></a>
 					<?php doAction('adm_writelog_head') ?>
                 </div>
                 <div id="logcontent"><textarea><?= $content ?></textarea></div>
             </div>
 
             <div class="form-group">
-                <label>文章摘要：</label>
+                <label><?=lang('post_description')?>:</label>
                 <div id="logexcerpt"><textarea><?= $excerpt ?></textarea></div>
             </div>
 
             <div class="form-group">
-                <label>文章封面：</label>
-                <input name="cover" id="cover" class="form-control" placeholder="封面图地址URL，手动填写或点击下方图片区域上传" value="<?= $cover ?>"/>
+                <label><?=lang('article_cover')?>:</label>
+                <input name="cover" id="cover" class="form-control" placeholder="<?=lang('cover_placeholder')?>" value="<?= $cover ?>"/>
                 <div class="row mt-3">
                     <div class="col-md-4">
                         <label for="upload_img">
-                            <img src="<?= $cover ?: './views/images/cover.svg' ?>" id="cover_image" class="rounded" title="封面图片"/>
+                            <img src="<?= $cover ?: './views/images/cover.svg' ?>" id="cover_image" class="rounded" title="<?=lang('cover_image')?>"/>
                             <input type="file" name="upload_img" class="image" id="upload_img" style="display:none"/>
                             <button type="button" id="cover_rm" class="btn-sm btn btn-link" <?php if (!$cover): ?>style="display:none"<?php endif ?>>x</button>
                         </label>
@@ -42,9 +42,9 @@
 
             <div id="advset" class="shadow-sm p-3 mb-2 bg-white rounded">
                 <div class="form-group">
-                    <label>分类：</label>
+                    <label><?=lang('category')?>:</label>
                     <select name="sort" id="sort" class="form-control">
-                        <option value="-1">选择分类...</option>
+                        <option value="-1"><?=lang('category_select')?></option>
 						<?php
 						foreach ($sorts as $key => $value):
 							if ($value['pid'] != 0) {
@@ -67,10 +67,10 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>标签：</label>
-                    <input name="tag" id="tag" class="form-control" value="<?= $tagStr ?>" placeholder="文章标签，使用逗号分隔"/>
+                    <label><?=lang('tags')?>:</label>
+                    <input name="tag" id="tag" class="form-control" value="<?= $tagStr ?>" placeholder="<?=lang('post_tags_separated')?>"/>
 					<?php if ($tags): ?>
-                        <span class="small"><a href="javascript:doToggle('tags', 1);">近期使用的+</a></span>
+                        <span class="small"><a href="javascript:doToggle('tags', 1);"><?=lang('recently_used')?></a></span>
                         <div id="tags" style="display: none">
 							<?php
 							foreach ($tags as $val) {
@@ -81,20 +81,20 @@
 					<?php endif; ?>
                 </div>
                 <div class="form-group">
-                    <label>发布时间：（当设置未来的时间点时，文章将在该时间点后定时发布）</label>
+                    <label><?=lang('publish_time')?>: <?=lang('publish_time_tips')?></label>
                     <input maxlength="200" name="postdate" id="postdate" value="<?= $postDate ?>" class="form-control"/>
                 </div>
                 <div class="form-group">
-                    <label>链接别名：（用于seo设置 <a href="./setting.php?action=seo">&rarr;</a>）</label>
+                    <label><?=lang('link_alias')?></label>
                     <input name="alias" id="alias" class="form-control" value="<?= $alias ?>"/>
                 </div>
                 <div class="form-group">
-                    <label>访问密码：</label>
+                    <label><?=lang('access_password')?>:</label>
                     <input type="text" name="password" id="password" class="form-control" value="<?= $password ?>"/>
                 </div>
                 <div class="form-group">
                     <input type="checkbox" value="y" name="allow_remark" id="allow_remark" <?= $is_allow_remark ?> />
-                    <label for="allow_remark">允许评论</label>
+                    <label for="allow_remark"><?=lang('allow_comments')?></label>
                 </div>
             </div>
 
@@ -105,13 +105,13 @@
                 <input type="hidden" name="gid" value=<?= $logid ?>/>
                 <input type="hidden" name="author" id="author" value=<?= $author ?>/>
 				<?php if ($logid < 0): ?>
-                    <input type="submit" value="发布文章" onclick="return checkform();" class="btn btn-sm btn-success"/>
-                    <input type="button" name="savedf" id="savedf" value="保存草稿" onclick="autosave(2);" class="btn btn-sm btn-primary"/>
+                    <input type="submit" value="<?=lang('post_publish')?>" onclick="return checkform();" class="btn btn-sm btn-success"/>
+                    <input type="button" name="savedf" id="savedf" value="<?=lang('save_draft')?>" onclick="autosave(2);" class="btn btn-sm btn-primary"/>
 				<?php else: ?>
-                    <input type="submit" value="保存并返回" onclick="return checkform();" class="btn btn-sm btn-success"/>
-                    <input type="button" name="savedf" id="savedf" value="保存" onclick="autosave(2);" class="btn btn-sm btn-primary"/>
+                    <input type="submit" value="<?=lang('save_and_return')?>" onclick="return checkform();" class="btn btn-sm btn-success"/>
+                    <input type="button" name="savedf" id="savedf" value="<?=lang('save')?>" onclick="autosave(2);" class="btn btn-sm btn-primary"/>
 					<?php if ($isdraft) : ?>
-                        <input type="submit" name="pubdf" id="pubdf" value="发布" onclick="return checkform();" class="btn btn-sm btn-success"/>
+                        <input type="submit" name="pubdf" id="pubdf" value="<?=lang('publish')?>" onclick="return checkform();" class="btn btn-sm btn-success"/>
 					<?php endif ?>
 				<?php endif ?>
                 <span id="save_info"></span>
@@ -124,13 +124,13 @@
     <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">图文资源</h5>
+                <h5 class="modal-title" id="exampleModalLabel"><?=lang('resource_library')?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <a href="#" id="mediaAdd" class="btn btn-sm btn-success shadow-sm mb-3">上传图片/文件</a>
+                <a href="#" id="mediaAdd" class="btn btn-sm btn-success shadow-sm mb-3"><?=lang('upload_files')?></a>
                 <form action="media.php?action=operate_media" method="post" name="form_media" id="form_media">
                     <div class="row">
                     </div>
@@ -142,7 +142,7 @@
 <div class="dropzone-previews" style="display: none;"></div>
 <script src="./views/js/dropzone.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
 <script>
-    // 上传资源
+    // Upload resources
     Dropzone.autoDiscover = false;
     var myDropzone = new Dropzone("#mediaAdd", {
         url: "./media.php?action=upload",
@@ -154,7 +154,7 @@
         previewsContainer: ".dropzone-previews",
         sending: function (file, xhr, formData) {
             formData.append("filesize", file.size);
-            $('#mediaAdd').html("上传中……");
+    $('#mediaAdd').html("<?=lang('uploading')?>");
         },
         init: function () {
             this.on("error", function (file, response) {
@@ -162,11 +162,11 @@
             });
             this.on("queuecomplete", function (file) {
                 $('#mediaModal').find('.modal-body .row').load("./media.php?action=lib");
-                $('#mediaAdd').html("上传图片/文件");
+        $('#mediaAdd').html("<?=lang('upload_files')?>");
             });
         }
     });
-    // 载入资源列表
+    // Load file list
     $('#mediaModal').on('show.bs.modal', function (e) {
         var button = $(e.relatedTarget);
         var modal = $(this);
@@ -174,14 +174,14 @@
     });
 </script>
 
-<!-- 封面图裁剪 -->
+<!-- Cover image cropping -->
 <div class="modal fade" id="modal" tabindex="-2" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" data-backdrop="static">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">裁剪并上传</h5>
+                <h5 class="modal-title"><?=lang('crop_upload')?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
+                    <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
@@ -194,8 +194,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
-                <button type="button" id="crop" class="btn btn-sm btn-success">保存</button>
+                <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
+                <button type="button" id="crop" class="btn btn-sm btn-success"><?=lang('save')?></button>
             </div>
         </div>
     </div>
@@ -230,11 +230,11 @@
             imageUpload: true,
             imageFormats: ["jpg", "jpeg", "gif", "png"],
             imageUploadURL: "media.php?action=upload&editor=1",
-            videoUpload: false, //开启视频上传
+            videoUpload: false, //Enable video upload
             syncScrolling: "single",
             onload: function () {
                 hooks.doAction("loaded", this);
-                //在大屏模式下，编辑器默认显示预览
+                //In the large screen mode, the editor displays the preview by default
                 if ($(window).width() > 767) {
                     this.watch();
                 }
@@ -253,7 +253,7 @@
             flowChart: false,
             autoFocus: false,
             sequenceDiagram: false,
-            placeholder: "如果留空，则使用文章内容作为摘要...",
+    placeholder: "<?=lang('enter_summary')?>",
             onload: function () {
                 hooks.doAction("sum_loaded", this);
             }
@@ -261,7 +261,7 @@
         Editor.setToolbarAutoFixed(false);
         Editor_summary.setToolbarAutoFixed(false);
     });
-    // 封面图
+    // Cover image
     $(document).ready(function () {
         var $modal = $('#modal');
         var image = document.getElementById('sample_image');
@@ -333,7 +333,7 @@
         }
     );
 
-    // 离开页面时，如果文章内容已做修改，则询问用户是否离开
+    // When leaving the page, if the content of the article has been modified, ask the user whether to leave
     var articleTextRecord;
     hooks.addAction("loaded", function () {
         articleTextRecord = $("textarea[name=logcontent]").text();
@@ -341,22 +341,22 @@
     window.onbeforeunload = function (e) {
         if ($("textarea[name=logcontent]").text() == articleTextRecord) return
         e = e || window.event;
-        if (e) e.returnValue = '离开页面提示';
-        return '离开页面提示';
+    if (e) e.returnValue = lang('leave_prompt');
+return lang('leave_prompt');
     }
 
-    // 如果文章内容已做修改，则使网页标题修改为‘已修改’
+    // If the content of the article has been modified, make the page title modified to 'modified'
     var titleText = $('title').text()
     hooks.addAction("loaded", function (obj) {
         obj.config({
             onchange: function () {
                 if ($("textarea[name=logcontent]").text() == articleTextRecord) return
-                $('title').text('[已修改] ' + titleText);
+        $('title').text(lang('already_edited') + titleText);
             }
         });
     });
 
-    // 文章编辑界面全局快捷键 Ctrl（Cmd）+ S 保存内容
+    // The global shortcut key of the article editing interface Ctrl (Cmd) + S to save the content
     document.addEventListener('keydown', function(e){
 		if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)){
 			e.preventDefault();

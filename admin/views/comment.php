@@ -3,41 +3,41 @@
 } ?>
 
 <?php if (isset($_GET['active_del'])): ?>
-    <div class="alert alert-success">删除成功</div><?php endif ?>
+          <div class="alert alert-success"><?=lang('comment_delete_ok')?></div><?php endif ?>
 <?php if (isset($_GET['active_show'])): ?>
-    <div class="alert alert-success">审核成功</div><?php endif ?>
+          <div class="alert alert-success"><?=lang('comment_audit_ok')?></div><?php endif ?>
 <?php if (isset($_GET['active_hide'])): ?>
-    <div class="alert alert-success">隐藏成功</div><?php endif ?>
+          <div class="alert alert-success"><?=lang('comment_hide_ok')?></div><?php endif ?>
 <?php if (isset($_GET['active_top'])): ?>
-    <div class="alert alert-success">置顶成功</div><?php endif ?>
+          <div class="alert alert-success"><?=lang('sticked_ok')?></div><?php endif ?>
 <?php if (isset($_GET['active_untop'])): ?>
-    <div class="alert alert-success">取消置顶成功</div><?php endif ?>
+          <div class="alert alert-success"><?=lang('unsticked_ok')?></div><?php endif ?>
 <?php if (isset($_GET['active_edit'])): ?>
-    <div class="alert alert-success">修改成功</div><?php endif ?>
+          <div class="alert alert-success"><?=lang('comment_edit_ok')?></div><?php endif ?>
 <?php if (isset($_GET['active_rep'])): ?>
-    <div class="alert alert-success">回复成功</div><?php endif ?>
+          <div class="alert alert-success"><?=lang('comment_reply_ok')?></div><?php endif ?>
 <?php if (isset($_GET['error_a'])): ?>
-    <div class="alert alert-danger">请选择要执行操作的评论</div><?php endif ?>
+          <div class="alert alert-danger"><?=lang('comment_choose_operation')?></div><?php endif ?>
 <?php if (isset($_GET['error_b'])): ?>
-    <div class="alert alert-danger">请选择要执行的操作</div><?php endif ?>
+          <div class="alert alert-danger"><?=lang('select_action_to_perform')?></div><?php endif ?>
 <?php if (isset($_GET['error_c'])): ?>
-    <div class="alert alert-danger">回复内容不能为空</div><?php endif ?>
+          <div class="alert alert-danger"><?=lang('reply_is_empty')?></div><?php endif ?>
 <?php if (isset($_GET['error_d'])): ?>
-    <div class="alert alert-danger">内容过长</div><?php endif ?>
+          <div class="alert alert-danger"><?=lang('comment_too_long')?></div><?php endif ?>
 <?php if (isset($_GET['error_e'])): ?>
-    <div class="alert alert-danger">评论内容不能为空</div><?php endif ?>
+          <div class="alert alert-danger"><?=lang('comment_is_empty')?></div><?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">评论</h1>
+          <h1 class="h3 mb-0 text-gray-800"><?= lang('comment_management') ?></h1>
 </div>
 <?php if ($hideCommNum > 0) : ?>
     <div class="panel-heading">
         <ul class="nav nav-tabs">
             <li class="nav-item"><a class="nav-link <?php if ($hide == '') {
 					echo 'active';
-				} ?>" href="./comment.php?<?= $addUrl_1 ?>">全部</a></li>
+        } ?>" href="./comment.php?<?= $addUrl_1 ?>"><?=lang('all')?></a></li>
             <li class="nav-item"><a class="nav-link <?php if ($hide == 'y') {
 					echo 'active';
-				} ?>" href="./comment.php?hide=y&<?= $addUrl_1 ?>">待审<?php
+        } ?>" href="./comment.php?hide=y&<?= $addUrl_1 ?>"><?=lang('pending')?><?php
 					$hidecmnum = User::haveEditPermission() ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
 					if ($hidecmnum > 0) echo '(' . $hidecmnum . ')';
 					?></a>
@@ -53,20 +53,20 @@
                     <thead>
                     <tr>
                         <th><input type="checkbox" id="checkAll"/></th>
-                        <th>内容</th>
-                        <th>评论人</th>
-                        <th>时间</th>
-                        <th>文章</th>
+                        <th><?= lang('content') ?></th>
+                        <th><?= lang('comment_author') ?></th>
+                        <th><?= lang('time') ?></th>
+                        <th><?= lang('belongs_to_article') ?></th>
                     </tr>
                     </thead>
                     <tbody>
 					<?php foreach ($comment as $key => $value):
-						$ishide = $value['hide'] == 'y' ? '<span class="text-danger">[待审]</span>' : '';
+                $ishide = $value['hide'] == 'y' ? '<span class="text-danger">[' . lang('pending') . ']</span>' : '';
 						$mail = $value['mail'] ? "({$value['mail']})" : '';
 						$ip = $value['ip'];
 						$gid = $value['gid'];
 						$cid = $value['cid'];
-						$ip_info = $ip ? "<br />来自IP：{$ip}" : '';
+					$ip_info = $ip ? '<br />' . lang('from_ip') . ': ' . $ip : '';
 						$comment = $value['comment'];
 						$poster = !empty($value['url']) ? '<a href="' . $value['url'] . '" target="_blank">' . $value['poster'] . '</a>' : $value['poster'];
 						$title = subString($value['title'], 0, 42);
@@ -86,20 +86,20 @@
 									<?= $comment ?>
                                 </a>
 								<?= $ishide ?>
-								<?php if ($top == 'y'): ?><span class="flag-indexTop" title="置顶">置顶</span><?php endif ?>
+          							<?php if ($top == 'y'): ?><span class="flag-indexTop" title="<?=lang('top')?>"><?=lang('top')?></span><?php endif ?>
                             </td>
                             <td class="small">
-								<?= $poster ?><?= $mail ?><?= $ip_info ?>
+                                <?= $poster ?> <?= $mail ?> <?= $ip_info ?>
 								<?php if (User::haveEditPermission()): ?>
                                     <a href="javascript: em_confirm('<?= $ip ?>', 'commentbyip', '<?= LoginAuth::genToken() ?>');"
-                                       class="badge badge-pill badge-warning">按IP删除</a>
+                                       class="badge badge-pill badge-warning"><?=lang('del_from_ip')?></a>
 								<?php endif ?>
                                 <br><?= $value['os'] ?> - <?= $value['browse'] ?>
                             </td>
                             <td class="small"><?= $date ?></td>
                             <td class="small">
                                 <a href="<?= Url::log($gid) ?>" target="_blank"><?= $title ?></a><br>
-                                <a href="comment.php?gid=<?= $gid ?>" class="badge badge-info">该文所有评论</a>
+                                <a href="comment.php?gid=<?= $gid ?>" class="badge badge-info"><?=lang('article_all_comments')?></a>
                             </td>
                         </tr>
 					<?php endforeach ?>
@@ -108,15 +108,15 @@
             </div>
             <div class="list_footer">
                 <div class="btn-group btn-group-sm" role="group">
-                    <a href="javascript:commentact('top');" class="btn btn-sm btn-secondary">置顶</a>
-                    <a href="javascript:commentact('untop');" class="btn btn-sm btn-secondary">取消置顶</a>
-                    <a href="javascript:commentact('hide');" class="btn btn-sm btn-success">隐藏</a>
-                    <a href="javascript:commentact('pub');" class="btn btn-sm btn-success">审核</a>
-                    <a href="javascript:commentact('del');" class="btn btn-sm btn-danger">删除</a>
+                    <a href="javascript:commentact('top');" class="btn btn-sm btn-primary"><?=lang('top')?></a>
+                    <a href="javascript:commentact('untop');" class="btn btn-sm btn-secondary"><?=lang('untop')?></a>
+                  <a href="javascript:commentact('hide');" class="btn btn-sm btn-warning"><?=lang('hide')?></a>
+                  <a href="javascript:commentact('pub');" class="btn btn-sm btn-success"><?=lang('approve')?></a>
+                  <a href="javascript:commentact('del');" class="btn btn-sm btn-danger"><?=lang('delete')?></a>
                 </div>
                 <input name="operate" id="operate" value="" type="hidden"/>
             </div>
-            <div class="page"><?= $pageurl ?> （有 <?= $cmnum ?> 条评论）</div>
+            <div class="page"><?= $pageurl ?> (<?=lang('have')?> <?= $cmnum ?> <?=lang('_comments')?>)</div>
         </div>
     </div>
 </form>
@@ -124,7 +124,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="replyModalLabel">回复评论</h5>
+                <h5 class="modal-title" id="replyModalLabel"><?=lang('comment_reply')?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -140,8 +140,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
-                    <button type="submit" class="btn btn-sm btn-success">回复</button>
+                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
+                    <button type="submit" class="btn btn-sm btn-success"><?=lang('reply')?></button>
                 </div>
             </form>
         </div>
@@ -154,10 +154,10 @@
 
     function commentact(act) {
         if (getChecked('ids') == false) {
-            alert('请选择要操作的评论');
+    alert('<?=lang('comment_operation_select')?>');
             return;
         }
-        if (act == 'del' && !confirm('确定要删除所选评论吗？')) {
+if (act == 'del' && !confirm('<?=lang('comment_selected_delete_sure')?>')) {
             return;
         }
         $("#operate").val(act);

@@ -8,14 +8,14 @@
 class Url {
 
 	/**
-	 * Get article links
+	 * Get Post Link
 	 */
 	static function log($blogId) {
 		$urlMode = Option::get('isurlrewrite');
 		$logUrl = '';
 		$CACHE = Cache::getInstance();
 
-		//开启文章别名
+		//Open the Post alias
 		if (Option::get('isalias') == 'y') {
 			$logalias_cache = $CACHE->readCache('logalias');
 			if (!empty($logalias_cache[$blogId])) {
@@ -62,6 +62,9 @@ class Url {
 		return $logUrl;
 	}
 
+	/**
+	 * Get the archive link
+	 */
 	static function record($record, $page = null) {
 		switch (Option::get('isurlrewrite')) {
 			case '0':
@@ -80,6 +83,9 @@ class Url {
 		return $recordUrl;
 	}
 
+	/**
+	 * Get Category Link
+	 */
 	static function sort($sortId, $page = null) {
 		$CACHE = Cache::getInstance();
 		$sort_cache = $CACHE->readCache('sort');
@@ -101,6 +107,9 @@ class Url {
 		return $sortUrl;
 	}
 
+	/**
+	 * Get author link
+	 */
 	static function author($authorId, $page = null) {
 		switch (Option::get('isurlrewrite')) {
 			case '0':
@@ -119,6 +128,9 @@ class Url {
 		return $authorUrl;
 	}
 
+	/**
+	 * Get tag link
+	 */
 	static function tag($tag, $page = null) {
 		switch (Option::get('isurlrewrite')) {
 			case '0':
@@ -137,6 +149,9 @@ class Url {
 		return $tagUrl;
 	}
 
+	/**
+	 * Get the Home Post pagination links
+	 */
 	static function logPage() {
 		switch (Option::get('isurlrewrite')) {
 			case '0':
@@ -149,6 +164,9 @@ class Url {
 		return $logPageUrl;
 	}
 
+	/**
+	 * Get Comment Link
+	 */
 	static function comment($blogId, $pageId, $cid) {
 		$commentUrl = Url::log($blogId);
 		if ($pageId > 1) {
@@ -164,7 +182,7 @@ class Url {
 	}
 
 	/**
-	 * 获取导航链接
+	 * Get navigation link
 	 */
 	static function navi($type, $typeId, $url) {
 		switch ($type) {

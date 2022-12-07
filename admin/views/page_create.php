@@ -7,27 +7,27 @@
         <div class="col-xl-12">
             <div id="post" class="form-group">
                 <div>
-                    <input type="text" name="title" id="title" value="<?= $title ?>" class="form-control" placeholder="页面标题"/>
+                    <input type="text" name="title" id="title" value="<?= $title ?>" class="form-control" placeholder="<?=lang('page_title')?>"/>
                 </div>
                 <div id="post_bar">
                     <a href="#mediaModal" class="text-muted small my-3" data-remote="./media.php?action=lib" data-toggle="modal" data-target="#mediaModal"><i
-                                class="icofont-plus"></i> 插入图文资源</a>
+                                class="icofont-plus"></i> <?=lang('upload_insert')?></a>
 					<?php doAction('adm_writelog_head') ?>
                 </div>
                 <div id="pagecontent"><textarea><?= $content ?></textarea></div>
             </div>
 
             <div class="form-group">
-                <label>链接别名：（用于seo设置 <a href="./setting.php?action=seo">&rarr;</a>）</label>
+                <label><?=lang('link_alias')?></label>
                 <input name="alias" id="alias" class="form-control" value="<?= $alias ?>"/>
             </div>
             <div class="form-group">
-                <label>页面模板：</label>
+                <label><?=lang('page_template')?>:</label>
                 <input name="template" id="template" class="form-control" value="<?= $template ?>"/>
             </div>
             <div class="form-group">
                 <input type="checkbox" value="y" name="allow_remark" id="allow_remark" <?= $is_allow_remark ?> />
-                <label for="allow_remark">允许评论</label>
+                <label for="allow_remark"><?=lang('allow_comments')?></label>
             </div>
 
             <div id="post_button">
@@ -35,26 +35,26 @@
                 <input type="hidden" name="ishide" id="ishide" value="<?= $hide ?>" />
                 <input type="hidden" name="pageid" value="<?= $pageId ?>" />
 				<?php if ($pageId < 0): ?>
-                    <input type="submit" value="发布页面" onclick="return checkform();" class="btn btn-sm btn-success"/>
+                    <input type="submit" value="<?=lang('page_publish')?>" onclick="return checkform();" class="btn btn-sm btn-success"/>
 				<?php else: ?>
-                    <input type="submit" value="保存并返回" onclick="return checkform();" class="btn btn-sm btn-success"/>
+                    <input type="submit" value="<?=lang('save_and_return')?>" onclick="return checkform();" class="btn btn-sm btn-success"/>
 				<?php endif ?>
             </div>
         </div>
     </div>
 </form>
-<!--资源库-->
+<!--Resource Library-->
 <div class="modal" id="mediaModal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">图文资源</h5>
+                <h5 class="modal-title" id="exampleModalLabel"><?=lang('resource_library')?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <a href="#" id="mediaAdd" class="btn btn-sm btn-success shadow-sm mb-3">上传图片/文件</a>
+                <a href="#" id="mediaAdd" class="btn btn-sm btn-success shadow-sm mb-3"><?=lang('upload_files')?></a>
                 <form action="media.php?action=operate_media" method="post" name="form_media" id="form_media">
                     <div class="row">
                     </div>
@@ -66,7 +66,7 @@
 <div class="dropzone-previews" style="display: none;"></div>
 <script src="./views/js/dropzone.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
 <script>
-    // 上传资源
+    // Upload resources
     Dropzone.autoDiscover = false;
     var myDropzone = new Dropzone("#mediaAdd", {
         url: "./media.php?action=upload",
@@ -77,7 +77,7 @@
         previewsContainer: ".dropzone-previews",
         sending: function (file, xhr, formData) {
             formData.append("filesize", file.size);
-            $('#mediaAdd').html("上传中……");
+            $('#mediaAdd').html("<?=lang('uploading')?>");
         },
         init: function () {
             this.on("error", function (file, response) {
@@ -85,11 +85,11 @@
             });
             this.on("queuecomplete", function (file) {
                 $('#mediaModal').find('.modal-body .row').load("./media.php?action=lib");
-                $('#mediaAdd').html("上传图片/文件");
+                $('#mediaAdd').html("<?=lang('upload_files')?>");
             });
         }
     });
-    // 载入资源列表
+    // Load file list
     $('#mediaModal').on('show.bs.modal', function (e) {
         var button = $(e.relatedTarget);
         var modal = $(this);
@@ -98,6 +98,9 @@
 </script>
 
 <script src="./editor.md/editormd.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
+<? if (strtolower(LANG) !== 'zh-cn') { ?>
+<script src="./editor.md/languages/<?=strtolower(LANG)?>.js"></script>
+<? } ?>
 <script>
     $("#menu_page").addClass('active');
     checkalias();
@@ -135,7 +138,7 @@
             syncScrolling : "single",
             onload: function () {
                 hooks.doAction("page_loaded",this);
-                //在大屏模式下，编辑器默认显示预览
+                    //In the large screen mode, the editor displays the preview by default
                 if($(window).width() > 767){
                     this.watch();
                 }
@@ -145,7 +148,7 @@
 
 
     });
-    // 离开页面时，如果页面内容已做修改，则询问用户是否离开
+    // When leaving the page, if the page content has been modified, ask the user whether to leave
     var pageText;
     hooks.addAction("page_loaded", function(){
         pageText = $("textarea").text();
@@ -153,11 +156,11 @@
     window.onbeforeunload = function (e) {
         if($("textarea").text() == pageText) return
         e = e || window.event;
-        if (e) e.returnValue = '离开页面提示';
-        return '离开页面提示';
+        if (e) e.returnValue = lang('leave_prompt');
+        return lang('leave_prompt');
     }
 
-    // 页面编辑界面全局快捷键 Ctrl（Cmd）+ S 保存内容
+    // Global shortcut keys on page editing interface Ctrl (Cmd) + S to save content
     document.addEventListener('keydown', function(e){
 		if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)){
 			e.preventDefault();

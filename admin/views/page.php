@@ -2,16 +2,16 @@
 	exit('error!');
 } ?>
 <?php if (isset($_GET['active_del'])): ?>
-    <div class="alert alert-success">删除页面成功</div><?php endif ?>
+          <div class="alert alert-success"><?=lang('page_deleted_ok')?></div><?php endif ?>
 <?php if (isset($_GET['active_hide_n'])): ?>
-    <div class="alert alert-success">发布页面成功</div><?php endif ?>
+          <div class="alert alert-success"><?=lang('page_published_ok')?></div><?php endif ?>
 <?php if (isset($_GET['active_hide_y'])): ?>
-    <div class="alert alert-success">禁用页面成功</div><?php endif ?>
+          <div class="alert alert-success"><?=lang('page_disabled_ok')?></div><?php endif ?>
 <?php if (isset($_GET['active_pubpage'])): ?>
-    <div class="alert alert-success">页面保存成功</div><?php endif ?>
+          <div class="alert alert-success"><?=lang('page_saved_ok')?></div><?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">页面</h1>
-    <a href="page.php?action=new" class="btn btn-sm btn-success shadow-sm mt-4"><i class="icofont-plus"></i> 新建页面</a>
+          <h1 class="h3 mb-0 text-gray-800"><?=lang('page_management')?></h1>
+          <a href="page.php?action=new" class="btn btn-sm btn-success shadow-sm mt-4"><i class="icofont-plus"></i> <?=lang('add_page')?></a>
 </div>
 <form action="page.php?action=operate_page" method="post" name="form_page" id="form_page">
     <div class="card shadow mb-4">
@@ -21,11 +21,11 @@
                     <thead>
                     <tr>
                         <th><input type="checkbox" id="checkAll"/></th>
-                        <th>标题</th>
-                        <th>查看</th>
-                        <th>模板</th>
-                        <th>评论</th>
-                        <th>时间</th>
+                        <th><?=lang('title')?></th>
+                        <th><?=lang('view')?></th>
+                        <th><?=lang('template')?></th>
+                        <th><?=lang('comments')?></th>
+                        <th><?=lang('time')?></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -34,8 +34,8 @@
 							$navibar[$value['gid']]['url'] = Url::log($value['gid']);
 						}
 						$isHide = $value['hide'] == 'y' ?
-							'<span class="text-danger">[草稿]</span>' :
-							'<a href="' . $navibar[$value['gid']]['url'] . '" target="_blank" title="查看页面"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>';
+						'<span class="text-danger">[' . lang('draft') . ']</span>' :
+						'<a href="' . $navibar[$value['gid']]['url'] . '" target="_blank" title="' . lang('page_view') . '"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>';
 						?>
                         <tr>
                             <td style="width: 19px;"><input type="checkbox" name="page[]" value="<?= $value['gid'] ?>" class="ids"/></td>
@@ -53,14 +53,14 @@
             </div>
             <div class="list_footer">
                 <div class="btn-group btn-group-sm" role="group">
-                    <a href="javascript:pageact('hide');" class="btn btn-sm btn-success">转为草稿</a>
-                    <a href="javascript:pageact('pub');" class="btn btn-sm btn-success">发布</a>
-                    <a href="javascript:pageact('del');" class="btn btn-sm btn-danger">删除</a>
+                    <a href="javascript:pageact('hide');" class="btn btn-sm btn-primary"><?=lang('make_draft')?></a>
+                    <a href="javascript:pageact('pub');" class="btn btn-sm btn-success"><?=lang('publish')?></a>
+                    <a href="javascript:pageact('del');" class="btn btn-sm btn-danger"><?=lang('delete')?></a>
                 </div>
                 <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
                 <input name="operate" id="operate" value="" type="hidden"/>
             </div>
-            <div class="page"><?= $pageurl ?> （有 <?= $pageNum ?> 个页面）</div>
+            <div class="page"><?= $pageurl ?> (<?=lang('have')?> <?= $pageNum ?> <?=lang('_pages')?>)</div>
         </div>
     </div>
 </form>
@@ -70,10 +70,10 @@
 
     function pageact(act) {
         if (getChecked('ids') == false) {
-            alert('请选择要操作的页面');
+    alert('<?=lang('select_page_to_operate')?>');
             return;
         }
-        if (act == 'del' && !confirm('确定要删除所选页面吗？')) {
+if (act == 'del' && !confirm('<?=lang('sure_delete_selected_pages')?>')) {
             return;
         }
         $("#operate").val(act);

@@ -17,6 +17,9 @@ class Media_Model {
 		$this->table_sort = DB_PREFIX . 'media_sort';
 	}
 
+	/**
+	 * Get a list of resources
+	 */
 	function getMedias($page = 1, $perpage_count = 24, $uid = UID, $sid = 0) {
 		$startId = ($page - 1) * $perpage_count;
 		$author = $uid ? 'and author=' . UID : '';
@@ -83,10 +86,10 @@ class Media_Model {
 		$filepath_thum = $attach['filepath'];
 		$filepath = str_replace("thum - ", "", $attach['filepath']);
 		if (file_exists($filepath_thum)) {
-			@unlink($filepath_thum) or emMsg("删除失败!");
+			@unlink($filepath_thum) or emMsg(lang('del_failed'));
 		}
 		if (file_exists($filepath)) {
-			@unlink($filepath) or emMsg("删除失败!");
+			@unlink($filepath) or emMsg(lang('del_failed'));
 		}
 
 		return $this->db->query("DELETE FROM $this->table WHERE aid = $media_id $author");

@@ -7,6 +7,8 @@
 
 require_once './init.php';
 
+load_language('rss');
+
 header('Content-type: application/xml');
 $Log_Model = new Log_Model();
 $articles = $Log_Model->getLogsForRss(Option::get('rss_output_num'));
@@ -17,7 +19,7 @@ echo '<?xml version="1.0" encoding="utf-8"?>
 <title><![CDATA[' . Option::get('blogname') . ']]></title> 
 <description><![CDATA[' . Option::get('bloginfo') . ']]></description>
 <link>' . BLOG_URL . '</link>
-<language>zh-cn</language>
+          <language>' . LANG . '</language>
 <generator>www.emlog.net</generator>';
 if (!empty($articles)) {
 	$user_cache = $CACHE->readCache('user');

@@ -1,6 +1,6 @@
 <?php
 /**
- * article sort model
+ * Model: Blog Categories
  * @package EMLOG
  * @link https://www.emlog.net
  */
@@ -29,22 +29,22 @@ class Sort_Model {
 			$Item[] = "$key='$data'";
 		}
 		$upStr = implode(',', $Item);
-		$this->db->query("update " . DB_PREFIX . "sort set $upStr where sid=$sid");
+		$this->db->query("UPDATE " . DB_PREFIX . "sort SET $upStr WHERE sid=$sid");
 	}
 
 	function addSort($name, $alias, $pid, $description, $template) {
-		$sql = "insert into " . DB_PREFIX . "sort (sortname,alias,pid,description,template) values('$name','$alias',$pid,'$description', '$template')";
+		$sql = "INSERT INTO " . DB_PREFIX . "sort (sortname,alias,pid,description,template) VALUES('$name','$alias',$pid,'$description', '$template')";
 		$this->db->query($sql);
 	}
 
 	function deleteSort($sid) {
-		$this->db->query("update " . DB_PREFIX . "blog set sortid=-1 where sortid=$sid");
-		$this->db->query("update " . DB_PREFIX . "sort set pid=0 where pid=$sid");
-		$this->db->query("DELETE FROM " . DB_PREFIX . "sort where sid=$sid");
+		$this->db->query("UPDATE " . DB_PREFIX . "blog SET sortid=-1 WHERE sortid=$sid");
+		$this->db->query("UPDATE " . DB_PREFIX . "sort SET pid=0 WHERE pid=$sid");
+		$this->db->query("DELETE FROM " . DB_PREFIX . "sort WHERE sid=$sid");
 	}
 
 	function getOneSortById($sid) {
-		$sql = "select * from " . DB_PREFIX . "sort where sid=$sid";
+		$sql = "SELECT * FROM " . DB_PREFIX . "sort WHERE sid=$sid";
 		$res = $this->db->query($sql);
 		$row = $this->db->fetch_array($res);
 		$sortData = [];
@@ -66,7 +66,7 @@ class Sort_Model {
 			$row = $this->db->fetch_array($res);
 			$sortName = htmlspecialchars($row['sortname']);
 		} else {
-			$sortName = '未分类';
+			$sortName = lang('uncategorized');
 		}
 		return $sortName;
 	}

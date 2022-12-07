@@ -575,7 +575,7 @@ textarea {
         width: 100%;
         z-index: 1;
         height: 50px;
-        /* 顶部导航条磨砂效果 */
+        /* Top navigation bar frosted effect */
         background-color: rgba(255, 255, 255, 0.9);
         backdrop-filter: blur(4px);
     }
@@ -617,7 +617,7 @@ textarea {
     }
 
     #content-wrapper {
-        /* 使移动端页面的高度始终大于菜单栏高度，小于屏幕高度，以防止露出菜单栏  */
+        /* Make the height of the mobile page always larger than the height of the menu bar and smaller than the height of the screen to prevent the menu bar from being exposed */
         min-height: 800px;
         height: 100vh;
         position: absolute;
@@ -644,13 +644,13 @@ textarea {
         display: none;
     }
 
-    /* 用户查询搜索框和按钮两个元素在移动端不换行 */
+    /* User query search box and button two elements do not wrap on mobile */
     .search-inputs-nowrap {
         flex-flow: nowrap
     }
 }
 
-/* 图片裁剪 */
+/*Image cropping*/
 #avatar_image {
     display: block;
     max-width: 100%;
@@ -670,7 +670,7 @@ textarea {
     max-width: 100%;
 }
 
-/* 移动端表格优化 */
+/* Mobile form optimization */
 .table-responsive table {
     min-width: 560px
 }
@@ -679,7 +679,7 @@ textarea {
     max-width: 350px
 }
 
-/* 菜单滚动条（不可见） */
+/* Menu scroll bar (not visible) */
 #accordionSidebar::-webkit-scrollbar {
     height: 10px;
     width: 0px;
@@ -687,16 +687,16 @@ textarea {
 }
 
 #accordionSidebar {
-    /* 火狐浏览器隐藏滚动条 */
+    /* Firefox hides scrollbars */
     scrollbar-width: none
 }
 
-/* 组件排序显示优化 */
+/* Plugin sorting display optimization */
 #sortable .card-header {
     padding: 13px 17.5px 7px 17.5px
 }
 
-/* 邮件测试发送的提示 */
+/* Tips for Email Test Sending */
 #testMailMsg {
     position: absolute;
     width: calc(100% - 135px);
@@ -704,7 +704,7 @@ textarea {
     right: 105px;
 }
 
-/* 评论界面回复模态窗中的评论内容，需要自动换行 */
+/* The comment interface responds to the comment content in the modal window, which needs to be automatically wrapped */
 .comment-replay-content {
     overflow-wrap: break-word
 }

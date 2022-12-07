@@ -15,7 +15,7 @@ class Plugin_Model {
 	}
 
 	/**
-	 * start plug-in
+	 * Enable plug-in
 	 */
 	function activePlugin($plugin) {
 		$active_plugins = Option::get('active_plugins');
@@ -45,7 +45,7 @@ class Plugin_Model {
 	}
 
 	/**
-	 * stop plug-in
+	 * Disable plug-in
 	 */
 	function inactivePlugin($plugin) {
 		$active_plugins = Option::get('active_plugins');
@@ -70,6 +70,12 @@ class Plugin_Model {
 		}
 	}
 
+	/**
+	 * Get a list of all plug-ins, plug-defined plug-in name will not get
+	 * plug-in directory: content/plugins
+	 * Recognized only plugins in the /plugin/ directory
+	 * @return array
+	 */
 	function getPlugins() {
 		global $emPlugins;
 		if (isset($emPlugins)) {
@@ -113,6 +119,12 @@ class Plugin_Model {
 		return $emPlugins;
 	}
 
+	/**
+	 * Get plug-in information
+	 *
+	 * @param string $pluginFile
+	 * @return array
+	 */
 	function getPluginData($pluginFile) {
 		$pluginPath = EMLOG_ROOT . '/content/plugins/';
 		$pluginData = implode('', file($pluginPath . $pluginFile));

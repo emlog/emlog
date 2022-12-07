@@ -102,7 +102,7 @@ if ($action == 'update') {
 	if (UID == $uid) {
 		emDirect('./user.php');
 	}
-	//创始人账户不能被他人编辑
+	//Founder account can not be edited by others
 	if ($uid == 1) {
 		emDirect('./user.php?error_del_b=1');
 	}
@@ -152,7 +152,7 @@ if ($action == 'del') {
 		emDirect('./user.php');
 	}
 
-	//创始人账户不能被删除
+	//Founder account can not be deleted
 	if ($uid == 1) {
 		emDirect('./user.php?error_del_a=1');
 	}
@@ -170,7 +170,7 @@ if ($action == 'forbid') {
 		emDirect('./user.php');
 	}
 
-	//创始人账户不能被禁用
+	// Founder account cannot be disabled
 	if ($uid == 1) {
 		emDirect('./user.php');
 	}

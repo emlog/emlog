@@ -22,9 +22,9 @@ $tagstring = isset($_POST['tag']) ? strip_tags(addslashes(trim($_POST['tag']))) 
 $content = isset($_POST['logcontent']) ? addslashes(trim($_POST['logcontent'])) : '';
 $excerpt = isset($_POST['logexcerpt']) ? addslashes(trim($_POST['logexcerpt'])) : '';
 $author = isset($_POST['author']) && User::haveEditPermission() ? (int)trim($_POST['author']) : UID;
-$blogid = isset($_POST['as_logid']) ? (int)trim($_POST['as_logid']) : -1;//如被自动保存为草稿则有blog id号
+$blogid = isset($_POST['as_logid']) ? (int)trim($_POST['as_logid']) : -1;//If it is automatically saved as a draft, there is a blog id number
 $alias = isset($_POST['alias']) ? addslashes(trim($_POST['alias'])) : '';
-$allow_remark = isset($_POST['allow_remark']) ? addslashes(trim($_POST['allow_remark'])) : 'n'; //允许评论
+$allow_remark = isset($_POST['allow_remark']) ? addslashes(trim($_POST['allow_remark'])) : 'n'; //Allow comments
 $ishide = isset($_POST['ishide']) && !empty($_POST['ishide']) && !isset($_POST['pubdf']) ? addslashes($_POST['ishide']) : 'n';
 $password = isset($_POST['password']) ? addslashes(trim($_POST['password'])) : '';
 $cover = isset($_POST['cover']) ? addslashes(trim($_POST['cover'])) : '';
@@ -37,7 +37,7 @@ if (!empty($alias)) {
 	$alias = $Log_Model->checkAlias($alias, $logalias_cache, $blogid);
 }
 
-//管理员发文不审核,注册用户受开关控制
+//The administrator does not review the post, and the registered user is controlled by the switch
 $checked = Option::get('ischkarticle') == 'y' && !User::haveEditPermission() ? 'n' : 'y';
 
 $logData = [
@@ -55,7 +55,7 @@ $logData = [
 	'password'     => $password
 ];
 
-if ($blogid > 0) {//自动保存草稿后,添加变为更新
+if ($blogid > 0) {//After the draft is automatically saved, the addition becomes the update
 	$Log_Model->updateLog($logData, $blogid);
 	$Tag_Model->updateTag($tagstring, $blogid);
 	$dftnum = '';
@@ -85,9 +85,9 @@ switch ($action) {
 			if ($checked == 'n') {
 				notice::sendNewPostMail($title);
 			}
-			emDirect("./article.php?active_post=1");//文章发布成功
+			emDirect("./article.php?active_post=1");//The article was published successfully
 		} else {
-			emDirect("./article.php?active_savelog=1");//文章保存成功
+			emDirect("./article.php?active_savelog=1");//The article was saved successfully
 		}
 		break;
 }

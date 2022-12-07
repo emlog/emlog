@@ -88,9 +88,9 @@ class Dispatcher {
 		//for iis6 path is GBK
 		if (isset($_SERVER['SERVER_SOFTWARE']) && stripos($_SERVER['SERVER_SOFTWARE'], 'IIS') !== false) {
 			if (function_exists('mb_convert_encoding')) {
-				$path = mb_convert_encoding($path, 'UTF-8', 'GBK');
+//vot				$path = mb_convert_encoding($path, 'UTF-8', 'GBK');
 			} else {
-				$path = @iconv('GBK', 'UTF-8', @iconv('UTF-8', 'GBK', $path)) == $path ? $path : @iconv('GBK', 'UTF-8', $path);
+//vot				$path = @iconv('GBK', 'UTF-8', @iconv('UTF-8', 'GBK', $path)) == $path ? $path : @iconv('GBK', 'UTF-8', $path);
 			}
 		}
 		//for ie6 header location

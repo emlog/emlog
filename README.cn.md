@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://emlogstore.oss-cn-beijing.aliyuncs.com/img/logo.png" width=100 />
+  <img src="./logo.png" width=100 />
 </p>
 <p align="center">
 	<a href="https://github.com/emlog/emlog/releases/latest"><img src="https://img.shields.io/github/v/release/emlog/emlog?logo=github" alt="GitHub release" /></a>

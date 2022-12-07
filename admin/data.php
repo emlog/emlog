@@ -68,12 +68,12 @@ if ($action === 'import') {
 	LoginAuth::checkToken();
 	$sqlfile = isset($_FILES['sqlfile']) ? $_FILES['sqlfile'] : '';
 	if (!$sqlfile) {
-		emMsg('非法提交的信息');
+		emMsg(lang('info_illegal'));
 	}
 	if ($sqlfile['error'] == 1) {
-		emMsg('文件大小超过系统' . ini_get('upload_max_filesize') . '限制');
+		emMsg(lang('attachment_exceed_system_limit') . ini_get('upload_max_filesize') . lang('_limit'));
 	} elseif ($sqlfile['error'] > 1) {
-		emMsg('上传文件失败,错误码：' . $sqlfile['error']);
+		emMsg(lang('upload_failed_code') . $sqlfile['error']);
 	}
 	if (getFileSuffix($sqlfile['name']) == 'zip') {
 		$ret = emUnZip($sqlfile['tmp_name'], dirname($sqlfile['tmp_name']), 'backup');
@@ -91,10 +91,10 @@ if ($action === 'import') {
 		}
 		$sqlfile['tmp_name'] = dirname($sqlfile['tmp_name']) . '/' . str_replace('.zip', '.sql', $sqlfile['name']);
 		if (!file_exists($sqlfile['tmp_name'])) {
-			emMsg('只能导入emlog备份的压缩包，且不能修改压缩包文件名！');
+			emMsg(lang('import_only_emlog_no_change'));
 		}
 	} elseif (getFileSuffix($sqlfile['name']) != 'sql') {
-		emMsg('只能导入emlog备份的SQL文件');
+		emMsg(lang('import_only_emlog'));
 	}
 	checkSqlFileInfo($sqlfile['tmp_name']);
 	bakindata($sqlfile['tmp_name']);
@@ -105,7 +105,7 @@ if ($action === 'import') {
 function checkSqlFileInfo($sqlfile) {
 	$fp = @fopen($sqlfile, 'r');
 	if (!$fp) {
-		emMsg('导入失败！读取文件失败');
+		emMsg(lang('import_failed_not_read'));
 	}
 	$dumpinfo = [];
 	$line = 0;
@@ -122,13 +122,13 @@ function checkSqlFileInfo($sqlfile) {
 	}
 	fclose($fp);
 	if (empty($dumpinfo)) {
-		emMsg('导入失败！该文件不是emlog的数据备份文件!');
+		emMsg(lang('import_failed_not_emlog'));
 	}
 	if (!strstr($dumpinfo[0], '#version:emlog ' . Option::EMLOG_VERSION)) {
-		emMsg('导入失败！该文件不是emlog' . Option::EMLOG_VERSION . '生成的备份!');
+		emMsg(lang('import_failed_not_emlog_ver') . Option::EMLOG_VERSION);
 	}
 	if (preg_match('/#tableprefix:' . DB_PREFIX . '/', $dumpinfo[2]) === 0) {
-		emMsg('导入失败！备份文件中的数据库表前缀与当前系统数据库表前缀不一致' . $dumpinfo[2]);
+		emMsg(lang('import_failed_bad_prefix') . $dumpinfo[2]);
 	}
 }
 

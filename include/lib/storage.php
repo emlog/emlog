@@ -8,22 +8,22 @@
 
 class StorageType {
 	/**
-	 * 字符串
+	 * String
 	 */
 	const STRING = "string";
 
 	/**
-	 * 数字
+	 * Number
 	 */
 	const NUMBER = "number";
 
 	/**
-	 * 布尔
+	 * Boolean
 	 */
 	const BOOLEAN = "boolean";
 
 	/**
-	 * 数组/对象
+	 * Array/object
 	 */
 	const ARRAY_OBJECT = "array";
 }
@@ -32,32 +32,32 @@ class Storage {
 	const API_VERSION = 1;
 
 	/**
-	 * 默认数据数据存储类型
-	 * @var string 默认数据数据存储类型
+	 * Default data storage type
+	 * @var string Default data storage type
 	 */
 	private static $default_storage_type = "string";
 
 	/**
-	 * 可用数据存储类型
-	 * @var array 可用数据存储类型
+	 * Available data storage types
+	 * @var array Available data storage types
 	 */
 	private static $available_storage_type = array("string", "number", "boolean", "array");
 
 	/**
-	 * 当前调用的插件名
-	 * @var string 当前调用的插件名
+	 * The name of the currently called plugin
+	 * @var string The name of the currently called plugin
 	 */
 	private $plugin_name = NULL;
 
 	/**
-	 * 数据库连接实例
-	 * @var MySql 数据库连接实例
+	 * Database connection instance
+	 * @var MySql Database connection instance
 	 */
 	private $db_conn = NULL;
 
 	/**
-	 * 构造函数
-	 * @param string $plugin_name 插件名
+	 * Constructor
+	 * @param string $plugin_name Plug-in name
 	 */
 	private function __construct($plugin_name) {
 		$this->plugin_name = $plugin_name;
@@ -65,9 +65,9 @@ class Storage {
 	}
 
 	/**
-	 * 获取Storage实例
-	 * @param string $plugin_name 插件名
-	 * @return Storage Storage实例
+	 * Get Storage instance
+	 * @param string $plugin_name Plug-in name
+	 * @return Storage Storage Instance
 	 */
 	public static function getInstance($plugin_name) {
 		$plugin_name = self::_filterPlugin($plugin_name);
@@ -75,12 +75,12 @@ class Storage {
 	}
 
 	/**
-	 * 新增/更新数据
-	 * 当要更新的数据不存在时新建数据
-	 * 当要更新的数据存在时同时更新数据的类型和值
-	 * @param string $name 数据名称
-	 * @param mixed $value 数据值
-	 * @param string $type 数据类型
+	 * Add/update data
+	 * Create new data when the data to be updated does not exist
+	 * When the data to be updated exists, the type and value of the data are updated at the same time
+	 * @param string $name Data name
+	 * @param mixed $value Data value
+	 * @param string $type Data type
 	 */
 	public function setValue($name, $value = NULL, $type = NULL) {
 		$name = $this->_filterName($name);
@@ -122,12 +122,12 @@ class Storage {
 	}
 
 	/**
-	 * 更新数据
-	 * 当要更新的数据存在时更新数据的值
-	 * 当要更新的数据不存在时返回FALSE
-	 * @param string $name 数据名称
-	 * @param string $value 数据值
-	 * @return bool 更新结果
+	 * Update data
+	 * Update the value of the data when the data to be updated exists
+	 * FALSE is returned when the data to be updated does not exist
+	 * @param string $name Data name
+	 * @param string $value Data value
+	 * @return bool Update result
 	 */
 	public function updateValue($name, $value = NULL) {
 		$name = $this->_filterName($name);
@@ -166,11 +166,11 @@ class Storage {
 	}
 
 	/**
-	 * 获取数据的值
-	 * 当数据存在时，返回数据的值（自动类型转换）
-	 * 当数据不存在是，返回FALSE
-	 * @param string $name 数据名称
-	 * @return mixed/FALSE 数据值
+	 * Get data value
+	 * When the data exists, return the value of the data (automatic type conversion)
+	 * When the data does not exist, return FALSE
+	 * @param string $name Data name
+	 * @return mixed/FALSE Data value
 	 */
 	public function getValue($name) {
 		$name = $this->_filterName($name);
@@ -198,11 +198,11 @@ class Storage {
 	}
 
 	/**
-	 * 获取数据类型
-	 * 当数据存在时，返回数据的类型
-	 * 当数据不存在时，返回FALSE
-	 * @param string $name 数据名称
-	 * @return string/FALSE 数据值
+	 * Get data type
+	 * When data exists, return the type of data
+	 * When the data does not exist, return FALSE
+	 * @param string $name Data name
+	 * @return string/FALSE Data value
 	 */
 	public function getType($name) {
 		$name = $this->_filterName($name);
@@ -218,9 +218,9 @@ class Storage {
 	}
 
 	/**
-	 * 获取所有数据名称
-	 * 返回当前插件创建的所有数据名称
-	 * @return array 数据名称
+	 * Get all data names
+	 * Return all data names created by the current plugin
+	 * @return array Data name array
 	 */
 	public function getAllName() {
 		$names = [];
@@ -233,9 +233,9 @@ class Storage {
 	}
 
 	/**
-	 * 统计数据数量
-	 * 返回当前插件创建的数据数量
-	 * @return integer 数据数量
+	 * Number of statistics
+	 * Returns the amount of data created by the current plugin
+	 * @return integer Number of data
 	 */
 	public function countStorage() {
 		$sql = "SELECT count(`name`) as 'count' FROM " . DB_PREFIX . "storage WHERE `plugin` = '" . $this->db_conn->escape_string($this->plugin_name) . "'";
@@ -244,9 +244,9 @@ class Storage {
 	}
 
 	/**
-	 * 检查数据是否存在
-	 * @param string $name 数据名称
-	 * @return bool 检查结果
+	 * Check if the data exists
+	 * @param string $name Data name
+	 * @return bool Test result
 	 */
 	public function checkNameExist($name) {
 		$name = $this->_filterName($name);
@@ -258,11 +258,11 @@ class Storage {
 	}
 
 	/**
-	 * 返回数据的创建时间
-	 * 数据存在是返回数据创建时间的时间戳
-	 * 数据不存在时返回FALSE
-	 * @param mixed $name 数据名称
-	 * @return integer/FALSE 创建时间
+	 * Returns the creation time of the data
+	 * Data existence is the timestamp of when the data was created
+	 * FALSE if the data does not exist
+	 * @param mixed $name Data name
+	 * @return integer/FALSE Creation time
 	 */
 	public function getNameCreateDate($name) {
 		$name = $this->_filterName($name);
@@ -278,11 +278,11 @@ class Storage {
 	}
 
 	/**
-	 * 返回数据的最后修改时间
-	 * 数据存在是返回数据最后修改时间的时间戳
-	 * 数据不存在时返回FALSE
-	 * @param mixed $name 数据名称
-	 * @return integer/FALSE 修改时间
+	 * Return the last edit time of the data
+	 * Data existence is to return the timestamp of the last modification time of the data
+	 * FALSE if the data does not exist
+	 * @param mixed $name Data name
+	 * @return integer/FALSE Edit time
 	 */
 	public function getNameLastUpdateDate($name) {
 		$name = $this->_filterName($name);
@@ -298,8 +298,8 @@ class Storage {
 	}
 
 	/**
-	 * 删除一个数据
-	 * @param mixed $name 数据名称
+	 * Delete a data
+	 * @param mixed $name Data name
 	 */
 	public function deleteName($name) {
 		$name = $this->_filterName($name);
@@ -309,9 +309,9 @@ class Storage {
 	}
 
 	/**
-	 * 删除此插件创建的所有数据
-	 * @param mixed $confirm 请传入大写的"YES"来确认删除
-	 * @return bool 删除结果
+	 * Delete all data created by this plugin
+	 * @param mixed $confirm Please pass in uppercase "YES" to confirm deletion
+	 * @return bool Deleting result
 	 */
 	public function deleteAllName($confirm) {
 		if ($confirm !== "YES") {
@@ -324,9 +324,9 @@ class Storage {
 	}
 
 	/**
-	 * 内部函数：过滤插件名
-	 * @param string $plugin 插件名
-	 * @return string 插件名
+	 * Internal function: filter plug-in name
+	 * @param string $plugin Plug-in name
+	 * @return string Plug-in name
 	 */
 	public static function _filterPlugin($plugin) {
 		$plugin = trim($plugin);
@@ -343,9 +343,9 @@ class Storage {
 	}
 
 	/**
-	 * 内部函数：过滤数据名
-	 * @param $name
-	 * @return string 数据名
+	 * Internal function: filter data name
+	 * @param string $name Data name
+	 * @return string Data name
 	 */
 	public function _filterName($name) {
 		$name = trim($name);
@@ -362,9 +362,9 @@ class Storage {
 	}
 
 	/**
-	 * 内部函数：过滤类型名
-	 * @param $type
-	 * @return string 类型名
+	 * Internal function: filter Type name
+	 * @param string $type Type name
+	 * @return string Type name
 	 */
 	public function _filterType($type) {
 		$type = strtolower(trim($type));

@@ -37,111 +37,8 @@ if (empty($action)) {
 		$ex4 = 'selected="selected"';
 	}
 
-	$tzlist = array(
-		'Etc/GMT'              => '(UTC)协调世界时',
-		'Africa/Casablanca'    => '(UTC)卡萨布兰卡',
-		'Atlantic/Reykjavik'   => '(UTC)蒙罗维亚，雷克雅未克',
-		'Europe/London'        => '(UTC)都柏林，爱丁堡，里斯本，伦敦',
-		'Africa/Lagos'         => '(UTC+01:00)中非西部',
-		'Europe/Paris'         => '(UTC+01:00)布鲁塞尔，哥本哈根，马德里，巴黎',
-		'Africa/Windhoek'      => '(UTC+01:00)温得和克',
-		'Europe/Warsaw'        => '(UTC+01:00)萨拉热窝，斯科普里，华沙，萨格勒布',
-		'Europe/Budapest'      => '(UTC+01:00)贝尔格莱德，布拉迪斯拉发，布达佩斯，卢布尔雅那，布拉格',
-		'Europe/Berlin'        => '(UTC+01:00)阿姆斯特丹，柏林，伯尔尼，罗马，斯德哥尔摩，维也纳',
-		'Europe/Istanbul'      => '(UTC+02:00)伊斯坦布尔',
-		'Europe/Kaliningrad'   => '(UTC+02:00)加里宁格勒(RTZ 1)',
-		'Africa/Johannesburg'  => '(UTC+02:00)哈拉雷，比勒陀利亚',
-		'Asia/Damascus'        => '(UTC+02:00)大马士革',
-		'Asia/Amman'           => '(UTC+02:00)安曼',
-		'Africa/Cairo'         => '(UTC+02:00)开罗',
-		'Africa/Tripoli'       => '(UTC+02:00)的黎波里',
-		'Asia/Jerusalem'       => '(UTC+02:00)耶路撒冷',
-		'Asia/Beirut'          => '(UTC+02:00)贝鲁特',
-		'Europe/Kiev'          => '(UTC+02:00)赫尔辛基，基辅，里加，索非亚，塔林，维尔纽斯',
-		'Europe/Bucharest'     => '(UTC+02:00)雅典，布加勒斯特',
-		'Africa/Nairobi'       => '(UTC+03:00)内罗毕',
-		'Asia/Baghdad'         => '(UTC+03:00)巴格达',
-		'Europe/Minsk'         => '(UTC+03:00)明斯克',
-		'Asia/Riyadh'          => '(UTC+03:00)科威特，利雅得',
-		'Europe/Moscow'        => '(UTC+03:00)莫斯科，圣彼得堡，伏尔加格勒(RTZ 2)',
-		'Asia/Tehran'          => '(UTC+03:30)德黑兰',
-		'Europe/Samara'        => '(UTC+04:00)伊热夫斯克，萨马拉(RTZ 3)',
-		'Asia/Yerevan'         => '(UTC+04:00)埃里温',
-		'Asia/Bak'             => '(UTC+04:00)巴库',
-		'Asia/Tbilisi'         => '(UTC+04:00)第比利斯',
-		'Indian/Mauritius'     => '(UTC+04:00)路易港',
-		'Asia/Dubai'           => '(UTC+04:00)阿布扎比，马斯喀特',
-		'Asia/Kabu'            => '(UTC+04:30)喀布尔',
-		'Asia/Karachi'         => '(UTC+05:00)伊斯兰堡，卡拉奇',
-		'Asia/Yekaterinburg'   => '(UTC+05:00)叶卡捷琳堡(RTZ 4)',
-		'Asia/Tashkent'        => '(UTC+05:00)阿什哈巴德，塔什干',
-		'Asia/Colombo'         => '(UTC+05:30)斯里加亚渥登普拉',
-		'Asia/Calcutta'        => '(UTC+05:30)钦奈，加尔各答，孟买，新德里',
-		'Asia/Katmandu'        => '(UTC+05:45)加德满都',
-		'Asia/Novosibirsk'     => '(UTC+06:00)新西伯利亚(RTZ 5)',
-		'Asia/Dhaka'           => '(UTC+06:00)达卡',
-		'Asia/Almaty'          => '(UTC+06:00)阿斯塔纳',
-		'Asia/Rangoon'         => '(UTC+06:30)仰光',
-		'Asia/Krasnoyarsk'     => '(UTC+07:00)克拉斯诺亚尔斯克(RTZ 6)',
-		'Asia/Bangkok'         => '(UTC+07:00)曼谷，河内，雅加达',
-		'Asia/Ulaanbaatar'     => '(UTC+08:00)乌兰巴托',
-		'Asia/Irkutsk'         => '(UTC+08:00)伊尔库茨克(RTZ 7)',
-		'Asia/Shanghai'        => '(UTC+08:00)北京，重庆，香港特别行政区，乌鲁木齐',
-		'Asia/Taipei'          => '(UTC+08:00)台北',
-		'Asia/Singapore'       => '(UTC+08:00)吉隆坡，新加坡',
-		'Australia/Perth'      => '(UTC+08:00)珀斯',
-		'Asia/Tokyo'           => '(UTC+09:00)大阪，札幌，东京',
-		'Asia/Yakutsk'         => '(UTC+09:00)雅库茨克(RTZ 8)',
-		'Asia/Seoul'           => '(UTC+09:00)首尔',
-		'Australia/Darwin'     => '(UTC+09:30)达尔文',
-		'Australia/Adelaide'   => '(UTC+09:30)阿德莱德',
-		'Pacific/Port_Moresby' => '(UTC+10:00)关岛，莫尔兹比港',
-		'Australia/Sydney'     => '(UTC+10:00)堪培拉，墨尔本，悉尼',
-		'Australia/Brisbane'   => '(UTC+10:00)布里斯班',
-		'Asia/Vladivostok'     => '(UTC+10:00)符拉迪沃斯托克，马加丹(RTZ 9)',
-		'Australia/Hobart'     => '(UTC+10:00)霍巴特',
-		'Asia/Magadan'         => '(UTC+10:00)马加丹',
-		'Asia/Srednekolymsk'   => '(UTC+11:00)乔库尔达赫(RTZ 10)',
-		'Pacific/Guadalcanal'  => '(UTC+11:00)所罗门群岛，新喀里多尼亚',
-		'Etc/GMT-12'           => '(UTC+12:00)协调世界时+12',
-		'Pacific/Auckland'     => '(UTC+12:00)奥克兰，惠灵顿',
-		'Pacific/Fiji'         => '(UTC+12:00)斐济',
-		'Asia/Kamchatka'       => '(UTC+12:00)阿纳德尔，彼得罗巴甫洛夫斯克-堪察加(RTZ 11)',
-		'Pacific/Tongatapu'    => '(UTC+13:00)努库阿洛法',
-		'Pacific/Apia'         => '(UTC+13:00)萨摩亚群岛',
-		'Pacific/Kiritimati'   => '(UTC+14:00)圣诞岛',
-		'Atlantic/Azores'      => '(UTC-01:00)亚速尔群岛',
-		'Atlantic/Cape_Verde'  => '(UTC-01:00)佛得角群岛',
-		'Etc/GMT+2'            => '(UTC-02:00)协调世界时-02',
-		'America/Cayenne'      => '(UTC-03:00)卡宴，福塔雷萨',
-		'America/Sao_Paulo'    => '(UTC-03:00)巴西利亚',
-		'America/Buenos_Aires' => '(UTC-03:00)布宜诺斯艾利斯',
-		'America/Godthab'      => '(UTC-03:00)格陵兰',
-		'America/Bahia'        => '(UTC-03:00)萨尔瓦多',
-		'America/Montevideo'   => '(UTC-03:00)蒙得维的亚',
-		'America/St_Johns'     => '(UTC-03:30)纽芬兰',
-		'America/La_Paz'       => '(UTC-04:00)乔治敦，拉巴斯，马瑙斯，圣胡安',
-		'America/Asuncion'     => '(UTC-04:00)亚松森',
-		'America/Halifax'      => '(UTC-04:00)大西洋时间(加拿大)',
-		'America/Cuiaba'       => '(UTC-04:00)库亚巴',
-		'America/Caracas'      => '(UTC-04:30)加拉加斯',
-		'America/New_York'     => '(UTC-05:00)东部时间(美国和加拿大)',
-		'America/Indianapolis' => '(UTC-05:00)印地安那州(东部)',
-		'America/Bogota'       => '(UTC-05:00)波哥大，利马，基多，里奥布朗库',
-		'America/Guatemala'    => '(UTC-06:00)中美洲',
-		'America/Chicago'      => '(UTC-06:00)中部时间(美国和加拿大)',
-		'America/Mexico_City'  => '(UTC-06:00)瓜达拉哈拉，墨西哥城，蒙特雷',
-		'America/Regina'       => '(UTC-06:00)萨斯喀彻温',
-		'America/Phoenix'      => '(UTC-07:00)亚利桑那',
-		'America/Chihuahua'    => '(UTC-07:00)奇瓦瓦，拉巴斯，马萨特兰',
-		'America/Denver'       => '(UTC-07:00)山地时间(美国和加拿大)',
-		'America/Santa_Isabel' => '(UTC-08:00)下加利福尼亚州',
-		'America/Los_Angeles'  => '(UTC-08:00)太平洋时间(美国和加拿大)',
-		'America/Anchorage'    => '(UTC-09:00)阿拉斯加',
-		'Pacific/Honolulu'     => '(UTC-10:00)夏威夷',
-		'Etc/GMT+11'           => '(UTC-11:00)协调世界时-11',
-		'Etc/GMT+12'           => '(UTC-12:00)国际日期变更线西',
-	);
+//vot	$tzlist = array( .... // Moved to lang_tz.php
+	include EMLOG_ROOT . '/lang/' . LANG . '/lang_tz.php'; // Load Time Zone List
 
 	include View::getAdmView('header');
 	require_once(View::getAdmView('setting'));
@@ -175,14 +72,14 @@ if ($action == 'save') {
 		'att_type'            => isset($_POST['att_type']) ? str_replace('php', 'x', strtolower(addslashes($_POST['att_type']))) : '',
 		'att_imgmaxw'         => isset($_POST['att_imgmaxw']) ? (int)$_POST['att_imgmaxw'] : 420,
 		'att_imgmaxh'         => isset($_POST['att_imgmaxh']) ? (int)$_POST['att_imgmaxh'] : 460,
-		'detect_url'          => isset($_POST['detect_url']) ? addslashes($_POST['detect_url']) : 'n', // 自动检测站点地址
+		'detect_url'          => isset($_POST['detect_url']) ? addslashes($_POST['detect_url']) : 'n', // Automatically detect site URL
 	];
 
 	if ($getData['login_code'] == 'y' && !function_exists("imagecreate") && !function_exists('imagepng')) {
-		emMsg("开启登录验证码失败!服务器空间不支持GD图形库", "setting.php");
+		emMsg(lang('verification_code_not_supported'), "setting.php");
 	}
 	if ($getData['comment_code'] == 'y' && !function_exists("imagecreate") && !function_exists('imagepng')) {
-		emMsg("开启评论验证码失败!服务器空间不支持GD图形库", "setting.php");
+		emMsg(lang('verification_code_comment_not_supported'), "setting.php");
 	}
 	if ($getData['blogurl'] && substr($getData['blogurl'], -1) != '/') {
 		$getData['blogurl'] .= '/';
@@ -306,27 +203,27 @@ if ($action == 'mail_test') {
 	];
 
 	if (!checkMail($data["testTo"])) {
-		exit("<small class='text-info'>请正确填写邮箱</small>");
+		exit("<small class='text-info'>" . lang('email_enter_please') . "</small>");
 	}
 
 	$mail = new PHPMailer(true);
-	$mail->IsSMTP();                                                                                  // SMTP 使用smtp鉴权方式发送邮件
-	$mail->CharSet = 'UTF-8';                                                                         // 字符编码
-	$mail->SMTPAuth = true;                                                                           // 开启认证
-	$mail->SMTPSecure = $data["smtp_port"] == '587' ? 'STARTTLS' : 'ssl';                             // 设置使用 ssl 加密方式登录鉴权
-	$mail->Port = $data["smtp_port"];                                                                 // 端口
-	$mail->Host = $data["smtp_server"];                                                               // STMP 服务器地址
-	$mail->Username = $data["smtp_mail"];                                                             // 邮箱账号
-	$mail->Password = $data["smtp_pw"];                                                               // SMTP 授权码
-	$mail->From = $data["smtp_mail"];                                                                 // 发送方
-	$mail->AddAddress($data["testTo"]);                                                               // 接收方
-	$mail->Subject = "测试邮件";
-	$mail->Body = "这是一封测试邮件";
+	$mail->IsSMTP();                                       // Use SMTP authentication to send mail
+	$mail->CharSet = 'UTF-8';                              // Character Encoding
+	$mail->SMTPAuth = true;                                // Enable authentication
+	$mail->SMTPSecure = $data["smtp_port"] == '587' ? 'STARTTLS' : 'ssl';  // Set up login authentication using ssl encryption
+	$mail->Port = $data["smtp_port"];                      // SMTP Port
+	$mail->Host = $data["smtp_server"];                    // STMP server address
+	$mail->Username = $data["smtp_mail"];                  // Email address
+	$mail->Password = $data["smtp_pw"];                    // SMTP authorization password
+	$mail->From = $data["smtp_mail"];                      // Sender Email
+	$mail->AddAddress($data["testTo"]);                    // Recipient Email
+	$mail->Subject = lang('test_mail_subj');
+	$mail->Body = lang('test_mail_body');
 
 	try {
 		return $mail->Send();
 	} catch (Exception $exc) {
-		exit("<small class='text-danger'>发送失败</small>");
+		exit("<small class='text-danger'>" . lang('test_mail_failed') . "</small>");
 		return false;
 	}
 }

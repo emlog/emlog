@@ -129,43 +129,58 @@ class Option {
 		return $options_cache;
 	}
 
+	/**
+	 * Get the file types allowed to upload
+	 */
 	static function getAttType() {
 		return explode(',', self::get('att_type'));
 	}
 
+	/**
+	 * Get the maximum upload limit, in bytes
+	 */
 	static function getAttMaxSize() {
 		return self::get('att_maxsize') * 1024;
 	}
 
+	/**
+	 * Get widget module title
+	 */
 	static function getWidgetTitle() {
 		return [
-			'blogger'     => '个人资料',
-			'calendar'    => '日历',
-			'tag'         => '标签',
-			'sort'        => '分类',
-			'archive'     => '存档',
-			'newcomm'     => '最新评论',
-			'newlog'      => '最新文章',
-			'hotlog'      => '热门文章',
-			'link'        => '链接',
-			'search'      => '搜索',
-			'custom_text' => '自定义组件'
+			'blogger'     => lang('blogger'),
+			'calendar'    => lang('calendar'),
+			'tag'         => lang('tags'),
+			'sort'        => lang('categories'),
+			'archive'     => lang('archive'),
+			'newcomm'     => lang('new_comments'),
+			'newlog'      => lang('new_posts'),
+			'hotlog'      => lang('hot_posts'),
+			'link'        => lang('links'),
+			'search'      => lang('search'),
+			'custom_text' => lang('widget_custom')
 		];
 	}
 
+	/**
+	 * Get a list of widgets installed by default
+	 */
 	static function getDefWidget() {
 		return ['blogger', 'newcomm', 'link', 'search'];
 	}
 
+	/**
+	 * Get default plug-in after installation
+	 */
 	static function getDefPlugin() {
 		return ['tips/tips.php'];
 	}
 
 	/**
-	 * Update configuration options
+	 * Update configuration option
 	 * @param $name
 	 * @param $value
-	 * @param $isSyntax is the update value is an expression
+	 * @param $isSyntax Update whether the value is an expression
 	 */
 	static function updateOption($name, $value, $isSyntax = false) {
 		$DB = Database::getInstance();

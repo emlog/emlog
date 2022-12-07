@@ -1,16 +1,16 @@
 <?php
 /**
- * 自定义404页面
+ * Custom 404 page
  */
 if (!defined('EMLOG_ROOT')) {
 	exit('error!');
 }
 ?>
 <!doctype html>
-<html lang="zh-cn">
+          <html lang="<?=LANG?>" dir="<?= LANG_DIR ?>">
 <head>
 	<meta charset="utf-8">
-	<title>错误提示-页面未找到</title>
+          <title><?=lang('404_error')?></title>
 	<style>
 		body {
 			background-color: #F7F7F7;
@@ -49,8 +49,8 @@ if (!defined('EMLOG_ROOT')) {
 </head>
 <body>
 <div class="main">
-	<p>404 Not Found ！</p>
-	<p><a href="<?= BLOG_URL ?>">首页</a></p>
+          <p><?=lang('404_description')?></p>
+          <p><a href="<?= BLOG_URL ?>"><?=lang('click_return')?></a></p>
 </div>
 </body>
 </html>

@@ -50,7 +50,7 @@ class Log_Model {
 	/**
 	 * Gets the number of articles for the specified condition
 	 *
-	 * @param int $spot 0:homepage 1:admin
+	 * @param int $spot (0: foreground, 1: background)
 	 * @param string $hide
 	 * @param string $condition
 	 * @param string $type
@@ -77,7 +77,7 @@ class Log_Model {
 		$sql = "SELECT * FROM $this->table WHERE gid=$blogId $author";
 		$res = $this->db->query($sql);
 		if ($this->db->affected_rows() < 1) {
-			emMsg('权限不足！', './');
+			emMsg(lang('no_permission'), './');
 		}
 		$row = $this->db->fetch_array($res);
 		if ($row) {
@@ -136,7 +136,7 @@ class Log_Model {
 		while ($row = $this->db->fetch_array($res)) {
 			$row['timestamp'] = $row['date'];
 			$row['date'] = date("Y-m-d H:i", $row['date']);
-			$row['title'] = !empty($row['title']) ? htmlspecialchars($row['title']) : '无标题';
+			$row['title'] = !empty($row['title']) ? htmlspecialchars($row['title']) : lang('no_title');
 			$logs[] = $row;
 		}
 		return $logs;
@@ -156,7 +156,7 @@ class Log_Model {
 			$row['logid'] = $row['gid'];
 			$cookiePassword = isset($_COOKIE['em_logpwd_' . $row['gid']]) ? addslashes(trim($_COOKIE['em_logpwd_' . $row['gid']])) : '';
 			if (!empty($row['password']) && $cookiePassword != $row['password']) {
-				$row['excerpt'] = '<p>[该文章已加密，请点击标题输入密码访问]</p>';
+				$row['excerpt'] = '<p>[' . lang('post_protected_by_password_click_title') . ']</p>';
 			}
 
 			$row['log_description'] = $this->Parsedown->text(empty($row['excerpt']) ? $row['content'] : $row['excerpt']);
@@ -185,37 +185,43 @@ class Log_Model {
 			$re['title'] = htmlspecialchars($re['title']);
 			$re['content'] = $this->Parsedown->text($re['content']);
 			if (!empty($re['password'])) {
-				$re['content'] = '<p>[该文章已设置加密]</p>';
+				$re['content'] = '<p>' . lang('article_encrypted') . ']</p>';
 			} elseif (Option::get('rss_output_fulltext') == 'n') {
 				if (!empty($re['excerpt'])) {
 					$re['content'] = $re['excerpt'];
 				} else {
 					$re['content'] = extractHtmlData($re['content'], 330);
 				}
-				$re['content'] .= ' <a href="' . Url::log($re['id']) . '">阅读全文&gt;&gt;</a>';
+				$re['content'] .= ' <a href="' . Url::log($re['id']) . '">' . lang('read_more') . '</a>';
 			}
 			$d[] = $re;
 		}
 		return $d;
 	}
 
-	public function getAllPageList() {
+	/**
+	 * Get a list of all pages
+	 */
+	function getAllPageList() {
 		$sql = "SELECT * FROM $this->table WHERE type='page'";
 		$res = $this->db->query($sql);
 		$pages = [];
 		while ($row = $this->db->fetch_array($res)) {
 			$row['date'] = date("Y-m-d H:i", $row['date']);
-			$row['title'] = !empty($row['title']) ? htmlspecialchars($row['title']) : '无标题';
+			$row['title'] = !empty($row['title']) ? htmlspecialchars($row['title']) : lang('no_title');
 			$pages[] = $row;
 		}
 		return $pages;
 	}
 
-	public function deleteLog($blogId) {
-		$author = User::haveEditPermission() ? '' : 'and author=' . UID;
-		$this->db->query("DELETE FROM $this->table where gid=$blogId $author");
+	/**
+	 * delete article
+	 */
+	function deleteLog($blogId) {
+		$author = User::haveEditPermission() ? '' : 'AND author=' . UID;
+		$this->db->query("DELETE FROM $this->table WHERE gid=$blogId $author");
 		if ($this->db->affected_rows() < 1) {
-			emMsg('权限不足！', './');
+			emMsg(lang('no_permission'), './');
 		}
 		// comment
 		$this->db->query("DELETE FROM " . DB_PREFIX . "comment where gid=$blogId");
@@ -224,7 +230,13 @@ class Log_Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "tag WHERE gid=',' ");
 	}
 
-	public function hideSwitch($blogId, $state) {
+	/**
+	 * Hide/Show the post by ID
+	 *
+	 * @param int $blogId
+	 * @param string $state
+	 */
+	function hideSwitch($blogId, $state) {
 		$author = User::haveEditPermission() ? '' : 'and author=' . UID;
 		$this->db->query("UPDATE $this->table SET hide='$state' WHERE gid=$blogId $author");
 		$this->db->query("UPDATE " . DB_PREFIX . "comment SET hide='$state' WHERE gid=$blogId");
@@ -232,7 +244,13 @@ class Log_Model {
 		$Comment_Model->updateCommentNum($blogId);
 	}
 
-	public function checkSwitch($blogId, $state) {
+	/**
+	 * Audit/Reject the post author
+	 *
+	 * @param int $blogId
+	 * @param string $state
+	 */
+	function checkSwitch($blogId, $state) {
 		$this->db->query("UPDATE $this->table SET checked='$state' WHERE gid=$blogId");
 		$state = $state == 'y' ? 'n' : 'y';
 		$this->db->query("UPDATE " . DB_PREFIX . "comment SET hide='$state' WHERE gid=$blogId");
@@ -240,7 +258,12 @@ class Log_Model {
 		$Comment_Model->updateCommentNum($blogId);
 	}
 
-	public function updateViewCount($blogId) {
+	/**
+	 * Update the post view count
+	 *
+	 * @param int $blogId
+	 */
+	function updateViewCount($blogId) {
 		$this->db->query("UPDATE $this->table SET views=views+1 WHERE gid=$blogId");
 	}
 
@@ -251,7 +274,13 @@ class Log_Model {
 		return isset($row['gid']) ? (int)$row['gid'] : false;
 	}
 
-	public function neighborLog($date) {
+	/**
+	 * Make Link to the nearest posts
+	 *
+	 * @param int $date unix Timestamp
+	 * @return array
+	 */
+	function neighborLog($date) {
 		$now = time();
 		$date_state = "and date<=$now";
 		$neighborlog = [];
@@ -266,7 +295,10 @@ class Log_Model {
 		return $neighborlog;
 	}
 
-	public function getRandLog($num) {
+	/**
+	 * Get Random Post
+	 */
+	function getRandLog($num) {
 		global $CACHE;
 		$now = time();
 		$date_state = "and date<=$now";
@@ -284,7 +316,10 @@ class Log_Model {
 		return $logs;
 	}
 
-	public function getHotLog($num) {
+	/**
+	 * Get Hot Posts
+	 */
+	function getHotLog($num) {
 		$now = time();
 		$date_state = "and date<=$now";
 		$sql = "SELECT gid,title FROM $this->table WHERE hide='n' and checked='y' and type='blog' $date_state ORDER BY views DESC, comnum DESC LIMIT 0, $num";
@@ -298,7 +333,10 @@ class Log_Model {
 		return $logs;
 	}
 
-	public function checkAlias($alias, $logalias_cache, $logid) {
+	/**
+	 * Process Post alias, Prevent alias duplicated
+	 */
+	function checkAlias($alias, $logalias_cache, $logid) {
 		static $i = 2;
 		$key = array_search($alias, $logalias_cache);
 		if (false !== $key && $key != $logid) {
@@ -313,29 +351,35 @@ class Log_Model {
 		return $alias;
 	}
 
-	public function authPassword($postPwd, $cookiePwd, $logPwd, $logid) {
+	/**
+	 * Encrypted Post access authentication
+	 */
+	function authPassword($postPwd, $cookiePwd, $logPwd, $logid) {
 		$url = BLOG_URL;
 		$pwd = $cookiePwd ?: $postPwd;
 		if ($pwd !== addslashes($logPwd)) {
 			if (view::isTplExist('pw')) {
 				include view::getView('pw');
 			} else {
+				$page_pass = lang('page_password_enter');
+				$submit_pass = lang('submit_password');
+				$back = lang('back_home');
 				echo <<<EOT
 <!doctype html>
-<html lang="zh-cn">
+<html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name=renderer  content=webkit>
-<title>请输入文章访问密码</title>
+<title>{$page_pass}</title>
 <link rel="stylesheet" type="text/css" href="{$url}admin/views/css/bootstrap.min.css">
 </head>
 <body class="text-center">
 	<form action="" method="post" class="form-signin" style="width: 100%;max-width: 330px;padding: 15px;margin: 0 auto;">
-      <input type="password" id="logpwd" name="logpwd" class="form-control" placeholder="请输入文章的访问密码" required autofocus>
-      <button class="btn btn-lg btn-primary btn-block mt-2" type="submit">提交</button>
-      <p class="mt-5 mb-3 text-muted"><a href="$url">&larr;返回首页</a></p>
+          <input type="password" id="logpwd" name="logpwd" class="form-control" placeholder="{$page_pass}" required autofocus>
+          <button class="btn btn-lg btn-primary btn-block mt-2" type="submit">{$submit_pass}"></button>
+          <p class="mt-5 mb-3 text-muted"><a href="{$url}">{$back}</a></p>
     </form>
 </body>
 </html>

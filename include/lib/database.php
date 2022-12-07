@@ -17,7 +17,7 @@ class Database {
 			return Mysqlpdo::getInstance();
 		}
 
-		emMsg('服务器空间PHP不支持MySql数据库');
+		emMsg(lang('mysql_not_supported'));
 	}
 
 }

@@ -47,7 +47,7 @@ if ($action === 'lib') {
 
 if ($action === 'upload') {
 	$sid = isset($_GET['sid']) ? (int)$_GET['sid'] : 0;
-	$editor = isset($_GET['editor']) ? 1 : 0; // 是否来自Markdown编辑器的上传
+	$editor = isset($_GET['editor']) ? 1 : 0; // Whether the upload is from the Markdown editor
 	$attach = isset($_FILES['file']) ? $_FILES['file'] : '';
 	if ($editor) {
 		$attach = isset($_FILES['editormd-image-file']) ? $_FILES['editormd-image-file'] : '';
@@ -78,7 +78,7 @@ if ($action === 'upload') {
 		exit;
 	}
 
-	// 写入资源信息
+	// Write attachment information
 	$aid = $Media_Model->addMedia($ret['file_info'], $sid);
 	if ($editor) {
 		echo json_encode($ret);
@@ -118,7 +118,7 @@ if ($action === 'operate_media') {
 
 if ($action === 'add_media_sort') {
 	if (!User::isAdmin()) {
-		emMsg('权限不足！', './');
+		emMsg(lang('no_permission'), './');
 	}
 	$sortname = isset($_POST['sortname']) ? addslashes(trim($_POST['sortname'])) : '';
 	if (empty($sortname)) {
@@ -131,7 +131,7 @@ if ($action === 'add_media_sort') {
 
 if ($action === 'update_media_sort') {
 	if (!User::isAdmin()) {
-		emMsg('权限不足！', './');
+		emMsg(lang('no_permission'), './');
 	}
 	$sortname = isset($_POST['sortname']) ? addslashes(trim($_POST['sortname'])) : '';
 	$id = isset($_POST['id']) ? (int)$_POST['id'] : '';
@@ -146,7 +146,7 @@ if ($action === 'update_media_sort') {
 
 if ($action === 'del_media_sort') {
 	if (!User::isAdmin()) {
-		emMsg('权限不足！', './');
+		emMsg(lang('no_permission'), './');
 	}
 	$id = isset($_GET['id']) ? (int)$_GET['id'] : '';
 

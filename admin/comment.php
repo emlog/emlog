@@ -38,7 +38,7 @@ if (!$action) {
 if ($action === 'delbyip') {
 	LoginAuth::checkToken();
 	if (!User::haveEditPermission()) {
-		emMsg('权限不足！', './');
+		emMsg(lang('no_permission'), './');
 	}
 	$ip = $_GET['ip'] ? addslashes($_GET['ip']) : '';
 	$Comment_Model->delCommentByIp($ip);
@@ -95,7 +95,7 @@ if ($action === 'doreply') {
 	if (strlen($reply) > 2000) {
 		emDirect("./comment.php?error_d=1");
 	}
-	//回复一条待审核的评论，视为要将其公开（包括回复内容）
+	//Reply the comment pending review, need to be public (including reply content)
 	if ($hide == 'y') {
 		$Comment_Model->showComment($commentId);
 		$hide = 'n';

@@ -2,13 +2,13 @@
 	exit('error!');
 } ?>
 <!doctype html>
-<html lang="zh-cn">
+<html lang="<?= LANG ?>" dir="<?= LANG_DIR ?>">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name=renderer content=webkit>
-    <title>管理中心 - <?= Option::get('blogname') ?></title>
+    <title><?= lang('admin_center') ?> - <?= Option::get('blogname') ?></title>
     <link rel="shortcut icon" href="./views/images/favicon.ico"/>
     <link rel="stylesheet" type="text/css" href="./views/css/style.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>">
     <link rel="stylesheet" type="text/css" href="./editor.md/css/editormd.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>">
@@ -24,7 +24,9 @@
     <script src="./views/js/js.cookie-2.2.1.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
     <script src="./views/js/cropper.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
     <script src="./views/js/common.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
-	<?php doAction('adm_head') ?>
+    <script>    var em_lang = '<?= LANG ?>';</script>
+    <script src="<?= BLOG_URL ?>/lang/<?= LANG ?>/lang_js.js"></script>
+	<?php doAction('adm_head'); ?>
 </head>
 <body>
 <div id="editor-md-dialog"></div>
@@ -32,85 +34,85 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion sd-hidden" id="accordionSidebar">
         <li class="nav-item active emlog_title" id="menu_home">
 			<?php if (User::isAdmin()): ?>
-                <a class="nav-link" href="./">EMLOG PRO <?php if (!Register::isRegLocal()) : ?>未注册<?php endif ?></a>
+                <a class="nav-link" href="./">EMLOG PRO <?php if (!Register::isRegLocal()) : ?><?= lang('unregistered') ?><?php endif ?></a>
 			<?php else: ?>
-                <a class="nav-link" href="./">用户中心</a>
+                <a class="nav-link" href="./"><?= lang('user_center') ?></a>
 			<?php endif ?>
         </li>
         <hr class="sidebar-divider my-0">
 		<?php if (User::isAdmin()): ?>
             <li class="nav-item" id="menu_panel">
-                <a class="nav-link" href="./"><i class="icofont-dashboard icofont-1x"></i><span>管理后台</span></a>
+                <a class="nav-link" href="./"><i class="icofont-dashboard icofont-1x"></i><span><?= lang('admincp') ?></span></a>
             </li>
 		<?php endif ?>
         <hr class="sidebar-divider my-0">
         <li class="nav-item" id="menu_category_content">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_content" aria-expanded="true" aria-controls="menu_content">
-                <i class="icofont-pencil-alt-5"></i><span>文章</span>
+                <i class="icofont-pencil-alt-5"></i><span><?= lang('content') ?></span>
             </a>
             <div id="menu_content" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" id="menu_write" href="article.php?action=write">写文章</a>
-                    <a class="collapse-item" id="menu_log" href="article.php">文章</a>
-                    <a class="collapse-item" id="menu_draft" href="article.php?draft=1">草稿</a>
+                    <a class="collapse-item" id="menu_write" href="article.php?action=write"><?= lang('post_write') ?></a>
+                    <a class="collapse-item" id="menu_log" href="article.php"><?= lang('articles') ?></a>
+                    <a class="collapse-item" id="menu_draft" href="article.php?draft=1"><?= lang('drafts') ?></a>
 					<?php if (User::isAdmin()): ?>
-                        <a class="collapse-item" id="menu_sort" href="sort.php">分类</a>
-                        <a class="collapse-item" id="menu_tag" href="tag.php">标签</a>
+                        <a class="collapse-item" id="menu_sort" href="sort.php"><?= lang('categories') ?></a>
+                        <a class="collapse-item" id="menu_tag" href="tag.php"><?= lang('tags') ?></a>
 					<?php endif ?>
                 </div>
             </div>
         </li>
         <li class="nav-item" id="menu_cm">
-            <a class="nav-link" href="comment.php"><i class="icofont-comment"></i><span>评论</span></a>
+            <a class="nav-link" href="comment.php"><i class="icofont-comment"></i><span><?= lang('comments') ?></span></a>
         </li>
         <li class="nav-item" id="menu_twitter">
-            <a class="nav-link" href="twitter.php"><i class="icofont-penalty-card"></i><span>笔记</span></a>
+            <a class="nav-link" href="twitter.php"><i class="icofont-penalty-card"></i><span><?= lang('twitters') ?></span></a>
         </li>
         <li class="nav-item" id="menu_media">
-            <a class="nav-link" href="media.php"><i class="icofont-image"></i><span>资源</span></a>
+            <a class="nav-link" href="media.php"><i class="icofont-image"></i><span><?= lang('resources') ?></span></a>
         </li>
 		<?php if (User::isAdmin()): ?>
             <li class="nav-item" id="menu_page">
-                <a class="nav-link" href="page.php"><i class="icofont-page"></i><span>页面</span></a>
+                <a class="nav-link" href="page.php"><i class="icofont-page"></i><span><?= lang('pages') ?></span></a>
             </li>
             <li class="nav-item" id="menu_user">
-                <a class="nav-link" href="user.php"><i class="icofont-user"></i><span>用户</span></a>
+                <a class="nav-link" href="user.php"><i class="icofont-user"></i><span><?= lang('users') ?></span></a>
             </li>
             <li class="nav-item" id="menu_category_view">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_view" aria-expanded="true" aria-controls="menu_view">
-                    <i class="icofont-paint"></i><span>外观</span>
+                    <i class="icofont-paint"></i><span><?= lang('exterior') ?></span>
                 </a>
                 <div id="menu_view" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" id="menu_tpl" href="template.php">模板</a>
-                        <a class="collapse-item" id="menu_navi" href="navbar.php">导航</a>
-                        <a class="collapse-item" id="menu_widget" href="widgets.php">边栏</a>
-                        <a class="collapse-item" id="menu_link" href="link.php">链接</a>
+                        <a class="collapse-item" id="menu_tpl" href="template.php"><?= lang('templates') ?></a>
+                        <a class="collapse-item" id="menu_navi" href="navbar.php"><?= lang('navigation') ?></a>
+                        <a class="collapse-item" id="menu_widget" href="widgets.php"><?= lang('sidebar') ?></a>
+                        <a class="collapse-item" id="menu_link" href="link.php"><?= lang('friend_links') ?></a>
                     </div>
                 </div>
             </li>
             <hr class="sidebar-divider d-none d-md-block">
             <li class="nav-item" id="menu_store">
-                <a class="nav-link" href="store.php?tag=free"><i class="icofont-shopping-cart"></i><span>应用商店</span></a>
+                <a class="nav-link" href="store.php?tag=free"><i class="icofont-shopping-cart"></i><span><?= lang('app_store') ?></span></a>
             </li>
             <li class="nav-item" id="menu_category_sys">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_sys" aria-expanded="true" aria-controls="menu_sys">
-                    <i class="icofont-options"></i><span>系统</span>
+                    <i class="icofont-options"></i><span><?= lang('system') ?></span>
                 </a>
                 <div id="menu_sys" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" id="menu_data" href="data.php">数据</a>
-                        <a class="collapse-item" id="menu_setting" href="setting.php">设置</a>
+                        <a class="collapse-item" id="menu_data" href="data.php"><?= lang('data') ?></a>
+                        <a class="collapse-item" id="menu_setting" href="setting.php"><?= lang('settings') ?></a>
                     </div>
                 </div>
             </li>
             <li class="nav-item" id="menu_category_ext">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_ext" aria-expanded="true" aria-controls="menu_ext">
-                    <i class="icofont-plugin"></i><span>扩展</span>
+                    <i class="icofont-plugin"></i><span><?= lang('extensions') ?></span>
                 </a>
                 <div id="menu_ext" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" id="menu_plug" href="plugin.php">插件</a>
+                        <a class="collapse-item" id="menu_plug" href="plugin.php"><?= lang('plugins') ?></a>
 						<?php doAction('adm_menu_ext') ?>
                     </div>
                 </div>
@@ -132,7 +134,7 @@
                         <a class="nav-link" href=".." target="_blank" role="button">
 							<?php
 							$blog_name = Option::get('blogname');
-							echo empty($blog_name) ? '查看我的站点' : subString($blog_name, 0, 12);
+							echo empty($blog_name) ? lang('to_site') : subString($blog_name, 0, 12);
 							?>
                         </a>
                     </li>
@@ -145,7 +147,7 @@
                     </li>
                     <div class="topbar-divider d-none d-sm-block"></div>
                     <li class="nav-item mx-1">
-                        <a class="nav-link" href="account.php?action=logout" title="退出" role="button">
+                        <a class="nav-link" href="account.php?action=logout" title="<?= lang('logout') ?>" role="button">
                             <i class="icofont-logout icofont-1x"></i>
                         </a>
                     </li>

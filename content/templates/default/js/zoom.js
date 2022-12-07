@@ -1,5 +1,5 @@
 /**
- * 利用jqury实现图片放大 zoom.js
+ * zoom.js - Use jquery to achieve image zoom
  * https://github.com/fat/zoom.js
  */
  +function ($) { "use strict";
@@ -53,14 +53,14 @@
    document.removeEventListener('click', this._boundClick, true)
    this._activeZoom = null
 
-   /* 修改：在关闭图片后，图片恢复原来的地址 */
+   /* Modification: After closing the picture, the picture is restored to its original address */
    let $zoomImg = $('.zoomFocus')
    $zoomImg.attr('src',$zoomImg.attr('src2'))
            .removeClass('zoomFocus')
 
  }
 
-/* 修改：注释掉了滚轮滚动可关闭图片的设定 */
+/* Modification: Comment out the setting that the scroll wheel can close the picture */
 //  ZoomService.prototype._scrollHandler = function (e) {
 //  if (this._initialScrollPosition === null) this._initialScrollPosition = $(window).scrollTop()
 //  var deltaY = this._initialScrollPosition - $(window).scrollTop()
@@ -141,7 +141,7 @@
  } else {
  this._imgScaleFactor = (viewportWidth / originalFullImageWidth) * maxScaleFactor
  }
- /* 修改：比原尺寸大，不需缩小展示，与原尺寸一样，变为原来的1.2倍 */
+ /* Modification: larger than the original size, no need to reduce the display, the same as the original size, changed to 1.2 times the original */
  if (this._imgScaleFactor < 1) {
     this._imgScaleFactor = 1
  } else if (this._imgScaleFactor = 1) {

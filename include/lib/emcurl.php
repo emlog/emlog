@@ -48,8 +48,8 @@ class EmCurl {
 		curl_setopt($s, CURLOPT_MAXREDIRS, $this->_maxRedirects);
 		curl_setopt($s, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($s, CURLOPT_FOLLOWLOCATION, $this->_followlocation);
-		curl_setopt($s, CURLOPT_SSL_VERIFYPEER, false);
-		curl_setopt($s, CURLOPT_SSL_VERIFYHOST, 0);
+		curl_setopt($s, CURLOPT_SSL_VERIFYPEER, false); // Avoid SSL certificate check
+		curl_setopt($s, CURLOPT_SSL_VERIFYHOST, 0);     // Skip host verification
 
 		if ($this->authentication) {
 			curl_setopt($s, CURLOPT_USERPWD, $this->auth_name . ':' . $this->auth_pass);

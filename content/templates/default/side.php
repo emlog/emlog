@@ -1,6 +1,6 @@
 <?php
 /**
- * 侧边栏
+ * Sidebar
  */
 if (!defined('EMLOG_ROOT')) {
 	exit('error!');

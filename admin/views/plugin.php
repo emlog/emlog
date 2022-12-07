@@ -2,30 +2,30 @@
 	exit('error!');
 } ?>
 <?php if (isset($_GET['activate_install'])): ?>
-    <div class="alert alert-success">插件上传成功，请开启使用</div><?php endif ?>
+          <div class="alert alert-success"><?=lang('plugin_upload_ok')?></div><?php endif ?>
 <?php if (isset($_GET['active'])): ?>
-    <div class="alert alert-success">插件开启成功</div><?php endif ?>
+          <div class="alert alert-success"><?=lang('plugin_active_ok')?></div><?php endif ?>
 <?php if (isset($_GET['activate_del'])): ?>
-    <div class="alert alert-success">删除成功</div><?php endif ?>
+          <div class="alert alert-success"><?=lang('deleted_ok')?></div><?php endif ?>
 <?php if (isset($_GET['active_error'])): ?>
-    <div class="alert alert-danger">插件开启失败</div><?php endif ?>
+          <div class="alert alert-danger"><?=lang('plugin_active_failed')?></div><?php endif ?>
 <?php if (isset($_GET['inactive'])): ?>
-    <div class="alert alert-success">插件禁用成功</div><?php endif ?>
+          <div class="alert alert-success"><?=lang('plugin_disable_ok')?></div><?php endif ?>
 <?php if (isset($_GET['error_a'])): ?>
-    <div class="alert alert-danger">删除失败，请检查插件文件权限</div><?php endif ?>
+          <div class="alert alert-danger"><?=lang('plugin_delete_failed')?></div><?php endif ?>
 <?php if (isset($_GET['error_b'])): ?>
-    <div class="alert alert-danger">上传失败，插件目录(content/plugins)不可写</div><?php endif ?>
+          <div class="alert alert-danger"><?=lang('plugin_not_writable')?></div><?php endif ?>
 <?php if (isset($_GET['error_c'])): ?>
-    <div class="alert alert-danger">空间不支持zip模块，请按照提示手动安装插件</div><?php endif ?>
+          <div class="alert alert-danger"><?=lang('plugin_zip_nonsupport')?></div><?php endif ?>
 <?php if (isset($_GET['error_d'])): ?>
-    <div class="alert alert-danger">请选择一个zip插件安装包</div><?php endif ?>
+          <div class="alert alert-danger"><?=lang('plugin_zip_select')?></div><?php endif ?>
 <?php if (isset($_GET['error_e'])): ?>
-    <div class="alert alert-danger">安装失败，插件安装包不符合标准</div><?php endif ?>
+          <div class="alert alert-danger"><?=lang('plugin_wrong_format')?></div><?php endif ?>
 <?php if (isset($_GET['error_f'])): ?>
-    <div class="alert alert-danger">只支持zip压缩格式的插件包</div><?php endif ?>
+          <div class="alert alert-danger"><?=lang('plugin_zipped_only')?></div><?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">插件扩展</h1>
-    <a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> 安装插件</a>
+          <h1 class="h3 mb-0 text-gray-800"><?=lang('plugin_manage')?></h1>
+          <a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> <?=lang('plugin_new_install')?></a>
 </div>
 <div class="card shadow mb-4">
     <div class="card-body">
@@ -33,11 +33,11 @@
             <table class="table table-striped table-bordered table-hover dataTable no-footer">
                 <thead>
                 <tr>
-                    <th>插件名</th>
-                    <th>开关</th>
-                    <th>描述</th>
-                    <th>版本</th>
-                    <th>操作</th>
+                    <th><?=lang('plugin_name')?></th>
+                    <th><?=lang('plugin_status')?></th>
+                    <th><?=lang('description')?></th>
+                    <th><?=lang('version')?></th>
+                    <th><?=lang('operation')?></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -47,15 +47,15 @@
 					foreach ($plugins as $key => $val):
 						$plug_state = 'inactive';
 						$plug_action = 'active';
-						$plug_state_des = '点击开启插件';
+                                	$plug_state_des = lang('plugin_active_click');
 						if (in_array($key, $active_plugins)) {
 							$plug_state = 'active';
 							$plug_action = 'inactive';
-							$plug_state_des = '点击禁用插件';
+                                        	$plug_state_des = lang('plugin_disable_click');
 						}
 						$i++;
 						if (TRUE === $val['Setting']) {
-							$val['Name'] = "<a href=\"./plugin.php?plugin={$val['Plugin']}\" title=\"点击设置插件\">{$val['Name']}</a>";
+                                        	$val['Name'] = "<a href=\"./plugin.php?plugin={$val['Plugin']}\" title=\"".lang('plugin_settings_click')."\">{$val['Name']}</a>";
 						}
 						?>
                         <tr>
@@ -66,11 +66,11 @@
                             </td>
                             <td>
 								<?= $val['Description'] ?>
-								<?php if ($val['Url'] != ''): ?><a href="<?= $val['Url'] ?>" target="_blank">更多信息&raquo;</a><?php endif ?>
+                                <?php if ($val['Url'] != ''): ?><a href="<?= $val['Url'] ?>" target="_blank"><?=lang('more_info')?></a><?php endif ?>
                                 <div class="small mt-3">
-									<?php if ($val['ForEmlog'] != ''): ?>适用于emlog：<?= $val['ForEmlog'] ?>&nbsp | &nbsp<?php endif ?>
+                                    <?php if ($val['ForEmlog'] != ''): ?><?=lang('ok_for_emlog')?>: <?= $val['ForEmlog'] ?>&nbsp | &nbsp<?php endif ?>
 									<?php if ($val['Author'] != ''): ?>
-                                        作者：<?php if ($val['AuthorUrl'] != ''): ?>
+                                        <?=lang('user')?>: <?php if ($val['AuthorUrl'] != ''): ?>
                                             <a href="<?= $val['AuthorUrl'] ?>" target="_blank"><?= $val['Author'] ?></a>
 										<?php else: ?>
 											<?= $val['Author'] ?>
@@ -80,12 +80,12 @@
                             </td>
                             <td><?= $val['Version'] ?></td>
                             <td>
-                                <a href="javascript: em_confirm('<?= $key ?>', 'plu', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger">删除</a>
+                                <a href="javascript: em_confirm('<?= $key ?>', 'plu', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger"><?=lang('delete')?></a>
                             </td>
                         </tr>
 					<?php endforeach; else: ?>
                     <tr>
-                        <td colspan="5">还没有安装插件</td>
+                        <td colspan="5"><?=lang('plugin_no_installed')?></td>
                     </tr>
 				<?php endif ?>
                 </tbody>
@@ -98,7 +98,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">安装插件</h5>
+                <h5 class="modal-title" id="exampleModalLabel"><?=lang('plugin_install')?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -107,15 +107,15 @@
             <form action="./plugin.php?action=upload_zip" method="post" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div id="plugin_new" class="form-group">
-                        <li>上传一个zip压缩格式的插件安装包</li>
+                        <li><?=lang('upload_install_info')?></li>
                         <li>
                             <input name="pluzip" type="file"/>
                         </li>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
-                    <button type="submit" class="btn btn-sm btn-success">上传</button>
+                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
+                    <button type="submit" class="btn btn-sm btn-success"><?=lang('upload')?><button>
                     <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
                 </div>
             </form>

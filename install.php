@@ -5,14 +5,19 @@
  * @link https://www.emlog.net
  */
 
-const EMLOG_ROOT = __DIR__;
+define('EMLOG_ROOT', str_replace('\\','/',__DIR__));
+define('LANG','en'); //zh-CN, zh-TW, en, ru, etc.
+define('LANG_DIR','ltr'); //ltr, rtl
 
 require_once EMLOG_ROOT . '/include/lib/common.php';
+
+load_language('install');
+
 header('Content-Type: text/html; charset=UTF-8');
 spl_autoload_register("emAutoload");
 
 if (PHP_VERSION < '5.6') {
-	emMsg('PHP版本太低，请使用PHP5.6及以上版本(推荐7.4)');
+  emMsg(lang('php_required'));
 }
 
 $act = isset($_GET['action']) ? $_GET['action'] : '';
@@ -31,7 +36,7 @@ $env_db_password = getenv('EMLOG_DB_PASSWORD');
 if (!$act) {
 	?>
     <!doctype html>
-    <html lang="zh-cn">
+          <html dir="<?= LANG_DIR ?>" lang="<?= LANG ?>">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -134,53 +139,53 @@ if (!$act) {
                 </div>
 			<?php else: ?>
                 <div class="b">
-                    <p class="title2">MySQL数据库设置</p>
+                <p class="title2"><?= lang('mysql_settings') ?></p>
                     <li>
-                        数据库地址<br/>
+                    <?= lang('db_hostname') ?>:<br>
                         <input name="hostname" type="text" class="input" value="127.0.0.1">
-                        <span class="care">(通常为 127.0.0.1 或者指定端口 127.0.0.1:3306)</span>
+                    <span class="care"><?= lang('db_hostname_info') ?></span>
                     </li>
                     <li>
-                        数据库用户名<br/><input name="dbuser" type="text" class="input" value="">
+                    <?= lang('db_user') ?>:<br><input name="dbuser" type="text" class="input" value="">
                     </li>
                     <li>
-                        数据库密码<br/><input name="dbpasswd" type="password" class="input">
+                    <?= lang('db_password') ?>:<br><input name="dbpassw" type="password" class="input">
                     </li>
                     <li>
-                        数据库名<br/>
+                    <?= lang('db_name') ?>:<br>
                         <input name="dbname" type="text" class="input" value="">
-                        <span class="care">(程序不会自动创建数据库，请提前创建一个空数据库或使用已有数据库)</span>
+                    <span class="care"><?= lang('db_name_info') ?></span>
                     </li>
                     <li>
-                        数据库表前缀<br/>
+                    <?= lang('db_prefix') ?>:<br>
                         <input name="dbprefix" type="text" class="input" value="emlog_">
-                        <span class="care"> (通常默认即可，不必修改。由英文字母、数字、下划线组成，且必须以下划线结束)</span>
+                    <span class="care"><?= lang('db_prefix_info') ?></span>
                     </li>
                 </div>
 			<?php endif; ?>
             <div class="c">
-                <p class="title2">管理员设置</p>
+                <p class="title2"><?= lang('admin_settings') ?></p>
                 <li>
-                    登录名<br/>
+                    <?= lang('admin_name') ?>:<br>
                     <input name="username" type="text" class="input">
                 </li>
                 <li>
-                    密码<br/>
+                    <?= lang('admin_password') ?>:<br>
                     <input name="password" type="password" class="input">
-                    <span class="care">(不小于6位)</span>
+                    <span class="care"><?= lang('admin_password_info') ?></span>
                 </li>
                 <li>
-                    再次输入密码<br/>
+                    <?= lang('admin_password_repeat') ?>:<br/>
                     <input name="repassword" type="password" class="input">
                 </li>
                 <li>
-                    邮箱<br/>
+                    <?=lang('email')?><br/>
                     <input name="email" type="text" class="input">
-                    <span class="care"> (可用于找回密码，建议填写)</span>
+                    <span class="care"> <?=lang('email_prompt')?></span>
                 </li>
             </div>
             <div class="next_btn">
-                <input type="submit" class="submit" value="下一步，开始安装">
+                <input type="submit" class="submit" value=<?= lang('install_emlog') ?>">
             </div>
         </div>
     </form>
@@ -201,17 +206,18 @@ if ($act == 'install' || $act == 'reinstall') {
 	$email = isset($_POST['email']) ? addslashes(trim($_POST['email'])) : '';
 
 	if ($db_prefix === '') {
-		emMsg('数据库表前缀不能为空!');
+      emMsg(lang('db_prefix_empty'));
 	} elseif (!preg_match("/^[\w_]+_$/", $db_prefix)) {
-		emMsg('数据库表前缀格式错误!');
+      emMsg(lang('db_prefix_empty'));
 	} elseif (!$username || !$password) {
-		emMsg('登录名和密码不能为空!');
-	} elseif (strlen($password) < 6) {
-		emMsg('登录密码不得小于6位');
+      emMsg(lang('username_password_empty'));
+  } elseif (strlen($password) < 5) {
+      emMsg(lang('password_short'));
 	} elseif ($password != $repassword) {
-		emMsg('两次输入的密码不一致');
+      emMsg(lang('password_not_equal'));
 	}
 
+	//Initialize the database class
 	define('DB_HOST', $db_host);
 	define('DB_USER', $db_user);
 	define('DB_PASSWD', $db_pw);
@@ -222,7 +228,11 @@ if ($act == 'install' || $act == 'reinstall') {
 	$CACHE = Cache::getInstance();
 
 	if ($act != 'reinstall' && $DB->num_rows($DB->query("SHOW TABLES LIKE '{$db_prefix}blog'")) == 1) {
+$installed = lang('already_installed');
+$continue = lang('continue');
+$return_back = lang('return');
 		echo <<<EOT
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
@@ -245,10 +255,10 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
     <input name="repassword" type="hidden" class="input" value="$repassword">
     <input name="email" type="hidden" class="input" value="$email">
 <p>
-你的emlog看起来已经安装过了。继续安装将会覆盖原有数据，确定要继续吗？
-<input type="submit" value="继续&raquo;">
+          {$installed}
+          <input type="submit" value="{$continue}">
 </p>
-<p><a href="javascript:history.back(-1);">&laquo;点击返回</a></p>
+          <p><a href="javascript:history.back(-1);">{$return_back}</a></p>
 </div>
 </form>
 </body>
@@ -258,10 +268,10 @@ EOT;
 	}
 
 	if (!is_writable('config.php')) {
-		emMsg('配置文件(config.php)不可写，请调整文件读写权限。');
+      emMsg(lang('config_not_writable'));
 	}
 	if (!is_writable(EMLOG_ROOT . '/content/cache')) {
-		emMsg('缓存目录（content/cache）不可写。请检查目录读写权限。');
+      emMsg(lang('cache_not_writable'));
 	}
 	$config = "<?php\n"
 		. "//MySQL database host\n"
@@ -274,18 +284,51 @@ EOT;
 		. "const DB_NAME = '$db_name';"
 		. "\n//Database Table Prefix\n"
 		. "const DB_PREFIX = '$db_prefix';"
-		. "\n//Auth key\n"
+		. "\n//auth key\n"
 		. "const AUTH_KEY = '" . getRandStr(32) . md5($_SERVER['HTTP_USER_AGENT']) . "';"
-		. "\n//Cookie name\n"
-		. "const AUTH_COOKIE_NAME = 'EM_AUTHCOOKIE_" . getRandStr(32, false) . "';";
+		. "\n//cookie name\n"
+		. "const AUTH_COOKIE_NAME = 'EM_AUTHCOOKIE_" . getRandStr(32, false) . "';"
+		. "\n//Safety admin entry: /admin/?s=xxx\n"
+		. "//const ADMIN_PATH_CODE = 'xxx';"
+
+
+		. "\n\n// Default blog language"
+		. "\ndefine('DEFAULT_LANG', 'en'); //'en', 'ru', 'zh-CN', 'zh-TW', 'pt-BR', etc."
+		. "\n// Enabled language list"
+		. "\ndefine('LANG_LIST', ["
+		. "\n	'en' => ["
+		. "\n		'name'=>'English',"
+		. "\n		'title'=>'English',"
+		. "\n		'dir'=>'ltr',"
+		. "\n	],"
+		. "\n	'ru' => ["
+		. "\n		'name'=>'Русский',"
+		. "\n		'title'=>'Russian',"
+		. "\n		'dir'=>'ltr',"
+		. "\n	],"
+		. "\n	'zh-CN' => ["
+		. "\n		'name'=>'简体中文',"
+		. "\n		'title'=>'Simplified Chinese',"
+		. "\n		'dir'=>'ltr',"
+		. "\n	],"
+		. "\n/*"
+		. "\n	'ar' => ["
+		. "\n		'name'=>'العربية',"
+		. "\n		'title'=>'Arabic',"
+		. "\n		'dir'=>'rtl',"
+		. "\n	],"
+		. "\n*/"
+		. "\n]);"
+		. "\n";
 
 	$fp = @fopen('config.php', 'w');
 	$fw = @fwrite($fp, $config);
 	if (!$fw) {
-		emMsg('配置文件(config.php)不可写，请调整文件读写权限。');
+      emMsg(lang('config_not_writable'));
 	}
 	fclose($fp);
 
+	//Encrypt Password
 	$PHPASS = new PasswordHash(8, true);
 	$password = $PHPASS->HashPassword($password);
 
@@ -303,27 +346,27 @@ EOT;
 	$sql = "
 DROP TABLE IF EXISTS {$db_prefix}blog;
 CREATE TABLE {$db_prefix}blog (
-  gid int(10) unsigned NOT NULL auto_increment COMMENT '文章表',
-  title varchar(255) NOT NULL default '' COMMENT '文章标题',
-  date bigint(20) NOT NULL COMMENT '发布时间',
-  content longtext NOT NULL  COMMENT '文章内容',
-  excerpt longtext NOT NULL  COMMENT '文章摘要',
-  cover VARCHAR(255) NOT NULL DEFAULT '' COMMENT '封面图',
-  alias VARCHAR(200) NOT NULL DEFAULT '' COMMENT '文章别名',
-  author int(10) NOT NULL default '1' COMMENT '作者UID',
-  sortid int(10) NOT NULL default '-1' COMMENT '分类ID',
-  type varchar(20) NOT NULL default 'blog' COMMENT '文章OR页面',
-  views int(10) unsigned NOT NULL default '0' COMMENT '阅读量',
-  comnum int(10) unsigned NOT NULL default '0' COMMENT '评论数量',
-  attnum int(10) unsigned NOT NULL default '0' COMMENT '附件数量（已废弃）',
-  top enum('n','y') NOT NULL default 'n' COMMENT '置顶',
-  sortop enum('n','y') NOT NULL default 'n' COMMENT '分类置顶',
-  hide enum('n','y') NOT NULL default 'n' COMMENT '草稿y',
-  checked enum('n','y') NOT NULL default 'y' COMMENT '文章是否审核',
-  allow_remark enum('n','y') NOT NULL default 'y' COMMENT '允许评论y',
-  password varchar(255) NOT NULL default '' COMMENT '访问密码',
-  template varchar(255) NOT NULL default '' COMMENT '模板',
-  tags text COMMENT '标签',
+  gid int(11) unsigned NOT NULL auto_increment COMMENT 'Article table',
+  title varchar(255) NOT NULL default '' COMMENT 'Article title',
+  date bigint(20) NOT NULL COMMENT 'Publish time',
+  content longtext NOT NULL  COMMENT 'Article content',
+  excerpt longtext NOT NULL  COMMENT 'Article Summary',
+  cover VARCHAR(255) NOT NULL DEFAULT '' COMMENT 'Cover image',
+  alias VARCHAR(255) NOT NULL DEFAULT '' COMMENT 'Article alias',
+  author int(11) NOT NULL default '1' COMMENT 'Author UID',
+  sortid int(11) NOT NULL default '-1' COMMENT 'Category ID',
+  type varchar(64) NOT NULL default 'blog' COMMENT 'Article OR page',
+  views int(11) unsigned NOT NULL default '0' COMMENT 'Read counter',
+  comnum int(11) unsigned NOT NULL default '0' COMMENT 'Number of comments',
+  attnum int(11) unsigned NOT NULL default '0' COMMENT 'Number of attachments (obsolete)',
+  top enum('n','y') NOT NULL default 'n' COMMENT 'Top',
+  sortop enum('n','y') NOT NULL default 'n' COMMENT 'Top category',
+  hide enum('n','y') NOT NULL default 'n' COMMENT 'Draft=y',
+  checked enum('n','y') NOT NULL default 'y' COMMENT 'If article is reviewed',
+  allow_remark enum('n','y') NOT NULL default 'y' COMMENT 'Allow comments=y',
+  password varchar(255) NOT NULL default '' COMMENT 'Access password',
+  template varchar(255) NOT NULL default '' COMMENT 'Template',
+  tags text COMMENT 'Tags',
   PRIMARY KEY (gid),
   KEY author (author),
   KEY views (views),
@@ -332,45 +375,45 @@ CREATE TABLE {$db_prefix}blog (
   KEY top (top,date),
   KEY date (date)
 )" . $table_charset_sql . "
-INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,author,views,comnum,attnum,top,sortop,hide,allow_remark,password) VALUES (1, '欢迎使用emlog', '" . time() . "', '恭喜您成功安装了emlog，这是系统自动生成的演示文章。编辑或者删除它，然后开始您的创作吧！', '', 1, 0, 1, 0, 'n', 'n', 'n', 'y', '');
+INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,author,views,comnum,attnum,top,sortop,hide,allow_remark,password) VALUES (1, '" . lang('emlog_welcome') . "', '" . time() . "', '" . lang('emlog_install_congratulation') . "', '', 1, 0, 1, 0, 'n', 'n', 'n', 'y', '');
 DROP TABLE IF EXISTS {$db_prefix}attachment;
 CREATE TABLE {$db_prefix}attachment (
-  aid int(10) unsigned NOT NULL auto_increment COMMENT '资源文件表',
-  author int(10) unsigned NOT NULL default '1' COMMENT '作者UID',
-  sortid int(10) NOT NULL default '0' COMMENT '分类ID',
-  blogid int(10) unsigned NOT NULL default '0' COMMENT '文章ID（已废弃）',
-  filename varchar(255) NOT NULL default '' COMMENT '文件名',
-  filesize int(10) NOT NULL default '0' COMMENT '文件大小',
-  filepath varchar(255) NOT NULL default '' COMMENT '文件路径',
-  addtime bigint(20) NOT NULL default '0' COMMENT '创建时间',
-  width int(10) NOT NULL default '0' COMMENT '图片宽度',
-  height int(10) NOT NULL default '0' COMMENT '图片高度',
-  mimetype varchar(40) NOT NULL default '' COMMENT '文件mime类型',
-  thumfor int(10) NOT NULL default 0 COMMENT '缩略图的原资源ID（已废弃）',
+  aid int(11) unsigned NOT NULL auto_increment COMMENT 'Resource file table',
+  author int(11) unsigned NOT NULL default '1' COMMENT 'Author UID',
+  sortid int(11) NOT NULL default '0' COMMENT 'Category ID',
+  blogid int(11) unsigned NOT NULL default '0' COMMENT 'Post ID (obsolete)',
+  filename varchar(255) NOT NULL default '' COMMENT 'File name',
+  filesize int(11) NOT NULL default '0' COMMENT 'File size',
+  filepath varchar(255) NOT NULL default '' COMMENT 'File path',
+  addtime bigint(20) NOT NULL default '0' COMMENT 'Creation time',
+  width int(11) NOT NULL default '0' COMMENT 'Image width',
+  height int(11) NOT NULL default '0' COMMENT 'Image Height',
+  mimetype varchar(64) NOT NULL default '' COMMENT 'File mime type',
+  thumfor int(11) NOT NULL default 0 COMMENT 'Thumbnail for original resource ID (obsolete)',
   PRIMARY KEY  (aid),
   KEY thum_uid (thumfor,author)
 )" . $table_charset_sql . "
 DROP TABLE IF EXISTS {$db_prefix}media_sort;
 CREATE TABLE {$db_prefix}media_sort (
-  id int(10) unsigned NOT NULL auto_increment COMMENT '资源分类表',
-  sortname varchar(255) NOT NULL default '' COMMENT '分类名',
+  id int(10) unsigned NOT NULL auto_increment COMMENT 'Media Category ID',
+  sortname varchar(255) NOT NULL default '' COMMENT 'Media Category Name',
   PRIMARY KEY  (id)
 )" . $table_charset_sql . "
 DROP TABLE IF EXISTS {$db_prefix}comment;
 CREATE TABLE {$db_prefix}comment (
-  cid int(10) unsigned NOT NULL auto_increment COMMENT '评论表',
-  gid int(10) unsigned NOT NULL default '0' COMMENT '文章ID',
-  pid int(10) unsigned NOT NULL default '0' COMMENT '父级评论ID',
-  top enum('n','y') NOT NULL default 'n' COMMENT '置顶',
-  poster varchar(20) NOT NULL default '' COMMENT '发布人昵称',
-  uid int(10) NOT NULL default '0' COMMENT '发布人UID',
-  comment text NOT NULL COMMENT '评论内容',
-  mail varchar(60) NOT NULL default '' COMMENT 'email',
-  url varchar(75) NOT NULL default '' COMMENT 'homepage',
-  ip varchar(128) NOT NULL default '' COMMENT 'ip address',
-  agent varchar(512) NOT NULL default '' COMMENT 'user agent',
-  hide enum('n','y') NOT NULL default 'n' COMMENT '是否审核',
-  date bigint(20) NOT NULL COMMENT '创建时间',
+  cid int(11) unsigned NOT NULL auto_increment COMMENT 'Comment ID',
+  gid int(11) unsigned NOT NULL default '0' COMMENT 'Article ID',
+  pid int(11) unsigned NOT NULL default '0' COMMENT 'Parent comment ID',
+  top enum('n','y') NOT NULL default 'n' COMMENT 'Top',
+  poster varchar(255) NOT NULL default '' COMMENT 'Publisher nickname',
+  uid int(11) NOT NULL default '0' COMMENT 'Publisher UID',
+  comment text NOT NULL COMMENT 'Comment content',
+  mail varchar(255) NOT NULL default '' COMMENT 'Email',
+  url varchar(255) NOT NULL default '' COMMENT 'Homepage URL',
+  ip varchar(128) NOT NULL default '' COMMENT 'IP address',
+  agent varchar(512) NOT NULL default '' COMMENT 'User agent',
+  hide enum('n','y') NOT NULL default 'n' COMMENT 'Hide or not',
+  date bigint(20) NOT NULL COMMENT 'Creation time',
   PRIMARY KEY  (cid),
   KEY gid (gid),
   KEY date (date),
@@ -379,14 +422,14 @@ CREATE TABLE {$db_prefix}comment (
 INSERT INTO {$db_prefix}comment (gid, date, poster, comment) VALUES (1, '" . time() . "', 'snow', 'stay hungry stay foolish');
 DROP TABLE IF EXISTS {$db_prefix}options;
 CREATE TABLE {$db_prefix}options (
-option_id INT( 11 ) UNSIGNED NOT NULL auto_increment COMMENT '站点配置信息表',
-option_name VARCHAR( 75 ) NOT NULL COMMENT '配置项',
-option_value LONGTEXT NOT NULL COMMENT '配置项值',
+option_id INT( 11 ) UNSIGNED NOT NULL auto_increment COMMENT 'Cofiguration table',
+option_name VARCHAR( 75 ) NOT NULL COMMENT 'Option name',
+option_value LONGTEXT NOT NULL COMMENT 'Option value',
 PRIMARY KEY (option_id),
 UNIQUE KEY `option_name_uindex` (`option_name`)
 )" . $table_charset_sql . "
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('blogname','EMLOG');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('bloginfo','使用emlog搭建的站点');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('bloginfo','" . lang('emlog_powered') . "');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('site_title','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('site_description','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('site_key','emlog');
@@ -422,7 +465,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('ischkcommen
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isurlrewrite','0');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isalias','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isalias_html','n');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('timezone','Asia/Shanghai');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('timezone','UTC');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('active_plugins','$def_plugin');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widget_title','$widget_title');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_widget','a:0:{}');
@@ -440,65 +483,65 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('is_openapi'
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('apikey','$apikey');
 DROP TABLE IF EXISTS {$db_prefix}link;
 CREATE TABLE {$db_prefix}link (
-  id int(10) unsigned NOT NULL auto_increment COMMENT '链接表',
-  sitename varchar(255) NOT NULL default '' COMMENT '名称',
-  siteurl varchar(255) NOT NULL default '' COMMENT '地址',
-  description varchar(512) NOT NULL default '' COMMENT '备注信息',
-  hide enum('n','y') NOT NULL default 'n' COMMENT '是否隐藏',
-  taxis int(10) unsigned NOT NULL default '0' COMMENT '排序序号',
+  id int(11) unsigned NOT NULL auto_increment COMMENT 'Link table',
+  sitename varchar(255) NOT NULL default '' COMMENT 'Name',
+  siteurl varchar(255) NOT NULL default '' COMMENT 'URL',
+  description varchar(512) NOT NULL default '' COMMENT 'Description',
+  hide enum('n','y') NOT NULL default 'n' COMMENT 'Hide or not',
+  taxis int(11) unsigned NOT NULL default '0' COMMENT 'Sort order',
   PRIMARY KEY  (id)
 )" . $table_charset_sql . "
-INSERT INTO {$db_prefix}link (id, sitename, siteurl, description, taxis) VALUES (1, 'emlog.net', 'http://www.emlog.net', 'emlog官方主页', 0);
+INSERT INTO {$db_prefix}link (id, sitename, siteurl, description, taxis) VALUES (1, 'emlog.net', 'http://www.emlog.net', '" . lang('emlog_official_site') . "', 0);
 DROP TABLE IF EXISTS {$db_prefix}navi;
 CREATE TABLE {$db_prefix}navi (
-  id int(10) unsigned NOT NULL auto_increment COMMENT '导航表',
-  naviname varchar(30) NOT NULL default '' COMMENT '导航名称',
-  url varchar(512) NOT NULL default '' COMMENT '导航地址',
-  newtab enum('n','y') NOT NULL default 'n' COMMENT '在新窗口打开',
-  hide enum('n','y') NOT NULL default 'n' COMMENT '是否隐藏',
-  taxis int(10) unsigned NOT NULL default '0' COMMENT '排序序号',
-  pid int(10) unsigned NOT NULL default '0' COMMENT '父级ID',
-  isdefault enum('n','y') NOT NULL default 'n' COMMENT '是否系统默认导航，如首页',
-  type tinyint(3) unsigned NOT NULL default '0' COMMENT '导航类型 0自定义 1首页 2笔记 3后台管理 4分类 5页面',
-  type_id int(10) unsigned NOT NULL default '0' COMMENT '导航类型对应ID',
+  id int(11) unsigned NOT NULL auto_increment COMMENT 'Navigation table',
+  naviname varchar(255) NOT NULL default '' COMMENT 'Navigation name',
+  url varchar(512) NOT NULL default '' COMMENT 'Navigation URL',
+  newtab enum('n','y') NOT NULL default 'n' COMMENT 'Open in a new window',
+  hide enum('n','y') NOT NULL default 'n' COMMENT 'Hide or not',
+  taxis int(11) unsigned NOT NULL default '0' COMMENT 'Sort order',
+  pid int(11) unsigned NOT NULL default '0' COMMENT 'Parent ID',
+  isdefault enum('n','y') NOT NULL default 'n' COMMENT 'Is the system default navigation, i.e. home page',
+  type tinyint(3) unsigned NOT NULL default '0' COMMENT 'Navigation type: 0=custom, 1=home, 2=Note, 3=AdminCP, 4=Categories, 5=page',
+  type_id int(11) unsigned NOT NULL default '0' COMMENT 'Navigation type corresponding ID',
   PRIMARY KEY  (id)
 )" . $table_charset_sql . "
-INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault, type) VALUES (1, '首页', '', 1, 'y', 1);
-INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault, type) VALUES (3, '登录', 'admin', 3, 'y', 3);
+INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault, type) VALUES (1, '" . lang('home') . "', '', 1, 'y', 1);
+INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault, type) VALUES (3, '" . lang('login') . "', 'admin', 3, 'y', 3);
 DROP TABLE IF EXISTS {$db_prefix}tag;
 CREATE TABLE {$db_prefix}tag (
-  tid int(10) unsigned NOT NULL auto_increment COMMENT '标签表',
-  tagname varchar(60) NOT NULL default '' COMMENT '标签名',
-  gid text NOT NULL COMMENT '文章ID',
+  tid int(11) unsigned NOT NULL auto_increment COMMENT 'Tag table',
+  tagname varchar(255) NOT NULL default '' COMMENT 'Tag name',
+  gid text NOT NULL COMMENT 'Article ID',
   PRIMARY KEY  (tid),
   KEY tagname (tagname)
 )" . $table_charset_sql . "
 DROP TABLE IF EXISTS {$db_prefix}sort;
 CREATE TABLE {$db_prefix}sort (
-  sid int(10) unsigned NOT NULL auto_increment COMMENT '分类表',
-  sortname varchar(255) NOT NULL default '' COMMENT '分类名',
-  alias VARCHAR(200) NOT NULL DEFAULT '' COMMENT '别名',
-  taxis int(10) unsigned NOT NULL default '0' COMMENT '排序序号',
-  pid int(10) unsigned NOT NULL default '0' COMMENT '父分类ID',
-  description text NOT NULL COMMENT '备注',
-  template varchar(255) NOT NULL default '' COMMENT '分类模板',
+  sid int(11) unsigned NOT NULL auto_increment COMMENT 'Category Table',
+  sortname varchar(255) NOT NULL default '' COMMENT 'Category name',
+  alias VARCHAR(255) NOT NULL DEFAULT '' COMMENT 'Alias',
+  taxis int(11) unsigned NOT NULL default '0' COMMENT 'Sort order',
+  pid int(11) unsigned NOT NULL default '0' COMMENT 'Parent category ID',
+  description text NOT NULL COMMENT 'Description',
+  template varchar(255) NOT NULL default '' COMMENT 'Category template',
   PRIMARY KEY  (sid)
 )" . $table_charset_sql . "
 DROP TABLE IF EXISTS {$db_prefix}user;
 CREATE TABLE {$db_prefix}user (
-  uid int(10) unsigned NOT NULL auto_increment COMMENT '用户表',
-  username varchar(32) NOT NULL default '' COMMENT '用户名',
-  password varchar(64) NOT NULL default '' COMMENT '用户密码',
-  nickname varchar(20) NOT NULL default '' COMMENT '昵称',
-  role varchar(60) NOT NULL default '' COMMENT '用户组',
-  ischeck enum('n','y') NOT NULL default 'n' COMMENT '内容是否需要管理员审核',
-  photo varchar(255) NOT NULL default '' COMMENT '头像',
-  email varchar(60) NOT NULL default '' COMMENT '邮箱',
-  description varchar(255) NOT NULL default '' COMMENT '备注',
-  ip varchar(128) NOT NULL default '' COMMENT 'ip地址',
-  state tinyint NOT NULL DEFAULT '0' COMMENT '用户状态 0正常 1禁用',
-  create_time int(11) NOT NULL COMMENT '创建时间',
-  update_time int(11) NOT NULL COMMENT '更新时间',
+  uid int(11) unsigned NOT NULL auto_increment COMMENT 'User table',
+  username varchar(255) NOT NULL default '' COMMENT 'User name',
+  password varchar(255) NOT NULL default '' COMMENT 'User password',
+  nickname varchar(255) NOT NULL default '' COMMENT 'Nickname',
+  role varchar(255) NOT NULL default '' COMMENT 'Role',
+  ischeck enum('n','y') NOT NULL default 'n' COMMENT 'Need to preview  by admin',
+  photo varchar(255) NOT NULL default '' COMMENT 'Avatar',
+  email varchar(255) NOT NULL default '' COMMENT 'Email',
+  description varchar(255) NOT NULL default '' COMMENT 'Description',
+  ip varchar(128) NOT NULL default '' COMMENT 'IP address',
+  state tinyint NOT NULL DEFAULT '0' COMMENT 'User status: 0 normal, 1 disabled',
+  create_time int(11) NOT NULL COMMENT 'Create time',
+  update_time int(11) NOT NULL COMMENT 'Update time',
 PRIMARY KEY  (uid),
 KEY username (username),
 KEY email (email)         
@@ -506,24 +549,24 @@ KEY email (email)
 INSERT INTO {$db_prefix}user (uid, username, email, password, nickname, role, create_time, update_time) VALUES (1,'$username','$email','$password', 'emer','admin', " . time() . ", " . time() . ");
 DROP TABLE IF EXISTS {$db_prefix}twitter;
 CREATE TABLE {$db_prefix}twitter (
-id INT NOT NULL AUTO_INCREMENT COMMENT '笔记表',
-content text NOT NULL COMMENT '笔记内容',
-img varchar(200) DEFAULT NULL COMMENT '图片',
-author int(10) NOT NULL default '1' COMMENT '作者UID',
-date bigint(20) NOT NULL COMMENT '创建时间',
-replynum int(10) unsigned NOT NULL default '0' COMMENT '回复数量',
+id INT NOT NULL AUTO_INCREMENT COMMENT 'Note ID',
+content text NOT NULL COMMENT 'Note content',
+img varchar(255) DEFAULT NULL COMMENT 'Image',
+author int(11) NOT NULL default '1' COMMENT 'Author UID',
+date bigint(20) NOT NULL COMMENT 'Create time',
+replynum int(11) unsigned NOT NULL default '0' COMMENT 'Number of replies',
 PRIMARY KEY (id),
 KEY author (author)
 )" . $table_charset_sql . "
 DROP TABLE IF EXISTS {$db_prefix}storage;
 CREATE TABLE {$db_prefix}storage (
-  `sid` int(8) NOT NULL AUTO_INCREMENT COMMENT '对象存储表',
-  `plugin` varchar(32) NOT NULL COMMENT '插件名',
-  `name` varchar(32) NOT NULL COMMENT '对象名',
-  `type` varchar(8) NOT NULL COMMENT '对象数据类型',
-  `value` text NOT NULL COMMENT '对象值',
-  `createdate` int(11) NOT NULL COMMENT '创建时间',
-  `lastupdate` int(11) NOT NULL COMMENT '更新时间',
+  `sid` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Object storage table',
+  `plugin` varchar(32) NOT NULL COMMENT 'Plugin name',
+  `name` varchar(64) NOT NULL COMMENT 'Object name',
+  `type` varchar(8) NOT NULL COMMENT 'Object data type',
+  `value` text NOT NULL COMMENT 'Object value',
+  `createdate` int(11) NOT NULL COMMENT 'Create time',
+  `lastupdate` int(11) NOT NULL COMMENT 'Update time',
   PRIMARY KEY (`sid`),
   UNIQUE KEY `plugin` (`plugin`,`name`)
 )" . $table_charset_sql;
@@ -537,15 +580,15 @@ CREATE TABLE {$db_prefix}storage (
 	}
 	$CACHE->updateCache();
 	$result = '';
+
 	$result .= "
-        <p style=\"font-size:24px; border-bottom:1px solid #E6E6E6; padding:10px 0px;\">恭喜，安装成功</p>
-        <p>emlog已经安装好了，现在可以开始你的创作了。</p>
-        <p><b>用户名</b>：{$username}</p>
-        <p><b>密 码</b>：刚才你设定的密码</p>";
+        <p style=\"font-size:24px; border-bottom:1px solid #E6E6E6; padding:10px 0px;\">".lang('emlog_installed')."</p>
+        <p>" . lang('emlog_installed_info') . "</p>
+        <p><b>" . lang('user_name') . "</b>: {$username}</p>
+        <p><b>" . lang('password')."</b>: " . lang('password_entered') . "</p>";
 	if ($env_emlog_env === 'develop' || ($env_emlog_env !== 'develop' && !@unlink('./install.php'))) {
-		$result .= '<p style="color:#ff0000;margin:10px 20px;">警告：请手动删除根目录下安装文件：install.php</p> ';
+      $result .= '<p style="color:#ff0000;margin:10px 20px;">' . lang('delete_install') . '</p> ';
 	}
-	$result .= "<p style=\"text-align:right;\"><a href=\"./\">访问首页</a> | <a href=\"./admin/\">登录后台</a></p>";
+	$result .= "<p style=\"text-align:right;\"><a href=\"./\">" . lang('go_to_front') . "</a> | <a href=\"./admin/\">" . lang('go_to_admincp') . "</a></p>";
 	emMsg($result, 'none');
 }
-?>
