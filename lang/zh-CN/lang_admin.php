@@ -4,10 +4,6 @@ $lang = array(
 
 //---------------------------
 //admin/account.php
-//'mail_test_header'	=> '测试邮件发送标题',//'Test mail sending header',
-//'mail_test_content'	=> '测试邮件发送内容',//'Test mail sending content',
-//'mail_send_ok'	=> '邮件发送成功',//'Mail sent successfully',
-//'mail_send_error'	=> '邮件发送失败',//'Mail sending failed',
 'registration_disabled'                   => '系统已关闭注册！',//'The system has closed registration!',
 
 //---------------------------
@@ -43,10 +39,6 @@ $lang = array(
 'import_failed_not_emlog'                 => '导入失败！该文件不是emlog的数据备份文件!',//'Import failed! The backup file is not the emlog backup file!',
 'import_failed_not_emlog_ver'             => '导入失败！该文件不是emlog' . Option::EMLOG_VERSION . '生成的备份!',//'Import failed! The backup file is not the emlog ' . Option::EMLOG_VERSION . ' backup file!',
 'import_failed_bad_prefix'                => '导入失败！备份文件中的数据库表前缀与当前系统数据库表前缀不一致',//'Import failed! The database backup file prefix does not match the current system database prefix ',
-
-//---------------------------
-//admin/globals.php
-// 'no_permission'	=> '权限不足！',//'Insufficient permissions!',
 
 //---------------------------
 //admin/index.php
@@ -258,7 +250,6 @@ $lang = array(
 'attachment_upload'                       => '上传附件',//'Upload attachment',
 'bulk_upload'                             => '批量上传',//'Bulk upload',//'('
 'attachment_library'                      => '附件库',//'Attachment Library',
-// ')',//'）',
 'no_attachments'                          => '该文章没有附件',//'The post has no attachment',
 'insert'                                  => '插入 ',//'Insert',
 'insert_full_size'                        => '插入原图',//'Insert full size image',
@@ -267,19 +258,9 @@ $lang = array(
 'thumbnail'                               => '缩略图',//'Thumbnail',
 
 //---------------------------
-//admin/views/auth.php
-// 'em_reg_ok'			=> '恭喜，注册成功了',//'Congratulations, the registration is successful',
-// 'reg_failed'			=> '注册失败',//'Registration failed',
 'ext_store_info'                          => '扩展商店用于下载模板和插件，仅开放给已完成注册用户',//'The extension store is used to download templates and plug-ins, only open to registered users',
 'too_many_articles'                       => '文章数量已经超过未注册版本限额',//'The number of articles has exceeded the unregistered version limit',
 'emlog_notregistered'                     => '抱歉！您的emlog pro尚未完成注册， 完成注册来解锁emlog pro的全部功能',//'Sorry! Your emlog pro has not been registered, complete the registration to unlock all the functions of emlog pro',
-// 'get_emkey'			=> '获取注册码',//'Get registration code',
-// 'ok_register_now'	=> '开始注册',//'Start registration',
-// 'emlog_reg_ok'		=> '恭喜，您的emlog pro已完成注册！',//'Congratulations, your emlog pro has been registered!',
-// 'register_emlog'		=> '注册EMLOG PRO',//'Register EMLOG PRO',
-// 'enter_reg_code'	=> '输入注册码',//'Enter the registration code',
-// 'registered'			=> '注册',//'registered',
-// 'register'		=> '注册',//'Register',
 
 //---------------------------
 //admin/views/blogger.php
@@ -580,10 +561,6 @@ $lang = array(
 'add'                                     => '添加',//'Add',
 
 //---------------------------
-//admin/views/naviedit.php
-// 'nav_name'		=> '导航名称',//'Navigation Name',
-
-//---------------------------
 //admin/views/page.php
 'page_title'                              => '页面标题',//'Page title',
 'setting_items'                           => '设置项',//'Setting items',
@@ -610,7 +587,6 @@ $lang = array(
 
 //---------------------------
 //admin/views/plugin_install.php
-// 'plugin_install'		=> '安装插件',//'Install plugin',
 'plugin_zipped_only'                      => '只支持zip压缩格式的插件包',//'Supports plug-in package only in zip compression format',
 'plugin_not_writable'                     => '上传失败，插件目录(content/plugins)不可写',//'Upload failed, plugin directory (content/plugins) is not writable',
 'plugin_zip_nonsupport'                   => '空间不支持zip模块，请按照提示手动安装插件',//'Server does not support zip module, follow the prompts to install the plugin manually' ,
@@ -626,9 +602,6 @@ $lang = array(
 
 //---------------------------
 //admin/views/register.php
-// 'ext_store_info'	=> '扩展商店用于下载模板和插件，仅开放给已完成注册用户',//'The extension store is used to download templates and plug-ins, only open to registered users',
-// 'too_many_articles'	=> '文章数量已经超过未注册版本限额',//'The number of articles has exceeded the unregistered version limit',
-// 'emlog_notregistered'	=> '抱歉！您的emlog pro尚未完成注册， 完成注册来解锁emlog pro的全部功能',//'Sorry! Your emlog pro has not been registered, complete the registration to unlock all the functions of emlog pro',
 'ok_register_now'                         => '开始注册',//'Start registration',
 'emlog_reg_ok'                            => '恭喜，您的emlog pro已完成注册！',//'Congratulations, your emlog pro has been registered!',
 'enter_reg_code'                          => '输入注册码',//'Enter the registration code',
@@ -640,13 +613,8 @@ $lang = array(
 //---------------------------
 //admin/views/reset.php
 'retrieve_password'                       => '找回密码',//'Retrieve password',
-// 'email'			=> '邮箱',//'E-mail',
-// 'captcha'			=> '验证码',//'Captcha',
 'new_password'                            => '新的密码',//'New password',
 'confirm_password'                        => '确认新密码',//'Confirm new password',
-// 'submit'		=> '提交',//'Submit',
-// 'login'		=> '登录',//'Login',
-// 'back_home'		=> '返回首页',//'Back to home',
 'email_enter'                             => '输入注册邮箱',//'Enter registered email',
 'email_invalid'                           => '错误的注册邮箱',//'Wrong registered email',
 'email_send_error'                        => '邮件验证码发送失败，请检查邮件通知设置',//'Failed to send email verification code, please check email notification settings',
@@ -737,8 +705,6 @@ $lang = array(
 //---------------------------
 //admin/views/setting_api.php
 'api_key_reset_ok'                        => '接口秘钥重置成功',//'Interface key was reset successfully',
-//'basic_settings'	=> '基本设置',//'基础设置',//'Basic Settings',
-//'seo_settings'	=> 'SEO设置',//'SEO优化',//'SEO Settings',
 'api_enable'                              => '开启API',//'Enable API',
 'api_key'                                 => 'API秘钥',//'API key',
 'api_key_reset'                           => '重置API秘钥',//'Reset API key',
@@ -801,13 +767,6 @@ $lang = array(
 'price_unit'                        => '元',//'Yuan',
 'go_buy'                            => '去购买',//'Go to buy',
 'download&install'                  => '下载安装',//'Download and install',
-// 'plugin'		=> '插件',//'Plug-in',
-// 'developer'		=> '开发者',//'Developer',
-// 'update_time'	=> '更新时间',//'Update time',
-// 'price'		=> '价格',//'Price',
-// 'free'		=> '免费',//'Free',
-// 'go_buy'		=> '去购买',//'Go to buy',
-// 'download&install'	=> '下载安装',//'Download and install',
 'app_store'                         => '应用商店',//'App store',
 'version_number'                    => '版本号',//'Version number',
 
@@ -899,15 +858,11 @@ $lang = array(
 
 //---------------------------
 //admin/views/twitter.php
-// 'published_ok'		=> '发布成功',//'Entry has been publised successfully',
-// 'settings_saved_ok'	=> '设置保存成功',//'Settings have been saved successfully',
 'twitter_del_ok'                    => '笔记删除成功',//'Note deleted successfully',
 'twitter_empty'                     => '笔记内容不能为空',//'Note content cannot be empty',
 'twitter_add'                       => '卡片笔记',//'Add a note',
 'twitter_prompt'                    => '快速记录想法，帮你方便的捕捉灵感，积累知识的复利',//'Quickly record ideas, help you easily capture inspiration and accumulate knowledge compound interest',
 'twitter_save'                      => '保存笔记',//'Save the note',
-// 'delete'		=> '删除',//'Delete',
-// 'have'			=> '有',//'Have ',
 'twitters'                          => '笔记',//'Notes',
 '_twitters'                         => '条笔记',//' note(s)',
 
@@ -993,5 +948,4 @@ $lang = array(
 'widget_use'                        => '使用中的组件',//'Used widgets',
 'widget_order_save'                 => '保存组件排序',//'Save widget order',
 'widget_setting_reset'              => '恢复出厂设置',//'Reset default widget settings',
-
 );
