@@ -17,7 +17,7 @@
 </div>
 <?php if (User::isAdmin()): ?>
     <div class="row mb-4 ml-1">
-        <a href="media.php" class="btn btn-sm btn-primary mr-2 my-1"><?= lang('modified_ok') ?></a>
+        <a href="media.php" class="btn btn-sm btn-primary mr-2 my-1"><?= lang('media_all') ?></a>
 		<?php foreach ($sorts as $key => $val):
 			$cur_tab = $val['id'] == $sid ? "btn-success" : "btn-primary";
 			?>
