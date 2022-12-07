@@ -2,37 +2,37 @@
 	exit('error!');
 } ?>
 <?php if (isset($_GET['active'])): ?>
-          <div class="alert alert-success"><?=lang('install_ok')?></div><?php endif ?>
+    <div class="alert alert-success"><?= lang('install_ok') ?></div><?php endif ?>
 <?php if (isset($_GET['error_param'])): ?>
-          <div class="alert alert-danger"><?=lang('install_failed')?></div><?php endif ?>
+    <div class="alert alert-danger"><?= lang('install_failed') ?></div><?php endif ?>
 <?php if (isset($_GET['error_down'])): ?>
-          <div class="alert alert-danger"><?=lang('install_failed_download')?></div><?php endif ?>
+    <div class="alert alert-danger"><?= lang('install_failed_download') ?></div><?php endif ?>
 <?php if (isset($_GET['error_dir'])): ?>
-          <div class="alert alert-danger"><?=lang('install_failed_write')?></div><?php endif ?>
+    <div class="alert alert-danger"><?= lang('install_failed_write') ?></div><?php endif ?>
 <?php if (isset($_GET['error_zip'])): ?>
-          <div class="alert alert-danger"><?=lang('install_failed_zip')?></div><?php endif ?>
+    <div class="alert alert-danger"><?= lang('install_failed_zip') ?></div><?php endif ?>
 <?php if (isset($_GET['error_source'])): ?>
-          <div class="alert alert-danger"><?=lang('install_invalid_ext')?></div><?php endif ?>
+    <div class="alert alert-danger"><?= lang('install_invalid_ext') ?></div><?php endif ?>
 
 <?php if (isset($_GET['error'])): ?>
     <div class="container-fluid">
         <div class="text-center">
-            <p class="lead text-gray-800 mb-5"><?=lang('store_unavailable')?></p>
-            <a href="./">&larr; <?=lang('back_home')?></a>
+            <p class="lead text-gray-800 mb-5"><?= lang('store_unavailable') ?></p>
+            <a href="./">&larr; <?= lang('back_home') ?></a>
         </div>
     </div>
 <?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-          <h1 class="h3 mb-0 text-gray-800"><?=lang('app_store')?> - <?= $sub_title ?></h1>
+    <h1 class="h3 mb-0 text-gray-800"><?= lang('app_store') ?> - <?= $sub_title ?></h1>
 </div>
 <div class="row mb-4 ml-1 justify-content-between">
     <ul class="nav nav-pills">
-            <li class="nav-item"><a class="nav-link active" href="./store.php?tag=free"><i class="icofont-paint"></i> <?=lang('ext_store_templates')?></a></li>
-            <li class="nav-item"><a class="nav-link" href="./store.php?action=plu&tag=free"><?=lang('ext_store_plugins')?></a></li>
+        <li class="nav-item"><a class="nav-link active" href="./store.php?tag=free"><i class="icofont-paint"></i> <?= lang('ext_store_templates') ?></a></li>
+        <li class="nav-item"><a class="nav-link" href="./store.php?action=plu&tag=free"><?= lang('ext_store_plugins') ?></a></li>
     </ul>
     <form action="./store.php" method="get">
         <div class="form-inline search-inputs-nowrap">
-            <input type="text" name="keyword" value="<?= $keyword ?>" class="form-control m-1 small" placeholder="<?=lang('temlate_search')?>">
+            <input type="text" name="keyword" value="<?= $keyword ?>" class="form-control m-1 small" placeholder="<?= lang('temlate_search') ?>">
             <div class="input-group-append">
                 <button class="btn btn-sm btn-success" type="submit">
                     <i class="icofont-search-2"></i>
@@ -42,8 +42,8 @@
     </form>
 </div>
 <div class="row mb-3 ml-1">
-           <a href="./store.php?tag=free" class="badge badge-success m-1 p-2"><?=lang('free_zone')?></a>
-           <a href="./store.php?tag=paid" class="badge badge-warning m-1 ml-2 p-2"><?=lang('paid_zone')?></a>
+    <a href="./store.php?tag=free" class="badge badge-success m-1 p-2"><?= lang('free_zone') ?></a>
+    <a href="./store.php?tag=paid" class="badge badge-warning m-1 ml-2 p-2"><?= lang('paid_zone') ?></a>
 </div>
 <div class="row">
 	<?php if (!empty($templates)): ?>
@@ -57,19 +57,21 @@
                     </a>
                     <div class="card-body">
                         <p class="card-text"><?= $v['name'] ?>
-<!--vot yuan-->						<?= $v['price'] > 0 ? '<span class="badge badge-warning">' . $v['price'] . '元</span>' : '<span class="badge badge-success">' . lang('free') . '</span>' ?>
+							<?= $v['price'] > 0 ? '<span class="badge badge-warning">' . $v['price'] . '元</span>' : '<span class="badge badge-success">' . lang('free') . '</span>' ?>
                         </p>
                         <p class="card-text text-muted small">
                             <span class="small"><?= $v['info'] ?></span><br><br>
-                        <?=lang('developer')?>: <?= $v['author'] ?><br>
-                        <?=lang('version_number')?>: <?= $v['ver'] ?><br>
-                        <?=lang('update_time')?>: <?= $v['update_time'] ?><br>
+							<?= lang('developer') ?>: <?= $v['author'] ?><br>
+							<?= lang('version_number') ?>: <?= $v['ver'] ?><br>
+							<?= lang('update_time') ?>: <?= $v['update_time'] ?><br>
                         </p>
                         <p class="card-text text-right">
 							<?php if ($v['price'] > 0): ?>
-<!--vot yuan-->             <a href="<?= $v['buy_url'] ?>" class="btn btn-sm btn-warning btn-sm" target="_blank">￥<?= $v['price'] ?>, <?=lang('go_buy')?></a>
+                                <a href="<?= $v['buy_url'] ?>" class="btn btn-sm btn-warning btn-sm" target="_blank">￥<?= $v['price'] ?>
+                                    , <?= lang('go_buy') ?></a>
 							<?php else: ?>
-                            <a href="./store.php?action=install&source=<?= urlencode($v['download_url']) ?>&type=tpl" class="btn btn-success btn-sm"><?=lang('install_free')?></a>
+                                <a href="./store.php?action=install&source=<?= urlencode($v['download_url']) ?>&type=tpl"
+                                   class="btn btn-success btn-sm"><?= lang('install_free') ?></a>
 							<?php endif ?>
                         </p>
                     </div>
@@ -78,7 +80,7 @@
 		<?php endforeach ?>
 	<?php else: ?>
         <div class="col-md-12">
-            <div class="alert alert-info"><?=lang('store_no_results')?></div>
+            <div class="alert alert-info"><?= lang('store_no_results') ?></div>
         </div>
 	<?php endif ?>
 </div>

@@ -9,28 +9,28 @@
         <div class="col-xl-12">
             <div id="post" class="form-group">
                 <div>
-                    <input type="text" name="title" id="title" value="<?= $title ?>" class="form-control" placeholder="<?=lang('post_title')?>" autofocus required/>
+                    <input type="text" name="title" id="title" value="<?= $title ?>" class="form-control" placeholder="<?= lang('post_title') ?>" autofocus required/>
                 </div>
                 <div id="post_bar">
                     <a href="#mediaModal" class="text-muted small my-3" data-remote="./media.php?action=lib" data-toggle="modal" data-target="#mediaModal"><i
-                                class="icofont-plus"></i> <?=lang('upload_insert')?></a>
+                                class="icofont-plus"></i> <?= lang('upload_insert') ?></a>
 					<?php doAction('adm_writelog_head') ?>
                 </div>
                 <div id="logcontent"><textarea><?= $content ?></textarea></div>
             </div>
 
             <div class="form-group">
-                <label><?=lang('post_description')?>:</label>
+                <label><?= lang('post_description') ?>:</label>
                 <div id="logexcerpt"><textarea><?= $excerpt ?></textarea></div>
             </div>
 
             <div class="form-group">
-                <label><?=lang('article_cover')?>:</label>
-                <input name="cover" id="cover" class="form-control" placeholder="<?=lang('cover_placeholder')?>" value="<?= $cover ?>"/>
+                <label><?= lang('article_cover') ?>:</label>
+                <input name="cover" id="cover" class="form-control" placeholder="<?= lang('cover_placeholder') ?>" value="<?= $cover ?>"/>
                 <div class="row mt-3">
                     <div class="col-md-4">
                         <label for="upload_img">
-                            <img src="<?= $cover ?: './views/images/cover.svg' ?>" id="cover_image" class="rounded" title="<?=lang('cover_image')?>"/>
+                            <img src="<?= $cover ?: './views/images/cover.svg' ?>" id="cover_image" class="rounded" title="<?= lang('cover_image') ?>"/>
                             <input type="file" name="upload_img" class="image" id="upload_img" style="display:none"/>
                             <button type="button" id="cover_rm" class="btn-sm btn btn-link" <?php if (!$cover): ?>style="display:none"<?php endif ?>>x</button>
                         </label>
@@ -42,9 +42,9 @@
 
             <div id="advset" class="shadow-sm p-3 mb-2 bg-white rounded">
                 <div class="form-group">
-                    <label><?=lang('category')?>:</label>
+                    <label><?= lang('category') ?>:</label>
                     <select name="sort" id="sort" class="form-control">
-                        <option value="-1"><?=lang('category_select')?></option>
+                        <option value="-1"><?= lang('category_select') ?></option>
 						<?php
 						foreach ($sorts as $key => $value):
 							if ($value['pid'] != 0) {
@@ -67,10 +67,10 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label><?=lang('tags')?>:</label>
-                    <input name="tag" id="tag" class="form-control" value="<?= $tagStr ?>" placeholder="<?=lang('post_tags_separated')?>"/>
+                    <label><?= lang('tags') ?>:</label>
+                    <input name="tag" id="tag" class="form-control" value="<?= $tagStr ?>" placeholder="<?= lang('post_tags_separated') ?>"/>
 					<?php if ($tags): ?>
-                        <span class="small"><a href="javascript:doToggle('tags', 1);"><?=lang('recently_used')?></a></span>
+                        <span class="small"><a href="javascript:doToggle('tags', 1);"><?= lang('recently_used') ?></a></span>
                         <div id="tags" style="display: none">
 							<?php
 							foreach ($tags as $val) {
@@ -81,20 +81,20 @@
 					<?php endif; ?>
                 </div>
                 <div class="form-group">
-                    <label><?=lang('publish_time')?>: <?=lang('publish_time_tips')?></label>
+                    <label><?= lang('publish_time') ?>: <?= lang('publish_time_tips') ?></label>
                     <input maxlength="200" name="postdate" id="postdate" value="<?= $postDate ?>" class="form-control"/>
                 </div>
                 <div class="form-group">
-                    <label><?=lang('link_alias')?></label>
+                    <label><?= lang('link_alias') ?></label>
                     <input name="alias" id="alias" class="form-control" value="<?= $alias ?>"/>
                 </div>
                 <div class="form-group">
-                    <label><?=lang('access_password')?>:</label>
+                    <label><?= lang('access_password') ?>:</label>
                     <input type="text" name="password" id="password" class="form-control" value="<?= $password ?>"/>
                 </div>
                 <div class="form-group">
                     <input type="checkbox" value="y" name="allow_remark" id="allow_remark" <?= $is_allow_remark ?> />
-                    <label for="allow_remark"><?=lang('allow_comments')?></label>
+                    <label for="allow_remark"><?= lang('allow_comments') ?></label>
                 </div>
             </div>
 
@@ -105,13 +105,13 @@
                 <input type="hidden" name="gid" value=<?= $logid ?>/>
                 <input type="hidden" name="author" id="author" value=<?= $author ?>/>
 				<?php if ($logid < 0): ?>
-                    <input type="submit" value="<?=lang('post_publish')?>" onclick="return checkform();" class="btn btn-sm btn-success"/>
-                    <input type="button" name="savedf" id="savedf" value="<?=lang('save_draft')?>" onclick="autosave(2);" class="btn btn-sm btn-primary"/>
+                    <input type="submit" value="<?= lang('post_publish') ?>" onclick="return checkform();" class="btn btn-sm btn-success"/>
+                    <input type="button" name="savedf" id="savedf" value="<?= lang('save_draft') ?>" onclick="autosave(2);" class="btn btn-sm btn-primary"/>
 				<?php else: ?>
-                    <input type="submit" value="<?=lang('save_and_return')?>" onclick="return checkform();" class="btn btn-sm btn-success"/>
-                    <input type="button" name="savedf" id="savedf" value="<?=lang('save')?>" onclick="autosave(2);" class="btn btn-sm btn-primary"/>
+                    <input type="submit" value="<?= lang('save_and_return') ?>" onclick="return checkform();" class="btn btn-sm btn-success"/>
+                    <input type="button" name="savedf" id="savedf" value="<?= lang('save') ?>" onclick="autosave(2);" class="btn btn-sm btn-primary"/>
 					<?php if ($isdraft) : ?>
-                        <input type="submit" name="pubdf" id="pubdf" value="<?=lang('publish')?>" onclick="return checkform();" class="btn btn-sm btn-success"/>
+                        <input type="submit" name="pubdf" id="pubdf" value="<?= lang('publish') ?>" onclick="return checkform();" class="btn btn-sm btn-success"/>
 					<?php endif ?>
 				<?php endif ?>
                 <span id="save_info"></span>
@@ -124,13 +124,13 @@
     <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel"><?=lang('resource_library')?></h5>
+                <h5 class="modal-title" id="exampleModalLabel"><?= lang('resource_library') ?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <a href="#" id="mediaAdd" class="btn btn-sm btn-success shadow-sm mb-3"><?=lang('upload_files')?></a>
+                <a href="#" id="mediaAdd" class="btn btn-sm btn-success shadow-sm mb-3"><?= lang('upload_files') ?></a>
                 <form action="media.php?action=operate_media" method="post" name="form_media" id="form_media">
                     <div class="row">
                     </div>
@@ -154,7 +154,7 @@
         previewsContainer: ".dropzone-previews",
         sending: function (file, xhr, formData) {
             formData.append("filesize", file.size);
-    $('#mediaAdd').html("<?=lang('uploading')?>");
+            $('#mediaAdd').html("<?=lang('uploading')?>");
         },
         init: function () {
             this.on("error", function (file, response) {
@@ -162,7 +162,7 @@
             });
             this.on("queuecomplete", function (file) {
                 $('#mediaModal').find('.modal-body .row').load("./media.php?action=lib");
-        $('#mediaAdd').html("<?=lang('upload_files')?>");
+                $('#mediaAdd').html("<?=lang('upload_files')?>");
             });
         }
     });
@@ -179,7 +179,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title"><?=lang('crop_upload')?></h5>
+                <h5 class="modal-title"><?= lang('crop_upload') ?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -194,8 +194,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
-                <button type="button" id="crop" class="btn btn-sm btn-success"><?=lang('save')?></button>
+                <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal"><?= lang('cancel') ?></button>
+                <button type="button" id="crop" class="btn btn-sm btn-success"><?= lang('save') ?></button>
             </div>
         </div>
     </div>
@@ -253,7 +253,7 @@
             flowChart: false,
             autoFocus: false,
             sequenceDiagram: false,
-    placeholder: "<?=lang('enter_summary')?>",
+            placeholder: "<?=lang('enter_summary')?>",
             onload: function () {
                 hooks.doAction("sum_loaded", this);
             }
@@ -341,8 +341,8 @@
     window.onbeforeunload = function (e) {
         if ($("textarea[name=logcontent]").text() == articleTextRecord) return
         e = e || window.event;
-    if (e) e.returnValue = lang('leave_prompt');
-return lang('leave_prompt');
+        if (e) e.returnValue = lang('leave_prompt');
+        return lang('leave_prompt');
     }
 
     // If the content of the article has been modified, make the page title modified to 'modified'
@@ -351,23 +351,23 @@ return lang('leave_prompt');
         obj.config({
             onchange: function () {
                 if ($("textarea[name=logcontent]").text() == articleTextRecord) return
-        $('title').text(lang('already_edited') + titleText);
+                $('title').text(lang('already_edited') + titleText);
             }
         });
     });
 
     // The global shortcut key of the article editing interface Ctrl (Cmd) + S to save the content
-    document.addEventListener('keydown', function(e){
-		if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)){
-			e.preventDefault();
+    document.addEventListener('keydown', function (e) {
+        if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
+            e.preventDefault();
             autosave(2);
-		}
-	});
+        }
+    });
 
-	// Use cookie to decide whether to collapse [More Options]
-    if(Cookies.get('em_advset') === "right") {
+    // Use cookie to decide whether to collapse [More Options]
+    if (Cookies.get('em_advset') === "right") {
         $("#advset").toggle();
         icon_mod = "right";
-	    $(".icofont-simple-down").attr("class", "icofont-simple-right")
+        $(".icofont-simple-down").attr("class", "icofont-simple-right")
     }
 </script>

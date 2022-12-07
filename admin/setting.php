@@ -37,9 +37,7 @@ if (empty($action)) {
 		$ex4 = 'selected="selected"';
 	}
 
-//vot	$tzlist = array( .... // Moved to lang_tz.php
 	include EMLOG_ROOT . '/lang/' . LANG . '/lang_tz.php'; // Load Time Zone List
-
 	include View::getAdmView('header');
 	require_once(View::getAdmView('setting'));
 	include View::getAdmView('footer');
@@ -207,16 +205,16 @@ if ($action == 'mail_test') {
 	}
 
 	$mail = new PHPMailer(true);
-	$mail->IsSMTP();                                       // Use SMTP authentication to send mail
-	$mail->CharSet = 'UTF-8';                              // Character Encoding
-	$mail->SMTPAuth = true;                                // Enable authentication
+	$mail->IsSMTP();                                                       // Use SMTP authentication to send mail
+	$mail->CharSet = 'UTF-8';                                              // Character Encoding
+	$mail->SMTPAuth = true;                                                // Enable authentication
 	$mail->SMTPSecure = $data["smtp_port"] == '587' ? 'STARTTLS' : 'ssl';  // Set up login authentication using ssl encryption
-	$mail->Port = $data["smtp_port"];                      // SMTP Port
-	$mail->Host = $data["smtp_server"];                    // STMP server address
-	$mail->Username = $data["smtp_mail"];                  // Email address
-	$mail->Password = $data["smtp_pw"];                    // SMTP authorization password
-	$mail->From = $data["smtp_mail"];                      // Sender Email
-	$mail->AddAddress($data["testTo"]);                    // Recipient Email
+	$mail->Port = $data["smtp_port"];                                      // SMTP Port
+	$mail->Host = $data["smtp_server"];                                    // STMP server address
+	$mail->Username = $data["smtp_mail"];                                  // Email address
+	$mail->Password = $data["smtp_pw"];                                    // SMTP authorization password
+	$mail->From = $data["smtp_mail"];                                      // Sender Email
+	$mail->AddAddress($data["testTo"]);                                    // Recipient Email
 	$mail->Subject = lang('test_mail_subj');
 	$mail->Body = lang('test_mail_body');
 

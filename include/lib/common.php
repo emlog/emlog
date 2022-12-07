@@ -1185,8 +1185,7 @@ function load_language($model = '') {
 	global $LANGLIST;
 
 	$model = strtolower($model);
-	$model = str_replace('_controller', '', $model);
-	$model = str_replace('_model', '', $model);
+	$model = str_replace(array('_controller', '_model'), '', $model);
 
 	if (!isset($LANGUAGE)) {
 		$LANGUAGE = array();
@@ -1204,9 +1203,7 @@ function load_language($model = '') {
 
 			// Language file must contain $lang = array(...);
 			$LANGUAGE = array_merge($LANGUAGE, $lang);
-
 			unset($lang);
-
 			$LANGLIST[$model] = 1;
 		}
 	}

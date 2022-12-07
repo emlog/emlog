@@ -7,37 +7,37 @@
         <div class="col-xl-12">
             <div id="post" class="form-group">
                 <div>
-                    <input type="text" name="title" id="title" value="<?= $title ?>" class="form-control" placeholder="<?=lang('page_title')?>"/>
+                    <input type="text" name="title" id="title" value="<?= $title ?>" class="form-control" placeholder="<?= lang('page_title') ?>"/>
                 </div>
                 <div id="post_bar">
                     <a href="#mediaModal" class="text-muted small my-3" data-remote="./media.php?action=lib" data-toggle="modal" data-target="#mediaModal"><i
-                                class="icofont-plus"></i> <?=lang('upload_insert')?></a>
+                                class="icofont-plus"></i> <?= lang('upload_insert') ?></a>
 					<?php doAction('adm_writelog_head') ?>
                 </div>
                 <div id="pagecontent"><textarea><?= $content ?></textarea></div>
             </div>
 
             <div class="form-group">
-                <label><?=lang('link_alias')?></label>
+                <label><?= lang('link_alias') ?></label>
                 <input name="alias" id="alias" class="form-control" value="<?= $alias ?>"/>
             </div>
             <div class="form-group">
-                <label><?=lang('page_template')?>:</label>
+                <label><?= lang('page_template') ?>:</label>
                 <input name="template" id="template" class="form-control" value="<?= $template ?>"/>
             </div>
             <div class="form-group">
                 <input type="checkbox" value="y" name="allow_remark" id="allow_remark" <?= $is_allow_remark ?> />
-                <label for="allow_remark"><?=lang('allow_comments')?></label>
+                <label for="allow_remark"><?= lang('allow_comments') ?></label>
             </div>
 
             <div id="post_button">
-                <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
-                <input type="hidden" name="ishide" id="ishide" value="<?= $hide ?>" />
-                <input type="hidden" name="pageid" value="<?= $pageId ?>" />
+                <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
+                <input type="hidden" name="ishide" id="ishide" value="<?= $hide ?>"/>
+                <input type="hidden" name="pageid" value="<?= $pageId ?>"/>
 				<?php if ($pageId < 0): ?>
-                    <input type="submit" value="<?=lang('page_publish')?>" onclick="return checkform();" class="btn btn-sm btn-success"/>
+                    <input type="submit" value="<?= lang('page_publish') ?>" onclick="return checkform();" class="btn btn-sm btn-success"/>
 				<?php else: ?>
-                    <input type="submit" value="<?=lang('save_and_return')?>" onclick="return checkform();" class="btn btn-sm btn-success"/>
+                    <input type="submit" value="<?= lang('save_and_return') ?>" onclick="return checkform();" class="btn btn-sm btn-success"/>
 				<?php endif ?>
             </div>
         </div>
@@ -48,13 +48,13 @@
     <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel"><?=lang('resource_library')?></h5>
+                <h5 class="modal-title" id="exampleModalLabel"><?= lang('resource_library') ?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <a href="#" id="mediaAdd" class="btn btn-sm btn-success shadow-sm mb-3"><?=lang('upload_files')?></a>
+                <a href="#" id="mediaAdd" class="btn btn-sm btn-success shadow-sm mb-3"><?= lang('upload_files') ?></a>
                 <form action="media.php?action=operate_media" method="post" name="form_media" id="form_media">
                     <div class="row">
                     </div>
@@ -99,7 +99,7 @@
 
 <script src="./editor.md/editormd.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
 <? if (strtolower(LANG) !== 'zh-cn') { ?>
-<script src="./editor.md/languages/<?=strtolower(LANG)?>.js"></script>
+    <script src="./editor.md/languages/<?= strtolower(LANG) ?>.js"></script>
 <? } ?>
 <script>
     $("#menu_page").addClass('active');
@@ -127,19 +127,19 @@
                     "bold", "del", "italic", "quote", "|",
                     "h1", "h2", "h3", "|",
                     "list-ul", "list-ol", "hr", "|",
-                    "link", "image", "preformatted-text", "table", "|", "watch","help"]
+                    "link", "image", "preformatted-text", "table", "|", "watch", "help"]
             },
             path: "editor.md/lib/",
             tex: false,
             flowChart: false,
             watch: false,
-            htmlDecode : true,
+            htmlDecode: true,
             sequenceDiagram: false,
-            syncScrolling : "single",
+            syncScrolling: "single",
             onload: function () {
-                hooks.doAction("page_loaded",this);
-                    //In the large screen mode, the editor displays the preview by default
-                if($(window).width() > 767){
+                hooks.doAction("page_loaded", this);
+                //In the large screen mode, the editor displays the preview by default
+                if ($(window).width() > 767) {
                     this.watch();
                 }
             }
@@ -150,21 +150,21 @@
     });
     // When leaving the page, if the page content has been modified, ask the user whether to leave
     var pageText;
-    hooks.addAction("page_loaded", function(){
+    hooks.addAction("page_loaded", function () {
         pageText = $("textarea").text();
     });
     window.onbeforeunload = function (e) {
-        if($("textarea").text() == pageText) return
+        if ($("textarea").text() == pageText) return
         e = e || window.event;
         if (e) e.returnValue = lang('leave_prompt');
         return lang('leave_prompt');
     }
 
     // Global shortcut keys on page editing interface Ctrl (Cmd) + S to save content
-    document.addEventListener('keydown', function(e){
-		if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)){
-			e.preventDefault();
+    document.addEventListener('keydown', function (e) {
+        if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
+            e.preventDefault();
             pagesave();
-		}
-	});
+        }
+    });
 </script>

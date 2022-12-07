@@ -5,9 +5,9 @@
  * @link https://www.emlog.net
  */
 
-define('EMLOG_ROOT', str_replace('\\','/',__DIR__));
-define('LANG','en'); //zh-CN, zh-TW, en, ru, etc.
-define('LANG_DIR','ltr'); //ltr, rtl
+define('EMLOG_ROOT', str_replace('\\', '/', __DIR__));
+define('LANG', 'en');      //zh-CN, zh-TW, en, ru, etc.
+define('LANG_DIR', 'ltr'); //ltr, rtl
 
 require_once EMLOG_ROOT . '/include/lib/common.php';
 
@@ -17,7 +17,7 @@ header('Content-Type: text/html; charset=UTF-8');
 spl_autoload_register("emAutoload");
 
 if (PHP_VERSION < '5.6') {
-  emMsg(lang('php_required'));
+	emMsg(lang('php_required'));
 }
 
 $act = isset($_GET['action']) ? $_GET['action'] : '';
@@ -36,7 +36,7 @@ $env_db_password = getenv('EMLOG_DB_PASSWORD');
 if (!$act) {
 	?>
     <!doctype html>
-          <html dir="<?= LANG_DIR ?>" lang="<?= LANG ?>">
+    <html dir="<?= LANG_DIR ?>" lang="<?= LANG ?>">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -139,49 +139,49 @@ if (!$act) {
                 </div>
 			<?php else: ?>
                 <div class="b">
-                <p class="title2"><?= lang('mysql_settings') ?></p>
+                    <p class="title2"><?= lang('mysql_settings') ?></p>
                     <li>
-                    <?= lang('db_hostname') ?>:<br>
+						<?= lang('db_hostname') ?>:<br>
                         <input name="hostname" type="text" class="input" value="127.0.0.1">
-                    <span class="care"><?= lang('db_hostname_info') ?></span>
+                        <span class="care"><?= lang('db_hostname_info') ?></span>
                     </li>
                     <li>
-                    <?= lang('db_user') ?>:<br><input name="dbuser" type="text" class="input" value="">
+						<?= lang('db_user') ?>:<br><input name="dbuser" type="text" class="input" value="">
                     </li>
                     <li>
-                    <?= lang('db_password') ?>:<br><input name="dbpassw" type="password" class="input">
+						<?= lang('db_password') ?>:<br><input name="dbpassw" type="password" class="input">
                     </li>
                     <li>
-                    <?= lang('db_name') ?>:<br>
+						<?= lang('db_name') ?>:<br>
                         <input name="dbname" type="text" class="input" value="">
-                    <span class="care"><?= lang('db_name_info') ?></span>
+                        <span class="care"><?= lang('db_name_info') ?></span>
                     </li>
                     <li>
-                    <?= lang('db_prefix') ?>:<br>
+						<?= lang('db_prefix') ?>:<br>
                         <input name="dbprefix" type="text" class="input" value="emlog_">
-                    <span class="care"><?= lang('db_prefix_info') ?></span>
+                        <span class="care"><?= lang('db_prefix_info') ?></span>
                     </li>
                 </div>
 			<?php endif; ?>
             <div class="c">
                 <p class="title2"><?= lang('admin_settings') ?></p>
                 <li>
-                    <?= lang('admin_name') ?>:<br>
+					<?= lang('admin_name') ?>:<br>
                     <input name="username" type="text" class="input">
                 </li>
                 <li>
-                    <?= lang('admin_password') ?>:<br>
+					<?= lang('admin_password') ?>:<br>
                     <input name="password" type="password" class="input">
                     <span class="care"><?= lang('admin_password_info') ?></span>
                 </li>
                 <li>
-                    <?= lang('admin_password_repeat') ?>:<br/>
+					<?= lang('admin_password_repeat') ?>:<br/>
                     <input name="repassword" type="password" class="input">
                 </li>
                 <li>
-                    <?=lang('email')?><br/>
+					<?= lang('email') ?><br/>
                     <input name="email" type="text" class="input">
-                    <span class="care"> <?=lang('email_prompt')?></span>
+                    <span class="care"> <?= lang('email_prompt') ?></span>
                 </li>
             </div>
             <div class="next_btn">
@@ -189,7 +189,7 @@ if (!$act) {
             </div>
         </div>
     </form>
-    <div class="footer">Powered by <a href="http://www.emlog.net">emlog</a></div>
+    <div class=" footer">Powered by <a href="http://www.emlog.net">emlog</a></div>
     </body>
     </html>
 	<?php
@@ -206,15 +206,15 @@ if ($act == 'install' || $act == 'reinstall') {
 	$email = isset($_POST['email']) ? addslashes(trim($_POST['email'])) : '';
 
 	if ($db_prefix === '') {
-      emMsg(lang('db_prefix_empty'));
+		emMsg(lang('db_prefix_empty'));
 	} elseif (!preg_match("/^[\w_]+_$/", $db_prefix)) {
-      emMsg(lang('db_prefix_empty'));
+		emMsg(lang('db_prefix_empty'));
 	} elseif (!$username || !$password) {
-      emMsg(lang('username_password_empty'));
-  } elseif (strlen($password) < 5) {
-      emMsg(lang('password_short'));
+		emMsg(lang('username_password_empty'));
+	} elseif (strlen($password) < 5) {
+		emMsg(lang('password_short'));
 	} elseif ($password != $repassword) {
-      emMsg(lang('password_not_equal'));
+		emMsg(lang('password_not_equal'));
 	}
 
 	//Initialize the database class
@@ -228,9 +228,9 @@ if ($act == 'install' || $act == 'reinstall') {
 	$CACHE = Cache::getInstance();
 
 	if ($act != 'reinstall' && $DB->num_rows($DB->query("SHOW TABLES LIKE '{$db_prefix}blog'")) == 1) {
-$installed = lang('already_installed');
-$continue = lang('continue');
-$return_back = lang('return');
+		$installed = lang('already_installed');
+		$continue = lang('continue');
+		$return_back = lang('return');
 		echo <<<EOT
 <!DOCTYPE html>
 <html>
@@ -268,10 +268,10 @@ EOT;
 	}
 
 	if (!is_writable('config.php')) {
-      emMsg(lang('config_not_writable'));
+		emMsg(lang('config_not_writable'));
 	}
 	if (!is_writable(EMLOG_ROOT . '/content/cache')) {
-      emMsg(lang('cache_not_writable'));
+		emMsg(lang('cache_not_writable'));
 	}
 	$config = "<?php\n"
 		. "//MySQL database host\n"
@@ -324,7 +324,7 @@ EOT;
 	$fp = @fopen('config.php', 'w');
 	$fw = @fwrite($fp, $config);
 	if (!$fw) {
-      emMsg(lang('config_not_writable'));
+		emMsg(lang('config_not_writable'));
 	}
 	fclose($fp);
 
@@ -579,15 +579,14 @@ CREATE TABLE {$db_prefix}storage (
 		}
 	}
 	$CACHE->updateCache();
-	$result = '';
 
-	$result .= "
-        <p style=\"font-size:24px; border-bottom:1px solid #E6E6E6; padding:10px 0px;\">".lang('emlog_installed')."</p>
+	$result = "
+        <p style=\"font-size:24px; border-bottom:1px solid #E6E6E6; padding:10px 0px;\">" . lang('emlog_installed') . "</p>
         <p>" . lang('emlog_installed_info') . "</p>
         <p><b>" . lang('user_name') . "</b>: {$username}</p>
-        <p><b>" . lang('password')."</b>: " . lang('password_entered') . "</p>";
+        <p><b>" . lang('password') . "</b>: " . lang('password_entered') . "</p>";
 	if ($env_emlog_env === 'develop' || ($env_emlog_env !== 'develop' && !@unlink('./install.php'))) {
-      $result .= '<p style="color:#ff0000;margin:10px 20px;">' . lang('delete_install') . '</p> ';
+		$result .= '<p style="color:#ff0000;margin:10px 20px;">' . lang('delete_install') . '</p> ';
 	}
 	$result .= "<p style=\"text-align:right;\"><a href=\"./\">" . lang('go_to_front') . "</a> | <a href=\"./admin/\">" . lang('go_to_admincp') . "</a></p>";
 	emMsg($result, 'none');

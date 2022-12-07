@@ -75,11 +75,14 @@ if ($action === 'install') {
 	switch ($ret) {
 		case 0:
 			emDirect($store_path . 'active=1&tag=free');
+			break;
 		case 1:
 		case 2:
 			emDirect($store_path . 'error_dir=1');
+			break;
 		case 3:
 			emDirect($store_path . 'error_zip=1');
+			break;
 		default:
 			emDirect($store_path . 'error_source=1');
 	}

@@ -2,20 +2,20 @@
 	exit('error!');
 } ?>
 <?php if (isset($_GET['active_taxis'])): ?>
-          <div class="alert alert-success"><?=lang('order_update_ok')?></div><?php endif ?>
+    <div class="alert alert-success"><?= lang('order_update_ok') ?></div><?php endif ?>
 <?php if (isset($_GET['active_del'])): ?>
-          <div class="alert alert-success"><?=lang('deleted_ok')?></div><?php endif ?>
+    <div class="alert alert-success"><?= lang('deleted_ok') ?></div><?php endif ?>
 <?php if (isset($_GET['active_edit'])): ?>
-          <div class="alert alert-success"><?=lang('edit_ok')?></div><?php endif ?>
+    <div class="alert alert-success"><?= lang('edit_ok') ?></div><?php endif ?>
 <?php if (isset($_GET['active_add'])): ?>
-          <div class="alert alert-success"><?=lang('add_ok')?></div><?php endif ?>
+    <div class="alert alert-success"><?= lang('add_ok') ?></div><?php endif ?>
 <?php if (isset($_GET['error_a'])): ?>
-          <div class="alert alert-danger"><?=lang('site_and_url_empty')?></div><?php endif ?>
+    <div class="alert alert-danger"><?= lang('site_and_url_empty') ?></div><?php endif ?>
 <?php if (isset($_GET['error_b'])): ?>
-          <div class="alert alert-danger"><?=lang('no_link_order')?></div><?php endif ?>
+    <div class="alert alert-danger"><?= lang('no_link_order') ?></div><?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-          <h1 class="h3 mb-0 text-gray-800"><?= lang('link_management') ?></h1>
-          <a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> <?= lang('link_add') ?></a>
+    <h1 class="h3 mb-0 text-gray-800"><?= lang('link_management') ?></h1>
+    <a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> <?= lang('link_add') ?></a>
 </div>
 <form action="link.php?action=link_taxis" method="post">
     <div class="card shadow mb-4">
@@ -55,7 +55,7 @@
 								<?php else: ?>
                                     <a href="link.php?action=show&amp;linkid=<?= $value['id'] ?>" class="badge badge-warning"><?= lang('hidden') ?></a>
 								<?php endif ?>
-                                <a href="javascript: em_confirm(<?= $value['id'] ?>, 'link', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger"><?=lang('delete')?></a>
+                                <a href="javascript: em_confirm(<?= $value['id'] ?>, 'link', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger"><?= lang('delete') ?></a>
                             </td>
                         </tr>
 					<?php endforeach ?>
@@ -65,7 +65,7 @@
         </div>
     </div>
     <div class="list_footer">
-          <input type="submit" value="<?=lang('order_change')?>" class="btn btn-sm btn-success shadow-sm">
+        <input type="submit" value="<?= lang('order_change') ?>" class="btn btn-sm btn-success shadow-sm">
     </div>
 </form>
 <!--Add Link popup-->
@@ -73,7 +73,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel"><?=lang('add_link')?></h5>
+                <h5 class="modal-title" id="exampleModalLabel"><?= lang('add_link') ?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -82,21 +82,21 @@
             <form action="link.php?action=addlink" method="post" name="link" id="link">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="alias"><?=lang('name')?></label>
+                        <label for="alias"><?= lang('name') ?></label>
                         <input class="form-control" id="sitename" maxlength="255" name="sitename" required>
                     </div>
                     <div class="form-group">
-                        <label for="template"><?=lang('link_url')?></label>
+                        <label for="template"><?= lang('link_url') ?></label>
                         <input class="form-control" id="siteurl" name="siteurl" maxlength="255" placeholder="https://" required>
                     </div>
                     <div class="form-group">
-                        <label for="alias"><?=lang('description')?></label>
+                        <label for="alias"><?= lang('description') ?></label>
                         <textarea name="description" type="text" maxlength="512" class="form-control"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
-                    <button type="submit" class="btn btn-sm btn-success"><?=lang('save')?></button>
+                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal"><?= lang('cancel') ?></button>
+                    <button type="submit" class="btn btn-sm btn-success"><?= lang('save') ?></button>
                     <span id="alias_msg_hook"></span>
                 </div>
             </form>
@@ -109,7 +109,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel"><?=lang('edit_link')?></h5>
+                <h5 class="modal-title" id="exampleModalLabel"><?= lang('edit_link') ?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -118,22 +118,22 @@
             <form action="link.php?action=update_link" method="post" name="link" id="link">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="alias"><?=lang('name')?></label>
+                        <label for="alias"><?= lang('name') ?></label>
                         <input class="form-control" id="sitename" maxlength="255" name="sitename" required>
                     </div>
                     <div class="form-group">
-                        <label for="template"><?=lang('address')?></label>
+                        <label for="template"><?= lang('address') ?></label>
                         <input class="form-control" id="siteurl" maxlength="255" name="siteurl" required>
                     </div>
                     <div class="form-group">
-                        <label for="alias"><?=lang('description')?></label>
+                        <label for="alias"><?= lang('description') ?></label>
                         <textarea name="description" id="description" maxlength="512" type="text" class="form-control"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <input type="hidden" value="" name="linkid" id="linkid"/>
-                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal"><?=lang('cancel')?></button>
-                    <button type="submit" class="btn btn-sm btn-success"><?=lang('link_add')?></button>
+                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal"><?= lang('cancel') ?></button>
+                    <button type="submit" class="btn btn-sm btn-success"><?= lang('link_add') ?></button>
                     <span id="alias_msg_hook"></span>
                 </div>
             </form>

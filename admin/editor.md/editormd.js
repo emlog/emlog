@@ -65,7 +65,7 @@
             "list-ul", "list-ol", "hr", "|",
             "link", "reference-link", "image", "video", "code", "preformatted-text", "code-block", "table", "datetime", "pagebreak", "|",
             "goto-line", "watch", "preview", "fullscreen", "clear", "search", "|", "info"
-    , "emoji", "html-entities", "help"
+            , "emoji", "html-entities", "help"
         ],
         simple: [
             "undo", "redo", "|",
@@ -98,7 +98,7 @@
         delay: 300,            // Delay parse markdown to html, Uint : ms
         autoLoadModules: true,           // Automatic load dependent module files
         watch: true,
-//vot   placeholder          : "Enjoy Markdown! coding now...",//"使用 Markdown! 开始你的创作...",
+//lang  placeholder          : "Enjoy Markdown coding now...",//"使用 Markdown 开始你的创作...",
         gotoLine: true,
         codeFold: false,
         autoHeight: false,
@@ -238,9 +238,9 @@
             name: "zh-cn",
             description: "开源在线Markdown编辑器<br/>Open source online Markdown editor.",
             tocTitle: "目录",
-            placeholder : "Enjoy Markdown! coding now...",//"使用 Markdown! 开始你的创作...",
-            weekDays    : ["日", "一", "二", "三", "四", "五", "六"],
-            wdPrefix    : "星期",//Only for Chinese! Set EMPTY for others
+            placeholder: "Enjoy Markdown! coding now...",//"使用 Markdown! 开始你的创作...",
+            weekDays: ["日", "一", "二", "三", "四", "五", "六"],
+            wdPrefix: "星期",//Only for Chinese! Set EMPTY for others
             toolbar: {
                 undo: "撤销（Ctrl+Z）",
                 redo: "重做（Ctrl+Y）",
@@ -424,12 +424,12 @@
                 markdownTextarea = this.markdownTextarea = editor.children("textarea");
             }
 
-//vot       markdownTextarea.addClass(classNames.textarea.markdown).attr("placeholder", settings.placeholder);
+//lang       markdownTextarea.addClass(classNames.textarea.markdown).attr("placeholder", settings.placeholder);
             markdownTextarea.addClass(classNames.textarea.markdown).attr("placeholder", settings.lang.placeholder);
 
             if (typeof markdownTextarea.attr("name") === "undefined" || markdownTextarea.attr("name") === "") {
                 markdownTextarea.attr("name", (settings.name !== "") ? settings.name : id);
-//vot           markdownTextarea.attr("name", (settings.name !== "") ? settings.name : id + "-markdown-doc");
+//lang           markdownTextarea.attr("name", (settings.name !== "") ? settings.name : id + "-markdown-doc");
             }
 
             var appendElements = [
@@ -3681,7 +3681,7 @@
             toc: true,
             tocm: false,
             tocStartLevel: 1,
-    tocTitle             : this.lang.tocTitle, //"目录",
+            tocTitle: this.lang.tocTitle, //"目录",
             tocDropdown: false,
             tocContainer: "",
             markdown: "",
@@ -4299,15 +4299,15 @@
 
             case "cn-week-day" :
             case "cn-wd" :
-//vot               var cnWeekDays = ["日", "一", "二", "三", "四", "五", "六"];
-//vot               datefmt = "星期" + cnWeekDays[weekDay];
-//vot                break;
+//lang               var cnWeekDays = ["日", "一", "二", "三", "四", "五", "六"];
+//lang               datefmt = "星期" + cnWeekDays[weekDay];
+//lang                break;
 
             case "week-day" :
             case "wd" :
-//vot               var weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-//vot               datefmt = weekDays[weekDay];
-            datefmt = wdPrefix + this.lang.weekDays[weekDay];
+//lang               var weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+//lang               datefmt = weekDays[weekDay];
+                datefmt = wdPrefix + this.lang.weekDays[weekDay];
                 break;
 
             case "day" :
