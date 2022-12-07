@@ -6,8 +6,8 @@
  */
 
 define('EMLOG_ROOT', str_replace('\\', '/', __DIR__));
-define('LANG', 'en');      //zh-CN, zh-TW, en, ru, etc.
-define('LANG_DIR', 'ltr'); //ltr, rtl
+const LANG = 'zh-CN';         //zh-CN, en, ru, etc.
+const LANG_DIR = 'ltr';       //ltr, rtl
 
 require_once EMLOG_ROOT . '/include/lib/common.php';
 
@@ -288,37 +288,8 @@ EOT;
 		. "const AUTH_KEY = '" . getRandStr(32) . md5($_SERVER['HTTP_USER_AGENT']) . "';"
 		. "\n//cookie name\n"
 		. "const AUTH_COOKIE_NAME = 'EM_AUTHCOOKIE_" . getRandStr(32, false) . "';"
-		. "\n//Safety admin entry: /admin/?s=xxx\n"
-		. "//const ADMIN_PATH_CODE = 'xxx';"
-
-
-		. "\n\n// Default blog language"
-		. "\ndefine('DEFAULT_LANG', 'en'); //'en', 'ru', 'zh-CN', 'zh-TW', 'pt-BR', etc."
-		. "\n// Enabled language list"
-		. "\ndefine('LANG_LIST', ["
-		. "\n	'en' => ["
-		. "\n		'name'=>'English',"
-		. "\n		'title'=>'English',"
-		. "\n		'dir'=>'ltr',"
-		. "\n	],"
-		. "\n	'ru' => ["
-		. "\n		'name'=>'Русский',"
-		. "\n		'title'=>'Russian',"
-		. "\n		'dir'=>'ltr',"
-		. "\n	],"
-		. "\n	'zh-CN' => ["
-		. "\n		'name'=>'简体中文',"
-		. "\n		'title'=>'Simplified Chinese',"
-		. "\n		'dir'=>'ltr',"
-		. "\n	],"
-		. "\n/*"
-		. "\n	'ar' => ["
-		. "\n		'name'=>'العربية',"
-		. "\n		'title'=>'Arabic',"
-		. "\n		'dir'=>'rtl',"
-		. "\n	],"
-		. "\n*/"
-		. "\n]);"
+		. "\n// Default language\n"
+		. "const LANG = 'zh-CN'; //'en', 'zh-CN', etc."
 		. "\n";
 
 	$fp = @fopen('config.php', 'w');

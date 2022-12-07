@@ -13,6 +13,25 @@ class Option {
 	const ICON_MAX_H = 160;
 	const UPLOADFILE_PATH = '../content/uploadfile/';
 
+	//Enabled language list
+	const LANG_LIST = [
+		'en'    => [
+			'name'  => 'English',
+			'title' => 'English',
+			'dir'   => 'ltr',
+		],
+		'ru'    => [
+			'name'  => 'Русский',
+			'title' => 'Russian',
+			'dir'   => 'ltr',
+		],
+		'zh-CN' => [
+			'name'  => '简体中文',
+			'title' => 'Simplified Chinese',
+			'dir'   => 'ltr',
+		],
+	];
+
 	static function get($option) {
 		$CACHE = Cache::getInstance();
 		$options_cache = $CACHE->readCache('options');
