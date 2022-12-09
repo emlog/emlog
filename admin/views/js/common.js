@@ -14,6 +14,7 @@ function timestamp() {
 
 function em_confirm(id, property, token) {
     let url, msg;
+    let text = '删除后可能无法恢复'
     switch (property) {
         case 'article':
             url = 'article.php?action=del&gid=' + id;
@@ -62,6 +63,7 @@ function em_confirm(id, property, token) {
         case 'forbid_user':
             url = 'user.php?action=forbid&uid=' + id;
             msg = '确定要禁用该用户吗？';
+            text = '';
             break;
         case 'tpl':
             url = 'template.php?action=del&tpl=' + id;
@@ -70,6 +72,7 @@ function em_confirm(id, property, token) {
         case 'reset_widget':
             url = 'widgets.php?action=reset';
             msg = '确定要恢复组件设置到初始状态吗？这样会丢失你自定义的组件。';
+            text = '';
             break;
         case 'plu':
             url = 'plugin.php?action=del&plugin=' + id;
@@ -77,12 +80,21 @@ function em_confirm(id, property, token) {
             break;
         case 'media_sort':
             url = 'media.php?action=del_media_sort&id=' + id;
-            msg = '确定要删除该资源分类吗（不会删除资源文件）？';
+            msg = '确定要删除该资源分类吗？';
+            text = '不会删除分类下资源文件';
             break;
     }
-    if (confirm(msg)) {
-        window.location = url + '&token=' + token;
-    }
+    swal({
+        title: msg,
+        text: text,
+        icon: "warning",
+        buttons: ["取消", "确定"],
+        dangerMode: true,
+    }).then((willDelete) => {
+        if (willDelete) {
+            window.location = url + '&token=' + token;
+        }
+    });
 }
 
 function focusEle(id) {

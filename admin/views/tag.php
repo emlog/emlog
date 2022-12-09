@@ -71,9 +71,16 @@
 
     function deltags() {
         var tid = $('#tid').val()
-        if (!confirm('确定要删除所选标签吗？')) {
-            return;
-        }
-        window.open("./tag.php?action=del_tag&token=<?= LoginAuth::genToken() ?>&tid=" + tid, "_self");
+        swal({
+            title: '确定要删除所选标签吗',
+            text: '删除后可能无法恢复',
+            icon: 'warning',
+            buttons: ['取消', '确定'],
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+                window.open("./tag.php?action=del_tag&token=<?= LoginAuth::genToken() ?>&tid=" + tid, "_self");
+            }
+        });
     }
 </script>

@@ -190,10 +190,23 @@
 
     function mediaact(act) {
         if (getChecked('aids') === false) {
-            alert('请选择要删除的资源');
+            swal("", "请选择要删除的资源!", "info");
             return;
         }
-        if (act == 'del' && !confirm('确定要删除所选资源吗？')) {
+
+        if (act == 'del') {
+            swal({
+                title: '确定要删除所选资源吗',
+                text: '删除后可能无法恢复',
+                icon: 'warning',
+                buttons: ['取消', '确定'],
+                dangerMode: true,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    $("#operate").val(act);
+                    $("#form_media").submit();
+                }
+            });
             return;
         }
         $("#operate").val(act);
@@ -212,7 +225,7 @@
     // 更改分类
     function changeSort(obj) {
         if (getChecked('aids') === false) {
-            alert('请选择要移动的资源');
+            swal("", "请选择要移动的资源!", "info");
             return;
         }
         if ($('#sort').val() == '') return;

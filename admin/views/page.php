@@ -70,10 +70,22 @@
 
     function pageact(act) {
         if (getChecked('ids') == false) {
-            alert('请选择要操作的页面');
+            swal("", "请选择要操作的页面!", "info");
             return;
         }
-        if (act == 'del' && !confirm('确定要删除所选页面吗？')) {
+        if (act == 'del') {
+            swal({
+                title: '确定要删除所选页面吗',
+                text: '删除后可能无法恢复',
+                icon: 'warning',
+                buttons: ['取消', '确定'],
+                dangerMode: true,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    $("#operate").val(act);
+                    $("#form_page").submit();
+                }
+            });
             return;
         }
         $("#operate").val(act);

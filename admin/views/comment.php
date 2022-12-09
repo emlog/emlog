@@ -154,11 +154,24 @@
 
     function commentact(act) {
         if (getChecked('ids') == false) {
-            alert('请选择要操作的评论');
+            swal("", "请选择要操作的评论!", "info");
             return;
         }
-        if (act == 'del' && !confirm('确定要删除所选评论吗？')) {
-            return;
+
+        if (act == 'del') {
+            swal({
+                title: '确定要删除所选评论吗',
+                text: '删除后可能无法恢复',
+                icon: 'warning',
+                buttons: ['取消', '确定'],
+                dangerMode: true,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    $("#operate").val(act);
+                    $("#form_com").submit();
+                }
+            });
+            return
         }
         $("#operate").val(act);
         $("#form_com").submit();

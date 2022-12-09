@@ -221,10 +221,23 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 
     function logact(act) {
         if (getChecked('ids') == false) {
-            alert('请选择要操作的文章');
+            swal("", "请选择要操作的文章!", "info");
             return;
         }
-        if (act == 'del' && !confirm('确定要删除所选文章吗？')) {
+
+        if (act == 'del') {
+            swal({
+                title: '确定要删除所选文章吗',
+                text: '删除后可能无法恢复',
+                icon: 'warning',
+                buttons: ['取消', '确定'],
+                dangerMode: true,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    $("#operate").val(act);
+                    $("#form_log").submit();
+                }
+            });
             return;
         }
         $("#operate").val(act);
@@ -233,7 +246,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 
     function changeSort(obj) {
         if (getChecked('ids') == false) {
-            alert('请选择要操作的文章');
+            swal("", "请选择要操作的文章!", "info");
             return;
         }
         if ($('#sort').val() == '') return;
@@ -243,7 +256,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 
     function changeAuthor(obj) {
         if (getChecked('ids') == false) {
-            alert('请选择要操作的文章');
+            swal("", "请选择要操作的文章!", "info");
             return;
         }
         if ($('#author').val() == '') return;
@@ -253,7 +266,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 
     function changeTop(obj) {
         if (getChecked('ids') == false) {
-            alert('请选择要操作的文章');
+            swal("", "请选择要操作的文章!", "info");
             return;
         }
         if ($('#top').val() == '') return;
