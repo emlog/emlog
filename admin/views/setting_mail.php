@@ -29,6 +29,10 @@
                 <input type="password" name="smtp_pw" cols="" rows="3" class="form-control" value="<?= $smtp_pw ?>" required>
             </div>
             <div class="form-group">
+                <label>发送人名称（选填）</label>
+                <input type="from_name" class="form-control" value="<?= $smtp_from_name ?>" name="smtp_from_name">
+            </div>
+            <div class="form-group">
                 <label>SMTP服务器</label>
                 <input class="form-control" value="<?= $smtp_server ?>" name="smtp_server" required>
             </div>
@@ -43,6 +47,7 @@
                 <b>以QQ邮箱配置为例</b><br>
                 发送人邮箱：你的QQ邮箱<br>
                 SMTP密码：见QQ邮箱顶部设置-> 账户 -> 开启IMAP/SMTP服务 -> 生成授权码（即为SMTP密码）<br>
+                发送人名称：你的姓名或者站点名称<br>
                 SMTP服务器：smtp.qq.com<br>
                 端口：465<br>
             </div>
