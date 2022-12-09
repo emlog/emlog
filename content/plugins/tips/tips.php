@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: 小贴士
-Version: 2.0
+Version: 3.0
 Plugin URL:
 Description: 这是世界上第一个emlog插件，它会在你的管理页面送上一句温馨的小提示。
 Author: emlog官方
@@ -35,7 +35,7 @@ function tips() {
 addAction('adm_main_top', 'tips');
 
 function tips_css() {
-	echo "<style type='text/css'>
+	echo "<style>
     #tip{
         background:url(../content/plugins/tips/icon_tips.gif) no-repeat left 3px;
         padding:3px 18px;
