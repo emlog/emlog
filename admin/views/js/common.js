@@ -213,7 +213,7 @@ function insert_cover(imgsrc) {
 // act 1：auto save 2：save
 function autosave(act) {
     var nodeid = "as_logid";
-    var timeout = 30000;
+    var timeout = 60000;
     var url = "article_save.php?action=autosave";
     var title = $.trim($("#title").val());
     var cover = $.trim($("#cover").val());

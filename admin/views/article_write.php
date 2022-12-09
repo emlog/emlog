@@ -205,7 +205,7 @@
     $("#alias").keyup(function () {
         checkalias();
     });
-    setTimeout("autosave(1)", 30000);
+    setTimeout("autosave(1)", 60000);
     $("#menu_category_content").addClass('active');
     $("#menu_content").addClass('show');
     $("#menu_write").addClass('active');
@@ -357,17 +357,17 @@
     });
 
     // 文章编辑界面全局快捷键 Ctrl（Cmd）+ S 保存内容
-    document.addEventListener('keydown', function(e){
-		if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)){
-			e.preventDefault();
+    document.addEventListener('keydown', function (e) {
+        if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
+            e.preventDefault();
             autosave(2);
-		}
-	});
+        }
+    });
 
-	// Use cookie to decide whether to collapse [More Options]
-    if(Cookies.get('em_advset') === "right") {
+    // Use cookie to decide whether to collapse [More Options]
+    if (Cookies.get('em_advset') === "right") {
         $("#advset").toggle();
         icon_mod = "right";
-	    $(".icofont-simple-down").attr("class", "icofont-simple-right")
+        $(".icofont-simple-down").attr("class", "icofont-simple-right")
     }
 </script>
