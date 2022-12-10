@@ -75,8 +75,11 @@ class MySqlii {
 		if (!$ignore_err && 1046 == $this->getErrNo()) {
 			emMsg("连接数据库失败，请填写数据库名");
 		}
+		if (!$ignore_err && 1115 == $this->getErrNo()) {
+			emMsg("MySQL缺少utf8mb4字符集，请升级到MySQL5.6或更高版本");
+		}
 		if (!$ignore_err && !$this->result) {
-			emMsg("SQL执行错误: $sql<br /><br />" . $this->getError());
+			emMsg("$sql<br /><br />error: " . $this->getErrNo() . ' , ' . $this->getError());
 		} else {
 			return $this->result;
 		}
