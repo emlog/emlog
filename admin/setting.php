@@ -286,7 +286,7 @@ if ($action == 'mail_save') {
 		'smtp_pw'             => isset($_POST['smtp_pw']) ? addslashes($_POST['smtp_pw']) : '',
 		'smtp_from_name'      => isset($_POST['smtp_from_name']) ? addslashes($_POST['smtp_from_name']) : '',
 		'smtp_server'         => isset($_POST['smtp_server']) ? addslashes($_POST['smtp_server']) : '',
-		'smtp_port'           => isset($_POST['smtp_port']) ? (int)$_POST['smtp_port'] : '',
+		'smtp_port'           => isset($_POST['smtp_port']) ? addslashes($_POST['smtp_port']) : '',
 		'mail_notice_comment' => isset($_POST['mail_notice_comment']) ? $_POST['mail_notice_comment'] : 'n',
 		'mail_notice_post'    => isset($_POST['mail_notice_post']) ? $_POST['mail_notice_post'] : 'n',
 	];

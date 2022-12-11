@@ -22,11 +22,11 @@
             <h4>邮件服务</h4>
             <div class="form-group">
                 <label>发送人邮箱</label>
-                <input type="email" class="form-control" value="<?= $smtp_mail ?>" name="smtp_mail" required>
+                <input type="email" class="form-control" value="<?= $smtp_mail ?>" name="smtp_mail">
             </div>
             <div class="form-group">
                 <label>SMTP密码</label>
-                <input type="password" name="smtp_pw" cols="" rows="3" class="form-control" value="<?= $smtp_pw ?>" required>
+                <input type="password" name="smtp_pw" cols="" rows="3" class="form-control" value="<?= $smtp_pw ?>">
             </div>
             <div class="form-group">
                 <label>发送人名称（选填）</label>
@@ -34,11 +34,11 @@
             </div>
             <div class="form-group">
                 <label>SMTP服务器</label>
-                <input class="form-control" value="<?= $smtp_server ?>" name="smtp_server" required>
+                <input class="form-control" value="<?= $smtp_server ?>" name="smtp_server">
             </div>
             <div class="form-group">
                 <label>端口 (465：ssl协议，如QQ邮箱，网易邮箱等，587：STARTTLS协议 如：Outlook邮箱)</label>
-                <input class="form-control" value="<?= $smtp_port ?>" name="smtp_port" required>
+                <input class="form-control" value="<?= $smtp_port ?>" name="smtp_port">
             </div>
             <div class="form-group">
                 <input type="button" value="发送测试" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#testMail"/>
