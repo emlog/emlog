@@ -279,11 +279,11 @@ class Cache {
 				continue;
 			}
 			$usenum = empty($row['gid']) ? 0 : substr_count($row['gid'], ',') + 1;
-			$fontsize = 10 + round(($usenum - $minuse) * $rank); //maxfont:22pt,minfont:10pt
+			$fontsize = 10 + round(($usenum - $minuse) * $rank); //min fontsize:10pt
 			$tag_cache[] = [
 				'tagurl'   => urlencode($row['tagname']),
 				'tagname'  => htmlspecialchars($row['tagname']),
-				'fontsize' => $fontsize,
+				'fontsize' => min($fontsize, 22),//max fontsize:22pt,
 				'usenum'   => $usenum
 			];
 		}

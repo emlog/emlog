@@ -311,7 +311,7 @@ function topflg($top, $sortop = 'n', $sortid = null) {
 ?>
 <?php
 /**
- * 文章查看页：编辑链接
+ * 文章详情页：编辑链接
  */
 function editflg($logid, $author) {
 	$editflg = User::haveEditPermission() || $author == UID ? '&nbsp;&nbsp;&nbsp;<a href="' . BLOG_URL . 'admin/article.php?action=edit&gid=' . $logid . '" target="_blank">编辑</a>' : '';
@@ -321,7 +321,7 @@ function editflg($logid, $author) {
 ?>
 <?php
 /**
- * 文章查看页：分类
+ * 文章详情页：分类
  */
 function blog_sort($blogid) {
 	global $CACHE;
@@ -335,7 +335,7 @@ function blog_sort($blogid) {
 } ?>
 <?php
 /**
- * 文章列出页：分类
+ * 首页文章列表：分类
  */
 function bloglist_sort($blogid) {
 	global $CACHE;
@@ -349,7 +349,7 @@ function bloglist_sort($blogid) {
 } ?>
 <?php
 /**
- * 文章列出页和文章查看页：标签
+ * 首页文章列表和文章详情页：标签
  */
 function blog_tag($blogid) {
 	$tag_model = new Tag_Model();
@@ -367,7 +367,7 @@ function blog_tag($blogid) {
 ?>
 <?php
 /**
- * 文章列出页和文章查看页：作者
+ * 首页文章列表和文章详情页：作者
  */
 function blog_author($uid) {
 	global $CACHE;
@@ -382,7 +382,7 @@ function blog_author($uid) {
 ?>
 <?php
 /**
- * 文章查看页：相邻文章
+ * 文章详情页：相邻文章
  */
 function neighbor_log($neighborLog) {
 	extract($neighborLog) ?>
@@ -395,7 +395,7 @@ function neighbor_log($neighborLog) {
 <?php } ?>
 <?php
 /**
- * 文章查看页：评论列表
+ * 文章详情页：评论列表
  */
 function blog_comments($comments) {
 	extract($comments);
@@ -438,7 +438,7 @@ function blog_comments($comments) {
 <?php } ?>
 <?php
 /**
- * 文章查看页：子评论
+ * 文章详情页：子评论
  */
 function blog_comments_children($comments, $children) {
 	$isGravatar = Option::get('isgravatar');
@@ -474,7 +474,7 @@ function blog_comments_children($comments, $children) {
 <?php } ?>
 <?php
 /**
- * 文章查看页：评论表单
+ * 文章详情页：评论表单
  */
 function blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allow_remark) {
 	$isNeedChinese = Option::get('comment_needchinese');

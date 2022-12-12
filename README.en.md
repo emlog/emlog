@@ -12,7 +12,7 @@
 
 # emlog
 
-A powerful blog and content knowledge management system based on PHP and MySQL, pursuing a fast, stable, simple and comfortable website building experience.
+emlog is a lightweight blog and CMS website building system, dedicated to creating a user-friendly personal cloud content management system.
 
 ## Overview
 
