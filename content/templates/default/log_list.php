@@ -32,8 +32,7 @@ if (!defined('EMLOG_ROOT')) {
                             <div class="row info-row">
                                 <div class="log-info">
 									<?php blog_author($value['author']) ?>&nbsp;发布于&nbsp;
-									<?= date('Y-n-j', $value['date']) ?>&nbsp;
-                                    <span class="mh"><?= date('H:i', $value['date']) ?></span>
+									<?= date('Y-n-j H:i', $value['date']) ?>&nbsp;
                                     <span class="mh"><?php editflg($value['logid'], $value['author']) ?></span>
                                 </div>
                                 <div class="log-count">
