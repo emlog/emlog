@@ -21,7 +21,6 @@ if (empty($action)) {
 	$all = Input::getStrVar('all');
 
 	$uid = $all === 'y' && user::isAdmin() ? '' : UID;
-
 	$tws = $Twitter_Model->getTwitters($page, TW_PAGE_COUNT, $uid);
 	$twnum = $Twitter_Model->getTwitterNum($uid);
 
