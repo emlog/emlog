@@ -112,7 +112,7 @@ function checkPlugin($plugin) {
  * 验证email地址格式
  */
 function checkMail($email) {
-	if (preg_match("/^[\w\.\-]+@\w+([\.\-]\w+)*\.\w+$/", $email) && strlen($email) <= 60) {
+	if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
 		return true;
 	}
 
