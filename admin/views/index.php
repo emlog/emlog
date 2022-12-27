@@ -22,7 +22,7 @@
                                         <div class="row no-gutters align-items-center">
                                             <div class="col">
                                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">待审文章</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="./article.php"><?= $sta_cache['checknum'] ?></a></div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="./article.php?checked=n"><?= $sta_cache['checknum'] ?></a></div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="icofont-pencil-alt-5 fa-2x text-gray-300"></i>
