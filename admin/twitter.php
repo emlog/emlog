@@ -17,12 +17,19 @@ require_once 'globals.php';
 $Twitter_Model = new Twitter_Model();
 
 if (empty($action)) {
-	$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+	$page = Input::getIntVar('page', 1);
+	$all = Input::getStrVar('all');
 
-	$tws = $Twitter_Model->getTwitters($page, TW_PAGE_COUNT);
-	$twnum = $Twitter_Model->getTwitterNum();
-	$pageurl = pagination($twnum, TW_PAGE_COUNT, $page, 'twitter.php?page=');
-	$avatar = empty($user_cache[UID]['avatar']) ? './views/images/avatar.jpg' : '../' . $user_cache[UID]['avatar'];
+	$uid = $all === 'y' && user::isAdmin() ? '' : UID;
+
+	$tws = $Twitter_Model->getTwitters($page, TW_PAGE_COUNT, $uid);
+	$twnum = $Twitter_Model->getTwitterNum($uid);
+
+	$subPage = '';
+	foreach ($_GET as $key => $val) {
+		$subPage .= $key != 'page' ? "&$key=$val" : '';
+	}
+	$pageurl = pagination($twnum, TW_PAGE_COUNT, $page, "twitter.php?{$subPage}&page=");
 
 	include View::getAdmView('header');
 	require_once View::getAdmView('twitter');
@@ -31,7 +38,7 @@ if (empty($action)) {
 }
 
 if ($action == 'post') {
-	$t = isset($_POST['t']) ? addslashes(trim($_POST['t'])) : '';
+	$t = Input::postStrVar('t');
 
 	LoginAuth::checkToken();
 
@@ -52,7 +59,7 @@ if ($action == 'post') {
 
 if ($action == 'del') {
 	LoginAuth::checkToken();
-	$id = isset($_GET['id']) ? (int)$_GET['id'] : '';
+	$id = Input::getIntVar('id');
 	$Twitter_Model->delTwitter($id);
 	$CACHE->updateCache('sta');
 	emDirect("twitter.php?active_del=1");

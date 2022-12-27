@@ -22,14 +22,16 @@
 	<?php
 	foreach ($tws as $val):
 		$tid = (int)$val['id'];
+		$author = $user_cache[$val['author']]['name'];
 		?>
         <div class="card p-3">
             <blockquote class="blockquote mb-0 card-body">
                 <p><?= $val['t'] ?></p>
-                <footer class="blockquote-footer">
-                    <small class="text-muted">
-						<?= $val['date'] ?> | <a href="javascript: em_confirm(<?= $tid ?>, 'tw', '<?= LoginAuth::genToken() ?>');" class="care">删除</a>
-                    </small>
+                <footer>
+                    <p class="text-muted small card-text d-flex justify-content-between">
+						<?= $val['date'] ?> | by <?= $author ?>
+                        <a href="javascript: em_confirm(<?= $tid ?>, 'tw', '<?= LoginAuth::genToken() ?>');" class="care">删除</a>
+                    </p>
                 </footer>
             </blockquote>
         </div>

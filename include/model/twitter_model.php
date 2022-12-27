@@ -27,15 +27,15 @@ class Twitter_Model {
 		return $this->db->insert_id();
 	}
 
-	function getTwitterNum() {
-		$author = 'and author=' . UID;
+	function getTwitterNum($uid) {
+		$author = $uid ? 'and author=' . $uid : '';
 		$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "twitter WHERE 1=1 $author");
 		return $data['total'];
 	}
 
-	function getTwitters($page = 1, $perpage_num = 20) {
+	function getTwitters($page = 1, $perpage_num = 20, $uid) {
 		$start_limit = !empty($page) ? ($page - 1) * $perpage_num : 0;
-		$author = 'and author=' . UID;
+		$author = $uid ? 'and author=' . $uid : '';
 		$limit = "LIMIT $start_limit, " . $perpage_num;
 		$sql = "SELECT * FROM " . DB_PREFIX . "twitter WHERE 1=1 $author ORDER BY id DESC $limit";
 		$res = $this->db->query($sql);

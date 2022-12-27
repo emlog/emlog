@@ -6,8 +6,6 @@
  */
 
 class Output {
-
-
 	public static function ok($data = '') {
 		header('Content-Type: application/json; charset=UTF-8');
 		$result = [
@@ -28,5 +26,4 @@ class Output {
 		];
 		die(json_encode($result, JSON_UNESCAPED_UNICODE));
 	}
-
 }
