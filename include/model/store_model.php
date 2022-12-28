@@ -15,7 +15,6 @@ class Store_Model {
 		return $this->reqEmStore('plu', $tag, $keyword);
 	}
 
-	// Get application store data
 	public function reqEmStore($type, $tag = '', $keyword = '') {
 		$emcurl = new EmCurl();
 		$emcurl->setPost(['emkey' => Option::get('emkey'), 'ver' => Option::EMLOG_VERSION, 'type' => $type, 'tag' => $tag, 'keyword' => $keyword]);

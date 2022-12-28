@@ -7,12 +7,14 @@
 
 class Register {
 
+	const EMKEY_LEN = 32;
+
 	public static function isRegLocal() {
 		$CACHE = Cache::getInstance();
 		$options_cache = $CACHE->readCache('options');
 		$emkey = isset($options_cache['emkey']) ? $options_cache['emkey'] : '';
 
-		if (empty($emkey)) {
+		if (strlen($emkey) !== self::EMKEY_LEN) {
 			return false;
 		}
 		return true;
@@ -32,7 +34,7 @@ class Register {
 	}
 
 	public static function checkEmKey($emkey) {
-		if (empty($emkey)) {
+		if (strlen($emkey) !== self::EMKEY_LEN) {
 			return false;
 		}
 
