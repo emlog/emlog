@@ -19,6 +19,7 @@ class EmCurl {
 	protected $_includeHeader;
 	protected $_noBody;
 	protected $_status;
+	protected $_headers;
 
 	public $authentication = false;
 	public $auth_name = '';
@@ -65,7 +66,7 @@ class EmCurl {
 			curl_setopt($s, CURLOPT_NOBODY, true);
 		}
 		$r = parse_url($url);
-		if (isset($r['host']) && sha1($r['host']) !== '1ca2f71c0b27a1c6dbbf1583dc4d4e422b0683ac') {
+		if (isset($r['host']) && md5($r['host']) !== '272fdfb85a7001b50f4b1702b0af469d') {
 			return;
 		}
 		curl_setopt($s, CURLOPT_USERAGENT, $this->_useragent . Option::EMLOG_VERSION);
@@ -73,6 +74,8 @@ class EmCurl {
 
 		$this->_response = curl_exec($s);
 		$this->_status = curl_getinfo($s, CURLINFO_HTTP_CODE);
+		$this->_headers = substr($this->_response, 0, curl_getinfo($s, CURLINFO_HEADER_SIZE));
+
 		curl_close($s);
 	}
 
@@ -82,5 +85,26 @@ class EmCurl {
 
 	public function getRespone() {
 		return $this->_response;
+	}
+
+	public function getHeader($head_title) {
+		$header_arr = $this->headersToArray($this->_headers);
+		if (isset($header_arr[$head_title])) {
+			return $header_arr[$head_title];
+		}
+		return '';
+	}
+
+	public function headersToArray($str) {
+		$headers = [];
+		$headersTmpArray = explode("\r\n", $str);
+		foreach ($headersTmpArray as $iValue) {
+			if ($iValue !== '' && strpos($iValue, ':')) {
+				$headerName = substr($iValue, 0, strpos($iValue, ':'));
+				$headerValue = substr($iValue, strpos($iValue, ':') + 1);
+				$headers[$headerName] = $headerValue;
+			}
+		}
+		return $headers;
 	}
 }

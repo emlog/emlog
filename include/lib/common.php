@@ -1072,7 +1072,7 @@ function em_v() {
 		return true;
 	}
 	$a = sha1_file(EMLOG_ROOT . '/include/lib/emcurl.php');
-	if ($a !== '0f85f470fdd9032ff164f50141771e0ba47d0015') {
+	if ($a !== '3c93582dcb6c1ed4ce23174ce33192b194c67cb5') {
 		exit;
 	}
 }
