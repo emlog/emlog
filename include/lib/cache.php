@@ -29,11 +29,6 @@ class Cache {
 		$this->db = Database::getInstance();
 	}
 
-	/**
-	 * 静态方法，返回数据库连接实例
-	 *
-	 * @return Cache
-	 */
 	public static function getInstance() {
 		if (self::$instance == null) {
 			self::$instance = new Cache();
@@ -42,12 +37,12 @@ class Cache {
 	}
 
 	/**
-	 * 更新缓存
+	 * update cache
 	 *
-	 * @param mixed $cacheMethodName 需要更新的缓存，更新单个缓存字符串方式：'options', 更新多个采用数组方式：['options', 'user'], 全部更新则留空
+	 * @param mixed $cacheMethodName cache name：'options', multi use array：['options', 'user'], Leave blank for update all
 	 */
 	public function updateCache($cacheMethodName = null) {
-		// 更新单个缓存
+		// update single cache
 		if (is_string($cacheMethodName)) {
 			$method = 'mc_' . $cacheMethodName;
 			if (method_exists($this, $method)) {
@@ -55,7 +50,7 @@ class Cache {
 			}
 			return;
 		}
-		// 更新多个缓存
+		// Update multiple caches
 		if (is_array($cacheMethodName)) {
 			foreach ($cacheMethodName as $name) {
 				$method = 'mc_' . $name;
@@ -65,7 +60,7 @@ class Cache {
 			}
 			return;
 		}
-		// 更新全部缓存
+		// Update all caches
 		if (!$cacheMethodName) {
 			$cacheMethodNames = get_class_methods($this);
 			foreach ($cacheMethodNames as $method) {
@@ -95,7 +90,6 @@ class Cache {
 		}
 
 		$cachefile = EMLOG_ROOT . '/content/cache/' . $cacheName . '.php';
-		// 如果缓存文件不存在则自动生成缓存文件
 		if (!is_file($cachefile) || filesize($cachefile) <= 0) {
 			if (method_exists($this, 'mc_' . $cacheName)) {
 				$this->{'mc_' . $cacheName}();
@@ -110,10 +104,6 @@ class Cache {
 		}
 	}
 
-	/**
-	 * 站点配置缓存
-	 * 注意更新缓存的方法必须为mc开头
-	 */
 	private function mc_options() {
 		$options_cache = [];
 		$res = $this->db->query("SELECT * FROM " . DB_PREFIX . "options");
@@ -127,9 +117,6 @@ class Cache {
 		$this->cacheWrite($cacheData, 'options');
 	}
 
-	/**
-	 * 用户信息缓存
-	 */
 	private function mc_user() {
 		$user_cache = [];
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "user");
@@ -162,9 +149,6 @@ class Cache {
 		$this->cacheWrite($cacheData, 'user');
 	}
 
-	/**
-	 * 站点统计缓存
-	 */
 	private function mc_sta() {
 		$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "blog WHERE type='blog' AND hide='n' AND checked='y' ");
 		$log_num = $data['total'];
@@ -191,7 +175,7 @@ class Cache {
 			'note_num'   => $note_num,
 		];
 
-		// 性能问题仅缓存最近1000个用户的信息
+		// Performance issues only cache the information of the last 1000 users
 		$query = $this->db->query("SELECT uid FROM " . DB_PREFIX . "user order by uid desc limit 1000");
 		while ($row = $this->db->fetch_array($query)) {
 			$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "blog WHERE author={$row['uid']} AND hide='n' and type='blog'");
@@ -215,9 +199,6 @@ class Cache {
 		$this->cacheWrite($cacheData, 'sta');
 	}
 
-	/**
-	 * 最新评论缓存
-	 */
 	private function mc_comment() {
 		$query = $this->db->query("SELECT option_value,option_name FROM " . DB_PREFIX . "options WHERE option_name IN('index_comnum','comment_subnum','comment_paging','comment_pnum','comment_order')");
 		while ($row = $this->db->fetch_array($query)) {
@@ -261,9 +242,6 @@ class Cache {
 		$this->cacheWrite($cacheData, 'comment');
 	}
 
-	/**
-	 * 侧边栏标签缓存
-	 */
 	private function mc_tags() {
 		$tag_cache = [];
 		$tagnum = 100;
@@ -291,9 +269,6 @@ class Cache {
 		$this->cacheWrite($cacheData, 'tags');
 	}
 
-	/**
-	 * 侧边栏分类缓存
-	 */
 	private function mc_sort() {
 		$sort_cache = [];
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "sort ORDER BY pid ASC,taxis ASC");
@@ -321,9 +296,6 @@ class Cache {
 		$this->cacheWrite($cacheData, 'sort');
 	}
 
-	/**
-	 * 友情链接缓存
-	 */
 	private function mc_link() {
 		$link_cache = [];
 		$query = $this->db->query("SELECT siteurl,sitename,description FROM " . DB_PREFIX . "link WHERE hide='n' ORDER BY taxis ASC");
@@ -338,9 +310,6 @@ class Cache {
 		$this->cacheWrite($cacheData, 'link');
 	}
 
-	/**
-	 * 导航缓存
-	 */
 	private function mc_navi() {
 		$navi_cache = [];
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "navi WHERE hide='n' ORDER BY pid ASC, taxis ASC");
@@ -380,9 +349,6 @@ class Cache {
 		$this->cacheWrite($cacheData, 'navi');
 	}
 
-	/**
-	 * 最新文章
-	 */
 	private function mc_newlog() {
 		$index_newlognum = Option::get('index_newlognum');
 		if ($index_newlognum <= 0) {
@@ -402,9 +368,6 @@ class Cache {
 		$this->cacheWrite($cacheData, 'newlog');
 	}
 
-	/**
-	 * 文章归档缓存
-	 */
 	private function mc_record() {
 		$query = $this->db->query('select date from ' . DB_PREFIX . "blog WHERE hide='n' and checked='y' and type='blog' ORDER BY date DESC");
 		$record = 'xxxx_x';
@@ -439,9 +402,6 @@ class Cache {
 		$this->cacheWrite($cacheData, 'record');
 	}
 
-	/**
-	 * 文章别名缓存
-	 */
 	private function mc_logalias() {
 		$sql = "SELECT gid,alias FROM " . DB_PREFIX . "blog where alias!=''";
 		$query = $this->db->query($sql);
@@ -454,16 +414,13 @@ class Cache {
 	}
 
 	/**
-	 * 文章标签缓存 [已废弃]
+	 * Post Tag Cache [Deprecated]
 	 */
 	private function mc_logtags() {
 		$cacheData = serialize([]);
 		$this->cacheWrite($cacheData, 'logtags');
 	}
 
-	/**
-	 * 文章分类缓存
-	 */
 	private function mc_logsort() {
 		$sql = "SELECT gid,sortid FROM " . DB_PREFIX . "blog where type='blog' order by top DESC, sortop DESC, date DESC";
 		$query = $this->db->query($sql);
