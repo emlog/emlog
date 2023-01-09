@@ -80,8 +80,14 @@
     <div class="form-row align-items-center">
         <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
         <input name="operate" id="operate" value="" type="hidden"/>
+        <div class="col-auto my-1">
+            <div class="custom-control custom-checkbox mr-sm-2">
+                <input type="checkbox" class="custom-control-input" id="checkAllCard">
+                <label class="custom-control-label" for="checkAllCard">全选</label>
+            </div>
+        </div>
         <div class="col-auto my-1 form-inline">
-            <a href="javascript:mediaact('del');" class="btn btn-sm btn-danger">删除所选资源</a>
+            <a href="javascript:mediaact('del');" class="btn btn-sm btn-danger">删除</a>
 			<?php if (User::isAdmin()): ?>
                 <select name="sort" id="sort" onChange="changeSort(this);" class="form-control m-1">
                     <option value="" selected="selected">移动到</option>
@@ -91,12 +97,6 @@
                     <option value="0">未分类</option>
                 </select>
 			<?php endif; ?>
-        </div>
-        <div class="col-auto my-1">
-            <div class="custom-control custom-checkbox mr-sm-2">
-                <input type="checkbox" class="custom-control-input" id="checkAllCard">
-                <label class="custom-control-label" for="checkAllCard">全选</label>
-            </div>
         </div>
     </div>
 </form>
@@ -190,7 +190,7 @@
 
     function mediaact(act) {
         if (getChecked('aids') === false) {
-            swal("", "请选择要删除的资源!", "info");
+            swal("", "请选择要删除的资源", "info");
             return;
         }
 

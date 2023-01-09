@@ -44,13 +44,24 @@ if ($action == 'del_tag') {
 	$tid = isset($_GET['tid']) ? (int)$_GET['tid'] : '';
 
 	LoginAuth::checkToken();
-
 	if (!$tid) {
 		emDirect("./tag.php?error_a=1");
 	}
-
 	$Tag_Model->deleteTag($tid);
-
 	$CACHE->updateCache('tags');
 	emDirect("./tag.php?active_del=1");
+}
+
+if ($action === 'operate_tag') {
+	$operate = isset($_POST['operate']) ? $_POST['operate'] : '';
+	$tids = isset($_POST['tids']) ? array_map('intval', $_POST['tids']) : [];
+
+	LoginAuth::checkToken();
+	if ($operate === 'del') {
+		foreach ($tids as $value) {
+			$Tag_Model->deleteTag($value);
+		}
+		$CACHE->updateCache('tags');
+		emDirect("./tag.php?active_del=1");
+	}
 }

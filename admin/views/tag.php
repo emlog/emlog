@@ -11,21 +11,37 @@
     <h1 class="h3 mb-0 text-gray-800">文章标签</h1>
 </div>
 <div class="card shadow mb-4">
-    <div class="card-body">
-        <div>
-			<?php if ($tags): ?>
-				<?php foreach ($tags as $key => $value): ?>
-                    <a href="#" class="badge badge-primary m-2" data-toggle="modal" data-target="#editModal" data-tid="<?= $value['tid'] ?>"
-                       data-tagname="<?= $value['tagname'] ?>">
-						<?= $value['tagname'] ?>
-                    </a>
-				<?php endforeach ?>
-			<?php else: ?>
-                <p style="margin:20px 30px">还没有标签，写文章的时候可以给文章打标签</p>
-			<?php endif ?>
+    <form action="tag.php?action=operate_tag" method="post" name="form_tag" id="form_tag">
+        <div class="card-body">
+            <div>
+				<?php if ($tags): ?>
+					<?php foreach ($tags as $key => $value): ?>
+                        <a href="#" class="badge badge-primary m-2 p-1" data-toggle="modal" data-target="#editModal" data-tid="<?= $value['tid'] ?>"
+                           data-tagname="<?= $value['tagname'] ?>">
+                            <input type="checkbox" name="tids[]" value="<?= $value['tid'] ?>" class="tids align-top"/>
+							<?= $value['tagname'] ?>
+                        </a>
+					<?php endforeach ?>
+				<?php else: ?>
+                    <p class="m-3">还没有标签，写文章的时候可以给文章打标签</p>
+				<?php endif ?>
+            </div>
+        </div>
+        <div class="form-row align-items-center mx-4">
+            <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
+            <input name="operate" id="operate" value="" type="hidden"/>
+            <div class="col-auto my-1">
+                <div class="custom-control custom-checkbox mr-sm-2">
+                    <input type="checkbox" class="custom-control-input" id="checkAllCard">
+                    <label class="custom-control-label" for="checkAllCard">全选</label>
+                </div>
+            </div>
+            <div class="col-auto my-1 form-inline">
+                <a href="javascript:tagact('del');" class="btn btn-sm btn-danger">删除</a>
+            </div>
         </div>
         <div class="page"><?= $pageurl ?> （有 <?= $tags_count ?> 个标签）</div>
-    </div>
+    </form>
 </div>
 
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -59,6 +75,31 @@
     $("#menu_content").addClass('show');
     $("#menu_tag").addClass('active');
     setTimeout(hideActived, 2600);
+
+    function tagact(act) {
+        if (getChecked('tids') === false) {
+            swal("", "请选择要删除的标签", "info");
+            return;
+        }
+
+        if (act == 'del') {
+            swal({
+                title: '确定要删除所选标签吗',
+                text: '删除后可能无法恢复',
+                icon: 'warning',
+                buttons: ['取消', '确定'],
+                dangerMode: true,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    $("#operate").val(act);
+                    $("#form_tag").submit();
+                }
+            });
+            return;
+        }
+        $("#operate").val(act);
+        $("#form_media").submit();
+    }
 
     $('#editModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget)
