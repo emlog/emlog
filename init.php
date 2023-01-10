@@ -6,7 +6,7 @@
  */
 
 if (getenv('EMLOG_ENV') === 'develop') {
-	error_reporting(1);
+	error_reporting(E_ALL);
 } else {
 	error_reporting(1);
 }
