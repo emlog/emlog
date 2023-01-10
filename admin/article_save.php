@@ -28,10 +28,10 @@ $allow_remark = isset($_POST['allow_remark']) ? addslashes(trim($_POST['allow_re
 $ishide = isset($_POST['ishide']) && !empty($_POST['ishide']) && !isset($_POST['pubdf']) ? addslashes($_POST['ishide']) : 'n';
 $password = isset($_POST['password']) ? addslashes(trim($_POST['password'])) : '';
 $cover = isset($_POST['cover']) ? addslashes(trim($_POST['cover'])) : '';
+$link = Input::postStrVar('link');
 
 LoginAuth::checkToken();
 
-//check alias
 if (!empty($alias)) {
 	$logalias_cache = $CACHE->readCache('logalias');
 	$alias = $Log_Model->checkAlias($alias, $logalias_cache, $blogid);
@@ -52,7 +52,8 @@ $logData = [
 	'allow_remark' => $allow_remark,
 	'hide'         => $ishide,
 	'checked'      => $checked,
-	'password'     => $password
+	'password'     => $password,
+	'link'         => $link,
 ];
 
 if ($blogid > 0) {//自动保存草稿后,添加变为更新

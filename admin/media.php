@@ -18,8 +18,8 @@ $Media_Model = new Media_Model();
 $MediaSortModel = new MediaSort_Model();
 
 if (empty($action)) {
-	$sid = isset($_GET['sid']) ? (int)$_GET['sid'] : 0;
-	$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+	$sid = Input::getIntVar('sid');
+	$page = Input::getIntVar('page', 1);
 	$uid = User::haveEditPermission() ? null : UID;
 	$page_count = 24;
 	$page_url = $sid ? "media.php?sid=$sid&page=" : "media.php?page=";
@@ -36,7 +36,7 @@ if (empty($action)) {
 }
 
 if ($action === 'lib') {
-	$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+	$page = Input::getIntVar('page', 1);
 	$perpage_count = 48;
 	$medias = $Media_Model->getMedias($page, $perpage_count);
 	$count = $Media_Model->getMediaCount();
@@ -46,7 +46,7 @@ if ($action === 'lib') {
 }
 
 if ($action === 'upload') {
-	$sid = isset($_GET['sid']) ? (int)$_GET['sid'] : 0;
+	$sid = Input::getIntVar('sid');
 	$editor = isset($_GET['editor']) ? 1 : 0; // 是否来自Markdown编辑器的上传
 	$attach = isset($_FILES['file']) ? $_FILES['file'] : '';
 	if ($editor) {
@@ -78,7 +78,6 @@ if ($action === 'upload') {
 		exit;
 	}
 
-	// 写入资源信息
 	$aid = $Media_Model->addMedia($ret['file_info'], $sid);
 	if ($editor) {
 		echo json_encode($ret);
@@ -89,14 +88,14 @@ if ($action === 'upload') {
 
 if ($action === 'delete') {
 	LoginAuth::checkToken();
-	$aid = isset($_GET['aid']) ? (int)$_GET['aid'] : '';
+	$aid = Input::getIntVar('aid');
 	$Media_Model->deleteMedia($aid);
 	emDirect("media.php?active_del=1");
 }
 
 if ($action === 'operate_media') {
-	$operate = isset($_POST['operate']) ? $_POST['operate'] : '';
-	$sort = isset($_POST['sort']) ? (int)$_POST['sort'] : '';
+	$operate = Input::postStrVar('operate');
+	$sort = Input::postIntVar('sort');
 	$aids = isset($_POST['aids']) ? array_map('intval', $_POST['aids']) : array();
 
 	LoginAuth::checkToken();
@@ -120,7 +119,7 @@ if ($action === 'add_media_sort') {
 	if (!User::isAdmin()) {
 		emMsg('权限不足！', './');
 	}
-	$sortname = isset($_POST['sortname']) ? addslashes(trim($_POST['sortname'])) : '';
+	$sortname = Input::postStrVar('sortname');
 	if (empty($sortname)) {
 		emDirect("./media.php?error_a=1");
 	}
@@ -133,7 +132,7 @@ if ($action === 'update_media_sort') {
 	if (!User::isAdmin()) {
 		emMsg('权限不足！', './');
 	}
-	$sortname = isset($_POST['sortname']) ? addslashes(trim($_POST['sortname'])) : '';
+	$sortname = Input::postStrVar('sortname');
 	$id = isset($_POST['id']) ? (int)$_POST['id'] : '';
 
 	if (empty($sortname)) {
@@ -148,7 +147,7 @@ if ($action === 'del_media_sort') {
 	if (!User::isAdmin()) {
 		emMsg('权限不足！', './');
 	}
-	$id = isset($_GET['id']) ? (int)$_GET['id'] : '';
+	$id = Input::getIntVar('id');
 
 	LoginAuth::checkToken();
 

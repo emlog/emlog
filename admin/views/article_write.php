@@ -68,7 +68,7 @@
                 </div>
                 <div class="form-group">
                     <label>标签：</label>
-                    <input name="tag" id="tag" class="form-control" value="<?= $tagStr ?>" placeholder="文章标签，使用逗号分隔"/>
+                    <input name="tag" id="tag" class="form-control" value="<?= $tagStr ?>" placeholder="多个使用逗号分隔"/>
 					<?php if ($tags): ?>
                         <span class="small"><a href="javascript:doToggle('tags', 1);">近期使用的+</a></span>
                         <div id="tags" style="display: none">
@@ -87,6 +87,10 @@
                 <div class="form-group">
                     <label>链接别名：（用于seo设置 <a href="./setting.php?action=seo">&rarr;</a>）</label>
                     <input name="alias" id="alias" class="form-control" value="<?= $alias ?>"/>
+                </div>
+                <div class="form-group">
+                    <label>跳转链接：（填写后不展示文章内容直接跳转该地址）</label>
+                    <input name="link" id="link" type="url" class="form-control" value="<?= $link ?>" placeholder="https://"/>
                 </div>
                 <div class="form-group">
                     <label>访问密码：</label>

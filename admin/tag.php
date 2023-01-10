@@ -16,7 +16,8 @@ $Tag_Model = new Tag_Model();
 
 if (empty($action)) {
 	$page_count = 260;
-	$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+	$page = Input::getIntVar('page', 1);
+
 	$tags = $Tag_Model->getTags($page_count, $page);
 	$tags_count = $Tag_Model->getTagsCount();
 	$pageurl = pagination($tags_count, $page_count, $page, "./tag.php?page=");
@@ -28,8 +29,8 @@ if (empty($action)) {
 }
 
 if ($action == 'update_tag') {
-	$tagName = isset($_POST['tagname']) ? addslashes($_POST['tagname']) : '';
-	$tagId = isset($_POST['tid']) ? (int)$_POST['tid'] : '';
+	$tagName = Input::postStrVar('tagname');
+	$tagId = Input::postIntVar('tid');
 
 	if (empty($tagName)) {
 		emDirect("tag.php?error_a=1");
@@ -41,7 +42,7 @@ if ($action == 'update_tag') {
 }
 
 if ($action == 'del_tag') {
-	$tid = isset($_GET['tid']) ? (int)$_GET['tid'] : '';
+	$tid = Input::getIntVar('tid');
 
 	LoginAuth::checkToken();
 	if (!$tid) {
@@ -53,7 +54,7 @@ if ($action == 'del_tag') {
 }
 
 if ($action === 'operate_tag') {
-	$operate = isset($_POST['operate']) ? $_POST['operate'] : '';
+	$operate = Input::postStrVar('operate');
 	$tids = isset($_POST['tids']) ? array_map('intval', $_POST['tids']) : [];
 
 	LoginAuth::checkToken();

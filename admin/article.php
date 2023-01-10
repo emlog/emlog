@@ -197,13 +197,13 @@ if ($action === 'write') {
 		'content'  => '',
 		'excerpt'  => '',
 		'alias'    => '',
-		'author'   => '',
 		'sortid'   => -1,
 		'type'     => 'blog',
 		'password' => '',
 		'hide'     => '',
 		'author'   => UID,
 		'cover'    => '',
+		'link'     => '',
 	];
 
 	extract($blogData);
@@ -219,7 +219,6 @@ if ($action === 'write') {
 	$is_allow_remark = 'checked="checked"';
 	$postDate = date('Y-m-d H:i:s');
 
-	//media
 	$Media_Model = new Media_Model();
 	$medias = $Media_Model->getMedias();
 

@@ -70,6 +70,10 @@ class Log_Controller {
 
 		extract($logData);
 
+		if (filter_var($link, FILTER_VALIDATE_URL)) {
+			emDirect($link);
+		}
+
 		if (!empty($password)) {
 			$postpwd = isset($_POST['logpwd']) ? addslashes(trim($_POST['logpwd'])) : '';
 			$cookiepwd = isset($_COOKIE['em_logpwd_' . $logid]) ? addslashes(trim($_COOKIE['em_logpwd_' . $logid])) : '';

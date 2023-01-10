@@ -121,6 +121,7 @@ class Log_Model {
 			'allow_remark' => Option::get('iscomment') == 'y' ? $row['allow_remark'] : 'n',
 			'password'     => $row['password'],
 			'template'     => $row['template'],
+			'link'         => $row['link'],
 		];
 	}
 

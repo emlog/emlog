@@ -124,6 +124,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 								<?php if ($value['sortop'] == 'y'): ?><span class="badge small badge-info">分类置顶</span><?php endif ?>
 								<?php if ($value['timestamp'] > time()): ?><span class="badge small badge-warning">定时发布</span><?php endif ?>
 								<?php if ($value['password']): ?><span class="small">🔒</span><?php endif ?>
+								<?php if ($value['link']): ?><span class="small">🔗</span><?php endif ?>
 								<?php if (!$draft && $value['checked'] == 'n'): ?><span class="badge small badge-danger">待审核</span><?php endif ?>
                             </td>
                             <td><a href="comment.php?gid=<?= $value['gid'] ?>" class="badge badge-info"><?= $value['comnum'] ?></a></td>

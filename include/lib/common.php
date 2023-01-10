@@ -825,6 +825,7 @@ function emDeleteFile($file) {
  * 页面跳转
  */
 function emDirect($directUrl) {
+	header("HTTP/1.1 301 Moved Permanently");
 	header("Location: $directUrl");
 	exit;
 }
