@@ -15,10 +15,17 @@ require_once 'globals.php';
 $User_Model = new User_Model();
 
 if (empty($action)) {
-	$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-	$email = isset($_GET['email']) ? htmlspecialchars(addslashes(trim($_GET['email']))) : '';
+	$page = Input::getIntVar('page', 1);
+	$keyword = Input::getStrVar('keyword');
 
-	$users = $User_Model->getUsers($email, $page);
+	$email = $nickname = '';
+	if (filter_var($keyword, FILTER_VALIDATE_EMAIL)) {
+		$email = $keyword;
+	} else {
+		$nickname = $keyword;
+	}
+
+	$users = $User_Model->getUsers($email, $nickname, $page);
 	$usernum = $User_Model->getUserNum();
 	$pageurl = pagination($usernum, Option::get('admin_perpage_num'), $page, "./user.php?page=");
 

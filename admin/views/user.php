@@ -35,7 +35,7 @@
             </div>
             <form action="user.php" method="get">
                 <div class="form-inline search-inputs-nowrap">
-                    <input type="text" name="email" value="<?= $email ?>" class="form-control m-1 small" placeholder="按邮箱搜索用户...">
+                    <input type="text" name="keyword" value="<?= $keyword ?>" class="form-control m-1 small" placeholder="输入邮箱或用户昵称搜索...">
                     <div class="input-group-append">
                         <button class="btn btn-sm btn-success" type="submit">
                             <i class="icofont-search-2"></i>

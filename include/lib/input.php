@@ -18,12 +18,12 @@ class Input {
 
 	public static function postStrVar($var_name, $var_default = '') {
 		$str = filter_input(INPUT_POST, $var_name);
-		return $str ? addslashes($str) : $var_default;
+		return $str ? addslashes(trim($str)) : $var_default;
 	}
 
 	public static function getStrVar($var_name, $var_default = '') {
 		$str = filter_input(INPUT_GET, $var_name);
-		return $str ? addslashes($str) : $var_default;
+		return $str ? addslashes(trim($str)) : $var_default;
 	}
 
 	private static function setIntOption($var_default = 0, $var_min = 0, $var_max = 0) {

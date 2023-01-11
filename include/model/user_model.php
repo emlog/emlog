@@ -13,10 +13,13 @@ class User_Model {
 		$this->db = Database::getInstance();
 	}
 
-	function getUsers($email = '', $page = 1) {
+	function getUsers($email = '', $nickname = '', $page = 1) {
 		$condition = $limit = '';
 		if ($email) {
 			$condition = " and email like '$email%'";
+		}
+		if ($nickname) {
+			$condition = " and nickname like '%$nickname%'";
 		}
 		if ($page) {
 			$perpage_num = Option::get('admin_perpage_num');
