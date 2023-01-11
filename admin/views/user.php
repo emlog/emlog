@@ -115,7 +115,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="user.php?action=new" method="post">
+            <form action="user.php?action=new" method="post" autocomplete="off">
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="sortname">用户组</label>
@@ -127,13 +127,11 @@
                     </div>
                     <div class="form-group">
                         <label for="username">登录邮箱</label>
-                        <input class="hidden-auto-filling" name="email" style="width: 0;border: 0;opacity: 0">
                         <input type="email" name="email" class="form-control" value="<?= $email ?>" required>
                     </div>
                     <div class="form-group">
                         <label for="password">密码 (大于6位)</label>
-                        <input class="hidden-auto-filling" type="password" name="psw" style="width: 0;border: 0;opacity: 0">
-                        <input class="form-control" id="password" name="password" type="password" required>
+                        <input class="form-control" id="password" name="password" autocomplete="new-password" type="password" required>
                     </div>
                     <div class="form-group">
                         <label for="password2">再次输入密码</label>

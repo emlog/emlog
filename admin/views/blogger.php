@@ -69,8 +69,7 @@
                 </div>
                 <div class="form-group">
                     <label>新密码（不小于6位，不修改请留空）</label>
-                    <input type="password" name="hidden-auto-filling" style="width: 0;border: 0;opacity: 0">
-                    <input type="password" class="form-control" value="" name="newpass">
+                    <input type="password" class="form-control" value="" autocomplete="new-password" name="newpass">
                 </div>
                 <div class="form-group">
                     <label>再次输入新密码</label>
