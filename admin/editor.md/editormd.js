@@ -1200,7 +1200,7 @@
             document.addEventListener("touchmove", function(e){
                 isTouchMove = true
             }, false);
-            //手指离开屏幕
+            // 手指离开屏幕
             document.addEventListener("touchend", function(e){
                 isTouchMove = false
             }, false);
