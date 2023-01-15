@@ -306,6 +306,7 @@ function pagesave() {
         setTimeout(function () {
             $('title').text(titleText);
         }, 2000);
+        pageText = $("textarea").text();
     }).fail(function () {
         $('title').text('[保存失败] ' + $('title').text());
         alert("保存失败！")
