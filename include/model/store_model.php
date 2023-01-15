@@ -19,7 +19,6 @@ class Store_Model {
 		return $this->reqEmStore('mine');
 	}
 
-	public function reqEmStore($type, $tag = '', $keyword = '') {
 	public function reqEmStore($type, $tag = '', $keyword = '', $page = 1) {
 		$emcurl = new EmCurl();
 
