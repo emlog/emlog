@@ -25,30 +25,16 @@
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">应用商店 - <?= $sub_title ?></h1>
 </div>
-<div class="row mb-4 ml-1 justify-content-between">
+<div class="row mb-4 ml-1">
     <ul class="nav nav-pills">
-        <li class="nav-item"><a class="nav-link active" href="./store.php?tag=free"><i class="icofont-paint"></i> 模板主题</a></li>
+        <li class="nav-item"><a class="nav-link" href="./store.php?tag=free">模板主题</a></li>
         <li class="nav-item"><a class="nav-link" href="./store.php?action=plu&tag=free">扩展插件</a></li>
-        <li class="nav-item"><a class="nav-link" href="./store.php?action=mine">已购应用</a></li>
+        <li class="nav-item"><a class="nav-link active" href="./store.php?action=mine">已购应用</a></li>
     </ul>
-    <form action="./store.php" method="get">
-        <div class="form-inline search-inputs-nowrap">
-            <input type="text" name="keyword" value="<?= $keyword ?>" class="form-control m-1 small" placeholder="搜索模板...">
-            <div class="input-group-append">
-                <button class="btn btn-sm btn-success" type="submit">
-                    <i class="icofont-search-2"></i>
-                </button>
-            </div>
-        </div>
-    </form>
-</div>
-<div class="row mb-3 ml-1">
-    <a href="./store.php?tag=free" class="badge badge-success m-1 p-2">免费区</a>
-    <a href="./store.php?tag=paid" class="badge badge-warning m-1 ml-2 p-2">付费区</a>
 </div>
 <div class="row">
-	<?php if (!empty($templates)): ?>
-		<?php foreach ($templates as $k => $v):
+	<?php if (!empty($addons)): ?>
+		<?php foreach ($addons as $k => $v):
 			$icon = $v['icon'] ?: "./views/images/theme.png";
 			?>
             <div class="col-md-4">
@@ -67,11 +53,7 @@
                             更新时间：<?= $v['update_time'] ?><br>
                         </p>
                         <p class="card-text text-right">
-							<?php if ($v['price'] > 0): ?>
-                                <a href="<?= $v['buy_url'] ?>" class="btn btn-sm btn-warning btn-sm" target="_blank">￥<?= $v['price'] ?>，去购买</a>
-							<?php else: ?>
-                                <a href="./store.php?action=install&source=<?= urlencode($v['download_url']) ?>&type=tpl" class="btn btn-success btn-sm">免费安装</a>
-							<?php endif ?>
+                            <a href="./store.php?action=install&source=<?= urlencode($v['download_url']) ?>&type=tpl" class="btn btn-success btn-sm">安装</a>
                         </p>
                     </div>
                 </div>
@@ -79,7 +61,7 @@
 		<?php endforeach ?>
 	<?php else: ?>
         <div class="col-md-12">
-            <div class="alert alert-info">暂未找到结果，应用商店进货中，敬请期待：）</div>
+            <div class="alert alert-info">你还没有购买任何应用。</div>
         </div>
 	<?php endif ?>
 </div>

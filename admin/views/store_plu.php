@@ -30,6 +30,7 @@
     <ul class="nav nav-pills">
         <li class="nav-item"><a class="nav-link" href="./store.php?tag=free">模板主题</a></li>
         <li class="nav-item"><a class="nav-link active" href="./store.php?action=plu&tag=free"><i class="icofont-plugin"></i> 扩展插件</a></li>
+        <li class="nav-item"><a class="nav-link" href="./store.php?action=mine">已购应用</a></li>
     </ul>
     <form action="./store.php" method="get">
         <div class="form-inline search-inputs-nowrap">
