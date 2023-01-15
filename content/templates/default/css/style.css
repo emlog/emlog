@@ -10,7 +10,13 @@
 }
 /* 一些变量 */
 * {
-	--marRadius : 8px /* 卡片圆角 */
+	--marRadius: 8px;          /* 卡片圆角 */
+	--conBgcolor: #ffffff;   /* 导航、卡片、内容的背景颜色 */
+	--bodyBground: #f5f5f6;  /* 页面背景颜色 */
+	--fontColor: #5a5c69;    /* 普通文本的颜色 */
+	--aColor:  #333333;      /* a 标签的颜色 */
+	--aHoverColor:  #f6607d; /* a 标签 hover 状态的颜色 */
+	--lightColor: #929292      /* 比较浅一点的文本颜色 */
 }
 /* 定义所有元素的 width =（border+padding），方便后续计算 */
 * { 
@@ -21,8 +27,8 @@ body {
 	margin: 0;
 	line-height: 1.5;
 	font-size: 16px;
-	color: #5a5c69;
-	background: #f5f5f6;
+	color: var(--fontColor);
+	background-color: var(--bodyBground);
 	font-family: helvetica neue,Helvetica,Arial,sans-serif
 }
 h1, h2, h3, h4, h5, h6 {
@@ -34,12 +40,12 @@ p {
 	margin: 30px 0
 }
 a {
-	color: #333333;
+	color: var(--aColor);
 	transition: all 0.2s;
 	text-decoration: none 
 }
 a:focus, a:hover {
-	color: #f6607d;
+	color: var(--aHoverColor);
 	text-decoration: none
 }
 img {
@@ -66,7 +72,7 @@ textarea {
 }
 footer {
 	margin-top: 60px;
-	background-color: white;
+	background-color: var(--conBgcolor);
 } 
 footer .list-inline {
 	margin: 0;
@@ -205,7 +211,7 @@ body {
 ---------------------------------------------------*/
 .blog-header {
 	margin-bottom: 2.3rem;
-	background: #ffffff; /* 背景颜色颜色白色 */
+	background-color: var(--conBgcolor);
 	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1) /* 阴影 */
 }
 .blog-header-c {
@@ -455,7 +461,7 @@ body {
 .shadow-theme {
 	box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.02);
 	border-radius: var(--marRadius);
-	background: #ffffff;
+	background-color: var(--conBgcolor);
 	transition: box-shadow 0.4s
 }
 
@@ -830,7 +836,7 @@ body {
 /* 文章内容页样式
 ---------------------------------------------------*/
 .log-con {
-	background-color: #ffffff;
+	background-color: var(--conBgcolor);
 	border-radius: var(--marRadius);
 	max-width: 960px;
 	padding: 30px;
@@ -950,16 +956,15 @@ body {
 .log-info {
 	font-size: small;
 	letter-spacing: 0.5px;
-	color: #404040 !important
 }
 .log-info a {
-	color: #929292
+	color: var(--lightColor)
 }
 .log-count {
 	font-size: small
 }
 .log-count a {
-	color: #252525
+	color: var(--fontColor)
 }
 /* 侧边栏组件的一些样式 */
 .bloggerinfo {
@@ -1062,7 +1067,7 @@ body {
 .logcom-latest-time {
 	position: absolute;
 	right: 10px;
-	color: #b5b5b5;
+	color: var(--lightColor);
 	margin-left: 10px;
 	font-size: small
 }
@@ -1117,7 +1122,7 @@ body {
 	border-radius: 50rem
 }
 .comment-info a {
-	color: #4c4c4c;
+	color: var(--lightColor);
 	padding-left: 5px
 }
 .comment-info hr {
