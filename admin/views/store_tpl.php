@@ -13,15 +13,9 @@
     <div class="alert alert-danger">安装失败，无法解压，请安装php的Zip扩展</div><?php endif ?>
 <?php if (isset($_GET['error_source'])): ?>
     <div class="alert alert-danger">安装失败，不是有效的安装包</div><?php endif ?>
-
 <?php if (isset($_GET['error'])): ?>
-    <div class="container-fluid">
-        <div class="text-center">
-            <p class="lead text-gray-800 mb-5">商店暂不可用，可能是网络问题</p>
-            <a href="./">&larr; 返回首页</a>
-        </div>
-    </div>
-<?php endif ?>
+    <div class="alert alert-danger">商店暂不可用，可能是网络问题</div><?php endif ?>
+
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">应用商店 - <?= $sub_title ?></h1>
 </div>
@@ -76,6 +70,7 @@
                 </div>
             </div>
 		<?php endforeach ?>
+        <div class="col-md-12 page my-5"><?= $pageurl ?> (有<?= $count ?>个模板)</div>
 	<?php else: ?>
         <div class="col-md-12">
             <div class="alert alert-info">暂未找到结果，应用商店进货中，敬请期待：）</div>

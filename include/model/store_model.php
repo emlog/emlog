@@ -15,9 +15,18 @@ class Store_Model {
 		return $this->reqEmStore('plu', $tag, $keyword);
 	}
 
-	public function reqEmStore($type, $tag = '', $keyword = '') {
+	public function reqEmStore($type, $tag = '', $keyword = '', $page = 1) {
 		$emcurl = new EmCurl();
-		$emcurl->setPost(['emkey' => Option::get('emkey'), 'ver' => Option::EMLOG_VERSION, 'type' => $type, 'tag' => $tag, 'keyword' => $keyword]);
+
+		$post_data = [
+			'emkey'   => Option::get('emkey'),
+			'ver'     => Option::EMLOG_VERSION,
+			'type'    => $type,
+			'tag'     => $tag,
+			'keyword' => $keyword,
+			'page'    => $page
+		];
+		$emcurl->setPost($post_data);
 		$emcurl->request('https://www.emlog.net/store/pro');
 
 		$retStatus = $emcurl->getHttpStatus();
@@ -39,10 +48,12 @@ class Store_Model {
 		$data = [];
 		switch ($type) {
 			case 'tpl':
-				$data = isset($ret['data']['templates']) ? $ret['data']['templates'] : [];
+				$data['templates'] = isset($ret['data']['templates']) ? $ret['data']['templates'] : [];
+				$data['count'] = isset($ret['data']['count']) ? $ret['data']['count'] : 0;
 				break;
 			case 'plu':
-				$data = isset($ret['data']['plugins']) ? $ret['data']['plugins'] : [];
+				$data['plugins'] = isset($ret['data']['plugins']) ? $ret['data']['plugins'] : [];
+				$data['count'] = isset($ret['data']['count']) ? $ret['data']['count'] : 0;
 				break;
 		}
 		return $data;

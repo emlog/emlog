@@ -15,10 +15,21 @@ require_once 'globals.php';
 $Store_Model = new Store_Model();
 
 if (empty($action)) {
-	$tag = isset($_GET['tag']) ? addslashes($_GET['tag']) : '';
-	$keyword = isset($_GET['keyword']) ? htmlspecialchars(addslashes($_GET['keyword'])) : '';
-	$templates = $Store_Model->getTemplates($tag, $keyword);
+	$tag = Input::getStrVar('tag');
+	$page = Input::getIntVar('page', 1);
+	$keyword = Input::getStrVar('keyword');
+
+	$r = $Store_Model->getTemplates($tag, $keyword, $page);
+	$templates = $r['templates'];
+	$count = $r['count'];
 	$sub_title = '模板' . ($tag === 'free' ? '免费区' : '付费区');
+
+	$subPage = '';
+	foreach ($_GET as $key => $val) {
+		$subPage .= $key != 'page' ? "&$key=$val" : '';
+	}
+
+	$pageurl = pagination($count, 30, $page, "store.php?{$subPage}&page=");
 
 	include View::getAdmView('header');
 	require_once(View::getAdmView('store_tpl'));
@@ -27,10 +38,20 @@ if (empty($action)) {
 }
 
 if ($action === 'plu') {
-	$tag = isset($_GET['tag']) ? addslashes($_GET['tag']) : '';
-	$keyword = isset($_GET['keyword']) ? htmlspecialchars(addslashes($_GET['keyword'])) : '';
-	$plugins = $Store_Model->getPlugins($tag, $keyword);
+	$tag = Input::getStrVar('tag');
+	$page = Input::getIntVar('page', 1);
+	$keyword = Input::getStrVar('keyword');
+
+	$r = $Store_Model->getPlugins($tag, $keyword, $page);
+	$plugins = $r['plugins'];
+	$count = $r['count'];
 	$sub_title = '插件' . ($tag === 'free' ? '免费区' : '付费区');
+
+	$subPage = '';
+	foreach ($_GET as $key => $val) {
+		$subPage .= $key != 'page' ? "&$key=$val" : '';
+	}
+	$pageurl = pagination($count, 50, $page, "store.php?{$subPage}&page=");
 
 	include View::getAdmView('header');
 	require_once(View::getAdmView('store_plu'));
@@ -39,6 +60,9 @@ if ($action === 'plu') {
 }
 
 if ($action === 'error') {
+	$keyword = '';
+	$sub_title = '';
+
 	include View::getAdmView('header');
 	require_once(View::getAdmView('store_tpl'));
 	include View::getAdmView('footer');
