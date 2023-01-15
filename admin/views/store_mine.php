@@ -43,9 +43,7 @@
                         <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="<?= $icon ?>">
                     </a>
                     <div class="card-body">
-                        <p class="card-text"><?= $v['name'] ?>
-							<?= $v['price'] > 0 ? '<span class="badge badge-warning">' . $v['price'] . '元</span>' : '<span class="badge badge-success">免费</span>' ?>
-                        </p>
+                        <p class="card-text"><?= $v['name'] ?></p>
                         <p class="card-text text-muted small">
                             <span class="small"><?= $v['info'] ?></span><br><br>
                             开发者：<?= $v['author'] ?><br>
@@ -53,7 +51,11 @@
                             更新时间：<?= $v['update_time'] ?><br>
                         </p>
                         <p class="card-text text-right">
-                            <a href="./store.php?action=install&source=<?= urlencode($v['download_url']) ?>&type=tpl" class="btn btn-success btn-sm">安装</a>
+							<?php if (!empty($v['download_url'])): ?>
+                                <a href="./store.php?action=install&source=<?= urlencode($v['download_url']) ?>&type=<?= $v['type'] ?>" class="btn btn-success btn-sm">安装</a>
+							<?php else: ?>
+                                <a href="#" class="btn btn-success btn-sm">联系作者安装</a>
+							<?php endif; ?>
                         </p>
                     </div>
                 </div>

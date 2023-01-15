@@ -73,7 +73,7 @@
 							<?php if ($v['price'] > 0): ?>
                                 <a href="<?= $v['buy_url'] ?>" class="btn btn-warning btn-sm" target="_blank">￥<?= $v['price'] ?>，去购买</a>
 							<?php else: ?>
-                                <a href="./store.php?action=install&source=<?= urlencode($v['download_url']) ?>&type=plugin" class="btn btn-success btn-sm">免费安装</a>
+                                <a href="./store.php?action=install&source=<?= urlencode($v['download_url']) ?>&type=plu" class="btn btn-success btn-sm">免费安装</a>
 							<?php endif ?>
                         </p>
                     </div>
