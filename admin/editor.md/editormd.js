@@ -1206,7 +1206,7 @@
             }, false);
 
             toolbarIcons.bind(editormd.mouseOrTouch("click", "touchend"), function (event) {
-                if (isTouchMove === true) return  /* 如果用户正在滑动屏幕，则不触发事件 */
+                if (isTouchMove === true) return  // 如果用户正在滑动屏幕，则不触发事件
 
                 var icon = $(this).children(".fa");
                 var name = icon.attr("name");
