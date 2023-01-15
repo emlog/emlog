@@ -222,7 +222,7 @@
             height: 640,
             toolbarIcons: function () {
                 return ["undo", "redo", "|", "bold", "del", "italic", "quote", "|", "h1", "h2", "h3", "|", "list-ul", "list-ol", "hr", "|",
-                    "link", "image", "video", "preformatted-text", "code-block", "table", "|", "search", "watch", "help"]
+                    "link", "image", "video", "preformatted-text", "code-block", "table", "|", "search", "watch", "help", "fullscreen"]
             },
             path: "editor.md/lib/",
             tex: false,
@@ -373,5 +373,7 @@
         $("#advset").toggle();
         icon_mod = "right";
         $(".icofont-simple-down").attr("class", "icofont-simple-right")
+    } else {
+        $(".icofont-simple-right").attr("class", "icofont-simple-down")
     }
 </script>
