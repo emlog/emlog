@@ -242,24 +242,54 @@ function pagination($count, $perlogs, $page, $url, $anchor = '') {
 	$pnums = @ceil($count / $perlogs);
 	$re = '';
 	$urlHome = preg_replace("|[\?&/][^\./\?&=]*page[=/\-]|", "", $url);
-	for ($i = $page - 5; $i <= $page + 5 && $i <= $pnums; $i++) {
-		if ($i <= 0) {
-			continue;
+
+	$frontContent = '';
+	$paginContent = '';
+	$endContent = '';
+	$circle_a = 1;  
+	$circle_b = $pnums;
+	$neighborNum = 1;
+	$minKey = 4;
+
+	if ($pnums == 1) return $re;
+	if ($page >= 1 && $pnums >= 7) {
+		$frontContent .= " <a href=\"$urlHome$anchor\">1</a> ";
+		$frontContent .= " <em> ... </em> ";
+		$endContent .= " <em> ... </em> ";
+		$endContent .= " <a href=\"$url$pnums$anchor\">$pnums</a> ";
+		if ($pnums >= 12) {
+			$minKey = 7;
+			$neighborNum = 3;
 		}
-		if ($i == $page) {
-			$re .= " <span>$i</span> ";
-		} elseif ($i == 1) {
-			$re .= " <a href=\"$urlHome$anchor\">$i</a> ";
-		} else {
-			$re .= " <a href=\"$url$i$anchor\">$i</a> ";
+		if ($page < $minKey) {
+			$circle_b = $minKey;
+			$frontContent = '';
+		}
+		if ($page > ($pnums - $minKey + 1)) {
+			$circle_a = $pnums - $minKey + 1;
+			$endContent = '';
+		}
+		if($page > ($minKey - 1) && $page < ($pnums - $minKey + 2)){
+			$circle_a = $page - $neighborNum ;
+			$circle_b = $page + $neighborNum ;
+		}
+		if ($page != 1) {
+			$frontContent = " <a href=\"$url".($page - 1)."$anchor\" title=\"Previous Page\">&laquo;</a> ".$frontContent;
+		}
+		if ($page != $pnums) {
+			$endContent .= " <a href=\"$url".($page + 1)."$anchor\" title=\"Next Page\">&raquo;</a> ";
 		}
 	}
-	if ($page > 6)
-		$re = "<a href=\"{$urlHome}$anchor\" title=\"首页\">&laquo;</a><em> ... </em>$re";
-	if ($page + 5 < $pnums)
-		$re .= "<em> ... </em> <a href=\"$url$pnums$anchor\" title=\"尾页\">&raquo;</a>";
-	if ($pnums <= 1)
-		$re = '';
+	for ($i = $circle_a; $i <= $circle_b; $i++) {
+		if ($i == $page) {
+			$paginContent .= " <span>$i</span> ";
+		} elseif ($i == 1) {
+			$paginContent .= " <a href=\"$urlHome$anchor\">$i</a> ";
+		} else {
+			$paginContent .= " <a href=\"$url$i$anchor\">$i</a> ";
+		}
+	}
+	$re = $frontContent . $paginContent . $endContent;
 	return $re;
 }
 
