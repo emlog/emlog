@@ -708,3 +708,8 @@ textarea {
 .comment-replay-content {
     overflow-wrap: break-word
 }
+
+/* editormd fullscreen mode style */
+.editormd-fullscreen {
+    z-index: 2;
+}

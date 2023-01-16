@@ -40,7 +40,7 @@ var myBlog = {
 	comReply: function ($t) {
 		var $ele, getpid, $com_board
 		$ele = $t.parent().parent()
-		getpid = $ele.parent().attr("id").substring(8)
+		getpid = $ele.parent().attr("id")
 		$com_board = $("#comment-post")
 
 		$ele.append($com_board)
@@ -188,7 +188,7 @@ var myBlog = {
 		var $titles = $("#emlogEchoLog h1,h2,h3,h4,h5,h6:eq(0)")
 
 		if ($titles.length > 0) {
-			if (window.outerWidth > 1275){
+			if (window.outerWidth > 1275 || window.outerWidth === 0){
 				$logCon.css("margin-left", logConMar + 150 + 'px')  // 文章正文向右偏移 150px
 			}
 		} else {
@@ -207,7 +207,7 @@ var myBlog = {
 		var tocHtml = ''
 		var data = this.tocArray
 		var $logcon = $(".log-con")
-		var padNum = (window.outerWidth < 1276) ? 0 : parseInt($logcon.css("margin-left")) - 270
+		var padNum = (window.outerWidth < 1276 && window.outerWidth !== 0) ? 0 : parseInt($logcon.css("margin-left")) - 270
 		var judgeN = 0
 		var chilPad = 4
 		var minType = 6
@@ -319,10 +319,12 @@ var myBlog = {
 			tocSetListen()
 			myBlog.tocSetArray()
 		}, 1500)
-	},/**
+	},
+	/**
 	* toc 目录移动端的部分设置
 	*/
 	tocMobileSet: function () {
+		if (window.outerWidth === 0) return  // Chrome 浏览器对新窗口打开的页面，会设置 width 为 0
 		if (window.outerWidth > 1275) return
 		$(".toc-con").toggle()
 		$("[toc-date='title']").append('<a class="toc-link">[目录]</a>')

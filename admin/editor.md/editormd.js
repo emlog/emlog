@@ -1194,7 +1194,19 @@
             var toolbarIcons = this.toolbarIcons = toolbar.find("." + classPrefix + "menu > li > a");
             var toolbarIconHandlers = this.getToolbarHandles();
 
+            /* 修改：增加变量以判断用户是否正在滑动屏幕 */
+            var isTouchMove = false
+            // 手指滑动屏幕
+            document.addEventListener("touchmove", function(e){
+                isTouchMove = true
+            }, false);
+            // 手指离开屏幕
+            document.addEventListener("touchend", function(e){
+                isTouchMove = false
+            }, false);
+
             toolbarIcons.bind(editormd.mouseOrTouch("click", "touchend"), function (event) {
+                if (isTouchMove === true) return  // 如果用户正在滑动屏幕，则不触发事件
 
                 var icon = $(this).children(".fa");
                 var name = icon.attr("name");

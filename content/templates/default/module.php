@@ -21,7 +21,7 @@ function widget_link($title) {
         </div>
         <ul class="widget-list no-margin-bottom unstyle-li">
 			<?php foreach ($link_cache as $value): ?>
-                <li><a href="<?= $value['url'] ?>" target="_blank"><?= $value['link'] ?></a></li>
+                <li><a href="<?= $value['url'] ?>" title="<?= $value['des'] ?>" target="_blank"><?= $value['link'] ?></a></li>
 			<?php endforeach ?>
         </ul>
     </div>
@@ -100,7 +100,7 @@ function widget_sort($title) {
 				if ($value['pid'] != 0) continue;
 				?>
                 <li>
-                    <a href="<?= Url::sort($value['sid']) ?>"><?= $value['sortname'] ?>&nbsp;&nbsp;<?= (($value['lognum']) > 0) ? '(' . ($value['lognum']) . ')' : '' ?></a>
+                    <a href="<?= Url::sort($value['sid']) ?>" title="<?= $value["description"] ?>"><?= $value['sortname'] ?>&nbsp;&nbsp;<?= (($value['lognum']) > 0) ? '(' . ($value['lognum']) . ')' : '' ?></a>
 					<?php if (!empty($value['children'])): ?>
                         <ul class="log-classify-c">
 							<?php
@@ -109,7 +109,7 @@ function widget_sort($title) {
 								$value = $sort_cache[$key];
 								?>
                                 <li>
-                                    <a href="<?= Url::sort($value['sid']) ?>">--&nbsp;&nbsp;<?= $value['sortname'] ?>
+                                    <a href="<?= Url::sort($value['sid']) ?>" title="<?= $value["description"] ?>">--&nbsp;&nbsp;<?= $value['sortname'] ?>
                                         &nbsp;&nbsp;(<?= $value['lognum'] ?>)</a>
                                 </li>
 							<?php endforeach ?>
@@ -145,7 +145,7 @@ function widget_newcomm($title) {
 					<?php endif ?>
                     <span class='comm-lates-name'><?= $value['name'] ?></span>
                     <span class='logcom-latest-time'><?= smartDate($value['date']) ?></span><br/>
-                    <a href="<?= $url ?>" style="color: #989898;"><?= $value['content'] ?></a>
+                    <a href="<?= $url ?>"><?= $value['content'] ?></a>
                     <hr>
                 </li>
 			<?php endforeach ?>
