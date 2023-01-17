@@ -18,8 +18,9 @@ if (empty($action)) {
 	$tag = Input::getStrVar('tag');
 	$page = Input::getIntVar('page', 1);
 	$keyword = Input::getStrVar('keyword');
+	$author_id = Input::getStrVar('author_id');
 
-	$r = $Store_Model->getTemplates($tag, $keyword, $page);
+	$r = $Store_Model->getTemplates($tag, $keyword, $page, $author_id);
 	$templates = $r['templates'];
 	$count = $r['count'];
 	$sub_title = '模板' . ($tag === 'free' ? '免费区' : '付费区');
@@ -41,8 +42,9 @@ if ($action === 'plu') {
 	$tag = Input::getStrVar('tag');
 	$page = Input::getIntVar('page', 1);
 	$keyword = Input::getStrVar('keyword');
+	$author_id = Input::getStrVar('author_id');
 
-	$r = $Store_Model->getPlugins($tag, $keyword, $page);
+	$r = $Store_Model->getPlugins($tag, $keyword, $page, $author_id);
 	$plugins = $r['plugins'];
 	$count = $r['count'];
 	$sub_title = '插件' . ($tag === 'free' ? '免费区' : '付费区');

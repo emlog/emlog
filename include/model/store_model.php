@@ -7,28 +7,29 @@
 
 class Store_Model {
 
-	public function getTemplates($tag, $keyword) {
-		return $this->reqEmStore('tpl', $tag, $keyword);
+	public function getTemplates($tag, $keyword, $page, $author_id) {
+		return $this->reqEmStore('tpl', $tag, $keyword, $page, $author_id);
 	}
 
-	public function getPlugins($tag, $keyword) {
-		return $this->reqEmStore('plu', $tag, $keyword);
+	public function getPlugins($tag, $keyword, $page, $author_id) {
+		return $this->reqEmStore('plu', $tag, $keyword, $page, $author_id);
 	}
 
 	public function getMyAddon() {
 		return $this->reqEmStore('mine');
 	}
 
-	public function reqEmStore($type, $tag = '', $keyword = '', $page = 1) {
+	public function reqEmStore($type, $tag = '', $keyword = '', $page = 1, $author_id = 0) {
 		$emcurl = new EmCurl();
 
 		$post_data = [
-			'emkey'   => Option::get('emkey'),
-			'ver'     => Option::EMLOG_VERSION,
-			'type'    => $type,
-			'tag'     => $tag,
-			'keyword' => $keyword,
-			'page'    => $page
+			'emkey'     => Option::get('emkey'),
+			'ver'       => Option::EMLOG_VERSION,
+			'type'      => $type,
+			'tag'       => $tag,
+			'keyword'   => $keyword,
+			'page'      => $page,
+			'author_id' => $author_id
 		];
 		$emcurl->setPost($post_data);
 		$emcurl->request('https://www.emlog.net/store/pro');

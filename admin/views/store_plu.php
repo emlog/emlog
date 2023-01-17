@@ -28,8 +28,8 @@
 </div>
 <div class="row mb-4 ml-1 justify-content-between">
     <ul class="nav nav-pills">
-        <li class="nav-item"><a class="nav-link" href="./store.php?tag=free">模板主题</a></li>
-        <li class="nav-item"><a class="nav-link active" href="./store.php?action=plu&tag=free"><i class="icofont-plugin"></i> 扩展插件</a></li>
+        <li class="nav-item"><a class="nav-link" href="./store.php">模板主题</a></li>
+        <li class="nav-item"><a class="nav-link active" href="./store.php?action=plu"><i class="icofont-plugin"></i> 扩展插件</a></li>
         <li class="nav-item"><a class="nav-link" href="./store.php?action=mine">已购应用</a></li>
     </ul>
     <form action="./store.php" method="get">
@@ -45,8 +45,9 @@
     </form>
 </div>
 <div class="row mb-3 ml-1">
-    <a href="./store.php?action=plu&tag=free" class="badge badge-success m-1 p-2">免费区</a>
-    <a href="./store.php?action=plu&tag=paid" class="badge badge-warning m-1 ml-2 p-2">付费区</a>
+    <a href="./store.php?action=plu" class="badge badge-success m-1 p-2 active">全部</a>
+    <a href="./store.php?action=plu&tag=free" class="badge badge-success m-1 ml-2 p-2 active">仅看免费</a>
+    <a href="./store.php?action=plu&tag=paid" class="badge badge-warning m-1 ml-2 p-2">仅看付费</a>
 </div>
 <div class="row">
 	<?php if (!empty($plugins)): ?>
@@ -65,7 +66,7 @@
                         <p class="card-text text-muted small">
 							<?= $v['info'] ?><br><br>
                             售价：<?= $v['price'] > 0 ? $v['price'] . '元' : '免费' ?><br>
-                            开发者：<?= $v['author'] ?><br>
+                            开发者：<a href="./store.php?action=plu&author_id=<?= $v['author_id'] ?>"><?= $v['author'] ?></a><br>
                             版本号：<?= $v['ver'] ?><br>
                             更新时间：<?= $v['update_time'] ?><br>
                         </p>
