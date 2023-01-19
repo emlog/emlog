@@ -51,9 +51,9 @@
                             </td>
                             <td>
 								<?php if ($value['hide'] == 'n'): ?>
-                                    <a href="link.php?action=hide&amp;linkid=<?= $value['id'] ?>" class="badge badge-primary">显示</a>
+                                    <a href="link.php?action=hide&amp;linkid=<?= $value['id'] ?>" class="badge badge-primary">隐藏</a>
 								<?php else: ?>
-                                    <a href="link.php?action=show&amp;linkid=<?= $value['id'] ?>" class="badge badge-warning">隐藏</a>
+                                    <a href="link.php?action=show&amp;linkid=<?= $value['id'] ?>" class="badge badge-warning">显示</a>
 								<?php endif ?>
                                 <a href="javascript: em_confirm(<?= $value['id'] ?>, 'link', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger">删除</a>
                             </td>
@@ -123,7 +123,7 @@
                     </div>
                     <div class="form-group">
                         <label for="template">地址</label>
-                        <input class="form-control" id="siteurl" maxlength="255" name="siteurl" required>
+                        <input class="form-control" id="siteurl" maxlength="255" name="siteurl" type="url" required>
                     </div>
                     <div class="form-group">
                         <label for="alias">描述</label>

@@ -125,6 +125,11 @@
                             <option value="admin">管理员</option>
                         </select>
                     </div>
+                    <div class="alert alert-warning">
+                        注册用户：通过注册产生，可以发布文章、笔记、上传图片等<br>
+                        内容编辑：负责文章、资源、评论等内容的管理<br>
+                        管理员：拥有站点全部管理权限，可以管理用户、进行系统设置等<br>
+                    </div>
                     <div class="form-group">
                         <label for="username">登录邮箱</label>
                         <input type="email" name="email" class="form-control" value="<?= $email ?>" required>
