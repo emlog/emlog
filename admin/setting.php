@@ -338,10 +338,12 @@ if ($action == 'user') {
 	$is_signup = isset($options_cache['is_signup']) ? $options_cache['is_signup'] : '';
 	$login_code = isset($options_cache['login_code']) ? $options_cache['login_code'] : '';
 	$ischkarticle = isset($options_cache['ischkarticle']) ? $options_cache['ischkarticle'] : '';
+	$posts_per_day = isset($options_cache['posts_per_day']) ? $options_cache['posts_per_day'] : '';
 
 	$conf_is_signup = $is_signup == 'y' ? 'checked="checked"' : '';
 	$conf_login_code = $login_code == 'y' ? 'checked="checked"' : '';
 	$conf_ischkarticle = $ischkarticle == 'y' ? 'checked="checked"' : '';
+	$conf_posts_per_day = $posts_per_day;
 
 	include View::getAdmView('header');
 	require_once(View::getAdmView('setting_user'));
@@ -352,9 +354,10 @@ if ($action == 'user') {
 if ($action == 'user_save') {
 	LoginAuth::checkToken();
 	$data = [
-		'is_signup'    => isset($_POST['is_signup']) ? addslashes($_POST['is_signup']) : 'n',
-		'login_code'   => isset($_POST['login_code']) ? addslashes($_POST['login_code']) : 'n',
-		'ischkarticle' => isset($_POST['ischkarticle']) ? addslashes($_POST['ischkarticle']) : 'n',
+		'is_signup'     => Input::postStrVar('is_signup', 'n'),
+		'login_code'    => Input::postStrVar('login_code', 'n'),
+		'ischkarticle'  => Input::postStrVar('ischkarticle', 'n'),
+		'posts_per_day' => Input::postStrVar('posts_per_day', 0),
 	];
 	foreach ($data as $key => $val) {
 		Option::updateOption($key, $val);

@@ -33,6 +33,8 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
     <div class="alert alert-success">文章审核成功</div><?php endif ?>
 <?php if (isset($_GET['active_unck'])): ?>
     <div class="alert alert-success">文章驳回成功</div><?php endif ?>
+<?php if (isset($_GET['error_post_per_day'])): ?>
+    <div class="alert alert-danger">超出每日发文数量</div><?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800"><?= $draft ? '草稿箱' : '文章' ?></h1>
     <a href="./article.php?action=write" class="btn btn-sm btn-success shadow-sm mt-4"><i class="icofont-pencil-alt-5"></i> 写新文章</a>

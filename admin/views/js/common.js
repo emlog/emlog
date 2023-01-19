@@ -263,9 +263,9 @@ function autosave(act) {
     $("#savedf").attr("disabled", "disabled");
     $.post(url, querystr, function (data) {
         data = $.trim(data);
-        var isresponse = /autosave\_gid\:\d+\_df\:\d*\_/;
+        var isresponse = /.*autosave\_gid\:\d+\_.*/;
         if (isresponse.test(data)) {
-            var getvar = data.match(/\_gid\:([\d]+)\_df\:([\d]*)\_/);
+            var getvar = data.match(/\_gid\:([\d]+)\_/);
             var logid = getvar[1];
             var d = new Date();
             var h = d.getHours();
@@ -280,9 +280,8 @@ function autosave(act) {
             $("#savedf").attr("disabled", false).val(btname);
         } else {
             $("#savedf").attr("disabled", false).val(btname);
-            $("#msg").html("网络或系统出现异常...保存可能失败").addClass("alert-danger");
+            $("#save_info").html("保存失败，可能系统出现异常或者达到每日发文限额").addClass("alert-danger");
             $('title').text('[保存失败] ' + titleText);
-            alert("保存失败，请备份内容和刷新页面后重试！")
         }
     });
     if (act == 1) {

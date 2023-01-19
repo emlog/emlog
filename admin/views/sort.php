@@ -50,7 +50,7 @@
                         <tr>
                             <td>
                                 <input type="hidden" value="<?= $value['sid'] ?>" class="sort_id"/>
-                                <input class="form-control em-small" name="sort[<?= $value['sid'] ?>]" value="<?= $value['taxis'] ?>"/>
+                                <input class="form-control" style="width:60px;" type="number" name="sort[<?= $value['sid'] ?>]" value="<?= $value['taxis'] ?>"/>
                             </td>
                             <td class="sortname">
                                 <a href="sort.php?action=mod_sort&sid=<?= $value['sid'] ?>"><?= $value['sortname'] ?></a>

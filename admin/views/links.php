@@ -37,7 +37,7 @@
 						doAction('adm_link_display');
 						?>
                         <tr>
-                            <td><input class="form-control em-small" name="link[<?= $value['id'] ?>]" value="<?= $value['taxis'] ?>" maxlength="4"/></td>
+                            <td><input class="form-control" style="width:60px;" name="link[<?= $value['id'] ?>]" value="<?= $value['taxis'] ?>" maxlength="5" type="number"/></td>
                             <td>
                                 <a href="#" data-toggle="modal" data-target="#editModal"
                                    data-linkid="<?= $value['id'] ?>"

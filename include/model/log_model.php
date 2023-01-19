@@ -72,6 +72,16 @@ class Log_Model {
 		return $data['total'];
 	}
 
+	public function getPostCountByUid($uid, $time = 0) {
+		$date = '';
+		if ($time) {
+			$date = "and date > $time";
+		}
+
+		$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM $this->table WHERE type='blog' and author=$uid $date");
+		return $data['total'];
+	}
+
 	public function getOneLogForAdmin($blogId) {
 		$author = User::haveEditPermission() ? '' : 'AND author=' . UID;
 		$sql = "SELECT * FROM $this->table WHERE gid=$blogId $author";

@@ -3,7 +3,7 @@
 }
 ?>
 <div id="msg" class="fixed-top alert" style="display: none"></div>
-<h1 class="h3 mb-4 text-gray-800"><?= $containertitle ?></h1>
+<h1 class="h3 mb-4 text-gray-800"><?= $containertitle ?> <span id="save_info"></span></h1>
 <form action="article_save.php?action=add" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
     <div class="row">
         <div class="col-xl-12">
@@ -118,7 +118,6 @@
                         <input type="submit" name="pubdf" id="pubdf" value="发布" onclick="return checkform();" class="btn btn-sm btn-success"/>
 					<?php endif ?>
 				<?php endif ?>
-                <span id="save_info"></span>
             </div>
         </div>
     </div>

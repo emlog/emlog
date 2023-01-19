@@ -30,7 +30,7 @@
             </div>
             <div class="form-group">
                 <label>站点地址</label>
-                <input class="form-control" value="<?= $blogurl ?>" name="blogurl">
+                <input class="form-control" value="<?= $blogurl ?>" name="blogurl" type="url">
             </div>
             <div class="form-group form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="detect_url" id="detect_url" <?= $conf_detect_url ?> />
@@ -85,7 +85,7 @@
                 <label>评论分页</label>
             </div>
             <div class="form-group form-inline">
-                每页显示评论条数：<input maxlength="5" style="width:60px;" class="form-control" value="<?= $comment_pnum ?>" name="comment_pnum"/>
+                每页显示评论条数：<input maxlength="5" style="width:60px;" class="form-control" value="<?= $comment_pnum ?>" name="comment_pnum" type="number"/>
             </div>
             <div class="form-group form-inline">
                 评论排序方式：<select name="comment_order" class="form-control" style="width: 120px;">
@@ -94,7 +94,7 @@
                 </select>
             </div>
             <div class="form-group form-inline">
-                发表评论间隔（秒）： <input class="form-control mx-sm-3" value="<?= $comment_interval ?>" name="comment_interval" style="width: 60px;"/>
+                发表评论间隔（秒）： <input class="form-control mx-sm-3" value="<?= $comment_interval ?>" name="comment_interval" style="width: 60px;" type="number"/>
             </div>
 
             <hr>
@@ -102,11 +102,11 @@
             <h4>文章设置</h4>
             <div class="form-group form-inline">
                 <label>每页显示文章数量</label>
-                <input class="form-control mx-sm-3" style="width:60px;" value="<?= $index_lognum ?>" name="index_lognum"/>
+                <input class="form-control mx-sm-3" style="width:60px;" value="<?= $index_lognum ?>" name="index_lognum" type="number"/>
             </div>
 
             <div class="form-group form-inline">
-                RSS输出 <input maxlength="5" style="width:60px;" value="<?= $rss_output_num ?>" class="form-control" name="rss_output_num"/> 篇文章（0为关闭），且输出
+                RSS输出 <input maxlength="5" style="width:60px;" value="<?= $rss_output_num ?>" type="number" class="form-control" name="rss_output_num"/> 篇文章（0为关闭），且输出
                 <select name="rss_output_fulltext" class="form-control">
                     <option value="y" <?= $ex1 ?>>全文</option>
                     <option value="n" <?= $ex2 ?>>摘要</option>

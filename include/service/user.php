@@ -25,6 +25,10 @@ class User {
 		return $role == self::ROLE_EDITOR;
 	}
 
+	static function isWiter($role = ROLE) {
+		return $role == self::ROLE_WRITER;
+	}
+
 	static function haveEditPermission($role = ROLE) {
 		if (self::isAdmin($role)) {
 			return true;

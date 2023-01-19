@@ -15,20 +15,20 @@ require_once 'globals.php';
 $Log_Model = new Log_Model();
 $Tag_Model = new Tag_Model();
 
-$title = isset($_POST['title']) ? addslashes(trim($_POST['title'])) : '';
+$title = Input::postStrVar('title');
 $postDate = isset($_POST['postdate']) ? strtotime(trim($_POST['postdate'])) : '';
-$sort = isset($_POST['sort']) ? (int)$_POST['sort'] : -1;
+$sort = Input::postIntVar('sort', -1);
 $tagstring = isset($_POST['tag']) ? strip_tags(addslashes(trim($_POST['tag']))) : '';
-$content = isset($_POST['logcontent']) ? addslashes(trim($_POST['logcontent'])) : '';
-$excerpt = isset($_POST['logexcerpt']) ? addslashes(trim($_POST['logexcerpt'])) : '';
-$author = isset($_POST['author']) && User::haveEditPermission() ? (int)trim($_POST['author']) : UID;
-$blogid = isset($_POST['as_logid']) ? (int)trim($_POST['as_logid']) : -1;//如被自动保存为草稿则有blog id号
-$alias = isset($_POST['alias']) ? addslashes(trim($_POST['alias'])) : '';
-$allow_remark = isset($_POST['allow_remark']) ? addslashes(trim($_POST['allow_remark'])) : 'n'; //允许评论
-$ishide = isset($_POST['ishide']) && !empty($_POST['ishide']) && !isset($_POST['pubdf']) ? addslashes($_POST['ishide']) : 'n';
-$password = isset($_POST['password']) ? addslashes(trim($_POST['password'])) : '';
-$cover = isset($_POST['cover']) ? addslashes(trim($_POST['cover'])) : '';
+$content = Input::postStrVar('logcontent');
+$excerpt = Input::postStrVar('logexcerpt');
+$alias = Input::postStrVar('alias');
+$allow_remark = Input::postStrVar('allow_remark', 'n');
+$password = Input::postStrVar('password');
+$cover = Input::postStrVar('cover');
 $link = Input::postStrVar('link');
+$author = isset($_POST['author']) && User::haveEditPermission() ? (int)trim($_POST['author']) : UID;
+$ishide = isset($_POST['ishide']) && !empty($_POST['ishide']) && !isset($_POST['pubdf']) ? addslashes($_POST['ishide']) : 'n';
+$blogid = Input::postIntVar('as_logid', -1); //自动保存为草稿的文章id
 
 LoginAuth::checkToken();
 
@@ -56,16 +56,23 @@ $logData = [
 	'link'         => $link,
 ];
 
-if ($blogid > 0) {//自动保存草稿后,添加变为更新
+if (User::isWiter()) {
+	$count = $Log_Model->getPostCountByUid(UID, time() - 3600 * 24);
+	$post_per_day = Option::get('posts_per_day');
+	if ($count >= $post_per_day) {
+		emDirect("./article.php?error_post_per_day=1");
+	}
+}
+
+if ($blogid > 0) {
 	$Log_Model->updateLog($logData, $blogid);
 	$Tag_Model->updateTag($tagstring, $blogid);
-	$dftnum = '';
 } else {
-	if (!$blogid = $Log_Model->isRepeatPost($title, $postDate)) {
+	$id = $Log_Model->isRepeatPost($title, $postDate);
+	if (!$id) {
 		$blogid = $Log_Model->addlog($logData);
 		$Tag_Model->addTag($tagstring, $blogid);
 	}
-	$dftnum = $Log_Model->getLogNum('y', '', 'blog', 1);
 }
 
 $CACHE->updateArticleCache();
@@ -74,7 +81,7 @@ doAction('save_log', $blogid);
 
 switch ($action) {
 	case 'autosave':
-		echo "autosave_gid:{$blogid}_df:{$dftnum}_";
+		echo 'autosave_gid:' . $blogid . '_';
 		break;
 	case 'add':
 	case 'edit':

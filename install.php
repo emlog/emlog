@@ -439,6 +439,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('smtp_server
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('smtp_port','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('is_openapi','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('apikey','$apikey');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('posts_per_day',10);
 DROP TABLE IF EXISTS {$db_prefix}link;
 CREATE TABLE {$db_prefix}link (
   id int(11) unsigned NOT NULL auto_increment COMMENT '链接表',
