@@ -54,7 +54,7 @@
 							<?php if (!empty($v['download_url'])): ?>
                                 <a href="./store.php?action=install&source=<?= urlencode($v['download_url']) ?>&type=<?= $v['type'] ?>" class="btn btn-success btn-sm">安装</a>
 							<?php else: ?>
-                                <a href="#" class="btn btn-success btn-sm">联系作者安装</a>
+                                <a href="<?= $v['buy_url'] ?>" class="btn btn-success btn-sm">请联系作者安装</a>
 							<?php endif; ?>
                         </p>
                     </div>
