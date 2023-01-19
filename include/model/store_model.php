@@ -60,6 +60,8 @@ class Store_Model {
 				$data['plugins'] = isset($ret['data']['plugins']) ? $ret['data']['plugins'] : [];
 				$data['count'] = isset($ret['data']['count']) ? $ret['data']['count'] : 0;
 				break;
+			case 'mine':
+				$data = $ret['data'];
 		}
 		return $data;
 	}
