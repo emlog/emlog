@@ -68,11 +68,8 @@ if ($blogid > 0) {
 	$Log_Model->updateLog($logData, $blogid);
 	$Tag_Model->updateTag($tagstring, $blogid);
 } else {
-	$id = $Log_Model->isRepeatPost($title, $postDate);
-	if (!$id) {
-		$blogid = $Log_Model->addlog($logData);
-		$Tag_Model->addTag($tagstring, $blogid);
-	}
+	$blogid = $Log_Model->addlog($logData);
+	$Tag_Model->addTag($tagstring, $blogid);
 }
 
 $CACHE->updateArticleCache();
