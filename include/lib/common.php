@@ -359,22 +359,21 @@ function subContent($content, $len, $clean = 0) {
 
 /**
  * 时间转化函数
+ * @param $timestamp int 时间戳(秒)
+ * @param $format
+ * @return false|string
  */
-function smartDate($datetemp, $dstr = 'Y-m-d H:i') {
-	$sec = time() - $datetemp;
-	$hover = floor($sec / 3600);
-	if ($hover == 0) {
-		$min = floor($sec / 60);
-		if ($min == 0) {
-			$op = $sec . ' 秒前';
-		} else {
-			$op = "$min 分钟前";
-		}
-	} elseif ($hover < 24) {
-		$op = "约 {$hover} 小时前";
-	} else {
-		$op = date($dstr, $datetemp);
-	}
+function smartDate($timestamp, $format = 'Y-m-d H:i') {
+	$sec = time() - $timestamp;
+    if ($sec < 60) {
+        $op = $sec . ' 秒前';
+    } elseif ($sec < 3600) {
+        $op = floor($sec / 60) . " 分钟前";
+    } elseif ($sec < 3600 * 24) {
+        $op = "约 " . floor($sec / 3600) . " 小时前";
+    } else {
+        $op = date($format, $timestamp);
+    }
 	return $op;
 }
 
