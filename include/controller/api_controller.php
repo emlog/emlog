@@ -35,16 +35,17 @@ class Api_Controller {
 	}
 
 	private function article_post() {
-		$req_sign = isset($_POST['req_sign']) ? addslashes(trim($_POST['req_sign'])) : '';
-		$req_time = isset($_POST['req_time']) ? addslashes(trim($_POST['req_time'])) : '';
-		$title = isset($_POST['title']) ? addslashes(trim($_POST['title'])) : '';
-		$content = isset($_POST['content']) ? addslashes(trim($_POST['content'])) : '';
-		$excerpt = isset($_POST['excerpt']) ? addslashes(trim($_POST['excerpt'])) : '';
+		$req_sign = Input::postStrVar('req_sign');
+		$req_time = Input::postStrVar('req_time');
+		$title = Input::postStrVar('title');
+		$content = Input::postStrVar('content');
+		$excerpt = Input::postStrVar('excerpt');
 		$author_uid = isset($_POST['author_uid']) ? (int)trim($_POST['author_uid']) : 1;
 		$post_date = isset($_POST['post_date']) ? trim($_POST['post_date']) : '';
 		$sort_id = isset($_POST['sort_id']) ? (int)$_POST['sort_id'] : -1;
-		$tags = isset($_POST['tags']) ? addslashes(trim($_POST['tags'])) : '';
-		$cover = isset($_POST['cover']) ? addslashes(trim($_POST['cover'])) : '';
+		$tags = isset($_POST['tags']) ? strip_tags(addslashes(trim($_POST['tags']))) : '';
+		$cover = Input::postStrVar('cover');
+		$draft = Input::postStrVar('draft', 'n');
 
 		if (empty($req_sign) || empty($req_time) || empty($title) || empty($content)) {
 			Output::error('parameter error');
@@ -60,6 +61,7 @@ class Api_Controller {
 			'sortid'  => $sort_id,
 			'cover'   => $cover,
 			'date'    => strtotime($post_date ?: date('Y-m-d H:i:s')),
+			'hide'    => $draft === 'y' ? 'y' : 'n',
 		];
 
 		$article_id = $this->Log_Model->addlog($logData);
@@ -71,17 +73,18 @@ class Api_Controller {
 	}
 
 	private function article_update() {
-		$id = isset($_POST['id']) ? (int)trim($_POST['id']) : 0;
-		$req_sign = isset($_POST['req_sign']) ? addslashes(trim($_POST['req_sign'])) : '';
-		$req_time = isset($_POST['req_time']) ? addslashes(trim($_POST['req_time'])) : '';
-		$title = isset($_POST['title']) ? addslashes(trim($_POST['title'])) : '';
-		$content = isset($_POST['content']) ? addslashes(trim($_POST['content'])) : '';
-		$excerpt = isset($_POST['excerpt']) ? addslashes(trim($_POST['excerpt'])) : '';
+		$id = Input::postIntVar('id');
+		$req_sign = Input::postStrVar('req_sign');
+		$req_time = Input::postStrVar('req_time');
+		$title = Input::postStrVar('title');
+		$content = Input::postStrVar('content');
+		$excerpt = Input::postStrVar('excerpt');
 		$post_date = isset($_POST['post_date']) ? trim($_POST['post_date']) : '';
-		$sort_id = isset($_POST['sort_id']) ? (int)$_POST['sort_id'] : -1;
-		$cover = isset($_POST['cover']) ? addslashes(trim($_POST['cover'])) : '';
+		$sort_id = Input::postIntVar('sort_id', -1);
+		$cover = Input::postStrVar('cover');
 		$tags = isset($_POST['tags']) ? strip_tags(addslashes(trim($_POST['tags']))) : '';
 		$author_uid = isset($_POST['author_uid']) ? (int)trim($_POST['author_uid']) : 1;
+		$draft = Input::postStrVar('draft', 'n');
 
 		if (empty($req_sign) || empty($req_time) || empty($id) || empty($title)) {
 			Output::error('parameter error');
@@ -97,6 +100,7 @@ class Api_Controller {
 			'cover'   => $cover,
 			'author'  => $author_uid,
 			'date'    => strtotime($post_date ?: date('Y-m-d H:i:s')),
+			'hide'    => $draft === 'y' ? 'y' : 'n',
 		];
 
 		$this->Log_Model->updateLog($logData, $id, $author_uid);
