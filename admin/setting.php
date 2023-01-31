@@ -176,6 +176,7 @@ if ($action == 'save') {
 		'att_imgmaxw'         => isset($_POST['att_imgmaxw']) ? (int)$_POST['att_imgmaxw'] : 420,
 		'att_imgmaxh'         => isset($_POST['att_imgmaxh']) ? (int)$_POST['att_imgmaxh'] : 460,
 		'detect_url'          => isset($_POST['detect_url']) ? addslashes($_POST['detect_url']) : 'n', // 自动检测站点地址
+		'admin_perpage_num'   => Input::postIntVar('admin_perpage_num'),
 	];
 
 	if ($getData['login_code'] == 'y' && !function_exists("imagecreate") && !function_exists('imagepng')) {
