@@ -246,7 +246,7 @@ function pagination($count, $perlogs, $page, $url, $anchor = '') {
 	$frontContent = '';
 	$paginContent = '';
 	$endContent = '';
-	$circle_a = 1;  
+	$circle_a = 1;
 	$circle_b = $pnums;
 	$neighborNum = 1;
 	$minKey = 4;
@@ -269,15 +269,15 @@ function pagination($count, $perlogs, $page, $url, $anchor = '') {
 			$circle_a = $pnums - $minKey + 1;
 			$endContent = '';
 		}
-		if($page > ($minKey - 1) && $page < ($pnums - $minKey + 2)){
-			$circle_a = $page - $neighborNum ;
-			$circle_b = $page + $neighborNum ;
+		if ($page > ($minKey - 1) && $page < ($pnums - $minKey + 2)) {
+			$circle_a = $page - $neighborNum;
+			$circle_b = $page + $neighborNum;
 		}
 		if ($page != 1) {
-			$frontContent = " <a href=\"$url".($page - 1)."$anchor\" title=\"Previous Page\">&laquo;</a> ".$frontContent;
+			$frontContent = " <a href=\"$url" . ($page - 1) . "$anchor\" title=\"Previous Page\">&laquo;</a> " . $frontContent;
 		}
 		if ($page != $pnums) {
-			$endContent .= " <a href=\"$url".($page + 1)."$anchor\" title=\"Next Page\">&raquo;</a> ";
+			$endContent .= " <a href=\"$url" . ($page + 1) . "$anchor\" title=\"Next Page\">&raquo;</a> ";
 		}
 	}
 	for ($i = $circle_a; $i <= $circle_b; $i++) {
@@ -365,15 +365,15 @@ function subContent($content, $len, $clean = 0) {
  */
 function smartDate($timestamp, $format = 'Y-m-d H:i') {
 	$sec = time() - $timestamp;
-    if ($sec < 60) {
-        $op = $sec . ' 秒前';
-    } elseif ($sec < 3600) {
-        $op = floor($sec / 60) . " 分钟前";
-    } elseif ($sec < 3600 * 24) {
-        $op = "约 " . floor($sec / 3600) . " 小时前";
-    } else {
-        $op = date($format, $timestamp);
-    }
+	if ($sec < 60) {
+		$op = $sec . ' 秒前';
+	} elseif ($sec < 3600) {
+		$op = floor($sec / 60) . " 分钟前";
+	} elseif ($sec < 3600 * 24) {
+		$op = "约 " . floor($sec / 3600) . " 小时前";
+	} else {
+		$op = date($format, $timestamp);
+	}
 	return $op;
 }
 
@@ -1052,16 +1052,6 @@ function emStrtotime($timeStr) {
 	return $unixPostDate;
 }
 
-function em_v() {
-	if (mt_rand(1, 5) !== 5) {
-		return true;
-	}
-	$a = sha1_file(EMLOG_ROOT . '/include/lib/emcurl.php');
-	if ($a !== '3c93582dcb6c1ed4ce23174ce33192b194c67cb5') {
-		exit;
-	}
-}
-
 /**
  * 加载jQuery
  */
@@ -1123,8 +1113,6 @@ if (!function_exists('split')) {
 		return preg_split($str, $delimiter);
 	}
 }
-
-em_v();
 
 if (!function_exists('get_os')) {
 	function get_os($user_agent) {
