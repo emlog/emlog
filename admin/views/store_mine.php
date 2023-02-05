@@ -27,9 +27,9 @@
 </div>
 <div class="row mb-4 ml-1">
     <ul class="nav nav-pills">
-        <li class="nav-item"><a class="nav-link" href="./store.php?tag=free">模板主题</a></li>
-        <li class="nav-item"><a class="nav-link" href="./store.php?action=plu&tag=free">扩展插件</a></li>
-        <li class="nav-item"><a class="nav-link active" href="./store.php?action=mine">已购应用</a></li>
+        <li class="nav-item"><a class="nav-link" href="./store.php">模板主题</a></li>
+        <li class="nav-item"><a class="nav-link" href="./store.php?action=plu">扩展插件</a></li>
+        <li class="nav-item"><a class="nav-link active" href="./store.php?action=mine">我的已购</a></li>
     </ul>
 </div>
 <div class="row">

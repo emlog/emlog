@@ -23,7 +23,7 @@
     <ul class="nav nav-pills">
         <li class="nav-item"><a class="nav-link active" href="./store.php"><i class="icofont-paint"></i> 模板主题</a></li>
         <li class="nav-item"><a class="nav-link" href="./store.php?action=plu">扩展插件</a></li>
-        <li class="nav-item"><a class="nav-link" href="./store.php?action=mine">已购应用</a></li>
+        <li class="nav-item"><a class="nav-link" href="./store.php?action=mine">我的已购</a></li>
     </ul>
     <form action="./store.php" method="get">
         <div class="form-inline search-inputs-nowrap">
@@ -52,18 +52,17 @@
                         <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="<?= $icon ?>">
                     </a>
                     <div class="card-body">
-                        <p class="card-text"><?= $v['name'] ?>
-							<?= $v['price'] > 0 ? '<span class="badge badge-warning">' . $v['price'] . '元</span>' : '<span class="badge badge-success">免费</span>' ?>
-                        </p>
+                        <p class="card-text"><?= $v['name'] ?></p>
                         <p class="card-text text-muted small">
                             <span class="small"><?= $v['info'] ?></span><br><br>
+                            售价：<?= $v['price'] > 0 ? '<span class="text-danger">' . $v['price'] . '元</span>' : '<span class="text-success">免费</span>' ?><br>
                             开发者：<?= $v['author'] ?> <a href="./store.php?author_id=<?= $v['author_id'] ?>">仅看Ta的作品</a><br>
                             版本号：<?= $v['ver'] ?><br>
                             更新时间：<?= $v['update_time'] ?><br>
                         </p>
                         <p class="card-text text-right">
 							<?php if ($v['price'] > 0): ?>
-                                <a href="<?= $v['buy_url'] ?>" class="btn btn-sm btn-warning btn-sm" target="_blank">￥<?= $v['price'] ?>，去购买</a>
+                                <a href="<?= $v['buy_url'] ?>" class="btn btn-sm btn-warning btn-sm" target="_blank">去购买</a>
 							<?php else: ?>
                                 <a href="./store.php?action=install&source=<?= urlencode($v['download_url']) ?>&type=tpl" class="btn btn-success btn-sm">免费安装</a>
 							<?php endif ?>
