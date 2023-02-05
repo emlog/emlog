@@ -121,14 +121,16 @@
     <div class="row">
 		<?php if (!Register::isRegLocal()) : ?>
             <div class="col-lg-6 mb-4">
-                <div class="card bg-danger text-white shadow">
+                <div class="card shadow">
+                    <div class="card-header bg-warning">
+                        <h6 class="my-0">您安装的emlog尚未注册，注册后将获得：</h6>
+                    </div>
                     <div class="card-body">
-                        <h4>您安装的emlog pro尚未注册，注册后将获得：</h4>
-                        <div>1、解锁在线升级功能，一键升级到最新版本，获得来自官方的安全和功能更新。</div>
-                        <div>2、解锁应用商店，获得更多模板和扩展插件。</div>
-                        <div>3、去除所有未注册提示及功能限制。</div>
-                        <div>4、加入专属Q群，获得官方技术指导问题解答。</div>
-                        <div>5、投我以桃，报之以李，您的支持让emlog变的更好。</div>
+                        <div>1. 解锁在线升级功能，一键升级到最新版本，获得来自官方的安全和功能更新。</div>
+                        <div>2. 解锁应用商店，获得更多模板和扩展插件。</div>
+                        <div>3. 去除所有未注册提示及功能限制。</div>
+                        <div>4. 加入专属Q群，获得官方技术指导问题解答。</div>
+                        <div>5. "投我以桃，报之以李"，您的支持也将帮助emlog变的更好并持续更新下去。</div>
                     </div>
                     <div class="card-footer text-center">
                         <a href="https://emlog.net/register" target="_blank" class="btn btn-sm btn-primary shadow-lg">获取注册码</a>
