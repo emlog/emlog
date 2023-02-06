@@ -61,7 +61,7 @@ class Store_Model {
 				$data['count'] = isset($ret['data']['count']) ? $ret['data']['count'] : 0;
 				break;
 			case 'mine':
-				$data = $ret['data'];
+				$data = isset($ret['data']) ? $ret['data'] : [];
 		}
 		return $data;
 	}

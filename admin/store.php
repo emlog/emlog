@@ -86,37 +86,39 @@ if ($action === 'install') {
 	$source_type = isset($_GET['type']) ? trim($_GET['type']) : '';
 
 	if (!Register::isRegLocal()) {
-		emDirect("./auth.php?error_store=1");
+		exit('您的emlog pro尚未注册，<a href="auth.php">去注册</a>');
 	}
 
 	if (empty($source)) {
-		emDirect("./store.php?error_param=1");
+		exit('安装失败');
 	}
 
 	$temp_file = emFetchFile('https://www.emlog.net/' . $source);
 	if (!$temp_file) {
-		emDirect("./store.php?error_down=1");
+		exit('安装失败，无法下载安装包');
 	}
 
 	if ($source_type == 'tpl') {
 		$unzip_path = '../content/templates/';
 		$store_path = './store.php?';
+		$suc_url = 'template.php';
 	} else {
 		$unzip_path = '../content/plugins/';
 		$store_path = './store.php?action=plu&';
+		$suc_url = 'plugin.php';
 	}
 
 	$ret = emUnZip($temp_file, $unzip_path, $source_type);
 	@unlink($temp_file);
 	switch ($ret) {
 		case 0:
-			emDirect($store_path . 'active=1&tag=free');
+			exit('安装成功 <a href="' . $suc_url . '">去查看</a>');
 		case 1:
 		case 2:
-			emDirect($store_path . 'error_dir=1');
+			exit('安装失败，请检查content下目录是否可写');
 		case 3:
-			emDirect($store_path . 'error_zip=1');
+			exit('安装失败，请安装php的Zip扩展');
 		default:
-			emDirect($store_path . 'error_source=1');
+			exit('安装失败，不是有效的安装包');
 	}
 }

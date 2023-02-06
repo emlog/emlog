@@ -82,8 +82,11 @@ if ($action == 'upload_zip') {
 	LoginAuth::checkToken();
 	$zipfile = isset($_FILES['pluzip']) ? $_FILES['pluzip'] : '';
 
-	if ($zipfile['error'] === 4) {
+	if ($zipfile['error'] == 4) {
 		emDirect("./plugin.php?error_d=1");
+	}
+	if ($zipfile['error'] == 1) {
+		emDirect("./plugin.php?error_g=1");
 	}
 	if (!$zipfile || $zipfile['error'] >= 1 || empty($zipfile['tmp_name'])) {
 		emMsg('插件上传失败， 错误码：' . $zipfile['error']);

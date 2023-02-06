@@ -92,10 +92,13 @@ if ($action === 'upload_zip') {
 	LoginAuth::checkToken();
 	$zipfile = isset($_FILES['tplzip']) ? $_FILES['tplzip'] : '';
 
-	if ($zipfile['error'] === 4) {
+	if ($zipfile['error'] == 4) {
 		emDirect("./template.php?error_d=1");
 	}
-	if (!$zipfile || $zipfile['error'] >= 1 || empty($zipfile['tmp_name'])) {
+	if ($zipfile['error'] == 1) {
+		emDirect("./template.php?error_f=1");
+	}
+	if (!$zipfile || $zipfile['error'] > 0 || empty($zipfile['tmp_name'])) {
 		emMsg('模板上传失败， 错误码：' . $zipfile['error']);
 	}
 	if (getFileSuffix($zipfile['name']) != 'zip') {

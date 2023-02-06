@@ -1,27 +1,9 @@
 <?php if (!defined('EMLOG_ROOT')) {
 	exit('error!');
 } ?>
-<?php if (isset($_GET['active'])): ?>
-    <div class="alert alert-success">安装成功</div><?php endif ?>
-<?php if (isset($_GET['error_param'])): ?>
-    <div class="alert alert-danger">安装失败</div><?php endif ?>
-<?php if (isset($_GET['error_down'])): ?>
-    <div class="alert alert-danger">安装失败，无法下载安装包</div><?php endif ?>
-<?php if (isset($_GET['error_dir'])): ?>
-    <div class="alert alert-danger">安装失败，无法写文件，请检查content/下目录是否可写</div><?php endif ?>
-<?php if (isset($_GET['error_zip'])): ?>
-    <div class="alert alert-danger">安装失败，无法解压，请安装php的Zip扩展</div><?php endif ?>
-<?php if (isset($_GET['error_source'])): ?>
-    <div class="alert alert-danger">安装失败，不是有效的安装包</div><?php endif ?>
-
 <?php if (isset($_GET['error'])): ?>
-    <div class="container-fluid">
-        <div class="text-center">
-            <p class="lead text-gray-800 mb-5">商店暂不可用，可能是网络问题</p>
-            <a href="./">&larr; 返回首页</a>
-        </div>
-    </div>
-<?php endif ?>
+    <div class="alert alert-danger">商店暂不可用，可能是网络问题</div><?php endif ?>
+
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">应用商店 - <?= $sub_title ?></h1>
 </div>
@@ -50,13 +32,14 @@
                             版本号：<?= $v['ver'] ?><br>
                             更新时间：<?= $v['update_time'] ?><br>
                         </p>
-                        <p class="card-text text-right">
-							<?php if (!empty($v['download_url'])): ?>
-                                <a href="./store.php?action=install&source=<?= urlencode($v['download_url']) ?>&type=<?= $v['type'] ?>" class="btn btn-success btn-sm">安装</a>
-							<?php else: ?>
+                        <div class="card-text d-flex justify-content-between">
+                            <div class="installMsg"></div>
+							<?php if (empty($v['download_url'])): ?>
                                 <a href="<?= $v['buy_url'] ?>" class="btn btn-success btn-sm">请联系作者安装</a>
-							<?php endif; ?>
-                        </p>
+							<?php else: ?>
+                                <a href="#" class="btn btn-success btn-sm installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-type="<?= $v['type'] ?>">免费安装</a>
+							<?php endif ?>
+                        </div>
                     </div>
                 </div>
             </div>

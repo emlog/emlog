@@ -744,7 +744,7 @@ function emFetchFile($source) {
 
 	$ctx_opt = set_ctx_option();
 	$ctx = stream_context_create($ctx_opt);
-	$rh = fopen($source, 'rb', false, $ctx);
+	$rh = @fopen($source, 'rb', false, $ctx);
 
 	if (!$rh || !$wh) {
 		return FALSE;

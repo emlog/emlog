@@ -1,18 +1,6 @@
 <?php if (!defined('EMLOG_ROOT')) {
 	exit('error!');
 } ?>
-<?php if (isset($_GET['active'])): ?>
-    <div class="alert alert-success">安装成功</div><?php endif ?>
-<?php if (isset($_GET['error_param'])): ?>
-    <div class="alert alert-danger">安装失败</div><?php endif ?>
-<?php if (isset($_GET['error_down'])): ?>
-    <div class="alert alert-danger">安装失败，无法下载安装包</div><?php endif ?>
-<?php if (isset($_GET['error_dir'])): ?>
-    <div class="alert alert-danger">安装失败，无法写文件，请检查content/下目录是否可写</div><?php endif ?>
-<?php if (isset($_GET['error_zip'])): ?>
-    <div class="alert alert-danger">安装失败，无法解压，请安装php的Zip扩展</div><?php endif ?>
-<?php if (isset($_GET['error_source'])): ?>
-    <div class="alert alert-danger">安装失败，不是有效的安装包</div><?php endif ?>
 <?php if (isset($_GET['error'])): ?>
     <div class="alert alert-danger">商店暂不可用，可能是网络问题</div><?php endif ?>
 
@@ -60,13 +48,14 @@
                             版本号：<?= $v['ver'] ?><br>
                             更新时间：<?= $v['update_time'] ?><br>
                         </p>
-                        <p class="card-text text-right">
+                        <div class="card-text d-flex justify-content-between">
+                            <div class="installMsg"></div>
 							<?php if ($v['price'] > 0): ?>
                                 <a href="<?= $v['buy_url'] ?>" class="btn btn-sm btn-warning btn-sm" target="_blank">去购买</a>
 							<?php else: ?>
-                                <a href="./store.php?action=install&source=<?= urlencode($v['download_url']) ?>&type=tpl" class="btn btn-success btn-sm">免费安装</a>
+                                <a href="#" class="btn btn-success btn-sm installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-type="tpl">免费安装</a>
 							<?php endif ?>
-                        </p>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -478,22 +478,6 @@ function imgPasteExpand(thisEditor) {
 hooks.addAction("loaded", imgPasteExpand);
 hooks.addAction("page_loaded", imgPasteExpand);
 
-// 设置界面，如果设置“自动检测地址”，则设置 input 为只读，以表示该项是无效的
-$(document).ready(function () {
-    // 网页加载完先检查一遍
-    if ($("#detect_url").prop("checked")) {
-        $("[name=blogurl]").attr("readonly", "readonly")
-    }
-
-    $("#detect_url").click(function () {
-        if ($(this).prop("checked")) {
-            $("[name=blogurl]").attr("readonly", "readonly")
-        } else {
-            $("[name=blogurl]").removeAttr("readonly")
-        }
-    })
-})
-
 function checkupdate() {
     $("#upmsg").html("").addClass("spinner-border text-primary");
     $.get("./upgrade.php?action=check_update", function (result) {
@@ -501,8 +485,6 @@ function checkupdate() {
             $("#upmsg").html("您的emlog pro尚未注册，<a href=\"auth.php\">去注册</a>").removeClass();
         } else if (result.code == 1002) {
             $("#upmsg").html("已经是最新版本").removeClass();
-        } else if (result.code == 1003) {
-            $("#upmsg").html("更新服务已到期，<a href=\"https://www.emlog.net/\" target=\"_blank\">登录官网续期</a>").removeClass();
         } else if (result.code == 200) {
             $("#upmsg").html("有可用的新版本 " + result.data.version + "，<a href=\"https://www.emlog.net/docs/#/changelog\" target=\"_blank\">查看更新内容</a>，<a id=\"doup\" href=\"javascript:doup('" + result.data.file + "','" + result.data.sql + "');\">现在更新</a>").removeClass();
         } else {
@@ -528,3 +510,35 @@ function doup(source, upsql) {
         }
     });
 }
+
+$(document).ready(function () {
+    // 网页加载完先检查一遍
+    // 设置界面，如果设置“自动检测地址”，则设置 input 为只读，以表示该项是无效的
+    if ($("#detect_url").prop("checked")) {
+        $("[name=blogurl]").attr("readonly", "readonly")
+    }
+
+    $("#detect_url").click(function () {
+        if ($(this).prop("checked")) {
+            $("[name=blogurl]").attr("readonly", "readonly")
+        } else {
+            $("[name=blogurl]").removeAttr("readonly")
+        }
+    })
+
+    // store app install
+    $('.installBtn').click(function (e) {
+        e.preventDefault();
+        let link = $(this);
+        let down_url = link.data('url');
+        let type = link.data('type');
+        link.text('安装中…');
+        link.prev(".installMsg").html("").addClass("spinner-border text-primary");
+
+        let url = './store.php?action=install&type=' + type + '&source=' + down_url;
+        $.get(url, function (data) {
+            link.text('免费安装');
+            link.prev(".installMsg").html('<span class="text-danger">' + data + '</span>').removeClass("spinner-border text-primary");
+        });
+    });
+})

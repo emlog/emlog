@@ -19,6 +19,8 @@
     <div class="alert alert-danger">请选择一个zip格式的模板安装包</div><?php endif ?>
 <?php if (isset($_GET['error_e'])): ?>
     <div class="alert alert-danger">安装失败，模板安装包不符合标准</div><?php endif ?>
+<?php if (isset($_GET['error_f'])): ?>
+    <div class="alert alert-danger">上传安装包大小超出PHP限制</div><?php endif ?>
 <?php if (isset($_GET['error_c'])): ?>
     <div class="alert alert-danger">
         空间不支持zip模块，请手动安装： <br/>
