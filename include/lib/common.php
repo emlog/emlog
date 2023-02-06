@@ -563,9 +563,12 @@ function resizeImage($img, $thum_path, $max_w, $max_h) {
  * @param int $src_h 原图高度
  */
 function imageCropAndResize($src_image, $dst_path, $dst_x, $dst_y, $src_x, $src_y, $dst_w, $dst_h, $src_w, $src_h) {
-	if (function_exists('imagecreatefromstring')) {
-		$src_img = imagecreatefromstring(file_get_contents($src_image));
-	} else {
+	if (!function_exists('imagecreatefromstring')) {
+		return false;
+	}
+
+	$src_img = imagecreatefromstring(file_get_contents($src_image));
+	if (!$src_img) {
 		return false;
 	}
 

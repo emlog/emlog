@@ -76,7 +76,7 @@
             <h4>邮件通知</h4>
             <div class="form-group form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="mail_notice_comment" id="mail_notice_comment" <?= $conf_mail_notice_comment ?> />
-                <label class="form-check-label">新评论邮件通知（仅发送到创始人邮箱）</label>
+                <label class="form-check-label">新评论邮件通知（仅发送到文章作者邮箱）</label>
             </div>
             <div class="form-group form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="mail_notice_post" id="mail_notice_post" <?= $conf_mail_notice_post ?> >

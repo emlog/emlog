@@ -61,7 +61,7 @@ class Comment_Controller {
 		}
 
 		$_SESSION['code'] = null;
-		notice::sendNewCommentMail($content);
+		notice::sendNewCommentMail($content, $blogId);
 		$Comment_Model->addComment($uid, $name, $content, $mail, $url, $blogId, $pid);
 	}
 }
