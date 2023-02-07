@@ -43,7 +43,7 @@ services:
   #      - emlog_network
 
   php:
-    image: emlog/emlog:pro-php7.4
+    image: emlog/emlog:pro-php8.1
     container_name: php
     volumes:
       - ./:/app/emlog

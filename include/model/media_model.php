@@ -81,7 +81,7 @@ class Media_Model {
 			return;
 		}
 		$filepath_thum = $attach['filepath'];
-		$filepath = str_replace("thum - ", "", $attach['filepath']);
+		$filepath = str_replace("thum-", "", $attach['filepath']);
 		if (file_exists($filepath_thum)) {
 			@unlink($filepath_thum) or emMsg("删除失败!");
 		}
