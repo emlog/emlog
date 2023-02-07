@@ -33,7 +33,7 @@ class Twitter_Model {
 		return $data['total'];
 	}
 
-	function getTwitters($page = 1, $perpage_num = 20, $uid) {
+	function getTwitters($uid, $page = 1, $perpage_num = 20) {
 		$start_limit = !empty($page) ? ($page - 1) * $perpage_num : 0;
 		$author = $uid ? 'and author=' . $uid : '';
 		$limit = "LIMIT $start_limit, " . $perpage_num;
