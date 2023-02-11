@@ -60,11 +60,11 @@ class Notice {
 
 		$sendmail = new SendMail();
 		$title = "你的文章收到新的评论";
-		$content = "评论内容是：" . $comment;
+		$content = "评论内容：" . $comment;
 
 		$r = self::getArticleInfo($gid);
 		if ($r) {
-			$content .= "<br> 来自文章：" . $r['log_title'];
+			$content .= '<br><br> 来自文章：' . $r['log_title'];
 			$email = self::getArticleAuthorEmail($r['author']);
 			if (!$email) {
 				return false;
