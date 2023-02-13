@@ -55,8 +55,9 @@
                         <th><input type="checkbox" id="checkAll"/></th>
                         <th>内容</th>
                         <th>评论人</th>
-                        <th>时间</th>
-                        <th>文章</th>
+                        <th>来自文章</th>
+                        <th>发布时间</th>
+                        <th>操作</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -78,28 +79,31 @@
                         <tr>
                             <td style="width: 19px;"><input type="checkbox" value="<?= $cid ?>" name="com[]" class="ids"/></td>
                             <td>
-                                <a href="#" data-toggle="modal" data-target="#replyModal"
-                                   data-cid="<?= $cid ?>"
-                                   data-comment="<?= $comment ?>"
-                                   data-hide="<?= $value['hide'] ?>"
-                                   data-gid="<?= $gid ?> ">
-									<?= $comment ?>
-                                </a>
+                                <?= $comment ?>
 								<?= $ishide ?>
 								<?php if ($top == 'y'): ?><span class="flag-indexTop" title="置顶">置顶</span><?php endif ?>
                             </td>
                             <td class="small">
 								<?= $poster ?><?= $mail ?><?= $ip_info ?>
+                                <br><?= $value['os'] ?> - <?= $value['browse'] ?>
+                            </td>
+                            <td class="small">
+                                <a href="<?= Url::log($gid) ?>" target="_blank"><?= $title ?></a><br>
+                                <a href="comment.php?gid=<?= $gid ?>" class="badge badge-info">查看该文所有评论</a>
+                            </td>
+                            <td class="small"><?= $date ?></td>
+                            <td>
+                                <a href="#" data-toggle="modal" class="badge badge-success" data-target="#replyModal"
+                                   data-cid="<?= $cid ?>"
+                                   data-comment="<?= $comment ?>"
+                                   data-hide="<?= $value['hide'] ?>"
+                                   data-gid="<?= $gid ?> ">
+                                    回复评论
+                                </a>
 								<?php if (User::haveEditPermission()): ?>
                                     <a href="javascript: em_confirm('<?= $ip ?>', 'commentbyip', '<?= LoginAuth::genToken() ?>');"
                                        class="badge badge-pill badge-warning">按IP删除</a>
 								<?php endif ?>
-                                <br><?= $value['os'] ?> - <?= $value['browse'] ?>
-                            </td>
-                            <td class="small"><?= $date ?></td>
-                            <td class="small">
-                                <a href="<?= Url::log($gid) ?>" target="_blank"><?= $title ?></a><br>
-                                <a href="comment.php?gid=<?= $gid ?>" class="badge badge-info">该文所有评论</a>
                             </td>
                         </tr>
 					<?php endforeach ?>

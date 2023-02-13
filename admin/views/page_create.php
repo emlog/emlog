@@ -31,9 +31,9 @@
             </div>
 
             <div id="post_button">
-                <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
-                <input type="hidden" name="ishide" id="ishide" value="<?= $hide ?>" />
-                <input type="hidden" name="pageid" value="<?= $pageId ?>" />
+                <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
+                <input type="hidden" name="ishide" id="ishide" value="<?= $hide ?>"/>
+                <input type="hidden" name="pageid" value="<?= $pageId ?>"/>
 				<?php if ($pageId < 0): ?>
                     <input type="submit" value="发布页面" onclick="return checkform();" class="btn btn-sm btn-success"/>
 				<?php else: ?>
@@ -99,7 +99,10 @@
 
 <script src="./editor.md/editormd.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
 <script>
+    $("#menu_category_view").addClass('active');
+    $("#menu_view").addClass('show');
     $("#menu_page").addClass('active');
+
     checkalias();
     $("#alias").keyup(function () {
         checkalias();
@@ -124,19 +127,19 @@
                     "bold", "del", "italic", "quote", "|",
                     "h1", "h2", "h3", "|",
                     "list-ul", "list-ol", "hr", "|",
-                    "link", "image", "preformatted-text", "table", "|", "watch","help"]
+                    "link", "image", "preformatted-text", "table", "|", "watch", "help"]
             },
             path: "editor.md/lib/",
             tex: false,
             flowChart: false,
             watch: false,
-            htmlDecode : true,
+            htmlDecode: true,
             sequenceDiagram: false,
-            syncScrolling : "single",
+            syncScrolling: "single",
             onload: function () {
-                hooks.doAction("page_loaded",this);
+                hooks.doAction("page_loaded", this);
                 //在大屏模式下，编辑器默认显示预览
-                if($(window).width() > 767){
+                if ($(window).width() > 767) {
                     this.watch();
                 }
             }
@@ -147,21 +150,21 @@
     });
     // 离开页面时，如果页面内容已做修改，则询问用户是否离开
     var pageText;
-    hooks.addAction("page_loaded", function(){
+    hooks.addAction("page_loaded", function () {
         pageText = $("textarea").text();
     });
     window.onbeforeunload = function (e) {
-        if($("textarea").text() == pageText) return
+        if ($("textarea").text() == pageText) return
         e = e || window.event;
         if (e) e.returnValue = '离开页面提示';
         return '离开页面提示';
     }
 
     // 页面编辑界面全局快捷键 Ctrl（Cmd）+ S 保存内容
-    document.addEventListener('keydown', function(e){
-		if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)){
-			e.preventDefault();
+    document.addEventListener('keydown', function (e) {
+        if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
+            e.preventDefault();
             pagesave();
-		}
-	});
+        }
+    });
 </script>

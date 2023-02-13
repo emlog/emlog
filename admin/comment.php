@@ -92,14 +92,13 @@ if ($action === 'doreply') {
 	if (empty($reply)) {
 		emDirect("./comment.php?error_c=1");
 	}
-	if (strlen($reply) > 2000) {
-		emDirect("./comment.php?error_d=1");
-	}
+
 	//回复一条待审核的评论，视为要将其公开（包括回复内容）
 	if ($hide == 'y') {
 		$Comment_Model->showComment($commentId);
 		$hide = 'n';
 	}
+
 	$Comment_Model->replyComment($blogId, $commentId, $reply, $hide);
 	$CACHE->updateCache('comment');
 	$CACHE->updateCache('sta');

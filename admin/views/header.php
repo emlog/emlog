@@ -71,9 +71,6 @@
             <a class="nav-link" href="media.php"><i class="icofont-image"></i><span>资源</span></a>
         </li>
 		<?php if (User::isAdmin()): ?>
-            <li class="nav-item" id="menu_page">
-                <a class="nav-link" href="page.php"><i class="icofont-page"></i><span>页面</span></a>
-            </li>
             <li class="nav-item" id="menu_user">
                 <a class="nav-link" href="user.php"><i class="icofont-user"></i><span>用户</span></a>
             </li>
@@ -86,6 +83,7 @@
                         <a class="collapse-item" id="menu_tpl" href="template.php">模板</a>
                         <a class="collapse-item" id="menu_navi" href="navbar.php">导航</a>
                         <a class="collapse-item" id="menu_widget" href="widgets.php">边栏</a>
+                        <a class="collapse-item" id="menu_page" href="page.php">页面</a>
                         <a class="collapse-item" id="menu_link" href="link.php">链接</a>
                     </div>
                 </div>

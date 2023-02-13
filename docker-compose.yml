@@ -72,6 +72,13 @@ services:
     depends_on:
       - php
 
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+    networks:
+      - emlog_network
+
 networks:
   emlog_network:
     external: true
