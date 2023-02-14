@@ -4,7 +4,7 @@ Plugin Name: 小贴士
 Version: 3.0
 Plugin URL:
 Description: 世界上第一个emlog插件，开启会在后台首页送上一句温馨的小提示。
-Author: emlog官方
+Author: emlog
 Author URL: https://www.emlog.net
 */
 

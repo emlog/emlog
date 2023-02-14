@@ -11,6 +11,4 @@ RUN apk add --no-cache \
     pdo_mysql \
     gd \
     zip \
-    mysqli \
-    && pecl install -o -f redis \
-    && docker-php-ext-enable redis
+    mysqli
