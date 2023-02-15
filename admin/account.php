@@ -97,6 +97,7 @@ if ($action == 'dosignup') {
 	$passwd = Input::postStrVar('passwd');
 	$repasswd = Input::postStrVar('repasswd');
 	$login_code = strtoupper(Input::postStrVar('login_code'));
+	$resp = Input::postStrVar('resp'); // eg: json (only support json now)
 
 	if (!checkMail($mail)) {
 		if ($resp === 'json') {
