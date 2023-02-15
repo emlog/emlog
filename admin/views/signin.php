@@ -36,8 +36,8 @@
 									<?php endif ?>
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox small">
-                                            <input type="checkbox" class="custom-control-input" id="ispersis" name="ispersis" value="1">
-                                            <label class="custom-control-label" for="ispersis">记住我</label>
+                                            <input type="checkbox" class="custom-control-input" id="persist" name="persist" value="1">
+                                            <label class="custom-control-label" for="persist">记住我</label>
                                         </div>
                                     </div>
                                     <button class="btn btn-primary btn-user btn-block" type="submit">登 录</button>

@@ -37,12 +37,16 @@ if ($action == 'dosignin') {
 	if (defined('ADMIN_PATH_CODE') && $admin_path_code !== ADMIN_PATH_CODE) {
 		show_404_page(true);
 	}
-	$username = isset($_POST['user']) ? addslashes(trim($_POST['user'])) : '';
-	$password = isset($_POST['pw']) ? addslashes(trim($_POST['pw'])) : '';
-	$ispersis = isset($_POST['ispersis']) ? (int)$_POST['ispersis'] : 0;
+	$username = Input::postStrVar('user');
+	$password = Input::postStrVar('pw');
+	$persist = Input::postIntVar('persist');
+	$resp = Input::postStrVar('resp'); // eg: json (only support json now)
 	$login_code = Option::get('login_code') === 'y' && isset($_POST['login_code']) ? addslashes(strtoupper(trim($_POST['login_code']))) : '';
 
 	if (!User::checkLoginCode($login_code)) {
+		if ($resp === 'json') {
+			Output::error('验证错误');
+		}
 		emDirect('./account.php?action=signin&err_ckcode=1');
 	}
 
@@ -51,11 +55,17 @@ if ($action == 'dosignin') {
 		case $uid > 0:
 			Register::isRegServer();
 			$User_Model->updateUser(['ip' => getIp()], $uid);
-			LoginAuth::setAuthCookie($username, $ispersis);
+			LoginAuth::setAuthCookie($username, $persist);
+			if ($resp === 'json') {
+				Output::ok();
+			}
 			emDirect("./");
 			break;
 		case LoginAuth::LOGIN_ERROR_USER:
 		case LoginAuth::LOGIN_ERROR_PASSWD:
+			if ($resp === 'json') {
+				Output::error('用户或密码错误');
+			}
 			emDirect("./account.php?action=signin&err_login=1");
 			break;
 	}
@@ -83,24 +93,39 @@ if ($action == 'dosignup') {
 		return;
 	}
 
-	$mail = isset($_POST['mail']) ? addslashes(trim($_POST['mail'])) : '';
-	$passwd = isset($_POST['passwd']) ? addslashes(trim($_POST['passwd'])) : '';
-	$repasswd = isset($_POST['repasswd']) ? addslashes(trim($_POST['repasswd'])) : '';
-	$login_code = isset($_POST['login_code']) ? addslashes(strtoupper(trim($_POST['login_code']))) : ''; //登录注册验证码
+	$mail = Input::postStrVar('mail');
+	$passwd = Input::postStrVar('passwd');
+	$repasswd = Input::postStrVar('repasswd');
+	$login_code = strtoupper(Input::postStrVar('login_code'));
 
 	if (!checkMail($mail)) {
+		if ($resp === 'json') {
+			Output::error('错误的邮箱格式');
+		}
 		emDirect('./account.php?action=signup&error_login=1');
 	}
 	if (!User::checkLoginCode($login_code)) {
+		if ($resp === 'json') {
+			Output::error('验证错误');
+		}
 		emDirect('./account.php?action=signup&err_ckcode=1');
 	}
 	if ($User_Model->isMailExist($mail)) {
+		if ($resp === 'json') {
+			Output::error('该邮箱已被注册');
+		}
 		emDirect('./account.php?action=signup&error_exist=1');
 	}
 	if (strlen($passwd) < 6) {
+		if ($resp === 'json') {
+			Output::error('密码不小于6位');
+		}
 		emDirect('./account.php?action=signup&error_pwd_len=1');
 	}
 	if ($passwd !== $repasswd) {
+		if ($resp === 'json') {
+			Output::error('两次输入的密码不一致');
+		}
 		emDirect('./account.php?action=signup&error_pwd2=1');
 	}
 
@@ -108,7 +133,10 @@ if ($action == 'dosignup') {
 	$passwd = $PHPASS->HashPassword($passwd);
 
 	$User_Model->addUser('', $mail, $passwd, User::ROLE_WRITER);
-	$CACHE->updateCache(array('sta', 'user'));
+	$CACHE->updateCache(['sta', 'user']);
+	if ($resp === 'json') {
+		Output::ok();
+	}
 	emDirect("./account.php?action=signin&succ_reg=1");
 }
 

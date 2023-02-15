@@ -96,8 +96,8 @@ class LoginAuth {
 		return $em_hasher->CheckPassword($password, $hash);
 	}
 
-	public static function setAuthCookie($user_login, $ispersis = false) {
-		if ($ispersis) {
+	public static function setAuthCookie($user_login, $persist = false) {
+		if ($persist) {
 			$expiration = time() + 3600 * 24 * 30 * 12;
 		} else {
 			$expiration = null;
