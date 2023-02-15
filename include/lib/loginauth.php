@@ -100,7 +100,7 @@ class LoginAuth {
 		if ($persist) {
 			$expiration = time() + 3600 * 24 * 30 * 12;
 		} else {
-			$expiration = null;
+			$expiration = 0;
 		}
 		$auth_cookie_name = AUTH_COOKIE_NAME;
 		$auth_cookie = self::generateAuthCookie($user_login, $expiration);
