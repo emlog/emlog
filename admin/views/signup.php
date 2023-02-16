@@ -72,17 +72,14 @@
         var timestamp = new Date().getTime();
         $(this).attr("src", "../include/lib/checkcode.php?" + timestamp);
     });
-
+    // send mail code
     $(function () {
         $('#send-btn').click(function () {
             const email = $('#mail').val();
             const sendBtn = $(this);
             const sendBtnResp = $('#send-btn-resp');
             sendBtnResp.html('')
-
-            // 禁用发送按钮
             sendBtn.prop('disabled', true);
-
             $.ajax({
                 type: 'POST',
                 url: './account.php?action=send_email_code',
@@ -92,7 +89,6 @@
                 success: function (response) {
                     // 发送邮件成功后，启动倒计时
                     let seconds = 60;
-
                     // 启动倒计时
                     const countdownInterval = setInterval(() => {
                         seconds--;
@@ -112,6 +108,4 @@
             });
         });
     });
-
-
 </script>

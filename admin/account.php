@@ -113,7 +113,7 @@ if ($action == 'dosignup') {
 		}
 		emDirect('./account.php?action=signup&err_ckcode=1');
 	}
-	if (!User::checkMailCode($mail_code)) {
+	if (Option::get('email_code') === 'y' && !User::checkMailCode($mail_code)) {
 		if ($resp === 'json') {
 			Output::error('邮件验证码错误');
 		}
