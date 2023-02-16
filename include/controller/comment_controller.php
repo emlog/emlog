@@ -37,7 +37,7 @@ class Comment_Controller {
 		$Comment_Model->setCommentCookie($name, $mail, $url);
 		$err = '';
 		if ($Comment_Model->isLogCanComment($blogId) === false) {
-			$err = '该文章已关闭评论';
+			$err = '该文章未开启评论';
 		} elseif ($Comment_Model->isCommentExist($blogId, $name, $content) === true) {
 			$err = '已存在相同内容评论';
 		} elseif (User::isVistor() && $Comment_Model->isCommentTooFast() === true) {
