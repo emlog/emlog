@@ -340,9 +340,11 @@ if ($action == 'user') {
 	$login_code = isset($options_cache['login_code']) ? $options_cache['login_code'] : '';
 	$ischkarticle = isset($options_cache['ischkarticle']) ? $options_cache['ischkarticle'] : '';
 	$posts_per_day = isset($options_cache['posts_per_day']) ? $options_cache['posts_per_day'] : '';
+	$email_code = isset($options_cache['email_code']) ? $options_cache['email_code'] : '';
 
 	$conf_is_signup = $is_signup == 'y' ? 'checked="checked"' : '';
 	$conf_login_code = $login_code == 'y' ? 'checked="checked"' : '';
+	$conf_email_code = $email_code == 'y' ? 'checked="checked"' : '';
 	$conf_ischkarticle = $ischkarticle == 'y' ? 'checked="checked"' : '';
 	$conf_posts_per_day = $posts_per_day;
 
@@ -357,6 +359,7 @@ if ($action == 'user_save') {
 	$data = [
 		'is_signup'     => Input::postStrVar('is_signup', 'n'),
 		'login_code'    => Input::postStrVar('login_code', 'n'),
+		'email_code'    => Input::postStrVar('email_code', 'n'),
 		'ischkarticle'  => Input::postStrVar('ischkarticle', 'n'),
 		'posts_per_day' => Input::postStrVar('posts_per_day', 0),
 	];

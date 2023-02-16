@@ -8,7 +8,29 @@
 
 class Notice {
 
-	public static function sendResetMail($mail) {
+	// Send user registration verification code email
+	public static function sendRegMailCode($mail) {
+		if (!self::smtpServerReady()) {
+			return false;
+		}
+		if (!isset($_SESSION)) {
+			session_start();
+		}
+		$randCode = getRandStr(8, false);
+		$_SESSION['mail_code'] = $randCode;
+		$_SESSION['mail'] = $mail;
+
+		$title = "注册用户邮件验证码";
+		$content = "邮件验证码：" . $randCode;
+		$sendmail = new SendMail();
+		$ret = $sendmail->send($mail, $title, $content);
+		if ($ret) {
+			return true;
+		}
+		return false;
+	}
+
+	public static function sendResetMailCode($mail) {
 		if (!self::smtpServerReady()) {
 			return false;
 		}

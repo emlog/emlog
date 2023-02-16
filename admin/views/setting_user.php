@@ -28,6 +28,10 @@
                 <label class="form-check-label">开启登录注册验证码（提高安全性，建议开启）</label>
             </div>
             <div class="form-group form-check">
+                <input class="form-check-input" type="checkbox" value="y" name="email_code" id="email_code" <?= $conf_email_code ?> >
+                <label class="form-check-label">开启注册邮件验证码</label>
+            </div>
+            <div class="form-group form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="ischkarticle" id="ischkarticle" <?= $conf_ischkarticle ?> />
                 <label class="form-check-label">注册用户发布文章需要审核</label>
             </div>
