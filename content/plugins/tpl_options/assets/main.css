@@ -185,7 +185,7 @@ span.tpl-options-setting:hover {
     margin-top: -30px;
     width: 50px;
     height: 50px;
-    border: 5px solid rgb(0,0,0,0.11);
+    border: 5px solid rgb(0, 0, 0, 0.11);
     border-radius: 50%;
     border-top-color: rgb(235, 169, 47);
     border-left-color: rgb(43, 145, 87);
@@ -193,10 +193,11 @@ span.tpl-options-setting:hover {
     border-bottom-color: rgb(224, 71, 71);
     animation: loadercolor 2s linear infinite;
 }
+
 @keyframes loadercolor {
-  to {
-    transform: rotate(360deg);
-  }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 @-webkit-keyframes spin {
@@ -410,106 +411,123 @@ span.tpl-options-setting:hover {
 .tpl-system .option-body {
     display: block !important
 }
+
 /* checkon */
 .check-switch {
- font-size: 12px;
- position: relative;
- display: inline-block;
- width: 3.5em;
- height: 2em;
+    font-size: 12px;
+    position: relative;
+    display: inline-block;
+    width: 3.5em;
+    height: 2em;
 }
+
 .check-switch input {
- opacity: 0;
- width: 0;
- height: 0;
+    opacity: 0;
+    width: 0;
+    height: 0;
 }
+
 .check-slider {
- position: absolute;
- cursor: pointer;
- top: 0;
- left: 0;
- right: 0;
- bottom: 0;
- background-color: #ccc;
- transition: .4s;
- border-radius: 30px;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 30px;
 }
+
 .check-slider:before {
- position: absolute;
- content: "";
- height: 1.4em;
- width: 1.4em;
- border-radius: 20px;
- left: 0.3em;
- bottom: 0.3em;
- background-color: white;
- transition: .4s;
+    position: absolute;
+    content: "";
+    height: 1.4em;
+    width: 1.4em;
+    border-radius: 20px;
+    left: 0.3em;
+    bottom: 0.3em;
+    background-color: white;
+    transition: .4s;
 }
+
 .check-switch input:checked + .check-slider {
- background-color: #4d72de;
+    background-color: #4d72de;
 }
+
 .check-switch input:focus + .check-slider {
- box-shadow: 0 0 1px rgb(0,221,80);
+    box-shadow: 0 0 1px rgb(0, 221, 80);
 }
+
 .check-switch input:checked + .check-slider:before {
- transform: translateX(1.5em);
+    transform: translateX(1.5em);
 }
+
 .check-slider:after {
- content: '关';
- color: white;
- display: block;
- position: absolute;
- transform: translate(-50%,-50%);
- top: 50%;
- left: 30px;
- font-size: 10px;
- font-family: Verdana, sans-serif;
+    content: '关';
+    color: white;
+    display: block;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 30px;
+    font-size: 10px;
+    font-family: Verdana, sans-serif;
 }
 
 .check-switch input:checked + .check-slider:after {
- content: '开';
- text-align:left;
- left:15px
+    content: '开';
+    text-align: left;
+    left: 15px
 }
+
 .tpl-radio {
-  margin:5px;display:inline-block;
+    margin: 5px;
+    display: inline-block;
 }
+
 .tpl-radio input[type=radio] {
-  position: absolute;
-  opacity: 0;
+    position: absolute;
+    opacity: 0;
 }
+
 .tpl-radio input[type=radio] + .tpl-radio-label:before {
-  content: "";
-  background: #f4f4f4;
-  border-radius: 100%;
-  border: 1px solid #b4b4b4;
-  display: inline-block;
-  width: 1.4em;
-  height: 1.4em;
-  position: relative;
-  top:1px;
-  margin-right:5px;
-  vertical-align: top;
-  cursor: pointer;
-  text-align: center;
-  transition: all 250ms ease;
+    content: "";
+    background: #f4f4f4;
+    border-radius: 100%;
+    border: 1px solid #b4b4b4;
+    display: inline-block;
+    width: 1.4em;
+    height: 1.4em;
+    position: relative;
+    top: 1px;
+    margin-right: 5px;
+    vertical-align: top;
+    cursor: pointer;
+    text-align: center;
+    transition: all 250ms ease;
 }
+
 .tpl-radio input[type=radio]:checked + .tpl-radio-label:before {
-  background-color: #3197EE;
-  box-shadow: inset 0 0 0 4px #f4f4f4;
+    background-color: #3197EE;
+    box-shadow: inset 0 0 0 4px #f4f4f4;
 }
+
 .tpl-radio input[type=radio]:focus + .tpl-radio-label:before {
-  outline: none;
-  border-color: #3197EE;
+    outline: none;
+    border-color: #3197EE;
 }
+
 .tpl-radio input[type=radio]:disabled + .tpl-radio-label:before {
-  box-shadow: inset 0 0 0 4px #f4f4f4;
-  border-color: #b4b4b4;
-  background: #b4b4b4;
+    box-shadow: inset 0 0 0 4px #f4f4f4;
+    border-color: #b4b4b4;
+    background: #b4b4b4;
 }
+
 .tpl-radio input[type=radio] + .tpl-radio-label:empty:before {
-  margin-right: 0;
+    margin-right: 0;
 }
+
 @media screen and (max-width: 900px) {
     #goTopbtn {
         display: block;

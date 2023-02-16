@@ -47,9 +47,9 @@ $(function () {
                 window.setTimeout(function () {
                     initOptionSort();
                     initRichText();
-					setTimeout(function(){
-                    loading(false);
-					},0);
+                    setTimeout(function () {
+                        loading(false);
+                    }, 0);
                 }, 1000);
             }
         });

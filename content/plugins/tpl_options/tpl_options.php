@@ -1,12 +1,12 @@
 <?php
 /*
-Plugin Name: PRO版模版设置
+Plugin Name: 模版设置插件
 Version: 4.2
 Plugin URL: https://www.emlog.net/plugin/detail/377
 Description: PRO版模版设置插件，为模板提供更丰富的设置功能。
-ForEmlog:pro
-Author: 奇遇\蓝叶\emlog官方
+Author: 奇遇、蓝叶、emlog官方
 */
+
 !defined('EMLOG_ROOT') && exit('access deined!');
 
 /**
@@ -112,7 +112,7 @@ class TplOptions {
 				'name'       => '颜色控件',
 				'allowMulti' => false,
 			),
-			'checkon'    => array(
+			'checkon'  => array(
 				'name'       => '开关',
 				'allowMulti' => false,
 			),
@@ -707,8 +707,8 @@ class TplOptions {
 					$default = $option['values'];
 					break;
 				case 'checkon':
-				     $default = $option['values'];
-					 break;
+					$default = $option['values'];
+					break;
 				case 'text':
 				case 'color':
 				case 'image':
@@ -906,10 +906,11 @@ class TplOptions {
 	 */
 	private function renderRadio($option) {
 		$tpl = '<div class="tpl-radio"><input id="{name}-{value}" name="{name}" type="radio" value="{value}"{checked}><label class="tpl-radio-label" for="{name}-{value}">{label}</label></div>';
-		
+
 		$this->renderByTpl($option, $tpl);
 	}
-    /**
+
+	/**
 	 * @param array $option
 	 * @return void
 	 */
@@ -917,6 +918,7 @@ class TplOptions {
 		$tpl = '<label class="check-switch"><input type="checkbox" name="{name}" value="1"{checked}><span class="check-slider"></span></label>';
 		$this->renderByTpl($option, $tpl);
 	}
+
 	/**
 	 * @param array $option
 	 * @return void
@@ -938,6 +940,7 @@ class TplOptions {
 		}
 		$this->renderByTpl($option, $tpl, false);
 	}
+
 	/**
 	 * @param array $option
 	 * @return void

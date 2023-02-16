@@ -15,9 +15,9 @@ function callback_init() {
 	$sql = "
 	CREATE TABLE IF NOT EXISTS `$table` (
 		`id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-		`template` char(64) NOT NULL,
-		`name` char(64) NOT NULL,
-		`depend` char(64) NOT NULL DEFAULT '',
+		`template` varchar(64) NOT NULL,
+		`name` varchar(64) NOT NULL,
+		`depend` varchar(64) NOT NULL DEFAULT '',
 		`data` longtext NOT NULL,
 		PRIMARY KEY (`id`),
 		UNIQUE KEY `template` (`template`,`name`)
