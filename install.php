@@ -529,6 +529,16 @@ CREATE TABLE {$db_prefix}storage (
   `lastupdate` int(11) NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`sid`),
   UNIQUE KEY `plugin` (`plugin`,`name`)
+)" . $table_charset_sql . "
+DROP TABLE IF EXISTS {$db_prefix}tpl_options_data;
+CREATE TABLE {$db_prefix}tpl_options_data (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `template` varchar(64) NOT NULL,
+  `name` varchar(64) NOT NULL,
+  `depend` varchar(64) NOT NULL DEFAULT '',
+  `data` longtext NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `template` (`template`,`name`)
 )" . $table_charset_sql;
 
 	$array_sql = preg_split("/;[\r\n]/", $sql);
