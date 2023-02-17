@@ -3,7 +3,7 @@
 Plugin Name: 模版设置插件
 Version: 4.2
 Plugin URL: https://www.emlog.net/plugin/detail/377
-Description: PRO版模版设置插件，为模板提供更丰富的设置功能。
+Description: 模版设置插件，为模板提供更丰富的设置功能。
 Author: 奇遇、蓝叶、emlog官方
 */
 
@@ -153,7 +153,7 @@ class TplOptions {
 			include $pluginsFile;
 		}
 		//设置模板目录
-		$this->_view = dirname(__FILE__) . '/views/';
+		$this->_view = __DIR__ . '/views/';
 		$this->_assets = BLOG_URL . 'content/plugins/' . self::ID . '/assets/';
 
 		//注册各个钩子
@@ -881,7 +881,7 @@ class TplOptions {
 	 * @return string
 	 */
 	private function getCheckedString($value, $optionValue) {
-		return is_array($optionValue) && in_array($value, $optionValue) || $value == $optionValue ? ' checked="checked"' : '';
+		return (is_array($optionValue) && in_array($value, $optionValue)) || $value == $optionValue ? ' checked="checked"' : '';
 	}
 
 	/**
