@@ -431,6 +431,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widgets1','
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('detect_url','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('emkey','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('login_code','n');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('email_code','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('is_signup','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('ischkarticle','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('smtp_mail','');
@@ -528,6 +529,16 @@ CREATE TABLE {$db_prefix}storage (
   `lastupdate` int(11) NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`sid`),
   UNIQUE KEY `plugin` (`plugin`,`name`)
+)" . $table_charset_sql . "
+DROP TABLE IF EXISTS {$db_prefix}tpl_options_data;
+CREATE TABLE {$db_prefix}tpl_options_data (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `template` varchar(64) NOT NULL,
+  `name` varchar(64) NOT NULL,
+  `depend` varchar(64) NOT NULL DEFAULT '',
+  `data` longtext NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `template` (`template`,`name`)
 )" . $table_charset_sql;
 
 	$array_sql = preg_split("/;[\r\n]/", $sql);

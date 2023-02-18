@@ -157,7 +157,7 @@ class Option {
 	}
 
 	static function getDefPlugin() {
-		return ['tips/tips.php'];
+		return ['tips/tips.php', 'tpl_options/tpl_options.php'];
 	}
 
 	/**

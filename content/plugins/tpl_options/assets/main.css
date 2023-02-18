@@ -1,0 +1,546 @@
+span.tpl-options-setting {
+    cursor: pointer;
+    background: #2A9DDB;
+    color: #fff;
+    font-size: 12px;
+}
+
+span.tpl-options-setting:hover {
+    color: #fff;
+    background: #00aff0
+}
+
+#tpl-options {
+    padding: 0 10px;
+    font-size: 12px
+}
+
+#tpl-options .tpl-options-close, .tpl-options-btns, .tpl-options-menubtn {
+    background-color: #20A2DE;
+    margin-top: 10px;
+    padding: 2px;
+    width: 50px;
+    font-size: 14px;
+    text-align: center;
+    border-radius: 3px;
+    cursor: pointer;
+    color: #fff;
+    height: 30px;
+    line-height: 27px;
+    margin-bottom: 10px;
+    float: left;
+}
+
+.tpl-options-btns {
+    margin-left: 10px;
+    width: 70px
+}
+
+.tpl-options-menubtn {
+    margin-left: 10px;
+    width: 70px
+}
+
+.tpl-options-close:hover, .tpl-options-btns:hover, .tpl-options-menubtn:hover {
+    background: #4e73df;
+}
+
+#tpl-options .option {
+    border-bottom: 1px solid #000;
+    clear: both;
+    margin-bottom: 10px;
+    border: 1px solid #bce8f1;
+    border-radius: 4px;
+    background: #FFFFFF;
+}
+
+#tpl-options .option-name {
+    cursor: pointer;
+    border-bottom: 1px solid #ccc;
+    padding: 8px;
+    background: #d9edf7;
+    color: #31708f;
+    font-weight: bold;
+}
+
+#tpl-options .option-body {
+    padding: 10px;
+}
+
+#tpl-options .depend-sort {
+    margin-left: 0;
+    clear: both;
+}
+
+#tpl-options .option-description {
+    display: block;
+    color: #837F7F;
+    font-weight: normal;
+    font-family: "宋体";
+    padding-top: 5px;
+}
+
+#tpl-options .image-tip {
+    display: block;
+    padding: 10px;
+    color: #3c763d;
+    margin-bottom: 5px;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+
+#tpl-options textarea, #tpl-options input[type="text"] {
+    width: calc(100% - 2px);
+    border: 1px solid #ccc;
+    box-shadow: inset 0 0 1px #ccc;
+    outline: none;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+#tpl-options textarea {
+    height: 70px
+}
+
+#tpl-options select {
+    background: rgb(255, 255, 255);
+    border: 1px solid rgb(217, 217, 214);
+    padding: 9px;
+    border-radius: 4px;
+    max-width: 100px;
+    overflow: hidden;
+    outline: none;
+}
+
+#tpl-options label {
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+#tpl-options img {
+    max-width: 300px;
+}
+
+#tpl-options .option-sort .clearfix {
+    clear: both;
+}
+
+#tpl-options .option-sort-left {
+    float: left;
+}
+
+#tpl-options .option-sort-left .option-sort-name {
+    margin: 10px 0 0;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#tpl-options .option-sort-left .option-sort-name.selected {
+    font-weight: bold;
+    background-color: #eee;
+}
+
+#tpl-options .option-sort-right {
+    margin-left: 10px;
+    float: left;
+}
+
+#tpl-options .option-sort-right .option-sort-option {
+    display: none;
+}
+
+#tpl-options .option-sort-right .option-sort-option.selected {
+    display: block;
+}
+
+#tpl-options .option-sort-right .option-sort-option input[type="text"] {
+    width: calc(100% - -30px)
+}
+
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    filter: Alpha(opacity=40);
+}
+
+.loading:before {
+    content: "";
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: #000000;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.loading:after {
+    content: "";
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    margin-left: -30px;
+    margin-top: -30px;
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgb(0, 0, 0, 0.11);
+    border-radius: 50%;
+    border-top-color: rgb(235, 169, 47);
+    border-left-color: rgb(43, 145, 87);
+    border-right-color: rgb(20, 102, 226);
+    border-bottom-color: rgb(224, 71, 71);
+    animation: loadercolor 2s linear infinite;
+}
+
+@keyframes loadercolor {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        border-width: 30px;
+        margin-left: -30px;
+        margin-top: -30px;
+    }
+    50% {
+        border-width: 100px;
+        margin-left: -100px;
+        margin-top: -100px;
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        border-width: 30px;
+        margin-left: -30px;
+        margin-top: -30px;
+    }
+}
+
+@-moz-keyframes spin {
+    0% {
+        -moz-transform: rotate(0deg);
+        border-width: 30px;
+        margin-left: -30px;
+        margin-top: -30px;
+    }
+    50% {
+        border-width: 100px;
+        margin-left: -100px;
+        margin-top: -100px;
+    }
+    100% {
+        -moz-transform: rotate(360deg);
+        border-width: 30px;
+        margin-left: -30px;
+        margin-top: -30px;
+    }
+}
+
+@-o-keyframes spin {
+    0% {
+        -o-transform: rotate(0deg);
+        border-width: 30px;
+        margin-left: -30px;
+        margin-top: -30px;
+    }
+    50% {
+        border-width: 100px;
+        margin-left: -100px;
+        margin-top: -100px;
+    }
+    100% {
+        -o-transform: rotate(360deg);
+        border-width: 30px;
+        margin-left: -30px;
+        margin-top: -30px;
+    }
+}
+
+@-ms-keyframes spin {
+    0% {
+        -ms-transform: rotate(0deg);
+        border-width: 30px;
+        margin-left: -30px;
+        margin-top: -30px;
+    }
+    50% {
+        border-width: 100px;
+        margin-left: -100px;
+        margin-top: -100px;
+    }
+    100% {
+        -ms-transform: rotate(360deg);
+        border-width: 30px;
+        margin-left: -30px;
+        margin-top: -30px;
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+        border-width: 30px;
+        margin-left: -30px;
+        margin-top: -30px;
+    }
+    50% {
+        border-width: 100px;
+        margin-left: -100px;
+        margin-top: -100px;
+    }
+    100% {
+        transform: rotate(360deg);
+        border-width: 30px;
+        margin-left: -30px;
+        margin-top: -30px;
+    }
+}
+
+.tpl-activebox, .tpl-errorbox {
+    position: fixed;
+    top: 100px;
+    left: 0;
+    right: 0;
+    background: rgb(255 0 0 / 50%);
+    width: 160px;
+    z-index: 999999;
+    margin: 0 auto;
+    text-align: center;
+    border-radius: 6px;
+    color: #fff;
+    padding: 10px;
+}
+
+#goTopbtn {
+    display: none;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    width: 50px;
+    height: 50px;
+    background: url(top.png) no-repeat center;
+    background-size: 100% 100%;
+    color: #fff;
+    z-index: 9999;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+#goTopbtn:hover {
+    opacity: 0.8;
+}
+
+.tpl-options-menu {
+    width: 100%;
+    clear: both;
+    margin: 10px 0;
+}
+
+.tpl-options-menu ul {
+    margin-left: -5px;
+    width: 100%;
+    float: left
+}
+
+.tpl-options-menu ul li {
+    float: left;
+    border-radius: 4px;
+    width: 100px;
+    background: #4aa2cc;
+    padding: 5px;
+    margin: 0 0 0 5px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-align: center;
+    cursor: pointer;
+    color: #fff
+}
+
+.tpl-options-menu ul li:hover, .tpl-options-menu ul li.active {
+    background: #4d72de;
+    color: #fff
+}
+
+.option {
+    display: none;
+    position: relative
+}
+
+.option-ico {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    opacity: 0.5;
+    width: 16px;
+    height: 16px;
+}
+
+.upico {
+    background: url(up.png) no-repeat center;
+    background-size: 100% 100%;
+}
+
+.downico {
+    background: url(down.png) no-repeat center;
+    background-size: 100% 100%;
+}
+
+.tpl-system {
+    font-size: 16px;
+    color: #333;
+    padding: 10px;
+}
+
+.tpl-system p {
+    line-height: 30px;
+    padding: 0;
+    margin: 0;
+}
+
+.tpl-system a {
+    color: #f00 !important
+}
+
+.tpl-system .option-body {
+    display: block !important
+}
+
+/* checkon */
+.check-switch {
+    font-size: 12px;
+    position: relative;
+    display: inline-block;
+    width: 3.5em;
+    height: 2em;
+}
+
+.check-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.check-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 30px;
+}
+
+.check-slider:before {
+    position: absolute;
+    content: "";
+    height: 1.4em;
+    width: 1.4em;
+    border-radius: 20px;
+    left: 0.3em;
+    bottom: 0.3em;
+    background-color: white;
+    transition: .4s;
+}
+
+.check-switch input:checked + .check-slider {
+    background-color: #4d72de;
+}
+
+.check-switch input:focus + .check-slider {
+    box-shadow: 0 0 1px rgb(0, 221, 80);
+}
+
+.check-switch input:checked + .check-slider:before {
+    transform: translateX(1.5em);
+}
+
+.check-slider:after {
+    content: '关';
+    color: white;
+    display: block;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 30px;
+    font-size: 10px;
+    font-family: Verdana, sans-serif;
+}
+
+.check-switch input:checked + .check-slider:after {
+    content: '开';
+    text-align: left;
+    left: 15px
+}
+
+.tpl-radio {
+    margin: 5px;
+    display: inline-block;
+}
+
+.tpl-radio input[type=radio] {
+    position: absolute;
+    opacity: 0;
+}
+
+.tpl-radio input[type=radio] + .tpl-radio-label:before {
+    content: "";
+    background: #f4f4f4;
+    border-radius: 100%;
+    border: 1px solid #b4b4b4;
+    display: inline-block;
+    width: 1.4em;
+    height: 1.4em;
+    position: relative;
+    top: 1px;
+    margin-right: 5px;
+    vertical-align: top;
+    cursor: pointer;
+    text-align: center;
+    transition: all 250ms ease;
+}
+
+.tpl-radio input[type=radio]:checked + .tpl-radio-label:before {
+    background-color: #3197EE;
+    box-shadow: inset 0 0 0 4px #f4f4f4;
+}
+
+.tpl-radio input[type=radio]:focus + .tpl-radio-label:before {
+    outline: none;
+    border-color: #3197EE;
+}
+
+.tpl-radio input[type=radio]:disabled + .tpl-radio-label:before {
+    box-shadow: inset 0 0 0 4px #f4f4f4;
+    border-color: #b4b4b4;
+    background: #b4b4b4;
+}
+
+.tpl-radio input[type=radio] + .tpl-radio-label:empty:before {
+    margin-right: 0;
+}
+
+@media screen and (max-width: 900px) {
+    #goTopbtn {
+        display: block;
+        width: 36px;
+        height: 36px
+    }
+
+    #tpl-options img {
+        max-width: 290px
+    }
+
+    .tpl-options-menu ul li {
+        width: calc(25% - 5px);
+        margin: 0 0 5px 5px
+    }
+}

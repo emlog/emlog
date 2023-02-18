@@ -323,7 +323,7 @@ class Comment_Model {
 	}
 
 	function isLogCanComment($blogId) {
-		if (Option::get('iscomment') == 'n') {
+		if ($blogId <= 0 || Option::get('iscomment') == 'n') {
 			return false;
 		}
 		$query = $this->db->query("SELECT allow_remark FROM " . DB_PREFIX . "blog WHERE gid=$blogId");

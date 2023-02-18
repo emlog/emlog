@@ -13,7 +13,9 @@
                                     <h1 class="h4 text-gray-900 mb-4">注册账号</h1>
                                 </div>
 								<?php if (isset($_GET['err_ckcode'])): ?>
-                                    <div class="alert alert-danger">验证错误，请重新输入</div><?php endif ?>
+                                    <div class="alert alert-danger">图形验证错误</div><?php endif ?>
+								<?php if (isset($_GET['err_mail_code'])): ?>
+                                    <div class="alert alert-danger">邮件验证码错误</div><?php endif ?>
 								<?php if (isset($_GET['error_login'])): ?>
                                     <div class="alert alert-danger">错误的邮箱格式</div><?php endif ?>
 								<?php if (isset($_GET['error_exist'])): ?>
@@ -28,11 +30,20 @@
                                                autofocus>
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" class="form-control form-control-user" minlength="6" id="passwd" name="passwd" placeholder="密码" required>
+                                        <input type="password" class="form-control form-control-user" minlength="6" id="passwd" autocomplete="new-password" name="passwd"
+                                               placeholder="密码" required>
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" class="form-control form-control-user" minlength="6" id="repasswd" name="repasswd" placeholder="再次输入密码" required>
+                                        <input type="password" class="form-control form-control-user" minlength="6" id="repasswd" name="repasswd" placeholder="再次输入密码"
+                                               required>
                                     </div>
+									<?php if ($email_code): ?>
+                                        <div class="form-group form-inline">
+                                            <input type="text" name="mail_code" class="form-control form-control-user" id="mail_code" placeholder="邮件验证码" required>
+                                            <button class="btn btn-success btn-user mx-2" type="button" id="send-btn">发送邮件验证码</button>
+                                            <span id="send-btn-resp"></span>
+                                        </div>
+									<?php endif ?>
 									<?php if ($login_code): ?>
                                         <div class="form-group form-inline">
                                             <input type="text" name="login_code" class="form-control form-control-user" id="login_code" placeholder="验证码" required>
@@ -60,5 +71,41 @@
     $('#checkcode').click(function () {
         var timestamp = new Date().getTime();
         $(this).attr("src", "../include/lib/checkcode.php?" + timestamp);
+    });
+    // send mail code
+    $(function () {
+        $('#send-btn').click(function () {
+            const email = $('#mail').val();
+            const sendBtn = $(this);
+            const sendBtnResp = $('#send-btn-resp');
+            sendBtnResp.html('')
+            sendBtn.prop('disabled', true);
+            $.ajax({
+                type: 'POST',
+                url: './account.php?action=send_email_code',
+                data: {
+                    mail: email
+                },
+                success: function (response) {
+                    // 发送邮件成功后，启动倒计时
+                    let seconds = 60;
+                    // 启动倒计时
+                    const countdownInterval = setInterval(() => {
+                        seconds--;
+                        if (seconds <= 0) {
+                            clearInterval(countdownInterval);
+                            sendBtn.html('发送邮件验证码');
+                            sendBtn.prop('disabled', false);
+                        } else {
+                            sendBtn.html('发送成功，请查收邮件 ' + seconds + '秒');
+                        }
+                    }, 1000);
+                },
+                error: function (error) {
+                    sendBtnResp.html('发送失败').addClass('text-danger')
+                    sendBtn.prop('disabled', false);
+                }
+            });
+        });
     });
 </script>

@@ -21,7 +21,8 @@
                                         <input type="text" class="form-control form-control-user" id="mail_code" name="mail_code" placeholder="邮件验证码(请查收邮件)" required>
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" class="form-control form-control-user" minlength="6" id="passwd" name="passwd" placeholder="新的密码" required>
+                                        <input type="password" class="form-control form-control-user" minlength="6" id="passwd" autocomplete="new-password" name="passwd"
+                                               placeholder="新的密码" required>
                                     </div>
                                     <div class="form-group">
                                         <input type="password" class="form-control form-control-user" minlength="6" id="repasswd" name="repasswd" placeholder="确认新密码" required>

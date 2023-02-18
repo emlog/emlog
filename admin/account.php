@@ -74,6 +74,7 @@ if ($action == 'dosignin') {
 if ($action == 'signup') {
 	loginAuth::checkLogged();
 	$login_code = Option::get('login_code') === 'y';
+	$email_code = Option::get('email_code') === 'y';
 	$error_msg = '';
 
 	if (Option::get('is_signup') !== 'y') {
@@ -97,6 +98,7 @@ if ($action == 'dosignup') {
 	$passwd = Input::postStrVar('passwd');
 	$repasswd = Input::postStrVar('repasswd');
 	$login_code = strtoupper(Input::postStrVar('login_code'));
+	$mail_code = Input::postStrVar('mail_code');
 	$resp = Input::postStrVar('resp'); // eg: json (only support json now)
 
 	if (!checkMail($mail)) {
@@ -107,9 +109,15 @@ if ($action == 'dosignup') {
 	}
 	if (!User::checkLoginCode($login_code)) {
 		if ($resp === 'json') {
-			Output::error('验证错误');
+			Output::error('图形验证码错误');
 		}
 		emDirect('./account.php?action=signup&err_ckcode=1');
+	}
+	if (Option::get('email_code') === 'y' && !User::checkMailCode($mail_code)) {
+		if ($resp === 'json') {
+			Output::error('邮件验证码错误');
+		}
+		emDirect('./account.php?action=signup&err_mail_code=1');
 	}
 	if ($User_Model->isMailExist($mail)) {
 		if ($resp === 'json') {
@@ -141,6 +149,21 @@ if ($action == 'dosignup') {
 	emDirect("./account.php?action=signin&succ_reg=1");
 }
 
+if ($action == 'send_email_code') {
+	$mail = Input::postStrVar('mail');
+
+	if (!checkMail($mail)) {
+		Output::error('错误的邮箱');
+	}
+
+	$ret = Notice::sendRegMailCode($mail);
+	if ($ret) {
+		Output::ok();
+	} else {
+		Output::error('发送失败');
+	}
+}
+
 if ($action == 'reset') {
 	if (ISLOGIN === true) {
 		emDirect("../admin");
@@ -168,7 +191,7 @@ if ($action == 'doreset') {
 		emDirect('./account.php?action=reset&error_mail=1');
 	}
 
-	$ret = Notice::sendResetMail($mail);
+	$ret = Notice::sendResetMailCode($mail);
 	if ($ret) {
 		emDirect("./account.php?action=reset2&succ_mail=1");
 	} else {
