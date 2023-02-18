@@ -29,7 +29,7 @@
                 <input type="password" name="smtp_pw" cols="" rows="3" class="form-control" value="<?= $smtp_pw ?>" autocomplete="new-password">
             </div>
             <div class="form-group">
-                <label>发送人名称（选填）</label>
+                <label>发送人名称（选填，建议填写站点名称）</label>
                 <input type="from_name" class="form-control" value="<?= $smtp_from_name ?>" name="smtp_from_name">
             </div>
             <div class="form-group">
