@@ -47,7 +47,7 @@
 		<?php endforeach ?>
 	<?php else: ?>
         <div class="col-md-12">
-            <div class="alert alert-info">你还没有购买任何应用。</div>
+            <p class="alert alert-warning m-3">你还没有购买任何应用。</p>
         </div>
 	<?php endif ?>
 </div>

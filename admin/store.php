@@ -23,7 +23,13 @@ if (empty($action)) {
 	$r = $Store_Model->getTemplates($tag, $keyword, $page, $author_id);
 	$templates = $r['templates'];
 	$count = $r['count'];
-	$sub_title = '模板' . ($tag === 'free' ? '免费区' : '付费区');
+
+	$sub_title = '模板';
+	if ($tag === 'free') {
+		$sub_title = '免费模板';
+	} elseif ($tag === 'paid') {
+		$sub_title = '付费模板';
+	}
 
 	$subPage = '';
 	foreach ($_GET as $key => $val) {
@@ -47,7 +53,13 @@ if ($action === 'plu') {
 	$r = $Store_Model->getPlugins($tag, $keyword, $page, $author_id);
 	$plugins = $r['plugins'];
 	$count = $r['count'];
-	$sub_title = '插件' . ($tag === 'free' ? '免费区' : '付费区');
+
+	$sub_title = '插件';
+	if ($tag === 'free') {
+		$sub_title = '免费插件';
+	} elseif ($tag === 'paid') {
+		$sub_title = '付费插件';
+	}
 
 	$subPage = '';
 	foreach ($_GET as $key => $val) {
