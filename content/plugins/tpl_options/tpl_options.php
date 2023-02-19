@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: 模版设置插件
-Version: 4.2
+Version: 4.2.1
 Plugin URL: https://www.emlog.net/plugin/detail/377
 Description: 模版设置插件，为模板提供更丰富的设置功能。
 Author: 奇遇、蓝叶、emlog官方

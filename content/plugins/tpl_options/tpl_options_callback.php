@@ -1,4 +1,7 @@
 <?php
+/*
+Plugin Name: 模版设置插件
+*/
 !defined('EMLOG_ROOT') && exit('access deined!');
 
 if (!class_exists('TplOptions', false)) {
@@ -9,9 +12,9 @@ if (!class_exists('TplOptions', false)) {
 function callback_init() {
 	$tplOptions = TplOptions::getInstance();
 	$table = $tplOptions->getTable('data');
-	$dbcharset = 'utf8mb4';
+	$charset = 'utf8mb4';
 	$type = 'InnoDB';
-	$add = $tplOptions->getDb()->getMysqlVersion() > '4.1' ? "ENGINE=$type DEFAULT CHARSET=$dbcharset;" : "TYPE=$type;";
+	$add = $tplOptions->getDb()->getMysqlVersion() > '4.1' ? "ENGINE=$type DEFAULT CHARSET=$charset;" : "TYPE=$type;";
 	$sql = "
 	CREATE TABLE IF NOT EXISTS `$table` (
 		`id` int(11) unsigned NOT NULL AUTO_INCREMENT,

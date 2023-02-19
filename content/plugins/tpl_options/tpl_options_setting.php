@@ -1,4 +1,7 @@
 <?php
+/*
+Plugin Name: 模版设置插件
+*/
 !defined('EMLOG_ROOT') && exit('access deined!');
 
 //插件设置页面
