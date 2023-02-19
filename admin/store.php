@@ -71,6 +71,16 @@ if ($action === 'mine') {
 	View::output();
 }
 
+if ($action === 'svip') {
+	$addons = $Store_Model->getSvipAddon();
+	$sub_title = '铁杆svip专属';
+
+	include View::getAdmView('header');
+	require_once(View::getAdmView('store_svip'));
+	include View::getAdmView('footer');
+	View::output();
+}
+
 if ($action === 'error') {
 	$keyword = '';
 	$sub_title = '';

@@ -19,6 +19,10 @@ class Store_Model {
 		return $this->reqEmStore('mine');
 	}
 
+	public function getSvipAddon() {
+		return $this->reqEmStore('svip');
+	}
+
 	public function reqEmStore($type, $tag = '', $keyword = '', $page = 1, $author_id = 0) {
 		$emcurl = new EmCurl();
 
@@ -60,8 +64,10 @@ class Store_Model {
 				$data['plugins'] = isset($ret['data']['plugins']) ? $ret['data']['plugins'] : [];
 				$data['count'] = isset($ret['data']['count']) ? $ret['data']['count'] : 0;
 				break;
+			case 'svip':
 			case 'mine':
 				$data = isset($ret['data']) ? $ret['data'] : [];
+				break;
 		}
 		return $data;
 	}

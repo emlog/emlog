@@ -11,6 +11,7 @@
     <ul class="nav nav-pills">
         <li class="nav-item"><a class="nav-link" href="./store.php">模板主题</a></li>
         <li class="nav-item"><a class="nav-link active" href="./store.php?action=plu"><i class="icofont-plugin"></i> 扩展插件</a></li>
+        <li class="nav-item"><a class="nav-link" href="./store.php?action=svip">铁杆SVIP专属</a></li>
         <li class="nav-item"><a class="nav-link" href="./store.php?action=mine">我的已购</a></li>
     </ul>
     <form action="./store.php" method="get">
