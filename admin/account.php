@@ -160,7 +160,7 @@ if ($action == 'send_email_code') {
 	if ($ret) {
 		Output::ok();
 	} else {
-		Output::error('发送失败');
+		Output::error('发送邮件失败');
 	}
 }
 
