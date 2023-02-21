@@ -26,7 +26,7 @@
                         <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="<?= $icon ?>">
                     </a>
                     <div class="card-body">
-                        <p class="card-text"><?= $v['name'] ?></p>
+                        <p class="card-text font-weight-bold"><?= $v['name'] ?></p>
                         <p class="card-text text-muted small">
                             <span class="small"><?= $v['info'] ?></span><br><br>
                             开发者：<?= $v['author'] ?><br>
@@ -47,7 +47,7 @@
 		<?php endforeach ?>
 	<?php else: ?>
         <div class="col-md-12">
-            <p class="alert alert-warning m-3">你还没有购买任何应用。</p>
+            <p class="alert alert-warning m-3">您还没有购买任何应用。</p>
         </div>
 	<?php endif ?>
 </div>

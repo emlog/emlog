@@ -26,7 +26,7 @@
                         <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="<?= $icon ?>">
                     </a>
                     <div class="card-body">
-                        <p class="card-text"><?= $v['name'] ?></p>
+                        <p class="card-text font-weight-bold"><?= $v['name'] ?></p>
                         <p class="card-text text-muted small">
                             <span class="small"><?= $v['info'] ?></span><br><br>
                             售价：<?= $v['price'] > 0 ? '<span class="text-danger">' . $v['price'] . '元</span>' : '<span class="text-success">免费</span>' ?><br>
