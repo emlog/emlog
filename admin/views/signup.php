@@ -53,7 +53,7 @@
 								<?php endif ?>
                                 <button class="btn btn-success btn-user btn-block" type="submit">注册</button>
                                 <hr>
-                                <div class="text-center"><a href="/admin/">登录</a></div>
+                                <div class="text-center"><a href="./">登录</a></div>
                                 <hr>
                                 <div class="text-center"><a href="../" class="small" role="button">&larr;返回首页</a></div>
                             </form>
