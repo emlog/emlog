@@ -7,17 +7,10 @@
 
 class Plugin_Model {
 
-	private $db;
-	private $plugin;
-
-	function __construct() {
-		$this->db = Database::getInstance();
-	}
-
 	/**
 	 * start plug-in
 	 */
-	function activePlugin($plugin) {
+	public function activePlugin($plugin) {
 		$active_plugins = Option::get('active_plugins');
 
 		$ret = false;
@@ -47,7 +40,7 @@ class Plugin_Model {
 	/**
 	 * stop plug-in
 	 */
-	function inactivePlugin($plugin) {
+	public function inactivePlugin($plugin) {
 		$active_plugins = Option::get('active_plugins');
 		if (in_array($plugin, $active_plugins)) {
 			$key = array_search($plugin, $active_plugins);
@@ -57,8 +50,9 @@ class Plugin_Model {
 		}
 		$active_plugins = serialize($active_plugins);
 		Option::updateOption('active_plugins', $active_plugins);
+	}
 
-		//run remove callback functions
+	public function rmCallback($plugin) {
 		$r = explode('/', $plugin, 2);
 		$plugin = $r[0];
 		$callback_file = "../content/plugins/$plugin/{$plugin}_callback.php";

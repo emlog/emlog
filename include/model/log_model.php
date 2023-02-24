@@ -11,10 +11,12 @@ class Log_Model {
 	private $db;
 	private $Parsedown;
 	private $table;
+	private $table_user;
 
 	public function __construct() {
 		$this->db = Database::getInstance();
 		$this->table = DB_PREFIX . 'blog';
+		$this->table_user = DB_PREFIX . 'user';
 		$this->Parsedown = new Parsedown();
 		$this->Parsedown->setBreaksEnabled(true); //automatic line wrapping
 	}
@@ -188,7 +190,7 @@ class Log_Model {
 		}
 		$now = time();
 		$date_state = "and date<=$now";
-		$sql = "SELECT * FROM $this->table  WHERE hide='n' and checked='y' and type='blog' $date_state ORDER BY date DESC limit 0," . $perPageNum;
+		$sql = "SELECT * FROM $this->table t1 LEFT JOIN $this->table_user t2 ON t1.author=t2.uid WHERE t1.hide='n' and t1.checked='y' and t1.type='blog' $date_state ORDER BY t1.date DESC limit 0," . $perPageNum;
 		$result = $this->db->query($sql);
 		$d = [];
 		while ($re = $this->db->fetch_array($result)) {
@@ -209,6 +211,7 @@ class Log_Model {
 		}
 		return $d;
 	}
+
 
 	public function getAllPageList() {
 		$sql = "SELECT * FROM $this->table WHERE type='page'";

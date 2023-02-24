@@ -69,6 +69,7 @@ if ($action == 'del') {
 	LoginAuth::checkToken();
 	$Plugin_Model = new Plugin_Model();
 	$Plugin_Model->inactivePlugin($plugin);
+	$Plugin_Model->rmCallback($plugin);
 	$pludir = preg_replace("/^([^\/]+)\/.*/", "$1", $plugin);
 	if (true === emDeleteFile('../content/plugins/' . $pludir)) {
 		$CACHE->updateCache('options');

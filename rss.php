@@ -20,12 +20,11 @@ echo '<?xml version="1.0" encoding="utf-8"?>
 <language>zh-cn</language>
 <generator>www.emlog.net</generator>';
 if (!empty($articles)) {
-	$user_cache = $CACHE->readCache('user');
 	foreach ($articles as $value) {
 		$link = Url::log($value['id']);
 		$abstract = str_replace('[break]', '', $value['content']);
 		$pubdate = date('r', $value['date']);
-		$author = $user_cache[$value['author']]['name'];
+		$author = $value['nickname'];
 		doAction('rss_display');
 		echo <<< END
 
