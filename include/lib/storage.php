@@ -106,8 +106,6 @@ class Storage {
 			$sql .= "`lastupdate` = " . time() . " ";
 			$sql .= "WHERE `plugin` = '" . $this->db_conn->escape_string($this->plugin_name) . "' ";
 			$sql .= "AND `name` = '" . $this->db_conn->escape_string($name) . "'";
-
-			$this->db_conn->query($sql);
 		} else {
 			$sql = "INSERT INTO " . DB_PREFIX . "storage (`plugin`, `name`, `type`, `value`, `createdate`, `lastupdate`) VALUES (";
 			$sql .= "'" . $this->db_conn->escape_string($this->plugin_name) . "', ";
@@ -116,9 +114,8 @@ class Storage {
 			$sql .= "'" . $this->db_conn->escape_string($db_value) . "', ";
 			$sql .= time() . ", ";
 			$sql .= time() . ")";
-
-			$this->db_conn->query($sql);
 		}
+		$this->db_conn->query($sql);
 	}
 
 	/**
@@ -137,9 +134,9 @@ class Storage {
 
 		if ($result === FALSE) {
 			return FALSE;
-		} else {
-			$type = $result['type'];
 		}
+
+		$type = $result['type'];
 
 		switch ($type) {
 			case "number":
