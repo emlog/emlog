@@ -76,7 +76,7 @@ span.tpl-options-setting:hover {
     display: block;
     color: #837F7F;
     font-weight: normal;
-    font-family: "宋体";
+    font-family: helvetica neue, Helvetica, Arial, sans-serif;
     padding-top: 5px;
 }
 
@@ -464,7 +464,7 @@ span.tpl-options-setting:hover {
 }
 
 .check-slider:after {
-    content: '关';
+    content: 'off';
     color: white;
     display: block;
     position: absolute;
@@ -476,7 +476,7 @@ span.tpl-options-setting:hover {
 }
 
 .check-switch input:checked + .check-slider:after {
-    content: '开';
+    content: 'on';
     text-align: left;
     left: 15px
 }
