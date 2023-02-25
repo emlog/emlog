@@ -117,9 +117,10 @@ class Cache {
 		$this->writeCache($cacheData, 'options');
 	}
 
+	// 考虑性能仅缓存前50个用户
 	private function mc_user() {
 		$user_cache = [];
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "user");
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "user ORDER BY uid ASC limit 50");
 		while ($row = $this->db->fetch_array($query)) {
 			$photo = [];
 			$avatar = '';

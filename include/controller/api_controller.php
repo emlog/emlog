@@ -11,6 +11,7 @@ class Api_Controller {
 	public $Log_Model;
 	public $Twitter_Model;
 	public $Tag_Model;
+	public $User_Model;
 	public $Cache;
 
 	function starter($params) {
@@ -27,6 +28,7 @@ class Api_Controller {
 			$this->Log_Model = new Log_Model();
 			$this->Tag_Model = new Tag_Model();
 			$this->Twitter_Model = new Twitter_Model();
+			$this->User_Model = new User_Model();
 			$this->Cache = Cache::getInstance();
 			$this->$_func();
 		} else {
@@ -137,7 +139,6 @@ class Api_Controller {
 
 		$r = $this->Log_Model->getLogsForHome($sub . " ORDER BY top DESC ,date DESC", $page, $count);
 		$sort_cache = $this->Cache->readCache('sort');
-		$author_cache = $this->Cache->readCache('user');
 		$articles = [];
 		foreach ($r as $value) {
 			$articles[] = [
@@ -148,7 +149,7 @@ class Api_Controller {
 				'description' => $value['log_description'],
 				'date'        => date('Y-m-d H:i:s', $value['date']),
 				'author_id'   => (int)$value['author'],
-				'author_name' => isset($author_cache[$value['author']]['name']) ? $author_cache[$value['author']]['name'] : '',
+				'author_name' => $this->getAuthorName($value['author']),
 				'sort_id'     => (int)$value['sortid'],
 				'sort_name'   => isset($sort_cache[$value['sortid']]['sortname']) ? $sort_cache[$value['sortid']]['sortname'] : '',
 				'views'       => (int)$value['views'],
@@ -167,11 +168,13 @@ class Api_Controller {
 
 		$r = $this->Log_Model->getOneLogForHome($id);
 		$sort_cache = $this->Cache->readCache('sort');
-		$author_cache = $this->Cache->readCache('user');
 		$article = '';
 		if (empty($r)) {
 			output::ok(['article' => $article,]);
 		}
+
+		$user_info = $this->User_Model->getOneUser($r['author']);
+		$author_name = isset($user_info['nickname']) ? $user_info['nickname'] : '';
 
 		$article = [
 			'title'       => $r['log_title'],
@@ -181,7 +184,7 @@ class Api_Controller {
 			'sort_name'   => isset($sort_cache[$r['sortid']]['sortname']) ? $sort_cache[$r['sortid']]['sortname'] : '',
 			'type'        => $r['type'],
 			'author_id'   => (int)$r['author'],
-			'author_name' => isset($author_cache[$r['author']]['name']) ? $author_cache[$r['author']]['name'] : '',
+			'author_name' => $author_name,
 			'content'     => $r['log_content'],
 			'cover'       => $r['log_cover'],
 			'views'       => (int)$r['views'],
@@ -245,6 +248,11 @@ class Api_Controller {
 			}
 		}
 		return $tags;
+	}
+
+	private function getAuthorName($uid) {
+		$user_info = $this->User_Model->getOneUser($uid);
+		return isset($user_info['nickname']) ? $user_info['nickname'] : '';
 	}
 
 	private function checkApiKey($req_sign, $req_time) {

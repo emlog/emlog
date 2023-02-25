@@ -9,6 +9,8 @@
 class Author_Controller {
 	function display($params) {
 		$Log_Model = new Log_Model();
+		$User_Model = new User_Model();
+
 		$CACHE = Cache::getInstance();
 		$options_cache = Option::getAll();
 		extract($options_cache);
@@ -18,12 +20,12 @@ class Author_Controller {
 
 		$pageurl = '';
 
-		$user_cache = $CACHE->readCache('user');
-		if (!isset($user_cache[$author])) {
+		$user_info = $User_Model->getOneUser($author);
+		if (empty($user_info)) {
 			show_404_page();
 		}
+		$author_name = $user_info['nickname'];
 
-		$author_name = $user_cache[$author]['name'];
 		//page meta
 		$site_title = $author_name . ' - ' . $site_title;
 

@@ -103,12 +103,12 @@ class Notice {
 	}
 
 	private static function getFounderEmail() {
-		$CACHE = Cache::getInstance();
-		$user_cache = $CACHE->readCache('user');
-		if (empty($user_cache[1]['mail'])) {
+		$User_Model = new User_Model();
+		$user_info = $User_Model->getOneUser(1);
+		if (empty($user_info['email'])) {
 			return false;
 		}
-		return $user_cache[1]['mail'];
+		return $user_info['email'];
 	}
 
 	private static function getArticleInfo($gid) {

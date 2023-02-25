@@ -204,11 +204,11 @@ class Comment_Model {
 	}
 
 	function replyComment($blogId, $pid, $content, $hide) {
-		$CACHE = Cache::getInstance();
-		$user_cache = $CACHE->readCache('user');
-		if (isset($user_cache[UID])) {
-			$name = addslashes($user_cache[UID]['name_orig']);
-			$mail = addslashes($user_cache[UID]['mail']);
+		$User_Model = new User_Model();
+		$user_info = $User_Model->getOneUser(UID);
+		if (!empty($user_info)) {
+			$name = addslashes($user_info['name_orig']);
+			$mail = addslashes($user_info['email']);
 			$url = addslashes(BLOG_URL);
 			$ipaddr = getIp();
 			$utctimestamp = time();
@@ -309,17 +309,6 @@ class Comment_Model {
 		if ($result <= 0) {
 			emMsg('权限不足！', './');
 		}
-	}
-
-	function isNameAndMailValid($name, $mail) {
-		$CACHE = Cache::getInstance();
-		$user_cache = $CACHE->readCache('user');
-		foreach ($user_cache as $user) {
-			if ($user['name'] == $name || ($mail != '' && $user['mail'] == $mail)) {
-				return false;
-			}
-		}
-		return true;
 	}
 
 	function isLogCanComment($blogId) {

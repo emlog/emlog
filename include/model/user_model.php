@@ -45,9 +45,11 @@ class User_Model {
 		$row = $this->db->once_fetch_array("select * from " . DB_PREFIX . "user where uid=$uid");
 		$userData = [];
 		if ($row) {
+			$row['nickname'] = empty($row['nickname']) ? $row['username'] : $row['nickname'];
 			$userData = [
 				'username'    => htmlspecialchars($row['username']),
 				'nickname'    => htmlspecialchars($row['nickname']),
+				'name_orig'   => $row['nickname'],
 				'email'       => htmlspecialchars($row['email']),
 				'photo'       => htmlspecialchars($row['photo']),
 				'description' => htmlspecialchars($row['description']),

@@ -19,10 +19,10 @@ class Comment_Controller {
 		$uid = 0;
 
 		if (ISLOGIN === true) {
-			$CACHE = Cache::getInstance();
-			$user_cache = $CACHE->readCache('user');
-			$name = addslashes($user_cache[UID]['name_orig']);
-			$mail = addslashes($user_cache[UID]['mail']);
+			$User_Model = new User_Model();
+			$user_info = $User_Model->getOneUser(UID);
+			$name = addslashes($user_info['name_orig']);
+			$mail = addslashes($user_info['email']);
 			$url = addslashes(BLOG_URL);
 			$uid = UID;
 		}
@@ -48,8 +48,6 @@ class Comment_Controller {
 			$err = '姓名不符合规范';
 		} elseif ($mail !== '' && !checkMail($mail)) {
 			$err = '邮件地址不符合规范';
-		} elseif (ISLOGIN === false && $Comment_Model->isNameAndMailValid($name, $mail) === false) {
-			$err = '禁止使用管理员昵称或邮箱评论';
 		} elseif (!empty($url) && preg_match("/^(http|https)\:\/\/[^<>'\"]*$/", $url) == false) {
 			$err = '主页地址不符合规范';
 		} elseif (empty($content)) {
