@@ -31,7 +31,7 @@
     <div class="card-header py-3">
         <div class="row justify-content-between">
             <div class="form-inline">
-                <h6 class="m-0 font-weight-bold">总用户数 (<?= $usernum ?>)</h6>
+                <h6 class="m-2 font-weight-bold">总用户数 (<?= $usernum ?>)</h6>
             </div>
             <form action="user.php" method="get">
                 <div class="form-inline search-inputs-nowrap">

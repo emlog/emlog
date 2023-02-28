@@ -308,13 +308,18 @@ class Tag_Model {
 		return $tags;
 	}
 
-	function getTags($page_count = 50, $page = 1) {
+	function getTags($tag_name = '', $page_count = 50, $page = 1) {
 		$startId = ($page - 1) * $page_count;
 		$limit = "LIMIT $startId, " . $page_count;
 
+		$condition = '';
+		if ($tag_name) {
+			$condition = " and tagname like '%$tag_name%'";
+		}
+
 		$tags = [];
 
-		$sql = "SELECT `tid`,`tagname` FROM `" . DB_PREFIX . "tag` ORDER BY `tid` DESC $limit";
+		$sql = "SELECT * FROM `" . DB_PREFIX . "tag`  where 1=1 $condition ORDER BY `tid` DESC $limit";
 		$query = $this->db->query($sql);
 
 		if ($this->db->num_rows($query) > 0) {

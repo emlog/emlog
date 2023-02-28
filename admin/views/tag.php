@@ -11,15 +11,38 @@
     <h1 class="h3 mb-0 text-gray-800">文章标签</h1>
 </div>
 <div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <div class="row justify-content-between">
+            <div class="form-inline">
+                <h6 class="m-2 font-weight-bold">总标签数 (<?= $tags_count ?>)</h6>
+            </div>
+            <form action="tag.php" method="get">
+                <div class="form-inline search-inputs-nowrap">
+                    <input type="text" name="keyword" value="<?= $keyword ?>" class="form-control m-1 small" placeholder="搜索标签名...">
+                    <div class="input-group-append">
+                        <button class="btn btn-sm btn-success" type="submit">
+                            <i class="icofont-search-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
     <form action="tag.php?action=operate_tag" method="post" name="form_tag" id="form_tag">
         <div class="card-body">
             <div>
 				<?php if ($tags): ?>
-					<?php foreach ($tags as $key => $value): ?>
-                        <a href="#" class="badge badge-primary m-2 p-1" data-toggle="modal" data-target="#editModal" data-tid="<?= $value['tid'] ?>"
-                           data-tagname="<?= $value['tagname'] ?>">
-                            <input type="checkbox" name="tids[]" value="<?= $value['tid'] ?>" class="tids align-top"/>
-							<?= $value['tagname'] ?>
+					<?php foreach ($tags as $key => $v):
+						$count = count(explode(',', $v['gid']));
+						$count_style = $count > 0 ? 'text-muted' : 'text-danger';
+						?>
+                        <a href="#" class="badge badge-light m-4 p-1" data-toggle="modal" data-target="#editModal" data-tid="<?= $v['tid'] ?>"
+                           data-tagname="<?= $v['tagname'] ?>">
+                            <h5><?= $v['tagname'] ?></h5>
+                            <small class="<?= $count_style ?>">
+                                文章<?= $count ?>篇
+                            </small>
+                            <input type="checkbox" name="tids[]" value="<?= $v['tid'] ?>" class="tids align-top"/>
                         </a>
 					<?php endforeach ?>
 				<?php else: ?>
@@ -40,7 +63,7 @@
                 <a href="javascript:tagact('del');" class="btn btn-sm btn-danger">删除</a>
             </div>
         </div>
-        <div class="page"><?= $pageurl ?> （有 <?= $tags_count ?> 个标签）</div>
+        <div class="page"><?= $pageurl ?></div>
     </form>
 </div>
 

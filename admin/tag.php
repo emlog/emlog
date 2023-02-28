@@ -15,10 +15,11 @@ require_once 'globals.php';
 $Tag_Model = new Tag_Model();
 
 if (empty($action)) {
-	$page_count = 260;
+	$page_count = 100;
 	$page = Input::getIntVar('page', 1);
+	$keyword = Input::getStrVar('keyword');
 
-	$tags = $Tag_Model->getTags($page_count, $page);
+	$tags = $Tag_Model->getTags($keyword, $page_count, $page);
 	$tags_count = $Tag_Model->getTagsCount();
 	$pageurl = pagination($tags_count, $page_count, $page, "./tag.php?page=");
 
@@ -37,7 +38,7 @@ if ($action == 'update_tag') {
 	}
 
 	$Tag_Model->updateTagName($tagId, $tagName);
-	$CACHE->updateCache(tags);
+	$CACHE->updateCache('tags');
 	emDirect("./tag.php?active_edit=1");
 }
 
