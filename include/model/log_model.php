@@ -49,6 +49,12 @@ class Log_Model {
 		$this->db->query("UPDATE $this->table SET $upStr WHERE gid=$blogId $author");
 	}
 
+	public function getCount($uid = UID) {
+		$sql = sprintf("SELECT count(*) as num FROM $this->table WHERE author=%d AND type='%s'", $uid, 'blog');
+		$res = $this->db->once_fetch_array($sql);
+		return $res['num'];
+	}
+
 	/**
 	 * Gets the number of articles for the specified condition
 	 *

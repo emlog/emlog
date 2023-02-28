@@ -75,7 +75,7 @@ class Cache {
 		$this->updateCache(['sta', 'tags', 'sort', 'newlog', 'record', 'logsort', 'logalias']);
 	}
 
-	public function writeCache($cacheData, $cacheName) {
+	public function cacheWrite($cacheData, $cacheName) {
 		$cachefile = EMLOG_ROOT . '/content/cache/' . $cacheName . '.php';
 		$cacheData = "<?php exit;//" . $cacheData;
 		@ $fp = fopen($cachefile, 'wb') or emMsg('读取缓存失败');
@@ -114,7 +114,7 @@ class Cache {
 			$options_cache[$row['option_name']] = $row['option_value'];
 		}
 		$cacheData = serialize($options_cache);
-		$this->writeCache($cacheData, 'options');
+		$this->cacheWrite($cacheData, 'options');
 	}
 
 	private function mc_user() {
@@ -146,7 +146,7 @@ class Cache {
 			];
 		}
 		$cacheData = serialize($user_cache);
-		$this->writeCache($cacheData, 'user');
+		$this->cacheWrite($cacheData, 'user');
 	}
 
 	private function mc_sta() {
@@ -196,7 +196,7 @@ class Cache {
 		}
 
 		$cacheData = serialize($sta_cache);
-		$this->writeCache($cacheData, 'sta');
+		$this->cacheWrite($cacheData, 'sta');
 	}
 
 	private function mc_comment() {
@@ -239,7 +239,7 @@ class Cache {
 			);
 		}
 		$cacheData = serialize($com_cache);
-		$this->writeCache($cacheData, 'comment');
+		$this->cacheWrite($cacheData, 'comment');
 	}
 
 	private function mc_tags() {
@@ -266,7 +266,7 @@ class Cache {
 			];
 		}
 		$cacheData = serialize($tag_cache);
-		$this->writeCache($cacheData, 'tags');
+		$this->cacheWrite($cacheData, 'tags');
 	}
 
 	private function mc_sort() {
@@ -293,7 +293,7 @@ class Cache {
 			$sort_cache[$row['sid']] = $sortData;
 		}
 		$cacheData = serialize($sort_cache);
-		$this->writeCache($cacheData, 'sort');
+		$this->cacheWrite($cacheData, 'sort');
 	}
 
 	private function mc_link() {
@@ -307,7 +307,7 @@ class Cache {
 			);
 		}
 		$cacheData = serialize($link_cache);
-		$this->writeCache($cacheData, 'link');
+		$this->cacheWrite($cacheData, 'link');
 	}
 
 	private function mc_navi() {
@@ -346,7 +346,7 @@ class Cache {
 			$navi_cache[$row['id']] = $naviData;
 		}
 		$cacheData = serialize($navi_cache);
-		$this->writeCache($cacheData, 'navi');
+		$this->cacheWrite($cacheData, 'navi');
 	}
 
 	private function mc_newlog() {
@@ -365,7 +365,7 @@ class Cache {
 			$logs[] = $row;
 		}
 		$cacheData = serialize($logs);
-		$this->writeCache($cacheData, 'newlog');
+		$this->cacheWrite($cacheData, 'newlog');
 	}
 
 	private function mc_record() {
@@ -399,7 +399,7 @@ class Cache {
 		}
 
 		$cacheData = serialize($record_cache);
-		$this->writeCache($cacheData, 'record');
+		$this->cacheWrite($cacheData, 'record');
 	}
 
 	private function mc_logalias() {
@@ -410,7 +410,7 @@ class Cache {
 			$log_cache_alias[$row['gid']] = $row['alias'];
 		}
 		$cacheData = serialize($log_cache_alias);
-		$this->writeCache($cacheData, 'logalias');
+		$this->cacheWrite($cacheData, 'logalias');
 	}
 
 	/**
@@ -418,7 +418,7 @@ class Cache {
 	 */
 	private function mc_logtags() {
 		$cacheData = serialize([]);
-		$this->writeCache($cacheData, 'logtags');
+		$this->cacheWrite($cacheData, 'logtags');
 	}
 
 	private function mc_logsort() {
@@ -447,6 +447,6 @@ class Cache {
 			}
 		}
 		$cacheData = serialize($log_cache_sort);
-		$this->writeCache($cacheData, 'logsort');
+		$this->cacheWrite($cacheData, 'logsort');
 	}
 }

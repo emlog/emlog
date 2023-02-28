@@ -20,7 +20,7 @@ if (!$action) {
 	$hide = isset($_GET['hide']) ? addslashes($_GET['hide']) : '';
 	$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
-	$addUrl_1 = $blogId ? "gid={$blogId}&" : '';
+	$addUrl_1 = $blogId ? "gid=$blogId&" : '';
 	$addUrl_2 = $hide ? "hide=$hide&" : '';
 	$addUrl = $addUrl_1 . $addUrl_2;
 

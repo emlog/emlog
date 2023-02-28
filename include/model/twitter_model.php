@@ -27,7 +27,7 @@ class Twitter_Model {
 		return $this->db->insert_id();
 	}
 
-	function getTwitterNum($uid) {
+	function getCount($uid = UID) {
 		$author = $uid ? 'and author=' . $uid : '';
 		$data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "twitter WHERE 1=1 $author");
 		return $data['total'];

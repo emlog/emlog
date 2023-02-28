@@ -17,19 +17,19 @@ if (empty($action)) {
 	$name = $user_cache[UID]['name'];
 	$role = $user_cache[UID]['role'];
 
-	$serverapp = $_SERVER['SERVER_SOFTWARE'];
+	// server info
+	$server_app = $_SERVER['SERVER_SOFTWARE'];
 	$DB = Database::getInstance();
 	$mysql_ver = $DB->getMysqlVersion();
-
 	$max_execution_time = ini_get('max_execution_time') ?: '';
 	$max_upload_size = ini_get('upload_max_filesize') ?: '';
 	$php_ver = PHP_VERSION . ', ' . $max_execution_time . 's,' . $max_upload_size;
 	$role_name = User::getRoleName($role, UID);
-	if (function_exists("curl_init")) {
+	if (function_exists('curl_init')) {
 		$c = curl_version();
-		$php_ver .= ",curl" . $c['version'];
+		$php_ver .= ',curl' . $c['version'];
 	}
-	if (class_exists('ZipArchive', FALSE)) {
+	if (class_exists('ZipArchive', false)) {
 		$php_ver .= ',zip';
 	}
 
