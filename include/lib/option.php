@@ -7,8 +7,8 @@
 
 class Option {
 
-	const EMLOG_VERSION = 'pro 2.0.0';
-	const EMLOG_VERSION_TIMESTAMP = 1676815874;
+	const EMLOG_VERSION = 'pro 2.0.1';
+	const EMLOG_VERSION_TIMESTAMP = 1677676382;
 	const ICON_MAX_W = 160;
 	const ICON_MAX_H = 160;
 	const UPLOADFILE_PATH = '../content/uploadfile/';
