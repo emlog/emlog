@@ -33,8 +33,26 @@ if (empty($action)) {
 		$php_ver .= ',zip';
 	}
 
+	if (User::haveEditPermission()) {
+		include View::getAdmView('header');
+		require_once(View::getAdmView('index'));
+		include View::getAdmView('footer');
+		View::output();
+	}
+
+	// user center
+	$Log_Model = new Log_Model();
+	$Comment_Model = new Comment_Model();
+	$Note_Model = new Twitter_Model();
+
+	$article_amount = $Log_Model->getCount();
+	$note_amount = $Note_Model->getCount();
+	$comment_amount = $Comment_Model->getCommentNum();
+	$logs = $Log_Model->getLogsForAdmin();
+	$comments = $Comment_Model->getCommentsForAdmin();
+
 	include View::getAdmView('header');
-	require_once(View::getAdmView('index'));
+	require_once(View::getAdmView('index_user'));
 	include View::getAdmView('footer');
 	View::output();
 }

@@ -8,117 +8,116 @@
     </div>
     <a href="./article.php?action=write" class="btn btn-sm btn-success shadow-sm mt-4"><i class="icofont-pencil-alt-5"></i> 写新文章</a>
 </div>
-<?php if (User::haveEditPermission()): ?>
-    <div class="row ml-1 mb-1"><?php doAction('adm_main_top') ?></div>
-    <div class="row">
-        <div class="col-lg-6 mb-4">
-            <div class="card shadow mb-4">
-                <h6 class="card-header">站点信息</h6>
-                <div class="card-body">
-                    <ul class="list-group list-group-flush">
-                        <li class="row">
-                            <div class="col-xl-4 col-md-6 mb-1">
-                                <div class="card border-left-primary shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col">
-                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">待审文章</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="./article.php?checked=n"><?= $sta_cache['checknum'] ?></a></div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <i class="icofont-pencil-alt-5 fa-2x text-gray-300"></i>
-                                            </div>
+<div class="row ml-1 mb-1"><?php doAction('adm_main_top') ?></div>
+<div class="row">
+    <div class="col-lg-6 mb-4">
+        <div class="card shadow mb-4">
+            <h6 class="card-header">站点信息</h6>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="row">
+                        <div class="col-xl-4 col-md-6 mb-1">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">待审文章</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="./article.php?checked=n"><?= $sta_cache['checknum'] ?></a></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="icofont-pencil-alt-5 fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="col-xl-4 col-md-6 mb-1">
-                                <div class="card border-left-warning shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col">
-                                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                    待审评论
-                                                </div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="./comment.php?hide=y"><?= $sta_cache['hidecomnum'] ?></a></div>
+                        <div class="col-xl-4 col-md-6 mb-1">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                待审评论
                                             </div>
-                                            <div class="col-auto">
-                                                <i class="icofont-comment fa-2x text-gray-300"></i>
-                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="./comment.php?hide=y"><?= $sta_cache['hidecomnum'] ?></a></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="icofont-comment fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-4 col-md-6 mb-1">
-                                <div class="card border-left-success shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col">
-                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                    用户数
-                                                </div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="./user.php"><?= count($user_cache) ?></a></div>
+                        </div>
+                        <div class="col-xl-4 col-md-6 mb-1">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                用户数
                                             </div>
-                                            <div class="col-auto">
-                                                <i class="icofont-user fa-2x text-gray-300"></i>
-                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="./user.php"><?= count($user_cache) ?></a></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="icofont-user fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <a href="./article.php">文章</a>
-                            <a href="./article.php"><span class="badge badge-primary badge-pill"><?= $sta_cache['lognum'] ?></span></a>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <a href="./twitter.php">笔记</a>
-                            <a href="./twitter.php?all=y"><span class="badge badge-primary badge-pill"><?= $sta_cache['note_num'] ?></span></a>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <a href="./comment.php">评论</a>
-                            <a href="./comment.php"><span class="badge badge-primary badge-pill"><?= $sta_cache['comnum_all'] ?></span></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-		<?php if (User::isAdmin()): ?>
-        <div class="col-lg-6 mb-4">
-            <div class="card shadow mb-4">
-                <h6 class="card-header">软件信息</h6>
-                <div class="card-body">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            PHP
-                            <span class="small"><?= $php_ver ?></span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            数据库
-                            <span class="small">MySQL <?= $mysql_ver ?></span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            web服务
-                            <span class="small"><?= $server_app ?></span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            EMLOG
-							<?php if (!Register::isRegLocal()) : ?>
-                                <a href="auth.php"><span class="badge badge-secondary"><?= Option::EMLOG_VERSION ?> 未注册, 点击去注册</span></a>
-							<?php else: ?>
-                                <span class="badge <?php if (Register::getRegType() === 2): ?>badge-warning<?php else: ?>badge-success<?php endif; ?>"><?= Option::EMLOG_VERSION ?> 已注册</span>
-							<?php endif ?>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <a id="ckup" href="javascript:checkupdate();" class="btn btn-success btn-sm">检查更新</a>
-                            <span id="upmsg"></span>
-                        </li>
-                    </ul>
-                </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <a href="./article.php">文章</a>
+                        <a href="./article.php"><span class="badge badge-primary badge-pill"><?= $sta_cache['lognum'] ?></span></a>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <a href="./twitter.php">笔记</a>
+                        <a href="./twitter.php?all=y"><span class="badge badge-primary badge-pill"><?= $sta_cache['note_num'] ?></span></a>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <a href="./comment.php">评论</a>
+                        <a href="./comment.php"><span class="badge badge-primary badge-pill"><?= $sta_cache['comnum_all'] ?></span></a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
+	<?php if (User::isAdmin()): ?>
+    <div class="col-lg-6 mb-4">
+        <div class="card shadow mb-4">
+            <h6 class="card-header">软件信息</h6>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        PHP
+                        <span class="small"><?= $php_ver ?></span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        数据库
+                        <span class="small">MySQL <?= $mysql_ver ?></span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        web服务
+                        <span class="small"><?= $server_app ?></span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        EMLOG
+						<?php if (!Register::isRegLocal()) : ?>
+                            <a href="auth.php"><span class="badge badge-secondary"><?= Option::EMLOG_VERSION ?> 未注册, 点击去注册</span></a>
+						<?php else: ?>
+                            <span class="badge <?php if (Register::getRegType() === 2): ?>badge-warning<?php else: ?>badge-success<?php endif; ?>"><?= Option::EMLOG_VERSION ?> 已注册</span>
+						<?php endif ?>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <a id="ckup" href="javascript:checkupdate();" class="btn btn-success btn-sm">检查更新</a>
+                        <span id="upmsg"></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
     <div class="row">
 		<?php if (!Register::isRegLocal()) : ?>
             <div class="col-lg-6 mb-4">
@@ -157,96 +156,6 @@
         setTimeout(hideActived, 2600);
         $("#menu_panel").addClass('active');
     </script>
-<?php endif ?>
-<?php else:
-	// user info
-	$Log_Model = new Log_Model();
-	$Comment_Model = new Comment_Model();
-	$Note_Model = new Twitter_Model();
-
-	$article_amount = $Log_Model->getCount();
-	$note_amount = $Note_Model->getCount();
-	$comment_amount = $Comment_Model->getCommentNum();
-	$logs = $Log_Model->getLogsForAdmin();
-	$comments = $Comment_Model->getCommentsForAdmin();
-	?>
-    <div class="row">
-        <div class="mb-3 col-lg-4">
-            <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">文章</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="./article.php?checked=n"><?= $article_amount ?></a></div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="icofont-pencil-alt-5 fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="mb-3 col-lg-4">
-            <div class="card border-left-info shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col">
-                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                收到评论
-                            </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="./comment.php?hide=y"><?= $comment_amount ?></a></div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="icofont-comment fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="mb-3 col-lg-4">
-            <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                笔记
-                            </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="./user.php"><?= $note_amount ?></a></div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="icofont-user fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-6 mb-4">
-            <div class="card shadow mb-4">
-                <h6 class="card-header">最近发布的文章</h6>
-                <div class="card-body" id="admindex_msg">
-                    <ul class="list-group list-group-flush">
-						<?php foreach ($logs as $v) : ?>
-                            <li class="msg_type_0"><a href="<?= Url::log($v['gid']) ?>" target="_blank"><?= $v['title'] ?></a></li>
-						<?php endforeach; ?>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6 mb-4">
-            <div class="card shadow mb-4">
-                <h6 class="card-header">最近收到的评论</h6>
-                <div class="card-body" id="admindex_msg">
-                    <ul class="list-group list-group-flush">
-						<?php foreach ($comments as $v) : ?>
-                            <li class="msg_type_0"><a href="<?= Url::log($v['gid']) ?>" target="_blank"><?= $v['comment'] ?></a></li>
-						<?php endforeach; ?>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
 <?php endif ?>
 
 <div class="row">
