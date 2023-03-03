@@ -196,14 +196,14 @@ class Log_Model {
 		}
 		$now = time();
 		$date_state = "and date<=$now";
-		$sql = "SELECT * FROM $this->table t1 LEFT JOIN $this->table_user t2 ON t1.author=t2.uid WHERE t1.hide='n' and t1.checked='y' and t1.type='blog' $date_state ORDER BY t1.date DESC limit 0," . $perPageNum;
+		$sql = "SELECT *, t1.password as pwd FROM $this->table t1 LEFT JOIN $this->table_user t2 ON t1.author=t2.uid WHERE t1.hide='n' and t1.checked='y' and t1.type='blog' $date_state ORDER BY t1.date DESC limit 0," . $perPageNum;
 		$result = $this->db->query($sql);
 		$d = [];
 		while ($re = $this->db->fetch_array($result)) {
 			$re['id'] = $re['gid'];
 			$re['title'] = htmlspecialchars($re['title']);
 			$re['content'] = $this->Parsedown->text($re['content']);
-			if (!empty($re['password'])) {
+			if (!empty($re['pwd'])) {
 				$re['content'] = '<p>[该文章已设置加密]</p>';
 			} elseif (Option::get('rss_output_fulltext') == 'n') {
 				if (!empty($re['excerpt'])) {
