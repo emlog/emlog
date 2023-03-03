@@ -125,57 +125,69 @@
    this._triggerAnimation()
  }
  Zoom.prototype._calculateZoom = function (img) {
- this._targetImage.offsetWidth
- var originalFullImageWidth= (!img)?this._fullWidth:Number(img.width)
- var originalFullImageHeight = (!img)?this._fullHeight:Number(img.height)
- var scrollTop = $(window).scrollTop()
- var maxScaleFactor = originalFullImageWidth / this._targetImage.width
- var viewportHeight = ($(window).height() - Zoom.OFFSET)
- var viewportWidth= ($(window).width() - Zoom.OFFSET)
- var imageAspectRatio= originalFullImageWidth / originalFullImageHeight
- var viewportAspectRatio = viewportWidth / viewportHeight
- if (originalFullImageWidth < viewportWidth && originalFullImageHeight < viewportHeight) {
- this._imgScaleFactor = maxScaleFactor
- } else if (imageAspectRatio < viewportAspectRatio) {
- this._imgScaleFactor = (viewportHeight / originalFullImageHeight) * maxScaleFactor
- } else {
- this._imgScaleFactor = (viewportWidth / originalFullImageWidth) * maxScaleFactor
- }
- /* 修改：比原尺寸大，不需缩小展示，与原尺寸一样，变为原来的1.2倍 */
- if (this._imgScaleFactor < 1) {
-    this._imgScaleFactor = 1
- } else if (this._imgScaleFactor = 1) {
-    this._imgScaleFactor = 1.2
- }
+  this._targetImage.offsetWidth
+  var originalFullImageWidth= (!img)?this._fullWidth:Number(img.width)
+  var originalFullImageHeight = (!img)?this._fullHeight:Number(img.height)
+  var scrollTop = $(window).scrollTop()
+  var maxScaleFactor = originalFullImageWidth / this._targetImage.width
+  var viewportHeight = ($(window).height() - Zoom.OFFSET)
+  var viewportWidth= ($(window).width() - Zoom.OFFSET)
+  var imageAspectRatio= originalFullImageWidth / originalFullImageHeight
+  var viewportAspectRatio = viewportWidth / viewportHeight
+
+  if (originalFullImageWidth < viewportWidth && originalFullImageHeight < viewportHeight) {
+    this._imgScaleFactor = maxScaleFactor
+  } else if (imageAspectRatio < viewportAspectRatio) {
+    this._imgScaleFactor = (viewportHeight / originalFullImageHeight) * maxScaleFactor
+  } else {
+    this._imgScaleFactor = (viewportWidth / originalFullImageWidth) * maxScaleFactor
+  }
+
+  /* 修改：比原尺寸大，不需缩小展示，与原尺寸一样，变为原来的1.2倍 */
+  if (this._imgScaleFactor < 1) {
+      this._imgScaleFactor = 1
+  } else if (this._imgScaleFactor = 1) {
+      this._imgScaleFactor = 1.2
+  }
  }
  Zoom.prototype._triggerAnimation = function () {
- this._targetImage.offsetWidth
- var imageOffset = $(this._targetImage).offset()
- var scrollTop = $(window).scrollTop()
- var viewportY = scrollTop + ($(window).height() / 2)
- var viewportX = ($(window).width() / 2)
- var imageCenterY = imageOffset.top + (this._targetImage.height / 2)
- var imageCenterX = imageOffset.left + (this._targetImage.width / 2)
- this._translateY = viewportY - imageCenterY
- this._translateX = viewportX - imageCenterX
- var targetTransform = 'scale(' + this._imgScaleFactor + ')'
- var imageWrapTransform = 'translate(' + this._translateX + 'px, ' + this._translateY + 'px)'
- if ($.support.transition) {
- imageWrapTransform += ' translateZ(0)'
- }
- $(this._targetImage)
- .css({
- '-webkit-transform': targetTransform,
- '-ms-transform': targetTransform,
- 'transform': targetTransform
- })
- $(this._targetImageWrap)
- .css({
- '-webkit-transform': imageWrapTransform,
- '-ms-transform': imageWrapTransform,
- 'transform': imageWrapTransform
- })
- this._$body.addClass('zoom-overlay-open')
+  this._targetImage.offsetWidth
+
+  var imageOffset = $(this._targetImage).offset()
+  var scrollTop = $(window).scrollTop() // 滚轮条与顶部上方的距离
+  var viewportY = scrollTop + ($(window).height() / 2)
+  var viewportX = ($(window).width() / 2)
+  var imageCenterY = imageOffset.top + (this._targetImage.height / 2)
+  var imageCenterX = imageOffset.left + (this._targetImage.width / 2)
+
+  this._translateY = viewportY - imageCenterY
+  this._translateX = viewportX - imageCenterX
+
+  /* 修改：如果放大图比屏幕要高，那么就让放大图的上边缘与屏幕上边缘对齐 */
+  if (this._targetImage.height > $(window).height()) {
+    this._translateY = this._translateY + (this._targetImage.height / 2) - ($(window).height() / 2)
+  }
+
+  var targetTransform = 'scale(' + this._imgScaleFactor + ')'
+  var imageWrapTransform = 'translate(' + this._translateX + 'px, ' + this._translateY + 'px)'
+
+  if ($.support.transition) {
+    imageWrapTransform += ' translateZ(0)'
+  }
+
+  $(this._targetImage)
+  .css({
+  '-webkit-transform': targetTransform,
+  '-ms-transform': targetTransform,
+  'transform': targetTransform
+  })
+  $(this._targetImageWrap)
+  .css({
+  '-webkit-transform': imageWrapTransform,
+  '-ms-transform': imageWrapTransform,
+  'transform': imageWrapTransform
+  })
+  this._$body.addClass('zoom-overlay-open')
  }
  Zoom.prototype.close = function () {
  this._$body
