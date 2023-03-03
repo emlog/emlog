@@ -16,7 +16,7 @@
 	--fontColor: #5a5c69;    /* 普通文本的颜色 */
 	--aColor:  #333333;      /* a 标签的颜色 */
 	--aHoverColor:  #f6607d; /* a 标签 hover 状态的颜色 */
-	--lightColor: #929292      /* 比较浅一点的文本颜色 */
+	--lightColor: #757575      /* 比较浅一点的文本颜色 */
 }
 /* 定义所有元素的 width =（border+padding），方便后续计算 */
 * { 
@@ -596,7 +596,7 @@ body {
 		height: 250px
 	}
 }
-#comment-place {
+#comment {
 	margin-top: 80px;
 }
 .comment-name {
@@ -1418,7 +1418,7 @@ img.zoom-img {
 	.commentform .comment-info {
 		margin-top: -5px
 	}
-	#comment-place {
+	#comment {
 		margin-bottom: 80px
 	}
 	.com_control {

@@ -16,7 +16,7 @@ if (!defined('EMLOG_ROOT')) {
                         <div class="shadow-theme bottom-5">
 							<?php if (!empty($value['log_cover'])) : ?>
                                 <div class="loglist-cover">
-                                    <img src="<?= $value['log_cover'] ?>" class="rea-width" data-action="zoom">
+                                    <img src="<?= $value['log_cover'] ?>" alt="article cover" class="rea-width" data-action="zoom">
                                 </div>
 							<?php endif ?>
                             <div class="card-padding loglist-body">
@@ -36,7 +36,7 @@ if (!defined('EMLOG_ROOT')) {
                                     <span class="mh"><?php editflg($value['logid'], $value['author']) ?></span>
                                 </div>
                                 <div class="log-count">
-                                    <a href="<?= $value['log_url'] ?>#comments">评论(<?= $value['comnum'] ?>)&nbsp;</a>
+                                    <a href="<?= $value['log_url'] ?>#comment">评论(<?= $value['comnum'] ?>)&nbsp;</a>
                                     <a href="<?= $value['log_url'] ?>">浏览(<?= $value['views'] ?>)</a>
                                 </div>
                             </div>
