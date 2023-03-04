@@ -202,7 +202,7 @@ function widget_search($title) { ?>
         </div>
         <div class="unstyle-li" style="text-align: center;">
             <form name="keyform" method="get" action="<?= BLOG_URL ?>index.php">
-                <input name="keyword" class="search form-control" autocomplete="off" type="text"/>
+                <input name="keyword" class="search form-control" autocomplete="off" aria-label="Search" type="text"/>
                 <input type="submit" value="搜索">
             </form>
         </div>
@@ -480,7 +480,7 @@ function blog_comments_children($comments, $children) {
 function blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allow_remark) {
 	$isNeedChinese = Option::get('comment_needchinese');
 	if ($allow_remark == 'y'): ?>
-        <div id="comment-place">
+        <div id="comment">
             <div class="comment-post" id="comment-post">
                 <div class="cancel-reply" id="cancel-reply" style="display:none">
                     <button class="comment-replay-btn">取消回复</button>
