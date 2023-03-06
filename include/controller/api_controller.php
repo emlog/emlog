@@ -16,6 +16,7 @@ class Api_Controller {
 	public $authReqSign;
 	public $authReqTime;
 	public $curUserInfo;
+	public $curUid;
 
 	function starter($params) {
 		$_func = isset($_GET['rest-api']) ? addslashes($_GET['rest-api']) : '';
@@ -49,14 +50,18 @@ class Api_Controller {
 		$tags = isset($_POST['tags']) ? strip_tags(addslashes(trim($_POST['tags']))) : '';
 		$cover = Input::postStrVar('cover');
 		$draft = Input::postStrVar('draft', 'n');
+		$this->authReqSign = Input::postStrVar('req_sign');
+		$this->authReqTime = Input::postStrVar('req_time');
 
 		if (empty($title) || empty($content)) {
 			Output::error('parameter error');
 		}
 
-		$this->authReqSign = Input::postStrVar('req_sign');
-		$this->authReqTime = Input::postStrVar('req_time');
 		$this->auth();
+
+		if ($this->curUid) {
+			$author_uid = $this->curUid;
+		}
 
 		$logData = [
 			'title'   => $title,
@@ -97,6 +102,10 @@ class Api_Controller {
 		$this->authReqSign = Input::postStrVar('req_sign');
 		$this->authReqTime = Input::postStrVar('req_time');
 		$this->auth();
+
+		if ($this->curUid) {
+			$author_uid = $this->curUid;
+		}
 
 		$logData = [
 			'title'   => $title,
@@ -218,14 +227,18 @@ class Api_Controller {
 	function note_post() {
 		$t = isset($_POST['t']) ? addslashes(trim($_POST['t'])) : '';
 		$author_uid = isset($_POST['author_uid']) ? (int)trim($_POST['author_uid']) : 1;
+		$this->authReqSign = Input::postStrVar('req_sign');
+		$this->authReqTime = Input::postStrVar('req_time');
 
 		if (empty($t)) {
 			Output::error('parameter error');
 		}
 
-		$this->authReqSign = Input::postStrVar('req_sign');
-		$this->authReqTime = Input::postStrVar('req_time');
 		$this->auth();
+
+		if ($this->curUid) {
+			$author_uid = $this->curUid;
+		}
 
 		$data = [
 			'content' => $t,
@@ -309,5 +322,6 @@ class Api_Controller {
 			Output::error('auth cookie error');
 		}
 		$this->curUserInfo = $userInfo;
+		$this->curUid = (int)$userInfo['uid'];
 	}
 }
