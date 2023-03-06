@@ -246,14 +246,14 @@ class Api_Controller {
 		}
 
 		$data = [
-			'uid'         => $this->curUserInfo['uid'],
-			'nickname'    => $this->curUserInfo['nickname'],
+			'uid'         => (int)$this->curUserInfo['uid'],
+			'nickname'    => htmlspecialchars($this->curUserInfo['nickname']),
 			'role'        => $this->curUserInfo['role'],
 			'photo'       => $this->curUserInfo['photo'],
 			'email'       => $this->curUserInfo['email'],
-			'description' => $this->curUserInfo['description'],
+			'description' => htmlspecialchars($this->curUserInfo['description']),
 			'ip'          => $this->curUserInfo['ip'],
-			'create_time' => $this->curUserInfo['create_time'],
+			'create_time' => (int)$this->curUserInfo['create_time'],
 		];
 
 		output::ok(['userinfo' => $data]);
