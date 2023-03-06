@@ -13,6 +13,8 @@ class Api_Controller {
 	public $Tag_Model;
 	public $User_Model;
 	public $Cache;
+	public $authReqSign;
+	public $authReqTime;
 	public $curUserInfo;
 
 	function starter($params) {
@@ -52,6 +54,8 @@ class Api_Controller {
 			Output::error('parameter error');
 		}
 
+		$this->authReqSign = Input::postStrVar('req_sign');
+		$this->authReqTime = Input::postStrVar('req_time');
 		$this->auth();
 
 		$logData = [
@@ -90,6 +94,8 @@ class Api_Controller {
 			Output::error('parameter error');
 		}
 
+		$this->authReqSign = Input::postStrVar('req_sign');
+		$this->authReqTime = Input::postStrVar('req_time');
 		$this->auth();
 
 		$logData = [
@@ -217,6 +223,8 @@ class Api_Controller {
 			Output::error('parameter error');
 		}
 
+		$this->authReqSign = Input::postStrVar('req_sign');
+		$this->authReqTime = Input::postStrVar('req_time');
 		$this->auth();
 
 		$data = [
@@ -280,28 +288,25 @@ class Api_Controller {
 	}
 
 	private function checkApiKey() {
-		$reqSign = Input::postStrVar('req_sign');
-		$reqTime = Input::postStrVar('req_time');
-
-		if (empty($reqSign) || empty($reqTime)) {
+		if (empty($this->authReqSign) || empty($this->authReqTime)) {
 			Output::error('parameter error');
 		}
 
 		$apikey = Option::get('apikey');
-		$sign = md5($reqTime . $apikey);
+		$sign = md5($this->authReqTime . $apikey);
 
-		if ($sign !== $reqSign) {
+		if ($sign !== $this->authReqSign) {
 			Output::error('sign error');
 		}
 	}
 
 	private function checkAuthCookie() {
 		if (!isset($_COOKIE[AUTH_COOKIE_NAME])) {
-			Output::error('cookie error');
+			Output::error('auth cookie error');
 		}
 		$userInfo = loginauth::validateAuthCookie($_COOKIE[AUTH_COOKIE_NAME]);
 		if (!$userInfo) {
-			Output::error('cookie error');
+			Output::error('auth cookie error');
 		}
 		$this->curUserInfo = $userInfo;
 	}
