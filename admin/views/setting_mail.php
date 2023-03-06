@@ -26,7 +26,7 @@
             </div>
             <div class="form-group">
                 <label>SMTP密码</label>
-                <input type="password" name="smtp_pw" cols="" rows="3" class="form-control" value="<?= $smtp_pw ?>" autocomplete="new-password">
+                <input type="password" name="smtp_pw" cols="" rows="3" class="form-control" value="<?= $smtp_pw ?>" autocomplete="off">
             </div>
             <div class="form-group">
                 <label>发送人名称（选填，建议填写站点名称）</label>

@@ -41,7 +41,7 @@
     </div>
     <div class="form-group">
         <label for="password">新密码(不修改请留空)</label>
-        <input type="password" class="form-control" autocomplete="new-password" name="password" id="password">
+        <input type="password" class="form-control" autocomplete="off" name="password" id="password">
     </div>
     <div class="form-group">
         <label for="password2">再次输入新密码</label>

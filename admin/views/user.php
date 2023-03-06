@@ -136,7 +136,7 @@
                     </div>
                     <div class="form-group">
                         <label for="password">密码 (大于6位)</label>
-                        <input class="form-control" id="password" name="password" autocomplete="new-password" type="password" required>
+                        <input class="form-control" id="password" name="password" autocomplete="off" type="password" required>
                     </div>
                     <div class="form-group">
                         <label for="password2">再次输入密码</label>
