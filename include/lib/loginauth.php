@@ -118,7 +118,7 @@ class LoginAuth {
 		return hash_hmac('md5', $data, AUTH_KEY);
 	}
 
-	private static function validateAuthCookie($cookie = '') {
+	public static function validateAuthCookie($cookie = '') {
 		if (empty($cookie)) {
 			return false;
 		}

@@ -122,21 +122,18 @@ class Cache {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "user ORDER BY uid ASC");
 		while ($row = $this->db->fetch_array($query)) {
 			$photo = [];
-			$avatar = '';
+			$photoSrc = '';
 			if (!empty($row['photo'])) {
-				$photosrc = str_replace("../", '', $row['photo']);
-				$imgsize = chImageSize($row['photo'], Option::ICON_MAX_W, Option::ICON_MAX_H);
-				$photo['src'] = htmlspecialchars($photosrc);
-				$photo['width'] = $imgsize['w'];
-				$photo['height'] = $imgsize['h'];
-				$avatar = strstr($photosrc, 'thum') ? str_replace('thum', 'thum52', $photosrc) : preg_replace("/^(.*)\/(.*)$/", "\$1/thum52-\$2", $photosrc);
-				$avatar = file_exists('../' . $avatar) ? $avatar : $photosrc;
+				$photoSrc = str_replace("../", '', $row['photo']);
+				$photo['src'] = htmlspecialchars($photoSrc);
+				$photo['width'] = 500;
+				$photo['height'] = 300;
 			}
 			$row['nickname'] = empty($row['nickname']) ? $row['username'] : $row['nickname'];
 			$user_cache[$row['uid']] = [
 				'uid'       => $row['uid'],
 				'photo'     => $photo,
-				'avatar'    => $avatar,
+				'avatar'    => $photoSrc,
 				'name_orig' => $row['nickname'],
 				'name'      => htmlspecialchars($row['nickname']),
 				'mail'      => htmlspecialchars($row['email']),
