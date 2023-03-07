@@ -46,7 +46,7 @@ var myBlog = {
 		$ele.append($com_board)
 		$("#comment-pid").attr("value", getpid)
 		$("#cancel-reply").css("display", "unset")
-		$("#comment").toggleClass("com-bottom")
+		$("#comments").toggleClass("com-bottom")
 	},
 	/**
 	* 取消回复
@@ -54,7 +54,7 @@ var myBlog = {
 	cancelReply: function ($t) {
 		$("#comment-pid").attr("value", "0")
 		$("#cancel-reply").css("display", "none")
-		$("#comment").append($("#comment-post"))
+		$("#comments").append($("#comment-post"))
 			.toggleClass("com-bottom")
 	},
 	/**

@@ -596,7 +596,7 @@ body {
 		height: 250px
 	}
 }
-#comment {
+#comments {
 	margin-top: 80px;
 }
 .comment-name {
@@ -1418,7 +1418,7 @@ img.zoom-img {
 	.commentform .comment-info {
 		margin-top: -5px
 	}
-	#comment {
+	#comments {
 		margin-bottom: 80px
 	}
 	.com_control {
