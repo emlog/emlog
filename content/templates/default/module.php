@@ -408,7 +408,7 @@ function blog_comments($comments) {
 
 	foreach ($commentStacks as $cid):
 		$comment = $comments[$cid];
-		$comment['poster'] = $comment['url'] ? '<a href="' . $comment['url'] . '" target="_blank">' . $comment['poster'] . '</a>' : $comment['poster'];
+		$comment['poster'] = $comment['url'] ? '<a href="' . $comment['url'] . '" rel="external nofollow" target="_blank">' . $comment['poster'] . '</a>' : $comment['poster'];
 		?>
         <div class="comment" id="<?= $comment['cid'] ?>">
 			<?php if ($isGravatar == 'y'): ?>
@@ -445,7 +445,7 @@ function blog_comments_children($comments, $children) {
 	$isGravatar = Option::get('isgravatar');
 	foreach ($children as $child):
 		$comment = $comments[$child];
-		$comment['poster'] = $comment['url'] ? '<a href="' . $comment['url'] . '" target="_blank">' . $comment['poster'] . '</a>' : $comment['poster'];
+		$comment['poster'] = $comment['url'] ? '<a href="' . $comment['url'] . '" rel="external nofollow" target="_blank">' . $comment['poster'] . '</a>' : $comment['poster'];
 		?>
         <div class="comment comment-children" id="<?= $comment['cid'] ?>">
 			<?php if ($isGravatar == 'y'): ?>
