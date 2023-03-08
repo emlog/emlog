@@ -2,164 +2,163 @@
  * markdown 输出样式
  */
 
- .markdown {
-	overflow-wrap: break-word;
-	text-align: justify
+.markdown {
+    overflow-wrap: break-word;
+    text-align: justify
 }
 
 .markdown h1 {
-	font-size: 1.8rem !important;
-	margin-top: 1em;
-	margin-bottom: 16px;
-	font-weight: bold;
-	padding-bottom: 5px;
-	border-bottom: 1px solid #eee;
-	letter-spacing: 1px
+    font-size: 1.8rem !important;
+    margin-top: 1em;
+    margin-bottom: 16px;
+    font-weight: bold;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #eee;
+    letter-spacing: 1px
 }
 
 .markdown h2 {
-	font-size: 1.5rem !important;
-	margin-top: 1em;
-	margin-bottom: 16px;
-	font-weight: bold;
-	padding-bottom: 5px;
-	border-bottom: 1px solid #eee;
-	letter-spacing: 1px
+    font-size: 1.5rem !important;
+    margin-top: 1em;
+    margin-bottom: 16px;
+    font-weight: bold;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #eee;
+    letter-spacing: 1px
 }
 
 .markdown h3 {
-	font-size: 1.3rem !important;
-	line-height: 1.43;
-	font-weight: bold
+    font-size: 1.3rem !important;
+    line-height: 1.43;
+    font-weight: bold
 }
 
 .markdown h4 {
-	font-size: 1.2em !important;
-	margin-bottom: 16px;
-	font-weight: bold;
-	line-height: 1.4;
-	letter-spacing: 0.5px
+    font-size: 1.2em !important;
+    margin-bottom: 16px;
+    font-weight: bold;
+    line-height: 1.4;
+    letter-spacing: 0.5px
 }
 
 .markdown h5 {
-	font-size: 1rem !important;
-	margin-top: 1em;
-	margin-bottom: 16px;
-	font-weight: bold;
-	line-height: 1.4
+    font-size: 1rem !important;
+    margin-top: 1em;
+    margin-bottom: 16px;
+    font-weight: bold;
+    line-height: 1.4
 }
 
 .markdown h6 {
-	font-size: 1rem !important;
-	color: #777;
-	margin-top: 1em;
-	font-weight: bold;
-	line-height: 1.4;
-	margin-bottom: 16px
+    font-size: 1rem !important;
+    color: #777;
+    margin-top: 1em;
+    font-weight: bold;
+    line-height: 1.4;
+    margin-bottom: 16px
 }
 
 .markdown strong {
-	font-weight: bold;
-	font-size: 1rem !important
+    font-weight: bold;
+    font-size: 1rem !important
 }
 
 .markdown del {
-	text-decoration: line-through
+    text-decoration: line-through
 }
 
 .markdown a {
-	text-decoration: underline;
+    text-decoration: underline;
 }
 
 .markdown blockquote {
-	color: #666;
-	border-left: 4px solid #ddd;
-	padding-left: 20px;
-	margin-left: 0;
-	font-size: 14px;
-	font-style: italic
+    color: #666;
+    border-left: 4px solid #ddd;
+    padding-left: 20px;
+    margin-left: 0;
+    font-size: 14px;
+    font-style: italic
 }
 
 .markdown ul {
-	padding-left: 2em;
-	margin-bottom: 16px
+    padding-left: 2em;
+    margin-bottom: 16px
 }
 
 .markdown ol {
-	padding-left: 2em;
-	margin-bottom: 16px
+    padding-left: 2em;
+    margin-bottom: 16px
 }
 
 .markdown li {
-	font-size: 15px !important;
-	line-height: 2
+    font-size: 15px !important;
+    line-height: 2
 }
 
 .markdown hr {
-	height: 1px;
-	border: none;
-	border-top: 1px solid #ddd;
-	background: none
+    height: 1px;
+    border: none;
+    border-top: 1px solid #ddd;
+    background: none
 }
 
 .markdown pre.prettyprint {
-	padding: 10px;
-	border: 1px solid #ddd;
-	white-space: pre-wrap;
-	word-wrap: break-word;
-	line-height: 1.6
+    padding: 10px;
+    border: 1px solid #ddd;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    line-height: 1.6
 }
 
 .markdown table {
-	display: block;
-	width: 100%;
-	overflow: auto;
-	word-break: normal;
-	word-break: keep-all;
-	border-collapse: collapse;
-	margin-bottom: 16px
+    display: block;
+    width: 100%;
+    overflow: auto;
+    word-break: normal;
+    word-break: keep-all;
+    border-collapse: collapse;
+    margin-bottom: 16px
 }
 
 .markdown thead tr {
-	background-color: #F8F8F8
+    background-color: #F8F8F8
 }
 
 .markdown td {
-	padding: 6px 13px;
-	border: 1px solid #ddd
+    padding: 6px 13px;
+    border: 1px solid #ddd
 }
 
 .markdown th {
-	padding: 6px 13px;
-	border: 1px solid #ddd
+    padding: 6px 13px;
+    border: 1px solid #ddd
 }
 
 .markdown table tr:nth-child(even) {
-	background: #f8f8f8
+    background: #f8f8f8
 }
 
 .markdown code {
-	background: #f6f6f6;
-	border-radius: 3px;
-	font-size: 14px;
-	padding: 4px 5px;
-	margin-right: 4px
+    background: #f6f6f6;
+    border-radius: 3px;
+    font-size: 14px;
+    margin-right: 4px
 }
 
 .markdown pre {
-	padding: 10px;
-	border: 1px solid #ddd;
-	background: #f6f6f6;
-	overflow: auto
+    padding: 10px;
+    border: 1px solid #ddd;
+    background: #f6f6f6;
+    overflow: auto
 }
 
 .markdown img {
-	display: block;
-	margin: auto;
-	box-sizing: border-box;
-	border: 0
+    display: block;
+    margin: auto;
+    box-sizing: border-box;
+    border: 0
 }
 
 .markdown hr {
-	margin: 7px 0 7px 0
+    margin: 7px 0 7px 0
 }

@@ -88,7 +88,6 @@
                     </div>
                 </div>
             </li>
-            <hr class="sidebar-divider d-none d-md-block">
             <li class="nav-item" id="menu_store">
                 <a class="nav-link" href="store.php"><i class="icofont-shopping-cart"></i><span>应用商店</span></a>
             </li>
@@ -114,8 +113,12 @@
                     </div>
                 </div>
             </li>
+            <hr class="sidebar-divider d-none d-md-block">
+			<?php doAction('adm_menu') ?>
+		<?php else: ?>
+            <hr class="sidebar-divider d-none d-md-block">
+			<?php doAction('user_menu') ?>
 		<?php endif ?>
-        <hr class="sidebar-divider d-none d-md-block">
         <div class="text-center d-none d-md-inline">
             <button class="rounded-circle border-0" id="sidebarToggle"></button>
         </div>
