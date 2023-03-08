@@ -29,9 +29,7 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col">
-                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                            收到评论
-                        </div>
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">收到评论</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="./comment.php?hide=y"><?= $comment_amount ?></a></div>
                     </div>
                     <div class="col-auto">
@@ -46,9 +44,7 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col">
-                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                            笔记
-                        </div>
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">笔记</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="./user.php"><?= $note_amount ?></a></div>
                     </div>
                     <div class="col-auto">
@@ -65,9 +61,17 @@
             <h6 class="card-header">最近发布的文章</h6>
             <div class="card-body" id="admindex_msg">
                 <ul class="list-group list-group-flush">
-					<?php foreach ($logs as $v) : ?>
-                        <li class="msg_type_0"><a href="<?= Url::log($v['gid']) ?>" target="_blank"><?= $v['title'] ?></a></li>
-					<?php endforeach; ?>
+					<?php
+					if ($logs):
+						foreach ($logs as $v) :
+							?>
+                            <li class="msg_type_0"><a href="<?= Url::log($v['gid']) ?>" target="_blank"><?= $v['title'] ?></a></li>
+						<?php
+						endforeach;
+					else:
+						?>
+                        <p class="m-3">还没有发布过文章。</p>
+					<?php endif; ?>
                 </ul>
             </div>
         </div>
@@ -77,9 +81,15 @@
             <h6 class="card-header">最近收到的评论</h6>
             <div class="card-body" id="admindex_msg">
                 <ul class="list-group list-group-flush">
-					<?php foreach ($comments as $v) : ?>
-                        <li class="msg_type_0"><a href="<?= Url::log($v['gid']) ?>" target="_blank"><?= $v['comment'] ?></a></li>
-					<?php endforeach; ?>
+					<?php
+					if ($comments):
+						foreach ($comments as $v) : ?>
+                            <li class="msg_type_0"><a href="<?= Url::log($v['gid']) ?>" target="_blank"><?= $v['comment'] ?></a></li>
+						<?php endforeach;
+					else:
+						?>
+                        <p class="m-3">还没收到评论。</p>
+					<?php endif; ?>
                 </ul>
             </div>
         </div>
