@@ -7,6 +7,8 @@
 
 class Store_Model {
 
+	const ITEMS_PER_PAGE = 30;
+
 	public function getTemplates($tag, $keyword, $page, $author_id) {
 		return $this->reqEmStore('tpl', $tag, $keyword, $page, $author_id);
 	}

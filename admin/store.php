@@ -36,7 +36,7 @@ if (empty($action)) {
 		$subPage .= $key != 'page' ? "&$key=$val" : '';
 	}
 
-	$pageurl = pagination($count, 30, $page, "store.php?{$subPage}&page=");
+	$pageurl = pagination($count, $Store_Model::ITEMS_PER_PAGE, $page, "store.php?{$subPage}&page=");
 
 	include View::getAdmView('header');
 	require_once(View::getAdmView('store_tpl'));
@@ -65,7 +65,7 @@ if ($action === 'plu') {
 	foreach ($_GET as $key => $val) {
 		$subPage .= $key != 'page' ? "&$key=$val" : '';
 	}
-	$pageurl = pagination($count, 50, $page, "store.php?{$subPage}&page=");
+	$pageurl = pagination($count, $Store_Model::ITEMS_PER_PAGE, $page, "store.php?{$subPage}&page=");
 
 	include View::getAdmView('header');
 	require_once(View::getAdmView('store_plu'));
