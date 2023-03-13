@@ -30,47 +30,48 @@
     <a href="./store.php?tag=free" class="badge badge-success m-1 ml-2 p-2">仅看免费</a>
     <a href="./store.php?tag=paid" class="badge badge-warning m-1 ml-2 p-2">仅看付费</a>
 </div>
-<div class="row">
+<div class="mb-3">
 	<?php if (!empty($templates)): ?>
-		<?php foreach ($templates as $k => $v):
-			$icon = $v['icon'] ?: "./views/images/theme.png";
-			?>
-            <div class="col-md-4">
-                <div class="card mb-4 shadow-sm">
-                    <a class="p-1" href="<?= $v['buy_url'] ?>" target="_blank">
-                        <img class="bd-placeholder-img card-img-top" alt="cover" width="100%" height="225" src="<?= $icon ?>">
+        <div class="d-flex flex-wrap justify-content-center app-list">
+            <?php foreach ($templates as $k => $v):
+                $icon = $v['icon'] ?: "./views/images/theme.png";
+                ?>
+                <div class="card mb-4 mr-4 shadow-sm">
+                    <a class="card-img-top-link d-flex border-bottom-light overflow-hidden" href="<?= $v['buy_url'] ?>" target="_blank">
+                        <img class="bd-placeholder-img card-img-top" alt="cover" src="<?= $icon ?>">
                     </a>
                     <div class="card-body">
-                        <p class="card-text font-weight-bold">
+                        <p class="card-text font-weight-bold overflow-hidden text-nowrap name">
+                            <?php if ($v['top'] === 1): ?>
+                                <span class="badge badge-success p-1 mr-1">今日推荐</span>
+                            <?php endif; ?>
                             <a class="text-secondary" href="<?= $v['buy_url'] ?>" target="_blank"><?= $v['name'] ?></a>
-							<?php if ($v['top'] === 1): ?>
-                                <span class="badge badge-success p-1">今日推荐</span>
-							<?php endif; ?>
                         </p>
+
+                        <div class="card-text d-flex justify-content-between">
+                            <div class="price mb-4">
+                                <?= $v['price'] > 0 ? '<span class="text-danger">¥ ' . $v['price'] . '元</span>' : '<span class="text-success">免费</span>' ?><br>
+                            </div>
+                            <div class="installMsg"></div>
+                            <?php if ($v['price'] > 0): ?>
+                                <a href="<?= $v['buy_url'] ?>" class="btn btn-sm btn-warning btn-sm" target="_blank">去购买</a>
+                            <?php else: ?>
+                                <a href="#" class="btn btn-success btn-sm installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-type="tpl">免费安装</a>
+                            <?php endif ?>
+                        </div>
                         <p class="card-text text-muted small">
-                            <span class="small"><?= $v['info'] ?></span><br><br>
-                            售价：<?= $v['price'] > 0 ? '<span class="text-danger">' . $v['price'] . '元</span>' : '<span class="text-success">免费</span>' ?><br>
-                            开发者：<?= $v['author'] ?> <a href="./store.php?author_id=<?= $v['author_id'] ?>">仅看Ta的作品</a><br>
-                            版本号：<?= $v['ver'] ?><br>
+                            开发者：&nbsp;&nbsp;&nbsp;&nbsp;<?= $v['author'] ?> <a href="./store.php?author_id=<?= $v['author_id'] ?>">仅看Ta的作品</a><br>
+                            版本号：&nbsp;&nbsp;&nbsp;&nbsp;<?= $v['ver'] ?><br>
                             更新时间：<?= $v['update_time'] ?><br>
                         </p>
-                        <div class="card-text d-flex justify-content-between">
-                            <div class="installMsg"></div>
-							<?php if ($v['price'] > 0): ?>
-                                <a href="<?= $v['buy_url'] ?>" class="btn btn-sm btn-warning btn-sm" target="_blank">去购买</a>
-							<?php else: ?>
-                                <a href="#" class="btn btn-success btn-sm installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-type="tpl">免费安装</a>
-							<?php endif ?>
-                        </div>
+                        <div class="small"><?= $v['info'] ?></div>
                     </div>
                 </div>
-            </div>
-		<?php endforeach ?>
-        <div class="col-md-12 page my-5"><?= $pageurl ?> (有<?= $count ?>个模板)</div>
-	<?php else: ?>
-        <div class="col-md-12">
-            <div class="alert alert-info">暂未找到结果，应用商店进货中，敬请期待：）</div>
+            <?php endforeach ?>
         </div>
+        <div class="page my-5"><?= $pageurl ?> (有<?= $count ?>个模板)</div>
+	<?php else: ?>
+        <div class="alert alert-info">暂未找到结果，应用商店进货中，敬请期待：）</div>
 	<?php endif ?>
 </div>
 <script>

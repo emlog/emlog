@@ -85,3 +85,24 @@ body {
 .editormd-preview li {
     list-style: unset!important;
 }
+
+/*store template/plugin list*/
+.app-list .card {
+    width: 352px;
+}
+.app-list .name {
+    text-overflow: ellipsis;
+}
+.app-list .card-img-top-link {
+    height: 260px;
+}
+.app-list .card-img-top {
+    width: 100%;
+    height: auto;
+}
+.app-list .price {
+    font-size: 20px;
+}
+.app-list .btn {
+    height: fit-content;
+}
