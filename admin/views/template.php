@@ -33,7 +33,7 @@
     <h1 class="h3 mb-0 text-gray-800">模板外观</h1>
     <a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> 安装模板</a>
 </div>
-<div class="row">
+<div class="row app-list">
 	<?php foreach ($tpls as $key => $value): ?>
         <div class="col-md-4">
             <div class="card mb-4 shadow-sm">

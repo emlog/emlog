@@ -17,31 +17,35 @@
 </div>
 <div class="row">
 	<?php if (!empty($addons)): ?>
-		<?php foreach ($addons as $k => $v):
-			$icon = $v['icon'] ?: "./views/images/theme.png";
-			?>
-            <div class="col-md-4">
-                <div class="card mb-4 shadow-sm">
-                    <a class="p-1" href="<?= $v['buy_url'] ?>" target="_blank">
-                        <img class="bd-placeholder-img card-img-top" alt="cover" width="100%" height="225" src="<?= $icon ?>">
-                    </a>
-                    <div class="card-body">
-                        <p class="card-text font-weight-bold"><?= $v['name'] ?></p>
-                        <p class="card-text text-muted small">
-                            <span class="small"><?= $v['info'] ?></span><br><br>
-                            售价：<?= $v['price'] > 0 ? '<span class="text-danger">' . $v['price'] . '元</span>' : '<span class="text-success">免费</span>' ?><br>
-                            开发者：<?= $v['author'] ?><br>
-                            版本号：<?= $v['ver'] ?><br>
-                            更新时间：<?= $v['update_time'] ?><br>
-                        </p>
-                        <div class="card-text d-flex justify-content-between">
-                            <div class="installMsg"></div>
-                            <a href="#" class="btn btn-success btn-sm installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-type="plu">免费安装</a>
+        <div class="d-flex flex-wrap app-list">
+			<?php foreach ($addons as $k => $v):
+				$icon = $v['icon'] ?: "./views/images/theme.png";
+				?>
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <a class="p-1" href="<?= $v['buy_url'] ?>" target="_blank">
+                            <img class="bd-placeholder-img card-img-top" alt="cover" width="100%" height="225" src="<?= $icon ?>">
+                        </a>
+                        <div class="card-body">
+                            <p class="card-text font-weight-bold"><?= $v['name'] ?></p>
+                            <p class="card-text text-muted">
+								<?= $v['info'] ?><br><br>
+                                售价：<?= $v['price'] > 0 ? '<span class="text-danger">' . $v['price'] . '元</span>' : '<span class="text-success">免费</span>' ?><br>
+                                <small>
+                                    开发者：<?= $v['author'] ?><br>
+                                    版本号：<?= $v['ver'] ?><br>
+                                    更新时间：<?= $v['update_time'] ?><br>
+                                </small>
+                            </p>
+                            <div class="card-text d-flex justify-content-between">
+                                <div class="installMsg"></div>
+                                <a href="#" class="btn btn-success btn-sm installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-type="plu">免费安装</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-		<?php endforeach ?>
+			<?php endforeach ?>
+        </div>
 	<?php else: ?>
         <div class="col-md-12">
             <p class="alert alert-warning m-3">您还不是铁杆svip付费支持用户，无法安装专属免费应用，<a href="https://www.emlog.net/register">付费支持 &rarr;</a></p>

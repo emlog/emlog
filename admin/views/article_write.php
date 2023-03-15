@@ -11,9 +11,8 @@
                 <div>
                     <input type="text" name="title" id="title" value="<?= $title ?>" class="form-control" placeholder="文章标题" autofocus required/>
                 </div>
-                <div id="post_bar">
-                    <a href="#mediaModal" class="text-muted small my-3" data-remote="./media.php?action=lib" data-toggle="modal" data-target="#mediaModal"><i
-                                class="icofont-plus"></i> 插入图文资源</a>
+                <div id="post_bar" class="small my-3">
+                    <a href="#mediaModal" data-remote="./media.php?action=lib" data-toggle="modal" data-target="#mediaModal"><i class="icofont-plus"></i>上传插入图片</a>
 					<?php doAction('adm_writelog_head') ?>
                 </div>
                 <div id="logcontent"><textarea><?= $content ?></textarea></div>
