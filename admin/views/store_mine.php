@@ -41,7 +41,7 @@
 								<?php if (empty($v['download_url'])): ?>
                                     <a href="<?= $v['buy_url'] ?>" class="btn btn-success btn-sm">请联系作者安装</a>
 								<?php else: ?>
-                                    <a href="#" class="btn btn-success btn-sm installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-type="<?= $v['type'] ?>">安装应用</a>
+                                    <a href="#" class="btn btn-success installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-type="<?= $v['type'] ?>">安装应用</a>
 								<?php endif ?>
                             </div>
                         </div>
