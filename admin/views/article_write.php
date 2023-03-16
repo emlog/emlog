@@ -66,7 +66,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>标签：</label>
+                    <label>标签：<small class="text-muted">(也用于文章页关键词)</small></label>
                     <input name="tag" id="tag" class="form-control" value="<?= $tagStr ?>" placeholder="多个使用逗号分隔"/>
 					<?php if ($tags): ?>
                         <span class="small"><a href="javascript:doToggle('tags', 1);">近期使用的+</a></span>
@@ -80,15 +80,15 @@
 					<?php endif; ?>
                 </div>
                 <div class="form-group">
-                    <label>发布时间：（当设置未来的时间点时，文章将在该时间点后定时发布）</label>
+                    <label>发布时间：<small class="text-muted">（当设置未来的时间点时，文章将在该时间点后定时发布）</small></label>
                     <input maxlength="200" name="postdate" id="postdate" value="<?= $postDate ?>" class="form-control"/>
                 </div>
                 <div class="form-group">
-                    <label>链接别名：（用于seo设置 <a href="./setting.php?action=seo">&rarr;</a>）</label>
+                    <label>链接别名：<small class="text-muted">（用于seo设置 <a href="./setting.php?action=seo">&rarr;</a>）</small></label>
                     <input name="alias" id="alias" class="form-control" value="<?= $alias ?>"/>
                 </div>
                 <div class="form-group">
-                    <label>跳转链接：（填写后不展示文章内容直接跳转该地址）</label>
+                    <label>跳转链接：<small class="text-muted">（填写后不展示文章内容直接跳转该地址）</small></label>
                     <input name="link" id="link" type="url" class="form-control" value="<?= $link ?>" placeholder="https://"/>
                 </div>
                 <div class="form-group">
