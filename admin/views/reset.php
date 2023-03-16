@@ -18,9 +18,10 @@
 									<?php if (isset($_GET['error_sendmail'])): ?>
                                         <div class="alert alert-danger">邮件验证码发送失败，请检查邮件通知设置</div><?php endif ?>
 									<?php if (isset($_GET['err_ckcode'])): ?>
-                                        <div class="alert alert-danger">验证码错误</div><?php endif ?>
+                                        <div class="alert alert-danger">图形验证码错误</div><?php endif ?>
                                     <div class="form-group">
-                                        <input type="email" class="form-control form-control-user" id="mail" name="mail" aria-describedby="emailHelp" placeholder="输入注册邮箱" required
+                                        <input type="email" class="form-control form-control-user" id="mail" name="mail" aria-describedby="emailHelp" placeholder="输入注册邮箱"
+                                               required
                                                autofocus>
                                     </div>
 									<?php if ($login_code): ?>

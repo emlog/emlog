@@ -183,18 +183,31 @@ if ($action == 'doreset') {
 
 	$mail = isset($_POST['mail']) ? addslashes(trim($_POST['mail'])) : '';
 	$login_code = isset($_POST['login_code']) ? addslashes(strtoupper(trim($_POST['login_code']))) : '';
+	$resp = Input::postStrVar('resp'); // eg: json (only support json now)
 
 	if (!User::checkLoginCode($login_code)) {
+		if ($resp === 'json') {
+			Output::error('图形验证码错误');
+		}
 		emDirect('./account.php?action=reset&err_ckcode=1');
 	}
 	if (!$mail || !$User_Model->isMailExist($mail)) {
+		if ($resp === 'json') {
+			Output::error('错误的注册邮箱');
+		}
 		emDirect('./account.php?action=reset&error_mail=1');
 	}
 
 	$ret = Notice::sendResetMailCode($mail);
 	if ($ret) {
+		if ($resp === 'json') {
+			Output::ok();
+		}
 		emDirect("./account.php?action=reset2&succ_mail=1");
 	} else {
+		if ($resp === 'json') {
+			Output::error('邮件验证码发送失败，请检查邮件通知设置');
+		}
 		emDirect("./account.php?action=reset&error_sendmail=1");
 	}
 }
@@ -217,29 +230,37 @@ if ($action == 'doreset2') {
 	$mail_code = isset($_POST['mail_code']) ? addslashes(trim($_POST['mail_code'])) : '';
 	$passwd = isset($_POST['passwd']) ? addslashes(trim($_POST['passwd'])) : '';
 	$repasswd = isset($_POST['repasswd']) ? addslashes(trim($_POST['repasswd'])) : '';
+	$resp = Input::postStrVar('resp'); // only json
 
-	if (!$mail_code) {
-		emDirect('./account.php?action=reset2&error_login=1');
-	}
 	if (strlen($passwd) < 6) {
+		if ($resp === 'json') {
+			Output::error('密码长度不合规');
+		}
 		emDirect('./account.php?action=reset2&error_pwd_len=1');
 	}
 	if ($passwd !== $repasswd) {
+		if ($resp === 'json') {
+			Output::error('两次输入的密码不一致');
+		}
 		emDirect('./account.php?action=reset2&error_pwd2=1');
 	}
-	if (!User::checkMailCode($mail_code)) {
+	if (!$mail_code || !User::checkMailCode($mail_code)) {
+		if ($resp === 'json') {
+			Output::error('邮件验证码错误');
+		}
 		emDirect('./account.php?action=reset2&err_mail_code=1');
 	}
 
 	$PHPASS = new PasswordHash(8, true);
 	$passwd = $PHPASS->HashPassword($passwd);
-
 	if (!isset($_SESSION)) {
 		session_start();
 	}
 	$mail = isset($_SESSION['mail']) ? $_SESSION['mail'] : '';
-
 	$User_Model->updateUserByMail(['password' => $passwd], $mail);
+	if ($resp === 'json') {
+		Output::ok();
+	}
 	emDirect("./account.php?action=signin&succ_reset=1");
 }
 
