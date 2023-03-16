@@ -63,6 +63,8 @@
                     <label>个人描述</label>
                     <textarea name="description" class="form-control"><?= $description ?></textarea>
                 </div>
+
+                <h4 class="mt-4 mb-3">账号密码</h4>
                 <div class="form-group">
                     <label>登录用户名（为空则使用邮箱登录）</label>
                     <input class="form-control" value="<?= $username ?>" name="username">
