@@ -140,6 +140,7 @@ class Log_Model {
 			'password'     => $row['password'],
 			'template'     => $row['template'],
 			'link'         => $row['link'],
+			'tags'         => $row['tags'],
 		];
 	}
 

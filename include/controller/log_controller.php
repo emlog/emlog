@@ -59,8 +59,6 @@ class Log_Controller {
 			}
 		}
 
-		$Comment_Model = new Comment_Model();
-
 		$logData = $Log_Model->getOneLogForHome($logid);
 		if ($logData === false) {
 			show_404_page();
@@ -70,26 +68,19 @@ class Log_Controller {
 
 		extract($logData);
 
+		// password
 		if (!empty($password)) {
 			$postpwd = isset($_POST['logpwd']) ? addslashes(trim($_POST['logpwd'])) : '';
 			$cookiepwd = isset($_COOKIE['em_logpwd_' . $logid]) ? addslashes(trim($_COOKIE['em_logpwd_' . $logid])) : '';
 			$Log_Model->AuthPassword($postpwd, $cookiepwd, $password, $logid);
 		}
-		//meta
-		switch ($log_title_style) {
-			case '0':
-				$site_title = $log_title;
-				break;
-			case '1':
-				$site_title = $log_title . ' - ' . $blogname;
-				break;
-			case '2':
-				$site_title = $log_title . ' - ' . $site_title;
-				break;
-		}
+		// tdk
+		$site_title = $this->setSiteTitle($log_title_style, $log_title, $blogname, $site_title);
 		$site_description = extractHtmlData($log_content, 90);
+		$site_key = $this->setSiteKey($tags, $site_key);
 
 		//comments
+		$Comment_Model = new Comment_Model();
 		$verifyCode = ISLOGIN == false && $comment_code == 'y' ? "<img src=\"" . BLOG_URL . "include/lib/checkcode.php\" id=\"captcha\" /><input name=\"imgcode\" type=\"text\" class=\"input\" size=\"5\" tabindex=\"5\" />" : '';
 		$ckname = isset($_COOKIE['commentposter']) ? htmlspecialchars(stripslashes($_COOKIE['commentposter'])) : '';
 		$ckmail = isset($_COOKIE['postermail']) ? htmlspecialchars($_COOKIE['postermail']) : '';
@@ -110,5 +101,35 @@ class Log_Controller {
 			$template = !empty($template) && file_exists(TEMPLATE_PATH . $template . '.php') ? $template : 'page';
 			include View::getView($template);
 		}
+	}
+
+	private function setSiteKey($tagIdStr, $site_key) {
+		if (empty($tagIdStr)) {
+			return $site_key;
+		}
+		$tagNames = '';
+		$tag_model = new Tag_Model();
+		$ids = explode(',', $tagIdStr);
+		if ($ids) {
+			$tags = $tag_model->getNamesFromIds($ids);
+			$tagNames = implode(',', $tags);
+		}
+		return $tagNames;
+	}
+
+	private function setSiteTitle($log_title_style, $log_title, $blogname, $site_title) {
+		switch ($log_title_style) {
+			case '0':
+				$article_seo_title = $log_title;
+				break;
+			case '1':
+				$article_seo_title = $log_title . ' - ' . $blogname;
+				break;
+			case '2':
+			default:
+				$article_seo_title = $log_title . ' - ' . $site_title;
+				break;
+		}
+		return $article_seo_title;
 	}
 }
