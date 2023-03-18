@@ -26,4 +26,15 @@ class Output {
 		];
 		die(json_encode($result, JSON_UNESCAPED_UNICODE));
 	}
+
+	public static function authError($msg) {
+		header('Content-Type: application/json; charset=UTF-8');
+		header("HTTP/1.1 401 Unauthorized");
+		$result = [
+			'code' => 1,
+			'msg'  => $msg,
+			'data' => ''
+		];
+		die(json_encode($result, JSON_UNESCAPED_UNICODE));
+	}
 }
