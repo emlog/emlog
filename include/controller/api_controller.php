@@ -263,6 +263,7 @@ class Api_Controller {
 			'nickname'    => htmlspecialchars($this->curUserInfo['nickname']),
 			'role'        => $this->curUserInfo['role'],
 			'photo'       => $this->curUserInfo['photo'],
+			'avatar'      => $this->curUserInfo['photo'] ? BLOG_URL . str_replace("../", '', $this->curUserInfo['photo']) : '',
 			'email'       => $this->curUserInfo['email'],
 			'description' => htmlspecialchars($this->curUserInfo['description']),
 			'ip'          => $this->curUserInfo['ip'],
