@@ -21,7 +21,7 @@
 			<?php foreach ($addons as $k => $v):
 				$icon = $v['icon'] ?: "./views/images/theme.png";
 				?>
-                <div class="col-md-4">
+                <div class="col-md-6 col-lg-3">
                     <div class="card mb-4 shadow-sm">
                         <a class="p-1" href="<?= $v['buy_url'] ?>" target="_blank">
                             <img class="bd-placeholder-img card-img-top" alt="cover" width="100%" height="225" src="<?= $icon ?>">

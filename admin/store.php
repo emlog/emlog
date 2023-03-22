@@ -23,6 +23,7 @@ if (empty($action)) {
 	$r = $Store_Model->getTemplates($tag, $keyword, $page, $author_id);
 	$templates = $r['templates'];
 	$count = $r['count'];
+	$page_count = $r['page_count'];
 
 	$sub_title = '模板';
 	if ($tag === 'free') {
@@ -36,7 +37,7 @@ if (empty($action)) {
 		$subPage .= $key != 'page' ? "&$key=$val" : '';
 	}
 
-	$pageurl = pagination($count, $Store_Model::ITEMS_PER_PAGE, $page, "store.php?{$subPage}&page=");
+	$pageurl = pagination($count, $page_count, $page, "store.php?{$subPage}&page=");
 
 	include View::getAdmView('header');
 	require_once(View::getAdmView('store_tpl'));
@@ -53,6 +54,7 @@ if ($action === 'plu') {
 	$r = $Store_Model->getPlugins($tag, $keyword, $page, $author_id);
 	$plugins = $r['plugins'];
 	$count = $r['count'];
+	$page_count = $r['page_count'];
 
 	$sub_title = '插件';
 	if ($tag === 'free') {
@@ -65,7 +67,7 @@ if ($action === 'plu') {
 	foreach ($_GET as $key => $val) {
 		$subPage .= $key != 'page' ? "&$key=$val" : '';
 	}
-	$pageurl = pagination($count, $Store_Model::ITEMS_PER_PAGE, $page, "store.php?{$subPage}&page=");
+	$pageurl = pagination($count, $page_count, $page, "store.php?{$subPage}&page=");
 
 	include View::getAdmView('header');
 	require_once(View::getAdmView('store_plu'));

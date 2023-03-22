@@ -37,7 +37,7 @@
 			<?php foreach ($plugins as $k => $v):
 				$icon = $v['icon'] ?: "./views/images/plugin.png";
 				?>
-                <div class="col-md-4">
+                <div class="col-md-6 col-lg-3">
                     <div class="card mb-4 shadow-sm">
                         <a class="p-1" href="<?= $v['buy_url'] ?>" target="_blank">
                             <img class="bd-placeholder-img card-img-top" alt="cover" width="100%" height="225" src="<?= $icon ?>">
@@ -50,7 +50,7 @@
                                 <a class="text-secondary" href="<?= $v['buy_url'] ?>" target="_blank"><?= $v['name'] ?></a>
                             </p>
                             <p class="card-text text-muted">
-								<?= $v['info'] ?><br><br>
+                                <small><?= $v['info'] ?></small><br><br>
                                 售价：<?= $v['price'] > 0 ? '<span class="text-danger">' . $v['price'] . '元</span>' : '<span class="text-success">免费</span>' ?><br>
                                 <small>
                                     开发者：<?= $v['author'] ?> <a href="./store.php?action=plu&author_id=<?= $v['author_id'] ?>">仅看Ta的作品</a><br>

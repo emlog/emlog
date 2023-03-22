@@ -7,8 +7,6 @@
 
 class Store_Model {
 
-	const ITEMS_PER_PAGE = 30;
-
 	public function getTemplates($tag, $keyword, $page, $author_id) {
 		return $this->reqEmStore('tpl', $tag, $keyword, $page, $author_id);
 	}
@@ -61,10 +59,12 @@ class Store_Model {
 			case 'tpl':
 				$data['templates'] = isset($ret['data']['templates']) ? $ret['data']['templates'] : [];
 				$data['count'] = isset($ret['data']['count']) ? $ret['data']['count'] : 0;
+				$data['page_count'] = isset($ret['data']['page_count']) ? $ret['data']['page_count'] : 0;
 				break;
 			case 'plu':
 				$data['plugins'] = isset($ret['data']['plugins']) ? $ret['data']['plugins'] : [];
 				$data['count'] = isset($ret['data']['count']) ? $ret['data']['count'] : 0;
+				$data['page_count'] = isset($ret['data']['page_count']) ? $ret['data']['page_count'] : 0;
 				break;
 			case 'svip':
 			case 'mine':
