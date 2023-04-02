@@ -39,7 +39,7 @@ class Media_Model {
 				'mimetype'      => $row['mimetype'],
 				'author'        => $row['author'],
 				'sortid'        => $row['sortid'],
-				'sortname'      => $row['sortname'],
+				'sortname'      => htmlspecialchars(isset($row['sortname']) ? $row['sortname'] : ''),
 			];
 		}
 		return $medias;
