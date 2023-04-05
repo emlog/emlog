@@ -6,12 +6,14 @@ class SendMail {
 	public $smtp_port;
 	public $smtp_username;
 	public $smtp_password;
+	public $smtp_from_name;
 
 	public function __construct() {
 		$this->smtp_host = Option::get('smtp_server');
 		$this->smtp_port = Option::get('smtp_port');
 		$this->smtp_username = Option::get('smtp_mail');
 		$this->smtp_password = Option::get('smtp_pw');
+		$this->smtp_from_name = Option::get('smtp_from_name');
 	}
 
 	function send($to, $title, $content) {
@@ -25,12 +27,13 @@ class SendMail {
 		$mail->Username = $this->smtp_username;
 		$mail->Password = $this->smtp_password;
 		$mail->From = $this->smtp_username;
+		$mail->FromName = $this->smtp_from_name;
 		if (is_array($to)) {
 			foreach ($to as $value) {
 				$mail->AddAddress($value);
 			}
 		} else {
-			$mail->AddAddress($to); #抄送
+			$mail->AddAddress($to);
 		}
 
 		$mail->Subject = $title;
