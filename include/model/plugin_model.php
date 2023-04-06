@@ -64,6 +64,17 @@ class Plugin_Model {
 		}
 	}
 
+	// upgrade callback
+	public function upCallback($plugin_alias) {
+		$callback_file = "../content/plugins/$plugin_alias/{$plugin_alias}_callback.php";
+		if (file_exists($callback_file)) {
+			require_once $callback_file;
+			if (function_exists('callback_up')) {
+				callback_up();
+			}
+		}
+	}
+
 	function getPlugins() {
 		global $emPlugins;
 		if (isset($emPlugins)) {

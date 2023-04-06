@@ -6,7 +6,12 @@ function callback_init() {
 	// do something
 }
 
-// 关闭和删除插件时执行该函数
+// 删除插件时执行该函数
 function callback_rm() {
+	// do something
+}
+
+// 更新插件时执行该函数
+function callback_up() {
 	// do something
 }
