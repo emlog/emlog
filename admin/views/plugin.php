@@ -165,14 +165,14 @@
                         $updateBtn.append($('<a>').addClass('btn btn-success btn-sm').text('更新').attr("href", "./plugin.php?action=upgrade&alias=" + item.name));
                     });
                 } else {
-                    $('#upMsg').html('应用更新检查无法正常进行,错误码:' + response.code).addClass('alert alert-danger');
+                    $('#upMsg').html('插件更新检查无法正常进行,错误码:' + response.code).addClass('alert alert-danger');
                 }
             },
             error: function (xhr) {
                 var responseText = xhr.responseText;
                 var responseObject = JSON.parse(responseText);
                 var msgValue = responseObject.msg;
-                $('#upMsg').html('应用更新检查异常： ' + msgValue).addClass('alert alert-danger');
+                $('#upMsg').html('插件更新检查异常： ' + msgValue).addClass('alert alert-danger');
             }
         });
     });
