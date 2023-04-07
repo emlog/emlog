@@ -99,7 +99,7 @@ if ($action == 'upload_zip') {
 	$ret = emUnZip($zipfile['tmp_name'], '../content/plugins/', 'plugin');
 	switch ($ret) {
 		case 0:
-			emDirect("./plugin.php?activate_install=1#tpllib");
+			emDirect("./plugin.php?activate_install=1");
 			break;
 		case -1:
 			emDirect("./plugin.php?error_e=1");

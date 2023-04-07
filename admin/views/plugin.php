@@ -18,7 +18,7 @@
 <?php if (isset($_GET['error_b'])): ?>
 	<div class="alert alert-danger">上传失败，插件目录(content/plugins)不可写</div><?php endif ?>
 <?php if (isset($_GET['error_c'])): ?>
-	<div class="alert alert-danger">空间不支持zip模块，请按照提示手动安装插件</div><?php endif ?>
+	<div class="alert alert-danger">服务器PHP不支持zip模块</div><?php endif ?>
 <?php if (isset($_GET['error_d'])): ?>
 	<div class="alert alert-danger">请选择一个zip插件安装包</div><?php endif ?>
 <?php if (isset($_GET['error_e'])): ?>

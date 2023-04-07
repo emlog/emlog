@@ -33,6 +33,7 @@ if ($action === '') {
 		$tplInfo = [
 			'tplfile'    => $file,
 			'tplname'    => !empty($tplName[1]) ? subString(strip_tags(trim($tplName[1])), 0, 16) : $file,
+			'version'    => !empty($tplVersion[1]) ? subString(strip_tags(trim($tplVersion[1])), 0, 16) : '',
 			'tplurl'     => !empty($tplUrl[1]) ? subString(strip_tags(trim($tplUrl[1])), 0, 75) : '',
 			'tpldes'     => !empty($tplDes[1]) ? subString(strip_tags(trim($tplDes[1])), 0, 40) : '',
 			'author'     => !empty($author[1]) ? subString(strip_tags(trim($author[1])), 0, 16) : '',
@@ -108,7 +109,7 @@ if ($action === 'upload_zip') {
 	$ret = emUnZip($zipfile['tmp_name'], '../content/templates/', 'tpl');
 	switch ($ret) {
 		case 0:
-			emDirect("./template.php?tpllib");
+			emDirect("./template.php?activate_install=1");
 			break;
 		case -2:
 			emDirect("./template.php?error_e=1");
@@ -120,5 +121,61 @@ if ($action === 'upload_zip') {
 		case 3:
 			emDirect("./template.php?error_c=1");
 			break;
+	}
+}
+
+if ($action === 'check_update') {
+	$templates = isset($_POST['templates']) ? $_POST['templates'] : [];
+
+	$emcurl = new EmCurl();
+	$post_data = [
+		'emkey' => Option::get('emkey'),
+		'apps'  => json_encode($templates),
+	];
+	$emcurl->setPost($post_data);
+	$emcurl->request('https://www.emlog.net/template/upgrade');
+	$retStatus = $emcurl->getHttpStatus();
+	if ($retStatus !== MSGCODE_SUCCESS) {
+		Output::error('请求更新失败，可能是网络问题');
+	}
+	$response = $emcurl->getRespone();
+	$ret = json_decode($response, 1);
+	if (empty($ret)) {
+		Output::error('请求更新失败');
+	}
+	if ($ret['code'] === MSGCODE_EMKEY_INVALID) {
+		Output::error('请求更新失败，请完成注册');
+	}
+
+	Output::ok($ret['data']);
+}
+
+if ($action === 'upgrade') {
+	$alias = isset($_GET['alias']) ? trim($_GET['alias']) : '';
+
+	if (!Register::isRegLocal()) {
+		emDirect("./template.php?error_i=1");
+	}
+
+	$temp_file = emFetchFile('https://www.emlog.net/template/down/' . $alias);
+	if (!$temp_file) {
+		emDirect("./template.php?error_h=1");
+	}
+	$unzip_path = '../content/templates/';
+	$ret = emUnZip($temp_file, $unzip_path, 'tpl');
+	@unlink($temp_file);
+	switch ($ret) {
+		case 0:
+			emDirect("./template.php?activate_upgrade=1");
+			break;
+		case 1:
+		case 2:
+			emDirect("./template.php?error_b=1");
+			break;
+		case 3:
+			emDirect("./template.php?error_d=1");
+			break;
+		default:
+			emDirect("./template.php?error_e=1");
 	}
 }
