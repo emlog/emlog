@@ -102,7 +102,7 @@
 </div>
 
 <script>
-    setTimeout(hideActived, 2600);
+    setTimeout(hideActived, 3600);
     $("#menu_category_view").addClass('active');
     $("#menu_view").addClass('show');
     $("#menu_tpl").addClass('active');

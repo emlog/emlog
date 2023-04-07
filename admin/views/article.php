@@ -212,7 +212,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
     $("#menu_category_content").addClass('active');
     $("#menu_content").addClass('show');
     $("#menu_<?= $draft ? 'draft' : 'log' ?>").addClass('active');
-    setTimeout(hideActived, 2600);
+    setTimeout(hideActived, 3600);
 
     $(document).ready(function () {
         $("#f_t_tag").click(function () {

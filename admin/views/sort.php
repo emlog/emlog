@@ -157,7 +157,7 @@
 </div>
 
 <script>
-    setTimeout(hideActived, 2600);
+    setTimeout(hideActived, 3600);
     $("#alias").keyup(function () {
         checksortalias();
     });

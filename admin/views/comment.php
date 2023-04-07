@@ -154,7 +154,7 @@
 
 <script>
     $("#menu_cm").addClass('active');
-    setTimeout(hideActived, 2600);
+    setTimeout(hideActived, 3600);
 
     function commentact(act) {
         if (getChecked('ids') == false) {

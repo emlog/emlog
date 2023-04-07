@@ -97,7 +97,7 @@
     $("#menu_category_content").addClass('active');
     $("#menu_content").addClass('show');
     $("#menu_tag").addClass('active');
-    setTimeout(hideActived, 2600);
+    setTimeout(hideActived, 3600);
 
     function tagact(act) {
         if (getChecked('tids') === false) {

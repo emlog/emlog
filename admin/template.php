@@ -141,10 +141,10 @@ if ($action === 'check_update') {
 	$response = $emcurl->getRespone();
 	$ret = json_decode($response, 1);
 	if (empty($ret)) {
-		Output::error('请求更新失败');
+		Output::error('请求更新失败，可能是网络问题');
 	}
 	if ($ret['code'] === MSGCODE_EMKEY_INVALID) {
-		Output::error('请求更新失败，请完成注册');
+		Output::error('未注册的pro版本');
 	}
 
 	Output::ok($ret['data']);

@@ -117,7 +117,7 @@
     $("#menu_category_sys").addClass('active');
     $("#menu_sys").addClass('show');
     $("#menu_setting").addClass('active');
-    setTimeout(hideActived, 2600);
+    setTimeout(hideActived, 3600);
 
     $(document).ready(function () {
         var $modal = $('#modal');

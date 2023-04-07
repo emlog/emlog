@@ -93,7 +93,7 @@
     $("#menu_category_sys").addClass('active');
     $("#menu_sys").addClass('show');
     $("#menu_setting").addClass('active');
-    setTimeout(hideActived, 2600);
+    setTimeout(hideActived, 3600);
 
     $("#testSendBtn").click(function () {
         $("#testMailMsg").html("<small class='text-secondary'>发送中...<small>");

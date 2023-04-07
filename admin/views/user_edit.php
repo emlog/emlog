@@ -54,7 +54,7 @@
 </form>
 
 <script>
-    setTimeout(hideActived, 2600);
+    setTimeout(hideActived, 3600);
     $("#menu_category_sys").addClass('active');
     $("#menu_sys").addClass('show');
     $("#menu_user").addClass('active');
