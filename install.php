@@ -428,7 +428,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('active_plug
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widget_title','$widget_title');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_widget','a:0:{}');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widgets1','$def_widgets');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('detect_url','n');
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('detect_url','y');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('emkey','');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('login_code','n');
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('email_code','n');
