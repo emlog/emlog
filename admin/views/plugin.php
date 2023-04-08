@@ -31,7 +31,6 @@
 	<div class="alert alert-danger">更新失败，无法下载更新包，可能是服务器网络问题。</div><?php endif ?>
 <?php if (isset($_GET['error_i'])): ?>
 	<div class="alert alert-danger">您的emlog pro尚未注册</div><?php endif ?>
-<div class="my-3" id="upMsg"></div>
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 	<h1 class="h3 mb-0 text-gray-800">插件扩展</h1>
@@ -102,6 +101,7 @@
 				<?php endif ?>
 				</tbody>
 			</table>
+			<div class="my-3" id="upMsg"></div>
 		</div>
 	</div>
 </div>
@@ -165,14 +165,14 @@
                         $updateBtn.append($('<a>').addClass('btn btn-success btn-sm').text('更新').attr("href", "./plugin.php?action=upgrade&alias=" + item.name));
                     });
                 } else {
-                    $('#upMsg').html('插件更新检查无法正常进行,错误码:' + response.code).addClass('alert alert-danger');
+                    $('#upMsg').html('插件更新检查无法正常进行,错误码:' + response.code).addClass('alert alert-warning');
                 }
             },
             error: function (xhr) {
                 var responseText = xhr.responseText;
                 var responseObject = JSON.parse(responseText);
                 var msgValue = responseObject.msg;
-                $('#upMsg').html('插件更新检查异常： ' + msgValue).addClass('alert alert-danger');
+                $('#upMsg').html('插件更新检查异常： ' + msgValue).addClass('alert alert-warning');
             }
         });
     });
