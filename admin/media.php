@@ -37,12 +37,30 @@ if (empty($action)) {
 
 if ($action === 'lib') {
 	$page = Input::getIntVar('page', 1);
-	$perpage_count = 48;
-	$medias = $Media_Model->getMedias($page, $perpage_count);
+	$perPageCount = 6;
+	$medias = $Media_Model->getMedias($page, $perPageCount);
 	$count = $Media_Model->getMediaCount();
-	$pageurl = pagination($count, $perpage_count, $page, "media.php?page=");
-	require_once(View::getAdmView('media_lib'));
-	View::output();
+
+	$ret['hasMore'] = !(count($medias) < $perPageCount);
+	foreach ($medias as $v) {
+		$data['media_path'] = $v['filepath'];
+		$data['media_url'] = rmUrlParams(getFileUrl($v['filepath']));
+		$data['media_name'] = $v['filename'];
+		$data['attsize'] = $v['attsize'];
+		$data['media_type'] = '';
+		$data['media_icon'] = "./views/images/fnone.png";
+		if (isImage($v['mimetype'])) {
+			$data['media_icon'] = getFileUrl($v['filepath_thum']);
+			$data['media_type'] = 'image';
+		} elseif (isZip($v['filename'])) {
+			$data['media_icon'] = "./views/images/zip.jpg";
+		} elseif (isVideo($v['filename'])) {
+			$data['media_type'] = 'video';
+			$data['media_icon'] = "./views/images/video.png";
+		}
+		$ret['images'][] = $data;
+	}
+	Output::ok($ret);
 }
 
 if ($action === 'upload') {
