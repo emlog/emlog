@@ -159,6 +159,11 @@
     <script>
         setTimeout(hideActived, 3600);
         $("#menu_panel").addClass('active');
+        $.get("./upgrade.php?action=check_update", function (result) {
+            if (result.code == 200) {
+                $("#upmsg").html("有可用的新版本 " + result.data.version + "，<a href=\"https://www.emlog.net/docs/#/changelog\" target=\"_blank\">查看更新内容</a>，<a id=\"doup\" href=\"javascript:doup('" + result.data.file + "','" + result.data.sql + "');\">现在更新</a>").removeClass();
+            }
+        });
     </script>
 <?php endif ?>
 
