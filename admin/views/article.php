@@ -1,6 +1,6 @@
 <?php
 if (!defined('EMLOG_ROOT')) {
-	exit('error!');
+    exit('error!');
 }
 $isdraft = $draft ? '&draft=1' : '';
 $isDisplaySort = !$sid ? "style=\"display:none;\"" : '';
@@ -46,41 +46,41 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
                 <div id="f_t_sort" class="mx-1">
                     <select name="bysort" id="bysort" onChange="selectSort(this);" class="form-control">
                         <option value="" selected="selected">按分类查看</option>
-						<?php
-						foreach ($sorts as $key => $value):
-							if ($value['pid'] != 0) {
-								continue;
-							}
-							$flg = $value['sid'] == $sid ? 'selected' : '';
-							?>
+                        <?php
+                        foreach ($sorts as $key => $value):
+                            if ($value['pid'] != 0) {
+                                continue;
+                            }
+                            $flg = $value['sid'] == $sid ? 'selected' : '';
+                            ?>
                             <option value="<?= $value['sid'] ?>" <?= $flg ?>><?= $value['sortname'] ?></option>
-							<?php
-							$children = $value['children'];
-							foreach ($children as $key):
-								$value = $sorts[$key];
-								$flg = $value['sid'] == $sid ? 'selected' : '';
-								?>
+                            <?php
+                            $children = $value['children'];
+                            foreach ($children as $key):
+                                $value = $sorts[$key];
+                                $flg = $value['sid'] == $sid ? 'selected' : '';
+                                ?>
                                 <option value="<?= $value['sid'] ?>" <?= $flg ?>>&nbsp; &nbsp; &nbsp; <?= $value['sortname'] ?></option>
-							<?php
-							endforeach;
-						endforeach;
-						?>
+                            <?php
+                            endforeach;
+                        endforeach;
+                        ?>
                         <option value="-1" <?php if ($sid == -1) echo 'selected' ?>>未分类</option>
                     </select>
                 </div>
-				<?php if (User::haveEditPermission() && count($user_cache) > 1): ?>
+                <?php if (User::haveEditPermission() && count($user_cache) > 1): ?>
                     <div id="f_t_user" class="mx-1">
                         <select name="byuser" id="byuser" onChange="selectUser(this);" class="form-control">
                             <option value="" selected="selected">按作者查看</option>
-							<?php
-							foreach ($user_cache as $key => $value):
-								$flg = $key == $uid ? 'selected' : '';
-								?>
+                            <?php
+                            foreach ($user_cache as $key => $value):
+                                $flg = $key == $uid ? 'selected' : '';
+                                ?>
                                 <option value="<?= $key ?>" <?= $flg ?>><?= $value['name'] ?></option>
-							<?php endforeach ?>
+                            <?php endforeach ?>
                         </select>
                     </div>
-				<?php endif ?>
+                <?php endif ?>
             </div>
             <form action="article.php" method="get">
                 <div class="form-inline search-inputs-nowrap">
@@ -112,22 +112,25 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
                     </tr>
                     </thead>
                     <tbody>
-					<?php foreach ($logs as $key => $value):
-						$sortName = isset($sorts[$value['sortid']]['sortname']) ? $sorts[$value['sortid']]['sortname'] : '未知分类';
-						$sortName = $value['sortid'] == -1 ? '未分类' : $sortName;
-						$author = isset($user_cache[$value['author']]['name']) ? $user_cache[$value['author']]['name'] : '未知作者';
-						$author_role = isset($user_cache[$value['author']]['role']) ? $user_cache[$value['author']]['role'] : '未知角色';
-						?>
+                    <?php foreach ($logs as $key => $value):
+                        $sortName = isset($sorts[$value['sortid']]['sortname']) ? $sorts[$value['sortid']]['sortname'] : '未知分类';
+                        $sortName = $value['sortid'] == -1 ? '未分类' : $sortName;
+                        $author = isset($user_cache[$value['author']]['name']) ? $user_cache[$value['author']]['name'] : '未知作者';
+                        $author_role = isset($user_cache[$value['author']]['role']) ? $user_cache[$value['author']]['role'] : '未知角色';
+                        ?>
                         <tr>
                             <td style="width: 20px;"><input type="checkbox" name="blog[]" value="<?= $value['gid'] ?>" class="ids"/></td>
                             <td>
                                 <a href="article.php?action=edit&gid=<?= $value['gid'] ?>"><?= $value['title'] ?></a><br>
-								<?php if ($value['top'] == 'y'): ?><span class="badge small badge-success">首页置顶</span><?php endif ?>
-								<?php if ($value['sortop'] == 'y'): ?><span class="badge small badge-info">分类置顶</span><?php endif ?>
-								<?php if ($value['timestamp'] > time()): ?><span class="badge small badge-warning">定时发布</span><?php endif ?>
-								<?php if ($value['password']): ?><span class="small">🔒</span><?php endif ?>
-								<?php if ($value['link']): ?><span class="small">🔗</span><?php endif ?>
-								<?php if (!$draft && $value['checked'] == 'n'): ?><span class="badge small badge-danger">待审核</span><?php endif ?>
+                                <?php if ($value['top'] == 'y'): ?><span class="badge small badge-success">首页置顶</span><?php endif ?>
+                                <?php if ($value['sortop'] == 'y'): ?><span class="badge small badge-info">分类置顶</span><?php endif ?>
+                                <?php if ($value['timestamp'] > time()): ?><span class="badge small badge-warning">定时发布</span><?php endif ?>
+                                <?php if ($value['password']): ?><span class="small">🔒</span><?php endif ?>
+                                <?php if ($value['link']): ?><span class="small">🔗</span><?php endif ?>
+                                <?php if (!$draft && $value['checked'] == 'n'): ?>
+                                    <span class="badge small badge-secondary">待审核</span><br>
+                                    <small class="text-secondary"><?= $value['feedback'] ? '审核反馈：' . $value['feedback'] : '' ?></small>
+                                <?php endif ?>
                             </td>
                             <td><a href="comment.php?gid=<?= $value['gid'] ?>" class="badge badge-info"><?= $value['comnum'] ?></a></td>
                             <td><a href="<?= Url::log($value['gid']) ?>" class="badge badge-secondary" target="_blank"><?= $value['views'] ?></a></td>
@@ -135,77 +138,103 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
                             <td><a href="article.php?sid=<?= $value['sortid'] . $isdraft ?>"><?= $sortName ?></a></td>
                             <td class="small"><?= $value['date'] ?></td>
                             <td>
-								<?php if (!$draft && User::haveEditPermission() && $value['checked'] == 'n'): ?>
+                                <?php if (!$draft && User::haveEditPermission() && $value['checked'] == 'n'): ?>
                                     <a class="badge badge-success"
                                        href="article.php?action=operate_log&operate=check&gid=<?= $value['gid'] ?>&token=<?= LoginAuth::genToken() ?>">审核</a>
-								<?php elseif (!$draft && User::haveEditPermission() && $author_role == User::ROLE_WRITER): ?>
+                                <?php endif ?>
+                                <?php if (!$draft && User::haveEditPermission() && $author_role == User::ROLE_WRITER): ?>
                                     <a class="badge badge-warning"
-                                       href="article.php?action=operate_log&operate=uncheck&gid=<?= $value['gid'] ?>&token=<?= LoginAuth::genToken() ?>">驳回</a>
-								<?php endif ?>
-								<?php if ($draft): ?>
+                                       href="#" data-gid="<?= $value['gid'] ?>" data-toggle="modal" data-target="#uncheckModel">驳回</a>
+                                <?php endif ?>
+                                <?php if ($draft): ?>
                                     <a href="javascript: em_confirm(<?= $value['gid'] ?>, 'draft', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger">删除</a>
-								<?php else: ?>
+                                <?php else: ?>
                                     <a href="javascript: em_confirm(<?= $value['gid'] ?>, 'article', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger">删除</a>
-								<?php endif ?>
+                                <?php endif ?>
                             </td>
                         </tr>
-					<?php endforeach ?>
+                    <?php endforeach ?>
                     </tbody>
                 </table>
             </div>
             <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
             <input name="operate" id="operate" value="" type="hidden"/>
             <div class="form-inline">
-				<?php if (User::haveEditPermission()): ?>
+                <?php if (User::haveEditPermission()): ?>
                     <select name="top" id="top" onChange="changeTop(this);" class="form-control m-1">
                         <option value="" selected="selected">置顶</option>
                         <option value="top">首页置顶</option>
                         <option value="sortop">分类置顶</option>
                         <option value="notop">取消置顶</option>
                     </select>
-				<?php endif ?>
+                <?php endif ?>
                 <select name="sort" id="sort" onChange="changeSort(this);" class="form-control m-1">
                     <option value="" selected="selected">移动到分类</option>
-					<?php
-					foreach ($sorts as $key => $value):
-						if ($value['pid'] != 0) {
-							continue;
-						}
-						?>
+                    <?php
+                    foreach ($sorts as $key => $value):
+                        if ($value['pid'] != 0) {
+                            continue;
+                        }
+                        ?>
                         <option value="<?= $value['sid'] ?>"><?= $value['sortname'] ?></option>
-						<?php
-						$children = $value['children'];
-						foreach ($children as $key):
-							$value = $sorts[$key];
-							?>
+                        <?php
+                        $children = $value['children'];
+                        foreach ($children as $key):
+                            $value = $sorts[$key];
+                            ?>
                             <option value="<?= $value['sid'] ?>">&nbsp; &nbsp;
                                 &nbsp; <?= $value['sortname'] ?></option>
-						<?php
-						endforeach;
-					endforeach;
-					?>
+                        <?php
+                        endforeach;
+                    endforeach;
+                    ?>
                     <option value="-1">未分类</option>
                 </select>
-				<?php if (User::haveEditPermission() && count($user_cache) > 1): ?>
+                <?php if (User::haveEditPermission() && count($user_cache) > 1): ?>
                     <select name="author" id="author" onChange="changeAuthor(this);" class="form-control m-1">
                         <option value="" selected="selected">更改作者</option>
-						<?php foreach ($user_cache as $key => $val): ?>
+                        <?php foreach ($user_cache as $key => $val): ?>
                             <option value="<?= $key ?>"><?= $val['name'] ?></option>
-						<?php endforeach ?>
+                        <?php endforeach ?>
                     </select>
-				<?php endif ?>
+                <?php endif ?>
 
                 <div class="btn-group btn-group-sm" role="group">
-					<?php if ($draft): ?>
+                    <?php if ($draft): ?>
                         <a href="javascript:logact('pub');" class="btn btn-sm btn-success">发布</a>
-					<?php else: ?>
+                    <?php else: ?>
                         <a href="javascript:logact('hide');" class="btn btn-sm btn-success">放入草稿箱</a>
-					<?php endif ?>
+                    <?php endif ?>
                     <a href="javascript:logact('del');" class="btn btn-sm btn-danger">删除</a>
                 </div>
             </div>
         </form>
         <div class="page"><?= $pageurl ?> (有 <?= $logNum ?> 篇<?= $draft ? '草稿' : '文章' ?>)</div>
+    </div>
+</div>
+<!--驳回文章-->
+<div class="modal fade" id="uncheckModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">驳回文章</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="article.php?action=operate_log&operate=uncheck&token=<?= LoginAuth::genToken() ?>" method="post">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <textarea name="feedback" type="text" maxlength="512" class="form-control" placeholder="请填写驳回文章的理由，不填请留空。"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" value="" name="gid" id="gid"/>
+                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-sm btn-warning">驳回</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 <script>
@@ -284,4 +313,11 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
     function selectUser(obj) {
         window.open("./article.php?uid=" + obj.value + "<?= $isdraft?>", "_self");
     }
+
+    $('#uncheckModel').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget)
+        var gid = button.data('gid')
+        var modal = $(this)
+        modal.find('.modal-footer #gid').val(gid)
+    })
 </script>

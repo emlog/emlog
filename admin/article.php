@@ -98,7 +98,7 @@ if ($action == 'operate_log') {
     $logs = isset($_POST['blog']) ? array_map('intval', $_POST['blog']) : array();
     $sort = isset($_POST['sort']) ? (int)$_POST['sort'] : '';
     $author = isset($_POST['author']) ? (int)$_POST['author'] : '';
-    $gid = isset($_GET['gid']) ? (int)$_GET['gid'] : '';
+    $gid = isset($_REQUEST['gid']) ? (int)$_REQUEST['gid'] : '';
 
     LoginAuth::checkToken();
 
@@ -183,7 +183,9 @@ if ($action == 'operate_log') {
             if (!User::haveEditPermission()) {
                 emMsg('权限不足！', './');
             }
-            $Log_Model->checkSwitch($gid, 'n');
+            $gid = Input::postIntVar('gid');
+            $feedback = Input::postStrVar('feedback');
+            $Log_Model->unCheck($gid, $feedback);
             $CACHE->updateCache();
             emDirect("./article.php?active_unck=1&draft=$draft");
             break;

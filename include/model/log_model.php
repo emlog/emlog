@@ -261,6 +261,13 @@ class Log_Model {
 		$Comment_Model->updateCommentNum($blogId);
 	}
 
+    public function unCheck($blogId, $feedback) {
+        $this->db->query("UPDATE $this->table SET checked='n', feedback='$feedback' WHERE gid=$blogId");
+        $this->db->query("UPDATE " . DB_PREFIX . "comment SET hide='y' WHERE gid=$blogId");
+        $Comment_Model = new Comment_Model();
+        $Comment_Model->updateCommentNum($blogId);
+    }
+
 	public function updateViewCount($blogId) {
 		$this->db->query("UPDATE $this->table SET views=views+1 WHERE gid=$blogId");
 	}

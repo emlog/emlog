@@ -325,6 +325,7 @@ CREATE TABLE {$db_prefix}blog (
   template varchar(255) NOT NULL default '' COMMENT '模板',
   tags text COMMENT '标签',
   link varchar(255) NOT NULL DEFAULT '' COMMENT '文章跳转链接',
+  feedback varchar(2048) NOT NULL DEFAULT '' COMMENT 'audit feedback',
   PRIMARY KEY (gid),
   KEY author (author),
   KEY views (views),
