@@ -1,5 +1,5 @@
 <?php if (!defined('EMLOG_ROOT')) {
-	exit('error!');
+    exit('error!');
 } ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-3">
     <div class="mb-0 text-gray-800">
@@ -83,7 +83,7 @@
             </div>
         </div>
     </div>
-	<?php if (User::isAdmin()): ?>
+    <?php if (User::isAdmin()): ?>
     <div class="col-lg-6 mb-4">
         <div class="card shadow mb-4">
             <h6 class="card-header">软件信息</h6>
@@ -103,11 +103,15 @@
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         EMLOG
-						<?php if (!Register::isRegLocal()) : ?>
-                            <a href="auth.php"><span class="badge badge-secondary"><?= Option::EMLOG_VERSION ?> 未注册, 点击去注册</span></a>
-						<?php else: ?>
-                            <span class="badge <?php if (Register::getRegType() === 2): ?>badge-warning<?php else: ?>badge-success<?php endif; ?>"><?= Option::EMLOG_VERSION ?> 已注册</span>
-						<?php endif ?>
+                        <?php if (!Register::isRegLocal()) : ?>
+                            <a href="auth.php"><span class="badge badge-primary"><?= Option::EMLOG_VERSION ?> 普通版</span></a>
+                        <?php elseif (Register::getRegType() == 2): ?>
+                            <span class="badge badge-warning"><?= Option::EMLOG_VERSION ?> 铁杆SVIP版</span>
+                        <?php elseif (Register::getRegType() == 1): ?>
+                            <span class="badge badge-success"><?= Option::EMLOG_VERSION ?> 友情VIP版</span>
+                        <?php else: ?>
+                            <span class="badge badge-success"><?= Option::EMLOG_VERSION ?> 已注册</span>
+                        <?php endif ?>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <a id="ckup" href="javascript:checkupdate();" class="btn btn-success btn-sm">检查更新</a>
@@ -119,15 +123,15 @@
     </div>
 </div>
     <div class="row">
-		<?php if (!Register::isRegLocal()) : ?>
+        <?php if (!Register::isRegLocal()) : ?>
             <div class="col-lg-6 mb-4">
                 <div class="card shadow">
                     <div class="card-header bg-warning">
-                        <h6 class="my-0">您安装的emlog尚未注册，注册后将获得：</h6>
+                        <h6 class="my-0">您安装的emlog是尚未注册的普通版，注册后将获得：</h6>
                     </div>
                     <div class="card-body">
                         <div>1. 解锁在线升级功能，一键升级到最新版本，获得来自官方的安全和功能更新。</div>
-                        <div>2. 解锁应用商店，获得更多模板和扩展插件。</div>
+                        <div>2. 解锁应用商店，获得更多模板和插件，并支持应用在线一键更新。</div>
                         <div>3. 去除所有未注册提示及功能限制。</div>
                         <div>4. 加入专属Q群，获得官方技术指导问题解答。</div>
                         <div>5. "投我以桃，报之以李"，您的支持也将帮助emlog变的更好并持续更新下去。</div>
@@ -138,7 +142,7 @@
                     </div>
                 </div>
             </div>
-		<?php endif ?>
+        <?php endif ?>
         <div class="col-lg-6 mb-4">
             <div class="card shadow mb-4">
                 <h6 class="card-header">获取帮助</h6>
@@ -159,5 +163,5 @@
 <?php endif ?>
 
 <div class="row">
-	<?php doAction('adm_main_content') ?>
+    <?php doAction('adm_main_content') ?>
 </div>

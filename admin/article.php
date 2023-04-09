@@ -222,10 +222,6 @@ if ($action === 'write') {
 	$Media_Model = new Media_Model();
 	$medias = $Media_Model->getMedias();
 
-	if (!Register::isRegLocal() && $sta_cache['lognum'] > 20) {
-		emDirect("auth.php?error_article=1");
-	}
-
 	include View::getAdmView('header');
 	require_once View::getAdmView('article_write');
 	include View::getAdmView('footer');
