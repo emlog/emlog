@@ -127,7 +127,7 @@
             <div class="col-lg-6 mb-4">
                 <div class="card shadow">
                     <div class="card-header bg-danger text-white">
-                        <h6 class="my-0">您安装的emlog是尚未注册的普通版，注册后将获得：</h6>
+                        <h6 class="my-0">您安装的emlog是尚未注册的普通版， 完成注册可升级到VIP版本，将获得如下权益：</h6>
                     </div>
                     <div class="card-body">
                         <div>1. 解锁在线升级功能，一键升级到最新版本，获得来自官方的安全和功能更新。</div>
