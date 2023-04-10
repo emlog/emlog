@@ -17,26 +17,25 @@
                 </div>
                 <div id="logcontent"><textarea><?= $content ?></textarea></div>
             </div>
-
             <div class="form-group">
                 <label>文章摘要：</label>
                 <div id="logexcerpt"><textarea><?= $excerpt ?></textarea></div>
             </div>
-            <div class="form-group">
-                <label>文章封面：</label>
-                <input name="cover" id="cover" class="form-control" placeholder="封面图地址URL，手动填写或点击下方图片区域上传" value="<?= $cover ?>"/>
-                <div class="row mt-3">
-                    <div class="col-md-4">
-                        <label for="upload_img">
-                            <img src="<?= $cover ?: './views/images/cover.svg' ?>" id="cover_image" class="rounded" title="封面图片"/>
-                            <input type="file" name="upload_img" class="image" id="upload_img" style="display:none"/>
-                            <button type="button" id="cover_rm" class="btn-sm btn btn-link" <?php if (!$cover): ?>style="display:none"<?php endif ?>>x</button>
-                        </label>
-                    </div>
-                </div>
-            </div>
             <div class="show_advset" id="displayToggle" onclick="displayToggle('advset');">更多选项<i class="icofont-simple-right"></i></div>
             <div id="advset" class="shadow-sm p-3 mb-2 bg-white rounded">
+                <div class="form-group">
+                    <label>文章封面：</label>
+                    <input name="cover" id="cover" class="form-control" placeholder="封面图地址URL，手动填写或点击下方图片区域上传" value="<?= $cover ?>"/>
+                    <div class="row mt-3">
+                        <div class="col-md-4">
+                            <label for="upload_img">
+                                <img src="<?= $cover ?: './views/images/cover.svg' ?>" width="200" id="cover_image" class="rounded" title="封面图片"/>
+                                <input type="file" name="upload_img" class="image" id="upload_img" style="display:none"/>
+                                <button type="button" id="cover_rm" class="btn-sm btn btn-link" <?php if (!$cover): ?>style="display:none"<?php endif ?>>x</button>
+                            </label>
+                        </div>
+                    </div>
+                </div>
                 <div class="form-group">
                     <label>分类：</label>
                     <select name="sort" id="sort" class="form-control">

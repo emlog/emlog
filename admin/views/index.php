@@ -126,7 +126,7 @@
         <?php if (!Register::isRegLocal()) : ?>
             <div class="col-lg-6 mb-4">
                 <div class="card shadow">
-                    <div class="card-header bg-warning">
+                    <div class="card-header bg-danger text-white">
                         <h6 class="my-0">您安装的emlog是尚未注册的普通版，注册后将获得：</h6>
                     </div>
                     <div class="card-body">
@@ -137,8 +137,8 @@
                         <div>5. "投我以桃，报之以李"，您的支持也将帮助emlog变的更好并持续更新下去。</div>
                     </div>
                     <div class="card-footer text-center">
-                        <a href="https://emlog.net/register" target="_blank" class="btn btn-sm btn-primary shadow-lg">获取注册码</a>
-                        <a href="auth.php" class="btn btn-sm btn-success shadow-lg">去注册</a>
+                        <a href="auth.php" class="btn btn-sm btn-primary shadow-lg">去注册</a>
+                        <a href="https://emlog.net/register" target="_blank" class="btn btn-sm btn-success shadow-lg">支持一下，获取注册码-></a>
                     </div>
                 </div>
             </div>
