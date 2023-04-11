@@ -67,7 +67,7 @@ class Media_Model {
         }
 
         $query = "INSERT INTO $this->table (author, sortid, filename, filesize, filepath, addtime, width, height, mimetype, thumfor)
-		 VALUES('%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')";
+                  VALUES('%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')";
         $query = sprintf($query, UID, $sortid, $file_name, $file_size, $file_path, $create_time, $img_width, $img_height, $file_mime_type, 0);
         $this->db->query($query);
         return $this->db->insert_id();

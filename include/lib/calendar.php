@@ -62,11 +62,11 @@ class Calendar {
         $url4 = DYNAMIC_BLOGURL . '?action=cal&record=' . $year_up . $mj;          //下一月份
 
         $calendar = "<table class=\"calendartop\" cellspacing=\"0\"><tr>
-		<td><a href=\"javascript:void(0);\" onclick=\"sendinfo('$url','calendar');\"> &laquo; </a>$n_year2<a href=\"javascript:void(0);\" onclick=\"sendinfo('$url2','calendar');\"> &raquo; </a></td>
-		<td><a href=\"javascript:void(0);\" onclick=\"sendinfo('$url3','calendar');\"> &laquo; </a>$n_month<a href=\"javascript:void(0);\" onclick=\"sendinfo('$url4','calendar');\"> &raquo; </a></td>
-		</tr></table>
-		<table class=\"calendar\" cellspacing=\"0\">
-		<tr><td class=\"week\">一</td><td class=\"week\">二</td><td class=\"week\">三</td><td class=\"week\">四</td><td class=\"week\">五</td><td class=\"week\">六</td><td class=\"sun\">日</td></tr>";
+        <td><a href=\"javascript:void(0);\" onclick=\"sendinfo('$url','calendar');\"> &laquo; </a>$n_year2<a href=\"javascript:void(0);\" onclick=\"sendinfo('$url2','calendar');\"> &raquo; </a></td>
+        <td><a href=\"javascript:void(0);\" onclick=\"sendinfo('$url3','calendar');\"> &laquo; </a>$n_month<a href=\"javascript:void(0);\" onclick=\"sendinfo('$url4','calendar');\"> &raquo; </a></td>
+        </tr></table>
+        <table class=\"calendar\" cellspacing=\"0\">
+        <tr><td class=\"week\">一</td><td class=\"week\">二</td><td class=\"week\">三</td><td class=\"week\">四</td><td class=\"week\">五</td><td class=\"week\">六</td><td class=\"sun\">日</td></tr>";
 
         //获取给定年月的第一天是星期几
         $week = @gmdate("w", gmmktime(0, 0, 0, $n_month, 1, $n_year));
