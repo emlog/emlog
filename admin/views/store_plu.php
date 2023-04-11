@@ -31,7 +31,7 @@
     <a href="./store.php?action=plu&tag=free" class="badge badge-success m-1 ml-2 p-2 active">仅看免费</a>
     <a href="./store.php?action=plu&tag=paid" class="badge badge-warning m-1 ml-2 p-2">仅看付费</a>
 </div>
-<div class="row">
+<div class="mb-3">
     <?php if (!empty($plugins)): ?>
         <div class="d-flex flex-wrap app-list">
             <?php foreach ($plugins as $k => $v):
