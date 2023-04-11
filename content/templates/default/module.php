@@ -78,7 +78,7 @@ function widget_tag($title) {
         <div class="unstyle-li tag-container">
             <?php foreach ($tag_cache as $value): ?>
                 <span style="font-size:<?= $value['fontsize'] ?>pt; line-height:30px;">
-			<a href="<?= Url::tag($value['tagurl']) ?>" title="<?= $value['usenum'] ?> 篇文章" class='tags-side'><?= $value['tagname'] ?></a></span>
+            <a href="<?= Url::tag($value['tagurl']) ?>" title="<?= $value['usenum'] ?> 篇文章" class='tags-side'><?= $value['tagname'] ?></a></span>
             <?php endforeach ?>
         </div>
     </div>
@@ -344,8 +344,8 @@ function bloglist_sort($blogid) {
     ?>
     <?php if (!empty($log_cache_sort[$blogid])) { ?>
         <span class="loglist-sort">
-			<a href="<?= Url::sort($log_cache_sort[$blogid]['id']) ?>" title="分类：<?= $log_cache_sort[$blogid]['name'] ?>"><?= $log_cache_sort[$blogid]['name'] ?></a>
-		</span>
+            <a href="<?= Url::sort($log_cache_sort[$blogid]['id']) ?>" title="分类：<?= $log_cache_sort[$blogid]['name'] ?>"><?= $log_cache_sort[$blogid]['name'] ?></a>
+        </span>
     <?php }
 } ?>
 <?php
@@ -359,7 +359,7 @@ function blog_tag($blogid) {
     if (!empty($tag_names)) {
         $tag = '标签:';
         foreach ($tag_names as $key => $value) {
-            $tag .= "	<a href=\"" . Url::tag(rawurlencode($value)) . "\" class='tags' title='标签' >" . htmlspecialchars($value) . '</a>';
+            $tag .= "    <a href=\"" . Url::tag(rawurlencode($value)) . "\" class='tags' title='标签' >" . htmlspecialchars($value) . '</a>';
         }
         echo $tag;
     }
@@ -504,9 +504,9 @@ function blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allo
                     <?php endif ?>
 
                     <span class="com_submit_p">
-						<input class="btn"<?php if ($verifyCode != "") { ?> type="button" data-toggle="modal" data-target="#myModal"<?php } else { ?> type="submit" <?php } ?>
-							   id="comment_submit" value="发布评论" tabindex="6"/>
-					</span>
+                        <input class="btn"<?php if ($verifyCode != "") { ?> type="button" data-toggle="modal" data-target="#myModal"<?php } else { ?> type="submit" <?php } ?>
+                               id="comment_submit" value="发布评论" tabindex="6"/>
+                    </span>
                     <?php if ($verifyCode != "") { ?>
                         <!-- 验证窗口 -->
                         <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
