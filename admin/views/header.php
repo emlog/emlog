@@ -1,5 +1,5 @@
 <?php if (!defined('EMLOG_ROOT')) {
-	exit('error!');
+    exit('error!');
 } ?>
 <!doctype html>
 <html lang="zh-cn">
@@ -25,25 +25,25 @@
     <script src="./views/js/cropper.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
     <script src="./views/js/common.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
     <script src="./views/js/sweetalert.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
-	<?php doAction('adm_head') ?>
+    <?php doAction('adm_head') ?>
 </head>
 <body>
 <div id="editor-md-dialog"></div>
 <div id="wrapper">
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion sd-hidden" id="accordionSidebar">
         <li class="nav-item active emlog_title" id="menu_home">
-			<?php if (User::isAdmin()): ?>
+            <?php if (User::isAdmin()): ?>
                 <a class="nav-link" href="./">EMLOG PRO</a>
-			<?php else: ?>
+            <?php else: ?>
                 <a class="nav-link" href="./">用户中心</a>
-			<?php endif ?>
+            <?php endif ?>
         </li>
         <hr class="sidebar-divider my-0">
-		<?php if (User::isAdmin()): ?>
+        <?php if (User::isAdmin()): ?>
             <li class="nav-item" id="menu_panel">
                 <a class="nav-link" href="./"><i class="icofont-dashboard icofont-1x"></i><span>管理后台</span></a>
             </li>
-		<?php endif ?>
+        <?php endif ?>
         <hr class="sidebar-divider my-0">
         <li class="nav-item" id="menu_category_content">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_content" aria-expanded="true" aria-controls="menu_content">
@@ -54,10 +54,10 @@
                     <a class="collapse-item" id="menu_write" href="article.php?action=write">写文章</a>
                     <a class="collapse-item" id="menu_log" href="article.php">文章</a>
                     <a class="collapse-item" id="menu_draft" href="article.php?draft=1">草稿</a>
-					<?php if (User::isAdmin()): ?>
+                    <?php if (User::isAdmin()): ?>
                         <a class="collapse-item" id="menu_sort" href="sort.php">分类</a>
                         <a class="collapse-item" id="menu_tag" href="tag.php">标签</a>
-					<?php endif ?>
+                    <?php endif ?>
                 </div>
             </div>
         </li>
@@ -70,7 +70,7 @@
         <li class="nav-item" id="menu_media">
             <a class="nav-link" href="media.php"><i class="icofont-image"></i><span>资源</span></a>
         </li>
-		<?php if (User::isAdmin()): ?>
+        <?php if (User::isAdmin()): ?>
             <li class="nav-item" id="menu_user">
                 <a class="nav-link" href="user.php"><i class="icofont-user"></i><span>用户</span></a>
             </li>
@@ -109,16 +109,16 @@
                 <div id="menu_ext" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" id="menu_plug" href="plugin.php">插件</a>
-						<?php doAction('adm_menu_ext') ?>
+                        <?php doAction('adm_menu_ext') ?>
                     </div>
                 </div>
             </li>
             <hr class="sidebar-divider d-none d-md-block">
-			<?php doAction('adm_menu') ?>
-		<?php else: ?>
+            <?php doAction('adm_menu') ?>
+        <?php else: ?>
             <hr class="sidebar-divider d-none d-md-block">
-			<?php doAction('user_menu') ?>
-		<?php endif ?>
+            <?php doAction('user_menu') ?>
+        <?php endif ?>
         <div class="text-center d-none d-md-inline">
             <button class="rounded-circle border-0" id="sidebarToggle"></button>
         </div>
@@ -132,10 +132,10 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown no-arrow mx-1">
                         <a class="nav-link" href=".." target="_blank" role="button">
-							<?php
-							$blog_name = Option::get('blogname');
-							echo empty($blog_name) ? '查看我的站点' : subString($blog_name, 0, 12);
-							?>
+                            <?php
+                            $blog_name = Option::get('blogname');
+                            echo empty($blog_name) ? '查看我的站点' : subString($blog_name, 0, 12);
+                            ?>
                         </a>
                     </li>
                     <div class="topbar-divider d-none d-sm-block"></div>

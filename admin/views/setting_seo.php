@@ -1,5 +1,5 @@
 <?php if (!defined('EMLOG_ROOT')) {
-	exit('error!');
+    exit('error!');
 } ?>
 <?php if (isset($_GET['activated'])): ?>
     <div class="alert alert-success">设置保存成功</div><?php endif ?>

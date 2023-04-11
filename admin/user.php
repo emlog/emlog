@@ -15,181 +15,181 @@ require_once 'globals.php';
 $User_Model = new User_Model();
 
 if (empty($action)) {
-	$page = Input::getIntVar('page', 1);
-	$keyword = Input::getStrVar('keyword');
+    $page = Input::getIntVar('page', 1);
+    $keyword = Input::getStrVar('keyword');
 
-	$email = $nickname = '';
-	if (filter_var($keyword, FILTER_VALIDATE_EMAIL)) {
-		$email = $keyword;
-	} else {
-		$nickname = $keyword;
-	}
+    $email = $nickname = '';
+    if (filter_var($keyword, FILTER_VALIDATE_EMAIL)) {
+        $email = $keyword;
+    } else {
+        $nickname = $keyword;
+    }
 
-	$users = $User_Model->getUsers($email, $nickname, $page);
-	$usernum = $User_Model->getUserNum();
-	$pageurl = pagination($usernum, Option::get('admin_perpage_num'), $page, "./user.php?page=");
+    $users = $User_Model->getUsers($email, $nickname, $page);
+    $usernum = $User_Model->getUserNum();
+    $pageurl = pagination($usernum, Option::get('admin_perpage_num'), $page, "./user.php?page=");
 
-	include View::getAdmView('header');
-	require_once View::getAdmView('user');
-	include View::getAdmView('footer');
-	View::output();
+    include View::getAdmView('header');
+    require_once View::getAdmView('user');
+    include View::getAdmView('footer');
+    View::output();
 }
 
 if ($action == 'new') {
-	$email = isset($_POST['email']) ? addslashes(trim($_POST['email'])) : '';
-	$password = isset($_POST['password']) ? addslashes(trim($_POST['password'])) : '';
-	$password2 = isset($_POST['password2']) ? addslashes(trim($_POST['password2'])) : '';
-	$role = isset($_POST['role']) ? addslashes(trim($_POST['role'])) : self::ROLE_WRITER;
+    $email = isset($_POST['email']) ? addslashes(trim($_POST['email'])) : '';
+    $password = isset($_POST['password']) ? addslashes(trim($_POST['password'])) : '';
+    $password2 = isset($_POST['password2']) ? addslashes(trim($_POST['password2'])) : '';
+    $role = isset($_POST['role']) ? addslashes(trim($_POST['role'])) : self::ROLE_WRITER;
 
-	LoginAuth::checkToken();
+    LoginAuth::checkToken();
 
-	if (User::isAdmin()) {
-		$ischeck = 'n';
-	}
+    if (User::isAdmin()) {
+        $ischeck = 'n';
+    }
 
-	if ($email == '') {
-		emDirect('./user.php?error_email=1');
-	}
-	if ($User_Model->isMailExist($email)) {
-		emDirect("./user.php?error_exist_email=1");
-	}
-	if (strlen($password) < 6) {
-		emDirect('./user.php?error_pwd_len=1');
-	}
-	if ($password != $password2) {
-		emDirect('./user.php?error_pwd2=1');
-	}
+    if ($email == '') {
+        emDirect('./user.php?error_email=1');
+    }
+    if ($User_Model->isMailExist($email)) {
+        emDirect("./user.php?error_exist_email=1");
+    }
+    if (strlen($password) < 6) {
+        emDirect('./user.php?error_pwd_len=1');
+    }
+    if ($password != $password2) {
+        emDirect('./user.php?error_pwd2=1');
+    }
 
-	$PHPASS = new PasswordHash(8, true);
-	$password = $PHPASS->HashPassword($password);
+    $PHPASS = new PasswordHash(8, true);
+    $password = $PHPASS->HashPassword($password);
 
-	$User_Model->addUser('', $email, $password, $role);
-	$CACHE->updateCache(array('sta', 'user'));
-	emDirect('./user.php?active_add=1');
+    $User_Model->addUser('', $email, $password, $role);
+    $CACHE->updateCache(array('sta', 'user'));
+    emDirect('./user.php?active_add=1');
 }
 
 if ($action == 'edit') {
-	$uid = isset($_GET['uid']) ? (int)$_GET['uid'] : '';
+    $uid = isset($_GET['uid']) ? (int)$_GET['uid'] : '';
 
-	$data = $User_Model->getOneUser($uid);
+    $data = $User_Model->getOneUser($uid);
 
-	$nickname = $data['nickname'];
-	$role = $data['role'];
-	$description = $data['description'];
-	$username = $data['username'];
-	$email = $data['email'];
+    $nickname = $data['nickname'];
+    $role = $data['role'];
+    $description = $data['description'];
+    $username = $data['username'];
+    $email = $data['email'];
 
-	$ex1 = $ex2 = $ex3 = '';
-	if (user::isVistor($role)) {
-		$ex1 = 'selected="selected"';
-	} elseif (User::isEditor($role)) {
-		$ex2 = 'selected="selected"';
-	} elseif (User::isAdmin($role)) {
-		$ex3 = 'selected="selected"';
-	}
+    $ex1 = $ex2 = $ex3 = '';
+    if (user::isVistor($role)) {
+        $ex1 = 'selected="selected"';
+    } elseif (User::isEditor($role)) {
+        $ex2 = 'selected="selected"';
+    } elseif (User::isAdmin($role)) {
+        $ex3 = 'selected="selected"';
+    }
 
-	include View::getAdmView('header');
-	require_once View::getAdmView('user_edit');
-	include View::getAdmView('footer');
-	View::output();
+    include View::getAdmView('header');
+    require_once View::getAdmView('user_edit');
+    include View::getAdmView('footer');
+    View::output();
 }
 
 if ($action == 'update') {
-	$login = isset($_POST['username']) ? addslashes(trim($_POST['username'])) : '';
-	$nickname = isset($_POST['nickname']) ? addslashes(trim($_POST['nickname'])) : '';
-	$password = isset($_POST['password']) ? addslashes(trim($_POST['password'])) : '';
-	$password2 = isset($_POST['password2']) ? addslashes(trim($_POST['password2'])) : '';
-	$email = isset($_POST['email']) ? addslashes(trim($_POST['email'])) : '';
-	$description = isset($_POST['description']) ? addslashes(trim($_POST['description'])) : '';
-	$role = isset($_POST['role']) ? addslashes(trim($_POST['role'])) : User::ROLE_WRITER;
-	$uid = isset($_POST['uid']) ? (int)$_POST['uid'] : '';
+    $login = isset($_POST['username']) ? addslashes(trim($_POST['username'])) : '';
+    $nickname = isset($_POST['nickname']) ? addslashes(trim($_POST['nickname'])) : '';
+    $password = isset($_POST['password']) ? addslashes(trim($_POST['password'])) : '';
+    $password2 = isset($_POST['password2']) ? addslashes(trim($_POST['password2'])) : '';
+    $email = isset($_POST['email']) ? addslashes(trim($_POST['email'])) : '';
+    $description = isset($_POST['description']) ? addslashes(trim($_POST['description'])) : '';
+    $role = isset($_POST['role']) ? addslashes(trim($_POST['role'])) : User::ROLE_WRITER;
+    $uid = isset($_POST['uid']) ? (int)$_POST['uid'] : '';
 
-	LoginAuth::checkToken();
+    LoginAuth::checkToken();
 
-	if (UID == $uid) {
-		emDirect('./user.php');
-	}
-	//创始人账户不能被他人编辑
-	if ($uid == 1) {
-		emDirect('./user.php?error_del_b=1');
-	}
-	if (empty($nickname)) {
-		emDirect("./user.php?action=edit&uid={$uid}&error_nickname=1");
-	}
-	if (empty($email)) {
-		emDirect("./user.php?action=edit&uid={$uid}&error_email=1");
-	}
-	if ($User_Model->isMailExist($email, $uid)) {
-		emDirect("./user.php?action=edit&uid={$uid}&error_exist_email=1");
-	}
-	if ($User_Model->isUserExist($login, $uid)) {
-		emDirect("./user.php?action=edit&uid={$uid}&error_exist=1");
-	}
-	if (strlen($password) > 0 && strlen($password) < 6) {
-		emDirect("./user.php?action=edit&uid={$uid}&error_pwd_len=1");
-	}
-	if ($password != $password2) {
-		emDirect("./user.php?action=edit&uid={$uid}&error_pwd2=1");
-	}
+    if (UID == $uid) {
+        emDirect('./user.php');
+    }
+    //创始人账户不能被他人编辑
+    if ($uid == 1) {
+        emDirect('./user.php?error_del_b=1');
+    }
+    if (empty($nickname)) {
+        emDirect("./user.php?action=edit&uid={$uid}&error_nickname=1");
+    }
+    if (empty($email)) {
+        emDirect("./user.php?action=edit&uid={$uid}&error_email=1");
+    }
+    if ($User_Model->isMailExist($email, $uid)) {
+        emDirect("./user.php?action=edit&uid={$uid}&error_exist_email=1");
+    }
+    if ($User_Model->isUserExist($login, $uid)) {
+        emDirect("./user.php?action=edit&uid={$uid}&error_exist=1");
+    }
+    if (strlen($password) > 0 && strlen($password) < 6) {
+        emDirect("./user.php?action=edit&uid={$uid}&error_pwd_len=1");
+    }
+    if ($password != $password2) {
+        emDirect("./user.php?action=edit&uid={$uid}&error_pwd2=1");
+    }
 
-	$userData = [
-		'username'    => $login,
-		'nickname'    => $nickname,
-		'email'       => $email,
-		'description' => $description,
-		'role'        => $role,
-	];
+    $userData = [
+        'username'    => $login,
+        'nickname'    => $nickname,
+        'email'       => $email,
+        'description' => $description,
+        'role'        => $role,
+    ];
 
-	if (!empty($password)) {
-		$PHPASS = new PasswordHash(8, true);
-		$password = $PHPASS->HashPassword($password);
-		$userData['password'] = $password;
-	}
+    if (!empty($password)) {
+        $PHPASS = new PasswordHash(8, true);
+        $password = $PHPASS->HashPassword($password);
+        $userData['password'] = $password;
+    }
 
-	$User_Model->updateUser($userData, $uid);
-	$CACHE->updateCache('user');
-	emDirect('./user.php?active_update=1');
+    $User_Model->updateUser($userData, $uid);
+    $CACHE->updateCache('user');
+    emDirect('./user.php?active_update=1');
 }
 
 if ($action == 'del') {
-	LoginAuth::checkToken();
-	$uid = isset($_GET['uid']) ? (int)$_GET['uid'] : '';
+    LoginAuth::checkToken();
+    $uid = isset($_GET['uid']) ? (int)$_GET['uid'] : '';
 
-	if (UID == $uid) {
-		emDirect('./user.php');
-	}
+    if (UID == $uid) {
+        emDirect('./user.php');
+    }
 
-	//创始人账户不能被删除
-	if ($uid == 1) {
-		emDirect('./user.php?error_del_a=1');
-	}
+    //创始人账户不能被删除
+    if ($uid == 1) {
+        emDirect('./user.php?error_del_a=1');
+    }
 
-	$User_Model->deleteUser($uid);
-	$CACHE->updateCache(array('sta', 'user'));
-	emDirect('./user.php?active_del=1');
+    $User_Model->deleteUser($uid);
+    $CACHE->updateCache(array('sta', 'user'));
+    emDirect('./user.php?active_del=1');
 }
 
 if ($action == 'forbid') {
-	LoginAuth::checkToken();
-	$uid = isset($_GET['uid']) ? (int)$_GET['uid'] : '';
+    LoginAuth::checkToken();
+    $uid = isset($_GET['uid']) ? (int)$_GET['uid'] : '';
 
-	if (UID == $uid) {
-		emDirect('./user.php');
-	}
+    if (UID == $uid) {
+        emDirect('./user.php');
+    }
 
-	//创始人账户不能被禁用
-	if ($uid == 1) {
-		emDirect('./user.php');
-	}
+    //创始人账户不能被禁用
+    if ($uid == 1) {
+        emDirect('./user.php');
+    }
 
-	$User_Model->forbidUser($uid);
-	emDirect('./user.php?active_fb=1');
+    $User_Model->forbidUser($uid);
+    emDirect('./user.php?active_fb=1');
 }
 
 if ($action == 'unforbid') {
-	LoginAuth::checkToken();
-	$uid = isset($_GET['uid']) ? (int)$_GET['uid'] : '';
+    LoginAuth::checkToken();
+    $uid = isset($_GET['uid']) ? (int)$_GET['uid'] : '';
 
-	$User_Model->unforbidUser($uid);
-	emDirect('./user.php?active_unfb=1');
+    $User_Model->unforbidUser($uid);
+    emDirect('./user.php?active_unfb=1');
 }

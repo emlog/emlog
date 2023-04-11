@@ -1,5 +1,5 @@
 <?php if (!defined('EMLOG_ROOT')) {
-	exit('error!');
+    exit('error!');
 } ?>
 <?php if (isset($_GET['active_del'])): ?>
     <div class="alert alert-success">删除成功</div><?php endif ?>
@@ -62,24 +62,24 @@
                 </tr>
                 </thead>
                 <tbody>
-				<?php
-				foreach ($users as $key => $val):
-					$avatar = empty($user_cache[$val['uid']]['avatar']) ? './views/images/avatar.svg' : '../' . $user_cache[$val['uid']]['avatar'];
-					$forbid = $val['state'] == 1;
-					$user_log_num = isset($sta_cache[$val['uid']]['lognum']) ? $sta_cache[$val['uid']]['lognum'] : 0;
-					?>
+                <?php
+                foreach ($users as $key => $val):
+                    $avatar = empty($user_cache[$val['uid']]['avatar']) ? './views/images/avatar.svg' : '../' . $user_cache[$val['uid']]['avatar'];
+                    $forbid = $val['state'] == 1;
+                    $user_log_num = isset($sta_cache[$val['uid']]['lognum']) ? $sta_cache[$val['uid']]['lognum'] : 0;
+                    ?>
                     <tr>
                         <td><img src="<?= $avatar ?>" height="35" width="35" class="rounded-circle"/></td>
                         <td>
-							<?php if (UID != $val['uid']): ?>
+                            <?php if (UID != $val['uid']): ?>
                                 <a href="user.php?action=edit&uid=<?= $val['uid'] ?>"><?= empty($val['name']) ? $val['login'] : $val['name'] ?></a>
-							<?php else: ?>
+                            <?php else: ?>
                                 <a href="blogger.php"><?= empty($val['name']) ? $val['login'] : $val['name'] ?></a>
-							<?php endif ?>
+                            <?php endif ?>
                             <span class="small"><?= "<br/>" . $val['role'] ?></span>
-							<?php if ($forbid): ?>
+                            <?php if ($forbid): ?>
                                 <span class="badge badge-warning">已禁用</span>
-							<?php endif ?>
+                            <?php endif ?>
                         </td>
                         <td><?= $val['email'] ?></td>
                         <td><?= $val['uid'] ?></td>
@@ -88,17 +88,17 @@
                         <td><?= $val['update_time'] ?></td>
                         <td><?= $val['create_time'] ?></td>
                         <td>
-							<?php if (UID != $val['uid']): ?>
+                            <?php if (UID != $val['uid']): ?>
                                 <a href="javascript: em_confirm(<?= $val['uid'] ?>, 'del_user', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger">删除</a>
-								<?php if ($forbid): ?>
+                                <?php if ($forbid): ?>
                                     <a href="user.php?action=unforbid&uid=<?= $val['uid'] ?>&token=<?= LoginAuth::genToken() ?>" class="badge badge-success">解禁</a>
-								<?php else: ?>
+                                <?php else: ?>
                                     <a href="javascript: em_confirm(<?= $val['uid'] ?>, 'forbid_user', '<?= LoginAuth::genToken() ?>');" class="badge badge-warning">禁用</a>
-								<?php endif ?>
-							<?php endif ?>
+                                <?php endif ?>
+                            <?php endif ?>
                         </td>
                     </tr>
-				<?php endforeach ?>
+                <?php endforeach ?>
                 </tbody>
             </table>
         </div>

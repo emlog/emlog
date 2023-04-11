@@ -1,5 +1,5 @@
 <?php if (!defined('EMLOG_ROOT')) {
-	exit('error!');
+    exit('error!');
 } ?>
 <?php if (isset($_GET['active_del'])): ?>
     <div class="alert alert-success">删除页面成功</div><?php endif ?>
@@ -29,14 +29,14 @@
                     </tr>
                     </thead>
                     <tbody>
-					<?php foreach ($pages as $key => $value):
-						if (empty($navibar[$value['gid']]['url'])) {
-							$navibar[$value['gid']]['url'] = Url::log($value['gid']);
-						}
-						$isHide = $value['hide'] == 'y' ?
-							'<span class="text-danger">[草稿]</span>' :
-							'<a href="' . $navibar[$value['gid']]['url'] . '" target="_blank" title="查看页面"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>';
-						?>
+                    <?php foreach ($pages as $key => $value):
+                        if (empty($navibar[$value['gid']]['url'])) {
+                            $navibar[$value['gid']]['url'] = Url::log($value['gid']);
+                        }
+                        $isHide = $value['hide'] == 'y' ?
+                            '<span class="text-danger">[草稿]</span>' :
+                            '<a href="' . $navibar[$value['gid']]['url'] . '" target="_blank" title="查看页面"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>';
+                        ?>
                         <tr>
                             <td style="width: 19px;"><input type="checkbox" name="page[]" value="<?= $value['gid'] ?>" class="ids"/></td>
                             <td>
@@ -47,7 +47,7 @@
                             <td><a href="comment.php?gid=<?= $value['gid'] ?>"><?= $value['comnum'] ?></a></td>
                             <td class="small"><?= $value['date'] ?></td>
                         </tr>
-					<?php endforeach ?>
+                    <?php endforeach ?>
                     </tbody>
                 </table>
             </div>

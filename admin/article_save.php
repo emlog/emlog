@@ -33,43 +33,43 @@ $blogid = Input::postIntVar('as_logid', -1); //自动保存为草稿的文章id
 LoginAuth::checkToken();
 
 if (!empty($alias)) {
-	$logalias_cache = $CACHE->readCache('logalias');
-	$alias = $Log_Model->checkAlias($alias, $logalias_cache, $blogid);
+    $logalias_cache = $CACHE->readCache('logalias');
+    $alias = $Log_Model->checkAlias($alias, $logalias_cache, $blogid);
 }
 
 //管理员发文不审核,注册用户受开关控制
 $checked = Option::get('ischkarticle') == 'y' && !User::haveEditPermission() ? 'n' : 'y';
 
 $logData = [
-	'title'        => $title,
-	'alias'        => $alias,
-	'content'      => $content,
-	'excerpt'      => $excerpt,
-	'cover'        => $cover,
-	'author'       => $author,
-	'sortid'       => $sort,
-	'date'         => $postDate,
-	'allow_remark' => $allow_remark,
-	'hide'         => $ishide,
-	'checked'      => $checked,
-	'password'     => $password,
-	'link'         => $link,
+    'title'        => $title,
+    'alias'        => $alias,
+    'content'      => $content,
+    'excerpt'      => $excerpt,
+    'cover'        => $cover,
+    'author'       => $author,
+    'sortid'       => $sort,
+    'date'         => $postDate,
+    'allow_remark' => $allow_remark,
+    'hide'         => $ishide,
+    'checked'      => $checked,
+    'password'     => $password,
+    'link'         => $link,
 ];
 
 if (User::isWiter()) {
-	$count = $Log_Model->getPostCountByUid(UID, time() - 3600 * 24);
-	$post_per_day = Option::get('posts_per_day');
-	if ($count >= $post_per_day) {
-		emDirect("./article.php?error_post_per_day=1");
-	}
+    $count = $Log_Model->getPostCountByUid(UID, time() - 3600 * 24);
+    $post_per_day = Option::get('posts_per_day');
+    if ($count >= $post_per_day) {
+        emDirect("./article.php?error_post_per_day=1");
+    }
 }
 
 if ($blogid > 0) {
-	$Log_Model->updateLog($logData, $blogid);
-	$Tag_Model->updateTag($tagstring, $blogid);
+    $Log_Model->updateLog($logData, $blogid);
+    $Tag_Model->updateTag($tagstring, $blogid);
 } else {
-	$blogid = $Log_Model->addlog($logData);
-	$Tag_Model->addTag($tagstring, $blogid);
+    $blogid = $Log_Model->addlog($logData);
+    $Tag_Model->addTag($tagstring, $blogid);
 }
 
 $CACHE->updateArticleCache();
@@ -77,22 +77,22 @@ $CACHE->updateArticleCache();
 doAction('save_log', $blogid);
 
 switch ($action) {
-	case 'autosave':
-		echo 'autosave_gid:' . $blogid . '_';
-		break;
-	case 'add':
-	case 'edit':
-		$tbmsg = '';
-		if ($ishide == 'y') {
-			emDirect("./article.php?pid=draft&active_savedraft=1");
-		}
-		if ($action == 'add' || isset($_POST['pubdf'])) {
-			if ($checked == 'n') {
-				notice::sendNewPostMail($title);
-			}
-			emDirect("./article.php?active_post=1");//文章发布成功
-		} else {
-			emDirect("./article.php?active_savelog=1");//文章保存成功
-		}
-		break;
+    case 'autosave':
+        echo 'autosave_gid:' . $blogid . '_';
+        break;
+    case 'add':
+    case 'edit':
+        $tbmsg = '';
+        if ($ishide == 'y') {
+            emDirect("./article.php?pid=draft&active_savedraft=1");
+        }
+        if ($action == 'add' || isset($_POST['pubdf'])) {
+            if ($checked == 'n') {
+                notice::sendNewPostMail($title);
+            }
+            emDirect("./article.php?active_post=1");//文章发布成功
+        } else {
+            emDirect("./article.php?active_savelog=1");//文章保存成功
+        }
+        break;
 }

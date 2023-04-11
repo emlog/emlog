@@ -6,94 +6,94 @@
  */
 
 function emAutoload($class) {
-	$class = strtolower($class);
-	if (file_exists(EMLOG_ROOT . '/include/model/' . $class . '.php')) {
-		require_once(EMLOG_ROOT . '/include/model/' . $class . '.php');
-	} elseif (file_exists(EMLOG_ROOT . '/include/lib/' . $class . '.php')) {
-		require_once(EMLOG_ROOT . '/include/lib/' . $class . '.php');
-	} elseif (file_exists(EMLOG_ROOT . '/include/controller/' . $class . '.php')) {
-		require_once(EMLOG_ROOT . '/include/controller/' . $class . '.php');
-	} elseif (file_exists(EMLOG_ROOT . '/include/service/' . $class . '.php')) {
-		require_once(EMLOG_ROOT . '/include/service/' . $class . '.php');
-	}
+    $class = strtolower($class);
+    if (file_exists(EMLOG_ROOT . '/include/model/' . $class . '.php')) {
+        require_once(EMLOG_ROOT . '/include/model/' . $class . '.php');
+    } elseif (file_exists(EMLOG_ROOT . '/include/lib/' . $class . '.php')) {
+        require_once(EMLOG_ROOT . '/include/lib/' . $class . '.php');
+    } elseif (file_exists(EMLOG_ROOT . '/include/controller/' . $class . '.php')) {
+        require_once(EMLOG_ROOT . '/include/controller/' . $class . '.php');
+    } elseif (file_exists(EMLOG_ROOT . '/include/service/' . $class . '.php')) {
+        require_once(EMLOG_ROOT . '/include/service/' . $class . '.php');
+    }
 }
 
 /**
  * Convert HTML Code
  */
 function htmlClean($content, $nl2br = true) {
-	$content = htmlspecialchars($content, ENT_QUOTES, 'UTF-8');
-	if ($nl2br) {
-		$content = nl2br($content);
-	}
-	$content = str_replace('  ', '&nbsp;&nbsp;', $content);
-	$content = str_replace("\t", '&nbsp;&nbsp;&nbsp;&nbsp;', $content);
-	return $content;
+    $content = htmlspecialchars($content, ENT_QUOTES, 'UTF-8');
+    if ($nl2br) {
+        $content = nl2br($content);
+    }
+    $content = str_replace('  ', '&nbsp;&nbsp;', $content);
+    $content = str_replace("\t", '&nbsp;&nbsp;&nbsp;&nbsp;', $content);
+    return $content;
 }
 
 if (!function_exists('getIp')) {
-	function getIp() {
-		$ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
-		if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-			$list = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
-			$ip = $list[0];
-		}
-		if (!ip2long($ip)) {
-			$ip = '';
-		}
-		return $ip;
-	}
+    function getIp() {
+        $ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
+        if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            $list = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
+            $ip = $list[0];
+        }
+        if (!ip2long($ip)) {
+            $ip = '';
+        }
+        return $ip;
+    }
 }
 
 /**
  * 获取站点地址(仅限根目录脚本使用,目前仅用于首页ajax请求)
  */
 function getBlogUrl() {
-	$phpself = isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME'] : '';
-	if (preg_match("/^.*\//", $phpself, $matches)) {
-		return 'http://' . $_SERVER['HTTP_HOST'] . $matches[0];
-	} else {
-		return BLOG_URL;
-	}
+    $phpself = isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME'] : '';
+    if (preg_match("/^.*\//", $phpself, $matches)) {
+        return 'http://' . $_SERVER['HTTP_HOST'] . $matches[0];
+    } else {
+        return BLOG_URL;
+    }
 }
 
 /**
  * 获取当前访问的base url
  */
 function realUrl() {
-	static $real_url = NULL;
-	if ($real_url !== NULL) {
-		return $real_url;
-	}
+    static $real_url = NULL;
+    if ($real_url !== NULL) {
+        return $real_url;
+    }
 
-	$emlog_path = EMLOG_ROOT . DIRECTORY_SEPARATOR;
-	$script_path = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_DIRNAME);
-	$script_path = str_replace('\\', '/', $script_path);
-	$path_element = explode('/', $script_path);
+    $emlog_path = EMLOG_ROOT . DIRECTORY_SEPARATOR;
+    $script_path = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_DIRNAME);
+    $script_path = str_replace('\\', '/', $script_path);
+    $path_element = explode('/', $script_path);
 
-	$this_match = '';
-	$best_match = '';
+    $this_match = '';
+    $best_match = '';
 
-	$current_deep = 0;
-	$max_deep = count($path_element);
+    $current_deep = 0;
+    $max_deep = count($path_element);
 
-	while ($current_deep < $max_deep) {
-		$this_match .= $path_element[$current_deep] . DIRECTORY_SEPARATOR;
+    while ($current_deep < $max_deep) {
+        $this_match .= $path_element[$current_deep] . DIRECTORY_SEPARATOR;
 
-		if (substr($emlog_path, strlen($this_match) * (-1)) === $this_match) {
-			$best_match = $this_match;
-		}
+        if (substr($emlog_path, strlen($this_match) * (-1)) === $this_match) {
+            $best_match = $this_match;
+        }
 
-		$current_deep++;
-	}
+        $current_deep++;
+    }
 
-	$best_match = str_replace(DIRECTORY_SEPARATOR, '/', $best_match);
-	$real_url = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
-	$real_url .= $_SERVER['SERVER_NAME'];
-	$real_url .= in_array($_SERVER['SERVER_PORT'], array(80, 443)) ? '' : ':' . $_SERVER['SERVER_PORT'];
-	$real_url .= $best_match;
+    $best_match = str_replace(DIRECTORY_SEPARATOR, '/', $best_match);
+    $real_url = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
+    $real_url .= $_SERVER['SERVER_NAME'];
+    $real_url .= in_array($_SERVER['SERVER_PORT'], array(80, 443)) ? '' : ':' . $_SERVER['SERVER_PORT'];
+    $real_url .= $best_match;
 
-	return $real_url;
+    return $real_url;
 }
 
 
@@ -101,22 +101,22 @@ function realUrl() {
  * 检查插件
  */
 function checkPlugin($plugin) {
-	if (is_string($plugin) && preg_match("/^[\w\-\/]+\.php$/", $plugin) && file_exists(EMLOG_ROOT . '/content/plugins/' . $plugin)) {
-		return true;
-	}
+    if (is_string($plugin) && preg_match("/^[\w\-\/]+\.php$/", $plugin) && file_exists(EMLOG_ROOT . '/content/plugins/' . $plugin)) {
+        return true;
+    }
 
-	return false;
+    return false;
 }
 
 /**
  * 验证email地址格式
  */
 function checkMail($email) {
-	if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-		return true;
-	}
+    if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        return true;
+    }
 
-	return false;
+    return false;
 }
 
 /**
@@ -127,31 +127,31 @@ function checkMail($email) {
  * @param int $length 截取长度
  */
 function subString($strings, $start, $length) {
-	$sub_str = mb_substr($strings, $start, $length, 'utf8');
-	return mb_strlen($sub_str, 'utf8') < mb_strlen($strings, 'utf8') ? $sub_str . '...' : $sub_str;
+    $sub_str = mb_substr($strings, $start, $length, 'utf8');
+    return mb_strlen($sub_str, 'utf8') < mb_strlen($strings, 'utf8') ? $sub_str . '...' : $sub_str;
 }
 
 /**
  * 从可能包含html标记的内容中萃取纯文本摘要
  */
 function extractHtmlData($data, $len) {
-	$data = subString(strip_tags($data), 0, $len + 30);
-	$search = array(
-		"/([\r\n])[\s]+/", // 去掉空白字符
-		"/&(quot|#34);/i", // 替换 HTML 实体
-		"/&(amp|#38);/i",
-		"/&(lt|#60);/i",
-		"/&(gt|#62);/i",
-		"/&(nbsp|#160);/i",
-		"/&(iexcl|#161);/i",
-		"/&(cent|#162);/i",
-		"/&(pound|#163);/i",
-		"/&(copy|#169);/i",
-		"/\"/i",
-	);
-	$replace = array(" ", "\"", "&", " ", " ", "", chr(161), chr(162), chr(163), chr(169), "");
-	$data = trim(subString(preg_replace($search, $replace, $data), 0, $len));
-	return $data;
+    $data = subString(strip_tags($data), 0, $len + 30);
+    $search = array(
+        "/([\r\n])[\s]+/", // 去掉空白字符
+        "/&(quot|#34);/i", // 替换 HTML 实体
+        "/&(amp|#38);/i",
+        "/&(lt|#60);/i",
+        "/&(gt|#62);/i",
+        "/&(nbsp|#160);/i",
+        "/&(iexcl|#161);/i",
+        "/&(cent|#162);/i",
+        "/&(pound|#163);/i",
+        "/&(copy|#169);/i",
+        "/\"/i",
+    );
+    $replace = array(" ", "\"", "&", " ", " ", "", chr(161), chr(162), chr(163), chr(169), "");
+    $data = trim(subString(preg_replace($search, $replace, $data), 0, $len));
+    return $data;
 }
 
 /**
@@ -160,73 +160,73 @@ function extractHtmlData($data, $len) {
  * @param string $fileSize 文件大小 kb
  */
 function changeFileSize($fileSize) {
-	if ($fileSize >= 1073741824) {
-		$fileSize = round($fileSize / 1073741824, 2) . ' GB';
-	} elseif ($fileSize >= 1048576) {
-		$fileSize = round($fileSize / 1048576, 2) . ' MB';
-	} elseif ($fileSize >= 1024) {
-		$fileSize = round($fileSize / 1024, 2) . ' KB';
-	} else {
-		$fileSize .= ' 字节';
-	}
-	return $fileSize;
+    if ($fileSize >= 1073741824) {
+        $fileSize = round($fileSize / 1073741824, 2) . ' GB';
+    } elseif ($fileSize >= 1048576) {
+        $fileSize = round($fileSize / 1048576, 2) . ' MB';
+    } elseif ($fileSize >= 1024) {
+        $fileSize = round($fileSize / 1024, 2) . ' KB';
+    } else {
+        $fileSize .= ' 字节';
+    }
+    return $fileSize;
 }
 
 /**
  * 获取文件名后缀
  */
 function getFileSuffix($fileName) {
-	return strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+    return strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
 }
 
 /**
  * 将相对路径转换为完整URL，eg：../content/uploadfile/xxx.jpeg
  */
 function getFileUrl($filePath) {
-	if (!stristr($filePath, 'http')) {
-		return BLOG_URL . substr($filePath, 3);
-	}
-	return $filePath;
+    if (!stristr($filePath, 'http')) {
+        return BLOG_URL . substr($filePath, 3);
+    }
+    return $filePath;
 }
 
 /**
  * 去除url的参数
  */
 function rmUrlParams($url) {
-	$urlInfo = explode("?", $url);
-	if (empty($urlInfo[0])) {
-		return $url;
-	}
-	return $urlInfo[0];
+    $urlInfo = explode("?", $url);
+    if (empty($urlInfo[0])) {
+        return $url;
+    }
+    return $urlInfo[0];
 }
 
 /**
  * 根据文件名后缀判断是否图片
  */
 function isImage($mimetype) {
-	if (strpos($mimetype, "image") !== false) {
-		return true;
-	}
-	return false;
+    if (strpos($mimetype, "image") !== false) {
+        return true;
+    }
+    return false;
 }
 
 /**
  * 根据文件名后缀判断是否视频
  */
 function isVideo($fileName) {
-	$suffix = getFileSuffix($fileName);
-	return $suffix === 'mp4';
+    $suffix = getFileSuffix($fileName);
+    return $suffix === 'mp4';
 }
 
 /**
  * 根据文件名后缀判断是否压缩包
  */
 function isZip($fileName) {
-	$suffix = getFileSuffix($fileName);
-	if (in_array($suffix, ['zip', 'rar'])) {
-		return true;
-	}
-	return false;
+    $suffix = getFileSuffix($fileName);
+    if (in_array($suffix, ['zip', 'rar'])) {
+        return true;
+    }
+    return false;
 }
 
 /**
@@ -239,70 +239,70 @@ function isZip($fileName) {
  * @return string
  */
 function pagination($count, $perlogs, $page, $url, $anchor = '') {
-	$pnums = @ceil($count / $perlogs);
-	$re = '';
-	$urlHome = preg_replace("|[\?&/][^\./\?&=]*page[=/\-]|", "", $url);
+    $pnums = @ceil($count / $perlogs);
+    $re = '';
+    $urlHome = preg_replace("|[\?&/][^\./\?&=]*page[=/\-]|", "", $url);
 
-	$frontContent = '';
-	$paginContent = '';
-	$endContent = '';
-	$circle_a = 1;
-	$circle_b = $pnums;
-	$neighborNum = 1;
-	$minKey = 4;
+    $frontContent = '';
+    $paginContent = '';
+    $endContent = '';
+    $circle_a = 1;
+    $circle_b = $pnums;
+    $neighborNum = 1;
+    $minKey = 4;
 
-	if ($pnums == 1) return $re;
-	if ($page >= 1 && $pnums >= 7) {
-		$frontContent .= " <a href=\"$urlHome$anchor\">1</a> ";
-		$frontContent .= " <em> ... </em> ";
-		$endContent .= " <em> ... </em> ";
-		$endContent .= " <a href=\"$url$pnums$anchor\">$pnums</a> ";
-		if ($pnums >= 12) {
-			$minKey = 7;
-			$neighborNum = 3;
-		}
-		if ($page < $minKey) {
-			$circle_b = $minKey;
-			$frontContent = '';
-		}
-		if ($page > ($pnums - $minKey + 1)) {
-			$circle_a = $pnums - $minKey + 1;
-			$endContent = '';
-		}
-		if ($page > ($minKey - 1) && $page < ($pnums - $minKey + 2)) {
-			$circle_a = $page - $neighborNum;
-			$circle_b = $page + $neighborNum;
-		}
-		if ($page != 1) {
-			$frontContent = " <a href=\"$url" . ($page - 1) . "$anchor\" title=\"Previous Page\">&laquo;</a> " . $frontContent;
-		}
-		if ($page != $pnums) {
-			$endContent .= " <a href=\"$url" . ($page + 1) . "$anchor\" title=\"Next Page\">&raquo;</a> ";
-		}
-	}
-	for ($i = $circle_a; $i <= $circle_b; $i++) {
-		if ($i == $page) {
-			$paginContent .= " <span>$i</span> ";
-		} elseif ($i == 1) {
-			$paginContent .= " <a href=\"$urlHome$anchor\">$i</a> ";
-		} else {
-			$paginContent .= " <a href=\"$url$i$anchor\">$i</a> ";
-		}
-	}
-	$re = $frontContent . $paginContent . $endContent;
-	return $re;
+    if ($pnums == 1) return $re;
+    if ($page >= 1 && $pnums >= 7) {
+        $frontContent .= " <a href=\"$urlHome$anchor\">1</a> ";
+        $frontContent .= " <em> ... </em> ";
+        $endContent .= " <em> ... </em> ";
+        $endContent .= " <a href=\"$url$pnums$anchor\">$pnums</a> ";
+        if ($pnums >= 12) {
+            $minKey = 7;
+            $neighborNum = 3;
+        }
+        if ($page < $minKey) {
+            $circle_b = $minKey;
+            $frontContent = '';
+        }
+        if ($page > ($pnums - $minKey + 1)) {
+            $circle_a = $pnums - $minKey + 1;
+            $endContent = '';
+        }
+        if ($page > ($minKey - 1) && $page < ($pnums - $minKey + 2)) {
+            $circle_a = $page - $neighborNum;
+            $circle_b = $page + $neighborNum;
+        }
+        if ($page != 1) {
+            $frontContent = " <a href=\"$url" . ($page - 1) . "$anchor\" title=\"Previous Page\">&laquo;</a> " . $frontContent;
+        }
+        if ($page != $pnums) {
+            $endContent .= " <a href=\"$url" . ($page + 1) . "$anchor\" title=\"Next Page\">&raquo;</a> ";
+        }
+    }
+    for ($i = $circle_a; $i <= $circle_b; $i++) {
+        if ($i == $page) {
+            $paginContent .= " <span>$i</span> ";
+        } elseif ($i == 1) {
+            $paginContent .= " <a href=\"$urlHome$anchor\">$i</a> ";
+        } else {
+            $paginContent .= " <a href=\"$url$i$anchor\">$i</a> ";
+        }
+    }
+    $re = $frontContent . $paginContent . $endContent;
+    return $re;
 }
 
 /**
  * 该函数在插件中调用,挂载插件函数到预留的钩子上
  */
 function addAction($hook, $actionFunc) {
-	// 通过全局变量来存储挂载点上挂载的插件函数
-	global $emHooks;
-	if (!isset($emHooks[$hook]) || !in_array($actionFunc, $emHooks[$hook])) {
-		$emHooks[$hook][] = $actionFunc;
-	}
-	return true;
+    // 通过全局变量来存储挂载点上挂载的插件函数
+    global $emHooks;
+    if (!isset($emHooks[$hook]) || !in_array($actionFunc, $emHooks[$hook])) {
+        $emHooks[$hook][] = $actionFunc;
+    }
+    return true;
 }
 
 /**
@@ -310,13 +310,13 @@ function addAction($hook, $actionFunc) {
  * eg：在挂载点插入扩展内容
  */
 function doAction($hook) {
-	global $emHooks;
-	$args = array_slice(func_get_args(), 1);
-	if (isset($emHooks[$hook])) {
-		foreach ($emHooks[$hook] as $function) {
-			call_user_func_array($function, $args);
-		}
-	}
+    global $emHooks;
+    $args = array_slice(func_get_args(), 1);
+    if (isset($emHooks[$hook])) {
+        foreach ($emHooks[$hook] as $function) {
+            call_user_func_array($function, $args);
+        }
+    }
 }
 
 /**
@@ -324,12 +324,12 @@ function doAction($hook) {
  * eg：接管文件上传函数，将上传本地改为上传云端
  */
 function doOnceAction($hook, $input, &$ret) {
-	global $emHooks;
-	$args = [$input, &$ret];
-	$func = !empty($emHooks[$hook][0]) ? $emHooks[$hook][0] : '';
-	if ($func) {
-		call_user_func_array($func, $args);
-	}
+    global $emHooks;
+    $args = [$input, &$ret];
+    $func = !empty($emHooks[$hook][0]) ? $emHooks[$hook][0] : '';
+    if ($func) {
+        call_user_func_array($func, $args);
+    }
 }
 
 /**
@@ -337,24 +337,24 @@ function doOnceAction($hook, $input, &$ret) {
  * eg：不同插件对文章内容进行不同的修改替换。
  */
 function doMultiAction($hook, $input, &$ret) {
-	global $emHooks;
-	$args = [$input, &$ret];
-	if (isset($emHooks[$hook])) {
-		foreach ($emHooks[$hook] as $function) {
-			call_user_func_array($function, $args);
-			$args = [&$ret, &$ret];
-		}
-	}
+    global $emHooks;
+    $args = [$input, &$ret];
+    if (isset($emHooks[$hook])) {
+        foreach ($emHooks[$hook] as $function) {
+            call_user_func_array($function, $args);
+            $args = [&$ret, &$ret];
+        }
+    }
 }
 
 /**
  * 截取文章内容前len个字符
  */
 function subContent($content, $len, $clean = 0) {
-	if ($clean) {
-		$content = strip_tags($content);
-	}
-	return subString($content, 0, $len);
+    if ($clean) {
+        $content = strip_tags($content);
+    }
+    return subString($content, 0, $len);
 }
 
 /**
@@ -364,29 +364,29 @@ function subContent($content, $len, $clean = 0) {
  * @return false|string
  */
 function smartDate($timestamp, $format = 'Y-m-d H:i') {
-	$sec = time() - $timestamp;
-	if ($sec < 60) {
-		$op = $sec . ' 秒前';
-	} elseif ($sec < 3600) {
-		$op = floor($sec / 60) . " 分钟前";
-	} elseif ($sec < 3600 * 24) {
-		$op = "约 " . floor($sec / 3600) . " 小时前";
-	} else {
-		$op = date($format, $timestamp);
-	}
-	return $op;
+    $sec = time() - $timestamp;
+    if ($sec < 60) {
+        $op = $sec . ' 秒前';
+    } elseif ($sec < 3600) {
+        $op = floor($sec / 60) . " 分钟前";
+    } elseif ($sec < 3600 * 24) {
+        $op = "约 " . floor($sec / 3600) . " 小时前";
+    } else {
+        $op = date($format, $timestamp);
+    }
+    return $op;
 }
 
 function getRandStr($length = 12, $special_chars = true) {
-	$chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-	if ($special_chars) {
-		$chars .= '!@#$%^&*()';
-	}
-	$randStr = '';
-	for ($i = 0; $i < $length; $i++) {
-		$randStr .= substr($chars, mt_rand(0, strlen($chars) - 1), 1);
-	}
-	return $randStr;
+    $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    if ($special_chars) {
+        $chars .= '!@#$%^&*()';
+    }
+    $randStr = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randStr .= substr($chars, mt_rand(0, strlen($chars) - 1), 1);
+    }
+    return $randStr;
 }
 
 /**
@@ -395,47 +395,47 @@ function getRandStr($length = 12, $special_chars = true) {
  * @param $result array 上传结果
  */
 function upload2local($attach, &$result) {
-	$fileName = $attach['name'];
-	$errorNum = $attach['error'];
-	$tmpFile = $attach['tmp_name'];
-	$fileSize = $attach['size'];
+    $fileName = $attach['name'];
+    $errorNum = $attach['error'];
+    $tmpFile = $attach['tmp_name'];
+    $fileSize = $attach['size'];
 
-	$isthum = Option::get('isthumbnail') === 'y';
-	$fileName = Database::getInstance()->escape_string($fileName);
-	$type = Option::getAttType();
+    $isthum = Option::get('isthumbnail') === 'y';
+    $fileName = Database::getInstance()->escape_string($fileName);
+    $type = Option::getAttType();
 
-	$ret = upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isthum);
-	$success = 0;
-	switch ($ret) {
-		case '100':
-			$message = '文件大小超过系统' . ini_get('upload_max_filesize') . '限制';
-			break;
-		case '101':
-		case '104':
-			$message = '上传文件失败,错误码：' . $errorNum;
-			break;
-		case '102':
-			$message = '错误的文件类型';
-			break;
-		case '103':
-			$r = changeFileSize(Option::getAttMaxSize());
-			$message = "文件大小超出{$r}的限制";
-			break;
-		case '105':
-			$message = '上传失败。文件上传目录(content/uploadfile)不可写';
-			break;
-		default:
-			$message = '上传成功';
-			$success = 1;
-			break;
-	}
+    $ret = upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isthum);
+    $success = 0;
+    switch ($ret) {
+        case '100':
+            $message = '文件大小超过系统' . ini_get('upload_max_filesize') . '限制';
+            break;
+        case '101':
+        case '104':
+            $message = '上传文件失败,错误码：' . $errorNum;
+            break;
+        case '102':
+            $message = '错误的文件类型';
+            break;
+        case '103':
+            $r = changeFileSize(Option::getAttMaxSize());
+            $message = "文件大小超出{$r}的限制";
+            break;
+        case '105':
+            $message = '上传失败。文件上传目录(content/uploadfile)不可写';
+            break;
+        default:
+            $message = '上传成功';
+            $success = 1;
+            break;
+    }
 
-	$result = [
-		'success'   => $success,
-		'message'   => $message,
-		'url'       => $success ? getFileUrl($ret['file_path']) : '',
-		'file_info' => $success ? $ret : [],
-	];
+    $result = [
+        'success'   => $success,
+        'message'   => $message,
+        'url'       => $success ? getFileUrl($ret['file_path']) : '',
+        'file_info' => $success ? $ret : [],
+    ];
 }
 
 /**
@@ -460,64 +460,64 @@ function upload2local($attach, &$result) {
  *
  */
 function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $is_thumbnail = true) {
-	if ($errorNum == 1) {
-		return '100'; //文件大小超过系统限制
-	} elseif ($errorNum > 1) {
-		return '101'; //上传文件失败
-	}
-	$extension = getFileSuffix($fileName);
-	if (!in_array($extension, $type)) {
-		return '102'; //错误的文件类型
-	}
-	if ($fileSize > Option::getAttMaxSize()) {
-		return '103'; //文件大小超出emlog的限制
-	}
-	$file_info = [];
-	$file_info['file_name'] = $fileName;
-	$file_info['mime_type'] = get_mimetype($extension);
-	$file_info['size'] = $fileSize;
-	$file_info['width'] = 0;
-	$file_info['height'] = 0;
-	$uppath = Option::UPLOADFILE_PATH . gmdate('Ym') . '/';
-	$fname = substr(md5($fileName), 0, 4) . time() . '.' . $extension;
-	$attachpath = $uppath . $fname;
-	$file_info['file_path'] = $attachpath;
-	if (!is_dir(Option::UPLOADFILE_PATH)) {
-		@umask(0);
-		$ret = @mkdir(Option::UPLOADFILE_PATH, 0777);
-		if ($ret === false) {
-			return '104'; //创建文件上传目录失败
-		}
-	}
-	if (!is_dir($uppath)) {
-		@umask(0);
-		$ret = @mkdir($uppath, 0777);
-		if ($ret === false) {
-			return '105'; //上传失败。文件上传目录(content/uploadfile)不可写
-		}
-	}
-	doAction('attach_upload', $tmpFile);
+    if ($errorNum == 1) {
+        return '100'; //文件大小超过系统限制
+    } elseif ($errorNum > 1) {
+        return '101'; //上传文件失败
+    }
+    $extension = getFileSuffix($fileName);
+    if (!in_array($extension, $type)) {
+        return '102'; //错误的文件类型
+    }
+    if ($fileSize > Option::getAttMaxSize()) {
+        return '103'; //文件大小超出emlog的限制
+    }
+    $file_info = [];
+    $file_info['file_name'] = $fileName;
+    $file_info['mime_type'] = get_mimetype($extension);
+    $file_info['size'] = $fileSize;
+    $file_info['width'] = 0;
+    $file_info['height'] = 0;
+    $uppath = Option::UPLOADFILE_PATH . gmdate('Ym') . '/';
+    $fname = substr(md5($fileName), 0, 4) . time() . '.' . $extension;
+    $attachpath = $uppath . $fname;
+    $file_info['file_path'] = $attachpath;
+    if (!is_dir(Option::UPLOADFILE_PATH)) {
+        @umask(0);
+        $ret = @mkdir(Option::UPLOADFILE_PATH, 0777);
+        if ($ret === false) {
+            return '104'; //创建文件上传目录失败
+        }
+    }
+    if (!is_dir($uppath)) {
+        @umask(0);
+        $ret = @mkdir($uppath, 0777);
+        if ($ret === false) {
+            return '105'; //上传失败。文件上传目录(content/uploadfile)不可写
+        }
+    }
+    doAction('attach_upload', $tmpFile);
 
-	// 生成缩略图
-	$thum = $uppath . 'thum-' . $fname;
-	if ($is_thumbnail && resizeImage($tmpFile, $thum, Option::get('att_imgmaxw'), Option::get('att_imgmaxh'))) {
-		$file_info['thum_file'] = $thum;
-	}
+    // 生成缩略图
+    $thum = $uppath . 'thum-' . $fname;
+    if ($is_thumbnail && resizeImage($tmpFile, $thum, Option::get('att_imgmaxw'), Option::get('att_imgmaxh'))) {
+        $file_info['thum_file'] = $thum;
+    }
 
-	if (@is_uploaded_file($tmpFile) && @!move_uploaded_file($tmpFile, $attachpath)) {
-		@unlink($tmpFile);
-		return '105'; //上传失败。文件上传目录(content/uploadfile)不可写
-	}
+    if (@is_uploaded_file($tmpFile) && @!move_uploaded_file($tmpFile, $attachpath)) {
+        @unlink($tmpFile);
+        return '105'; //上传失败。文件上传目录(content/uploadfile)不可写
+    }
 
-	// 提取图片宽高
-	if (in_array($file_info['mime_type'], array('image/jpeg', 'image/png', 'image/gif', 'image/bmp'))) {
-		$size = getimagesize($file_info['file_path']);
-		if ($size) {
-			$file_info['width'] = $size[0];
-			$file_info['height'] = $size[1];
-		}
-	}
-	return $file_info;
+    // 提取图片宽高
+    if (in_array($file_info['mime_type'], array('image/jpeg', 'image/png', 'image/gif', 'image/bmp'))) {
+        $size = getimagesize($file_info['file_path']);
+        if ($size) {
+            $file_info['width'] = $size[0];
+            $file_info['height'] = $size[1];
+        }
+    }
+    return $file_info;
 }
 
 /**
@@ -530,22 +530,22 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $is_thumbnail 
  * @return unknown
  */
 function resizeImage($img, $thum_path, $max_w, $max_h) {
-	if (!in_array(getFileSuffix($thum_path), array('jpg', 'png', 'jpeg', 'gif'))) {
-		return false;
-	}
-	if (!function_exists('ImageCreate')) {
-		return false;
-	}
+    if (!in_array(getFileSuffix($thum_path), array('jpg', 'png', 'jpeg', 'gif'))) {
+        return false;
+    }
+    if (!function_exists('ImageCreate')) {
+        return false;
+    }
 
-	$size = chImageSize($img, $max_w, $max_h);
-	$newwidth = $size['w'];
-	$newheight = $size['h'];
-	$w = $size['rc_w'];
-	$h = $size['rc_h'];
-	if ($w <= $max_w && $h <= $max_h) {
-		return false;
-	}
-	return imageCropAndResize($img, $thum_path, 0, 0, 0, 0, $newwidth, $newheight, $w, $h);
+    $size = chImageSize($img, $max_w, $max_h);
+    $newwidth = $size['w'];
+    $newheight = $size['h'];
+    $w = $size['rc_w'];
+    $h = $size['rc_h'];
+    if ($w <= $max_w && $h <= $max_h) {
+        return false;
+    }
+    return imageCropAndResize($img, $thum_path, 0, 0, 0, 0, $newwidth, $newheight, $w, $h);
 }
 
 /**
@@ -563,46 +563,46 @@ function resizeImage($img, $thum_path, $max_w, $max_h) {
  * @param int $src_h 原图高度
  */
 function imageCropAndResize($src_image, $dst_path, $dst_x, $dst_y, $src_x, $src_y, $dst_w, $dst_h, $src_w, $src_h) {
-	if (!function_exists('imagecreatefromstring')) {
-		return false;
-	}
+    if (!function_exists('imagecreatefromstring')) {
+        return false;
+    }
 
-	$src_img = imagecreatefromstring(file_get_contents($src_image));
-	if (!$src_img) {
-		return false;
-	}
+    $src_img = imagecreatefromstring(file_get_contents($src_image));
+    if (!$src_img) {
+        return false;
+    }
 
-	if (function_exists('imagecopyresampled')) {
-		$new_img = imagecreatetruecolor($dst_w, $dst_h);
-		imagecopyresampled($new_img, $src_img, $dst_x, $dst_y, $src_x, $src_y, $dst_w, $dst_h, $src_w, $src_h);
-	} elseif (function_exists('imagecopyresized')) {
-		$new_img = imagecreate($dst_w, $dst_h);
-		imagecopyresized($new_img, $src_img, $dst_x, $dst_y, $src_x, $src_y, $dst_w, $dst_h, $src_w, $src_h);
-	} else {
-		return false;
-	}
+    if (function_exists('imagecopyresampled')) {
+        $new_img = imagecreatetruecolor($dst_w, $dst_h);
+        imagecopyresampled($new_img, $src_img, $dst_x, $dst_y, $src_x, $src_y, $dst_w, $dst_h, $src_w, $src_h);
+    } elseif (function_exists('imagecopyresized')) {
+        $new_img = imagecreate($dst_w, $dst_h);
+        imagecopyresized($new_img, $src_img, $dst_x, $dst_y, $src_x, $src_y, $dst_w, $dst_h, $src_w, $src_h);
+    } else {
+        return false;
+    }
 
-	switch (getFileSuffix($dst_path)) {
-		case 'png':
-			if (function_exists('imagepng') && imagepng($new_img, $dst_path)) {
-				ImageDestroy($new_img);
-				return true;
-			}
-			return false;
-		case 'jpg':
-		default:
-			if (function_exists('imagejpeg') && imagejpeg($new_img, $dst_path)) {
-				ImageDestroy($new_img);
-				return true;
-			}
-			return false;
-		case 'gif':
-			if (function_exists('imagegif') && imagegif($new_img, $dst_path)) {
-				ImageDestroy($new_img);
-				return true;
-			}
-			return false;
-	}
+    switch (getFileSuffix($dst_path)) {
+        case 'png':
+            if (function_exists('imagepng') && imagepng($new_img, $dst_path)) {
+                ImageDestroy($new_img);
+                return true;
+            }
+            return false;
+        case 'jpg':
+        default:
+            if (function_exists('imagejpeg') && imagejpeg($new_img, $dst_path)) {
+                ImageDestroy($new_img);
+                return true;
+            }
+            return false;
+        case 'gif':
+            if (function_exists('imagegif') && imagegif($new_img, $dst_path)) {
+                ImageDestroy($new_img);
+                return true;
+            }
+            return false;
+    }
 }
 
 /**
@@ -614,42 +614,42 @@ function imageCropAndResize($src_image, $dst_path, $dst_x, $dst_y, $src_x, $src_
  * @return array
  */
 function chImageSize($img, $max_w, $max_h) {
-	$size = @getimagesize($img);
-	if (!$size) {
-		return [];
-	}
-	$w = $size[0];
-	$h = $size[1];
-	//计算缩放比例
-	@$w_ratio = $max_w / $w;
-	@$h_ratio = $max_h / $h;
-	//决定处理后的图片宽和高
-	if (($w <= $max_w) && ($h <= $max_h)) {
-		$tn['w'] = $w;
-		$tn['h'] = $h;
-	} else if (($w_ratio * $h) < $max_h) {
-		$tn['h'] = ceil($w_ratio * $h);
-		$tn['w'] = $max_w;
-	} else {
-		$tn['w'] = ceil($h_ratio * $w);
-		$tn['h'] = $max_h;
-	}
-	$tn['rc_w'] = $w;
-	$tn['rc_h'] = $h;
-	return $tn;
+    $size = @getimagesize($img);
+    if (!$size) {
+        return [];
+    }
+    $w = $size[0];
+    $h = $size[1];
+    //计算缩放比例
+    @$w_ratio = $max_w / $w;
+    @$h_ratio = $max_h / $h;
+    //决定处理后的图片宽和高
+    if (($w <= $max_w) && ($h <= $max_h)) {
+        $tn['w'] = $w;
+        $tn['h'] = $h;
+    } else if (($w_ratio * $h) < $max_h) {
+        $tn['h'] = ceil($w_ratio * $h);
+        $tn['w'] = $max_w;
+    } else {
+        $tn['w'] = ceil($h_ratio * $w);
+        $tn['h'] = $max_h;
+    }
+    $tn['rc_w'] = $w;
+    $tn['rc_h'] = $h;
+    return $tn;
 }
 
 /**
  * 获取Gravatar头像
  */
 if (!function_exists('getGravatar')) {
-	function getGravatar($email, $s = 40) {
-		$hash = md5($email);
-		$gravatar_url = "//cravatar.cn/avatar/$hash?s=$s";
-		doOnceAction('get_Gravatar', $email, $gravatar_url);
+    function getGravatar($email, $s = 40) {
+        $hash = md5($email);
+        $gravatar_url = "//cravatar.cn/avatar/$hash?s=$s";
+        doOnceAction('get_Gravatar', $email, $gravatar_url);
 
-		return $gravatar_url;
-	}
+        return $gravatar_url;
+    }
 }
 
 /**
@@ -659,7 +659,7 @@ if (!function_exists('getGravatar')) {
  * @return false|string
  */
 function getMonthDayNum($month, $year) {
-	return date("t", strtotime($year . $month . '01'));
+    return date("t", strtotime($year . $month . '01'));
 }
 
 /**
@@ -670,65 +670,65 @@ function getMonthDayNum($month, $year) {
  * @return int
  */
 function emUnZip($zipfile, $path, $type = 'tpl') {
-	if (!class_exists('ZipArchive', FALSE)) {
-		return 3;//zip模块问题
-	}
-	$zip = new ZipArchive();
-	if (@$zip->open($zipfile) !== TRUE) {
-		return 2;//文件权限问题
-	}
-	$r = explode('/', $zip->getNameIndex(0), 2);
-	$dir = isset($r[0]) ? $r[0] . '/' : '';
-	switch ($type) {
-		case 'tpl':
-			$re = $zip->getFromName($dir . 'header.php');
-			if (false === $re) {
-				return -2;
-			}
-			break;
-		case 'plugin':
-			$plugin_name = substr($dir, 0, -1);
-			$re = $zip->getFromName($dir . $plugin_name . '.php');
-			if (false === $re) {
-				return -1;
-			}
-			break;
-		case 'backup':
-			$sql_name = substr($dir, 0, -1);
-			if (getFileSuffix($sql_name) != 'sql') {
-				return -3;
-			}
-			break;
-		case 'update':
-			break;
-	}
-	if (true === @$zip->extractTo($path)) {
-		$zip->close();
-		return 0;
-	}
+    if (!class_exists('ZipArchive', FALSE)) {
+        return 3;//zip模块问题
+    }
+    $zip = new ZipArchive();
+    if (@$zip->open($zipfile) !== TRUE) {
+        return 2;//文件权限问题
+    }
+    $r = explode('/', $zip->getNameIndex(0), 2);
+    $dir = isset($r[0]) ? $r[0] . '/' : '';
+    switch ($type) {
+        case 'tpl':
+            $re = $zip->getFromName($dir . 'header.php');
+            if (false === $re) {
+                return -2;
+            }
+            break;
+        case 'plugin':
+            $plugin_name = substr($dir, 0, -1);
+            $re = $zip->getFromName($dir . $plugin_name . '.php');
+            if (false === $re) {
+                return -1;
+            }
+            break;
+        case 'backup':
+            $sql_name = substr($dir, 0, -1);
+            if (getFileSuffix($sql_name) != 'sql') {
+                return -3;
+            }
+            break;
+        case 'update':
+            break;
+    }
+    if (true === @$zip->extractTo($path)) {
+        $zip->close();
+        return 0;
+    }
 
-	return 1; //文件权限问题
+    return 1; //文件权限问题
 }
 
 /**
  * Zip compression
  */
 function emZip($orig_fname, $content) {
-	if (!class_exists('ZipArchive', FALSE)) {
-		return false;
-	}
-	$zip = new ZipArchive();
-	$tempzip = EMLOG_ROOT . '/content/cache/emtemp.zip';
-	$res = $zip->open($tempzip, ZipArchive::CREATE);
-	if ($res === TRUE) {
-		$zip->addFromString($orig_fname, $content);
-		$zip->close();
-		$zip_content = file_get_contents($tempzip);
-		unlink($tempzip);
-		return $zip_content;
-	}
+    if (!class_exists('ZipArchive', FALSE)) {
+        return false;
+    }
+    $zip = new ZipArchive();
+    $tempzip = EMLOG_ROOT . '/content/cache/emtemp.zip';
+    $res = $zip->open($tempzip, ZipArchive::CREATE);
+    if ($res === TRUE) {
+        $zip->addFromString($orig_fname, $content);
+        $zip->close();
+        $zip_content = file_get_contents($tempzip);
+        unlink($tempzip);
+        return $zip_content;
+    }
 
-	return false;
+    return false;
 }
 
 /**
@@ -737,30 +737,30 @@ function emZip($orig_fname, $content) {
  * @return string Temporary file path
  */
 function emFetchFile($source) {
-	$temp_file = tempnam(EMLOG_ROOT . '/content/cache/', 'tmp_');
-	$wh = fopen($temp_file, 'w+b');
+    $temp_file = tempnam(EMLOG_ROOT . '/content/cache/', 'tmp_');
+    $wh = fopen($temp_file, 'w+b');
 
-	$r = parse_url($source);
-	if (isset($r['host']) && sha1($r['host']) !== '1ca2f71c0b27a1c6dbbf1583dc4d4e422b0683ac') {
-		return FALSE;
-	}
+    $r = parse_url($source);
+    if (isset($r['host']) && sha1($r['host']) !== '1ca2f71c0b27a1c6dbbf1583dc4d4e422b0683ac') {
+        return FALSE;
+    }
 
-	$ctx_opt = set_ctx_option();
-	$ctx = stream_context_create($ctx_opt);
-	$rh = @fopen($source, 'rb', false, $ctx);
+    $ctx_opt = set_ctx_option();
+    $ctx = stream_context_create($ctx_opt);
+    $rh = @fopen($source, 'rb', false, $ctx);
 
-	if (!$rh || !$wh) {
-		return FALSE;
-	}
+    if (!$rh || !$wh) {
+        return FALSE;
+    }
 
-	while (!feof($rh)) {
-		if (fwrite($wh, fread($rh, 4096)) === FALSE) {
-			return FALSE;
-		}
-	}
-	fclose($rh);
-	fclose($wh);
-	return $temp_file;
+    while (!feof($rh)) {
+        if (fwrite($wh, fread($rh, 4096)) === FALSE) {
+            return FALSE;
+        }
+    }
+    fclose($rh);
+    fclose($wh);
+    return $temp_file;
 }
 
 /**
@@ -769,80 +769,80 @@ function emFetchFile($source) {
  * @return string Temporary file path
  */
 function emDownFile($source) {
-	$ctx_opt = set_ctx_option();
-	$context = stream_context_create($ctx_opt);
-	$content = file_get_contents($source, false, $context);
-	if ($content === false) {
-		return false;
-	}
+    $ctx_opt = set_ctx_option();
+    $context = stream_context_create($ctx_opt);
+    $content = file_get_contents($source, false, $context);
+    if ($content === false) {
+        return false;
+    }
 
-	$temp_file = tempnam(EMLOG_ROOT . '/content/cache/', 'tmp_');
-	if ($temp_file === false) {
-		emMsg('emDownFile：Failed to create temporary file.');
-	}
-	$ret = file_put_contents($temp_file, $content);
-	if ($ret === false) {
-		emMsg('emDownFile：Failed to write temporary file.');
-	}
+    $temp_file = tempnam(EMLOG_ROOT . '/content/cache/', 'tmp_');
+    if ($temp_file === false) {
+        emMsg('emDownFile：Failed to create temporary file.');
+    }
+    $ret = file_put_contents($temp_file, $content);
+    if ($ret === false) {
+        emMsg('emDownFile：Failed to write temporary file.');
+    }
 
-	return $temp_file;
+    return $temp_file;
 }
 
 function set_ctx_option() {
-	$data = http_build_query(['emkey' => Option::get('emkey')]);
-	return [
-		'http' => [
-			'timeout' => 120,
-			'method'  => 'POST',
-			'header'  => "Content-type: application/x-www-form-urlencoded\r\n"
-				. "Content-Length: " . strlen($data) . "\r\n"
-				. "Referer: " . BLOG_URL . "\r\n"
-				. "User-Agent: emlog " . Option::EMLOG_VERSION . "\r\n",
-			'content' => $data
-		],
-		"ssl"  => [
-			"verify_peer"      => false,
-			"verify_peer_name" => false,
-		]
-	];
+    $data = http_build_query(['emkey' => Option::get('emkey')]);
+    return [
+        'http' => [
+            'timeout' => 120,
+            'method'  => 'POST',
+            'header'  => "Content-type: application/x-www-form-urlencoded\r\n"
+                . "Content-Length: " . strlen($data) . "\r\n"
+                . "Referer: " . BLOG_URL . "\r\n"
+                . "User-Agent: emlog " . Option::EMLOG_VERSION . "\r\n",
+            'content' => $data
+        ],
+        "ssl"  => [
+            "verify_peer"      => false,
+            "verify_peer_name" => false,
+        ]
+    ];
 }
 
 /**
  * 删除文件或目录
  */
 function emDeleteFile($file) {
-	if (empty($file)) {
-		return false;
-	}
-	if (@is_file($file)) {
-		return @unlink($file);
-	}
-	$ret = true;
-	if ($handle = @opendir($file)) {
-		while ($filename = @readdir($handle)) {
-			if ($filename == '.' || $filename == '..') {
-				continue;
-			}
-			if (!emDeleteFile($file . '/' . $filename)) {
-				$ret = false;
-			}
-		}
-	} else {
-		$ret = false;
-	}
-	@closedir($handle);
-	if (file_exists($file) && !rmdir($file)) {
-		$ret = false;
-	}
-	return $ret;
+    if (empty($file)) {
+        return false;
+    }
+    if (@is_file($file)) {
+        return @unlink($file);
+    }
+    $ret = true;
+    if ($handle = @opendir($file)) {
+        while ($filename = @readdir($handle)) {
+            if ($filename == '.' || $filename == '..') {
+                continue;
+            }
+            if (!emDeleteFile($file . '/' . $filename)) {
+                $ret = false;
+            }
+        }
+    } else {
+        $ret = false;
+    }
+    @closedir($handle);
+    if (file_exists($file) && !rmdir($file)) {
+        $ret = false;
+    }
+    return $ret;
 }
 
 /**
  * 页面跳转
  */
 function emDirect($directUrl) {
-	header("Location: $directUrl");
-	exit;
+    header("Location: $directUrl");
+    exit;
 }
 
 /**
@@ -853,20 +853,20 @@ function emDirect($directUrl) {
  * @param boolean $isAutoGo 是否自动返回 true false
  */
 function emMsg($msg, $url = 'javascript:history.back(-1);', $isAutoGo = false) {
-	if ($msg == '404') {
-		header("HTTP/1.1 404 Not Found");
-		$msg = '抱歉，你所请求的页面不存在！';
-	}
-	echo <<<EOT
+    if ($msg == '404') {
+        header("HTTP/1.1 404 Not Found");
+        $msg = '抱歉，你所请求的页面不存在！';
+    }
+    echo <<<EOT
 <!doctype html>
 <html lang="zh-cn">
 <head>
     <meta charset="utf-8">
 EOT;
-	if ($isAutoGo) {
-		echo "<meta http-equiv=\"refresh\" content=\"2;url=$url\" />";
-	}
-	echo <<<EOT
+    if ($isAutoGo) {
+        echo "<meta http-equiv=\"refresh\" content=\"2;url=$url\" />";
+    }
+    echo <<<EOT
 <title>提示信息</title>
 <style>
 body {
@@ -899,30 +899,30 @@ a {
 <div class="main">
 <p>$msg</p>
 EOT;
-	if ($url != 'none') {
-		echo '<p><a href="' . $url . '">&larr; 点击返回</a></p>';
-	}
-	echo <<<EOT
+    if ($url != 'none') {
+        echo '<p><a href="' . $url . '">&larr; 点击返回</a></p>';
+    }
+    echo <<<EOT
 </div>
 </body>
 </html>
 EOT;
-	exit;
+    exit;
 }
 
 function show_404_page($show_404_only = false) {
-	if ($show_404_only) {
-		header("HTTP/1.1 404 Not Found");
-		exit;
-	}
+    if ($show_404_only) {
+        header("HTTP/1.1 404 Not Found");
+        exit;
+    }
 
-	if (is_file(TEMPLATE_PATH . '404.php')) {
-		header("HTTP/1.1 404 Not Found");
-		include View::getView('404');
-		exit;
-	}
+    if (is_file(TEMPLATE_PATH . '404.php')) {
+        header("HTTP/1.1 404 Not Found");
+        include View::getView('404');
+        exit;
+    }
 
-	emMsg('404', BLOG_URL);
+    emMsg('404', BLOG_URL);
 }
 
 /**
@@ -934,144 +934,144 @@ function show_404_page($show_404_only = false) {
  * @return unknown
  */
 if (!function_exists('hash_hmac')) {
-	function hash_hmac($algo, $data, $key) {
-		$packs = array('md5' => 'H32', 'sha1' => 'H40');
+    function hash_hmac($algo, $data, $key) {
+        $packs = array('md5' => 'H32', 'sha1' => 'H40');
 
-		if (!isset($packs[$algo])) {
-			return false;
-		}
+        if (!isset($packs[$algo])) {
+            return false;
+        }
 
-		$pack = $packs[$algo];
+        $pack = $packs[$algo];
 
-		if (strlen($key) > 64) {
-			$key = pack($pack, $algo($key));
-		} elseif (strlen($key) < 64) {
-			$key = str_pad($key, 64, chr(0));
-		}
+        if (strlen($key) > 64) {
+            $key = pack($pack, $algo($key));
+        } elseif (strlen($key) < 64) {
+            $key = str_pad($key, 64, chr(0));
+        }
 
-		$ipad = (substr($key, 0, 64) ^ str_repeat(chr(0x36), 64));
-		$opad = (substr($key, 0, 64) ^ str_repeat(chr(0x5C), 64));
+        $ipad = (substr($key, 0, 64) ^ str_repeat(chr(0x36), 64));
+        $opad = (substr($key, 0, 64) ^ str_repeat(chr(0x5C), 64));
 
-		return $algo($opad . pack($pack, $algo($ipad . $data)));
-	}
+        return $algo($opad . pack($pack, $algo($ipad . $data)));
+    }
 }
 
 /**
  * 根据文件后缀获取其mine类型
  */
 function get_mimetype($extension) {
-	$ct['htm'] = 'text/html';
-	$ct['html'] = 'text/html';
-	$ct['txt'] = 'text/plain';
-	$ct['asc'] = 'text/plain';
-	$ct['bmp'] = 'image/bmp';
-	$ct['gif'] = 'image/gif';
-	$ct['jpeg'] = 'image/jpeg';
-	$ct['jpg'] = 'image/jpeg';
-	$ct['jpe'] = 'image/jpeg';
-	$ct['png'] = 'image/png';
-	$ct['ico'] = 'image/vnd.microsoft.icon';
-	$ct['mpeg'] = 'video/mpeg';
-	$ct['mpg'] = 'video/mpeg';
-	$ct['mpe'] = 'video/mpeg';
-	$ct['qt'] = 'video/quicktime';
-	$ct['mov'] = 'video/quicktime';
-	$ct['avi'] = 'video/x-msvideo';
-	$ct['wmv'] = 'video/x-ms-wmv';
-	$ct['mp2'] = 'audio/mpeg';
-	$ct['mp3'] = 'audio/mpeg';
-	$ct['rm'] = 'audio/x-pn-realaudio';
-	$ct['ram'] = 'audio/x-pn-realaudio';
-	$ct['rpm'] = 'audio/x-pn-realaudio-plugin';
-	$ct['ra'] = 'audio/x-realaudio';
-	$ct['wav'] = 'audio/x-wav';
-	$ct['css'] = 'text/css';
-	$ct['zip'] = 'application/zip';
-	$ct['pdf'] = 'application/pdf';
-	$ct['doc'] = 'application/msword';
-	$ct['bin'] = 'application/octet-stream';
-	$ct['exe'] = 'application/octet-stream';
-	$ct['class'] = 'application/octet-stream';
-	$ct['dll'] = 'application/octet-stream';
-	$ct['xls'] = 'application/vnd.ms-excel';
-	$ct['ppt'] = 'application/vnd.ms-powerpoint';
-	$ct['wbxml'] = 'application/vnd.wap.wbxml';
-	$ct['wmlc'] = 'application/vnd.wap.wmlc';
-	$ct['wmlsc'] = 'application/vnd.wap.wmlscriptc';
-	$ct['dvi'] = 'application/x-dvi';
-	$ct['spl'] = 'application/x-futuresplash';
-	$ct['gtar'] = 'application/x-gtar';
-	$ct['gzip'] = 'application/x-gzip';
-	$ct['js'] = 'application/x-javascript';
-	$ct['swf'] = 'application/x-shockwave-flash';
-	$ct['tar'] = 'application/x-tar';
-	$ct['xhtml'] = 'application/xhtml+xml';
-	$ct['au'] = 'audio/basic';
-	$ct['snd'] = 'audio/basic';
-	$ct['midi'] = 'audio/midi';
-	$ct['mid'] = 'audio/midi';
-	$ct['m3u'] = 'audio/x-mpegurl';
-	$ct['tiff'] = 'image/tiff';
-	$ct['tif'] = 'image/tiff';
-	$ct['rtf'] = 'text/rtf';
-	$ct['wml'] = 'text/vnd.wap.wml';
-	$ct['wmls'] = 'text/vnd.wap.wmlscript';
-	$ct['xsl'] = 'text/xml';
-	$ct['xml'] = 'text/xml';
+    $ct['htm'] = 'text/html';
+    $ct['html'] = 'text/html';
+    $ct['txt'] = 'text/plain';
+    $ct['asc'] = 'text/plain';
+    $ct['bmp'] = 'image/bmp';
+    $ct['gif'] = 'image/gif';
+    $ct['jpeg'] = 'image/jpeg';
+    $ct['jpg'] = 'image/jpeg';
+    $ct['jpe'] = 'image/jpeg';
+    $ct['png'] = 'image/png';
+    $ct['ico'] = 'image/vnd.microsoft.icon';
+    $ct['mpeg'] = 'video/mpeg';
+    $ct['mpg'] = 'video/mpeg';
+    $ct['mpe'] = 'video/mpeg';
+    $ct['qt'] = 'video/quicktime';
+    $ct['mov'] = 'video/quicktime';
+    $ct['avi'] = 'video/x-msvideo';
+    $ct['wmv'] = 'video/x-ms-wmv';
+    $ct['mp2'] = 'audio/mpeg';
+    $ct['mp3'] = 'audio/mpeg';
+    $ct['rm'] = 'audio/x-pn-realaudio';
+    $ct['ram'] = 'audio/x-pn-realaudio';
+    $ct['rpm'] = 'audio/x-pn-realaudio-plugin';
+    $ct['ra'] = 'audio/x-realaudio';
+    $ct['wav'] = 'audio/x-wav';
+    $ct['css'] = 'text/css';
+    $ct['zip'] = 'application/zip';
+    $ct['pdf'] = 'application/pdf';
+    $ct['doc'] = 'application/msword';
+    $ct['bin'] = 'application/octet-stream';
+    $ct['exe'] = 'application/octet-stream';
+    $ct['class'] = 'application/octet-stream';
+    $ct['dll'] = 'application/octet-stream';
+    $ct['xls'] = 'application/vnd.ms-excel';
+    $ct['ppt'] = 'application/vnd.ms-powerpoint';
+    $ct['wbxml'] = 'application/vnd.wap.wbxml';
+    $ct['wmlc'] = 'application/vnd.wap.wmlc';
+    $ct['wmlsc'] = 'application/vnd.wap.wmlscriptc';
+    $ct['dvi'] = 'application/x-dvi';
+    $ct['spl'] = 'application/x-futuresplash';
+    $ct['gtar'] = 'application/x-gtar';
+    $ct['gzip'] = 'application/x-gzip';
+    $ct['js'] = 'application/x-javascript';
+    $ct['swf'] = 'application/x-shockwave-flash';
+    $ct['tar'] = 'application/x-tar';
+    $ct['xhtml'] = 'application/xhtml+xml';
+    $ct['au'] = 'audio/basic';
+    $ct['snd'] = 'audio/basic';
+    $ct['midi'] = 'audio/midi';
+    $ct['mid'] = 'audio/midi';
+    $ct['m3u'] = 'audio/x-mpegurl';
+    $ct['tiff'] = 'image/tiff';
+    $ct['tif'] = 'image/tiff';
+    $ct['rtf'] = 'text/rtf';
+    $ct['wml'] = 'text/vnd.wap.wml';
+    $ct['wmls'] = 'text/vnd.wap.wmlscript';
+    $ct['xsl'] = 'text/xml';
+    $ct['xml'] = 'text/xml';
 
-	return isset($ct[strtolower($extension)]) ? $ct[strtolower($extension)] : 'text/html';
+    return isset($ct[strtolower($extension)]) ? $ct[strtolower($extension)] : 'text/html';
 }
 
 /**
  * 将字符串转换为时区无关的UNIX时间戳
  */
 function emStrtotime($timeStr) {
-	if (!$timeStr) {
-		return false;
-	}
+    if (!$timeStr) {
+        return false;
+    }
 
-	$timezone = Option::get('timezone');
+    $timezone = Option::get('timezone');
 
-	$unixPostDate = strtotime($timeStr);
-	if (!$unixPostDate) {
-		return false;
-	}
+    $unixPostDate = strtotime($timeStr);
+    if (!$unixPostDate) {
+        return false;
+    }
 
-	$serverTimeZone = date_default_timezone_get();
-	if (empty($serverTimeZone) || $serverTimeZone == 'UTC') {
-		$unixPostDate -= (int)$timezone * 3600;
-	} elseif ($serverTimeZone) {
-		/*
-		 * 如果服务器配置默认了时区，那么PHP将会把传入的时间识别为时区当地时间
-		 * 但是我们传入的时间实际是blog配置的时区的当地时间，并不是服务器时区的当地时间
-		 * 因此，我们需要将strtotime得到的时间去掉/加上两个时区的时差，得到utc时间
-		 */
-		$offset = getTimeZoneOffset($serverTimeZone);
-		// 首先减去/加上本地时区配置的时差
-		$unixPostDate -= (int)$timezone * 3600;
-		// 再减去/加上服务器时区与utc的时差，得到utc时间
-		$unixPostDate -= $offset;
-	}
-	return $unixPostDate;
+    $serverTimeZone = date_default_timezone_get();
+    if (empty($serverTimeZone) || $serverTimeZone == 'UTC') {
+        $unixPostDate -= (int)$timezone * 3600;
+    } elseif ($serverTimeZone) {
+        /*
+         * 如果服务器配置默认了时区，那么PHP将会把传入的时间识别为时区当地时间
+         * 但是我们传入的时间实际是blog配置的时区的当地时间，并不是服务器时区的当地时间
+         * 因此，我们需要将strtotime得到的时间去掉/加上两个时区的时差，得到utc时间
+         */
+        $offset = getTimeZoneOffset($serverTimeZone);
+        // 首先减去/加上本地时区配置的时差
+        $unixPostDate -= (int)$timezone * 3600;
+        // 再减去/加上服务器时区与utc的时差，得到utc时间
+        $unixPostDate -= $offset;
+    }
+    return $unixPostDate;
 }
 
 /**
  * 加载jQuery
  */
 function emLoadJQuery() {
-	static $isJQueryLoaded = false;
-	if (!$isJQueryLoaded) {
-		global $emHooks;
-		if (!isset($emHooks['index_head'])) {
-			$emHooks['index_head'] = array();
-		}
-		array_unshift($emHooks['index_head'], 'loadJQuery');
-		$isJQueryLoaded = true;
+    static $isJQueryLoaded = false;
+    if (!$isJQueryLoaded) {
+        global $emHooks;
+        if (!isset($emHooks['index_head'])) {
+            $emHooks['index_head'] = array();
+        }
+        array_unshift($emHooks['index_head'], 'loadJQuery');
+        $isJQueryLoaded = true;
 
-		function loadJQuery() {
-			echo '<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>';
-		}
-	}
+        function loadJQuery() {
+            echo '<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>';
+        }
+    }
 }
 
 /**
@@ -1082,77 +1082,77 @@ function emLoadJQuery() {
  * @throws Exception
  */
 function getTimeZoneOffset($remote_tz, $origin_tz = 'UTC') {
-	if (($origin_tz === null) && !is_string($origin_tz = date_default_timezone_get())) {
-		return false; // A UTC timestamp was returned -- bail out!
-	}
-	$origin_dtz = new DateTimeZone($origin_tz);
-	$remote_dtz = new DateTimeZone($remote_tz);
-	$origin_dt = new DateTime('now', $origin_dtz);
-	$remote_dt = new DateTime('now', $remote_dtz);
-	return $origin_dtz->getOffset($origin_dt) - $remote_dtz->getOffset($remote_dt);
+    if (($origin_tz === null) && !is_string($origin_tz = date_default_timezone_get())) {
+        return false; // A UTC timestamp was returned -- bail out!
+    }
+    $origin_dtz = new DateTimeZone($origin_tz);
+    $remote_dtz = new DateTimeZone($remote_tz);
+    $origin_dt = new DateTime('now', $origin_dtz);
+    $remote_dt = new DateTime('now', $remote_dtz);
+    return $origin_dtz->getOffset($origin_dt) - $remote_dtz->getOffset($remote_dt);
 }
 
 /**
  * Upload the cut pictures (cover and avatar)
  */
 function uploadCropImg() {
-	$attach = isset($_FILES['image']) ? $_FILES['image'] : '';
-	if (!$attach || $attach['error'] === 4) {
-		echo "error";
-		exit;
-	}
+    $attach = isset($_FILES['image']) ? $_FILES['image'] : '';
+    if (!$attach || $attach['error'] === 4) {
+        echo "error";
+        exit;
+    }
 
-	$ret = '';
-	upload2local($attach, $ret);
-	if (empty($ret['success'])) {
-		echo "error";
-		exit;
-	}
-	return $ret;
+    $ret = '';
+    upload2local($attach, $ret);
+    if (empty($ret['success'])) {
+        echo "error";
+        exit;
+    }
+    return $ret;
 }
 
 if (!function_exists('split')) {
-	function split($str, $delimiter) {
-		return preg_split($str, $delimiter);
-	}
+    function split($str, $delimiter) {
+        return preg_split($str, $delimiter);
+    }
 }
 
 if (!function_exists('get_os')) {
-	function get_os($user_agent) {
-		if (false !== stripos($user_agent, "win")) {
-			$os = 'Windows';
-		} else if (false !== stripos($user_agent, "mac")) {
-			$os = 'MAC';
-		} else if (false !== stripos($user_agent, "linux")) {
-			$os = 'Linux';
-		} else if (false !== stripos($user_agent, "unix")) {
-			$os = 'Unix';
-		} else if (false !== stripos($user_agent, "bsd")) {
-			$os = 'BSD';
-		} else {
-			$os = 'unknown';
-		}
-		return $os;
-	}
+    function get_os($user_agent) {
+        if (false !== stripos($user_agent, "win")) {
+            $os = 'Windows';
+        } else if (false !== stripos($user_agent, "mac")) {
+            $os = 'MAC';
+        } else if (false !== stripos($user_agent, "linux")) {
+            $os = 'Linux';
+        } else if (false !== stripos($user_agent, "unix")) {
+            $os = 'Unix';
+        } else if (false !== stripos($user_agent, "bsd")) {
+            $os = 'BSD';
+        } else {
+            $os = 'unknown';
+        }
+        return $os;
+    }
 }
 
 if (!function_exists('get_browse')) {
-	function get_browse($user_agent) {
-		if (false !== stripos($user_agent, "MSIE")) {
-			$br = 'MSIE';
-		} else if (false !== stripos($user_agent, "Edg")) {
-			$br = 'Edge';
-		} else if (false !== stripos($user_agent, "Firefox")) {
-			$br = 'Firefox';
-		} else if (false !== stripos($user_agent, "Chrome")) {
-			$br = 'Chrome';
-		} else if (false !== stripos($user_agent, "Safari")) {
-			$br = 'Safari';
-		} else if (false !== stripos($user_agent, "Opera")) {
-			$br = 'Opera';
-		} else {
-			$br = 'unknown';
-		}
-		return $br;
-	}
+    function get_browse($user_agent) {
+        if (false !== stripos($user_agent, "MSIE")) {
+            $br = 'MSIE';
+        } else if (false !== stripos($user_agent, "Edg")) {
+            $br = 'Edge';
+        } else if (false !== stripos($user_agent, "Firefox")) {
+            $br = 'Firefox';
+        } else if (false !== stripos($user_agent, "Chrome")) {
+            $br = 'Chrome';
+        } else if (false !== stripos($user_agent, "Safari")) {
+            $br = 'Safari';
+        } else if (false !== stripos($user_agent, "Opera")) {
+            $br = 'Opera';
+        } else {
+            $br = 'unknown';
+        }
+        return $br;
+    }
 }

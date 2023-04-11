@@ -1,5 +1,5 @@
 <?php if (!defined('EMLOG_ROOT')) {
-	exit('error!');
+    exit('error!');
 } ?>
 <div class="container">
     <div class="row justify-content-center">
@@ -12,17 +12,17 @@
                                 <h1 class="h4 text-gray-900 mb-4">注册账号</h1>
                             </div>
                             <div class="alert alert-danger" style="display: none;" id="send-btn-resp"></div>
-							<?php if (isset($_GET['err_ckcode'])): ?>
+                            <?php if (isset($_GET['err_ckcode'])): ?>
                                 <div class="alert alert-danger">图形验证错误</div><?php endif ?>
-							<?php if (isset($_GET['err_mail_code'])): ?>
+                            <?php if (isset($_GET['err_mail_code'])): ?>
                                 <div class="alert alert-danger">邮件验证码错误</div><?php endif ?>
-							<?php if (isset($_GET['error_login'])): ?>
+                            <?php if (isset($_GET['error_login'])): ?>
                                 <div class="alert alert-danger">错误的邮箱格式</div><?php endif ?>
-							<?php if (isset($_GET['error_exist'])): ?>
+                            <?php if (isset($_GET['error_exist'])): ?>
                                 <div class="alert alert-danger">该邮箱已被注册</div><?php endif ?>
-							<?php if (isset($_GET['error_pwd_len'])): ?>
+                            <?php if (isset($_GET['error_pwd_len'])): ?>
                                 <div class="alert alert-danger">密码不小于6位</div><?php endif ?>
-							<?php if (isset($_GET['error_pwd2'])): ?>
+                            <?php if (isset($_GET['error_pwd2'])): ?>
                                 <div class="alert alert-danger">两次输入的密码不一致</div><?php endif ?>
                             <form method="post" class="user" action="./account.php?action=dosignup">
                                 <div class="form-group">
@@ -37,20 +37,20 @@
                                     <input type="password" class="form-control form-control-user" minlength="6" id="repasswd" name="repasswd" placeholder="再次输入密码"
                                            required>
                                 </div>
-								<?php if ($email_code): ?>
+                                <?php if ($email_code): ?>
                                     <div class="form-group form-inline">
                                         <input type="text" name="mail_code" class="form-control form-control-user" style="width: 180px;" id="mail_code" placeholder="邮件验证码"
                                                required>
                                         <button class="btn btn-success btn-user mx-2" type="button" id="send-btn">发送邮件验证码</button>
                                     </div>
-								<?php endif ?>
-								<?php if ($login_code): ?>
+                                <?php endif ?>
+                                <?php if ($login_code): ?>
                                     <div class="form-group form-inline">
                                         <input type="text" name="login_code" class="form-control form-control-user" style="width: 180px;" id="login_code" placeholder="验证码"
                                                required>
                                         <img src="../include/lib/checkcode.php" id="checkcode" class="mx-2">
                                     </div>
-								<?php endif ?>
+                                <?php endif ?>
                                 <button class="btn btn-success btn-user btn-block" type="submit">注册</button>
                                 <hr>
                                 <div class="text-center"><a href="./">登录</a></div>

@@ -1,5 +1,5 @@
 <?php if (!defined('EMLOG_ROOT')) {
-	exit('error!');
+    exit('error!');
 } ?>
 
 <?php if (isset($_GET['active_del'])): ?>
@@ -33,14 +33,14 @@
     <div class="panel-heading">
         <ul class="nav nav-tabs">
             <li class="nav-item"><a class="nav-link <?php if ($hide == '') {
-					echo 'active';
-				} ?>" href="./comment.php?<?= $addUrl_1 ?>">全部</a></li>
+                    echo 'active';
+                } ?>" href="./comment.php?<?= $addUrl_1 ?>">全部</a></li>
             <li class="nav-item"><a class="nav-link <?php if ($hide == 'y') {
-					echo 'active';
-				} ?>" href="./comment.php?hide=y&<?= $addUrl_1 ?>">待审<?php
-					$hidecmnum = User::haveEditPermission() ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
-					if ($hidecmnum > 0) echo '(' . $hidecmnum . ')';
-					?></a>
+                    echo 'active';
+                } ?>" href="./comment.php?hide=y&<?= $addUrl_1 ?>">待审<?php
+                    $hidecmnum = User::haveEditPermission() ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
+                    if ($hidecmnum > 0) echo '(' . $hidecmnum . ')';
+                    ?></a>
             </li>
         </ul>
     </div>
@@ -61,30 +61,30 @@
                     </tr>
                     </thead>
                     <tbody>
-					<?php foreach ($comment as $key => $value):
-						$ishide = $value['hide'] == 'y' ? '<span class="text-danger">[待审]</span>' : '';
-						$mail = $value['mail'] ? "({$value['mail']})" : '';
-						$ip = $value['ip'];
-						$gid = $value['gid'];
-						$cid = $value['cid'];
-						$ip_info = $ip ? "<br />来自IP：{$ip}" : '';
-						$comment = $value['comment'];
-						$poster = !empty($value['url']) ? '<a href="' . $value['url'] . '" target="_blank">' . $value['poster'] . '</a>' : $value['poster'];
-						$title = subString($value['title'], 0, 42);
-						$hide = $value['hide'];
-						$date = $value['date'];
-						$top = $value['top'];
-						doAction('adm_comment_display');
-						?>
+                    <?php foreach ($comment as $key => $value):
+                        $ishide = $value['hide'] == 'y' ? '<span class="text-danger">[待审]</span>' : '';
+                        $mail = $value['mail'] ? "({$value['mail']})" : '';
+                        $ip = $value['ip'];
+                        $gid = $value['gid'];
+                        $cid = $value['cid'];
+                        $ip_info = $ip ? "<br />来自IP：{$ip}" : '';
+                        $comment = $value['comment'];
+                        $poster = !empty($value['url']) ? '<a href="' . $value['url'] . '" target="_blank">' . $value['poster'] . '</a>' : $value['poster'];
+                        $title = subString($value['title'], 0, 42);
+                        $hide = $value['hide'];
+                        $date = $value['date'];
+                        $top = $value['top'];
+                        doAction('adm_comment_display');
+                        ?>
                         <tr>
                             <td style="width: 19px;"><input type="checkbox" value="<?= $cid ?>" name="com[]" class="ids"/></td>
                             <td>
                                 <?= $comment ?>
-								<?= $ishide ?>
-								<?php if ($top == 'y'): ?><span class="flag-indexTop" title="置顶">置顶</span><?php endif ?>
+                                <?= $ishide ?>
+                                <?php if ($top == 'y'): ?><span class="flag-indexTop" title="置顶">置顶</span><?php endif ?>
                             </td>
                             <td class="small">
-								<?= $poster ?><?= $mail ?><?= $ip_info ?>
+                                <?= $poster ?><?= $mail ?><?= $ip_info ?>
                                 <br><?= $value['os'] ?> - <?= $value['browse'] ?>
                             </td>
                             <td class="small">
@@ -100,13 +100,13 @@
                                    data-gid="<?= $gid ?> ">
                                     回复评论
                                 </a>
-								<?php if (User::haveEditPermission()): ?>
+                                <?php if (User::haveEditPermission()): ?>
                                     <a href="javascript: em_confirm('<?= $ip ?>', 'commentbyip', '<?= LoginAuth::genToken() ?>');"
                                        class="badge badge-pill badge-warning">按IP删除</a>
-								<?php endif ?>
+                                <?php endif ?>
                             </td>
                         </tr>
-					<?php endforeach ?>
+                    <?php endforeach ?>
                     </tbody>
                 </table>
             </div>

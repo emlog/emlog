@@ -1,5 +1,5 @@
 <?php if (!defined('EMLOG_ROOT')) {
-	exit('error!');
+    exit('error!');
 } ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-3">
     <div class="mb-0 text-gray-800">
@@ -61,17 +61,17 @@
             <h6 class="card-header">最近发布的文章</h6>
             <div class="card-body" id="admindex_msg">
                 <ul class="list-group list-group-flush">
-					<?php
-					if ($logs):
-						foreach ($logs as $v) :
-							?>
+                    <?php
+                    if ($logs):
+                        foreach ($logs as $v) :
+                            ?>
                             <li class="msg_type_0"><a href="<?= Url::log($v['gid']) ?>" target="_blank"><?= $v['title'] ?></a></li>
-						<?php
-						endforeach;
-					else:
-						?>
+                        <?php
+                        endforeach;
+                    else:
+                        ?>
                         <p class="m-3">还没有发布过文章。</p>
-					<?php endif; ?>
+                    <?php endif; ?>
                 </ul>
             </div>
         </div>
@@ -81,15 +81,15 @@
             <h6 class="card-header">最近收到的评论</h6>
             <div class="card-body" id="admindex_msg">
                 <ul class="list-group list-group-flush">
-					<?php
-					if ($comments):
-						foreach ($comments as $v) : ?>
+                    <?php
+                    if ($comments):
+                        foreach ($comments as $v) : ?>
                             <li class="msg_type_0"><a href="<?= Url::log($v['gid']) ?>" target="_blank"><?= $v['comment'] ?></a></li>
-						<?php endforeach;
-					else:
-						?>
+                        <?php endforeach;
+                    else:
+                        ?>
                         <p class="m-3">还没收到评论。</p>
-					<?php endif; ?>
+                    <?php endif; ?>
                 </ul>
             </div>
         </div>
@@ -97,5 +97,5 @@
 </div>
 
 <div class="row">
-	<?php doAction('user_main_content') ?>
+    <?php doAction('user_main_content') ?>
 </div>

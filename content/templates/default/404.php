@@ -3,7 +3,7 @@
  * 自定义404页面
  */
 if (!defined('EMLOG_ROOT')) {
-	exit('error!');
+    exit('error!');
 }
 ?>
 <!doctype html>

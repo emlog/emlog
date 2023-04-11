@@ -464,7 +464,7 @@ span.tpl-options-setting:hover {
 }
 
 .check-slider:after {
-    content: '关';
+    content: 'off';
     color: white;
     display: block;
     position: absolute;
@@ -476,7 +476,7 @@ span.tpl-options-setting:hover {
 }
 
 .check-switch input:checked + .check-slider:after {
-    content: '开';
+    content: 'on';
     text-align: left;
     left: 15px
 }

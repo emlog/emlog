@@ -1,5 +1,5 @@
 <?php if (!defined('EMLOG_ROOT')) {
-	exit('error!');
+    exit('error!');
 } ?>
 <?php if (isset($_GET['active_del'])): ?>
     <div class="alert alert-success">备份文件删除成功</div><?php endif ?>

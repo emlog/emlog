@@ -1,5 +1,5 @@
 <?php if (!defined('EMLOG_ROOT')) {
-	exit('error!');
+    exit('error!');
 } ?>
 <h1 class="h3 mb-4 text-gray-800">修改导航</h1>
 <form action="navbar.php?action=update" method="post" id="sort_new" style="margin-top: 30px;">
@@ -15,23 +15,23 @@
         <label>在新窗口打开</label>
         <input type="checkbox" value="y" name="newtab" <?= $conf_newtab ?> />
     </div>
-	<?php if ($type == Navi_Model::navitype_custom && $pid != 0): ?>
+    <?php if ($type == Navi_Model::navitype_custom && $pid != 0): ?>
         <div class="form-group">
             <label>父导航</label>
             <select name="pid" id="pid" class="form-control">
                 <option value="0">无</option>
-				<?php
-				foreach ($navis as $key => $value):
-					if ($value['type'] != Navi_Model::navitype_custom || $value['pid'] != 0) {
-						continue;
-					}
-					$flg = $value['id'] == $pid ? 'selected' : '';
-					?>
+                <?php
+                foreach ($navis as $key => $value):
+                    if ($value['type'] != Navi_Model::navitype_custom || $value['pid'] != 0) {
+                        continue;
+                    }
+                    $flg = $value['id'] == $pid ? 'selected' : '';
+                    ?>
                     <option value="<?= $value['id'] ?>" <?= $flg ?>><?= $value['naviname'] ?></option>
-				<?php endforeach ?>
+                <?php endforeach ?>
             </select>
         </div>
-	<?php endif ?>
+    <?php endif ?>
     <input type="hidden" value="<?= $naviId ?>" name="navid"/>
     <input type="hidden" value="<?= $isdefault ?>" name="isdefault"/>
     <input type="submit" value="保存" class="btn btn-sm btn-success"/>

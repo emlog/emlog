@@ -1,5 +1,5 @@
 <?php if (!defined('EMLOG_ROOT')) {
-	exit('error!');
+    exit('error!');
 } ?>
 <?php if (isset($_GET['error'])): ?>
     <div class="alert alert-danger">商店暂不可用，可能是网络问题</div><?php endif ?>
@@ -16,11 +16,11 @@
     </ul>
 </div>
 <div class="row">
-	<?php if (!empty($addons)): ?>
+    <?php if (!empty($addons)): ?>
         <div class="d-flex flex-wrap app-list">
-			<?php foreach ($addons as $k => $v):
-				$icon = $v['icon'] ?: "./views/images/theme.png";
-				?>
+            <?php foreach ($addons as $k => $v):
+                $icon = $v['icon'] ?: "./views/images/theme.png";
+                ?>
                 <div class="col-md-6 col-lg-3">
                     <div class="card mb-4 shadow-sm">
                         <a class="p-1" href="<?= $v['buy_url'] ?>" target="_blank">
@@ -29,7 +29,7 @@
                         <div class="card-body">
                             <p class="card-text font-weight-bold"><?= $v['name'] ?></p>
                             <p class="card-text text-muted">
-								<?= $v['info'] ?><br><br>
+                                <?= $v['info'] ?><br><br>
                                 售价：<?= $v['price'] > 0 ? '<span class="text-danger">' . $v['price'] . '元</span>' : '<span class="text-success">免费</span>' ?><br>
                                 <small>
                                     开发者：<?= $v['author'] ?><br>
@@ -44,13 +44,13 @@
                         </div>
                     </div>
                 </div>
-			<?php endforeach ?>
+            <?php endforeach ?>
         </div>
-	<?php else: ?>
+    <?php else: ?>
         <div class="col-md-12">
             <p class="alert alert-warning m-3">您还不是铁杆svip付费支持用户，无法安装专属免费应用，<a href="https://www.emlog.net/register">付费支持 &rarr;</a></p>
         </div>
-	<?php endif ?>
+    <?php endif ?>
 </div>
 <script>
     $("#menu_store").addClass('active');

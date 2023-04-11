@@ -6,9 +6,9 @@
  */
 
 if (getenv('EMLOG_ENV') === 'develop') {
-	error_reporting(E_ALL);
+    error_reporting(E_ALL);
 } else {
-	error_reporting(1);
+    error_reporting(1);
 }
 
 ob_start();
@@ -17,7 +17,7 @@ header('Content-Type: text/html; charset=UTF-8');
 const EMLOG_ROOT = __DIR__;
 
 if (extension_loaded('mbstring')) {
-	mb_internal_encoding('UTF-8');
+    mb_internal_encoding('UTF-8');
 }
 
 require_once EMLOG_ROOT . '/config.php';
@@ -57,9 +57,9 @@ const MSGCODE_SUCCESS = 200;
 $active_plugins = Option::get('active_plugins');
 $emHooks = [];
 if ($active_plugins && is_array($active_plugins)) {
-	foreach ($active_plugins as $plugin) {
-		if (true === checkPlugin($plugin)) {
-			include_once(EMLOG_ROOT . '/content/plugins/' . $plugin);
-		}
-	}
+    foreach ($active_plugins as $plugin) {
+        if (true === checkPlugin($plugin)) {
+            include_once(EMLOG_ROOT . '/content/plugins/' . $plugin);
+        }
+    }
 }

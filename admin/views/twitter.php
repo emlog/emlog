@@ -1,5 +1,5 @@
 <?php if (!defined('EMLOG_ROOT')) {
-	exit('error!');
+    exit('error!');
 } ?>
 <?php if (isset($_GET['active_t'])): ?>
     <div class="alert alert-success">发布成功</div><?php endif ?>
@@ -19,23 +19,23 @@
     <button type="submit" class="btn btn-sm btn-success">保存笔记</button>
 </form>
 <div class="card-columns mt-5">
-	<?php
-	foreach ($tws as $val):
-		$tid = (int)$val['id'];
-		$author = $user_cache[$val['author']]['name'];
-		?>
+    <?php
+    foreach ($tws as $val):
+        $tid = (int)$val['id'];
+        $author = $user_cache[$val['author']]['name'];
+        ?>
         <div class="card p-3">
             <blockquote class="blockquote mb-0 card-body">
                 <p><?= $val['t'] ?></p>
                 <footer>
                     <p class="text-muted small card-text d-flex justify-content-between">
-						<?= $val['date'] ?> | by <?= $author ?>
+                        <?= $val['date'] ?> | by <?= $author ?>
                         <a href="javascript: em_confirm(<?= $tid ?>, 'tw', '<?= LoginAuth::genToken() ?>');" class="care">删除</a>
                     </p>
                 </footer>
             </blockquote>
         </div>
-	<?php endforeach ?>
+    <?php endforeach ?>
 </div>
 <div class="page my-5"><?= $pageurl ?> (有<?= $twnum ?>条笔记)</div>
 

@@ -1,5 +1,5 @@
 <?php if (!defined('EMLOG_ROOT')) {
-	exit('error!');
+    exit('error!');
 } ?>
 <form action="page.php?action=save" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
     <h1 class="h3 mb-4 text-gray-800"><?= $containertitle ?></h1>
@@ -11,8 +11,8 @@
                 </div>
                 <div id="post_bar">
                     <a href="#mediaModal" class="text-muted small my-3" data-remote="./media.php?action=lib" data-toggle="modal" data-target="#mediaModal"><i
-                                class="icofont-plus"></i> 插入图文资源</a>
-					<?php doAction('adm_writelog_head') ?>
+                            class="icofont-plus"></i> 插入图文资源</a>
+                    <?php doAction('adm_writelog_head') ?>
                 </div>
                 <div id="pagecontent"><textarea><?= $content ?></textarea></div>
             </div>
@@ -34,11 +34,11 @@
                 <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
                 <input type="hidden" name="ishide" id="ishide" value="<?= $hide ?>"/>
                 <input type="hidden" name="pageid" value="<?= $pageId ?>"/>
-				<?php if ($pageId < 0): ?>
+                <?php if ($pageId < 0): ?>
                     <input type="submit" value="发布页面" onclick="return checkform();" class="btn btn-sm btn-success"/>
-				<?php else: ?>
+                <?php else: ?>
                     <input type="submit" value="保存并返回" onclick="return checkform();" class="btn btn-sm btn-success"/>
-				<?php endif ?>
+                <?php endif ?>
             </div>
         </div>
     </div>

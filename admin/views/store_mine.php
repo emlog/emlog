@@ -1,5 +1,5 @@
 <?php if (!defined('EMLOG_ROOT')) {
-	exit('error!');
+    exit('error!');
 } ?>
 <?php if (isset($_GET['error'])): ?>
     <div class="alert alert-danger">商店暂不可用，可能是网络问题</div><?php endif ?>
@@ -16,11 +16,11 @@
     </ul>
 </div>
 <div class="row">
-	<?php if (!empty($addons)): ?>
+    <?php if (!empty($addons)): ?>
         <div class="d-flex flex-wrap app-list">
-			<?php foreach ($addons as $k => $v):
-				$icon = $v['icon'] ?: "./views/images/theme.png";
-				?>
+            <?php foreach ($addons as $k => $v):
+                $icon = $v['icon'] ?: "./views/images/theme.png";
+                ?>
                 <div class="col-md-6 col-lg-3">
                     <div class="card mb-4 shadow-sm">
                         <a class="p-1" href="<?= $v['buy_url'] ?>" target="_blank">
@@ -29,7 +29,7 @@
                         <div class="card-body">
                             <p class="card-text font-weight-bold"><?= $v['name'] ?></p>
                             <p class="card-text text-muted">
-								<?= $v['info'] ?><br><br>
+                                <?= $v['info'] ?><br><br>
                                 <small>
                                     开发者：<?= $v['author'] ?><br>
                                     版本号：<?= $v['ver'] ?><br>
@@ -38,22 +38,22 @@
                             </p>
                             <div class="card-text d-flex justify-content-between">
                                 <div class="installMsg"></div>
-								<?php if (empty($v['download_url'])): ?>
+                                <?php if (empty($v['download_url'])): ?>
                                     <a href="<?= $v['buy_url'] ?>" class="btn btn-success btn-sm">请联系作者安装</a>
-								<?php else: ?>
+                                <?php else: ?>
                                     <a href="#" class="btn btn-success installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-type="<?= $v['type'] ?>">安装应用</a>
-								<?php endif ?>
+                                <?php endif ?>
                             </div>
                         </div>
                     </div>
                 </div>
-			<?php endforeach ?>
+            <?php endforeach ?>
         </div>
-	<?php else: ?>
+    <?php else: ?>
         <div class="col-md-12">
             <p class="alert alert-warning m-3">您还没有购买任何应用。</p>
         </div>
-	<?php endif ?>
+    <?php endif ?>
 </div>
 <script>
     $("#menu_store").addClass('active');

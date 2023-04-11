@@ -1,5 +1,5 @@
 <?php if (!defined('EMLOG_ROOT')) {
-	exit('error!');
+    exit('error!');
 } ?>
 <?php if (isset($_GET['active_del'])): ?>
     <div class="alert alert-success">删除标签成功</div><?php endif ?>
@@ -31,23 +31,23 @@
     <form action="tag.php?action=operate_tag" method="post" name="form_tag" id="form_tag">
         <div class="card-body">
             <div>
-				<?php if ($tags): ?>
-					<?php foreach ($tags
+                <?php if ($tags): ?>
+                    <?php foreach ($tags
 
-								   as $key => $v):
-						$count = count(explode(',', $v['gid']));
-						$count_style = $count > 0 ? 'text-muted' : 'text-danger';
-						?>
+                                   as $key => $v):
+                        $count = count(explode(',', $v['gid']));
+                        $count_style = $count > 0 ? 'text-muted' : 'text-danger';
+                        ?>
                         <div class="badge badge-light m-3 p-2">
                             <h5><a href="#" data-toggle="modal" data-target="#editModal" data-tid="<?= $v['tid'] ?>"
                                    data-tagname="<?= $v['tagname'] ?>"><?= $v['tagname'] ?></a></h5>
                             <small class="<?= $count_style ?>">（文章：<?= $count ?>）</small>
                             <input type="checkbox" name="tids[]" value="<?= $v['tid'] ?>" class="tids align-top"/>
                         </div>
-					<?php endforeach ?>
-				<?php else: ?>
+                    <?php endforeach ?>
+                <?php else: ?>
                     <p class="m-3">还没有标签，写文章的时候可以给文章打标签</p>
-				<?php endif ?>
+                <?php endif ?>
             </div>
         </div>
         <div class="form-row align-items-center mx-4">

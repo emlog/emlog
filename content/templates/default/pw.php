@@ -3,7 +3,7 @@
  * 加密文章输入密码页面
  */
 if (!defined('EMLOG_ROOT')) {
-	exit('error!');
+    exit('error!');
 }
 ?>
 <!doctype html>
