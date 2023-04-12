@@ -85,11 +85,7 @@ function em_confirm(id, property, token) {
             break;
     }
     swal({
-        title: msg,
-        text: text,
-        icon: "warning",
-        buttons: ["取消", "确定"],
-        dangerMode: true,
+        title: msg, text: text, icon: "warning", buttons: ["取消", "确定"], dangerMode: true,
     }).then((willDelete) => {
         if (willDelete) {
             window.location = url + '&token=' + token;
@@ -460,11 +456,14 @@ function imgPasteExpand(thisEditor) {
             }, success: function (result) {
                 let imgUrl, thumbImgUrl;
                 console.log('上传成功！正在获取结果...');
-                $.get(emMediaPhpUrl, function (data) {  // 异步获取结果,追加到编辑器
-                    console.log('获取结果成功！');
-                    imgUrl = data.match(/[a-zA-z]+:\/[^\s\"\']*/g)[0];
-                    thumbImgUrl = data.match(/[a-zA-z]+:\/[^\s\"\']*/g)[1];
-                    replaceByNum(`[![](${thumbImgUrl})](${imgUrl})`, 10);  // 这里的数字 10 对应着’上传中...100%‘是10个字符
+                $.get(emMediaPhpUrl, function (resp) {
+                    console.log('获取结果成功！')
+                    var image = resp.data.images[0];
+                    if (image) {
+                        replaceByNum(`[![](${image.media_url})](${image.media_icon})`, 10);  // 这里的数字 10 对应着’上传中...100%‘是10个字符
+                    } else {
+                        console.log('获取结果失败！')
+                    }
                 })
             }, error: function (result) {
                 alert('上传失败,图片类型错误或网络错误');
