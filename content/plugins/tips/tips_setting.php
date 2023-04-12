@@ -1,12 +1,12 @@
 <?php
 if (!defined('EMLOG_ROOT')) {
-	die('err');
+    die('err');
 }
 function plugin_setting_view() {
-	?>
-	<?php if (isset($_GET['succ'])): ?>
+    ?>
+    <?php if (isset($_GET['succ'])): ?>
         <div class="alert alert-success">好的，我知道你知道了</div>
-	<?php endif; ?>
+    <?php endif; ?>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">小贴士插件</h1>
     </div>
@@ -15,7 +15,7 @@ function plugin_setting_view() {
             <form method="post">
                 <div class="form-group">
                     <p>这是世界上第一个emlog插件，它会在你的管理页面送上一句温馨的小提示，样式如下。</p>
-					<?php tips(); ?>
+                    <?php tips(); ?>
                     <hr/>
                     <p>另外该插件也是一个demo，可以在这个插件基础上修改，开发出你自己的插件。</p>
                 </div>
@@ -33,7 +33,7 @@ function plugin_setting_view() {
 <?php }
 
 if (!empty($_POST)) {
-	$ak = isset($_POST['ak']) ? addslashes(trim($_POST['ak'])) : '';
+    $ak = isset($_POST['ak']) ? addslashes(trim($_POST['ak'])) : '';
 
-	header('Location:./plugin.php?plugin=tips&succ=1');
+    header('Location:./plugin.php?plugin=tips&succ=1');
 }
