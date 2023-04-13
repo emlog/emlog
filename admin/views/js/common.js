@@ -278,6 +278,7 @@ function autosave(act) {
             $("#savedf").attr("disabled", false).val(btname);
             $("#save_info").html("保存失败，可能系统出现异常或者达到每日发文限额").addClass("alert-danger");
             $('title').text('[保存失败] ' + titleText);
+            alert("保存失败，可能系统出现异常或者达到每日发文限额");
         }
     });
     if (act == 1) {
@@ -286,24 +287,25 @@ function autosave(act) {
 }
 
 // “页面”的 editor.md 编辑器 Ctrl + S 快捷键的自动保存动作
+const pagetitle = $('title').text();
 function pagesave() {
     document.addEventListener('keydown', function (e) {  // 阻止自动保存产生的浏览器默认动作
         if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
             e.preventDefault();
         }
     });
-
     let url = "page.php?action=save";
-
+    if ($("[name='pageid']").attr("value") < 0) return alert("请先保存页面！");
+	if (!$("[name='pagecontent']").html()) return alert("页面内容不能为空！");
+	$('title').text('[保存中...] ' + pagetitle);
     $.post(url, $("#addlog").serialize(), function (data) {
-        let titleText = $('title').text();
-        $('title').text('[保存成功] ' + titleText);
+        $('title').text('[保存成功] ' + pagetitle);
         setTimeout(function () {
-            $('title').text(titleText);
+            $('title').text(pagetitle);
         }, 2000);
         pageText = $("textarea").text();
     }).fail(function () {
-        $('title').text('[保存失败] ' + $('title').text());
+        $('title').text('[保存失败] ' + pagetitle);
         alert("保存失败！")
     });
 }
@@ -454,15 +456,15 @@ function imgPasteExpand(thisEditor) {
                 }
                 return xhr;
             }, success: function (result) {
-                let imgUrl, thumbImgUrl;
                 console.log('上传成功！正在获取结果...');
                 $.get(emMediaPhpUrl, function (resp) {
-                    console.log('获取结果成功！')
                     var image = resp.data.images[0];
                     if (image) {
-                        replaceByNum(`[![](${image.media_url})](${image.media_icon})`, 10);  // 这里的数字 10 对应着’上传中...100%‘是10个字符
+                        console.log('获取结果成功！')
+                        replaceByNum(`[![](${image.media_icon})](${image.media_url})`, 10);  // 这里的数字 10 对应着’上传中...100%‘是10个字符
                     } else {
                         console.log('获取结果失败！')
+                        alert('获取结果失败！');
                     }
                 })
             }, error: function (result) {
@@ -510,6 +512,18 @@ function doup(source, upsql) {
     });
 }
 
+// When in article edit page, auto full Sort by Cookies
+function autoFullSort(changeCookie) {
+	if(!$("#sort")) return
+	if(changeCookie === true) {
+		Cookies.set('em_saveLastSortId', $("#sort").val());
+		return
+	}
+	if(Cookies.get('em_saveLastSortId')) {
+		$("#sort").find("option[value='"+ Cookies.get('em_saveLastSortId') +"']").prop("selected",true);
+	}
+}
+
 $(document).ready(function () {
     // 网页加载完先检查一遍
     // 设置界面，如果设置“自动检测地址”，则设置 input 为只读，以表示该项是无效的
@@ -540,4 +554,10 @@ $(document).ready(function () {
             link.prev(".installMsg").html('<span class="text-danger">' + data + '</span>').removeClass("spinner-border text-primary");
         });
     });
+
+	// auto full Sort by Cookies
+	autoFullSort();
+	$("#sort").change(function () {
+		autoFullSort(true);
+	})
 })
