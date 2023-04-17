@@ -33,7 +33,7 @@ function widget_link($title) {
 function widget_blogger($title) {
     global $CACHE;
     $user_cache = $CACHE->readCache('user');
-    $name = $user_cache[1]['mail'] != '' ? "<a href=\"mailto:" . $user_cache[1]['mail'] . "\">" . $user_cache[1]['name'] . "</a>" : $user_cache[1]['name'] ?>
+    $name = $user_cache[1]['name'] ?>
     <div class="widget shadow-theme">
         <div class="widget-title">
             <h3><?= $title ?></h3>
