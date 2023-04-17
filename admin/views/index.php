@@ -104,7 +104,7 @@
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         EMLOG
                         <?php if (!Register::isRegLocal()) : ?>
-                            <a href="auth.php"><span class="badge badge-primary"><?= Option::EMLOG_VERSION ?> 普通版</span></a>
+                            <a href="auth.php"><span class="badge badge-primary"><?= Option::EMLOG_VERSION ?> 普通版，点击升级</span></a>
                         <?php elseif (Register::getRegType() == 2): ?>
                             <span class="badge badge-warning"><?= Option::EMLOG_VERSION ?> 铁杆SVIP版</span>
                         <?php elseif (Register::getRegType() == 1): ?>

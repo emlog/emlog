@@ -42,9 +42,8 @@ if ($action == 'new') {
     );
     extract($pageData);
 
-    //media
-    $Media_Model = new Media_Model();
-    $medias = $Media_Model->getMedias();
+    $MediaSort_Model = new MediaSort_Model();
+    $mediaSorts = $MediaSort_Model->getSorts();
 
     include View::getAdmView('header');
     require_once(View::getAdmView('page_create'));

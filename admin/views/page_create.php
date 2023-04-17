@@ -9,9 +9,8 @@
                 <div>
                     <input type="text" name="title" id="title" value="<?= $title ?>" class="form-control" placeholder="页面标题"/>
                 </div>
-                <div id="post_bar">
-                    <a href="#mediaModal" class="text-muted small my-3" data-remote="./media.php?action=lib" data-toggle="modal" data-target="#mediaModal"><i
-                            class="icofont-plus"></i> 插入图文资源</a>
+                <div id="post_bar" class="small my-3">
+                    <a href="#mediaModal" data-toggle="modal" data-target="#mediaModal"><i class="icofont-plus"></i>上传插入图片</a>
                     <?php doAction('adm_writelog_head') ?>
                 </div>
                 <div id="pagecontent"><textarea><?= $content ?></textarea></div>
@@ -54,9 +53,23 @@
                 </button>
             </div>
             <div class="modal-body">
-                <a href="#" id="mediaAdd" class="btn btn-sm btn-success shadow-sm mb-3">上传图片/文件</a>
+                <div class="d-flex justify-content-between">
+                    <div><a href="#" id="mediaAdd" class="btn btn-sm btn-success shadow-sm mb-3">上传图片/文件</a></div>
+                    <div>
+                        <?php if (User::haveEditPermission() && $mediaSorts): ?>
+                            <select class="form-control" id="media-sort-select">
+                                <option value="">选择资源分类…</option>
+                                <?php foreach ($mediaSorts as $v): ?>
+                                    <option value="<?= $v['id'] ?>"><?= $v['sortname'] ?></option>
+                                <?php endforeach ?>
+                            </select>
+                        <?php endif ?>
+                    </div>
+                </div>
                 <form action="media.php?action=operate_media" method="post" name="form_media" id="form_media">
-                    <div class="row">
+                    <div class="row" id="image-list"></div>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-success btn-sm mt-2" id="load-more">加载更多…</button>
                     </div>
                 </form>
             </div>
@@ -65,38 +78,7 @@
 </div>
 <div class="dropzone-previews" style="display: none;"></div>
 <script src="./views/js/dropzone.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
-<script>
-    // 上传资源
-    Dropzone.autoDiscover = false;
-    var myDropzone = new Dropzone("#mediaAdd", {
-        url: "./media.php?action=upload",
-        addRemoveLinks: false,
-        method: 'post',
-        maxFilesize: 2048,//M
-        filesizeBase: 1024,
-        previewsContainer: ".dropzone-previews",
-        sending: function (file, xhr, formData) {
-            formData.append("filesize", file.size);
-            $('#mediaAdd').html("上传中……");
-        },
-        init: function () {
-            this.on("error", function (file, response) {
-                alert(response);
-            });
-            this.on("queuecomplete", function (file) {
-                $('#mediaModal').find('.modal-body .row').load("./media.php?action=lib");
-                $('#mediaAdd').html("上传图片/文件");
-            });
-        }
-    });
-    // 载入资源列表
-    $('#mediaModal').on('show.bs.modal', function (e) {
-        var button = $(e.relatedTarget);
-        var modal = $(this);
-        modal.find('.modal-body .row').load(button.data("remote"));
-    });
-</script>
-
+<script src="./views/js/media-lib.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
 <script src="./editor.md/editormd.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
 <script>
     $("#menu_category_view").addClass('active');

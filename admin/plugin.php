@@ -134,7 +134,7 @@ if ($action === 'check_update') {
         Output::error('请求更新失败，可能是网络问题');
     }
     if ($ret['code'] === MSGCODE_EMKEY_INVALID) {
-        Output::error('未注册的pro版本');
+        Output::error('您的emlog pro尚未注册，<a href="auth.php">去注册</a>');
     }
 
     Output::ok($ret['data']);
