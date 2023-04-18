@@ -15,7 +15,7 @@
         <li class="nav-item"><a class="nav-link" href="./store.php?action=mine">我的已购</a></li>
     </ul>
 </div>
-<div class="row">
+<div class="mb-3">
     <?php if (!empty($addons)): ?>
         <div class="d-flex flex-wrap app-list">
             <?php foreach ($addons as $k => $v):
