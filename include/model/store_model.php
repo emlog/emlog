@@ -23,6 +23,10 @@ class Store_Model {
         return $this->reqEmStore('svip');
     }
 
+    public function getTopAddon() {
+        return $this->reqEmStore('top');
+    }
+
     public function reqEmStore($type, $tag = '', $keyword = '', $page = 1, $author_id = 0) {
         $emcurl = new EmCurl();
 
@@ -68,6 +72,7 @@ class Store_Model {
                 break;
             case 'svip':
             case 'mine':
+            case 'top':
                 $data = isset($ret['data']) ? $ret['data'] : [];
                 break;
         }

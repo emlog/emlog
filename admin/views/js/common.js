@@ -529,6 +529,37 @@ function autoFullSort(changeCookie) {
     }
 }
 
+function loadTopAddons() {
+    $.ajax({
+        type: 'GET',
+        url: './store.php?action=top',
+        success: function (resp) {
+            $.each(resp.data, function (i, app) {
+                let insertBtnHtml;
+                let typeName = '模板：';
+                let storeUlr = './store.php';
+                if (app.type === 'plu') {
+                    typeName = '插件：';
+                    storeUlr = './store.php?action=plu';
+                }
+                if (app.price > 0) {
+                    insertBtnHtml = '¥' + app.price + '<a href="' + app.buy_url + '" target="_blank">购买</a>';
+                } else {
+                    insertBtnHtml = '免费<a href="' + storeUlr + '">去商店安装</a>';
+                }
+                const cardHtml = '<div class="col-md-4">' +
+                    '<div class="card">' +
+                    '<a href="' + app.buy_url + '" target="_blank"><img class="card-img-top" style="max-height: 90px;" src="' + app.icon + '" alt="icon"/></a>' +
+                    '<div class="card-body">' +
+                    '<div class="card-text text-muted small">' + typeName + app.name + '</div>' +
+                    '<p class="card-text d-flex justify-content-between small">' + insertBtnHtml + '</p>' +
+                    '</div></div></div>';
+                $('#app-list').append(cardHtml);
+            });
+        },
+    });
+}
+
 $(document).ready(function () {
     // 网页加载完先检查一遍
     // 设置界面，如果设置“自动检测地址”，则设置 input 为只读，以表示该项是无效的

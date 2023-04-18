@@ -148,25 +148,35 @@
                 <h6 class="card-header">获取帮助</h6>
                 <div class="card-body" id="admindex_msg">
                     <ul class="list-group list-group-flush">
-                        <li class="msg_type_0"><a href="https://www.emlog.net/docs/#/faq" target="_blank">帮助文档 | 常见问题</a></li>
+                        <li class="msg_type_0"><a href="https://www.emlog.net/docs/#/faq" target="_blank">使用帮助 | 常见问题</a></li>
+                        <li class="msg_type_0"><a href="http://www.emlog.co/template/add" target="_blank">应用开发 | 开发文档</a></li>
                         <li class="msg_type_0"><a href="https://www.emlog.net/docs/#/contact" target="_blank">联系交流 | 加入Q群</a></li>
                         <li class="msg_type_0"><a href="https://emlog.cn/" target="_blank">问题反馈 | 官方社区</a></li>
                     </ul>
                 </div>
             </div>
         </div>
+        <div class="col-lg-6 mb-4">
+            <div class="card mb-4">
+                <h6 class="card-header">今日应用</h6>
+                <div class="card-body" id="admindex_msg">
+                    <div class="row" id="app-list"></div>
+                </div>
+            </div>
+        </div>
     </div>
     <script>
         setTimeout(hideActived, 3600);
+        // upgrade
         $("#menu_panel").addClass('active');
         $.get("./upgrade.php?action=check_update", function (result) {
             if (result.code == 200) {
                 $("#upmsg").html("有可用的新版本 " + result.data.version + "，<a href=\"https://www.emlog.net/docs/#/changelog\" target=\"_blank\">查看更新内容</a>，<a id=\"doup\" href=\"javascript:doup('" + result.data.file + "','" + result.data.sql + "');\">现在更新</a>").removeClass();
             }
         });
+        loadTopAddons();
     </script>
 <?php endif ?>
-
 <div class="row">
     <?php doAction('adm_main_content') ?>
 </div>

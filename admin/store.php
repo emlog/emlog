@@ -95,6 +95,11 @@ if ($action === 'svip') {
     View::output();
 }
 
+if ($action === 'top') {
+    $addons = $Store_Model->getTopAddon();
+    output::ok($addons);
+}
+
 if ($action === 'error') {
     $keyword = '';
     $sub_title = '';
