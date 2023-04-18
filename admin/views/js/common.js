@@ -196,6 +196,10 @@ function insert_media_video(fileurl) {
     Editor.insertValue('<video class=\"video-js\" controls preload=\"auto\" width=\"100%\" data-setup=\'{"aspectRatio":"16:9"}\'> <source src="' + fileurl + '" type=\'video/mp4\' > </video>');
 }
 
+function insert_media_audio(fileurl) {
+    Editor.insertValue('<audio src="' + fileurl + '" preload="none" controls loop></audio>');
+}
+
 function insert_media(fileurl, filename) {
     Editor.insertValue('[' + filename + '](' + fileurl + ')\n\n');
 }
@@ -288,6 +292,7 @@ function autosave(act) {
 
 // “页面”的 editor.md 编辑器 Ctrl + S 快捷键的自动保存动作
 const pagetitle = $('title').text();
+
 function pagesave() {
     document.addEventListener('keydown', function (e) {  // 阻止自动保存产生的浏览器默认动作
         if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
@@ -296,8 +301,8 @@ function pagesave() {
     });
     let url = "page.php?action=save";
     if ($("[name='pageid']").attr("value") < 0) return alert("请先保存页面！");
-	if (!$("[name='pagecontent']").html()) return alert("页面内容不能为空！");
-	$('title').text('[保存中...] ' + pagetitle);
+    if (!$("[name='pagecontent']").html()) return alert("页面内容不能为空！");
+    $('title').text('[保存中...] ' + pagetitle);
     $.post(url, $("#addlog").serialize(), function (data) {
         $('title').text('[保存成功] ' + pagetitle);
         setTimeout(function () {
@@ -514,14 +519,14 @@ function doup(source, upsql) {
 
 // When in article edit page, auto full Sort by Cookies
 function autoFullSort(changeCookie) {
-	if(!$("#sort")) return
-	if(changeCookie === true) {
-		Cookies.set('em_saveLastSortId', $("#sort").val());
-		return
-	}
-	if(Cookies.get('em_saveLastSortId')) {
-		$("#sort").find("option[value='"+ Cookies.get('em_saveLastSortId') +"']").prop("selected",true);
-	}
+    if (!$("#sort")) return
+    if (changeCookie === true) {
+        Cookies.set('em_saveLastSortId', $("#sort").val());
+        return
+    }
+    if (Cookies.get('em_saveLastSortId')) {
+        $("#sort").find("option[value='" + Cookies.get('em_saveLastSortId') + "']").prop("selected", true);
+    }
 }
 
 $(document).ready(function () {
@@ -555,9 +560,9 @@ $(document).ready(function () {
         });
     });
 
-	// auto full Sort by Cookies
-	autoFullSort();
-	$("#sort").change(function () {
-		autoFullSort(true);
-	})
+    // auto full Sort by Cookies
+    autoFullSort();
+    $("#sort").change(function () {
+        autoFullSort(true);
+    })
 })

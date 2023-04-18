@@ -60,6 +60,9 @@ if ($action === 'lib') {
         } elseif (isVideo($v['filename'])) {
             $data['media_type'] = 'video';
             $data['media_icon'] = "./views/images/video.png";
+        } elseif (isAudio($v['filename'])) {
+            $data['media_type'] = 'audio';
+            $data['media_icon'] = "./views/images/audio.png";
         }
         $ret['images'][] = $data;
     }

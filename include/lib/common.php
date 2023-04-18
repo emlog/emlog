@@ -200,9 +200,6 @@ function rmUrlParams($url) {
     return $urlInfo[0];
 }
 
-/**
- * 根据文件名后缀判断是否图片
- */
 function isImage($mimetype) {
     if (strpos($mimetype, "image") !== false) {
         return true;
@@ -210,17 +207,16 @@ function isImage($mimetype) {
     return false;
 }
 
-/**
- * 根据文件名后缀判断是否视频
- */
 function isVideo($fileName) {
     $suffix = getFileSuffix($fileName);
     return $suffix === 'mp4';
 }
 
-/**
- * 根据文件名后缀判断是否压缩包
- */
+function isAudio($fileName) {
+    $suffix = getFileSuffix($fileName);
+    return $suffix === 'mp3';
+}
+
 function isZip($fileName) {
     $suffix = getFileSuffix($fileName);
     if (in_array($suffix, ['zip', 'rar'])) {

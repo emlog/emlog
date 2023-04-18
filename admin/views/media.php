@@ -49,6 +49,9 @@
             } elseif (isVideo($value['filename'])) {
                 $media_icon = "./views/images/video.png";
                 $imgviewer = '';
+            } elseif (isAudio($value['filename'])) {
+                $media_icon = "./views/images/audio.png";
+                $imgviewer = '';
             } else {
                 $media_icon = "./views/images/fnone.png";
                 $imgviewer = '';

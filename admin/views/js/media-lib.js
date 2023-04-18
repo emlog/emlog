@@ -18,7 +18,9 @@ function loadImages() {
                         '<a href="javascript:insert_cover(\'' + image.media_path + '\')" class="btn" title="设为封面"><i class="icofont-image"></i></a>';
                 } else if (image.media_type === 'video') {
                     insertBtnHtml = '<a href="javascript:insert_media_video(\'' + image.media_url + '\')" class="btn" title="插入文章"><i class="icofont-plus"></i></a>';
-                } else {
+                } else if (image.media_type === 'audio') {
+                    insertBtnHtml = '<a href="javascript:insert_media_audio(\'' + image.media_url + '\')" class="btn" title="插入文章"><i class="icofont-plus"></i></a>';
+                }else {
                     insertBtnHtml = '<a href="javascript:insert_media(\'' + image.media_url + '\', \'' + image.media_name + '\')" class="btn" title="插入文章"><i class="icofont-plus"></i></a>';
                 }
                 var cardHtml = '<div class="col-md-4">' +
