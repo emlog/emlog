@@ -72,7 +72,7 @@ class Notice {
         return false;
     }
 
-    public static function sendNewCommentMail($comment, $gid) {
+    public static function sendNewCommentMail($comment, $gid, $pid) {
         if (!self::smtpServerReady()) {
             return false;
         }
@@ -81,18 +81,27 @@ class Notice {
         }
 
         $sendmail = new SendMail();
-        $title = "你的文章收到新的评论";
         $content = "评论内容：" . $comment;
+        $article = self::getArticleInfo($gid);
 
-        $r = self::getArticleInfo($gid);
-        if ($r) {
-            $content .= '<br><br> 来自文章：' . $r['log_title'];
-            $email = self::getArticleAuthorEmail($r['author']);
-            if (!$email) {
-                return false;
-            }
-            $sendmail->send($email, $title, $content);
+        if (empty($article)) {
+            return false;
         }
+
+        if ($pid) {
+            $title = "你的评论收到一条回复";
+            $content .= '<br><br> 来自文章：' . $article['log_title'];
+            $email = self::getCommentAuthorEmail($pid);
+        } else {
+            $title = "你的文章收到新的评论";
+            $content .= '<br><br> 来自文章：' . $article['log_title'];
+            $email = self::getArticleAuthorEmail($article['author']);
+        }
+        if (!$email) {
+            return false;
+        }
+        $sendmail->send($email, $title, $content);
+        return true;
     }
 
     private static function smtpServerReady() {
@@ -125,6 +134,15 @@ class Notice {
         $r = $User_Model->getOneUser($uid);
         if (isset($r['email'])) {
             return $r['email'];
+        }
+        return false;
+    }
+
+    private static function getCommentAuthorEmail($cid) {
+        $Comment_Model = new Comment_Model();
+        $r = $Comment_Model->getOneComment($cid);
+        if (isset($r['mail'])) {
+            return $r['mail'];
         }
         return false;
     }

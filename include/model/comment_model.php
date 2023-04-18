@@ -115,11 +115,11 @@ class Comment_Model {
         if ($this->db->affected_rows() < 1) {
             return false;
         }
-        $commentArray = $this->db->fetch_array($res);
-        $commentArray['comment'] = $nl2br ? htmlClean(trim($commentArray['comment'])) : htmlClean(trim($commentArray['comment']), FALSE);
-        $commentArray['poster'] = htmlspecialchars($commentArray['poster']);
-        $commentArray['date'] = date("Y-m-d H:i", $commentArray['date']);
-        return $commentArray;
+        $comment = $this->db->fetch_array($res);
+        $comment['comment'] = $nl2br ? htmlClean(trim($comment['comment'])) : htmlClean(trim($comment['comment']), FALSE);
+        $comment['poster'] = htmlspecialchars($comment['poster']);
+        $comment['date'] = date("Y-m-d H:i", $comment['date']);
+        return $comment;
     }
 
     function getCommentNum($blogId = null, $hide = null) {

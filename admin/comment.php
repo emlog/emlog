@@ -100,6 +100,8 @@ if ($action === 'doreply') {
     }
 
     $Comment_Model->replyComment($blogId, $commentId, $reply, $hide);
+    notice::sendNewCommentMail($reply, $blogId, $commentId);
+
     $CACHE->updateCache('comment');
     $CACHE->updateCache('sta');
     doAction('comment_reply', $commentId, $reply);
