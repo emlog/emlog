@@ -543,9 +543,9 @@ function loadTopAddons() {
                     storeUlr = './store.php?action=plu';
                 }
                 if (app.price > 0) {
-                    insertBtnHtml = '¥' + app.price + '<a href="' + app.buy_url + '" target="_blank">购买</a>';
+                    insertBtnHtml = '应用售价：' + app.price + '元<a href="' + app.buy_url + '" target="_blank">购买</a>';
                 } else {
-                    insertBtnHtml = '免费<a href="' + storeUlr + '">去商店安装</a>';
+                    insertBtnHtml = '应用售价：免费<a href="' + storeUlr + '">去商店安装</a>';
                 }
                 const cardHtml = '<div class="col-md-4">' +
                     '<div class="card">' +
