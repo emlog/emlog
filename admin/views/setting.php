@@ -137,6 +137,11 @@
                 <label>后台每页展示条目数量</label>
                 <input class="form-control mx-sm-3" style="width:80px;" value="<?= $admin_perpage_num ?>" name="admin_perpage_num" type="number"/> （影响后台文章、评论、用户列表）
             </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="y" name="accept_app_recs" id="accept_app_recs" <?= $conf_accept_app_recs ?> />
+                <label>接收来自官方的应用推荐（影响后台首页今日应用的展示）</label>
+            </div>
+            <hr>
 
             <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
             <input type="submit" value="保存设置" class="btn btn-sm btn-success"/>

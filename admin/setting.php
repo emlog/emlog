@@ -24,6 +24,7 @@ if (empty($action)) {
     $conf_isgravatar = $isgravatar == 'y' ? 'checked="checked"' : '';
     $conf_comment_paging = $comment_paging == 'y' ? 'checked="checked"' : '';
     $conf_detect_url = $detect_url == 'y' ? 'checked="checked"' : '';
+    $conf_accept_app_recs = $accept_app_recs == 'y' ? 'checked="checked"' : '';
 
     $ex1 = $ex2 = $ex3 = $ex4 = '';
     if ($rss_output_fulltext == 'y') {
@@ -177,6 +178,7 @@ if ($action == 'save') {
         'att_imgmaxh'         => isset($_POST['att_imgmaxh']) ? (int)$_POST['att_imgmaxh'] : 460,
         'detect_url'          => isset($_POST['detect_url']) ? addslashes($_POST['detect_url']) : 'n', // 自动检测站点地址
         'admin_perpage_num'   => Input::postIntVar('admin_perpage_num'),
+        'accept_app_recs'     => isset($_POST['accept_app_recs']) ? addslashes($_POST['accept_app_recs']) : 'n',
     ];
 
     if ($getData['login_code'] == 'y' && !function_exists("imagecreate") && !function_exists('imagepng')) {

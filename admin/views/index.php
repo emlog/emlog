@@ -156,14 +156,17 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-6 mb-4">
-            <div class="card mb-4">
-                <h6 class="card-header">今日应用</h6>
-                <div class="card-body" id="admindex_msg">
-                    <div class="row" id="app-list"></div>
+        <?php if (option::get('accept_app_recs') === 'y'): ?>
+            <div class="col-lg-6 mb-4">
+                <div class="card mb-4">
+                    <h6 class="card-header">今日应用 - <a href="./store.php">应用商店</a></h6>
+                    <div class="card-body" id="admindex_msg">
+                        <div class="row" id="app-list"></div>
+                    </div>
                 </div>
             </div>
-        </div>
+            <script>loadTopAddons();</script>
+        <?php endif; ?>
     </div>
     <script>
         setTimeout(hideActived, 3600);
@@ -174,7 +177,6 @@
                 $("#upmsg").html("有可用的新版本 " + result.data.version + "，<a href=\"https://www.emlog.net/docs/#/changelog\" target=\"_blank\">查看更新内容</a>，<a id=\"doup\" href=\"javascript:doup('" + result.data.file + "','" + result.data.sql + "');\">现在更新</a>").removeClass();
             }
         });
-        loadTopAddons();
     </script>
 <?php endif ?>
 <div class="row">

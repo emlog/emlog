@@ -387,61 +387,63 @@ option_value LONGTEXT NOT NULL COMMENT '配置项值',
 PRIMARY KEY (option_id),
 UNIQUE KEY `option_name_uindex` (`option_name`)
 )" . $table_charset_sql . "
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('blogname','EMLOG');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('bloginfo','使用emlog搭建的站点');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('site_title','');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('site_description','');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('site_key','emlog');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('log_title_style','0');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('blogurl','" . BLOG_URL . "');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('icp','');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('footer_info','powered by <a href=\"https://www.emlog.net\">emlog pro</a>');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('admin_perpage_num','15');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('rss_output_num','10');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('rss_output_fulltext','y');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_lognum','10');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_comnum','10');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_newlognum','5');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('index_hotlognum','5');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_subnum','20');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('nonce_templet','default');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('admin_style','default');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('tpl_sidenum','1');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_code','n');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_needchinese','y');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_interval',60);
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isgravatar','y');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isthumbnail','y');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('att_maxsize','1024000');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('att_type','rar,zip,gif,jpg,jpeg,png,txt,pdf,docx,doc,xls,xlsx,mp4,mp3');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('att_imgmaxw','600');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('att_imgmaxh','370');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_paging','y');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_pnum','10');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('comment_order','newer');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('iscomment','y');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('ischkcomment','y');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isurlrewrite','0');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isalias','n');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('isalias_html','n');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('timezone','Asia/Shanghai');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('active_plugins','$def_plugin');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widget_title','$widget_title');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('custom_widget','a:0:{}');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('widgets1','$def_widgets');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('detect_url','y');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('emkey','');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('login_code','n');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('email_code','n');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('is_signup','y');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('ischkarticle','y');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('smtp_mail','');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('smtp_pw','');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('smtp_server','');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('smtp_port','');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('is_openapi','y');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('apikey','$apikey');
-INSERT INTO {$db_prefix}options (option_name, option_value) VALUES ('posts_per_day',10);
+INSERT INTO {$db_prefix}options (option_name, option_value) VALUES 
+('blogname','EMLOG'), 
+('bloginfo','使用emlog搭建的站点'), 
+('site_title',''), 
+('site_description',''), 
+('site_key','emlog'), 
+('log_title_style','0'), 
+('blogurl','" . BLOG_URL . "'), 
+('icp',''), 
+('footer_info','powered by <a href=\"https://www.emlog.net\">emlog pro</a>'), 
+('admin_perpage_num','15'), 
+('rss_output_num','10'), 
+('rss_output_fulltext','y'), 
+('index_lognum','10'), 
+('index_comnum','10'), 
+('index_newlognum','5'), 
+('index_hotlognum','5'), 
+('comment_subnum','20'), 
+('nonce_templet','default'), 
+('admin_style','default'), 
+('tpl_sidenum','1'), 
+('comment_code','n'), 
+('comment_needchinese','y'), 
+('comment_interval',60), 
+('isgravatar','y'), 
+('isthumbnail','y'), 
+('att_maxsize','1024000'), 
+('att_type','rar,zip,gif,jpg,jpeg,png,txt,pdf,docx,doc,xls,xlsx,mp4,mp3'), 
+('att_imgmaxw','600'), 
+('att_imgmaxh','370'), 
+('comment_paging','y'), 
+('comment_pnum','10'), 
+('comment_order','newer'), 
+('iscomment','y'), 
+('ischkcomment','y'), 
+('isurlrewrite','0'), 
+('isalias','n'), 
+('isalias_html','n'), 
+('timezone','Asia/Shanghai'), 
+('active_plugins','$def_plugin'), 
+('widget_title','$widget_title'), 
+('custom_widget','a:0:{}'), 
+('widgets1','$def_widgets'), 
+('detect_url','y'), 
+('emkey',''), 
+('login_code','n'), 
+('email_code','n'), 
+('is_signup','y'), 
+('ischkarticle','y'), 
+('smtp_mail',''), 
+('smtp_pw',''), 
+('smtp_server',''), 
+('smtp_port',''),
+('is_openapi','y'),
+('apikey','$apikey'),
+('posts_per_day',10),
+('accept_app_recs','y');
 DROP TABLE IF EXISTS {$db_prefix}link;
 CREATE TABLE {$db_prefix}link (
   id int(11) unsigned NOT NULL auto_increment COMMENT '链接表',
