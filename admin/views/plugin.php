@@ -57,7 +57,7 @@
                         $plug_state = 'inactive';
                         $plug_action = 'active';
                         $plug_state_des = '点击开启插件';
-                        if (in_array($key, $active_plugins)) {
+                        if ($val['active']) {
                             $plug_state = 'active';
                             $plug_action = 'inactive';
                             $plug_state_des = '点击禁用插件';

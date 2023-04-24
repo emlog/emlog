@@ -85,7 +85,7 @@
                 <label>评论分页</label>
             </div>
             <div class="form-group form-inline">
-                每页显示评论条数：<input maxlength="5" style="width:80px;" class="form-control" value="<?= $comment_pnum ?>" name="comment_pnum" type="number"/>
+                每页显示评论条数：<input maxlength="5" style="width:80px;" class="form-control" value="<?= $comment_pnum ?>" name="comment_pnum" type="number" min="0"/>
             </div>
             <div class="form-group form-inline">
                 评论排序方式：<select name="comment_order" class="form-control" style="width: 120px;">
@@ -94,7 +94,7 @@
                 </select>
             </div>
             <div class="form-group form-inline">
-                发表评论间隔（秒）： <input class="form-control mx-sm-3" value="<?= $comment_interval ?>" name="comment_interval" style="width:80px;" type="number"/>
+                发表评论间隔（秒）： <input class="form-control mx-sm-3" value="<?= $comment_interval ?>" name="comment_interval" style="width:80px;" type="number" min="0"/>
             </div>
 
             <hr>
@@ -102,11 +102,11 @@
             <h4>文章设置</h4>
             <div class="form-group form-inline">
                 <label>每页显示文章数量</label>
-                <input class="form-control mx-sm-3" style="width:80px;" value="<?= $index_lognum ?>" name="index_lognum" type="number"/>
+                <input class="form-control mx-sm-3" style="width:80px;" value="<?= $index_lognum ?>" name="index_lognum" type="number" min="0"/>
             </div>
 
             <div class="form-group form-inline">
-                RSS输出 <input maxlength="5" style="width:80px;" value="<?= $rss_output_num ?>" type="number" class="form-control" name="rss_output_num"/> 篇文章（0为关闭），且输出
+                RSS输出 <input maxlength="5" style="width:80px;" value="<?= $rss_output_num ?>" type="number" min="0" class="form-control" name="rss_output_num"/> 篇文章（0为关闭），且输出
                 <select name="rss_output_fulltext" class="form-control">
                     <option value="y" <?= $ex1 ?>>全文</option>
                     <option value="n" <?= $ex2 ?>>摘要</option>
@@ -135,7 +135,7 @@
             <h4>其他设置</h4>
             <div class="form-group form-inline">
                 <label>后台每页展示条目数量</label>
-                <input class="form-control mx-sm-3" style="width:80px;" value="<?= $admin_perpage_num ?>" name="admin_perpage_num" type="number"/> （影响后台文章、评论、用户列表）
+                <input class="form-control mx-sm-3" style="width:80px;" value="<?= $admin_perpage_num ?>" name="admin_perpage_num" type="number" min="0"/> （影响后台文章、评论、用户列表）
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="accept_app_recs" id="accept_app_recs" <?= $conf_accept_app_recs ?> />
