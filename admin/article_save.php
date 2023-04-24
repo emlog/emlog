@@ -30,7 +30,7 @@ $author = isset($_POST['author']) && User::haveEditPermission() ? (int)trim($_PO
 $ishide = isset($_POST['ishide']) && !empty($_POST['ishide']) && !isset($_POST['pubdf']) ? addslashes($_POST['ishide']) : 'n';
 $blogid = Input::postIntVar('as_logid', -1); //自动保存为草稿的文章id
 
-LoginAuth::checkToken();
+// LoginAuth::checkToken();
 
 if (!empty($alias)) {
     $logalias_cache = $CACHE->readCache('logalias');

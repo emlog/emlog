@@ -97,7 +97,6 @@
                 </div>
             </div>
             <div id="post_button">
-                <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
                 <input type="hidden" name="ishide" id="ishide" value="<?= $hide ?>"/>
                 <input type="hidden" name="as_logid" id="as_logid" value="<?= $logid ?>">
                 <input type="hidden" name="gid" value=<?= $logid ?>/>
