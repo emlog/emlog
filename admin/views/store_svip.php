@@ -28,14 +28,10 @@
                         </a>
                         <div class="card-body">
                             <p class="card-text font-weight-bold"><?= $v['name'] ?></p>
-                            <p class="card-text text-muted">
-                                <?= $v['info'] ?><br><br>
-                                售价：<?= $v['price'] > 0 ? '<span class="text-danger">' . $v['price'] . '元</span>' : '<span class="text-success">免费</span>' ?><br>
-                                <small>
-                                    开发者：<?= $v['author'] ?><br>
-                                    版本号：<?= $v['ver'] ?><br>
-                                    更新时间：<?= $v['update_time'] ?><br>
-                                </small>
+                            <p class="card-text text-muted small">
+                                开发者：<?= $v['author'] ?><br>
+                                版本号：<?= $v['ver'] ?><br>
+                                更新时间：<?= $v['update_time'] ?><br>
                             </p>
                             <div class="card-text d-flex justify-content-between">
                                 <div class="installMsg"></div>

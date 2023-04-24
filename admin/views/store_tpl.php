@@ -46,9 +46,10 @@
                                 <?php if ($v['top'] === 1): ?>
                                     <span class="badge badge-success p-1">今日推荐</span>
                                 <?php endif; ?>
-                                <a class="text-secondary" href="<?= $v['buy_url'] ?>" target="_blank"><?= subString($v['name'], 0, 25) ?></a>
+                                <a class="text-secondary" href="<?= $v['buy_url'] ?>" target="_blank"><?= subString($v['name'], 0, 22) ?></a>
                             </p>
                             <p class="card-text text-muted">
+                                <small><?= subString($v['info'], 0, 56) ?></small><br><br>
                                 售价：<?= $v['price'] > 0 ? '<span class="text-danger">' . $v['price'] . '元</span>' : '<span class="text-success">免费</span>' ?><br>
                                 <small>
                                     开发者：<?= $v['author'] ?> <a href="./store.php?author_id=<?= $v['author_id'] ?>">仅看Ta的作品</a><br>
