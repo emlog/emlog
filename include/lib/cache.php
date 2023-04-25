@@ -78,8 +78,8 @@ class Cache {
     public function cacheWrite($cacheData, $cacheName) {
         $cachefile = EMLOG_ROOT . '/content/cache/' . $cacheName . '.php';
         $cacheData = "<?php exit;//" . $cacheData;
-        @ $fp = fopen($cachefile, 'wb') or emMsg('读取缓存失败');
-        @ fwrite($fp, $cacheData) or emMsg('写入缓存失败，缓存目录 (content/cache) 不可写');
+        @ $fp = fopen($cachefile, 'wb') or emMsg('写入缓存失败，可能是缓存目录(content/cache)不可写');
+        @ fwrite($fp, $cacheData) or emMsg('写入缓存失败，缓存目录(content/cache)不可写');
         $this->{$cacheName . '_cache'} = null;
         fclose($fp);
     }
