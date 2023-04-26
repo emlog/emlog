@@ -374,10 +374,7 @@ function blog_author($uid) {
     $User_Model = new User_Model();
     $user_info = $User_Model->getOneUser($uid);
     $author = $user_info['nickname'];
-    $mail = $user_info['email'];
-    $des = $user_info['description'];
-    $title = !empty($mail) || !empty($des) ? "title=\"$des $mail\"" : '';
-    echo '<a href="' . Url::author($uid) . "\" $title>$author</a>";
+    echo '<a href="' . Url::author($uid) . "\">$author</a>";
 }
 
 ?>
