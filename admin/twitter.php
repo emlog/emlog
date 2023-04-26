@@ -39,8 +39,6 @@ if (empty($action)) {
 if ($action == 'post') {
     $t = Input::postStrVar('t');
 
-    LoginAuth::checkToken();
-
     if (!$t) {
         emDirect("twitter.php?error_a=1");
     }

@@ -15,7 +15,6 @@
     <div class="form-group">
         <textarea class="form-control" id="t" name="t" rows="4" placeholder="" autofocus required></textarea>
     </div>
-    <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
     <button type="submit" class="btn btn-sm btn-success">保存笔记</button>
 </form>
 <div class="card-columns mt-5">

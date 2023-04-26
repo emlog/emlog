@@ -30,7 +30,6 @@
             </div>
 
             <div id="post_button">
-                <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
                 <input type="hidden" name="ishide" id="ishide" value="<?= $hide ?>"/>
                 <input type="hidden" name="pageid" value="<?= $pageId ?>"/>
                 <?php if ($pageId < 0): ?>

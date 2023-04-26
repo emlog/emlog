@@ -83,8 +83,6 @@ if ($action == 'save') {
     $template = isset($_POST['template']) && $_POST['template'] != 'page' ? addslashes(trim($_POST['template'])) : '';
     $allow_remark = isset($_POST['allow_remark']) ? addslashes(trim($_POST['allow_remark'])) : 'n';
 
-    LoginAuth::checkToken();
-
     $postTime = time();
 
     if (!empty($alias)) {

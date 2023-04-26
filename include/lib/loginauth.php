@@ -163,7 +163,7 @@ class LoginAuth {
     public static function checkToken() {
         $token = isset($_REQUEST['token']) ? addslashes($_REQUEST['token']) : '';
         if ($token !== self::genToken()) {
-            emMsg('权限不足 token error');
+            emMsg('安全Token校验失败，请尝试刷新页面或者更换浏览器重试');
         }
     }
 }
