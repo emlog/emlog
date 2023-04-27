@@ -16,6 +16,9 @@ $Sort_Model = new Sort_Model();
 $sorts = $CACHE->readCache('sort');
 
 if (empty($action)) {
+    $Template_Model = new Template_Model();
+    $customTemplates = $Template_Model->getCustomTemplates('sort');
+
     include View::getAdmView('header');
     require_once View::getAdmView('sort');
     include View::getAdmView('footer');
@@ -75,11 +78,14 @@ if ($action == 'add') {
 if ($action == 'mod_sort') {
     $sid = isset($_GET['sid']) ? (int)$_GET['sid'] : '';
 
+    $Template_Model = new Template_Model();
+    $customTemplates = $Template_Model->getCustomTemplates('sort');
+
     $sortData = $Sort_Model->getOneSortById($sid);
     extract($sortData);
 
     include View::getAdmView('header');
-    require_once(View::getAdmView('sortedit'));
+    require_once(View::getAdmView('sort_edit'));
     include View::getAdmView('footer');
     View::output();
 }

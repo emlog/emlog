@@ -11,8 +11,8 @@
     <div class="alert alert-success">删除模板成功</div><?php endif ?>
 <?php if (isset($_GET['error_f'])): ?>
     <div class="alert alert-danger">删除失败，请检查模板文件权限</div><?php endif ?>
-<?php if (!$nonce_templet_data): ?>
-    <div class="alert alert-danger">当前使用的模板(<?= $nonce_templet ?>)已被删除或损坏，请选择其他模板。</div><?php endif ?>
+<?php if (!$nonce_template_data): ?>
+    <div class="alert alert-danger">当前使用的模板(<?= $nonce_template ?>)已被删除或损坏，请选择其他模板。</div><?php endif ?>
 <?php if (isset($_GET['error_a'])): ?>
     <div class="alert alert-danger">只支持zip压缩格式的模板包</div><?php endif ?>
 <?php if (isset($_GET['error_b'])): ?>
@@ -35,16 +35,16 @@
     <a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> 安装模板</a>
 </div>
 <div class="row app-list">
-    <?php foreach ($tpls as $key => $value): ?>
+    <?php foreach ($templates as $key => $value): ?>
         <div class="col-md-4">
             <div class="card mb-4 shadow-sm" data-app-alias="<?= $value['tplfile'] ?>" data-app-version="<?= $value['version'] ?>">
-                <div class="card-header <?php if ($nonce_templet == $value['tplfile']) {
+                <div class="card-header <?php if ($nonce_template == $value['tplfile']) {
                     echo "bg-success text-white font-weight-bold";
                 } ?>">
                     <?= $value['tplname'] ?>
                 </div>
                 <div class="card-body">
-                    <a href="template.php?action=usetpl&tpl=<?= $value['tplfile'] ?>&token=<?= LoginAuth::genToken() ?>">
+                    <a href="template.php?action=use&tpl=<?= $value['tplfile'] ?>&token=<?= LoginAuth::genToken() ?>">
                         <img class="card-img-top" src="<?= TPLS_URL . $value['tplfile'] ?>/preview.jpg" alt="Card image cap">
                     </a>
                 </div>

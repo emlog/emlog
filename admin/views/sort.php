@@ -136,13 +136,23 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="template">模板名</label>
-                        <input class="form-control" id="template" name="template">
-                        <small class="form-text text-muted">(用于自定义分类页面模板，对应模板目录下xxx.php文件，xxx即为模板名，可不填)</small>
-                    </div>
-                    <div class="form-group">
                         <label for="alias">分类描述</label>
                         <textarea name="description" type="text" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="template">分类模板</label>
+                        <?php if ($customTemplates):
+                            $sortListHtml = '<option value="">默认</option>';
+                            foreach ($customTemplates as $v) {
+                                $sortListHtml .= '<option value="' . str_replace('.php', '', $v['filename']) . '">' . ($v['comment']) . '</option>';
+                            }
+                            ?>
+                            <select id="template" name="template" class="form-control"><?= $sortListHtml; ?></select>
+                            <small class="form-text text-muted">(选择当前模板支持的分类模板，可不选)</small>
+                        <?php else: ?>
+                            <input class="form-control" id="template" name="template">
+                            <small class="form-text text-muted">(用于自定义分类页面模板，对应模板目录下xxx.php文件，xxx即为模板名，可不填)</small>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <div class="modal-footer">

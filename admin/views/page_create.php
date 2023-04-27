@@ -22,7 +22,19 @@
             </div>
             <div class="form-group">
                 <label>页面模板：</label>
-                <input name="template" id="template" class="form-control" value="<?= $template ?>"/>
+                <?php if ($customTemplates):
+                    $sortListHtml = '<option value="">默认</option>';
+                    foreach ($customTemplates as $v) {
+                        $select = $v['filename'] == $template ? 'selected="selected"' : '';
+                        $sortListHtml .= '<option value="' . str_replace('.php', '', $v['filename']) . '" ' . $select . '>' . ($v['comment']) . '</option>';
+                    }
+                    ?>
+                    <select id="template" name="template" class="form-control"><?= $sortListHtml; ?></select>
+                    <small class="form-text text-muted">(选择当前模板支持的页面模板，<可不></可不>选)</small>
+                <?php else: ?>
+                    <input class="form-control" id="template" name="template" value="<?= $template ?>">
+                    <small class="form-text text-muted">(用于自定义页面模板，对应模板目录下xxx.php文件，xxx即为模板名，可不填)</small>
+                <?php endif; ?>
             </div>
             <div class="form-group">
                 <input type="checkbox" value="y" name="allow_remark" id="allow_remark" <?= $is_allow_remark ?> />

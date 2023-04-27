@@ -21,6 +21,10 @@
         <small class="form-text text-muted">用于URL的友好显示，可不填</small>
     </div>
     <div class="form-group">
+        <label for="description">分类描述</label>
+        <textarea name="description" type="text" class="form-control"><?= $description ?></textarea>
+    </div>
+    <div class="form-group">
         <label>父分类</label>
         <select name="pid" id="pid" class="form-control">
             <option value="0" <?php if ($pid == 0): ?> selected="selected"<?php endif ?>>无</option>
@@ -33,13 +37,20 @@
         </select>
     </div>
     <div class="form-group">
-        <label for="template">模板</label>
-        <input class="form-control" name="template" id="template" value="<?= $template ?>">
-        <small class="form-text text-muted">(用于自定义分类页面模板，对应模板目录下.php文件，默认：log_list.php，可不填)</small>
-    </div>
-    <div class="form-group">
-        <label for="description">分类描述</label>
-        <textarea name="description" type="text" class="form-control"><?= $description ?></textarea>
+        <label for="template">分类模板</label>
+        <?php if ($customTemplates):
+            $sortListHtml = '<option value="">默认</option>';
+            foreach ($customTemplates as $v) {
+                $select = $v['filename'] == $template ? 'selected="selected"' : '';
+                $sortListHtml .= '<option value="' . str_replace('.php', '', $v['filename']) . '" ' . $select . '>' . ($v['comment']) . '</option>';
+            }
+            ?>
+            <select id="template" name="template" class="form-control"><?= $sortListHtml; ?></select>
+            <small class="form-text text-muted">(选择当前模板支持的分类模板，可不选)</small>
+        <?php else: ?>
+            <input class="form-control" id="template" name="template" value="<?= $template ?>">
+            <small class="form-text text-muted">(用于自定义分类页面模板，对应模板目录下xxx.php文件，xxx即为模板名，可不填)</small>
+        <?php endif; ?>
     </div>
     <input type="hidden" value="<?= $sid ?>" name="sid"/>
     <input type="submit" value="保存" class="btn btn-sm btn-success" id="save"/>

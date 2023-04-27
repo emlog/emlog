@@ -45,6 +45,9 @@ if ($action == 'new') {
     $MediaSort_Model = new MediaSort_Model();
     $mediaSorts = $MediaSort_Model->getSorts();
 
+    $Template_Model = new Template_Model();
+    $customTemplates = $Template_Model->getCustomTemplates('page');
+
     include View::getAdmView('header');
     require_once(View::getAdmView('page_create'));
     include View::getAdmView('footer');
@@ -53,6 +56,9 @@ if ($action == 'new') {
 
 if ($action == 'mod') {
     $emPage = new Log_Model();
+
+    $Template_Model = new Template_Model();
+    $customTemplates = $Template_Model->getCustomTemplates('page');
 
     $containertitle = '编辑页面';
     $pageId = isset($_GET['id']) ? (int)$_GET['id'] : '';
