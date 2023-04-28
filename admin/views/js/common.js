@@ -212,29 +212,14 @@ function insert_cover(imgsrc) {
 
 // act 1：auto save 2：save
 function autosave(act) {
-    var nodeid = "as_logid";
-    var timeout = 60000;
-    var url = "article_save.php?action=autosave";
-    var title = $.trim($("#title").val());
-    var cover = $.trim($("#cover").val());
-    var alias = $.trim($("#alias").val());
-    var link = $.trim($("#link").val());
-    var sort = $.trim($("#sort").val());
-    var postdate = $.trim($("#postdate").val());
-    var date = $.trim($("#date").val());
-    var logid = $("#as_logid").val();
-    var author = $("#author").val();
-    var content = Editor.getMarkdown();
-    var excerpt = Editor_summary.getMarkdown();
-    var tag = $.trim($("#tag").val());
-    var top = $("#top").is(":checked") ? 'y' : 'n';
-    var sortop = $("#sortop").is(":checked") ? 'y' : 'n';
-    var allow_remark = $("#allow_remark").is(":checked") ? 'y' : 'n';
-    var password = $.trim($("#password").val());
-    var ishide = $.trim($("#ishide").val());
-    var token = $.trim($("#token").val());
-    var ishide = ishide == "" ? "y" : ishide;
-    var querystr = "logcontent=" + encodeURIComponent(content) + "&logexcerpt=" + encodeURIComponent(excerpt) + "&title=" + encodeURIComponent(title) + "&cover=" + encodeURIComponent(cover) + "&alias=" + encodeURIComponent(alias) + "&link=" + encodeURIComponent(link) + "&author=" + author + "&sort=" + sort + "&postdate=" + postdate + "&date=" + date + "&tag=" + encodeURIComponent(tag) + "&top=" + top + "&sortop=" + sortop + "&allow_remark=" + allow_remark + "&password=" + password + "&token=" + token + "&ishide=" + ishide + "&as_logid=" + logid;
+    const nodeid = "as_logid";
+    const timeout = 60000;
+    const url = "article_save.php?action=autosave";
+    const alias = $.trim($("#alias").val());
+    const content = Editor.getMarkdown();
+    let ishide = $.trim($("#ishide").val());
+
+    ishide = ishide == "" ? "y" : ishide;
 
     if (alias != '' && 0 != isalias(alias)) {
         $("#msg").show().html("链接别名错误，自动保存失败");
@@ -257,32 +242,31 @@ function autosave(act) {
         alert("请勿频繁操作！");
         return;
     }
-    var btname = $("#savedf").val();
+    const btname = $("#savedf").val();
     $("#savedf").val("正在保存中...");
     $('title').text('[保存中] ' + titleText);
     $("#savedf").attr("disabled", "disabled");
-    $.post(url, querystr, function (data) {
+    $.post(url, $("#addlog").serialize(), function (data) {
         data = $.trim(data);
         var isresponse = /.*autosave\_gid\:\d+\_.*/;
         if (isresponse.test(data)) {
-            var getvar = data.match(/\_gid\:([\d]+)\_/);
-            var logid = getvar[1];
-            var d = new Date();
-            var h = d.getHours();
-            var m = d.getMinutes();
-            var s = d.getSeconds();
-            var tm = (h < 10 ? "0" + h : h) + ":" + (m < 10 ? "0" + m : m) + ":" + (s < 10 ? "0" + s : s);
+            const getvar = data.match(/_gid:([\d]+)_/);
+            const logid = getvar[1];
+            const d = new Date();
+            const h = d.getHours();
+            const m = d.getMinutes();
+            const s = d.getSeconds();
+            const tm = (h < 10 ? "0" + h : h) + ":" + (m < 10 ? "0" + m : m) + ":" + (s < 10 ? "0" + s : s);
             $("#save_info").html("保存于：" + tm);
             $('title').text('[保存成功] ' + titleText);
-            articleTextRecord = $("textarea[name=logcontent]").text();  // 保存成功后，将原文本记录值替换为现在的文本
-            Cookies.set('em_saveLastTime', new Date().getTime());  // 把保存成功时间戳记录（或更新）到 cookie 中
+            articleTextRecord = $("#myform textarea[name=logcontent]").val(); // 保存成功后，将原文本记录值替换为现在的文本
+            Cookies.set('em_saveLastTime', new Date().getTime()); // 把保存成功时间戳记录（或更新）到 cookie 中
             $("#" + nodeid).val(logid);
             $("#savedf").attr("disabled", false).val(btname);
         } else {
             $("#savedf").attr("disabled", false).val(btname);
             $("#save_info").html("保存失败，可能系统出现异常或者达到每日发文限额").addClass("alert-danger");
             $('title').text('[保存失败] ' + titleText);
-            alert("保存失败，可能系统出现异常或者达到每日发文限额");
         }
     });
     if (act == 1) {
