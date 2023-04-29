@@ -311,7 +311,7 @@ class Api_Controller {
         $sign = md5($this->authReqTime . $apikey);
 
         if ($sign !== $this->authReqSign) {
-            // Output::authError('sign error');
+            Output::authError('sign error');
         }
     }
 

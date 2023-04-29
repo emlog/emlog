@@ -33,7 +33,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion sd-hidden" id="accordionSidebar">
         <li class="nav-item active emlog_title" id="menu_home">
             <?php if (User::isAdmin()): ?>
-                <a class="nav-link" href="./">EMLOG PRO</a>
+                <a class="nav-link" href="./">EMLOG PRO <?php if (!Register::isRegLocal()) : ?><small>未注册</small><?php endif ?></a>
             <?php else: ?>
                 <a class="nav-link" href="./">用户中心</a>
             <?php endif ?>
