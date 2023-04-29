@@ -77,7 +77,7 @@
                 </div>
                 <div class="form-group">
                     <label>发布时间：<small class="text-muted">（当设置未来的时间点时，文章将在该时间点后定时发布）</small></label>
-                    <input maxlength="200" name="postdate" id="postdate" value="<?= $postDate ?>" class="form-control"/>
+                    <input type="datetime-local" id="postdate" name="postdate" value="<?= $postDate ?>" class="form-control postdate"/>
                 </div>
                 <div class="form-group">
                     <label>链接别名：<small class="text-muted">（用于seo设置 <a href="./setting.php?action=seo">&rarr;</a>）</small></label>
