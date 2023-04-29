@@ -212,7 +212,7 @@ body {
 .blog-header {
 	margin-bottom: 2.3rem;
 	background-color: var(--conBgcolor);
-	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1) /* 阴影 */
+	box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.02)
 }
 .blog-header-c {
 	height: 71.63px;
@@ -330,7 +330,7 @@ body {
 	border-radius: 4px;
 	top: -3000px;
 	margin-bottom: -34px;
-	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1)
+	box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.02)
 }
 .dropdown-menus .list-menu{
 	padding: 6px
@@ -474,10 +474,6 @@ body {
 #calendar {
 	color: #212529
 }
-#calendar a {
-	color: #000;
-	font-weight: bolder
-}
 .calendartop {
 	letter-spacing: 3px;
 	width: 100%;
@@ -498,8 +494,9 @@ body {
 	line-height: 1.6
 }
 .calendar td a:link {
-	color: #886353;
-	text-decoration: none
+	color: #000;
+	font-weight: bolder;    
+	text-decoration: underline
 }
 .calendar td a:hover {
 	color: #886353;
@@ -1189,6 +1186,16 @@ img.zoom-img {
 	width: 300px;
 	position: absolute;
 	top: 200px
+}
+.toc-con .close-toc {
+	color: #dcdcdd;
+    left: 0px;
+    position: absolute;
+	padding-top: 5px;
+}
+.toc-con ul{
+	margin: 0;
+	padding: 0
 }
 .toc-con li{
 	font-size: 14px;
