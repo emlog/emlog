@@ -120,6 +120,9 @@ class Option {
         $options_cache = $CACHE->readCache('options');
         $options_cache['site_title'] = $options_cache['site_title'] ?: $options_cache['blogname'];
         $options_cache['site_description'] = $options_cache['site_description'] ?: $options_cache['bloginfo'];
+        if (empty($options_cache['emkey'])) {
+            $options_cache['site_title'] = '&#x672A;&#x6CE8;&#x518C;&#x7684;&#x7248;&#x672C; ' . $options_cache['site_title'];
+        }
         return $options_cache;
     }
 

@@ -62,8 +62,8 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>标签：<small class="text-muted">(也用于文章页关键词)</small></label>
-                    <input name="tag" id="tag" class="form-control" value="<?= $tagStr ?>" placeholder="多个使用逗号分隔"/>
+                    <label>标签：<small class="text-muted">(也用于文章页关键词， 多个用英文逗号分隔)</small></label>
+                    <input name="tag" id="tag" class="form-control" value="<?= $tagStr ?>"/>
                     <?php if ($tags): ?>
                         <span class="small"><a href="javascript:doToggle('tags', 1);">近期使用的+</a></span>
                         <div id="tags" style="display: none">

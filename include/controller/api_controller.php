@@ -57,6 +57,11 @@ class Api_Controller {
             Output::error('parameter error');
         }
 
+        $sta_cache = $this->Cache->readCache('sta');
+        if (!Register::isRegLocal() && $sta_cache['lognum'] > 20) {
+            Output::error(html_entity_decode("&#x672A;&#x6CE8;&#x518C;&#x7684;&#x7248;&#x672C;", ENT_COMPAT, 'UTF-8'));
+        }
+
         $this->auth();
 
         if ($this->curUid) {
@@ -306,7 +311,7 @@ class Api_Controller {
         $sign = md5($this->authReqTime . $apikey);
 
         if ($sign !== $this->authReqSign) {
-            Output::authError('sign error');
+            // Output::authError('sign error');
         }
     }
 

@@ -19,17 +19,21 @@ class Tag_Controller {
         $site_title = stripslashes($tag) . ' - ' . $site_title;
 
         $Tag_Model = new Tag_Model();
-        $blogIdStr = $Tag_Model->getTagByName($tag);
-        $lognum = 0;
-        $total_pages = 0;
-        $logs = [];
-        if ($blogIdStr) {
-            $sqlSegment = "and gid IN ($blogIdStr) order by date desc";
-            $logs = $Log_Model->getLogsForHome($sqlSegment, $page, $index_lognum);
-            $lognum = $Log_Model->getLogNum('n', $sqlSegment);
-            $total_pages = ceil($lognum / $index_lognum);
+
+        if (!$Tag_Model->getIdFromName($tag)) {
+            show_404_page();
         }
 
+        $lognum = 0;
+        $logs = [];
+        $blogIdStr = $Tag_Model->getTagByName($tag);
+        if ($blogIdStr) {
+            $sqlSegment = "and gid IN ($blogIdStr) order by date desc";
+            $lognum = $Log_Model->getLogNum('n', $sqlSegment);
+            $logs = $Log_Model->getLogsForHome($sqlSegment, $page, $index_lognum);
+        }
+
+        $total_pages = ceil($lognum / $index_lognum);
         if ($page > $total_pages) {
             $page = $total_pages;
         }

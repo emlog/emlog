@@ -224,6 +224,10 @@ if ($action === 'write') {
     $MediaSort_Model = new MediaSort_Model();
     $mediaSorts = $MediaSort_Model->getSorts();
 
+    if (!Register::isRegLocal() && $sta_cache['lognum'] > 20) {
+        emDirect("auth.php?error_article=1");
+    }
+
     include View::getAdmView('header');
     require_once View::getAdmView('article_write');
     include View::getAdmView('footer');
