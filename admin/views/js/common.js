@@ -218,8 +218,9 @@ function autosave(act) {
     const alias = $.trim($("#alias").val());
     const content = Editor.getMarkdown();
     let ishide = $.trim($("#ishide").val());
-
-    ishide = ishide == "" ? "y" : ishide;
+    if (ishide === "") {
+        $("#ishide").val("y")
+    }
 
     if (alias != '' && 0 != isalias(alias)) {
         $("#msg").show().html("链接别名错误，自动保存失败");
@@ -259,7 +260,7 @@ function autosave(act) {
             const tm = (h < 10 ? "0" + h : h) + ":" + (m < 10 ? "0" + m : m) + ":" + (s < 10 ? "0" + s : s);
             $("#save_info").html("保存于：" + tm);
             $('title').text('[保存成功] ' + titleText);
-            articleTextRecord = $("#myform textarea[name=logcontent]").val(); // 保存成功后，将原文本记录值替换为现在的文本
+            articleTextRecord = $("#addlog textarea[name=logcontent]").val(); // 保存成功后，将原文本记录值替换为现在的文本
             Cookies.set('em_saveLastTime', new Date().getTime()); // 把保存成功时间戳记录（或更新）到 cookie 中
             $("#" + nodeid).val(logid);
             $("#savedf").attr("disabled", false).val(btname);

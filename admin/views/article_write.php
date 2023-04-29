@@ -29,7 +29,7 @@
                     <div class="row mt-3">
                         <div class="col-md-4">
                             <label for="upload_img">
-                                <img src="<?= $cover ?: './views/images/cover.svg' ?>" width="200" id="cover_image" class="rounded" title="封面图片"/>
+                                <img src="<?= $cover ?: './views/images/cover.svg' ?>" width="200" id="cover_image" class="rounded" alt="封面图片"/>
                                 <input type="file" name="upload_img" class="image" id="upload_img" style="display:none"/>
                                 <button type="button" id="cover_rm" class="btn-sm btn btn-link" <?php if (!$cover): ?>style="display:none"<?php endif ?>>x</button>
                             </label>
@@ -98,9 +98,9 @@
             </div>
             <div id="post_button">
                 <input type="hidden" name="ishide" id="ishide" value="<?= $hide ?>"/>
-                <input type="hidden" name="as_logid" id="as_logid" value="<?= $logid ?>">
-                <input type="hidden" name="gid" value=<?= $logid ?>/>
-                <input type="hidden" name="author" id="author" value=<?= $author ?>/>
+                <input type="hidden" name="as_logid" id="as_logid" value="<?= $logid ?>"/>
+                <input type="hidden" name="gid" value="<?= $logid ?>"/>
+                <input type="hidden" name="author" id="author" value="<?= $author ?>"/>
                 <?php if ($logid < 0): ?>
                     <input type="submit" value="发布文章" onclick="return checkform();" class="btn btn-sm btn-success"/>
                     <input type="button" name="savedf" id="savedf" value="保存草稿" onclick="autosave(2);" class="btn btn-sm btn-primary"/>
