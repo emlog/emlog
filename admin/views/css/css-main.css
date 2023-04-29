@@ -713,3 +713,8 @@ textarea {
 .editormd-fullscreen {
     z-index: 2;
 }
+
+/* Set the time setting button for "postdate" to the appropriate position */
+.postdate {
+    padding-right: calc(100% - 165px)
+}

@@ -219,7 +219,7 @@ if ($action === 'write') {
     $is_top = '';
     $is_sortop = '';
     $is_allow_remark = 'checked="checked"';
-    $postDate = date('Y-m-d H:i:s');
+    $postDate = date('Y-m-d H:i');
 
     $MediaSort_Model = new MediaSort_Model();
     $mediaSorts = $MediaSort_Model->getSorts();
@@ -241,7 +241,7 @@ if ($action === 'edit') {
 
     $isdraft = $hide == 'y' ? true : false;
     $containertitle = $isdraft ? '编辑草稿' : '编辑文章';
-    $postDate = date('Y-m-d H:i:s', $date);
+    $postDate = date('Y-m-d H:i', $date);
     $sorts = $CACHE->readCache('sort');
 
     //tag
