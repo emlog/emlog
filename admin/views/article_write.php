@@ -350,4 +350,10 @@
     } else {
         $(".icofont-simple-right").attr("class", "icofont-simple-down")
     }
+
+    // auto full Sort by Cookies
+    autoFullSort();
+    $("#sort").change(function () {
+        autoFullSort(true);
+    })
 </script>

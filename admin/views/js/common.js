@@ -575,10 +575,4 @@ $(document).ready(function () {
             link.prev(".installMsg").html('<span class="text-danger">' + data + '</span>').removeClass("spinner-border text-primary");
         });
     });
-
-    // auto full Sort by Cookies
-    autoFullSort();
-    $("#sort").change(function () {
-        autoFullSort(true);
-    })
 })
