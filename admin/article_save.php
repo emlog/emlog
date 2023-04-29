@@ -80,12 +80,11 @@ switch ($action) {
         break;
     case 'add':
     case 'edit':
-        $tbmsg = '';
-        if ($ishide == 'y') {
-            emDirect("./article.php?pid=draft&active_savedraft=1");
+        if ($ishide === 'y') {
+            emDirect("./article.php?draft=1&active_savedraft=1"); //草稿保存成功
         }
-        if ($action == 'add' || isset($_POST['pubdf'])) {
-            if ($checked == 'n') {
+        if ($action === 'add' || isset($_POST['pubdf'])) {
+            if ($checked === 'n') {
                 notice::sendNewPostMail($title);
             }
             emDirect("./article.php?active_post=1");//文章发布成功
