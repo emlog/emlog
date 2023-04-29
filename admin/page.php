@@ -17,7 +17,8 @@ if (empty($action)) {
 
     $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
-    $pages = $emPage->getLogsForAdmin('', '', $page, 'page');
+    $sqlSegment = ' ORDER BY date DESC';
+    $pages = $emPage->getLogsForAdmin($sqlSegment, '', $page, 'page');
     $pageNum = $emPage->getLogNum('', '', 'page', 1);
 
     $pageurl = pagination($pageNum, Option::get('admin_perpage_num'), $page, "./page.php?page=");
