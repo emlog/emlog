@@ -17,8 +17,6 @@ class Record_Controller {
 
         $GLOBALS['record'] = $record;//for sidebar calendar
 
-        $pageurl = '';
-
         //page meta
         $site_title = $record . ' - ' . $site_title;
 
@@ -39,10 +37,8 @@ class Record_Controller {
         }
         $start_limit = ($page - 1) * $index_lognum;
 
-        $pageurl .= Url::record($record, 'page');
-
         $logs = $Log_Model->getLogsForHome($sqlSegment, $page, $index_lognum);
-        $page_url = pagination($lognum, $index_lognum, $page, $pageurl);
+        $page_url = pagination($lognum, $index_lognum, $page, Url::record($record, 'page'));
 
         include View::getView('header');
         include View::getView('log_list');
