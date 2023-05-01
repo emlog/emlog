@@ -224,7 +224,7 @@ if ($action === 'write') {
     $MediaSort_Model = new MediaSort_Model();
     $mediaSorts = $MediaSort_Model->getSorts();
 
-    if (!Register::isRegLocal() && $sta_cache['lognum'] > 20) {
+    if (!Register::isRegLocal() && $sta_cache['lognum'] > 50) {
         emDirect("auth.php?error_article=1");
     }
 
