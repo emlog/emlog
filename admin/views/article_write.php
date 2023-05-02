@@ -99,7 +99,7 @@
             <div id="post_button">
                 <input type="hidden" name="ishide" id="ishide" value="<?= $hide ?>"/>
                 <input type="hidden" name="as_logid" id="as_logid" value="<?= $logid ?>"/>
-                <input type="hidden" name="gid" value="<?= $logid ?>"/>
+                <input type="hidden" name="gid" id="gid" value="<?= $logid ?>"/>
                 <input type="hidden" name="author" id="author" value="<?= $author ?>"/>
                 <?php if ($logid < 0): ?>
                     <input type="submit" name="pubPost" id="pubPost" value="发布文章" onclick="return checkform();" class="btn btn-sm btn-success"/>
@@ -349,5 +349,13 @@
         $(".icofont-simple-down").attr("class", "icofont-simple-right")
     } else {
         $(".icofont-simple-right").attr("class", "icofont-simple-down")
+    }
+
+    // auto full Sort by Cookies
+    if ($('#gid').val() <= 0) {
+        autoFullSort();
+        $("#sort").change(function () {
+            autoFullSort(true);
+        })
     }
 </script>
