@@ -38,18 +38,14 @@ class Comment_Controller {
         $err = '';
         if ($Comment_Model->isLogCanComment($blogId) === false) {
             $err = '该文章未开启评论';
-        } elseif ($Comment_Model->isCommentExist($blogId, $name, $content) === true) {
-            $err = '已存在相同内容评论';
         } elseif (User::isVistor() && $Comment_Model->isCommentTooFast() === true) {
             $err = '评论发布太频繁了，休息下吧';
         } elseif (empty($name)) {
-            $err = '请填写姓名';
+            $err = '请填写昵称';
         } elseif (strlen($name) > 20) {
-            $err = '姓名不符合规范';
+            $err = '昵称太长了';
         } elseif ($mail !== '' && !checkMail($mail)) {
-            $err = '邮件地址不符合规范';
-        } elseif (!empty($url) && preg_match("/^(http|https)\:\/\/[^<>'\"]*$/", $url) == false) {
-            $err = '主页地址不符合规范';
+            $err = '不是有效的邮箱';
         } elseif (empty($content)) {
             $err = '请填写评论内容';
         } elseif (strlen($content) > 60000) {

@@ -493,7 +493,7 @@ function blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allo
                                    tabindex="1" placeholder="昵称*" required/>
                             <input class="form-control com_control comment-mail" id="info_m" autocomplete="off" type="text" name="commail" maxlength="128"
                                    value="<?= $ckmail ?>" size="22"
-                                   tabindex="2" placeholder="邮件地址"/>
+                                   tabindex="2" placeholder="邮箱"/>
                             <input class="form-control com_control comment-url" id="info_u" autocomplete="off" type="text" name="comurl" maxlength="128"
                                    value="<?= $ckurl ?>" size="22"
                                    tabindex="3" placeholder="个人主页"/>
