@@ -27,8 +27,12 @@ $password = Input::postStrVar('password');
 $cover = Input::postStrVar('cover');
 $link = Input::postStrVar('link');
 $author = isset($_POST['author']) && User::haveEditPermission() ? (int)trim($_POST['author']) : UID;
-$ishide = isset($_POST['ishide']) && !empty($_POST['ishide']) && !isset($_POST['pubdf']) ? addslashes($_POST['ishide']) : 'n';
+$ishide = Input::postStrVar('ishide');
 $blogid = Input::postIntVar('as_logid', -1); //自动保存为草稿的文章id
+
+if (isset($_POST['pubPost'])) {
+    $ishide = 'n';
+}
 
 if (!empty($alias)) {
     $logalias_cache = $CACHE->readCache('logalias');
@@ -83,7 +87,7 @@ switch ($action) {
         if ($ishide === 'y') {
             emDirect("./article.php?draft=1&active_savedraft=1"); //草稿保存成功
         }
-        if ($action === 'add' || isset($_POST['pubdf'])) {
+        if ($action === 'add' || isset($_POST['pubPost'])) {
             if ($checked === 'n') {
                 notice::sendNewPostMail($title);
             }
