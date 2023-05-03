@@ -15,6 +15,8 @@ class Tag_Controller {
         $page = isset($params[4]) && $params[4] == 'page' ? abs((int)$params[5]) : 1;
         $tag = isset($params[1]) && $params[1] == 'tag' ? addslashes(urldecode(trim($params[2]))) : '';
 
+        $pageurl = '';
+
         //page meta
         $site_title = stripslashes($tag) . ' - ' . $site_title;
 
@@ -37,8 +39,8 @@ class Tag_Controller {
         if ($page > $total_pages) {
             $page = $total_pages;
         }
-
-        $page_url = pagination($lognum, $index_lognum, $page, Url::tag(urlencode($tag), 'page'));
+        $pageurl .= Url::tag(urlencode($tag), 'page');
+        $page_url = pagination($lognum, $index_lognum, $page, $pageurl);
 
         include View::getView('header');
         include View::getView('log_list');

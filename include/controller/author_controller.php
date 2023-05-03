@@ -18,6 +18,8 @@ class Author_Controller {
         $page = isset($params[4]) && $params[4] == 'page' ? abs((int)$params[5]) : 1;
         $author = isset($params[1]) && $params[1] == 'author' ? (int)$params[2] : '';
 
+        $pageurl = '';
+
         $user_info = $User_Model->getOneUser($author);
         if (empty($user_info)) {
             show_404_page();
@@ -36,10 +38,11 @@ class Author_Controller {
             $page = $total_pages;
         }
         $start_limit = ($page - 1) * $index_lognum;
+        $pageurl .= Url::author($author, 'page');
 
         $Log_Model = new Log_Model();
         $logs = $Log_Model->getLogsForHome($sqlSegment, $page, $index_lognum);
-        $page_url = pagination($lognum, $index_lognum, $page, Url::author($author, 'page'));
+        $page_url = pagination($lognum, $index_lognum, $page, $pageurl);
 
         include View::getView('header');
         include View::getView('log_list');

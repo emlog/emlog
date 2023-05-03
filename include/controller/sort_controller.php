@@ -31,6 +31,8 @@ class Sort_Controller {
             }
         }
 
+        $pageurl = '';
+
         $sort_cache = $CACHE->readCache('sort');
         if (!isset($sort_cache[$sortid])) {
             show_404_page();
@@ -54,9 +56,10 @@ class Sort_Controller {
         if ($page > $total_pages) {
             $page = $total_pages;
         }
+        $pageurl .= Url::sort($sortid, 'page');
 
         $logs = $Log_Model->getLogsForHome($sqlSegment, $page, $index_lognum);
-        $page_url = pagination($lognum, $index_lognum, $page, Url::sort($sortid, 'page'));
+        $page_url = pagination($lognum, $index_lognum, $page, $pageurl);
 
         $template = !empty($sort['template']) && file_exists(TEMPLATE_PATH . $sort['template'] . '.php') ? $sort['template'] : 'log_list';
 

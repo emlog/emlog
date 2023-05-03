@@ -16,15 +16,17 @@ class Log_Controller {
 
         $page = isset($params[1]) && $params[1] == 'page' ? abs((int)$params[2]) : 1;
 
+        $pageurl = '';
         $sqlSegment = 'ORDER BY top DESC ,date DESC';
         $sta_cache = $CACHE->readCache('sta');
         $lognum = $sta_cache['lognum'];
+        $pageurl .= Url::logPage();
         $total_pages = $lognum > 0 ? ceil($lognum / $index_lognum) : 1;
         if ($page > $total_pages) {
             show_404_page();
         }
         $logs = $Log_Model->getLogsForHome($sqlSegment, $page, $index_lognum);
-        $page_url = pagination($lognum, $index_lognum, $page, Url::logPage());
+        $page_url = pagination($lognum, $index_lognum, $page, $pageurl);
 
         include View::getView('header');
         include View::getView('log_list');
