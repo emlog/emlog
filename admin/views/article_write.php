@@ -77,7 +77,7 @@
                 </div>
                 <div class="form-group">
                     <label>发布时间：<small class="text-muted">（当设置未来的时间点时，文章将在该时间点后定时发布）</small></label>
-                    <input type="datetime-local" id="postdate" name="postdate" value="<?= $postDate ?>" class="form-control postdate"/>
+                    <input type="text" maxlength="200" name="postdate" id="postdate" value="<?= $postDate ?>" class="form-control"/>
                 </div>
                 <div class="form-group">
                     <label>链接别名：<small class="text-muted">（用于seo设置 <a href="./setting.php?action=seo">&rarr;</a>）</small></label>
@@ -349,13 +349,5 @@
         $(".icofont-simple-down").attr("class", "icofont-simple-right")
     } else {
         $(".icofont-simple-right").attr("class", "icofont-simple-down")
-    }
-
-    // auto full Sort by Cookies
-    if ($('#gid').val() <= 0) {
-        autoFullSort();
-        $("#sort").change(function () {
-            autoFullSort(true);
-        })
     }
 </script>

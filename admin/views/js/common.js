@@ -533,18 +533,6 @@ function loadTopAddons() {
     });
 }
 
-// When in article edit page, auto full Sort by Cookies
-function autoFullSort(changeCookie) {
-    if (!$("#sort")) return
-    if (changeCookie === true) {
-        Cookies.set('em_saveLastSortId', $("#sort").val());
-        return
-    }
-    if (Cookies.get('em_saveLastSortId')) {
-        $("#sort").find("option[value='" + Cookies.get('em_saveLastSortId') + "']").prop("selected", true);
-    }
-}
-
 $(document).ready(function () {
     // 网页加载完先检查一遍
     // 设置界面，如果设置“自动检测地址”，则设置 input 为只读，以表示该项是无效的
