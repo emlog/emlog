@@ -65,11 +65,11 @@
                             <?= $media_name ?> <span class="badge badge-primary"><?= $sort_name ?></span><br>
                             时间：<?= $value['addtime'] ?><br>
                             创建人：<?= $author ?><br>
-                            文件大小：<?= $value['attsize'] ?>，
+                            文件大小：<?= $value['attsize'] ?>
                             <?php if ($value['width'] && $value['height']): ?>
-                                图片尺寸：<?= $value['width'] ?>x<?= $value['height'] ?><br>
-                                原图地址：<span class="text-gray-400"><?= $media_url ?></span>
-                            <?php endif ?>
+                                ，图片尺寸：<?= $value['width'] ?>x<?= $value['height'] ?>
+                            <?php endif ?><br>
+                            原文件：<a href="#" class="copy-link text-gray-400" data-toggle="popover" data-url="<?= $media_url ?>"><?= $media_url ?></a>
                         </p>
                         <p class="card-text d-flex justify-content-between">
                             <a href="javascript: em_confirm(<?= $value['aid'] ?>, 'media', '<?= LoginAuth::genToken() ?>');" class="text-danger small">删除</a>
@@ -245,4 +245,17 @@
     } else {
         $('.highslide').removeAttr('onclick')  // 如果是移动端，则不使用 highslide 功能
     }
+    $(function () {
+        $('.copy-link').click(function (e) {
+            e.preventDefault();
+            var link = $(this).data('url');
+            navigator.clipboard.writeText(link);
+            $(this).popover({
+                content: '链接已复制',
+                placement: 'top',
+                trigger: 'manual'
+            }).popover('show');
+            setTimeout(() => $(this).popover('hide'), 1000);
+        });
+    });
 </script>
