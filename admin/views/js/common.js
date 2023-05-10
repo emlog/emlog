@@ -510,7 +510,7 @@ function loadTopAddons() {
             $.each(resp.data, function (i, app) {
                 let insertBtnHtml;
                 let typeName = '模板：';
-                let storeUlr = './store.php';
+                let storeUlr = './store.php?';
                 if (app.type === 'plu') {
                     typeName = '插件：';
                     storeUlr = './store.php?action=plu';
@@ -518,7 +518,7 @@ function loadTopAddons() {
                 if (app.price > 0) {
                     insertBtnHtml = '应用售价：' + app.price + '元<a href="' + app.buy_url + '" target="_blank">购买</a>';
                 } else {
-                    insertBtnHtml = '应用售价：免费<a href="' + storeUlr + '">去商店安装</a>';
+                    insertBtnHtml = '应用售价：免费<a href="' + storeUlr + '&keyword=' + app.name + '">去商店安装</a>';
                 }
                 const cardHtml = '<div class="col-md-4">' +
                     '<div class="card">' +
