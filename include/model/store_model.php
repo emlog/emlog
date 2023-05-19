@@ -7,12 +7,12 @@
 
 class Store_Model {
 
-    public function getTemplates($tag, $keyword, $page, $author_id) {
-        return $this->reqEmStore('tpl', $tag, $keyword, $page, $author_id);
+    public function getTemplates($tag, $keyword, $page, $author_id, $sid) {
+        return $this->reqEmStore('tpl', $tag, $keyword, $page, $author_id, $sid);
     }
 
-    public function getPlugins($tag, $keyword, $page, $author_id) {
-        return $this->reqEmStore('plu', $tag, $keyword, $page, $author_id);
+    public function getPlugins($tag, $keyword, $page, $author_id, $sid) {
+        return $this->reqEmStore('plu', $tag, $keyword, $page, $author_id, $sid);
     }
 
     public function getMyAddon() {
@@ -27,7 +27,7 @@ class Store_Model {
         return $this->reqEmStore('top');
     }
 
-    public function reqEmStore($type, $tag = '', $keyword = '', $page = 1, $author_id = 0) {
+    public function reqEmStore($type, $tag = '', $keyword = '', $page = 1, $author_id = 0, $sid = 0) {
         $emcurl = new EmCurl();
 
         $post_data = [
@@ -37,7 +37,8 @@ class Store_Model {
             'tag'       => $tag,
             'keyword'   => $keyword,
             'page'      => $page,
-            'author_id' => $author_id
+            'author_id' => $author_id,
+            'sid'       => $sid
         ];
         $emcurl->setPost($post_data);
         $emcurl->request('https://www.emlog.net/store/pro');

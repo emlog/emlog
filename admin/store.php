@@ -19,8 +19,17 @@ if (empty($action)) {
     $page = Input::getIntVar('page', 1);
     $keyword = Input::getStrVar('keyword');
     $author_id = Input::getStrVar('author_id');
+    $sid = Input::getStrVar('sid');
 
-    $r = $Store_Model->getTemplates($tag, $keyword, $page, $author_id);
+    $categories = [
+        0  => '选择模板分类',
+        8  => '博客自媒体',
+        7  => '资源下载',
+        9  => '社区论坛',
+        10 => '其他',
+    ];
+
+    $r = $Store_Model->getTemplates($tag, $keyword, $page, $author_id, $sid);
     $templates = $r['templates'];
     $count = $r['count'];
     $page_count = $r['page_count'];
@@ -49,9 +58,25 @@ if ($action === 'plu') {
     $tag = Input::getStrVar('tag');
     $page = Input::getIntVar('page', 1);
     $keyword = Input::getStrVar('keyword');
-    $author_id = Input::getStrVar('author_id');
+    $author_id = Input::getIntVar('author_id');
+    $sid = Input::getIntVar('sid');
 
-    $r = $Store_Model->getPlugins($tag, $keyword, $page, $author_id);
+    $categories = [
+        0  => '选择插件分类',
+        1  => '资源下载',
+        2  => 'SEO优化',
+        3  => '多媒体',
+        4  => '装饰特效',
+        5  => '文件存储',
+        11 => '用户互动',
+        12 => '内容运营',
+        13 => '移动端',
+        14 => '编程开发',
+        15 => '内容创作',
+        6  => '其他'
+    ];
+
+    $r = $Store_Model->getPlugins($tag, $keyword, $page, $author_id, $sid);
     $plugins = $r['plugins'];
     $count = $r['count'];
     $page_count = $r['page_count'];

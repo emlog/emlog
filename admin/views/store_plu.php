@@ -7,29 +7,38 @@
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">应用商店 - <?= $sub_title ?></h1>
 </div>
-<div class="row mb-4 ml-1 justify-content-between">
+<div class="row mb-4 ml-1">
     <ul class="nav nav-pills">
         <li class="nav-item"><a class="nav-link" href="./store.php">模板主题</a></li>
         <li class="nav-item"><a class="nav-link active" href="./store.php?action=plu"><i class="icofont-plugin"></i> 扩展插件</a></li>
         <li class="nav-item"><a class="nav-link" href="./store.php?action=svip">铁杆SVIP专属</a></li>
         <li class="nav-item"><a class="nav-link" href="./store.php?action=mine">我的已购</a></li>
     </ul>
-    <form action="./store.php" method="get">
-        <div class="form-inline search-inputs-nowrap">
-            <input type="hidden" name="action" value="plu">
-            <input type="text" name="keyword" value="<?= $keyword ?>" class="form-control m-1 small" placeholder="搜索插件">
-            <div class="input-group-append">
-                <button class="btn btn-sm btn-success" type="submit">
-                    <i class="icofont-search-2"></i>
-                </button>
-            </div>
-        </div>
-    </form>
 </div>
-<div class="row mb-3 ml-1">
-    <a href="./store.php?action=plu" class="badge badge-success m-1 p-2 active">全部</a>
-    <a href="./store.php?action=plu&tag=free" class="badge badge-success m-1 ml-2 p-2 active">仅看免费</a>
-    <a href="./store.php?action=plu&tag=paid" class="badge badge-warning m-1 ml-2 p-2">仅看付费</a>
+<div class="d-flex flex-column flex-sm-row justify-content-between mb-4 ml-1">
+    <div class="mb-3 mb-sm-0">
+        <a href="./store.php?action=plu" class="badge badge-success m-1 p-2">全部</a>
+        <a href="./store.php?action=plu&tag=free" class="badge badge-success m-1 p-2">仅看免费</a>
+        <a href="./store.php?action=plu&tag=paid" class="badge badge-warning m-1 p-2">仅看付费</a>
+    </div>
+    <div class="d-flex mb-3 mb-sm-0">
+        <form action="#" method="get" class="mr-sm-2">
+            <select name="action" id="plugin-category" class="form-control">
+                <?php foreach ($categories as $k => $v) { ?>
+                    <option value="<?= $k; ?>" <?= $sid == $k ? 'selected' : '' ?>><?= $v; ?></option>
+                <?php } ?>
+            </select>
+        </form>
+        <form action="./store.php" method="get" class="form-inline ml-2">
+            <div class="input-group">
+                <input type="hidden" name="action" value="plu">
+                <input type="text" name="keyword" value="<?= $keyword ?>" class="form-control small" placeholder="搜索插件...">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-success" type="submit">搜索</button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
 <div class="mb-3">
     <?php if (!empty($plugins)): ?>
@@ -81,4 +90,13 @@
 <script>
     $("#menu_store").addClass('active');
     setTimeout(hideActived, 3600);
+
+    $(document).ready(function () {
+        $('#plugin-category').on('change', function () {
+            var selectedCategory = $(this).val();
+            if (selectedCategory) {
+                window.location.href = './store.php?action=plu&sid=' + selectedCategory;
+            }
+        });
+    });
 </script>
