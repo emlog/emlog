@@ -125,7 +125,11 @@ class Plugin_Model {
 
     function getPluginData($pluginFile) {
         $pluginPath = EMLOG_ROOT . '/content/plugins/';
-        $pluginData = implode('', file($pluginPath . $pluginFile));
+        $content = file($pluginPath . $pluginFile);
+        if (!$content) {
+            return [];
+        }
+        $pluginData = implode('', $content);
         preg_match("/Plugin Name:(.*)/i", $pluginData, $plugin_name);
         preg_match("/Version:(.*)/i", $pluginData, $version);
         preg_match("/Plugin URL:(.*)/i", $pluginData, $plugin_url);
