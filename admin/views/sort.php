@@ -27,10 +27,9 @@
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="table-responsive" id="adm_sort_list">
-                <table class="table table-bordered table-striped table-hover" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered table-striped table-hover" id="dataTable">
                     <thead>
                     <tr>
-                        <th>排序</th>
                         <th>名称</th>
                         <th>描述</th>
                         <th>分类ID</th>
@@ -47,12 +46,10 @@
                             continue;
                         }
                         ?>
-                        <tr>
-                            <td>
-                                <input type="hidden" value="<?= $value['sid'] ?>" class="sort_id"/>
-                                <input class="form-control" style="width:60px;" type="number" name="sort[<?= $value['sid'] ?>]" value="<?= $value['taxis'] ?>"/>
-                            </td>
+                        <tr style="cursor: move">
                             <td class="sortname">
+                                <input type="hidden" value="<?= $value['sid'] ?>" class="sort_id"/>
+                                <input type="hidden" name="sort[]" value="<?= $value['sid'] ?>"/>
                                 <a href="sort.php?action=mod_sort&sid=<?= $value['sid'] ?>"><?= $value['sortname'] ?></a>
                             </td>
                             <td><?= $value['description'] ?></td>
@@ -72,11 +69,10 @@
                             $value = $sorts[$key];
                             ?>
                             <tr>
-                                <td>
+                                <td class="sortname">
                                     <input type="hidden" value="<?= $value['sid'] ?>" class="sort_id"/>
-                                    <input class="form-control em-small" name="sort[<?= $value['sid'] ?>]" value="<?= $value['taxis'] ?>"/>
+                                    ---- <a href="sort.php?action=mod_sort&sid=<?= $value['sid'] ?>"><?= $value['sortname'] ?></a>
                                 </td>
-                                <td class="sortname">---- <a href="sort.php?action=mod_sort&sid=<?= $value['sid'] ?>"><?= $value['sortname'] ?></a></td>
                                 <td><?= $value['description'] ?></td>
                                 <td><?= $value['sid'] ?></td>
                                 <td class="alias"><?= $value['alias'] ?></td>
@@ -96,7 +92,7 @@
         </div>
     </div>
     <div class="list_footer">
-        <input type="submit" value="改变排序" class="btn btn-sm btn-success"/>
+        <input type="submit" value="保存拖动排序" class="btn btn-sm btn-success"/>
     </div>
 </form>
 
@@ -207,4 +203,7 @@
     $("#menu_category_content").addClass('active');
     $("#menu_content").addClass('show');
     $("#menu_sort").addClass('active');
+
+    // 初始化拖动排序
+    $('#dataTable tbody').sortable().disableSelection();
 </script>

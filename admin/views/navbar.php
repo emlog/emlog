@@ -28,10 +28,9 @@
     <div class="card-body">
         <form action="navbar.php?action=taxis" method="post">
             <div class="table-responsive">
-                <table class="table table-striped table-bordered table-hover dataTable no-footer">
+                <table class="table table-striped table-bordered table-hover dataTable no-footer" id="dataTable">
                     <thead>
                     <tr>
-                        <th>序号</th>
                         <th>导航</th>
                         <th>类型</th>
                         <th>查看</th>
@@ -67,13 +66,15 @@
                             doAction('adm_navi_display');
 
                             ?>
-                            <tr>
-                                <td><input class="form-control em-small" name="navi[<?= $value['id'] ?>]" value="<?= $value['taxis'] ?>" maxlength="4"/></td>
-                                <td><a href="navbar.php?action=mod&amp;navid=<?= $value['id'] ?>"><?= $value['naviname'] ?></a></td>
+                            <tr style="cursor: move">
+                                <td>
+                                    <input type="hidden" name="navi[]" value="<?= $value['id'] ?>"/>
+                                    <a href="navbar.php?action=mod&amp;navid=<?= $value['id'] ?>"><?= $value['naviname'] ?></a>
+                                </td>
                                 <td><?= $value['type_name'] ?></td>
                                 <td>
                                     <a href="<?= $value['url'] ?>" target="_blank">
-                                        <img src="./views/images/<?= $value['newtab'] == 'y' ? 'vlog.gif' : 'vlog2.gif' ?>" align="absbottom" border="0"/>
+                                        <img src="./views/images/<?= $value['newtab'] == 'y' ? 'vlog.gif' : 'vlog2.gif' ?>"/>
                                     </a>
                                 </td>
                                 <td><?= $value['url'] ?></td>
@@ -94,12 +95,14 @@
                                 foreach ($value['childnavi'] as $val):
                                     ?>
                                     <tr>
-                                        <td><input class="form-control em-small" name="navi[<?= $val['id'] ?>]" value="<?= $val['taxis'] ?>" maxlength="4"/></td>
-                                        <td>---- <a href="navbar.php?action=mod&amp;navid=<?= $val['id'] ?>"><?= $val['naviname'] ?></a></td>
+                                        <td>
+                                            <input type="hidden" name="navi[]" value="<?= $val['id'] ?>"/>
+                                            ---- <a href="navbar.php?action=mod&amp;navid=<?= $val['id'] ?>"><?= $val['naviname'] ?></a>
+                                        </td>
                                         <td><?= $value['type_name'] ?></td>
                                         <td>
                                             <a href="<?= $val['url'] ?>" target="_blank">
-                                                <img src="./views/images/<?= $val['newtab'] == 'y' ? 'vlog.gif' : 'vlog2.gif' ?>" align="absbottom" border="0"/></a>
+                                                <img src="./views/images/<?= $val['newtab'] == 'y' ? 'vlog.gif' : 'vlog2.gif' ?>"/></a>
                                         </td>
                                         <td><?= $val['url'] ?></td>
                                         <td>
@@ -123,7 +126,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="list_footer"><input type="submit" value="改变排序" class="btn btn-sm btn-success"/></div>
+            <div class="list_footer"><input type="submit" value="保存拖动排序" class="btn btn-sm btn-success"/></div>
         </form>
     </div>
 </div>
@@ -232,4 +235,7 @@
     $("#menu_category_view").addClass('active');
     $("#menu_view").addClass('show');
     $("#menu_navi").addClass('active');
+
+    // 初始化拖动排序
+    $('#dataTable tbody').sortable().disableSelection();
 </script>

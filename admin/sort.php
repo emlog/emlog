@@ -27,17 +27,17 @@ if (empty($action)) {
 
 if ($action == 'taxis') {
     $sort = isset($_POST['sort']) ? $_POST['sort'] : '';
-    if (!empty($sort)) {
-        foreach ($sort as $key => $value) {
-            $value = (int)$value;
-            $key = (int)$key;
-            $Sort_Model->updateSort(array('taxis' => $value), $key);
-        }
-        $CACHE->updateCache('sort');
-        emDirect("./sort.php?active_taxis=1");
-    } else {
+
+    if (empty($sort)) {
         emDirect("./sort.php?error_b=1");
     }
+    foreach ($sort as $key => $value) {
+        $value = (int)$value;
+        $key = (int)$key;
+        $Sort_Model->updateSort(array('taxis' => $key), $value);
+    }
+    $CACHE->updateCache('sort');
+    emDirect("./sort.php?active_taxis=1");
 }
 
 if ($action == 'add') {

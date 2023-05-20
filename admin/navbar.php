@@ -29,17 +29,18 @@ if (empty($action)) {
 
 if ($action == 'taxis') {
     $navi = isset($_POST['navi']) ? $_POST['navi'] : '';
-    if (!empty($navi)) {
-        foreach ($navi as $key => $value) {
-            $value = (int)$value;
-            $key = (int)$key;
-            $Navi_Model->updateNavi(array('taxis' => $value), $key);
-        }
-        $CACHE->updateCache('navi');
-        emDirect("./navbar.php?active_taxis=1");
-    } else {
+
+    if (empty($navi)) {
         emDirect("./navbar.php?error_b=1");
     }
+
+    foreach ($navi as $key => $value) {
+        $value = (int)$value;
+        $key = (int)$key;
+        $Navi_Model->updateNavi(array('taxis' => $key), $value);
+    }
+    $CACHE->updateCache('navi');
+    emDirect("./navbar.php?active_taxis=1");
 }
 
 if ($action == 'add') {

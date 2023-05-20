@@ -32,7 +32,7 @@ if ($action == 'link_taxis') {
     foreach ($link as $key => $value) {
         $value = (int)$value;
         $key = (int)$key;
-        $Link_Model->updateLink(array('taxis' => $value), $key);
+        $Link_Model->updateLink(array('taxis' => $key), $value);
     }
     $CACHE->updateCache('link');
     emDirect("./link.php?active_taxis=1");
