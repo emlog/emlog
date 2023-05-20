@@ -43,7 +43,8 @@ if ($action === 'del') {
         emMsg('您不能删除正在使用的模板');
     }
 
-    if (true === emDeleteFile(TPLS_PATH . $tplName)) {
+    $path = preg_replace("/^([\w-]+)$/i", "$1", $tplName);
+    if ($path && true === emDeleteFile(TPLS_PATH . $path)) {
         emDirect("./template.php?activate_del=1#tpllib");
     } else {
         emDirect("./template.php?error_f=1#tpllib");
