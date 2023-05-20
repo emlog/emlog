@@ -70,8 +70,8 @@ if ($action == 'del') {
     $Plugin_Model = new Plugin_Model();
     $Plugin_Model->inactivePlugin($plugin);
     $Plugin_Model->rmCallback($plugin);
-    $pludir = preg_replace("/^([^\/]+)\/.*/", "$1", $plugin);
-    if (true === emDeleteFile('../content/plugins/' . $pludir)) {
+    $pluDir = preg_replace("/^([\w-]+)\/[\w-]+\.php$/i", "$1", $plugin);
+    if (true === emDeleteFile('../content/plugins/' . $pluDir)) {
         $CACHE->updateCache('options');
         emDirect("./plugin.php?activate_del=1");
     } else {
