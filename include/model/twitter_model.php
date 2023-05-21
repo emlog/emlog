@@ -27,6 +27,15 @@ class Twitter_Model {
         return $this->db->insert_id();
     }
 
+    function update($data, $id) {
+        $Item = [];
+        foreach ($data as $key => $value) {
+            $Item[] = "$key='$value'";
+        }
+        $upStr = implode(',', $Item);
+        $this->db->query("update " . DB_PREFIX . "twitter set $upStr where id=$id");
+    }
+
     function getCount($uid = UID) {
         $author = $uid ? 'and author=' . $uid : '';
         $data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "twitter WHERE 1=1 $author");
@@ -41,7 +50,7 @@ class Twitter_Model {
         $res = $this->db->query($sql);
         $tws = [];
         while ($row = $this->db->fetch_array($res)) {
-            $row['t'] = nl2br(htmlspecialchars($row['content']));
+            $row['t'] = $row['content'];
             $row['date'] = smartDate($row['date']);
             $tws[] = $row;
         }

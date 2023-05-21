@@ -24,6 +24,9 @@ if (empty($action)) {
     $tws = $Twitter_Model->getTwitters($uid, $page, TW_PAGE_COUNT);
     $twnum = $Twitter_Model->getCount($uid);
 
+    $parsedown = new Parsedown();
+    $parsedown->setBreaksEnabled(true); //automatic line wrapping
+
     $subPage = '';
     foreach ($_GET as $key => $val) {
         $subPage .= $key != 'page' ? "&$key=$val" : '';
@@ -52,6 +55,23 @@ if ($action == 'post') {
     $Twitter_Model->addTwitter($data);
     $CACHE->updateCache('sta');
     emDirect("twitter.php?active_t=1");
+}
+
+if ($action == 'update') {
+    $t = Input::postStrVar('t');
+    $id = Input::postIntVar('id');
+
+    if (!$t) {
+        emDirect("twitter.php?error_a=1");
+    }
+
+    $data = [
+        'content' => $t,
+    ];
+
+    $Twitter_Model->update($data, $id);
+    $CACHE->updateCache('sta');
+    emDirect("twitter.php?active_set=1");
 }
 
 if ($action == 'del') {
