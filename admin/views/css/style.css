@@ -115,7 +115,8 @@ body {
 
 /* note style */
 .t img {
-    max-width: 100%
+    max-width: 100% !important;
+    height: auto;
 }
 
 .t ol li {
