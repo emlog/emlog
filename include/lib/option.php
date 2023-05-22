@@ -7,8 +7,8 @@
 
 class Option {
 
-    const EMLOG_VERSION = 'pro 2.1.5';
-    const EMLOG_VERSION_TIMESTAMP = 1683269471;
+    const EMLOG_VERSION = 'pro 2.1.6';
+    const EMLOG_VERSION_TIMESTAMP = 1684722779;
     const UPLOADFILE_PATH = '../content/uploadfile/';
 
     static function get($option) {
