@@ -42,7 +42,7 @@
             </div>
             <div class="form-group form-inline">
                 <label>注册用户限制24小时发文数量（包括草稿）：</label>
-                <input class="form-control mx-sm-3" style="width:60px;" value="<?= $conf_posts_per_day ?>" type="number" min="0" name="posts_per_day"/>，为0时禁止发布笔记和上传图文资源
+                <input class="form-control mx-sm-3" style="width:60px;" value="<?= $conf_posts_per_day ?>" type="number" min="0" name="posts_per_day"/>，为0同时禁止发布笔记和上传图文资源
             </div>
             <div class="form-group">
                 <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
