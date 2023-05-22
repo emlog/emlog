@@ -88,9 +88,9 @@ function realUrl() {
     }
 
     $protocol = 'http://';
-    if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
+    if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') { // 兼容nginx反向代理的情况
         $protocol = 'https://';
-    } elseif (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') { // 兼容nginx反向代理的情况
+    } elseif (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
         $protocol = 'https://';
     }
     $host = $_SERVER['HTTP_HOST'];
