@@ -55,7 +55,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                用户数
+                                                用户数量
                                             </div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="./user.php"><?= count($user_cache) ?></a></div>
                                         </div>
@@ -151,7 +151,7 @@
                     <ul class="list-group list-group-flush">
                         <li class="msg_type_0"><a href="https://www.emlog.net/docs/#/faq" target="_blank">使用帮助 | 常见问题</a></li>
                         <li class="msg_type_0"><a href="https://www.emlog.net/docs/#/" target="_blank">应用开发 | 开发文档</a></li>
-                        <li class="msg_type_0"><a href="https://www.emlog.net/docs/#/contact" target="_blank">联系交流 | 加入Q群</a></li>
+                        <li class="msg_type_0"><a href="https://www.emlog.net/docs/#/contact" target="_blank">联系交流 | 加入社群</a></li>
                         <li class="msg_type_0"><a href="https://emlog.cn/" target="_blank">问题反馈 | 官方社区</a></li>
                     </ul>
                 </div>
