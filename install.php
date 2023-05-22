@@ -436,13 +436,14 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES
 ('email_code','n'), 
 ('is_signup','y'), 
 ('ischkarticle','y'), 
+('article_uneditable','n'),
+('posts_per_day',10),
 ('smtp_mail',''), 
 ('smtp_pw',''), 
-('smtp_server',''), 
+('smtp_server',''),
 ('smtp_port',''),
 ('is_openapi','y'),
 ('apikey','$apikey'),
-('posts_per_day',10),
 ('accept_app_recs','y');
 DROP TABLE IF EXISTS {$db_prefix}link;
 CREATE TABLE {$db_prefix}link (
