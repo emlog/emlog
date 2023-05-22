@@ -9,6 +9,8 @@
     <div class="alert alert-success">删除成功</div><?php endif ?>
 <?php if (isset($_GET['error_a'])): ?>
     <div class="alert alert-danger">笔记内容不能为空</div><?php endif ?>
+<?php if (isset($_GET['error_forbid'])): ?>
+    <div class="alert alert-danger">抱歉，系统限制用户发布笔记</div><?php endif ?>
 <h1 class="h3 mb-2 text-gray-800">卡片笔记</h1>
 <p class="mb-4">快速记录想法，帮你方便的捕捉灵感，积累知识的复利</p>
 <form method="post" action="twitter.php?action=post">

@@ -266,7 +266,7 @@ function autosave(act) {
             $("#savedf").attr("disabled", false).val(btname);
         } else {
             $("#savedf").attr("disabled", false).val(btname);
-            $("#save_info").html("保存失败，可能系统出现异常或者达到每日发文限额").addClass("alert-danger");
+            $("#save_info").html("保存失败，可能文章不可编辑或达到每日发文限额").addClass("alert-danger");
             $('title').text('[保存失败] ' + titleText);
         }
     });
@@ -504,9 +504,7 @@ function doup(source, upsql) {
 
 function loadTopAddons() {
     $.ajax({
-        type: 'GET',
-        url: './store.php?action=top',
-        success: function (resp) {
+        type: 'GET', url: './store.php?action=top', success: function (resp) {
             $.each(resp.data, function (i, app) {
                 let insertBtnHtml;
                 let typeName = '模板：';
@@ -520,13 +518,7 @@ function loadTopAddons() {
                 } else {
                     insertBtnHtml = '应用售价：免费<a href="' + storeUlr + '&keyword=' + app.name + '">去商店安装</a>';
                 }
-                const cardHtml = '<div class="col-md-4">' +
-                    '<div class="card">' +
-                    '<a href="' + app.buy_url + '" target="_blank"><img class="card-img-top" style="max-height: 90px;" src="' + app.icon + '" alt="icon"/></a>' +
-                    '<div class="card-body">' +
-                    '<div class="card-text text-muted small">' + typeName + app.name + '</div>' +
-                    '<p class="card-text d-flex justify-content-between small">' + insertBtnHtml + '</p>' +
-                    '</div></div></div>';
+                const cardHtml = '<div class="col-md-4">' + '<div class="card">' + '<a href="' + app.buy_url + '" target="_blank"><img class="card-img-top" style="max-height: 90px;" src="' + app.icon + '" alt="icon"/></a>' + '<div class="card-body">' + '<div class="card-text text-muted small">' + typeName + app.name + '</div>' + '<p class="card-text d-flex justify-content-between small">' + insertBtnHtml + '</p>' + '</div></div></div>';
                 $('#app-list').append(cardHtml);
             });
         },

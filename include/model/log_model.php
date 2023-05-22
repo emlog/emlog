@@ -233,6 +233,7 @@ class Log_Model {
     }
 
     public function deleteLog($blogId) {
+        $this->checkEditable($blogId);
         $author = User::haveEditPermission() ? '' : 'and author=' . UID;
         $this->db->query("DELETE FROM $this->table where gid=$blogId $author");
         if ($this->db->affected_rows() < 1) {
@@ -376,5 +377,18 @@ EOT;
         }
 
         setcookie('em_logpwd_' . $logid, $logPwd);
+    }
+
+    public function checkEditable($gid) {
+        if (User::haveEditPermission()) {
+            return;
+        }
+        $r = $this->getOneLogForAdmin($gid);
+        if (!$r || !isset($r['checked'])) {
+            return;
+        }
+        if ($r['checked'] === 'y' && Option::get('article_uneditable') === 'y') {
+            emMsg('审核通过的文章不可编辑和删除');
+        }
     }
 }

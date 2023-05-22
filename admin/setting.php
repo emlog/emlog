@@ -341,6 +341,7 @@ if ($action == 'user') {
     $is_signup = isset($options_cache['is_signup']) ? $options_cache['is_signup'] : '';
     $login_code = isset($options_cache['login_code']) ? $options_cache['login_code'] : '';
     $ischkarticle = isset($options_cache['ischkarticle']) ? $options_cache['ischkarticle'] : '';
+    $article_uneditable = isset($options_cache['article_uneditable']) ? $options_cache['article_uneditable'] : '';
     $posts_per_day = isset($options_cache['posts_per_day']) ? $options_cache['posts_per_day'] : '';
     $email_code = isset($options_cache['email_code']) ? $options_cache['email_code'] : '';
 
@@ -348,6 +349,7 @@ if ($action == 'user') {
     $conf_login_code = $login_code == 'y' ? 'checked="checked"' : '';
     $conf_email_code = $email_code == 'y' ? 'checked="checked"' : '';
     $conf_ischkarticle = $ischkarticle == 'y' ? 'checked="checked"' : '';
+    $conf_article_uneditable = $article_uneditable == 'y' ? 'checked="checked"' : '';
     $conf_posts_per_day = $posts_per_day;
 
     include View::getAdmView('header');
@@ -359,11 +361,12 @@ if ($action == 'user') {
 if ($action == 'user_save') {
     LoginAuth::checkToken();
     $data = [
-        'is_signup'     => Input::postStrVar('is_signup', 'n'),
-        'login_code'    => Input::postStrVar('login_code', 'n'),
-        'email_code'    => Input::postStrVar('email_code', 'n'),
-        'ischkarticle'  => Input::postStrVar('ischkarticle', 'n'),
-        'posts_per_day' => Input::postStrVar('posts_per_day', 0),
+        'is_signup'          => Input::postStrVar('is_signup', 'n'),
+        'login_code'         => Input::postStrVar('login_code', 'n'),
+        'email_code'         => Input::postStrVar('email_code', 'n'),
+        'ischkarticle'       => Input::postStrVar('ischkarticle', 'n'),
+        'article_uneditable' => Input::postStrVar('article_uneditable', 'n'),
+        'posts_per_day'      => Input::postStrVar('posts_per_day', 0),
     ];
     foreach ($data as $key => $val) {
         Option::updateOption($key, $val);

@@ -156,6 +156,7 @@ if ($action == 'operate_log') {
             break;
         case 'move':
             foreach ($logs as $val) {
+                $Log_Model->checkEditable($val);
                 $Log_Model->updateLog(array('sortid' => $sort), $val);
             }
             $CACHE->updateCache(array('sort', 'logsort'));
@@ -236,6 +237,8 @@ if ($action === 'write') {
 
 if ($action === 'edit') {
     $logid = isset($_GET['gid']) ? (int)$_GET['gid'] : '';
+
+    $Log_Model->checkEditable($logid);
     $blogData = $Log_Model->getOneLogForAdmin($logid);
     extract($blogData);
 
