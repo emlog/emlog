@@ -46,8 +46,9 @@
             文章列表<br>
             文章详情<br>
             分类列表<br>
-            笔记发布<br><br>
-            详细接口说明：<a href="https://www.emlog.net/docs/#/api" target="_blank">API接口文档→</a>
+            笔记发布<br>
+            笔记列表<br><br>
+            详见接口文档：<a href="https://www.emlog.net/docs/#/api" target="_blank">API接口文档→</a>
         </div>
     </div>
 </div>

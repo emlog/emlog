@@ -8,9 +8,21 @@
 
 class Api_Controller {
 
+    /**
+     * @var Log_Model
+     */
     public $Log_Model;
+    /**
+     * @var Twitter_Model
+     */
     public $Twitter_Model;
+    /**
+     * @var Tag_Model
+     */
     public $Tag_Model;
+    /**
+     * @var User_Model
+     */
     public $User_Model;
     public $Cache;
     public $authReqSign;
@@ -214,7 +226,7 @@ class Api_Controller {
         output::ok(['article' => $article,]);
     }
 
-    function sort_list() {
+    private function sort_list() {
         $sort_cache = $this->Cache->readCache('sort');
         $data = [];
         foreach ($sort_cache as $sort_id => $value) {
@@ -229,7 +241,7 @@ class Api_Controller {
         output::ok(['sorts' => $data,]);
     }
 
-    function note_post() {
+    private function note_post() {
         $t = isset($_POST['t']) ? addslashes(trim($_POST['t'])) : '';
         $author_uid = isset($_POST['author_uid']) ? (int)trim($_POST['author_uid']) : 1;
         $this->authReqSign = Input::postStrVar('req_sign');
@@ -254,6 +266,36 @@ class Api_Controller {
         $id = $this->Twitter_Model->addTwitter($data);
         $this->Cache->updateCache('sta');
         output::ok(['note_id' => $id,]);
+    }
+
+    private function note_list() {
+        $page = Input::getIntVar('page', 1);
+        $author_uid = Input::getIntVar('author_uid');
+        $count = Input::getIntVar('count', 20);
+        $this->authReqSign = Input::getStrVar('req_sign');
+        $this->authReqTime = Input::getStrVar('req_time');
+
+        $this->auth();
+
+        if ($this->curUid) {
+            $author_uid = $this->curUid;
+        }
+
+        $r = $this->Twitter_Model->getTwitters($author_uid, $page, $count);
+
+        $parsedown = new Parsedown();
+        $parsedown->setBreaksEnabled(true); //automatic line wrapping
+
+        $notes = [];
+        foreach ($r as $value) {
+            $notes[] = [
+                't'           => $parsedown->text($value['t']),
+                'date'        => $value['date'],
+                'author_id'   => (int)$value['author'],
+                'author_name' => $this->getAuthorName($value['author']),
+            ];
+        }
+        output::ok(['notes' => $notes,]);
     }
 
     public function userinfo() {
