@@ -71,6 +71,7 @@
                             <tr>
                                 <td class="sortname">
                                     <input type="hidden" value="<?= $value['sid'] ?>" class="sort_id"/>
+                                    <input type="hidden" name="sort[]" value="<?= $value['sid'] ?>"/>
                                     ---- <a href="sort.php?action=mod_sort&sid=<?= $value['sid'] ?>"><?= $value['sortname'] ?></a>
                                 </td>
                                 <td><?= $value['description'] ?></td>
