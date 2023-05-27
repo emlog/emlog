@@ -29,7 +29,7 @@ if (empty($action)) {
     $page_url .= $date ? "date=$date&" : '';
     $dateTime = $date . ' 23:59:59';
     $medias = $Media_Model->getMedias($page, $page_count, $uid, $sid, $dateTime);
-    $count = $Media_Model->getMediaCount($uid, $sid, $date);
+    $count = $Media_Model->getMediaCount($uid, $sid, $dateTime);
     $page = pagination($count, $page_count, $page, $page_url . 'page=');
 
     $sorts = $MediaSortModel->getSorts();
