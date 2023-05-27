@@ -239,8 +239,9 @@
         Editor.setToolbarAutoFixed(false);
         Editor_summary.setToolbarAutoFixed(false);
     });
+
     // 封面图
-    $(document).ready(function () {
+    $(function () {
         var $modal = $('#modal');
         var image = document.getElementById('sample_image');
         var cropper;

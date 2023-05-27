@@ -34,7 +34,7 @@
             <a href="#" class="btn btn-success btn-sm my-1" data-toggle="modal" data-target="#mediaSortModal"><i class="icofont-plus"></i></a>
         </div>
         <div class="mr-3">
-            <input type="text" id="datePicker" class="form-control" placeholder="从该时间点往回看">
+            <input type="text" id="datePicker" class="form-control" placeholder="查看该日期及之前的资源">
         </div>
     </div>
 <?php endif; ?>
