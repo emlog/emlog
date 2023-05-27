@@ -231,11 +231,13 @@
 </div>
 
 <script>
-    setTimeout(hideActived, 3600);
-    $("#menu_category_view").addClass('active');
-    $("#menu_view").addClass('show');
-    $("#menu_navi").addClass('active');
+    $(function () {
+        setTimeout(hideActived, 3600);
+        $("#menu_category_view").addClass('active');
+        $("#menu_view").addClass('show');
+        $("#menu_navi").addClass('active');
 
-    // 初始化拖动排序
-    $('#dataTable tbody').sortable().disableSelection();
+        // 拖动排序
+        $('#dataTable tbody').sortable().disableSelection();
+    });
 </script>

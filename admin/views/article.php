@@ -238,19 +238,6 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
     </div>
 </div>
 <script>
-    $("#menu_category_content").addClass('active');
-    $("#menu_content").addClass('show');
-    $("#menu_<?= $draft ? 'draft' : 'log' ?>").addClass('active');
-    setTimeout(hideActived, 3600);
-
-    $(document).ready(function () {
-        $("#f_t_tag").click(function () {
-            $("#f_tag").toggle();
-            $("#f_sort").hide();
-            $("#f_user").hide();
-        });
-    });
-
     function logact(act) {
         if (getChecked('ids') == false) {
             swal("", "请选择要操作的文章!", "info");
@@ -314,10 +301,17 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
         window.open("./article.php?uid=" + obj.value + "<?= $isdraft?>", "_self");
     }
 
-    $('#uncheckModel').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget)
-        var gid = button.data('gid')
-        var modal = $(this)
-        modal.find('.modal-footer #gid').val(gid)
-    })
+    $(function () {
+        $("#menu_category_content").addClass('active');
+        $("#menu_content").addClass('show');
+        $("#menu_<?= $draft ? 'draft' : 'log' ?>").addClass('active');
+        setTimeout(hideActived, 3600);
+
+        $('#uncheckModel').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            var gid = button.data('gid')
+            var modal = $(this)
+            modal.find('.modal-footer #gid').val(gid)
+        })
+    });
 </script>

@@ -88,10 +88,10 @@
     <?php endif ?>
 </div>
 <script>
-    $("#menu_store").addClass('active');
-    setTimeout(hideActived, 3600);
+    $(function () {
+        $("#menu_store").addClass('active');
+        setTimeout(hideActived, 3600);
 
-    $(document).ready(function () {
         $('#plugin-category').on('change', function () {
             var selectedCategory = $(this).val();
             if (selectedCategory) {

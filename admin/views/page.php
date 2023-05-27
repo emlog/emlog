@@ -65,10 +65,12 @@
     </div>
 </form>
 <script>
-    setTimeout(hideActived, 3600);
-    $("#menu_category_view").addClass('active');
-    $("#menu_view").addClass('show');
-    $("#menu_page").addClass('active');
+    $(function () {
+        setTimeout(hideActived, 3600);
+        $("#menu_category_view").addClass('active');
+        $("#menu_view").addClass('show');
+        $("#menu_page").addClass('active');
+    });
 
     function pageact(act) {
         if (getChecked('ids') == false) {

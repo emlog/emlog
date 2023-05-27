@@ -66,8 +66,10 @@
     </div>
 </div>
 <script>
-    $("#menu_category_sys").addClass('active');
-    $("#menu_sys").addClass('show');
-    $("#menu_data").addClass('active');
-    setTimeout(hideActived, 3600);
+    $(function () {
+        $("#menu_category_sys").addClass('active');
+        $("#menu_sys").addClass('show');
+        $("#menu_data").addClass('active');
+        setTimeout(hideActived, 3600);
+    });
 </script>

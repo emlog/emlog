@@ -17,20 +17,21 @@ class Media_Model {
         $this->table_sort = DB_PREFIX . 'media_sort';
     }
 
-    function getMedias($page = 1, $perpage_count = 24, $uid = UID, $sid = 0) {
+    function getMedias($page = 1, $perpage_count = 24, $uid = UID, $sid = 0, $dateTime = '') {
         $startId = ($page - 1) * $perpage_count;
         $author = $uid ? 'and author=' . UID : '';
         $sort = $sid ? 'and sortid=' . $sid : '';
+        $date = $dateTime ? 'and addtime <= ' . strtotime($dateTime) : '';
         $limit = "LIMIT $startId, " . $perpage_count;
 
-        $sql = "SELECT * FROM $this->table m LEFT JOIN $this->table_sort s ON m.sortid=s.id WHERE m.thumfor = 0 $author $sort order by m.aid desc $limit";
+        $sql = "SELECT * FROM $this->table m LEFT JOIN $this->table_sort s ON m.sortid=s.id WHERE m.thumfor = 0 $author $sort $date order by m.aid desc $limit";
         $query = $this->db->query($sql);
         $medias = [];
         while ($row = $this->db->fetch_array($query)) {
             $medias[$row['aid']] = [
                 'attsize'       => changeFileSize($row['filesize']),
                 'filename'      => htmlspecialchars($row['filename']),
-                'addtime'       => date("Y - m - d H:i:s", $row['addtime']),
+                'addtime'       => date("Y-m-d H:i:s", $row['addtime']),
                 'aid'           => $row['aid'],
                 'filepath_thum' => $row['filepath'],
                 'filepath'      => str_replace("thum-", '', $row['filepath']),
@@ -45,10 +46,11 @@ class Media_Model {
         return $medias;
     }
 
-    function getMediaCount($uid = null, $sid = null) {
+    function getMediaCount($uid = null, $sid = null, $dateTime = '') {
         $author = $uid ? 'and author=' . $uid : '';
         $sort = $sid ? 'and sortid=' . $sid : '';
-        $sql = "SELECT count(*) as count FROM $this->table WHERE thumfor = 0 $author $sort";
+        $date = $dateTime ? 'and addtime<=' . strtotime($dateTime) : '';
+        $sql = "SELECT count(*) as count FROM $this->table WHERE thumfor = 0 $author $sort $date";
         $res = $this->db->once_fetch_array($sql);
         return $res['count'];
     }

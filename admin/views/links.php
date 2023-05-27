@@ -144,23 +144,25 @@
 </div>
 
 <script>
-    $("#menu_category_view").addClass('active');
-    $("#menu_view").addClass('show');
-    $("#menu_link").addClass('active');
-    setTimeout(hideActived, 3600);
-    $('#editModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget)
-        var linkid = button.data('linkid')
-        var sitename = button.data('sitename')
-        var siteurl = button.data('siteurl')
-        var description = button.data('description')
-        var modal = $(this)
-        modal.find('.modal-body #sitename').val(sitename)
-        modal.find('.modal-body #siteurl').val(siteurl)
-        modal.find('.modal-body #description').val(description)
-        modal.find('.modal-footer #linkid').val(linkid)
-    })
+    $(function () {
+        $("#menu_category_view").addClass('active');
+        $("#menu_view").addClass('show');
+        $("#menu_link").addClass('active');
+        setTimeout(hideActived, 3600);
+        $('#editModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            var linkid = button.data('linkid')
+            var sitename = button.data('sitename')
+            var siteurl = button.data('siteurl')
+            var description = button.data('description')
+            var modal = $(this)
+            modal.find('.modal-body #sitename').val(sitename)
+            modal.find('.modal-body #siteurl').val(siteurl)
+            modal.find('.modal-body #description').val(description)
+            modal.find('.modal-footer #linkid').val(linkid)
+        })
 
-    // 初始化拖动排序
-    $('#dataTable tbody').sortable().disableSelection();
+        // 拖动排序
+        $('#dataTable tbody').sortable().disableSelection();
+    });
 </script>

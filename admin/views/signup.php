@@ -68,13 +68,14 @@
 </body>
 </html>
 <script>
-    setTimeout(hideActived, 6000);
-    $('#checkcode').click(function () {
-        var timestamp = new Date().getTime();
-        $(this).attr("src", "../include/lib/checkcode.php?" + timestamp);
-    });
     // send mail code
     $(function () {
+        setTimeout(hideActived, 6000);
+        $('#checkcode').click(function () {
+            var timestamp = new Date().getTime();
+            $(this).attr("src", "../include/lib/checkcode.php?" + timestamp);
+        });
+
         $('#send-btn').click(function () {
             const email = $('#mail').val();
             const sendBtn = $(this);

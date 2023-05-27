@@ -71,7 +71,7 @@
                             <td><?= $val['Name'] ?></td>
                             <td id="plugin_<?= $i ?>">
                                 <a href="./plugin.php?action=<?= $plug_action ?>&plugin=<?= $key ?>&token=<?= LoginAuth::genToken() ?>"><img
-                                        src="./views/images/plugin_<?= $plug_state ?>.gif" title="<?= $plug_state_des ?>"></a>
+                                            src="./views/images/plugin_<?= $plug_state ?>.gif" title="<?= $plug_state_des ?>"></a>
                             </td>
                             <td>
                                 <?= $val['Description'] ?>
@@ -133,13 +133,13 @@
 </div>
 
 <script>
-    setTimeout(hideActived, 3600);
-    $("#menu_category_ext").addClass('active');
-    $("#menu_ext").addClass('show');
-    $("#menu_plug").addClass('active');
-
     // check for upgrade
     $(function () {
+        setTimeout(hideActived, 3600);
+        $("#menu_category_ext").addClass('active');
+        $("#menu_ext").addClass('show');
+        $("#menu_plug").addClass('active');
+
         var pluginList = [];
         $('table tbody tr').each(function () {
             var $tr = $(this);

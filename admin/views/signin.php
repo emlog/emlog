@@ -62,9 +62,11 @@
 </body>
 </html>
 <script>
-    setTimeout(hideActived, 6000);
-    $('#checkcode').click(function () {
-        var timestamp = new Date().getTime();
-        $(this).attr("src", "../include/lib/checkcode.php?" + timestamp);
+    $(function () {
+        setTimeout(hideActived, 6000);
+        $('#checkcode').click(function () {
+            var timestamp = new Date().getTime();
+            $(this).attr("src", "../include/lib/checkcode.php?" + timestamp);
+        });
     });
 </script>

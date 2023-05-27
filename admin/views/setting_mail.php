@@ -90,21 +90,23 @@
     </div>
 </div>
 <script>
-    $("#menu_category_sys").addClass('active');
-    $("#menu_sys").addClass('show');
-    $("#menu_setting").addClass('active');
-    setTimeout(hideActived, 3600);
+    $(function () {
+        $("#menu_category_sys").addClass('active');
+        $("#menu_sys").addClass('show');
+        $("#menu_setting").addClass('active');
+        setTimeout(hideActived, 3600);
 
-    $("#testSendBtn").click(function () {
-        $("#testMailMsg").html("<small class='text-secondary'>发送中...<small>");
+        $("#testSendBtn").click(function () {
+            $("#testMailMsg").html("<small class='text-secondary'>发送中...<small>");
 
-        $.post("setting.php?action=mail_test", $("#mail_config").serialize(), function (data) {
-            if (data == '') {
-                $("#testMailMsg").html("<small class='text-success'>发送成功</small>");
-            } else {
-                $("#testMailMsg").html(data);
-            }
+            $.post("setting.php?action=mail_test", $("#mail_config").serialize(), function (data) {
+                if (data == '') {
+                    $("#testMailMsg").html("<small class='text-success'>发送成功</small>");
+                } else {
+                    $("#testMailMsg").html(data);
+                }
 
-        });
-    })
+            });
+        })
+    });
 </script>

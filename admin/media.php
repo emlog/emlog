@@ -20,12 +20,17 @@ $MediaSortModel = new MediaSort_Model();
 if (empty($action)) {
     $sid = Input::getIntVar('sid');
     $page = Input::getIntVar('page', 1);
+    $date = Input::getStrVar('date');
     $uid = User::haveEditPermission() ? null : UID;
+
     $page_count = 24;
-    $page_url = $sid ? "media.php?sid=$sid&page=" : "media.php?page=";
-    $medias = $Media_Model->getMedias($page, $page_count, $uid, $sid);
-    $count = $Media_Model->getMediaCount($uid, $sid);
-    $page = pagination($count, $page_count, $page, $page_url);
+    $page_url = 'media.php?';
+    $page_url .= $sid ? "sid=$sid&" : '';
+    $page_url .= $date ? "date=$date&" : '';
+    $dateTime = $date . ' 23:59:59';
+    $medias = $Media_Model->getMedias($page, $page_count, $uid, $sid, $dateTime);
+    $count = $Media_Model->getMediaCount($uid, $sid, $date);
+    $page = pagination($count, $page_count, $page, $page_url . 'page=');
 
     $sorts = $MediaSortModel->getSorts();
 

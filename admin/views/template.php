@@ -102,13 +102,13 @@
 </div>
 
 <script>
-    setTimeout(hideActived, 3600);
-    $("#menu_category_view").addClass('active');
-    $("#menu_view").addClass('show');
-    $("#menu_tpl").addClass('active');
-
     // check for upgrade
     $(function () {
+        setTimeout(hideActived, 3600);
+        $("#menu_category_view").addClass('active');
+        $("#menu_view").addClass('show');
+        $("#menu_tpl").addClass('active');
+        
         var templateList = [];
         $('.app-list .card').each(function () {
             var $card = $(this);

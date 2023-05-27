@@ -340,13 +340,13 @@
 </div>
 
 <script>
-    setTimeout(hideActived, 3600);
+    $(function () {
+        setTimeout(hideActived, 3600);
 
-    $("#menu_category_view").addClass('active');
-    $("#menu_view").addClass('show');
-    $("#menu_widget").addClass('active');
+        $("#menu_category_view").addClass('active');
+        $("#menu_view").addClass('show');
+        $("#menu_widget").addClass('active');
 
-    $(document).ready(function () {
         var widgets = $(".active_widget").map(function () {
             return $(this).attr("id");
         });

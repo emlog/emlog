@@ -94,10 +94,21 @@
 </div>
 
 <script>
-    $("#menu_category_content").addClass('active');
-    $("#menu_content").addClass('show');
-    $("#menu_tag").addClass('active');
-    setTimeout(hideActived, 3600);
+    $(function () {
+        $("#menu_category_content").addClass('active');
+        $("#menu_content").addClass('show');
+        $("#menu_tag").addClass('active');
+        setTimeout(hideActived, 3600);
+
+        $('#editModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            var tagname = button.data('tagname')
+            var tid = button.data('tid')
+            var modal = $(this)
+            modal.find('.modal-body input').val(tagname)
+            modal.find('.modal-footer input').val(tid)
+        })
+    });
 
     function tagact(act) {
         if (getChecked('tids') === false) {
@@ -123,15 +134,6 @@
         $("#operate").val(act);
         $("#form_media").submit();
     }
-
-    $('#editModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget)
-        var tagname = button.data('tagname')
-        var tid = button.data('tid')
-        var modal = $(this)
-        modal.find('.modal-body input').val(tagname)
-        modal.find('.modal-footer input').val(tid)
-    })
 
     function deltags() {
         var tid = $('#tid').val()

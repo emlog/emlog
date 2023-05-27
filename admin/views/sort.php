@@ -164,11 +164,6 @@
 </div>
 
 <script>
-    setTimeout(hideActived, 3600);
-    $("#alias").keyup(function () {
-        checksortalias();
-    });
-
     function issortalias(a) {
         var reg1 = /^[\w-]*$/;
         var reg2 = /^[\d]+$/;
@@ -201,10 +196,17 @@
         }
     }
 
-    $("#menu_category_content").addClass('active');
-    $("#menu_content").addClass('show');
-    $("#menu_sort").addClass('active');
+    $(function () {
+        setTimeout(hideActived, 3600);
+        $("#alias").keyup(function () {
+            checksortalias();
+        });
 
-    // 初始化拖动排序
-    $('#dataTable tbody').sortable().disableSelection();
+        $("#menu_category_content").addClass('active');
+        $("#menu_content").addClass('show');
+        $("#menu_sort").addClass('active');
+
+        // 初始化拖动排序
+        $('#dataTable tbody').sortable().disableSelection();
+    });
 </script>

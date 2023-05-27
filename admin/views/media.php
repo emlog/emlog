@@ -16,21 +16,26 @@
     <a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target=" #exampleModal"><i class="icofont-plus"></i> 上传图片/文件</a>
 </div>
 <?php if (User::isAdmin()): ?>
-    <div class="row mb-4 ml-1">
-        <a href="media.php" class="btn btn-sm btn-primary mr-2 my-1">全部资源</a>
-        <?php foreach ($sorts as $key => $val):
-            $cur_tab = $val['id'] == $sid ? "btn-success" : "btn-primary";
-            ?>
-            <div class="btn-group mr-2 my-1">
-                <a href="media.php?sid=<?= $val['id'] ?>" class="btn btn-sm <?= $cur_tab ?>"><?= $val['sortname'] ?></a>
-                <button type="button" class="btn <?= $cur_tab ?> btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false"></button>
-                <div class="dropdown-menu">
-                    <a href="#" class="dropdown-item" data-toggle="modal" data-target="#editModal" data-id="<?= $val['id'] ?>" data-sortname="<?= $val['sortname'] ?>">编辑</a>
-                    <a class="dropdown-item text-danger" href="javascript: em_confirm(<?= $val['id'] ?>, 'media_sort', '<?= LoginAuth::genToken() ?>');">删除</a>
+    <div class="row mb-4 ml-1 justify-content-between">
+        <div>
+            <a href="media.php" class="btn btn-sm btn-primary mr-2 my-1">全部资源</a>
+            <?php foreach ($sorts as $key => $val):
+                $cur_tab = $val['id'] == $sid ? "btn-success" : "btn-primary";
+                ?>
+                <div class="btn-group mr-2 my-1">
+                    <a href="media.php?sid=<?= $val['id'] ?>" class="btn btn-sm <?= $cur_tab ?>"><?= $val['sortname'] ?></a>
+                    <button type="button" class="btn <?= $cur_tab ?> btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false"></button>
+                    <div class="dropdown-menu">
+                        <a href="#" class="dropdown-item" data-toggle="modal" data-target="#editModal" data-id="<?= $val['id'] ?>" data-sortname="<?= $val['sortname'] ?>">编辑</a>
+                        <a class="dropdown-item text-danger" href="javascript: em_confirm(<?= $val['id'] ?>, 'media_sort', '<?= LoginAuth::genToken() ?>');">删除</a>
+                    </div>
                 </div>
-            </div>
-        <?php endforeach ?>
-        <a href="#" class="btn btn-success btn-sm my-1" data-toggle="modal" data-target="#mediaSortModal"><i class="icofont-plus"></i></a>
+            <?php endforeach ?>
+            <a href="#" class="btn btn-success btn-sm my-1" data-toggle="modal" data-target="#mediaSortModal"><i class="icofont-plus"></i></a>
+        </div>
+        <div class="mr-3">
+            <input type="text" id="datePicker" class="form-control" placeholder="从该时间点往回看">
+        </div>
     </div>
 <?php endif; ?>
 <form action="media.php?action=operate_media" method="post" name="form_media" id="form_media">
@@ -174,75 +179,74 @@
 </div>
 
 <script src="./views/js/dropzone.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
-<script>
-    $("#menu_media").addClass('active');
-    setTimeout(hideActived, 3600);
-    $('#exampleModal').on('hidden.bs.modal', function (e) {
-        window.location.reload();
-    })
-    Dropzone.options.myAwesomeDropzone = {
-        maxFilesize: 2048,// MB
-        paramName: "file",
-        timeout: 3600000,// milliseconds
-        init: function () {
-            this.on("error", function (file, response) {
-                // alert(response);
-            });
-        }
-    };
-
-    function mediaact(act) {
-        if (getChecked('aids') === false) {
-            swal("", "请选择要删除的资源", "info");
-            return;
-        }
-
-        if (act == 'del') {
-            swal({
-                title: '确定要删除所选资源吗',
-                text: '删除后可能无法恢复',
-                icon: 'warning',
-                buttons: ['取消', '确定'],
-                dangerMode: true,
-            }).then((willDelete) => {
-                if (willDelete) {
-                    $("#operate").val(act);
-                    $("#form_media").submit();
-                }
-            });
-            return;
-        }
-        $("#operate").val(act);
-        $("#form_media").submit();
-    }
-
-    $('#editModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget)
-        var sortname = button.data('sortname')
-        var id = button.data('id')
-        var modal = $(this)
-        modal.find('.modal-body input').val(sortname)
-        modal.find('.modal-footer input').val(id)
-    })
-
-    // 更改分类
-    function changeSort(obj) {
-        if (getChecked('aids') === false) {
-            swal("", "请选择要移动的资源!", "info");
-            return;
-        }
-        if ($('#sort').val() == '') return;
-        $("#operate").val('move');
-        $("#form_media").submit();
-    }
-</script>
 <link rel="stylesheet" type="text/css" href="./views/components/highslide/highslide.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"/>
 <script src="./views/components/highslide/highslide.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
 <link rel="stylesheet" type="text/css" href="./views/components/bootstrap-datepicker/bootstrap-datepicker.min.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"/>
 <script src="./views/components/bootstrap-datepicker/bootstrap-datepicker.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
-
+<script src="./views/components/bootstrap-datepicker/bootstrap-datepicker.zh-CN.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
 <script>
     $(function () {
+        $("#menu_media").addClass('active');
+        setTimeout(hideActived, 3600);
+        $('#exampleModal').on('hidden.bs.modal', function (e) {
+            window.location.reload();
+        })
+        Dropzone.options.myAwesomeDropzone = {
+            maxFilesize: 2048,// MB
+            paramName: "file",
+            timeout: 3600000,// milliseconds
+            init: function () {
+                this.on("error", function (file, response) {
+                    // alert(response);
+                });
+            }
+        };
+
+        function mediaact(act) {
+            if (getChecked('aids') === false) {
+                swal("", "请选择要删除的资源", "info");
+                return;
+            }
+
+            if (act == 'del') {
+                swal({
+                    title: '确定要删除所选资源吗',
+                    text: '删除后可能无法恢复',
+                    icon: 'warning',
+                    buttons: ['取消', '确定'],
+                    dangerMode: true,
+                }).then((willDelete) => {
+                    if (willDelete) {
+                        $("#operate").val(act);
+                        $("#form_media").submit();
+                    }
+                });
+                return;
+            }
+            $("#operate").val(act);
+            $("#form_media").submit();
+        }
+
+        $('#editModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            var sortname = button.data('sortname')
+            var id = button.data('id')
+            var modal = $(this)
+            modal.find('.modal-body input').val(sortname)
+            modal.find('.modal-footer input').val(id)
+        })
+
+        // 更改分类
+        function changeSort(obj) {
+            if (getChecked('aids') === false) {
+                swal("", "请选择要移动的资源!", "info");
+                return;
+            }
+            if ($('#sort').val() == '') return;
+            $("#operate").val('move');
+            $("#form_media").submit();
+        }
+
         if (window.outerWidth > 767) {
             hs.graphicsDir = './views/components/highslide/graphics/';
             hs.wrapperClassName = 'rounded-white';
@@ -250,6 +254,7 @@
             $('.highslide').removeAttr('onclick')  // 如果是移动端，则不使用 highslide 功能
         }
 
+        // copy url
         $('.copy-link').click(function (e) {
             e.preventDefault();
             var link = $(this).data('url');
@@ -260,6 +265,25 @@
                 trigger: 'manual'
             }).popover('show');
             setTimeout(() => $(this).popover('hide'), 1000);
+        });
+
+        // 日期选择器
+        var datePicker = $('#datePicker').datepicker({
+            format: 'yyyy-mm-dd',
+            language: 'zh-CN',
+            autoclose: true,
+            todayHighlight: true,
+        });
+        var defaultDate = '<?= $date ?>';
+        if (defaultDate) {
+            selectedDate = new Date(defaultDate);
+            datePicker.datepicker('setDate', defaultDate);
+        }
+        datePicker.on('changeDate', function (e) {
+            selectedDate = e.date;
+            var formattedDate = selectedDate.toLocaleDateString();
+            var url = 'media.php?date=' + formattedDate;
+            window.location.href = url;
         });
     });
 </script>

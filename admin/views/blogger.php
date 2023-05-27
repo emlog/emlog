@@ -114,12 +114,12 @@
 </div>
 
 <script>
-    $("#menu_category_sys").addClass('active');
-    $("#menu_sys").addClass('show');
-    $("#menu_setting").addClass('active');
-    setTimeout(hideActived, 3600);
-
-    $(document).ready(function () {
+    $(function () {
+        $("#menu_category_sys").addClass('active');
+        $("#menu_sys").addClass('show');
+        $("#menu_setting").addClass('active');
+        setTimeout(hideActived, 3600);
+        
         var $modal = $('#modal');
         var image = document.getElementById('sample_image');
         var cropper;

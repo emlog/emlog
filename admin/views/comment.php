@@ -153,9 +153,6 @@
 </div>
 
 <script>
-    $("#menu_cm").addClass('active');
-    setTimeout(hideActived, 3600);
-
     function commentact(act) {
         if (getChecked('ids') == false) {
             swal("", "请选择要操作的评论!", "info");
@@ -181,16 +178,21 @@
         $("#form_com").submit();
     }
 
-    $('#replyModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget)
-        var comment = button.html()
-        var cid = button.data('cid')
-        var gid = button.data('gid')
-        var hide = button.data('hide')
-        var modal = $(this)
-        modal.find('.modal-body p').html(comment)
-        modal.find('.modal-body #cid').val(cid)
-        modal.find('.modal-body #gid').val(gid)
-        modal.find('.modal-body #hide').val(hide)
-    })
+    $(function () {
+        $("#menu_cm").addClass('active');
+        setTimeout(hideActived, 3600);
+
+        $('#replyModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            var comment = button.html()
+            var cid = button.data('cid')
+            var gid = button.data('gid')
+            var hide = button.data('hide')
+            var modal = $(this)
+            modal.find('.modal-body p').html(comment)
+            modal.find('.modal-body #cid').val(cid)
+            modal.find('.modal-body #gid').val(gid)
+            modal.find('.modal-body #hide').val(hide)
+        })
+    });
 </script>

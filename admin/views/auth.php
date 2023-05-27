@@ -60,6 +60,8 @@
 </div>
 
 <script>
-    $("#menu_store").addClass('active');
-    setTimeout(hideActived, 3600);
+    $(function () {
+        $("#menu_store").addClass('active');
+        setTimeout(hideActived, 3600);
+    });
 </script>

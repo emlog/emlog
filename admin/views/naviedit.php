@@ -38,5 +38,7 @@
     <input type="button" value="取消" class="btn btn-sm btn-secondary" onclick="javascript: window.history.back();"/>
 </form>
 <script>
-    $("#menu_navbar").addClass('active');
+    $(function () {
+        $("#menu_navbar").addClass('active');
+    });
 </script>

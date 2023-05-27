@@ -90,8 +90,10 @@
     </div>
 </div>
 <script>
-    setTimeout(hideActived, 3600);
-    $("#menu_category_sys").addClass('active');
-    $("#menu_sys").addClass('show');
-    $("#menu_setting").addClass('active');
+    $(function () {
+        setTimeout(hideActived, 3600);
+        $("#menu_category_sys").addClass('active');
+        $("#menu_sys").addClass('show');
+        $("#menu_setting").addClass('active');
+    });
 </script>
