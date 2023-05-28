@@ -17,6 +17,7 @@ class Log_Model {
         $this->db = Database::getInstance();
         $this->table = DB_PREFIX . 'blog';
         $this->table_user = DB_PREFIX . 'user';
+        $this->table_sort = DB_PREFIX . 'sort';
         $this->Parsedown = new Parsedown();
         $this->Parsedown->setBreaksEnabled(true); //automatic line wrapping
     }
@@ -104,6 +105,16 @@ class Log_Model {
             $row['excerpt'] = htmlspecialchars($row['excerpt']);
             $row['password'] = htmlspecialchars($row['password']);
             $row['template'] = !empty($row['template']) ? htmlspecialchars(trim($row['template'])) : 'page';
+            return $row;
+        }
+        return false;
+    }
+
+    public function getDetail($blogId) {
+        $sql = "SELECT t1.*, t2.sid, t2.sortname, t2.alias as sort_alias FROM $this->table t1 LEFT JOIN $this->table_sort t2 ON t1.sortid=t2.sid WHERE t1.gid=$blogId";
+        $res = $this->db->query($sql);
+        $row = $this->db->fetch_array($res);
+        if ($row) {
             return $row;
         }
         return false;

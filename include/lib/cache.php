@@ -418,8 +418,11 @@ class Cache {
         $this->cacheWrite($cacheData, 'logtags');
     }
 
+    /**
+     * Consider performance issues and only cache the classification information of the first 200 articles
+     */
     private function mc_logsort() {
-        $sql = "SELECT gid,sortid FROM " . DB_PREFIX . "blog where type='blog' order by top DESC, sortop DESC, date DESC";
+        $sql = "SELECT gid,sortid FROM " . DB_PREFIX . "blog where type='blog' order by top DESC, sortop DESC, date DESC LIMIT 200";
         $query = $this->db->query($sql);
         $log_cache_sort = [];
         $logs = [];

@@ -350,7 +350,8 @@ CREATE TABLE {$db_prefix}attachment (
   mimetype varchar(40) NOT NULL default '' COMMENT '文件mime类型',
   thumfor int(11) NOT NULL default 0 COMMENT '缩略图的原资源ID（已废弃）',
   PRIMARY KEY  (aid),
-  KEY thum_uid (thumfor,author)
+  KEY thum_uid (thumfor,author),
+  KEY addtime (addtime)
 )" . $table_charset_sql . "
 DROP TABLE IF EXISTS {$db_prefix}media_sort;
 CREATE TABLE {$db_prefix}media_sort (

@@ -325,11 +325,13 @@ function editflg($logid, $author) {
  * 文章详情页：分类
  */
 function blog_sort($blogid) {
-    global $CACHE;
-    $log_cache_sort = $CACHE->readCache('logsort');
+    $Log_Model = new Log_Model();
+    $logInfo = $Log_Model->getDetail($blogid);
+    $sortID = isset($logInfo['sid']) ? $logInfo['sid'] : '';
+    $sortName = isset($logInfo['sortname']) ? $logInfo['sortname'] : '';
     ?>
-    <?php if (!empty($log_cache_sort[$blogid])) { ?>
-        <a href="<?= Url::sort($log_cache_sort[$blogid]['id']) ?>" title="分类：<?= $log_cache_sort[$blogid]['name'] ?>"><?= $log_cache_sort[$blogid]['name'] ?></a>
+    <?php if (!empty($sortName)) { ?>
+        <a href="<?= Url::sort($sortID) ?>"><?= $sortName ?></a>
     <?php } else { ?>
         <a href="#" title="未分类">无</a>
     <?php }
@@ -339,12 +341,14 @@ function blog_sort($blogid) {
  * 首页文章列表：分类
  */
 function bloglist_sort($blogid) {
-    global $CACHE;
-    $log_cache_sort = $CACHE->readCache('logsort');
+    $Log_Model = new Log_Model();
+    $logInfo = $Log_Model->getDetail($blogid);
+    $sortID = isset($logInfo['sid']) ? $logInfo['sid'] : '';
+    $sortName = isset($logInfo['sortname']) ? $logInfo['sortname'] : '';
     ?>
-    <?php if (!empty($log_cache_sort[$blogid])) { ?>
+    <?php if (!empty($sortName)) { ?>
         <span class="loglist-sort">
-            <a href="<?= Url::sort($log_cache_sort[$blogid]['id']) ?>" title="分类：<?= $log_cache_sort[$blogid]['name'] ?>"><?= $log_cache_sort[$blogid]['name'] ?></a>
+            <a href="<?= Url::sort($sortID) ?>"><?= $sortName ?></a>
         </span>
     <?php }
 } ?>
