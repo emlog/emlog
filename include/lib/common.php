@@ -66,7 +66,8 @@ function realUrl() {
         return $real_url;
     }
 
-    $emlog_path = EMLOG_ROOT . DIRECTORY_SEPARATOR;
+    $emlog_path = EMLOG_ROOT . '/';
+    $emlog_path = str_replace('\\', '/', $emlog_path);
     $script_path = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_DIRNAME);
     $script_path = str_replace('\\', '/', $script_path);
     $path_element = explode('/', $script_path);
@@ -78,7 +79,7 @@ function realUrl() {
     $max_deep = count($path_element);
 
     while ($current_deep < $max_deep) {
-        $this_match .= $path_element[$current_deep] . DIRECTORY_SEPARATOR;
+        $this_match .= $path_element[$current_deep] . '/';
 
         if (substr($emlog_path, strlen($this_match) * (-1)) === $this_match) {
             $best_match = $this_match;
@@ -86,7 +87,7 @@ function realUrl() {
 
         $current_deep++;
     }
-
+    
     $protocol = 'http://';
     if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') { // 兼容nginx反向代理的情况
         $protocol = 'https://';
