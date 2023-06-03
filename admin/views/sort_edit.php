@@ -10,54 +10,57 @@
 <?php if (isset($_GET['error_e'])): ?>
     <div class="alert alert-danger">别名不得包含系统保留关键字</div><?php endif ?>
 <h1 class="h3 mb-2 text-gray-800">编辑分类</h1>
-<form action="sort.php?action=update" method="post">
-    <div class="form-group">
-        <label for="sortname">分类名</label>
-        <input class="form-control" value="<?= $sortname ?>" name="sortname" id="sortname" required>
+<div class="card shadow mb-4 mt-4">
+    <div class="card-body">
+        <form action="sort.php?action=update" method="post">
+            <div class="form-group">
+                <label for="sortname">分类名</label>
+                <input class="form-control" value="<?= $sortname ?>" name="sortname" id="sortname" required>
+            </div>
+            <div class="form-group">
+                <label for="alias">别名</label>
+                <input class="form-control" value="<?= $alias ?>" name="alias" id="alias">
+                <small class="form-text text-muted">用于URL的友好显示，可不填</small>
+            </div>
+            <div class="form-group">
+                <label for="description">分类描述</label>
+                <textarea name="description" type="text" class="form-control"><?= $description ?></textarea>
+            </div>
+            <div class="form-group">
+                <label>父分类</label>
+                <select name="pid" id="pid" class="form-control">
+                    <option value="0" <?php if ($pid == 0): ?> selected="selected"<?php endif ?>>无</option>
+                    <?php
+                    foreach ($sorts as $key => $value):
+                        if ($key == $sid || $value['pid'] != 0) continue;
+                        ?>
+                        <option value="<?= $key ?>"<?php if ($pid == $key): ?> selected="selected"<?php endif ?>><?= $value['sortname'] ?></option>
+                    <?php endforeach ?>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="template">分类模板</label>
+                <?php if ($customTemplates):
+                    $sortListHtml = '<option value="">默认</option>';
+                    foreach ($customTemplates as $v) {
+                        $select = $v['filename'] == $template ? 'selected="selected"' : '';
+                        $sortListHtml .= '<option value="' . str_replace('.php', '', $v['filename']) . '" ' . $select . '>' . ($v['comment']) . '</option>';
+                    }
+                    ?>
+                    <select id="template" name="template" class="form-control"><?= $sortListHtml; ?></select>
+                    <small class="form-text text-muted">(选择当前模板支持的分类模板，可不选)</small>
+                <?php else: ?>
+                    <input class="form-control" id="template" name="template" value="<?= $template ?>">
+                    <small class="form-text text-muted">(用于自定义分类页面模板，对应模板目录下xxx.php文件，xxx即为模板名，可不填)</small>
+                <?php endif; ?>
+            </div>
+            <input type="hidden" value="<?= $sid ?>" name="sid"/>
+            <input type="submit" value="保存" class="btn btn-sm btn-success" id="save"/>
+            <input type="button" value="取消" class="btn btn-sm btn-secondary" onclick="javascript: window.history.back();"/>
+            <span id="alias_msg_hook"></span>
+        </form>
     </div>
-    <div class="form-group">
-        <label for="alias">别名</label>
-        <input class="form-control" value="<?= $alias ?>" name="alias" id="alias">
-        <small class="form-text text-muted">用于URL的友好显示，可不填</small>
-    </div>
-    <div class="form-group">
-        <label for="description">分类描述</label>
-        <textarea name="description" type="text" class="form-control"><?= $description ?></textarea>
-    </div>
-    <div class="form-group">
-        <label>父分类</label>
-        <select name="pid" id="pid" class="form-control">
-            <option value="0" <?php if ($pid == 0): ?> selected="selected"<?php endif ?>>无</option>
-            <?php
-            foreach ($sorts as $key => $value):
-                if ($key == $sid || $value['pid'] != 0) continue;
-                ?>
-                <option value="<?= $key ?>"<?php if ($pid == $key): ?> selected="selected"<?php endif ?>><?= $value['sortname'] ?></option>
-            <?php endforeach ?>
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="template">分类模板</label>
-        <?php if ($customTemplates):
-            $sortListHtml = '<option value="">默认</option>';
-            foreach ($customTemplates as $v) {
-                $select = $v['filename'] == $template ? 'selected="selected"' : '';
-                $sortListHtml .= '<option value="' . str_replace('.php', '', $v['filename']) . '" ' . $select . '>' . ($v['comment']) . '</option>';
-            }
-            ?>
-            <select id="template" name="template" class="form-control"><?= $sortListHtml; ?></select>
-            <small class="form-text text-muted">(选择当前模板支持的分类模板，可不选)</small>
-        <?php else: ?>
-            <input class="form-control" id="template" name="template" value="<?= $template ?>">
-            <small class="form-text text-muted">(用于自定义分类页面模板，对应模板目录下xxx.php文件，xxx即为模板名，可不填)</small>
-        <?php endif; ?>
-    </div>
-    <input type="hidden" value="<?= $sid ?>" name="sid"/>
-    <input type="submit" value="保存" class="btn btn-sm btn-success" id="save"/>
-    <input type="button" value="取消" class="btn btn-sm btn-secondary" onclick="javascript: window.history.back();"/>
-    <span id="alias_msg_hook"></span>
-</form>
-
+</div>
 <script>
     $(function () {
         setTimeout(hideActived, 3600);

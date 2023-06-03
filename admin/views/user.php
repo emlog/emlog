@@ -135,12 +135,12 @@
                         <input type="email" name="email" class="form-control" value="<?= $email ?>" required>
                     </div>
                     <div class="form-group">
-                        <label for="password">密码 (大于6位)</label>
-                        <input class="form-control" id="password" name="password" autocomplete="new-password" type="password" required>
+                        <label for="password">密码 (不少于6位)</label>
+                        <input class="form-control" id="password" minlength="6" name="password" autocomplete="new-password" type="password" required>
                     </div>
                     <div class="form-group">
                         <label for="password2">再次输入密码</label>
-                        <input class="form-control" id="password2" name="password2" type="password" required>
+                        <input class="form-control" id="password2" minlength="6" name="password2" type="password" required>
                     </div>
                 </div>
                 <div class="modal-footer">
