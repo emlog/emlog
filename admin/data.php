@@ -42,7 +42,7 @@ if ($action === 'backup') {
     $dumpfile .= $sqldump;
     $dumpfile .= "\n#the end of backup";
 
-    $filename = 'emlog_' . date('Ymd_His');
+    $filename = 'emlog_' . Option::EMLOG_VERSION . '_' . date('Ymd_His');
     if ($zipbak == 'y') {
         if (($dumpfile = emZip($filename . '.sql', $dumpfile)) === false) {
             emDirect('./data.php?error_f=1');
