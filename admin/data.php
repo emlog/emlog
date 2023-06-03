@@ -179,7 +179,14 @@ function dataBak($table) {
         $comma = '';
         $sql .= "INSERT INTO $table VALUES(";
         for ($i = 0; $i < $numfields; $i++) {
-            $sql .= $comma . "'" . $DB->escape_string($row[$i]) . "'";
+            $fieldValue = $row[$i];
+            if (is_null($fieldValue)) {
+                // Handle default value of NULL
+                $sql .= $comma . 'NULL';
+            } else {
+                // Escape and add the field value
+                $sql .= $comma . "'" . $DB->escape_string($fieldValue) . "'";
+            }
             $comma = ',';
         }
         $sql .= ");\n";
