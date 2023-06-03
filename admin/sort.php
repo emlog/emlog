@@ -37,6 +37,7 @@ if ($action == 'taxis') {
         $Sort_Model->updateSort(array('taxis' => $key), $value);
     }
     $CACHE->updateCache('sort');
+    $CACHE->updateCache('navi');
     emDirect("./sort.php?active_taxis=1");
 }
 
