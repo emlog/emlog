@@ -136,8 +136,15 @@ class User_Model {
         return $data['total'] > 0;
     }
 
-    public function getUserNum() {
-        $data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "user");
+    public function getUserNum($email = '', $nickname = '') {
+        $condition = '';
+        if ($email) {
+            $condition = " and email like '$email%'";
+        }
+        if ($nickname) {
+            $condition = " and nickname like '%$nickname%'";
+        }
+        $data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "user where 1=1 $condition");
         return $data['total'];
     }
 }

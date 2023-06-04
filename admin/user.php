@@ -26,7 +26,7 @@ if (empty($action)) {
     }
 
     $users = $User_Model->getUsers($email, $nickname, $page);
-    $usernum = $User_Model->getUserNum();
+    $usernum = $User_Model->getUserNum($email, $nickname);
     $pageurl = pagination($usernum, Option::get('admin_perpage_num'), $page, "./user.php?page=");
 
     include View::getAdmView('header');
