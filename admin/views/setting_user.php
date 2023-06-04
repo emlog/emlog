@@ -36,7 +36,7 @@
                 <input class="form-check-input" type="checkbox" value="y" name="ischkarticle" id="ischkarticle" <?= $conf_ischkarticle ?> />
                 <label class="form-check-label">注册用户发布文章需要审核</label>
             </div>
-            <div class="form-group form-inline">
+            <div class="form-group form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="article_uneditable" id="article_uneditable" <?= $conf_article_uneditable ?> />
                 <label>审核通过的文章用户不可编辑、删除</label>
             </div>
