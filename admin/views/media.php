@@ -192,7 +192,7 @@
             window.location.reload();
         })
         Dropzone.options.myAwesomeDropzone = {
-            maxFilesize: 2048,// MB
+            maxFilesize: Number.MAX_SAFE_INTEGER,// 不限制
             paramName: "file",
             timeout: 3600000,// milliseconds
             init: function () {
@@ -202,31 +202,6 @@
             }
         };
 
-        function mediaact(act) {
-            if (getChecked('aids') === false) {
-                swal("", "请选择要删除的资源", "info");
-                return;
-            }
-
-            if (act == 'del') {
-                swal({
-                    title: '确定要删除所选资源吗',
-                    text: '删除后可能无法恢复',
-                    icon: 'warning',
-                    buttons: ['取消', '确定'],
-                    dangerMode: true,
-                }).then((willDelete) => {
-                    if (willDelete) {
-                        $("#operate").val(act);
-                        $("#form_media").submit();
-                    }
-                });
-                return;
-            }
-            $("#operate").val(act);
-            $("#form_media").submit();
-        }
-
         $('#editModal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget)
             var sortname = button.data('sortname')
@@ -235,17 +210,6 @@
             modal.find('.modal-body input').val(sortname)
             modal.find('.modal-footer input').val(id)
         })
-
-        // 更改分类
-        function changeSort(obj) {
-            if (getChecked('aids') === false) {
-                swal("", "请选择要移动的资源!", "info");
-                return;
-            }
-            if ($('#sort').val() == '') return;
-            $("#operate").val('move');
-            $("#form_media").submit();
-        }
 
         if (window.outerWidth > 767) {
             hs.graphicsDir = './views/components/highslide/graphics/';
@@ -286,4 +250,40 @@
             window.location.href = url;
         });
     });
+
+    function mediaact(act) {
+        if (getChecked('aids') === false) {
+            swal("", "请选择要删除的资源", "info");
+            return;
+        }
+
+        if (act == 'del') {
+            swal({
+                title: '确定要删除所选资源吗',
+                text: '删除后可能无法恢复',
+                icon: 'warning',
+                buttons: ['取消', '确定'],
+                dangerMode: true,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    $("#operate").val(act);
+                    $("#form_media").submit();
+                }
+            });
+            return;
+        }
+        $("#operate").val(act);
+        $("#form_media").submit();
+    }
+
+    // 更改分类
+    function changeSort(obj) {
+        if (getChecked('aids') === false) {
+            swal("", "请选择要移动的资源!", "info");
+            return;
+        }
+        if ($('#sort').val() == '') return;
+        $("#operate").val('move');
+        $("#form_media").submit();
+    }
 </script>

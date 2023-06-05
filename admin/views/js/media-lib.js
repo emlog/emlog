@@ -66,7 +66,7 @@ var myDropzone = new Dropzone("#mediaAdd", {
     url: "./media.php?action=upload",
     addRemoveLinks: false,
     method: 'post',
-    maxFilesize: 2048,//MB
+    maxFilesize: Number.MAX_SAFE_INTEGER,// 不限制
     filesizeBase: 1024,
     timeout: 3600000,// milliseconds
     previewsContainer: ".dropzone-previews",
