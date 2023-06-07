@@ -198,8 +198,7 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
                         <?php endforeach ?>
                     </select>
                 <?php endif ?>
-
-                <div class="btn-group btn-group-sm" role="group">
+                <div class="btn-group btn-group-sm ml-1" role="group">
                     <?php if ($draft): ?>
                         <a href="javascript:logact('pub');" class="btn btn-sm btn-success">发布</a>
                     <?php else: ?>
@@ -209,7 +208,8 @@ $isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
                 </div>
             </div>
         </form>
-        <div class="page"><?= $pageurl ?> (有 <?= $logNum ?> 篇<?= $draft ? '草稿' : '文章' ?>)</div>
+        <div class="page"><?= $pageurl ?> </div>
+        <div class="text-center small">(有 <?= $logNum ?> 篇<?= $draft ? '草稿' : '文章' ?>)</div>
     </div>
 </div>
 <!--驳回文章-->
