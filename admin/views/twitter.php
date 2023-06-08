@@ -31,7 +31,7 @@
                 <p class="text-muted small card-text d-flex justify-content-between">
                     <?= $val['date'] ?> | by <?= $author ?>
                     <span>
-                    <a href="#" class="text-muted" data-toggle="modal" data-target="#editModal" data-id="<?= $val['id'] ?>" data-t="<?= $val['t'] ?>">编辑</a>
+                    <a href="#" class="text-muted" data-toggle="modal" data-target="#editModal" data-id="<?= $val['id'] ?>" data-t="<?= htmlspecialchars($val['t']) ?>">编辑</a>
                     <a href="javascript: em_confirm(<?= $tid ?>, 'tw', '<?= LoginAuth::genToken() ?>');" class="care">删除</a>
                     </span>
                 </p>
