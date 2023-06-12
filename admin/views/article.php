@@ -3,9 +3,6 @@ if (!defined('EMLOG_ROOT')) {
     exit('error!');
 }
 $isdraft = $draft ? '&draft=1' : '';
-$isDisplaySort = !$sid ? "style=\"display:none;\"" : '';
-$isDisplayTag = !$tagId ? "style=\"display:none;\"" : '';
-$isDisplayUser = !$uid ? "style=\"display:none;\"" : '';
 ?>
 <?php if (isset($_GET['active_del'])): ?>
     <div class="alert alert-success">删除成功</div><?php endif ?>

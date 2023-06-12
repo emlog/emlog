@@ -19,8 +19,6 @@
     <div class="alert alert-danger">请选择要添加的分类</div><?php endif ?>
 <?php if (isset($_GET['error_e'])): ?>
     <div class="alert alert-danger">请选择要添加的页面</div><?php endif ?>
-<?php if (isset($_GET['error_f'])): ?>
-    <div class="alert alert-danger">导航地址格式错误(需包含http等前缀)</div><?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">导航</h1>
 </div>
@@ -80,9 +78,11 @@
                                 <td><?= $value['url'] ?></td>
                                 <td>
                                     <?php if ($value['hide'] == 'n'): ?>
-                                        <a href="navbar.php?action=hide&amp;id=<?= $value['id'] ?>" class="badge badge-primary">显示</a>
+                                        <a href="navbar.php?action=hide&amp;id=<?= $value['id'] ?>"
+                                           class="badge badge-primary">显示</a>
                                     <?php else: ?>
-                                        <a href="navbar.php?action=show&amp;id=<?= $value['id'] ?>" class="badge badge-warning">隐藏</a>
+                                        <a href="navbar.php?action=show&amp;id=<?= $value['id'] ?>"
+                                           class="badge badge-warning">隐藏</a>
                                     <?php endif ?>
                                     <?php if ($value['isdefault'] == 'n'): ?>
                                         <a href="javascript: em_confirm(<?= $value['id'] ?>, 'navi', '<?= LoginAuth::genToken() ?>');"
@@ -97,7 +97,8 @@
                                     <tr>
                                         <td>
                                             <input type="hidden" name="navi[]" value="<?= $val['id'] ?>"/>
-                                            ---- <a href="navbar.php?action=mod&amp;navid=<?= $val['id'] ?>"><?= $val['naviname'] ?></a>
+                                            ----
+                                            <a href="navbar.php?action=mod&amp;navid=<?= $val['id'] ?>"><?= $val['naviname'] ?></a>
                                         </td>
                                         <td><?= $value['type_name'] ?></td>
                                         <td>
@@ -107,9 +108,11 @@
                                         <td><?= $val['url'] ?></td>
                                         <td>
                                             <?php if ($val['hide'] == 'n'): ?>
-                                                <a href="navbar.php?action=hide&amp;id=<?= $val['id'] ?>" class="badge badge-primary">显示</a>
+                                                <a href="navbar.php?action=hide&amp;id=<?= $val['id'] ?>"
+                                                   class="badge badge-primary">显示</a>
                                             <?php else: ?>
-                                                <a href="navbar.php?action=show&amp;id=<?= $val['id'] ?>" class="badge badge-warning">隐藏</a>
+                                                <a href="navbar.php?action=show&amp;id=<?= $val['id'] ?>"
+                                                   class="badge badge-warning">隐藏</a>
                                             <?php endif ?>
                                             <?php if ($val['isdefault'] == 'n'): ?>
                                                 <a href="javascript: em_confirm(<?= $val['id'] ?>, 'navi', '<?= LoginAuth::genToken() ?>');"
@@ -141,7 +144,8 @@
                     <input class="form-control" name="naviname" placeholder="导航名称" required/>
                 </div>
                 <div class="form-group">
-                    <textarea maxlength="512" class="form-control" placeholder="地址（URL）" name="url" id="url" required/></textarea>
+                    <textarea maxlength="512" class="form-control" placeholder="地址（URL）" name="url" id="url"
+                              required/></textarea>
                 </div>
                 <div class="form-group">
                     <label>父导航</label>
@@ -180,7 +184,8 @@
                                 continue;
                             }
                             ?>
-                            <div class="form-group"><input type="checkbox" style="vertical-align:middle;" name="sort_ids[]" value="<?= $value['sid'] ?>" class="ids"/>
+                            <div class="form-group"><input type="checkbox" style="vertical-align:middle;"
+                                                           name="sort_ids[]" value="<?= $value['sid'] ?>" class="ids"/>
                                 <?= $value['sortname'] ?>
                             </div>
                             <?php
@@ -189,7 +194,9 @@
                                 $value = $sorts[$key];
                                 ?>
                                 <div class="form-group">
-                                    &nbsp; &nbsp; &nbsp; <input type="checkbox" style="vertical-align:middle;" name="sort_ids[]" value="<?= $value['sid'] ?>" class="ids"/>
+                                    &nbsp; &nbsp; &nbsp; <input type="checkbox" style="vertical-align:middle;"
+                                                                name="sort_ids[]" value="<?= $value['sid'] ?>"
+                                                                class="ids"/>
                                     <?= $value['sortname'] ?>
                                 </div>
                             <?php
@@ -217,11 +224,13 @@
                     foreach ($pages as $key => $value):
                         ?>
                         <div class="form-group">
-                            <input type="checkbox" style="vertical-align:middle;" name="pages[<?= $value['gid'] ?>]" value="<?= $value['title'] ?>" class="ids"/>
+                            <input type="checkbox" style="vertical-align:middle;" name="pages[<?= $value['gid'] ?>]"
+                                   value="<?= $value['title'] ?>" class="ids"/>
                             <?= $value['title'] ?>
                         </div>
                     <?php endforeach ?>
-                    <div class="form-group"><input type="submit" class="btn btn-sm btn-success" name="" value="保存"/></div>
+                    <div class="form-group"><input type="submit" class="btn btn-sm btn-success" name="" value="保存"/>
+                    </div>
                 <?php else: ?>
                     <div class="form-group">还没页面，<a href="page.php?action=new">新建页面</a></div>
                 <?php endif ?>
