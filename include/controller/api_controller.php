@@ -202,6 +202,10 @@ class Api_Controller {
             output::ok(['article' => $article,]);
         }
 
+        if (!empty($r['password'])) {
+            Output::error('This article is private');
+        }
+
         $user_info = $this->User_Model->getOneUser($r['author']);
         $author_name = isset($user_info['nickname']) ? $user_info['nickname'] : '';
 
