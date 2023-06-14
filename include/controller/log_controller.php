@@ -87,17 +87,17 @@ class Log_Controller {
         $ckurl = isset($_COOKIE['posterurl']) ? htmlspecialchars($_COOKIE['posterurl']) : '';
         $comments = $Comment_Model->getComments($logid, 'n', $comment_page);
 
+        $Log_Model->updateViewCount($logid);
+
+        if (filter_var($link, FILTER_VALIDATE_URL)) {
+            emDirect($link);
+        }
+
         include View::getView('header');
-        if ($type == 'blog') {
-            $Log_Model->updateViewCount($logid);
-            if (filter_var($link, FILTER_VALIDATE_URL)) {
-                emDirect($link);
-            }
+        if ($type === 'blog') {
             $neighborLog = $Log_Model->neighborLog($timestamp);
-            $tb = [];
-            $tb_url = '';//兼容未删除引用模板
             include View::getView('echo_log');
-        } elseif ($type == 'page') {
+        } elseif ($type === 'page') {
             $template = !empty($template) && file_exists(TEMPLATE_PATH . $template . '.php') ? $template : 'page';
             include View::getView($template);
         }

@@ -21,6 +21,10 @@
                 <input name="alias" id="alias" class="form-control" value="<?= $alias ?>"/>
             </div>
             <div class="form-group">
+                <label>跳转链接：<small class="text-muted">（填写后不展示页面内容，直接跳转该地址）</small></label>
+                <input name="link" id="link" type="url" class="form-control" value="<?= $link ?>" placeholder="https://"/>
+            </div>
+            <div class="form-group">
                 <label>页面模板：</label>
                 <?php if ($customTemplates):
                     $sortListHtml = '<option value="">默认</option>';
@@ -30,7 +34,7 @@
                     }
                     ?>
                     <select id="template" name="template" class="form-control"><?= $sortListHtml; ?></select>
-                    <small class="form-text text-muted">(选择当前模板支持的页面模板，<可不></可不>选)</small>
+                    <small class="form-text text-muted">(选择当前模板支持的页面模板，可不选)</small>
                 <?php else: ?>
                     <input class="form-control" id="template" name="template" value="<?= $template ?>">
                     <small class="form-text text-muted">(用于自定义页面模板，对应模板目录下xxx.php文件，xxx即为模板名，可不填)</small>

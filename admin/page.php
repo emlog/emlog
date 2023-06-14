@@ -40,6 +40,7 @@ if ($action == 'new') {
         'template'        => 'page',
         'is_allow_remark' => 'n',
         'att_frame_url'   => 'attachment.php?action=selectFile',
+        'link'            => '',
     );
     extract($pageData);
 
@@ -89,6 +90,7 @@ if ($action == 'save') {
     $ishide = isset($_POST['ishide']) && empty($_POST['ishide']) ? 'n' : addslashes($_POST['ishide']);
     $template = isset($_POST['template']) && $_POST['template'] != 'page' ? addslashes(trim($_POST['template'])) : '';
     $allow_remark = isset($_POST['allow_remark']) ? addslashes(trim($_POST['allow_remark'])) : 'n';
+    $link = Input::postStrVar('link');
 
     $postTime = time();
 
@@ -107,6 +109,7 @@ if ($action == 'save') {
         'alias'        => $alias,
         'type'         => 'page',
         'template'     => $template,
+        'link'         => $link,
     );
 
     $directUrl = '';

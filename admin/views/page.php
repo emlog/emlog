@@ -11,7 +11,8 @@
     <div class="alert alert-success">页面保存成功</div><?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">页面</h1>
-    <a href="page.php?action=new" class="btn btn-sm btn-success shadow-sm mt-4"><i class="icofont-plus"></i> 新建页面</a>
+    <a href="page.php?action=new" class="btn btn-sm btn-success shadow-sm mt-4"><i class="icofont-plus"></i>
+        新建页面</a>
 </div>
 <form action="page.php?action=operate_page" method="post" name="form_page" id="form_page">
     <div class="card shadow mb-4">
@@ -22,9 +23,9 @@
                     <tr>
                         <th><input type="checkbox" id="checkAll"/></th>
                         <th>标题</th>
-                        <th>查看</th>
-                        <th>模板</th>
                         <th>评论</th>
+                        <th>浏览</th>
+                        <th>模板</th>
                         <th>时间</th>
                     </tr>
                     </thead>
@@ -33,18 +34,21 @@
                         if (empty($navibar[$value['gid']]['url'])) {
                             $navibar[$value['gid']]['url'] = Url::log($value['gid']);
                         }
-                        $isHide = $value['hide'] == 'y' ?
-                            '<span class="text-danger">[草稿]</span>' :
-                            '<a href="' . $navibar[$value['gid']]['url'] . '" target="_blank" title="查看页面"><img src="./views/images/vlog.gif" align="absbottom" border="0" /></a>';
                         ?>
                         <tr>
-                            <td style="width: 19px;"><input type="checkbox" name="page[]" value="<?= $value['gid'] ?>" class="ids"/></td>
+                            <td style="width: 19px;">
+                                <input type="checkbox" name="page[]" value="<?= $value['gid'] ?>" class="ids"/></td>
                             <td>
-                                <a href="page.php?action=mod&id=<?= $value['gid'] ?>"><?= $value['title'] ?></a>
+                                <a href="page.php?action=mod&id=<?= $value['gid'] ?>"><?= $value['title'] ?></a><br>
+                                <?php if ($value['link']): ?><span class="small">🔗</span><?php endif ?>
                             </td>
-                            <td><?= $isHide ?></td>
+                            <td>
+                                <a href="comment.php?gid=<?= $value['gid'] ?>" class="badge badge-info"><?= $value['comnum'] ?></a>
+                            </td>
+                            <td>
+                                <a href="<?= Url::log($value['gid']) ?>" class="badge badge-secondary" target="_blank"><?= $value['views'] ?></a>
+                            </td>
                             <td><?= $value['template'] ?></td>
-                            <td><a href="comment.php?gid=<?= $value['gid'] ?>"><?= $value['comnum'] ?></a></td>
                             <td class="small"><?= $value['date'] ?></td>
                         </tr>
                     <?php endforeach ?>
