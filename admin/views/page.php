@@ -25,21 +25,24 @@
                         <th>标题</th>
                         <th>评论</th>
                         <th>浏览</th>
+                        <th>别名</th>
                         <th>模板</th>
                         <th>时间</th>
                     </tr>
                     </thead>
                     <tbody>
                     <?php foreach ($pages as $key => $value):
-                        if (empty($navibar[$value['gid']]['url'])) {
-                            $navibar[$value['gid']]['url'] = Url::log($value['gid']);
+                        $isHide = '';
+                        if ($value['hide'] == 'y') {
+                            $isHide = '<span class="text-danger ml-2"> - 草稿</span>';
                         }
                         ?>
                         <tr>
                             <td style="width: 19px;">
                                 <input type="checkbox" name="page[]" value="<?= $value['gid'] ?>" class="ids"/></td>
                             <td>
-                                <a href="page.php?action=mod&id=<?= $value['gid'] ?>"><?= $value['title'] ?></a><br>
+                                <a href="page.php?action=mod&id=<?= $value['gid'] ?>"><?= $value['title'] ?></a><?= $isHide ?>
+                                <br>
                                 <?php if ($value['link']): ?><span class="small">🔗</span><?php endif ?>
                             </td>
                             <td>
@@ -48,6 +51,7 @@
                             <td>
                                 <a href="<?= Url::log($value['gid']) ?>" class="badge badge-secondary" target="_blank"><?= $value['views'] ?></a>
                             </td>
+                            <td><?= $value['alias'] ?></td>
                             <td><?= $value['template'] ?></td>
                             <td class="small"><?= $value['date'] ?></td>
                         </tr>
