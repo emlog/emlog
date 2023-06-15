@@ -46,11 +46,15 @@
                 </div>
             <?php endforeach ?>
         </div>
+    <?php elseif (!Register::isRegLocal()): ?>
+        <div class="col-md-12">
+            <p class="alert alert-warning m-3">您还不是付费注册用户，无法使用应用商店已购功能，<a href="https://www.emlog.net/register">付费支持 &rarr;</a></p>
+        </div>
     <?php else: ?>
         <div class="col-md-12">
             <p class="alert alert-warning m-3">您还没有购买任何应用。</p>
         </div>
-    <?php endif ?>
+    <?php endif; ?>
 </div>
 <script>
     $(function () {
