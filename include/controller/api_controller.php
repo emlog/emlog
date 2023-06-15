@@ -219,6 +219,7 @@ class Api_Controller {
             'author_id'   => (int)$r['author'],
             'author_name' => $author_name,
             'content'     => $r['log_content'],
+            'excerpt'     => $r['excerpt'],
             'cover'       => $r['log_cover'],
             'views'       => (int)$r['views'],
             'comnum'      => (int)$r['comnum'],

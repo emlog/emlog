@@ -141,6 +141,7 @@ class Log_Model {
             'type'         => $row['type'],
             'author'       => $row['author'],
             'log_cover'    => $row['cover'] ? getFileUrl($row['cover']) : '',
+            'excerpt'      => $this->Parsedown->text($row['excerpt']),
             'log_content'  => $this->Parsedown->text($row['content']),
             'views'        => (int)$row['views'],
             'comnum'       => (int)$row['comnum'],
