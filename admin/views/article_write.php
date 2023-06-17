@@ -171,9 +171,12 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
-                <button type="button" id="crop" class="btn btn-sm btn-success">保存</button>
+            <div class="modal-footer justify-content-between">
+                <div>按住 Shift 等比例调整裁剪区域</div>
+                <div>
+                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
+                    <button type="button" id="crop" class="btn btn-sm btn-success">保存</button>
+                </div>
             </div>
         </div>
     </div>
@@ -261,7 +264,7 @@
         });
         $modal.on('shown.bs.modal', function () {
             cropper = new Cropper(image, {
-                aspectRatio: 16 / 9,
+                aspectRatio: NaN,
                 viewMode: 1
             });
         }).on('hidden.bs.modal', function () {
