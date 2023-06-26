@@ -17,9 +17,9 @@ class Media_Model {
         $this->table_sort = DB_PREFIX . 'media_sort';
     }
 
-    function getMedias($page = 1, $perpage_count = 24, $uid = UID, $sid = 0, $dateTime = '') {
+    function getMedias($page = 1, $perpage_count = 24, $uid = 0, $sid = 0, $dateTime = '') {
         $startId = ($page - 1) * $perpage_count;
-        $author = $uid ? 'and author=' . UID : '';
+        $author = $uid ? 'and author=' . $uid : '';
         $sort = $sid ? 'and sortid=' . $sid : '';
         $date = $dateTime ? 'and addtime <= ' . strtotime($dateTime) : '';
         $limit = "LIMIT $startId, " . $perpage_count;

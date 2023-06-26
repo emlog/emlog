@@ -21,12 +21,17 @@ if (empty($action)) {
     $sid = Input::getIntVar('sid');
     $page = Input::getIntVar('page', 1);
     $date = Input::getStrVar('date');
-    $uid = User::haveEditPermission() ? null : UID;
+    $uid = Input::getStrVar('uid');
+
+    if (!User::haveEditPermission()) {
+        $uid = UID;
+    }
 
     $page_count = 24;
     $page_url = 'media.php?';
     $page_url .= $sid ? "sid=$sid&" : '';
     $page_url .= $date ? "date=$date&" : '';
+    $page_url .= $uid ? "uid=$uid&" : '';
     $dateTime = $date . ' 23:59:59';
     $medias = $Media_Model->getMedias($page, $page_count, $uid, $sid, $dateTime);
     $count = $Media_Model->getMediaCount($uid, $sid, $dateTime);

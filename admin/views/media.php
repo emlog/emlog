@@ -69,7 +69,10 @@
                         <p class="card-text text-muted small">
                             <?= $media_name ?> <span class="badge badge-primary"><?= $sort_name ?></span><br>
                             时间：<?= $value['addtime'] ?><br>
-                            创建人：<?= $author ?><br>
+                            创建人：<?= $author ?> ,
+                            <?php if (User::haveEditPermission()): ?>
+                                <a href="./media.php?uid=<?= $value['author'] ?>">仅看TA的</a><br>
+                            <?php endif ?>
                             文件大小：<?= $value['attsize'] ?>
                             <?php if ($value['width'] && $value['height']): ?>
                                 ，图片尺寸：<?= $value['width'] ?>x<?= $value['height'] ?>
