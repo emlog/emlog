@@ -24,9 +24,9 @@
                 <table class="table table-bordered table-striped table-hover" id="dataTable">
                     <thead>
                     <tr>
-                        <th>链接</th>
+                        <th>名称</th>
                         <th>描述</th>
-                        <th>查看</th>
+                        <th>链接</th>
                         <th>操作</th>
                     </tr>
                     </thead>
@@ -49,7 +49,7 @@
                             </td>
                             <td><?= $value['description'] ?></td>
                             <td>
-                                <a href="<?= $value['siteurl'] ?>" target="_blank"><img src="./views/images/vlog.gif"/></a>
+                                <a href="<?= $value['siteurl'] ?>" target="_blank"><?= subString($value['siteurl'], 0, 39) ?></a>
                             </td>
                             <td>
                                 <?php if ($value['hide'] == 'n'): ?>
