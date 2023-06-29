@@ -68,7 +68,7 @@
                 <input class="form-control" value="<?= $site_title ?>" name="site_title">
             </div>
             <div class="form-group">
-                <label><label>站点关键字(keywords)</label></label>
+                <label><label>站点关键字(keywords)，多个用英文逗号分隔</label></label>
                 <input class="form-control" value="<?= $site_key ?>" name="site_key">
             </div>
             <div class="form-group">
@@ -76,7 +76,7 @@
                 <textarea name="site_description" class="form-control"><?= $site_description ?></textarea>
             </div>
             <div class="form-group">
-                <label>文章浏览器标题方案：</label>
+                <label>文章浏览器标题方案</label>
                 <select name="log_title_style" class="form-control">
                     <option value="0" <?= $opt0 ?>>文章标题</option>
                     <option value="1" <?= $opt1 ?>>文章标题 - 站点标题</option>
