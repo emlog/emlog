@@ -25,8 +25,8 @@
                     <thead>
                     <tr>
                         <th>名称</th>
-                        <th>描述</th>
                         <th>链接</th>
+                        <th>描述</th>
                         <th>操作</th>
                     </tr>
                     </thead>
@@ -47,10 +47,10 @@
                                     <br/><span class="badge badge-warning">已隐藏</span>
                                 <?php endif ?>
                             </td>
-                            <td><?= $value['description'] ?></td>
                             <td>
                                 <a href="<?= $value['siteurl'] ?>" target="_blank"><?= subString($value['siteurl'], 0, 39) ?></a>
                             </td>
+                            <td><?= $value['description'] ?></td>
                             <td>
                                 <?php if ($value['hide'] == 'n'): ?>
                                     <a href="link.php?action=hide&amp;linkid=<?= $value['id'] ?>" class="badge badge-primary">隐藏</a>
