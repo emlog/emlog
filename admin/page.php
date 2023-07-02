@@ -39,6 +39,7 @@ if ($action == 'new') {
         'hide'            => '',
         'template'        => 'page',
         'is_allow_remark' => 'n',
+        'is_home_page'    => 'n',
         'att_frame_url'   => 'attachment.php?action=selectFile',
         'link'            => '',
     );
@@ -72,6 +73,7 @@ if ($action == 'mod') {
     $medias = $Media_Model->getMedias();
 
     $is_allow_remark = $allow_remark == 'y' ? 'checked="checked"' : '';
+    $is_home_page = Option::get('home_page_id') == $pageId ? 'checked="checked"' : '';
 
     include View::getAdmView('header');
     require_once(View::getAdmView('page_create'));
@@ -90,6 +92,7 @@ if ($action == 'save') {
     $ishide = isset($_POST['ishide']) && empty($_POST['ishide']) ? 'n' : addslashes($_POST['ishide']);
     $template = isset($_POST['template']) && $_POST['template'] != 'page' ? addslashes(trim($_POST['template'])) : '';
     $allow_remark = isset($_POST['allow_remark']) ? addslashes(trim($_POST['allow_remark'])) : 'n';
+    $home_page = isset($_POST['home_page']) ? addslashes(trim($_POST['home_page'])) : 'n';
     $link = Input::postStrVar('link');
 
     $postTime = time();
@@ -119,6 +122,12 @@ if ($action == 'save') {
     } else {
         $pageId = $emPage->addlog($logData);
         $directUrl = './page.php?active_hide_n=1';
+    }
+
+    if ($home_page === 'y') {
+        Option::updateOption('home_page_id', $pageId);
+    } elseif (Option::get('home_page_id') == $pageId) {
+        Option::updateOption('home_page_id', 0);
     }
 
     $CACHE->updateCache(array('options', 'logalias'));

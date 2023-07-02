@@ -41,9 +41,15 @@
                             <td style="width: 19px;">
                                 <input type="checkbox" name="page[]" value="<?= $value['gid'] ?>" class="ids"/></td>
                             <td>
-                                <a href="page.php?action=mod&id=<?= $value['gid'] ?>"><?= $value['title'] ?></a><?= $isHide ?>
-                                <br>
-                                <?php if ($value['link']): ?><span class="small">🔗</span><?php endif ?>
+                                <a href="page.php?action=mod&id=<?= $value['gid'] ?>"><?= $value['title'] ?></a>
+                                <?= $isHide ?>
+                                <?php if ($value['gid'] == Option::get('home_page_id')): ?>
+                                    <br>
+                                    <span class="text-secondary">
+                                        <span class="badge small badge-danger">首页</span> 已设为首页，原默认首页请访问：<a href="<?= BLOG_URL ?>posts" target="_blank"><?= BLOG_URL ?>posts</a>
+                                    </span>
+                                <?php endif; ?>
+                                <?php if ($value['link']): ?><br><span class="small">🔗</span><?php endif ?>
                             </td>
                             <td>
                                 <a href="comment.php?gid=<?= $value['gid'] ?>" class="badge badge-info"><?= $value['comnum'] ?></a>

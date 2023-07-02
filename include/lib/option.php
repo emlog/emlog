@@ -99,6 +99,11 @@ class Option {
             ],
             [
                 'model'  => 'Log_Controller',
+                'method' => 'display',
+                'reg_0'  => '|\/posts(\?.*)?|',
+            ],
+            [
+                'model'  => 'Log_Controller',
                 'method' => 'displayContent',
                 'reg_0'  => '|^.*?/([^/\.=\?]+)(\.html)?(/(comment-page)-(\d+))?/?([\?&].*)?$|',
             ],

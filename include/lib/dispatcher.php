@@ -52,6 +52,13 @@ class Dispatcher {
                 $this->_model = $route['model'];
                 $this->_method = $route['method'];
                 $this->_params = $matches;
+
+                // 设置页面为首页
+                $homePageID = Option::get('home_page_id');
+                if ($this->_model == 'Log_Controller' && $this->_method == 'display' && $homePageID && !strpos($this->_path, 'posts')) {
+                    $this->_method = 'displayContent';
+                    $this->_params = ['/?post=' . $homePageID, 'post', $homePageID];
+                }
                 break;
             }
 

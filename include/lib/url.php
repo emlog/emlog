@@ -141,12 +141,13 @@ class Url {
     }
 
     static function logPage() {
+        $posts = Option::get('home_page_id') > 0 ? 'posts/' : '';
         switch (Option::get('isurlrewrite')) {
             case '0':
-                $logPageUrl = BLOG_URL . '?page=';
+                $logPageUrl = BLOG_URL . $posts . '?page=';
                 break;
             default:
-                $logPageUrl = BLOG_URL . 'page/';
+                $logPageUrl = BLOG_URL . $posts . 'page/';
                 break;
         }
         return $logPageUrl;

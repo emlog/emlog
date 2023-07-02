@@ -44,7 +44,10 @@
                 <input type="checkbox" value="y" name="allow_remark" id="allow_remark" <?= $is_allow_remark ?> />
                 <label for="allow_remark">允许评论</label>
             </div>
-
+            <div class="form-group">
+                <input type="checkbox" value="y" name="home_page" id="home_page" <?= $is_home_page ?> />
+                <label for="allow_remark">设为首页，同时原默认首页将变更为：<?= BLOG_URL ?>posts</label>
+            </div>
             <div id="post_button">
                 <input type="hidden" name="ishide" id="ishide" value="<?= $hide ?>"/>
                 <input type="hidden" name="pageid" value="<?= $pageId ?>"/>
