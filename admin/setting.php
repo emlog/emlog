@@ -239,7 +239,6 @@ if ($action == 'seo_save') {
     );
 
     if ($permalink != '0' || $isalias == 'y') {
-        $fp = @fopen(EMLOG_ROOT . '/.htaccess', 'w');
         $t = parse_url(BLOG_URL);
         $rw_rule = '<IfModule mod_rewrite.c>
                        RewriteEngine on
@@ -248,11 +247,10 @@ if ($action == 'seo_save') {
                        RewriteBase ' . $t['path'] . '
                        RewriteRule . ' . $t['path'] . 'index.php [L]
                     </IfModule>';
-        if (!@fwrite($fp, $rw_rule)) {
+        if (!file_put_contents(EMLOG_ROOT . '/.htaccess', $rw_rule)) {
             header('Location: ./setting.php?action=seo&error=1');
             exit;
         }
-        fclose($fp);
     }
 
     foreach ($getData as $key => $val) {
