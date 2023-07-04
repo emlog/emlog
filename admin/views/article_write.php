@@ -4,7 +4,7 @@
 ?>
 <div id="msg" class="fixed-top alert" style="display: none"></div>
 <h1 class="h3 mb-4 text-gray-800"><?= $containertitle ?> <span id="save_info"></span></h1>
-<form action="article_save.php?action=add" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
+<form action="article_save.php" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
     <div class="row">
         <div class="col-xl-12">
             <div id="post" class="form-group">

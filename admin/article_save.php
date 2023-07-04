@@ -78,22 +78,26 @@ $CACHE->updateArticleCache();
 
 doAction('save_log', $blogid);
 
-switch ($action) {
-    case 'autosave':
-        echo 'autosave_gid:' . $blogid . '_';
-        break;
-    case 'add':
-    case 'edit':
-        if ($ishide === 'y') {
-            emDirect("./article.php?draft=1&active_savedraft=1"); //草稿保存成功
-        }
-        if ($action === 'add' || isset($_POST['pubPost'])) {
-            if ($checked === 'n') {
-                notice::sendNewPostMail($title);
-            }
-            emDirect("./article.php?active_post=1");//文章发布成功
-        } else {
-            emDirect("./article.php?active_savelog=1");//文章保存成功
-        }
-        break;
+// 异步保存
+if ($action === 'autosave') {
+    exit('autosave_gid:' . $blogid . '_');
 }
+
+// 保存草稿
+if ($ishide === 'y') {
+    emDirect("./article.php?draft=1&active_savedraft=1");
+}
+
+// 文章（草稿）公开发布
+if (isset($_POST['pubPost'])) {
+    if ($checked === 'n') {
+        notice::sendNewPostMail($title);
+    }
+    emDirect("./article.php?active_post=1");
+}
+
+// 编辑文章（保存并返回）
+$page = $Log_Model->getPageOffset($postDate, Option::get('admin_perpage_num'));
+emDirect("./article.php?active_savelog=1&page=" . $page);
+
+

@@ -231,6 +231,18 @@ class Log_Model {
         return $d;
     }
 
+    /**
+     * 获取文章所在页码
+     * @param $date
+     * @param $pageSize
+     * @param $type
+     * @return false|float
+     */
+    public function getPageOffset($date, $pageSize = 20, $type = 'blog') {
+        $data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM $this->table WHERE type='$type' AND hide='n' AND (date >= $date OR top = 'y' OR sortop = 'y')");
+        $count = $data['total'];
+        return ceil($count / $pageSize);
+    }
 
     public function getAllPageList() {
         $sql = "SELECT * FROM $this->table WHERE type='page'";
