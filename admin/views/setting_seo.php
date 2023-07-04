@@ -63,7 +63,7 @@
                     }
                 </p>
                 <hr>
-                <p>其他服务器配置见官网文档<a href="https://www.emlog.net/docs/#/faq" target="_blank">常见问题</p>
+                <p>其他服务器配置见官网文档：<a href="https://www.emlog.net/docs/#/faq" target="_blank">常见问题</a></p>
             </div>
 
             <h4 class="mt-4">页头信息</h4>
