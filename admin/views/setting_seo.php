@@ -13,8 +13,8 @@
         <li class="nav-item"><a class="nav-link" href="./setting.php">基础设置</a></li>
         <li class="nav-item"><a class="nav-link" href="./setting.php?action=user">用户设置</a></li>
         <li class="nav-item"><a class="nav-link" href="./setting.php?action=mail">邮件通知</a></li>
-        <li class="nav-item"><a class="nav-link active" href="./setting.php?action=seo">SEO优化</a></li>
-        <li class="nav-item"><a class="nav-link" href="./setting.php?action=api">API接口</a></li>
+        <li class="nav-item"><a class="nav-link active" href="./setting.php?action=seo">SEO设置</a></li>
+        <li class="nav-item"><a class="nav-link" href="./setting.php?action=api">API</a></li>
         <li class="nav-item"><a class="nav-link" href="./blogger.php">个人信息</a></li>
     </ul>
 </div>
@@ -49,17 +49,21 @@
             </div>
 
             <div class="alert alert-warning">
-                如果修改后文章无法访问，可能是服务器空间不支持URL重写，请修改回默认格式并关闭文章连接别名。<br>
+                如果修改后文章无法访问，可能是服务器空间不支持URL重写（伪静态），请修改回默认格式并关闭文章连接别名。<br>
             </div>
 
             <div class="alert alert-primary">
-                Nginx服务器请配置如下伪静态规则：<br><br>
-                location / {<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;index index.php index.html;<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;if (!-e $request_filename){<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rewrite ^/(.*)$ /index.php last;<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;}<br>
-                }<br>
+                <p>
+                    Nginx服务器请配置如下伪静态规则：<br><br>
+                    location / {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;index index.php index.html;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;if (!-e $request_filename){<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rewrite ^/(.*)$ /index.php last;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                    }
+                </p>
+                <hr>
+                <p>其他服务器配置见官网文档<a href="https://www.emlog.net/docs/#/faq" target="_blank">常见问题</p>
             </div>
 
             <h4 class="mt-4">页头信息</h4>
