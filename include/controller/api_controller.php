@@ -151,6 +151,7 @@ class Api_Controller {
         $keyword = isset($_GET['keyword']) ? addslashes(htmlspecialchars(urldecode(trim($_GET['keyword'])))) : '';
         $keyword = str_replace(['%', '_'], ['\%', '\_'], $keyword);
         $tag = isset($_GET['tag']) ? addslashes(urldecode(trim($_GET['tag']))) : '';
+        $order = Input::getStrVar('order');
 
         $sub = '';
         if ($sort_id) {
@@ -166,7 +167,20 @@ class Api_Controller {
             }
         }
 
-        $r = $this->Log_Model->getLogsForHome($sub . " ORDER BY top DESC ,date DESC", $page, $count);
+        $sub2 = ' ORDER BY ';
+        switch ($order) {
+            case 'views':
+                $sub2 .= 'views DESC';
+                break;
+            case 'comnum':
+                $sub2 .= 'comnum DESC';
+                break;
+            default:
+                $sub2 .= 'top DESC, sortop DESC, date DESC';
+                break;
+        }
+
+        $r = $this->Log_Model->getLogsForHome($sub . $sub2, $page, $count);
         $sort_cache = $this->Cache->readCache('sort');
         $articles = [];
         foreach ($r as $value) {
