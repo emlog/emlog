@@ -13,7 +13,6 @@
 
 require_once 'globals.php';
 
-
 $Log_Model = new Log_Model();
 $Tag_Model = new Tag_Model();
 $Sort_Model = new Sort_Model();
@@ -88,6 +87,7 @@ if ($action == 'del') {
     LoginAuth::checkToken();
 
     $Log_Model->deleteLog($gid);
+    doAction('del_log', $gid);
     $CACHE->updateCache();
     emDirect("./article.php?&active_del=1&draft=$draft");
 }
