@@ -83,12 +83,13 @@ class User {
 
     static function checkRolePermission() {
         $request_uri = strtolower(substr(basename($_SERVER['SCRIPT_NAME']), 0, -4));
-        if (ROLE === self::ROLE_WRITER && !in_array($request_uri, ['article', 'twitter', 'media', 'blogger', 'comment', 'index', 'article_save'])) {
+        if (ROLE === self::ROLE_WRITER && !in_array($request_uri, ['article', 'twitter', 'media', 'blogger', 'comment', 'index', 'article_save', 'plugin_user'])) {
             emMsg('你所在的用户组无法使用该功能，请联系管理员', './');
         }
-        if (ROLE === self::ROLE_EDITOR && !in_array($request_uri, ['article', 'twitter', 'media', 'blogger', 'comment', 'index', 'article_save'])) {
+        if (ROLE === self::ROLE_EDITOR && !in_array($request_uri, ['article', 'twitter', 'media', 'blogger', 'comment', 'index', 'article_save', 'plugin_user'])) {
             emMsg('你所在的用户组无法使用该功能，请联系管理员', './');
         }
     }
 
 }
+
