@@ -77,5 +77,5 @@ if ($action == 'update_avatar') {
     $User_Model = new User_Model();
     $User_Model->updateUser(array('photo' => $file_path), UID);
     $CACHE->updateCache('user');
-    echo $file_path;
+    Output::ok($file_path);
 }

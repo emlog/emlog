@@ -272,5 +272,5 @@ if ($action === 'edit') {
 
 if ($action == 'upload_cover') {
     $ret = uploadCropImg();
-    echo $ret['file_info']['file_path'];
+    Output::ok($ret['file_info']['file_path']);
 }

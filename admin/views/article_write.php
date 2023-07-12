@@ -286,12 +286,23 @@
                     contentType: false,
                     success: function (data) {
                         $modal.modal('hide');
-                        if (data != "error") {
-                            $('#cover_image').attr('src', data);
-                            $('#cover').val(data);
+                        if (data.code == 0) {
+                            $('#cover_image').attr('src', data.data);
+                            $('#cover').val(data.data);
                             $('#cover_rm').show();
+                        } else {
+                            alert(data.msg);
+                        }
+                    },
+                    error: function (xhr) {
+                        var data = xhr.responseJSON;
+                        if (data && typeof data === "object") {
+                            alert(data.msg);
+                        } else {
+                            alert("An error occurred during the file upload.");
                         }
                     }
+
                 });
             });
         });

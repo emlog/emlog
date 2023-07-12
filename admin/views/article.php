@@ -62,7 +62,9 @@ $isdraft = $draft ? '&draft=1' : '';
                             endforeach;
                         endforeach;
                         ?>
-                        <option value="-1" <?php if ($sid == -1) echo 'selected' ?>>未分类</option>
+                        <option value="-1" <?php if ($sid == -1)
+                            echo 'selected' ?>>未分类
+                        </option>
                     </select>
                 </div>
                 <?php if (User::haveEditPermission() && count($user_cache) > 1): ?>
@@ -159,7 +161,7 @@ $isdraft = $draft ? '&draft=1' : '';
             <div class="form-inline">
                 <?php if (User::haveEditPermission()): ?>
                     <select name="top" id="top" onChange="changeTop(this);" class="form-control m-1">
-                        <option value="" selected="selected">置顶</option>
+                        <option value="" selected="selected">选择置顶</option>
                         <option value="top">首页置顶</option>
                         <option value="sortop">分类置顶</option>
                         <option value="notop">取消置顶</option>

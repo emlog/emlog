@@ -65,17 +65,17 @@ function realUrl() {
     if ($real_url !== NULL) {
         return $real_url;
     }
-    
+
     $emlog_path = EMLOG_ROOT . DIRECTORY_SEPARATOR;
     $script_path = pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_DIRNAME);
     $script_path = str_replace('\\', '/', $script_path);
     $path_element = explode('/', $script_path);
-    
+
     $this_match = '';
     $best_match = '';
     $current_deep = 0;
     $max_deep = count($path_element);
-    while($current_deep < $max_deep) {
+    while ($current_deep < $max_deep) {
         $this_match = $this_match . $path_element[$current_deep] . DIRECTORY_SEPARATOR;
         if (substr($emlog_path, strlen($this_match) * (-1)) === $this_match) {
             $best_match = $this_match;
@@ -246,7 +246,8 @@ function pagination($count, $perlogs, $page, $url, $anchor = '') {
     $neighborNum = 1;
     $minKey = 4;
 
-    if ($pnums == 1) return $re;
+    if ($pnums == 1)
+        return $re;
     if ($page >= 1 && $pnums >= 7) {
         $frontContent .= " <a href=\"$urlHome$anchor\">1</a> ";
         $frontContent .= " <em> ... </em> ";
@@ -1093,15 +1094,13 @@ function getTimeZoneOffset($remote_tz, $origin_tz = 'UTC') {
 function uploadCropImg() {
     $attach = isset($_FILES['image']) ? $_FILES['image'] : '';
     if (!$attach || $attach['error'] === 4) {
-        echo "error";
-        exit;
+        Output::error('文件上传失败');
     }
 
     $ret = '';
     upload2local($attach, $ret);
     if (empty($ret['success'])) {
-        echo "error";
-        exit;
+        Output::error($ret['message']);
     }
     return $ret;
 }

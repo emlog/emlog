@@ -119,7 +119,7 @@
         $("#menu_sys").addClass('show');
         $("#menu_setting").addClass('active');
         setTimeout(hideActived, 3600);
-        
+
         var $modal = $('#modal');
         var image = document.getElementById('sample_image');
         var cropper;
@@ -162,8 +162,18 @@
                     contentType: false,
                     success: function (data) {
                         $modal.modal('hide');
-                        if (data != "error") {
-                            $('#avatar_image').attr('src', data);
+                        if (data.code == 0) {
+                            $('#avatar_image').attr('src', data.data);
+                        } else {
+                            alert(data.msg);
+                        }
+                    },
+                    error: function (xhr) {
+                        var data = xhr.responseJSON;
+                        if (data && typeof data === "object") {
+                            alert(data.msg);
+                        } else {
+                            alert("An error occurred during the file upload.");
                         }
                     }
                 });
