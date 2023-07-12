@@ -50,7 +50,7 @@ class Option {
                 'reg_0'  => '|^.*/\?(post)=(\d+)(&(comment-page)=(\d+))?([\?&].*)?$|',
                 'reg_1'  => '|^.*/(post)-(\d+)\.html(/(comment-page)-(\d+))?/?([\?&].*)?$|',
                 'reg_2'  => '|^.*/(post)/(\d+)(/(comment-page)-(\d+))?/?$|',
-                'reg_3'  => '|^/([^\./\?=]+)(\.html)?(/(comment-page)-(\d+))?/?([\?&].*)?$|',
+                'reg_3'  => '|^(?!\/posts)(\/[^\./\?=]+)(\.html)?(\/(comment-page)-(\d+))?\/?([\?&].*)?$|',
             ],
             [
                 'model'  => 'Record_Controller',
