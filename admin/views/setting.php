@@ -120,7 +120,7 @@
 
             <h4>上传设置</h4>
             <div class="form-group form-inline">
-                文件上传最大限制 <input maxlength="20" style="width:120px;" class="form-control" value="<?= $att_maxsize ?>" name="att_maxsize"/> KB(1M=1024KB)
+                文件上传最大限制 <input maxlength="20" style="width:120px;" class="form-control" value="<?= $att_maxsize ?>" name="att_maxsize"/> （单位：KB，1MB=1024KB）
             </div>
             <div class="form-group form-inline">
                 允许上传的文件类型 <input maxlength="200" style="width:500px;" class="form-control" value="<?= $att_type ?>" name="att_type"/>（多个用半角逗号分隔）
