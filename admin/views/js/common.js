@@ -257,8 +257,8 @@ function autosave(act) {
             const h = d.getHours();
             const m = d.getMinutes();
             const s = d.getSeconds();
-            const tm = (h < 10 ? "0" + h : h) + ":" + (m < 10 ? "0" + m : m) + ":" + (s < 10 ? "0" + s : s);
-            $("#save_info").html("保存于：" + tm);
+            const tm = (h < 10 ? "0" + h : h) + ":" + (m < 10 ? "0" + m : m);
+            $("#save_info").html("保存于：" + tm + " <a href=\"../?post=" + logid + "\" target=\"_blank\">预览文章</a>");
             $('title').text('[保存成功] ' + titleText);
             articleTextRecord = $("#addlog textarea[name=logcontent]").val(); // 保存成功后，将原文本记录值替换为现在的文本
             Cookies.set('em_saveLastTime', new Date().getTime()); // 把保存成功时间戳记录（或更新）到 cookie 中

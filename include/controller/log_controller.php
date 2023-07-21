@@ -59,8 +59,13 @@ class Log_Controller {
             }
         }
 
-        $logData = $Log_Model->getOneLogForHome($logid);
-        if ($logData === false) {
+        $logData = $Log_Model->getOneLogForHome($logid, true, true);
+        if (!$logData) {
+            show_404_page();
+        }
+
+        // 作者和管理可以预览草稿及待审核文章
+        if (($logData['hide'] === 'y' || $logData['checked'] === 'n') && $logData['author'] != UID && !User::haveEditPermission()) {
             show_404_page();
         }
 

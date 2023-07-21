@@ -122,9 +122,15 @@ class Log_Model {
 
     /**
      * get single article
+     * @param $blogId
+     * @param bool $ignoreHide 忽略隐藏状态
+     * @param bool $ignoreChecked 忽略审核状态
+     * @return array|false
      */
-    public function getOneLogForHome($blogId) {
-        $sql = "SELECT * FROM $this->table WHERE gid=$blogId AND hide='n' AND checked='y'";
+    public function getOneLogForHome($blogId, $ignoreHide = false, $ignoreChecked = false) {
+        $hide = $ignoreHide ? "" : "AND hide='n'";
+        $checked = $ignoreChecked ? "" : "AND checked='y'";
+        $sql = "SELECT * FROM $this->table WHERE gid=$blogId $hide $checked";
         $res = $this->db->query($sql);
         $row = $this->db->fetch_array($res);
 
@@ -147,6 +153,8 @@ class Log_Model {
             'comnum'       => (int)$row['comnum'],
             'top'          => $row['top'],
             'sortop'       => $row['sortop'],
+            'hide'         => $row['hide'],
+            'checked'      => $row['checked'],
             'attnum'       => (int)$row['attnum'],
             'allow_remark' => Option::get('iscomment') == 'y' ? $row['allow_remark'] : 'n',
             'password'     => $row['password'],
