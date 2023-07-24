@@ -42,7 +42,7 @@ class Comment_Controller {
             $err = '评论发布太频繁了，休息下吧';
         } elseif (empty($name)) {
             $err = '请填写昵称';
-        } elseif (strlen($name) > 20) {
+        } elseif (strlen($name) > 100) {
             $err = '昵称太长了';
         } elseif ($mail !== '' && !checkMail($mail)) {
             $err = '不是有效的邮箱';
