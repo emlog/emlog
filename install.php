@@ -422,6 +422,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES
 ('comment_pnum','10'), 
 ('comment_order','newer'), 
 ('iscomment','y'), 
+('login_comment','n'), 
 ('ischkcomment','y'), 
 ('isurlrewrite','0'), 
 ('isalias','n'), 

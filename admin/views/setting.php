@@ -63,7 +63,6 @@
                 <input class="form-check-input" type="checkbox" value="y" name="iscomment" id="iscomment" <?= $conf_iscomment ?> />
                 <label>开启评论</label>
             </div>
-
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="ischkcomment" id="ischkcomment" <?= $conf_ischkcomment ?> />
                 <label>评论审核</label>
@@ -77,8 +76,12 @@
                 <label>评论人头像</label>
             </div>
             <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="y" name="login_comment" id="login_comment" <?= $conf_login_comment ?> />
+                <label>登录后评论，开启后仅登录用户可评论</label>
+            </div>
+            <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="comment_needchinese" id="comment_needchinese" <?= $conf_comment_needchinese ?> />
-                <label>评论内容必须包含中文</label>
+                <label>评论内容必须包含中文（防御国外垃圾评论）</label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="comment_paging" id="comment_paging" <?= $conf_comment_paging ?> />

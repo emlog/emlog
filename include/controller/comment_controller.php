@@ -36,7 +36,10 @@ class Comment_Controller {
         $Comment_Model = new Comment_Model();
         $Comment_Model->setCommentCookie($name, $mail, $url);
         $err = '';
-        if ($Comment_Model->isLogCanComment($blogId) === false) {
+
+        if (!ISLOGIN && Option::get('login_comment') === 'y') {
+            $err = '请先完成登录，再发布评论';
+        } elseif ($Comment_Model->isLogCanComment($blogId) === false) {
             $err = '该文章未开启评论';
         } elseif (User::isVistor() && $Comment_Model->isCommentTooFast() === true) {
             $err = '评论发布太频繁了，休息下吧';

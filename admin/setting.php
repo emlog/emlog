@@ -19,6 +19,7 @@ if (empty($action)) {
     $conf_comment_code = $comment_code == 'y' ? 'checked="checked"' : '';
     $conf_comment_needchinese = $comment_needchinese == 'y' ? 'checked="checked"' : '';
     $conf_iscomment = $iscomment == 'y' ? 'checked="checked"' : '';
+    $conf_login_comment = $login_comment == 'y' ? 'checked="checked"' : '';
     $conf_ischkcomment = $ischkcomment == 'y' ? 'checked="checked"' : '';
     $conf_isthumbnail = $isthumbnail == 'y' ? 'checked="checked"' : '';
     $conf_isgravatar = $isgravatar == 'y' ? 'checked="checked"' : '';
@@ -164,6 +165,7 @@ if ($action == 'save') {
         'comment_needchinese' => isset($_POST['comment_needchinese']) ? addslashes($_POST['comment_needchinese']) : 'n',
         'comment_interval'    => isset($_POST['comment_interval']) ? (int)$_POST['comment_interval'] : 15,
         'iscomment'           => isset($_POST['iscomment']) ? addslashes($_POST['iscomment']) : 'n',
+        'login_comment'       => Input::postStrVar('login_comment', 'n'),
         'ischkcomment'        => isset($_POST['ischkcomment']) ? addslashes($_POST['ischkcomment']) : 'n',
         'isthumbnail'         => isset($_POST['isthumbnail']) ? addslashes($_POST['isthumbnail']) : 'n',
         'rss_output_num'      => isset($_POST['rss_output_num']) ? (int)$_POST['rss_output_num'] : 10,
