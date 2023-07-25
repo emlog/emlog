@@ -55,7 +55,7 @@ class Media_Model {
         return $res['count'];
     }
 
-    function addMedia($file_info, $sortid) {
+    function addMedia($file_info, $sortid, $uid = UID) {
         $file_name = $file_info['file_name'];
         $file_size = $file_info['size'];
         $file_path = $file_info['file_path'];
@@ -70,7 +70,7 @@ class Media_Model {
 
         $query = "INSERT INTO $this->table (author, sortid, filename, filesize, filepath, addtime, width, height, mimetype, thumfor)
                   VALUES('%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')";
-        $query = sprintf($query, UID, $sortid, $file_name, $file_size, $file_path, $create_time, $img_width, $img_height, $file_mime_type, 0);
+        $query = sprintf($query, $uid, $sortid, $file_name, $file_size, $file_path, $create_time, $img_width, $img_height, $file_mime_type, 0);
         $this->db->query($query);
         return $this->db->insert_id();
     }

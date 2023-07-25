@@ -10,6 +10,7 @@ class Option {
     const EMLOG_VERSION = 'pro 2.1.11';
     const EMLOG_VERSION_TIMESTAMP = 1689242566;
     const UPLOADFILE_PATH = '../content/uploadfile/';
+    const UPLOADFILE_FULL_PATH = EMLOG_ROOT . '/content/uploadfile/';
 
     static function get($option) {
         $CACHE = Cache::getInstance();

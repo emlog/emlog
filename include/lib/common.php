@@ -182,7 +182,7 @@ function getFileSuffix($fileName) {
  * 将相对路径转换为完整URL，eg：../content/uploadfile/xxx.jpeg
  */
 function getFileUrl($filePath) {
-    if (!stristr($filePath, 'http')) {
+    if (stripos($filePath, 'http') === false) {
         return BLOG_URL . substr($filePath, 3);
     }
     return $filePath;
@@ -475,32 +475,41 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $is_thumbnail 
     $file_info['size'] = $fileSize;
     $file_info['width'] = 0;
     $file_info['height'] = 0;
-    $uploadPath = Option::UPLOADFILE_PATH . gmdate('Ym') . '/';
-    $fileName = substr(md5($fileName), 0, 4) . time() . '.' . $extension;
-    $attachPath = $uploadPath . $fileName;
-    $file_info['file_path'] = $attachPath;
 
-    if (!createDirectoryIfNeeded($uploadPath)) {
+    $fileName = substr(md5($fileName), 0, 4) . time() . '.' . $extension;
+
+    // 读取、写入文件使用绝对路径，兼容API文件上传
+    $uploadFullPath = Option::UPLOADFILE_FULL_PATH . gmdate('Ym') . '/';
+    $uploadFullFile = $uploadFullPath . $fileName;
+    $thumFullFile = $uploadFullPath . 'thum-' . $fileName;
+
+    // 输出文件信息使用相对路径，兼容头像上传等业务场景
+    $uploadPath = Option::UPLOADFILE_PATH . gmdate('Ym') . '/';
+    $uploadFile = $uploadPath . $fileName;
+    $thumFile = $uploadPath . 'thum-' . $fileName;
+
+    $file_info['file_path'] = $uploadFile;
+
+    if (!createDirectoryIfNeeded($uploadFullPath)) {
         return '105'; //创建上传目录失败
     }
 
     doAction('attach_upload', $tmpFile);
 
     // 生成缩略图
-    $thum = $uploadPath . 'thum-' . $fileName;
-    if ($is_thumbnail && resizeImage($tmpFile, $thum, Option::get('att_imgmaxw'), Option::get('att_imgmaxh'))) {
-        $file_info['thum_file'] = $thum;
+    if ($is_thumbnail && resizeImage($tmpFile, $thumFullFile, Option::get('att_imgmaxw'), Option::get('att_imgmaxh'))) {
+        $file_info['thum_file'] = $thumFile;
     }
 
     // 完成上传
-    if (@is_uploaded_file($tmpFile) && @!move_uploaded_file($tmpFile, $attachPath)) {
+    if (@is_uploaded_file($tmpFile) && @!move_uploaded_file($tmpFile, $uploadFullFile)) {
         @unlink($tmpFile);
         return '105'; //上传失败。上传目录不可写
     }
 
     // 提取图片宽高
     if (in_array($file_info['mime_type'], array('image/jpeg', 'image/png', 'image/gif', 'image/bmp'))) {
-        $size = getimagesize($attachPath);
+        $size = getimagesize($uploadFullFile);
         if ($size) {
             $file_info['width'] = $size[0];
             $file_info['height'] = $size[1];
@@ -525,7 +534,7 @@ function createDirectoryIfNeeded($path) {
  * @param string $thum_path 生成缩略图路径
  * @param int $max_w 缩略图最大宽度 px
  * @param int $max_h 缩略图最大高度 px
- * @return unknown
+ * @return bool
  */
 function resizeImage($img, $thum_path, $max_w, $max_h) {
     if (!in_array(getFileSuffix($thum_path), array('jpg', 'png', 'jpeg', 'gif'))) {
