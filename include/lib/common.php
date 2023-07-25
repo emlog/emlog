@@ -408,7 +408,7 @@ function upload2local($attach, &$result) {
             break;
         case '101':
         case '104':
-            $message = '上传文件失败,错误码：' . $errorNum;
+            $message = '上传文件失败,错误码：' . $ret;
             break;
         case '102':
             $message = '错误的文件类型';
@@ -452,13 +452,14 @@ function upload2local($attach, &$result) {
  * @param string $fileSize 文件大小 KB
  * @param array $type 允许上传的文件类型
  * @param boolean $is_thumbnail 是否生成缩略图
- * @return array 文件数据 索引
+ * @return array | string 文件数据 索引
  *
  */
 function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $is_thumbnail = true) {
     if ($errorNum == 1) {
         return '100'; //文件大小超过系统限制
-    } elseif ($errorNum > 1) {
+    }
+    if ($errorNum > 1) {
         return '101'; //上传文件失败
     }
     $extension = getFileSuffix($fileName);
@@ -474,40 +475,40 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $is_thumbnail 
     $file_info['size'] = $fileSize;
     $file_info['width'] = 0;
     $file_info['height'] = 0;
-    $uppath = Option::UPLOADFILE_PATH . gmdate('Ym') . '/';
-    $fname = substr(md5($fileName), 0, 4) . time() . '.' . $extension;
-    $attachpath = $uppath . $fname;
-    $file_info['file_path'] = $attachpath;
+    $uploadPath = Option::UPLOADFILE_PATH . gmdate('Ym') . '/';
+    $fileName = substr(md5($fileName), 0, 4) . time() . '.' . $extension;
+    $attachPath = $uploadPath . $fileName;
+    $file_info['file_path'] = $attachPath;
     if (!is_dir(Option::UPLOADFILE_PATH)) {
         @umask(0);
         $ret = @mkdir(Option::UPLOADFILE_PATH, 0777);
         if ($ret === false) {
-            return '104'; //创建文件上传目录失败
+            return '104'; //创建上传目录失败
         }
     }
-    if (!is_dir($uppath)) {
+    if (!is_dir($uploadPath)) {
         @umask(0);
-        $ret = @mkdir($uppath, 0777);
+        $ret = @mkdir($uploadPath, 0777);
         if ($ret === false) {
-            return '105'; //上传失败。文件上传目录(content/uploadfile)不可写
+            return '105'; //创建上传目录失败
         }
     }
     doAction('attach_upload', $tmpFile);
 
     // 生成缩略图
-    $thum = $uppath . 'thum-' . $fname;
+    $thum = $uploadPath . 'thum-' . $fileName;
     if ($is_thumbnail && resizeImage($tmpFile, $thum, Option::get('att_imgmaxw'), Option::get('att_imgmaxh'))) {
         $file_info['thum_file'] = $thum;
     }
 
-    if (@is_uploaded_file($tmpFile) && @!move_uploaded_file($tmpFile, $attachpath)) {
+    if (@is_uploaded_file($tmpFile) && @!move_uploaded_file($tmpFile, $attachPath)) {
         @unlink($tmpFile);
         return '105'; //上传失败。文件上传目录(content/uploadfile)不可写
     }
 
     // 提取图片宽高
     if (in_array($file_info['mime_type'], array('image/jpeg', 'image/png', 'image/gif', 'image/bmp'))) {
-        $size = getimagesize($file_info['file_path']);
+        $size = getimagesize($attachPath);
         if ($size) {
             $file_info['width'] = $size[0];
             $file_info['height'] = $size[1];
