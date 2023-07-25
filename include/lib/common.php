@@ -479,20 +479,11 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $is_thumbnail 
     $fileName = substr(md5($fileName), 0, 4) . time() . '.' . $extension;
     $attachPath = $uploadPath . $fileName;
     $file_info['file_path'] = $attachPath;
-    if (!is_dir(Option::UPLOADFILE_PATH)) {
-        @umask(0);
-        $ret = @mkdir(Option::UPLOADFILE_PATH, 0777);
-        if ($ret === false) {
-            return '104'; //创建上传目录失败
-        }
+
+    if (!createDirectoryIfNeeded($uploadPath)) {
+        return '105'; //创建上传目录失败
     }
-    if (!is_dir($uploadPath)) {
-        @umask(0);
-        $ret = @mkdir($uploadPath, 0777);
-        if ($ret === false) {
-            return '105'; //创建上传目录失败
-        }
-    }
+
     doAction('attach_upload', $tmpFile);
 
     // 生成缩略图
@@ -501,9 +492,10 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $is_thumbnail 
         $file_info['thum_file'] = $thum;
     }
 
+    // 完成上传
     if (@is_uploaded_file($tmpFile) && @!move_uploaded_file($tmpFile, $attachPath)) {
         @unlink($tmpFile);
-        return '105'; //上传失败。文件上传目录(content/uploadfile)不可写
+        return '105'; //上传失败。上传目录不可写
     }
 
     // 提取图片宽高
@@ -515,6 +507,15 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $is_thumbnail 
         }
     }
     return $file_info;
+}
+
+function createDirectoryIfNeeded($path) {
+    if (!is_dir($path)) {
+        if (!mkdir($path, 0777, true) && !is_dir($path)) {
+            return false;
+        }
+    }
+    return true;
 }
 
 /**
