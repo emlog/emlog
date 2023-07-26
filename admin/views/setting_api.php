@@ -40,14 +40,15 @@
             </div>
         </form>
         <div class="alert alert-warning">
-            <b>API接口列表：</b><br>
+            <b>API接口列表：</b><br><br>
             文章发布 (可用于对接内容发布软件)<br>
             文章编辑<br>
             文章列表<br>
             文章详情<br>
             分类列表<br>
             笔记发布<br>
-            笔记列表<br><br>
+            笔记列表<br>
+            资源文件上传<br><br>
             详见接口文档：<a href="https://www.emlog.net/docs/#/api" target="_blank">API接口文档→</a>
         </div>
     </div>
