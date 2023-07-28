@@ -1,0 +1,39 @@
+ARG TAG=pro-latest-php7.4-apache
+FROM php:7.4-apache-bullseye
+
+ARG URL="https://github.com/emlog/emlog/releases/download/ci/emlog.zip"
+
+RUN apt-get update && apt-get install -y \
+    libzip-dev \
+    libjpeg-turbo-progs \
+    libjpeg-dev \
+    libfreetype6-dev \
+    libpng-dev \
+    unzip \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install \
+    pdo_mysql \
+    gd \
+    zip \
+    mysqli \
+    && a2enmod rewrite expires
+
+# 下载并解压emlog文件到/app目录
+WORKDIR /app
+RUN curl -L -o emlog.zip ${URL} \
+    && unzip emlog.zip -d /app \
+    && rm emlog.zip \
+    && chown -R www-data:www-data /app
+
+# 更改wwwroot
+RUN sed -ri -e 's!/var/www/html!/app!g' /etc/apache2/sites-available/*.conf
+RUN sed -ri -e 's!/var/www/!/app!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+
+EXPOSE 80
+
+VOLUME /app
+WORKDIR /app
+
+# 将emlog的entrypoint替换为Apache的启动脚本
+ENTRYPOINT ["apache2-foreground"]
+

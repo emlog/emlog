@@ -58,6 +58,14 @@ emlog是一款轻量级博客及CMS建站系统，致力于打造好用的个人
 
 ## Docker
 
+### Start via `docker run`
+
+```bash
+$ docker run --name emlog-pro -p 8080:80 -d emlog/emlog:pro-latest-php7.4-apache
+```
+
+### Start via `docker-compose`
+
 1. cp config.sample.php config.php
 2. docker network create emlog_network
 3. docker-compose up
