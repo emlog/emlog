@@ -1,6 +1,5 @@
 version: '3'
 services:
-
   db:
     image: mysql/mysql-server:5.7
     container_name: mysql
@@ -20,28 +19,6 @@ services:
       MYSQL_PASSWORD: emlog
     networks:
       - emlog_network
-
-  # You can also use MariaDB
-  #  db:
-  #    image: mariadb:latest
-  #    container_name: mariadb
-  #    command:
-  #      - --default_authentication_plugin=mysql_native_password
-  #      - --character-set-server=utf8mb4
-  #      - --collation-server=utf8mb4_unicode_ci
-  #    volumes:
-  #      - ./db_data/mariadb:/var/lib/mysql
-  #    ports:
-  #      - "5506:3306"
-  #    restart: always
-  #    environment:
-  #      MARIADB_ROOT_PASSWORD: 12345678
-  #      MARIADB_DATABASE: emlog
-  #      MARIADB_USER: emlog
-  #      MARIADB_PASSWORD: emlog
-  #    networks:
-  #      - emlog_network
-
   php:
     image: emlog/emlog:pro-php8.1
     container_name: php
@@ -58,7 +35,6 @@ services:
       EMLOG_DB_USER: emlog
       EMLOG_DB_NAME: emlog
       EMLOG_DB_PASSWORD: emlog
-
   nginx:
     image: nginx:alpine
     container_name: nginx
@@ -71,14 +47,6 @@ services:
       - emlog_network
     depends_on:
       - php
-
-#  redis:
-#    image: redis
-#    ports:
-#      - "6379:6379"
-#    networks:
-#      - emlog_network
-
 networks:
   emlog_network:
     external: true
