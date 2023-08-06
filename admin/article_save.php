@@ -90,7 +90,7 @@ if ($ishide === 'y') {
 
 // 文章（草稿）公开发布
 if (isset($_POST['pubPost'])) {
-    if ($checked === 'n') {
+    if (!User::haveEditPermission()) {
         notice::sendNewPostMail($title);
     }
     emDirect("./article.php?active_post=1");

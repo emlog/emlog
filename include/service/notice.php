@@ -62,7 +62,7 @@ class Notice {
         if (!$email) {
             return false;
         }
-        $title = "你的站点收到新的待审核文章投稿";
+        $title = "你的站点收到新的文章投稿";
         $content = "文章标题是：" . $post_title;
         $sendmail = new SendMail();
         $ret = $sendmail->send($email, $title, $content);
