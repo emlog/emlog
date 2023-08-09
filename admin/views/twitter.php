@@ -81,7 +81,7 @@
             height: 340,
             toolbarIcons: function () {
                 return ["bold", "del", "italic", "quote", "|", "h1", "h2", "h3", "|", "list-ul", "list-ol", "|",
-                    "link", "image", "table", "|", "watch", "fullscreen"]
+                    "link", "image", "table", "|", "preview"]
             },
             path: "editor.md/lib/",
             tex: false,
@@ -89,6 +89,7 @@
             htmlDecode: true,
             flowChart: false,
             autoFocus: false,
+            lineNumbers: false,
             sequenceDiagram: false,
             imageUpload: true,
             imageFormats: ["jpg", "jpeg", "gif", "png"],
