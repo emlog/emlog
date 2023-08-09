@@ -6,7 +6,7 @@
 <h1 class="h3 mb-4 text-gray-800"><?= $containertitle ?> <span id="save_info"></span></h1>
 <form action="article_save.php" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
     <div class="row">
-        <div class="col-xl-12">
+        <div class="col-xl-9">
             <div id="post" class="form-group">
                 <div>
                     <input type="text" name="title" id="title" value="<?= $title ?>" class="form-control" placeholder="文章标题" autofocus required/>
@@ -21,8 +21,9 @@
                 <label>文章摘要：</label>
                 <div id="logexcerpt"><textarea><?= $excerpt ?></textarea></div>
             </div>
-            <div class="show_advset" id="displayToggle" onclick="displayToggle('advset');">更多选项<i class="icofont-simple-right"></i></div>
-            <div id="advset" class="shadow-sm p-3 mb-2 bg-white rounded">
+        </div>
+        <div class="col-xl-3">
+            <div class="shadow-sm p-3 mb-2 bg-white rounded">
                 <div class="form-group">
                     <label>文章封面：</label>
                     <input name="cover" id="cover" class="form-control" placeholder="封面图地址URL，手动填写或点击下方图片区域上传" value="<?= $cover ?>"/>
@@ -37,7 +38,6 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>分类：</label>
                     <select name="sort" id="sort" class="form-control">
                         <option value="-1">选择分类...</option>
                         <?php
@@ -75,25 +75,28 @@
                         </div>
                     <?php endif; ?>
                 </div>
-                <div class="form-group">
-                    <label>发布时间：<small class="text-muted">（当设置未来的时间点时，文章将在该时间点后定时发布）</small></label>
-                    <input type="text" maxlength="200" name="postdate" id="postdate" value="<?= $postDate ?>" class="form-control"/>
-                </div>
-                <div class="form-group">
-                    <label>链接别名：<small class="text-muted">（用于seo设置 <a href="./setting.php?action=seo">&rarr;</a>）</small></label>
-                    <input name="alias" id="alias" class="form-control" value="<?= $alias ?>"/>
-                </div>
-                <div class="form-group">
-                    <label>跳转链接：<small class="text-muted">（填写后不展示文章内容直接跳转该地址）</small></label>
-                    <input name="link" id="link" type="url" class="form-control" value="<?= $link ?>" placeholder="https://"/>
-                </div>
-                <div class="form-group">
-                    <label>访问密码：</label>
-                    <input type="text" name="password" id="password" class="form-control" value="<?= $password ?>"/>
-                </div>
-                <div class="form-group">
-                    <input type="checkbox" value="y" name="allow_remark" id="allow_remark" <?= $is_allow_remark ?> />
-                    <label for="allow_remark">允许评论</label>
+                <div class="show_advset" id="displayToggle" onclick="displayToggle('advset');">高级选项<i class="icofont-simple-right"></i></div>
+                <div id="advset">
+                    <div class="form-group">
+                        <label>发布时间：<small class="text-muted">（当设置未来时间，文章将在该时间点定时发布）</small></label>
+                        <input type="text" maxlength="200" name="postdate" id="postdate" value="<?= $postDate ?>" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label>链接别名：<small class="text-muted">（用于seo设置 <a href="./setting.php?action=seo">&rarr;</a>）</small></label>
+                        <input name="alias" id="alias" class="form-control" value="<?= $alias ?>"/>
+                    </div>
+                    <div class="form-group">
+                        <label>跳转链接：<small class="text-muted">（填写后不展示文章内容直接跳转该地址）</small></label>
+                        <input name="link" id="link" type="url" class="form-control" value="<?= $link ?>" placeholder="https://"/>
+                    </div>
+                    <div class="form-group">
+                        <label>访问密码：</label>
+                        <input type="text" name="password" id="password" class="form-control" value="<?= $password ?>"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="checkbox" value="y" name="allow_remark" id="allow_remark" <?= $is_allow_remark ?> />
+                        <label for="allow_remark">允许评论</label>
+                    </div>
                 </div>
             </div>
             <div id="post_button">
@@ -102,13 +105,13 @@
                 <input type="hidden" name="gid" id="gid" value="<?= $logid ?>"/>
                 <input type="hidden" name="author" id="author" value="<?= $author ?>"/>
                 <?php if ($logid < 0): ?>
-                    <input type="submit" name="pubPost" id="pubPost" value="发布文章" onclick="return checkform();" class="btn btn-sm btn-success"/>
-                    <input type="button" name="savedf" id="savedf" value="保存草稿" onclick="autosave(2);" class="btn btn-sm btn-primary"/>
+                    <input type="submit" name="pubPost" id="pubPost" value="发布文章" onclick="return checkform();" class="btn btn-success"/>
+                    <input type="button" name="savedf" id="savedf" value="保存草稿" onclick="autosave(2);" class="btn btn-primary"/>
                 <?php else: ?>
-                    <input type="submit" value="保存并返回" onclick="return checkform();" class="btn btn-sm btn-success"/>
-                    <input type="button" name="savedf" id="savedf" value="保存" onclick="autosave(2);" class="btn btn-sm btn-primary"/>
+                    <input type="submit" value="保存并返回" onclick="return checkform();" class="btn btn-success"/>
+                    <input type="button" name="savedf" id="savedf" value="保存" onclick="autosave(2);" class="btn btn-primary"/>
                     <?php if ($isdraft) : ?>
-                        <input type="submit" name="pubPost" id="pubPost" value="发布" onclick="return checkform();" class="btn btn-sm btn-success"/>
+                        <input type="submit" name="pubPost" id="pubPost" value="发布" onclick="return checkform();" class="btn btn-success"/>
                     <?php endif ?>
                 <?php endif ?>
             </div>
@@ -198,12 +201,13 @@
             width: "100%",
             height: 640,
             toolbarIcons: function () {
-                return ["undo", "redo", "|", "bold", "del", "italic", "quote", "|", "h1", "h2", "h3", "|", "list-ul", "list-ol", "hr", "|",
-                    "link", "image", "video", "preformatted-text", "code-block", "table", "|", "search", "watch", "help", "fullscreen"]
+                return ["bold", "del", "italic", "quote", "|", "h1", "h2", "h3", "|", "list-ul", "list-ol", "hr", "|",
+                    "link", "image", "video", "preformatted-text", "code-block", "table", "|", "search", "preview", "fullscreen", "help"]
             },
             path: "editor.md/lib/",
             tex: false,
             watch: false,
+            lineNumbers: false,
             htmlDecode: true,
             flowChart: false,
             autoFocus: false,
@@ -213,19 +217,21 @@
             imageUploadURL: "media.php?action=upload&editor=1",
             videoUpload: false, //开启视频上传
             syncScrolling: "single",
+            onfullscreen: function () {
+                this.watch();
+            },
+            onfullscreenExit: function () {
+                this.unwatch();
+            },
             onload: function () {
                 hooks.doAction("loaded", this);
-                //在大屏模式下，编辑器默认显示预览
-                if ($(window).width() > 767) {
-                    this.watch();
-                }
             }
         });
         Editor_summary = editormd("logexcerpt", {
             width: "100%",
             height: 300,
             toolbarIcons: function () {
-                return ["undo", "redo", "|", "bold", "del", "italic", "quote", "|", "h1", "h2", "h3", "|", "list-ul", "list-ol", "hr", "|", "link", "image", "|", "watch"]
+                return ["bold", "del", "italic", "quote", "|", "h1", "h2", "h3", "|", "list-ul", "list-ol", "hr", "|", "link", "image"]
             },
             path: "editor.md/lib/",
             tex: false,
@@ -233,6 +239,7 @@
             htmlDecode: true,
             flowChart: false,
             autoFocus: false,
+            lineNumbers: false,
             sequenceDiagram: false,
             placeholder: "如果留空，则使用文章内容作为摘要...",
             onload: function () {
