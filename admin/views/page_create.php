@@ -18,6 +18,16 @@
         </div>
         <div class="col-xl-3">
             <div class="shadow-sm p-3 mb-2 bg-white rounded">
+                <div id="post_button">
+                    <input type="hidden" name="ishide" id="ishide" value="<?= $hide ?>"/>
+                    <input type="hidden" name="pageid" value="<?= $pageId ?>"/>
+                    <?php if ($pageId < 0): ?>
+                        <input type="submit" value="发布页面" onclick="return checkform();" class="btn btn-success"/>
+                    <?php else: ?>
+                        <input type="submit" value="保存并返回" onclick="return checkform();" class="btn btn-success"/>
+                    <?php endif ?>
+                </div>
+                <hr>
                 <div class="form-group">
                     <label>链接别名：（用于seo设置 <a href="./setting.php?action=seo">&rarr;</a>）</label>
                     <input name="alias" id="alias" class="form-control" value="<?= $alias ?>"/>
@@ -50,15 +60,6 @@
                     <input type="checkbox" value="y" name="home_page" id="home_page" <?= $is_home_page ?> />
                     <label for="allow_remark">设为首页，<small class="text-muted">原首页：<?= BLOG_URL ?>posts</small></label>
                 </div>
-            </div>
-            <div id="post_button">
-                <input type="hidden" name="ishide" id="ishide" value="<?= $hide ?>"/>
-                <input type="hidden" name="pageid" value="<?= $pageId ?>"/>
-                <?php if ($pageId < 0): ?>
-                    <input type="submit" value="发布页面" onclick="return checkform();" class="btn btn-success"/>
-                <?php else: ?>
-                    <input type="submit" value="保存并返回" onclick="return checkform();" class="btn btn-success"/>
-                <?php endif ?>
             </div>
         </div>
     </div>

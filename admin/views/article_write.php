@@ -13,17 +13,31 @@
                 </div>
                 <div id="post_bar" class="small my-3">
                     <a href="#mediaModal" data-toggle="modal" data-target="#mediaModal"><i class="icofont-plus"></i>上传插入图片</a>
-                    <?php doAction('adm_writelog_head') ?>
                 </div>
                 <div id="logcontent"><textarea><?= $content ?></textarea></div>
-            </div>
-            <div class="form-group">
-                <label>文章摘要：</label>
+                <label>文章摘要</label>
                 <div id="logexcerpt"><textarea><?= $excerpt ?></textarea></div>
             </div>
         </div>
         <div class="col-xl-3">
             <div class="shadow-sm p-3 bg-white rounded">
+                <div id="post_button">
+                    <input type="hidden" name="ishide" id="ishide" value="<?= $hide ?>"/>
+                    <input type="hidden" name="as_logid" id="as_logid" value="<?= $logid ?>"/>
+                    <input type="hidden" name="gid" id="gid" value="<?= $logid ?>"/>
+                    <input type="hidden" name="author" id="author" value="<?= $author ?>"/>
+                    <?php if ($logid < 0): ?>
+                        <input type="submit" name="pubPost" id="pubPost" value="发布文章" onclick="return checkform();" class="btn btn-success"/>
+                        <input type="button" name="savedf" id="savedf" value="保存草稿" onclick="autosave(2);" class="btn btn-primary"/>
+                    <?php else: ?>
+                        <input type="submit" value="保存并返回" onclick="return checkform();" class="btn btn-success"/>
+                        <input type="button" name="savedf" id="savedf" value="保存" onclick="autosave(2);" class="btn btn-primary"/>
+                        <?php if ($isdraft) : ?>
+                            <input type="submit" name="pubPost" id="pubPost" value="发布" onclick="return checkform();" class="btn btn-success"/>
+                        <?php endif ?>
+                    <?php endif ?>
+                </div>
+                <hr>
                 <div class="form-group">
                     <label>文章封面：</label>
                     <input name="cover" id="cover" class="form-control" placeholder="封面图地址URL，手动填写或点击下方图片区域上传" value="<?= $cover ?>"/>
@@ -101,28 +115,15 @@
                         <input type="checkbox" value="y" name="sortop" id="sortop" <?php echo $is_sortop; ?> />
                         <label for="sortop" style="margin-right: 20px;">分类置顶</label>
                     </div>
+                    <hr>
+                    <div id="post_bar" class="small my-3">
+                        <?php doAction('adm_writelog_head') ?>
+                    </div>
                 </div>
-            </div>
-            <div id="post_button">
-                <input type="hidden" name="ishide" id="ishide" value="<?= $hide ?>"/>
-                <input type="hidden" name="as_logid" id="as_logid" value="<?= $logid ?>"/>
-                <input type="hidden" name="gid" id="gid" value="<?= $logid ?>"/>
-                <input type="hidden" name="author" id="author" value="<?= $author ?>"/>
-                <?php if ($logid < 0): ?>
-                    <input type="submit" name="pubPost" id="pubPost" value="发布文章" onclick="return checkform();" class="btn btn-success"/>
-                    <input type="button" name="savedf" id="savedf" value="保存草稿" onclick="autosave(2);" class="btn btn-primary"/>
-                <?php else: ?>
-                    <input type="submit" value="保存并返回" onclick="return checkform();" class="btn btn-success"/>
-                    <input type="button" name="savedf" id="savedf" value="保存" onclick="autosave(2);" class="btn btn-primary"/>
-                    <?php if ($isdraft) : ?>
-                        <input type="submit" name="pubPost" id="pubPost" value="发布" onclick="return checkform();" class="btn btn-success"/>
-                    <?php endif ?>
-                <?php endif ?>
             </div>
         </div>
     </div>
 </form>
-
 <div class="modal" id="mediaModal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
         <div class="modal-content">
