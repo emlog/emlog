@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="col-xl-3">
-            <div class="shadow-sm p-3 mb-2 bg-white rounded">
+            <div class="shadow-sm p-3 bg-white rounded">
                 <div class="form-group">
                     <label>文章封面：</label>
                     <input name="cover" id="cover" class="form-control" placeholder="封面图地址URL，手动填写或点击下方图片区域上传" value="<?= $cover ?>"/>
@@ -93,9 +93,13 @@
                         <label>访问密码：</label>
                         <input type="text" name="password" id="password" class="form-control" value="<?= $password ?>"/>
                     </div>
-                    <div class="form-group">
+                    <div>
                         <input type="checkbox" value="y" name="allow_remark" id="allow_remark" <?= $is_allow_remark ?> />
-                        <label for="allow_remark">允许评论</label>
+                        <label for="allow_remark" style="margin-right: 20px;">允许评论</label>
+                        <input type="checkbox" value="y" name="top" id="top" <?php echo $is_top; ?> />
+                        <label for="top" style="margin-right: 20px;">首页置顶</label>
+                        <input type="checkbox" value="y" name="sortop" id="sortop" <?php echo $is_sortop; ?> />
+                        <label for="sortop" style="margin-right: 20px;">分类置顶</label>
                     </div>
                 </div>
             </div>
@@ -231,7 +235,7 @@
             width: "100%",
             height: 300,
             toolbarIcons: function () {
-                return ["bold", "del", "italic", "quote", "|", "h1", "h2", "h3", "|", "list-ul", "list-ol", "hr", "|", "link", "image"]
+                return ["bold", "del", "italic", "quote", "|", "h1", "h2", "h3", "|", "list-ul", "list-ol", "hr", "|", "link", "image", "preview"]
             },
             path: "editor.md/lib/",
             tex: false,
