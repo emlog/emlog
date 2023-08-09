@@ -67,19 +67,6 @@ $isdraft = $draft ? '&draft=1' : '';
                         </option>
                     </select>
                 </div>
-                <?php if (User::haveEditPermission() && count($user_cache) > 1): ?>
-                    <div id="f_t_user" class="mx-1">
-                        <select name="byuser" id="byuser" onChange="selectUser(this);" class="form-control">
-                            <option value="" selected="selected">按作者查看</option>
-                            <?php
-                            foreach ($user_cache as $key => $value):
-                                $flg = $key == $uid ? 'selected' : '';
-                                ?>
-                                <option value="<?= $key ?>" <?= $flg ?>><?= $value['name'] ?></option>
-                            <?php endforeach ?>
-                        </select>
-                    </div>
-                <?php endif ?>
             </div>
             <form action="article.php" method="get">
                 <div class="form-inline search-inputs-nowrap">
@@ -189,7 +176,10 @@ $isdraft = $draft ? '&draft=1' : '';
                     ?>
                     <option value="-1">未分类</option>
                 </select>
-                <?php if (User::haveEditPermission() && count($user_cache) > 1): ?>
+                <?php
+                $c = count($user_cache);
+                if (User::haveEditPermission() && $c > 1 && $c < 50):
+                    ?>
                     <select name="author" id="author" onChange="changeAuthor(this);" class="form-control m-1">
                         <option value="" selected="selected">更改作者</option>
                         <?php foreach ($user_cache as $key => $val): ?>

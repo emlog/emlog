@@ -15,29 +15,28 @@
                     <a href="#mediaModal" data-toggle="modal" data-target="#mediaModal"><i class="icofont-plus"></i>上传插入图片</a>
                 </div>
                 <div id="logcontent"><textarea><?= $content ?></textarea></div>
-                <label>文章摘要</label>
+                <label>文章摘要：</label>
                 <div id="logexcerpt"><textarea><?= $excerpt ?></textarea></div>
             </div>
         </div>
         <div class="col-xl-3">
-            <div class="shadow-sm p-3 bg-white rounded">
-                <div id="post_button">
-                    <input type="hidden" name="ishide" id="ishide" value="<?= $hide ?>"/>
-                    <input type="hidden" name="as_logid" id="as_logid" value="<?= $logid ?>"/>
-                    <input type="hidden" name="gid" id="gid" value="<?= $logid ?>"/>
-                    <input type="hidden" name="author" id="author" value="<?= $author ?>"/>
-                    <?php if ($logid < 0): ?>
-                        <input type="submit" name="pubPost" id="pubPost" value="发布文章" onclick="return checkform();" class="btn btn-success"/>
-                        <input type="button" name="savedf" id="savedf" value="保存草稿" onclick="autosave(2);" class="btn btn-primary"/>
-                    <?php else: ?>
-                        <input type="submit" value="保存并返回" onclick="return checkform();" class="btn btn-success"/>
-                        <input type="button" name="savedf" id="savedf" value="保存" onclick="autosave(2);" class="btn btn-primary"/>
-                        <?php if ($isdraft) : ?>
-                            <input type="submit" name="pubPost" id="pubPost" value="发布" onclick="return checkform();" class="btn btn-success"/>
-                        <?php endif ?>
+            <div id="post_button">
+                <input type="hidden" name="ishide" id="ishide" value="<?= $hide ?>"/>
+                <input type="hidden" name="as_logid" id="as_logid" value="<?= $logid ?>"/>
+                <input type="hidden" name="gid" id="gid" value="<?= $logid ?>"/>
+                <input type="hidden" name="author" id="author" value="<?= $author ?>"/>
+                <?php if ($logid < 0): ?>
+                    <input type="submit" name="pubPost" id="pubPost" value="发布文章" onclick="return checkform();" class="btn btn-success"/>
+                    <input type="button" name="savedf" id="savedf" value="保存草稿" onclick="autosave(2);" class="btn btn-primary"/>
+                <?php else: ?>
+                    <input type="submit" value="保存并返回" onclick="return checkform();" class="btn btn-success"/>
+                    <input type="button" name="savedf" id="savedf" value="保存" onclick="autosave(2);" class="btn btn-primary"/>
+                    <?php if ($isdraft) : ?>
+                        <input type="submit" name="pubPost" id="pubPost" value="发布" onclick="return checkform();" class="btn btn-success"/>
                     <?php endif ?>
-                </div>
-                <hr>
+                <?php endif ?>
+            </div>
+            <div class="shadow-sm p-3 bg-white rounded">
                 <div class="form-group">
                     <label>文章封面：</label>
                     <input name="cover" id="cover" class="form-control" placeholder="封面图地址URL，手动填写或点击下方图片区域上传" value="<?= $cover ?>"/>
@@ -89,12 +88,21 @@
                         </div>
                     <?php endif; ?>
                 </div>
-                <div class="show_advset" id="displayToggle" onclick="displayToggle('advset');">高级选项<i class="icofont-simple-right"></i></div>
+                <div class="form-group">
+                    <label>发布时间：<small class="text-muted">（当设置未来时间，文章将在该时间点定时发布）</small></label>
+                    <input type="text" maxlength="200" name="postdate" id="postdate" value="<?= $postDate ?>" class="form-control"/>
+                </div>
+                <div>
+                    <input type="checkbox" value="y" name="allow_remark" id="allow_remark" <?= $is_allow_remark ?> />
+                    <label for="allow_remark" style="margin-right: 20px;">允许评论</label>
+                    <input type="checkbox" value="y" name="top" id="top" <?php echo $is_top; ?> />
+                    <label for="top" style="margin-right: 20px;">首页置顶</label>
+                    <input type="checkbox" value="y" name="sortop" id="sortop" <?php echo $is_sortop; ?> />
+                    <label for="sortop" style="margin-right: 20px;">分类置顶</label>
+                </div>
+                <hr>
+                <a class="show_advset" id="displayToggle" onclick="displayToggle('advset');">高级选项<i class="icofont-simple-right"></i></a>
                 <div id="advset">
-                    <div class="form-group">
-                        <label>发布时间：<small class="text-muted">（当设置未来时间，文章将在该时间点定时发布）</small></label>
-                        <input type="text" maxlength="200" name="postdate" id="postdate" value="<?= $postDate ?>" class="form-control"/>
-                    </div>
                     <div class="form-group">
                         <label>链接别名：<small class="text-muted">（用于seo设置 <a href="./setting.php?action=seo">&rarr;</a>）</small></label>
                         <input name="alias" id="alias" class="form-control" value="<?= $alias ?>"/>
@@ -106,14 +114,6 @@
                     <div class="form-group">
                         <label>访问密码：</label>
                         <input type="text" name="password" id="password" class="form-control" value="<?= $password ?>"/>
-                    </div>
-                    <div>
-                        <input type="checkbox" value="y" name="allow_remark" id="allow_remark" <?= $is_allow_remark ?> />
-                        <label for="allow_remark" style="margin-right: 20px;">允许评论</label>
-                        <input type="checkbox" value="y" name="top" id="top" <?php echo $is_top; ?> />
-                        <label for="top" style="margin-right: 20px;">首页置顶</label>
-                        <input type="checkbox" value="y" name="sortop" id="sortop" <?php echo $is_sortop; ?> />
-                        <label for="sortop" style="margin-right: 20px;">分类置顶</label>
                     </div>
                     <hr>
                     <div id="post_bar" class="small my-3">
