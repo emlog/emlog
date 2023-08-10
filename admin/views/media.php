@@ -196,7 +196,7 @@
             window.location.reload();
         })
         Dropzone.options.myAwesomeDropzone = {
-            maxFilesize: Number.MAX_SAFE_INTEGER,// 不限制
+            maxFilesize: 21474836480,//in bytes, 20G
             paramName: "file",
             timeout: 3600000,// milliseconds
             init: function () {
