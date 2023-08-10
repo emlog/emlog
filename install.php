@@ -34,7 +34,10 @@ if (!$act) {
     <html lang="zh-cn">
     <head>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <meta name="renderer" content="webkit">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta name="applicable-device" content="pc,mobile">
         <title>emlog</title>
         <style>
             body {
@@ -42,6 +45,22 @@ if (!$act) {
                 font-family: Arial;
                 font-size: 12px;
                 line-height: 150%;
+            }
+
+            hr{
+                margin: 1rem 0;
+                color: inherit;
+                border: 0;
+                border-top: 1px solid;
+                opacity: .25;
+            }
+
+            .mb10{
+                margin-bottom: 10px;
+            }
+
+            .mb20{
+                margin-bottom: 20px;
             }
 
             .main {
@@ -58,8 +77,8 @@ if (!$act) {
 
             .logo {
                 background: url(admin/views/images/logo.png) no-repeat center;
-                padding: 50px 0px 50px 0px;
-                margin: 0px 0px;
+                padding: 50px 0 50px 0;
+                margin: 0 0;
             }
 
             .title {
@@ -67,47 +86,104 @@ if (!$act) {
                 font-size: 14px;
             }
 
-            .input {
-                border: 1px solid #CCCCCC;
-                font-family: Arial;
-                font-size: 18px;
-                height: 28px;
-                background-color: #F7F7F7;
-                color: #666666;
-                margin: 0px 0px 0px 25px;
+            .input-group {
+                position: relative;
+                display: flex;
+                flex-wrap: wrap;
+                align-items: stretch;
+                width: 100%;
             }
 
-            .submit {
+            .input-group-text {
+                display: flex;
+                align-items: center;
+                padding: 0.375rem 0.75rem;
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 1.5;
+                color: #5e5e5e;
+                text-align: center;
+                white-space: nowrap;
+                background-color: #fff;
+                border: 1px solid #dee2e6;
+                border-radius: 0.375rem 0 0 0.375rem;
+            }
+
+            .form-control{
+                display: block;
+                padding: 0.375rem 0.75rem;
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 1.5;
+                color: #5e5e5e;
+                background-color: #fff;
+                background-clip: padding-box;
+                border: 1px solid #dee2e6;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+                position: relative;
+                flex: 1 1 auto;
+                width: 1%;
+                min-width: 0;
+                border-radius: 0 0.375rem 0.375rem 0;
+                margin-left: calc(1px * -1);
+                transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+            }
+            .form-label {
+                margin-bottom: 0.5rem;
+            }
+
+            .btn{
                 cursor: pointer;
-                font-size: 12px;
-                padding: 4px 10px;
+                color: #008cff;
+                letter-spacing: .5px;
+                padding-right: 3rem!important;
+                padding-left: 3rem!important;
+                display: inline-block;
+                font-size: 1rem;
+                font-weight: 400;
+                line-height: 1.5;
+                text-align: center;
+                text-decoration: none;
+                vertical-align: middle;
+                user-select: none;
+                border: 1px solid #008cff;
+                border-radius: 5px;
+                background-color: transparent;
+                transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+            }
+
+            .btn:hover{
+                color: #fff;
+                background-color: #008cff;
+                border-color: #008cff;
             }
 
             .care {
-                color: #0066CC;
+                color: #008cff;
             }
 
-            .title2 {
+            .install-title {
+                text-transform: uppercase!important;
+                margin-bottom: 0;
                 font-size: 18px;
-                color: #666666;
-                border-bottom: #CCCCCC 1px solid;
-                margin: 40px 0px 20px 0px;
-                padding: 10px 0px;
+                font-weight:normal;
             }
 
             .next_btn {
-                margin: 50px 0px 10px 0px;
+                margin: 50px 0 10px 0;
                 text-align: center;
             }
 
             .footer {
-                margin: 20px 0px 30px 0px;
+                margin: 20px 0 30px 0;
                 text-align: center;
             }
-
-            .main li {
-                margin: 40px 0px 20px 0px;
-                margin: 20px 0px;
+            @media (max-width: 768px) {
+                .main{
+                    width: unset;
+                }
             }
         </style>
     </head>
@@ -115,7 +191,7 @@ if (!$act) {
     <form name="form1" method="post" action="install.php?action=install">
         <div class="main">
             <p class="logo"></p>
-            <p class="title">emlog <?php echo Option::EMLOG_VERSION ?></p>
+            <p class="title mb20">emlog <?php echo Option::EMLOG_VERSION ?></p>
             <?php if ($env_db_user): ?>
                 <div class="b">
                     <input name="hostname" type="hidden" value="<?= $env_db_host ?>">
@@ -133,54 +209,68 @@ if (!$act) {
                     <input name="dbprefix" type="hidden" value="emlog_">
                 </div>
             <?php else: ?>
-                <div class="b">
-                    <p class="title2">MySQL数据库设置</p>
-                    <li>
-                        数据库地址<br/>
-                        <input name="hostname" type="text" class="input" value="127.0.0.1">
-                        <span class="care">(通常为 127.0.0.1 或者指定端口 127.0.0.1:3306)</span>
-                    </li>
-                    <li>
-                        数据库用户名<br/><input name="dbuser" type="text" class="input" value="">
-                    </li>
-                    <li>
-                        数据库密码<br/><input name="dbpasswd" type="password" class="input">
-                    </li>
-                    <li>
-                        数据库名<br/>
-                        <input name="dbname" type="text" class="input" value="">
-                        <span class="care">(程序不会自动创建数据库，请提前创建一个空数据库或使用已有数据库)</span>
-                    </li>
-                    <li>
-                        数据库表前缀<br/>
-                        <input name="dbprefix" type="text" class="input" value="emlog_">
-                        <span class="care"> (通常默认即可，不必修改。由英文字母、数字、下划线组成，且必须以下划线结束)</span>
-                    </li>
+                <div class="b mb20">
+                    <span class="install-title">MySQL数据库设置</span>
+                    <hr>
+                    <div class="input-group mb10">
+                        <span class="input-group-text">数据库地址</span>
+                        <input name="hostname" type="text" class="form-control" value="127.0.0.1">
+                    </div>
+                    <div class="mb10">
+                        <label class="form-label care">通常为 127.0.0.1 或者指定端口 127.0.0.1:3306</label>
+                    </div>
+                    <div class="input-group mb10">
+                        <span class="input-group-text">数据库用户名</span>
+                        <input name="dbuser" type="text" class="form-control" value="">
+                    </div>
+                    <div class="input-group mb10">
+                        <span class="input-group-text">数据库密码</span>
+                        <input name="dbpasswd" type="password" class="form-control" value="">
+                    </div>
+                    <div class="input-group mb10">
+                        <span class="input-group-text">数据库名</span>
+                        <input name="dbname" type="text" class="form-control" value="">
+                    </div>
+                    <div class="mb10">
+                        <label class="form-label care">程序不会自动创建数据库，请提前创建一个空数据库或使用已有数据库</label>
+                    </div>
+                    <div class="input-group mb10">
+                        <span class="input-group-text">数据库表前缀</span>
+                        <input name="dbprefix" type="text" class="form-control" value="emlog_">
+                    </div>
+                    <div class="mb10">
+                        <label class="form-label care">通常默认即可，不必修改。由英文字母、数字、下划线组成，且必须以下划线结束</label>
+                    </div>
                 </div>
             <?php endif; ?>
             <div class="c">
-                <p class="title2">管理员设置</p>
-                <li>
-                    登录名<br/>
-                    <input name="username" type="text" class="input">
-                </li>
-                <li>
-                    密码<br/>
-                    <input name="password" type="password" class="input">
-                    <span class="care">(不小于6位)</span>
-                </li>
-                <li>
-                    再次输入密码<br/>
-                    <input name="repassword" type="password" class="input">
-                </li>
-                <li>
-                    邮箱<br/>
-                    <input name="email" type="text" class="input">
-                    <span class="care"> (可用于找回密码，建议填写)</span>
-                </li>
+                <span class="install-title">管理员设置</span>
+                <hr>
+                <div class="input-group mb10">
+                    <span class="input-group-text">登录名</span>
+                    <input name="username" type="text" class="form-control">
+                </div>
+                <div class="input-group mb10">
+                    <span class="input-group-text">密码</span>
+                    <input name="password" type="password" class="form-control">
+                </div>
+                <div class="mb10">
+                    <label class="form-label care">不小于6位</label>
+                </div>
+                <div class="input-group mb10">
+                    <span class="input-group-text">再次输入密码</span>
+                    <input name="repassword" type="password" class="form-control">
+                </div>
+                <div class="input-group mb10">
+                    <span class="input-group-text">邮箱</span>
+                    <input name="email" type="text" class="form-control">
+                </div>
+                <div class="mb10">
+                    <label class="form-label care">可用于找回密码，建议填写</label>
+                </div>
             </div>
             <div class="next_btn">
-                <input type="submit" class="submit" value="下一步，开始安装">
+                <button type="submit" class="btn">下一步，开始安装</button>
             </div>
         </div>
     </form>
