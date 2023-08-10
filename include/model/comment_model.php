@@ -311,19 +311,6 @@ class Comment_Model {
         }
     }
 
-    function isLogCanComment($blogId) {
-        if ($blogId <= 0 || Option::get('iscomment') == 'n') {
-            return false;
-        }
-        $query = $this->db->query("SELECT allow_remark FROM " . DB_PREFIX . "blog WHERE gid=$blogId");
-        $show_remark = $this->db->fetch_array($query);
-        if ($show_remark['allow_remark'] == 'n' || $show_remark === false) {
-            return false;
-        }
-
-        return true;
-    }
-
     function isCommentTooFast() {
         $ipaddr = getIp();
         $utctimestamp = time() - Option::get('comment_interval');

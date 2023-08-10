@@ -34,15 +34,20 @@ class Comment_Controller {
         doAction('comment_post');
 
         $Comment_Model = new Comment_Model();
+        $Log_Model = new Log_Model();
+
+        $log = $Log_Model->getDetail($blogId);
         $Comment_Model->setCommentCookie($name, $mail, $url);
         $err = '';
 
         if (!ISLOGIN && Option::get('login_comment') === 'y') {
             $err = '请先完成登录，再发布评论';
-        } elseif ($Comment_Model->isLogCanComment($blogId) === false) {
+        } elseif ($blogId <= 0 || empty($log)) {
+            $err = '文章不存在';
+        } elseif (Option::get('iscomment') == 'n' || $log['allow_remark'] == 'n') {
             $err = '该文章未开启评论';
         } elseif (User::isVistor() && $Comment_Model->isCommentTooFast() === true) {
-            $err = '评论发布太频繁了，休息下吧';
+            $err = '评论发布太频繁';
         } elseif (empty($name)) {
             $err = '请填写昵称';
         } elseif (strlen($name) > 100) {
