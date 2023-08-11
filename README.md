@@ -30,18 +30,6 @@ emlog是一款轻量级博客及CMS建站系统，致力于打造好用的个人
 * 上传的图片可以随意直观的嵌入到日志内容里，让你的日志图文并茂
 * 站点数据备份/恢复功能
 
-## 文档
-
-[简体中文](https://www.emlog.net/docs/#/install)
-
-## 安装包
-
-[下载pro安装包](https://www.emlog.net/download)
-
-## 更新记录
-
-[changelog](https://www.emlog.net/docs/#/changelog)
-
 ## 环境要求
 
 * PHP5.6、PHP7、PHP8，推荐 PHP7.4
