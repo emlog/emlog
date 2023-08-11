@@ -17,7 +17,7 @@
                 <div id="logcontent"><textarea><?= $content ?></textarea></div>
                 <label>文章摘要：</label>
                 <div id="logexcerpt"><textarea><?= $excerpt ?></textarea></div>
-                <label>插件扩展：</label>
+                <label id="post_ext_label">插件扩展：</label>
                 <div id="post_bar">
                     <?php doAction('adm_writelog_head') ?>
                 </div>
@@ -385,6 +385,6 @@
     // 显示插件扩展label
     const postBar = $("#post_bar");
     if (postBar.children().length === 0) {
-        $("label").hide();
+        $("#post_ext_label").hide();
     }
 </script>
