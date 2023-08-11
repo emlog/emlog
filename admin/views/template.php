@@ -62,9 +62,16 @@
                             <a href="<?= $value['tplurl'] ?>" target="_blank">更多介绍&rarr;</a>
                         <?php endif ?>
                     </div>
-                    <div class="mt-3">
-                        <a class="badge badge-danger" href="javascript: em_confirm('<?= $value['tplfile'] ?>', 'tpl', '<?= LoginAuth::genToken() ?>');">删除</a>
-                        <span class="update-btn"></span>
+                    <div class="card-text d-flex justify-content-between mt-3">
+                        <span>
+                        <?php if ($nonce_template !== $value['tplfile']): ?>
+                            <a class="badge badge-success" href="template.php?action=use&tpl=<?= $value['tplfile'] ?>&token=<?= LoginAuth::genToken() ?>">启用</a>
+                        <?php endif; ?>
+                            <span class="update-btn"></span>
+                        </span>
+                        <span>
+                            <a class="badge badge-danger" href="javascript: em_confirm('<?= $value['tplfile'] ?>', 'tpl', '<?= LoginAuth::genToken() ?>');">删除</a>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -108,7 +115,7 @@
         $("#menu_category_view").addClass('active');
         $("#menu_view").addClass('show');
         $("#menu_tpl").addClass('active');
-        
+
         var templateList = [];
         $('.app-list .card').each(function () {
             var $card = $(this);
@@ -131,7 +138,7 @@
                     $.each(pluginsToUpdate, function (index, item) {
                         var $tr = $('.app-list .card[data-app-alias="' + item.name + '"]');
                         var $updateBtn = $tr.find('.update-btn');
-                        $updateBtn.append($('<a>').addClass('badge badge-success').text('更新').attr("href", "./template.php?action=upgrade&alias=" + item.name));
+                        $updateBtn.append($('<a>').addClass('badge badge-warning').text('更新').attr("href", "./template.php?action=upgrade&alias=" + item.name));
                     });
                 } else {
                     console.log('更新接口返回错误');
