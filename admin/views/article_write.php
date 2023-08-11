@@ -40,7 +40,7 @@
                     <?php endif ?>
                 <?php endif ?>
             </div>
-            <div class="shadow-sm p-3 bg-white rounded">
+            <div class="shadow-sm p-3 bg-white rounded" id="post_side">
                 <div class="form-group">
                     <label>文章封面：</label>
                     <input name="cover" id="cover" class="form-control" placeholder="封面图URL" value="<?= $cover ?>"/>
@@ -96,7 +96,7 @@
                     <label>发布时间：<small class="text-muted">（当设置未来时间，文章将在该时间点定时发布）</small></label>
                     <input type="text" maxlength="200" name="postdate" id="postdate" value="<?= $postDate ?>" class="form-control"/>
                 </div>
-                <div>
+                <div class="form-group">
                     <input type="checkbox" value="y" name="allow_remark" id="allow_remark" <?= $is_allow_remark ?> />
                     <label for="allow_remark" style="margin-right: 8px;">允许评论</label>
                     <input type="checkbox" value="y" name="top" id="top" <?php echo $is_top; ?> />
@@ -105,7 +105,7 @@
                     <label for="sortop" style="margin-right: 8px;">分类置顶</label>
                 </div>
                 <hr>
-                <a class="show_advset" id="displayToggle" onclick="displayToggle('advset');">高级选项<i class="icofont-simple-right"></i></a>
+                <div><a class="show_advset" id="displayToggle" onclick="displayToggle('advset');">高级选项<i class="icofont-simple-right"></i></a></div>
                 <div id="advset">
                     <div class="form-group">
                         <label>链接别名：<small class="text-muted">（用于seo设置 <a href="./setting.php?action=seo">&rarr;</a>）</small></label>
