@@ -124,7 +124,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="./media.php?action=upload<?= '&sid=' . $sid ?>" class="dropzone" id="my-awesome-dropzone"></form>
+                <form action="./media.php?action=upload<?= '&sid=' . $sid ?>" class="dropzone" id="up-form"></form>
             </div>
 
         </div>
@@ -189,22 +189,22 @@
 <script src="./views/components/bootstrap-datepicker/bootstrap-datepicker.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
 <script src="./views/components/bootstrap-datepicker/bootstrap-datepicker.zh-CN.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
 <script>
+    Dropzone.options.upForm = {
+        paramName: "file",
+        maxFilesize: 20480, // 20G
+        timeout: 3600000,
+        init: function () {
+            this.on("error", function (file, response) {
+                // alert(response);
+            });
+        }
+    };
     $(function () {
         $("#menu_media").addClass('active');
         setTimeout(hideActived, 3600);
         $('#exampleModal').on('hidden.bs.modal', function (e) {
             window.location.reload();
-        })
-        Dropzone.options.myAwesomeDropzone = {
-            maxFilesize: 21474836480,//in bytes, 20G
-            paramName: "file",
-            timeout: 3600000,// milliseconds
-            init: function () {
-                this.on("error", function (file, response) {
-                    // alert(response);
-                });
-            }
-        };
+        });
 
         $('#editModal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget)
