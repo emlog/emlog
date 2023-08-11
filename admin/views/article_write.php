@@ -11,12 +11,16 @@
                 <div>
                     <input type="text" name="title" id="title" value="<?= $title ?>" class="form-control" placeholder="文章标题" autofocus required/>
                 </div>
-                <div id="post_bar" class="small my-3">
+                <div class="small my-3">
                     <a href="#mediaModal" data-toggle="modal" data-target="#mediaModal"><i class="icofont-plus"></i>上传插入图片</a>
                 </div>
                 <div id="logcontent"><textarea><?= $content ?></textarea></div>
                 <label>文章摘要：</label>
                 <div id="logexcerpt"><textarea><?= $excerpt ?></textarea></div>
+                <label>插件扩展：</label>
+                <div id="post_bar">
+                    <?php doAction('adm_writelog_head') ?>
+                </div>
             </div>
         </div>
         <div class="col-xl-3">
@@ -39,7 +43,7 @@
             <div class="shadow-sm p-3 bg-white rounded">
                 <div class="form-group">
                     <label>文章封面：</label>
-                    <input name="cover" id="cover" class="form-control" placeholder="封面图地址URL，手动填写或点击下方图片区域上传" value="<?= $cover ?>"/>
+                    <input name="cover" id="cover" class="form-control" placeholder="封面图URL" value="<?= $cover ?>"/>
                     <div class="row mt-3">
                         <div class="col-md-4">
                             <label for="upload_img">
@@ -75,7 +79,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>标签：<small class="text-muted">(也用于文章页关键词， 多个用英文逗号分隔)</small></label>
+                    <label>标签：<small class="text-muted">(也用于文章页关键词，英文逗号分隔)</small></label>
                     <input name="tag" id="tag" class="form-control" value="<?= $tagStr ?>"/>
                     <?php if ($tags): ?>
                         <span class="small"><a href="javascript:doToggle('tags', 1);">近期使用的+</a></span>
@@ -94,11 +98,11 @@
                 </div>
                 <div>
                     <input type="checkbox" value="y" name="allow_remark" id="allow_remark" <?= $is_allow_remark ?> />
-                    <label for="allow_remark" style="margin-right: 20px;">允许评论</label>
+                    <label for="allow_remark" style="margin-right: 8px;">允许评论</label>
                     <input type="checkbox" value="y" name="top" id="top" <?php echo $is_top; ?> />
-                    <label for="top" style="margin-right: 20px;">首页置顶</label>
+                    <label for="top" style="margin-right: 8px;">首页置顶</label>
                     <input type="checkbox" value="y" name="sortop" id="sortop" <?php echo $is_sortop; ?> />
-                    <label for="sortop" style="margin-right: 20px;">分类置顶</label>
+                    <label for="sortop" style="margin-right: 8px;">分类置顶</label>
                 </div>
                 <hr>
                 <a class="show_advset" id="displayToggle" onclick="displayToggle('advset');">高级选项<i class="icofont-simple-right"></i></a>
@@ -116,8 +120,8 @@
                         <input type="text" name="password" id="password" class="form-control" value="<?= $password ?>"/>
                     </div>
                     <hr>
-                    <div id="post_bar" class="small my-3">
-                        <?php doAction('adm_writelog_head') ?>
+                    <div id="post_side_ext">
+                        <?php doAction('adm_writelog_side') ?>
                     </div>
                 </div>
             </div>
@@ -376,5 +380,11 @@
         $(".icofont-simple-down").attr("class", "icofont-simple-right")
     } else {
         $(".icofont-simple-right").attr("class", "icofont-simple-down")
+    }
+
+    // 显示插件扩展label
+    const postBar = $("#post_bar");
+    if (postBar.children().length === 0) {
+        $("label").hide();
     }
 </script>
