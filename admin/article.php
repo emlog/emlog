@@ -260,6 +260,9 @@ if ($action === 'edit') {
     $Media_Model = new Media_Model();
     $medias = $Media_Model->getMedias();
 
+    $MediaSort_Model = new MediaSort_Model();
+    $mediaSorts = $MediaSort_Model->getSorts();
+
     $is_top = $top == 'y' ? 'checked="checked"' : '';
     $is_sortop = $sortop == 'y' ? 'checked="checked"' : '';
     $is_allow_remark = $allow_remark == 'y' ? 'checked="checked"' : '';
