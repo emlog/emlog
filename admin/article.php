@@ -256,10 +256,6 @@ if ($action === 'edit') {
     //old tag
     $tags = $Tag_Model->getTags();
 
-    //media
-    $Media_Model = new Media_Model();
-    $medias = $Media_Model->getMedias();
-
     $MediaSort_Model = new MediaSort_Model();
     $mediaSorts = $MediaSort_Model->getSorts();
 
