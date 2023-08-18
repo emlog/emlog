@@ -62,8 +62,8 @@ class User {
             session_start();
         }
         $session_code = isset($_SESSION['code']) ? $_SESSION['code'] : '';
+        unset($_SESSION['code']);
         if ((!$login_code || $login_code !== $session_code) && Option::get('login_code') === 'y') {
-            unset($_SESSION['code']);
             return false;
         }
         return true;
@@ -74,8 +74,8 @@ class User {
             session_start();
         }
         $session_code = isset($_SESSION['mail_code']) ? $_SESSION['mail_code'] : '';
+        unset($_SESSION['code']);
         if (!$mail_code || $mail_code !== $session_code) {
-            unset($_SESSION['code']);
             return false;
         }
         return true;
