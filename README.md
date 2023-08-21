@@ -2,10 +2,6 @@
   <img src="./admin/views/images/logo.png" width=100 />
 </p>
 
-<p align="center">
-  中文 | <a href="./README.en.md">English</a>
-</p>
-
 # emlog
 
 emlog是一款轻量级博客及CMS建站系统，致力于打造好用的个人云端内容管理系统。
@@ -55,12 +51,6 @@ $ docker run --name emlog-pro -p 8080:80 -d emlog/emlog:pro-latest-php7.4-apache
 2. docker network create emlog_network
 3. docker-compose up
 4. http://localhost:8080
-
-## 特别感谢
-
-[![JetBrains](https://raw.githubusercontent.com/kainonly/ngx-bit/main/resource/jetbrains.svg)](https://www.jetbrains.com/)
-
-Thanks for non-commercial open source development authorization by JetBrains
 
 ## 授权协议
 
