@@ -12,6 +12,7 @@ class Log_Model {
     private $Parsedown;
     private $table;
     private $table_user;
+    private $table_sort;
 
     public function __construct() {
         $this->db = Database::getInstance();
