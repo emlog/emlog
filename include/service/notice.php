@@ -96,11 +96,11 @@ class Notice
 
         if ($pid) {
             $title = "你的评论收到一条回复";
-            $content .= '<hr/>来自文章：<a href="' . Url::log($article['logid']) . '">' . $article['log_title'] . '</a>';
+            $content .= '<hr/>来自文章：<a href="' . Url::log($article['logid']) . '" target="_blank">' . $article['log_title'] . '</a>';
             $email = self::getCommentAuthorEmail($pid);
         } else {
             $title = "你的文章收到新的评论";
-            $content .= '<hr/>来自文章：<a href="' . Url::log($article['logid']) . '">' . $article['log_title'] . '</a>';
+            $content .= '<hr/>来自文章：<a href="' . Url::log($article['logid']) . '" target="_blank">' . $article['log_title'] . '</a>';
             $email = self::getArticleAuthorEmail($article['author']);
         }
         if (!$email) {
@@ -122,7 +122,7 @@ class Notice
     {
         $User_Model = new User_Model();
         $user_info = $User_Model->getOneUser(1);
-        if (empty($user_info['email']) && checkMail($user_info['email'])) {
+        if (empty($user_info['email']) || !checkMail($user_info['email'])) {
             return false;
         }
         return $user_info['email'];
@@ -142,7 +142,7 @@ class Notice
     {
         $User_Model = new User_Model();
         $r = $User_Model->getOneUser($uid);
-        if (isset($r['email']) && checkMail($r['mail'])) {
+        if (isset($r['email']) && checkMail($r['email'])) {
             return $r['email'];
         }
         return false;
