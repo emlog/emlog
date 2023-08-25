@@ -17,16 +17,18 @@ $Comment_Model = new Comment_Model();
 
 if (!$action) {
     $blogId = isset($_GET['gid']) ? (int)$_GET['gid'] : null;
+    $uid = isset($_GET['uid']) ? (int)$_GET['uid'] : null;
     $hide = isset($_GET['hide']) ? addslashes($_GET['hide']) : '';
     $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
+    $addUrl_0 = $uid ? "uid=$uid&" : '';
     $addUrl_1 = $blogId ? "gid=$blogId&" : '';
     $addUrl_2 = $hide ? "hide=$hide&" : '';
     $addUrl = $addUrl_1 . $addUrl_2;
 
-    $comment = $Comment_Model->getCommentsForAdmin($blogId, $hide, $page);
-    $cmnum = $Comment_Model->getCommentNum($blogId, $hide);
-    $hideCommNum = $Comment_Model->getCommentNum($blogId, 'y');
+    $comment = $Comment_Model->getCommentsForAdmin($blogId, $uid, $hide, $page);
+    $cmnum = $Comment_Model->getCommentNum($blogId, $uid, $hide);
+    $hideCommNum = $Comment_Model->getCommentNum($blogId, $uid, 'y');
     $pageurl = pagination($cmnum, Option::get('admin_perpage_num'), $page, "comment.php?{$addUrl}page=");
 
     include View::getAdmView('header');

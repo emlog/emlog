@@ -64,13 +64,13 @@
                     <tbody>
                     <?php foreach ($comment as $key => $value):
                         $ishide = $value['hide'] == 'y' ? '<span class="text-danger">[待审]</span>' : '';
-                        $mail = $value['mail'] ? "({$value['mail']})" : '';
+                        $mail = $value['mail'] ? " <br />email: {$value['mail']}" : '';
                         $ip = $value['ip'];
                         $gid = $value['gid'];
                         $cid = $value['cid'];
-                        $ip_info = $ip ? "<br />来自IP：{$ip}" : '';
+                        $ip_info = $ip ? "<br />IP：{$ip}" : '';
                         $comment = $value['comment'];
-                        $poster = !empty($value['url']) ? '<a href="' . $value['url'] . '" target="_blank">' . $value['poster'] . '</a>' : $value['poster'];
+                        $poster = !empty($value['uid']) ? '<a href="./comment.php?uid=' . $value['uid'] . '">' . $value['poster'] . '</a>' : $value['poster'];
                         $title = subString($value['title'], 0, 42);
                         $hide = $value['hide'];
                         $date = $value['date'];
@@ -90,7 +90,7 @@
                             </td>
                             <td class="small">
                                 <a href="<?= Url::log($gid) ?>" target="_blank"><?= $title ?></a><br>
-                                <a href="comment.php?gid=<?= $gid ?>" class="badge badge-info">查看该文所有评论</a>
+                                <a href="comment.php?gid=<?= $gid ?>" class="badge badge-info">该文所有评论</a>
                             </td>
                             <td class="small"><?= $date ?></td>
                             <td>

@@ -73,19 +73,20 @@ class Comment_Model {
     /**
      * get comment list for admin
      */
-    function getCommentsForAdmin($blogId = null, $hide = null, $page = null) {
+    function getCommentsForAdmin($blogId = null, $uid = null, $hide = null, $page = null) {
         $orderBy = $blogId ? "ORDER BY a.top DESC, a.date DESC" : 'ORDER BY a.date DESC';
         $andQuery = '1=1';
         $andQuery .= $blogId ? " and a.gid=$blogId" : '';
+        $andQuery .= $uid ? " and a.uid=$uid" : '';
         $andQuery .= $hide ? " and a.hide='$hide'" : '';
         $condition = '';
         if ($page) {
-            $perpage_num = Option::get('admin_perpage_num');
+            $per_page_num = Option::get('admin_perpage_num');
             if ($page > PHP_INT_MAX) {
                 $page = PHP_INT_MAX;
             }
-            $startId = ($page - 1) * $perpage_num;
-            $condition = "LIMIT $startId, " . $perpage_num;
+            $startId = ($page - 1) * $per_page_num;
+            $condition = "LIMIT $startId, " . $per_page_num;
         }
 
         $andQuery .= !User::haveEditPermission() ? ' and b.author=' . UID : '';
@@ -99,7 +100,6 @@ class Comment_Model {
             $row['url'] = htmlspecialchars($row['url']);
             $row['comment'] = htmlClean($row['comment']);
             $row['date'] = smartDate($row['date']);
-            $row['top'] = $row['top'];
             $row['os'] = get_os($row['agent']);
             $row['browse'] = get_browse($row['agent']);
             $row['children'] = [];
@@ -122,9 +122,10 @@ class Comment_Model {
         return $comment;
     }
 
-    function getCommentNum($blogId = null, $hide = null) {
+    function getCommentNum($blogId = null, $uid = null, $hide = null) {
         $andQuery = '1=1';
         $andQuery .= $blogId ? " and a.gid=$blogId" : '';
+        $andQuery .= $uid ? " and a.uid=$uid" : '';
         $andQuery .= $hide ? " and a.hide='$hide'" : '';
         if (User::haveEditPermission()) {
             $sql = "SELECT count(*) FROM " . DB_PREFIX . "comment as a where $andQuery";
