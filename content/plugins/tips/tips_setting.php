@@ -16,11 +16,11 @@ function plugin_setting_view() {
                 <div class="form-group">
                     <p>这是世界上第一个emlog插件，它会在你的管理页面送上一句温馨的小提示，样式如下。</p>
                     <?php tips(); ?>
-                    <hr/>
+                    <hr>
                     <p>另外该插件也是一个demo，可以在这个插件基础上修改，开发出你自己的插件。</p>
                 </div>
                 <input name="test" type="hidden" class="form-control" value="hello">
-                <input type="submit" class="btn btn-success btn-sm" value="好的，我知道了"/>
+                <input type="submit" class="btn btn-success btn-sm" value="好的，我知道了">
             </form>
         </div>
     </div>
