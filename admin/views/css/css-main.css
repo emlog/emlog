@@ -175,22 +175,22 @@ textarea {
     padding: 10px;
 }
 
-#admindex_msg img {
+.admin_index_list img {
     border: none
 }
 
-#admindex_msg ul li {
+.admin_index_list ul li {
     list-style: none;
     line-height: 1.4;
     border-bottom: 1px solid #E4E4E4;
     padding: 10px;
 }
 
-#admindex_msg ul li img {
+.admin_index_list ul li img {
     margin: 5px
 }
 
-#admindex_msg span {
+.admin_index_list span {
     float: right
 }
 

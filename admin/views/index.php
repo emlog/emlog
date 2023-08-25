@@ -147,7 +147,7 @@
         <div class="col-lg-6 mb-4">
             <div class="card shadow mb-4">
                 <h6 class="card-header">获取帮助</h6>
-                <div class="card-body" id="admindex_msg">
+                <div class="card-body admin_index_list">
                     <ul class="list-group list-group-flush">
                         <li class="msg_type_0"><a href="https://www.emlog.net/docs/#/faq" target="_blank">使用帮助 | 常见问题</a></li>
                         <li class="msg_type_0"><a href="https://www.emlog.net/docs/#/" target="_blank">应用开发 | 开发文档</a></li>
@@ -161,7 +161,7 @@
             <div class="col-lg-6 mb-4">
                 <div class="card mb-4">
                     <h6 class="card-header">今日应用 - <a href="./store.php">应用商店</a></h6>
-                    <div class="card-body" id="admindex_msg">
+                    <div class="card-body">
                         <div class="row" id="app-list"></div>
                     </div>
                 </div>
