@@ -12,11 +12,15 @@
 
 require_once 'globals.php';
 
+if (empty($_POST)) {
+    exit;
+}
+
 $Log_Model = new Log_Model();
 $Tag_Model = new Tag_Model();
 
 $title = Input::postStrVar('title');
-$postDate = isset($_POST['postdate']) ? strtotime(trim($_POST['postdate'])) : '';
+$postDate = isset($_POST['postdate']) ? strtotime(trim($_POST['postdate'])) : time();
 $sort = Input::postIntVar('sort', -1);
 $tagstring = isset($_POST['tag']) ? strip_tags(addslashes(trim($_POST['tag']))) : '';
 $content = Input::postStrVar('logcontent');
@@ -29,7 +33,7 @@ $password = Input::postStrVar('password');
 $cover = Input::postStrVar('cover');
 $link = Input::postStrVar('link');
 $author = isset($_POST['author']) && User::haveEditPermission() ? (int)trim($_POST['author']) : UID;
-$ishide = Input::postStrVar('ishide');
+$ishide = Input::postStrVar('ishide', 'y');
 $blogid = Input::postIntVar('as_logid', -1); //自动保存为草稿的文章id
 
 if (isset($_POST['pubPost'])) {
@@ -103,5 +107,3 @@ if (isset($_POST['pubPost'])) {
 // 编辑文章（保存并返回）
 $page = $Log_Model->getPageOffset($postDate, Option::get('admin_perpage_num'));
 emDirect("./article.php?active_savelog=1&page=" . $page);
-
-
