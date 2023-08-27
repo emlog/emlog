@@ -24,7 +24,7 @@ if (!$action) {
     $addUrl_0 = $uid ? "uid=$uid&" : '';
     $addUrl_1 = $blogId ? "gid=$blogId&" : '';
     $addUrl_2 = $hide ? "hide=$hide&" : '';
-    $addUrl = $addUrl_1 . $addUrl_2;
+    $addUrl = $addUrl_0 . $addUrl_1 . $addUrl_2;
 
     $comment = $Comment_Model->getCommentsForAdmin($blogId, $uid, $hide, $page);
     $cmnum = $Comment_Model->getCommentNum($blogId, $uid, $hide);
