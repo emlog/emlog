@@ -39,7 +39,7 @@
                         <div class="badge badge-light m-3 p-2">
                             <h5><a href="#" data-toggle="modal" data-target="#editModal" data-tid="<?= $v['tid'] ?>"
                                    data-tagname="<?= $v['tagname'] ?>"><?= $v['tagname'] ?></a></h5>
-                            <small class="<?= $count_style ?>">（文章：<?= $count ?>）</small>
+                            <small class="<?= $count_style ?>">（文章：<a href="<?= Url::tag(urlencode($v['tagname'])) ?>" target="_blank"><?= $count ?></a>）</small>
                             <input type="checkbox" name="tids[]" value="<?= $v['tid'] ?>" class="tids align-top"/>
                         </div>
                     <?php endforeach ?>
