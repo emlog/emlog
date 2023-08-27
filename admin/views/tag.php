@@ -32,10 +32,8 @@
         <div class="card-body">
             <div>
                 <?php if ($tags): ?>
-                    <?php foreach ($tags
-
-                                   as $key => $v):
-                        $count = count(explode(',', $v['gid']));
+                    <?php foreach ($tags as $key => $v):
+                        $count = empty($v['gid']) ? 0 : count(explode(',', $v['gid']));
                         $count_style = $count > 0 ? 'text-muted' : 'text-danger';
                         ?>
                         <div class="badge badge-light m-3 p-2">

@@ -267,6 +267,7 @@ class Log_Model {
 
     public function deleteLog($blogId) {
         $this->checkEditable($blogId);
+        $detail = $this->getDetail($blogId);
         $author = User::haveEditPermission() ? '' : 'and author=' . UID;
         $this->db->query("DELETE FROM $this->table where gid=$blogId $author");
         if ($this->db->affected_rows() < 1) {
@@ -275,8 +276,13 @@ class Log_Model {
         // comment
         $this->db->query("DELETE FROM " . DB_PREFIX . "comment where gid=$blogId");
         // tag
-        $this->db->query("UPDATE " . DB_PREFIX . "tag SET gid= REPLACE(gid,',$blogId,',',') WHERE gid LIKE '%" . $blogId . "%' ");
-        $this->db->query("DELETE FROM " . DB_PREFIX . "tag WHERE gid=',' ");
+        if (!empty($detail['tags'])) {
+            $TagModel = new Tag_Model();
+            $tags = explode(',', $detail['tags']);
+            foreach ($tags as $tag) {
+                $TagModel->removeBlogIdFromTag($tag, $blogId);
+            }
+        }
     }
 
     public function hideSwitch($blogId, $state) {
