@@ -33,7 +33,7 @@ if (empty($action)) {
 
     $sqlSegment = '';
     if ($tagId) {
-        $blogIdStr = $Tag_Model->getTagById($tagId);
+        $blogIdStr = $Tag_Model->getTagById($tagId) ?: 0;
         $sqlSegment = "and gid IN ($blogIdStr)";
     } elseif ($sid) {
         $sqlSegment = "and sortid=$sid";
