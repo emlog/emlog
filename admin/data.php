@@ -33,7 +33,7 @@ if ($action === 'backup') {
     $sqldump = '';
 
     foreach ($tables as $table) {
-        $sqldump .= dataBak($table);
+        $sqldump .= exportData($table);
     }
 
     $dumpfile = '#version:emlog ' . Option::EMLOG_VERSION . "\n";
@@ -97,7 +97,7 @@ if ($action === 'import') {
         emMsg('只能导入emlog备份的SQL文件');
     }
     checkSqlFileInfo($sqlfile['tmp_name']);
-    bakindata($sqlfile['tmp_name']);
+    importData($sqlfile['tmp_name']);
     $CACHE->updateCache();
     emDirect('./data.php?active_import=1');
 }
@@ -135,7 +135,7 @@ function checkSqlFileInfo($sqlfile) {
 /**
  * Execute SQL statement of backup file
  */
-function bakindata($filename) {
+function importData($filename) {
     $DB = Database::getInstance();
     $setchar = $DB->getMysqlVersion() > '5.5' ? "ALTER DATABASE `" . DB_NAME . "` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;" : '';
     $sql = file($filename);
@@ -166,7 +166,7 @@ function bakindata($filename) {
  * @param string $table table name
  * @return string
  */
-function dataBak($table) {
+function exportData($table) {
     $DB = Database::getInstance();
     $sql = "DROP TABLE IF EXISTS $table;\n";
     $createtable = $DB->query("SHOW CREATE TABLE $table");

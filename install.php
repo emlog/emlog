@@ -365,12 +365,9 @@ EOT;
         . "\n//Cookie name\n"
         . "const AUTH_COOKIE_NAME = 'EM_AUTHCOOKIE_" . getRandStr(32, false) . "';";
 
-    $fp = @fopen('config.php', 'w');
-    $fw = @fwrite($fp, $config);
-    if (!$fw) {
+    if (!file_put_contents('config.php', $config)) {
         emMsg('配置文件(config.php)不可写，请调整文件读写权限。');
     }
-    fclose($fp);
 
     $PHPASS = new PasswordHash(8, true);
     $password = $PHPASS->HashPassword($password);
