@@ -31,7 +31,7 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"><?= Option::get("posts_name") ?></div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="./article.php?checked=n"><?= $article_amount ?></a></div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="./article.php"><?= $article_amount ?></a></div>
                     </div>
                     <div class="col-auto">
                         <i class="icofont-pencil-alt-5 fa-2x text-gray-300"></i>
@@ -66,7 +66,10 @@
                     if ($logs):
                         foreach ($logs as $v) :
                             ?>
-                            <li class="msg_type_0"><a href="<?= Url::log($v['gid']) ?>" target="_blank"><?= $v['title'] ?></a></li>
+                            <li class="msg_type_0 d-flex justify-content-between align-items-center">
+                                <a href="<?= Url::log($v['gid']) ?>" target="_blank"><?= $v['title'] ?></a>
+                                <span class="badge badge-primary rounded-pill"><?= $v['views'] ?></span>
+                            </li>
                         <?php
                         endforeach;
                     else:

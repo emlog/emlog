@@ -3,19 +3,19 @@
 }
 ?>
 <div id="msg" class="fixed-top alert" style="display: none"></div>
-<h1 class="h3 mb-4 text-gray-800"><?= $containertitle ?> <span id="save_info"></span></h1>
+<h1 class="h3 mb-4 text-gray-800"><?= $containerTitle ?> <span id="save_info"></span></h1>
 <form action="article_save.php" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
     <div class="row">
         <div class="col-xl-9">
             <div id="post" class="form-group">
                 <div>
-                    <input type="text" name="title" id="title" value="<?= $title ?>" class="form-control" placeholder="文章标题" autofocus required/>
+                    <input type="text" name="title" id="title" value="<?= $title ?>" class="form-control" placeholder="标题" autofocus required/>
                 </div>
                 <div class="small my-3">
                     <a href="#mediaModal" data-toggle="modal" data-target="#mediaModal"><i class="icofont-plus"></i>上传插入图片</a>
                 </div>
                 <div id="logcontent"><textarea><?= $content ?></textarea></div>
-                <label>文章摘要：</label>
+                <label>摘要：</label>
                 <div id="logexcerpt"><textarea><?= $excerpt ?></textarea></div>
                 <label id="post_bar_label">插件扩展：</label>
                 <div id="post_bar">
@@ -42,7 +42,7 @@
             </div>
             <div class="shadow-sm p-3 bg-white rounded" id="post_side">
                 <div class="form-group">
-                    <label>文章封面：</label>
+                    <label>封面：</label>
                     <input name="cover" id="cover" class="form-control" placeholder="封面图URL" value="<?= $cover ?>"/>
                     <div class="row mt-3">
                         <div class="col-md-4">
@@ -79,7 +79,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>标签：<small class="text-muted">(也用于文章页关键词，英文逗号分隔)</small></label>
+                    <label>标签：<small class="text-muted">(也用于页面关键词，英文逗号分隔)</small></label>
                     <input name="tag" id="tag" class="form-control" value="<?= $tagStr ?>"/>
                     <?php if ($tags): ?>
                         <span class="small"><a href="javascript:doToggle('tags', 1);">近期使用的+</a></span>
@@ -254,7 +254,7 @@
             autoFocus: false,
             lineNumbers: false,
             sequenceDiagram: false,
-            placeholder: "如果留空，则使用文章内容作为摘要...",
+            placeholder: "如果留空，则使用内容作为摘要...",
             onload: function () {
                 hooks.doAction("sum_loaded", this);
             }

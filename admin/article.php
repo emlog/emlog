@@ -212,7 +212,7 @@ if ($action === 'write') {
     extract($blogData);
 
     $isdraft = false;
-    $containertitle = '写文章';
+    $containerTitle = User::isAdmin() ? '写文章' : '发布' . Option::get('posts_name');
     $orig_date = '';
     $sorts = $CACHE->readCache('sort');
     $tagStr = '';
@@ -243,7 +243,8 @@ if ($action === 'edit') {
     extract($blogData);
 
     $isdraft = $hide == 'y' ? true : false;
-    $containerTitle = $isdraft ? '编辑草稿' : '编辑文章';
+    $postsName = User::isAdmin() ? '文章' : Option::get('posts_name');
+    $containerTitle = $isdraft ? '编辑草稿' : '编辑' . $postsName;
     $postDate = date('Y-m-d H:i', $date);
     $sorts = $CACHE->readCache('sort');
 
@@ -263,9 +264,9 @@ if ($action === 'edit') {
     $is_sortop = $sortop == 'y' ? 'checked="checked"' : '';
     $is_allow_remark = $allow_remark == 'y' ? 'checked="checked"' : '';
 
-    include View::getAdmView('header');
-    require_once View::getAdmView('article_write');
-    include View::getAdmView('footer');
+    include View::getAdmView(User::isAdmin() ? 'header' : 'header_user');
+    require_once(View::getAdmView('article_write'));
+    include View::getAdmView(User::isAdmin() ? 'footer' : 'footer_user');
     View::output();
 }
 
