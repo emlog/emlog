@@ -15,26 +15,33 @@ class Option {
     static function get($option) {
         $CACHE = Cache::getInstance();
         $options_cache = $CACHE->readCache('options');
-        if (isset($options_cache[$option])) {
+        if (!isset($options_cache[$option])) {
             switch ($option) {
-                case 'active_plugins':
-                case 'navibar':
-                case 'widget_title':
-                case 'custom_widget':
-                case 'widgets1':
-                case 'custom_topimgs':
-                    if (!empty($options_cache[$option])) {
-                        return @unserialize($options_cache[$option]);
-                    }
-                    return [];
-                case 'blogurl':
-                    if ($options_cache['detect_url'] == 'y') {
-                        return realUrl();
-                    }
-                    return $options_cache['blogurl'];
+                case 'posts_name':
+                    return '文章';
                 default:
-                    return $options_cache[$option];
+                    return '';
             }
+        }
+
+        switch ($option) {
+            case 'active_plugins':
+            case 'navibar':
+            case 'widget_title':
+            case 'custom_widget':
+            case 'widgets1':
+            case 'custom_topimgs':
+                if (!empty($options_cache[$option])) {
+                    return @unserialize($options_cache[$option]);
+                }
+                return [];
+            case 'blogurl':
+                if ($options_cache['detect_url'] == 'y') {
+                    return realUrl();
+                }
+                return $options_cache['blogurl'];
+            default:
+                return $options_cache[$option];
         }
     }
 
