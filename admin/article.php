@@ -74,9 +74,9 @@ if (empty($action)) {
     }
     $pageurl = pagination($logNum, Option::get('admin_perpage_num'), $page, "article.php?{$subPage}&page=");
 
-    include View::getAdmView('header');
+    include View::getAdmView(User::isAdmin() ? 'header' : 'header_user');
     require_once View::getAdmView('article');
-    include View::getAdmView('footer');
+    include View::getAdmView(User::isAdmin() ? 'footer' : 'footer_user');
     View::output();
 }
 
@@ -229,9 +229,9 @@ if ($action === 'write') {
         emDirect("auth.php?error_article=1");
     }
 
-    include View::getAdmView('header');
-    require_once View::getAdmView('article_write');
-    include View::getAdmView('footer');
+    include View::getAdmView(User::isAdmin() ? 'header' : 'header_user');
+    require_once(View::getAdmView('article_write'));
+    include View::getAdmView(User::isAdmin() ? 'footer' : 'footer_user');
     View::output();
 }
 

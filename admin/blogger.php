@@ -20,9 +20,9 @@ if (empty($action)) {
 
     $icon = $photo ?: "./views/images/avatar.svg";
 
-    include View::getAdmView('header');
+    include View::getAdmView(User::isAdmin() ? 'header' : 'header_user');
     require_once(View::getAdmView('blogger'));
-    include View::getAdmView('footer');
+    include View::getAdmView(User::isAdmin() ? 'footer' : 'footer_user');
     View::output();
 }
 

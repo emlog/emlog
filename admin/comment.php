@@ -31,9 +31,9 @@ if (!$action) {
     $hideCommNum = $Comment_Model->getCommentNum($blogId, $uid, 'y');
     $pageurl = pagination($cmnum, Option::get('admin_perpage_num'), $page, "comment.php?{$addUrl}page=");
 
-    include View::getAdmView('header');
+    include View::getAdmView(User::isAdmin() ? 'header' : 'header_user');
     require_once(View::getAdmView('comment'));
-    include View::getAdmView('footer');
+    include View::getAdmView(User::isAdmin() ? 'footer' : 'footer_user');
     View::output();
 }
 

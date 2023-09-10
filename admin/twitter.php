@@ -33,9 +33,9 @@ if (empty($action)) {
     }
     $pageurl = pagination($twnum, TW_PAGE_COUNT, $page, "twitter.php?{$subPage}&page=");
 
-    include View::getAdmView('header');
-    require_once View::getAdmView('twitter');
-    include View::getAdmView('footer');
+    include View::getAdmView(User::isAdmin() ? 'header' : 'header_user');
+    require_once(View::getAdmView('twitter'));
+    include View::getAdmView(User::isAdmin() ? 'footer' : 'footer_user');
     View::output();
 }
 

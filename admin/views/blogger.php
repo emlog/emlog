@@ -19,9 +19,11 @@
     <div class="alert alert-danger">该昵称已被占用</div><?php endif ?>
 <?php if (isset($_GET['error_g'])): ?>
     <div class="alert alert-danger">该邮箱已被占用</div><?php endif ?>
-<div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">设置</h1>
-</div>
+<?php if (User::isAdmin()): ?>
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">设置</h1>
+    </div>
+<?php endif; ?>
 <div class="panel-heading">
     <?php if (User::isAdmin()): ?>
         <ul class="nav nav-pills">
@@ -32,11 +34,7 @@
             <li class="nav-item"><a class="nav-link" href="./setting.php?action=api">API</a></li>
             <li class="nav-item"><a class="nav-link active" href="./blogger.php">个人信息</a></li>
         </ul>
-    <?php else: ?>
-        <ul class="nav nav-pills">
-            <li class="nav-item"><a class="nav-link active" href="./blogger.php">个人信息</a></li>
-        </ul>
-    <?php endif ?>
+    <?php endif; ?>
 </div>
 <div class="card shadow mb-4 mt-2">
     <div class="card-body">

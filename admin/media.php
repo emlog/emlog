@@ -39,9 +39,9 @@ if (empty($action)) {
 
     $sorts = $MediaSortModel->getSorts();
 
-    include View::getAdmView('header');
+    include View::getAdmView(User::isAdmin() ? 'header' : 'header_user');
     require_once(View::getAdmView('media'));
-    include View::getAdmView('footer');
+    include View::getAdmView(User::isAdmin() ? 'footer' : 'footer_user');
     View::output();
 }
 
