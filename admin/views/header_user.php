@@ -9,7 +9,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name=renderer content=webkit>
     <title>个人中心 - <?= Option::get('blogname') ?></title>
-    <link rel="shortcut icon" href="./views/images/favicon.ico"/>
     <link rel="stylesheet" type="text/css" href="./views/css/style.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>">
     <link rel="stylesheet" type="text/css" href="./editor.md/css/editormd.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>">
     <link rel="stylesheet" type="text/css" href="./views/css/bootstrap-sbadmin-4.5.3.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>">
@@ -18,7 +17,6 @@
     <link rel="stylesheet" type="text/css" href="./views/css/dropzone.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>">
     <link rel="stylesheet" type="text/css" href="./views/css/cropper.min.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>">
     <link rel="stylesheet" type="text/css" href="./views/css/user-style.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>">
-
     <script src="./views/js/jquery.min.3.5.1.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
     <script src="./views/js/bootstrap.bundle.min.4.6.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
     <script src="./views/js/jquery-ui.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
@@ -41,15 +39,15 @@
             <a class="p-2 text-muted" href="comment.php">评论</a>
         </nav>
         <nav class="my-2 my-md-0 mr-md-3">
-            <a class="mr-2" href="blogger.php" role="button">
+            <a class="mr-2" href="blogger.php">
                 <img width="30" height="30" class="img-profile rounded-circle" src="<?= empty($user_cache[UID]['avatar']) ? './views/images/avatar.svg' : '../' . $user_cache[UID]['avatar'] ?>">
             </a>
-            <a class="text-muted" href="account.php?action=logout" role="button">
+            <a class="text-muted" href="account.php?action=logout">
                 <i class="icofont-logout icofont-1x"></i>退出
             </a>
         </nav>
     </div>
     <!-- Page Content-->
-    <div class="container px-5 my-5">
+    <div class="container px-2 my-5">
         <div class="row gx-5 justify-content-center">
             <div class="col-lg-11 col-xl-9 col-xxl-8">

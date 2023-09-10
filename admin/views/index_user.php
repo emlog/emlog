@@ -2,7 +2,22 @@
     exit('error!');
 } ?>
 <div class="d-flex align-items-center justify-content-between mb-4">
-    <h2 class="text-primary fw-bolder mb-0">个人中心</h2>
+    <div class="d-flex align-items-center mb-4">
+        <div class="flex-shrink-0">
+            <a class="mr-2" href="blogger.php">
+                <img src="<?= empty($user_cache[UID]['avatar']) ? './views/images/avatar.svg' : '../' . $user_cache[UID]['avatar'] ?>"
+                     alt="Generic placeholder image" class="img-fluid rounded-circle border border-dark border-3"
+                     style="width: 60px;">
+            </a>
+        </div>
+        <div class="flex-grow-1 ms-3">
+            <div class="align-items-center mb-2">
+                <p class="mb-0 m-2"><?= $user_cache[UID]['name'] ?></p>
+                <p class="mb-0 m-2 small"><?= $user_cache[UID]['des'] ?: "当风吹过，留下微笑" ?></p>
+            </div>
+        </div>
+    </div>
+
     <a class="btn btn-primary px-4 py-3" href="./article.php?action=write">
         <div class="d-inline-block bi bi-download me-2"></div>
         <i class="icofont-plus"></i>发新文章
@@ -42,9 +57,6 @@
     </div>
 </div>
 <div class="row">
-    <?php doAction('user_main_content') ?>
-</div>
-<div class="row">
     <div class="col-lg-6 mb-4">
         <div class="card shadow mb-4">
             <h6 class="card-header">最近发布的文章</h6>
@@ -82,5 +94,8 @@
                 </ul>
             </div>
         </div>
+    </div>
+    <div class="row">
+        <?php doAction('user_main_content') ?>
     </div>
 </div>
