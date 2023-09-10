@@ -26,6 +26,7 @@
     <?php doAction('adm_head') ?>
 </head>
 <body class="d-flex flex-column h-100 bg-light">
+<div id="editor-md-dialog"></div>
 <main class="flex-shrink-0">
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom shadow-sm" id="top-bar">
         <h3 class="my-0 mr-md-5 font-weight-normal"><a href="./"><?= Option::get('blogname') ?></a></h3>
