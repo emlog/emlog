@@ -27,7 +27,6 @@
 </head>
 <body class="d-flex flex-column h-100 bg-light">
 <main class="flex-shrink-0">
-    <!-- Navigation-->
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom shadow-sm" id="top-bar">
         <h3 class="my-0 mr-md-5 font-weight-normal"><a href="./"><?= Option::get('blogname') ?></a></h3>
         <nav class="my-2 my-md-0 mr-md-auto">
@@ -47,7 +46,6 @@
             </a>
         </nav>
     </div>
-    <!-- Page Content-->
     <div class="container px-2 my-5">
         <div class="row gx-5 justify-content-center">
             <div class="col-lg-11 col-xl-9 col-xxl-8">

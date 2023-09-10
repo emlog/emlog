@@ -6,7 +6,7 @@
         <div class="flex-shrink-0">
             <a class="mr-2" href="blogger.php">
                 <img src="<?= empty($user_cache[UID]['avatar']) ? './views/images/avatar.svg' : '../' . $user_cache[UID]['avatar'] ?>"
-                     alt="Generic placeholder image" class="img-fluid rounded-circle border border-dark border-3"
+                     alt="avatar" class="img-fluid rounded-circle border border-secondary border-3"
                      style="width: 60px;">
             </a>
         </div>
@@ -46,7 +46,7 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col">
                         <div class="text-xs font-weight-bold text-info text-uppercase mb-1">收到评论</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="./comment.php?hide=y"><?= $comment_amount ?></a></div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="./comment.php"><?= $comment_amount ?></a></div>
                     </div>
                     <div class="col-auto">
                         <i class="icofont-comment fa-2x text-gray-300"></i>
@@ -88,7 +88,7 @@
                     <?php
                     if ($comments):
                         foreach ($comments as $v) : ?>
-                            <li class="msg_type_0"><a href="<?= Url::log($v['gid']) ?>" target="_blank"><?= $v['comment'] ?></a></li>
+                            <li class="msg_type_0"><a href="<?= Url::log($v['gid']) ?>" target="_blank"><?= subString($v['comment'], 0, 25) ?></a></li>
                         <?php endforeach;
                     else:
                         ?>
