@@ -243,7 +243,7 @@ if ($action === 'edit') {
     extract($blogData);
 
     $isdraft = $hide == 'y' ? true : false;
-    $containertitle = $isdraft ? '编辑草稿' : '编辑文章';
+    $containerTitle = $isdraft ? '编辑草稿' : '编辑文章';
     $postDate = date('Y-m-d H:i', $date);
     $sorts = $CACHE->readCache('sort');
 

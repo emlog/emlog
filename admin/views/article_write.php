@@ -30,7 +30,7 @@
                 <input type="hidden" name="gid" id="gid" value="<?= $logid ?>"/>
                 <input type="hidden" name="author" id="author" value="<?= $author ?>"/>
                 <?php if ($logid < 0): ?>
-                    <input type="submit" name="pubPost" id="pubPost" value="发布文章" onclick="return checkform();" class="btn btn-success"/>
+                    <input type="submit" name="pubPost" id="pubPost" value="立即发布" onclick="return checkform();" class="btn btn-success"/>
                     <input type="button" name="savedf" id="savedf" value="保存草稿" onclick="autosave(2);" class="btn btn-primary"/>
                 <?php else: ?>
                     <input type="submit" value="保存并返回" onclick="return checkform();" class="btn btn-success"/>
@@ -92,34 +92,38 @@
                         </div>
                     <?php endif; ?>
                 </div>
-                <div class="form-group">
-                    <label>发布时间：<small class="text-muted">（当设置未来时间，文章将在该时间点定时发布）</small></label>
-                    <input type="text" maxlength="200" name="postdate" id="postdate" value="<?= $postDate ?>" class="form-control"/>
-                </div>
-                <div class="form-group">
-                    <input type="checkbox" value="y" name="allow_remark" id="allow_remark" <?= $is_allow_remark ?> />
-                    <label for="allow_remark" style="margin-right: 8px;">允许评论</label>
-                    <input type="checkbox" value="y" name="top" id="top" <?php echo $is_top; ?> />
-                    <label for="top" style="margin-right: 8px;">首页置顶</label>
-                    <input type="checkbox" value="y" name="sortop" id="sortop" <?php echo $is_sortop; ?> />
-                    <label for="sortop" style="margin-right: 8px;">分类置顶</label>
-                </div>
-                <hr>
-                <div><a class="show_advset" id="displayToggle" onclick="displayToggle('advset');">高级选项<i class="icofont-simple-right"></i></a></div>
-                <div id="advset">
+                <?php if (User::isAdmin()): ?>
                     <div class="form-group">
-                        <label>链接别名：<small class="text-muted">（用于seo设置 <a href="./setting.php?action=seo">&rarr;</a>）</small></label>
-                        <input name="alias" id="alias" class="form-control" value="<?= $alias ?>"/>
+                        <label>发布时间：<small class="text-muted">（当设置未来时间，文章将在该时间点定时发布）</small></label>
+                        <input type="text" maxlength="200" name="postdate" id="postdate" value="<?= $postDate ?>" class="form-control"/>
                     </div>
                     <div class="form-group">
-                        <label>跳转链接：<small class="text-muted">（填写后不展示文章内容直接跳转该地址）</small></label>
-                        <input name="link" id="link" type="url" class="form-control" value="<?= $link ?>" placeholder="https://"/>
-                    </div>
-                    <div class="form-group">
-                        <label>访问密码：</label>
-                        <input type="text" name="password" id="password" class="form-control" value="<?= $password ?>"/>
+                        <input type="checkbox" value="y" name="allow_remark" id="allow_remark" <?= $is_allow_remark ?> />
+                        <label for="allow_remark" style="margin-right: 8px;">允许评论</label>
+                        <input type="checkbox" value="y" name="top" id="top" <?php echo $is_top; ?> />
+                        <label for="top" style="margin-right: 8px;">首页置顶</label>
+                        <input type="checkbox" value="y" name="sortop" id="sortop" <?php echo $is_sortop; ?> />
+                        <label for="sortop" style="margin-right: 8px;">分类置顶</label>
                     </div>
                     <hr>
+                    <div><a class="show_advset" id="displayToggle" onclick="displayToggle('advset');">高级选项<i class="icofont-simple-right"></i></a></div>
+                <?php endif; ?>
+                <div id="advset">
+                    <?php if (User::isAdmin()): ?>
+                        <div class="form-group">
+                            <label>链接别名：<small class="text-muted">（用于seo设置 <a href="./setting.php?action=seo">&rarr;</a>）</small></label>
+                            <input name="alias" id="alias" class="form-control" value="<?= $alias ?>"/>
+                        </div>
+                        <div class="form-group">
+                            <label>跳转链接：<small class="text-muted">（填写后不展示文章内容直接跳转该地址）</small></label>
+                            <input name="link" id="link" type="url" class="form-control" value="<?= $link ?>" placeholder="https://"/>
+                        </div>
+                        <div class="form-group">
+                            <label>访问密码：</label>
+                            <input type="text" name="password" id="password" class="form-control" value="<?= $password ?>"/>
+                        </div>
+                        <hr>
+                    <?php endif; ?>
                     <div id="post_side_ext">
                         <?php doAction('adm_writelog_side') ?>
                     </div>

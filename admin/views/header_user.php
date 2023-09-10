@@ -16,7 +16,6 @@
     <link rel="stylesheet" type="text/css" href="./views/css/icofont/icofont.min.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>">
     <link rel="stylesheet" type="text/css" href="./views/css/dropzone.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>">
     <link rel="stylesheet" type="text/css" href="./views/css/cropper.min.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>">
-    <link rel="stylesheet" type="text/css" href="./views/css/user-style.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>">
     <script src="./views/js/jquery.min.3.5.1.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
     <script src="./views/js/bootstrap.bundle.min.4.6.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
     <script src="./views/js/jquery-ui.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
@@ -29,20 +28,21 @@
 <body class="d-flex flex-column h-100 bg-light">
 <main class="flex-shrink-0">
     <!-- Navigation-->
-    <div class="d-flex flex-column flex-md-row align-items-center p-4 px-md-4 mb-3 border-bottom shadow-sm" id="top-bar">
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom shadow-sm" id="top-bar">
         <h3 class="my-0 mr-md-5 font-weight-normal"><a href="./"><?= Option::get('blogname') ?></a></h3>
         <nav class="my-2 my-md-0 mr-md-auto">
-            <a class="p-2 text-muted" href="/">首页</a>
-            <a class="p-2 text-muted" href="./">个人中心</a>
-            <a class="p-2 text-muted" href="article.php">文章</a>
-            <a class="p-2 text-muted" href="media.php">资源</a>
-            <a class="p-2 text-muted" href="comment.php">评论</a>
+            <a class="p-2 text-dark" href="/">首页</a>
+            <a class="p-2 text-dark" href="./">个人中心</a>
+            <a class="p-2 text-dark" href="article.php"><?= Option::get("posts_name") ?></a>
+            <a class="p-2 text-dark" href="media.php">资源</a>
+            <a class="p-2 text-dark" href="comment.php">评论</a>
+            <?php doAction('user_menu') ?>
         </nav>
         <nav class="my-2 my-md-0 mr-md-3">
             <a class="mr-2" href="blogger.php">
                 <img width="30" height="30" class="img-profile rounded-circle" src="<?= empty($user_cache[UID]['avatar']) ? './views/images/avatar.svg' : '../' . $user_cache[UID]['avatar'] ?>">
             </a>
-            <a class="text-muted" href="account.php?action=logout">
+            <a class="text-dark" href="account.php?action=logout">
                 <i class="icofont-logout icofont-1x"></i>退出
             </a>
         </nav>

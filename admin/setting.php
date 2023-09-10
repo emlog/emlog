@@ -343,6 +343,7 @@ if ($action == 'user') {
     $ischkarticle = isset($options_cache['ischkarticle']) ? $options_cache['ischkarticle'] : '';
     $article_uneditable = isset($options_cache['article_uneditable']) ? $options_cache['article_uneditable'] : '';
     $posts_per_day = isset($options_cache['posts_per_day']) ? $options_cache['posts_per_day'] : '';
+    $posts_name = isset($options_cache['posts_name']) ? $options_cache['posts_name'] : '';
     $email_code = isset($options_cache['email_code']) ? $options_cache['email_code'] : '';
 
     $conf_is_signup = $is_signup == 'y' ? 'checked="checked"' : '';
@@ -351,6 +352,7 @@ if ($action == 'user') {
     $conf_ischkarticle = $ischkarticle == 'y' ? 'checked="checked"' : '';
     $conf_article_uneditable = $article_uneditable == 'y' ? 'checked="checked"' : '';
     $conf_posts_per_day = $posts_per_day;
+    $conf_posts_name = $posts_name;
 
     include View::getAdmView('header');
     require_once(View::getAdmView('setting_user'));
@@ -366,7 +368,8 @@ if ($action == 'user_save') {
         'email_code'         => Input::postStrVar('email_code', 'n'),
         'ischkarticle'       => Input::postStrVar('ischkarticle', 'n'),
         'article_uneditable' => Input::postStrVar('article_uneditable', 'n'),
-        'posts_per_day'      => Input::postStrVar('posts_per_day', 0),
+        'posts_per_day'      => Input::postIntVar('posts_per_day', 0),
+        'posts_name'         => Input::postStrVar('posts_name'),
     ];
     foreach ($data as $key => $val) {
         Option::updateOption($key, $val);

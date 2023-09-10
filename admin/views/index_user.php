@@ -20,7 +20,7 @@
 
     <a class="btn btn-primary px-4 py-3" href="./article.php?action=write">
         <div class="d-inline-block bi bi-download me-2"></div>
-        <i class="icofont-plus"></i>发新文章
+        <i class="icofont-plus"></i>发新<?= Option::get("posts_name") ?>
     </a>
 </div>
 <!-- Experience Card 1-->
@@ -30,7 +30,7 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col">
-                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">文章</div>
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"><?= Option::get("posts_name") ?></div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="./article.php?checked=n"><?= $article_amount ?></a></div>
                     </div>
                     <div class="col-auto">
