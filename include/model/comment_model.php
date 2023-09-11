@@ -213,7 +213,7 @@ class Comment_Model {
             $url = addslashes(BLOG_URL);
             $ipaddr = getIp();
             $utctimestamp = time();
-            $useragent = addslashes($_SERVER['HTTP_USER_AGENT']);
+            $useragent = addslashes(getUA());
             if ($pid != 0) {
                 $comment = $this->getOneComment($pid);
                 $content = '@' . addslashes($comment['poster']) . '：' . $content;
@@ -271,7 +271,7 @@ class Comment_Model {
     function addComment($uid, $name, $content, $mail, $url, $blogId, $pid) {
         $ipaddr = getIp();
         $timestamp = time();
-        $useragent = addslashes($_SERVER['HTTP_USER_AGENT']);
+        $useragent = addslashes(getUA());
 
         if ($pid > 0) {
             $comment = $this->getOneComment($pid);

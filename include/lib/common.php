@@ -45,6 +45,12 @@ if (!function_exists('getIp')) {
     }
 }
 
+if (!function_exists('getUA')) {
+    function getUA() {
+        return isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '';
+    }
+}
+
 /**
  * 获取站点地址(仅限根目录脚本使用,目前仅用于首页ajax请求)
  */

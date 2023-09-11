@@ -361,7 +361,7 @@ EOT;
         . "\n//Database Table Prefix\n"
         . "const DB_PREFIX = '$db_prefix';"
         . "\n//Auth key\n"
-        . "const AUTH_KEY = '" . getRandStr(32) . md5($_SERVER['HTTP_USER_AGENT']) . "';"
+        . "const AUTH_KEY = '" . getRandStr(32) . md5(getUA()) . "';"
         . "\n//Cookie name\n"
         . "const AUTH_COOKIE_NAME = 'EM_AUTHCOOKIE_" . getRandStr(32, false) . "';";
 

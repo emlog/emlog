@@ -17,6 +17,7 @@ class Comment_Controller {
         $pid = Input::postIntVar('pid');
         $resp = Input::postStrVar('resp'); // eg: json (only support json now)
         $uid = 0;
+        $ua = getUA();
 
         if (ISLOGIN === true) {
             $User_Model = new User_Model();
@@ -62,7 +63,7 @@ class Comment_Controller {
             $err = '评论内容需包含中文';
         } elseif (ISLOGIN === false && Option::get('comment_code') == 'y' && session_start() && (empty($imgcode) || $imgcode !== $_SESSION['code'])) {
             $err = '验证码错误';
-        } elseif (empty($_SERVER['HTTP_USER_AGENT']) || preg_match('/bot|crawler|spider|robot|crawling/i', $_SERVER['HTTP_USER_AGENT'])) {
+        } elseif (empty($ua) || preg_match('/bot|crawler|spider|robot|crawling/i', $ua)) {
             $err = '非正常请求';
         }
 
