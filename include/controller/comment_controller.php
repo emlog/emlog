@@ -62,6 +62,8 @@ class Comment_Controller {
             $err = '评论内容需包含中文';
         } elseif (ISLOGIN === false && Option::get('comment_code') == 'y' && session_start() && (empty($imgcode) || $imgcode !== $_SESSION['code'])) {
             $err = '验证码错误';
+        } elseif (empty($_SERVER['HTTP_USER_AGENT']) || preg_match('/bot|crawler|spider|robot|crawling/i', $_SERVER['HTTP_USER_AGENT'])) {
+            $err = '非正常请求';
         }
 
         if ($err) {
