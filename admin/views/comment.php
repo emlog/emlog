@@ -32,16 +32,17 @@
 <?php if ($hideCommNum > 0) : ?>
     <div class="panel-heading">
         <ul class="nav nav-tabs">
-            <li class="nav-item"><a class="nav-link <?php if ($hide == '') {
-                    echo 'active';
-                } ?>" href="./comment.php?<?= $addUrl_1 ?>">全部</a></li>
-            <li class="nav-item"><a class="nav-link <?php if ($hide == 'y') {
-                    echo 'active';
-                } ?>" href="./comment.php?hide=y&<?= $addUrl_1 ?>">待审<?php
+            <li class="nav-item">
+                <a class="nav-link <?= $hide == '' ? 'active' : '' ?>" href="./comment.php?<?= $addUrl_1 ?>">全部</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link <?= $hide == 'y' ? 'active' : '' ?>" href="./comment.php?hide=y&<?= $addUrl_1 ?>">待审
+                    <?php
                     $hidecmnum = User::haveEditPermission() ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
                     if ($hidecmnum > 0)
                         echo '(' . $hidecmnum . ')';
-                    ?></a>
+                    ?>
+                </a>
             </li>
         </ul>
     </div>

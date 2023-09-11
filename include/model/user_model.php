@@ -13,13 +13,16 @@ class User_Model {
         $this->db = Database::getInstance();
     }
 
-    public function getUsers($email = '', $nickname = '', $page = 1) {
+    public function getUsers($email = '', $nickname = '', $admin = '', $page = 1) {
         $condition = $limit = '';
         if ($email) {
             $condition = " and email like '$email%'";
         }
         if ($nickname) {
             $condition = " and nickname like '%$nickname%'";
+        }
+        if ($admin) {
+            $condition = " and role IN('admin','editor')";
         }
         if ($page) {
             $perpage_num = Option::get('admin_perpage_num');
@@ -136,13 +139,16 @@ class User_Model {
         return $data['total'] > 0;
     }
 
-    public function getUserNum($email = '', $nickname = '') {
+    public function getUserCount($email = '', $nickname = '', $admin = '') {
         $condition = '';
         if ($email) {
             $condition = " and email like '$email%'";
         }
         if ($nickname) {
             $condition = " and nickname like '%$nickname%'";
+        }
+        if ($admin) {
+            $condition = " and role IN('admin','editor')";
         }
         $data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "user where 1=1 $condition");
         return $data['total'];
