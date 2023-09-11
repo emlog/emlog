@@ -213,12 +213,13 @@ class Comment_Model {
             $url = addslashes(BLOG_URL);
             $ipaddr = getIp();
             $utctimestamp = time();
+            $useragent = addslashes($_SERVER['HTTP_USER_AGENT']);
             if ($pid != 0) {
                 $comment = $this->getOneComment($pid);
                 $content = '@' . addslashes($comment['poster']) . '：' . $content;
             }
-            $this->db->query("INSERT INTO " . DB_PREFIX . "comment (date,poster,gid,comment,mail,url,hide,ip,pid)
-                    VALUES ('$utctimestamp','$name','$blogId','$content','$mail','$url','$hide','$ipaddr','$pid')");
+            $this->db->query("INSERT INTO " . DB_PREFIX . "comment (date,poster,gid,comment,mail,url,hide,ip,agent,pid)
+                    VALUES ('$utctimestamp','$name','$blogId','$content','$mail','$url','$hide','$ipaddr','$useragent','$pid')");
             $this->updateCommentNum($blogId);
         }
     }
