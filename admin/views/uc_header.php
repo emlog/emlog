@@ -34,7 +34,7 @@
             <a class="p-2 text-dark" href="/">首页</a>
             <a class="p-2 text-dark" href="./">个人中心</a>
             <a class="p-2 text-dark" href="article.php"><?= Option::get("posts_name") ?></a>
-            <a class="p-2 text-dark" href="media.php">资源</a>
+            <a class="p-2 text-dark" href="media.php">图文</a>
             <a class="p-2 text-dark" href="comment.php">评论</a>
             <?php doAction('user_menu') ?>
         </nav>
