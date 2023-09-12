@@ -230,6 +230,7 @@
             imageUploadURL: "media.php?action=upload&editor=1",
             videoUpload: false, //开启视频上传
             syncScrolling: "single",
+            placeholder: "使用 Markdown 开始你的创作吧...",
             onfullscreen: function () {
                 this.watch();
             },
@@ -254,7 +255,7 @@
             autoFocus: false,
             lineNumbers: false,
             sequenceDiagram: false,
-            placeholder: "如果留空，则使用内容作为摘要...",
+            placeholder: "如果留空，则使用正文作为摘要。",
             onload: function () {
                 hooks.doAction("sum_loaded", this);
             }
