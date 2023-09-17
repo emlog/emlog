@@ -46,11 +46,6 @@ if ($action == 'post') {
         emDirect("twitter.php?error_a=1");
     }
 
-    // 注册用户限制24小时发文数量（包括草稿）, 为0时禁止发布笔记和上传图文资源
-    if (!User::haveEditPermission() && Option::get('posts_per_day') <= 0) {
-        emDirect("twitter.php?error_forbid=1");
-    }
-
     $data = [
         'content' => $t,
         'author'  => UID,

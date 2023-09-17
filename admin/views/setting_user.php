@@ -42,7 +42,7 @@
             </div>
             <div class="form-group form-inline">
                 <label>注册用户限制24小时发文数量（包括草稿）：</label>
-                <input class="form-control mx-sm-3" style="width:60px;" value="<?= $conf_posts_per_day ?>" type="number" min="0" name="posts_per_day"/>，为0同时禁止发布笔记和上传图文资源
+                <input class="form-control mx-sm-3" style="width:60px;" value="<?= $conf_posts_per_day ?>" type="number" min="0" name="posts_per_day"/> （为0同时禁止上传图文资源）
             </div>
             <div class="form-group form-inline">
                 <label>用户中心文章别名：</label>
@@ -55,7 +55,7 @@
         </form>
         <div class="alert alert-warning">
             <b>用户组</b><br>
-            注册用户：可以发文投稿、管理自己的文章、笔记、图片资源等<br>
+            注册用户：可以发文投稿、管理自己的文章、图文资源<br>
             内容编辑：负责全站文章、资源、评论等内容的管理<br>
             管理员：拥有站点全部管理权限，可以管理用户、进行系统设置等<br>
         </div>
