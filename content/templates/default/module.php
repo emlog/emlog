@@ -97,7 +97,8 @@ function widget_sort($title) {
         <ul class="unstyle-li log-classify-f">
             <?php
             foreach ($sort_cache as $value):
-                if ($value['pid'] != 0) continue;
+                if ($value['pid'] != 0)
+                    continue;
                 ?>
                 <li>
                     <a href="<?= Url::sort($value['sid']) ?>" title="<?= $value["description"] ?>"><?= $value['sortname'] ?>

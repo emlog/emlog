@@ -14,7 +14,7 @@ if (!defined('EMLOG_ROOT')) {
     <title>请输入文章访问密码</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: helvetica neue, Helvetica, Arial, sans-serif
             background-color: #f5f5f5;
         }
 

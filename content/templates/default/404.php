@@ -14,7 +14,7 @@ if (!defined('EMLOG_ROOT')) {
     <style>
         body {
             background-color: #F7F7F7;
-            font-family: Arial;
+            font-family: helvetica neue, Helvetica, Arial, sans-serif
             font-size: 12px;
             line-height: 150%
         }

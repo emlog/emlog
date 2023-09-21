@@ -6,8 +6,6 @@ config.php
 /content/backup/*.sql
 /content/cache/*.php
 /content/uploadfile/*
-/content/plugins/cloud_storage
-/content/templates/chen
 
 # IDE
 .project
