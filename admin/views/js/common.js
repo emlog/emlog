@@ -14,7 +14,7 @@ function timestamp() {
 
 function em_confirm(id, property, token) {
     let url, msg;
-    let text = '删除后无法恢复'
+    let text = '删除后可能无法恢复'
     switch (property) {
         case 'article':
             url = 'article.php?action=del&gid=' + id;

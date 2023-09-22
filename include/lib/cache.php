@@ -87,22 +87,24 @@ class Cache {
     }
 
     public function readCache($cacheName) {
-        if ($this->{$cacheName . '_cache'} != null) {
-            return $this->{$cacheName . '_cache'};
+        $cacheProperty = $cacheName . '_cache';
+
+        if (!is_null($this->{$cacheProperty})) {
+            return $this->{$cacheProperty};
         }
 
-        $cachefile = EMLOG_ROOT . '/content/cache/' . $cacheName . '.php';
-        if (!is_file($cachefile) || filesize($cachefile) <= 0) {
+        $cacheFile = EMLOG_ROOT . '/content/cache/' . $cacheName . '.php';
+
+        if (!is_file($cacheFile) || filesize($cacheFile) <= 0) {
             if (method_exists($this, 'mc_' . $cacheName)) {
                 $this->{'mc_' . $cacheName}();
             }
         }
-        if ($fp = fopen($cachefile, 'r')) {
-            $data = fread($fp, filesize($cachefile));
-            fclose($fp);
+
+        if ($cacheData = file_get_contents($cacheFile)) {
             clearstatcache();
-            $this->{$cacheName . '_cache'} = unserialize(str_replace("<?php exit;//", '', $data));
-            return $this->{$cacheName . '_cache'};
+            $this->{$cacheProperty} = unserialize(str_replace("<?php exit;//", '', $cacheData));
+            return $this->{$cacheProperty};
         }
     }
 
@@ -355,12 +357,13 @@ class Cache {
         }
         $now = time();
         $date_state = "and date<=$now";
-        $sql = "SELECT gid,title FROM " . DB_PREFIX . "blog WHERE hide='n' and checked='y' and type='blog' $date_state ORDER BY date DESC LIMIT 0, $index_newlognum";
+        $sql = "SELECT gid,title,cover,views,comnum,date FROM " . DB_PREFIX . "blog WHERE hide='n' and checked='y' and type='blog' $date_state ORDER BY date DESC LIMIT 0, $index_newlognum";
         $res = $this->db->query($sql);
         $logs = [];
         while ($row = $this->db->fetch_array($res)) {
             $row['gid'] = (int)$row['gid'];
             $row['title'] = htmlspecialchars($row['title']);
+            $row['cover'] = $row['cover'] ? getFileUrl($row['cover']) : '';
             $logs[] = $row;
         }
         $cacheData = serialize($logs);
