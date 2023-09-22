@@ -37,6 +37,16 @@ if (!$action) {
     View::output();
 }
 
+if ($action === 'del') {
+    $id = Input::getIntVar('id');
+
+    LoginAuth::checkToken();
+
+    $Comment_Model->delComment($id);
+    $CACHE->updateCache(array('sta', 'comment'));
+    emDirect("./comment.php?active_del=1");
+}
+
 if ($action === 'delbyip') {
     LoginAuth::checkToken();
     if (!User::haveEditPermission()) {
