@@ -202,11 +202,12 @@ $isdraft = $draft ? '&draft=1' : '';
                 <?php endif ?>
                 <div class="btn-group btn-group-sm ml-1" role="group">
                     <?php if ($draft): ?>
+                        <a href="javascript:logact('del_draft');" class="btn btn-sm btn-danger">删除</a>
                         <a href="javascript:logact('pub');" class="btn btn-sm btn-success">发布</a>
                     <?php else: ?>
+                        <a href="javascript:logact('del');" class="btn btn-sm btn-danger">删除</a>
                         <a href="javascript:logact('hide');" class="btn btn-sm btn-success">放入草稿箱</a>
                     <?php endif ?>
-                    <a href="javascript:logact('del');" class="btn btn-sm btn-danger">删除</a>
                 </div>
             </div>
         </form>
@@ -249,19 +250,42 @@ $isdraft = $draft ? '&draft=1' : '';
         if (act === 'del') {
             Swal.fire({
                 title: '确定要删除所选文章吗',
-                text: '删除后可能无法恢复',
+                text: '彻底删除将无法恢复',
                 icon: 'warning',
+                showDenyButton: true,
                 showCancelButton: true,
-                cancelButtonText: ' 取消',
-                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                confirmButtonText: '放入草稿',
+                denyButtonText: '彻底删除',
             }).then((result) => {
                 if (result.isConfirmed) {
+                    $("#operate").val("hide");
+                    $("#form_log").submit();
+                } else if (result.isDenied) {
                     $("#operate").val(act);
                     $("#form_log").submit();
                 }
             });
             return;
         }
+
+        if (act === 'del_draft') {
+            Swal.fire({
+                title: '确定要删除所选草稿吗',
+                text: '删除将无法恢复',
+                icon: 'warning',
+                showCancelButton: true,
+                cancelButtonText: '取消',
+                confirmButtonText: '确定',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $("#operate").val("del");
+                    $("#form_log").submit();
+                }
+            });
+            return;
+        }
+
         $("#operate").val(act);
         $("#form_log").submit();
     }

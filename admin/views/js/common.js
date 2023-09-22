@@ -109,7 +109,7 @@ function swalDel(msg, text, url, token) {
         icon: 'warning',
         text: text,
         showCancelButton: true,
-        cancelButtonText: ' 取消',
+        cancelButtonText: '取消',
         confirmButtonText: '删除',
     }).then((result) => {
         if (result.isConfirmed) {
@@ -125,8 +125,8 @@ function swalDelArticle(msg, text, url, token) {
         text: text,
         showDenyButton: true,
         showCancelButton: true,
-        cancelButtonText: ' 取消',
-        confirmButtonText: '放入草稿箱',
+        cancelButtonText: '取消',
+        confirmButtonText: '放入草稿',
         denyButtonText: '彻底删除',
     }).then((result) => {
         if (result.isConfirmed) {
