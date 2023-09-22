@@ -241,20 +241,21 @@ $isdraft = $draft ? '&draft=1' : '';
 </div>
 <script>
     function logact(act) {
-        if (getChecked('ids') == false) {
-            swal("", "请选择要操作的文章!", "info");
+        if (getChecked('ids') === false) {
+            Swal.fire("", "请选择要操作的文章!", "info");
             return;
         }
 
-        if (act == 'del') {
-            swal({
+        if (act === 'del') {
+            Swal.fire({
                 title: '确定要删除所选文章吗',
                 text: '删除后可能无法恢复',
                 icon: 'warning',
-                buttons: ['取消', '确定'],
-                dangerMode: true,
-            }).then((willDelete) => {
-                if (willDelete) {
+                showCancelButton: true,
+                cancelButtonText: ' 取消',
+                confirmButtonText: '确定',
+            }).then((result) => {
+                if (result.isConfirmed) {
                     $("#operate").val(act);
                     $("#form_log").submit();
                 }
@@ -266,31 +267,31 @@ $isdraft = $draft ? '&draft=1' : '';
     }
 
     function changeSort(obj) {
-        if (getChecked('ids') == false) {
-            swal("", "请选择要操作的文章!", "info");
+        if (getChecked('ids') === false) {
+            Swal.fire("", "请选择要操作的文章!", "info");
             return;
         }
-        if ($('#sort').val() == '') return;
+        if ($('#sort').val() === '') return;
         $("#operate").val('move');
         $("#form_log").submit();
     }
 
     function changeAuthor(obj) {
-        if (getChecked('ids') == false) {
-            swal("", "请选择要操作的文章!", "info");
+        if (getChecked('ids') === false) {
+            Swal.fire("", "请选择要操作的文章!", "info");
             return;
         }
-        if ($('#author').val() == '') return;
+        if ($('#author').val() === '') return;
         $("#operate").val('change_author');
         $("#form_log").submit();
     }
 
     function changeTop(obj) {
-        if (getChecked('ids') == false) {
-            swal("", "请选择要操作的文章!", "info");
+        if (getChecked('ids') === false) {
+            Swal.fire("", "请选择要操作的文章!", "info");
             return;
         }
-        if ($('#top').val() == '') return;
+        if ($('#top').val() === '') return;
         $("#operate").val(obj.value);
         $("#form_log").submit();
     }

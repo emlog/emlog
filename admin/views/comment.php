@@ -64,7 +64,7 @@
                     </thead>
                     <tbody>
                     <?php foreach ($comment as $key => $value):
-                        $ishide = $value['hide'] == 'y' ? '<span class="text-danger">[待审]</span>' : '';
+                        $ishide = $value['hide'] == 'y' ? '<span class="text-danger">待审</span>' : '';
                         $mail = $value['mail'] ? " <br />email: {$value['mail']}" : '';
                         $ip = $value['ip'];
                         $gid = $value['gid'];
@@ -83,7 +83,7 @@
                             <td>
                                 <?= $comment ?>
                                 <?= $ishide ?>
-                                <?php if ($top == 'y'): ?><span class="flag-indexTop" title="置顶">置顶</span><?php endif ?>
+                                <?php if ($top == 'y'): ?><span class="text-success">置顶</span><?php endif ?>
                             </td>
                             <td class="small">
                                 <?= $poster ?><?= $mail ?><?= $ip_info ?>
@@ -159,20 +159,21 @@
 
 <script>
     function commentact(act) {
-        if (getChecked('ids') == false) {
-            swal("", "请选择要操作的评论!", "info");
+        if (getChecked('ids') === false) {
+            Swal.fire("", "请选择要操作的评论!", "info");
             return;
         }
 
-        if (act == 'del') {
-            swal({
+        if (act === 'del') {
+            Swal.fire({
                 title: '确定要删除所选评论吗',
                 text: '删除后可能无法恢复',
                 icon: 'warning',
-                buttons: ['取消', '确定'],
-                dangerMode: true,
-            }).then((willDelete) => {
-                if (willDelete) {
+                showCancelButton: true,
+                cancelButtonText: ' 取消',
+                confirmButtonText: '确定',
+            }).then((result) => {
+                if (result.isConfirmed) {
                     $("#operate").val(act);
                     $("#form_com").submit();
                 }

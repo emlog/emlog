@@ -14,81 +14,125 @@ function timestamp() {
 
 function em_confirm(id, property, token) {
     let url, msg;
-    let text = '删除后可能无法恢复'
+    let text = '删除后无法恢复'
     switch (property) {
         case 'article':
             url = 'article.php?action=del&gid=' + id;
             msg = '确定要删除该篇文章吗？';
+            text = '彻底删除将无法恢复'
+            swalDelArticle(msg, text, url, token)
             break;
         case 'draft':
             url = 'article.php?action=del&draft=1&gid=' + id;
             msg = '确定要删除该篇草稿吗？';
+            swalDel(msg, text, url, token)
             break;
         case 'tw':
             url = 'twitter.php?action=del&id=' + id;
             msg = '确定要删除该笔记吗？';
+            swalDel(msg, text, url, token)
             break;
         case 'comment':
             url = 'comment.php?action=del&id=' + id;
             msg = '确定要删除该评论吗？';
+            swalDel(msg, text, url, token)
             break;
         case 'commentbyip':
             url = 'comment.php?action=delbyip&ip=' + id;
             msg = '确定要删除来自该IP的所有评论吗？';
+            swalDel(msg, text, url, token)
             break;
         case 'link':
             url = 'link.php?action=dellink&linkid=' + id;
             msg = '确定要删除该链接吗？';
+            swalDel(msg, text, url, token)
             break;
         case 'navi':
             url = 'navbar.php?action=del&id=' + id;
             msg = '确定要删除该导航吗？';
+            swalDel(msg, text, url, token)
             break;
         case 'media':
             url = 'media.php?action=delete&aid=' + id;
             msg = '确定要删除该媒体文件吗？';
+            swalDel(msg, text, url, token)
             break;
         case 'avatar':
             url = 'blogger.php?action=delicon';
             msg = '确定要删除头像吗？';
+            swalDel(msg, text, url, token)
             break;
         case 'sort':
             url = 'sort.php?action=del&sid=' + id;
             msg = '确定要删除该分类吗？';
+            swalDel(msg, text, url, token)
             break;
         case 'del_user':
             url = 'user.php?action=del&uid=' + id;
             msg = '确定要删除该用户吗？';
+            swalDel(msg, text, url, token)
             break;
         case 'forbid_user':
             url = 'user.php?action=forbid&uid=' + id;
             msg = '确定要禁用该用户吗？';
             text = '';
+            swalDel(msg, text, url, token)
             break;
         case 'tpl':
             url = 'template.php?action=del&tpl=' + id;
             msg = '确定要删除该模板吗？';
+            swalDel(msg, text, url, token)
             break;
         case 'reset_widget':
             url = 'widgets.php?action=reset';
             msg = '确定要恢复组件设置到初始状态吗？这样会丢失你自定义的组件。';
             text = '';
+            swalDel(msg, text, url, token)
             break;
         case 'plu':
             url = 'plugin.php?action=del&plugin=' + id;
             msg = '确定要删除该插件吗？';
+            swalDel(msg, text, url, token)
             break;
         case 'media_sort':
             url = 'media.php?action=del_media_sort&id=' + id;
             msg = '确定要删除该资源分类吗？';
             text = '不会删除分类下资源文件';
+            swalDel(msg, text, url, token)
             break;
     }
-    swal({
-        title: msg, text: text, icon: "warning", buttons: ["取消", "确定"], dangerMode: true,
-    }).then((willDelete) => {
-        if (willDelete) {
+}
+
+function swalDel(msg, text, url, token) {
+    Swal.fire({
+        title: msg,
+        icon: 'warning',
+        text: text,
+        showCancelButton: true,
+        cancelButtonText: ' 取消',
+        confirmButtonText: '删除',
+    }).then((result) => {
+        if (result.isConfirmed) {
             window.location = url + '&token=' + token;
+        }
+    });
+}
+
+function swalDelArticle(msg, text, url, token) {
+    Swal.fire({
+        title: msg,
+        icon: 'warning',
+        text: text,
+        showDenyButton: true,
+        showCancelButton: true,
+        cancelButtonText: ' 取消',
+        confirmButtonText: '放入草稿箱',
+        denyButtonText: '彻底删除',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location = url + '&token=' + token;
+        } else if (result.isDenied) {
+            window.location = url + '&rm=1&token=' + token;
         }
     });
 }

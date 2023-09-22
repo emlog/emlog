@@ -81,12 +81,16 @@ if (empty($action)) {
 }
 
 if ($action == 'del') {
-    $draft = isset($_GET['draft']) ? (int)$_GET['draft'] : 0;
-    $gid = isset($_GET['gid']) ? (int)$_GET['gid'] : '';
+    $draft = Input::getIntVar('draft');
+    $gid = Input::getIntVar('gid');
+    $isRm = Input::getIntVar('rm');
 
     LoginAuth::checkToken();
-
-    $Log_Model->deleteLog($gid);
+    if ($isRm) {
+        $Log_Model->deleteLog($gid);
+    } else {
+        $Log_Model->hideSwitch($gid, 'y');
+    }
     doAction('del_log', $gid);
     $CACHE->updateCache();
     emDirect("./article.php?&active_del=1&draft=$draft");
