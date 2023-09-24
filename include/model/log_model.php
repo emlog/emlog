@@ -139,6 +139,17 @@ class Log_Model {
             return false;
         }
 
+        $Tag_Model = new Tag_Model();
+        $User_Model = new User_Model();
+
+        $tag_names = $Tag_Model->getNamesFromIds(array_map('intval', explode(',',$row['tags'])));
+        foreach ($tag_names as $value) {
+            $row['taglist'][] = [
+                'name' => htmlspecialchars($value),
+                'url' => Url::tag(rawurlencode($value)),
+            ];
+        }
+
         return [
             'log_title'    => htmlspecialchars($row['title']),
             'timestamp'    => $row['date'],
@@ -162,6 +173,12 @@ class Log_Model {
             'template'     => $row['template'],
             'link'         => $row['link'],
             'tags'         => $row['tags'],
+            'sort' => [
+                'name' => $this->getDetail($row['gid'])['sortname'],
+                'url' => $row['sortid']>0 ? Url::sort($row['sortid']) : '',
+            ],
+            'taglist' => $row['taglist'],
+            'authorinfo' => $User_Model->getOneUser($row['author'])+['url'=>Url::author($row['author'])],
         ];
     }
 
@@ -189,6 +206,8 @@ class Log_Model {
         $now = time();
         $sql = "SELECT * FROM $this->table WHERE type='blog' and hide='n' and checked='y' and date<= $now $condition $limit";
         $res = $this->db->query($sql);
+        $Tag_Model = new Tag_Model();
+        $User_Model = new User_Model();
         $logs = [];
         while ($row = $this->db->fetch_array($res)) {
             $row['log_title'] = htmlspecialchars(trim($row['title']));
@@ -204,6 +223,18 @@ class Log_Model {
             $row['attachment'] = '';
             $row['tag'] = '';
             $row['tbcount'] = 0;
+            $row['sort'] = [
+                'name' => $this->getDetail($row['gid'])['sortname'],
+                'url' => $row['sortid']>0 ? Url::sort($row['sortid']) : '',
+            ];
+            $tag_names = $Tag_Model->getNamesFromIds(array_map('intval', explode(',',$row['tags'])));
+            foreach ($tag_names as $value) {
+                $row['taglist'][] = [
+                    'name' => htmlspecialchars($value),
+                    'url' => Url::tag(rawurlencode($value)),
+                ];
+            }
+            $row['authorinfo'] = $User_Model->getOneUser($row['author'])+['url'=>Url::author($row['author'])];
             $logs[] = $row;
         }
         return $logs;
