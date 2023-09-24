@@ -64,53 +64,55 @@
         <li class="nav-item" id="menu_media">
             <a class="nav-link" href="media.php"><i class="icofont-image"></i><span>资源</span></a>
         </li>
-        <li class="nav-item" id="menu_user">
-            <a class="nav-link" href="user.php"><i class="icofont-user"></i><span>用户</span></a>
-        </li>
-        <li class="nav-item" id="menu_category_view">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_view" aria-expanded="true" aria-controls="menu_view">
-                <i class="icofont-paint"></i><span>外观</span>
-            </a>
-            <div id="menu_view" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" id="menu_tpl" href="template.php">模板</a>
-                    <a class="collapse-item" id="menu_navi" href="navbar.php">导航</a>
-                    <a class="collapse-item" id="menu_widget" href="widgets.php">边栏</a>
-                    <a class="collapse-item" id="menu_page" href="page.php">页面</a>
-                    <a class="collapse-item" id="menu_link" href="link.php">链接</a>
+        <?php if (User::isAdmin()): ?>
+            <li class="nav-item" id="menu_user">
+                <a class="nav-link" href="user.php"><i class="icofont-user"></i><span>用户</span></a>
+            </li>
+            <li class="nav-item" id="menu_category_view">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_view" aria-expanded="true" aria-controls="menu_view">
+                    <i class="icofont-paint"></i><span>外观</span>
+                </a>
+                <div id="menu_view" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" id="menu_tpl" href="template.php">模板</a>
+                        <a class="collapse-item" id="menu_navi" href="navbar.php">导航</a>
+                        <a class="collapse-item" id="menu_widget" href="widgets.php">边栏</a>
+                        <a class="collapse-item" id="menu_page" href="page.php">页面</a>
+                        <a class="collapse-item" id="menu_link" href="link.php">链接</a>
+                    </div>
                 </div>
-            </div>
-        </li>
-        <li class="nav-item" id="menu_store">
-            <a class="nav-link" href="store.php"><i class="icofont-shopping-cart"></i><span>应用商店</span></a>
-        </li>
-        <li class="nav-item" id="menu_category_sys">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_sys" aria-expanded="true" aria-controls="menu_sys">
-                <i class="icofont-options"></i><span>系统</span>
-            </a>
-            <div id="menu_sys" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" id="menu_data" href="data.php">数据</a>
-                    <a class="collapse-item" id="menu_setting" href="setting.php">设置</a>
+            </li>
+            <li class="nav-item" id="menu_store">
+                <a class="nav-link" href="store.php"><i class="icofont-shopping-cart"></i><span>应用商店</span></a>
+            </li>
+            <li class="nav-item" id="menu_category_sys">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_sys" aria-expanded="true" aria-controls="menu_sys">
+                    <i class="icofont-options"></i><span>系统</span>
+                </a>
+                <div id="menu_sys" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" id="menu_data" href="data.php">数据</a>
+                        <a class="collapse-item" id="menu_setting" href="setting.php">设置</a>
+                    </div>
                 </div>
-            </div>
-        </li>
-        <li class="nav-item" id="menu_category_ext">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_ext" aria-expanded="true" aria-controls="menu_ext">
-                <i class="icofont-plugin"></i><span>扩展</span>
-            </a>
-            <div id="menu_ext" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" id="menu_plug" href="plugin.php">插件</a>
-                    <?php doAction('adm_menu_ext') ?>
+            </li>
+            <li class="nav-item" id="menu_category_ext">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_ext" aria-expanded="true" aria-controls="menu_ext">
+                    <i class="icofont-plugin"></i><span>扩展</span>
+                </a>
+                <div id="menu_ext" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" id="menu_plug" href="plugin.php">插件</a>
+                        <?php doAction('adm_menu_ext') ?>
+                    </div>
                 </div>
+            </li>
+            <hr class="sidebar-divider d-none d-md-block">
+            <?php doAction('adm_menu') ?>
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
-        </li>
-        <hr class="sidebar-divider d-none d-md-block">
-        <?php doAction('adm_menu') ?>
-        <div class="text-center d-none d-md-inline">
-            <button class="rounded-circle border-0" id="sidebarToggle"></button>
-        </div>
+        <?php endif ?>
     </ul>
     <div id="content-wrapper" class="d-flex flex-column">
         <div id="content">

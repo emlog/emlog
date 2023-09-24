@@ -74,9 +74,9 @@ if (empty($action)) {
     }
     $pageurl = pagination($logNum, Option::get('admin_perpage_num'), $page, "article.php?{$subPage}&page=");
 
-    include View::getAdmView(User::isAdmin() ? 'header' : 'uc_header');
+    include View::getAdmView(User::haveEditPermission() ? 'header' : 'uc_header');
     require_once View::getAdmView('article');
-    include View::getAdmView(User::isAdmin() ? 'footer' : 'uc_footer');
+    include View::getAdmView(User::haveEditPermission() ? 'footer' : 'uc_footer');
     View::output();
 }
 
@@ -233,9 +233,9 @@ if ($action === 'write') {
         emDirect("auth.php?error_article=1");
     }
 
-    include View::getAdmView(User::isAdmin() ? 'header' : 'uc_header');
+    include View::getAdmView(User::haveEditPermission() ? 'header' : 'uc_header');
     require_once(View::getAdmView('article_write'));
-    include View::getAdmView(User::isAdmin() ? 'footer' : 'uc_footer');
+    include View::getAdmView(User::haveEditPermission() ? 'footer' : 'uc_footer');
     View::output();
 }
 
@@ -268,9 +268,9 @@ if ($action === 'edit') {
     $is_sortop = $sortop == 'y' ? 'checked="checked"' : '';
     $is_allow_remark = $allow_remark == 'y' ? 'checked="checked"' : '';
 
-    include View::getAdmView(User::isAdmin() ? 'header' : 'uc_header');
+    include View::getAdmView(User::haveEditPermission() ? 'header' : 'uc_header');
     require_once(View::getAdmView('article_write'));
-    include View::getAdmView(User::isAdmin() ? 'footer' : 'uc_footer');
+    include View::getAdmView(User::haveEditPermission() ? 'footer' : 'uc_footer');
     View::output();
 }
 

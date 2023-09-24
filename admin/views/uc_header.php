@@ -47,6 +47,6 @@
             </a>
         </nav>
     </div>
-    <div class="container px-2 my-5">
+    <div class="container px-1 my-5">
         <div class="row gx-5 justify-content-center">
             <div class="col-lg-11 col-xl-9 col-xxl-8">

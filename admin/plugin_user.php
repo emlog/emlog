@@ -17,7 +17,7 @@ $plugin = isset($_GET['plugin']) ? $_GET['plugin'] : '';
 if (empty($action) && $plugin) {
     require_once "../content/plugins/{$plugin}/{$plugin}_user.php";
 
-    include View::getAdmView(User::isAdmin() ? 'header' : 'uc_header');
+    include View::getAdmView(User::haveEditPermission() ? 'header' : 'uc_header');
     plugin_user_view();
-    include View::getAdmView(User::isAdmin() ? 'footer' : 'uc_footer');
+    include View::getAdmView(User::haveEditPermission() ? 'footer' : 'uc_footer');
 }

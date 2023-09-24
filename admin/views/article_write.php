@@ -30,13 +30,13 @@
                 <input type="hidden" name="gid" id="gid" value="<?= $logid ?>"/>
                 <input type="hidden" name="author" id="author" value="<?= $author ?>"/>
                 <?php if ($logid < 0): ?>
-                    <input type="submit" name="pubPost" id="pubPost" value="立即发布" onclick="return checkform();" class="btn btn-success"/>
-                    <input type="button" name="savedf" id="savedf" value="保存草稿" onclick="autosave(2);" class="btn btn-primary"/>
+                    <input type="submit" name="pubPost" id="pubPost" value="立即发布" onclick="return checkform();" class="btn btn-success btn-sm"/>
+                    <input type="button" name="savedf" id="savedf" value="保存草稿" onclick="autosave(2);" class="btn btn-primary btn-sm"/>
                 <?php else: ?>
-                    <input type="submit" value="保存并返回" onclick="return checkform();" class="btn btn-success"/>
-                    <input type="button" name="savedf" id="savedf" value="保存" onclick="autosave(2);" class="btn btn-primary"/>
+                    <input type="submit" value="保存并返回" onclick="return checkform();" class="btn btn-success btn-sm"/>
+                    <input type="button" name="savedf" id="savedf" value="保存" onclick="autosave(2);" class="btn btn-primary btn-sm"/>
                     <?php if ($isdraft) : ?>
-                        <input type="submit" name="pubPost" id="pubPost" value="发布" onclick="return checkform();" class="btn btn-success"/>
+                        <input type="submit" name="pubPost" id="pubPost" value="发布" onclick="return checkform();" class="btn btn-success btn-sm"/>
                     <?php endif ?>
                 <?php endif ?>
             </div>
