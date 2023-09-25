@@ -379,14 +379,19 @@ function smartDate($timestamp, $format = 'Y-m-d H:i') {
     return $op;
 }
 
-function getRandStr($length = 12, $special_chars = true) {
-    $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    if ($special_chars) {
-        $chars .= '!@#$%^&*()';
+function getRandStr($length = 12, $special_chars = true, $numeric_only = false) {
+    if ($numeric_only) {
+        $chars = '0123456789';
+    } else {
+        $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        if ($special_chars) {
+            $chars .= '!@#$%^&*()';
+        }
     }
     $randStr = '';
+    $chars_length = strlen($chars);
     for ($i = 0; $i < $length; $i++) {
-        $randStr .= substr($chars, mt_rand(0, strlen($chars) - 1), 1);
+        $randStr .= substr($chars, mt_rand(0, $chars_length - 1), 1);
     }
     return $randStr;
 }

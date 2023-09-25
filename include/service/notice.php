@@ -17,7 +17,7 @@ class Notice {
         if (!isset($_SESSION)) {
             session_start();
         }
-        $randCode = getRandStr(8, false);
+        $randCode = getRandStr(6, false, true);
         $_SESSION['mail_code'] = $randCode;
         $_SESSION['mail'] = $mail;
 
@@ -38,7 +38,7 @@ class Notice {
         if (!isset($_SESSION)) {
             session_start();
         }
-        $randCode = getRandStr(8, false);
+        $randCode = getRandStr(6, false, true);
         $_SESSION['mail_code'] = $randCode;
         $_SESSION['mail'] = $mail;
 
