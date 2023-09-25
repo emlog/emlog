@@ -106,11 +106,11 @@
                         <?php if (!Register::isRegLocal()) : ?>
                             <a href="auth.php"><span class="badge badge-secondary"><?= Option::EMLOG_VERSION ?> 未注册，点击注册</span></a>
                         <?php elseif (Register::getRegType() == 2): ?>
-                            <span class="badge badge-warning"><?= Option::EMLOG_VERSION ?> 铁杆SVIP版</span>
+                            <span class="badge badge-warning"><?= ucfirst(Option::EMLOG_VERSION) ?> 铁杆SVIP</span>
                         <?php elseif (Register::getRegType() == 1): ?>
-                            <span class="badge badge-success"><?= Option::EMLOG_VERSION ?> 友情VIP版</span>
+                            <span class="badge badge-success"><?= ucfirst(Option::EMLOG_VERSION) ?> 友情VIP</span>
                         <?php else: ?>
-                            <span class="badge badge-success"><?= Option::EMLOG_VERSION ?> 已注册</span>
+                            <span class="badge badge-success"><?= ucfirst(Option::EMLOG_VERSION) ?> 已注册</span>
                         <?php endif ?>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
