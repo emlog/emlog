@@ -182,8 +182,8 @@ function insertTag(tag, boxId) {
 }
 
 function isalias(a) {
-    var reg1 = /^[\u4e00-\u9fa5\w-]*$/;
-    var reg2 = /^[\d]+$/;
+    var reg1 = /^[\w-]*$/;
+    var reg2 = /^\d+$/;
     var reg3 = /^post(-\d+)?$/;
     if (!reg1.test(a)) {
         return 1;
@@ -191,7 +191,7 @@ function isalias(a) {
         return 2;
     } else if (reg3.test(a)) {
         return 3;
-    } else if (a == 't' || a == 'm' || a == 'admin') {
+    } else if (a === 't' || a === 'm' || a === 'admin') {
         return 4;
     } else {
         return 0;

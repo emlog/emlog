@@ -363,7 +363,7 @@ function blog_tag($blogid) {
     $tag_names = $tag_model->getNamesFromIds($tag_ids);
     if (!empty($tag_names)) {
         $tag = '标签:';
-        foreach ($tag_names as $key => $value) {
+        foreach ($tag_names as $value) {
             $tag .= "    <a href=\"" . Url::tag(rawurlencode($value)) . "\" class='tags' title='标签' >" . htmlspecialchars($value) . '</a>';
         }
         echo $tag;

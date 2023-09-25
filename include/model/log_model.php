@@ -366,7 +366,11 @@ class Log_Model {
         return $logs;
     }
 
+    // 检查文章别名，别名重复则重命名为 xxx-1 格式
     public function checkAlias($alias, $logalias_cache, $logid) {
+        if (!preg_match('/^[a-zA-Z0-9_\-]+$/', $alias)) {
+            return '';
+        }
         static $i = 2;
         $key = array_search($alias, $logalias_cache);
         if (false !== $key && $key != $logid) {

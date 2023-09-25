@@ -111,7 +111,7 @@
                 <div id="advset">
                     <?php if (User::isAdmin()): ?>
                         <div class="form-group">
-                            <label>链接别名：<small class="text-muted">（用于seo设置 <a href="./setting.php?action=seo">&rarr;</a>）</small></label>
+                            <label>链接别名：<small class="text-muted">（英文字母、数字组成，用于seo设置 <a href="./setting.php?action=seo">&rarr;</a>）</small></label>
                             <input name="alias" id="alias" class="form-control" value="<?= $alias ?>"/>
                         </div>
                         <div class="form-group">
