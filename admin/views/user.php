@@ -108,7 +108,7 @@
     </div>
 </div>
 <div class="page"><?= $pageurl ?></div>
-<div class="text-center small">(有 <?= $userCount ?> 用户 )</div>
+<div class="text-center small">(有 <?= $userCount ?> 个用户 )</div>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
