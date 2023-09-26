@@ -5,14 +5,10 @@
     <div class="alert alert-success">插件安装成功，请开启使用</div><?php endif ?>
 <?php if (isset($_GET['activate_upgrade'])): ?>
     <div class="alert alert-success">插件更新成功</div><?php endif ?>
-<?php if (isset($_GET['active'])): ?>
-    <div class="alert alert-success">插件开启成功</div><?php endif ?>
 <?php if (isset($_GET['activate_del'])): ?>
     <div class="alert alert-success">删除成功</div><?php endif ?>
 <?php if (isset($_GET['active_error'])): ?>
     <div class="alert alert-danger">插件开启失败</div><?php endif ?>
-<?php if (isset($_GET['inactive'])): ?>
-    <div class="alert alert-success">插件禁用成功</div><?php endif ?>
 <?php if (isset($_GET['error_a'])): ?>
     <div class="alert alert-danger">删除失败，请检查插件文件权限</div><?php endif ?>
 <?php if (isset($_GET['error_b'])): ?>
@@ -54,13 +50,11 @@
                 if ($plugins):
                     $i = 0;
                     foreach ($plugins as $key => $val):
-                        $plug_state = 'inactive';
+                        $plug_state = '';
                         $plug_action = 'active';
-                        $plug_state_des = '点击开启插件';
                         if ($val['active']) {
-                            $plug_state = 'active';
+                            $plug_state = 'checked';
                             $plug_action = 'inactive';
-                            $plug_state_des = '点击禁用插件';
                         }
                         $i++;
                         if (TRUE === $val['Setting']) {
@@ -69,9 +63,8 @@
                         ?>
                         <tr data-plugin-alias="<?= $val['Plugin'] ?>" data-plugin-version="<?= $val['Version'] ?>">
                             <td><?= $val['Name'] ?></td>
-                            <td id="plugin_<?= $i ?>">
-                                <a href="./plugin.php?action=<?= $plug_action ?>&plugin=<?= $key ?>&token=<?= LoginAuth::genToken() ?>"><img
-                                            src="./views/images/plugin_<?= $plug_state ?>.gif" title="<?= $plug_state_des ?>"></a>
+                            <td>
+                                <input class="mui-switch mui-switch-animbg" type="checkbox" id="sw<?= $i ?>" <?= $plug_state ?> onchange="toggleSwitch('<?= $key ?>', '<?= 'sw' . $i ?>', '<?= LoginAuth::genToken() ?>')">
                             </td>
                             <td>
                                 <?= $val['Description'] ?>
@@ -176,4 +169,13 @@
             }
         });
     });
+
+    function toggleSwitch(plugin, id, token) {
+        var switchElement = document.getElementById(id);
+        if (switchElement.checked) {
+            window.location.href = './plugin.php?action=active&plugin=' + plugin + '&token=' + token;
+        } else {
+            window.location.href = './plugin.php?action=inactive&plugin=' + plugin + '&token=' + token;
+        }
+    }
 </script>

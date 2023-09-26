@@ -12,7 +12,7 @@
 
 require_once 'globals.php';
 
-$plugin = isset($_GET['plugin']) ? $_GET['plugin'] : '';
+$plugin = Input::getStrVar("plugin");
 
 if (empty($action) && empty($plugin)) {
     $Plugin_Model = new Plugin_Model();

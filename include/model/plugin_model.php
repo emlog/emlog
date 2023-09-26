@@ -119,7 +119,6 @@ class Plugin_Model {
             $pluginData['active'] = in_array($plugin, $active_plugins) ? 1 : 0;
             $emPlugins[$plugin] = $pluginData;
         }
-        uasort($emPlugins, array("self", "sortByActive"));
         return $emPlugins;
     }
 
@@ -162,12 +161,5 @@ class Plugin_Model {
             'Setting'     => $have_setting,
             'Plugin'      => $plugin,
         ];
-    }
-
-    public static function sortByActive($a, $b) {
-        if ($a['active'] === $b['active']) {
-            return 0;
-        }
-        return ($a['active'] > $b['active']) ? -1 : 1;
     }
 }
