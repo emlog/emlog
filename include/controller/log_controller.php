@@ -80,9 +80,9 @@ class Log_Controller {
             $Log_Model->AuthPassword($postpwd, $cookiepwd, $password, $logid);
         }
         // tdk
-        $site_title = $this->setSiteTitle($log_title_style, $log_title, $blogname, $site_title);
-        $site_description = extractHtmlData($log_content, 90);
-        $site_key = $this->setSiteKey($tags, $site_key);
+        $site_title = $this->setSiteTitle($log_title_style, $log_title, $blogname, $site_title, $logid);
+        $site_description = $this->setSiteDes($site_description, $log_content, $logid);
+        $site_key = $this->setSiteKey($tags, $site_key, $logid);
 
         //comments
         $Comment_Model = new Comment_Model();
@@ -108,33 +108,62 @@ class Log_Controller {
         }
     }
 
-    private function setSiteKey($tagIdStr, $site_key) {
-        if (empty($tagIdStr)) {
-            return $site_key;
+    private function setSiteDes($siteDescription, $logContent, $logId) {
+        if ($this->isHomePage($logId)) {
+            return $siteDescription;
         }
+
+        return extractHtmlData($logContent, 90);
+    }
+
+    private function setSiteKey($tagIdStr, $siteKey, $logId) {
+        if ($this->isHomePage($logId)) {
+            return $siteKey;
+        }
+
+        if (empty($tagIdStr)) {
+            return $siteKey;
+        }
+
         $tagNames = '';
-        $tag_model = new Tag_Model();
+        $tagModel = new Tag_Model();
         $ids = explode(',', $tagIdStr);
+
         if ($ids) {
-            $tags = $tag_model->getNamesFromIds($ids);
+            $tags = $tagModel->getNamesFromIds($ids);
             $tagNames = implode(',', $tags);
         }
+
         return $tagNames;
     }
 
-    private function setSiteTitle($log_title_style, $log_title, $blogname, $site_title) {
-        switch ($log_title_style) {
+    private function setSiteTitle($logTitleStyle, $logTitle, $blogName, $siteTitle, $logId) {
+        if ($this->isHomePage($logId)) {
+            return $siteTitle ?: $blogName;
+        }
+
+        switch ($logTitleStyle) {
             case '0':
-                $article_seo_title = $log_title;
+                $articleSeoTitle = $logTitle;
                 break;
             case '1':
-                $article_seo_title = $log_title . ' - ' . $blogname;
+                $articleSeoTitle = $logTitle . ' - ' . $blogName;
                 break;
             case '2':
             default:
-                $article_seo_title = $log_title . ' - ' . $site_title;
+                $articleSeoTitle = $logTitle . ' - ' . $siteTitle;
                 break;
         }
-        return $article_seo_title;
+
+        return $articleSeoTitle;
     }
+
+    private function isHomePage($logId) {
+        $homePageId = Option::get('home_page_id');
+        if ($homePageId && $homePageId == $logId) {
+            return true;
+        }
+        return false;
+    }
+
 }

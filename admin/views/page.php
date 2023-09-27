@@ -6,7 +6,7 @@
 <?php if (isset($_GET['active_hide_n'])): ?>
     <div class="alert alert-success">发布页面成功</div><?php endif ?>
 <?php if (isset($_GET['active_hide_y'])): ?>
-    <div class="alert alert-success">禁用页面成功</div><?php endif ?>
+    <div class="alert alert-success">转为草稿成功</div><?php endif ?>
 <?php if (isset($_GET['active_pubpage'])): ?>
     <div class="alert alert-success">页面保存成功</div><?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
