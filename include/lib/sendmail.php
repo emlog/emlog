@@ -28,6 +28,7 @@ class SendMail {
         $mail->Password = $this->smtp_password;
         $mail->From = $this->smtp_username;
         $mail->FromName = $this->smtp_from_name;
+        $mail->IsHTML();
         if (is_array($to)) {
             foreach ($to as $value) {
                 $mail->AddAddress($value);
@@ -39,8 +40,6 @@ class SendMail {
         $mail->Subject = $title;
         $mail->Body = $content;
         $mail->WordWrap = 80; // Set the length of each string line
-
-        $mail->IsHTML(true);
 
         try {
             return $mail->Send();

@@ -791,3 +791,16 @@ textarea {
 .mui-switch.mui-switch-anim:checked:before {
     transition: left 0.3s;
 }
+
+/* mail template */
+#mail_review_frame {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+#mail_template {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}

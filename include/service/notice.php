@@ -22,13 +22,21 @@ class Notice {
         $_SESSION['mail'] = $mail;
 
         $title = "注册用户邮件验证码";
-        $content = "邮件验证码：" . $randCode;
+        $content = self::getMailTemplate("<div id=\"email_code\">邮件验证码：<span>$randCode</span><div>");
         $sendmail = new SendMail();
         $ret = $sendmail->send($mail, $title, $content);
         if ($ret) {
             return true;
         }
         return false;
+    }
+
+    public static function getMailTemplate($content) {
+        $mailTemplate = Option::get('mail_template');
+        if (!empty(trim($mailTemplate))) {
+            return str_replace('{{mail_content}}', $content, $mailTemplate);
+        }
+        return $content;
     }
 
     public static function sendResetMailCode($mail) {
@@ -43,7 +51,7 @@ class Notice {
         $_SESSION['mail'] = $mail;
 
         $title = "找回密码邮件验证码";
-        $content = "邮件验证码：" . $randCode;
+        $content = self::getMailTemplate("<div id=\"email_code\">邮件验证码：<span>$randCode</span><div>");
         $sendmail = new SendMail();
         $ret = $sendmail->send($mail, $title, $content);
         if ($ret) {
@@ -64,7 +72,7 @@ class Notice {
             return false;
         }
         $title = "你的站点收到新的文章投稿";
-        $content = "文章标题是：" . $post_title;
+        $content = self::getMailTemplate("文章标题是：$post_title");
         $sendmail = new SendMail();
         $ret = $sendmail->send($email, $title, $content);
         if ($ret) {
@@ -92,10 +100,12 @@ class Notice {
         if ($pid) {
             $title = "你的评论收到一条回复";
             $content .= '<hr>来自文章：<a href="' . Url::log($article['logid']) . '" target="_blank">' . $article['log_title'] . '</a>';
+            $content = self::getMailTemplate($content);
             $email = self::getCommentAuthorEmail($pid);
         } else {
             $title = "你的文章收到新的评论";
             $content .= '<hr>来自文章：<a href="' . Url::log($article['logid']) . '" target="_blank">' . $article['log_title'] . '</a>';
+            $content = self::getMailTemplate($content);
             $email = self::getArticleAuthorEmail($article['author']);
         }
         if (!$email) {
