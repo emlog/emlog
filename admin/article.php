@@ -216,7 +216,7 @@ if ($action === 'write') {
     extract($blogData);
 
     $isdraft = false;
-    $containerTitle = User::isAdmin() ? '写文章' : '发布' . Option::get('posts_name');
+    $containerTitle = User::haveEditPermission() ? '写文章' : '发布' . Option::get('posts_name');
     $orig_date = '';
     $sorts = $CACHE->readCache('sort');
     $tagStr = '';

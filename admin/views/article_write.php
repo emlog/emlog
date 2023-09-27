@@ -92,7 +92,7 @@
                         </div>
                     <?php endif; ?>
                 </div>
-                <?php if (User::isAdmin()): ?>
+                <?php if (User::haveEditPermission()): ?>
                     <div class="form-group">
                         <label>发布时间：<small class="text-muted">（当设置未来时间，文章将在该时间点定时发布）</small></label>
                         <input type="text" maxlength="200" name="postdate" id="postdate" value="<?= $postDate ?>" class="form-control"/>
@@ -109,7 +109,7 @@
                     <div><a class="show_advset" id="displayToggle" onclick="displayToggle('advset');">高级选项<i class="icofont-simple-right"></i></a></div>
                 <?php endif; ?>
                 <div id="advset">
-                    <?php if (User::isAdmin()): ?>
+                    <?php if (User::haveEditPermission()): ?>
                         <div class="form-group">
                             <label>链接别名：<small class="text-muted">（英文字母、数字组成，用于seo设置 <a href="./setting.php?action=seo">&rarr;</a>）</small></label>
                             <input name="alias" id="alias" class="form-control" value="<?= $alias ?>"/>
