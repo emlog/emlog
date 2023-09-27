@@ -15,14 +15,6 @@ class Option {
     static function get($option) {
         $CACHE = Cache::getInstance();
         $options_cache = $CACHE->readCache('options');
-        if (empty($options_cache[$option])) {
-            switch ($option) {
-                case 'posts_name':
-                    return '文章';
-                default:
-                    return '';
-            }
-        }
 
         switch ($option) {
             case 'active_plugins':
@@ -30,7 +22,6 @@ class Option {
             case 'widget_title':
             case 'custom_widget':
             case 'widgets1':
-            case 'custom_topimgs':
                 if (!empty($options_cache[$option])) {
                     return @unserialize($options_cache[$option]);
                 }
@@ -40,8 +31,12 @@ class Option {
                     return realUrl();
                 }
                 return $options_cache['blogurl'];
+            case 'posts_name':
+                if (empty($options_cache['posts_name'])) {
+                    return '文章';
+                }
             default:
-                return $options_cache[$option];
+                return isset($options_cache[$option]) ? $options_cache[$option] : '';
         }
     }
 
