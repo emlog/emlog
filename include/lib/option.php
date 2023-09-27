@@ -15,7 +15,7 @@ class Option {
     static function get($option) {
         $CACHE = Cache::getInstance();
         $options_cache = $CACHE->readCache('options');
-        if (!isset($options_cache[$option])) {
+        if (empty($options_cache[$option])) {
             switch ($option) {
                 case 'posts_name':
                     return '文章';
