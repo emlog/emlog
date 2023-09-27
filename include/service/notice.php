@@ -22,21 +22,8 @@ class Notice {
         $_SESSION['mail'] = $mail;
 
         $title = "注册用户邮件验证码";
-        $content = self::getMailTemplate("<div id=\"email_code\">邮件验证码：<span>$randCode</span><div>");
-        $sendmail = new SendMail();
-        $ret = $sendmail->send($mail, $title, $content);
-        if ($ret) {
-            return true;
-        }
-        return false;
-    }
-
-    public static function getMailTemplate($content) {
-        $mailTemplate = Option::get('mail_template');
-        if (!empty(trim($mailTemplate))) {
-            return str_replace('{{mail_content}}', $content, $mailTemplate);
-        }
-        return $content;
+        $content = sprintf('<div id="email_code">邮件验证码：<span>%s</span><div>', $randCode);
+        return self::sendMail($mail, $title, $content);
     }
 
     public static function sendResetMailCode($mail) {
@@ -51,34 +38,24 @@ class Notice {
         $_SESSION['mail'] = $mail;
 
         $title = "找回密码邮件验证码";
-        $content = self::getMailTemplate("<div id=\"email_code\">邮件验证码：<span>$randCode</span><div>");
-        $sendmail = new SendMail();
-        $ret = $sendmail->send($mail, $title, $content);
-        if ($ret) {
-            return true;
-        }
-        return false;
+        $content = sprintf('<div id="email_code">邮件验证码：<span>%s</span><div>', $randCode);
+        return self::sendMail($mail, $title, $content);
     }
 
-    public static function sendNewPostMail($post_title) {
+    public static function sendNewPostMail($postTitle) {
         if (!self::smtpServerReady()) {
             return false;
         }
         if (Option::get('mail_notice_post') === 'n') {
             return false;
         }
-        $email = self::getFounderEmail();
-        if (!$email) {
+        $mail = self::getFounderEmail();
+        if (!$mail) {
             return false;
         }
         $title = "你的站点收到新的文章投稿";
-        $content = self::getMailTemplate("文章标题是：$post_title");
-        $sendmail = new SendMail();
-        $ret = $sendmail->send($email, $title, $content);
-        if ($ret) {
-            return true;
-        }
-        return false;
+        $content = sprintf('文章标题是：%s', $postTitle);
+        return self::sendMail($mail, $title, $content);
     }
 
     public static function sendNewCommentMail($comment, $gid, $pid) {
@@ -89,7 +66,6 @@ class Notice {
             return false;
         }
 
-        $sendmail = new SendMail();
         $content = "评论内容：" . $comment;
         $article = self::getArticleInfo($gid);
 
@@ -100,19 +76,16 @@ class Notice {
         if ($pid) {
             $title = "你的评论收到一条回复";
             $content .= '<hr>来自文章：<a href="' . Url::log($article['logid']) . '" target="_blank">' . $article['log_title'] . '</a>';
-            $content = self::getMailTemplate($content);
-            $email = self::getCommentAuthorEmail($pid);
+            $mail = self::getCommentAuthorEmail($pid);
         } else {
             $title = "你的文章收到新的评论";
             $content .= '<hr>来自文章：<a href="' . Url::log($article['logid']) . '" target="_blank">' . $article['log_title'] . '</a>';
-            $content = self::getMailTemplate($content);
-            $email = self::getArticleAuthorEmail($article['author']);
+            $mail = self::getArticleAuthorEmail($article['author']);
         }
-        if (!$email) {
+        if (!$mail) {
             return false;
         }
-        $sendmail->send($email, $title, $content);
-        return true;
+        return self::sendMail($mail, $title, $content);
     }
 
     private static function smtpServerReady() {
@@ -156,5 +129,23 @@ class Notice {
             return $r['mail'];
         }
         return false;
+    }
+
+    public static function sendMail($mail, $title, $content) {
+        $content = self::getMailTemplate($content);
+        $sendmail = new SendMail();
+        $ret = $sendmail->send($mail, $title, $content);
+        if ($ret) {
+            return true;
+        }
+        return false;
+    }
+
+    private static function getMailTemplate($content) {
+        $mailTemplate = Option::get('mail_template');
+        if (!empty(trim($mailTemplate))) {
+            return str_replace('{{mail_content}}', $content, $mailTemplate);
+        }
+        return $content;
     }
 }
