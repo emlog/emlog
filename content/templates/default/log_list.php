@@ -23,7 +23,7 @@ if (!defined('EMLOG_ROOT')) {
                                 <h3 class="card-title">
                                     <a href="<?= $value['log_url'] ?>" class="loglist-title"><?= $value['log_title'] ?></a>
                                     <?php topflg($value['top'], $value['sortop'], isset($sortid) ? $sortid : '') ?>
-                                    <?php bloglist_sort($value['logid']) ?>
+                                    <?php bloglist_sort($value['sortid']) ?>
                                 </h3>
                                 <div class="loglist-content markdown"><?= $value['log_description'] ?></div>
                                 <div class="loglist-tag"><?php blog_tag($value['logid']) ?></div>

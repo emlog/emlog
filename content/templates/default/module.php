@@ -325,11 +325,10 @@ function editflg($logid, $author) {
 /**
  * 文章详情页：分类
  */
-function blog_sort($blogid) {
-    $Log_Model = new Log_Model();
-    $logInfo = $Log_Model->getDetail($blogid);
-    $sortID = isset($logInfo['sid']) ? $logInfo['sid'] : '';
-    $sortName = isset($logInfo['sortname']) ? $logInfo['sortname'] : '';
+function blog_sort($sortID) {
+    $Sort_Model = new Sort_Model();
+    $r = $Sort_Model->getOneSortById($sortID);
+    $sortName = isset($r['sortname']) ? $r['sortname'] : '';
     ?>
     <?php if (!empty($sortName)) { ?>
         <a href="<?= Url::sort($sortID) ?>"><?= $sortName ?></a>
@@ -341,11 +340,10 @@ function blog_sort($blogid) {
 /**
  * 首页文章列表：分类
  */
-function bloglist_sort($blogid) {
-    $Log_Model = new Log_Model();
-    $logInfo = $Log_Model->getDetail($blogid);
-    $sortID = isset($logInfo['sid']) ? $logInfo['sid'] : '';
-    $sortName = isset($logInfo['sortname']) ? $logInfo['sortname'] : '';
+function bloglist_sort($sortID) {
+    $Sort_Model = new Sort_Model();
+    $r = $Sort_Model->getOneSortById($sortID);
+    $sortName = isset($r['sortname']) ? $r['sortname'] : '';
     ?>
     <?php if (!empty($sortName)) { ?>
         <span class="loglist-sort">

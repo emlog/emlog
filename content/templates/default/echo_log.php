@@ -12,7 +12,7 @@ if (!defined('EMLOG_ROOT')) {
     <p class="date">
         <b>时间：</b><?= date('Y-n-j H:i', $date) ?>&nbsp;&nbsp;&nbsp;&nbsp;
         <b>作者：</b><?php blog_author($author) ?>&nbsp;&nbsp;&nbsp;&nbsp;
-        <b>分类：</b><?php blog_sort($logid) ?>
+        <b>分类：</b><?php blog_sort($sortid) ?>
         <?php editflg($logid, $author) ?>
     </p>
     <hr class="bottom-5"/>
