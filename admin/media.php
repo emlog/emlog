@@ -58,7 +58,7 @@ if ($action === 'lib') {
     foreach ($medias as $v) {
         $data['media_path'] = $v['filepath'];
         $data['media_url'] = rmUrlParams(getFileUrl($v['filepath']));
-        $data['media_name'] = $v['filename'];
+        $data['media_name'] = subString($v['filename'], 0, 20);
         $data['attsize'] = $v['attsize'];
         $data['media_type'] = '';
         $data['media_icon'] = "./views/images/fnone.png";
