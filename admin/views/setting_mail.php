@@ -133,6 +133,19 @@
         updatePreview();
     }
 
+    function encodeHTML(html) {
+        return encodeURIComponent(html);
+    }
+
+    function prepareMailTemplate() {
+        const mailTemplateInput = document.getElementById('mail_template');
+        mailTemplateInput.value = encodeHTML(mailTemplateInput.value);
+    }
+
+    // Attach the function to the form's onsubmit event
+    const mailConfigForm = document.getElementById('mail_config');
+    mailConfigForm.onsubmit = prepareMailTemplate;
+
     $(function () {
         $("#menu_category_sys").addClass('active');
         $("#menu_sys").addClass('show');

@@ -286,13 +286,14 @@ if ($action == 'mail') {
 if ($action == 'mail_save') {
     LoginAuth::checkToken();
     $data = [
+        'smtp_mail'           => Input::postStrVar('smtp_mail'),
         'smtp_pw'             => Input::postStrVar('smtp_pw'),
         'smtp_from_name'      => Input::postStrVar('smtp_from_name'),
         'smtp_server'         => Input::postStrVar('smtp_server'),
         'smtp_port'           => Input::postStrVar('smtp_port'),
         'mail_notice_comment' => Input::postStrVar('mail_notice_comment', 'n'),
         'mail_notice_post'    => Input::postStrVar('mail_notice_post', 'n'),
-        'mail_template'       => Input::postStrVar('mail_template'),
+        'mail_template'       => urldecode(Input::postStrVar('mail_template')),
     ];
 
     foreach ($data as $key => $val) {
