@@ -133,13 +133,14 @@
         updatePreview();
     }
 
-    function encodeHTML(html) {
-        return encodeURIComponent(html);
+    function base64Encode(str) {
+        return btoa(unescape(encodeURIComponent(str)));
     }
 
     function prepareMailTemplate() {
         const mailTemplateInput = document.getElementById('mail_template');
-        mailTemplateInput.value = encodeHTML(mailTemplateInput.value);
+        const encodedTemplate = base64Encode(mailTemplateInput.value);
+        mailTemplateInput.value = encodedTemplate;
     }
 
     // Attach the function to the form's onsubmit event

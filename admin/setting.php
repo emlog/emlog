@@ -293,7 +293,7 @@ if ($action == 'mail_save') {
         'smtp_port'           => Input::postStrVar('smtp_port'),
         'mail_notice_comment' => Input::postStrVar('mail_notice_comment', 'n'),
         'mail_notice_post'    => Input::postStrVar('mail_notice_post', 'n'),
-        'mail_template'       => urldecode(Input::postStrVar('mail_template')),
+        'mail_template'       => base64_decode(Input::postStrVar('mail_template')),
     ];
 
     foreach ($data as $key => $val) {

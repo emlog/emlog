@@ -141,7 +141,7 @@ class Notice {
         return false;
     }
 
-    private static function getMailTemplate($content) {
+    public static function getMailTemplate($content) {
         $mailTemplate = Option::get('mail_template');
         if (!empty(trim($mailTemplate))) {
             return str_replace('{{mail_content}}', $content, $mailTemplate);
