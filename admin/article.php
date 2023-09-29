@@ -86,7 +86,7 @@ if ($action == 'del') {
     $isRm = Input::getIntVar('rm');
 
     LoginAuth::checkToken();
-    if ($isRm) {
+    if ($draft || $isRm) {
         $Log_Model->deleteLog($gid);
     } else {
         $Log_Model->hideSwitch($gid, 'y');
