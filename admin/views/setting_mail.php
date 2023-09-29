@@ -102,12 +102,6 @@
     </div>
 </div>
 <script>
-    const htmlInput = document.getElementById('mail_template');
-    const previewFrame = document.getElementById('mail_review_frame');
-
-    updatePreview();
-    htmlInput.addEventListener('input', updatePreview);
-
     function updatePreview() {
         const htmlCode = htmlInput.value;
         const previewDocument = previewFrame.contentDocument;
@@ -133,29 +127,22 @@
         updatePreview();
     }
 
-    function base64Encode(str) {
-        return btoa(unescape(encodeURIComponent(str)));
-    }
-
-    function prepareMailTemplate() {
-        const mailTemplateInput = document.getElementById('mail_template');
-        const encodedTemplate = base64Encode(mailTemplateInput.value);
-        mailTemplateInput.value = encodedTemplate;
-    }
-
-    // Attach the function to the form's onsubmit event
-    const mailConfigForm = document.getElementById('mail_config');
-    mailConfigForm.onsubmit = prepareMailTemplate;
+    // mail template preview
+    const htmlInput = document.getElementById('mail_template');
+    const previewFrame = document.getElementById('mail_review_frame');
+    updatePreview();
+    htmlInput.addEventListener('input', updatePreview);
 
     $(function () {
+        // menu
         $("#menu_category_sys").addClass('active');
         $("#menu_sys").addClass('show');
         $("#menu_setting").addClass('active');
         setTimeout(hideActived, 3600);
 
+        // test sendmail
         $("#testSendBtn").click(function () {
             $("#testMailMsg").html("<small class='text-secondary'>发送中...<small>");
-
             $.post("setting.php?action=mail_test", $("#mail_config").serialize(), function (data) {
                 if (data === '') {
                     $("#testMailMsg").html("<small class='text-success'>发送成功</small>");
