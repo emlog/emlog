@@ -5,22 +5,24 @@ if (!defined('EMLOG_ROOT')) {
 function plugin_setting_view() {
     ?>
     <?php if (isset($_GET['succ'])): ?>
-        <div class="alert alert-success">好的，我知道你知道了</div>
+        <div class="alert alert-success">hello world !</div>
     <?php endif; ?>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">小贴士插件</h1>
+        <h1 class="h3 mb-0 text-gray-800">小贴士</h1>
     </div>
     <div class="card shadow mb-4 mt-2">
         <div class="card-body">
-            <form method="post">
+            <form method="post" action="./plugin.php?plugin=tips&action=setting">
                 <div class="form-group">
                     <p>这是世界上第一个emlog插件，它会在你的管理页面送上一句温馨的小提示，样式如下。</p>
                     <?php tips(); ?>
                     <hr>
                     <p>另外该插件也是一个demo，可以在这个插件基础上修改，开发出你自己的插件。</p>
                 </div>
-                <input name="test" type="hidden" class="form-control" value="hello">
-                <input type="submit" class="btn btn-success btn-sm" value="好的，我知道了">
+                <div class="form-inline">
+                    <input name="hello" class="form-control" style="width: 200px;" value="hello world">
+                    <input type="submit" class="btn btn-success btn-sm mx-2" value="Hello">
+                </div>
             </form>
         </div>
     </div>
@@ -32,8 +34,7 @@ function plugin_setting_view() {
     </script>
 <?php }
 
-if (!empty($_POST)) {
-    $ak = isset($_POST['ak']) ? addslashes(trim($_POST['ak'])) : '';
-
-    header('Location:./plugin.php?plugin=tips&succ=1');
+function plugin_setting() {
+    $hello = Input::postStrVar('hello');
+    emDirect('./plugin.php?plugin=tips&succ=1');
 }
