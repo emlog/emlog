@@ -22,7 +22,7 @@ class Notice {
         $_SESSION['mail'] = $mail;
 
         $title = "注册用户邮件验证码";
-        $content = sprintf('<div id="email_code">邮件验证码：<span>%s</span><div>', $randCode);
+        $content = sprintf('<div id="email_code">邮件验证码：<span>%s</span></div>', $randCode);
         return self::sendMail($mail, $title, $content);
     }
 
@@ -38,7 +38,7 @@ class Notice {
         $_SESSION['mail'] = $mail;
 
         $title = "找回密码邮件验证码";
-        $content = sprintf('<div id="email_code">邮件验证码：<span>%s</span><div>', $randCode);
+        $content = sprintf('<div id="email_code">邮件验证码：<span>%s</span></div>', $randCode);
         return self::sendMail($mail, $title, $content);
     }
 
