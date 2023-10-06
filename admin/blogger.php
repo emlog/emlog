@@ -29,26 +29,48 @@ if (empty($action)) {
 if ($action == 'update') {
     LoginAuth::checkToken();
     $User_Model = new User_Model();
-    $nickname = isset($_POST['name']) ? addslashes(trim($_POST['name'])) : '';
-    $email = isset($_POST['email']) ? addslashes(trim($_POST['email'])) : '';
-    $description = isset($_POST['description']) ? addslashes(trim($_POST['description'])) : '';
-    $login = isset($_POST['username']) ? addslashes(trim($_POST['username'])) : '';
-    $newpass = isset($_POST['newpass']) ? addslashes(trim($_POST['newpass'])) : '';
-    $repeatpass = isset($_POST['repeatpass']) ? addslashes(trim($_POST['repeatpass'])) : '';
+    $nickname = Input::postStrVar('name');
+    $email = Input::postStrVar('email');
+    $description = Input::postStrVar('description');
+    $login = Input::postStrVar('username');
+    $newpass = Input::postStrVar('newpass');
+    $repeatpass = Input::postStrVar('repeatpass');
+    $resp = Input::postStrVar('resp'); // eg: json (only support json now)
 
     if (empty($nickname)) {
+        if ($resp === 'json') {
+            Output::error('昵称不能为空');
+        }
         emDirect("./blogger.php?error_a=1");
     } elseif (!checkMail($email)) {
+        if ($resp === 'json') {
+            Output::error('请正确填写邮箱');
+        }
         emDirect("./blogger.php?error_email=1");
     } elseif (strlen($newpass) > 0 && strlen($newpass) < 6) {
+        if ($resp === 'json') {
+            Output::error('密码长度不得小于6位');
+        }
         emDirect("./blogger.php?error_c=1");
     } elseif (!empty($newpass) && $newpass != $repeatpass) {
+        if ($resp === 'json') {
+            Output::error('两次输入的密码不一致');
+        }
         emDirect("./blogger.php?error_d=1");
     } elseif ($User_Model->isUserExist($login, UID)) {
+        if ($resp === 'json') {
+            Output::error('该登录名已被占用');
+        }
         emDirect("./blogger.php?error_e=1");
     } elseif ($User_Model->isNicknameExist($nickname, UID)) {
+        if ($resp === 'json') {
+            Output::error('该昵称已被占用');
+        }
         emDirect("./blogger.php?error_f=1");
     } elseif ($User_Model->isMailExist($email, UID)) {
+        if ($resp === 'json') {
+            Output::error('该邮箱已被占用');
+        }
         emDirect("./blogger.php?error_g=1");
     }
 
@@ -67,6 +89,9 @@ if ($action == 'update') {
 
     $User_Model->updateUser($d, UID);
     $CACHE->updateCache('user');
+    if ($resp === 'json') {
+        Output::ok();
+    }
     emDirect("./blogger.php?active_edit=1");
 }
 
