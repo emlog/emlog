@@ -1,5 +1,5 @@
 <?php
-!defined('EMLOG_ROOT') && exit('access deined!');
+!defined('EMLOG_ROOT') && exit('access denied!');
 ?>
 <div class="containertitle2">
     <a class="navi3" href="<?php echo $this->url(); ?>">模板列表</a>

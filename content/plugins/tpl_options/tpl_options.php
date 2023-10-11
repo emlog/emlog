@@ -7,7 +7,7 @@ Description: 模版设置插件，为模板提供更丰富的设置功能。
 Author: 奇遇、蓝叶、emlog官方
 */
 
-!defined('EMLOG_ROOT') && exit('access deined!');
+!defined('EMLOG_ROOT') && exit('access denied!');
 
 /**
  * 模板设置类

@@ -2,7 +2,7 @@
 /*
 Plugin Name: 模版设置插件
 */
-!defined('EMLOG_ROOT') && exit('access deined!');
+!defined('EMLOG_ROOT') && exit('access denied!');
 
 if (!class_exists('TplOptions', false)) {
     include __DIR__ . '/tpl_options.php';

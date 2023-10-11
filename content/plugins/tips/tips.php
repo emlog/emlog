@@ -8,7 +8,7 @@ Author: emlog
 Author URL: https://www.emlog.net
 */
 
-!defined('EMLOG_ROOT') && exit('access deined!');
+!defined('EMLOG_ROOT') && exit('access denied!');
 
 $array_tips = [
     '为防文章丢失，emlog会在你书写文章的时候为你自动保存',
