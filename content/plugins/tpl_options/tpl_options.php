@@ -158,9 +158,6 @@ class TplOptions {
 
         //注册各个钩子
         $scriptBaseName = strtolower(substr(basename($_SERVER['SCRIPT_NAME']), 0, -4));
-        addAction('data_prebakup', function () {
-            TplOptions::getInstance()->hookDataPreBackup();
-        });
         if ($scriptBaseName == 'template') {
             addAction('adm_head', function () {
                 TplOptions::getInstance()->hookAdminMainTopData();
@@ -184,18 +181,6 @@ class TplOptions {
             )),
         );
         echo sprintf('<script>var tplOptions = %s;</script>', json_encode($data));
-    }
-
-    /**
-     * 备份数据表
-     * @return void
-     */
-    public function hookDataPreBackup() {
-        global $tables;
-        $prefixLen = strlen(DB_PREFIX);
-        foreach ($this->getTable() as $table) {
-            $tables[] = substr($table, $prefixLen);
-        }
     }
 
     /**
