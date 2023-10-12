@@ -42,15 +42,15 @@
                                     </div>
                                 </div>
                                 <button class="btn btn-primary btn-user btn-block" type="submit">登 录</button>
-                                <hr>
                                 <?php if ($is_signup): ?>
-                                    <div class="text-center mt-3"><a href="./account.php?action=signup">注册账号</a></div>
-                                    <hr>
+                                    <div class="text-center my-3"><a href="./account.php?action=signup">注册账号</a></div>
                                 <?php endif ?>
-                                <div><?php doAction('login_ext') ?></div>
-                                <div class="text-center"><a class="small" href="./account.php?action=reset">忘记密码?</a></div>
+                                <div class="text-center"><?php doAction('login_ext') ?></div>
                                 <hr>
-                                <div class="text-center"><a href="../" class="small" role="button">&larr;返回首页</a></div>
+                                <div class="text-center">
+                                    <a href="../" class="small" role="button">&larr;返回首页</a>
+                                    <a class="small" href="./account.php?action=reset">找回密码</a>
+                                </div>
                             </form>
                         </div>
                     </div>
