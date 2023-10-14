@@ -25,9 +25,7 @@ if ($action === 'backup') {
 
     $DB = Database::getInstance();
     $tables = $DB->listTables();
-
-    doAction('data_backup');
-
+    
     $bakfname = 'emlog_' . date('Ymd') . '_' . substr(md5(AUTH_KEY . uniqid('', true)), 0, 18);
     $filename = '';
     $sqldump = '';

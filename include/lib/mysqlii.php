@@ -149,7 +149,7 @@ class MySqlii {
     }
 
     public function listTables() {
-        $rs = $this->query("SHOW TABLES FROM " . DB_NAME);
+        $rs = $this->query(sprintf("SHOW TABLES FROM `%s`", DB_NAME));
         $tables = [];
         while ($row = $this->fetch_row($rs)) {
             $tables[] = isset($row[0]) ? $row[0] : '';
