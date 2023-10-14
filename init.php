@@ -5,7 +5,8 @@
  * @link https://www.emlog.net
  */
 
-if (getenv('EMLOG_ENV') === 'develop') {
+const ENVIRONMENT = 'production'; // 运行环境：production 生产环境，develop 开发环境
+if (getenv('EMLOG_ENV') === 'develop' || ENVIRONMENT === 'develop') {
     error_reporting(E_ALL);
 } else {
     error_reporting(1);

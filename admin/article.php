@@ -17,6 +17,8 @@ $Log_Model = new Log_Model();
 $Tag_Model = new Tag_Model();
 $Sort_Model = new Sort_Model();
 $User_Model = new User_Model();
+$MediaSort_Model = new MediaSort_Model();
+$Template_Model = new Template_Model();
 
 if (empty($action)) {
     $draft = isset($_GET['draft']) ? (int)$_GET['draft'] : 0;
@@ -211,6 +213,7 @@ if ($action === 'write') {
         'author'   => UID,
         'cover'    => '',
         'link'     => '',
+        'template' => '',
     ];
 
     extract($blogData);
@@ -225,9 +228,8 @@ if ($action === 'write') {
     $is_sortop = '';
     $is_allow_remark = 'checked="checked"';
     $postDate = date('Y-m-d H:i');
-
-    $MediaSort_Model = new MediaSort_Model();
     $mediaSorts = $MediaSort_Model->getSorts();
+    $customTemplates = $Template_Model->getCustomTemplates('log');
 
     if (!Register::isRegLocal() && $sta_cache['lognum'] > 50) {
         emDirect("auth.php?error_article=1");
@@ -240,7 +242,7 @@ if ($action === 'write') {
 }
 
 if ($action === 'edit') {
-    $logid = isset($_GET['gid']) ? (int)$_GET['gid'] : '';
+    $logid = Input::getIntVar('gid');
 
     $Log_Model->checkEditable($logid);
     $blogData = $Log_Model->getOneLogForAdmin($logid);
@@ -261,8 +263,9 @@ if ($action === 'edit') {
     //old tag
     $tags = $Tag_Model->getTags();
 
-    $MediaSort_Model = new MediaSort_Model();
     $mediaSorts = $MediaSort_Model->getSorts();
+
+    $customTemplates = $Template_Model->getCustomTemplates('log');
 
     $is_top = $top == 'y' ? 'checked="checked"' : '';
     $is_sortop = $sortop == 'y' ? 'checked="checked"' : '';

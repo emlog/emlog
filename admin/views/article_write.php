@@ -122,6 +122,19 @@
                             <label>访问密码：</label>
                             <input type="text" name="password" id="password" class="form-control" value="<?= $password ?>"/>
                         </div>
+                        <?php if ($customTemplates): ?>
+                            <div class="form-group">
+                                <label>文章模板：</label>
+                                <?php
+                                $sortListHtml = '<option value="">默认</option>';
+                                foreach ($customTemplates as $v) {
+                                    $select = $v['filename'] == $template ? 'selected="selected"' : '';
+                                    $sortListHtml .= '<option value="' . str_replace('.php', '', $v['filename']) . '" ' . $select . '>' . ($v['comment']) . '</option>';
+                                }
+                                ?>
+                                <select id="template" name="template" class="form-control"><?= $sortListHtml; ?></select>
+                            </div>
+                        <?php endif; ?>
                         <hr>
                     <?php endif; ?>
                     <div id="post_side_ext">

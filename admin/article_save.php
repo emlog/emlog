@@ -30,6 +30,7 @@ $top = Input::postStrVar('top', 'n');
 $sortop = Input::postStrVar('sortop', 'n');
 $allow_remark = Input::postStrVar('allow_remark', 'n');
 $password = Input::postStrVar('password');
+$template = Input::postStrVar('template');
 $cover = Input::postStrVar('cover');
 $link = Input::postStrVar('link');
 $author = isset($_POST['author']) && User::haveEditPermission() ? (int)trim($_POST['author']) : UID;
@@ -64,6 +65,7 @@ $logData = [
     'checked'      => $checked,
     'password'     => $password,
     'link'         => $link,
+    'template'     => $template,
 ];
 
 if (User::isWiter()) {

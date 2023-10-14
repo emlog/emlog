@@ -71,6 +71,14 @@ class Template_Model {
                         ];
                     }
                     break;
+                case 'log':
+                    if (strpos($file, 'echo_log_') === 0 && strpos($file, '.php') !== false) {
+                        $php_files[] = [
+                            'filename' => str_replace('.php', '', $file),
+                            'comment'  => $this->getTemplateComment($file),
+                        ];
+                    }
+                    break;
             }
         }
         return $php_files;

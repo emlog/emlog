@@ -101,7 +101,8 @@ class Log_Controller {
         include View::getView('header');
         if ($type === 'blog') {
             $neighborLog = $Log_Model->neighborLog($timestamp);
-            include View::getView('echo_log');
+            $template = !empty($template) && file_exists(TEMPLATE_PATH . $template . '.php') ? $template : 'echo_log';
+            include View::getView($template);
         } elseif ($type === 'page') {
             $template = !empty($template) && file_exists(TEMPLATE_PATH . $template . '.php') ? $template : 'page';
             include View::getView($template);
