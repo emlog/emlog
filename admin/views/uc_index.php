@@ -12,7 +12,7 @@
         </div>
         <div class="flex-grow-1 ms-3">
             <div class="align-items-center mb-2">
-                <p class="mb-0 m-2"><?= $user_cache[UID]['name'] ?></p>
+                <p class="mb-0 m-2"><a class="mr-2" href="blogger.php"><?= $user_cache[UID]['name'] ?></a></p>
                 <p class="mb-0 m-2 small"><?= $user_cache[UID]['des'] ?: "当风吹过，留下微笑" ?></p>
             </div>
         </div>
