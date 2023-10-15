@@ -100,10 +100,10 @@ class Plugin_Model {
                             continue;
                         }
                         if ($subFile == $file . '.php') {
-                            $filePath = $pluginPath . '/' . $file . '/' . $subFile;
+                            $filePath = $pluginPath . '/' . $file;
                             $fileLastModified = filemtime($filePath);
-                            $pluginFiles[$file] = [
-                                'file'          => "$file/$subFile",
+                            $pluginFiles[] = [
+                                'file'          => $file . '/' . $subFile,
                                 'last_modified' => $fileLastModified
                             ];
                         }
@@ -114,11 +114,6 @@ class Plugin_Model {
         if (!$pluginFiles) {
             return $emPlugins;
         }
-
-        // Sort plugins by last modified time
-        usort($pluginFiles, function ($a, $b) {
-            return $a['last_modified'] - $b['last_modified'];
-        });
 
         $active_plugins = Option::get('active_plugins');
         foreach ($pluginFiles as $plugin) {
@@ -134,8 +129,16 @@ class Plugin_Model {
                 continue;
             }
             $pluginData['active'] = $active;
-            $emPlugins[$plugin['file']] = $pluginData;
+            $pluginData['alias'] = $plugin['file'];
+            $pluginData['last_modified'] = $plugin['last_modified'];
+            $emPlugins[] = $pluginData;
         }
+
+        // Sort plugins by last modified time
+        usort($emPlugins, function ($a, $b) {
+            return $b['last_modified'] - $a['last_modified'];
+        });
+
         return $emPlugins;
     }
 
@@ -151,7 +154,6 @@ class Plugin_Model {
         preg_match("/Version:(.*)/i", $pluginData, $version);
         preg_match("/Plugin URL:(.*)/i", $pluginData, $plugin_url);
         preg_match("/Description:(.*)/i", $pluginData, $description);
-        preg_match("/ForEmlog:(.*)/i", $pluginData, $emlog_version);
         preg_match("/Author:(.*)/i", $pluginData, $author_name);
         preg_match("/Author URL:(.*)/i", $pluginData, $author_url);
 
@@ -165,7 +167,6 @@ class Plugin_Model {
         $description = isset($description[1]) ? strip_tags(trim($description[1])) : '';
         $plugin_url = isset($plugin_url[1]) ? strip_tags(trim($plugin_url[1])) : '';
         $author = isset($author_name[1]) ? strip_tags(trim($author_name[1])) : '';
-        $emlog_version = isset($emlog_version[1]) ? strip_tags(trim($emlog_version[1])) : '';
         $author_url = isset($author_url[1]) ? strip_tags(trim($author_url[1])) : '';
 
         return [
@@ -174,7 +175,6 @@ class Plugin_Model {
             'Description' => $description,
             'Url'         => $plugin_url,
             'Author'      => $author,
-            'ForEmlog'    => $emlog_version,
             'AuthorUrl'   => $author_url,
             'Setting'     => $have_setting,
             'Plugin'      => $plugin,

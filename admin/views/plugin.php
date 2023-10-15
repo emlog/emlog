@@ -62,7 +62,7 @@
                 <?php
                 if ($plugins):
                     $i = 0;
-                    foreach ($plugins as $key => $val):
+                    foreach ($plugins as $val):
                         $plug_state = '';
                         $plug_action = 'active';
                         if ($val['active']) {
@@ -73,11 +73,12 @@
                         if (TRUE === $val['Setting']) {
                             $val['Name'] = "<a href=\"./plugin.php?plugin={$val['Plugin']}\" title=\"点击设置插件\">{$val['Name']}</a>";
                         }
+                        $alias = $val['alias'];
                         ?>
                         <tr data-plugin-alias="<?= $val['Plugin'] ?>" data-plugin-version="<?= $val['Version'] ?>">
                             <td><?= $val['Name'] ?></td>
                             <td>
-                                <input class="mui-switch mui-switch-animbg" type="checkbox" id="sw<?= $i ?>" <?= $plug_state ?> onchange="toggleSwitch('<?= $key ?>', '<?= 'sw' . $i ?>', '<?= LoginAuth::genToken() ?>')">
+                                <input class="mui-switch mui-switch-animbg" type="checkbox" id="sw<?= $i ?>" <?= $plug_state ?> onchange="toggleSwitch('<?= $alias ?>', '<?= 'sw' . $i ?>', '<?= LoginAuth::genToken() ?>')">
                             </td>
                             <td>
                                 <?= $val['Description'] ?>
@@ -95,7 +96,7 @@
                             </td>
                             <td><?= $val['Version'] ?></td>
                             <td>
-                                <a href="javascript: em_confirm('<?= $key ?>', 'plu', '<?= LoginAuth::genToken() ?>');" class="btn btn-sm btn-danger">删除</a>
+                                <a href="javascript: em_confirm('<?= $alias ?>', 'plu', '<?= LoginAuth::genToken() ?>');" class="btn btn-sm btn-danger">删除</a>
                                 <span class="update-btn"></span>
                             </td>
                         </tr>
