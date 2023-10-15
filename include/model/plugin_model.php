@@ -102,6 +102,9 @@ class Plugin_Model {
                         if ($subFile == $file . '.php') {
                             $filePath = $pluginPath . '/' . $file;
                             $fileLastModified = filemtime($filePath);
+                            if (in_array($file, ['tips', 'tpl_options'])) { //防止更新带来文件时间变更，默认插件排序始终靠后。
+                                $fileLastModified = 0;
+                            }
                             $pluginFiles[] = [
                                 'file'          => $file . '/' . $subFile,
                                 'last_modified' => $fileLastModified
