@@ -15,8 +15,9 @@ require_once 'globals.php';
 $plugin = Input::getStrVar("plugin");
 
 if (empty($action) && empty($plugin)) {
+    $filter = Input::getStrVar('filter'); // on or off
     $Plugin_Model = new Plugin_Model();
-    $plugins = $Plugin_Model->getPlugins();
+    $plugins = $Plugin_Model->getPlugins($filter);
 
     include View::getAdmView('header');
     require_once(View::getAdmView('plugin'));

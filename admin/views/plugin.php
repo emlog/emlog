@@ -32,6 +32,19 @@
     <h1 class="h3 mb-0 text-gray-800">插件扩展</h1>
     <a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> 安装插件</a>
 </div>
+<div class="panel-heading">
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link <?= $filter == '' ? 'active' : '' ?>" href="./plugin.php">全部</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link <?= $filter == 'on' ? 'active' : '' ?>" href="./plugin.php?filter=on">已开启</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link <?= $filter == 'off' ? 'active' : '' ?>" href="./plugin.php?filter=off">未开启</a>
+        </li>
+    </ul>
+</div>
 <div class="card shadow mb-4">
     <div class="card-body">
         <div class="table-responsive">
@@ -70,7 +83,6 @@
                                 <?= $val['Description'] ?>
                                 <?php if ($val['Url'] != ''): ?><a href="<?= $val['Url'] ?>" target="_blank">更多信息&raquo;</a><?php endif ?>
                                 <div class="small mt-3">
-                                    <?php if ($val['ForEmlog'] != ''): ?>适用于emlog：<?= $val['ForEmlog'] ?>&nbsp | &nbsp<?php endif ?>
                                     <?php if ($val['Author'] != ''): ?>
                                         作者：
                                         <?php if ($val['AuthorUrl'] != ''): ?>
@@ -89,7 +101,7 @@
                         </tr>
                     <?php endforeach; else: ?>
                     <tr>
-                        <td colspan="5">还没有安装插件</td>
+                        <td colspan="5">未找到插件</td>
                     </tr>
                 <?php endif ?>
                 </tbody>

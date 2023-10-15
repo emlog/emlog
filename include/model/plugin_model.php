@@ -75,7 +75,7 @@ class Plugin_Model {
         }
     }
 
-    function getPlugins() {
+    function getPlugins($filter = '') {
         global $emPlugins;
         if (isset($emPlugins)) {
             return $emPlugins;
@@ -83,7 +83,7 @@ class Plugin_Model {
         $emPlugins = [];
         $pluginFiles = [];
         $pluginPath = EMLOG_ROOT . '/content/plugins';
-        $pluginDir = @ dir($pluginPath);
+        $pluginDir = @dir($pluginPath);
         if (!$pluginDir) {
             return $emPlugins;
         }
@@ -93,14 +93,19 @@ class Plugin_Model {
                 continue;
             }
             if (is_dir($pluginPath . '/' . $file)) {
-                $pluginsSubDir = @ dir($pluginPath . '/' . $file);
+                $pluginsSubDir = @dir($pluginPath . '/' . $file);
                 if ($pluginsSubDir) {
                     while (($subFile = $pluginsSubDir->read()) !== false) {
                         if (preg_match('|^\.+$|', $subFile)) {
                             continue;
                         }
                         if ($subFile == $file . '.php') {
-                            $pluginFiles[] = "$file/$subFile";
+                            $filePath = $pluginPath . '/' . $file . '/' . $subFile;
+                            $fileLastModified = filemtime($filePath);
+                            $pluginFiles[$file] = [
+                                'file'          => "$file/$subFile",
+                                'last_modified' => $fileLastModified
+                            ];
                         }
                     }
                 }
@@ -110,17 +115,30 @@ class Plugin_Model {
             return $emPlugins;
         }
 
+        // Sort plugins by last modified time
+        usort($pluginFiles, function ($a, $b) {
+            return $a['last_modified'] - $b['last_modified'];
+        });
+
         $active_plugins = Option::get('active_plugins');
         foreach ($pluginFiles as $plugin) {
-            $pluginData = $this->getPluginData($plugin);
+            $active = in_array($plugin['file'], $active_plugins) ? 1 : 0;
+            if ($filter == 'on' && !$active) {
+                continue;
+            }
+            if ($filter == 'off' && $active) {
+                continue;
+            }
+            $pluginData = $this->getPluginData($plugin['file']);
             if (empty($pluginData['Name'])) {
                 continue;
             }
-            $pluginData['active'] = in_array($plugin, $active_plugins) ? 1 : 0;
-            $emPlugins[$plugin] = $pluginData;
+            $pluginData['active'] = $active;
+            $emPlugins[$plugin['file']] = $pluginData;
         }
         return $emPlugins;
     }
+
 
     function getPluginData($pluginFile) {
         $pluginPath = EMLOG_ROOT . '/content/plugins/';
