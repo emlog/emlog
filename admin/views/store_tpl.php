@@ -84,7 +84,7 @@
         <div class="col-md-12 page my-5"><?= $pageurl ?> (有<?= $count ?>个模板)</div>
     <?php else: ?>
         <div class="col-md-12">
-            <div class="alert alert-info">暂未找到结果，应用商店进货中，敬请期待：）</div>
+            <div class="alert alert-info">未找到任何应用</div>
         </div>
     <?php endif ?>
 </div>
