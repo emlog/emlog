@@ -65,8 +65,8 @@ if ($active_plugins && is_array($active_plugins)) {
     }
 }
 
-define('TEMPLATE_HOOK_PATH', TPLS_PATH . Option::get('nonce_templet') . '/hooks.php');
-
+// 加载模板的系统调用文件
+define('TEMPLATE_HOOK_PATH', TPLS_PATH . Option::get('nonce_templet') . '/plugins.php');
 if (file_exists(TEMPLATE_HOOK_PATH)) {
     include_once(TEMPLATE_HOOK_PATH);
 }

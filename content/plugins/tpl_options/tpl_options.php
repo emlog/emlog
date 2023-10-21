@@ -147,11 +147,7 @@ class TplOptions {
             'checkbox',
             'tag',
         );
-        //加载插件扩展配置
-        $template = Option::get('nonce_templet');
-        if (is_file($pluginsFile = TPLS_PATH . $template . '/plugins.php')) {
-            include $pluginsFile;
-        }
+
         //设置模板目录
         $this->_view = __DIR__ . '/views/';
         $this->_assets = BLOG_URL . 'content/plugins/' . self::ID . '/assets/';
