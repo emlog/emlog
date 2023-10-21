@@ -107,6 +107,8 @@
                     </div>
                     <hr>
                     <div><a class="show_advset" id="displayToggle" onclick="displayToggle('advset');">高级选项<i class="icofont-simple-right"></i></a></div>
+                <?php else: ?>
+                    <input type="hidden" value="y" name="allow_remark" id="allow_remark" />
                 <?php endif; ?>
                 <div id="advset">
                     <?php if (User::haveEditPermission()): ?>
