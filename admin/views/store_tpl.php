@@ -21,6 +21,7 @@
         <a href="./store.php" class="badge badge-success m-1 p-2">全部</a>
         <a href="./store.php?tag=free" class="badge badge-success m-1 p-2">仅看免费</a>
         <a href="./store.php?tag=paid" class="badge badge-warning m-1 p-2">仅看付费</a>
+        <a href="./store.php?tag=promo" class="badge badge-danger m-1 p-2">限时优惠</a>
     </div>
     <div class="d-flex mb-3 mb-sm-0">
         <form action="#" method="get" class="mr-sm-2">
@@ -61,7 +62,18 @@
                             </p>
                             <p class="card-text text-muted">
                                 <small><?= subString($v['info'], 0, 56) ?></small><br><br>
-                                售价：<?= $v['price'] > 0 ? '<span class="text-danger">' . $v['price'] . '元</span>' : '<span class="text-success">免费</span>' ?><br>
+                                售价：
+                                <?php if ($v['price'] > 0): ?>
+                                    <?php if ($v['promo_price'] > 0): ?>
+                                        <span style="text-decoration:line-through"><?= $v['price'] ?><small>元</small></span>
+                                        <span class="text-danger"><?= $v['promo_price'] ?><small>元</small></span>
+                                    <?php else: ?>
+                                        <span class="text-danger"><?= $v['price'] ?><small>元</small></span>
+                                    <?php endif; ?>
+                                <?php else: ?>
+                                    <span class="text-success">免费</span>
+                                <?php endif; ?>
+                                <br>
                                 <small>
                                     开发者：<?= $v['author'] ?> <a href="./store.php?author_id=<?= $v['author_id'] ?>">仅看Ta的作品</a><br>
                                     版本号：<?= $v['ver'] ?><br>
