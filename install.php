@@ -573,6 +573,7 @@ CREATE TABLE {$db_prefix}sort (
   taxis int(11) unsigned NOT NULL default '0' COMMENT '排序序号',
   pid int(11) unsigned NOT NULL default '0' COMMENT '父分类ID',
   description text NOT NULL COMMENT '备注',
+  kw VARCHAR(2048) NOT NULL DEFAULT '' COMMENT '关键词',
   template varchar(255) NOT NULL default '' COMMENT '分类模板',
   PRIMARY KEY  (sid)
 )" . $table_charset_sql . "

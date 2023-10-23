@@ -271,28 +271,8 @@ class Cache {
     }
 
     private function mc_sort() {
-        $sort_cache = [];
-        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "sort ORDER BY pid ASC,taxis ASC");
-        while ($row = $this->db->fetch_array($query)) {
-            $data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "blog WHERE sortid=" . $row['sid'] . " AND hide='n' AND checked='y' AND type='blog'");
-            $logNum = $data['total'];
-            $sortData = array(
-                'lognum'      => $logNum,
-                'sortname'    => htmlspecialchars($row['sortname']),
-                'description' => htmlspecialchars($row['description']),
-                'alias'       => $row['alias'],
-                'sid'         => (int)$row['sid'],
-                'taxis'       => (int)$row['taxis'],
-                'pid'         => (int)$row['pid'],
-                'template'    => htmlspecialchars($row['template']),
-            );
-            if ($sortData['pid'] == 0) {
-                $sortData['children'] = [];
-            } elseif (isset($sort_cache[$row['pid']])) {
-                $sort_cache[$row['pid']]['children'][] = $row['sid'];
-            }
-            $sort_cache[$row['sid']] = $sortData;
-        }
+        $Sort_Model = new Sort_Model();
+        $sort_cache = $Sort_Model->getSorts();
         $cacheData = serialize($sort_cache);
         $this->cacheWrite($cacheData, 'sort');
     }

@@ -44,6 +44,9 @@ class Sort_Controller {
         if (!empty($sort_cache[$sortid]['description'])) {
             $site_description = $sort_cache[$sortid]['description'];
         }
+        if (!empty($sort_cache[$sortid]['kw'])) {
+            $site_key = $sort_cache[$sortid]['kw'];
+        }
         if ($sort['pid'] != 0 || empty($sort['children'])) {
             $sqlSegment = "and sortid=$sortid";
         } else {

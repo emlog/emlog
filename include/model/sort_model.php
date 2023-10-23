@@ -8,17 +8,38 @@
 class Sort_Model {
 
     private $db;
+    private $table;
+    private $table_blog;
 
     function __construct() {
+        $this->table = DB_PREFIX . 'sort';
+        $this->table_blog = DB_PREFIX . 'blog';
         $this->db = Database::getInstance();
     }
 
     function getSorts() {
-        $res = $this->db->query("SELECT * FROM " . DB_PREFIX . "sort ORDER BY taxis ASC");
         $sorts = [];
-        while ($row = $this->db->fetch_array($res)) {
-            $row['sortname'] = htmlspecialchars($row['sortname']);
-            $sorts[] = $row;
+        $query = $this->db->query("SELECT * FROM $this->table ORDER BY pid ASC,taxis ASC");
+        while ($row = $this->db->fetch_array($query)) {
+            $data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "blog WHERE sortid=" . $row['sid'] . " AND hide='n' AND checked='y' AND type='blog'");
+            $logNum = $data['total'];
+            $sortData = array(
+                'lognum'      => $logNum,
+                'sortname'    => htmlspecialchars($row['sortname']),
+                'alias'       => $row['alias'],
+                'description' => htmlspecialchars($row['description']),
+                'kw'          => $row['kw'],
+                'sid'         => (int)$row['sid'],
+                'taxis'       => (int)$row['taxis'],
+                'pid'         => (int)$row['pid'],
+                'template'    => htmlspecialchars($row['template']),
+            );
+            if ($sortData['pid'] == 0) {
+                $sortData['children'] = [];
+            } elseif (isset($sorts[$row['pid']])) {
+                $sorts[$row['pid']]['children'][] = $row['sid'];
+            }
+            $sorts[$row['sid']] = $sortData;
         }
         return $sorts;
     }
@@ -29,22 +50,29 @@ class Sort_Model {
             $Item[] = "$key='$data'";
         }
         $upStr = implode(',', $Item);
-        $this->db->query("update " . DB_PREFIX . "sort set $upStr where sid=$sid");
+        $this->db->query("update $this->table set $upStr where sid=$sid");
     }
 
-    function addSort($name, $alias, $pid, $description, $template) {
-        $sql = "insert into " . DB_PREFIX . "sort (sortname,alias,pid,description,template) values('$name','$alias',$pid,'$description', '$template')";
-        $this->db->query($sql);
+    public function addSort($data) {
+        $kItem = $dItem = [];
+        foreach ($data as $key => $val) {
+            $kItem[] = $key;
+            $dItem[] = $val;
+        }
+        $field = implode(',', $kItem);
+        $values = "'" . implode("','", $dItem) . "'";
+        $this->db->query("INSERT INTO $this->table ($field) VALUES ($values)");
+        return $this->db->insert_id();
     }
 
     function deleteSort($sid) {
-        $this->db->query("update " . DB_PREFIX . "blog set sortid=-1 where sortid=$sid");
-        $this->db->query("update " . DB_PREFIX . "sort set pid=0 where pid=$sid");
-        $this->db->query("DELETE FROM " . DB_PREFIX . "sort where sid=$sid");
+        $this->db->query("update $this->table_blog set sortid=-1 where sortid=$sid");
+        $this->db->query("update $this->table set pid=0 where pid=$sid");
+        $this->db->query("DELETE FROM $this->table where sid=$sid");
     }
 
     function getOneSortById($sid) {
-        $sql = "select * from " . DB_PREFIX . "sort where sid=$sid";
+        $sql = "select * from $this->table where sid=$sid";
         $res = $this->db->query($sql);
         $row = $this->db->fetch_array($res);
         $sortData = [];
@@ -62,7 +90,7 @@ class Sort_Model {
 
     function getSortName($sid) {
         if ($sid > 0) {
-            $res = $this->db->query("SELECT sortname FROM " . DB_PREFIX . "sort WHERE sid = $sid");
+            $res = $this->db->query("SELECT sortname FROM $this->table WHERE sid = $sid");
             $row = $this->db->fetch_array($res);
             $sortName = htmlspecialchars($row['sortname']);
         } else {
