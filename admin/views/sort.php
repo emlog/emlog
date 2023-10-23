@@ -130,7 +130,7 @@
                     <div class="form-group">
                         <label for="alias">别名</label>
                         <input class="form-control" id="alias" name="alias">
-                        <small class="form-text text-muted">用于URL的友好显示，可不填</small>
+                        <small class="form-text text-muted">英文字母组成，用于seo设置，可不填</small>
                     </div>
                     <div class="form-group">
                         <label>父分类</label>
@@ -151,7 +151,7 @@
                         <textarea name="description" id="description" type="text" class="form-control"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="kw">关键词（多个英文逗号分割，也用于分类页的 keywords）</label>
+                        <label for="kw">关键词（英文逗号分割，用于分类页的 keywords）</label>
                         <textarea name="kw" id="kw" type="text" class="form-control"></textarea>
                     </div>
                     <div class="form-group">

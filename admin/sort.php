@@ -27,7 +27,7 @@ if (empty($action)) {
 }
 
 if ($action == 'taxis') {
-    $sort = Input::postStrVar('sort');
+    $sort = isset($_POST['sort']) ? $_POST['sort'] : '';
 
     if (empty($sort)) {
         emDirect("./sort.php?error_b=1");
@@ -37,8 +37,8 @@ if ($action == 'taxis') {
         $key = (int)$key;
         $Sort_Model->updateSort(array('taxis' => $key), $value);
     }
-    $CACHE->updateCache('sort');
-    $CACHE->updateCache('navi');
+
+    $CACHE->updateCache(['sort', 'navi']);
     emDirect("./sort.php?active_taxis=1");
 }
 
