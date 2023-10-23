@@ -43,7 +43,7 @@ function em_confirm(id, property, token) {
             swalDel(msg, text, url, token)
             break;
         case 'link':
-            url = 'link.php?action=dellink&linkid=' + id;
+            url = 'link.php?action=del&linkid=' + id;
             msg = '确定要删除该链接吗？';
             swalDel(msg, text, url, token)
             break;

@@ -38,59 +38,58 @@ if ($action == 'link_taxis') {
     emDirect("./link.php?active_taxis=1");
 }
 
-if ($action == 'addlink') {
-    $sitename = isset($_POST['sitename']) ? addslashes(trim($_POST['sitename'])) : '';
-    $siteurl = isset($_POST['siteurl']) ? addslashes(trim($_POST['siteurl'])) : '';
-    $description = isset($_POST['description']) ? addslashes(trim($_POST['description'])) : '';
+if ($action == 'save') {
+    $siteName = Input::postStrVar('sitename');
+    $siteUrl = Input::postStrVar('siteurl');
+    $description = Input::postStrVar('description');
+    $linkId = Input::postIntVar('linkid');
 
-    if ($sitename == '' || $siteurl == '') {
+    if ($siteName == '' || $siteUrl == '') {
         emDirect("./link.php?error_a=1");
     }
-    if (!preg_match("/^http|ftp.+$/i", $siteurl)) {
-        $siteurl = 'http://' . $siteurl;
-    }
-    $Link_Model->addLink($sitename, $siteurl, $description);
-    $CACHE->updateCache('link');
-    emDirect("./link.php?active_add=1");
-}
 
-if ($action == 'update_link') {
-    $sitename = isset($_POST['sitename']) ? addslashes(trim($_POST['sitename'])) : '';
-    $siteurl = isset($_POST['siteurl']) ? addslashes(trim($_POST['siteurl'])) : '';
-    $description = isset($_POST['description']) ? addslashes(trim($_POST['description'])) : '';
-    $linkId = isset($_POST['linkid']) ? (int)$_POST['linkid'] : '';
-
-    if (!preg_match("/^http|ftp.+$/i", $siteurl)) {
-        $siteurl = 'http://' . $siteurl;
+    if (!preg_match("/^http|ftp.+$/i", $siteUrl)) {
+        $siteUrl = 'https://' . $siteUrl;
     }
 
-    $Link_Model->updateLink(array('sitename' => $sitename, 'siteurl' => $siteurl, 'description' => $description), $linkId);
+    $data = [
+        'sitename'    => $siteName,
+        'siteurl'     => $siteUrl,
+        'description' => $description
+    ];
+
+    if ($linkId) {
+        $Link_Model->updateLink($data, $linkId);
+    } else {
+        $Link_Model->addLink($siteName, $siteUrl, $description);
+    }
 
     $CACHE->updateCache('link');
-    emDirect("./link.php?active_edit=1");
+    emDirect("./link.php?active_save=1");
 }
 
-if ($action == 'dellink') {
+if ($action == 'del') {
     LoginAuth::checkToken();
-    $linkid = isset($_GET['linkid']) ? (int)$_GET['linkid'] : '';
-    $Link_Model->deleteLink($linkid);
+    $linkId = Input::getIntVar('linkid');
+
+    $Link_Model->deleteLink($linkId);
     $CACHE->updateCache('link');
     emDirect("./link.php?active_del=1");
 }
 
 if ($action == 'hide') {
-    $linkId = isset($_GET['linkid']) ? (int)$_GET['linkid'] : '';
+    $linkId = Input::getIntVar('linkid');
 
-    $Link_Model->updateLink(array('hide' => 'y'), $linkId);
+    $Link_Model->updateLink(['hide' => 'y'], $linkId);
 
     $CACHE->updateCache('link');
     emDirect('./link.php');
 }
 
 if ($action == 'show') {
-    $linkId = isset($_GET['linkid']) ? (int)$_GET['linkid'] : '';
+    $linkId = Input::getIntVar('linkid');
 
-    $Link_Model->updateLink(array('hide' => 'n'), $linkId);
+    $Link_Model->updateLink(['hide' => 'n'], $linkId);
 
     $CACHE->updateCache('link');
     emDirect('./link.php');

@@ -51,7 +51,6 @@ if ($action == 'save') {
     $description = Input::postStrVar('description');
     $kw = Input::postStrVar('kw');
 
-
     if (empty($sortname)) {
         emDirect("./sort.php?action=mod_sort&sid={$sid}&error_a=1");
     }
