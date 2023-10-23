@@ -5,10 +5,8 @@
     <div class="alert alert-success">排序更新成功</div><?php endif ?>
 <?php if (isset($_GET['active_del'])): ?>
     <div class="alert alert-success">删除分类成功</div><?php endif ?>
-<?php if (isset($_GET['active_edit'])): ?>
-    <div class="alert alert-success">修改分类成功</div><?php endif ?>
-<?php if (isset($_GET['active_add'])): ?>
-    <div class="alert alert-success">添加分类成功</div><?php endif ?>
+<?php if (isset($_GET['active_save'])): ?>
+    <div class="alert alert-success">保存成功</div><?php endif ?>
 <?php if (isset($_GET['error_a'])): ?>
     <div class="alert alert-danger">分类名称不能为空</div><?php endif ?>
 <?php if (isset($_GET['error_b'])): ?>

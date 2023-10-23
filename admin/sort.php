@@ -90,7 +90,7 @@ if ($action == 'save') {
         $Sort_Model->addSort($sort_data);
     }
     $CACHE->updateCache(['sort', 'logsort', 'navi']);
-    emDirect("./sort.php?active_edit=1");
+    emDirect("./sort.php?active_save=1");
 }
 
 if ($action == 'del') {
