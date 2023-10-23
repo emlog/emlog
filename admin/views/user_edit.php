@@ -13,7 +13,7 @@
     <div class="alert alert-danger">密码长度不得小于6位</div><?php endif ?>
 <?php if (isset($_GET['error_pwd2'])): ?>
     <div class="alert alert-danger">两次输入密码不一致</div><?php endif ?>
-<h1 class="h3 mb-4 text-gray-800">修改资料</h1>
+<h1 class="h3 mb-4 text-gray-800">编辑用户信息</h1>
 <div class="card shadow mb-4 mt-4">
     <div class="card-body">
         <form action="user.php?action=update" method="post">
@@ -59,13 +59,6 @@
 <script>
     $(function () {
         setTimeout(hideActived, 3600);
-        $("#menu_category_sys").addClass('active');
-        $("#menu_sys").addClass('show');
         $("#menu_user").addClass('active');
-
-        if ($("#role").val() == 'admin') $("#ischeck").hide();
-        $("#role").change(function () {
-            $("#ischeck").toggle()
-        })
     });
 </script>
