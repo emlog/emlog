@@ -24,6 +24,7 @@ if (empty($action)) {
     $max_execution_time = ini_get('max_execution_time') ?: '';
     $max_upload_size = ini_get('upload_max_filesize') ?: '';
     $php_ver = PHP_VERSION . ', ' . $max_execution_time . 's,' . $max_upload_size;
+    $os = php_uname('s') . ' ' . php_uname('m');
     $role_name = User::getRoleName($role, UID);
     if (function_exists('curl_init')) {
         $c = curl_version();

@@ -98,24 +98,28 @@
                             <span class="small">MySQL <?= $mysql_ver ?></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            web服务
+                            Web服务
                             <span class="small"><?= $server_app ?></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            EMLOG
-                            <?php if (!Register::isRegLocal()) : ?>
-                                <a href="auth.php"><span class="badge badge-secondary"><?= Option::EMLOG_VERSION ?> 未注册，点击注册</span></a>
-                            <?php elseif (Register::getRegType() == 2): ?>
-                                <span class="badge badge-warning"><?= ucfirst(Option::EMLOG_VERSION) ?> 铁杆SVIP</span>
-                            <?php elseif (Register::getRegType() == 1): ?>
-                                <span class="badge badge-success"><?= ucfirst(Option::EMLOG_VERSION) ?> 友情VIP</span>
-                            <?php else: ?>
-                                <span class="badge badge-success"><?= ucfirst(Option::EMLOG_VERSION) ?> 已注册</span>
-                            <?php endif ?>
+                            操作系统
+                            <span class="small"><?= $os ?></span>
                         </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <a id="ckup" href="javascript:checkupdate();" class="btn btn-success btn-sm">检查更新</a>
-                            <span id="upmsg"></span>
+                        <li class="list-group-item d-flex justify-content-between align-items-center mt-2">
+                            <span>
+                            <?php if (!Register::isRegLocal()) : ?>
+                                <a href="auth.php"><span class="badge badge-secondary">Emlog <?= Option::EMLOG_VERSION ?> 未注册，点击注册</span></a>
+                            <?php elseif (Register::getRegType() == 2): ?>
+                                <span class="badge badge-warning">Emlog <?= ucfirst(Option::EMLOG_VERSION) ?> 铁杆SVIP</span>
+                            <?php elseif (Register::getRegType() == 1): ?>
+                                <span class="badge badge-success">Emlog <?= ucfirst(Option::EMLOG_VERSION) ?> 友情VIP</span>
+                            <?php else: ?>
+                                <span class="badge badge-success">Emlog <?= ucfirst(Option::EMLOG_VERSION) ?> 已注册</span>
+                            <?php endif ?>
+                                </span>
+                            <span>
+                                <a id="ckup" href="javascript:checkupdate();" class="badge badge-success d-flex align-items-center"><span>更新</span></a>
+                            </span>
                         </li>
                     </ul>
                 </div>
@@ -169,15 +173,74 @@
             <script>loadTopAddons();</script>
         <?php endif; ?>
     </div>
+    <div class="modal fade" id="update-modal" tabindex="-1" role="dialog" aria-labelledby="update-modal-label" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="update-modal-label">更新内容</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="update-modal-loading"></div>
+                    <div id="update-modal-msg"></div>
+                    <div id="update-modal-content"></div>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
         setTimeout(hideActived, 3600);
-        // upgrade
         $("#menu_panel").addClass('active');
+
+        // upgrade
         $.get("./upgrade.php?action=check_update", function (result) {
             if (result.code == 200) {
-                $("#upmsg").html("有可用的新版本 " + result.data.version + "，<a href=\"https://www.emlog.net/docs/#/changelog\" target=\"_blank\">查看更新内容</a>，<a id=\"doup\" href=\"javascript:doup('" + result.data.file + "','" + result.data.sql + "');\">现在更新</a>").removeClass();
+                $("#ckup").append('<span class="badge bg-danger ml-1">!</span>');
             }
         });
+
+        function checkupdate() {
+            $("#update-modal").modal('show');
+            $("#update-modal-loading").addClass("spinner-border text-primary")
+            var response = "";
+            $.get("./upgrade.php?action=check_update", function (result) {
+                if (result.code == 1001) {
+                    response = "您的emlog pro尚未注册，<a href=\"auth.php\">去注册</a>";
+                } else if (result.code == 1002) {
+                    response = "已经是最新版本";
+                } else if (result.code == 200) {
+                    response = "有可用的新版本 " + result.data.version + " <br><br>" +
+                        "<a id=\"doup\" href=\"javascript:doup('" + result.data.file + "','" + result.data.sql + "');\" class=\"btn btn-success btn-sm\">现在更新</a>";
+                } else {
+                    response = "检查失败，可能是网络问题";
+                }
+
+                $("#update-modal-loading").removeClass();
+                $("#update-modal-content").html(response);
+            });
+        }
+
+        function doup(source, upsql) {
+            $("#update-modal-loading").addClass("spinner-border text-primary")
+            $("#update-modal-msg").html("更新中... 请耐心等待");
+            $.get('./upgrade.php?action=update&source=' + source + "&upsql=" + upsql, function (data) {
+                $("#upmsg").removeClass();
+                if (data.match("succ")) {
+                    $("#update-modal-msg").html('恭喜您！更新成功了，请<a href="./">刷新页面</a>开始体验新版emlog');
+                } else if (data.match("error_down")) {
+                    $("#update-modal-msg").html('下载更新失败，可能是服务器网络问题');
+                } else if (data.match("error_zip")) {
+                    $("#update-modal-msg").html('解压更新失败，可能是你的服务器空间不支持zip模块');
+                } else if (data.match("error_dir")) {
+                    $("#update-modal-msg").html('更新失败，目录不可写');
+                } else {
+                    $("#update-modal-msg").html('更新失败');
+                }
+                $("#update-modal-loading").removeClass();
+            });
+        }
     </script>
 <?php endif ?>
 <?php if (User::isAdmin()): ?>

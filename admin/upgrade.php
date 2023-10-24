@@ -39,7 +39,7 @@ if ($action === 'update' && User::isAdmin()) {
     }
 
     // update files
-    $temp_zip_file = emFetchFile($source);
+    //$temp_zip_file = emFetchFile($source);
     if (!$temp_zip_file) {
         exit('error_down');
     }
