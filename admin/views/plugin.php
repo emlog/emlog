@@ -63,6 +63,9 @@
                 if ($plugins):
                     $i = 0;
                     foreach ($plugins as $val):
+                        if ($val['Plugin'] === 'tpl_options') {
+                            continue;
+                        }
                         $plug_state = '';
                         $plug_action = 'active';
                         if ($val['active']) {
