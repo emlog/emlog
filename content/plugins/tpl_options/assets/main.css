@@ -300,7 +300,22 @@ span.tpl-options-setting:hover {
     }
 }
 
-.tpl-activebox, .tpl-errorbox {
+.tpl-activebox {
+    position: fixed;
+    top: 100px;
+    left: 0;
+    right: 0;
+    background: rgba(14, 161, 103, 0.73);
+    width: 160px;
+    z-index: 999999;
+    margin: 0 auto;
+    text-align: center;
+    border-radius: 6px;
+    color: #fff;
+    padding: 10px;
+}
+
+.tpl-errorbox {
     position: fixed;
     top: 100px;
     left: 0;
