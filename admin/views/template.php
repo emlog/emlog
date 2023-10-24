@@ -138,7 +138,7 @@
                     $.each(pluginsToUpdate, function (index, item) {
                         var $tr = $('.app-list .card[data-app-alias="' + item.name + '"]');
                         var $updateBtn = $tr.find('.update-btn');
-                        $updateBtn.append($('<a>').addClass('badge badge-warning').text('更新').attr("href", "./template.php?action=upgrade&alias=" + item.name));
+                        $updateBtn.append($('<a>').addClass('btn btn-warning btn-sm').text('更新').attr("href", "./template.php?action=upgrade&alias=" + item.name));
                     });
                 } else {
                     console.log('更新接口返回错误');
