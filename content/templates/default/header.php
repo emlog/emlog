@@ -34,8 +34,12 @@ require_once View::getView('module');
 <body>
 <nav class="blog-header">
     <div class="blog-header-c container">
-        <a class="blog-header-title" href="<?= BLOG_URL ?>"><?= $blogname ?></a>
-        <div class="blog-header-subtitle subtitle-overflow" title="<?= $bloginfo ?>"><?= $bloginfo ?></div>
+        <?php if (_g('logotype') == 1): ?>
+            <a class="blog-header-title" href="<?= BLOG_URL ?>"><?= $blogname ?></a>
+            <div class="blog-header-subtitle subtitle-overflow" title="<?= $bloginfo ?>"><?= $bloginfo ?></div>
+        <?php else: ?>
+            <a href="<?php echo BLOG_URL; ?>" title="<?php echo $bloginfo; ?>"><img src="<?php echo _g('logoimg'); ?>" alt="<?php echo $blogname; ?>"/></a>
+        <?php endif; ?>
         <div class="blog-header-toggle">
             <svg class="blogtoggle-icon">
                 <rect x="1" y="1" fill="#5F5F5F" width="26" height="1.6"/>

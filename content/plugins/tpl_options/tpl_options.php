@@ -1,10 +1,10 @@
 <?php
 /*
-Plugin Name: 模版设置插件
+Plugin Name: 模版设置
 Version: 4.2.1
-Plugin URL: https://www.emlog.net/plugin/detail/377
-Description: 模版设置插件，为模板提供更丰富的设置功能。
-Author: 奇遇、蓝叶、emlog官方
+Plugin URL: https://www.emlog.net/docs/#/template
+Description: 为模版增加丰富的设置功能，详见官网文档-模板开发。
+Author: emlog
 */
 
 !defined('EMLOG_ROOT') && exit('access denied!');

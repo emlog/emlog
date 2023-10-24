@@ -2,12 +2,12 @@
 /*@support tpl_options*/
 
 /**
- * 模板设置的配置文件，详见官网文档-模板开发部分
+ * 模板设置的配置文件
+ * 详见官网文档-模板开发：https://www.emlog.net/docs/#/template
  */
 
 !defined('EMLOG_ROOT') && exit('access denied!');
 
-/* eg:
 $options = [
     'TplOptionsNavi' => [
         'type'        => 'radio',
@@ -15,7 +15,7 @@ $options = [
         'values'      => [
             'tpl-head' => '头部设置',
         ],
-        'description' => '<p>模板：晨 <br>欢迎使用这款简约的模板，目前仅支持设置头部logo</p>'
+        'description' => '<p>你好，这是默认模板的设置界面，请点击上方菜单进入设置项。</p>'
     ],
     'logotype'       => [
         'labels'  => 'tpl-head',
@@ -37,4 +37,3 @@ $options = [
         'description' => '上传LOGO图片。'
     ],
 ];
-*/

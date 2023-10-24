@@ -65,12 +65,12 @@
                     <div class="card-text d-flex justify-content-between mt-3">
                         <span>
                         <?php if ($nonce_template !== $value['tplfile']): ?>
-                            <a class="badge badge-success" href="template.php?action=use&tpl=<?= $value['tplfile'] ?>&token=<?= LoginAuth::genToken() ?>">启用</a>
+                            <a class="btn btn-success btn-sm" href="template.php?action=use&tpl=<?= $value['tplfile'] ?>&token=<?= LoginAuth::genToken() ?>">启用</a>
                         <?php endif; ?>
                             <span class="update-btn"></span>
                         </span>
                         <span>
-                            <a class="badge badge-danger" href="javascript: em_confirm('<?= $value['tplfile'] ?>', 'tpl', '<?= LoginAuth::genToken() ?>');">删除</a>
+                            <a class="btn btn-danger btn-sm" href="javascript: em_confirm('<?= $value['tplfile'] ?>', 'tpl', '<?= LoginAuth::genToken() ?>');">删除</a>
                         </span>
                     </div>
                 </div>

@@ -31,7 +31,7 @@ $(function () {
         xps.style.fontSize = '12px';
         xps.style.marginLeft = '4px';
         now.parentNode.appendChild(xps);
-        $('<span class="badge badge-dange">设置</span>').insertBefore(xps).addClass(attr('setting')).data('template', tpl);
+        $('<a class="btn btn-primary btn-sm">设置</span>').insertBefore(xps).addClass(attr('setting')).data('template', tpl);
     }
     //绑定事件
     body.on('click', '.' + attr('setting'), function () {
