@@ -44,12 +44,16 @@ define('UID', ISLOGIN === true ? $userData['uid'] : '');
 define('BLOG_URL', Option::get('blogurl'));
 
 const TPLS_URL = BLOG_URL . 'content/templates/';
-
 const TPLS_PATH = EMLOG_ROOT . '/content/templates/';
 
-define('DYNAMIC_BLOGURL', Option::get("blogurl"));
+//站点URL
+define('DYNAMIC_BLOGURL', Option::get('blogurl'));
+//当前模板的URL
 define('TEMPLATE_URL', TPLS_URL . Option::get('nonce_templet') . '/');
-const ADMIN_TEMPLATE_PATH = EMLOG_ROOT . '/admin/views/';
+//后台模板的绝对路径
+define('ADMIN_TEMPLATE_PATH', EMLOG_ROOT . '/admin/views/');
+//前台模板的绝对路径
+define('TEMPLATE_PATH', TPLS_PATH . Option::get('nonce_templet') . '/');
 
 const MSGCODE_EMKEY_INVALID = 1001;
 const MSGCODE_NO_UPUPDATE = 1002;
