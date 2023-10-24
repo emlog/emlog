@@ -2,16 +2,17 @@
     exit('error!');
 } ?>
 <?php if (isset($_GET['active_reg'])): ?>
-    <div class="alert alert-success">恭喜，注册成功了</div><?php endif ?>
+    <div class="alert alert-success">🎉 恭喜，注册成功 🎉</div><?php endif ?>
 <?php if (isset($_GET['error_b'])): ?>
-    <div class="alert alert-danger">注册失败</div><?php endif ?>
+    <div class="alert alert-danger">注册失败了，可能是注册码不正确，或服务器无法访问官网 emlog.net</div><?php endif ?>
 <?php if (!Register::isRegLocal()) : ?>
-    <div class="container-fluid">
+<div class="card shadow mb-4 mt-2">
+    <div class="card-body">
         <div>
             <?php if (isset($_GET['error_store'])): ?>
                 <p class="lead text-danger mb-4">扩展商店用于下载模板和插件，仅开放给已完成注册用户</p>
             <?php endif ?>
-            <p class="lead text-danger mb-4">您安装的emlog尚未注册，完成注册可使用全部功能，包括如下：</p>
+            <h1 class="lead text-danger mb-4">您安装的emlog尚未注册，完成注册可使用全部功能，包括如下：</h1>
             <ul>
                 <li>1. 解锁在线升级功能，一键升级到最新版本，获得来自官方的安全和功能更新。</li>
                 <li>2. 解锁应用商店，获得更多模板和插件，并支持应用在线一键更新。</li>
@@ -24,14 +25,15 @@
             <a href="#" class="btn btn-sm btn-primary shadow-lg" data-toggle="modal" data-target="#exampleModal">开始注册</a>
             <a href="https://emlog.net/register" target="_blank" class="btn btn-sm btn-success shadow-lg">获取注册码-></a>
         </div>
+        <?php else: ?>
+            <div class="container-fluid">
+                <div class="text-center">
+                    <p class="lead text-success mb-4">恭喜，您的emlog pro已完成注册！</p>
+                </div>
+            </div>
+        <?php endif ?>
     </div>
-<?php else: ?>
-    <div class="container-fluid">
-        <div class="text-center">
-            <p class="lead text-success mb-4">恭喜，您的emlog pro已完成注册！</p>
-        </div>
-    </div>
-<?php endif ?>
+</div>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -62,6 +64,6 @@
 <script>
     $(function () {
         $("#menu_store").addClass('active');
-        setTimeout(hideActived, 3600);
+        setTimeout(hideActived, 10000);
     });
 </script>
