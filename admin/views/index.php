@@ -243,10 +243,12 @@
         function doUp(source, upSQL) {
             const updateModalLoading = $("#update-modal-loading");
             const updateModalMsg = $("#update-modal-msg");
+            const updateModalChanges = $("#update-modal-changes");
             const upmsg = $("#upmsg");
 
             updateModalLoading.addClass("spinner-border text-primary");
             updateModalMsg.html("更新中... 请耐心等待");
+            updateModalChanges.html("");
 
             $.get(`./upgrade.php?action=update&source=${source}&upsql=${upSQL}`, function (data) {
                 upmsg.removeClass();
