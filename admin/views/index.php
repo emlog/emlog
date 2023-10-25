@@ -228,7 +228,7 @@
                 } else if (result.code === 200) {
                     rep_msg = `有可用的新版本：<span class="text-danger">${result.data.version}</span> <br><br>`;
                     rep_changes = "<b>更新内容</b>:<br>" + result.data.changes;
-                    rep_btn = `<hr><a id="doup" href="javascript:doUp('${result.data.file}','${result.data.sql}');" class="btn btn-success btn-sm">现在更新</a>`;
+                    rep_btn = `<hr><a href="javascript:doUp('${result.data.file}','${result.data.sql}');" class="btn btn-success btn-sm">现在更新</a>`;
                 } else {
                     rep_msg = "检查失败，可能是网络问题";
                 }
