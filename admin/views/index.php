@@ -177,15 +177,16 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="update-modal-label">更新内容</h5>
+                    <h5 class="modal-title" id="update-modal-label">检查更新</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div id="update-modal-loading"></div>
-                    <div id="update-modal-msg"></div>
-                    <div id="update-modal-content"></div>
+                    <div id="update-modal-msg" class="text-center"></div>
+                    <div id="update-modal-changes"></div>
+                    <div id="update-modal-btn" class="mt-2 text-right"></div>
                 </div>
             </div>
         </div>
@@ -204,21 +205,26 @@
         function checkupdate() {
             $("#update-modal").modal('show');
             $("#update-modal-loading").addClass("spinner-border text-primary")
-            var response = "";
+            var rep_msg = "";
+            var rep_changes = "";
+            var rep_btn = "";
             $.get("./upgrade.php?action=check_update", function (result) {
-                if (result.code == 1001) {
-                    response = "您的emlog pro尚未注册，<a href=\"auth.php\">去注册</a>";
-                } else if (result.code == 1002) {
-                    response = "已经是最新版本";
-                } else if (result.code == 200) {
-                    response = "有可用的新版本 " + result.data.version + " <br><br>" +
-                        "<a id=\"doup\" href=\"javascript:doup('" + result.data.file + "','" + result.data.sql + "');\" class=\"btn btn-success btn-sm\">现在更新</a>";
+                if (result.code === 1001) {
+                    rep_msg = "您的emlog pro尚未注册，<a href=\"auth.php\">去注册</a>";
+                } else if (result.code === 1002) {
+                    rep_msg = "已经是最新版本";
+                } else if (result.code === 200) {
+                    rep_msg = "有可用的新版本：<span class=\"text-danger\">" + result.data.version + "</span> <br><br>";
+                    rep_changes = "<b>更新内容</b>：<br>" + result.data.changes
+                    rep_btn = "<hr><a id=\"doup\" href=\"javascript:doup('" + result.data.file + "','" + result.data.sql + "');\" class=\"btn btn-success btn-sm\">现在更新</a>";
                 } else {
-                    response = "检查失败，可能是网络问题";
+                    rep_msg = "检查失败，可能是网络问题";
                 }
 
                 $("#update-modal-loading").removeClass();
-                $("#update-modal-content").html(response);
+                $("#update-modal-msg").html(rep_msg);
+                $("#update-modal-changes").html(rep_changes);
+                $("#update-modal-btn").html(rep_btn);
             });
         }
 
