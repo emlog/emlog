@@ -252,7 +252,7 @@
                 upmsg.removeClass();
 
                 if (data.includes("succ")) {
-                    updateModalMsg.html('恭喜，更新成功了，请 <a href="./">刷新页面</a> 开始体验新版本');
+                    updateModalMsg.html('🎉恭喜，更新成功了🎉，<a href="./">刷新页面</a> 开始体验新版本');
                 } else if (data.includes("error_down")) {
                     updateModalMsg.html('下载更新失败，可能是服务器网络问题');
                 } else if (data.includes("error_zip")) {
