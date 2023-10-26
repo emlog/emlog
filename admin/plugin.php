@@ -38,6 +38,9 @@ if ($action == 'active') {
 
 if ($action == 'inactive') {
     LoginAuth::checkToken();
+    if (strpos($plugin, 'tpl_options') !== false) {
+        emDirect("./plugin.php?error_sys=1");
+    }
     $Plugin_Model = new Plugin_Model();
     $Plugin_Model->inactivePlugin($plugin);
     $CACHE->updateCache('options');
@@ -72,6 +75,9 @@ if ($action == 'del') {
     $Plugin_Model->inactivePlugin($plugin);
     $Plugin_Model->rmCallback($plugin);
     $path = preg_replace("/^([\w-]+)\/[\w-]+\.php$/i", "$1", $plugin);
+    if ($path === 'tpl_options') {
+        emDirect("./plugin.php?error_sys=1");
+    }
     if ($path && true === emDeleteFile('../content/plugins/' . $path)) {
         $CACHE->updateCache('options');
         emDirect("./plugin.php?activate_del=1");

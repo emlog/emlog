@@ -27,6 +27,8 @@
     <div class="alert alert-danger">更新失败，无法下载更新包，可能是服务器网络问题。</div><?php endif ?>
 <?php if (isset($_GET['error_i'])): ?>
     <div class="alert alert-danger">您的emlog pro尚未注册</div><?php endif ?>
+<?php if (isset($_GET['error_sys'])): ?>
+    <div class="alert alert-danger">系统依赖插件，请勿删除和关闭</div><?php endif ?>
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">插件扩展</h1>
@@ -63,9 +65,6 @@
                 if ($plugins):
                     $i = 0;
                     foreach ($plugins as $val):
-                        if ($val['Plugin'] === 'tpl_options') {
-                            continue;
-                        }
                         $plug_state = '';
                         $plug_action = 'active';
                         if ($val['active']) {
