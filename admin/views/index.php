@@ -154,9 +154,9 @@
                 <div class="card-body admin_index_list">
                     <ul class="list-group list-group-flush">
                         <li class="msg_type_0"><a href="https://www.emlog.net/docs/#/faq" target="_blank">使用帮助 | 常见问题</a></li>
-                        <li class="msg_type_0"><a href="https://www.emlog.net/docs/#/" target="_blank">应用开发 | 开发文档</a></li>
                         <li class="msg_type_0"><a href="https://www.emlog.net/docs/#/contact" target="_blank">联系交流 | 加入社群</a></li>
                         <li class="msg_type_0"><a href="https://emlog.cn/" target="_blank">问题反馈 | 官方社区</a></li>
+                        <li class="msg_type_0"><a href="https://www.emlog.net/docs/#/develop" target="_blank">应用开发 | 开发文档</a></li>
                     </ul>
                 </div>
             </div>
