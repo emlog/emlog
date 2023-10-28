@@ -1,6 +1,4 @@
-<?php if (!defined('EMLOG_ROOT')) {
-    exit('error!');
-} ?>
+<?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-xl-6 col-lg-10 col-md-9">

@@ -2,9 +2,7 @@
 /**
  * 加密文章输入密码页面
  */
-if (!defined('EMLOG_ROOT')) {
-    exit('error!');
-}
+defined('EMLOG_ROOT') || exit('access denied!');
 ?>
 <!doctype html>
 <html lang="zh-cn">

@@ -1,6 +1,4 @@
-<?php if (!defined('EMLOG_ROOT')) {
-    exit('error!');
-} ?>
+<?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
     <div class="d-sm-flex align-items-center justify-content-between mb-3">
         <div class="mb-0 text-gray-800">
             <span class="h3">欢迎，<a class="small" href="./blogger.php"><?= $user_cache[UID]['name'] ?></a></span>

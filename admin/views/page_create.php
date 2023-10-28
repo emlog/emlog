@@ -1,6 +1,4 @@
-<?php if (!defined('EMLOG_ROOT')) {
-    exit('error!');
-} ?>
+<?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
 <form action="page.php?action=save" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
     <h1 class="h3 mb-4 text-gray-800"><?= $containertitle ?></h1>
     <div class="row">

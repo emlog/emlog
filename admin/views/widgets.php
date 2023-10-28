@@ -1,6 +1,4 @@
-<?php if (!defined('EMLOG_ROOT')) {
-    exit('error!');
-} ?>
+<?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
 <?php if (isset($_GET['activated'])): ?>
     <div class="alert alert-success">保存成功</div><?php endif ?>
 <h1 class="h3 mb-4 text-gray-800">侧边栏</h1>

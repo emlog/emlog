@@ -1,6 +1,4 @@
-<?php if (!defined('EMLOG_ROOT')) {
-    exit('error!');
-} ?>
+<?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
 <?php if (isset($_GET['active_reg'])): ?>
     <div class="alert alert-success">🎉 恭喜，注册成功 🎉</div><?php endif ?>
 <?php if (isset($_GET['error_b'])): ?>

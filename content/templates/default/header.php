@@ -6,9 +6,7 @@ Description:这是emlog pro的默认模板
 Author:emlog官方
 Author Url:https://www.emlog.net
 */
-if (!defined('EMLOG_ROOT')) {
-    exit('error!');
-}
+defined('EMLOG_ROOT') || exit('access denied!');
 require_once View::getView('module');
 
 if (!function_exists('_g')) {

@@ -1,6 +1,4 @@
-<?php if (!defined('EMLOG_ROOT')) {
-    exit('error!');
-} ?>
+<?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
 <?php if (isset($_GET['error_nickname'])): ?>
     <div class="alert alert-danger">昵称不能都为空</div><?php endif ?>
 <?php if (isset($_GET['error_email'])): ?>

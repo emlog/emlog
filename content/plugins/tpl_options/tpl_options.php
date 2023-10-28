@@ -7,7 +7,7 @@ Description: 为模版增加丰富的设置功能，详见官网文档-模板开
 Author: emlog
 */
 
-!defined('EMLOG_ROOT') && exit('access denied!');
+defined('EMLOG_ROOT') || exit('access denied!');
 
 /**
  * 模板设置类

@@ -2,9 +2,7 @@
 /**
  * 侧边栏组件、页面模块
  */
-if (!defined('EMLOG_ROOT')) {
-    exit('error!');
-}
+defined('EMLOG_ROOT') || exit('access denied!');
 ?>
 <?php
 /**

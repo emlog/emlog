@@ -14,7 +14,7 @@ require_once '../init.php';
 
 $sta_cache = $CACHE->readCache('sta');
 $user_cache = $CACHE->readCache('user');
-$action = isset($_GET['action']) ? addslashes($_GET['action']) : '';
+$action = Input::getStrVar('action');
 $admin_path_code = isset($_GET['s']) ? addslashes(htmlClean($_GET['s'])) : '';
 $User_Model = new User_Model();
 

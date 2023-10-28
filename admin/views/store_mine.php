@@ -1,6 +1,4 @@
-<?php if (!defined('EMLOG_ROOT')) {
-    exit('error!');
-} ?>
+<?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
 <?php if (isset($_GET['error'])): ?>
     <div class="alert alert-danger">商店暂不可用，可能是网络问题</div><?php endif ?>
 

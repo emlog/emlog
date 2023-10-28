@@ -1,6 +1,4 @@
-<?php if (!defined('EMLOG_ROOT')) {
-    exit('error!');
-} ?>
+<?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
 <div class="d-flex align-items-center justify-content-between mb-4">
     <div class="d-flex align-items-center mb-4">
         <div class="flex-shrink-0">

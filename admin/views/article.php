@@ -1,7 +1,5 @@
 <?php
-if (!defined('EMLOG_ROOT')) {
-    exit('error!');
-}
+defined('EMLOG_ROOT') || exit('access denied!');
 $isdraft = $draft ? '&draft=1' : '';
 ?>
 <?php if (isset($_GET['active_del'])): ?>

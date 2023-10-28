@@ -1,6 +1,4 @@
-<?php if (!defined('EMLOG_ROOT')) {
-    exit('error!');
-} ?>
+<?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
 <?php if (isset($_GET['activate_install'])): ?>
     <div class="alert alert-success">插件安装成功，请开启使用</div><?php endif ?>
 <?php if (isset($_GET['activate_upgrade'])): ?>

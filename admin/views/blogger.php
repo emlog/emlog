@@ -1,6 +1,4 @@
-<?php if (!defined('EMLOG_ROOT')) {
-    exit('error!');
-} ?>
+<?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
 <?php if (isset($_GET['active_edit'])): ?>
     <div class="alert alert-success">资料修改成功</div><?php endif ?>
 <?php if (isset($_GET['active_del'])): ?>

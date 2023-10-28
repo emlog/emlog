@@ -2,9 +2,7 @@
 /**
  * 侧边栏
  */
-if (!defined('EMLOG_ROOT')) {
-    exit('error!');
-}
+defined('EMLOG_ROOT') || exit('access denied!');
 ?>
 <div class="column-small side-bar">
     <?php
