@@ -345,7 +345,7 @@ class Api_Controller {
         $author_uid = Input::postIntVar('author_uid', 1);
         $attach = isset($_FILES['file']) ? $_FILES['file'] : '';
 
-        // $this->checkApiKey();
+        $this->checkApiKey();
 
         if (!$attach || $attach['error'] === 4) {
             Output::error('Upload error');
