@@ -1,3 +1,43 @@
+// 资源管理
+function insert_media_img(fileurl, imgsrc) {
+    Editor.insertValue('[![](' + imgsrc + ')](' + fileurl + ')\n\n');
+}
+
+function insert_media_video(fileurl) {
+    Editor.insertValue('<video class=\"video-js\" controls preload=\"auto\" width=\"100%\" data-setup=\'{"aspectRatio":"16:9"}\'> <source src="' + fileurl + '" type=\'video/mp4\' > </video>');
+}
+
+function insert_media_audio(fileurl) {
+    Editor.insertValue('<audio src="' + fileurl + '" preload="none" controls loop></audio>');
+}
+
+function insert_media(fileurl, filename) {
+    Editor.insertValue('[' + filename + '](' + fileurl + ')\n\n');
+}
+
+function insert_cover(imgsrc) {
+    $('#cover_image').attr('src', imgsrc);
+    $('#cover').val(imgsrc);
+    $('#cover_rm').show();
+}
+
+async function delete_media(id) {
+    const confirmed = await Swal.fire({
+        title: '确定要删除该资源吗？',
+        icon: 'warning',
+        showCancelButton: true,
+        cancelButtonText: '取消',
+        confirmButtonText: '删除',
+    }).then((result) => result.isConfirmed);
+
+    if (confirmed) {
+        await $.post('./media.php?action=delete_async', {aid: id});
+        $('#image-list').html('');
+        page = 1
+        loadImages();
+    }
+}
+
 // 插入资源列表
 let page = 1;
 let sid = 0;
@@ -12,7 +52,7 @@ function loadImages() {
         },
         success: function (resp) {
             $.each(resp.data.images, function (i, image) {
-                var insertBtnHtml = '';
+                let insertBtnHtml = '';
                 if (image.media_type === 'image') {
                     insertBtnHtml = '<a href="javascript:insert_media_img(\'' + image.media_url + '\', \'' + image.media_icon + '\')" class="btn btn-sm"><i class="icofont-plus"></i> 插入文章</a>' +
                         '<a href="javascript:insert_cover(\'' + image.media_icon + '\')" class="btn btn-sm"><i class="icofont-image"></i> 设为封面</a>';
@@ -23,6 +63,7 @@ function loadImages() {
                 } else {
                     insertBtnHtml = '<a href="javascript:insert_media(\'' + image.media_url + '\', \'' + image.media_name + '\')" class="btn btn-sm"><i class="icofont-plus"></i> 插入文章</a>';
                 }
+                insertBtnHtml += '<a href="javascript:delete_media(\'' + image.media_id + '\')" class="btn btn-sm text-danger"><i class="icofont-trash"></i></a>';
                 var cardHtml = '<div class="col-md-4">' +
                     '<div class="card mb-2 shadow-sm">' +
                     '<a href="' + image.media_url + '" target="_blank"><img class="card-img-top" src="' + image.media_icon + '"/></a>' +
@@ -34,6 +75,7 @@ function loadImages() {
             });
             if (resp.data.hasMore) {
                 page++;
+                $('#load-more').show();
             } else {
                 $('#load-more').hide();
             }
@@ -60,6 +102,7 @@ $('#media-sort-select').change(function () {
 $('#load-more').click(function () {
     loadImages();
 });
+
 // 上传资源
 Dropzone.autoDiscover = false;
 var myDropzone = new Dropzone("#mediaAdd", {

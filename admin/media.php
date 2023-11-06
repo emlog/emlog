@@ -56,6 +56,7 @@ if ($action === 'lib') {
 
     $ret['hasMore'] = !(count($medias) < $perPageCount);
     foreach ($medias as $v) {
+        $data['media_id'] = $v['aid'];
         $data['media_path'] = $v['filepath'];
         $data['media_url'] = rmUrlParams(getFileUrl($v['filepath']));
         $data['media_name'] = subString($v['filename'], 0, 20);
@@ -136,6 +137,12 @@ if ($action === 'delete') {
     $aid = Input::getIntVar('aid');
     $Media_Model->deleteMedia($aid);
     emDirect("media.php?active_del=1");
+}
+
+if ($action === 'delete_async') {
+    $aid = Input::postIntVar('aid');
+    $Media_Model->deleteMedia($aid);
+    output::ok();
 }
 
 if ($action === 'operate_media') {

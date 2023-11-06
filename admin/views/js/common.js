@@ -232,28 +232,6 @@ function checkalias() {
     }
 }
 
-function insert_media_img(fileurl, imgsrc) {
-    Editor.insertValue('[![](' + imgsrc + ')](' + fileurl + ')\n\n');
-}
-
-function insert_media_video(fileurl) {
-    Editor.insertValue('<video class=\"video-js\" controls preload=\"auto\" width=\"100%\" data-setup=\'{"aspectRatio":"16:9"}\'> <source src="' + fileurl + '" type=\'video/mp4\' > </video>');
-}
-
-function insert_media_audio(fileurl) {
-    Editor.insertValue('<audio src="' + fileurl + '" preload="none" controls loop></audio>');
-}
-
-function insert_media(fileurl, filename) {
-    Editor.insertValue('[' + filename + '](' + fileurl + ')\n\n');
-}
-
-function insert_cover(imgsrc) {
-    $('#cover_image').attr('src', imgsrc);
-    $('#cover').val(imgsrc);
-    $('#cover_rm').show();
-}
-
 // act 1：auto save 2：save
 function autosave(act) {
     const nodeid = "as_logid";
