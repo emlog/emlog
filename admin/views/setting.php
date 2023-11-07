@@ -140,7 +140,7 @@
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="accept_app_recs" id="accept_app_recs" <?= $conf_accept_app_recs ?> />
-                <label>接收来自官方的应用推荐（影响后台首页今日应用的展示）</label>
+                <label>接收来自官方的应用推荐（后台首页应用推荐展示）</label>
             </div>
             <hr>
 
