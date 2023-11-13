@@ -26,7 +26,7 @@ if ($action === 'auth') {
         emDirect("./auth.php?error_b=1");
     }
 
-    $r = Register::checkEmKey($emkey);
+    $r = Register::doReg($emkey);
 
     if ($r === false) {
         emDirect("./auth.php?error_b=1");

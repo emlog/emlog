@@ -30,10 +30,10 @@ class Register {
         $CACHE = Cache::getInstance();
         $options_cache = $CACHE->readCache('options');
         $emkey = isset($options_cache['emkey']) ? $options_cache['emkey'] : '';
-        return self::checkEmKey($emkey);
+        return self::verifyEmKey($emkey);
     }
 
-    public static function checkEmKey($emkey) {
+    public static function doReg($emkey) {
         if (strlen($emkey) !== self::EMKEY_LEN) {
             return false;
         }
@@ -41,6 +41,29 @@ class Register {
         $emcurl = new EmCurl();
         $emcurl->setPost(['emkey' => $emkey]);
         $emcurl->request('https://www.emlog.net/proauth/register');
+        if ($emcurl->getHttpStatus() !== 200) {
+            return false;
+        }
+        $response = $emcurl->getRespone();
+        $response = json_decode($response, 1);
+        if ($response['code'] !== 200) {
+            $CACHE = Cache::getInstance();
+            Option::updateOption('emkey', '');
+            $CACHE->updateCache('options');
+            return false;
+        }
+
+        return $response;
+    }
+
+    public static function verifyEmKey($emkey) {
+        if (strlen($emkey) !== self::EMKEY_LEN) {
+            return false;
+        }
+
+        $emcurl = new EmCurl();
+        $emcurl->setPost(['emkey' => $emkey]);
+        $emcurl->request('https://www.emlog.net/proauth/verify');
         if ($emcurl->getHttpStatus() !== 200) {
             return false;
         }
