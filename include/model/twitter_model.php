@@ -9,9 +9,11 @@
 class Twitter_Model {
 
     private $db;
+    private $parsedown;
 
     function __construct() {
         $this->db = Database::getInstance();
+        $this->parsedown = new Parsedown();
     }
 
     function addTwitter($tData) {
@@ -50,7 +52,8 @@ class Twitter_Model {
         $res = $this->db->query($sql);
         $tws = [];
         while ($row = $this->db->fetch_array($res)) {
-            $row['t'] = $row['content'];
+            $row['t'] = $this->parsedown->text($row['content']);
+            $row['t_raw'] = $row['content'];
             $row['date'] = smartDate($row['date']);
             $tws[] = $row;
         }

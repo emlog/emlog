@@ -307,13 +307,11 @@ class Api_Controller {
 
         $r = $this->Twitter_Model->getTwitters($author_uid, $page, $count);
 
-        $parsedown = new Parsedown();
-        $parsedown->setBreaksEnabled(true); //automatic line wrapping
-
         $notes = [];
         foreach ($r as $value) {
             $notes[] = [
-                't'           => $parsedown->text($value['t']),
+                't'           => $value['t'],
+                't_raw'       => $value['t_raw'],
                 'date'        => $value['date'],
                 'author_id'   => (int)$value['author'],
                 'author_name' => $this->getAuthorName($value['author']),

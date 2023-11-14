@@ -24,9 +24,6 @@ if (empty($action)) {
     $tws = $Twitter_Model->getTwitters($uid, $page, TW_PAGE_COUNT);
     $twnum = $Twitter_Model->getCount($uid);
 
-    $parsedown = new Parsedown();
-    $parsedown->setBreaksEnabled(true); //automatic line wrapping
-
     $subPage = '';
     foreach ($_GET as $key => $val) {
         $subPage .= $key != 'page' ? "&$key=$val" : '';
