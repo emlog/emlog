@@ -19,9 +19,9 @@
 <div class="card shadow mb-4 mt-2">
     <div class="card-body">
         <form action="setting.php?action=api_save" method="post" name="input" id="input">
+            <p>开启API：</p>
             <div class="form-group form-check">
-                <input class="form-check-input" type="checkbox" value="y" name="is_openapi" id="is_openapi" <?= $conf_is_openapi ?> />
-                <label class="form-check-label">开启API</label>
+                <input class="mui-switch mui-switch-animbg" type="checkbox" value="y" name="is_openapi" id="is_openapi" <?= $conf_is_openapi ?> />
             </div>
             <p>API秘钥：</p>
             <div class="input-group">
