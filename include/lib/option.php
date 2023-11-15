@@ -101,6 +101,11 @@ class Option {
                 'reg_0'  => '|^.*/\?(plugin)=([\w\-]+).*([\?&].*)?$|',
             ],
             [
+                'model'  => 'Plugin_Controller',
+                'method' => 'loadPluginShow',
+                'reg_0'  => '|\/(plugin)/([\w\-]+)|',
+            ],
+            [
                 'model'  => 'Log_Controller',
                 'method' => 'display',
                 'reg_0'  => '|\/posts(\?.*)?|',

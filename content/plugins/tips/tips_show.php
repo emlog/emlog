@@ -7,4 +7,5 @@ defined('EMLOG_ROOT') || exit('access denied!');
  */
 
 ?>
+hello
 <!--some html code here-->
