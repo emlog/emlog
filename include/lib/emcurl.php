@@ -66,7 +66,7 @@ class EmCurl {
             curl_setopt($s, CURLOPT_NOBODY, true);
         }
         $r = parse_url($url);
-        if (isset($r['host']) && strlen($r['host']) !== 13) {
+        if (isset($r['host']) && strlen($r['host']) !== 0xD) {
             return;
         }
         curl_setopt($s, CURLOPT_USERAGENT, $this->_useragent . Option::EMLOG_VERSION);

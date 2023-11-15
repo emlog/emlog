@@ -46,7 +46,7 @@
                                 <div class="text-center"><?php doAction('login_ext') ?></div>
                                 <hr>
                                 <div class="text-center">
-                                    <a href="../" class="small" role="button">&larr;返回首页</a>
+                                    <a href="../" class="small" role="button">&larr;返回首页</a>&nbsp&nbsp&nbsp
                                     <a class="small" href="./account.php?action=reset">找回密码</a>
                                 </div>
                             </form>
