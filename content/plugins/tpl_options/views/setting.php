@@ -34,8 +34,11 @@ defined('EMLOG_ROOT') || exit('access denied!');
             <div class="vtpl-nav vtpl-nav-options tpl-nav-options">
                 <ul>
                     <li onClick="TplShow('tpl-system')" class="active"><i class="ri-list-settings-line ri-lg"></i>设置说明</li>
-                    <?php foreach ($tplnavi as $key => $v): ?>
-                        <li onClick="TplShow('<?php echo $key; ?>')"><i class="<?php echo $tplnavi_icons[$key]?> ri-lg"></i><?php echo $v; ?></li>
+                    <?php
+                    foreach ($tplnavi as $key => $v):
+                        $icom_html = trim($tplnavi_icons[$key])?'<i class="'.$tplnavi_icons[$key].' ri-lg"></i>':'';
+                        ?>
+                        <li onClick="TplShow('<?php echo $key; ?>')"><?php echo $icom_html.$v; ?></li>
                     <?php endforeach; ?>
                 </ul>
             </div>
