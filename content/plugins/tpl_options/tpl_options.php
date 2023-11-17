@@ -191,7 +191,7 @@ class TplOptions
     public function hookAdminHead()
     {
         echo sprintf('<link rel="stylesheet" href="%s">', $this->_assets . 'main.css?ver=' . urlencode(self::VERSION));
-        echo sprintf('<link rel="stylesheet" href="%s">', $this->_assets . 'fonts/remixicon.min.css?ver=' . urlencode(self::VERSION));
+        echo sprintf('<link rel="stylesheet" href="%s">','https://cdn.bootcdn.net/ajax/libs/remixicon/3.5.0/remixicon.min.css?ver=' . urlencode(self::VERSION));
         echo sprintf('<script src="%s"></script>', $this->_assets . 'main.js?ver=' . urlencode(self::VERSION));
     }
 
