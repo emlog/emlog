@@ -53,8 +53,9 @@ $(function () {
                 }, 1000);
             }
         });
-    }).on('click', '.tpl-options-menu ul li', function () {
+    }).on('click', '.tpl-options-menu ul li,.tpl-nav-options ul li', function () {
         $('.tpl-options-menu ul li').removeClass('active');
+        $('.tpl-nav-options ul li').removeClass('active');
         $(this).addClass('active');
     }).on('click', '.tpl-options-close', function () {
         $('.container-fluid .row').fadeToggle();
@@ -72,6 +73,8 @@ $(function () {
 
     }).on('click', '.tpl-options-menu li', function () {
         //$('html,body').animate({scrollTop:$('#'+$(this).attr('data-id')).offset().top-80}, 500);
+    }).on('click', '.vtpl-menu,.vtpl-nav.show ul li,.fixed-body', function () {
+        $('.vtpl-nav').toggleClass('show')
     }).on('click', '.tpl-options-menubtn', function () {
         $('.tpl-options-menu').fadeToggle();
     }).on('click', '.tpl-options-btns', function () {
@@ -99,11 +102,6 @@ $(function () {
         var that = $(this);
         var right = that.parent().siblings('.option-sort-right');
         right.find('.option-sort-option').removeClass('selected').eq(that.find('option:selected').index()).addClass('selected');
-    }).on('mouseenter', '.tpl-options-form input[type="file"]', function () {
-        input = $(this);
-        trueInput.css(input.offset());
-        input.css('visibility', 'hidden');
-        trueInput.css('visibility', 'visible');
     }).on('submit', 'form.tpl-options-form', function () {
         var that = $(this);
         $.ajax({
