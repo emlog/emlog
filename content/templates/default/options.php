@@ -15,17 +15,13 @@ $options = [
         'values'      => [
             'tpl-head' => '头部设置',
         ],
-        /*
-        'icons' => [
-            'tpl-head' => 'ri-layout-top-line',
-        ],
-        */
         'description' => '<p>你好，这是默认模板的设置界面，请点击上方菜单进入设置项。</p>'
     ],
     'logotype'       => [
         'labels'  => 'tpl-head',
         'type'    => 'radio',
         'name'    => 'LOGO显示模式',
+        'new'     => 'NEW',
         'values'  => [
             '1' => '文字',
             '0' => '图片',
