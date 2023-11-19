@@ -37,7 +37,7 @@ defined('EMLOG_ROOT') || exit('access denied!');
         <div class="vtpl-wrapper">
             <div class="vtpl-nav vtpl-nav-options tpl-nav-options">
                 <ul>
-                    <li onClick="TplShow('tpl-system')" class="active"><i class="ri-list-settings-line ri-lg"></i>设置说明</li>
+                    <li onClick="TplShow('tpl-system')" class="active">设置说明</li>
                     <?php
                     foreach ($tplnavi as $key => $v):
                         $icom_html = '';
