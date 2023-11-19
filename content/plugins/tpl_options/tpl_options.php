@@ -12,8 +12,7 @@ defined('EMLOG_ROOT') || exit('access denied!');
 /**
  * 模板设置类
  */
-class TplOptions
-{
+class TplOptions {
 
     //插件标识
     const ID = 'tpl_options';
@@ -73,8 +72,7 @@ class TplOptions
      * 单例入口
      * @return TplOptions
      */
-    public static function getInstance()
-    {
+    public static function getInstance() {
         if (self::$_instance === null) {
             self::$_instance = new self();
         }
@@ -84,16 +82,14 @@ class TplOptions
     /**
      * 私有构造函数，保证单例
      */
-    private function __construct()
-    {
+    private function __construct() {
     }
 
     /**
      * 初始化函数
      * @return void
      */
-    public function init()
-    {
+    public function init() {
         if ($this->_inited === true) {
             return;
         }
@@ -108,42 +104,42 @@ class TplOptions
 
         //初始化模板设置类型
         $this->_types = array(
-            'radio' => array(
-                'name' => '单选按钮',
+            'radio'    => array(
+                'name'       => '单选按钮',
                 'allowMulti' => false,
             ),
-            'color' => array(
-                'name' => '颜色控件',
+            'color'    => array(
+                'name'       => '颜色控件',
                 'allowMulti' => false,
             ),
-            'checkon' => array(
-                'name' => '开关',
+            'checkon'  => array(
+                'name'       => '开关',
                 'allowMulti' => false,
             ),
             'checkbox' => array(
-                'name' => '复选按钮',
+                'name'       => '复选按钮',
                 'allowMulti' => true,
             ),
-            'text' => array(
-                'name' => '文本',
+            'text'     => array(
+                'name'       => '文本',
                 'allowMulti' => true,
-                'allowRich' => true,
+                'allowRich'  => true,
             ),
-            'image' => array(
-                'name' => '图片',
+            'image'    => array(
+                'name'       => '图片',
                 'allowMulti' => false,
             ),
-            'page' => array(
-                'name' => '页面',
+            'page'     => array(
+                'name'       => '页面',
                 'allowMulti' => true,
             ),
-            'sort' => array(
-                'name' => '分类',
-                'allowMulti' => true,
+            'sort'     => array(
+                'name'        => '分类',
+                'allowMulti'  => true,
                 'allowDepend' => true,
             ),
-            'tag' => array(
-                'name' => '标签',
+            'tag'      => array(
+                'name'       => '标签',
                 'allowMulti' => true,
             ),
         );
@@ -170,13 +166,12 @@ class TplOptions
      * 输出数据
      * @return void
      */
-    public function hookAdminMainTopData()
-    {
+    public function hookAdminMainTopData() {
         $templates = $this->getTemplates();
         $data = array(
             'templates' => $templates,
-            'prefix' => str_replace('_', '-', $this->_prefix),
-            'baseUrl' => $this->url(),
+            'prefix'    => str_replace('_', '-', $this->_prefix),
+            'baseUrl'   => $this->url(),
             'uploadUrl' => $this->url(array(
                 "do" => "upload"
             )),
@@ -188,10 +183,8 @@ class TplOptions
      * 头部，如css文件
      * @return void
      */
-    public function hookAdminHead()
-    {
+    public function hookAdminHead() {
         echo sprintf('<link rel="stylesheet" href="%s">', $this->_assets . 'main.css?ver=' . urlencode(self::VERSION));
-        echo sprintf('<link rel="stylesheet" href="%s">','https://cdn.bootcdn.net/ajax/libs/remixicon/3.5.0/remixicon.min.css?ver=' . urlencode(self::VERSION));
         echo sprintf('<script src="%s"></script>', $this->_assets . 'main.js?ver=' . urlencode(self::VERSION));
     }
 
@@ -200,8 +193,7 @@ class TplOptions
      * @param mixed $table 表名缩写，可选，若不设置则返回所有表，否则返回对应表
      * @return mixed 返回数组或字符串
      */
-    public function getTable($table = null)
-    {
+    public function getTable($table = null) {
         return $table === null ? $this->_tables : (isset($this->_tables[$table]) ? $this->_tables[$table] : '');
     }
 
@@ -210,8 +202,7 @@ class TplOptions
      * @param string $table 表名缩写
      * @return string 表全名
      */
-    private function getTableName($table)
-    {
+    private function getTableName($table) {
         return DB_PREFIX . $this->_prefix . $table;
     }
 
@@ -220,8 +211,7 @@ class TplOptions
      * @param mixed $template 模板名称，可选
      * @return array 模板参数
      */
-    public function getTemplateOptions($template = null)
-    {
+    public function getTemplateOptions($template = null) {
         if ($template === null) {
             $template = Option::get('nonce_templet');
         }
@@ -289,8 +279,7 @@ class TplOptions
      * @param array $options 模板参数
      * @return boolean
      */
-    public function setTemplateOptions($template, $options)
-    {
+    public function setTemplateOptions($template, $options) {
         if ($options === array()) {
             return true;
         }
@@ -298,9 +287,9 @@ class TplOptions
         foreach ($options as $name => $option) {
             $data[] = array(
                 'template' => $template,
-                'name' => $name,
-                'depend' => $option['depend'],
-                'data' => serialize($option['data']),
+                'name'     => $name,
+                'depend'   => $option['depend'],
+                'data'     => serialize($option['data']),
             );
         }
         return $this->insert('data', $data, true);
@@ -311,14 +300,13 @@ class TplOptions
      * @param boolean $unsorted 是否获取未分类
      * @return array
      */
-    private function getSorts($unsorted = false)
-    {
+    private function getSorts($unsorted = false) {
         $sorts = Cache::getInstance()->readCache('sort');
         if ($unsorted) {
             array_unshift($sorts, array(
-                'sid' => -1,
+                'sid'      => -1,
                 'sortname' => '未分类',
-                'lognum' => 0,
+                'lognum'   => 0,
                 'children' => array(),
             ));
         }
@@ -329,8 +317,7 @@ class TplOptions
      * 获取所有页面
      * @return array
      */
-    private function getPages()
-    {
+    private function getPages() {
         if ($this->_pages !== null) {
             return $this->_pages;
         }
@@ -348,8 +335,7 @@ class TplOptions
     /**
      * 获取数据库连接
      */
-    public function getDb()
-    {
+    public function getDb() {
         if ($this->_db !== null) {
             return $this->_db;
         }
@@ -363,8 +349,7 @@ class TplOptions
      * @param mixed $condition 字符串或数组条件
      * @return array 结果数据
      */
-    private function queryAll($table, $condition = '', $select = '*')
-    {
+    private function queryAll($table, $condition = '', $select = '*') {
         $table = $this->getTable($table) ? $this->getTable($table) : DB_PREFIX . $table;
         $subSql = $this->buildQuerySql($condition);
         $sql = "SELECT $select FROM `$table`";
@@ -385,8 +370,7 @@ class TplOptions
      * @param array $data 数据
      * @return bool 结果数据
      */
-    private function insert($table, $data, $replace = false)
-    {
+    private function insert($table, $data, $replace = false) {
         $table = $this->getTable($table);
         $subSql = $this->buildInsertSql($data);
         if ($replace) {
@@ -403,8 +387,7 @@ class TplOptions
      * @param mixed $condition 字符串或数组条件
      * @return string 根据条件构造的查询子句
      */
-    private function buildQuerySql($condition)
-    {
+    private function buildQuerySql($condition) {
         if (is_string($condition)) {
             return $condition;
         }
@@ -429,8 +412,7 @@ class TplOptions
      * @param array $data 数据
      * @return string 根据数据构造的子句
      */
-    private function buildInsertSql($data)
-    {
+    private function buildInsertSql($data) {
         $subSql = array();
         if (array_key_exists(0, $data)) {
             $keys = array_keys($data[0]);
@@ -454,8 +436,7 @@ class TplOptions
      * @param array $data 数据
      * @return string 形如('value1', 'value2')的字符串
      */
-    private function implodeSqlArray($data)
-    {
+    private function implodeSqlArray($data) {
         return implode(',', array_map(function ($val) {
             if (class_exists('mysqli', FALSE)) {
                 $val = $this->getDb()->escape_string($val);
@@ -470,8 +451,7 @@ class TplOptions
      * 插件设置函数
      * @return void
      */
-    public function setting()
-    {
+    public function setting() {
         $do = $this->arrayGet($_GET, 'do');
         $template = $this->arrayGet($_GET, 'template');
         $code = $this->arrayGet($_GET, 'code');
@@ -498,14 +478,14 @@ class TplOptions
             if (!is_dir(TPLS_PATH . $template)) {
                 $this->jsonReturn(array(
                     'code' => 1,
-                    'msg' => '该模板不存在',
+                    'msg'  => '该模板不存在',
                 ));
             }
             $options = $this->getTemplateDefinedOptions($template);
             if ($options === false) {
                 $this->jsonReturn(array(
                     'code' => 1,
-                    'msg' => '该模板不支持本插件设置',
+                    'msg'  => '该模板不支持本插件设置',
                 ));
             }
             $this->_currentTemplate = $template;
@@ -546,15 +526,15 @@ class TplOptions
                     }
                     $newOptions[$name] = array(
                         'depend' => $depend,
-                        'data' => $data,
+                        'data'   => $data,
                     );
                 }
                 $result = $this->setTemplateOptions($template, $newOptions);
                 $code = $result ? 0 : 1;
                 $data = array(
                     'template' => $template,
-                    'code' => $result ? 0 : 1,
-                    'msg' => '保存模板设置' . ($result ? '成功' : '失败'),
+                    'code'     => $result ? 0 : 1,
+                    'msg'      => '保存模板设置' . ($result ? '成功' : '失败'),
                 );
                 $this->jsonReturn($data);
             }
@@ -572,8 +552,7 @@ class TplOptions
      * @param mixed $data
      * @return boolean
      */
-    private function shouldBeArray($option, $data)
-    {
+    private function shouldBeArray($option, $data) {
         if (is_array($data)) {
             return false;
         }
@@ -594,8 +573,7 @@ class TplOptions
      * @param array $option
      * @return boolean
      */
-    private function isMulti($option)
-    {
+    private function isMulti($option) {
         return isset($option['multi']) && $option['multi'];
     }
 
@@ -606,11 +584,10 @@ class TplOptions
      * @param string $target 目标
      * @return array 上传结果信息
      */
-    private function upload($template, $file, $target)
-    {
+    private function upload($template, $file, $target) {
         $result = array(
             'code' => 0,
-            'msg' => '',
+            'msg'  => '',
             'name' => $file['name'],
             'size' => $file['size'],
             'path' => '',
@@ -681,8 +658,7 @@ class TplOptions
      * @param string $template
      * @return mixed
      */
-    private function getOptionValue(&$option, $storedOptions, $template)
-    {
+    private function getOptionValue(&$option, $storedOptions, $template) {
         if (isset($storedOptions[$option['id']])) {
             return $storedOptions[$option['id']];
         }
@@ -695,8 +671,7 @@ class TplOptions
      * @param string $template
      * @return mixed
      */
-    private function getOptionDefaultValue(&$option, $template)
-    {
+    private function getOptionDefaultValue(&$option, $template) {
         if (isset($option['default']) && !in_array($option['type'], array(
                 'page',
                 'sort',
@@ -762,8 +737,7 @@ class TplOptions
      * @param string $template
      * @return mixed
      */
-    private function replacePath($value, $template)
-    {
+    private function replacePath($value, $template) {
         $replace = array(
             TEMPLATE_URL => TPLS_URL . $template . '/',
         );
@@ -785,8 +759,7 @@ class TplOptions
      * 渲染设置页面的设置项
      * @return void
      */
-    private function renderOptions()
-    {
+    private function renderOptions() {
         foreach ($this->_options as $option) {
             $method = 'render' . ucfirst($option['type']);
             $this->$method($option);
@@ -797,8 +770,7 @@ class TplOptions
      * 渲染模板设置
      * @return void
      */
-    private function renderByTpl($option, $tpl, $loopValues = true, $placeholder = true)
-    {
+    private function renderByTpl($option, $tpl, $loopValues = true, $placeholder = true) {
         $desc = '';
         if (!empty($option['description'])) {
             $desc = '<div class="option-description">' . $option['description'] . '</div>';
@@ -845,19 +817,19 @@ class TplOptions
                         }
                         foreach ($option['values'] as $value => $label) {
                             echo strtr($tpl, array(
-                                '{name}' => $option['id'] . "[{$sid}]",
-                                '{value}' => $this->encode($value),
-                                '{label}' => $label,
+                                '{name}'    => $option['id'] . "[{$sid}]",
+                                '{value}'   => $this->encode($value),
+                                '{label}'   => $label,
                                 '{checked}' => $this->getCheckedString($value, $option['value'][$sid]),
                             ));
                         }
                     } else {
                         echo strtr($tpl, array(
-                            '{name}' => $option['id'] . "[{$sid}]",
+                            '{name}'  => $option['id'] . "[{$sid}]",
                             '{value}' => $this->encode($option['value'][$sid]),
                             '{label}' => '',
-                            '{path}' => $this->getImagePath($option['value'][$sid]),
-                            '{rich}' => $this->getRichString($option),
+                            '{path}'  => $this->getImagePath($option['value'][$sid]),
+                            '{rich}'  => $this->getRichString($option),
                         ));
                     }
                     echo '</div>';
@@ -874,19 +846,19 @@ class TplOptions
                     }
                     foreach ($option['values'] as $value => $label) {
                         echo strtr($tpl, array(
-                            '{name}' => $option['id'],
-                            '{value}' => $this->encode($value),
-                            '{label}' => $label,
+                            '{name}'    => $option['id'],
+                            '{value}'   => $this->encode($value),
+                            '{label}'   => $label,
                             '{checked}' => $this->getCheckedString($value, $option['value']),
                         ));
                     }
                 } else {
                     echo strtr($tpl, array(
-                        '{name}' => $option['id'],
+                        '{name}'  => $option['id'],
                         '{value}' => $this->encode($option['value']),
                         '{label}' => '',
-                        '{path}' => $this->getImagePath($option['value']),
-                        '{rich}' => $this->getRichString($option),
+                        '{path}'  => $this->getImagePath($option['value']),
+                        '{rich}'  => $this->getRichString($option),
                     ));
                 }
         }
@@ -898,8 +870,7 @@ class TplOptions
      * @param mixed $optionvalue
      * @return string
      */
-    private function getCheckedString($value, $optionValue)
-    {
+    private function getCheckedString($value, $optionValue) {
         return (is_array($optionValue) && in_array($value, $optionValue)) || $value == $optionValue ? ' checked="checked"' : '';
     }
 
@@ -907,8 +878,7 @@ class TplOptions
      * @param array $option
      * @return string
      */
-    private function getRichString($option)
-    {
+    private function getRichString($option) {
         return isset($option['rich']) && isset($this->_types[$option['type']]['allowRich']) ? ' option-rich-text' : '';
     }
 
@@ -916,8 +886,7 @@ class TplOptions
      * @param string $url
      * @return string
      */
-    private function getImagePath($url)
-    {
+    private function getImagePath($url) {
         return str_replace(BLOG_URL, '', $url);
     }
 
@@ -925,8 +894,7 @@ class TplOptions
      * @param array $option
      * @return void
      */
-    private function renderRadio($option)
-    {
+    private function renderRadio($option) {
         $tpl = '<div class="tpl-radio"><input id="{name}-{value}" name="{name}" type="radio" value="{value}"{checked}><label class="tpl-radio-label" for="{name}-{value}">{label}</label></div>';
 
         $this->renderByTpl($option, $tpl);
@@ -936,8 +904,7 @@ class TplOptions
      * @param array $option
      * @return void
      */
-    private function renderCheckon($option)
-    {
+    private function renderCheckon($option) {
         $tpl = '<label class="check-switch"><input type="checkbox" name="{name}" value="1"{checked}><span class="check-slider"></span></label>';
         $this->renderByTpl($option, $tpl);
     }
@@ -946,8 +913,7 @@ class TplOptions
      * @param array $option
      * @return void
      */
-    private function renderCheckbox($option)
-    {
+    private function renderCheckbox($option) {
         $tpl = '<label><input type="checkbox" name="{name}[]" value="{value}"{checked}> {label}</label>';
         $this->renderByTpl($option, $tpl);
     }
@@ -956,8 +922,7 @@ class TplOptions
      * @param array $option
      * @return void
      */
-    private function renderText($option)
-    {
+    private function renderText($option) {
         if ($this->isMulti($option)) {
             $tpl = '<textarea name="{name}" rows="8" class="option-textarea{rich}">{value}</textarea>';
         } else {
@@ -970,8 +935,7 @@ class TplOptions
      * @param array $option
      * @return void
      */
-    private function renderColor($option)
-    {
+    private function renderColor($option) {
         $tpl = '<input type="color" name="{name}" value="{value}">';
         $this->renderByTpl($option, $tpl, false);
     }
@@ -981,8 +945,7 @@ class TplOptions
      * @param array $option
      * @return void
      */
-    private function renderImage($option)
-    {
+    private function renderImage($option) {
         $tpl = '<span class="image-tip">友情提示：选择文件后将会立刻上传覆盖原图</span><a href="{value}" target="_blank" data-name="{name}"><img src="{value}"></a><input type="file" accept="image/*" data-target="{name}"><input type="hidden" name="{name}" value="{path}">';
         $this->renderByTpl($option, $tpl, false);
     }
@@ -991,8 +954,7 @@ class TplOptions
      * @param array $option
      * @return void
      */
-    private function renderPage($option)
-    {
+    private function renderPage($option) {
         $pages = $this->getPages();
         $option['values'] = $pages;
         if ($this->isMulti($option)) {
@@ -1006,8 +968,7 @@ class TplOptions
      * @param array $option
      * @return void
      */
-    private function renderSort($option)
-    {
+    private function renderSort($option) {
         if (isset($option['depend']) && $option['depend'] == 'sort') {
             unset($option['depend']);
         }
@@ -1028,8 +989,7 @@ class TplOptions
      * @param array $option
      * @return void
      */
-    private function renderTag($option)
-    {
+    private function renderTag($option) {
         $tags = Cache::getInstance()->readCache('tags');
         $values = array();
         foreach ($tags as $tag) {
@@ -1044,8 +1004,7 @@ class TplOptions
      * @param string $value
      * @return string
      */
-    private function encode($value)
-    {
+    private function encode($value) {
         return htmlspecialchars($value);
     }
 
@@ -1053,8 +1012,7 @@ class TplOptions
      * 获取支持的模板
      * @return array
      */
-    private function getTemplates()
-    {
+    private function getTemplates() {
         $handle = @opendir(TPLS_PATH);
         if ($handle === false) {
             return array();
@@ -1086,8 +1044,7 @@ class TplOptions
      * @param string $template 模板
      * @return string
      */
-    private function getTemplatePreview($template)
-    {
+    private function getTemplatePreview($template) {
         if (is_file(TPLS_PATH . $template . '/preview.jpg')) {
             return TPLS_URL . $template . '/preview.jpg';
         }
@@ -1099,8 +1056,7 @@ class TplOptions
      * @param string $optionFile
      * @return mixed false表示不支持本插件
      */
-    private function getTemplateDefinedOptions($template)
-    {
+    private function getTemplateDefinedOptions($template) {
         if (!is_file($optionFile = TPLS_PATH . $template . '/options.php')) {
             return false;
         }
@@ -1114,8 +1070,7 @@ class TplOptions
         return false;
     }
 
-    private function buildImageUrl($path)
-    {
+    private function buildImageUrl($path) {
         if (is_array($path)) {
             return array_map(array(
                 $this,
@@ -1131,8 +1086,7 @@ class TplOptions
      * @param string $ext 模板后缀，默认为.php
      * @return string 模板文件全路径
      */
-    public function view($view, $ext = '.php')
-    {
+    public function view($view, $ext = '.php') {
         return $this->_view . $view . $ext;
     }
 
@@ -1141,8 +1095,7 @@ class TplOptions
      * @param array $params
      * @return string
      */
-    public function url($params = array())
-    {
+    public function url($params = array()) {
         $baseUrl = './plugin.php?plugin=' . self::ID;
         $url = http_build_query($params);
         if ($url === '') {
@@ -1157,8 +1110,7 @@ class TplOptions
      * @param mixed $data
      * @return void
      */
-    public function jsonReturn($data)
-    {
+    public function jsonReturn($data) {
         ob_clean();
         echo json_encode($data);
         exit;
@@ -1171,8 +1123,7 @@ class TplOptions
      * @param mixed $default 默认值
      * @return mixed
      */
-    public function arrayGet($array, $key, $default = null)
-    {
+    public function arrayGet($array, $key, $default = null) {
         if (array_key_exists($key, $array)) {
             return $array[$key];
         }
@@ -1190,8 +1141,7 @@ class TplOptions
      * @param string $name
      * @return mixed
      */
-    public function __get($name)
-    {
+    public function __get($name) {
         $object = new stdClass();
         $object->name = $name;
         $object->data = $this->arrayGet($this->getTemplateOptions(), $name);
@@ -1200,8 +1150,7 @@ class TplOptions
     }
 }
 
-function _g($name = null)
-{
+function _g($name = null) {
     if ($name === null) {
         return TplOptions::getInstance()->getTemplateOptions();
     } else {
