@@ -164,7 +164,7 @@ if (!$act) {
             }
 
             .care {
-                color: gray;
+                color: rgb(128, 128, 128);
             }
 
             .install-title {
