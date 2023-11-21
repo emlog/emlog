@@ -2,7 +2,7 @@
 defined('EMLOG_ROOT') || exit('access denied!');
 ?>
 
-<div class="vtpl-theme-light">
+<div class="vtpl-modern-theme">
     <div class="vtpl-container">
         <div class="vtpl-header vtpl-sticky-header">
             <div class="vtpl-header-inner">
@@ -30,11 +30,11 @@ defined('EMLOG_ROOT') || exit('access denied!');
             }
             ?>
         <?php else: ?>
-            <style>.option {
-                    display: block !important
+            <style>.vtpl-option-main {
+                    display: none !important
                 }</style>
         <?php endif; ?>
-        <div class="vtpl-wrapper">
+        <div class="vtpl-wrapper vtpl-option-main">
             <div class="vtpl-nav vtpl-nav-options tpl-nav-options">
                 <ul>
                     <li onClick="TplShow('tpl-system')" class="active">设置说明</li>

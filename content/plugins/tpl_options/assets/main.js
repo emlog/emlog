@@ -132,7 +132,6 @@ $(function () {
             error: function (data) {
                 $(_this_data_opt_s + ' .chosen-drop' + ' .chosen-results').html(data)
             }
-
         });
     }).on('click', '.chosen-results .active-result', function () {
         let title = $(this).html()
@@ -156,22 +155,73 @@ $(function () {
         $(this).find('span').toggleClass('icofont-rounded-down')
     }).on('click', '.tpl-add-block', function () {
         let _name = $(this).attr('data-b-name')
+        let _type = $(this).attr('data-type')
+        let _url = $(this).attr('data-url')
         let type_html = ''
-        type_html = '<span>填写内容：</span>'
-        type_html += '<input type="text" name="' + _name + '[]" value="">';
+        if (_type === 'image') {
+            type_html = '<div class="tpl-block-upload"><span>填写块标题：</span>' +
+                '<input class="block-title-input" type="text" name="' + _name + '[title][]" value="">' +
+                '<div class="tpl-image-preview"><img src=""></div><div class="tpl-block-upload-input">' +
+                '<input type="text" name="' + _name + '[content][]" value=""><label>\n' +
+                '<a class="btn btn-primary"><i class="icofont-plus"></i>上传</a>\n' +
+                '<input class="d-none tpl-image" type="file" name="image" data-url="' + _url + '" accept="image/gif,image/jpeg,image/jpg,image/png">\n' +
+                '</label>'
+            type_html += '</div></div>';
+        } else {
+            type_html += '<span>填写块标题：</span>'
+            type_html += '<input class="block-title-input" type="text" name="' + _name + '[title][]" value="">';
+            type_html += '<span>填写块内容：</span>'
+            type_html += '<textarea rows="8" name="' + _name + '[content][]"></textarea>';
+        }
         $(this).before('<div class="tpl-block-item">\n' +
             '    <div class="tpl-block-head">\n' +
-            '<i class="tpl-block-clone icofont-ui-copy"></i>\n' +
-            '        <i class="tpl-block-remove icofont-close icofont-md"></i>\n' +
+            '    <i class="tpl-block-clone icofont-ui-copy"></i>\n' +
+            '    <i class="tpl-block-remove icofont-close icofont-md"></i>\n' +
             '    </div>\n' +
             '    <h4 class="tpl-block-title">\n' +
-            '        <span class="tpl-block-title-icon icofont-rounded-right"></span>\n' +
+            '    <span class="tpl-block-title-icon icofont-rounded-right"></span>\n' +
+            '    <item class="block-title-text"></item>' +
             '    </h4>\n' +
             '    <div class="tpl-block-content d-none">\n' +
             type_html +
             '    </div>\n' +
             '</div>')
         $('form.tpl-options-form').trigger('submit');
+    }).on('change', '.tpl-image', function () {
+        let obj = this;
+        let file = $(this).prop('files')[0];
+        let _url = $(this).attr('data-url')
+        let _target_input = $(this).parent().parent().find('input[type="text"]')
+        let _target_img = $(this).parent().parent().prev().find('img')
+        let formData = new FormData();
+        if (file === undefined || file === null) return
+        formData.append("action", 'tpl_upload')
+        formData.append("image", file)
+        formData.append("origin_image", _target_input.val())
+        $.ajax({
+            url: _url + 'content/plugins/tpl_options/actions/tpl.php',
+            type: 'post',
+            data: formData,
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                let j_data = JSON.parse(data)
+                if (j_data.code === 'success') {
+                    _target_input.val(j_data.data)
+                    _target_img.attr('src', j_data.data + '?' + new Date().getTime())
+                    obj.value = ''
+                    $('form.tpl-options-form').trigger('submit');
+                } else {
+                    cocoMessage.error(j_data.data, 2500);
+                }
+            },
+            error: function (data) {
+                cocoMessage.error('网络异常', 2500);
+            }
+
+        });
+
     }).on('click', '.tpl-block-remove', function () {
         if (confirm('真的要删除吗？')) {
             $(this).parent().parent().remove()
@@ -181,6 +231,18 @@ $(function () {
         let _this_clone = $(this).parent().parent().clone()
         $(this).parent().parent().after(_this_clone)
         $('form.tpl-options-form').trigger('submit');
+    }).on('input change focus', '.block-title-input', function () {
+        let _tar = $(this).parent().prev().find('item')
+        if ($(this).parent().hasClass('tpl-block-upload')) {
+            _tar = $(this).parent().parent().prev().find('item')
+        }
+        _tar.html($(this).val())
+    }).on('click', '.vtpl-switch-item input[type="checkbox"]', function () {
+        if ($(this).is(":checked")) {
+            $(this).parent().parent().addClass('vtpl-checked')
+        } else {
+            $(this).parent().parent().removeClass('vtpl-checked')
+        }
     }).on('mouseenter', '.tpl-options-form input[type="file"]', function () {
         input = $(this);
         trueInput.css(input.offset());
@@ -191,15 +253,18 @@ $(function () {
         $.ajax({
             url: that.attr('action'), type: 'post', data: that.serialize(), cache: false, dataType: 'json', // beforeSend: loading,
             success: function (data) {
-                showMsg(data.code, data.msg);
+                if(data.code === 1){
+                    cocoMessage.error(data.msg, 2500);
+                }
+                cocoMessage.success(data.msg, 2500);
             }, error: function () {
-                showMsg(1, '网络异常');
+                cocoMessage.error('网络异常', 2500);
             }, complete: function () {
                 // loading(false);
             }
         });
         return false;
-    }).on('change', '.tpl-options-form input:not(.chosen-search-input), .tpl-options-form textarea', function () {
+    }).on('change', '.tpl-options-form input:not(.chosen-search-input,.tpl-image), .tpl-options-form textarea', function () {
         $('form.tpl-options-form').trigger('submit');
     });
     //定义方法
