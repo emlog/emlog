@@ -204,6 +204,7 @@ class TplOptions
     public function hookAdminHead()
     {
         echo sprintf('<link rel="stylesheet" href="%s">', $this->_assets . 'main.min.css?ver=' . urlencode(self::VERSION));
+        echo sprintf('<script src="%s"></script>', $this->_assets . 'message.min.js?ver=' . urlencode(self::VERSION));
         echo sprintf('<script src="%s"></script>', $this->_assets . 'main.min.js?ver=' . urlencode(self::VERSION));
     }
 

@@ -213,11 +213,11 @@ $(function () {
                     obj.value = ''
                     $('form.tpl-options-form').trigger('submit');
                 } else {
-                    showMsg(1, j_data.data);
+                    cocoMessage.error(j_data.data, 2500);
                 }
             },
             error: function (data) {
-                showMsg(1, '网络异常');
+                cocoMessage.error('网络异常', 2500);
             }
 
         });
@@ -253,9 +253,12 @@ $(function () {
         $.ajax({
             url: that.attr('action'), type: 'post', data: that.serialize(), cache: false, dataType: 'json', // beforeSend: loading,
             success: function (data) {
-                showMsg(data.code, data.msg);
+                if(data.code === 1){
+                    cocoMessage.error(data.msg, 2500);
+                }
+                cocoMessage.success(data.msg, 2500);
             }, error: function () {
-                showMsg(1, '网络异常');
+                cocoMessage.error('网络异常', 2500);
             }, complete: function () {
                 // loading(false);
             }
