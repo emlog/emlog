@@ -255,6 +255,7 @@ $(function () {
             success: function (data) {
                 if(data.code === 1){
                     cocoMessage.error(data.msg, 2500);
+                    return false;
                 }
                 cocoMessage.success(data.msg, 2500);
             }, error: function () {
