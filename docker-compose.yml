@@ -1,7 +1,7 @@
 version: '3'
 services:
   db:
-    image: mysql/mysql-server:5.7
+    image: mysql:latest
     container_name: mysql
     command:
       - --default_authentication_plugin=mysql_native_password
@@ -20,26 +20,26 @@ services:
     networks:
       - emlog_network
 
-#  db:
-#    image: mariadb:latest
-#    container_name: mariadb
-#    command:
-#      - --default_authentication_plugin=mysql_native_password
-#      - --character-set-server=utf8mb4
-#      - --collation-server=utf8mb4_unicode_ci
-#      - --sql-mode=STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION,ONLY_FULL_GROUP_BY
-#    volumes:
-#      - ./db_data/mariadb:/var/lib/mysql
-#    ports:
-#      - "5506:3306"
-#    restart: always
-#    environment:
-#      MARIADB_ROOT_PASSWORD: 12345678
-#      MARIADB_DATABASE: emlog
-#      MARIADB_USER: emlog
-#      MARIADB_PASSWORD: emlog
-#    networks:
-#      - emlog_network
+  #  db:
+  #    image: mariadb:latest
+  #    container_name: mariadb
+  #    command:
+  #      - --default_authentication_plugin=mysql_native_password
+  #      - --character-set-server=utf8mb4
+  #      - --collation-server=utf8mb4_unicode_ci
+  #      - --sql-mode=STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION,ONLY_FULL_GROUP_BY
+  #    volumes:
+  #      - ./db_data/mariadb:/var/lib/mysql
+  #    ports:
+  #      - "5506:3306"
+  #    restart: always
+  #    environment:
+  #      MARIADB_ROOT_PASSWORD: 12345678
+  #      MARIADB_DATABASE: emlog
+  #      MARIADB_USER: emlog
+  #      MARIADB_PASSWORD: emlog
+  #    networks:
+  #      - emlog_network
 
   php:
     image: emlog/emlog:pro-php8.1
