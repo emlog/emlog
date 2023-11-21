@@ -1093,6 +1093,7 @@ class TplOptions
         if (isset($option['pattern']) && trim($option['pattern']) === 'num') {
             $max = '';
             $min = '';
+            $limit_html = '';
             $unit_html = isset($option['unit']) && trim($option['unit']) !== '' ? '<span class="tpl-number-input-unit">' . trim($option['unit']) . '</span>' : '';
             if (isset($option['max']) && trim($option['max']) !== '') {
                 $max = trim($option['max']);
@@ -1100,8 +1101,15 @@ class TplOptions
             if (isset($option['min']) && trim($option['min']) !== '') {
                 $min = trim($option['min']);
             }
-            $limit_html = !empty($max) && !empty($min) ? 'oninput="if(value>' . $max . ')value=' . $max . ';if(value<' . $min . ')value=' . $min . '"' : '';
-
+            if($max !== '' && $min !== '' && is_numeric($max) && is_numeric($min)){
+                $limit_html = 'oninput="if(value>' . $max . ')value=' . $max . ';if(value<' . $min . ')value=' . $min . '"';
+            }
+            if($max !== '' && $min === '' && is_numeric($max)){
+                $limit_html = 'oninput="if(value>' . $max . ')value=' . $max . '"';
+            }
+            if($max === '' && $min !== '' && is_numeric($min)){
+                $limit_html = 'oninput="if(value<' . $min . ')value=' . $min . '"';
+            }
             $tpl = '<div class="tpl-number-input-item">
                         <input type="number" class="tpl-number-input" placeholder="填入数字" name="{name}" value="{value}" ' . $limit_html . '>
                         ' . $unit_html . '
@@ -1162,6 +1170,7 @@ class TplOptions
         $tpl = '';
         if (isset($option['pattern']) && trim($option['pattern']) === 'image') {
             $tpl .= '<div class="tpl-block-upload">
+                        <span class="image-tip">友情提示：选择文件后将会立刻上传覆盖原图</span>
                         <span>填写块标题：</span>
                         <input class="block-title-input" type="text" name="{title}" value="{tvalue}">
                          <div class="tpl-image-preview">
@@ -1466,9 +1475,10 @@ function _getBlock($name = null, $type = '')
     }
     $result = array_filter($target, 'is_array');
     $data_length = count($target);
+    $child_length = count($target['content']);
     if (count($result) == $data_length) {
         $type_arr = [];
-        for ($i = 0; $i < $data_length; $i++) {
+        for ($i = 0; $i < $child_length; $i++) {
             $type_arr[] = $target[$offset][$i];
         }
         return $type_arr;

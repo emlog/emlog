@@ -160,6 +160,7 @@ $(function () {
         let type_html = ''
         if (_type === 'image') {
             type_html = '<div class="tpl-block-upload"><span>填写块标题：</span>' +
+                '<span class="image-tip">友情提示：选择文件后将会立刻上传覆盖原图</span>' +
                 '<input class="block-title-input" type="text" name="' + _name + '[title][]" value="">' +
                 '<div class="tpl-image-preview"><img src=""></div><div class="tpl-block-upload-input">' +
                 '<input type="text" name="' + _name + '[content][]" value=""><label>\n' +
