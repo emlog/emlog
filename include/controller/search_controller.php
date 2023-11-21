@@ -19,7 +19,8 @@ class Search_Controller {
 
         $pageurl = '';
 
-        $sqlSegment = "and title like '%{$keyword}%' order by date desc";
+        $sqlSegment = "and title like '%$keyword%'";
+        $orderBy = ' order by date desc';
         $lognum = $Log_Model->getLogNum('n', $sqlSegment);
         $total_pages = ceil($lognum / $index_lognum);
         if ($page > $total_pages) {
@@ -28,7 +29,7 @@ class Search_Controller {
 
         $pageurl .= BLOG_URL . '?keyword=' . urlencode($keyword) . '&page=';
 
-        $logs = $Log_Model->getLogsForHome($sqlSegment, $page, $index_lognum);
+        $logs = $Log_Model->getLogsForHome($sqlSegment . $orderBy, $page, $index_lognum);
         $page_url = pagination($lognum, $index_lognum, $page, $pageurl);
 
         include View::getView('header');

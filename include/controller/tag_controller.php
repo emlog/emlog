@@ -30,9 +30,10 @@ class Tag_Controller {
         $logs = [];
         $blogIdStr = $Tag_Model->getTagByName($tag);
         if ($blogIdStr) {
-            $sqlSegment = "and gid IN ($blogIdStr) order by date desc";
+            $sqlSegment = "and gid IN ($blogIdStr)";
+            $orderBy = 'order by date desc';
             $lognum = $Log_Model->getLogNum('n', $sqlSegment);
-            $logs = $Log_Model->getLogsForHome($sqlSegment, $page, $index_lognum);
+            $logs = $Log_Model->getLogsForHome($sqlSegment . $orderBy, $page, $index_lognum);
         }
 
         $total_pages = ceil($lognum / $index_lognum);

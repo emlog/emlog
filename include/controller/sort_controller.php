@@ -53,7 +53,7 @@ class Sort_Controller {
             $sortids = array_merge(array($sortid), $sort['children']);
             $sqlSegment = "and sortid in (" . implode(',', $sortids) . ")";
         }
-        $sqlSegment .= " order by sortop desc, date desc";
+        $orderBy = " order by sortop desc, date desc";
         $lognum = $Log_Model->getLogNum('n', $sqlSegment);
         $total_pages = ceil($lognum / $index_lognum);
         if ($page > $total_pages) {
@@ -61,7 +61,7 @@ class Sort_Controller {
         }
         $pageurl .= Url::sort($sortid, 'page');
 
-        $logs = $Log_Model->getLogsForHome($sqlSegment, $page, $index_lognum);
+        $logs = $Log_Model->getLogsForHome($sqlSegment . $orderBy, $page, $index_lognum);
         $page_url = pagination($lognum, $index_lognum, $page, $pageurl);
 
         $template = !empty($sort['template']) && file_exists(TEMPLATE_PATH . $sort['template'] . '.php') ? $sort['template'] : 'log_list';
