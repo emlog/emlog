@@ -33,28 +33,29 @@ if (empty($action)) {
     $sortComm = (isset($_GET['sortComm']) && $_GET['sortComm'] == 'ASC') ? 'DESC' : 'ASC';
     $sortDate = (isset($_GET['sortDate']) && $_GET['sortDate'] == 'DESC') ? 'ASC' : 'DESC';
 
-    $sqlSegment = '';
+    $condition = '';
     if ($tagId) {
         $blogIdStr = $Tag_Model->getTagById($tagId) ?: 0;
-        $sqlSegment = "and gid IN ($blogIdStr)";
+        $condition = "and gid IN ($blogIdStr)";
     } elseif ($sid) {
-        $sqlSegment = "and sortid=$sid";
+        $condition = "and sortid=$sid";
     } elseif ($uid) {
-        $sqlSegment = "and author=$uid";
+        $condition = "and author=$uid";
     } elseif ($checked) {
-        $sqlSegment = "and checked='$checked'";
+        $condition = "and checked='$checked'";
     } elseif ($keyword) {
-        $sqlSegment = "and title like '%$keyword%'";
+        $condition = "and title like '%$keyword%'";
     }
-    $sqlSegment .= ' ORDER BY ';
+
+    $orderBy = ' ORDER BY ';
     if (isset($_GET['sortView'])) {
-        $sqlSegment .= "views $sortView";
+        $orderBy .= "views $sortView";
     } elseif (isset($_GET['sortComm'])) {
-        $sqlSegment .= "comnum $sortComm";
+        $condition .= "comnum $sortComm";
     } elseif (isset($_GET['sortDate'])) {
-        $sqlSegment .= "date $sortDate";
+        $orderBy .= "date $sortDate";
     } else {
-        $sqlSegment .= 'top DESC, sortop DESC, date DESC';
+        $orderBy .= 'top DESC, sortop DESC, date DESC';
     }
 
     $hide_state = $draft ? 'y' : 'n';
@@ -66,8 +67,8 @@ if (empty($action)) {
         $sorturl = '';
     }
 
-    $logNum = $Log_Model->getLogNum($hide_state, $sqlSegment, 'blog', 1);
-    $logs = $Log_Model->getLogsForAdmin($sqlSegment, $hide_state, $page);
+    $logNum = $Log_Model->getLogNum($hide_state, $condition, 'blog', 1);
+    $logs = $Log_Model->getLogsForAdmin($condition . $orderBy, $hide_state, $page);
     $sorts = $CACHE->readCache('sort');
 
     $subPage = '';
