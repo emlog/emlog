@@ -112,6 +112,25 @@ $options = [
         'new'          =>  'NEW',
         'description'  => ''
     ],
+    'index-image_list' => [
+        'labels'       => 'tpl-head',
+        'type'         => 'block',
+        'name'         => '拖动多图片内容块',
+        'new'          => 'NEW',
+        'pattern'      => 'image',
+        'description'  => ''
+    ],
+    'index-num_text'   => [
+        'labels'       => 'tpl-head',
+        'type'         => 'text',
+        'name'         => '数字文本框',
+        'new'          =>  'NEW',
+        'pattern'      => 'num',
+        'unit'         => '秒',
+        'max'          => '10',
+        'min'          => '1',
+        'description'  => ''
+    ],
 ];
 ```
 
@@ -138,9 +157,11 @@ $options = [
 4. sort和page可设置multi属性为true，表示多选。
 5. (可选) description属性用于描述该选项。
 6. 若type为text，可设置multi属性为true，表示多行文本，即input和textarea的区别，可选属性rich用以支持富文本，若设置该值，将加载编辑器。
-7. 若type为sort、page或者tag，且设置了多选，默认值将为空，否则将为第一个该类型的值。
-8. 对于类型**select**，pattern属性是**必填项**，可以填入：(1). post  (2).cate  (3).page。分别依次对应文章、分类、页面。
-9. (可选) 上述**所有类型**均支持 *new* 属性，即会在设置项名称后显示提醒徽标，效果可见默认模板。该属性值随意填写，如：NEW、新等。若为空或不填写将不显示。
+7. type为text，如果要使用数字文本框，可设置pattern属性为num。可指定max、min、unit，即限制最大值，限制最小值，单位。单位显示在文本框最右侧。
+8. 若type为sort、page或者tag，且设置了多选，默认值将为空，否则将为第一个该类型的值。
+9. 对于类型**select**，pattern属性是**必填项**，可以填入：(1). post  (2).cate  (3).page。分别依次对应文章、分类、页面。此功能模块在数据非常庞大时可能查询缓慢。
+10. (可选) 上述**所有类型**均支持 *new* 属性，即会在设置项名称后显示提醒徽标，效果可见默认模板。该属性值随意填写，如：NEW、新等。若为空或不填写将不显示。
+11. 对于类型**block**，可选设置pattern属性，若不设置pattern属性默认内容为文本。pattern属性设置为image可以使用多图片内容块。
 
 ### 模板里如何调用设置项
 
@@ -153,3 +174,15 @@ $options = [
 - 使用_g('sortIcon.1')来获取分类id为1（如果存在）的sortIcon。需要注意的是，对于类型为page的，将取到页面id，类型为sort的，将取到分类id，类型为tag的，将取到标签名。
 
 若不传递参数，即使用 _g() 方法将获取到所有设置项，对于老的模板迁移来的，可以用extract( _g() );来代替原来的加载option文件。
+
+如需获取多内容块的数据，提供_getBlock($key, $type)方法获取：
+
+- $key同_g()方法提供的参数
+- $type是多内容块的数据类型，分为title和content
+
+使用案例：
+
+```php
+_getBlock('image-block', 'content')
+```
+
