@@ -51,7 +51,7 @@ if (empty($action)) {
     if (isset($_GET['sortView'])) {
         $orderBy .= "views $sortView";
     } elseif (isset($_GET['sortComm'])) {
-        $condition .= "comnum $sortComm";
+        $orderBy .= "comnum $sortComm";
     } elseif (isset($_GET['sortDate'])) {
         $orderBy .= "date $sortDate";
     } else {
