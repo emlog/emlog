@@ -1453,7 +1453,7 @@ function _getBlock($name = null, $type = '')
     $offset = '';
     $target = TplOptions::getInstance()->$name;
     if (!is_array($target) || empty($type) || trim($type) === '') {
-        return '';
+        return [];
     }
     if (trim($type) === 'title') {
         $offset = 'title';
@@ -1462,7 +1462,7 @@ function _getBlock($name = null, $type = '')
         $offset = 'content';
     }
     if (trim($offset) === '') {
-        return '';
+        return [];
     }
     $result = array_filter($target, 'is_array');
     $data_length = count($target);
@@ -1473,7 +1473,7 @@ function _getBlock($name = null, $type = '')
         }
         return $type_arr;
     }
-    return '';
+    return [];
 }
 
 TplOptions::getInstance()->init();
