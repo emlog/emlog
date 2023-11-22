@@ -19,6 +19,9 @@ $options = [
         'values'       => [
             'tpl-head' => '头部设置',
         ],
+        'icons' => array(
+            'tpl-head' => 'ri-home-line',
+        ),
         'description'  => '<p>模板：晨 <br>欢迎使用这款简约的模板，目前仅支持设置头部logo</p>'
     ],
     'sale_qq'          => [
@@ -162,6 +165,15 @@ $options = [
 9. 对于类型**select**，pattern属性是**必填项**，可以填入：(1). post  (2).cate  (3).page。分别依次对应文章、分类、页面。此功能模块在数据非常庞大时可能查询缓慢。使用内置函数获取的数组内容为设置类型的ID，例如获取到一组文章gid。
 10. (可选) 上述**所有类型**均支持 *new* 属性，即会在设置项名称后显示提醒徽标，效果可见默认模板。该属性值随意填写，如：NEW、新等。若为空或不填写将不显示。
 11. 对于类型**block**，可选设置pattern属性，若不设置pattern属性默认内容为文本。pattern属性设置为image可以使用多图片内容块。
+12. TplOptionsNavi项内可加入图标icons数组，为你的主题设置侧边栏菜单父设置名称前增加图标。icons数组的键名和TplOptionsNavi项values数组一致。使用的是[Remixicon](https://remixicon.com/)，去图标站点找到合适的图标，复制其class内的属性值即可，例如class="ri-home-line"，只需复制ri-home-line即可。另外需在模板plugins.php内加入以下代码用于引入图标CSS。
+```php
+function optionIconFont() {
+    echo sprintf('<link rel="stylesheet" href="%s">', 'https://cdn.bootcdn.net/ajax/libs/remixicon/3.5.0/remixicon.min.css?ver=' . Option::EMLOG_VERSION_TIMESTAMP);
+}
+addAction('adm_head', 'optionIconFont');
+```
+
+13. 设置项书写方法请参考文档开头的代码举例。
 
 ### 模板里如何调用设置项
 

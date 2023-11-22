@@ -829,6 +829,7 @@ span.tpl-options-setting:hover {
     width: auto;
     border-top: 0;
     background: #fff;
+    max-width: 300px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     box-shadow: 0 4px 5px rgb(0 0 0 / 15%);
@@ -844,6 +845,7 @@ span.tpl-options-setting:hover {
     margin: 0 4px 4px 0;
     padding: 0 0 0 4px;
     max-height: 240px;
+    text-align: left;
     -webkit-overflow-scrolling: touch;
 }
 

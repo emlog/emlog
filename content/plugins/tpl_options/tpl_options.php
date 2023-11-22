@@ -958,7 +958,7 @@ class TplOptions {
                 echo '</div>';
                 echo '<script>
                           $(".tpl-sortable-block").sortable({
-                              stop: function (e, ui) {
+                              stop: function () {
                                   block_drag_end()
                             }
                           }).disableSelection()
@@ -1193,27 +1193,7 @@ class TplOptions {
      * @return void
      */
     private function renderSelect($option) {
-        if (isset($option['pattern'])) {
-            $this_opt_data = null;
-            switch (trim($option['pattern'])) {
-                case 'post':
-                {
-                    $this_opt_data = $this->getPosts();
-                }
-                case 'cate':
-                {
-                    $this_opt_data = $this->getSorts();
-                }
-                case 'page':
-                {
-                    $this_opt_data = $this->getPages();
-                }
-            }
-            $values = array();
-            foreach ($this_opt_data as $id) {
-                $values[] = $id;
-            }
-            $option['values'] = $values;
+        if (isset($option['pattern']) && (trim($option['pattern']) === 'post' || trim($option['pattern']) === 'cate' || trim($option['pattern']) === 'page')) {
             $option['depend'] = 'select';
             $this->renderSearchSelect($option);
         }
@@ -1403,7 +1383,7 @@ function _em($name = null) {
 function _getBlock($name = null, $type = '') {
     $offset = '';
     $target = TplOptions::getInstance()->$name;
-    if (!is_array($target) || empty($type) || trim($type) === '') {
+    if (!is_array($target) || trim($type) === '') {
         return [];
     }
     if (trim($type) === 'title') {
