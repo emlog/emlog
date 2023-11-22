@@ -105,7 +105,6 @@ $(function () {
     }).on('input propertychange paste change focus', '.chosen-search-input', function () {
         _this_val = $(this).val().replace(/(^\s*)|(\s*$)/g, "");
         let _this_data_opt = $(this).attr('data-opt')
-        let _this_data_opt_s = '.' + _this_data_opt
         let _drop_item = $(this).parent().parent().next()
         let _drop_item_child = $(this).parent().parent().next().find('.chosen-results')
         if (_this_val === '') {
