@@ -8,7 +8,3 @@ defined('EMLOG_ROOT') || exit('access denied!');
 function plugin_setting_view() {
     TplOptions::getInstance()->setting();
 }
-
-//插件设置函数，不用
-function plugin_setting() {
-}

@@ -2,9 +2,12 @@
   <img src="./admin/views/images/logo.png" width=100 />
 </p>
 
-# emlog
+<p align="center"><b>emlog</b></p>
+<p align="center">快速稳定的轻量级博客及CMS建站系统，打造好用的云端内容管理系统。</p>
 
-emlog是一款轻量级博客及CMS建站系统，致力于打造好用的个人云端内容管理系统。
+<p align="center">
+<a href="https://github.com/emlog/emlog/releases"><img alt="GitHub release" src="https://img.shields.io/github/release/emlog/emlog.svg?style=flat-square&include_prereleases" /></a>
+<a href="https://github.com/emlog/emlog/commits"><img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/emlog/emlog.svg?style=flat-square" /></a>
 
 ## 功能简介
 
@@ -18,29 +21,24 @@ emlog是一款轻量级博客及CMS建站系统，致力于打造好用的个人
 - 自定义页面：支持创建自定义页面，包括留言板、个人介绍等，帮助你打造更富有个性和功能的站点。
 - 标签和分类：文章可轻松归类和标记，提供更好的信息组织和检索功能。
 
-## 环境要求
-
-* PHP5.6、PHP7、PHP8，推荐 PHP7.4
-* MySQL5.6及以上，推荐5.6
-* 服务器环境推荐：Linux + nginx
-* 服务器面板软件推荐：宝塔面板
-* 浏览器推荐：Chrome,Edge
-
-## 安装说明
-
-1. 将解压后的所有文件上传到服务器或者虚拟主机的web根目录，也可以将zip压缩包上传后在线解压。
-2. 在浏览器上访问事先解析好的域名，程序会自动跳转到emlog安装页面，按照提示安装即可。
-3. 安装过程不会创建数据库，需要您事先创建好 ,点击确认安装，安装成功。
-
-## Docker
-
-### Start via `docker run`
+## 快速开始（Docker）
 
 ```bash
 $ docker run --name emlog-pro -p 8080:80 -d emlog/emlog:pro-latest-php7.4-apache
 ```
 
-### Start via `docker-compose`
+## 环境要求
+
+* PHP5.6、PHP7、PHP8，推荐 PHP7.4
+* MySQL5.6及以上，推荐5.6
+* 服务器环境推荐：Linux + Nginx
+
+## 安装部署
+
+- [宝塔一键部署](https://www.emlog.net/docs/#/install_bt)
+- [1Panel部署](https://www.emlog.net/docs/#/install_1panel)
+
+## Start via `docker-compose`
 
 1. cp config.sample.php config.php
 2. docker network create emlog_network
