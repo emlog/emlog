@@ -916,7 +916,6 @@ class TplOptions
                     echo '</div>';
                 }
                 echo '</div>';
-                echo '<div class="clearfix"></div>';
                 echo '</div>';
                 break;
             case 'select':
@@ -1086,7 +1085,7 @@ class TplOptions
     private function renderText($option)
     {
         if ($this->isMulti($option)) {
-            $tpl = '<textarea name="{name}" rows="8" class="option-textarea{rich}">{value}</textarea>';
+            $tpl = '<textarea name="{name}" rows="5" class="option-textarea{rich}">{value}</textarea>';
         } else {
             $tpl = '<input type="text" name="{name}" value="{value}">';
         }
