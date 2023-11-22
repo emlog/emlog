@@ -106,14 +106,17 @@ $(function () {
         _this_val = $(this).val().replace(/(^\s*)|(\s*$)/g, "");
         let _this_data_opt = $(this).attr('data-opt')
         let _this_data_opt_s = '.' + _this_data_opt
-        let _drop_item = $(_this_data_opt_s + ' .chosen-drop')
+        let _drop_item = $(this).parent().parent().next()
+        let _drop_item_child = $(this).parent().parent().next().find('.chosen-results')
         if (_this_val === '') {
             _drop_item.css('clip', 'rect(0, 0, 0, 0)')
             _drop_item.css('clip-path', 'inset(100% 100%)')
+            _drop_item.css('position', 'absolute')
             return
         }
         _drop_item.css('clip', 'auto')
         _drop_item.css('clip-path', 'none')
+        _drop_item.css('position', 'relative')
         var formData = new FormData()
         formData.append("action", 'tpl_select_search')
         formData.append("kywd", $(this).val())
@@ -127,20 +130,20 @@ $(function () {
             processData: false,
             contentType: false,
             success: function (data) {
-                $(_this_data_opt_s + ' .chosen-drop' + ' .chosen-results').html(data)
+                _drop_item_child.html(data)
             },
             error: function (data) {
-                $(_this_data_opt_s + ' .chosen-drop' + ' .chosen-results').html(data)
+                _drop_item_child.html(data)
             }
         });
     }).on('click', '.chosen-results .active-result', function () {
         let title = $(this).html()
         let name = $(this).attr('data-s-name')
         let gid = $(this).attr('data-id')
-        let _this_data_opt = '.' + $(this).attr('data-opt')
-        let _input_item = $(_this_data_opt + ' .chosen-search-input')
-        let _drop_item = $(_this_data_opt + ' .chosen-drop')
-        $(_this_data_opt + ' .search-field').before('<li class="search-choice"><span>' + title + '</span><a class="search-choice-close"><i class="icofont-close"></i></a><input class="d-none" name="' + name + '[]" type="text" value="' + gid + '"></li>');
+        let _search_filed = $(this).parent().parent().prev().find('.search-field')
+        let _input_item = $(this).parent().parent().prev().find('.search-field').find('.chosen-search-input')
+        let _drop_item = $(this).parent().parent()
+        _search_filed.before('<li class="search-choice"><span>' + title + '</span><a class="search-choice-close"><i class="icofont-close"></i></a><input class="d-none" name="' + name + '[]" type="text" value="' + gid + '"></li>');
         _drop_item.css('clip', '')
         _drop_item.css('clip-path', '')
         _input_item.val('')
