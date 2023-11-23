@@ -75,7 +75,7 @@ $options = [
         ],
         'default' => array('view', 'comnum'),
         'description' => '',
-    ),
+    ],
     'index_tag'        => [
         'labels'       => 'tpl-head',
         'type'         => 'checkon',
