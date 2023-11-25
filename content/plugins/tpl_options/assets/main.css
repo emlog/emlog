@@ -988,6 +988,7 @@ span.tpl-options-setting:hover {
 .tpl-block-content input, .tpl-block-content textarea {
     margin-top: 6px;
     margin-bottom: 6px;
+    max-width: 600px;
 }
 
 .tpl-block-upload {
