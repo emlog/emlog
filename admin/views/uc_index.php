@@ -28,7 +28,7 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col">
-                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"><?= Option::get("posts_name") ?></div>
+                        <div class="small font-weight-bold text-primary text-uppercase mb-1"><?= Option::get("posts_name") ?></div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="./article.php"><?= $article_amount ?></a></div>
                     </div>
                     <div class="col-auto">
@@ -43,7 +43,7 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col">
-                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">收到评论</div>
+                        <div class="small font-weight-bold text-info text-uppercase mb-1">收到评论</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="./comment.php"><?= $comment_amount ?></a></div>
                     </div>
                     <div class="col-auto">
