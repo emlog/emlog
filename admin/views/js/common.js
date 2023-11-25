@@ -137,6 +137,23 @@ function swalDelArticle(msg, text, url, token) {
     });
 }
 
+function submitForm(formId) {
+    $.ajax({
+        type: "POST",
+        url: $(formId).attr('action'),
+        data: $(formId).serialize(),
+        success: function () {
+            cocoMessage.success('保存成功')
+        },
+        error: function (xhr) {
+            const errorMsg = JSON.parse(xhr.responseText).msg;
+            let div1 = document.createElement("span");
+            div1.innerText = errorMsg;
+            cocoMessage.error(div1)
+        }
+    });
+}
+
 function focusEle(id) {
     try {
         document.getElementById(id).focus();

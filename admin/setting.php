@@ -392,16 +392,15 @@ if ($action == 'api') {
     require_once(View::getAdmView('setting_api'));
     include View::getAdmView('footer');
     View::output();
-
 }
 
 if ($action == 'api_save') {
     LoginAuth::checkToken();
 
-    $is_openapi = isset($_POST['is_openapi']) ? addslashes($_POST['is_openapi']) : 'n';
-    Option::updateOption('is_openapi', $is_openapi);
+    $isOpenapiEnabled = Input::postStrVar('is_openapi', 'n');
+    Option::updateOption('is_openapi', $isOpenapiEnabled);
     $CACHE->updateCache('options');
-    header('Location: ./setting.php?action=api&ok=1');
+    Output::ok();
 }
 
 if ($action == 'api_reset') {

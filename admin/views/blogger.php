@@ -45,7 +45,7 @@
             </div>
         </div>
 
-        <form action="blogger.php?action=update" method="post" name="blooger" id="blooger" enctype="multipart/form-data">
+        <form action="blogger.php?action=update" method="post" name="profile_setting_form" id="profile_setting_form" enctype="multipart/form-data">
             <div class="form-group">
                 <div class="form-group">
                     <label>昵称</label>
@@ -77,7 +77,7 @@
                     <?php doAction('blogger_ext') ?>
                 </div>
                 <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
-                <input type="submit" value="保存资料" class="btn btn-sm btn-success"/>
+                <input type="submit" value="保存资料" name="submit_form" id="submit_form" class="btn btn-sm btn-success"/>
             </div>
         </form>
     </div>
@@ -116,6 +116,13 @@
         $("#menu_setting").addClass('active');
         setTimeout(hideActived, 3600);
 
+        // 提交表单
+        $("#profile_setting_form").submit(function (event) {
+            event.preventDefault();
+            submitForm("#profile_setting_form");
+        });
+
+        // 裁剪上传头像
         var $modal = $('#modal');
         var image = document.getElementById('sample_image');
         var cropper;

@@ -18,7 +18,7 @@
 </div>
 <div class="card shadow mb-4 mt-2">
     <div class="card-body">
-        <form action="setting.php?action=api_save" method="post" name="input" id="input">
+        <form action="setting.php?action=api_save" method="post" name="setting_api_form" id="setting_api_form">
             <p>开启API：</p>
             <div class="form-group form-check">
                 <input class="mui-switch mui-switch-animbg" type="checkbox" value="y" name="is_openapi" id="is_openapi" <?= $conf_is_openapi ?> />
@@ -34,7 +34,6 @@
             </div>
             <div class="form-group mt-3">
                 <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
-                <input type="submit" value="保存设置" class="btn btn-sm btn-success"/>
             </div>
         </form>
         <div class="alert alert-warning">
@@ -55,5 +54,8 @@
         $("#menu_sys").addClass('show');
         $("#menu_setting").addClass('active');
         setTimeout(hideActived, 3600);
+    });
+    $('#setting_api_form').change(function () {
+        submitForm('#setting_api_form');
     });
 </script>
