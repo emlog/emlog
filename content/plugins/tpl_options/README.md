@@ -201,7 +201,7 @@ addAction('adm_head', 'optionIconFont');
 如需获取多内容块的数据，提供_getBlock($key, $type)方法获取：
 
 - $key同_g()方法提供的参数
-- $type是多内容块的数据类型，分为title和content。title是多内容块填入的标题。content即内容，使用内置该函数可获取多内容块文本类型的文本或多内容块图片类型设置的图片URL
+- $type是多内容块的数据类型，分为title和content，此参数可缺省，默认会获取content。title是多内容块填入的标题。content即内容，使用内置该函数可获取多内容块文本类型的文本或多内容块图片类型设置的图片URL
 - 返回值类型为array
 
 使用案例：

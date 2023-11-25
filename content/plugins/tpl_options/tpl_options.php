@@ -1379,7 +1379,7 @@ function _em($name = null) {
     }
 }
 
-function _getBlock($name = null, $type = '') {
+function _getBlock($name = null, $type = 'content') {
     $offset = '';
     $target = TplOptions::getInstance()->$name;
     if (!is_array($target) || trim($type) === '') {
