@@ -147,9 +147,7 @@ function submitForm(formId) {
         },
         error: function (xhr) {
             const errorMsg = JSON.parse(xhr.responseText).msg;
-            let div1 = document.createElement("span");
-            div1.innerText = errorMsg;
-            cocoMessage.error(div1)
+            cocoMessage.error(errorMsg)
         }
     });
 }
