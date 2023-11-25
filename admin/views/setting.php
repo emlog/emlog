@@ -1,6 +1,4 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
-<?php if (isset($_GET['activated'])): ?>
-    <div class="alert alert-success">保存成功</div><?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">设置</h1>
 </div>
@@ -16,7 +14,7 @@
 </div>
 <div class="card shadow mb-4 mt-2">
     <div class="card-body">
-        <form action="setting.php?action=save" method="post" name="input" id="input">
+        <form action="setting.php?action=save" method="post" name="setting_form" id="setting_form">
             <h4>站点信息</h4>
             <div class="form-group">
                 <label>站点标题</label>
@@ -155,5 +153,11 @@
         $("#menu_sys").addClass('show');
         $("#menu_setting").addClass('active');
         setTimeout(hideActived, 3600);
+
+        // 提交表单
+        $("#setting_form").submit(function (event) {
+            event.preventDefault();
+            submitForm("#setting_form");
+        });
     });
 </script>

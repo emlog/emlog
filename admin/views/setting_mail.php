@@ -1,6 +1,4 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
-<?php if (isset($_GET['activated'])): ?>
-    <div class="alert alert-success">设置保存成功</div><?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">设置</h1>
 </div>
@@ -16,7 +14,7 @@
 </div>
 <div class="card shadow mb-4 mt-2">
     <div class="card-body">
-        <form action="setting.php?action=mail_save" method="post" name="input" id="mail_config">
+        <form action="setting.php?action=mail_save" method="post" name="mail_setting_form" id="mail_setting_form">
             <h4>邮件服务</h4>
             <div class="form-group">
                 <label>发送人邮箱</label>
@@ -138,10 +136,16 @@
         $("#menu_setting").addClass('active');
         setTimeout(hideActived, 3600);
 
+        // 提交表单
+        $("#mail_setting_form").submit(function (event) {
+            event.preventDefault();
+            submitForm("#mail_setting_form");
+        });
+
         // test sendmail
         $("#testSendBtn").click(function () {
             $("#testMailMsg").html("<small class='text-secondary'>发送中...<small>");
-            $.post("setting.php?action=mail_test", $("#mail_config").serialize(), function (data) {
+            $.post("setting.php?action=mail_test", $("#mail_setting_form").serialize(), function (data) {
                 if (data === '') {
                     $("#testMailMsg").html("<small class='text-success'>发送成功</small>");
                 } else {

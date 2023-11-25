@@ -1,6 +1,4 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
-<?php if (isset($_GET['activated'])): ?>
-    <div class="alert alert-success">设置保存成功</div><?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">设置</h1>
 </div>
@@ -16,7 +14,7 @@
 </div>
 <div class="card shadow mb-4 mt-2">
     <div class="card-body">
-        <form action="setting.php?action=user_save" method="post" name="input" id="input">
+        <form action="setting.php?action=user_save" method="post" name="user_setting_form" id="user_setting_form">
             <div class="form-group form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="is_signup" id="is_signup" <?= $conf_is_signup ?> />
                 <label class="form-check-label">开启用户注册</label>
@@ -65,5 +63,11 @@
         $("#menu_sys").addClass('show');
         $("#menu_setting").addClass('active');
         setTimeout(hideActived, 3600);
+
+        // 提交表单
+        $("#user_setting_form").submit(function (event) {
+            event.preventDefault();
+            submitForm("#user_setting_form");
+        });
     });
 </script>
