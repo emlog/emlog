@@ -26,6 +26,14 @@ class Input {
         return $str ? addslashes(trim($str)) : $var_default;
     }
 
+    public static function requestStrVar($var_name, $var_default = '') {
+        return isset($_REQUEST[$var_name]) ? addslashes(trim($_REQUEST[$var_name])) : $var_default;
+    }
+
+    public static function requestNumVar($var_name, $var_default = 0) {
+        return isset($_REQUEST[$var_name]) ? (float)$_REQUEST[$var_name] : $var_default;
+    }
+
     private static function setIntOption($var_default = 0, $var_min = 0, $var_max = 0) {
         $options['options']['default'] = $var_default;
         if ($var_max) {

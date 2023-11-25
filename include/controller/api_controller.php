@@ -67,8 +67,8 @@ class Api_Controller {
         $tags = isset($_POST['tags']) ? strip_tags(addslashes(trim($_POST['tags']))) : '';
         $cover = Input::postStrVar('cover');
         $draft = Input::postStrVar('draft', 'n');
-        $this->authReqSign = Input::postStrVar('req_sign');
-        $this->authReqTime = Input::postStrVar('req_time');
+
+        $this->auth();
 
         if (empty($title) || empty($content)) {
             Output::error('parameter error');
@@ -78,8 +78,6 @@ class Api_Controller {
         if (!Register::isRegLocal() && $sta_cache['lognum'] > 50) {
             Output::error(html_entity_decode("&#x672A;&#x6CE8;&#x518C;&#x7684;&#x7248;&#x672C;", ENT_COMPAT, 'UTF-8'));
         }
-
-        $this->auth();
 
         if ($this->curUid) {
             $author_uid = $this->curUid;
@@ -117,13 +115,11 @@ class Api_Controller {
         $author_uid = isset($_POST['author_uid']) ? (int)trim($_POST['author_uid']) : 1;
         $draft = Input::postStrVar('draft', 'n');
 
+        $this->auth();
+
         if (empty($id) || empty($title)) {
             Output::error('parameter error');
         }
-
-        $this->authReqSign = Input::postStrVar('req_sign');
-        $this->authReqTime = Input::postStrVar('req_time');
-        $this->auth();
 
         if ($this->curUid) {
             $author_uid = $this->curUid;
@@ -268,14 +264,12 @@ class Api_Controller {
     private function note_post() {
         $t = isset($_POST['t']) ? addslashes(trim($_POST['t'])) : '';
         $author_uid = isset($_POST['author_uid']) ? (int)trim($_POST['author_uid']) : 1;
-        $this->authReqSign = Input::postStrVar('req_sign');
-        $this->authReqTime = Input::postStrVar('req_time');
+
+        $this->auth();
 
         if (empty($t)) {
             Output::error('parameter error');
         }
-
-        $this->auth();
 
         if ($this->curUid) {
             $author_uid = $this->curUid;
@@ -296,8 +290,6 @@ class Api_Controller {
         $page = Input::getIntVar('page', 1);
         $author_uid = Input::getIntVar('author_uid');
         $count = Input::getIntVar('count', 20);
-        $this->authReqSign = Input::getStrVar('req_sign');
-        $this->authReqTime = Input::getStrVar('req_time');
 
         $this->auth();
 
@@ -391,6 +383,9 @@ class Api_Controller {
     }
 
     private function checkApiKey() {
+        $this->authReqSign = Input::requestStrVar('req_sign');
+        $this->authReqTime = Input::requestStrVar('req_time');
+
         if (empty($this->authReqSign) || empty($this->authReqTime)) {
             Output::authError('auth param error');
         }
