@@ -1,6 +1,4 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
-<?php if (isset($_GET['ok'])): ?>
-    <div class="alert alert-success">保存成功</div><?php endif ?>
 <?php if (isset($_GET['ok_reset'])): ?>
     <div class="alert alert-success">接口秘钥重置成功</div><?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -38,11 +36,11 @@
         </form>
         <div class="alert alert-warning">
             <b>API接口列表：</b><br><br>
-            文章发布 (可用于对接内容发布软件，文章发布接口URL：<?= BLOG_URL ?>?rest-api=article_post)<br>
-            分类列表<br>
-            笔记发布<br>
-            笔记列表<br>
-            资源文件上传<br>
+            1. 文章发布 (可用于对接内容发布软件，文章发布接口URL：<?= BLOG_URL ?>?rest-api=article_post)<br>
+            2. 分类列表<br>
+            3. 笔记发布<br>
+            4. 笔记列表<br>
+            5. 资源文件上传<br>
             ……<br><br>
             详见接口文档：<a href="https://www.emlog.net/docs/#/api" target="_blank">API接口文档→</a>
         </div>
