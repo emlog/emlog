@@ -440,8 +440,8 @@ span.tpl-options-setting:hover {
     height: 1.4em;
     width: 1.4em;
     border-radius: 20px;
-    left: 0.3em;
-    bottom: 0.3em;
+    left: 0.2em;
+    bottom: 0.25em;
     background-color: white;
     box-shadow: 0 2px 4px 0 rgb(0 0 0 / 30%);
     transition: .4s;

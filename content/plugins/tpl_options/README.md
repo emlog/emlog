@@ -11,6 +11,7 @@
 !defined('EMLOG_ROOT') && exit('access denied!');
 
 $options = [
+    /** 此项必需存在 */
     'TplOptionsNavi'   => [
         'type'         => 'radio',
         'name'         => '定义设置项标签页名称',
