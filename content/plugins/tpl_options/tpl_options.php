@@ -934,7 +934,7 @@ class TplOptions {
                           </div>';
 
                 $data = $this->getBlockData($option['id']);
-                $tmp_len = count($data);
+                $tmp_len = empty($data) ? 0 : count($data);
                 if ($tmp_len !== 0 && is_array($data)) {
                     $data_len = count($data['title']);
                     for ($i = 0; $i < $data_len; $i++) {
@@ -1380,31 +1380,18 @@ function _em($name = null) {
 }
 
 function _getBlock($name = null, $type = 'content') {
-    $offset = '';
     $target = TplOptions::getInstance()->$name;
-    if (!is_array($target) || trim($type) === '') {
+    if (!is_array($target) || empty($target[trim($type)]) || (trim($type) != 'title' && trim($type) != 'content' )) {
         return [];
     }
-    if (trim($type) === 'title') {
-        $offset = 'title';
-    }
-    if (trim($type) === 'content') {
-        $offset = 'content';
-    }
-    if (trim($offset) === '') {
-        return [];
-    }
+    $arr = [];
     $result = array_filter($target, 'is_array');
-    $data_length = count($target);
-    $child_length = count($target['content']);
-    if (count($result) == $data_length) {
-        $type_arr = [];
-        for ($i = 0; $i < $child_length; $i++) {
-            $type_arr[] = $target[$offset][$i];
+    if (count($result) == count($target)){
+        foreach($target[$type] as $val){
+            $arr[] = $val;
         }
-        return $type_arr;
     }
-    return [];
+    return $arr;
 }
 
 TplOptions::getInstance()->init();
