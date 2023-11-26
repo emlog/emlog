@@ -1380,31 +1380,18 @@ function _em($name = null) {
 }
 
 function _getBlock($name = null, $type = 'content') {
-    $offset = '';
-    $target = TplOptions::getInstance()->$name;
-    if (!is_array($target) || trim($type) === '') {
-        return [];
-    }
-    if (trim($type) === 'title') {
-        $offset = 'title';
-    }
-    if (trim($type) === 'content') {
-        $offset = 'content';
-    }
-    if (trim($offset) === '') {
-        return [];
-    }
-    $result = array_filter($target, 'is_array');
-    $data_length = count($target);
-    $child_length = count($target['content']);
-    if (count($result) == $data_length) {
-        $type_arr = [];
-        for ($i = 0; $i < $child_length; $i++) {
-            $type_arr[] = $target[$offset][$i];
-        }
-        return $type_arr;
-    }
+  $target = TplOptions::getInstance()->$name;
+  if (!is_array($target) || trim($type) != 'title' || trim($type) != 'content' ) {
     return [];
+  }
+  $arr = [];
+  $result = array_filter($target, 'is_array');
+  if (count($result) == count($target)) {
+    foreach($target as $val){
+      $arr[] = $val[$type];
+    }
+  }
+  return $arr;
 }
 
 TplOptions::getInstance()->init();
