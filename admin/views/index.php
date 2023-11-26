@@ -248,10 +248,11 @@
             updateModalLoading.addClass("spinner-border text-primary");
             updateModalMsg.html("更新中... 请耐心等待");
             updateModalChanges.html("");
+            upbtn.text("更新中...")
+            upbtn.attr('href', 'javascript:void(0);');
 
             $.get(`./upgrade.php?action=update&source=${source}&upsql=${upSQL}`, function (data) {
                 upmsg.removeClass();
-
                 if (data.includes("succ")) {
                     upbtn.text('刷新页面');
                     upbtn.attr('href', './');
