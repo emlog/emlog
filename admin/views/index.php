@@ -226,7 +226,7 @@
                 } else if (result.code === 200) {
                     rep_msg = `有可用的新版本：<span class="text-danger">${result.data.version}</span> <br><br>`;
                     rep_changes = "<b>更新内容</b>:<br>" + result.data.changes;
-                    rep_btn = `<hr><a href="javascript:doUp('${result.data.file}','${result.data.sql}');" class="btn btn-success btn-sm">现在更新</a>`;
+                    rep_btn = `<hr><a href="javascript:doUp('${result.data.file}','${result.data.sql}');" id="upbtn" class="btn btn-success btn-sm">现在更新</a>`;
                 } else {
                     rep_msg = "检查失败，可能是网络问题";
                 }
@@ -243,6 +243,7 @@
             const updateModalMsg = $("#update-modal-msg");
             const updateModalChanges = $("#update-modal-changes");
             const upmsg = $("#upmsg");
+            const upbtn = $("#upbtn");
 
             updateModalLoading.addClass("spinner-border text-primary");
             updateModalMsg.html("更新中... 请耐心等待");
@@ -252,6 +253,8 @@
                 upmsg.removeClass();
 
                 if (data.includes("succ")) {
+                    upbtn.text('刷新页面');
+                    upbtn.attr('href', './');
                     updateModalMsg.html('🎉恭喜，更新成功了🎉，<a href="./">刷新页面</a> 开始体验新版本');
                 } else if (data.includes("error_down")) {
                     updateModalMsg.html('下载更新失败，可能是服务器网络问题');
