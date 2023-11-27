@@ -597,7 +597,9 @@ span.tpl-options-setting:hover {
     margin: 0;
     list-style-type: none;
 }
-
+.vtpl-nav ul li:last-child{
+    border-bottom-left-radius: 5px;
+}
 .vtpl-nav ul i {
     margin-right: 6px;
 }
@@ -671,20 +673,17 @@ span.tpl-options-setting:hover {
 }
 
 .vtpl-buttons .vtpl-collapse-section {
-    border-color: #3bbbde !important;
-    background: #36c4dd !important;
+    background-image: linear-gradient(135deg, rgb(108, 214, 238) 10%,#3bbbde 100%)!important;
     float: right;
 }
 
 .vtpl-buttons .vtpl-back-primary {
-    background: #FF6699;
-    border-color: #e85d8b;
+    background-image: linear-gradient(135deg,#f88 10%,#FF6699 100%)!important;
 }
 
 .vtpl-buttons .vtpl-menu {
     min-width: 72px;
-    border-color: #54a92f !important;
-    background: #35c75d !important;
+    background-image: linear-gradient(135deg, #1cc88a 10%,#54a92f 100%)!important;
 }
 
 .vtpl-buttons .button:hover {
@@ -741,7 +740,7 @@ span.tpl-options-setting:hover {
     height: 100%;
     width: 100%;
     visibility: hidden;
-    background: rgb(30 30 30 / 50%);
+    background: transparent;
     opacity: 0;
     transition: .3s;
     z-index: 102;
@@ -1106,6 +1105,9 @@ span.tpl-options-setting:hover {
 }
 
 @media screen and (max-width: 900px) {
+    .navbar{
+        z-index: 999;
+    }
     #goTopbtn {
         display: block;
         width: 36px;
@@ -1121,6 +1123,10 @@ span.tpl-options-setting:hover {
         margin: 0 0 5px 5px
     }
 
+    .vtpl-nav ul{
+        margin: 60px 0 60px 0;
+    }
+
     .vtpl-nav {
         display: block !important;
         position: fixed;
@@ -1130,6 +1136,7 @@ span.tpl-options-setting:hover {
         z-index: 998;
         bottom: 0;
         height: 100%;
+        background: #fff;
         padding: 10px;
         transition: .3s;
         overflow-y: scroll;
@@ -1179,6 +1186,9 @@ span.tpl-options-setting:hover {
     border: 1px solid #2c2d2f;
 }
 
+.dark-theme .vtpl-nav{
+    background: #0f1013;
+}
 .dark-theme .vtpl-modern-theme .vtpl-nav ul li {
     color: #fbfbfb;
     background-color: #0f1013;
