@@ -1,5 +1,8 @@
 <?php
 defined('EMLOG_ROOT') || exit('access denied!');
+$tplget = $this->getTemplateDefinedOptions($template);
+$_isset_icons = isset($tplget['TplOptionsNavi']['icons']);
+$is_has_menu = array_key_exists('TplOptionsNavi', $tplget);
 ?>
 
 <div class="vtpl-modern-theme">
@@ -12,7 +15,9 @@ defined('EMLOG_ROOT') || exit('access denied!');
                 <div class="vtpl-header-right">
                     <div class="vtpl-buttons">
                         <input type="submit" class="button vtpl-back-primary tpl-options-close" value="返回">
+                        <?php if($is_has_menu):?>
                         <input type="submit" class="button vtpl-menu none" value="菜单">
+                        <?php endif; ?>
                         <input type="submit" class="button vtpl-collapse-section tpl-options-btns" value="全部收缩">
                     </div>
                 </div>
@@ -20,9 +25,7 @@ defined('EMLOG_ROOT') || exit('access denied!');
             </div>
         </div>
         <?php
-        $tplget = $this->getTemplateDefinedOptions($template);
-        $_isset_icons = isset($tplget['TplOptionsNavi']['icons']);
-        if (array_key_exists('TplOptionsNavi', $tplget)):
+        if ($is_has_menu):
             $tplnavi = $tplget['TplOptionsNavi']['values'];
             if($_isset_icons)
             {
@@ -30,8 +33,8 @@ defined('EMLOG_ROOT') || exit('access denied!');
             }
             ?>
         <?php else: ?>
-            <style>.vtpl-option-main {
-                    display: none !important
+            <style>.option {
+                    display: block !important
                 }</style>
         <?php endif; ?>
         <div class="vtpl-wrapper vtpl-option-main">
