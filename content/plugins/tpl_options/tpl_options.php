@@ -1,10 +1,11 @@
 <?php
 /*
 Plugin Name: 模版设置
-Version: 4.2.3
-Plugin URL: https://www.emlog.net/docs/#/template
+Version: 4.2.4
+Plugin URL: https://www.emlog.net/plugin/detail/377
 Description: 为模版增加丰富的设置功能，详见官网文档-模板开发。
 Author: emlog
+Author URL: https://www.emlog.net/author/index/577
 */
 
 defined('EMLOG_ROOT') || exit('access denied!');
@@ -17,7 +18,7 @@ class TplOptions {
     //插件标识
     const ID = 'tpl_options';
     const NAME = '模板设置';
-    const VERSION = '4.2.3';
+    const VERSION = '4.2.4';
 
     //数据表前缀
     private $_prefix = 'tpl_options_';
@@ -1381,13 +1382,13 @@ function _em($name = null) {
 
 function _getBlock($name = null, $type = 'content') {
     $target = TplOptions::getInstance()->$name;
-    if (!is_array($target) || empty($target[trim($type)]) || (trim($type) != 'title' && trim($type) != 'content' )) {
+    if (!is_array($target) || empty($target[trim($type)]) || (trim($type) != 'title' && trim($type) != 'content')) {
         return [];
     }
     $arr = [];
     $result = array_filter($target, 'is_array');
-    if (count($result) == count($target)){
-        foreach($target[$type] as $val){
+    if (count($result) == count($target)) {
+        foreach ($target[$type] as $val) {
             $arr[] = $val;
         }
     }

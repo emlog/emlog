@@ -1,10 +1,10 @@
 <?php
 defined('EMLOG_ROOT') || exit('access denied!');
 $tplget = $this->getTemplateDefinedOptions($template);
-$_isset_icons = isset($tplget['TplOptionsNavi']['icons']);
+$tplnavi_icons = isset($tplget['TplOptionsNavi']['icons']) ? $tplget['TplOptionsNavi']['icons'] : [];
+$tplnavi = isset($tplget['TplOptionsNavi']['values']) ? $tplget['TplOptionsNavi']['values'] : [];
 $is_has_menu = array_key_exists('TplOptionsNavi', $tplget);
 ?>
-
 <div class="vtpl-modern-theme">
     <div class="vtpl-container">
         <div class="vtpl-header vtpl-sticky-header">
@@ -15,8 +15,8 @@ $is_has_menu = array_key_exists('TplOptionsNavi', $tplget);
                 <div class="vtpl-header-right">
                     <div class="vtpl-buttons">
                         <input type="submit" class="button vtpl-back-primary tpl-options-close" value="返回">
-                        <?php if($is_has_menu):?>
-                        <input type="submit" class="button vtpl-menu none" value="菜单">
+                        <?php if ($is_has_menu): ?>
+                            <input type="submit" class="button vtpl-menu none" value="菜单">
                         <?php endif; ?>
                         <input type="submit" class="button vtpl-collapse-section tpl-options-btns" value="全部收缩">
                     </div>
@@ -24,18 +24,12 @@ $is_has_menu = array_key_exists('TplOptionsNavi', $tplget);
                 <div class="clear"></div>
             </div>
         </div>
-        <?php
-        if ($is_has_menu):
-            $tplnavi = $tplget['TplOptionsNavi']['values'];
-            if($_isset_icons)
-            {
-                $tplnavi_icons = $tplget['TplOptionsNavi']['icons'];
-            }
-            ?>
-        <?php else: ?>
-            <style>.option {
+        <?php if (!$is_has_menu): ?>
+            <style>
+                .option {
                     display: block !important
-                }</style>
+                }
+            </style>
         <?php endif; ?>
         <div class="vtpl-wrapper vtpl-option-main">
             <div class="vtpl-nav vtpl-nav-options tpl-nav-options">
@@ -44,11 +38,11 @@ $is_has_menu = array_key_exists('TplOptionsNavi', $tplget);
                     <?php
                     foreach ($tplnavi as $key => $v):
                         $icom_html = '';
-                        if($_isset_icons){
-                            $icom_html = trim($tplnavi_icons[$key])?'<i class="'.$tplnavi_icons[$key].' ri-lg"></i>':'';
+                        if ($tplnavi_icons) {
+                            $icom_html = trim($tplnavi_icons[$key]) ? '<i class="' . $tplnavi_icons[$key] . ' ri-lg"></i>' : '';
                         }
                         ?>
-                        <li onClick="TplShow('<?php echo $key; ?>')"><?php echo $icom_html.$v; ?></li>
+                        <li onClick="TplShow('<?php echo $key; ?>')"><?php echo $icom_html . $v; ?></li>
                     <?php endforeach; ?>
                 </ul>
             </div>
