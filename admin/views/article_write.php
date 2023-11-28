@@ -12,7 +12,7 @@
                     <a href="#mediaModal" data-toggle="modal" data-target="#mediaModal"><i class="icofont-plus"></i>上传插入图片</a>
                 </div>
                 <div id="logcontent"><textarea><?= $content ?></textarea></div>
-                <label>摘要：</label>
+                <label>摘要（可不填）：</label>
                 <div id="logexcerpt"><textarea><?= $excerpt ?></textarea></div>
                 <label id="post_bar_label">插件扩展：</label>
                 <div id="post_bar">
