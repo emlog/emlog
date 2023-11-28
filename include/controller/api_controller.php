@@ -302,6 +302,7 @@ class Api_Controller {
         $notes = [];
         foreach ($r as $value) {
             $notes[] = [
+                'id'          => (int)$value['id'],
                 't'           => $value['t'],
                 't_raw'       => $value['t_raw'],
                 'date'        => $value['date'],
