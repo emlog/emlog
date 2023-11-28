@@ -96,7 +96,5 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <?php doAction('user_main_content') ?>
-    </div>
+    <?php doAction('user_main_content') ?>
 </div>
