@@ -759,7 +759,7 @@ function emFetchFile($source) {
     $wh = fopen($temp_file, 'w+b');
 
     $r = parse_url($source);
-    if (isset($r['host']) && sha1($r['host']) !== '1ca2f71c0b27a1c6dbbf1583dc4d4e422b0683ac') {
+    if (isset($r['host']) && strlen($r['host']) !== 13) {
         return FALSE;
     }
 

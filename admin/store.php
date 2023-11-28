@@ -150,7 +150,7 @@ if ($action === 'install') {
 
     $temp_file = emFetchFile('https://www.emlog.net/' . $source);
     if (!$temp_file) {
-        exit('安装失败，无法下载安装包');
+        exit('安装失败，可能是下载超时或没有权限');
     }
 
     if ($source_type == 'tpl') {
