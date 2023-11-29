@@ -41,6 +41,10 @@ class EmCurl {
             $this->_url = $url;
         }
 
+        if (extension_loaded('curl')) {
+            emMsg("请求失败，请先安装 PHP 的 Curl 扩展。");
+        }
+
         $s = curl_init();
 
         curl_setopt($s, CURLOPT_URL, $this->_url);

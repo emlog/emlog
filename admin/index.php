@@ -26,7 +26,7 @@ if (empty($action)) {
     $php_ver = PHP_VERSION . ', ' . $max_execution_time . 's,' . $max_upload_size;
     $os = php_uname('s') . ' ' . php_uname('m');
     $role_name = User::getRoleName($role, UID);
-    if (function_exists('curl_init')) {
+    if (extension_loaded('curl')) {
         $c = curl_version();
         $php_ver .= ',curl' . $c['version'];
     }
