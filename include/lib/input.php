@@ -21,6 +21,16 @@ class Input {
         return $str ? addslashes(trim($str)) : $var_default;
     }
 
+    public static function postIntArray($var_name, $var_default = []) {
+        $value = filter_input(INPUT_POST, $var_name, FILTER_VALIDATE_INT, FILTER_REQUIRE_ARRAY);
+        return $value ?: $var_default;
+    }
+
+    public static function postStrArray($var_name, $var_default = []) {
+        $value = filter_input(INPUT_POST, $var_name, FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+        return $value ?: $var_default;
+    }
+
     public static function getStrVar($var_name, $var_default = '') {
         $str = filter_input(INPUT_GET, $var_name);
         return $str ? addslashes(trim($str)) : $var_default;
