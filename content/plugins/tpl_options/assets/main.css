@@ -428,7 +428,7 @@ span.tpl-options-setting:hover {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #fdfdfd;
+    background-color: #ededed;
     border: 1px solid #fdfdfd;
     transition: .4s;
     border-radius: 30px;
@@ -659,7 +659,7 @@ span.tpl-options-setting:hover {
 
 .vtpl-buttons .button {
     margin: 0 2px;
-    line-height: 26px;
+    line-height: 30px;
     padding: 0 15px;
     border: none;
     border-radius: 5px;
@@ -1169,7 +1169,9 @@ span.tpl-options-setting:hover {
     .vtpl-header-inner h1, .vtpl-header-right, .vtpl-buttons .vtpl-collapse-section {
         float: none;
     }
-
+    .vtpl-buttons .vtpl-collapse-section {
+    	padding: 6px 10px;
+    } 
     .vtpl-buttons .vtpl-menu {
         display: inline;
     }

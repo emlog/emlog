@@ -18,7 +18,7 @@ $is_has_menu = array_key_exists('TplOptionsNavi', $tplget);
                         <?php if ($is_has_menu): ?>
                             <input type="submit" class="button vtpl-menu none" value="菜单">
                         <?php endif; ?>
-                        <input type="submit" class="button vtpl-collapse-section tpl-options-btns" value="全部收缩">
+                        <span class="button vtpl-collapse-section tpl-options-btns" data-type="1">全部收缩</span>
                     </div>
                 </div>
                 <div class="clear"></div>
