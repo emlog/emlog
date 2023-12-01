@@ -72,13 +72,15 @@ class Log_Model {
         if ($spot == 0) {
             $now = time();
             $date_state = "and date<=$now";
+            $check_state = "and checked='y'";
             $author = '';
         } else {
             $date_state = '';
+            $check_state = '';
             $author = User::haveEditPermission() ? '' : 'and author=' . UID;
         }
 
-        $data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM $this->table WHERE type='$type' $date_state $hide_state $author $condition");
+        $data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM $this->table WHERE type='$type' $date_state $hide_state $check_state $author $condition");
         return $data['total'];
     }
 
