@@ -15,7 +15,7 @@
 </div>
 <div class="mb-3">
     <div class="col-md-12">
-        <p class="alert alert-warning my-3">铁杆SVIP用户可以免费下载安装，<a href="https://www.emlog.net/register">付费支持</a></p>
+        <p class="alert alert-warning my-3"><a href="https://www.emlog.net/register">铁杆SVIP</a> 用户可以免费下载安装下面的插件👇</p>
     </div>
     <div class="d-flex flex-wrap app-list">
         <?php foreach ($addons as $k => $v):

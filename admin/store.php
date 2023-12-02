@@ -40,6 +40,12 @@ if (empty($action)) {
         $sub_title = '免费模板';
     } elseif ($tag === 'paid') {
         $sub_title = '付费模板';
+    } elseif ($tag === 'promo') {
+        $sub_title = '限时优惠';
+    } elseif ($tag === 'free_top') {
+        $sub_title = '免费排行';
+    } elseif ($tag === 'paid_top') {
+        $sub_title = '付费排行';
     }
 
     $subPage = '';
@@ -87,6 +93,12 @@ if ($action === 'plu') {
         $sub_title = '免费插件';
     } elseif ($tag === 'paid') {
         $sub_title = '付费插件';
+    } elseif ($tag === 'promo') {
+        $sub_title = '限时优惠';
+    } elseif ($tag === 'free_top') {
+        $sub_title = '免费排行';
+    } elseif ($tag === 'paid_top') {
+        $sub_title = '付费排行';
     }
 
     $subPage = '';
