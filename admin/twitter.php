@@ -51,6 +51,7 @@ if ($action == 'post') {
 
     $Twitter_Model->addTwitter($data);
     $CACHE->updateCache('sta');
+    doAction('post_note', $data);
     emDirect("twitter.php?active_t=1");
 }
 
