@@ -134,7 +134,7 @@
             <h4>其他设置</h4>
             <div class="form-group form-inline">
                 <label>后台每页展示条目数量</label>
-                <input class="form-control mx-sm-3" style="width:80px;" value="<?= $admin_perpage_num ?>" name="admin_perpage_num" type="number" min="0"/> （影响后台文章、评论、用户列表）
+                <input class="form-control mx-sm-3" style="width:80px;" value="<?= $admin_perpage_num ?>" name="admin_perpage_num" type="number" min="10" max="1000"/> （影响后台文章、评论、用户列表）
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="accept_app_recs" id="accept_app_recs" <?= $conf_accept_app_recs ?> />
