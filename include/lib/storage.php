@@ -364,12 +364,13 @@ class Storage {
      * @return string 类型名
      */
     public function _filterType($type) {
+        if (!$type) {
+            return self::$default_storage_type;
+        }
         $type = strtolower(trim($type));
-
         if (!in_array($type, self::$available_storage_type)) {
             $type = self::$default_storage_type;
         }
-
         return $type;
     }
 }
