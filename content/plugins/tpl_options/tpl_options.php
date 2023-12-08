@@ -198,8 +198,8 @@ class TplOptions {
      * @return void
      */
     public function hookAdminHead() {
-        echo sprintf('<link rel="stylesheet" href="%s">', $this->_assets . 'main.min.css?ver=' . urlencode(self::VERSION . Option::EMLOG_VERSION_TIMESTAMP));
-        echo sprintf('<script src="%s"></script>', $this->_assets . 'main.min.js?ver=' . urlencode(self::VERSION . Option::EMLOG_VERSION_TIMESTAMP));
+        echo sprintf('<link rel="stylesheet" href="%s">', $this->_assets . 'main.css?ver=' . urlencode(self::VERSION . Option::EMLOG_VERSION_TIMESTAMP));
+        echo sprintf('<script src="%s"></script>', $this->_assets . 'main.js?ver=' . urlencode(self::VERSION . Option::EMLOG_VERSION_TIMESTAMP));
     }
 
     /**

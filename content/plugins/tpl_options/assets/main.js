@@ -35,6 +35,7 @@ $(function () {
     }
     //绑定事件
     body.on('click', '.' + attr('setting'), function () {
+        document.getElementsByClassName("container-fluid")[0].children[0].style.cssText='display:none !important';
         $('.container-fluid .row').fadeToggle();
         $.ajax({
             url: tplOptions.baseUrl, data: {
@@ -58,6 +59,7 @@ $(function () {
         $('.tpl-nav-options ul li').removeClass('active');
         $(this).addClass('active');
     }).on('click', '.tpl-options-close', function () {
+        document.getElementsByClassName("container-fluid")[0].children[0].style.cssText='display:flex !important';
         $('.container-fluid .row').fadeToggle();
         optionArea.slideUp(500), tplBox.show();
     }).on('click', '#goTopbtn', function () {
