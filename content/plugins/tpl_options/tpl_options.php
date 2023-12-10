@@ -627,6 +627,15 @@ class TplOptions {
     }
 
     /**
+     * 判断是否为日期格式文本
+     * @param array $option
+     * @return boolean
+     */
+    private function isDate($option) {
+        return isset($option['date']) && $option['date'];
+    }
+
+    /**
      * 上传文件
      * @param string $template 模板
      * @param array $file 上传的文件
@@ -1048,7 +1057,9 @@ class TplOptions {
      * @return void
      */
     private function renderText($option) {
-        if ($this->isMulti($option)) {
+        if($this->isDate($option)){
+            $tpl = '<input type="date" name="{name}" value="{value}">';
+        }else if ($this->isMulti($option)) {
             $tpl = '<textarea name="{name}" rows="5" class="option-textarea{rich}">{value}</textarea>';
         } else {
             $tpl = '<input type="text" name="{name}" value="{value}">';

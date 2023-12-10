@@ -1,4 +1,4 @@
-input[type="text"] {
+input[type="text"],input[type="date"] {
     display: block;
     padding: 0.422rem 0.875rem;
     font-size: 0.9375rem;
@@ -15,7 +15,9 @@ input[type="text"] {
     border-radius: 5px;
     transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
-
+input[type="date"]{
+    max-width: 600px;
+}
 input[type="checkbox"] {
     cursor: pointer;
     flex-shrink: 0;
