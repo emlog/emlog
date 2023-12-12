@@ -280,10 +280,10 @@ function autosave(act) {
         alert("请勿频繁操作！");
         return;
     }
-    const btname = $("#savedf").val();
-    $("#savedf").val("正在保存中...");
+    const $savedf = $("#savedf");
+    const btname = $savedf.val();
+    $savedf.val("正在保存中...").attr("disabled", "disabled");
     $('title').text('[保存中] ' + titleText);
-    $("#savedf").attr("disabled", "disabled");
     $.post(url, $("#addlog").serialize(), function (data) {
         data = $.trim(data);
         var isresponse = /.*autosave\_gid\:\d+\_.*/;
@@ -293,7 +293,6 @@ function autosave(act) {
             const d = new Date();
             const h = d.getHours();
             const m = d.getMinutes();
-            const s = d.getSeconds();
             const tm = (h < 10 ? "0" + h : h) + ":" + (m < 10 ? "0" + m : m);
             $("#save_info").html("保存于：" + tm + " <a href=\"../?post=" + logid + "\" target=\"_blank\">预览文章</a>");
             $('title').text('[保存成功] ' + titleText);

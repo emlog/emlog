@@ -36,8 +36,9 @@ $link = Input::postStrVar('link');
 $author = isset($_POST['author']) && User::haveEditPermission() ? (int)trim($_POST['author']) : UID;
 $ishide = Input::postStrVar('ishide', 'y');
 $blogid = Input::postIntVar('as_logid', -1); //自动保存为草稿的文章id
+$pubPost = Input::postStrVar('pubPost'); // 是否直接发布文章，而非保存草稿
 
-if (isset($_POST['pubPost'])) {
+if ($pubPost) {
     $ishide = 'n';
 }
 
@@ -86,7 +87,7 @@ if ($blogid > 0) {
 
 $CACHE->updateArticleCache();
 
-doAction('save_log', $blogid);
+doAction('save_log', $blogid, $pubPost, $postDate);
 
 // 异步保存
 if ($action === 'autosave') {
@@ -99,7 +100,7 @@ if ($ishide === 'y') {
 }
 
 // 文章（草稿）公开发布
-if (isset($_POST['pubPost'])) {
+if ($pubPost) {
     if (!User::haveEditPermission()) {
         notice::sendNewPostMail($title);
     }
