@@ -117,11 +117,11 @@ span.tpl-options-setting:hover {
     width: 70px
 }
 
-.vtpl-modern-theme .option-sort-option {
+.vtpl-modern-theme .option-sort-tag-option {
     display: none;
 }
 
-.vtpl-modern-theme .option-sort-option.selected {
+.vtpl-modern-theme .option-sort-tag-option.selected {
     display: block;
 }
 
@@ -917,11 +917,11 @@ span.tpl-options-setting:hover {
     cursor: pointer;
 }
 
-.option-sort-left {
+.option-sort-tag-left {
     margin-bottom: 10px;
 }
 
-.option-sort-left .option-sort-select {
+.option-sort-tag-left .option-sort-tag-select {
     white-space: nowrap;
     padding: 6px;
     width: 30%;
@@ -1173,7 +1173,7 @@ span.tpl-options-setting:hover {
     }
     .vtpl-buttons .vtpl-collapse-section {
     	padding: 6px 10px;
-    } 
+    }
     .vtpl-buttons .vtpl-menu {
         display: inline;
     }
@@ -1263,7 +1263,7 @@ span.tpl-options-setting:hover {
     background-color: #0f1013;
 }
 
-.dark-theme .option-sort-left .option-sort-select {
+.dark-theme .option-sort-tag-left .option-sort-tag-select {
     border: 1px solid #2c2d2f;
     background: #000;
     color: #eee;

@@ -247,7 +247,6 @@ class TplOptions {
         }
         $unsorted = isset($option['unsorted']) ? $option['unsorted'] : true;
         $sorts = $this->getSorts($unsorted);
-        $pages = $this->getPages();
         foreach ($options as $name => $option) {
             if (!is_array($option) || !isset($option['name']) || !isset($option['type']) || !isset($this->_types[$option['type']])) {
                 unset($options[$name]);
@@ -330,6 +329,15 @@ class TplOptions {
             }
         }
         return $sorts;
+    }
+
+    /**
+     * 获取所有标签
+     * @return array
+     */
+    private function getTags() {
+        $data = $this->queryAll('tag', array(), 'tid,tagname');
+        return $data;
     }
 
     /**
@@ -849,26 +857,26 @@ class TplOptions {
                 if (!is_array($option['value'])) {
                     $option['value'] = array();
                 }
-                echo '<div class="option-sort" data-option-name="', $option['name'], '">';
-                echo '<div class="option-sort-left">';
+                echo '<div class="option-sort-tag" data-option-name="', $option['name'], '">';
+                echo '<div class="option-sort-tag-left">';
                 if (count($sorts) < 1) {
                     foreach ($sorts as $sort) {
-                        echo '<div class="option-sort-name">';
+                        echo '<div class="option-sort-tag-name">';
                         echo $sort['sortname'];
                         echo '</div>';
                     }
                 } else {
-                    echo '<select class="option-sort-select">';
+                    echo '<select class="option-sort-tag-select">';
                     foreach ($sorts as $sort) {
                         echo sprintf('<option value="%s">%s</option>', $sort['sortname'], $sort['sortname']);
                     }
                     echo '</select>';
                 }
                 echo '</div>';
-                echo '<div class="option-sort-right">';
+                echo '<div class="option-sort-tag-right">';
                 foreach ($sorts as $sort) {
                     $sid = $sort['sid'];
-                    echo '<div class="option-sort-option">';
+                    echo '<div class="option-sort-tag-option">';
                     if (!isset($option['value'][$sid])) {
                         $option['value'][$sid] = $this->getOptionDefaultValue($option, $this->_currentTemplate);
                     }
@@ -890,6 +898,60 @@ class TplOptions {
                             '{value}' => $this->encode($option['value'][$sid]),
                             '{label}' => '',
                             '{path}'  => $this->getImagePath($option['value'][$sid]),
+                            '{rich}'  => $this->getRichString($option),
+                        ));
+                    }
+                    echo '</div>';
+                }
+                echo '</div>';
+                echo '</div>';
+                break;
+            case 'tag':
+                $tags = $this->getTags();
+                if (!is_array($option['value'])) {
+                    $option['value'] = array();
+                }
+                echo '<div class="option-sort-tag" data-option-name="', $option['name'], '">';
+                echo '<div class="option-sort-tag-left">';
+                if (count($tags) < 1) {
+                    foreach ($tags as $tag) {
+                        echo '<div class="option-sort-tag-name">';
+                        echo $tag['tagname'];
+                        echo '</div>';
+                    }
+                } else {
+                    echo '<select class="option-sort-tag-select">';
+                    foreach ($tags as $tag) {
+                        echo sprintf('<option value="%s">%s</option>', $tag['tagname'], $tag['tagname']);
+                    }
+                    echo '</select>';
+                }
+                echo '</div>';
+                echo '<div class="option-sort-tag-right">';
+                foreach ($tags as $tag) {
+                    $tid = $tag['tid'];
+                    echo '<div class="option-sort-tag-option">';
+                    if (!isset($option['value'][$tid])) {
+                        $option['value'][$tid] = $this->getOptionDefaultValue($option, $this->_currentTemplate);
+                    }
+                    if ($loopValues) {
+                        if ($placeholder) {
+                            echo sprintf('<input type="hidden" name="%s" value="">', $option['id'] . "[{$tid}]");
+                        }
+                        foreach ($option['values'] as $value => $label) {
+                            echo strtr($tpl, array(
+                                '{name}'    => $option['id'] . "[{$tid}]",
+                                '{value}'   => $this->encode($value),
+                                '{label}'   => $label,
+                                '{checked}' => $this->getCheckedString($value, $option['value'][$tid]),
+                            ));
+                        }
+                    } else {
+                        echo strtr($tpl, array(
+                            '{name}'  => $option['id'] . "[{$tid}]",
+                            '{value}' => $this->encode($option['value'][$tid]),
+                            '{label}' => '',
+                            '{path}'  => $this->getImagePath($option['value'][$tid]),
                             '{rich}'  => $this->getRichString($option),
                         ));
                     }
