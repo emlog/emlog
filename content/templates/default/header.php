@@ -1,9 +1,10 @@
 <?php
 /*
 Template Name:默认模板
+Version:1.0
 Template Url:https://www.emlog.net/template/
-Description:这是emlog pro的默认模板
-Author:emlog官方
+Description:emlog的默认模板
+Author:emlog
 Author Url:https://www.emlog.net
 */
 defined('EMLOG_ROOT') || exit('access denied!');
@@ -33,7 +34,6 @@ if (!function_exists('_g')) {
         }</script>
     <?php doAction('index_head') ?>
 </head>
-
 <body>
 <nav class="blog-header">
     <div class="blog-header-c container">
@@ -50,9 +50,7 @@ if (!function_exists('_g')) {
                 <rect x="1" y="15" fill="#5F5F5F" width="26" height="1.6"/>
             </svg>
         </div>
-
         <?php blog_navi() ?>
         <?php doAction('index_navi_ext') ?>
-
     </div>
 </nav>
