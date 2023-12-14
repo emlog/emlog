@@ -247,6 +247,7 @@ class TplOptions {
         }
         $unsorted = isset($option['unsorted']) ? $option['unsorted'] : true;
         $sorts = $this->getSorts($unsorted);
+        $pages = $this->getPages();
         foreach ($options as $name => $option) {
             if (!is_array($option) || !isset($option['name']) || !isset($option['type']) || !isset($this->_types[$option['type']])) {
                 unset($options[$name]);
