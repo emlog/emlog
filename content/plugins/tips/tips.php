@@ -23,9 +23,7 @@ $array_tips = [
     '检查你的站点目录下是否存在安装文件：install.php，有的话请删除它',
     '推荐使用Chrome浏览器，更好的体验emlog',
     '可以用笔记来整理碎片文字素材',
-    '从明天起，做一个幸福的人',
-    'E = MC²',
-    'PHP is the best language in the world',
+    '面朝大海，春暖花开',
 ];
 
 function tips() {
