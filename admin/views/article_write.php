@@ -10,6 +10,7 @@
                 </div>
                 <div class="small my-3">
                     <a href="#mediaModal" data-toggle="modal" data-target="#mediaModal"><i class="icofont-plus"></i>上传插入图片</a>
+                    <?php doAction('adm_writelog_bar') ?>
                 </div>
                 <div id="logcontent"><textarea><?= $content ?></textarea></div>
                 <label>摘要（可不填）：</label>
