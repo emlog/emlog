@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: 模版设置
-Version: 4.2.4
+Version: 4.2.5
 Plugin URL: https://www.emlog.net/plugin/detail/377
 Description: 为模版增加丰富的设置功能，详见官网文档-模板开发。
 Author: emlog
@@ -840,6 +840,11 @@ class TplOptions {
     private function renderByTpl($option, $tpl, $loopValues = true, $placeholder = true) {
         $desc = '';
         $tip = '';
+        $is_multi = '';
+        if($this->isMulti($option))
+        {
+            $is_multi = 'is-multi';
+        }
         if (!empty($option['description'])) {
             $desc = '<div class="option-description">' . $option['description'] . '</div>';
         }
@@ -850,7 +855,7 @@ class TplOptions {
         echo '<div class="option-ico upico"></div>';
         echo '<div class="option-name" title="单击展开收缩设置内容" data-name="' . $this->encode($option['name']) . '" data-id="' . $option['id'] . '">', $this->encode($option['name']) . $tip, $desc, '</div>';
         $depend = isset($option['depend']) ? $option['depend'] : 'none';
-        echo sprintf('<div class="option-body depend-%s">', $depend);
+        echo sprintf('<div class="option-body depend-%s %s">', $depend, $is_multi);
         switch ($depend) {
             case 'sort':
                 $unsorted = isset($option['unsorted']) ? $option['unsorted'] : true;
@@ -1218,10 +1223,14 @@ class TplOptions {
                          </div>
                      </div>';
         } else {
-            $tpl = '<span>填写块标题：</span>';
+            $tpl = '<div>填写块标题：</div>';
             $tpl .= '<input class="block-title-input" type="text" name="{title}" value="{tvalue}">';
-            $tpl .= '<span>填写块内容：</span>';
-            $tpl .= '<textarea rows="8" name="{name}">{value}</textarea>';
+            $tpl .= '<div>填写块内容：</div>';
+            if($this->isMulti($option)){
+                $tpl .= '<textarea rows="5" name="{name}">{value}</textarea>';
+            }else{
+                $tpl .= '<input type="text" name="{name}" value="{value}">';
+            }
         }
         $option['depend'] = 'block';
         $this->renderByTpl($option, $tpl, false);
