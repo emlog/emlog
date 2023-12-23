@@ -1218,10 +1218,14 @@ class TplOptions {
                          </div>
                      </div>';
         } else {
-            $tpl = '<span>填写块标题：</span>';
+            $tpl = '<div>填写块标题：</div>';
             $tpl .= '<input class="block-title-input" type="text" name="{title}" value="{tvalue}">';
-            $tpl .= '<span>填写块内容：</span>';
-            $tpl .= '<textarea rows="8" name="{name}">{value}</textarea>';
+            $tpl .= '<div>填写块内容：</div>';
+            if($this->isMulti($option)){
+                $tpl .= '<textarea rows="5" name="{name}">{value}</textarea>';
+            }else{
+                $tpl .= '<input type="text" name="{name}" value="{value}">';
+            }
         }
         $option['depend'] = 'block';
         $this->renderByTpl($option, $tpl, false);
