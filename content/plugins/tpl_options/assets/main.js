@@ -173,10 +173,14 @@ $(function () {
                 '</label>'
             type_html += '</div></div>';
         } else {
-            type_html += '<span>填写块标题：</span>'
-            type_html += '<input class="block-title-input" type="text" name="' + _name + '[title][]" value="">';
-            type_html += '<span>填写块内容：</span>'
-            type_html += '<textarea rows="8" name="' + _name + '[content][]"></textarea>';
+            type_html += '<div>填写块标题：</div>'
+            type_html += '<input class="block-title-input" type="text" name="' + _name + '[title][]" value="">'
+            type_html += '<div>填写块内容：</div>'
+            if($(this).parent().parent().hasClass('is-multi')){
+                type_html += '<textarea rows="5" name="' + _name + '[content][]"></textarea>'
+            }else{
+                type_html += '<input type="text" name="' + _name + '[content][]" value="">'
+            }
         }
         $(this).before('<div class="tpl-block-item">\n' +
             '    <div class="tpl-block-head">\n' +
