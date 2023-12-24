@@ -52,7 +52,7 @@
                 <thead>
                 <tr>
                     <th></th>
-                    <th>用户名</th>
+                    <th>用户昵称</th>
                     <th>邮箱</th>
                     <th>用户ID</th>
                     <th>文章</th>
