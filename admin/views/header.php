@@ -35,7 +35,7 @@
         </li>
         <hr class="sidebar-divider my-0">
         <li class="nav-item" id="menu_panel">
-            <a class="nav-link" href="./"><i class="icofont-dashboard icofont-1x"></i><span>管理后台</span></a>
+            <a class="nav-link" href="./"><i class="icofont-dashboard icofont-1x"></i><span>控制台</span></a>
         </li>
         <hr class="sidebar-divider my-0">
         <li class="nav-item" id="menu_category_content">

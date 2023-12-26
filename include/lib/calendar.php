@@ -15,6 +15,10 @@ class Calendar {
     static function generate() {
         $DB = Database::getInstance();
 
+        if (empty($_SERVER['HTTP_REFERER'])) {
+            show_404_page();
+        }
+
         //建立文章时间写入数组
         $logdate = [];
         $now = time();

@@ -41,11 +41,11 @@ class Sort_Controller {
         $sortName = $sort['sortname'];
         //page meta
         $site_title = $sortName . ' - ' . $site_title;
-        if (!empty($sort_cache[$sortid]['description'])) {
-            $site_description = $sort_cache[$sortid]['description'];
+        if (!empty($sort['description'])) {
+            $site_description = $sort['description'];
         }
-        if (!empty($sort_cache[$sortid]['kw'])) {
-            $site_key = $sort_cache[$sortid]['kw'];
+        if (!empty($sort['kw'])) {
+            $site_key = $sort['kw'];
         }
         if ($sort['pid'] != 0 || empty($sort['children'])) {
             $sqlSegment = "and sortid=$sortid";
