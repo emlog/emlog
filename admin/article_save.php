@@ -102,7 +102,7 @@ if ($ishide === 'y') {
 // 文章（草稿）公开发布
 if ($pubPost) {
     if (!User::haveEditPermission()) {
-        notice::sendNewPostMail($title);
+        notice::sendNewPostMail($title, $blogid);
     }
     emDirect("./article.php?active_post=1");
 }

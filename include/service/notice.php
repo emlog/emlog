@@ -42,7 +42,7 @@ class Notice {
         return self::sendMail($mail, $title, $content);
     }
 
-    public static function sendNewPostMail($postTitle) {
+    public static function sendNewPostMail($postTitle, $gid) {
         if (!self::smtpServerReady()) {
             return false;
         }
@@ -54,7 +54,8 @@ class Notice {
             return false;
         }
         $title = "你的站点收到新的文章投稿";
-        $content = sprintf('文章标题是：%s', $postTitle);
+        $url = Url::log($gid);
+        $content = sprintf('文章标题：<a href="%s">%s</a>', $url, $postTitle);
         return self::sendMail($mail, $title, $content);
     }
 
