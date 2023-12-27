@@ -52,7 +52,11 @@ if ($action == 'save') {
     $kw = Input::postStrVar('kw');
 
     if (empty($sortname)) {
-        emDirect("./sort.php?action=mod_sort&sid={$sid}&error_a=1");
+        emDirect("./sort.php?error_a=1");
+    }
+
+    if ($sid && $sid == $pid) {
+        emDirect("./sort.php?error_f=1");
     }
 
     if (!empty($alias)) {
