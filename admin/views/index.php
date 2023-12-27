@@ -1,8 +1,19 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
     <div class="d-sm-flex align-items-center justify-content-between mb-3">
-        <div class="mb-0 text-gray-800">
-            <span class="h4">你好，<a class="small" href="./blogger.php"><?= $user_cache[UID]['name'] ?></a></span>
-            <span class="badge badge-primary ml-2"><?= $role_name ?></span>
+        <div class="d-flex align-items-center">
+            <div class="flex-shrink-0">
+                <a class="mr-2" href="blogger.php">
+                    <img src="<?= empty($user_cache[UID]['avatar']) ? './views/images/avatar.svg' : '../' . $user_cache[UID]['avatar'] ?>"
+                         alt="avatar" class="img-fluid rounded-circle border border-mute border-3"
+                         style="width: 56px;">
+                </a>
+            </div>
+            <div class="flex-grow-1 ms-3">
+                <div class="align-items-center mb-2">
+                    <p class="mb-0 m-2"><a class="mr-2" href="blogger.php"><?= $user_cache[UID]['name'] ?></a></p>
+                    <p class="mb-0 m-2 small"><?= $role_name ?></p>
+                </div>
+            </div>
         </div>
         <a href="./article.php?action=write" class="btn btn-sm btn-success shadow-sm mt-4"><i class="icofont-pencil-alt-5"></i> 写新文章</a>
     </div>
