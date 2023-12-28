@@ -101,7 +101,7 @@ if ($action == 'del') {
 
 if ($action == 'operate_log') {
     $operate = Input::requestStrVar('operate');
-    $draft = Input::getIntVar('draft');
+    $draft = Input::postIntVar('draft');
     $logs = Input::postIntArray('blog');
     $sort = Input::postIntVar('sort');
     $author = Input::postIntVar('author');
