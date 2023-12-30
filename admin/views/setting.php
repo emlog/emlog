@@ -101,7 +101,7 @@
             <h4>文章设置</h4>
             <div class="form-group form-inline">
                 <label>每页显示文章数量</label>
-                <input class="form-control mx-sm-3" style="width:80px;" value="<?= $index_lognum ?>" name="index_lognum" type="number" min="0"/>
+                <input class="form-control mx-sm-3" style="width:80px;" value="<?= $index_lognum ?>" name="index_lognum" type="number" min="1"/>
             </div>
 
             <div class="form-group form-inline">
