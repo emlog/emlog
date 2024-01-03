@@ -142,9 +142,8 @@
     background: #f6f6f6;
     border-radius: 3px;
     font-size: 14px;
-    padding: 4px 5px;
+    padding: 4px 4px 4px 0px;
     margin-right: 4px;
-    color: #e85d8b;
 }
 
 .markdown pre {
