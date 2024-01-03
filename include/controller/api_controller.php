@@ -28,6 +28,11 @@ class Api_Controller {
      * @var Media_Model
      */
     public $Media_Model;
+    /**
+     * @var Comment_Model
+     */
+    public $Comment_Model;
+
     public $Cache;
     public $authReqSign;
     public $authReqTime;
@@ -50,6 +55,7 @@ class Api_Controller {
             $this->Twitter_Model = new Twitter_Model();
             $this->User_Model = new User_Model();
             $this->Media_Model = new Media_Model();
+            $this->Comment_Model = new Comment_Model();
             $this->Cache = Cache::getInstance();
             $this->$_func();
         } else {
@@ -353,6 +359,14 @@ class Api_Controller {
         $aid = $this->Media_Model->addMedia($ret['file_info'], $sid, $author_uid);
 
         Output::ok(['media_id' => $aid, 'url' => $ret['url'], 'file_info' => $ret['file_info']]);
+    }
+
+    private function comment_list() {
+        $id = Input::getIntVar('id');
+        $page = Input::getIntVar('page', 1);
+
+        $comments = $this->Comment_Model->getComments($id, 'n', $page);
+        output::ok($comments);
     }
 
     private function getTags($id) {
