@@ -1181,3 +1181,30 @@ if (!function_exists('get_browse')) {
         return $br;
     }
 }
+
+// 获取内容中的第一张图片
+if (!function_exists('getFirstImage')) {
+    function getFirstImage($content) {
+        // 匹配 Markdown 中的图片
+        preg_match('/!\[.*?\]\((.*?)\)/', $content, $matches);
+
+        if (!empty($matches[1])) {
+            return $matches[1];
+        }
+
+        // 匹配 HTML 中的图片
+        $dom = new DOMDocument();
+        libxml_use_internal_errors(true);
+        $dom->loadHTML($content);
+        libxml_clear_errors();
+
+        $xpath = new DOMXPath($dom);
+        $imgNode = $xpath->query('//img')->item(0);
+
+        if ($imgNode) {
+            return $imgNode->getAttribute('src');
+        }
+
+        return null;
+    }
+}
