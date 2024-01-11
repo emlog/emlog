@@ -38,5 +38,5 @@ if ($action === 'auth') {
 
     Option::updateOption("emkey", $emkey);
     $CACHE->updateCache('options');
-    emDirect("./auth.php?active_reg=1");
+    emDirect("./auth.php");
 }

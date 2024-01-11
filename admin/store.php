@@ -179,7 +179,7 @@ if ($action === 'install') {
     @unlink($temp_file);
     switch ($ret) {
         case 0:
-            exit('安装成功 <a href="' . $suc_url . '">去查看</a>');
+            exit('安装成功 <a href="' . $suc_url . '">去启用</a>');
         case 1:
         case 2:
             exit('安装失败，请检查content下目录是否可写');

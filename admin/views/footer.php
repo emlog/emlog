@@ -2,10 +2,8 @@
 </div>
 </div>
 <footer class="sticky-footer bg-white">
-    <div class="container my-auto">
-        <div class="copyright text-center my-auto">
-            <span>Powered by <a href="http://www.emlog.net">emlog</a> </span>
-        </div>
+    <div class="text-right my-auto mr-4">
+        <small><a href="https://www.emlog.net" target="_blank">EMLOG</a> - <?= ucfirst(Option::EMLOG_VERSION) ?></small>
     </div>
 </footer>
 </div>

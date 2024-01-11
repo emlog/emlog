@@ -119,11 +119,11 @@
                             <?php if (!Register::isRegLocal()) : ?>
                                 <a href="auth.php"><span class="badge badge-secondary">Emlog <?= Option::EMLOG_VERSION ?> 未注册，点击注册</span></a>
                             <?php elseif (Register::getRegType() == 2): ?>
-                                <span class="badge badge-warning">Emlog <?= ucfirst(Option::EMLOG_VERSION) ?> 铁杆SVIP</span>
+                                <span class="badge badge-success">Emlog <?= ucfirst(Option::EMLOG_VERSION) ?></span> <a href="https://www.emlog.net/register" class="badge badge-warning">铁杆SVIP</a>
                             <?php elseif (Register::getRegType() == 1): ?>
-                                <span class="badge badge-success">Emlog <?= ucfirst(Option::EMLOG_VERSION) ?> 友情VIP</span>
+                                <span class="badge badge-success">Emlog <?= ucfirst(Option::EMLOG_VERSION) ?></span> <a href="https://www.emlog.net/register" class="badge badge-success"> 友情VIP</a>
                             <?php else: ?>
-                                <span class="badge badge-success">Emlog <?= ucfirst(Option::EMLOG_VERSION) ?> 已注册</span>
+                                <span class="badge badge-success">Emlog <?= ucfirst(Option::EMLOG_VERSION) ?></span> <a href="https://www.emlog.net/register" class="badge badge-success"> 已注册</a>
                             <?php endif ?>
                                 </span>
                             <span>
@@ -143,12 +143,11 @@
                         <h6 class="my-0">您安装的emlog尚未注册，完成注册可使用全部功能，包括如下：</h6>
                     </div>
                     <div class="card-body">
-                        <div>1. 解锁在线升级功能，一键升级到最新版本，获得来自官方的安全和功能更新。</div>
-                        <div>2. 解锁应用商店，获得更多模板和插件，并支持应用在线一键更新。</div>
-                        <div>3. 去除所有未注册提示及功能限制。</div>
-                        <div>4. 加入专属Q群，获得官方技术指导问题解答。</div>
-                        <div>5. 附赠多款收费应用（限铁杆SVIP）。</div>
-                        <div>6. "投我以桃，报之以李"，您的支持也将帮助emlog变的更好并持续更新下去。</div>
+                        <div>1. 解锁在线升级功能，一键升级到最新版本，获得来自官方的安全和功能更新</div>
+                        <div>2. 解锁应用商店，获得更多模板和插件，并支持应用在线一键更新</div>
+                        <div>3. 去除所有未注册提示及功能限制</div>
+                        <div>4. 加入专属Q群，获得官方技术指导问题解答</div>
+                        <div>5. 附赠多款收费应用（限铁杆SVIP）</div>
                     </div>
                     <div class="card-footer text-center">
                         <a href="auth.php" class="btn btn-sm btn-primary shadow-lg">去注册</a>
