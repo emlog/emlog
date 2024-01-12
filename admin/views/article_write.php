@@ -40,7 +40,6 @@
             </div>
             <div class="shadow-sm p-3 bg-white rounded" id="post_side">
                 <div class="form-group">
-                    <label>封面：</label>
                     <input name="cover" id="cover" class="form-control" placeholder="封面图URL" value="<?= $cover ?>"/>
                     <div class="row mt-3">
                         <div class="col-md-4">
@@ -78,10 +77,9 @@
                 </div>
                 <div class="form-group">
                     <label>标签：<small class="text-muted">(也用于页面关键词，英文逗号分隔)</small></label>
-                    <input name="tag" id="tag" class="form-control" value="<?= $tagStr ?>"/>
                     <?php if ($tags): ?>
-                        <span class="small"><a href="javascript:doToggle('tags', 1);">近期使用的+</a></span>
-                        <div id="tags" style="display: none">
+                        <span class="small"> <a href="javascript:doToggle('tags', 1);">近期使用的+</a></span>
+                        <div id="tags" class="mb-2" style="display: none">
                             <?php
                             foreach ($tags as $val) {
                                 echo " <a class=\"badge badge-primary\" href=\"javascript: insertTag('{$val['tagname']}','tag');\">{$val['tagname']}</a> ";
@@ -89,6 +87,7 @@
                             ?>
                         </div>
                     <?php endif; ?>
+                    <input name="tag" id="tag" class="form-control" value="<?= $tagStr ?>"/>
                 </div>
                 <?php if (User::haveEditPermission()): ?>
                     <div class="form-group">
@@ -103,7 +102,6 @@
                         <input type="checkbox" value="y" name="sortop" id="sortop" <?php echo $is_sortop; ?> />
                         <label for="sortop" style="margin-right: 8px;">分类置顶</label>
                     </div>
-                    <hr>
                     <div><a class="show_advset" id="displayToggle" onclick="displayToggle('advset');">高级选项<i class="icofont-simple-right"></i></a></div>
                 <?php else: ?>
                     <input type="hidden" value="y" name="allow_remark" id="allow_remark"/>
