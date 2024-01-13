@@ -13,7 +13,7 @@
                     <?php doAction('adm_writelog_bar') ?>
                 </div>
                 <div id="logcontent"><textarea><?= $content ?></textarea></div>
-                <label>摘要（可不填）：</label>
+                <label>摘要（选填）：</label>
                 <div id="logexcerpt"><textarea><?= $excerpt ?></textarea></div>
                 <label id="post_bar_label">插件扩展：</label>
                 <div id="post_bar">
@@ -184,7 +184,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">裁剪并上传</h5>
+                <h5 class="modal-title">上传封面</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
