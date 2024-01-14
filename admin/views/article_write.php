@@ -1,6 +1,6 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
 <div id="msg" class="fixed-top alert" style="display: none"></div>
-<h1 class="h3 mb-4 text-gray-800"><?= $containerTitle ?> <span id="save_info"></span></h1>
+<h4 class="mb-4 text-gray-800"><?= $containerTitle ?> <span id="save_info"></span></h4>
 <form action="article_save.php" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
     <div class="row">
         <div class="col-xl-9">
