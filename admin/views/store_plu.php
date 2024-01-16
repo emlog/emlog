@@ -92,7 +92,7 @@
                 </div>
             <?php endforeach ?>
         </div>
-        <div class="col-md-12 page my-5"><?= $pageurl ?> (有<?= $count ?>个插件)</div>
+        <div class="col-md-12 page my-5"><?= $pageurl ?></div>
     <?php else: ?>
         <div class="col-md-12">
             <div class="alert alert-info">暂未找到结果，应用商店进货中，敬请期待：）</div>

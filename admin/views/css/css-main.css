@@ -498,7 +498,7 @@ textarea {
 
 .page {
     text-align: center;
-    margin: 10px 0px;
+    margin: 20px 0;
 }
 
 .page span {
@@ -506,13 +506,15 @@ textarea {
     color: #FFF;
     padding: 5px 12px;
     border-radius: 4px;
+    font-weight: bold;
 }
 
 .page a {
     background-color: #c8cbcf;
     color: #FFF;
-    padding: 3px 9px;
+    padding: 5px 12px;
     border-radius: 4px;
+    font-weight: bold;
 }
 
 .dropdown:hover .dropdown-menu {
