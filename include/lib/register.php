@@ -70,13 +70,18 @@ class Register {
         $response = $emcurl->getRespone();
         $response = json_decode($response, 1);
         if ($response['code'] !== 200) {
-            $CACHE = Cache::getInstance();
-            Option::updateOption('emkey', '');
-            $CACHE->updateCache('options');
+            self::clean();
             return false;
         }
 
         return $response;
+    }
+
+    public static function clean() {
+        $CACHE = Cache::getInstance();
+        Option::updateOption('emkey', '');
+        Option::updateOption('emkey_type', '');
+        $CACHE->updateCache('options');
     }
 
 }
