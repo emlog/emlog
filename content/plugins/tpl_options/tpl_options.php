@@ -454,8 +454,6 @@ class TplOptions {
             if (is_string($value)) {
                 if (class_exists('mysqli', FALSE)) {
                     $value = $this->getDb()->escape_string($value);
-                } else {
-                    $value = mysql_escape_string($value);
                 }
                 $subSql[] = "(`$key`='$value')";
             } elseif (is_array($value)) {
@@ -498,8 +496,6 @@ class TplOptions {
         return implode(',', array_map(function ($val) {
             if (class_exists('mysqli', FALSE)) {
                 $val = $this->getDb()->escape_string($val);
-            } else {
-                $val = mysql_escape_string($val);
             }
             return "'" . $val . "'";
         }, $data));
@@ -1290,7 +1286,7 @@ class TplOptions {
         $tags = Cache::getInstance()->readCache('tags');
         $values = array();
         foreach ($tags as $tag) {
-            $values[$tag['tagname']] = "${tag['tagname']} (${tag['usenum']})";
+            $values[$tag['tagname']] = "{$tag['tagname']} ({$tag['usenum']})";
         }
         $option['values'] = $values;
         $this->renderCheckbox($option);
