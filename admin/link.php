@@ -26,7 +26,7 @@ if ($action == 'link_taxis') {
     $link = isset($_POST['link']) ? $_POST['link'] : '';
 
     if (empty($link)) {
-        emDirect("./link.php?error_b=1");
+        Output::error('没有可排序的链接');
     }
 
     foreach ($link as $key => $value) {
@@ -35,7 +35,7 @@ if ($action == 'link_taxis') {
         $Link_Model->updateLink(array('taxis' => $key), $value);
     }
     $CACHE->updateCache('link');
-    emDirect("./link.php?active_taxis=1");
+    Output::ok();
 }
 
 if ($action == 'save') {

@@ -30,8 +30,9 @@ if ($action == 'taxis') {
     $sort = isset($_POST['sort']) ? $_POST['sort'] : '';
 
     if (empty($sort)) {
-        emDirect("./sort.php?error_b=1");
+        Output::error('没有可排序的分类');
     }
+
     foreach ($sort as $key => $value) {
         $value = (int)$value;
         $key = (int)$key;
@@ -39,7 +40,7 @@ if ($action == 'taxis') {
     }
 
     $CACHE->updateCache(['sort', 'navi']);
-    emDirect("./sort.php?active_taxis=1");
+    Output::ok();
 }
 
 if ($action == 'save') {

@@ -1,14 +1,10 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
-<?php if (isset($_GET['active_taxis'])): ?>
-    <div class="alert alert-success">排序更新成功</div><?php endif ?>
 <?php if (isset($_GET['active_del'])): ?>
     <div class="alert alert-success">删除分类成功</div><?php endif ?>
 <?php if (isset($_GET['active_save'])): ?>
     <div class="alert alert-success">保存成功</div><?php endif ?>
 <?php if (isset($_GET['error_a'])): ?>
     <div class="alert alert-danger">分类名称不能为空</div><?php endif ?>
-<?php if (isset($_GET['error_b'])): ?>
-    <div class="alert alert-danger">没有可排序的分类</div><?php endif ?>
 <?php if (isset($_GET['error_c'])): ?>
     <div class="alert alert-danger">别名格式错误</div><?php endif ?>
 <?php if (isset($_GET['error_d'])): ?>
@@ -21,7 +17,7 @@
     <h1 class="h3 mb-0 text-gray-800">文章分类</h1>
     <a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#sortModal"><i class="icofont-plus"></i> 添加分类</a>
 </div>
-<form method="post" action="sort.php?action=taxis">
+<form method="post" id="sort_form" action="sort.php?action=taxis">
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="table-responsive" id="adm_sort_list">
@@ -215,6 +211,11 @@
         }
     }
 
+    // 提交表单
+    $("#sort_form").submit(function (event) {
+        event.preventDefault();
+        submitForm("#sort_form");
+    });
 
     $(function () {
         setTimeout(hideActived, 3600);

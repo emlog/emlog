@@ -9,7 +9,7 @@
     <ul class="nav nav-pills">
         <li class="nav-item"><a class="nav-link" href="./store.php">模板主题</a></li>
         <li class="nav-item"><a class="nav-link" href="./store.php?action=plu">扩展插件</a></li>
-        <li class="nav-item"><a class="nav-link" href="./store.php?action=svip">铁杆SVIP专属</a></li>
+        <li class="nav-item"><a class="nav-link text-danger" href="./store.php?action=svip">铁杆SVIP专属</a></li>
         <li class="nav-item"><a class="nav-link active" href="./store.php?action=mine">我的已购</a></li>
     </ul>
 </div>
@@ -46,11 +46,11 @@
         </div>
     <?php elseif (!Register::isRegLocal()): ?>
         <div class="col-md-12">
-            <p class="alert alert-warning m-3">您还不是付费注册用户，无法使用应用商店已购功能，<a href="https://www.emlog.net/register">付费支持 &rarr;</a></p>
+            <p class="alert alert-warning my-3">您还不是付费注册用户，无法使用应用商店已购功能，<a href="https://www.emlog.net/register">付费支持 &rarr;</a></p>
         </div>
     <?php else: ?>
         <div class="col-md-12">
-            <p class="alert alert-warning m-3">您还没有购买任何应用。</p>
+            <p class="alert alert-warning my-3">您还没有购买任何应用。</p>
         </div>
     <?php endif; ?>
 </div>

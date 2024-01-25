@@ -31,7 +31,7 @@ if ($action == 'taxis') {
     $navi = isset($_POST['navi']) ? $_POST['navi'] : '';
 
     if (empty($navi)) {
-        emDirect("./navbar.php?error_b=1");
+        Output::error('没有可排序的导航');
     }
 
     foreach ($navi as $key => $value) {
@@ -40,7 +40,7 @@ if ($action == 'taxis') {
         $Navi_Model->updateNavi(array('taxis' => $key), $value);
     }
     $CACHE->updateCache('navi');
-    emDirect("./navbar.php?active_taxis=1");
+    Output::ok();
 }
 
 if ($action == 'add') {

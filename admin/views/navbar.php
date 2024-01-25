@@ -1,6 +1,4 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
-<?php if (isset($_GET['active_taxis'])): ?>
-    <div class="alert alert-success">排序更新成功</div><?php endif ?>
 <?php if (isset($_GET['active_del'])): ?>
     <div class="alert alert-success">删除导航成功</div><?php endif ?>
 <?php if (isset($_GET['active_edit'])): ?>
@@ -9,8 +7,6 @@
     <div class="alert alert-success">添加导航成功</div><?php endif ?>
 <?php if (isset($_GET['error_a'])): ?>
     <div class="alert alert-danger">导航名称和地址不能为空</div><?php endif ?>
-<?php if (isset($_GET['error_b'])): ?>
-    <div class="alert alert-danger">没有可排序的导航</div><?php endif ?>
 <?php if (isset($_GET['error_c'])): ?>
     <div class="alert alert-danger">默认导航不能删除</div><?php endif ?>
 <?php if (isset($_GET['error_d'])): ?>
@@ -22,7 +18,7 @@
 </div>
 <div class="card shadow mb-4">
     <div class="card-body">
-        <form action="navbar.php?action=taxis" method="post">
+        <form action="navbar.php?action=taxis" id="navi_form" method="post">
             <div class="table-responsive">
                 <table class="table table-striped table-bordered table-hover dataTable no-footer" id="dataTable">
                     <thead>
@@ -142,8 +138,7 @@
                     <input class="form-control" name="naviname" placeholder="导航名称" required/>
                 </div>
                 <div class="form-group">
-                    <textarea maxlength="512" class="form-control" placeholder="地址（URL）" name="url" id="url"
-                              required/></textarea>
+                    <textarea maxlength="512" class="form-control" placeholder="地址（URL）" name="url" id="url" required></textarea>
                 </div>
                 <div class="form-group">
                     <label>父导航</label>
@@ -243,6 +238,12 @@
         $("#menu_category_view").addClass('active');
         $("#menu_view").addClass('show');
         $("#menu_navi").addClass('active');
+
+        // 提交表单
+        $("#navi_form").submit(function (event) {
+            event.preventDefault();
+            submitForm("#navi_form");
+        });
 
         // 拖动排序
         $('#dataTable tbody').sortable().disableSelection();

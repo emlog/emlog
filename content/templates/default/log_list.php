@@ -31,7 +31,6 @@ defined('EMLOG_ROOT') || exit('access denied!');
                                 <div class="log-info">
                                     <?php blog_author($value['author']) ?>&nbsp;发布于&nbsp;
                                     <?= date('Y-n-j H:i', $value['date']) ?>&nbsp;
-                                    <span class="mh"><?php editflg($value['logid'], $value['author']) ?></span>
                                 </div>
                                 <div class="log-count">
                                     <a href="<?= $value['log_url'] ?>#comment">评论(<?= $value['comnum'] ?>)&nbsp;</a>

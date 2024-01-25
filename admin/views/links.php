@@ -1,19 +1,15 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
-<?php if (isset($_GET['active_taxis'])): ?>
-    <div class="alert alert-success">排序更新成功</div><?php endif ?>
 <?php if (isset($_GET['active_del'])): ?>
     <div class="alert alert-success">删除成功</div><?php endif ?>
 <?php if (isset($_GET['active_save'])): ?>
     <div class="alert alert-success">保存成功</div><?php endif ?>
 <?php if (isset($_GET['error_a'])): ?>
     <div class="alert alert-danger">名称和地址不能为空</div><?php endif ?>
-<?php if (isset($_GET['error_b'])): ?>
-    <div class="alert alert-danger">没有可排序的链接</div><?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">友情链接</h1>
     <a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#linkModel"><i class="icofont-plus"></i> 添加链接</a>
 </div>
-<form action="link.php?action=link_taxis" method="post">
+<form action="link.php?action=link_taxis" id="link_form" method="post">
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="table-responsive">
@@ -124,6 +120,12 @@
             modal.find('.modal-body #description').val(description)
             modal.find('.modal-footer #linkid').val(linkid)
         })
+
+        // 提交表单
+        $("#link_form").submit(function (event) {
+            event.preventDefault();
+            submitForm("#link_form");
+        });
 
         // 拖动排序
         $('#dataTable tbody').sortable().disableSelection();
