@@ -4,7 +4,7 @@
 Dockerfile
 config.php
 /content/backup/*.sql
-/content/cache/*.php
+/content/cache/*
 /content/uploadfile/*
 
 # IDE
