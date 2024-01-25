@@ -77,6 +77,20 @@ class Register {
         return $response;
     }
 
+    public static function verifyDownload($source) {
+        $emkey = Option::get('emkey');
+        $emcurl = new EmCurl();
+        $emcurl->setPost(['emkey' => $emkey]);
+        $emcurl->request('https://www.emlog.net/' . $source . '/1');
+        if ($emcurl->getHttpStatus() === 403) {
+            self::clean();
+            return false;
+        } elseif ($emcurl->getHttpStatus() !== 200) {
+            return false;
+        }
+        return true;
+    }
+
     public static function clean() {
         $CACHE = Cache::getInstance();
         Option::updateOption('emkey', '');

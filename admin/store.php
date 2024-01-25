@@ -149,12 +149,8 @@ if ($action === 'error') {
 }
 
 if ($action === 'install') {
-    $source = isset($_GET['source']) ? trim($_GET['source']) : '';
+    $source = isset($_GET['source']) ? trim($_GET['source']) : ''; // plugin/down/11
     $source_type = isset($_GET['type']) ? trim($_GET['type']) : '';
-
-    if (!Register::isRegLocal()) {
-        exit('您的emlog pro尚未注册，<a href="auth.php">去注册</a>');
-    }
 
     if (empty($source)) {
         exit('安装失败');
@@ -162,7 +158,9 @@ if ($action === 'install') {
 
     $temp_file = emFetchFile('https://www.emlog.net/' . $source);
     if (!$temp_file) {
-        Register::isRegServer(); // 检查服务端注册状态
+        if (false === Register::verifyDownload($source)) {
+            exit('您的emlog pro尚未注册，<a href="auth.php">去注册</a>');
+        }
         exit('安装失败，下载超时或没有权限');
     }
 
