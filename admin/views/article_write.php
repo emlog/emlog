@@ -13,7 +13,10 @@
                     <?php doAction('adm_writelog_bar') ?>
                 </div>
                 <div id="logcontent"><textarea><?= $content ?></textarea></div>
-                <label>摘要（选填）：</label>
+                <label>摘要（选填）：
+                    <input type="checkbox" value="y" name="auto_excerpt" id="auto_excerpt">
+                    <label for="sortop" style="margin-right: 8px;">自动截取摘要</label>
+                </label>
                 <div id="logexcerpt"><textarea><?= $excerpt ?></textarea></div>
                 <label id="post_bar_label">插件扩展：</label>
                 <div id="post_bar">
@@ -254,9 +257,9 @@
         });
         Editor_summary = editormd("logexcerpt", {
             width: "100%",
-            height: 300,
+            height: 180,
             toolbarIcons: function () {
-                return ["bold", "del", "italic", "quote", "|", "h1", "h2", "h3", "|", "list-ul", "list-ol", "hr", "|", "link", "image", "preview"]
+                return ["bold", "h1", "h2", "h3", "|", "list-ul", "list-ol", "|", "link", "image", "preview"]
             },
             path: "editor.md/lib/",
             tex: false,
