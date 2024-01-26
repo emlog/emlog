@@ -40,10 +40,11 @@ $pubPost = Input::postStrVar('pubPost'); // 是否直接发布文章，而非保
 $auto_excerpt = Input::postStrVar('auto_excerpt');
 
 if ($auto_excerpt === 'y') {
+    $origContent = trim($_POST['logcontent']);
     $parseDown = new Parsedown();
-    $excerpt = $parseDown->text($content);
+    $excerpt = $parseDown->text($origContent);
     $excerpt = extractHtmlData($excerpt, 180);
-    $excerpt = str_replace(["\r", "\n"], ' ', $excerpt);
+    $excerpt = str_replace(["\r", "\n", "'", '"'], ' ', $excerpt);
 }
 
 if ($pubPost) {
