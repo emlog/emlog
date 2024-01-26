@@ -140,6 +140,10 @@
                 <div class="form-group">
                     <textarea maxlength="512" class="form-control" placeholder="地址（URL）" name="url" id="url" required></textarea>
                 </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" value="y" name="newtab">
+                    <label class="form-check-label" for="exampleCheck1">在新窗口打开</label>
+                </div>
                 <div class="form-group">
                     <label>父导航</label>
                     <select name="pid" id="pid" class="form-control">
@@ -153,10 +157,6 @@
                             <option value="<?= $value['id'] ?>"><?= $value['naviname'] ?></option>
                         <?php endforeach ?>
                     </select>
-                </div>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" value="y" name="newtab">
-                    <label class="form-check-label" for="exampleCheck1">在新窗口打开</label>
                 </div>
                 <button type="submit" class="btn btn-sm btn-success">保存</button>
                 <span id="alias_msg_hook"></span>
@@ -196,9 +196,8 @@
                             endforeach;
                         endforeach;
                         ?>
-                        <div class="form-group">
-                            <input type="submit" name="" class="btn btn-sm btn-success" value="保存"/>
-                        </div>
+                        <div class="form-group"><input type="submit" name="" class="btn btn-sm btn-success" value="保存"/></div>
+                        <div class="form-group"><a class="small" href="sort.php">+新建分类</a></div>
                     <?php else: ?>
                         还没有分类，<a href="sort.php">新建分类</a>
                     <?php endif ?>
@@ -222,8 +221,8 @@
                             <?= $value['title'] ?>
                         </div>
                     <?php endforeach ?>
-                    <div class="form-group"><input type="submit" class="btn btn-sm btn-success" name="" value="保存"/>
-                    </div>
+                    <div class="form-group"><input type="submit" class="btn btn-sm btn-success" name="" value="保存"/></div>
+                    <div class="form-group"><a class="small" href="page.php?action=new">+新建页面</a></div>
                 <?php else: ?>
                     <div class="form-group">还没页面，<a href="page.php?action=new">新建页面</a></div>
                 <?php endif ?>

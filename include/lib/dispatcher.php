@@ -53,6 +53,34 @@ class Dispatcher {
                 $this->_method = $route['method'];
                 $this->_params = $matches;
 
+                // 优先考虑分类别名
+                $alias = '';
+                $param = $this->_params;
+                if ($this->_model == 'Log_Controller' && $this->_method == 'displayContent') {
+                    $alias = isset($param[1]) ? $param[1] : '';
+                }
+                if ($this->_model == 'Log_Controller' && $this->_method == 'display') {
+                    $x = isset($param[0]) ? $param[0] : '';
+                    if (preg_match("/\/([^\/]+)\/page\/\d+/", $x, $matches)) {
+                        $alias = $matches[1];
+                    }
+                }
+                if ($alias && $alias !== 'post') {
+                    $Sort_Model = new Sort_Model();
+                    $r = $Sort_Model->getSortByAlias($alias);
+                    if ($r) {
+                        $this->_model = 'Sort_Controller';
+                        $this->_method = 'display';
+                        $this->_params = ['/sort/' . $alias, 'sort', $alias];
+                        $page = isset($param[2]) ? $param[2] : 0;
+                        if ($page) {
+                            $this->_params[3] = 'page/' . $page;
+                            $this->_params[4] = 'page';
+                            $this->_params[5] = $page;
+                        }
+                    }
+                }
+
                 // 设置页面为首页
                 $homePageID = Option::get('home_page_id');
                 if ($this->_model == 'Log_Controller' && $this->_method == 'display' && $homePageID && !strpos($this->_path, 'posts')) {

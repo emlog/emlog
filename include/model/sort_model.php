@@ -88,6 +88,16 @@ class Sort_Model {
         return $sortData;
     }
 
+    function getSortByAlias($alias) {
+        if (empty($alias)) {
+            return [];
+        }
+        $alias = addslashes($alias);
+        $res = $this->db->query("SELECT * FROM $this->table WHERE alias = '$alias'");
+        $row = $this->db->fetch_array($res);
+        return $row;
+    }
+
     function getSortName($sid) {
         if ($sid > 0) {
             $res = $this->db->query("SELECT sortname FROM $this->table WHERE sid = $sid");

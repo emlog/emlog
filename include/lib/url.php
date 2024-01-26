@@ -86,7 +86,12 @@ class Url {
     static function sort($sortId, $page = null) {
         $CACHE = Cache::getInstance();
         $sort_cache = $CACHE->readCache('sort');
-        $sort_index = !empty($sort_cache[$sortId]['alias']) ? $sort_cache[$sortId]['alias'] : $sortId;
+        $sortInfo = isset($sort_cache[$sortId]) ? $sort_cache[$sortId] : [];
+        $sort_index = !empty($sortInfo['alias']) ? $sortInfo['alias'] : $sortId;
+
+        $pid = $sortInfo && !empty($sortInfo['pid']) ? $sortInfo['pid'] : 0; //   父分类ID
+        $pAlias = $pid && !empty($sort_cache[$pid]['alias']) ? $sort_cache[$pid]['alias'] : ''; // 父分类别名
+
         switch (Option::get('isurlrewrite')) {
             case '0':
                 $sortUrl = BLOG_URL . '?sort=' . $sortId;
@@ -95,9 +100,18 @@ class Url {
                 }
                 break;
             default:
-                $sortUrl = BLOG_URL . 'sort/' . $sort_index;
+                if (is_numeric($sort_index)) {
+                    $sortUrl = BLOG_URL . 'sort/' . $sort_index;
+                } else {
+                    if ($pAlias) {
+                        $sortUrl = BLOG_URL . $pAlias . '/' . $sort_index;
+                    } else {
+                        $sortUrl = BLOG_URL . $sort_index;
+                    }
+                }
+
                 if ($page) {
-                    $sortUrl = BLOG_URL . 'sort/' . $sort_index . '/page/';
+                    $sortUrl .= '/page/';
                 }
                 break;
         }
