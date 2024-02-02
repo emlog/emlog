@@ -9,7 +9,7 @@
                     <input type="text" name="title" id="title" value="<?= $title ?>" class="form-control" placeholder="标题" autofocus required/>
                 </div>
                 <div class="small my-3">
-                    <a href="#mediaModal" data-toggle="modal" data-target="#mediaModal"><i class="icofont-plus"></i>上传插入图片</a>
+                    <a href="#mediaModal" data-toggle="modal" data-target="#mediaModal"><i class="icofont-plus"></i>资源媒体库</a>
                     <?php doAction('adm_writelog_bar') ?>
                 </div>
                 <div id="logcontent"><textarea><?= $content ?></textarea></div>
