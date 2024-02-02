@@ -183,7 +183,13 @@ if ($action == 'operate_log') {
             if (!User::haveEditPermission()) {
                 emMsg('权限不足！', './');
             }
-            $Log_Model->checkSwitch($gid, 'y');
+            if ($logs) {
+                foreach ($logs as $id) {
+                    $Log_Model->checkSwitch($id, 'y');
+                }
+            } else {
+                $Log_Model->checkSwitch($gid, 'y');
+            }
             $CACHE->updateCache();
             emDirect("./article.php?active_ck=1&draft=$draft");
             break;
@@ -191,9 +197,16 @@ if ($action == 'operate_log') {
             if (!User::haveEditPermission()) {
                 emMsg('权限不足！', './');
             }
-            $gid = Input::postIntVar('gid');
-            $feedback = Input::postStrVar('feedback');
-            $Log_Model->unCheck($gid, $feedback);
+            if ($logs) {
+                $feedback = '';
+                foreach ($logs as $id) {
+                    $Log_Model->unCheck($id, $feedback);
+                }
+            } else {
+                $gid = Input::postIntVar('gid');
+                $feedback = Input::postStrVar('feedback');
+                $Log_Model->unCheck($gid, $feedback);
+            }
             $CACHE->updateCache();
             emDirect("./article.php?active_unck=1&draft=$draft");
             break;

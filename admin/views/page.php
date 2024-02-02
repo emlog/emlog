@@ -50,10 +50,10 @@
                                 <?php if ($value['link']): ?><br><span class="small">🔗</span><?php endif ?>
                             </td>
                             <td>
-                                <a href="comment.php?gid=<?= $value['gid'] ?>" class="badge badge-info"><?= $value['comnum'] ?></a>
+                                <a href="comment.php?gid=<?= $value['gid'] ?>" class="badge badge-primary mx-2 px-3"><?= $value['comnum'] ?></a>
                             </td>
                             <td>
-                                <a href="<?= Url::log($value['gid']) ?>" class="badge badge-secondary" target="_blank"><?= $value['views'] ?></a>
+                                <a href="<?= Url::log($value['gid']) ?>" class="badge badge-success mx-2 px-3" target="_blank"><?= $value['views'] ?></a>
                             </td>
                             <td><?= $value['alias'] ?></td>
                             <td><?= $value['template'] ?></td>

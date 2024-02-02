@@ -109,7 +109,9 @@ $isdraft = $draft ? '&draft=1' : '';
                     </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($logs as $key => $value):
+                    <?php
+                    $multiCheckBtn = false; // 是否显示批量审核驳回按钮
+                    foreach ($logs as $key => $value):
                         $sortName = isset($sorts[$value['sortid']]['sortname']) ? $sorts[$value['sortid']]['sortname'] : '未知分类';
                         $sortName = $value['sortid'] == -1 ? '未分类' : $sortName;
                         $author = isset($user_cache[$value['author']]['name']) ? $user_cache[$value['author']]['name'] : '未知作者';
@@ -129,8 +131,8 @@ $isdraft = $draft ? '&draft=1' : '';
                                     <small class="text-secondary"><?= $value['feedback'] ? '审核反馈：' . $value['feedback'] : '' ?></small>
                                 <?php endif ?>
                             </td>
-                            <td><a href="comment.php?gid=<?= $value['gid'] ?>" class="badge badge-info mx-2 px-2"><?= $value['comnum'] ?></a></td>
-                            <td><a href="<?= Url::log($value['gid']) ?>" class="badge badge-secondary  mx-2 px-2" target="_blank"><?= $value['views'] ?></a></td>
+                            <td><a href="comment.php?gid=<?= $value['gid'] ?>" class="badge badge-primary mx-2 px-3"><?= $value['comnum'] ?></a></td>
+                            <td><a href="<?= Url::log($value['gid']) ?>" class="badge badge-success  mx-2 px-3" target="_blank"><?= $value['views'] ?></a></td>
                             <td class="small"><a href="article.php?uid=<?= $value['author'] . $isdraft ?>"><?= $author ?></a></td>
                             <td class="small"><a href="article.php?sid=<?= $value['sortid'] . $isdraft ?>"><?= $sortName ?></a></td>
                             <td class="small"><?= $value['date'] ?></td>
@@ -139,7 +141,10 @@ $isdraft = $draft ? '&draft=1' : '';
                                     <a class="badge badge-success"
                                        href="article.php?action=operate_log&operate=check&gid=<?= $value['gid'] ?>&token=<?= LoginAuth::genToken() ?>">审核</a>
                                 <?php endif ?>
-                                <?php if (!$draft && User::haveEditPermission() && $author_role == User::ROLE_WRITER): ?>
+                                <?php
+                                if (!$draft && User::haveEditPermission() && $author_role == User::ROLE_WRITER):
+                                    $multiCheckBtn = true;
+                                    ?>
                                     <a class="badge badge-warning"
                                        href="#" data-gid="<?= $value['gid'] ?>" data-toggle="modal" data-target="#uncheckModel">驳回</a>
                                 <?php endif ?>
@@ -207,6 +212,12 @@ $isdraft = $draft ? '&draft=1' : '';
                         <a href="javascript:logact('hide');" class="btn btn-sm btn-success">放入草稿箱</a>
                     <?php endif ?>
                 </div>
+                <?php if ($multiCheckBtn): ?>
+                    <div class="btn-group btn-group-sm ml-1" role="group">
+                        <a href="javascript:logact('check');" class="btn btn-sm btn-success">审核</a>
+                        <a href="javascript:logact('uncheck');" class="btn btn-sm btn-warning">驳回</a>
+                    </div>
+                <?php endif ?>
             </div>
         </form>
         <div class="page"><?= $pageurl ?> </div>
