@@ -146,7 +146,7 @@
         </div>
     </div>
 </form>
-<div class="modal" id="mediaModal" tabindex="-1" role="dialog">
+<div class="modal fade" id="mediaModal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
