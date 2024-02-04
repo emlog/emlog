@@ -1208,9 +1208,3 @@ if (!function_exists('getFirstImage')) {
         return null;
     }
 }
-
-function filter_xss($input) {
-    $input = preg_replace('/<(script|style|iframe|object|embed|applet)\b[^>]*>/i', '&lt;$1>', $input);
-    return $input;
-}
-

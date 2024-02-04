@@ -19,12 +19,12 @@ if (empty($_POST)) {
 $Log_Model = new Log_Model();
 $Tag_Model = new Tag_Model();
 
-$title = Input::postStrVar('title', '', 1);
+$title = Input::postStrVar('title');
 $postDate = isset($_POST['postdate']) ? strtotime(trim($_POST['postdate'])) : time();
 $sort = Input::postIntVar('sort', -1);
 $tagstring = isset($_POST['tag']) ? strip_tags(addslashes(trim($_POST['tag']))) : '';
-$content = Input::postStrVar('logcontent', '', 1);
-$excerpt = Input::postStrVar('logexcerpt', '', 1);
+$content = Input::postStrVar('logcontent');
+$excerpt = Input::postStrVar('logexcerpt');
 $alias = Input::postStrVar('alias');
 $top = Input::postStrVar('top', 'n');
 $sortop = Input::postStrVar('sortop', 'n');
@@ -85,6 +85,8 @@ if (User::isWiter()) {
         emDirect("./article.php?error_post_per_day=1");
     }
 }
+
+doMultiAction('pre_save_log', $logData, $logData);
 
 if ($blogid > 0) {
     $Log_Model->updateLog($logData, $blogid);
