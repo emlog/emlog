@@ -110,7 +110,7 @@ function swalDel(msg, text, url, token) {
         text: text,
         showCancelButton: true,
         cancelButtonText: '取消',
-        confirmButtonText: '删除',
+        confirmButtonText: '确定',
     }).then((result) => {
         if (result.isConfirmed) {
             window.location = url + '&token=' + token;
