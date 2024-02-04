@@ -676,7 +676,7 @@ class TplOptions {
 
         if ($file['size'] > $maxSize) {
             $result['code'] = 103;
-            $result['msg'] = '文件大小超出emlog的限制';
+            $result['msg'] = '文件大小超出系统限制';
             return $result;
         }
         $uploadPath = Option::UPLOADFILE_PATH . self::ID . "/$template/";
@@ -837,8 +837,7 @@ class TplOptions {
         $desc = '';
         $tip = '';
         $is_multi = '';
-        if($this->isMulti($option))
-        {
+        if ($this->isMulti($option)) {
             $is_multi = 'is-multi';
         }
         if (!empty($option['description'])) {
@@ -1121,9 +1120,9 @@ class TplOptions {
      * @return void
      */
     private function renderText($option) {
-        if($this->isDate($option)){
+        if ($this->isDate($option)) {
             $tpl = '<input type="date" name="{name}" value="{value}">';
-        }else if ($this->isMulti($option)) {
+        } else if ($this->isMulti($option)) {
             $tpl = '<textarea name="{name}" rows="5" class="option-textarea{rich}">{value}</textarea>';
         } else {
             $tpl = '<input type="text" name="{name}" value="{value}">';
@@ -1222,9 +1221,9 @@ class TplOptions {
             $tpl = '<div>填写块标题：</div>';
             $tpl .= '<input class="block-title-input" type="text" name="{title}" value="{tvalue}">';
             $tpl .= '<div>填写块内容：</div>';
-            if($this->isMulti($option)){
+            if ($this->isMulti($option)) {
                 $tpl .= '<textarea rows="5" name="{name}">{value}</textarea>';
-            }else{
+            } else {
                 $tpl .= '<input type="text" name="{name}" value="{value}">';
             }
         }

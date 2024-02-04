@@ -166,13 +166,13 @@ function extractHtmlData($data, $len) {
  */
 function changeFileSize($fileSize) {
     if ($fileSize >= 1073741824) {
-        $fileSize = round($fileSize / 1073741824, 2) . ' GB';
+        $fileSize = round($fileSize / 1073741824, 2) . 'GB';
     } elseif ($fileSize >= 1048576) {
-        $fileSize = round($fileSize / 1048576, 2) . ' MB';
+        $fileSize = round($fileSize / 1048576, 2) . 'MB';
     } elseif ($fileSize >= 1024) {
-        $fileSize = round($fileSize / 1024, 2) . ' KB';
+        $fileSize = round($fileSize / 1024, 2) . 'KB';
     } else {
-        $fileSize .= ' 字节';
+        $fileSize .= '字节';
     }
     return $fileSize;
 }
@@ -426,10 +426,10 @@ function upload2local($attach, &$result) {
             break;
         case '103':
             $r = changeFileSize(Option::getAttMaxSize());
-            $message = "文件大小超出{$r}的限制";
+            $message = "文件大小超出系统限制：$r";
             break;
         case '105':
-            $message = '上传失败。文件上传目录(content/uploadfile)不可写';
+            $message = '上传失败。文件上传目录不可写 (content/uploadfile)';
             break;
         default:
             $message = '上传成功';
@@ -478,7 +478,7 @@ function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $is_thumbnail 
         return '102'; //错误的文件类型
     }
     if ($fileSize > Option::getAttMaxSize()) {
-        return '103'; //文件大小超出emlog的限制
+        return '103'; //文件大小超出系统限制
     }
     $file_info = [];
     $file_info['file_name'] = $fileName;
@@ -1208,3 +1208,9 @@ if (!function_exists('getFirstImage')) {
         return null;
     }
 }
+
+function filter_xss($input) {
+    $input = preg_replace('/<(script|style|iframe|object|embed|applet)\b[^>]*>/i', '&lt;$1>', $input);
+    return $input;
+}
+

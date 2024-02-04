@@ -16,9 +16,15 @@ class Input {
         return filter_input(INPUT_GET, $var_name, FILTER_VALIDATE_INT, $options);
     }
 
-    public static function postStrVar($var_name, $var_default = '') {
+    public static function postStrVar($var_name, $var_default = '', $filter_xss = 0) {
         $str = filter_input(INPUT_POST, $var_name);
-        return $str ? addslashes(trim($str)) : $var_default;
+        if (empty($str)) {
+            return $var_default;
+        }
+        if ($filter_xss) {
+            $str = filter_xss($str);
+        }
+        return addslashes(trim($str));
     }
 
     public static function postIntArray($var_name, $var_default = []) {
