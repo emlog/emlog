@@ -100,9 +100,9 @@
                     <div class="form-group">
                         <input type="checkbox" value="y" name="allow_remark" id="allow_remark" <?= $is_allow_remark ?> />
                         <label for="allow_remark" style="margin-right: 8px;">允许评论</label>
-                        <input type="checkbox" value="y" name="top" id="top" <?php echo $is_top; ?> />
+                        <input type="checkbox" value="y" name="top" id="top" <?= $is_top; ?> />
                         <label for="top" style="margin-right: 8px;">首页置顶</label>
-                        <input type="checkbox" value="y" name="sortop" id="sortop" <?php echo $is_sortop; ?> />
+                        <input type="checkbox" value="y" name="sortop" id="sortop" <?= $is_sortop; ?> />
                         <label for="sortop" style="margin-right: 8px;">分类置顶</label>
                     </div>
                     <div><a class="show_advset" id="displayToggle" onclick="displayToggle('advset');">高级选项<i class="icofont-simple-right"></i></a></div>

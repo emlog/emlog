@@ -42,16 +42,16 @@ $is_has_menu = array_key_exists('TplOptionsNavi', $tplget);
                             $icom_html = trim($tplnavi_icons[$key]) ? '<i class="' . $tplnavi_icons[$key] . ' ri-lg"></i>' : '';
                         }
                         ?>
-                        <li onClick="TplShow('<?php echo $key; ?>')"><?php echo $icom_html . $v; ?></li>
+                        <li onClick="TplShow('<?= $key; ?>')"><?= $icom_html . $v; ?></li>
                     <?php endforeach; ?>
                 </ul>
             </div>
             <div class="fixed-body"></div>
             <div class="vtpl-content">
-                <form action="<?php echo $this->url(array('template' => $template)); ?>" method="post" class="tpl-options-form">
+                <form action="<?= $this->url(array('template' => $template)); ?>" method="post" class="tpl-options-form">
                     <?php if (array_key_exists('TplOptionsNavi', $tplget)): ?>
                         <div class="option tpl-system" style="display:block;">
-                            <div class="option-body depend-none"><?php echo $tplget['TplOptionsNavi']['description']; ?></div>
+                            <div class="option-body depend-none"><?= $tplget['TplOptionsNavi']['description']; ?></div>
                         </div>
                     <?php endif; ?>
                     <?php $this->renderOptions(); ?>

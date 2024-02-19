@@ -195,7 +195,7 @@ if (!$act) {
     <form name="form1" method="post" action="install.php?action=install">
         <div class="main">
             <p class="logo"></p>
-            <p class="title mb20">emlog <?php echo Option::EMLOG_VERSION ?></p>
+            <p class="title mb20">emlog <?= Option::EMLOG_VERSION ?></p>
             <?php if ($env_db_user): ?>
                 <div class="b">
                     <input name="hostname" type="hidden" value="<?= $env_db_host ?>">
