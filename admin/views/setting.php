@@ -1,6 +1,6 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">设置</h1>
+    <h1 class="h4 mb-0 text-gray-800">设置</h1>
 </div>
 <div class="panel-heading">
     <ul class="nav nav-pills">

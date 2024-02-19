@@ -1,5 +1,5 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
-<h1 class="h3 mb-4 text-gray-800">修改导航</h1>
+<h1 class="h4 mb-4 text-gray-800">修改导航</h1>
 <div class="card shadow mb-4 mt-2">
     <div class="card-body">
         <form action="navbar.php?action=update" method="post" id="sort_new">

@@ -14,7 +14,7 @@
 <?php if (isset($_GET['error_e'])): ?>
     <div class="alert alert-danger">请选择要添加的页面</div><?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">导航</h1>
+    <h1 class="h4 mb-0 text-gray-800">导航</h1>
 </div>
 <div class="card shadow mb-4">
     <div class="card-body">

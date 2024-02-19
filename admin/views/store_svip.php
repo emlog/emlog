@@ -3,7 +3,7 @@
     <div class="alert alert-danger">商店暂不可用，可能是网络问题</div><?php endif ?>
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">应用商店 - <?= $sub_title ?></h1>
+    <h1 class="h4 mb-0 text-gray-800">应用商店 - <?= $sub_title ?></h1>
 </div>
 <div class="row mb-4 ml-1">
     <ul class="nav nav-pills">

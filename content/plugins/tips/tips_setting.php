@@ -13,7 +13,7 @@ function plugin_setting_view() {
         <div class="alert alert-success">hello world !</div>
     <?php endif; ?>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">小贴士</h1>
+        <h1 class="h4 mb-0 text-gray-800">小贴士</h1>
     </div>
     <div class="card shadow mb-4 mt-2">
         <div class="card-body">

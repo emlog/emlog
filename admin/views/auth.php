@@ -2,7 +2,7 @@
 <?php if (isset($_GET['error_b'])): ?>
     <div class="alert alert-danger">注册失败了，可能是注册码不正确，或服务器无法访问官网 emlog.net</div><?php endif ?>
 <div class="d-sm-flex align-items-center mb-4">
-    <h1 class="h3 mb-0 text-gray-800">正版注册</h1>
+    <h1 class="h4 mb-0 text-gray-800">正版注册</h1>
 </div>
 <div class="card shadow mb-4 mt-2">
     <div class="card-body">

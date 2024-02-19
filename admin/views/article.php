@@ -32,10 +32,10 @@ $isdraft = $draft ? '&draft=1' : '';
     <div class="alert alert-danger">超出每日发文数量</div><?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <?php if (User::haveEditPermission()): ?>
-        <h1 class="h3 mb-0 text-gray-800"><?= $draft ? '草稿箱' : '文章' ?></h1>
+        <h1 class="h4 mb-0 text-gray-800"><?= $draft ? '草稿箱' : '文章' ?></h1>
         <a href="./article.php?action=write" class="btn btn-sm btn-success shadow-sm mt-4"><i class="icofont-pencil-alt-5"></i> 写新文章</a>
     <?php else: ?>
-        <h1 class="h3 mb-0 text-gray-800"><?= $draft ? '草稿' : Option::get("posts_name") ?></h1>
+        <h1 class="h4 mb-0 text-gray-800"><?= $draft ? '草稿' : Option::get("posts_name") ?></h1>
         <div>
             <?php if (!$draft) : ?>
                 <a href="article.php?draft=1" class="btn btn-sm btn-primary shadow-sm mt-4">草稿箱</a>

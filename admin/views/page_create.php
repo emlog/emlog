@@ -1,6 +1,6 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
 <form action="page.php?action=save" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
-    <h1 class="h3 mb-4 text-gray-800"><?= $containertitle ?></h1>
+    <h1 class="h4 mb-4 text-gray-800"><?= $containertitle ?></h1>
     <div class="row">
         <div class="col-xl-9">
             <div id="post" class="form-group">
@@ -8,7 +8,7 @@
                     <input type="text" name="title" id="title" value="<?= $title ?>" class="form-control" placeholder="页面标题"/>
                 </div>
                 <div id="post_bar" class="small my-3">
-                    <a href="#mediaModal" data-toggle="modal" data-target="#mediaModal"><i class="icofont-plus"></i>上传插入图片</a>
+                    <a href="#mediaModal" data-toggle="modal" data-target="#mediaModal"><i class="icofont-plus"></i>资源媒体库</a>
                     <?php doAction('adm_writelog_head') ?>
                 </div>
                 <div id="pagecontent"><textarea><?= $content ?></textarea></div>
@@ -64,7 +64,7 @@
     <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">图文资源</h5>
+                <h5 class="modal-title" id="exampleModalLabel">资源媒体库</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

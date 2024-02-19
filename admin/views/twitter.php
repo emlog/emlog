@@ -9,7 +9,7 @@
     <div class="alert alert-danger">笔记内容不能为空</div><?php endif ?>
 <?php if (isset($_GET['error_forbid'])): ?>
     <div class="alert alert-danger">抱歉，系统限制用户发布笔记</div><?php endif ?>
-<h1 class="h3 mb-2 text-gray-800">微语笔记</h1>
+<h1 class="h4 mb-2 text-gray-800">微语笔记</h1>
 <p class="mb-4">捕捉稍纵即逝的想法，记录生活中的点点滴滴</p>
 <form method="post" action="twitter.php?action=post">
     <div class="form-group">

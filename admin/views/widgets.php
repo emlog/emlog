@@ -1,7 +1,7 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
 <?php if (isset($_GET['activated'])): ?>
     <div class="alert alert-success">保存成功</div><?php endif ?>
-<h1 class="h3 mb-4 text-gray-800">侧边栏</h1>
+<h1 class="h4 mb-4 text-gray-800">侧边栏</h1>
 <div class="card shadow mb-4 mt-2">
     <div class="card-body">
         <div class="row">
@@ -299,7 +299,7 @@
             </div>
 
             <div class="col-lg-6">
-                <h1 class="h3 mb-4 text-gray-800">已添加的组件</h1>
+                <h1 class="h4 mb-4 text-gray-800">已添加的组件</h1>
                 <form action="widgets.php?action=compages" method="post">
                     <div id="sortable" class="adm_widget_box">
                         <?php

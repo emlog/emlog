@@ -1,7 +1,7 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
 <?php if (User::isAdmin()): ?>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">设置</h1>
+        <h1 class="h4 mb-0 text-gray-800">设置</h1>
     </div>
 <?php endif; ?>
 <div class="panel-heading">
