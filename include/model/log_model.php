@@ -114,6 +114,9 @@ class Log_Model {
     }
 
     public function getDetail($blogId) {
+        if (empty($blogId)) {
+            return false;
+        }
         $sql = "SELECT t1.*, t2.sid, t2.sortname, t2.alias as sort_alias FROM $this->table t1 LEFT JOIN $this->table_sort t2 ON t1.sortid=t2.sid WHERE t1.gid=$blogId";
         $res = $this->db->query($sql);
         $row = $this->db->fetch_array($res);
@@ -121,6 +124,20 @@ class Log_Model {
             return $row;
         }
         return false;
+    }
+
+    public function getDetails($blogIds) {
+        if (empty($blogIds) || !is_array($blogIds)) {
+            return false;
+        }
+        $blogIdsString = implode(',', $blogIds);
+        $sql = "SELECT t1.*, t2.sid, t2.sortname, t2.alias as sort_alias FROM $this->table t1 LEFT JOIN $this->table_sort t2 ON t1.sortid=t2.sid WHERE t1.gid IN ($blogIdsString)";
+        $res = $this->db->query($sql);
+        $rows = array();
+        while ($row = $this->db->fetch_array($res)) {
+            $rows[] = $row;
+        }
+        return $rows;
     }
 
     /**
