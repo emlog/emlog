@@ -550,12 +550,12 @@ $(function () {
         let down_url = link.data('url');
         let type = link.data('type');
         link.text('安装中…');
-        link.prev(".installMsg").html("").addClass("spinner-border text-primary");
+        link.parent().prev(".installMsg").html("").addClass("spinner-border text-primary");
 
         let url = './store.php?action=install&type=' + type + '&source=' + down_url;
         $.get(url, function (data) {
             link.text('免费安装');
-            link.prev(".installMsg").html('<span class="text-danger">' + data + '</span>').removeClass("spinner-border text-primary");
+            link.parent().prev(".installMsg").html('<span class="text-danger">' + data + '</span>').removeClass("spinner-border text-primary");
         });
     });
 })

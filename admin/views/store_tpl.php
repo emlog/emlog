@@ -82,11 +82,13 @@
                             </p>
                             <div class="card-text d-flex justify-content-between">
                                 <div class="installMsg"></div>
-                                <?php if ($v['price'] > 0): ?>
-                                    <a href="https://www.emlog.net/order/submit/tpl/<?= $v['id'] ?>" class="btn btn-danger" target="_blank">立即购买</a>
-                                <?php else: ?>
-                                    <a href="#" class="btn btn-success installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-type="tpl">免费安装</a>
-                                <?php endif ?>
+                                <div>
+                                    <?php if ($v['price'] > 0): ?>
+                                        <a href="https://www.emlog.net/order/submit/tpl/<?= $v['id'] ?>" class="btn btn-danger" target="_blank">立即购买</a>
+                                    <?php else: ?>
+                                        <a href="#" class="btn btn-success installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-type="tpl">免费安装</a>
+                                    <?php endif ?>
+                                </div>
                             </div>
                         </div>
                     </div>
