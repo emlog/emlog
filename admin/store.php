@@ -161,7 +161,7 @@ if ($action === 'install') {
     $temp_file = emFetchFile('https://www.emlog.net/' . $source);
     if (!$temp_file) {
         if (false === Register::verifyDownload($source)) {
-            exit('您的emlog pro尚未注册，<a href="auth.php">去注册</a>');
+            exit('emlog未注册，<a href="auth.php">去注册</a>');
         }
         exit('安装失败，下载超时或没有权限');
     }
