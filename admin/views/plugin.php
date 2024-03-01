@@ -82,11 +82,11 @@
                             </td>
                             <td>
                                 <?= $val['Description'] ?>
-                                <?php if ($val['Url'] != ''): ?><a href="<?= $val['Url'] ?>" target="_blank">更多信息&raquo;</a><?php endif ?>
+                                <?php if (strpos($val['Url'], 'https://www.emlog.net') === 0): ?><a href="<?= $val['Url'] ?>" target="_blank">更多信息&raquo;</a><?php endif ?>
                                 <div class="small mt-3">
                                     <?php if ($val['Author'] != ''): ?>
                                         作者：
-                                        <?php if ($val['AuthorUrl'] != ''): ?>
+                                        <?php if (strpos($val['AuthorUrl'], 'https://www.emlog.net') === 0): ?>
                                             <a href="<?= $val['AuthorUrl'] ?>" target="_blank"><?= $val['Author'] ?></a>
                                         <?php else: ?>
                                             <?= $val['Author'] ?>

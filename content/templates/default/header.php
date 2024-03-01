@@ -5,7 +5,7 @@ Version:1.0
 Template Url:https://www.emlog.net/template/
 Description:emlog的默认模板
 Author:emlog
-Author Url:https://www.emlog.net
+Author Url:https://www.emlog.net/author/index/577
 */
 defined('EMLOG_ROOT') || exit('access denied!');
 require_once View::getView('module');

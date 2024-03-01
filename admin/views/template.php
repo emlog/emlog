@@ -51,13 +51,15 @@
                     <?php if ($value['version']): ?>
                         <div class="small">版本号：<?= $value['version'] ?></div>
                     <?php endif ?>
-                    <?php if ($value['author']): ?>
+                    <?php if (strpos($value['author_url'], 'https://www.emlog.net') === 0): ?>
+                        <div class="small">开发者：<a href="<?= $value['author_url'] ?>" target="_blank"><?= $value['author'] ?></a></div>
+                    <?php else: ?>
                         <div class="small">开发者：<?= $value['author'] ?></div>
                     <?php endif ?>
                     <div class="small">
                         <?= $value['tpldes'] ?>
-                        <?php if ($value['tplurl']): ?>
-                            <a href="<?= $value['tplurl'] ?>" target="_blank">更多介绍&rarr;</a>
+                        <?php if (strpos($value['tplurl'], 'https://www.emlog.net') === 0): ?>
+                            <a href="<?= $value['tplurl'] ?>" target="_blank">更多信息&rarr;</a>
                         <?php endif ?>
                     </div>
                     <div class="card-text d-flex justify-content-between mt-3">
