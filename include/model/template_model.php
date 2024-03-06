@@ -34,6 +34,9 @@ class Template_Model {
                 'author_url' => !empty($authorUrl[1]) ? subString(strip_tags(trim($authorUrl[1])), 0, 75) : '',
             ];
 
+            $previewPath = TPLS_PATH . $file . '/preview.jpg';
+            $tplInfo['preview'] = file_exists($previewPath) ? (TPLS_URL . $file . '/preview.jpg') : './views/images/theme.png';
+
             if ($nonce_template === $file) {
                 $templates[0] = $tplInfo;
             } else {

@@ -43,7 +43,7 @@
                 </div>
                 <div class="card-body">
                     <a href="template.php?action=use&tpl=<?= $value['tplfile'] ?>&token=<?= LoginAuth::genToken() ?>">
-                        <img class="card-img-top" src="<?= TPLS_URL . $value['tplfile'] ?>/preview.jpg" alt="Card image cap">
+                        <img class="card-img-top" src="<?= $value['preview'] ?>" alt="preview image">
                     </a>
                 </div>
                 <div class="card-footer">

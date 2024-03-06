@@ -107,7 +107,8 @@ class Plugin_Model {
                             }
                             $pluginFiles[] = [
                                 'file'          => $file . '/' . $subFile,
-                                'last_modified' => $fileLastModified
+                                'last_modified' => $fileLastModified,
+                                'preview'       => file_exists(PLUGIN_PATH . $file . '/preview.jpg') ? PLUGIN_URL . $file . '/preview.jpg' : './views/images/plugin-icon.png',
                             ];
                         }
                     }
@@ -134,6 +135,7 @@ class Plugin_Model {
             $pluginData['active'] = $active;
             $pluginData['alias'] = $plugin['file'];
             $pluginData['last_modified'] = $plugin['last_modified'];
+            $pluginData['preview'] = $plugin['preview'];
             $emPlugins[] = $pluginData;
         }
 

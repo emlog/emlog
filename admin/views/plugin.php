@@ -48,12 +48,13 @@
 <div class="card shadow mb-4">
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-striped table-bordered table-hover dataTable no-footer">
+            <table class="table table-striped table-hover dataTable no-footer">
                 <thead>
                 <tr>
+                    <th></th>
                     <th>插件名</th>
                     <th>开关</th>
-                    <th>描述</th>
+                    <th>作者</th>
                     <th>版本</th>
                     <th>操作</th>
                 </tr>
@@ -76,16 +77,22 @@
                         $alias = $val['alias'];
                         ?>
                         <tr data-plugin-alias="<?= $val['Plugin'] ?>" data-plugin-version="<?= $val['Version'] ?>">
-                            <td><?= $val['Name'] ?></td>
+                            <td><img src="<?= $val['preview'] ?>" height="45" width="45" class="rounded"/></td>
                             <td>
-                                <input class="mui-switch mui-switch-animbg" type="checkbox" id="sw<?= $i ?>" <?= $plug_state ?> onchange="toggleSwitch('<?= $alias ?>', '<?= 'sw' . $i ?>', '<?= LoginAuth::genToken() ?>')">
+                                <?= $val['Name'] ?>
+                                <div class="small mt-3">
+                                    <?= $val['Description'] ?>
+                                    <?php if (strpos($val['Url'], 'https://www.emlog.net') === 0): ?><a href="<?= $val['Url'] ?>" target="_blank">更多信息&raquo;</a><?php endif ?>
+                                </div>
                             </td>
                             <td>
-                                <?= $val['Description'] ?>
-                                <?php if (strpos($val['Url'], 'https://www.emlog.net') === 0): ?><a href="<?= $val['Url'] ?>" target="_blank">更多信息&raquo;</a><?php endif ?>
-                                <div class="small mt-3">
+                                <div class="mt-3">
+                                    <input class="mui-switch mui-switch-animbg" type="checkbox" id="sw<?= $i ?>" <?= $plug_state ?> onchange="toggleSwitch('<?= $alias ?>', '<?= 'sw' . $i ?>', '<?= LoginAuth::genToken() ?>')">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="mt-3">
                                     <?php if ($val['Author'] != ''): ?>
-                                        作者：
                                         <?php if (strpos($val['AuthorUrl'], 'https://www.emlog.net') === 0): ?>
                                             <a href="<?= $val['AuthorUrl'] ?>" target="_blank"><?= $val['Author'] ?></a>
                                         <?php else: ?>
@@ -94,15 +101,21 @@
                                     <?php endif ?>
                                 </div>
                             </td>
-                            <td><?= $val['Version'] ?></td>
                             <td>
-                                <a href="javascript: em_confirm('<?= $alias ?>', 'plu', '<?= LoginAuth::genToken() ?>');" class="btn btn-sm btn-danger">删除</a>
-                                <span class="update-btn"></span>
+                                <div class="mt-3 small">
+                                    <?= $val['Version'] ?>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="mt-3">
+                                    <a href="javascript: em_confirm('<?= $alias ?>', 'plu', '<?= LoginAuth::genToken() ?>');" class="btn btn-sm btn-danger">删除</a>
+                                    <span class="update-btn"></span>
+                                </div>
                             </td>
                         </tr>
                     <?php endforeach; else: ?>
                     <tr>
-                        <td colspan="5">未找到插件</td>
+                        <td colspan="6">未找到插件</td>
                     </tr>
                 <?php endif ?>
                 </tbody>
