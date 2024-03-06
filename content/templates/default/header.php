@@ -24,24 +24,28 @@ if (!function_exists('_g')) {
     <meta name="keywords" content="<?= $site_key ?>"/>
     <meta name="description" content="<?= $site_description ?>"/>
     <base href="<?= BLOG_URL ?>"/>
-    <link rel="shortcut icon" href="<?= BLOG_URL ?>favicon.ico"/>
     <link rel="alternate" title="RSS" href="<?= BLOG_URL ?>rss.php" type="application/rss+xml"/>
     <link href="<?= TEMPLATE_URL ?>css/style.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>" rel="stylesheet" type="text/css"/>
     <link href="<?= TEMPLATE_URL ?>css/markdown.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>" rel="stylesheet" type="text/css"/>
     <script src="<?= TEMPLATE_URL ?>js/jquery.min.3.5.1.js?v=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
-    <script>function sendinfo(url) {  // 日历生成和翻页
+    <script>
+        // 日历生成和翻页
+        function sendinfo(url) {
             $("#calendar").load(url)
-        }</script>
+        }
+    </script>
     <?php doAction('index_head') ?>
+    <!-- Favicon -->
+    <link href="<?= empty(_g('favicon')) ? BLOG_URL . 'favicon.ico' : _g('favicon'); ?>" rel="icon">
 </head>
 <body>
 <nav class="blog-header">
     <div class="blog-header-c container">
-        <?php if (_g('logotype') == 1): ?>
+        <?php if (_em('logotype') == 1): ?>
             <a class="blog-header-title" href="<?= BLOG_URL ?>"><?= $blogname ?></a>
             <div class="blog-header-subtitle subtitle-overflow" title="<?= $bloginfo ?>"><?= $bloginfo ?></div>
         <?php else: ?>
-            <a href="<?= BLOG_URL; ?>" title="<?= $bloginfo; ?>"><img src="<?= _g('logoimg'); ?>" alt="<?= $blogname; ?>"/></a>
+            <a href="<?= BLOG_URL; ?>" title="<?= $bloginfo; ?>"><img src="<?= _em('logo_img'); ?>" alt="<?= $blogname; ?>"/></a>
         <?php endif; ?>
         <div class="blog-header-toggle">
             <svg class="blogtoggle-icon">
