@@ -2,7 +2,7 @@
 /*
 Plugin Name: 模板设置
 Version: 4.2.5
-Plugin URL: https://www.emlog.net/plugin/detail/377
+Plugin URL: https://www.emlog.net/docs/#/template?id=%e6%a8%a1%e6%9d%bf%e8%ae%be%e7%bd%ae
 Description: 为模板增加丰富的设置功能，详见官网文档-模板开发。
 Author: emlog
 Author URL: https://www.emlog.net/author/index/577
