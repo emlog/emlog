@@ -1,9 +1,9 @@
 <?php
 /*
-Plugin Name: 模版设置
+Plugin Name: 模板设置
 Version: 4.2.5
 Plugin URL: https://www.emlog.net/plugin/detail/377
-Description: 为模版增加丰富的设置功能，详见官网文档-模板开发。
+Description: 为模板增加丰富的设置功能，详见官网文档-模板开发。
 Author: emlog
 Author URL: https://www.emlog.net/author/index/577
 */

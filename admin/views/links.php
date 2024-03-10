@@ -6,7 +6,7 @@
 <?php if (isset($_GET['error_a'])): ?>
     <div class="alert alert-danger">名称和地址不能为空</div><?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h4 mb-0 text-gray-800">友情链接</h1>
+    <h1 class="h4 mb-0 text-gray-800">链接</h1>
     <a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#linkModel"><i class="icofont-plus"></i> 添加链接</a>
 </div>
 <form action="link.php?action=link_taxis" id="link_form" method="post">

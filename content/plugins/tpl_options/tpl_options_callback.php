@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: 模版设置插件
+Plugin Name: 模板设置插件
 */
 defined('EMLOG_ROOT') || exit('access denied!');
 

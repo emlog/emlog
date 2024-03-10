@@ -34,6 +34,9 @@ if (empty($action)) {
         $php_ver .= ',zip';
     }
 
+    $Plugin_Model = new Plugin_Model();
+    $plugins = $Plugin_Model->getPlugins('on');
+
     if (User::haveEditPermission()) {
         include View::getAdmView('header');
         require_once(View::getAdmView('index'));

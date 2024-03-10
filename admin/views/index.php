@@ -19,8 +19,8 @@
     </div>
     <div class="row ml-1 mb-1"><?php doAction('adm_main_top') ?></div>
     <div class="row">
-        <div class="col-lg-6 mb-4">
-            <div class="card shadow mb-4">
+        <div class="col-lg-6 mb-3">
+            <div class="card shadow mb-3">
                 <h6 class="card-header">站点信息</h6>
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
@@ -93,8 +93,8 @@
             </div>
         </div>
         <?php if (User::isAdmin()): ?>
-        <div class="col-lg-6 mb-4">
-            <div class="card shadow mb-4">
+        <div class="col-lg-6 mb-3">
+            <div class="card shadow mb-3">
                 <h6 class="card-header">软件信息</h6>
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
@@ -136,8 +136,32 @@
         </div>
     </div>
     <div class="row">
+        <div class="col-lg-12 mb-3">
+            <div class="card shadow mb-3">
+                <div class="card-body">
+                    快捷入口：
+                    <a href="article.php" class="mr-2">文章</a>
+                    <a href="article.php" class="mr-2">草稿</a>
+                    <a href="page.php" class="mr-2">页面</a>
+                    <a href="template.php" class="mr-2">模板主题</a>
+                    <span class="text-gray-300 mr-2">|</span>
+                    <?php foreach ($plugins as $val):
+                        if (false === $val['Setting']) {
+                            continue;
+                        }
+                        if (in_array($val['Name'], ['小贴士', '模板设置'])) {
+                            continue;
+                        }
+                        ?>
+                        <a href="./plugin.php?plugin=<?= $val['Plugin'] ?>" class="text-success mr-2"><?= $val['Name'] ?></a>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <?php if (!Register::isRegLocal()) : ?>
-            <div class="col-lg-6 mb-4">
+            <div class="col-lg-6 mb-3">
                 <div class="card shadow">
                     <div class="card-header bg-danger text-white">
                         <h6 class="my-0">您安装的emlog尚未注册，完成注册可使用全部功能，包括如下：</h6>
@@ -156,8 +180,8 @@
                 </div>
             </div>
         <?php endif ?>
-        <div class="col-lg-6 mb-4">
-            <div class="card shadow mb-4">
+        <div class="col-lg-6 mb-3">
+            <div class="card shadow mb-3">
                 <h6 class="card-header">获取帮助</h6>
                 <div class="card-body admin_index_list">
                     <ul class="list-group list-group-flush">
@@ -170,8 +194,8 @@
             </div>
         </div>
         <?php if (Register::isRegLocal() && option::get('accept_app_recs') === 'y'): ?>
-            <div class="col-lg-6 mb-4">
-                <div class="card mb-4">
+            <div class="col-lg-6 mb-3">
+                <div class="card mb-3">
                     <h6 class="card-header">应用推荐</h6>
                     <div class="card-body">
                         <div class="row" id="app-list"></div>
