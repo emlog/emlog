@@ -44,6 +44,6 @@ $options = [
         'values'      => [
             TEMPLATE_URL . 'images/favicon.png',
         ],
-        'description' => '上传浏览器图标'
+        'description' => '上传浏览器图标，推荐尺寸48×48的PNG或JPG图片'
     ],
 ];
