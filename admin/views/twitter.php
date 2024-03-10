@@ -15,7 +15,7 @@
     <div class="form-group">
         <div id="t"><textarea></textarea></div>
     </div>
-    <button type="submit" class="btn btn-sm btn-success">保存笔记</button>
+    <button type="submit" class="btn btn-sm btn-success">发布</button>
 </form>
 <div class="card-columns mt-5">
     <?php

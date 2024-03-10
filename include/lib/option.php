@@ -152,6 +152,7 @@ class Option {
             'blogger'     => '个人资料',
             'calendar'    => '日历',
             'tag'         => '标签',
+            'twitter'     => '微语',
             'sort'        => '分类',
             'archive'     => '存档',
             'newcomm'     => '最新评论',

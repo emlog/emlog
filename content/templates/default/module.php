@@ -121,6 +121,33 @@ function widget_sort($title) {
     </div>
 <?php } ?>
 <?php
+//widget：最新微语
+function widget_twitter($title) {
+    global $CACHE;
+    $index_newtwnum = Option::get('index_newtwnum') ?: 10;
+    $Twitter_Model = new Twitter_Model();
+    $ts = $Twitter_Model->getTwitters('', 1, $index_newtwnum);
+    $user_cache = $CACHE->readCache('user');
+    ?>
+    <div class="widget shadow-theme">
+        <div class="widget-title m">
+            <h3><?= $title ?></h3>
+        </div>
+        <ul class="unstyle-li">
+            <?php foreach ($ts as $value):
+                $author = $user_cache[$value['author']]['name'];
+                ?>
+                <li>
+                    <?= $value['t']; ?>
+                    <span class='comm-lates-name'><?= $author ?></span>
+                    <span class='logcom-latest-time'><?= $value['date'] ?></span><br/>
+                    <hr>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+<?php } ?>
+<?php
 /**
  * 侧边栏：最新评论
  */

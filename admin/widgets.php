@@ -59,6 +59,10 @@ if ($action === 'setwg') {
             Option::updateOption('comment_subnum', $comment_subnum);
             $CACHE->updateCache('comment');
             break;
+        case 'twitter':
+            $index_newtwnum = isset($_POST['index_newtwnum']) ? (int)$_POST['index_newtwnum'] : 10;
+            Option::updateOption('index_newtwnum', $index_newtwnum);
+            break;
         case 'newlog':
             $index_newlog = isset($_POST['index_newlog']) ? (int)$_POST['index_newlog'] : 5;
             Option::updateOption('index_newlognum', $index_newlog);

@@ -50,6 +50,32 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="card" id="twitter">
+                        <div class="card-header">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#twitterForm" aria-expanded="false"
+                                        aria-controls="collapseThree">微语
+                                </button>
+                                <li class="widget-act-add"></li>
+                                <li class="widget-act-del"></li>
+                            </h2>
+                        </div>
+                        <div id="twitterForm" class="collapse" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <form action="widgets.php?action=setwg&wg=twitter" method="post">
+                                    <li>标题</li>
+                                    <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['twitter']; ?>"/></li>
+                                    <li>展示数量</li>
+                                    <li>
+                                        <input maxlength="5" size="10" class="form-control" value="<?php echo Option::get('index_newtwnum'); ?>" name="index_newtwnum"/>
+                                        <input type="submit" name="" value="保存" class="btn btn-success btn-sm"/>
+                                    </li>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="card" id="tag">
                         <div class="card-header">
                             <h2 class="mb-0">
