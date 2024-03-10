@@ -9,7 +9,7 @@
                 </a>
             </div>
             <div class="flex-grow-1 ms-3">
-                <div class="align-items-center mb-2">
+                <div class="align-items-center mb-3">
                     <p class="mb-0 m-2"><a class="mr-2" href="blogger.php"><?= $user_cache[UID]['name'] ?></a></p>
                     <p class="mb-0 m-2 small"><?= $role_name ?></p>
                 </div>
@@ -18,6 +18,30 @@
         <a href="./article.php?action=write" class="btn btn-sm btn-success shadow-sm mt-4"><i class="icofont-pencil-alt-5"></i> 写新文章</a>
     </div>
     <div class="row ml-1 mb-1"><?php doAction('adm_main_top') ?></div>
+    <div class="row">
+        <div class="col-lg-12 mb-3">
+            <div class="card shadow mb-3">
+                <div class="card-body">
+                    快捷入口：
+                    <a href="article.php" class="mr-2">文章</a>
+                    <a href="article.php" class="mr-2">草稿</a>
+                    <a href="page.php" class="mr-2">页面</a>
+                    <a href="template.php" class="mr-2">模板</a>
+                    <span class="text-gray-300 mr-2">|</span>
+                    <?php foreach ($plugins as $val):
+                        if (false === $val['Setting']) {
+                            continue;
+                        }
+                        if (in_array($val['Name'], ['小贴士', '模板设置'])) {
+                            continue;
+                        }
+                        ?>
+                        <a href="./plugin.php?plugin=<?= $val['Plugin'] ?>" class="text-success mr-2"><?= $val['Name'] ?></a>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-lg-6 mb-3">
             <div class="card shadow mb-3">
@@ -131,30 +155,6 @@
                             </span>
                         </li>
                     </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-12 mb-3">
-            <div class="card shadow mb-3">
-                <div class="card-body">
-                    快捷入口：
-                    <a href="article.php" class="mr-2">文章</a>
-                    <a href="article.php" class="mr-2">草稿</a>
-                    <a href="page.php" class="mr-2">页面</a>
-                    <a href="template.php" class="mr-2">模板主题</a>
-                    <span class="text-gray-300 mr-2">|</span>
-                    <?php foreach ($plugins as $val):
-                        if (false === $val['Setting']) {
-                            continue;
-                        }
-                        if (in_array($val['Name'], ['小贴士', '模板设置'])) {
-                            continue;
-                        }
-                        ?>
-                        <a href="./plugin.php?plugin=<?= $val['Plugin'] ?>" class="text-success mr-2"><?= $val['Name'] ?></a>
-                    <?php endforeach; ?>
                 </div>
             </div>
         </div>

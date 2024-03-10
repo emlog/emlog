@@ -59,7 +59,7 @@
             <a class="nav-link" href="comment.php"><i class="icofont-comment"></i><span>评论</span></a>
         </li>
         <li class="nav-item" id="menu_twitter">
-            <a class="nav-link" href="twitter.php"><i class="icofont-penalty-card"></i><span>笔记</span></a>
+            <a class="nav-link" href="twitter.php"><i class="icofont-penalty-card"></i><span>微语</span></a>
         </li>
         <li class="nav-item" id="menu_media">
             <a class="nav-link" href="media.php"><i class="icofont-image"></i><span>资源</span></a>

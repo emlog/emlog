@@ -77,6 +77,7 @@
                                 <small>
                                     开发者：<?= $v['author'] ?> <a href="./store.php?author_id=<?= $v['author_id'] ?>">仅看Ta的作品</a><br>
                                     版本号：<?= $v['ver'] ?><br>
+                                    下载次数：<?= $v['downloads'] ?><br>
                                     更新时间：<?= $v['update_time'] ?><br>
                                 </small>
                             </p>

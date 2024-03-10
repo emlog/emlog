@@ -81,7 +81,8 @@ if ($action === 'plu') {
         12 => '内容运营',
         14 => '编程开发',
         13 => '移动端（小程序）',
-        15 => '内容创作（编辑器）',
+        15 => '内容创作',
+        20 => '编辑器',
         6  => '其他'
     ];
 
@@ -117,7 +118,7 @@ if ($action === 'plu') {
 
 if ($action === 'mine') {
     $addons = $Store_Model->getMyAddon();
-    $sub_title = '已购应用';
+    $sub_title = '我的已购';
 
     include View::getAdmView('header');
     require_once(View::getAdmView('store_mine'));
