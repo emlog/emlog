@@ -6,9 +6,9 @@
 <?php if (isset($_GET['active_edit'])): ?>
     <div class="alert alert-success">修改成功</div><?php endif ?>
 <?php if (isset($_GET['active_add'])): ?>
-    <div class="alert alert-success">分类添加成功</div><?php endif ?>
+    <div class="alert alert-success">添加成功</div><?php endif ?>
 <?php if (isset($_GET['error_a'])): ?>
-    <div class="alert alert-danger">分类名称不能为空</div><?php endif ?>
+    <div class="alert alert-danger">名称不能为空</div><?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h4 mb-0 text-gray-800">资源媒体库</h1>
     <a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target=" #exampleModal"><i class="icofont-plus"></i> 上传图片/文件</a>
@@ -65,7 +65,7 @@
                     <a href="<?= $media_url ?>" <?= $imgviewer ?> target="_blank"><img class="card-img-top" src="<?= $media_icon ?>"/></a>
                     <div class="card-body">
                         <p class="card-text text-muted small">
-                            <?= $media_name ?> <span class="badge badge-primary"><?= $sort_name ?></span><br>
+                            <a href="#" data-toggle="modal" data-target="#editMediaModal" data-id="<?= $value['aid'] ?>" data-filename="<?= $media_name ?>"><?= $media_name ?></a> <span class="badge badge-primary"><?= $sort_name ?></span><br>
                             时间：<?= $value['addtime'] ?><br>
                             创建人：<?= $author ?> ,
                             <?php if (User::haveEditPermission()): ?>
@@ -141,7 +141,7 @@
             <form action="media.php?action=add_media_sort" method="post">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="alias">分类名称</label>
+                        <label for="sortname">分类名称</label>
                         <input class="form-control" id="sortname" maxlength="255" name="sortname" required>
                     </div>
                 </div>
@@ -168,6 +168,32 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <input type="text" class="form-control" id="sortname" name="sortname" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" value="" id="id" name="id"/>
+                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-sm btn-success">保存</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editMediaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">编辑资源</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post" action="media.php?action=update_media">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="alias">资源名称</label>
+                        <input type="text" class="form-control" id="filename" name="filename" required>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -210,6 +236,15 @@
             var id = button.data('id')
             var modal = $(this)
             modal.find('.modal-body input').val(sortname)
+            modal.find('.modal-footer input').val(id)
+        })
+
+        $('#editMediaModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            var filename = button.data('filename')
+            var id = button.data('id')
+            var modal = $(this)
+            modal.find('.modal-body input').val(filename)
             modal.find('.modal-footer input').val(id)
         })
 

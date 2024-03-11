@@ -167,6 +167,18 @@ if ($action === 'operate_media') {
     }
 }
 
+if ($action === 'update_media') {
+    $filename = Input::postStrVar('filename');
+    $id = Input::postIntVar('id');
+
+    if (empty($filename)) {
+        emDirect("./media.php?error_a=1");
+    }
+
+    $Media_Model->updateMedia(["filename" => $filename], $id);
+    emDirect("./media.php?active_edit=1");
+}
+
 if ($action === 'add_media_sort') {
     if (!User::isAdmin()) {
         emMsg('权限不足！', './');

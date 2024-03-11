@@ -510,18 +510,16 @@ function loadTopAddons() {
         type: 'GET', url: './store.php?action=top', success: function (resp) {
             $.each(resp.data, function (i, app) {
                 let insertBtnHtml;
-                let typeName = '模板：';
                 let storeUlr = './store.php?';
                 if (app.type === 'plu') {
-                    typeName = '插件：';
                     storeUlr = './store.php?action=plu';
                 }
                 if (app.price > 0) {
-                    insertBtnHtml = '应用售价：' + app.price + '元<a href="' + app.buy_url + '" target="_blank">购买</a>';
+                    insertBtnHtml = app.price + '元 <a href="' + app.buy_url + '" target="_blank">购买</a>';
                 } else {
-                    insertBtnHtml = '应用售价：免费<a href="' + storeUlr + '&keyword=' + app.name + '">去商店安装</a>';
+                    insertBtnHtml = '免费 <a href="' + storeUlr + '&keyword=' + app.name + '">安装</a>';
                 }
-                const cardHtml = '<div class="col-md-4">' + '<div class="card">' + '<a href="' + app.buy_url + '" target="_blank"><img class="card-img-top" style="max-height: 90px;" src="' + app.icon + '" alt="icon"/></a>' + '<div class="card-body">' + '<div class="card-text text-muted small">' + typeName + app.name + '</div>' + '<p class="card-text d-flex justify-content-between small">' + insertBtnHtml + '</p>' + '</div></div></div>';
+                const cardHtml = '<div class="col-md-4">' + '<div class="card">' + '<a href="' + app.buy_url + '" target="_blank"><img class="card-img-top" style="max-height: 90px;" src="' + app.icon + '" alt="icon"/></a>' + '<div class="card-body">' + '<div class="card-text text-muted small">' + app.name + '</div>' + '<p class="card-text d-flex justify-content-between small">' + insertBtnHtml + '</p>' + '</div></div></div>';
                 $('#app-list').append(cardHtml);
             });
         },
