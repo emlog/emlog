@@ -29,8 +29,11 @@
     <div class="alert alert-danger">您的emlog pro尚未注册</div><?php endif ?>
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h4 mb-0 text-gray-800">模板外观</h1>
-    <a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> 安装模板</a>
+    <h1 class="h4 mb-0 text-gray-800">模板主题</h1>
+    <div>
+        <a href="store.php" class="btn btn-sm btn-warning shadow-sm mt-4"><i class="icofont-shopping-cart"></i> 应用商店</a>
+        <a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> 安装模板</a>
+    </div>
 </div>
 <div class="row app-list">
     <?php foreach ($templates as $key => $value): ?>

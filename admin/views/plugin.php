@@ -30,7 +30,10 @@
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h4 mb-0 text-gray-800">插件扩展</h1>
-    <a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> 安装插件</a>
+    <div>
+        <a href="store.php?action=plu" class="btn btn-sm btn-warning shadow-sm mt-4"><i class="icofont-shopping-cart"></i> 应用商店</a>
+        <a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> 安装插件</a>
+    </div>
 </div>
 <div class="panel-heading">
     <ul class="nav nav-tabs">
@@ -48,6 +51,7 @@
 <div class="card shadow mb-4">
     <div class="card-body">
         <div class="table-responsive">
+            <div class="my-3" id="upMsg"></div>
             <table class="table table-striped table-hover dataTable no-footer">
                 <thead>
                 <tr>
@@ -120,7 +124,6 @@
                 <?php endif ?>
                 </tbody>
             </table>
-            <div class="my-3" id="upMsg"></div>
         </div>
     </div>
 </div>
