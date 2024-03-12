@@ -70,7 +70,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>展示数量</label>
-                                        <input maxlength="5" size="10" class="form-control" value="<?= Option::get('index_newtwnum'); ?>" name="index_newtwnum"/>
+                                        <input maxlength="5" size="10" class="form-control" type="number" min="1" required value="<?= Option::get('index_newtwnum'); ?>" name="index_newtwnum"/>
                                     </div>
                                     <input type="submit" name="" value="保存" class="btn btn-success btn-sm"/>
                                 </form>
