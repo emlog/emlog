@@ -64,13 +64,15 @@
                         <div id="twitterForm" class="collapse" data-parent="#accordionExample">
                             <div class="card-body">
                                 <form action="widgets.php?action=setwg&wg=twitter" method="post">
-                                    <li>标题</li>
-                                    <li><input type="text" name="title" class="form-control" value="<?= $customWgTitle['twitter']; ?>"/></li>
-                                    <li>展示数量</li>
-                                    <li>
+                                    <div class="form-group">
+                                        <label>标题</label>
+                                        <input type="text" name="title" class="form-control" value="<?= $customWgTitle['twitter']; ?>"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>展示数量</label>
                                         <input maxlength="5" size="10" class="form-control" value="<?= Option::get('index_newtwnum'); ?>" name="index_newtwnum"/>
-                                        <input type="submit" name="" value="保存" class="btn btn-success btn-sm"/>
-                                    </li>
+                                    </div>
+                                    <input type="submit" name="" value="保存" class="btn btn-success btn-sm"/>
                                 </form>
                             </div>
                         </div>
@@ -152,15 +154,19 @@
                         <div id="newcommFrom" class="collapse" data-parent="#accordionExample">
                             <div class="card-body">
                                 <form action="widgets.php?action=setwg&wg=newcomm" method="post">
-                                    <label>标题</label>
-                                    <li><input type="text" name="title" class="form-control" value="<?= $customWgTitle['newcomm'] ?>"/></li>
-                                    <label>最新评论数</label>
-                                    <li><input class="form-control" maxlength="5" size="10" value="<?= Option::get('index_comnum') ?>" name="index_comnum"/></li>
-                                    <label>新近评论截取字节数</label>
-                                    <li>
+                                    <div class="form-group">
+                                        <label>标题</label>
+                                        <input type="text" name="title" class="form-control" value="<?= $customWgTitle['newcomm'] ?>"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>最新评论数</label>
+                                        <input class="form-control" maxlength="5" size="10" value="<?= Option::get('index_comnum') ?>" name="index_comnum"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>新近评论截取字节数</label>
                                         <input class="form-control" maxlength="5" size="10" value="<?= Option::get('comment_subnum') ?>" name="comment_subnum"/>
-                                        <input type="submit" name="" value="保存" class="btn btn-success btn-sm"/>
-                                    </li>
+                                    </div>
+                                    <input type="submit" name="" value="保存" class="btn btn-success btn-sm"/>
                                 </form>
                             </div>
                         </div>
@@ -178,13 +184,15 @@
                         <div id="newlogForm" class="collapse" data-parent="#accordionExample">
                             <div class="card-body">
                                 <form action="widgets.php?action=setwg&wg=newlog" method="post">
-                                    <li>标题</li>
-                                    <li><input type="text" name="title" class="form-control" value="<?= $customWgTitle['newlog'] ?>"/></li>
-                                    <li>显示最新文章数</li>
-                                    <li>
+                                    <div class="form-group">
+                                        <label>标题</label>
+                                        <input type="text" name="title" class="form-control" value="<?= $customWgTitle['newlog'] ?>"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>显示最新文章数</label>
                                         <input class="form-control" maxlength="5" size="10" value="<?= Option::get('index_newlognum') ?>" name="index_newlog"/>
-                                        <input type="submit" name="" value="保存" class="btn btn-success btn-sm"/>
-                                    </li>
+                                    </div>
+                                    <input type="submit" name="" value="保存" class="btn btn-success btn-sm"/>
                                 </form>
                             </div>
                         </div>
@@ -202,13 +210,15 @@
                         <div id="hotlogForm" class="collapse" data-parent="#accordionExample">
                             <div class="card-body">
                                 <form action="widgets.php?action=setwg&wg=hotlog" method="post">
-                                    <li>标题</li>
-                                    <li><input type="text" name="title" class="form-control" value="<?= $customWgTitle['hotlog'] ?>"/></li>
-                                    <li>显示热门文章数</li>
-                                    <li>
+                                    <div class="form-group">
+                                        <label>标题</label>
+                                        <input type="text" name="title" class="form-control" value="<?= $customWgTitle['hotlog'] ?>"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>显示热门文章数</label>
                                         <input class="form-control" maxlength="5" size="10" value="<?= Option::get('index_hotlognum') ?>" name="index_hotlognum"/>
-                                        <input type="submit" name="" value="保存" class="btn btn-success btn-sm"/>
-                                    </li>
+                                    </div>
+                                    <input type="submit" name="" value="保存" class="btn btn-success btn-sm"/>
                                 </form>
                             </div>
                         </div>
