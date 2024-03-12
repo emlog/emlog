@@ -29,7 +29,7 @@ function em_confirm(id, property, token) {
             break;
         case 'tw':
             url = 'twitter.php?action=del&id=' + id;
-            msg = '确定要删除该笔记吗？';
+            msg = '确定要删除该条微语吗？';
             swalDel(msg, text, url, token)
             break;
         case 'comment':

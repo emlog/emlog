@@ -6,9 +6,9 @@
 <?php if (isset($_GET['active_del'])): ?>
     <div class="alert alert-success">删除成功</div><?php endif ?>
 <?php if (isset($_GET['error_a'])): ?>
-    <div class="alert alert-danger">笔记内容不能为空</div><?php endif ?>
+    <div class="alert alert-danger">内容不能为空</div><?php endif ?>
 <?php if (isset($_GET['error_forbid'])): ?>
-    <div class="alert alert-danger">抱歉，系统限制用户发布笔记</div><?php endif ?>
+    <div class="alert alert-danger">抱歉，系统限制用户发布微语笔记</div><?php endif ?>
 <h1 class="h4 mb-2 text-gray-800">微语笔记</h1>
 <p class="mb-4">捕捉稍纵即逝的想法，记录生活中的点点滴滴</p>
 <form method="post" action="twitter.php?action=post">
@@ -43,7 +43,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">编辑笔记</h5>
+                <h5 class="modal-title" id="exampleModalLabel">编辑微语</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -64,7 +64,7 @@
     </div>
 </div>
 <div class="page"><?= $pageurl ?> </div>
-<div class="text-center small">(有 <?= $twnum ?> 条笔记 )</div>
+<div class="text-center small">(有 <?= $twnum ?> 条微语 )</div>
 
 <link rel="stylesheet" type="text/css" href="./views/css/markdown.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>">
 <script src="./editor.md/editormd.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>

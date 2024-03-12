@@ -105,7 +105,7 @@
                             <a href="./article.php"><span class="badge badge-primary badge-pill"><?= $sta_cache['lognum'] ?></span></a>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <a href="./twitter.php">笔记</a>
+                            <a href="./twitter.php">微语</a>
                             <a href="./twitter.php?all=y"><span class="badge badge-primary badge-pill"><?= $sta_cache['note_num'] ?></span></a>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">

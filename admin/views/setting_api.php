@@ -38,8 +38,8 @@
             <b>API接口列表：</b><br><br>
             1. 文章发布 (可用于对接内容发布软件，文章发布接口URL：<?= BLOG_URL ?>?rest-api=article_post)<br>
             2. 分类列表<br>
-            3. 笔记发布<br>
-            4. 笔记列表<br>
+            3. 微语发布<br>
+            4. 微语列表<br>
             5. 资源文件上传<br>
             ……<br><br>
             详见接口文档：<a href="https://www.emlog.net/docs/#/api" target="_blank">API接口文档→</a>

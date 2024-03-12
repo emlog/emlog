@@ -551,7 +551,7 @@ CREATE TABLE {$db_prefix}navi (
   taxis int(11) unsigned NOT NULL default '0' COMMENT '排序序号',
   pid int(11) unsigned NOT NULL default '0' COMMENT '父级ID',
   isdefault enum('n','y') NOT NULL default 'n' COMMENT '是否系统默认导航，如首页',
-  type tinyint(3) unsigned NOT NULL default '0' COMMENT '导航类型 0自定义 1首页 2笔记 3后台管理 4分类 5页面',
+  type tinyint(3) unsigned NOT NULL default '0' COMMENT '导航类型 0自定义 1首页 2微语 3后台管理 4分类 5页面',
   type_id int(11) unsigned NOT NULL default '0' COMMENT '导航类型对应ID',
   PRIMARY KEY  (id)
 )" . $table_charset_sql . "
@@ -599,8 +599,8 @@ KEY email (email)
 INSERT INTO {$db_prefix}user (uid, username, email, password, nickname, role, create_time, update_time) VALUES (1,'$username','$email','$password', 'emer','admin', " . time() . ", " . time() . ");
 DROP TABLE IF EXISTS {$db_prefix}twitter;
 CREATE TABLE {$db_prefix}twitter (
-id INT NOT NULL AUTO_INCREMENT COMMENT '笔记表',
-content text NOT NULL COMMENT '笔记内容',
+id INT NOT NULL AUTO_INCREMENT COMMENT '微语笔记表',
+content text NOT NULL COMMENT '微语内容',
 img varchar(255) DEFAULT NULL COMMENT '图片',
 author int(11) NOT NULL default '1' COMMENT '作者UID',
 date bigint(20) NOT NULL COMMENT '创建时间',

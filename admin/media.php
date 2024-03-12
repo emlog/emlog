@@ -88,7 +88,7 @@ if ($action === 'upload') {
         $attach = isset($_FILES['editormd-image-file']) ? $_FILES['editormd-image-file'] : '';
     }
 
-    // 注册用户限制24小时发文数量（包括草稿）, 为0时禁止发布笔记和上传图文资源
+    // 注册用户限制24小时发文数量（包括草稿）, 为0时禁止发布微语和上传图文资源
     if (!User::haveEditPermission() && Option::get('posts_per_day') <= 0) {
         $ret['message'] = '抱歉，系统限制用户上传资源';
         if ($editor) {
