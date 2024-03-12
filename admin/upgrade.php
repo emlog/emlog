@@ -73,7 +73,7 @@ if ($action === 'update' && User::isAdmin()) {
             if (!empty($value) && $value[0] == '#') {
                 preg_match("/#\s(pro\s[\.\d]+)/i", $value, $v);
                 $ver = isset($v[1]) ? trim($v[1]) : '';
-                if (Option::EMLOG_VERSION > $ver) {
+                if (version_compare(Option::EMLOG_VERSION, $ver) > 0) {
                     break;
                 }
             }
