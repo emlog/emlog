@@ -24,7 +24,7 @@
                 <div class="card-body">
                     快捷入口：
                     <a href="article.php" class="mr-2">文章</a>
-                    <a href="article.php" class="mr-2">草稿</a>
+                    <a href="article.php?draft=1" class="mr-2">草稿</a>
                     <a href="page.php" class="mr-2">页面</a>
                     <a href="template.php" class="mr-2">模板</a>
                     <span class="text-gray-300 mr-2">|</span>
