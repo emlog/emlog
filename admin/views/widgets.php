@@ -65,10 +65,10 @@
                             <div class="card-body">
                                 <form action="widgets.php?action=setwg&wg=twitter" method="post">
                                     <li>标题</li>
-                                    <li><input type="text" name="title" class="form-control" value="<?php echo $customWgTitle['twitter']; ?>"/></li>
+                                    <li><input type="text" name="title" class="form-control" value="<?= $customWgTitle['twitter']; ?>"/></li>
                                     <li>展示数量</li>
                                     <li>
-                                        <input maxlength="5" size="10" class="form-control" value="<?php echo Option::get('index_newtwnum'); ?>" name="index_newtwnum"/>
+                                        <input maxlength="5" size="10" class="form-control" value="<?= Option::get('index_newtwnum'); ?>" name="index_newtwnum"/>
                                         <input type="submit" name="" value="保存" class="btn btn-success btn-sm"/>
                                     </li>
                                 </form>
