@@ -16,19 +16,25 @@ for ($i = 0; $i < 5; $i++) {
 }
 
 $_SESSION['code'] = strtoupper($randCode);
-$width = 90;
-$height = 30;
+$width = 120;
+$height = 40;
 
 $img = imagecreate($width, $height);
 $bgColor = isset($_GET['mode']) && $_GET['mode'] == 't' ? imagecolorallocate($img, 245, 245, 245) : imagecolorallocate($img, 255, 255, 255);
 $pixColor = imagecolorallocate($img, mt_rand(30, 180), mt_rand(10, 100), mt_rand(40, 250));
 
+// Load WOFF font
+$fontFile = '../../admin/views/components/captcha.woff'; // Change this to the actual path of your WOFF font file
+$fontColor = imagecolorallocate($img, mt_rand(30, 180), mt_rand(10, 100), mt_rand(40, 250));
+
+$charWidth = $width / 6; // Adjust the width of each character to evenly distribute them
+
 for ($i = 0; $i < 5; $i++) {
-    $x = $i * 13 + mt_rand(0, 5) - 2;
-    $y = mt_rand(0, 8);
-    $text_color = imagecolorallocate($img, mt_rand(30, 180), mt_rand(10, 100), mt_rand(40, 250));
-    imagechar($img, 5, $x + 5, $y + 3, $randCode[$i], $text_color);
+    $x = ($i * $charWidth) + mt_rand(5, 10); // Adjust the starting position for each character
+    $y = mt_rand(20, 30);
+    imagettftext($img, 18, mt_rand(-30, 30), $x, $y, $fontColor, $fontFile, $randCode[$i]);
 }
+
 for ($j = 0; $j < 80; $j++) {
     $x = mt_rand(0, $width);
     $y = mt_rand(0, $height);
@@ -36,11 +42,11 @@ for ($j = 0; $j < 80; $j++) {
 }
 
 for ($j = 0; $j < 4; $j++) {
-    $x = mt_rand(0, $width);
-    $y = mt_rand(0, $height);
+    $x1 = mt_rand(0, $width);
+    $y1 = mt_rand(0, $height);
     $x2 = mt_rand(0, $width);
     $y2 = mt_rand(0, $height);
-    imageline($img, $x, $y, $x2, $y2, $pixColor);
+    imageline($img, $x1, $y1, $x2, $y2, $pixColor);
 }
 
 header('Content-Type: image/png');
