@@ -183,9 +183,10 @@ if ($action == 'save') {
         'accept_app_recs'     => Input::postStrVar('accept_app_recs', 'n'),
     ];
 
-    if ($getData['comment_code'] == 'y' && !function_exists("imagecreate") && !function_exists('imagepng')) {
-        Output::error('开启评论验证码失败，服务器空间不支持GD图形库');
+    if ($getData['comment_code'] == 'y' && !checkGDSupport()) {
+        Output::error('开启评论验证码失败，服务器PHP不支持GD图形库');
     }
+
     if ($getData['blogurl'] && substr($getData['blogurl'], -1) != '/') {
         $getData['blogurl'] .= '/';
     }
@@ -373,9 +374,15 @@ if ($action == 'user_save') {
         'posts_per_day'      => Input::postIntVar('posts_per_day', 0),
         'posts_name'         => Input::postStrVar('posts_name'),
     ];
+
+    if ($data['login_code'] == 'y' && !checkGDSupport()) {
+        Output::error('开启图形验证码失败，服务器PHP不支持GD图形库');
+    }
+
     foreach ($data as $key => $val) {
         Option::updateOption($key, $val);
     }
+
     $CACHE->updateCache('options');
     Output::ok();
 }
