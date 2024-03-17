@@ -55,7 +55,6 @@
             <table class="table table-striped table-hover dataTable no-footer">
                 <thead>
                 <tr>
-                    <th></th>
                     <th>插件名</th>
                     <th>开关</th>
                     <th>作者</th>
@@ -81,12 +80,19 @@
                         $alias = $val['alias'];
                         ?>
                         <tr data-plugin-alias="<?= $val['Plugin'] ?>" data-plugin-version="<?= $val['Version'] ?>">
-                            <td><img src="<?= $val['preview'] ?>" height="45" width="45" class="rounded"/></td>
                             <td>
-                                <?= $val['Name'] ?>
-                                <div class="small mt-3">
-                                    <?= $val['Description'] ?>
-                                    <?php if (strpos($val['Url'], 'https://www.emlog.net') === 0): ?><a href="<?= $val['Url'] ?>" target="_blank">更多信息&raquo;</a><?php endif ?>
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-shrink-0">
+                                        <a class="mr-2" href="blogger.php">
+                                            <img src="<?= $val['preview'] ?>" height="45" width="45" class="rounded"/>
+                                        </a>
+                                    </div>
+                                    <div class="flex-grow-1 ms-3">
+                                        <div class="align-items-center mb-3">
+                                            <p class="mb-0 m-2"><?= $val['Name'] ?></p>
+                                            <p class="mb-0 m-2 small"><?= $val['Description'] ?> <?php if (strpos($val['Url'], 'https://www.emlog.net') === 0): ?><a href="<?= $val['Url'] ?>" target="_blank">更多信息&raquo;</a><?php endif ?></p>
+                                        </div>
+                                    </div>
                                 </div>
                             </td>
                             <td>

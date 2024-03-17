@@ -86,28 +86,30 @@
             </div>
         <?php endforeach ?>
     </div>
-    <div class="form-row align-items-center">
-        <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
-        <input name="operate" id="operate" value="" type="hidden"/>
-        <div class="col-auto my-1">
-            <div class="custom-control custom-checkbox mr-sm-2">
-                <input type="checkbox" class="custom-control-input" id="checkAllCard">
-                <label class="custom-control-label" for="checkAllCard">全选</label>
+    <?php if ($count > 0): ?>
+        <div class="form-row align-items-center">
+            <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
+            <input name="operate" id="operate" value="" type="hidden"/>
+            <div class="col-auto my-1">
+                <div class="custom-control custom-checkbox mr-sm-2">
+                    <input type="checkbox" class="custom-control-input" id="checkAllCard">
+                    <label class="custom-control-label" for="checkAllCard">全选</label>
+                </div>
+            </div>
+            <a href="javascript:mediaact('del');" class="btn btn-sm btn-danger">删除</a>
+            <div class="col-auto my-1 form-inline">
+                <?php if (User::isAdmin()): ?>
+                    <select name="sort" id="sort" onChange="changeSort(this);" class="form-control m-1">
+                        <option value="" selected="selected">移动到</option>
+                        <?php foreach ($sorts as $key => $value): ?>
+                            <option value="<?= $value['id'] ?>"><?= $value['sortname'] ?></option>
+                        <?php endforeach; ?>
+                        <option value="0">未分类</option>
+                    </select>
+                <?php endif; ?>
             </div>
         </div>
-        <a href="javascript:mediaact('del');" class="btn btn-sm btn-danger">删除</a>
-        <div class="col-auto my-1 form-inline">
-            <?php if (User::isAdmin()): ?>
-                <select name="sort" id="sort" onChange="changeSort(this);" class="form-control m-1">
-                    <option value="" selected="selected">移动到</option>
-                    <?php foreach ($sorts as $key => $value): ?>
-                        <option value="<?= $value['id'] ?>"><?= $value['sortname'] ?></option>
-                    <?php endforeach; ?>
-                    <option value="0">未分类</option>
-                </select>
-            <?php endif; ?>
-        </div>
-    </div>
+    <?php endif; ?>
 </form>
 <div class="page"><?= $page ?> </div>
 <div class="text-center small">(有 <?= $count ?> 个资源 )</div>

@@ -171,7 +171,7 @@ class Plugin_Model {
         $version = isset($version[1]) ? strip_tags(trim($version[1])) : '';
         $description = isset($description[1]) ? strip_tags(trim($description[1])) : '';
         $plugin_url = isset($plugin_url[1]) ? strip_tags(trim($plugin_url[1])) : '';
-        $author = isset($author_name[1]) ? strip_tags(trim($author_name[1])) : '';
+        $author = isset($author_name[1]) ? strip_tags(trim($author_name[1])) : '未知';
         $author_url = isset($author_url[1]) ? strip_tags(trim($author_url[1])) : '';
 
         return [
