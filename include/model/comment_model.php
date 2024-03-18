@@ -303,7 +303,7 @@ class Comment_Model {
     }
 
     function isYoursComment($cid) {
-        if (User::haveEditPermission() || User::isVistor()) {
+        if (User::haveEditPermission() || User::isVisitor()) {
             return true;
         }
         $query = $this->db->query("SELECT a.cid FROM " . DB_PREFIX . "comment as a," . DB_PREFIX . "blog as b WHERE a.cid=$cid and a.gid=b.gid AND b.author=" . UID);

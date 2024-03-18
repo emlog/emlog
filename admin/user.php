@@ -83,7 +83,7 @@ if ($action == 'edit') {
     $email = $data['email'];
 
     $ex1 = $ex2 = $ex3 = '';
-    if (user::isVistor($role)) {
+    if (user::isVisitor($role)) {
         $ex1 = 'selected="selected"';
     } elseif (User::isEditor($role)) {
         $ex2 = 'selected="selected"';

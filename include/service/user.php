@@ -17,7 +17,7 @@ class User {
         return $role == self::ROLE_ADMIN;
     }
 
-    static function isVistor($role = ROLE) {
+    static function isVisitor($role = ROLE) {
         return $role == self::ROLE_VISITOR;
     }
 
@@ -25,8 +25,22 @@ class User {
         return $role == self::ROLE_EDITOR;
     }
 
+    static function isWriter($role = ROLE) {
+        return $role == self::ROLE_WRITER;
+    }
+
+    /**
+     * @deprecated This function is deprecated and will be removed in the future. Use isWriter instead.
+     */
     static function isWiter($role = ROLE) {
         return $role == self::ROLE_WRITER;
+    }
+
+    /**
+     * @deprecated This function is deprecated and will be removed in the future. Use isVisitor instead.
+     */
+    static function isVistor($role = ROLE) {
+        return $role == self::ROLE_VISITOR;
     }
 
     static function haveEditPermission($role = ROLE) {
@@ -36,6 +50,7 @@ class User {
         if (self::isEditor($role)) {
             return true;
         }
+        return false;
     }
 
     static function getRoleName($role, $uid = 0) {
@@ -92,4 +107,3 @@ class User {
     }
 
 }
-

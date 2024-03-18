@@ -78,7 +78,7 @@ $logData = [
     'template'     => $template,
 ];
 
-if (User::isWiter()) {
+if (User::isWriter()) {
     $count = $Log_Model->getPostCountByUid(UID, time() - 3600 * 24);
     $post_per_day = Option::get('posts_per_day');
     if ($count >= $post_per_day) {

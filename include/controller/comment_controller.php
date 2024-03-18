@@ -47,7 +47,7 @@ class Comment_Controller {
             $err = '文章不存在';
         } elseif (Option::get('iscomment') == 'n' || $log['allow_remark'] == 'n') {
             $err = '该文章未开启评论';
-        } elseif (User::isVistor() && $Comment_Model->isCommentTooFast() === true) {
+        } elseif (User::isVisitor() && $Comment_Model->isCommentTooFast() === true) {
             $err = '评论发布太频繁';
         } elseif (empty($name)) {
             $err = '请填写昵称';
@@ -59,7 +59,7 @@ class Comment_Controller {
             $err = '请填写评论内容';
         } elseif (strlen($content) > 60000) {
             $err = '内容内容太长了';
-        } elseif (User::isVistor() && Option::get('comment_needchinese') == 'y' && !preg_match('/[\x{4e00}-\x{9fa5}]/iu', $content)) {
+        } elseif (User::isVisitor() && Option::get('comment_needchinese') == 'y' && !preg_match('/[\x{4e00}-\x{9fa5}]/iu', $content)) {
             $err = '评论内容需包含中文';
         } elseif (ISLOGIN === false && Option::get('comment_code') == 'y' && session_start() && (empty($imgcode) || $imgcode !== $_SESSION['code'])) {
             $err = '验证码错误';
