@@ -18,8 +18,16 @@ function widget_link($title) {
             <h3><?= $title ?></h3>
         </div>
         <ul class="widget-list no-margin-bottom unstyle-li">
-            <?php foreach ($link_cache as $value): ?>
-                <li><a href="<?= $value['url'] ?>" title="<?= $value['des'] ?>" target="_blank"><?= $value['link'] ?></a></li>
+            <?php
+            foreach ($link_cache as $value):
+                $icon = isset($value['icon']) ? $value['icon'] : '';
+                ?>
+                <li style="display: flex; align-items: center;">
+                    <?php if ($icon): ?>
+                        <img src="<?= $icon ?>" height="20" width="20" class="rounded" style="margin-right: 5px;">
+                    <?php endif; ?>
+                    <a href="<?= $value['url'] ?>" title="<?= $value['des'] ?>" target="_blank"><?= $value['link'] ?></a>
+                </li>
             <?php endforeach ?>
         </ul>
     </div>

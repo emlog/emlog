@@ -18,7 +18,6 @@
                     <tr>
                         <th>名称</th>
                         <th>链接</th>
-                        <th>描述</th>
                         <th>操作</th>
                     </tr>
                     </thead>
@@ -29,20 +28,37 @@
                         ?>
                         <tr style="cursor: move">
                             <td>
-                                <input name="link[]" value="<?= $value['id'] ?>" type="hidden"/>
-                                <a href="#" data-toggle="modal" data-target="#linkModel"
-                                   data-linkid="<?= $value['id'] ?>"
-                                   data-sitename="<?= $value['sitename'] ?>"
-                                   data-siteurl="<?= $value['siteurl'] ?>"
-                                   data-description="<?= $value['description'] ?>"><?= $value['sitename'] ?></a>
-                                <?php if ($value['hide'] === 'y'): ?>
-                                    <br/><span class="badge badge-warning">已隐藏</span>
-                                <?php endif ?>
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-shrink-0">
+                                        <?php if ($value['icon']): ?>
+                                            <img src="<?= $value['icon'] ?>" height="35" width="35" class="rounded"/>
+                                        <?php else: ?>
+                                            <img src="<?= './views/images/null.png' ?>" height="35" width="35" class="rounded"/>
+                                        <?php endif; ?>
+                                    </div>
+                                    <div class="flex-grow-1 ms-3">
+                                        <div class="align-items-center mb-3">
+                                            <p class="mb-0 m-2">
+                                                <input name="link[]" value="<?= $value['id'] ?>" type="hidden"/>
+                                                <a href="#" data-toggle="modal" data-target="#linkModel"
+                                                   data-linkid="<?= $value['id'] ?>"
+                                                   data-sitename="<?= $value['sitename'] ?>"
+                                                   data-siteurl="<?= $value['siteurl'] ?>"
+                                                   data-icon="<?= $value['icon'] ?>"
+                                                   data-description="<?= $value['description'] ?>"><?= $value['sitename'] ?></a>
+                                                <?php if ($value['hide'] === 'y'): ?>
+                                                    <span class="badge badge-warning">已隐藏</span>
+                                                <?php endif ?>
+                                            </p>
+                                            <p class="mb-0 m-2 small"><?= $value['description'] ?></p>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </td>
                             <td>
                                 <a href="<?= $value['siteurl'] ?>" target="_blank"><?= subString($value['siteurl'], 0, 39) ?></a>
                             </td>
-                            <td><?= $value['description'] ?></td>
                             <td>
                                 <?php if ($value['hide'] == 'n'): ?>
                                     <a href="link.php?action=hide&amp;linkid=<?= $value['id'] ?>" class="badge badge-primary">隐藏</a>
@@ -85,6 +101,10 @@
                         <input class="form-control" id="siteurl" maxlength="255" name="siteurl" type="url" required>
                     </div>
                     <div class="form-group">
+                        <label for="template">图标URL</label>
+                        <input class="form-control" id="icon" name="icon" type="url">
+                    </div>
+                    <div class="form-group">
                         <label for="alias">描述</label>
                         <textarea name="description" id="description" maxlength="512" type="text" class="form-control"></textarea>
                     </div>
@@ -113,10 +133,12 @@
             var linkid = button.data('linkid')
             var sitename = button.data('sitename')
             var siteurl = button.data('siteurl')
+            var icon = button.data('icon')
             var description = button.data('description')
             var modal = $(this)
             modal.find('.modal-body #sitename').val(sitename)
             modal.find('.modal-body #siteurl').val(siteurl)
+            modal.find('.modal-body #icon').val(icon)
             modal.find('.modal-body #description').val(description)
             modal.find('.modal-footer #linkid').val(linkid)
         })

@@ -535,12 +535,13 @@ CREATE TABLE {$db_prefix}link (
   id int(11) unsigned NOT NULL auto_increment COMMENT '链接表',
   sitename varchar(255) NOT NULL default '' COMMENT '名称',
   siteurl varchar(255) NOT NULL default '' COMMENT '地址',
+  icon varchar(512) NOT NULL default '' COMMENT '图标URL',
   description varchar(512) NOT NULL default '' COMMENT '备注信息',
   hide enum('n','y') NOT NULL default 'n' COMMENT '是否隐藏',
   taxis int(11) unsigned NOT NULL default '0' COMMENT '排序序号',
   PRIMARY KEY  (id)
 )" . $table_charset_sql . "
-INSERT INTO {$db_prefix}link (id, sitename, siteurl, description, taxis) VALUES (1, 'emlog.net', 'http://www.emlog.net', 'emlog官方主页', 0);
+INSERT INTO {$db_prefix}link (id, sitename, siteurl, icon, description, taxis) VALUES (1, 'emlog.net', 'http://www.emlog.net', 'https://oss-pub.emlog.net/img/logo.png', 'emlog官方主页', 0);
 DROP TABLE IF EXISTS {$db_prefix}navi;
 CREATE TABLE {$db_prefix}navi (
   id int(11) unsigned NOT NULL auto_increment COMMENT '导航表',

@@ -83,9 +83,7 @@
                             <td>
                                 <div class="d-flex align-items-center">
                                     <div class="flex-shrink-0">
-                                        <a class="mr-2" href="blogger.php">
-                                            <img src="<?= $val['preview'] ?>" height="45" width="45" class="rounded"/>
-                                        </a>
+                                        <img src="<?= $val['preview'] ?>" height="45" width="45" class="rounded"/>
                                     </div>
                                     <div class="flex-grow-1 ms-3">
                                         <div class="align-items-center mb-3">

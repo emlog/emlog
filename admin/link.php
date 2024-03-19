@@ -41,6 +41,7 @@ if ($action == 'link_taxis') {
 if ($action == 'save') {
     $siteName = Input::postStrVar('sitename');
     $siteUrl = Input::postStrVar('siteurl');
+    $icon = Input::postStrVar('icon');
     $description = Input::postStrVar('description');
     $linkId = Input::postIntVar('linkid');
 
@@ -55,6 +56,7 @@ if ($action == 'save') {
     $data = [
         'sitename'    => $siteName,
         'siteurl'     => $siteUrl,
+        'icon'        => $icon,
         'description' => $description
     ];
 

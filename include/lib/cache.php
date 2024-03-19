@@ -279,11 +279,12 @@ class Cache {
 
     private function mc_link() {
         $link_cache = [];
-        $query = $this->db->query("SELECT siteurl,sitename,description FROM " . DB_PREFIX . "link WHERE hide='n' ORDER BY taxis ASC");
+        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "link WHERE hide='n' ORDER BY taxis ASC");
         while ($show_link = $this->db->fetch_array($query)) {
             $link_cache[] = array(
                 'link' => htmlspecialchars($show_link['sitename']),
                 'url'  => htmlspecialchars($show_link['siteurl']),
+                'icon' => htmlspecialchars($show_link['icon']),
                 'des'  => htmlspecialchars($show_link['description'])
             );
         }
