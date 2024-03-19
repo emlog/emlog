@@ -268,13 +268,18 @@ class Api_Controller {
     }
 
     private function note_post() {
-        $t = isset($_POST['t']) ? addslashes(trim($_POST['t'])) : '';
-        $author_uid = isset($_POST['author_uid']) ? (int)trim($_POST['author_uid']) : 1;
+        $t = Input::postStrVar('t');
+        $private = Input::postStrVar('private', 'n');
+        $author_uid = Input::postIntVar('author_uid', 1);
 
         $this->auth();
 
         if (empty($t)) {
             Output::error('parameter error');
+        }
+
+        if ($private !== 'y') {
+            $private = 'n';
         }
 
         if ($this->curUid) {
@@ -284,6 +289,7 @@ class Api_Controller {
         $data = [
             'content' => $t,
             'author'  => $author_uid,
+            'private' => $private,
             'date'    => time(),
         ];
 
