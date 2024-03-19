@@ -520,11 +520,12 @@ function loadTopAddons() {
                     storeUlr = './store.php?action=plu';
                 }
                 if (app.price > 0) {
-                    insertBtnHtml = app.price + '元 <a href="' + app.buy_url + '" target="_blank">购买</a>';
+                    insertBtnHtml = app.price + '元';
                 } else {
-                    insertBtnHtml = '免费 <a href="' + storeUlr + '&keyword=' + app.name + '">安装</a>';
+                    insertBtnHtml = '免费';
                 }
-                const cardHtml = '<div class="col-md-4">' + '<div class="card">' + '<a href="' + app.buy_url + '" target="_blank"><img class="card-img-top" style="max-height: 90px;" src="' + app.icon + '" alt="icon"/></a>' + '<div class="card-body">' + '<div class="card-text text-muted small">' + app.name + '</div>' + '<p class="card-text d-flex justify-content-between small">' + insertBtnHtml + '</p>' + '</div></div></div>';
+                apptitle = '<a href="' + storeUlr + '&keyword=' + app.name + '">' + app.name + '</a>';
+                const cardHtml = '<li class="list-group-item d-flex justify-content-between align-items-center"><span>' + apptitle + '<small class="text-muted"><br>' + app.info + '</small></span>' + '<span class="small">' + insertBtnHtml + '</span></li>';
                 $('#app-list').append(cardHtml);
             });
         },
