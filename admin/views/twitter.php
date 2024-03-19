@@ -34,7 +34,7 @@
         $author = $user_cache[$val['author']]['name'];
         $private = $val['private'] === 'y';
         ?>
-        <div class="card p-3 <?= $private ? 'border-warning' : '' ?>">
+        <div class="card p-3 <?= $private ? 'border-danger' : '' ?>">
             <div class="markdown t"><?= $val['t'] ?></div>
             <footer>
                 <p class="text-muted small card-text d-flex justify-content-between">
