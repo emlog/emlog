@@ -21,7 +21,7 @@ if (empty($action)) {
     $all = Input::getStrVar('all');
 
     $uid = $all === 'y' && user::isAdmin() ? '' : UID;
-    $tws = $Twitter_Model->getTwitters($uid, $page, TW_PAGE_COUNT);
+    $tws = $Twitter_Model->getTwitters($uid, $page, TW_PAGE_COUNT, true);
     $twnum = $Twitter_Model->getCount($uid);
 
     $subPage = '';
@@ -38,6 +38,7 @@ if (empty($action)) {
 
 if ($action == 'post') {
     $t = Input::postStrVar('t');
+    $private = Input::postStrVar('private', 'n');
 
     if (!$t) {
         emDirect("twitter.php?error_a=1");
@@ -45,6 +46,7 @@ if ($action == 'post') {
 
     $data = [
         'content' => $t,
+        'private' => $private,
         'author'  => UID,
         'date'    => time(),
     ];

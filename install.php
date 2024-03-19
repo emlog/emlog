@@ -606,6 +606,7 @@ img varchar(255) DEFAULT NULL COMMENT '图片',
 author int(11) NOT NULL default '1' COMMENT '作者UID',
 date bigint(20) NOT NULL COMMENT '创建时间',
 replynum int(11) unsigned NOT NULL default '0' COMMENT '回复数量',
+private enum('n','y') NOT NULL default 'n' COMMENT '是否私密',
 PRIMARY KEY (id),
 KEY author (author)
 )" . $table_charset_sql . "

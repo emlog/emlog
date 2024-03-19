@@ -15,19 +15,30 @@
     <div class="form-group">
         <div id="t"><textarea></textarea></div>
     </div>
-    <button type="submit" class="btn btn-sm btn-success">发布</button>
+    <div class="form-row align-items-center">
+        <div class="col-auto">
+            <button type="submit" class="btn btn-sm btn-success">发布</button>
+        </div>
+        <div class="col-auto ml-2">
+            <div class="form-check mb-2">
+                <input class="form-check-input" type="checkbox" value="y" name="private" id="private"/>
+                <label class="form-check-label">私密</label>
+            </div>
+        </div>
+    </div>
 </form>
 <div class="card-columns mt-5">
     <?php
     foreach ($tws as $val):
         $tid = (int)$val['id'];
         $author = $user_cache[$val['author']]['name'];
+        $private = $val['private'] === 'y';
         ?>
-        <div class="card p-3">
+        <div class="card p-3 <?= $private ? 'border-warning' : '' ?>">
             <div class="markdown t"><?= $val['t'] ?></div>
             <footer>
                 <p class="text-muted small card-text d-flex justify-content-between">
-                    <?= $val['date'] ?> | by <?= $author ?>
+                    <?= $val['date'] ?> | by <?= $author ?> <?= $private ? '｜ 私密' : '' ?>
                     <span>
                     <a href="#" class="text-muted" data-toggle="modal" data-target="#editModal" data-id="<?= $val['id'] ?>" data-t="<?= htmlspecialchars($val['t_raw']) ?>">编辑</a>
                     <a href="javascript: em_confirm(<?= $tid ?>, 'tw', '<?= LoginAuth::genToken() ?>');" class="care">删除</a>
