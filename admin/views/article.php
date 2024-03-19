@@ -252,46 +252,32 @@ $isdraft = $draft ? '&draft=1' : '';
 <script>
     function logact(act) {
         if (getChecked('ids') === false) {
-            Swal.fire("", "请选择要操作的文章!", "info");
+            infoAlert('请选择要操作的文章');
             return;
         }
 
         if (act === 'del') {
-            Swal.fire({
+            layer.confirm('彻底删除将无法恢复', {
                 title: '确定要删除所选文章吗',
-                text: '彻底删除将无法恢复',
-                icon: 'warning',
-                showDenyButton: true,
-                showCancelButton: true,
-                cancelButtonText: '取消',
-                confirmButtonText: '放入草稿',
-                denyButtonText: '彻底删除',
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $("#operate").val("hide");
-                    $("#form_log").submit();
-                } else if (result.isDenied) {
-                    $("#operate").val(act);
-                    $("#form_log").submit();
-                }
+                icon: 0,
+                btn: ['放入草稿', '<span class="text-danger">彻底删除</span>', '取消']
+            }, function (index) {
+                $("#operate").val("hide");
+                $("#form_log").submit();
+                layer.close(index);
+            }, function (index) {
+                $("#operate").val(act);
+                $("#form_log").submit();
+                layer.close(index);
             });
             return;
         }
 
         if (act === 'del_draft') {
-            Swal.fire({
-                title: '确定要删除所选草稿吗',
-                text: '删除将无法恢复',
-                icon: 'warning',
-                showCancelButton: true,
-                cancelButtonText: '取消',
-                confirmButtonText: '确定',
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $("#operate").val("del");
-                    $("#form_log").submit();
-                }
-            });
+            delAlert2('确定要删除所选草稿吗', '删除将无法恢复', function () {
+                $("#operate").val("del");
+                $("#form_log").submit();
+            })
             return;
         }
 
@@ -301,7 +287,7 @@ $isdraft = $draft ? '&draft=1' : '';
 
     function changeSort(obj) {
         if (getChecked('ids') === false) {
-            Swal.fire("", "请选择要操作的文章!", "info");
+            infoAlert('请选择要操作的文章');
             return;
         }
         if ($('#sort').val() === '') return;
@@ -311,7 +297,7 @@ $isdraft = $draft ? '&draft=1' : '';
 
     function changeAuthor(obj) {
         if (getChecked('ids') === false) {
-            Swal.fire("", "请选择要操作的文章!", "info");
+            infoAlert('请选择要操作的文章');
             return;
         }
         if ($('#author').val() === '') return;
@@ -321,7 +307,7 @@ $isdraft = $draft ? '&draft=1' : '';
 
     function changeTop(obj) {
         if (getChecked('ids') === false) {
-            Swal.fire("", "请选择要操作的文章!", "info");
+            infoAlert('请选择要操作的文章');
             return;
         }
         if ($('#top').val() === '') return;

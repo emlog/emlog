@@ -87,23 +87,14 @@
 
     function pageact(act) {
         if (getChecked('ids') === false) {
-            Swal.fire("", "请选择要操作的页面!", "info");
+            infoAlert('请选择要操作的页面');
             return;
         }
         if (act === 'del') {
-            Swal.fire({
-                title: '确定要删除所选页面吗',
-                text: '删除后可能无法恢复',
-                icon: 'warning',
-                showCancelButton: true,
-                cancelButtonText: ' 取消',
-                confirmButtonText: '确定',
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $("#operate").val(act);
-                    $("#form_page").submit();
-                }
-            });
+            delAlert2('确定要删除所选页面吗', '删除后可能无法恢复', function () {
+                $("#operate").val(act);
+                $("#form_page").submit();
+            })
             return;
         }
         $("#operate").val(act);

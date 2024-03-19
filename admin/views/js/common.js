@@ -20,120 +20,125 @@ function em_confirm(id, property, token) {
             url = 'article.php?action=del&gid=' + id;
             msg = '确定要删除该篇文章吗？';
             text = '彻底删除将无法恢复'
-            swalDelArticle(msg, text, url, token)
+            delArticle(msg, text, url, token)
             break;
         case 'draft':
             url = 'article.php?action=del&draft=1&gid=' + id;
             msg = '确定要删除该篇草稿吗？';
-            swalDel(msg, text, url, token)
+            delAlert(msg, text, url, token)
             break;
         case 'tw':
             url = 'twitter.php?action=del&id=' + id;
             msg = '确定要删除该条微语吗？';
-            swalDel(msg, text, url, token)
+            delAlert(msg, text, url, token)
             break;
         case 'comment':
             url = 'comment.php?action=del&id=' + id;
             msg = '确定要删除该评论吗？';
-            swalDel(msg, text, url, token)
+            delAlert(msg, text, url, token)
             break;
         case 'commentbyip':
             url = 'comment.php?action=delbyip&ip=' + id;
             msg = '确定要删除来自该IP的所有评论吗？';
-            swalDel(msg, text, url, token)
+            delAlert(msg, text, url, token)
             break;
         case 'link':
             url = 'link.php?action=del&linkid=' + id;
             msg = '确定要删除该链接吗？';
-            swalDel(msg, text, url, token)
+            delAlert(msg, text, url, token)
             break;
         case 'navi':
             url = 'navbar.php?action=del&id=' + id;
             msg = '确定要删除该导航吗？';
-            swalDel(msg, text, url, token)
+            delAlert(msg, text, url, token)
             break;
         case 'media':
             url = 'media.php?action=delete&aid=' + id;
             msg = '确定要删除该媒体文件吗？';
-            swalDel(msg, text, url, token)
+            delAlert(msg, text, url, token)
             break;
         case 'avatar':
             url = 'blogger.php?action=delicon';
             msg = '确定要删除头像吗？';
-            swalDel(msg, text, url, token)
+            delAlert(msg, text, url, token)
             break;
         case 'sort':
             url = 'sort.php?action=del&sid=' + id;
             msg = '确定要删除该分类吗？';
-            swalDel(msg, text, url, token)
+            delAlert(msg, text, url, token)
             break;
         case 'del_user':
             url = 'user.php?action=del&uid=' + id;
             msg = '确定要删除该用户吗？';
-            swalDel(msg, text, url, token)
+            delAlert(msg, text, url, token)
             break;
         case 'forbid_user':
             url = 'user.php?action=forbid&uid=' + id;
             msg = '确定要禁用该用户吗？';
             text = '';
-            swalDel(msg, text, url, token)
+            delAlert(msg, text, url, token)
             break;
         case 'tpl':
             url = 'template.php?action=del&tpl=' + id;
             msg = '确定要删除该模板吗？';
-            swalDel(msg, text, url, token)
+            delAlert(msg, text, url, token)
             break;
         case 'reset_widget':
             url = 'widgets.php?action=reset';
-            msg = '确定要恢复组件设置到初始状态吗？这样会丢失你自定义的组件。';
-            text = '';
-            swalDel(msg, text, url, token)
+            msg = '确定要重置组件吗？';
+            text = '重置会丢失自定义的组件';
+            delAlert(msg, text, url, token)
             break;
         case 'plu':
             url = 'plugin.php?action=del&plugin=' + id;
             msg = '确定要删除该插件吗？';
-            swalDel(msg, text, url, token)
+            delAlert(msg, text, url, token)
             break;
         case 'media_sort':
             url = 'media.php?action=del_media_sort&id=' + id;
             msg = '确定要删除该资源分类吗？';
             text = '不会删除分类下资源文件';
-            swalDel(msg, text, url, token)
+            delAlert(msg, text, url, token)
             break;
     }
 }
 
-function swalDel(msg, text, url, token) {
-    Swal.fire({
-        title: msg,
-        icon: 'warning',
-        text: text,
-        showCancelButton: true,
-        cancelButtonText: '取消',
-        confirmButtonText: '确定',
-    }).then((result) => {
-        if (result.isConfirmed) {
-            window.location = url + '&token=' + token;
-        }
+function infoAlert(msg) {
+    layer.alert(msg, {
+        icon: 2,
+        shadeClose: true,
+        title: '',
     });
 }
 
-function swalDelArticle(msg, text, url, token) {
-    Swal.fire({
+function delAlert(msg, text, url, token) {
+    // icon: 0 default, 1 ok, 2 err, 3 ask
+    layer.confirm(text, {icon: 0, title: msg}, function (index) {
+        window.location = url + '&token=' + token;
+        layer.close(index);
+    });
+}
+
+function delAlert2(msg, text, actionClosure) {
+    layer.confirm(text, {icon: 0, title: msg}, function (index) {
+        actionClosure(); // 执行闭包
+        layer.close(index);
+    });
+}
+
+function delArticle(msg, text, url, token) {
+    layer.confirm(text, {
         title: msg,
-        icon: 'warning',
-        text: text,
-        showDenyButton: true,
-        showCancelButton: true,
-        cancelButtonText: '取消',
-        confirmButtonText: '放入草稿',
-        denyButtonText: '彻底删除',
-    }).then((result) => {
-        if (result.isConfirmed) {
-            window.location = url + '&token=' + token;
-        } else if (result.isDenied) {
-            window.location = url + '&rm=1&token=' + token;
-        }
+        icon: 0,
+        btn: ['放入草稿', '<span class="text-danger">彻底删除</span>', '取消']
+    }, function (index) {
+        window.location = url + '&token=' + token;
+        layer.close(index);
+    }, function (index) {
+        window.location = url + '&rm=1&token=' + token;
+        layer.close(index);
+    }, function (index) {
+        layer.close(index);
     });
 }
 

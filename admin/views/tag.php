@@ -108,24 +108,15 @@
 
     function tagact(act) {
         if (getChecked('tids') === false) {
-            Swal.fire("", "请选择要删除的标签", "info");
+            infoAlert('请选择要删除的标签');
             return;
         }
 
         if (act === 'del') {
-            Swal.fire({
-                title: '确定要删除所选标签吗',
-                text: '删除后可能无法恢复',
-                icon: 'warning',
-                showCancelButton: true,
-                cancelButtonText: ' 取消',
-                confirmButtonText: '确定',
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $("#operate").val(act);
-                    $("#form_tag").submit();
-                }
-            });
+            delAlert2('确定要删除所选标签吗', '删除后可能无法恢复', function () {
+                $("#operate").val(act);
+                $("#form_tag").submit();
+            })
             return;
         }
         $("#operate").val(act);
@@ -134,17 +125,8 @@
 
     function deltags() {
         var tid = $('#tid').val()
-        Swal.fire({
-            title: '确定要删除所选标签吗',
-            text: '删除后可能无法恢复',
-            icon: 'warning',
-            showCancelButton: true,
-            cancelButtonText: ' 取消',
-            confirmButtonText: '确定',
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.open("./tag.php?action=del_tag&token=<?= LoginAuth::genToken() ?>&tid=" + tid, "_self");
-            }
-        });
+        delAlert2('确定要删除所选标签吗', '删除后可能无法恢复', function () {
+            window.open("./tag.php?action=del_tag&token=<?= LoginAuth::genToken() ?>&tid=" + tid, "_self");
+        })
     }
 </script>

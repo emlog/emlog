@@ -21,21 +21,18 @@ function insert_cover(imgsrc) {
     $('#cover_rm').show();
 }
 
-async function delete_media(id) {
-    const confirmed = await Swal.fire({
-        title: '确定要删除该资源吗？',
-        icon: 'warning',
-        showCancelButton: true,
-        cancelButtonText: '取消',
-        confirmButtonText: '删除',
-    }).then((result) => result.isConfirmed);
-
-    if (confirmed) {
-        await $.post('./media.php?action=delete_async', {aid: id});
-        $('#image-list').html('');
-        page = 1
-        loadImages();
-    }
+function delete_media(id) {
+    layer.confirm('确定要删除该资源吗？', {
+        icon: 3,
+        btn: ['删除', '取消']
+    }, function (index) {
+        $.post('./media.php?action=delete_async', {aid: id}, function () {
+            $('#image-list').html('');
+            page = 1;
+            loadImages();
+        });
+        layer.close(index);
+    });
 }
 
 // 插入资源列表
