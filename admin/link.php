@@ -63,7 +63,7 @@ if ($action == 'save') {
     if ($linkId) {
         $Link_Model->updateLink($data, $linkId);
     } else {
-        $Link_Model->addLink($siteName, $siteUrl, $description);
+        $Link_Model->addLink($data);
     }
 
     $CACHE->updateCache('link');
