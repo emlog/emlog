@@ -576,6 +576,7 @@ CREATE TABLE {$db_prefix}sort (
   description text NOT NULL COMMENT '备注',
   kw VARCHAR(2048) NOT NULL DEFAULT '' COMMENT '关键词',
   template varchar(255) NOT NULL default '' COMMENT '分类模板',
+  sortimg varchar(512) NOT NULL default '' COMMENT '分类图像',
   PRIMARY KEY  (sid)
 )" . $table_charset_sql . "
 DROP TABLE IF EXISTS {$db_prefix}user;
