@@ -24,6 +24,7 @@
                 <table class="table table-bordered table-striped table-hover" id="dataTable">
                     <thead>
                     <tr>
+                        <th>图像</th>
                         <th>名称</th>
                         <th>描述</th>
                         <th>分类ID</th>
@@ -41,6 +42,15 @@
                         }
                         ?>
                         <tr style="cursor: move">
+                            <td>
+                                <div class="flex-shrink-0">
+                                    <?php if ($value['sortimg']): ?>
+                                        <img src="<?= $value['sortimg'] ?>" height="55" class="rounded"/>
+                                    <?php else: ?>
+                                        <img src="<?= './views/images/null.png' ?>" height="55" class="rounded"/>
+                                    <?php endif; ?>
+                                </div>
+                            </td>
                             <td class="sortname">
                                 <input type="hidden" value="<?= $value['sid'] ?>" class="sort_id"/>
                                 <input type="hidden" name="sort[]" value="<?= $value['sid'] ?>"/>
@@ -51,6 +61,7 @@
                                    data-description="<?= $value['description'] ?>"
                                    data-kw="<?= $value['kw'] ?>"
                                    data-pid="<?= $value['pid'] ?>"
+                                   data-sortimg="<?= $value['sortimg'] ?>"
                                    data-template="<?= $value['template'] ?>"><?= $value['sortname'] ?></a>
                             </td>
                             <td><?= $value['description'] ?></td>
@@ -70,6 +81,15 @@
                             $value = $sorts[$key];
                             ?>
                             <tr>
+                                <td>
+                                    <div class="flex-shrink-0">
+                                        <?php if ($value['sortimg']): ?>
+                                            <img src="<?= $value['sortimg'] ?>" height="55" class="rounded"/>
+                                        <?php else: ?>
+                                            <img src="<?= './views/images/null.png' ?>" height="55" class="rounded"/>
+                                        <?php endif; ?>
+                                    </div>
+                                </td>
                                 <td class="sortname">
                                     <input type="hidden" value="<?= $value['sid'] ?>" class="sort_id"/>
                                     <input type="hidden" name="sort[]" value="<?= $value['sid'] ?>"/>
@@ -80,6 +100,7 @@
                                             data-description="<?= $value['description'] ?>"
                                             data-kw="<?= $value['kw'] ?>"
                                             data-pid="<?= $value['pid'] ?>"
+                                            data-sortimg="<?= $value['sortimg'] ?>"
                                             data-template="<?= $value['template'] ?>"><?= $value['sortname'] ?></a>
                                 </td>
                                 <td><?= $value['description'] ?></td>
@@ -139,6 +160,10 @@
                                 <option value="<?= $key ?>"><?= $value['sortname'] ?></option>
                             <?php endforeach ?>
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="sortimg">分类图像</label>
+                        <input class="form-control" id="sortimg" name="sortimg" type="url">
                     </div>
                     <div class="form-group">
                         <label for="alias">描述（也用于分类页的 description）</label>
@@ -240,6 +265,7 @@
             var kw = button.data('kw')
             var pid = button.data('pid')
             var template = button.data('template')
+            var sortimg = button.data('sortimg')
             var modal = $(this)
             modal.find('.modal-body #sortname').val(sortname)
             modal.find('.modal-body #alias').val(alias)
@@ -247,6 +273,7 @@
             modal.find('.modal-body #kw').val(kw)
             modal.find('.modal-body #pid').val(pid)
             modal.find('.modal-body #template').val(template)
+            modal.find('.modal-body #sortimg').val(sortimg)
             modal.find('.modal-footer #sid').val(sid)
         })
     });

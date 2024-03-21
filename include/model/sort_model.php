@@ -33,6 +33,7 @@ class Sort_Model {
                 'taxis'       => (int)$row['taxis'],
                 'pid'         => (int)$row['pid'],
                 'template'    => htmlspecialchars($row['template']),
+                'sortimg'     => htmlspecialchars($row['sortimg'])
             );
             if ($sortData['pid'] == 0) {
                 $sortData['children'] = [];
@@ -83,6 +84,7 @@ class Sort_Model {
                 'pid'         => $row['pid'],
                 'description' => htmlspecialchars(trim($row['description'])),
                 'template'    => !empty($row['template']) ? htmlspecialchars(trim($row['template'])) : 'log_list',
+                'sortimg' => htmlspecialchars(trim($row['sortimg'])),
             );
         }
         return $sortData;
