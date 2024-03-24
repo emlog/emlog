@@ -29,15 +29,12 @@
 			var dialogLang  = lang.dialog.help;
 
 			if (editor.find("." + dialogName).length < 1)
-			{			
+			{
 				var dialogContent = `<div class=\"markdown-body\" style=\"font-family:微软雅黑, Helvetica, Tahoma, STXihei,Arial;height:390px;overflow:auto;font-size:14px;border-bottom:1px solid #ddd;padding:0 20px 20px 0;\">
 				<h5>Markdown语法教程</h5><ul>
-				<li><p><a href="http://daringfireball.net/projects/markdown/syntax/" title="Markdown Syntax">Markdown Syntax</a></p>
-				</li><li><p><a href="https://guides.github.com/features/mastering-markdown/" title="Mastering Markdown">Mastering Markdown</a></p>
-				</li><li><p><a href="https://help.github.com/articles/markdown-basics/" title="Markdown Basics">Markdown Basics</a></p>
-				</li><li><p><a href="https://help.github.com/articles/github-flavored-markdown/" title="GitHub Flavored Markdown">GitHub Flavored Markdown</a></p>
-				</li><li><p><a href="http://www.markdown.cn/" title="Markdown 语法说明（简体中文）">Markdown 语法说明（简体中文）</a></p>
+				</li><li><p><a href="https://markdown.p2hp.com/basic-syntax/" title="Markdown 语法说明（简体中文）">Markdown 语法说明（简体中文）</a></p>
 				</li><li><p><a href="http://markdown.tw/" title="Markdown 語法說明（繁體中文）">Markdown 語法說明（繁體中文）</a></p>
+				</li><li><p><a href="https://guides.github.com/features/mastering-markdown/" title="Mastering Markdown">Mastering Markdown</a></p>
 				</li></ul>
 				<h5 id="h5--keyboard-shortcuts-">键盘快捷键</h5><blockquote>
 				<p>快捷键表格中的Ctrl与Alt，在Mac系统中可分别被Cmd与Opt取代。</p>
@@ -136,9 +133,9 @@
 						backgroundColor : settings.dialogMaskBgColor
 					},
 					buttons    : {
-						close : [lang.buttons.close, function() {      
+						close : [lang.buttons.close, function() {
 							this.hide().lockScreen(false).hideMask();
-							
+
 							return false;
 						}]
 					}
@@ -151,15 +148,15 @@
 			this.dialogLockScreen();
 			dialog.show();
 
-			/* 
+			/*
 			var helpContent = dialog.find(".markdown-body");
 
-			if (helpContent.html() === "") 
+			if (helpContent.html() === "")
 			{
 				$.get(path + "help.md", function(text) {
 					var md = exports.$marked(text);
 					helpContent.html(md);
-                    
+
                     helpContent.find("a").attr("target", "_blank");
 				});
 			}
@@ -167,10 +164,10 @@
 		};
 
 	};
-    
+
 	// CommonJS/Node.js
 	if (typeof require === "function" && typeof exports === "object" && typeof module === "object")
-    { 
+    {
         module.exports = factory;
     }
 	else if (typeof define === "function")  // AMD/CMD/Sea.js
@@ -187,7 +184,7 @@
                 factory(editormd);
             });
 		}
-	} 
+	}
 	else
 	{
         factory(window.editormd);
