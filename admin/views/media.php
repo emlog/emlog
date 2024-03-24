@@ -39,7 +39,7 @@
 <form action="media.php?action=operate_media" method="post" name="form_media" id="form_media">
     <div class="row">
         <?php foreach ($medias as $key => $value):
-            $media_url = rmUrlParams(getFileUrl($value['filepath']));
+            $media_url = getFileUrl($value['filepath']);
             $sort_name = $value['sortname'];
             $media_name = $value['filename'];
             $author = $user_cache[$value['author']]['name'];

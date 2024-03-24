@@ -496,7 +496,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES
 ('comment_needchinese','y'),
 ('comment_interval',60),
 ('isgravatar','y'),
-('isthumbnail','y'),
+('isthumbnail','n'),
 ('att_maxsize','1024000'),
 ('att_type','rar,zip,gif,jpg,jpeg,png,txt,pdf,docx,doc,xls,xlsx,mp4,mp3'),
 ('att_imgmaxw','600'),
