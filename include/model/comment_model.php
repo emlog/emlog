@@ -207,21 +207,19 @@ class Comment_Model {
     function replyComment($blogId, $pid, $content, $hide) {
         $User_Model = new User_Model();
         $user_info = $User_Model->getOneUser(UID);
-        if (!empty($user_info)) {
-            $name = addslashes($user_info['name_orig']);
-            $mail = addslashes($user_info['email']);
-            $url = addslashes(BLOG_URL);
-            $ipaddr = getIp();
-            $utctimestamp = time();
-            $useragent = addslashes(getUA());
-            if ($pid != 0) {
-                $comment = $this->getOneComment($pid);
-                $content = '@' . addslashes($comment['poster']) . '：' . $content;
-            }
-            $this->db->query("INSERT INTO " . DB_PREFIX . "comment (date,poster,gid,comment,mail,url,hide,ip,agent,pid)
-                    VALUES ('$utctimestamp','$name','$blogId','$content','$mail','$url','$hide','$ipaddr','$useragent','$pid')");
-            $this->updateCommentNum($blogId);
+
+        if (empty($user_info) || !$blogId) {
+            return false;
         }
+
+        $name = addslashes($user_info['name_orig']);
+        $uid = UID;
+        $ipaddr = getIp();
+        $timestamp = time();
+        $useragent = addslashes(getUA());
+        $this->db->query("INSERT INTO " . DB_PREFIX . "comment (date,poster,uid,gid,comment,mail,url,hide,ip,agent,pid)
+                    VALUES ('$timestamp','$name',$uid,$blogId,'$content','','','$hide','$ipaddr','$useragent',$pid)");
+        $this->updateCommentNum($blogId);
     }
 
     function batchComment($action, $comments) {
