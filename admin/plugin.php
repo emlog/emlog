@@ -13,9 +13,9 @@
 require_once 'globals.php';
 
 $plugin = Input::getStrVar("plugin");
+$filter = Input::getStrVar('filter'); // on or off
 
 if (empty($action) && empty($plugin)) {
-    $filter = Input::getStrVar('filter'); // on or off
     $Plugin_Model = new Plugin_Model();
     $plugins = $Plugin_Model->getPlugins($filter);
 
@@ -30,21 +30,21 @@ if ($action == 'active') {
     $Plugin_Model = new Plugin_Model();
     if ($Plugin_Model->activePlugin($plugin)) {
         $CACHE->updateCache('options');
-        emDirect("./plugin.php?active=1");
+        emDirect("./plugin.php?active=1&filter=$filter");
     } else {
-        emDirect("./plugin.php?active_error=1");
+        emDirect("./plugin.php?active_error=1&filter=$filter");
     }
 }
 
 if ($action == 'inactive') {
     LoginAuth::checkToken();
     if (strpos($plugin, 'tpl_options') !== false) {
-        emDirect("./plugin.php?error_sys=1");
+        emDirect("./plugin.php?error_sys=1&filter=$filter");
     }
     $Plugin_Model = new Plugin_Model();
     $Plugin_Model->inactivePlugin($plugin);
     $CACHE->updateCache('options');
-    emDirect("./plugin.php?inactive=1");
+    emDirect("./plugin.php?inactive=1&filter=$filter");
 }
 
 // Load plug-in configuration page
@@ -76,13 +76,13 @@ if ($action == 'del') {
     $Plugin_Model->rmCallback($plugin);
     $path = preg_replace("/^([\w-]+)\/[\w-]+\.php$/i", "$1", $plugin);
     if ($path === 'tpl_options') {
-        emDirect("./plugin.php?error_sys=1");
+        emDirect("./plugin.php?error_sys=1&filter=$filter");
     }
     if ($path && true === emDeleteFile('../content/plugins/' . $path)) {
         $CACHE->updateCache('options');
-        emDirect("./plugin.php?activate_del=1");
+        emDirect("./plugin.php?activate_del=1&filter=$filter");
     } else {
-        emDirect("./plugin.php?error_a=1");
+        emDirect("./plugin.php?error_a=1&filter=$filter");
     }
 }
 
