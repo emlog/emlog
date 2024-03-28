@@ -35,7 +35,7 @@ $type_arr = [
 $exit_tip = '<li class="no-results">插件文件异常，请重新安装Emlog Pro</li>';
 $is_type_exists = array_key_exists(trim($type), $type_arr);
 
-if (empty($name) || !$is_type_exists) {
+if (!$is_type_exists) {
     echo $exit_tip;
     exit;
 }
