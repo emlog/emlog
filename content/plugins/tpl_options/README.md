@@ -40,6 +40,13 @@ $options = [
         ],
         'default'      => '1',
     ],
+    'appearance-color'   => [
+        'labels'      => 'tpl-appearance',
+        'type'        => 'color',
+        'name'        => '网站主色调',
+        'description' => '',
+        'values'      => array('#006fff'),
+    ],
     'logoimg'          => [
         'labels'       => 'tpl-head',
         'type'         => 'image',
@@ -158,6 +165,7 @@ $options = [
 - tag: 标签
 - select: 搜索选择
 - block: 多内容块
+- color: 颜色选择
 
 1. 对于所有类型，default属性用于指定默认值，当没有指定default时，使用values里第一个值，若都没有指定，则会使用奇怪的默认值。
 2. 对于radio和chexkbox类型，values属性用来设置各个按钮的值和显示名称。
@@ -166,19 +174,23 @@ $options = [
 5. sort和page可设置multi属性为true，表示多选。
 6. (可选) description属性用于描述该选项。
 7. 若type为text，可设置multi属性为true，表示多行文本，即input和textarea的区别，可选属性rich用以支持富文本，若设置该值，将加载编辑器。
-8. 如果要使用数字文本框，type仍为text，可设置pattern属性为num。可指定max、min、unit，即限制最大值、限制最小值和数量单位。可单独设置最小值或最大值。例如仅设置最小值，最大值不会限制输入。计量单位会显示在文本框最右侧。
+8.
+
+如果要使用数字文本框，type仍为text，可设置pattern属性为num。可指定max、min、unit，即限制最大值、限制最小值和数量单位。可单独设置最小值或最大值。例如仅设置最小值，最大值不会限制输入。计量单位会显示在文本框最右侧。
+
 9. 如果使用日期文本框，type仍为text，可设置date属性为true即可。
 10. 若type为sort、page或者tag，且设置了多选，默认值将为空，否则将为第一个该类型的值。
 11. 对于类型**select**，pattern属性是**必填项**，可以填入：(1). post  (2).cate  (3)
-       .page。分别依次对应文章、分类、页面。此功能模块在数据非常庞大时可能查询缓慢。使用内置函数获取的数组内容为设置类型的ID，例如获取到一组文章gid。
+    .page。分别依次对应文章、分类、页面。此功能模块在数据非常庞大时可能查询缓慢。使用内置函数获取的数组内容为设置类型的ID，例如获取到一组文章gid。
 12. (可选) 上述**所有类型**均支持 *new* 属性，即会在设置项名称后显示提醒徽标，效果可见默认模板。该属性值随意填写，如：NEW、新等。若为空或不填写将不显示。
 13. 对于类型**block**，可选设置pattern属性，若不设置pattern属性默认内容为文本，可设置multi属性为true，表示多行文本。pattern属性设置为image可以使用多图片内容块。
 14. 设置项书写方法请参考文档开头的代码举例。
 
-
 ### 为设置菜单增加图标
 
-TplOptionsNavi项内可加入图标icons数组，为你的主题设置侧边栏菜单父设置名称前增加图标。icons数组的键名和TplOptionsNavi项values数组一致。使用的是[Remixicon](https://remixicon.com/)，去图标站点找到合适的图标，复制其class内的属性值即可，例如class="ri-home-line"，只需复制ri-home-line即可。另外需在模板plugins.php内加入以下代码用于引入图标CSS。
+TplOptionsNavi项内可加入图标icons数组，为你的主题设置侧边栏菜单父设置名称前增加图标。icons数组的键名和TplOptionsNavi项values数组一致。使用的是[Remixicon](https://remixicon.com/)
+，去图标站点找到合适的图标，复制其class内的属性值即可，例如class="ri-home-line"
+，只需复制ri-home-line即可。另外需在模板plugins.php内加入以下代码用于引入图标CSS。
 
 ```php
 function optionIconFont() {
