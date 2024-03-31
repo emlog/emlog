@@ -16,10 +16,10 @@ require_once 'globals.php';
 $Comment_Model = new Comment_Model();
 
 if (!$action) {
-    $blogId = isset($_GET['gid']) ? (int)$_GET['gid'] : null;
-    $uid = isset($_GET['uid']) ? (int)$_GET['uid'] : null;
-    $hide = isset($_GET['hide']) ? addslashes($_GET['hide']) : '';
-    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $blogId = Input::getIntVar('gid');
+    $uid = Input::getIntVar('uid');
+    $hide = Input::getStrVar('hide');
+    $page = Input::getIntVar('page', 1);
 
     $addUrl_0 = $uid ? "uid=$uid&" : '';
     $addUrl_1 = $blogId ? "gid=$blogId&" : '';
@@ -59,7 +59,7 @@ if ($action === 'delbyip') {
 }
 
 if ($action === 'batch_operation') {
-    $operate = isset($_POST['operate']) ? $_POST['operate'] : '';
+    $operate = Input::postStrVar('operate');
     $comments = isset($_POST['com']) ? array_map('intval', $_POST['com']) : [];
 
     if (empty($comments)) {
@@ -96,10 +96,9 @@ if ($action === 'batch_operation') {
 }
 
 if ($action === 'doreply') {
-    $reply = isset($_POST['reply']) ? trim(addslashes($_POST['reply'])) : '';
-    $commentId = isset($_POST['cid']) ? (int)$_POST['cid'] : '';
-    $blogId = isset($_POST['gid']) ? (int)$_POST['gid'] : '';
-    $hide = isset($_POST['hide']) ? addslashes($_POST['hide']) : 'n';
+    $reply = Input::postStrVar('reply');
+    $commentId = Input::postIntVar('cid');
+    $hide = Input::postStrVar('hide', 'n');
 
     if (empty($reply)) {
         emDirect("./comment.php?error_c=1");
@@ -111,7 +110,11 @@ if ($action === 'doreply') {
         $hide = 'n';
     }
 
-    $Comment_Model->replyComment($blogId, $commentId, $reply, $hide);
+    $comment = $Comment_Model->getOneComment($commentId);
+    $blogId = isset($comment['gid']) ? (int)$comment['gid'] : null;
+    $content = '@' . addslashes($comment['poster']) . '：' . $reply;
+
+    $Comment_Model->replyComment($blogId, $commentId, $content, $hide);
     notice::sendNewCommentMail($reply, $blogId, $commentId);
 
     $CACHE->updateCache('comment');

@@ -24,13 +24,13 @@ $bgColor = isset($_GET['mode']) && $_GET['mode'] == 't' ? imagecolorallocate($im
 $pixColor = imagecolorallocate($img, mt_rand(30, 180), mt_rand(10, 100), mt_rand(40, 250));
 
 // Load WOFF font
-$fontFile = '../../admin/views/components/captcha.woff'; // Change this to the actual path of your WOFF font file
+$fontFile = __DIR__ . '/captcha.ttf';
 $fontColor = imagecolorallocate($img, mt_rand(30, 180), mt_rand(10, 100), mt_rand(40, 250));
 
-$charWidth = $width / 6; // Adjust the width of each character to evenly distribute them
+$charWidth = $width / 6;
 
 for ($i = 0; $i < 5; $i++) {
-    $x = ($i * $charWidth) + mt_rand(5, 10); // Adjust the starting position for each character
+    $x = ($i * $charWidth) + mt_rand(5, 10);
     $y = mt_rand(20, 30);
     imagettftext($img, 18, mt_rand(-30, 30), $x, $y, $fontColor, $fontFile, $randCode[$i]);
 }
