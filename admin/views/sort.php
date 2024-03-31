@@ -188,6 +188,7 @@
                             <small class="form-text text-muted">(用于自定义分类页面模板，对应模板目录下xxx.php文件，xxx即为模板名，可不填)</small>
                         <?php endif; ?>
                     </div>
+                    <?php doAction('adm_sort_add') ?>
                 </div>
                 <div class="modal-footer">
                     <input type="hidden" value="" name="sid" id="sid"/>

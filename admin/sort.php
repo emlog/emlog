@@ -96,6 +96,9 @@ if ($action == 'save') {
     } else {
         $Sort_Model->addSort($sort_data);
     }
+
+    doAction('save_sort', $sid, $sort_data);
+
     $CACHE->updateCache(['sort', 'logsort', 'navi']);
     emDirect("./sort.php?active_save=1");
 }
