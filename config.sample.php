@@ -2,7 +2,7 @@
 header("location: ./install.php");
 exit;
 //MySQL database host
-const DB_HOST = '127.0.0.1';
+const DB_HOST = 'localhost';
 //MySQL database username
 const DB_USER = 'root';
 //MySQL database user password

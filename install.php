@@ -217,10 +217,10 @@ if (!$act) {
                     <p class="install-title">MySQL数据库设置</p>
                     <div class="input-group mb10">
                         <label class="input-group-text">数据库地址</label>
-                        <input name="hostname" type="text" class="form-control" value="127.0.0.1">
+                        <input name="hostname" type="text" class="form-control" value="localhost">
                     </div>
                     <div class="mb10">
-                        <label class="form-label care">通常为 127.0.0.1 或者指定端口 127.0.0.1:3306</label>
+                        <label class="form-label care">通常为 localhost 或者指定端口 localhost:3306</label>
                     </div>
                     <div class="input-group mb10">
                         <span class="input-group-text">数据库用户名</span>
