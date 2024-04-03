@@ -21,7 +21,7 @@ if (empty($action)) {
     $sid = Input::getIntVar('sid');
     $page = Input::getIntVar('page', 1);
     $date = Input::getStrVar('date');
-    $uid = Input::getStrVar('uid');
+    $uid = Input::getIntVar('uid');
 
     if (!User::haveEditPermission()) {
         $uid = UID;
