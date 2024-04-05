@@ -20,9 +20,11 @@
                     </label>
                     <textarea id="logexcerpt" name="logexcerpt" class="form-control" rows="5"><?= $excerpt ?></textarea>
                 </div>
-                <label id="post_bar_label">插件扩展：</label>
-                <div id="post_bar">
-                    <?php doAction('adm_writelog_head') ?>
+                <div id="post_bar" class="mt-3">
+                    <label id="post_bar_label">插件扩展：</label>
+                    <div>
+                        <?php doAction('adm_writelog_head') ?>
+                    </div>
                 </div>
             </div>
         </div>
