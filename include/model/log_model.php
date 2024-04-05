@@ -374,12 +374,14 @@ class Log_Model {
     public function getHotLog($num) {
         $now = time();
         $date_state = "and date<=$now";
-        $sql = "SELECT gid,title FROM $this->table WHERE hide='n' and checked='y' and type='blog' $date_state ORDER BY views DESC, comnum DESC LIMIT 0, $num";
+        $sql = "SELECT * FROM $this->table WHERE hide='n' and checked='y' and type='blog' $date_state ORDER BY views DESC, comnum DESC LIMIT 0, $num";
         $res = $this->db->query($sql);
         $logs = [];
         while ($row = $this->db->fetch_array($res)) {
             $row['gid'] = (int)$row['gid'];
             $row['title'] = htmlspecialchars($row['title']);
+            $row['cover'] = $row['cover'] ? getFileUrl($row['cover']) : '';
+            $row['log_url'] = Url::log($row['gid']);
             $logs[] = $row;
         }
         return $logs;
