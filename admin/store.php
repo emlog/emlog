@@ -44,9 +44,9 @@ if (empty($action)) {
     } elseif ($tag === 'promo') {
         $sub_title = '限时优惠';
     } elseif ($tag === 'free_top') {
-        $sub_title = '免费排行';
+        $sub_title = '免费排行榜';
     } elseif ($tag === 'paid_top') {
-        $sub_title = '付费排行';
+        $sub_title = '付费排行榜';
     }
 
     $subPage = '';
@@ -71,6 +71,7 @@ if ($action === 'plu') {
 
     $categories = [
         0  => '按分类查找',
+        20 => '编辑器',
         1  => '资源下载',
         2  => 'SEO优化',
         18 => '微信生态',
@@ -82,7 +83,6 @@ if ($action === 'plu') {
         14 => '编程开发',
         13 => '移动端（小程序）',
         15 => '内容创作',
-        20 => '编辑器',
         6  => '其他'
     ];
 
@@ -99,9 +99,9 @@ if ($action === 'plu') {
     } elseif ($tag === 'promo') {
         $sub_title = '限时优惠';
     } elseif ($tag === 'free_top') {
-        $sub_title = '免费排行';
+        $sub_title = '免费排行榜';
     } elseif ($tag === 'paid_top') {
-        $sub_title = '付费排行';
+        $sub_title = '付费排行榜';
     }
 
     $subPage = '';

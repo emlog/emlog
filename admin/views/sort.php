@@ -163,7 +163,7 @@
                     </div>
                     <div class="form-group">
                         <label for="sortimg">分类图像</label>
-                        <input class="form-control" id="sortimg" name="sortimg" type="url">
+                        <input class="form-control" id="sortimg" name="sortimg" type="url" placeholder="https://">
                     </div>
                     <div class="form-group">
                         <label for="alias">描述（也用于分类页的 description）</label>
