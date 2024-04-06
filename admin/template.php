@@ -59,6 +59,9 @@ if ($action === 'install') {
 }
 
 if ($action === 'upload_zip') {
+    if (defined('APP_UPLOAD_FORBID') && APP_UPLOAD_FORBID === true) {
+        emMsg('系统禁止上传安装应用');
+    }
     LoginAuth::checkToken();
     $zipfile = isset($_FILES['tplzip']) ? $_FILES['tplzip'] : '';
 
