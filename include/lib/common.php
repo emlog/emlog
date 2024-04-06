@@ -997,6 +997,7 @@ function get_mimetype($extension) {
     $ct['jpg'] = 'image/jpeg';
     $ct['jpe'] = 'image/jpeg';
     $ct['png'] = 'image/png';
+    $ct['webp'] = 'image/webp';
     $ct['ico'] = 'image/vnd.microsoft.icon';
     $ct['mpeg'] = 'video/mpeg';
     $ct['mpg'] = 'video/mpeg';
