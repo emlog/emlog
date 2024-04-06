@@ -31,7 +31,7 @@
 <div id="wrapper">
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion sd-hidden" id="accordionSidebar">
         <li class="nav-item active emlog_title" id="menu_home">
-            <a class="nav-link" href="./">EMLOG PRO <?php if (!Register::isRegLocal()) : ?><small>未注册</small><?php endif ?></a>
+            <a class="nav-link" href="./"><?= subString(Option::get('panel_menu_title'), 0, 11) ?: 'EMLOG PRO' ?> <?php if (!Register::isRegLocal()) : ?> <small>未注册</small><?php endif ?></a>
         </li>
         <hr class="sidebar-divider my-0">
         <li class="nav-item" id="menu_panel">

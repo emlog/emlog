@@ -181,6 +181,7 @@ if ($action == 'save') {
         'detect_url'          => Input::postStrVar('detect_url', 'n'),
         'admin_perpage_num'   => Input::postIntVar('admin_perpage_num'),
         'accept_app_recs'     => Input::postStrVar('accept_app_recs', 'n'),
+        'panel_menu_title'    => Input::postStrVar('panel_menu_title'),
     ];
 
     if ($getData['comment_code'] == 'y' && !checkGDSupport()) {

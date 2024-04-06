@@ -529,7 +529,8 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES
 ('smtp_port',''),
 ('is_openapi','n'),
 ('apikey','$apikey'),
-('accept_app_recs','y');
+('accept_app_recs','y'),
+('panel_menu_title','');
 DROP TABLE IF EXISTS {$db_prefix}link;
 CREATE TABLE {$db_prefix}link (
   id int(11) unsigned NOT NULL auto_increment COMMENT '链接表',
