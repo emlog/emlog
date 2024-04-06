@@ -39,6 +39,11 @@ textarea {
     font-size: 12px
 }
 
+/* 鼠标悬停时显示手型 */
+input[type="checkbox"]:hover, select:hover {
+    cursor: pointer;
+}
+
 .tralt_a {
     background-color: #FFF
 }
