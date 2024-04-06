@@ -28,7 +28,7 @@ if (empty($action)) {
         9  => '社区论坛',
         17 => '网址导航',
         19 => '企业展示',
-        10 => '其他',
+        10 => '通用主题',
     ];
 
     $r = $Store_Model->getTemplates($tag, $keyword, $page, $author_id, $sid);
@@ -83,7 +83,7 @@ if ($action === 'plu') {
         14 => '编程开发',
         13 => '移动端（小程序）',
         15 => '内容创作',
-        6  => '其他'
+        6  => '功能扩展'
     ];
 
     $r = $Store_Model->getPlugins($tag, $keyword, $page, $author_id, $sid);
