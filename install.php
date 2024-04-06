@@ -498,7 +498,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES
 ('isgravatar','y'),
 ('isthumbnail','n'),
 ('att_maxsize','1024000'),
-('att_type','rar,zip,gif,jpg,jpeg,png,txt,pdf,docx,doc,xls,xlsx,mp4,mp3'),
+('att_type','rar,zip,gif,jpg,jpeg,png,webp,txt,pdf,docx,doc,xls,xlsx,mp4,mp3'),
 ('att_imgmaxw','600'),
 ('att_imgmaxh','370'),
 ('comment_paging','y'),
