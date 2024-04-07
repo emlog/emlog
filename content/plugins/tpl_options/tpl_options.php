@@ -387,6 +387,9 @@ class TplOptions {
         $data = $this->queryAll('tpl_options_data', array(
             'name' => $name,
         ), 'data');
+        if (!isset($data[0]['data'])) {
+            return [];
+        }
         return unserialize($data[0]['data']);
     }
 
@@ -1461,9 +1464,12 @@ function _em($name = null) {
 function _getBlock($name = null, $type = 'content') {
     $target = TplOptions::getInstance()->$name;
     $arr = [];
-    if (!is_array($target)) return $arr;
-    if(empty($target[trim($type)])) return $arr;
-    if(trim($type) != 'title' && trim($type) != 'content') return $arr;
+    if (!is_array($target))
+        return $arr;
+    if (empty($target[trim($type)]))
+        return $arr;
+    if (trim($type) != 'title' && trim($type) != 'content')
+        return $arr;
     $result = array_filter($target, 'is_array');
     if (count($result) == count($target)) {
         foreach ($target[$type] as $val) {
