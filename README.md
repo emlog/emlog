@@ -21,22 +21,22 @@
 - 自定义页面：支持创建自定义页面，包括留言板、个人介绍等，帮助你打造更富有个性和功能的站点。
 - 标签和分类：文章可轻松归类和标记，提供更好的信息组织和检索功能。
 
-## 快速开始（Docker）
-
-```bash
-$ docker run --name emlog-pro -p 8080:80 -d emlog/emlog:pro-latest-php7.4-apache
-```
-
 ## 环境要求
 
-* PHP5.6、PHP7、PHP8，推荐 PHP7.4
-* MySQL5.6及以上，推荐5.6
+* PHP5.6、PHP7、PHP8，推荐7.4及以上
+* MySQL5.6及以上，或者 MariaDB 10.3及以上
 * 服务器环境推荐：Linux + Nginx
 
 ## 安装部署
 
 - [宝塔一键部署](https://www.emlog.net/docs/#/install_bt)
 - [1Panel部署](https://www.emlog.net/docs/#/install_1panel)
+
+## 快速开始（Docker）
+
+```bash
+$ docker run --name emlog-pro -p 8080:80 -d emlog/emlog:pro-latest-php7.4-apache
+```
 
 ## Start via `docker-compose`
 
