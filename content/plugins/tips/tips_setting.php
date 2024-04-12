@@ -1,7 +1,6 @@
 <?php
-if (!defined('EMLOG_ROOT')) {
-    die('err');
-}
+defined('EMLOG_ROOT') || exit('access denied!');
+
 function plugin_setting_view() {
     $plugin_storage = Storage::getInstance('tips');
     $hello = $plugin_storage->getValue('hello');
