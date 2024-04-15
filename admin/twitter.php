@@ -51,9 +51,9 @@ if ($action == 'post') {
         'date'    => time(),
     ];
 
-    $Twitter_Model->addTwitter($data);
+    $id = $Twitter_Model->addTwitter($data);
     $CACHE->updateCache('sta');
-    doAction('post_note', $data);
+    doAction('post_note', $data, $id);
     emDirect("twitter.php?active_t=1");
 }
 
