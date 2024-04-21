@@ -49,14 +49,13 @@ services:
     working_dir: /app/emlog
     networks:
       - emlog_network
-    ports:
-      - "9000:9000"
     environment:
       EMLOG_ENV: develop
       EMLOG_DB_HOST: db
       EMLOG_DB_USER: emlog
       EMLOG_DB_NAME: emlog
       EMLOG_DB_PASSWORD: emlog
+
   nginx:
     image: nginx:alpine
     container_name: nginx
@@ -69,6 +68,7 @@ services:
       - emlog_network
     depends_on:
       - php
+
 networks:
   emlog_network:
     external: true
