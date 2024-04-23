@@ -142,13 +142,13 @@ function delArticle(msg, text, url, token) {
     });
 }
 
-function submitForm(formId) {
+function submitForm(formId, successMsg) {
     $.ajax({
         type: "POST",
         url: $(formId).attr('action'),
         data: $(formId).serialize(),
         success: function () {
-            cocoMessage.success('保存成功')
+            cocoMessage.success(successMsg || '保存成功')
         },
         error: function (xhr) {
             const errorMsg = JSON.parse(xhr.responseText).msg;
