@@ -126,14 +126,14 @@
                             ?>
                         </a>
                     </li>
-                    <div class="topbar-divider d-none d-sm-block"></div>
+                    <li class="topbar-divider d-none d-sm-block"></li>
                     <li class="nav-item mx-1">
                         <a class="nav-link" href="blogger.php" role="button">
                             <img class="img-profile rounded-circle"
                                  src="<?= empty($user_cache[UID]['avatar']) ? './views/images/avatar.svg' : '../' . $user_cache[UID]['avatar'] ?>">
                         </a>
                     </li>
-                    <div class="topbar-divider d-none d-sm-block"></div>
+                    <li class="topbar-divider d-none d-sm-block"></li>
                     <li class="nav-item mx-1">
                         <a class="nav-link" href="account.php?action=logout" title="退出" role="button">
                             <i class="icofont-logout icofont-1x"></i>
