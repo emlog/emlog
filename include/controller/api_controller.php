@@ -104,7 +104,7 @@ class Api_Controller {
         $this->Tag_Model->addTag($tags, $article_id);
         $this->Cache->updateCache();
 
-        doAction('save_log', $article_id);
+        doAction('save_log', $article_id, '', $logData);
 
         output::ok(['article_id' => $article_id,]);
     }

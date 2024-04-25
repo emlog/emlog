@@ -98,7 +98,7 @@ if ($blogid > 0) {
 
 $CACHE->updateArticleCache();
 
-doAction('save_log', $blogid, $pubPost, $postDate);
+doAction('save_log', $blogid, $pubPost, $logData);
 
 // 异步保存
 if ($action === 'autosave') {
