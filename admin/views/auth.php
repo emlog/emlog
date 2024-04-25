@@ -25,10 +25,3 @@
         <?php endif ?>
     </div>
 </div>
-
-<script>
-    $(function () {
-        $("#menu_store").addClass('active');
-        setTimeout(hideActived, 10000);
-    });
-</script>

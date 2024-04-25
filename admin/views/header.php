@@ -31,7 +31,7 @@
 <div id="wrapper">
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion sd-hidden" id="accordionSidebar">
         <li class="nav-item active emlog_title" id="menu_home">
-            <a class="nav-link" href="./"><?= subString(Option::get('panel_menu_title'), 0, 11) ?: 'EMLOG PRO' ?> <?php if (!Register::isRegLocal()) : ?> <small>未注册</small><?php endif ?></a>
+            <a class="nav-link" href="./"><?= subString(Option::get('panel_menu_title'), 0, 11) ?: 'EMLOG PRO' ?></a>
         </li>
         <hr class="sidebar-divider my-0">
         <li class="nav-item" id="menu_panel">
@@ -103,6 +103,12 @@
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
+            <?php if (!Register::isRegLocal()) : ?>
+                <div class="sidebar-card">
+                    <p class="text-center mb-2">您安装的emlog尚未注册，完成注册解锁全部功能和服务</p>
+                    <a class="btn btn-success btn-sm" href="auth.php">去注册</a>
+                </div>
+            <?php endif ?>
         <?php endif ?>
     </ul>
     <div id="content-wrapper" class="d-flex flex-column">
