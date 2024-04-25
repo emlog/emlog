@@ -50,7 +50,6 @@
                     </a>
                 </div>
                 <div class="card-footer">
-                    <p><?= $value['tplname'] ?></p>
                     <?php if ($value['version']): ?>
                         <div class="small">版本号：<?= $value['version'] ?></div>
                     <?php endif ?>
