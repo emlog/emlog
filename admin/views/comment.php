@@ -109,14 +109,17 @@
                 </table>
             </div>
             <div class="list_footer">
-                <div class="btn-group btn-group-sm" role="group">
-                    <?php if (User::haveEditPermission()): ?>
-                        <a href="javascript:commentact('top');" class="btn btn-sm btn-primary">置顶</a>
-                        <a href="javascript:commentact('untop');" class="btn btn-sm btn-primary">取消置顶</a>
-                        <a href="javascript:commentact('hide');" class="btn btn-sm btn-success">隐藏</a>
-                        <a href="javascript:commentact('pub');" class="btn btn-sm btn-success">审核</a>
-                    <?php endif; ?>
-                    <a href="javascript:commentact('del');" class="btn btn-sm btn-danger">删除</a>
+                <div class="btn-group">
+                    <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">操作</button>
+                    <div class="dropdown-menu">
+                        <?php if (User::haveEditPermission()): ?>
+                            <a href="javascript:commentact('top');" class="dropdown-item">置顶</a>
+                            <a href="javascript:commentact('untop');" class="dropdown-item">取消置顶</a>
+                            <a href="javascript:commentact('hide');" class="dropdown-item text-primary">隐藏</a>
+                            <a href="javascript:commentact('pub');" class="dropdown-item text-primary">审核</a>
+                        <?php endif; ?>
+                        <a href="javascript:commentact('del');" class="dropdown-item text-danger">删除</a>
+                    </div>
                 </div>
                 <input name="operate" id="operate" value="" type="hidden"/>
             </div>

@@ -203,21 +203,22 @@ $isdraft = $draft ? '&draft=1' : '';
                         <?php endforeach ?>
                     </select>
                 <?php endif ?>
-                <div class="btn-group btn-group-sm ml-1" role="group">
-                    <?php if ($draft): ?>
-                        <a href="javascript:logact('del_draft');" class="btn btn-sm btn-danger">删除</a>
-                        <a href="javascript:logact('pub');" class="btn btn-sm btn-success">发布</a>
-                    <?php else: ?>
-                        <a href="javascript:logact('del');" class="btn btn-sm btn-danger">删除</a>
-                        <a href="javascript:logact('hide');" class="btn btn-sm btn-success">放入草稿箱</a>
-                    <?php endif ?>
-                </div>
-                <?php if ($multiCheckBtn): ?>
-                    <div class="btn-group btn-group-sm ml-1" role="group">
-                        <a href="javascript:logact('check');" class="btn btn-sm btn-success">审核</a>
-                        <a href="javascript:logact('uncheck');" class="btn btn-sm btn-warning">驳回</a>
+                <div class="btn-group">
+                    <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">操作</button>
+                    <div class="dropdown-menu">
+                        <?php if ($multiCheckBtn): ?>
+                            <a href="javascript:logact('check');" class="dropdown-item">审核</a>
+                            <a href="javascript:logact('uncheck');" class="dropdown-item">驳回</a>
+                        <?php endif ?>
+                        <?php if ($draft): ?>
+                            <a href="javascript:logact('pub');" class="dropdown-item text-success">发布</a>
+                            <a href="javascript:logact('del_draft');" class="dropdown-item text-danger">删除</a>
+                        <?php else: ?>
+                            <a href="javascript:logact('hide');" class="dropdown-item">放入草稿箱</a>
+                            <a href="javascript:logact('del');" class="dropdown-item text-danger">删除</a>
+                        <?php endif ?>
                     </div>
-                <?php endif ?>
+                </div>
             </div>
         </form>
         <div class="page"><?= $pageurl ?> </div>
