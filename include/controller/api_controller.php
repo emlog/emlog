@@ -67,12 +67,18 @@ class Api_Controller {
         $title = Input::postStrVar('title');
         $content = Input::postStrVar('content');
         $excerpt = Input::postStrVar('excerpt');
-        $author_uid = isset($_POST['author_uid']) ? (int)trim($_POST['author_uid']) : 1;
-        $post_date = isset($_POST['post_date']) ? trim($_POST['post_date']) : '';
-        $sort_id = isset($_POST['sort_id']) ? (int)$_POST['sort_id'] : -1;
-        $tags = isset($_POST['tags']) ? strip_tags(addslashes(trim($_POST['tags']))) : '';
+        $author_uid = Input::postIntVar('author_uid', 1);
+        $post_date = Input::postStrVar('post_date');
+        $sort_id = Input::postIntVar('sort_id', -1);
+        $tags = strip_tags(Input::postStrVar('tags'));
         $cover = Input::postStrVar('cover');
         $draft = Input::postStrVar('draft', 'n');
+        $alias = Input::postStrVar('alias');
+        $top = Input::postStrVar('top', 'n');
+        $sortop = Input::postStrVar('sortop', 'n');
+        $allow_remark = Input::postStrVar('allow_remark', 'n');
+        $password = Input::postStrVar('password');
+        $template = Input::postStrVar('template');
 
         $this->auth();
 
@@ -90,14 +96,20 @@ class Api_Controller {
         }
 
         $logData = [
-            'title'   => $title,
-            'content' => $content,
-            'excerpt' => $excerpt,
-            'author'  => $author_uid,
-            'sortid'  => $sort_id,
-            'cover'   => $cover,
-            'date'    => strtotime($post_date ?: date('Y-m-d H:i:s')),
-            'hide'    => $draft === 'y' ? 'y' : 'n',
+            'title'        => $title,
+            'content'      => $content,
+            'excerpt'      => $excerpt,
+            'author'       => $author_uid,
+            'sortid'       => $sort_id,
+            'cover'        => $cover,
+            'date'         => strtotime($post_date ?: date('Y-m-d H:i:s')),
+            'hide'         => $draft === 'y' ? 'y' : 'n',
+            'alias'        => $alias,
+            'top '         => $top,
+            'sortop '      => $sortop,
+            'allow_remark' => $allow_remark,
+            'password'     => $password,
+            'template'     => $template,
         ];
 
         $article_id = $this->Log_Model->addlog($logData);
@@ -295,6 +307,7 @@ class Api_Controller {
 
         $id = $this->Twitter_Model->addTwitter($data);
         $this->Cache->updateCache('sta');
+        doAction('post_note', $data, $id);
         output::ok(['note_id' => $id,]);
     }
 
