@@ -6,7 +6,6 @@ $(function () {
     var optionArea = $('<div/>').insertAfter($('#content').find('.container-fluid .row')).addClass(attr('area')).slideUp();
     var loadingDom = $('<div />').appendTo(body);
     var message = $('<span />').appendTo($('#wrapper'));
-    var goTopbtn = $('<span />').appendTo($('#wrapper')).attr({'id': 'goTopbtn', 'title': '返回顶部'});
     var tplBox = $('.tpl');
     var timer, input, targetInput, target, templateInput, template;
     var trueInput = $('<input type="file" name="image">').css({
@@ -21,7 +20,7 @@ $(function () {
         trueInput.css('visibility', 'hidden');
         input.css('visibility', 'visible');
     });
-    var form = $('<form id="upload-form" target="upload-image" />').append(trueInput, targetInput = $('<input type="hidden" name="target">'), templateInput = $('<input type="hidden" name="template">')).appendTo(body).attr({
+    var form = $('<form id="upload-form" target="upload-image" />').append(trueInput, targetInput = $('<input type="hidden" name="target">'), templateInput = $('<input type="hidden" name="template">')).prependTo(body).attr({
         action: tplOptions.uploadUrl, target: 'upload-image', enctype: 'multipart/form-data', method: 'post'
     });
     //插入设置按钮
@@ -35,7 +34,7 @@ $(function () {
     }
     //绑定事件
     body.on('click', '.' + attr('setting'), function () {
-        document.getElementsByClassName("container-fluid")[0].children[0].style.cssText='display:none !important';
+        document.getElementsByClassName("container-fluid")[0].children[0].style.cssText = 'display:none !important';
         $('.container-fluid .row').fadeToggle();
         $.ajax({
             url: tplOptions.baseUrl, data: {
@@ -59,11 +58,9 @@ $(function () {
         $('.tpl-nav-options ul li').removeClass('active');
         $(this).addClass('active');
     }).on('click', '.tpl-options-close', function () {
-        document.getElementsByClassName("container-fluid")[0].children[0].style.cssText='display:flex !important';
+        document.getElementsByClassName("container-fluid")[0].children[0].style.cssText = 'display:flex !important';
         $('.container-fluid .row').fadeToggle();
         optionArea.slideUp(500), tplBox.show();
-    }).on('click', '#goTopbtn', function () {
-        $('body,html').animate({scrollTop: 0}, 500);
     }).on('click', '.option-name', function () {
         $(this).find('.option-description').fadeToggle();
         $(this).parent().find('.option-body').fadeToggle();
@@ -176,9 +173,9 @@ $(function () {
             type_html += '<div>填写块标题：</div>'
             type_html += '<input class="block-title-input" type="text" name="' + _name + '[title][]" value="">'
             type_html += '<div>填写块内容：</div>'
-            if($(this).parent().parent().hasClass('is-multi')){
+            if ($(this).parent().parent().hasClass('is-multi')) {
                 type_html += '<textarea rows="5" name="' + _name + '[content][]"></textarea>'
-            }else{
+            } else {
                 type_html += '<input type="text" name="' + _name + '[content][]" value="">'
             }
         }
@@ -262,7 +259,7 @@ $(function () {
         $.ajax({
             url: that.attr('action'), type: 'post', data: that.serialize(), cache: false, dataType: 'json', // beforeSend: loading,
             success: function (data) {
-                if(data.code === 1){
+                if (data.code === 1) {
                     cocoMessage.error(data.msg, 2500);
                     return false;
                 }
@@ -372,13 +369,6 @@ $(function () {
             urlType: 'domain',
             items: ['bold', 'italic', 'underline', 'strikethrough', 'forecolor', 'hilitecolor', 'fontname', 'fontsize', 'lineheight', 'removeformat', 'plainpaste', 'quickformat', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'justifyleft', 'justifycenter', 'justifyright', 'link', 'unlink', 'image', 'flash', 'table', 'emoticons', 'code', 'fullscreen', 'source']
         });
-    }
-});
-$(window).scroll(function () {
-    if ($(this).scrollTop() > 50) {
-        $('#goTopbtn').fadeIn();
-    } else {
-        $('#goTopbtn').fadeOut();
     }
 });
 

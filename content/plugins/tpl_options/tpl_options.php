@@ -18,7 +18,7 @@ class TplOptions {
     //插件标识
     const ID = 'tpl_options';
     const NAME = '模板设置';
-    const VERSION = '4.2.4';
+    const VERSION = '4.2.5';
 
     //数据表前缀
     private $_prefix = 'tpl_options_';
