@@ -15,7 +15,7 @@
                 </div>
             </div>
         </div>
-        <a href="./article.php?action=write" class="btn btn-sm btn-success shadow-sm mt-4"><i class="icofont-pencil-alt-5"></i> 写新文章</a>
+        <a href="./article.php?action=write" class="btn btn-sm btn-success shadow-sm mt-4"><i class="icofont-pencil-alt-5"></i> 写文章</a>
     </div>
     <div class="row ml-1 mb-1"><?php doAction('adm_main_top') ?></div>
     <div class="row">
@@ -23,6 +23,7 @@
             <div class="card shadow mb-3">
                 <div class="card-body">
                     快捷入口：
+                    <a href="./article.php?action=write" class="mr-2">写文章</a>
                     <a href="article.php" class="mr-2">文章</a>
                     <a href="article.php?draft=1" class="mr-2">草稿</a>
                     <a href="page.php" class="mr-2">页面</a>

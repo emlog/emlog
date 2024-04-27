@@ -508,7 +508,6 @@ $(function () {
     if ($("#detect_url").prop("checked")) {
         $("[name=blogurl]").attr("readonly", "readonly")
     }
-
     $("#detect_url").click(function () {
         if ($(this).prop("checked")) {
             $("[name=blogurl]").attr("readonly", "readonly")
@@ -516,22 +515,6 @@ $(function () {
             $("[name=blogurl]").removeAttr("readonly")
         }
     })
-
-    // 应用商店：应用安装
-    $('.installBtn').click(function (e) {
-        e.preventDefault();
-        let link = $(this);
-        let down_url = link.data('url');
-        let type = link.data('type');
-        link.text('安装中…');
-        link.parent().prev(".installMsg").html("").addClass("spinner-border text-primary");
-
-        let url = './store.php?action=install&type=' + type + '&source=' + down_url;
-        $.get(url, function (data) {
-            link.text('免费安装');
-            link.parent().prev(".installMsg").html('<span class="text-danger">' + data + '</span>').removeClass("spinner-border text-primary");
-        });
-    });
 
     // 表格全选
     $('#checkAll').click(function (event) {
@@ -556,6 +539,22 @@ $(function () {
         let cards = $('.card-body');
         $('#checkAllCard').prop('checked', cards.find('input[type=checkbox]:checked').length == cards.length ? true : false);
         event.stopPropagation();
+    });
+
+    // 应用商店：应用安装
+    $('.installBtn').click(function (e) {
+        e.preventDefault();
+        let link = $(this);
+        let down_url = link.data('url');
+        let type = link.data('type');
+        link.text('安装中…');
+        link.parent().prev(".installMsg").html("").addClass("spinner-border text-primary");
+
+        let url = './store.php?action=install&type=' + type + '&source=' + down_url;
+        $.get(url, function (data) {
+            link.text('免费安装');
+            link.parent().prev(".installMsg").html('<span class="text-danger">' + data + '</span>').removeClass("spinner-border text-primary");
+        });
     });
 
     // 应用商店：查看应用信息
