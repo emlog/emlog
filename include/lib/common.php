@@ -941,6 +941,7 @@ EOT;
 }
 
 function show_404_page($show_404_only = false) {
+    doAction('page_not_found');
     if ($show_404_only) {
         header("HTTP/1.1 404 Not Found");
         exit;
