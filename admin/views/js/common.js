@@ -359,35 +359,6 @@ function removeHTMLTag(str) {
     return str;
 }
 
-// 表格全选
-$(function () {
-    $('#checkAll').click(function (event) {
-        let tr_checkbox = $('table tbody tr').find('input[type=checkbox]');
-        tr_checkbox.prop('checked', $(this).prop('checked'));
-        event.stopPropagation();
-    });
-    // 点击表格每一行的checkbox，表格所有选中的checkbox数 = 表格行数时，则将表头的‘checkAll’单选框置为选中，否则置为未选中
-    $('table tbody tr').find('input[type=checkbox]').click(function (event) {
-        let tbr = $('table tbody tr');
-        $('#checkAll').prop('checked', tbr.find('input[type=checkbox]:checked').length == tbr.length ? true : false);
-        event.stopPropagation();
-    });
-});
-
-// 卡片全选
-$(function () {
-    $('#checkAllCard').click(function (event) {
-        let card_checkbox = $('.card-body').find('input[type=checkbox]');
-        card_checkbox.prop('checked', $(this).prop('checked'));
-        event.stopPropagation();
-    });
-    $('.card-body').find('input[type=checkbox]').click(function (event) {
-        let cards = $('.card-body');
-        $('#checkAllCard').prop('checked', cards.find('input[type=checkbox]:checked').length == cards.length ? true : false);
-        event.stopPropagation();
-    });
-});
-
 // editor.md 的 js 钩子
 var queue = new Array();
 var hooks = {
@@ -533,8 +504,7 @@ function loadTopAddons() {
 }
 
 $(function () {
-    // 网页加载完先检查一遍
-    // 设置界面，如果设置“自动检测地址”，则设置 input 为只读，以表示该项是无效的
+    // 设置界面: 自动检测站点地址 如果设置“自动检测地址”，则设置 input 为只读，以表示该项是无效的
     if ($("#detect_url").prop("checked")) {
         $("[name=blogurl]").attr("readonly", "readonly")
     }
@@ -547,7 +517,7 @@ $(function () {
         }
     })
 
-    // store app install
+    // 应用商店：应用安装
     $('.installBtn').click(function (e) {
         e.preventDefault();
         let link = $(this);
@@ -563,7 +533,32 @@ $(function () {
         });
     });
 
-    // 查看应用信息
+    // 表格全选
+    $('#checkAll').click(function (event) {
+        let tr_checkbox = $('table tbody tr').find('input[type=checkbox]');
+        tr_checkbox.prop('checked', $(this).prop('checked'));
+        event.stopPropagation();
+    });
+    // 点击表格每一行的checkbox，表格所有选中的checkbox数 = 表格行数时，则将表头的‘checkAll’单选框置为选中，否则置为未选中
+    $('table tbody tr').find('input[type=checkbox]').click(function (event) {
+        let tbr = $('table tbody tr');
+        $('#checkAll').prop('checked', tbr.find('input[type=checkbox]:checked').length == tbr.length ? true : false);
+        event.stopPropagation();
+    });
+
+    // 卡片全选
+    $('#checkAllCard').click(function (event) {
+        let card_checkbox = $('.card-body').find('input[type=checkbox]');
+        card_checkbox.prop('checked', $(this).prop('checked'));
+        event.stopPropagation();
+    });
+    $('.card-body').find('input[type=checkbox]').click(function (event) {
+        let cards = $('.card-body');
+        $('#checkAllCard').prop('checked', cards.find('input[type=checkbox]:checked').length == cards.length ? true : false);
+        event.stopPropagation();
+    });
+
+    // 应用商店：查看应用信息
     $('#appModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget);
         var name = button.data('name');
