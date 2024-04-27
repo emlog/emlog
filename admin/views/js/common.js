@@ -575,8 +575,7 @@ $(function () {
         var iframe = $('<iframe>', {
             'class': 'iframe-content',
             'src': url,
-            'frameborder': 0,
-            'style': 'width: 100%; height: 100%;'
+            'frameborder': 0
         });
 
         iframe.on('load', function () {

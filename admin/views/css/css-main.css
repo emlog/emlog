@@ -814,7 +814,7 @@ input[type="checkbox"]:hover, select:hover {
 
 /* 应用商店-应用介绍弹出窗 */
 #appModal .modal-dialog {
-    max-width: 50%;
+    max-width: 60%;
     margin: 1.75rem auto;
 }
 
@@ -824,5 +824,5 @@ input[type="checkbox"]:hover, select:hover {
 
 #appModal .iframe-content {
     width: 100%;
-    height: 100%;
+    height: 98%;
 }
