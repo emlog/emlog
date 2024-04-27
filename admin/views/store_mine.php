@@ -21,11 +21,13 @@
                 ?>
                 <div class="col-md-6 col-lg-3">
                     <div class="card mb-4 shadow-sm">
-                        <a class="p-1" href="<?= $v['buy_url'] ?>" target="_blank">
+                        <a href="#appModal" class="p-1" data-toggle="modal" data-target="#appModal" data-name="<?= $v['name'] ?>" data-url="<?= $v['app_url'] ?>" data-buy-url="<?= $v['buy_url'] ?>">
                             <img class="bd-placeholder-img card-img-top" alt="cover" width="100%" height="225" src="<?= $icon ?>">
                         </a>
                         <div class="card-body">
-                            <p class="card-text font-weight-bold"><?= $v['name'] ?></p>
+                            <p class="card-text font-weight-bold">
+                                <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="<?= $v['name'] ?>" data-url="<?= $v['app_url'] ?>" data-buy-url="<?= $v['buy_url'] ?>"><?= $v['name'] ?></a>
+                            </p>
                             <p class="card-text text-muted small">
                                 开发者：<?= $v['author'] ?><br>
                                 版本号：<?= $v['ver'] ?><br>
@@ -56,9 +58,46 @@
         </div>
     <?php endif; ?>
 </div>
+<div class="modal fade" id="appModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                <div>
+                    <a href="" class="modal-buy-url text-muted" target="_blank">去官网查看</a>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-body">
+            </div>
+        </div>
+    </div>
+</div>
 <script>
     $(function () {
         $("#menu_store").addClass('active');
         setTimeout(hideActived, 3600);
+
+        // 查看应用信息
+        $('#appModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var name = button.data('name');
+            var url = button.data('url');
+            var buy_url = button.data('buy-url');
+            var modal = $(this);
+
+            modal.find('.modal-body').empty();
+            modal.find('.modal-title').html(name);
+            modal.find('.modal-buy-url').attr('href', buy_url);
+            var iframe = $('<iframe>', {
+                'class': 'iframe-content',
+                'src': url,
+                'frameborder': 0,
+                'style': 'width: 100%; height: 100%;'
+            });
+            modal.find('.modal-body').append(iframe);
+        });
     });
 </script>
