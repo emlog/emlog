@@ -64,7 +64,7 @@ input[type="checkbox"]:hover, select:hover {
     border: 1px #FFBA43 solid
 }
 
-.warning {
+.warning:not(.coco-msg) {
     margin: 0px 200px;
     text-align: center;
     background-color: #FDFFCE;
