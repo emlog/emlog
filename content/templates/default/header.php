@@ -45,7 +45,7 @@ if (!function_exists('_g')) {
             <a class="blog-header-title" href="<?= BLOG_URL ?>"><?= $blogname ?></a>
             <div class="blog-header-subtitle subtitle-overflow" title="<?= $bloginfo ?>"><?= $bloginfo ?></div>
         <?php else: ?>
-            <a href="<?= BLOG_URL; ?>" title="<?= $bloginfo; ?>"><img src="<?= _em('logo_img'); ?>" alt="<?= $blogname; ?>"/></a>
+            <a href="<?= BLOG_URL; ?>" title="<?= $bloginfo; ?>"><img src="<?= _em('logoimg'); ?>" alt="<?= $blogname; ?>"/></a>
         <?php endif; ?>
         <div class="blog-header-toggle">
             <svg class="blogtoggle-icon">
