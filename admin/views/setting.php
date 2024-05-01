@@ -26,7 +26,7 @@
             </div>
             <div class="form-group">
                 <label>站点地址</label>
-                <input class="form-control" value="<?= $blogurl ?>" name="blogurl" type="url">
+                <input class="form-control" value="<?= $blogurl ?>" name="blogurl" type="url" required>
             </div>
             <div class="form-group form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="detect_url" id="detect_url" <?= $conf_detect_url ?> />
