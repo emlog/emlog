@@ -30,7 +30,7 @@
             </div>
             <div class="form-group form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="detect_url" id="detect_url" <?= $conf_detect_url ?> />
-                <label class="form-check-label" for="exampleCheck1">自动检测站点地址 (如开启后首页样式丢失，请关闭并手动填写站点地址)</label>
+                <label class="form-check-label" for="detect_url">自动检测站点地址 (如开启后首页样式丢失，请关闭并手动填写站点地址)</label>
             </div>
 
             <div class="form-group">
@@ -51,37 +51,35 @@
                 <label>首页底部信息(支持html，可用于添加流量统计代码)</label>
                 <textarea name="footer_info" rows="6" class="form-control"><?= $footer_info ?></textarea>
             </div>
-
             <hr>
-
             <h4>评论设置</h4>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="iscomment" id="iscomment" <?= $conf_iscomment ?> />
-                <label>开启评论</label>
+                <label for="iscomment">开启评论</label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="ischkcomment" id="ischkcomment" <?= $conf_ischkcomment ?> />
-                <label>评论审核</label>
+                <label for="ischkcomment">评论审核</label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="comment_code" id="comment_code" <?= $conf_comment_code ?> />
-                <label>评论验证码</label>
+                <label for="comment_code">评论验证码</label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="isgravatar" id="isgravatar" <?= $conf_isgravatar ?> />
-                <label>评论人头像</label>
+                <label for="isgravatar">评论人头像</label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="login_comment" id="login_comment" <?= $conf_login_comment ?> />
-                <label>登录后评论，开启后仅登录用户可评论</label>
+                <label for="login_comment">登录后评论，开启后仅登录用户可评论</label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="comment_needchinese" id="comment_needchinese" <?= $conf_comment_needchinese ?> />
-                <label>评论内容必须包含中文（防御国外垃圾评论）</label>
+                <label for="comment_needchinese">评论内容必须包含中文（防御国外垃圾评论）</label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="comment_paging" id="comment_paging" <?= $conf_comment_paging ?> />
-                <label>评论分页</label>
+                <label for="comment_paging">评论分页</label>
             </div>
             <div class="form-group form-inline">
                 每页显示评论条数：<input maxlength="5" style="width:80px;" class="form-control" value="<?= $comment_pnum ?>" name="comment_pnum" type="number" min="0"/>
@@ -125,7 +123,8 @@
                 允许上传的文件类型 <input maxlength="200" style="width:500px;" class="form-control" value="<?= $att_type ?>" name="att_type"/>（多个用半角逗号分隔）
             </div>
             <div class="form-group form-inline">
-                <input type="checkbox" value="y" name="isthumbnail" id="isthumbnail" <?= $conf_isthumbnail ?> />上传图片生成缩略图，最大尺寸：
+                <input type="checkbox" value="y" name="isthumbnail" id="isthumbnail" <?= $conf_isthumbnail ?> />
+                <label for="isthumbnail">上传图片生成缩略图</label>，最大尺寸：
                 <input maxlength="5" style="width:80px;" class="form-control" value="<?= $att_imgmaxw ?>" name="att_imgmaxw"/> x
                 <input maxlength="5" style="width:80px;" class="form-control" value="<?= $att_imgmaxh ?>" name="att_imgmaxh"/>（单位：像素）
             </div>
@@ -142,7 +141,7 @@
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="accept_app_recs" id="accept_app_recs" <?= $conf_accept_app_recs ?> />
-                <label>接收来自官方应用商店信息（后台首页应用相关展示）</label>
+                <label for="accept_app_recs">接收来自官方应用商店信息（后台首页应用相关展示）</label>
             </div>
             <hr>
 

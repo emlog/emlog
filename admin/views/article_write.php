@@ -14,10 +14,9 @@
                 </div>
                 <div id="logcontent"><textarea><?= $content ?></textarea></div>
                 <div class="mt-3">
-                    <label>摘要（选填）：
-                        <input type="checkbox" value="y" name="auto_excerpt" id="auto_excerpt">
-                        <label for="sortop" style="margin-right: 8px;">自动截取摘要</label>
-                    </label>
+                    摘要（选填）：
+                    <input type="checkbox" value="y" name="auto_excerpt" id="auto_excerpt">
+                    <label for="auto_excerpt" style="margin-right: 8px;">自动截取摘要</label>
                     <textarea id="logexcerpt" name="logexcerpt" class="form-control" rows="5"><?= $excerpt ?></textarea>
                 </div>
                 <div class="mt-3">

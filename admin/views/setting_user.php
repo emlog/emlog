@@ -17,32 +17,32 @@
         <form action="setting.php?action=user_save" method="post" name="user_setting_form" id="user_setting_form">
             <div class="form-group form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="is_signup" id="is_signup" <?= $conf_is_signup ?> />
-                <label class="form-check-label">开启用户注册</label>
+                <label class="form-check-label" for="is_signup">开启用户注册</label>
             </div>
             <div class="form-group form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="login_code" id="login_code" <?= $conf_login_code ?> >
-                <label class="form-check-label">开启登录注册图形验证码</label>
+                <label class="form-check-label" for="login_code">开启登录注册图形验证码</label>
             </div>
             <div class="form-group form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="email_code" id="email_code" <?= $conf_email_code ?> >
-                <label class="form-check-label">开启注册邮件验证码（开启需配置邮件通知服务）</label>
+                <label class="form-check-label" for="email_code">开启注册邮件验证码（开启需配置邮件通知服务）</label>
             </div>
             <hr>
             <div class="form-group form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="ischkarticle" id="ischkarticle" <?= $conf_ischkarticle ?> />
-                <label class="form-check-label">注册用户发布文章需要审核</label>
+                <label class="form-check-label" for="ischkarticle">注册用户发布文章需要审核</label>
             </div>
             <div class="form-group form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="article_uneditable" id="article_uneditable" <?= $conf_article_uneditable ?> />
-                <label>审核通过的文章用户不可编辑、删除</label>
+                <label for="article_uneditable">审核通过的文章用户不可编辑、删除</label>
             </div>
             <div class="form-group form-inline">
-                <label>注册用户限制24小时发文数量（包括草稿）：</label>
-                <input class="form-control mx-sm-3" style="width:60px;" value="<?= $conf_posts_per_day ?>" type="number" min="0" name="posts_per_day"/> （为0同时禁止上传图文资源）
+                <label for="posts_per_day">注册用户限制24小时发文数量（包括草稿）：</label>
+                <input class="form-control mx-sm-3" style="width:60px;" value="<?= $conf_posts_per_day ?>" type="number" min="0" name="posts_per_day" id="posts_per_day"/> （为0同时禁止上传图文资源）
             </div>
             <div class="form-group form-inline">
-                <label>用户中心文章别名：</label>
-                <input class="form-control mx-sm-3" style="width:80px;" value="<?= $conf_posts_name ?>" name="posts_name"/> 如：帖子、投稿、资源等
+                <label for="posts_name">用户中心文章别名：</label>
+                <input class="form-control mx-sm-3" style="width:80px;" value="<?= $conf_posts_name ?>" name="posts_name" id="posts_name"/> 如：帖子、投稿、资源等
             </div>
             <div class="form-group">
                 <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>

@@ -12,8 +12,8 @@
                 <input class="form-control" id="url" value="<?= $url ?>" name="url" <?= $conf_isdefault ?>>
             </div>
             <div class="form-group">
-                <label>在新窗口打开</label>
-                <input type="checkbox" value="y" name="newtab" <?= $conf_newtab ?> />
+                <label for="newtab">在新窗口打开</label>
+                <input type="checkbox" value="y" name="newtab" id="newtab" <?= $conf_newtab ?> />
             </div>
             <?php if ($type == Navi_Model::navitype_custom && $pid != 0): ?>
                 <div class="form-group">

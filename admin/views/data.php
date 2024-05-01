@@ -29,7 +29,10 @@
             <form action="data.php?action=backup" method="post">
                 <div id="backup">
                     <p>将站点内容数据库备份到自己电脑上。</p>
-                    <p id="local_bakzip">压缩成zip包：<input type="checkbox" style="vertical-align:middle;" value="y" name="zipbak" id="zipbak"></p>
+                    <p id="local_bakzip">
+                        <input type="checkbox" value="y" name="zipbak" id="zipbak">
+                        <label for="zipbak">压缩成zip包</label>
+                    </p>
                     <p>
                         <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
                         <input type="submit" value="开始备份" class="btn btn-sm btn-success"/>

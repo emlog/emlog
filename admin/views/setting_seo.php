@@ -17,29 +17,29 @@
         <form action="setting.php?action=seo_save" method="post" name="seo_setting_form" id="seo_setting_form">
             <h4>文章链接</h4>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="permalink" value="0" <?= $ex0 ?>>
-                <label class="form-check-label">默认格式：<span class="permalink_url"><?= BLOG_URL ?>?post=1</span></label>
+                <input class="form-check-input" type="radio" name="permalink" id="permalink0" value="0" <?= $ex0 ?>>
+                <label class="form-check-label" for="permalink0">默认格式：<span class="permalink_url"><?= BLOG_URL ?>?post=1</span></label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="permalink" value="1" <?= $ex1 ?>>
-                <label class="form-check-label">文件格式：<span class="permalink_url"><?= BLOG_URL ?>post-1.html</span></label>
+                <input class="form-check-input" type="radio" name="permalink" id="permalink1" value="1" <?= $ex1 ?>>
+                <label class="form-check-label" for="permalink1">文件格式：<span class="permalink_url"><?= BLOG_URL ?>post-1.html</span></label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="permalink" value="2" <?= $ex2 ?>>
-                <label class="form-check-label">目录格式：<span class="permalink_url"><?= BLOG_URL ?>post/1</span></label>
+                <input class="form-check-input" type="radio" name="permalink" id="permalink2" value="2" <?= $ex2 ?>>
+                <label class="form-check-label" for="permalink2">目录格式：<span class="permalink_url"><?= BLOG_URL ?>post/1</span></label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="permalink" value="3" <?= $ex3 ?>>
-                <label class="form-check-label">分类格式：<span class="permalink_url"><?= BLOG_URL ?>category/1.html</span></label>
+                <input class="form-check-input" type="radio" name="permalink" id="permalink3" value="3" <?= $ex3 ?>>
+                <label class="form-check-label" for="permalink3">分类格式：<span class="permalink_url"><?= BLOG_URL ?>category/1.html</span></label>
             </div>
 
             <div class="form-check mt-3">
                 <input class="form-check-input" type="checkbox" value="y" name="isalias" id="isalias" <?= $isalias ?> />
-                <label>启用链接别名：<span class="permalink_url"><?= BLOG_URL ?>abc</span></label>
+                <label for="isalias">启用链接别名：<span class="permalink_url"><?= BLOG_URL ?>abc</span></label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="isalias_html" id="isalias_html" <?= $isalias_html ?> />
-                <label>启用链接别名html后缀：<span class="permalink_url"><?= BLOG_URL ?>abc.html</span></label>
+                <label for="isalias_html">启用链接别名html后缀：<span class="permalink_url"><?= BLOG_URL ?>abc.html</span></label>
             </div>
 
             <div class="alert alert-warning">

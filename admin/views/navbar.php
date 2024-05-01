@@ -141,8 +141,8 @@
                     <textarea maxlength="512" class="form-control" placeholder="地址（URL）" name="url" id="url" required></textarea>
                 </div>
                 <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" value="y" name="newtab">
-                    <label class="form-check-label" for="exampleCheck1">在新窗口打开</label>
+                    <input type="checkbox" class="form-check-input" value="y" name="newtab" id="newtab">
+                    <label class="form-check-label" for="newtab">在新窗口打开</label>
                 </div>
                 <div class="form-group">
                     <label>父导航</label>
