@@ -49,69 +49,25 @@
                 <h6 class="card-header">站点信息</h6>
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
-                        <li class="row">
-                            <div class="col-xl-4 col-md-6 mb-1">
-                                <div class="card border-left-primary shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col">
-                                                <div class="small font-weight-bold text-primary text-uppercase mb-1">待审文章</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="./article.php?checked=n"><?= $sta_cache['checknum'] ?></a></div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <i class="icofont-pencil-alt-5 fa-2x text-gray-300"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-xl-4 col-md-6 mb-1">
-                                <div class="card border-left-warning shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col">
-                                                <div class="small font-weight-bold text-warning text-uppercase mb-1">
-                                                    待审评论
-                                                </div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="./comment.php?hide=y"><?= $sta_cache['hidecomnum'] ?></a></div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <i class="icofont-comment fa-2x text-gray-300"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-md-6 mb-1">
-                                <div class="card border-left-success shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col">
-                                                <div class="small font-weight-bold text-success text-uppercase mb-1">
-                                                    用户数量
-                                                </div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="./user.php"><?= count($user_cache) ?></a></div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <i class="icofont-user fa-2x text-gray-300"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <a href="./article.php?checked=n">待审文章</a>
+                            <a href="./article.php?checked=n"><span class="badge badge-danger badge-pill"><?= $sta_cache['checknum'] ?></span></a>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <a href="./comment.php?hide=y">待审评论</a>
+                            <a href="./comment.php?hide=y"><span class="badge badge-warning badge-pill"><?= $sta_cache['hidecomnum'] ?></span></a>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <a href="./user.php">用户</a>
+                            <a href="./user.php"><span class="badge badge-success badge-pill"><?= count($user_cache) ?></span></a>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <a href="./article.php">文章</a>
                             <a href="./article.php"><span class="badge badge-primary badge-pill"><?= $sta_cache['lognum'] ?></span></a>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <a href="./twitter.php">微语</a>
+                            <a href="./twitter.php?all=y">微语</a>
                             <a href="./twitter.php?all=y"><span class="badge badge-primary badge-pill"><?= $sta_cache['note_num'] ?></span></a>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <a href="./comment.php">评论</a>
-                            <a href="./comment.php"><span class="badge badge-primary badge-pill"><?= $sta_cache['comnum_all'] ?></span></a>
                         </li>
                     </ul>
                 </div>
@@ -139,7 +95,7 @@
                             操作系统
                             <span class="small"><?= $os ?></span>
                         </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center mt-2">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
                             <span>
                             <?php if (!Register::isRegLocal()) : ?>
                                 <a href="auth.php"><span class="badge badge-secondary">Emlog <?= Option::EMLOG_VERSION ?> 未注册，点击注册</span></a>
