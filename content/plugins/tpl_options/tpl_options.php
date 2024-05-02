@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: 模板设置
-Version: 4.2.5
+Version: 4.2.6
 Plugin URL: https://www.emlog.net/docs/#/template?id=%e6%a8%a1%e6%9d%bf%e8%ae%be%e7%bd%ae
 Description: 为模板增加丰富的设置功能，详见官网文档-模板开发。
 Author: emlog
@@ -1183,7 +1183,6 @@ class TplOptions {
      */
     private function renderImage($option) {
         $tpl = '<div class="tpl-block-upload">
-                    <span class="image-tip">友情提示：选择文件后将会立刻上传覆盖原图</span>
                     <div class="tpl-image-preview">
                         <img src="{value}">
                     </div>
@@ -1206,7 +1205,6 @@ class TplOptions {
         $tpl = '';
         if (isset($option['pattern']) && trim($option['pattern']) === 'image') {
             $tpl .= '<div class="tpl-block-upload">
-                        <span class="image-tip">友情提示：选择文件后将会立刻上传覆盖原图</span>
                         <span>填写块标题：</span>
                         <input class="block-title-input" type="text" name="{title}" value="{tvalue}">
                          <div class="tpl-image-preview">

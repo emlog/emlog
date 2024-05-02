@@ -704,18 +704,6 @@ span.tpl-options-setting:hover {
     color: #999;
 }
 
-.option-body .image-tip {
-    display: block;
-    padding: 6px;
-    margin-top: 5px;
-    border-radius: 5px;
-    color: #eee;
-    max-width: 600px;
-    margin-bottom: 10px;
-    background: linear-gradient(135deg, #4e73df 10%, #a3bbff 100%);
-    box-shadow: 0 0 15px rgb(82 82 82 / 10%);
-}
-
 .fixed-body {
     position: fixed;
     top: 0;
