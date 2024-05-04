@@ -503,6 +503,75 @@ function loadTopAddons() {
     });
 }
 
+function checkUpdate() {
+    const updateModal = $("#update-modal");
+    const updateModalLoading = $("#update-modal-loading");
+    const updateModalMsg = $("#update-modal-msg");
+    const updateModalChanges = $("#update-modal-changes");
+    const updateModalBtn = $("#update-modal-btn");
+
+    updateModal.modal('show');
+    updateModalLoading.addClass("spinner-border text-primary");
+
+    let rep_msg = "";
+    let rep_changes = "";
+    let rep_btn = "";
+
+    updateModalMsg.html(rep_msg);
+    updateModalChanges.html(rep_changes);
+    updateModalBtn.html(rep_btn);
+
+    $.get("./upgrade.php?action=check_update", function (result) {
+        if (result.code === 1001) {
+            rep_msg = "您的emlog pro尚未注册，<a href=\"auth.php\">去注册</a>";
+        } else if (result.code === 1002) {
+            rep_msg = "已经是最新版本";
+        } else if (result.code === 200) {
+            rep_msg = `有可用的新版本：<span class="text-danger">${result.data.version}</span> <br><br>`;
+            rep_changes = "<b>更新内容</b>:<br>" + result.data.changes;
+            rep_btn = `<hr><a href="javascript:doUp('${result.data.file}','${result.data.sql}');" id="upbtn" class="btn btn-success btn-sm">现在更新</a>`;
+        } else {
+            rep_msg = "检查失败，可能是网络问题";
+        }
+
+        updateModalLoading.removeClass();
+        updateModalMsg.html(rep_msg);
+        updateModalChanges.html(rep_changes);
+        updateModalBtn.html(rep_btn);
+    });
+}
+
+function doUp(source, upSQL) {
+    const updateModalLoading = $("#update-modal-loading");
+    const updateModalMsg = $("#update-modal-msg");
+    const updateModalChanges = $("#update-modal-changes");
+    const upmsg = $("#upmsg");
+    const upbtn = $("#upbtn");
+
+    updateModalLoading.addClass("spinner-border text-primary");
+    updateModalMsg.html("更新中... 请耐心等待");
+    updateModalChanges.html("");
+
+    $.get(`./upgrade.php?action=update&source=${source}&upsql=${upSQL}`, function (data) {
+        upmsg.removeClass();
+        if (data.includes("succ")) {
+            upbtn.text('刷新页面');
+            upbtn.attr('href', './');
+            updateModalMsg.html('🎉恭喜，更新成功了🎉，<a href="./">刷新页面</a> 开始体验新版本');
+        } else if (data.includes("error_down")) {
+            updateModalMsg.html('下载更新失败，可能是服务器网络问题');
+        } else if (data.includes("error_zip")) {
+            updateModalMsg.html('解压更新失败，可能是你的服务器空间不支持zip模块');
+        } else if (data.includes("error_dir")) {
+            updateModalMsg.html('更新失败，目录不可写');
+        } else {
+            updateModalMsg.html('更新失败');
+        }
+
+        updateModalLoading.removeClass();
+    });
+}
+
 $(function () {
     // 设置界面: 自动检测站点地址 如果设置“自动检测地址”，则设置 input 为只读，以表示该项是无效的
     if ($("#detect_url").prop("checked")) {
