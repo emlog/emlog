@@ -82,7 +82,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>标签：<small class="text-muted">(也用于页面关键词，英文逗号分隔)</small></label>
+                    <label>标签：</label>
                     <?php if ($tags): ?>
                         <span class="small"> <a href="javascript:doToggle('tags', 1);">近期使用的+</a></span>
                         <div id="tags" class="mb-2" style="display: none">
@@ -94,11 +94,13 @@
                         </div>
                     <?php endif; ?>
                     <input name="tag" id="tag" class="form-control" value="<?= $tagStr ?>"/>
+                    <small class="text-muted">也用于页面关键词，英文逗号分隔</small>
                 </div>
                 <?php if (User::haveEditPermission()): ?>
                     <div class="form-group">
-                        <label>发布时间：<small class="text-muted">（当设置未来时间，文章将在该时间点定时发布）</small></label>
+                        <label>发布时间：</label>
                         <input type="text" maxlength="200" name="postdate" id="postdate" value="<?= $postDate ?>" class="form-control"/>
+                        <small class="text-muted">当设置未来时间，文章将在该时间点定时发布</small>
                     </div>
                     <div class="form-group">
                         <input type="checkbox" value="y" name="allow_remark" id="allow_remark" <?= $is_allow_remark ?> />
@@ -115,12 +117,14 @@
                 <div id="advset">
                     <?php if (User::haveEditPermission()): ?>
                         <div class="form-group">
-                            <label>链接别名：<small class="text-muted">（英文字母、数字组成，用于seo设置 <a href="./setting.php?action=seo">&rarr;</a>）</small></label>
+                            <label>链接别名：</label>
                             <input name="alias" id="alias" class="form-control" value="<?= $alias ?>"/>
+                            <small class="text-muted">英文字母、数字组成，用于<a href="./setting.php?action=seo">seo设置</a></small>
                         </div>
                         <div class="form-group">
-                            <label>跳转链接：<small class="text-muted">（填写后不展示文章内容直接跳转该地址）</small></label>
+                            <label>跳转链接：</label>
                             <input name="link" id="link" type="url" class="form-control" value="<?= $link ?>" placeholder="https://"/>
+                            <small class="text-muted">填写后不展示文章内容直接跳转该地址</small>
                         </div>
                         <div class="form-group">
                             <label>访问密码：</label>
