@@ -41,7 +41,7 @@ if (empty($action)) {
         ['name' => '模板', 'url' => 'template.php'],
         ['name' => '插件', 'url' => 'plugin.php'],
         ['name' => '分类', 'url' => 'sort.php'],
-        ['name' => '标签', 'url' => ' tag.php'],
+        ['name' => '标签', 'url' => 'tag.php'],
         ['name' => '页面', 'url' => 'page.php'],
         ['name' => '导航', 'url' => 'navbar.php'],
         ['name' => '边栏', 'url' => 'widgets.php'],
@@ -56,7 +56,6 @@ if (empty($action)) {
             'url'  => './plugin.php?plugin=' . $val['Plugin'],
         ];
     }
-    $shortcutNameSet = [];
     $shortcut = Option::get('shortcut');
     $shortcut = json_decode($shortcut, 1);
     if ($shortcut) {
@@ -66,7 +65,6 @@ if (empty($action)) {
                 Option::updateOption('shortcut', json_encode($shortcut, JSON_UNESCAPED_UNICODE));
                 $CACHE->updateCache('options');
             }
-            $shortcutNameSet[] = $v['name'];
         }
     } else {
         $shortcut = [];

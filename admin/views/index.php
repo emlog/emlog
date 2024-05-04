@@ -186,11 +186,11 @@
                 </div>
                 <form action="index.php?action=add_shortcut" method="post">
                     <div class="modal-body">
-                        <?php foreach ($shortcutAll as $k => $val):
-                            $checked = in_array($val['name'], $shortcutNameSet) ? 'checked' : '';
+                        <?php foreach ($shortcutAll as $k => $v):
+                            $checked = in_array($v, $shortcut) ? 'checked' : '';
                             ?>
-                            <input type="checkbox" name="shortcut[]" id="shortcut-<?= $k ?>" value="<?= $val['name'] ?>||<?= $val['url'] ?>" <?= $checked ?>>
-                            <label class="mr-2" for="shortcut-<?= $k ?>"><?= $val['name'] ?></label>
+                            <input type="checkbox" name="shortcut[]" id="shortcut-<?= $k ?>" value="<?= $v['name'] ?>||<?= $v['url'] ?>" <?= $checked ?>>
+                            <label class="mr-2" for="shortcut-<?= $k ?>"><?= $v['name'] ?></label>
                         <?php endforeach; ?>
                     </div>
                     <div class="modal-footer">
