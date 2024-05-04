@@ -130,19 +130,21 @@
                 </div>
             </div>
         <?php endif ?>
-        <div class="col-lg-6 mb-3">
-            <div class="card shadow mb-3">
-                <h6 class="card-header">获取帮助</h6>
-                <div class="card-body admin_index_list">
-                    <ul class="list-group list-group-flush">
-                        <li class="msg_type_0 mt-2"><a href="https://www.emlog.net/docs/#/faq" target="_blank">使用帮助 | 常见问题</a></li>
-                        <li class="msg_type_0 mt-2"><a href="https://www.emlog.net/docs/#/contact" target="_blank">联系交流 | 加入社群</a></li>
-                        <li class="msg_type_0 mt-2"><a href="https://emlog.cn/" target="_blank">问题反馈 | 官方社区</a></li>
-                        <li class="msg_type_0 mt-2"><a href="https://www.emlog.net/docs/#/develop" target="_blank">应用开发 | 开发文档</a></li>
-                    </ul>
+        <?php if (option::get('help_guide') === 'y'): ?>
+            <div class="col-lg-6 mb-3">
+                <div class="card shadow mb-3">
+                    <h6 class="card-header">获取帮助</h6>
+                    <div class="card-body admin_index_list">
+                        <ul class="list-group list-group-flush">
+                            <li class="msg_type_0 mt-2"><a href="https://www.emlog.net/docs/#/faq" target="_blank">使用帮助 | 常见问题</a></li>
+                            <li class="msg_type_0 mt-2"><a href="https://www.emlog.net/docs/#/contact" target="_blank">联系交流 | 加入社群</a></li>
+                            <li class="msg_type_0 mt-2"><a href="https://emlog.cn/" target="_blank">问题反馈 | 官方社区</a></li>
+                            <li class="msg_type_0 mt-2"><a href="https://www.emlog.net/docs/#/develop" target="_blank">应用开发 | 开发文档</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
+        <?php endif; ?>
         <?php if (Register::isRegLocal() && option::get('accept_app_recs') === 'y'): ?>
             <div class="col-lg-6 mb-3">
                 <div class="card mb-3">

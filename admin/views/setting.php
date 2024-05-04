@@ -141,7 +141,11 @@
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="y" name="accept_app_recs" id="accept_app_recs" <?= $conf_accept_app_recs ?> />
-                <label for="accept_app_recs">接收来自官方应用商店信息（后台首页应用相关展示）</label>
+                <label for="accept_app_recs">接收来自官方应用商店信息（影响台首页应用更新模块）</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="y" name="help_guide" id="help_guide" <?= $conf_help_guide ?> />
+                <label for="help_guide">开启获取帮助模块（影响台首页获取帮助模块）</label>
             </div>
             <hr>
 
