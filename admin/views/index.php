@@ -1,4 +1,6 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
+<?php if (isset($_GET['add_shortcut_suc'])): ?>
+    <div class="alert alert-success">设置成功</div><?php endif ?>
     <div class="d-sm-flex align-items-center justify-content-between mb-3">
         <div class="d-flex align-items-center">
             <div class="flex-shrink-0">
@@ -26,19 +28,11 @@
                     <a href="./article.php?action=write" class="mr-2">写文章</a>
                     <a href="article.php" class="mr-2">文章</a>
                     <a href="article.php?draft=1" class="mr-2">草稿</a>
-                    <a href="page.php" class="mr-2">页面</a>
-                    <a href="template.php" class="mr-2">模板</a>
-                    <span class="text-gray-300 mr-2">|</span>
-                    <?php foreach ($plugins as $val):
-                        if (false === $val['Setting']) {
-                            continue;
-                        }
-                        if (in_array($val['Name'], ['小贴士', '模板设置'])) {
-                            continue;
-                        }
-                        ?>
-                        <a href="./plugin.php?plugin=<?= $val['Plugin'] ?>" class="text-success mr-2"><?= $val['Name'] ?></a>
+                    <?php foreach ($shortcut as $item): ?>
+                        <a href="<?= $item['url'] ?>" class="mr-2"><?= $item['name'] ?></a>
                     <?php endforeach; ?>
+                    <span class="text-gray-300 mr-2">|</span>
+                    <a href="#" class="my-1" data-toggle="modal" data-target="#shortcutModal"><i class="icofont-plus"></i></a>
                 </div>
             </div>
         </div>
@@ -178,6 +172,34 @@
                     <div id="update-modal-changes"></div>
                     <div id="update-modal-btn" class="mt-2 text-right"></div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade bd-example-modal-lg" id="shortcutModal" tabindex="-1" role="dialog" aria-labelledby="mediaSortModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="shortcutModalLabel">快捷入口</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="index.php?action=add_shortcut" method="post">
+                    <div class="modal-body">
+                        <?php foreach ($shortcutAll as $k => $val):
+                            $checked = in_array($val['name'], $shortcutNameSet) ? 'checked' : '';
+                            ?>
+                            <input type="checkbox" name="shortcut[]" id="shortcut-<?= $k ?>" value="<?= $val['name'] ?>||<?= $val['url'] ?>" <?= $checked ?>>
+                            <label class="mr-2" for="shortcut-<?= $k ?>"><?= $val['name'] ?></label>
+                        <?php endforeach; ?>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-sm btn-success">保存</button>
+                    </div>
+                </form>
+
             </div>
         </div>
     </div>
