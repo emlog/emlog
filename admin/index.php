@@ -68,6 +68,8 @@ if (empty($action)) {
             }
             $shortcutNameSet[] = $v['name'];
         }
+    } else {
+        $shortcut = [];
     }
 
     if (User::haveEditPermission()) {
