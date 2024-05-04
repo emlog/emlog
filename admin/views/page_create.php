@@ -53,7 +53,7 @@
                     <input type="checkbox" value="y" name="allow_remark" id="allow_remark" <?= $is_allow_remark ?> />
                     <label for="allow_remark">允许评论</label><br>
                     <input type="checkbox" value="y" name="home_page" id="home_page" <?= $is_home_page ?> />
-                    <label for="allow_remark">设为首页，<small class="text-muted">原首页：<?= BLOG_URL ?>posts</small></label>
+                    <label for="home_page">设为首页</label>
                 </div>
             </div>
         </div>
