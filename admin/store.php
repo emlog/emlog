@@ -180,7 +180,7 @@ if ($action === 'error') {
     $sub_title = '';
 
     include View::getAdmView('header');
-    require_once(View::getAdmView('store_tpl'));
+    require_once(View::getAdmView('store'));
     include View::getAdmView('footer');
     View::output();
 }
