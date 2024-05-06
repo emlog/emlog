@@ -2,39 +2,30 @@
 <?php if (isset($_GET['error'])): ?>
     <div class="alert alert-danger">商店暂不可用，可能是网络问题</div><?php endif ?>
 
-<div class="d-sm-flex align-items-center justify-content-between mb-4">
+<div class="d-sm-flex align-items-center mb-4">
     <h1 class="h4 mb-0 text-gray-800">应用商店 - <?= $sub_title ?></h1>
 </div>
 <div class="row mb-4 ml-1">
     <ul class="nav nav-pills">
-        <li class="nav-item"><a class="nav-link" href="./store.php">商店首页</a></li>
+        <li class="nav-item"><a class="nav-link active" href="./store.php">商店首页</a></li>
         <li class="nav-item"><a class="nav-link" href="./store.php?action=tpl">模板主题</a></li>
-        <li class="nav-item"><a class="nav-link active" href="./store.php?action=plu">扩展插件</a></li>
+        <li class="nav-item"><a class="nav-link" href="./store.php?action=plu">扩展插件</a></li>
         <li class="nav-item"><a class="nav-link" href="./store.php?action=svip">铁杆专属</a></li>
         <li class="nav-item"><a class="nav-link" href="./store.php?action=mine">我的已购</a></li>
     </ul>
 </div>
+
 <div class="d-flex flex-column flex-sm-row justify-content-between mb-4 ml-1">
     <div class="mb-3 mb-sm-0">
-        <a href="./store.php?action=plu" class="badge badge-success m-1 p-2">全部</a>
-        <a href="./store.php?action=plu&tag=free" class="badge badge-success m-1 p-2">仅看免费</a>
-        <a href="./store.php?action=plu&tag=paid" class="badge badge-warning m-1 p-2">仅看付费</a>
-        <a href="./store.php?action=plu&tag=promo" class="badge badge-danger m-1 p-2">限时优惠</a>
-        <a href="./store.php?action=plu&tag=free_top" class="badge badge-light text-primary m-1 p-2 small">免费排行榜</a>
-        <a href="./store.php?action=plu&tag=paid_top" class="badge badge-light text-primary m-1 p-2 small">付费排行榜</a>
+        <a href="./store.php" class="badge badge-success m-1 p-2">全部</a>
+        <a href="./store.php?tag=free" class="badge badge-success m-1 p-2">仅看免费</a>
+        <a href="./store.php?tag=paid" class="badge badge-warning m-1 p-2">仅看付费</a>
+        <a href="./store.php?tag=promo" class="badge badge-danger m-1 p-2">限时优惠</a>
     </div>
     <div class="d-flex mb-3 mb-sm-0">
-        <form action="#" method="get" class="mr-sm-2">
-            <select name="action" id="plugin-category" class="form-control">
-                <?php foreach ($categories as $k => $v) { ?>
-                    <option value="<?= $k; ?>" <?= $sid == $k ? 'selected' : '' ?>><?= $v; ?></option>
-                <?php } ?>
-            </select>
-        </form>
         <form action="./store.php" method="get" class="form-inline ml-2">
             <div class="input-group">
-                <input type="hidden" name="action" value="plu">
-                <input type="text" name="keyword" value="<?= $keyword ?>" class="form-control small" placeholder="搜索插件...">
+                <input type="text" name="keyword" value="<?= $keyword ?>" class="form-control small" placeholder="搜索模板...">
                 <div class="input-group-append">
                     <button class="btn btn-outline-success" type="submit">搜索</button>
                 </div>
@@ -42,11 +33,14 @@
         </form>
     </div>
 </div>
+
 <div class="mb-3">
-    <?php if (!empty($plugins)): ?>
+    <?php if (!empty($apps)): ?>
         <div class="d-flex flex-wrap app-list">
-            <?php foreach ($plugins as $k => $v):
-                $icon = $v['icon'] ?: "./views/images/plugin.png";
+            <?php foreach ($apps as $k => $v):
+                $icon = $v['icon'] ?: "./views/images/theme.png";
+                $type = $v['app_type'] === 'template' ? 'tpl' : 'plugin';
+                $order_url = 'https://www.emlog.net/order/submit/' . $type . '/' . $v['id']
                 ?>
                 <div class="col-md-6 col-lg-3">
                     <div class="card mb-4 shadow-sm">
@@ -58,7 +52,12 @@
                                 <?php if ($v['top'] === 1): ?>
                                     <span class="badge badge-success p-1">今日推荐</span>
                                 <?php endif; ?>
-                                <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="<?= $v['name'] ?>" data-url="<?= $v['app_url'] ?>" data-buy-url="<?= $v['buy_url'] ?>"><?= $v['name'] ?></a>
+                                <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="<?= $v['name'] ?>" data-url="<?= $v['app_url'] ?>" data-buy-url="<?= $v['buy_url'] ?>"><?= subString($v['name'], 0, 15) ?></a>
+                                <?php if ($type === 'tpl'): ?>
+                                    <span class="badge badge-success p-1">模板</span>
+                                <?php else: ?>
+                                    <span class="badge badge-primary p-1">插件</span>
+                                <?php endif; ?>
                             </p>
                             <p class="card-text text-muted">
                                 售价：
@@ -74,7 +73,7 @@
                                 <?php endif; ?>
                                 <br>
                                 <small>
-                                    开发者：<a href="./store.php?action=plu&author_id=<?= $v['author_id'] ?>"><?= $v['author'] ?></a><br>
+                                    开发者：<a href="./store.php?author_id=<?= $v['author_id'] ?>"><?= $v['author'] ?></a><br>
                                     版本号：<?= $v['ver'] ?><br>
                                     下载次数：<?= $v['downloads'] ?><br>
                                     更新时间：<?= $v['update_time'] ?><br>
@@ -83,13 +82,10 @@
                             <div class="card-text d-flex justify-content-between">
                                 <div class="installMsg"></div>
                                 <div>
-                                    <?php if ($v['svip']): ?>
-                                        <a href="https://www.emlog.net/register" class="btn btn-warning" target="_blank">铁杆专属</a>
-                                    <?php endif; ?>
                                     <?php if ($v['price'] > 0): ?>
-                                        <a href="https://www.emlog.net/order/submit/plugin/<?= $v['id'] ?>" class="btn btn-danger" target="_blank">立即购买</a>
+                                        <a href="<?= $order_url ?>" class="btn btn-danger" target="_blank">立即购买</a>
                                     <?php else: ?>
-                                        <a href="#" class="btn btn-success installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-type="plu">免费安装</a>
+                                        <a href="#" class="btn btn-success installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-type="<?= $type ?>">免费安装</a>
                                     <?php endif ?>
                                 </div>
                             </div>
@@ -127,10 +123,10 @@
         $("#menu_store").addClass('active');
         setTimeout(hideActived, 3600);
 
-        $('#plugin-category').on('change', function () {
+        $('#template-category').on('change', function () {
             var selectedCategory = $(this).val();
             if (selectedCategory) {
-                window.location.href = './store.php?action=plu&sid=' + selectedCategory;
+                window.location.href = './store.php?sid=' + selectedCategory;
             }
         });
     });

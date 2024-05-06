@@ -7,6 +7,10 @@
 
 class Store_Model {
 
+    public function getApps($tag, $keyword, $page, $author_id) {
+        return $this->reqEmStore('all', $tag, $keyword, $page, $author_id);
+    }
+
     public function getTemplates($tag, $keyword, $page, $author_id, $sid) {
         return $this->reqEmStore('tpl', $tag, $keyword, $page, $author_id, $sid);
     }
@@ -61,6 +65,11 @@ class Store_Model {
 
         $data = [];
         switch ($type) {
+            case 'all':
+                $data['apps'] = isset($ret['data']['apps']) ? $ret['data']['apps'] : [];
+                $data['count'] = isset($ret['data']['count']) ? $ret['data']['count'] : 0;
+                $data['page_count'] = isset($ret['data']['page_count']) ? $ret['data']['page_count'] : 0;
+                break;
             case 'tpl':
                 $data['templates'] = isset($ret['data']['templates']) ? $ret['data']['templates'] : [];
                 $data['count'] = isset($ret['data']['count']) ? $ret['data']['count'] : 0;

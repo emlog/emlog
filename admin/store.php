@@ -19,6 +19,39 @@ if (empty($action)) {
     $page = Input::getIntVar('page', 1);
     $keyword = Input::getStrVar('keyword');
     $author_id = Input::getStrVar('author_id');
+
+    $r = $Store_Model->getApps($tag, $keyword, $page, $author_id);
+    $apps = $r['apps'];
+    $count = $r['count'];
+    $page_count = $r['page_count'];
+
+    $sub_title = '  首页';
+    if ($tag === 'free') {
+        $sub_title = '免费应用';
+    } elseif ($tag === 'paid') {
+        $sub_title = '付费应用';
+    } elseif ($tag === 'promo') {
+        $sub_title = '限时优惠';
+    }
+
+    $subPage = '';
+    foreach ($_GET as $key => $val) {
+        $subPage .= $key != 'page' ? "&$key=$val" : '';
+    }
+
+    $pageurl = pagination($count, $page_count, $page, "store.php?{$subPage}&page=");
+
+    include View::getAdmView('header');
+    require_once(View::getAdmView('store'));
+    include View::getAdmView('footer');
+    View::output();
+}
+
+if ($action === 'tpl') {
+    $tag = Input::getStrVar('tag');
+    $page = Input::getIntVar('page', 1);
+    $keyword = Input::getStrVar('keyword');
+    $author_id = Input::getStrVar('author_id');
     $sid = Input::getStrVar('sid');
 
     $categories = [
@@ -128,7 +161,7 @@ if ($action === 'mine') {
 
 if ($action === 'svip') {
     $addons = $Store_Model->getSvipAddon();
-    $sub_title = '铁杆svip专属';
+    $sub_title = '铁杆专属';
 
     include View::getAdmView('header');
     require_once(View::getAdmView('store_svip'));

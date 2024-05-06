@@ -7,9 +7,10 @@
 </div>
 <div class="row mb-4 ml-1">
     <ul class="nav nav-pills">
-        <li class="nav-item"><a class="nav-link" href="./store.php">模板主题</a></li>
+        <li class="nav-item"><a class="nav-link" href="./store.php">商店首页</a></li>
+        <li class="nav-item"><a class="nav-link" href="./store.php?action=tpl">模板主题</a></li>
         <li class="nav-item"><a class="nav-link" href="./store.php?action=plu">扩展插件</a></li>
-        <li class="nav-item"><a class="nav-link text-danger" href="./store.php?action=svip">铁杆SVIP专属</a></li>
+        <li class="nav-item"><a class="nav-link" href="./store.php?action=svip">铁杆专属</a></li>
         <li class="nav-item"><a class="nav-link active" href="./store.php?action=mine">我的已购</a></li>
     </ul>
 </div>
