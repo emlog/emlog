@@ -7,8 +7,8 @@
 
 class Store_Model {
 
-    public function getApps($tag, $keyword, $page, $author_id) {
-        return $this->reqEmStore('all', $tag, $keyword, $page, $author_id);
+    public function getApps($tag, $keyword, $page, $author_id, $sid) {
+        return $this->reqEmStore('all', $tag, $keyword, $page, $author_id, $sid);
     }
 
     public function getTemplates($tag, $keyword, $page, $author_id, $sid) {

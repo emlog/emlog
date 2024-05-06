@@ -23,9 +23,23 @@
         <a href="./store.php?tag=promo" class="badge badge-danger m-1 p-2">限时优惠</a>
     </div>
     <div class="d-flex mb-3 mb-sm-0">
+        <form action="#" method="get" class="mr-sm-2">
+            <select name="action" class="form-control category">
+                <?php foreach ($template_categories as $k => $v) { ?>
+                    <option value="<?= $k; ?>" <?= $sid == $k ? 'selected' : '' ?>><?= $v; ?></option>
+                <?php } ?>
+            </select>
+        </form>
+        <form action="#" method="get" class="mr-sm-2">
+            <select name="action" class="form-control category">
+                <?php foreach ($plugin_categories as $k => $v) { ?>
+                    <option value="<?= $k; ?>" <?= $sid == $k ? 'selected' : '' ?>><?= $v; ?></option>
+                <?php } ?>
+            </select>
+        </form>
         <form action="./store.php" method="get" class="form-inline ml-2">
             <div class="input-group">
-                <input type="text" name="keyword" value="<?= $keyword ?>" class="form-control small" placeholder="搜索模板...">
+                <input type="text" name="keyword" value="<?= $keyword ?>" class="form-control small" placeholder="搜索应用...">
                 <div class="input-group-append">
                     <button class="btn btn-outline-success" type="submit">搜索</button>
                 </div>
@@ -123,7 +137,7 @@
         $("#menu_store").addClass('active');
         setTimeout(hideActived, 3600);
 
-        $('#template-category').on('change', function () {
+        $('.category').on('change', function () {
             var selectedCategory = $(this).val();
             if (selectedCategory) {
                 window.location.href = './store.php?sid=' + selectedCategory;

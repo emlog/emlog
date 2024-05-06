@@ -14,13 +14,41 @@ require_once 'globals.php';
 
 $Store_Model = new Store_Model();
 
+$template_categories = [
+    0  => '按模板分类查找',
+    8  => '博客自媒体',
+    7  => '资源下载',
+    9  => '社区论坛',
+    17 => '网址导航',
+    19 => '企业展示',
+    10 => '通用主题',
+];
+
+$plugin_categories = [
+    0  => '按插件分类查找',
+    20 => '编辑器',
+    1  => '资源下载',
+    2  => 'SEO优化',
+    18 => '微信生态',
+    3  => '多媒体',
+    4  => '装饰特效',
+    5  => '文件存储',
+    11 => '用户互动',
+    12 => '内容运营',
+    14 => '编程开发',
+    13 => '移动端（小程序）',
+    15 => '内容创作',
+    6  => '功能扩展'
+];
+
 if (empty($action)) {
     $tag = Input::getStrVar('tag');
     $page = Input::getIntVar('page', 1);
     $keyword = Input::getStrVar('keyword');
     $author_id = Input::getStrVar('author_id');
+    $sid = Input::getStrVar('sid');
 
-    $r = $Store_Model->getApps($tag, $keyword, $page, $author_id);
+    $r = $Store_Model->getApps($tag, $keyword, $page, $author_id, $sid);
     $apps = $r['apps'];
     $count = $r['count'];
     $page_count = $r['page_count'];
@@ -53,16 +81,6 @@ if ($action === 'tpl') {
     $keyword = Input::getStrVar('keyword');
     $author_id = Input::getStrVar('author_id');
     $sid = Input::getStrVar('sid');
-
-    $categories = [
-        0  => '按分类查找',
-        8  => '博客自媒体',
-        7  => '资源下载',
-        9  => '社区论坛',
-        17 => '网址导航',
-        19 => '企业展示',
-        10 => '通用主题',
-    ];
 
     $r = $Store_Model->getTemplates($tag, $keyword, $page, $author_id, $sid);
     $templates = $r['templates'];
@@ -101,23 +119,6 @@ if ($action === 'plu') {
     $keyword = Input::getStrVar('keyword');
     $author_id = Input::getIntVar('author_id');
     $sid = Input::getIntVar('sid');
-
-    $categories = [
-        0  => '按分类查找',
-        20 => '编辑器',
-        1  => '资源下载',
-        2  => 'SEO优化',
-        18 => '微信生态',
-        3  => '多媒体',
-        4  => '装饰特效',
-        5  => '文件存储',
-        11 => '用户互动',
-        12 => '内容运营',
-        14 => '编程开发',
-        13 => '移动端（小程序）',
-        15 => '内容创作',
-        6  => '功能扩展'
-    ];
 
     $r = $Store_Model->getPlugins($tag, $keyword, $page, $author_id, $sid);
     $plugins = $r['plugins'];

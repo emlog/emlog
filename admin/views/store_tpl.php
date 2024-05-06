@@ -27,7 +27,7 @@
     <div class="d-flex mb-3 mb-sm-0">
         <form action="#" method="get" class="mr-sm-2">
             <select name="action" id="template-category" class="form-control">
-                <?php foreach ($categories as $k => $v) { ?>
+                <?php foreach ($template_categories as $k => $v) { ?>
                     <option value="<?= $k; ?>" <?= $sid == $k ? 'selected' : '' ?>><?= $v; ?></option>
                 <?php } ?>
             </select>
@@ -128,7 +128,7 @@
         $('#template-category').on('change', function () {
             var selectedCategory = $(this).val();
             if (selectedCategory) {
-                window.location.href = './store.php?sid=' + selectedCategory;
+                window.location.href = './store.php?action=tpl&sid=' + selectedCategory;
             }
         });
     });
