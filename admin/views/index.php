@@ -1,23 +1,20 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
 <?php if (isset($_GET['add_shortcut_suc'])): ?>
     <div class="alert alert-success">设置成功</div><?php endif ?>
-    <div class="d-sm-flex align-items-center justify-content-between mb-3">
-        <div class="d-flex align-items-center">
-            <div class="flex-shrink-0">
-                <a class="mr-2" href="blogger.php">
-                    <img src="<?= empty($user_cache[UID]['avatar']) ? './views/images/avatar.svg' : '../' . $user_cache[UID]['avatar'] ?>"
-                         alt="avatar" class="img-fluid rounded-circle border border-mute border-3"
-                         style="width: 56px;">
-                </a>
-            </div>
-            <div class="flex-grow-1 ms-3">
-                <div class="align-items-center mb-3">
-                    <p class="mb-0 m-2"><a class="mr-2" href="blogger.php"><?= $user_cache[UID]['name'] ?></a></p>
-                    <p class="mb-0 m-2 small"><?= $role_name ?></p>
-                </div>
+    <div class="d-flex align-items-center mb-3">
+        <div class="flex-shrink-0">
+            <a class="mr-2" href="blogger.php">
+                <img src="<?= empty($user_cache[UID]['avatar']) ? './views/images/avatar.svg' : '../' . $user_cache[UID]['avatar'] ?>"
+                     alt="avatar" class="img-fluid rounded-circle border border-mute border-3"
+                     style="width: 56px;">
+            </a>
+        </div>
+        <div class="flex-grow-1 ms-3">
+            <div class="align-items-center mb-3">
+                <p class="mb-0 m-2"><a class="mr-2" href="blogger.php"><?= $user_cache[UID]['name'] ?></a></p>
+                <p class="mb-0 m-2 small"><?= $role_name ?></p>
             </div>
         </div>
-        <a href="./article.php?action=write" class="btn btn-sm btn-success shadow-sm mt-4"><i class="icofont-pencil-alt-5"></i> 写文章</a>
     </div>
     <div class="row ml-1 mb-1"><?php doAction('adm_main_top') ?></div>
     <div class="row">
@@ -177,8 +174,8 @@
         </div>
     </div>
 
-    <div class="modal fade bd-example-modal-lg" id="shortcutModal" tabindex="-1" role="dialog" aria-labelledby="mediaSortModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+    <div class="modal fade" id="shortcutModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="shortcutModalLabel">快捷入口</h5>
