@@ -60,7 +60,7 @@
                                 <?php if ($v['top'] === 1): ?>
                                     <span class="badge badge-success p-1">今日推荐</span>
                                 <?php endif; ?>
-                                <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="<?= $v['name'] ?>" data-url="<?= $v['app_url'] ?>" data-buy-url="<?= $v['buy_url'] ?>"><?= subString($v['name'], 0, 22) ?></a>
+                                <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="<?= $v['name'] ?>" data-url="<?= $v['app_url'] ?>" data-buy-url="<?= $v['buy_url'] ?>"><?= subString($v['name'], 0, 15) ?></a>
                             </p>
                             <p class="card-text text-muted">
                                 售价：
