@@ -53,7 +53,7 @@ if (empty($action)) {
     $count = $r['count'];
     $page_count = $r['page_count'];
 
-    $sub_title = '  首页';
+    $sub_title = '全部应用';
     if ($tag === 'free') {
         $sub_title = '免费应用';
     } elseif ($tag === 'paid') {
@@ -87,7 +87,7 @@ if ($action === 'tpl') {
     $count = $r['count'];
     $page_count = $r['page_count'];
 
-    $sub_title = '模板';
+    $sub_title = '模板主题';
     if ($tag === 'free') {
         $sub_title = '免费模板';
     } elseif ($tag === 'paid') {
@@ -125,7 +125,7 @@ if ($action === 'plu') {
     $count = $r['count'];
     $page_count = $r['page_count'];
 
-    $sub_title = '插件';
+    $sub_title = '扩展插件';
     if ($tag === 'free') {
         $sub_title = '免费插件';
     } elseif ($tag === 'paid') {
