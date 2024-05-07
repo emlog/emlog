@@ -34,6 +34,11 @@
                     <input class="form-control" value="<?= $nickname ?>" name="name" maxlength="20" required>
                 </div>
                 <div class="form-group">
+                    <label>用户名</label>
+                    <input class="form-control" value="<?= $username ?>" name="username" id="username">
+                    <small>未设置用户名时，请使用邮箱登录</small>
+                </div>
+                <div class="form-group">
                     <label>邮箱</label>
                     <input type="email" name="email" class="form-control" value="<?= $email ?>" required>
                 </div>
@@ -41,25 +46,9 @@
                     <label>个人描述</label>
                     <textarea name="description" class="form-control"><?= $description ?></textarea>
                 </div>
-
-                <h4 class="mt-4 mb-3">账号密码</h4>
-                <div class="form-group">
-                    <label>登录用户名（为空则使用邮箱登录）</label>
-                    <input class="form-control" value="<?= $username ?>" name="username">
-                </div>
-                <div class="form-group">
-                    <label>新密码（不小于6位，不修改请留空）</label>
-                    <input type="password" class="form-control" value="" autocomplete="new-password" name="newpass">
-                </div>
-                <div class="form-group">
-                    <label>再次输入新密码</label>
-                    <input type="password" class="form-control" value="" name="repeatpass">
-                </div>
-                <div class="form-group">
-                    <?php doAction('blogger_ext') ?>
-                </div>
-                <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
+                <input name="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
                 <input type="submit" value="保存资料" name="submit_form" id="submit_form" class="btn btn-sm btn-success"/>
+                <a href="#" type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#editPasswordModal">修改密码</a>
             </div>
         </form>
     </div>
@@ -91,6 +80,36 @@
     </div>
 </div>
 
+<div class="modal fade" id="editPasswordModal" tabindex="-1" role="dialog" aria-labelledby="editPasswordModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">修改密码</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="blogger.php?action=change_password" id="passwd_setting_form" method="post">
+                    <div class="form-group">
+                        <label>新的密码（不少于6位）</label>
+                        <input type="password" class="form-control" id="new_passwd" name="new_passwd" minlength="6" required>
+                    </div>
+                    <div class="form-group">
+                        <label>重复新的密码</label>
+                        <input type="password" class="form-control" id="new_passwd2" name="new_passwd2" minlength="6" required>
+                    </div>
+                    <div class="modal-footer">
+                        <input name="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
+                        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-sm btn-success">保存</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     $(function () {
         $("#menu_category_sys").addClass('active');
@@ -102,6 +121,13 @@
         $("#profile_setting_form").submit(function (event) {
             event.preventDefault();
             submitForm("#profile_setting_form");
+        });
+
+        // 修改用户密码表单
+        $("#passwd_setting_form").submit(function (event) {
+            event.preventDefault();
+            submitForm("#passwd_setting_form", '密码修改成功, 请退出重新登录');
+            $("#editPasswordModal").modal('hide');
         });
 
         // 裁剪上传头像

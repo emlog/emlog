@@ -250,15 +250,15 @@ if (!$act) {
                 <p class="install-title">管理员设置</p>
                 <div class="input-group mb10">
                     <span class="input-group-text">登录名</span>
-                    <input name="username" type="text" class="form-control">
+                    <input name="username" type="text" class="form-control" required>
                 </div>
                 <div class="input-group mb10">
                     <span class="input-group-text">密码</span>
-                    <input name="password" type="password" class="form-control" placeholder="不小于6位">
+                    <input name="password" type="password" class="form-control" placeholder="不小于6位" required>
                 </div>
                 <div class="input-group mb10">
                     <span class="input-group-text">重复密码</span>
-                    <input name="repassword" type="password" class="form-control">
+                    <input name="repassword" type="password" class="form-control" required>
                 </div>
                 <div class="input-group mb10">
                     <span class="input-group-text">邮箱</span>
