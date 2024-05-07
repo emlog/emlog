@@ -233,7 +233,7 @@
     $(function () {
         Editor = editormd("logcontent", {
             width: "100%",
-            height: 640,
+            height: 745,
             toolbarIcons: function () {
                 return ["bold", "del", "italic", "quote", "|", "h1", "h2", "h3", "|", "list-ul", "list-ol", "hr", "|",
                     "link", "image", "video", "code", "preformatted-text", "code-block", "table", "|", "search", "preview", "fullscreen", "help"]

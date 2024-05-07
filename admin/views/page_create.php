@@ -122,7 +122,7 @@
     $(function () {
         Editor = editormd("pagecontent", {
             width: "100%",
-            height: 640,
+            height: 745,
             toolbarIcons: function () {
                 return ["bold", "del", "italic", "quote", "|",
                     "h1", "h2", "h3", "|",
