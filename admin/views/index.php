@@ -90,10 +90,19 @@
                             操作系统
                             <span class="small"><?= $os ?></span>
                         </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            系统负载
-                            <span class="small"><?= implode(', ', array_map(function ($item) { return round($item, 2); }, sys_getloadavg()));?></span>
-                        </li>
+                        <?php if (function_exists('sys_getloadavg')): ?>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                系统负载
+                                <span class="small"><?= implode(', ', array_map(function ($item) {
+                                        return round($item, 2);
+                                    }, sys_getloadavg())); ?></span>
+                            </li>
+                        <?php else: ?>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                系统时区
+                                <span class="small"><?= Option::get('timezone') ?></span>
+                            </li>
+                        <?php endif ?>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <span>
                             <?php if (!Register::isRegLocal()) : ?>
