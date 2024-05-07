@@ -60,6 +60,10 @@
                             <a href="./twitter.php?all=y">微语</a>
                             <a href="./twitter.php?all=y"><span class="badge badge-primary badge-pill"><?= $sta_cache['note_num'] ?></span></a>
                         </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <a href="./comment.php">评论</a>
+                            <a href="./comment.php"><span class="badge badge-primary badge-pill"><?= $sta_cache['comnum_all'] ?></span></a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -85,6 +89,10 @@
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             操作系统
                             <span class="small"><?= $os ?></span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            系统负载
+                            <span class="small"><?= implode(', ', array_map(function ($item) { return round($item, 2); }, sys_getloadavg()));?></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <span>

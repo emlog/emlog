@@ -28,10 +28,13 @@ if (empty($action)) {
     $role_name = User::getRoleName($role, UID);
     if (extension_loaded('curl')) {
         $c = curl_version();
-        $php_ver .= ',curl' . $c['version'];
+        $php_ver .= ',curl';
     }
     if (class_exists('ZipArchive', false)) {
         $php_ver .= ',zip';
+    }
+    if (extension_loaded('gd')) {
+        $php_ver .= ',gd';
     }
 
     // 快捷入口
