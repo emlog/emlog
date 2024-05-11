@@ -29,7 +29,6 @@
                         <th>描述</th>
                         <th>分类ID</th>
                         <th>别名</th>
-                        <th>查看</th>
                         <th>文章</th>
                         <th>操作</th>
                     </tr>
@@ -63,13 +62,11 @@
                                    data-pid="<?= $value['pid'] ?>"
                                    data-sortimg="<?= $value['sortimg'] ?>"
                                    data-template="<?= $value['template'] ?>"><?= $value['sortname'] ?></a>
+                                <a href="<?= Url::sort($value['sid']) ?>" target="_blank" class="text-muted ml-2"><i class="icofont-external-link"></i></a>
                             </td>
                             <td><?= $value['description'] ?></td>
                             <td><?= $value['sid'] ?></td>
                             <td class="alias"><?= $value['alias'] ?></td>
-                            <td>
-                                <a href="<?= Url::sort($value['sid']) ?>" target="_blank"><img src="./views/images/vlog.gif"/></a>
-                            </td>
                             <td><a href="article.php?sid=<?= $value['sid'] ?>"><?= $value['lognum'] ?></a></td>
                             <td>
                                 <a href="javascript: em_confirm(<?= $value['sid'] ?>, 'sort', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger">删除</a>
@@ -102,13 +99,11 @@
                                             data-pid="<?= $value['pid'] ?>"
                                             data-sortimg="<?= $value['sortimg'] ?>"
                                             data-template="<?= $value['template'] ?>"><?= $value['sortname'] ?></a>
+                                    <a href="<?= Url::sort($value['sid']) ?>" target="_blank" class="text-muted ml-2"><i class="icofont-external-link"></i></a>
                                 </td>
                                 <td><?= $value['description'] ?></td>
                                 <td><?= $value['sid'] ?></td>
                                 <td class="alias"><?= $value['alias'] ?></td>
-                                <td>
-                                    <a href="<?= Url::sort($value['sid']) ?>" target="_blank"><img src="./views/images/vlog.gif"/></a>
-                                </td>
                                 <td><a href="article.php?sid=<?= $value['sid'] ?>"><?= $value['lognum'] ?></a></td>
                                 <td>
                                     <a href="javascript: em_confirm(<?= $value['sid'] ?>, 'sort', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger">删除</a>

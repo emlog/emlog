@@ -120,7 +120,9 @@ $isdraft = $draft ? '&draft=1' : '';
                         <tr>
                             <td style="width: 20px;"><input type="checkbox" name="blog[]" value="<?= $value['gid'] ?>" class="ids"/></td>
                             <td>
-                                <a href="article.php?action=edit&gid=<?= $value['gid'] ?>"><?= $value['title'] ?></a><br>
+                                <a href="article.php?action=edit&gid=<?= $value['gid'] ?>"><?= $value['title'] ?></a>
+                                <a href="<?= Url::log($value['gid']) ?>" target="_blank" class="text-muted ml-2"><i class="icofont-external-link"></i></a>
+                                <br>
                                 <?php if ($value['top'] == 'y'): ?><span class="badge small badge-success">首页置顶</span><?php endif ?>
                                 <?php if ($value['sortop'] == 'y'): ?><span class="badge small badge-info">分类置顶</span><?php endif ?>
                                 <?php if (!$draft && $value['timestamp'] > time()): ?><span class="badge small badge-warning">定时发布</span><?php endif ?>

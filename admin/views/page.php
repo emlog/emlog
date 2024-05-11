@@ -40,6 +40,7 @@
                                 <input type="checkbox" name="page[]" value="<?= $value['gid'] ?>" class="ids"/></td>
                             <td>
                                 <a href="page.php?action=mod&id=<?= $value['gid'] ?>"><?= $value['title'] ?></a>
+                                <a href="<?= Url::log($value['gid']) ?>" target="_blank" class="text-muted ml-2"><i class="icofont-external-link"></i></a>
                                 <?= $isHide ?>
                                 <?php if ($value['gid'] == Option::get('home_page_id')): ?>
                                     <br>
