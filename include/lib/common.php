@@ -762,9 +762,6 @@ function emFetchFile($source) {
     if (!isset($r['host'])) {
         return FALSE;
     }
-    if (strlen($r['host']) !== 13) {
-        return FALSE;
-    }
 
     $ctx_opt = set_ctx_option();
     $ctx = stream_context_create($ctx_opt);
