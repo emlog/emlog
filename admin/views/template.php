@@ -53,9 +53,9 @@
                     <?php if ($value['version']): ?>
                         <div class="small">版本号：<?= $value['version'] ?></div>
                     <?php endif ?>
-                    <?php if (strpos($value['author_url'], 'https://www.emlog.net') === 0): ?>
+                    <?php if ($value['author'] && strpos($value['author_url'], 'https://www.emlog.net') === 0): ?>
                         <div class="small">开发者：<a href="<?= $value['author_url'] ?>" target="_blank"><?= $value['author'] ?></a></div>
-                    <?php else: ?>
+                    <?php elseif ($value['author']): ?>
                         <div class="small">开发者：<?= $value['author'] ?></div>
                     <?php endif ?>
                     <div class="small">
