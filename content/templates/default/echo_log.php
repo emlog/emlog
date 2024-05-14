@@ -8,10 +8,9 @@ defined('EMLOG_ROOT') || exit('access denied!');
     <span class="back-top mh" onclick="history.go(-1);">&laquo;</span>
     <h1 class="log-title"><?php topflg($top) ?><?= $log_title ?></h1>
     <p class="date">
-        <b>时间：</b><?= date('Y-n-j H:i', $date) ?>&nbsp;&nbsp;&nbsp;&nbsp;
-        <b>作者：</b><?php blog_author($author) ?>&nbsp;&nbsp;&nbsp;&nbsp;
-        <b>分类：</b><?php blog_sort($sortid) ?>
-        <?php editflg($logid, $author) ?>
+        <?php blog_author($author) ?> 发布于 <?= date('Y-n-j H:i', $date) ?>&nbsp;&nbsp;&nbsp;&nbsp;
+        <?= $views ?>&nbsp;次阅读 &nbsp;&nbsp;&nbsp;&nbsp;
+        <?php blog_sort($sortid) ?>
     </p>
     <hr class="bottom-5"/>
     <div class="markdown" id="emlogEchoLog"><?= $log_content ?></div>

@@ -365,8 +365,6 @@ function blog_sort($sortID) {
     ?>
     <?php if (!empty($sortName)) { ?>
         <a href="<?= Url::sort($sortID) ?>"><?= $sortName ?></a>
-    <?php } else { ?>
-        <a href="#" title="未分类">无</a>
     <?php }
 } ?>
 <?php
@@ -393,7 +391,7 @@ function blog_tag($blogid) {
     $tag_ids = $tag_model->getTagIdsFromBlogId($blogid);
     $tag_names = $tag_model->getNamesFromIds($tag_ids);
     if (!empty($tag_names)) {
-        $tag = '标签:';
+        $tag = '';
         foreach ($tag_names as $value) {
             $tag .= "    <a href=\"" . Url::tag(rawurlencode($value)) . "\" class='tags' title='标签' >" . htmlspecialchars($value) . '</a>';
         }
