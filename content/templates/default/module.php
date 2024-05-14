@@ -488,7 +488,8 @@ function blog_comments_children($comments, $children) {
                     <?php if ($comment['level'] < 4): ?>
                         <div class="comment-reply">
                             <button class="com-reply comment-replay-btn">回复</button>
-                        </div><?php endif ?>
+                        </div>
+                    <?php endif ?>
                 </div>
             <?php else: ?>
                 <div class="comment-infos-unGravatar">
@@ -497,7 +498,8 @@ function blog_comments_children($comments, $children) {
                     <?php if ($comment['level'] < 4): ?>
                         <div class="comment-reply">
                             <button class="com-reply comment-replay-btn">回复</button>
-                        </div><?php endif ?>
+                        </div>
+                    <?php endif ?>
                 </div>
             <?php endif ?>
             <?php blog_comments_children($comments, $comment['children']) ?>
@@ -513,9 +515,6 @@ function blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allo
     if ($allow_remark == 'y'): ?>
         <div id="comments">
             <div class="comment-post" id="comment-post">
-                <div class="cancel-reply" id="cancel-reply" style="display:none">
-                    <button class="comment-replay-btn">取消回复</button>
-                </div>
                 <form class="commentform" method="post" name="commentform" action="<?= BLOG_URL ?>index.php?action=addcom" id="commentform"
                       is-chinese="<?= $isNeedChinese ?>">
                     <input type="hidden" name="gid" value="<?= $logid ?>"/>
