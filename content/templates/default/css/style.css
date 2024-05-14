@@ -1339,21 +1339,21 @@ body {
 }
 
 .prev-log {
-    margin: 3px 0px;
+    margin: 3px 0;
     float: left;
-    padding: 6px 6px 4px 6px;
-    font-size: medium;
+    padding: 4px 8px 4px 8px;
+    font-size: small;
     border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 50rem
+    border-radius: 0.5rem
 }
 
 .next-log {
-    margin: 3px 0px;
+    margin: 3px 0;
     float: right;
-    padding: 6px 6px 4px 6px;
-    font-size: medium;
+    padding: 4px 8px 4px 8px;
+    font-size: small;
     border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 50rem
+    border-radius: 0.5rem;
 }
 
 .comment-info a {
