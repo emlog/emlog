@@ -245,14 +245,14 @@ class Cache {
 
     private function mc_tags() {
         $tag_cache = [];
-        $tagnum = 100;
+        $tagnum = 50;
         $maxuse = 20;
         $minuse = 0;
         $spread = (min($tagnum, 12));
         $rank = $maxuse - $minuse;
         $rank = ($rank == 0 ? 1 : $rank);
         $rank = $spread / $rank;
-        $query = $this->db->query("SELECT tagname,gid FROM " . DB_PREFIX . "tag order by tid desc limit 100");
+        $query = $this->db->query("SELECT tagname,gid FROM " . DB_PREFIX . "tag order by tid desc limit $tagnum");
         while ($row = $this->db->fetch_array($query)) {
             if ($row['gid'] == ',') {
                 continue;
