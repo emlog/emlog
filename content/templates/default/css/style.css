@@ -1244,7 +1244,8 @@ body {
 .blog-lates, .blog-hot {
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis
+    text-overflow: ellipsis;
+    margin-bottom: 8px;
 }
 
 /* 返回上页图标 */
@@ -1787,4 +1788,27 @@ img.zoom-img {
         font-size: 10px;
         padding-left: 10px;
     }
+}
+
+/* 侧边栏文章封面样式 */
+.side-cover-image {
+    position: relative;
+    width: 100%;
+    height: 160px;
+    background-size: cover;
+    background-position: center;
+}
+
+.side-title-container {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.side-title-container a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 10px;
 }

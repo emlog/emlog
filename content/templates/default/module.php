@@ -201,7 +201,17 @@ function widget_newlog($title) {
         </div>
         <ul class="unstyle-li">
             <?php foreach ($newLogs_cache as $value): ?>
-                <li class="blog-lates"><a href="<?= Url::log($value['gid']) ?>"><?= $value['title'] ?></a></li>
+                <li class="blog-lates" style="position: relative;">
+                    <?php if ($value['cover']): ?>
+                        <div class="side-cover-image" style="background-image: url('<?= $value['cover'] ?>');">
+                            <div class="side-title-container">
+                                <a href="<?= Url::log($value['gid']) ?>"><?= $value['title'] ?></a>
+                            </div>
+                        </div>
+                    <?php else: ?>
+                        <a href="<?= Url::log($value['gid']) ?>"><?= $value['title'] ?></a>
+                    <?php endif ?>
+                </li>
             <?php endforeach ?>
         </ul>
     </div>
@@ -220,7 +230,17 @@ function widget_hotlog($title) {
         </div>
         <ul class="unstyle-li">
             <?php foreach ($hotLogs as $value): ?>
-                <li class="blog-hot"><a href="<?= Url::log($value['gid']) ?>"><?= $value['title'] ?></a></li>
+                <li class="blog-lates" style="position: relative;">
+                    <?php if ($value['cover']): ?>
+                        <div class="side-cover-image" style="background-image: url('<?= $value['cover'] ?>');">
+                            <div class="side-title-container">
+                                <a href="<?= Url::log($value['gid']) ?>"><?= $value['title'] ?></a>
+                            </div>
+                        </div>
+                    <?php else: ?>
+                        <a href="<?= Url::log($value['gid']) ?>"><?= $value['title'] ?></a>
+                    <?php endif ?>
+                </li>
             <?php endforeach ?>
         </ul>
     </div>
