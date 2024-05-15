@@ -1,7 +1,7 @@
 <?php
 /*
 Template Name:默认模板
-Version:1.1.0
+Version:1.1.2
 Template Url:https://www.emlog.net/template/
 Description:EMLOG的系统默认模板
 Author:emlog
