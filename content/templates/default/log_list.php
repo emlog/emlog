@@ -23,7 +23,7 @@ defined('EMLOG_ROOT') || exit('access denied!');
                                     <?php topflg($value['top'], $value['sortop'], isset($sortid) ? $sortid : '') ?>
                                     <?php bloglist_sort($value['sortid']) ?>
                                 </h3>
-                                <div class="loglist-content markdown"><?= $value['log_description'] ?></div>
+                                <div class="loglist-content markdown"><?php echo subContent($value['log_description'], 180, 1); ?></div>
                                 <div class="loglist-tag"><?php blog_tag($value['logid']) ?></div>
                             </div>
                             <hr class="list-line"/>
