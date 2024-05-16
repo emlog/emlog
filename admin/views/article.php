@@ -98,7 +98,7 @@ $isdraft = $draft ? '&draft=1' : '';
                 <table class="table table-bordered table-striped table-hover dataTable no-footer">
                     <thead>
                     <tr>
-                        <th><input type="checkbox" id="checkAll"/></th>
+                        <th><input type="checkbox" id="checkAllItem"/></th>
                         <th>标题</th>
                         <th><a href="article.php?sortComm=<?= $sortComm . $sorturl ?>">评论</a></th>
                         <th><a href="article.php?sortView=<?= $sortView . $sorturl ?>">浏览</a></th>
@@ -108,7 +108,7 @@ $isdraft = $draft ? '&draft=1' : '';
                         <th>操作</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="checkboxContainer">
                     <?php
                     $multiCheckBtn = false; // 是否显示批量审核驳回按钮
                     foreach ($logs as $key => $value):

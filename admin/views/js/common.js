@@ -585,29 +585,21 @@ $(function () {
         }
     })
 
-    // 表格全选
-    $('#checkAll').click(function (event) {
-        let tr_checkbox = $('table tbody tr').find('input[type=checkbox]');
-        tr_checkbox.prop('checked', $(this).prop('checked'));
-        event.stopPropagation();
-    });
-    // 点击表格每一行的checkbox，表格所有选中的checkbox数 = 表格行数时，则将表头的‘checkAll’单选框置为选中，否则置为未选中
-    $('table tbody tr').find('input[type=checkbox]').click(function (event) {
-        let tbr = $('table tbody tr');
-        $('#checkAll').prop('checked', tbr.find('input[type=checkbox]:checked').length == tbr.length ? true : false);
-        event.stopPropagation();
+    // 复选框全选
+    $('#checkAllItem').click(function () {
+        let cardCheckboxes = $('.checkboxContainer').find('input[type=checkbox]');
+        cardCheckboxes.prop('checked', $(this).prop('checked'));
     });
 
-    // 卡片全选
-    $('#checkAllCard').click(function (event) {
-        let card_checkbox = $('.card-body').find('input[type=checkbox]');
-        card_checkbox.prop('checked', $(this).prop('checked'));
-        event.stopPropagation();
-    });
-    $('.card-body').find('input[type=checkbox]').click(function (event) {
-        let cards = $('.card-body');
-        $('#checkAllCard').prop('checked', cards.find('input[type=checkbox]:checked').length == cards.length ? true : false);
-        event.stopPropagation();
+    $('.checkboxContainer').find('input[type=checkbox]').click(function () {
+        let allChecked = true;
+        $('.checkboxContainer').find('input[type=checkbox]').each(function () {
+            if (!$(this).prop('checked')) {
+                allChecked = false;
+                return false;
+            }
+        });
+        $('#checkAllItem').prop('checked', allChecked);
     });
 
     // 应用商店：应用安装

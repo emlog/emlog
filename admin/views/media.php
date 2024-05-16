@@ -37,7 +37,7 @@
     </div>
 <?php endif; ?>
 <form action="media.php?action=operate_media" method="post" name="form_media" id="form_media">
-    <div class="row">
+    <div class="row checkboxContainer">
         <?php foreach ($medias as $key => $value):
             $media_url = getFileUrl($value['filepath']);
             $sort_name = $value['sortname'];
@@ -92,8 +92,8 @@
             <input name="operate" id="operate" value="" type="hidden"/>
             <div class="col-auto my-1">
                 <div class="custom-control custom-checkbox mr-sm-2">
-                    <input type="checkbox" class="custom-control-input" id="checkAllCard">
-                    <label class="custom-control-label" for="checkAllCard">全选</label>
+                    <input type="checkbox" class="custom-control-input" id="checkAllItem">
+                    <label class="custom-control-label" for="checkAllItem">全选</label>
                 </div>
             </div>
             <a href="javascript:mediaact('del');" class="btn btn-sm btn-danger">删除</a>

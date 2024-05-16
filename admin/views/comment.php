@@ -51,7 +51,7 @@
                 <table class="table table-bordered table-striped table-hover" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                     <tr>
-                        <th><input type="checkbox" id="checkAll"/></th>
+                        <th><input type="checkbox" id="checkAllItem"/></th>
                         <th>内容</th>
                         <th>评论人</th>
                         <th>来自文章</th>
@@ -59,7 +59,7 @@
                         <th>操作</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="checkboxContainer">
                     <?php foreach ($comment as $key => $value):
                         $ishide = $value['hide'] == 'y' ? '<span class="text-danger">待审</span>' : '';
                         $mail = $value['mail'] ? " <br />email: {$value['mail']}" : '';

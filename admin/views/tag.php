@@ -27,32 +27,30 @@
         </div>
     </div>
     <form action="tag.php?action=operate_tag" method="post" name="form_tag" id="form_tag">
-        <div class="card-body">
-            <div>
-                <?php if ($tags): ?>
-                    <?php foreach ($tags as $key => $v):
-                        $count = empty($v['gid']) ? 0 : count(explode(',', $v['gid']));
-                        $count_style = $count > 0 ? 'text-muted' : 'text-danger';
-                        ?>
-                        <div class="badge badge-light m-3 p-2">
-                            <h5><a href="#" data-toggle="modal" data-target="#editModal" data-tid="<?= $v['tid'] ?>"
-                                   data-tagname="<?= $v['tagname'] ?>"><?= $v['tagname'] ?></a></h5>
-                            <small class="<?= $count_style ?>">（<a href="./article.php?tagid=<?= $v['tid'] ?>" target="_blank">文章：<?= $count ?></a>）</small>
-                            <input type="checkbox" name="tids[]" value="<?= $v['tid'] ?>" class="tids align-top"/>
-                        </div>
-                    <?php endforeach ?>
-                <?php else: ?>
-                    <p class="m-3">还没有标签，写文章的时候可以给文章打标签</p>
-                <?php endif ?>
-            </div>
+        <div class="card-body checkboxContainer">
+            <?php if ($tags): ?>
+                <?php foreach ($tags as $key => $v):
+                    $count = empty($v['gid']) ? 0 : count(explode(',', $v['gid']));
+                    $count_style = $count > 0 ? 'text-muted' : 'text-danger';
+                    ?>
+                    <div class="badge badge-light m-3 p-2">
+                        <h5><a href="#" data-toggle="modal" data-target="#editModal" data-tid="<?= $v['tid'] ?>"
+                               data-tagname="<?= $v['tagname'] ?>"><?= $v['tagname'] ?></a></h5>
+                        <small class="<?= $count_style ?>">（<a href="./article.php?tagid=<?= $v['tid'] ?>" target="_blank">文章：<?= $count ?></a>）</small>
+                        <input type="checkbox" name="tids[]" value="<?= $v['tid'] ?>" class="tids align-top"/>
+                    </div>
+                <?php endforeach ?>
+            <?php else: ?>
+                <p class="m-3">还没有标签，写文章的时候可以给文章打标签</p>
+            <?php endif ?>
         </div>
         <div class="form-row align-items-center mx-4">
             <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
             <input name="operate" id="operate" value="" type="hidden"/>
             <div class="col-auto my-1">
                 <div class="custom-control custom-checkbox mr-sm-2">
-                    <input type="checkbox" class="custom-control-input" id="checkAllCard">
-                    <label class="custom-control-label" for="checkAllCard">全选</label>
+                    <input type="checkbox" class="custom-control-input" id="checkAllItem">
+                    <label class="custom-control-label" for="checkAllItem">全选</label>
                 </div>
             </div>
             <div class="col-auto my-1 form-inline">

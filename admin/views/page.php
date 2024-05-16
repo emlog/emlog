@@ -19,7 +19,7 @@
                 <table class="table table-bordered table-striped table-hover dataTable no-footer">
                     <thead>
                     <tr>
-                        <th><input type="checkbox" id="checkAll"/></th>
+                        <th><input type="checkbox" id="checkAllItem"/></th>
                         <th>标题</th>
                         <th>评论</th>
                         <th>浏览</th>
@@ -28,7 +28,7 @@
                         <th>时间</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="checkboxContainer">
                     <?php foreach ($pages as $key => $value):
                         $isHide = '';
                         if ($value['hide'] == 'y') {
