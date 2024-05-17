@@ -95,6 +95,7 @@ class Log_Controller {
         $Log_Model->updateViewCount($logid);
 
         if (filter_var($link, FILTER_VALIDATE_URL)) {
+            doAction('log_direct_link', $link);
             emDirect($link);
         }
 
