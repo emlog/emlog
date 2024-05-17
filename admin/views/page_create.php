@@ -26,6 +26,18 @@
             </div>
             <div class="shadow-sm p-3 mb-2 bg-white rounded">
                 <div class="form-group">
+                    <input name="cover" id="cover" class="form-control" placeholder="封面图URL" value="<?= $cover ?>"/>
+                    <div class="row mt-3">
+                        <div class="col-md-4">
+                            <label for="upload_img">
+                                <img src="<?= $cover ?: './views/images/cover.svg' ?>" width="200" id="cover_image" class="rounded" alt="封面图片"/>
+                                <input type="file" name="upload_img" class="image" id="upload_img" style="display:none"/>
+                                <button type="button" id="cover_rm" class="btn-sm btn btn-link" <?php if (!$cover): ?>style="display:none"<?php endif ?>>x</button>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label>链接别名：</label>
                     <input name="alias" id="alias" class="form-control" value="<?= $alias ?>"/>
                     <small class="text-muted">英文字母、数字组成，用于<a href="./setting.php?action=seo">seo设置</a></small>
@@ -91,6 +103,35 @@
                         <button type="button" class="btn btn-success btn-sm mt-2" id="load-more">加载更多…</button>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 封面图裁剪 -->
+<div class="modal fade" id="modal" tabindex="-2" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">上传封面</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="img-container">
+                    <div class="row">
+                        <div class="col-md-11">
+                            <img src="" id="sample_image"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <div>按住 Shift 等比例调整裁剪区域</div>
+                <div>
+                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
+                    <button type="button" id="crop" class="btn btn-sm btn-success">保存</button>
+                </div>
             </div>
         </div>
     </div>
@@ -161,4 +202,87 @@
             pagesave();
         }
     });
+
+    // 封面图
+    $(function () {
+        var $modal = $('#modal');
+        var image = document.getElementById('sample_image');
+        var cropper;
+        $('#upload_img').change(function (event) {
+            var files = event.target.files;
+            var done = function (url) {
+                image.src = url;
+                $modal.modal('show');
+            };
+            if (files && files.length > 0) {
+                reader = new FileReader();
+                reader.onload = function (event) {
+                    done(reader.result);
+                };
+                reader.readAsDataURL(files[0]);
+            }
+        });
+        $modal.on('shown.bs.modal', function () {
+            cropper = new Cropper(image, {
+                aspectRatio: NaN,
+                viewMode: 1
+            });
+        }).on('hidden.bs.modal', function () {
+            cropper.destroy();
+            cropper = null;
+        });
+        $('#crop').click(function () {
+            canvas = cropper.getCroppedCanvas({
+                width: 650,
+                height: 366
+            });
+            canvas.toBlob(function (blob) {
+                var formData = new FormData();
+                formData.append('image', blob, 'cover.jpg');
+                $.ajax('./article.php?action=upload_cover', {
+                    method: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {
+                        $modal.modal('hide');
+                        if (data.code == 0) {
+                            $('#cover_image').attr('src', data.data);
+                            $('#cover').val(data.data);
+                            $('#cover_rm').show();
+                        } else {
+                            alert(data.msg);
+                        }
+                    },
+                    error: function (xhr) {
+                        var data = xhr.responseJSON;
+                        if (data && typeof data === "object") {
+                            alert(data.msg);
+                        } else {
+                            alert("An error occurred during the file upload.");
+                        }
+                    }
+
+                });
+            });
+        });
+
+        $('#cover_rm').click(function () {
+            $('#cover_image').attr('src', "./views/images/cover.svg");
+            $('#cover').val("");
+            $('#cover_rm').hide();
+        });
+    });
+
+    $('#cover').blur(function () {
+            c = $('#cover').val();
+            if (!c) {
+                $('#cover_image').attr('src', "./views/images/cover.svg");
+                $('#cover_rm').hide();
+                return
+            }
+            $('#cover_image').attr('src', c);
+            $('#cover_rm').show();
+        }
+    );
 </script>

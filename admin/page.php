@@ -42,6 +42,7 @@ if ($action == 'new') {
         'is_home_page'    => 'n',
         'att_frame_url'   => 'attachment.php?action=selectFile',
         'link'            => '',
+        'cover'           => '',
     );
     extract($pageData);
 
@@ -97,6 +98,7 @@ if ($action == 'save') {
     $allow_remark = isset($_POST['allow_remark']) ? addslashes(trim($_POST['allow_remark'])) : 'n';
     $home_page = isset($_POST['home_page']) ? addslashes(trim($_POST['home_page'])) : 'n';
     $link = Input::postStrVar('link');
+    $cover = Input::postStrVar('cover');
 
     $postTime = time();
 
@@ -116,6 +118,7 @@ if ($action == 'save') {
         'type'         => 'page',
         'template'     => $template,
         'link'         => $link,
+        'cover'        => $cover,
     );
 
     $directUrl = '';

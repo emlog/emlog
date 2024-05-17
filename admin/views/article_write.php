@@ -186,9 +186,6 @@
         </div>
     </div>
 </div>
-<div class="dropzone-previews" style="display: none;"></div>
-<script src="./views/js/dropzone.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
-<script src="./views/js/media-lib.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
 <!-- 封面图裁剪 -->
 <div class="modal fade" id="modal" tabindex="-2" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" data-backdrop="static">
     <div class="modal-dialog modal-lg" role="document">
@@ -218,6 +215,9 @@
         </div>
     </div>
 </div>
+<div class="dropzone-previews" style="display: none;"></div>
+<script src="./views/js/dropzone.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
+<script src="./views/js/media-lib.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
 <script src="./editor.md/editormd.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
 <script>
     $("#alias").keyup(function () {
