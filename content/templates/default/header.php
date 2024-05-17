@@ -2,7 +2,7 @@
 /*
 Template Name:默认模板
 Version:1.1.2
-Template Url:https://www.emlog.net/template/
+Template Url:https://www.emlog.net/template/detail/1167
 Description:EMLOG的系统默认模板
 Author:emlog
 Author Url:https://www.emlog.net/author/index/577
