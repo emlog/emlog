@@ -350,6 +350,7 @@
 
     // 离开页面时，如果文章内容已做修改，则询问用户是否离开
     var articleTextRecord;
+    var titleText = $('title').text();
     hooks.addAction("loaded", function () {
         articleTextRecord = $("textarea[name=logcontent]").text();
     });
@@ -360,17 +361,6 @@
         return '离开页面提示';
     }
 
-    // 如果文章内容已做修改，则使网页标题修改为‘已修改’
-    var titleText = $('title').text()
-    hooks.addAction("loaded", function (obj) {
-        obj.config({
-            onchange: function () {
-                if ($("textarea[name=logcontent]").text() == articleTextRecord) return
-                $('title').text('[已修改] ' + titleText);
-            }
-        });
-    });
-
     // 文章编辑界面全局快捷键 Ctrl（Cmd）+ S 保存内容
     document.addEventListener('keydown', function (e) {
         if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
@@ -378,15 +368,6 @@
             autosave(2);
         }
     });
-
-    // Use cookie to decide whether to collapse [More Options]
-    if (Cookies.get('em_advset') === "right") {
-        $("#advset").toggle();
-        icon_mod = "right";
-        $(".icofont-simple-down").attr("class", "icofont-simple-right")
-    } else {
-        $(".icofont-simple-right").attr("class", "icofont-simple-down")
-    }
 
     // 显示插件扩展label
     const postBar = $("#post_bar");

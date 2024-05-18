@@ -1,7 +1,7 @@
 "use strict"
 
 /**
- * jqurey添加动画扩展。先加速度至配速的50%，再减速到零
+ * jqurey 的动画扩展“缓进缓出”
  */
 jQuery.extend(jQuery.easing, {
     easeInOut: function (x, t, b, c, d) {
@@ -16,7 +16,7 @@ var myBlog = {
      */
     init: function () {
         this.tocAnalyse()  // toc目录生成
-        if ($("#comment-info").length == 0) {  // 大屏幕登录状态，评论框下两角变圆角
+        if ($("#comment-info").length === 0) {  // 大屏幕登录状态，评论框下两角变圆角
             $(".commentform #comment").css("height", "140px")
                 .css('border-radius', '10px')
         }
@@ -24,7 +24,7 @@ var myBlog = {
             let $this = $(".markdown img:eq(" + num + ")")
             let sourceSrc = $(".markdown img:eq(" + num + ")").parent().attr('href')
 
-            if (typeof sourceSrc == "undefined" || sourceSrc.match(/\.(jpeg|jpg|gif|png)$/i) == null) {
+            if (typeof sourceSrc === "undefined" || sourceSrc.match(/\.(jpeg|jpg|gif|png)$/i) === null) {
                 continue
             }
 
@@ -64,7 +64,7 @@ var myBlog = {
         effect = 'easeInOut'
         $navbar = $("#navbarResponsive")
         $nav_c = $(".blog-header-c")
-        nav_height = ($nav_c.height() == 74) ? $navbar.height() + 74 : 74
+        nav_height = ($nav_c.height() === 74) ? $navbar.height() + 74 : 74
 
         $nav_c.animate({height: nav_height + 'px'}, time, effect)
         $navbar.slideToggle(time, effect)
@@ -87,7 +87,7 @@ var myBlog = {
      * 提交评论前对表单的验证
      */
     comTip: '', comSubmitTip: function (value) {
-        if (value == 'judge') {
+        if (value === 'judge') {
             let cnReg = /[\u4e00-\u9fa5]/
             let mailReg = /^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/
             let urlReg = /[^\s]*\.+[^\s]/
@@ -97,18 +97,18 @@ var myBlog = {
             let mail = $('#info_m').val()
             let url = $('#info_u').val()
 
-            if (isCn == 'y' && !cnReg.test(comContent)) {
+            if (isCn === 'y' && !cnReg.test(comContent)) {
                 this.comTip = "评论内容需要包含中文！"
-            } else if (typeof mail !== "undefined" && mail != '' && !mailReg.test(mail)) {
+            } else if (typeof mail !== "undefined" && mail !==  '' && !mailReg.test(mail)) {
                 this.comTip = "邮箱格式错误！"
-            } else if (typeof url !== "undefined" && url != '' && !urlReg.test(url)) {
+            } else if (typeof url !== "undefined" && url !==  '' && !urlReg.test(url)) {
                 this.comTip = "网址格式错误！"
             } else {
                 this.comTip = ''
             }
         } else {
-            if (this.comTip != '') {
-                alert(this.comTip)
+            if (this.comTip !==  '') {
+                infoAlert(this.comTip)
                 return false
             } else {
                 return true
@@ -177,7 +177,7 @@ var myBlog = {
     tocAnalyse: function () {
         var tocFlag = document.querySelector("#emlogEchoLog p")
 
-        if ($("#emlogEchoLog").length == 0) return  // 不在阅读页面  退出
+        if ($("#emlogEchoLog").length === 0) return  // 不在阅读页面  退出
         if (!this.tocFlag.test($('#emlogEchoLog').html().substring(0, 30))) return  // 未声明 toc 标签，退出
         tocFlag.innerHTML = tocFlag.innerHTML.replace(this.tocFlag, "")  // 去除 toc 声明
 
@@ -222,9 +222,9 @@ var myBlog = {
             let isPadding = ''
             let isBold = ['', '']
 
-            if (itemType != judgeN) isPadding = 'style="padding-top:' + chilPad + 'px"'
+            if (itemType !==  judgeN) isPadding = 'style="padding-top:' + chilPad + 'px"'
             tocHtml = tocHtml + '<li ' + isPadding + ' id="to' + i + '" title="' + data[i]['content'] + '" >'
-            if (itemType == minType) {
+            if (itemType === minType) {
                 isBold[0] = '<b>'
                 isBold[1] = '</b>'
             }
@@ -334,7 +334,7 @@ var myBlog = {
         }),
 
             $("html").click(function (e) {
-                if ($(".toc-con") && $(".toc-con").css("display") == "block") {
+                if ($(".toc-con") && $(".toc-con").css("display") === "block") {
                     $(".toc-con").hide()
                 }
                 e.stopPropagation()
