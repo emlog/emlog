@@ -569,14 +569,15 @@ function blog_tool_ishome() {
 ?>
 <?php
 function getEmUserAvatar($uid, $mail) {
+    $avatar = '';
     if ($uid) {
         $userModel = new User_Model();
         $user = $userModel->getOneUser($uid);
-        $avatar = $user['photo'] ?: BLOG_URL . "admin/views/images/avatar.svg";
-    } else {
+        $avatar = $user['photo'];
+    } elseif ($mail) {
         $avatar = getGravatar($mail);
     }
-    return $avatar;
+    return $avatar ?: BLOG_URL . "admin/views/images/avatar.svg";
 }
 
 ?>
