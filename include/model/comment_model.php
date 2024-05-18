@@ -213,12 +213,13 @@ class Comment_Model {
         }
 
         $name = addslashes($user_info['name_orig']);
+        $mail = addslashes($user_info['email']);
         $uid = UID;
         $ipaddr = getIp();
         $timestamp = time();
         $useragent = addslashes(getUA());
         $this->db->query("INSERT INTO " . DB_PREFIX . "comment (date,poster,uid,gid,comment,mail,url,hide,ip,agent,pid)
-                    VALUES ('$timestamp','$name',$uid,$blogId,'$content','','','$hide','$ipaddr','$useragent',$pid)");
+                    VALUES ('$timestamp','$name',$uid,$blogId,'$content','$mail','','$hide','$ipaddr','$useragent',$pid)");
         $this->updateCommentNum($blogId);
     }
 
