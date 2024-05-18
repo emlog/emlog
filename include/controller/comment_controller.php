@@ -59,8 +59,6 @@ class Comment_Controller {
             $err = '请填写评论内容';
         } elseif (strlen($content) > 60000) {
             $err = '内容内容太长了';
-        } elseif (User::isVisitor() && Option::get('comment_needchinese') == 'y' && !preg_match('/[\x{4e00}-\x{9fa5}]/iu', $content)) {
-            $err = '评论内容需包含中文';
         } elseif (ISLOGIN === false && Option::get('comment_code') == 'y' && session_start() && (empty($imgcode) || $imgcode !== $_SESSION['code'])) {
             $err = '验证码错误';
         } elseif (empty($ua) || preg_match('/bot|crawler|spider|robot|crawling/i', $ua)) {

@@ -162,7 +162,6 @@ function widget_twitter($title) {
 function widget_newcomm($title) {
     global $CACHE;
     $com_cache = $CACHE->readCache('comment');
-    $isGravatar = Option::get('isgravatar');
     ?>
     <div class="widget shadow-theme">
         <div class="widget-title">
@@ -175,9 +174,7 @@ function widget_newcomm($title) {
                 $url = Url::comment($value['gid'], $value['page'], $value['cid']);
                 ?>
                 <li class="comment-info">
-                    <?php if ($isGravatar == 'y'): ?>
-                        <img class='comment-info_img' src="<?= getGravatar($value['mail']) ?>" alt="commentator"/>
-                    <?php endif ?>
+                    <img class='comment-info_img' src="<?= getGravatar($value['mail']) ?>" alt="commentator"/>
                     <span class='comm-lates-name'><?= $value['name'] ?></span>
                     <span class='logcom-latest-time'><?= smartDate($value['date']) ?></span><br/>
                     <a href="<?= $url ?>"><?= $value['content'] ?></a>
@@ -455,32 +452,23 @@ function blog_comments($comments) {
         <div class="comment-header"><b>评论：</b></div>
     <?php endif ?>
     <?php
-    $isGravatar = Option::get('isgravatar');
-
     foreach ($commentStacks as $cid):
         $comment = $comments[$cid];
         $comment['poster'] = $comment['url'] ? '<a href="' . $comment['url'] . '" rel="external nofollow" target="_blank">' . $comment['poster'] . '</a>' : $comment['poster'];
         ?>
         <div class="comment" id="<?= $comment['cid'] ?>">
-            <?php if ($isGravatar == 'y'): ?>
-                <div class="avatar"><img src="<?= getGravatar($comment['mail']) ?>" alt="avatar"/></div>
-                <div class="comment-infos">
-                    <div class="arrow"></div>
-                    <b><?= $comment['poster'] ?> </b><span class="comment-time"><?= $comment['date'] ?></span>
-                    <div class="comment-content"><?= $comment['content'] ?></div>
-                    <div class="comment-reply">
-                        <button class="com-reply comment-replay-btn">回复</button>
-                    </div>
+            <?php
+            $avatar = getEmUserAvatar($comment['uid'], $comment['mail']);
+            ?>
+            <div class="avatar"><img src="<?= $avatar ?>" alt="avatar"/></div>
+            <div class="comment-infos">
+                <div class="arrow"></div>
+                <b><?= $comment['poster'] ?> </b><span class="comment-time"><?= $comment['date'] ?></span>
+                <div class="comment-content"><?= $comment['content'] ?></div>
+                <div class="comment-reply">
+                    <button class="com-reply comment-replay-btn">回复</button>
                 </div>
-            <?php else: ?>
-                <div class="comment-infos-unGravatar">
-                    <b><?= $comment['poster'] ?> </b><span class="comment-time"><?= $comment['date'] ?></span>
-                    <div class="comment-content"><?= $comment['content'] ?></div>
-                    <div class="comment-reply">
-                        <button class="com-reply comment-replay-btn">回复</button>
-                    </div>
-                </div>
-            <?php endif ?>
+            </div>
             <?php blog_comments_children($comments, $comment['children']) ?>
         </div>
     <?php endforeach ?>
@@ -493,35 +481,25 @@ function blog_comments($comments) {
  * 文章详情页：子评论
  */
 function blog_comments_children($comments, $children) {
-    $isGravatar = Option::get('isgravatar');
     foreach ($children as $child):
         $comment = $comments[$child];
         $comment['poster'] = $comment['url'] ? '<a href="' . $comment['url'] . '" rel="external nofollow" target="_blank">' . $comment['poster'] . '</a>' : $comment['poster'];
         ?>
         <div class="comment comment-children" id="<?= $comment['cid'] ?>">
-            <?php if ($isGravatar == 'y'): ?>
-                <div class="avatar"><img src="<?= getGravatar($comment['mail']) ?>" alt="commentator"/></div>
-                <div class="comment-infos">
-                    <div class="arrow"></div>
-                    <b><?= $comment['poster'] ?> </b><span class="comment-time"><?= $comment['date'] ?></span>
-                    <div class="comment-content"><?= $comment['content'] ?></div>
-                    <?php if ($comment['level'] < 4): ?>
-                        <div class="comment-reply">
-                            <button class="com-reply comment-replay-btn">回复</button>
-                        </div>
-                    <?php endif ?>
-                </div>
-            <?php else: ?>
-                <div class="comment-infos-unGravatar">
-                    <b><?= $comment['poster'] ?> </b><span class="comment-time"><?= $comment['date'] ?></span>
-                    <div class="comment-content"><?= $comment['content'] ?></div>
-                    <?php if ($comment['level'] < 4): ?>
-                        <div class="comment-reply">
-                            <button class="com-reply comment-replay-btn">回复</button>
-                        </div>
-                    <?php endif ?>
-                </div>
-            <?php endif ?>
+            <?php
+            $avatar = getEmUserAvatar($comment['uid'], $comment['mail']);
+            ?>
+            <div class="avatar"><img src="<?= $avatar ?>" alt="commentator"/></div>
+            <div class="comment-infos">
+                <div class="arrow"></div>
+                <b><?= $comment['poster'] ?> </b><span class="comment-time"><?= $comment['date'] ?></span>
+                <div class="comment-content"><?= $comment['content'] ?></div>
+                <?php if ($comment['level'] < 4): ?>
+                    <div class="comment-reply">
+                        <button class="com-reply comment-replay-btn">回复</button>
+                    </div>
+                <?php endif ?>
+            </div>
             <?php blog_comments_children($comments, $comment['children']) ?>
         </div>
     <?php endforeach ?>
@@ -531,15 +509,14 @@ function blog_comments_children($comments, $children) {
  * 文章详情页：评论表单
  */
 function blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allow_remark) {
-    $isNeedChinese = Option::get('comment_needchinese');
+    $isLoginComment = Option::get('login_comment');
     if ($allow_remark == 'y'): ?>
         <div id="comments">
             <div class="comment-post" id="comment-post">
-                <form class="commentform" method="post" name="commentform" action="<?= BLOG_URL ?>index.php?action=addcom" id="commentform"
-                      is-chinese="<?= $isNeedChinese ?>">
+                <form class="commentform" method="post" name="commentform" action="<?= BLOG_URL ?>index.php?action=addcom" id="commentform">
                     <input type="hidden" name="gid" value="<?= $logid ?>"/>
                     <textarea class="form-control log_comment" name="comment" id="comment" rows="10" tabindex="4" required></textarea>
-                    <?php if (User::isVisitor()): ?>
+                    <?php if (User::isVisitor() && $isLoginComment === 'n'): ?>
                         <div class="comment-info" id="comment-info">
                             <input class="form-control com_control comment-name" id="info_n" autocomplete="off" type="text" name="comname" maxlength="49"
                                    value="<?= $ckname ?>" size="22"
@@ -552,13 +529,15 @@ function blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allo
                                    tabindex="3" placeholder="个人主页"/>
                         </div>
                     <?php endif ?>
-
                     <span class="com_submit_p">
-                        <input class="btn"<?php if ($verifyCode != "") { ?> type="button" data-toggle="modal" data-target="#myModal"<?php } else { ?> type="submit" <?php } ?>
+                        <?php if (User::isVisitor() && $isLoginComment === 'y'): ?>
+                            请先 <a href="./admin/index.php">登录</a> 再评论
+                        <?php else: ?>
+                            <input class="btn"<?php if ($verifyCode != "") { ?> type="button" data-toggle="modal" data-target="#myModal"<?php } else { ?> type="submit" <?php } ?>
                                id="comment_submit" value="发布评论" tabindex="6"/>
+                        <?php endif; ?>
                     </span>
                     <?php if ($verifyCode != "") { ?>
-                        <!-- 验证窗口 -->
                         <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content" style="display: table-cell;">
@@ -574,7 +553,6 @@ function blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allo
                             </div>
                             <div class="lock-screen"></div>
                         </div>
-                        <!-- 验证窗口(end) -->
                     <?php } ?>
                     <input type="hidden" name="pid" id="comment-pid" value="0" tabindex="1"/>
                 </form>
@@ -592,6 +570,19 @@ function blog_tool_ishome() {
     } else {
         return FALSE;
     }
+}
+
+?>
+<?php
+function getEmUserAvatar($uid, $mail) {
+    if ($uid) {
+        $userModel = new User_Model();
+        $user = $userModel->getOneUser($uid);
+        $avatar = $user['photo'];
+    } else {
+        $avatar = getGravatar($mail);
+    }
+    return $avatar;
 }
 
 ?>

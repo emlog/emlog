@@ -17,12 +17,10 @@ if (empty($action)) {
     extract($options_cache);
 
     $conf_comment_code = $comment_code == 'y' ? 'checked="checked"' : '';
-    $conf_comment_needchinese = $comment_needchinese == 'y' ? 'checked="checked"' : '';
     $conf_iscomment = $iscomment == 'y' ? 'checked="checked"' : '';
     $conf_login_comment = $login_comment == 'y' ? 'checked="checked"' : '';
     $conf_ischkcomment = $ischkcomment == 'y' ? 'checked="checked"' : '';
     $conf_isthumbnail = $isthumbnail == 'y' ? 'checked="checked"' : '';
-    $conf_isgravatar = $isgravatar == 'y' ? 'checked="checked"' : '';
     $conf_comment_paging = $comment_paging == 'y' ? 'checked="checked"' : '';
     $conf_detect_url = $detect_url == 'y' ? 'checked="checked"' : '';
     $conf_accept_app_recs = $accept_app_recs == 'y' ? 'checked="checked"' : '';
@@ -163,7 +161,6 @@ if ($action == 'save') {
         'index_lognum'        => Input::postIntVar('index_lognum'),
         'timezone'            => Input::postStrVar('timezone'),
         'comment_code'        => Input::postStrVar('comment_code', 'n'),
-        'comment_needchinese' => Input::postStrVar('comment_needchinese', 'n'),
         'comment_interval'    => Input::postIntVar('comment_interval', 15),
         'iscomment'           => Input::postStrVar('iscomment', 'n'),
         'login_comment'       => Input::postStrVar('login_comment', 'n'),
@@ -171,7 +168,6 @@ if ($action == 'save') {
         'isthumbnail'         => Input::postStrVar('isthumbnail', 'n'),
         'rss_output_num'      => Input::postIntVar('rss_output_num', 10),
         'rss_output_fulltext' => Input::postStrVar('rss_output_fulltext', 'y'),
-        'isgravatar'          => Input::postStrVar('isgravatar', 'n'),
         'comment_paging'      => Input::postStrVar('comment_paging', 'n'),
         'comment_pnum'        => Input::postIntVar('comment_pnum'),
         'comment_order'       => Input::postStrVar('comment_order', 'newer'),
