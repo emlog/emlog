@@ -88,27 +88,18 @@ var myBlog = {
      */
     comTip: '', comSubmitTip: function (value) {
         if (value === 'judge') {
-            let cnReg = /[\u4e00-\u9fa5]/
             let mailReg = /^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/
-            let urlReg = /[^\s]*\.+[^\s]/
 
-            let isCn = $('#commentform').attr('is-chinese')
-            let comContent = $('#comment').val()
             let mail = $('#info_m').val()
-            let url = $('#info_u').val()
 
-            if (isCn === 'y' && !cnReg.test(comContent)) {
-                this.comTip = "评论内容需要包含中文！"
-            } else if (typeof mail !== "undefined" && mail !==  '' && !mailReg.test(mail)) {
+            if (typeof mail !== "undefined" && mail !== '' && !mailReg.test(mail)) {
                 this.comTip = "邮箱格式错误！"
-            } else if (typeof url !== "undefined" && url !==  '' && !urlReg.test(url)) {
-                this.comTip = "网址格式错误！"
             } else {
                 this.comTip = ''
             }
         } else {
-            if (this.comTip !==  '') {
-                infoAlert(this.comTip)
+            if (this.comTip !== '') {
+                alert(this.comTip)
                 return false
             } else {
                 return true
@@ -222,7 +213,7 @@ var myBlog = {
             let isPadding = ''
             let isBold = ['', '']
 
-            if (itemType !==  judgeN) isPadding = 'style="padding-top:' + chilPad + 'px"'
+            if (itemType !== judgeN) isPadding = 'style="padding-top:' + chilPad + 'px"'
             tocHtml = tocHtml + '<li ' + isPadding + ' id="to' + i + '" title="' + data[i]['content'] + '" >'
             if (itemType === minType) {
                 isBold[0] = '<b>'

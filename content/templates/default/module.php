@@ -172,9 +172,10 @@ function widget_newcomm($title) {
             <?php
             foreach ($com_cache as $value):
                 $url = Url::comment($value['gid'], $value['page'], $value['cid']);
+                $avatar = getEmUserAvatar($value['uid'], $value['mail']);
                 ?>
                 <li class="comment-info">
-                    <img class='comment-info_img' src="<?= getGravatar($value['mail']) ?>" alt="commentator"/>
+                    <img class='comment-info_img' src="<?= $avatar ?>" alt="commentator"/>
                     <span class='comm-lates-name'><?= $value['name'] ?></span>
                     <span class='logcom-latest-time'><?= smartDate($value['date']) ?></span><br/>
                     <a href="<?= $url ?>"><?= $value['content'] ?></a>
@@ -454,7 +455,6 @@ function blog_comments($comments) {
     <?php
     foreach ($commentStacks as $cid):
         $comment = $comments[$cid];
-        $comment['poster'] = $comment['url'] ? '<a href="' . $comment['url'] . '" rel="external nofollow" target="_blank">' . $comment['poster'] . '</a>' : $comment['poster'];
         ?>
         <div class="comment" id="<?= $comment['cid'] ?>">
             <?php
@@ -483,7 +483,6 @@ function blog_comments($comments) {
 function blog_comments_children($comments, $children) {
     foreach ($children as $child):
         $comment = $comments[$child];
-        $comment['poster'] = $comment['url'] ? '<a href="' . $comment['url'] . '" rel="external nofollow" target="_blank">' . $comment['poster'] . '</a>' : $comment['poster'];
         ?>
         <div class="comment comment-children" id="<?= $comment['cid'] ?>">
             <?php
@@ -524,9 +523,6 @@ function blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allo
                             <input class="form-control com_control comment-mail" id="info_m" autocomplete="off" type="text" name="commail" maxlength="128"
                                    value="<?= $ckmail ?>" size="22"
                                    tabindex="2" placeholder="邮箱"/>
-                            <input class="form-control com_control comment-url" id="info_u" autocomplete="off" type="text" name="comurl" maxlength="128"
-                                   value="<?= $ckurl ?>" size="22"
-                                   tabindex="3" placeholder="个人主页"/>
                         </div>
                     <?php endif ?>
                     <span class="com_submit_p">
@@ -541,9 +537,7 @@ function blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allo
                         <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content" style="display: table-cell;">
-                                    <div class="modal-header" style="border-bottom: 0px;">
-                                        输入验证码
-                                    </div>
+                                    <div class="modal-header" style="border-bottom: 0px;">输入验证码</div>
                                     <?= $verifyCode ?>
                                     <div class="modal-footer" style="border-top: 0px;">
                                         <button type="button" class="btn" id="close-modal" data-dismiss="modal">关闭</button>
@@ -578,7 +572,7 @@ function getEmUserAvatar($uid, $mail) {
     if ($uid) {
         $userModel = new User_Model();
         $user = $userModel->getOneUser($uid);
-        $avatar = $user['photo'];
+        $avatar = $user['photo'] ?: BLOG_URL . "admin/views/images/avatar.svg";
     } else {
         $avatar = getGravatar($mail);
     }

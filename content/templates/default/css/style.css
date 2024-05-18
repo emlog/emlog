@@ -727,10 +727,6 @@ body {
 }
 
 .comment-mail {
-    float: left
-}
-
-.comment-url {
     border-right: 1px #d6d6d6 solid !important;
     border-bottom-right-radius: 10px !important
 }
@@ -809,7 +805,7 @@ body {
     padding: 7px 40px;
     font-size: small;
     color: #848797;
-    width: 33.3333334%
+    width: 50%
 }
 
 .comment-post #comment {
