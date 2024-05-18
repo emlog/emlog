@@ -40,7 +40,7 @@
                         <div class="card-text d-flex justify-content-between">
                             <div class="installMsg"></div>
                             <div>
-                                <a href="#" class="btn btn-success installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-type="plu">免费安装</a>
+                                <a href="#" class="btn btn-success installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-type="plu">安装应用</a>
                             </div>
                         </div>
                     </div>
