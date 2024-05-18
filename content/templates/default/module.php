@@ -333,7 +333,7 @@ function blog_navi() {
                         </ul>
                     <?php endif ?>
                     <?php if (!empty($value['childnavi'])) : ?>
-                        <a class='nav-link has-down' id="nav_link" <?= $newtab ?> ><?= $value['naviname'] ?></a>
+                        <a class='nav-link has-down' id="nav_link" href="<?= $value['url'] ?>" <?= $newtab ?> ><?= $value['naviname'] ?></a>
                         <ul class="dropdown-menus">
                             <?php foreach ($value['childnavi'] as $row) {
                                 $newtab = $row['newtab'] == 'y' ? 'target="_blank"' : '';
