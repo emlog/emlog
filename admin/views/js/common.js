@@ -230,7 +230,7 @@ function checkform() {
     if (0 == isalias(a)) {
         return true;
     } else {
-        alert("链接别名错误");
+        infoAlert("链接别名错误");
         $("#alias").focus();
         return false;
     }
@@ -252,7 +252,7 @@ function checkalias() {
     }
 }
 
-// act 1：auto save 2：save
+// act 1：Auto save 2：User manually saves
 function autosave(act) {
     const nodeid = "as_logid";
     const timeout = 60000;
@@ -281,10 +281,8 @@ function autosave(act) {
         return;
     }
     // 距离上次保存成功时间小于一秒时不允许手动保存
-    if ((new Date().getTime() - Cookies.get('em_saveLastTime')) < 1000 && act != 1) {
-        alert("请勿频繁操作！");
-        return;
-    }
+    if ((new Date().getTime() - Cookies.get('em_saveLastTime')) < 1000 && act != 1) return;
+
     const $savedf = $("#savedf");
     const btname = $savedf.val();
     $savedf.val("正在保存中...").attr("disabled", "disabled");
@@ -301,6 +299,9 @@ function autosave(act) {
             const tm = (h < 10 ? "0" + h : h) + ":" + (m < 10 ? "0" + m : m);
             $("#save_info").html("保存于：" + tm + " <a href=\"../?post=" + logid + "\" target=\"_blank\">预览文章</a>");
             $('title').text('[保存成功] ' + titleText);
+            setTimeout(function () {
+                $('title').text(titleText);
+            }, 2000);
             articleTextRecord = $("#addlog textarea[name=logcontent]").val(); // 保存成功后，将原文本记录值替换为现在的文本
             Cookies.set('em_saveLastTime', new Date().getTime()); // 把保存成功时间戳记录（或更新）到 cookie 中
             $("#" + nodeid).val(logid);
@@ -326,8 +327,8 @@ function pagesave() {
         }
     });
     let url = "page.php?action=save";
-    if ($("[name='pageid']").attr("value") < 0) return alert("请先保存页面！");
-    if (!$("[name='pagecontent']").html()) return alert("页面内容不能为空！");
+    if ($("[name='pageid']").attr("value") < 0) return infoAlert("请先发布页面！");
+    if (!$("[name='pagecontent']").html()) return infoAlert("页面内容不能为空！");
     $('title').text('[保存中...] ' + pagetitle);
     $.post(url, $("#addlog").serialize(), function (data) {
         $('title').text('[保存成功] ' + pagetitle);
@@ -337,7 +338,7 @@ function pagesave() {
         pageText = $("textarea").text();
     }).fail(function () {
         $('title').text('[保存失败] ' + pagetitle);
-        alert("保存失败！")
+        infoAlert("保存失败！")
     });
 }
 
@@ -369,7 +370,8 @@ var hooks = {
         if (typeof func == 'function') {
             queue[hook].push(func);
         }
-    }, doAction: function (hook, obj) {
+    }, 
+    doAction: function (hook, obj) {
         try {
             for (var i = 0; i < queue[hook].length; i++) {
                 queue[hook][i](obj);
@@ -466,11 +468,11 @@ function imgPasteExpand(thisEditor) {
                         replaceByNum(`[![](${image.media_icon})](${image.media_url})`, 10);  // 这里的数字 10 对应着’上传中...100%‘是10个字符
                     } else {
                         console.log('获取结果失败！')
-                        alert('获取结果失败！');
+                        infoAlert('获取结果失败！');
                     }
                 })
             }, error: function (result) {
-                alert('上传失败,图片类型错误或网络错误');
+                infoAlert('上传失败,图片类型错误或网络错误');
                 replaceByNum('上传失败,图片类型错误或网络错误', 6);
             }
         })
