@@ -807,7 +807,8 @@ function emDownFile($source) {
 }
 
 function set_ctx_option() {
-    $data = http_build_query(['emkey' => Option::get('emkey')]);
+    $emkey = Option::get('emkey');
+    $data = http_build_query(['emkey' => $emkey]);
     return [
         'http' => [
             'timeout' => 120,
@@ -815,6 +816,7 @@ function set_ctx_option() {
             'header'  => "Content-type: application/x-www-form-urlencoded\r\n"
                 . "Content-Length: " . strlen($data) . "\r\n"
                 . "Referer: " . BLOG_URL . "\r\n"
+                . "Emkey: " . $emkey . "\r\n"
                 . "User-Agent: emlog " . Option::EMLOG_VERSION . "\r\n",
             'content' => $data
         ],
