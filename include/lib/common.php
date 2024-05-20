@@ -758,11 +758,6 @@ function emFetchFile($source) {
     $temp_file = tempnam(EMLOG_ROOT . '/content/cache/', 'tmp_');
     $wh = fopen($temp_file, 'w+b');
 
-    $r = parse_url($source);
-    if (!isset($r['host'])) {
-        return FALSE;
-    }
-
     $ctx_opt = set_ctx_option();
     $ctx = stream_context_create($ctx_opt);
     $rh = @fopen($source, 'rb', false, $ctx);
