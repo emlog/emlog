@@ -531,7 +531,12 @@ function checkUpdate() {
         } else if (result.code === 200) {
             rep_msg = `有可用的新版本：<span class="text-danger">${result.data.version}</span> <br><br>`;
             rep_changes = "<b>更新内容</b>:<br>" + result.data.changes;
-            rep_btn = `<hr><a href="javascript:doUp('${result.data.cdn_file}','${result.data.cdn_sql}');" id="upbtn" class="btn btn-success btn-sm">现在更新</a>`;
+
+            // 检查 cdn_sql 和 cdn_file 是否为空
+            let sqlFile = result.data.cdn_sql || result.data.sql;
+            let fileFile = result.data.cdn_file || result.data.file;
+
+            rep_btn = `<hr><a href="javascript:doUp('${fileFile}','${sqlFile}');" id="upbtn" class="btn btn-success btn-sm">现在更新</a>`;
         } else {
             rep_msg = "检查失败，可能是网络问题";
         }
