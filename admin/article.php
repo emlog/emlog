@@ -91,10 +91,10 @@ if ($action == 'del') {
     LoginAuth::checkToken();
     if ($draft || $isRm) {
         $Log_Model->deleteLog($gid);
+        doAction('del_log', $gid);
     } else {
         $Log_Model->hideSwitch($gid, 'y');
     }
-    doAction('del_log', $gid);
     $CACHE->updateCache();
     emDirect("./article.php?&active_del=1&draft=$draft");
 }
