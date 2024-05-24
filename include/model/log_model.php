@@ -52,6 +52,9 @@ class Log_Model {
     }
 
     public function getCount($uid = UID) {
+        if (empty($uid)) {
+            return 0;
+        }
         $sql = sprintf("SELECT count(*) as num FROM $this->table WHERE author=%d AND type='%s'", $uid, 'blog');
         $res = $this->db->once_fetch_array($sql);
         return $res['num'];
