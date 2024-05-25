@@ -437,10 +437,10 @@ function blog_author($uid) {
 function neighbor_log($neighborLog) {
     extract($neighborLog) ?>
     <?php if ($prevLog): ?>
-        <span class="prev-log"><a href="<?= Url::log($prevLog['gid']) ?>">上一篇：<?= subContent($prevLog['title'], 18, 1) ?></a></span>
+        <span class="prev-log"><a href="<?= Url::log($prevLog['gid']) ?>" title="<?= $prevLog['title'] ?>">上一篇</a></span>
     <?php endif ?>
     <?php if ($nextLog): ?>
-        <span class="next-log"><a href="<?= Url::log($nextLog['gid']) ?>">下一篇：<?= subContent($nextLog['title'], 18, 1) ?></a></span>
+        <span class="next-log"><a href="<?= Url::log($nextLog['gid']) ?>" title="<?= $nextLog['title'] ?>">下一篇</a></span>
     <?php endif ?>
 <?php } ?>
 <?php
