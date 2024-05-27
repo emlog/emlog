@@ -21,7 +21,7 @@ defined('EMLOG_ROOT') || exit('access denied!');
     <nav class="neighbor-log"><?php neighbor_log($neighborLog) ?></nav>
 
     <?php blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allow_remark) ?>
-    <?php blog_comments($comments) ?>
+    <?php blog_comments($comments, $comnum) ?>
 
     <div style="clear:both;"></div>
 </article>

@@ -129,7 +129,9 @@ function widget_sort($title) {
     </div>
 <?php } ?>
 <?php
-//widget：最新微语
+/**
+ * 侧边栏：最新微语
+ */
 function widget_twitter($title) {
     global $CACHE;
     $index_newtwnum = Option::get('index_newtwnum') ?: 10;
@@ -167,7 +169,6 @@ function widget_newcomm($title) {
         <div class="widget-title">
             <h3><?= $title ?></h3>
         </div>
-        <hr>
         <ul class="unstyle-li">
             <?php
             foreach ($com_cache as $value):
@@ -447,10 +448,10 @@ function neighbor_log($neighborLog) {
 /**
  * 文章详情页：评论列表
  */
-function blog_comments($comments) {
+function blog_comments($comments, $comnum) {
     extract($comments);
     if ($commentStacks): ?>
-        <div class="comment-header"><b>评论：</b></div>
+        <div class="comment-header"><b>收到<?= $comnum ?>条评论</b></div>
     <?php endif ?>
     <?php
     foreach ($commentStacks as $cid):
@@ -514,7 +515,7 @@ function blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allo
             <div class="comment-post" id="comment-post">
                 <form class="commentform" method="post" name="commentform" action="<?= BLOG_URL ?>index.php?action=addcom" id="commentform">
                     <input type="hidden" name="gid" value="<?= $logid ?>"/>
-                    <textarea class="form-control log_comment" name="comment" id="comment" rows="10" tabindex="4" required></textarea>
+                    <textarea class="form-control log_comment" name="comment" id="comment" rows="10" tabindex="4" placeholder="撰写评论" required></textarea>
                     <?php if (User::isVisitor() && $isLoginComment === 'n'): ?>
                         <div class="comment-info" id="comment-info">
                             <input class="form-control com_control comment-name" id="info_n" autocomplete="off" type="text" name="comname" maxlength="49"

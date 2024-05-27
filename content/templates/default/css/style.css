@@ -713,7 +713,7 @@ body {
 /* 发表评论表单样式 */
 @media (min-width: 768px) {
     .commentform {
-        height: 250px
+        height: 200px
     }
 }
 
