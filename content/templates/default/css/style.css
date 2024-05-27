@@ -148,7 +148,7 @@ blockquote {
 
 input, textarea {
     font-family: inherit;
-    color: #495057;
+    color: #848797;
     outline: none
 }
 
@@ -839,7 +839,7 @@ body {
 }
 
 .comment-mail {
-    border-right: 1px #d6d6d6 solid !important;
+    border-right: 1px var(--borderColor) solid !important;
     border-bottom-right-radius: 10px !important
 }
 
