@@ -464,7 +464,7 @@ body {
         z-index: 999;
         position: absolute;
         width: calc(100% - 4px);
-        background: white;
+        background: var(--bodyBground);
         top: 72px;
         left: 0
     }
@@ -825,7 +825,7 @@ body {
 /* 发表评论表单样式 */
 @media (min-width: 768px) {
     .commentform {
-        height: 200px
+        height: 210px
     }
 }
 
@@ -1897,4 +1897,9 @@ img.zoom-img {
     color: white;
     text-decoration: none;
     padding: 10px;
+}
+
+#theme-toggle {
+    cursor: pointer;
+    padding: 8px;
 }

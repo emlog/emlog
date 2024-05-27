@@ -345,7 +345,7 @@ function blog_navi() {
                 <li class="list-item list-menu"><a class="nav-link" href="<?= $value['url'] ?>" <?= $newtab ?>><?= $value['naviname'] ?></a></li>
             <?php endif ?>
             <?php endforeach ?>
-            <span class="iconfont icon-DarkTheme" id="theme-toggle"></span>
+            <li class="list-item list-menu"><span class="iconfont icon-DarkTheme" id="theme-toggle"></span></li>
         </ul>
     </div>
 <?php } ?>
