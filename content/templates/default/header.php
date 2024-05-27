@@ -1,7 +1,7 @@
 <?php
 /*
 Template Name:默认模板
-Version:1.1.4
+Version:1.1.5
 Template Url:https://www.emlog.net/template/detail/1167
 Description:EMLOG的系统默认模板
 Author:emlog
@@ -26,9 +26,9 @@ if (!function_exists('_g')) {
     <meta name="description" content="<?= $site_description ?>"/>
     <base href="<?= BLOG_URL ?>"/>
     <link rel="alternate" title="RSS" href="<?= BLOG_URL ?>rss.php" type="application/rss+xml"/>
-    <link href="<?= TEMPLATE_URL ?>css/style.css?v=1716799087&t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>" rel="stylesheet" type="text/css"/>
+    <link href="<?= TEMPLATE_URL ?>css/style.css?v=1716821758&t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>" rel="stylesheet" type="text/css"/>
     <link href="<?= TEMPLATE_URL ?>css/icon/iconfont.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>" rel="stylesheet" type="text/css"/>
-    <link href="<?= TEMPLATE_URL ?>css/markdown.css?v=1716799087&t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>" rel="stylesheet" type="text/css"/>
+    <link href="<?= TEMPLATE_URL ?>css/markdown.css?v=1716821758&t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>" rel="stylesheet" type="text/css"/>
     <script src="<?= TEMPLATE_URL ?>js/jquery.min.3.5.1.js?v=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
     <script>
         // 日历生成和翻页
