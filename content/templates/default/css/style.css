@@ -491,7 +491,7 @@ body {
     margin-left: -26px;
     position: absolute;
     padding-left: 0px;
-    border: 1px solid #f1f1f1;
+    border: 1px solid var(--borderColor);
     border-radius: 4px;
     top: -3000px;
     margin-bottom: -34px;
@@ -516,7 +516,7 @@ body {
         margin-left: 0px;
         position: unset;
         padding-left: 30px;
-        border: 0px solid #f1f1f1;
+        border: 0px solid var(--borderColor);
         width: auto;
         top: 0px;
         margin-bottom: 0px;
@@ -603,7 +603,7 @@ body {
     margin-left: 8px;
     text-align: left;
     margin-block: 30px;
-    border: 1px solid #dedede
+    border: 1px solid var(--borderColor)
 }
 
 .modal-content .modal-footer {
@@ -853,7 +853,7 @@ body {
     color: #495057;
     background-color: #fff;
     background-clip: padding-box;
-    border: 1px solid #ced4da;
+    border: 1px solid var(--borderColor);
     border-radius: 0.25rem;
     transition: border-color 0.15s ease-out, box-shadow 0.15s ease-in-out
 }
@@ -865,7 +865,7 @@ body {
 .com_control {
     display: block;
     border-radius: 0px;
-    border: 1px #d6d6d6 solid;
+    border: 1px var(--borderColor) solid;
     border-right: 0px;
     height: 50px
 }
@@ -922,7 +922,7 @@ body {
 
 .comment-post #comment {
     width: 100%;
-    border: 1px #d6d6d6 solid;
+    border: 1px var(--borderColor) solid;
     font-size: small;
     border-radius: var(--marRadius) 10px 0 0;
     height: 130px;
@@ -938,7 +938,7 @@ body {
     float: right;
     margin-right: 1px;
     border-radius: 8px;
-    border: 1px solid #dedede;
+    border: 1px solid var(--borderColor);
     padding: 7px 10px;
     justify-content: center
 }
@@ -978,11 +978,11 @@ body {
 
 .comment .comment-infos {
     background: var(--bodyBground);
-    padding: 12px;
-    padding-bottom: 5px;
+    padding: 12px 12px 5px;
     border-radius: var(--marRadius);
     margin-top: 9px;
-    margin-left: 58px
+    margin-left: 58px;
+    color: var(--fontColor);
 }
 
 .comment .comment-infos-unGravatar {
@@ -1293,7 +1293,7 @@ body {
 .bloggerinfo-img {
     width: 100px;
     height: 100px;
-    border: 0px solid #c2a9a9;
+    border: 0px solid var(--borderColor);
     border-radius: 50%
 }
 
@@ -1322,7 +1322,7 @@ body {
     padding: 0.4rem 0.75rem;
     line-height: 1.5;
     color: #495057;
-    border: 1px solid #ced4da;
+    border: 1px solid var(--borderColor);
     /* 兼容 Safari ，Safari默认input会有1px的上下外边距 */
     margin-block: 0;
     border-radius: 0.25rem
@@ -1330,7 +1330,7 @@ body {
 
 /* 文章阅读和文章条目的标签 */
 .tags {
-    border: 1px solid #e8e8e8;
+    border: 1px solid var(--borderColor);
     padding: 1px 6px;
     border-radius: 4px;
     white-space: nowrap
@@ -1365,14 +1365,14 @@ body {
     margin-left: -90px;
     position: absolute;
     top: 151px;
-    border: 1px solid #dcdcdd;
-    color: #dcdcdd;
+    border: 2px solid var(--borderColor);
+    color: var(--fontColor);
     border-radius: 50%;
     cursor: pointer
 }
 
 .back-top:hover {
-    border: 1px solid #bbbbbb;
+    border: 2px solid var(--borderColor);
     color: #bbbbbb
 }
 
@@ -1452,7 +1452,7 @@ body {
     float: left;
     padding: 4px 8px 4px 8px;
     font-size: small;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--borderColor);
     border-radius: 0.5rem
 }
 
@@ -1461,7 +1461,7 @@ body {
     float: right;
     padding: 4px 8px 4px 8px;
     font-size: small;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--borderColor);
     border-radius: 0.5rem;
 }
 
@@ -1832,7 +1832,7 @@ img.zoom-img {
     }
 
     .com_control {
-        border: 1px solid #ced4da;
+        border: 1px solid var(--borderColor);
         border-radius: 6px !important;
         margin-top: 10px
     }
@@ -1852,7 +1852,7 @@ img.zoom-img {
 
     .comment .comment-infos {
         margin-left: 0;
-        font-size: 14px
+        font-size: 14px;
     }
 
     .comment .avatar {
