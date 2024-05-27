@@ -21,6 +21,7 @@
     --selectBorderColor: #cccccc;
     --selectTextColor: #333333;
     --dividerColor: #e0e0e0;
+    --borderColor: #00000019;
 }
 
 /* 黑夜模式 */
@@ -43,6 +44,7 @@
     --selectBorderColor: #5a5a5a;
     --selectTextColor: #cfcfcf;
     --dividerColor: #444444;
+    --borderColor: #848797;
 }
 
 body {
@@ -553,9 +555,9 @@ body {
 /* 验证码模态窗的配置 */
 .modal-dialog {
     display: none;
-    background-color: white;
+    background-color: var(--bodyBground);
     border-radius: var(--marRadius);
-    border: 1px solid #dedede;
+    border: 1px solid var(--bodyBground);
     position: fixed;
     z-index: 100;
     /* 定位 */
@@ -567,14 +569,14 @@ body {
 /* 验证码模态窗的按钮 */
 .btn {
     cursor: pointer;
-    color: #848798;
-    background-color: white;
+    color: var(--fontColor);
+    background-color: var(--bodyBground);
     padding: 8px 11px;
     font-weight: 800;
     border-radius: var(--marRadius);
     margin-block: 12px;
     margin-inline: 17.5px;
-    border: 1px solid #dedede
+    border: 1px solid var(--bodyBground);
 }
 
 .btn:hover {
@@ -975,7 +977,7 @@ body {
 }
 
 .comment .comment-infos {
-    background: #f7f7f7;
+    background: var(--bodyBground);
     padding: 12px;
     padding-bottom: 5px;
     border-radius: var(--marRadius);
@@ -998,12 +1000,13 @@ body {
     margin-left: -34px;
     border-width: 13px;
     border-style: solid;
-    border-color: transparent #f7f7f7 transparent transparent
+    border-color: transparent var(--bodyBground) transparent transparent
 }
 
 .comment .comment-content {
-    margin: 8px 0px 0px 0px;
-    word-break: break-word
+    margin: 8px 0 0 0;
+    word-break: break-word;
+    color: var(--fontColor);
 }
 
 .comment .comment-reply {
@@ -1069,11 +1072,11 @@ body {
     border: none;
     cursor: pointer;
     padding: 0;
-    background-color: unset
+    background-color: var(--bodyBground);
 }
 
 .comment-replay-btn:hover {
-    color: #f6607d;
+    color: var(--aHoverColor);
     text-decoration: underline;
     transition: all 0.2s
 }
