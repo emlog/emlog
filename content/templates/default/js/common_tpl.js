@@ -46,11 +46,9 @@ var myBlog = {
         if ($("#comment-pid").attr("value") === "0") {
             $ele.append($com_board);
             $("#comment-pid").attr("value", getpid);
-            $("#cancel-reply").css("display", "unset");
             $("#comments").toggleClass("com-bottom");
         } else {
             $("#comment-pid").attr("value", "0");
-            $("#cancel-reply").css("display", "none");
             $("#comments").append($("#comment-post")).toggleClass("com-bottom");
         }
     },

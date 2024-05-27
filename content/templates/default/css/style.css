@@ -898,16 +898,6 @@ body {
     margin: 5px 0px
 }
 
-.comment-post .cancel-reply {
-    float: right;
-    cursor: pointer;
-    padding-right: 10%
-}
-
-.comment-post .cancel-reply:hover {
-    text-decoration: underline
-}
-
 .comment-post small {
     font-size: 12px;
     color: #999
@@ -962,7 +952,7 @@ body {
 }
 
 .comment span {
-    color: #ff7a15
+    color: var(--fontColor);
 }
 
 .comment .comment-time {
