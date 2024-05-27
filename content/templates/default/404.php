@@ -5,22 +5,16 @@
 defined('EMLOG_ROOT') || exit('access denied!');
 ?>
 <!doctype html>
-<html lang="zh-cn">
+<html lang="zh-cn" data-theme="light">
 <head>
     <meta charset="utf-8">
     <title>错误提示-页面未找到</title>
+    <link href="<?= TEMPLATE_URL ?>css/style.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>" rel="stylesheet" type="text/css"/>
     <style>
-        body {
-            background-color: #F7F7F7;
-            font-family: helvetica neue, Helvetica, Arial, sans-serif
-            font-size: 12px;
-            line-height: 150%
-        }
-
         .main {
-            background-color: #FFFFFF;
+            background-color: var(--bodyBground);
             font-size: 12px;
-            color: #666666;
+            color: var(--fontColor);
             width: 650px;
             margin: 60px auto 0px;
             padding: 30px 10px;
@@ -50,5 +44,7 @@ defined('EMLOG_ROOT') || exit('access denied!');
     <p>404 Not Found ！</p>
     <p><a href="<?= BLOG_URL ?>">首页</a></p>
 </div>
+<script src="<?= TEMPLATE_URL ?>js/jquery.min.3.5.1.js?v=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
+<script src="<?= TEMPLATE_URL ?>js/common_tpl.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
 </body>
 </html>

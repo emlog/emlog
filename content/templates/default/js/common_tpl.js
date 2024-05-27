@@ -387,20 +387,23 @@ $(document).ready(function () {
     })
 
     // 切换夜间模式主题
-    const toggleButton = document.getElementById('theme-toggle');
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) {
         document.documentElement.setAttribute('data-theme', savedTheme);
     }
-    toggleButton.addEventListener('click', () => {
-        let currentTheme = document.documentElement.getAttribute('data-theme');
-        let targetTheme = 'light';
 
-        if (currentTheme === 'light') {
-            targetTheme = 'dark';
-        }
+    const toggleButton = document.getElementById('theme-toggle');
+    if (toggleButton) {
+        toggleButton.addEventListener('click', () => {
+            let currentTheme = document.documentElement.getAttribute('data-theme');
+            let targetTheme = 'light';
 
-        document.documentElement.setAttribute('data-theme', targetTheme);
-        localStorage.setItem('theme', targetTheme);
-    });
+            if (currentTheme === 'light') {
+                targetTheme = 'dark';
+            }
+
+            document.documentElement.setAttribute('data-theme', targetTheme);
+            localStorage.setItem('theme', targetTheme);
+        });
+    }
 })
