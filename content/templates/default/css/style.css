@@ -935,8 +935,8 @@ body {
 
 .comment-post #comment_submit:hover {
     cursor: pointer;
-    color: #fff;
-    background-color: #007bff
+    color: var(--inputTextColor);
+    background-color: var(--buttonBgColor);
 }
 
 .comment-post .input {
@@ -1075,7 +1075,8 @@ body {
     font-size: 14px;
     margin-left: 8px;
     cursor: default;
-    background-color: antiquewhite
+    background-color: antiquewhite;
+    border-radius: 3px;
 }
 
 /* 文章内容页样式
@@ -1207,7 +1208,8 @@ body {
     font-size: 14px;
     margin-left: 8px;
     cursor: default;
-    background-color: Lavender
+    background-color: Lavender;
+    border-radius: 3px;
 }
 
 @media (max-width: 415px) {
