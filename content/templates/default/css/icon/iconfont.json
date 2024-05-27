@@ -1,0 +1,16 @@
+{
+  "id": "4562378",
+  "name": "no name",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "17412122",
+      "name": "Dark Theme",
+      "font_class": "DarkTheme",
+      "unicode": "e65a",
+      "unicode_decimal": 58970
+    }
+  ]
+}

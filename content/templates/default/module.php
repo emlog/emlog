@@ -345,6 +345,7 @@ function blog_navi() {
                 <li class="list-item list-menu"><a class="nav-link" href="<?= $value['url'] ?>" <?= $newtab ?>><?= $value['naviname'] ?></a></li>
             <?php endif ?>
             <?php endforeach ?>
+            <span class="iconfont icon-DarkTheme" id="theme-toggle"></span>
         </ul>
     </div>
 <?php } ?>
@@ -353,8 +354,8 @@ function blog_navi() {
  * 文章列出卡片：置顶标志
  */
 function topflg($top, $sortop = 'n', $sortid = null) {
-    $ishome_flg = '<span title="首页置顶" class="log-topflg" >置顶</span>';
-    $issort_flg = '<span title="分类置顶" class="log-topflg" >分类置顶</span>';
+    $ishome_flg = '<span class="log-topflg" >置顶</span>';
+    $issort_flg = '<span class="log-topflg" >分类置顶</span>';
     if (blog_tool_ishome()) {
         echo $top == 'y' ? $ishome_flg : '';
     } elseif ($sortid) {

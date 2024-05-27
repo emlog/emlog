@@ -1,59 +1,133 @@
 /**
  * 模板样式表
  */
-
-/* 全局样式
----------------------------------------------------*/
-/* 禁止页面溢出出现滚动条 */
 :root {
-    overflow-x: hidden
-}
-
-/* 一些变量 */
-* {
-    --marRadius: 5px; /* 卡片圆角 */
+    --marRadius: 5px;
     --conBgcolor: #ffffff; /* 导航、卡片、内容的背景颜色 */
     --bodyBground: #f5f5f6; /* 页面背景颜色 */
     --fontColor: #5a5c69; /* 普通文本的颜色 */
     --aColor: #333333; /* a 标签的颜色 */
     --aHoverColor: #f6607d; /* a 标签 hover 状态的颜色 */
-    --lightColor: #757575 /* 比较浅一点的文本颜色 */
+    --lightColor: #757575; /* 比较浅一点的文本颜色 */
+
+    /* 表单和按钮的常规样式 */
+    --inputBgColor: #ffffff;
+    --inputBorderColor: #cccccc;
+    --inputTextColor: #333333;
+    --buttonBgColor: #007bff;
+    --buttonTextColor: #ffffff;
+    --buttonBorderColor: #007bff;
+    --selectBgColor: #ffffff;
+    --selectBorderColor: #cccccc;
+    --selectTextColor: #333333;
+    --dividerColor: #e0e0e0;
 }
 
-/* 定义所有元素的 width =（border+padding），方便后续计算 */
-* {
-    box-sizing: border-box
+/* 黑夜模式 */
+[data-theme="dark"] {
+    --conBgcolor: #2e2e2e; /* 导航、卡片、内容的背景颜色 */
+    --bodyBground: #121212; /* 页面背景颜色 */
+    --fontColor: #cfcfcf; /* 普通文本的颜色 */
+    --aColor: #a8a8a8; /* a 标签的颜色 */
+    --aHoverColor: #f6607d; /* a 标签 hover 状态的颜色 */
+    --lightColor: #757575; /* 比较浅一点的文本颜色 */
+
+    /* 表单和按钮的黑夜模式样式 */
+    --inputBgColor: #3a3a3a;
+    --inputBorderColor: #5a5a5a;
+    --inputTextColor: #cfcfcf;
+    --buttonBgColor: #444444;
+    --buttonTextColor: #ffffff;
+    --buttonBorderColor: #5a5a5a;
+    --selectBgColor: #3a3a3a;
+    --selectBorderColor: #5a5a5a;
+    --selectTextColor: #cfcfcf;
+    --dividerColor: #444444;
 }
 
-/* 初始化 */
 body {
     margin: 0;
     line-height: 1.5;
     font-size: 16px;
     color: var(--fontColor);
     background-color: var(--bodyBground);
-    font-family: helvetica neue, Helvetica, Arial, sans-serif
+    font-family: helvetica neue, Helvetica, Arial, sans-serif;
 }
 
+/* 其他样式 */
 h1, h2, h3, h4, h5, h6 {
     margin-top: 0;
-    font-weight: 400
+    font-weight: 400;
 }
 
 p {
     line-height: 2;
-    margin: 30px 0
+    margin: 30px 0;
 }
 
 a {
     color: var(--aColor);
     transition: all 0.2s;
-    text-decoration: none
+    text-decoration: none;
 }
 
 a:focus, a:hover {
     color: var(--aHoverColor);
-    text-decoration: none
+    text-decoration: none;
+}
+
+/* 表单输入框样式 */
+input, textarea {
+    background-color: var(--inputBgColor);
+    border: 1px solid var(--inputBorderColor);
+    color: var(--inputTextColor);
+    padding: 10px;
+    border-radius: var(--marRadius);
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* 按钮样式 */
+button {
+    background-color: var(--buttonBgColor);
+    color: var(--buttonTextColor);
+    border: 1px solid var(--buttonBorderColor);
+    padding: 10px 20px;
+    border-radius: var(--marRadius);
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+button:hover {
+    background-color: darken(var(--buttonBgColor), 10%);
+    border-color: darken(var(--buttonBorderColor), 10%);
+}
+
+/* 下拉选择框样式 */
+select {
+    background-color: var(--selectBgColor);
+    border: 1px solid var(--selectBorderColor);
+    color: var(--selectTextColor);
+    padding: 10px;
+    border-radius: var(--marRadius);
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* 分割线样式 */
+hr {
+    border: none;
+    border-top: 1px solid var(--dividerColor);
+    margin: 20px 0;
+}
+
+
+/* 定义所有元素的 width =（border+padding），方便后续计算 */
+* {
+    box-sizing: border-box
 }
 
 img {
@@ -572,11 +646,11 @@ body {
 ---------------------------------------------------*/
 /* 日历的加载样式，防止翻页造成太大的视觉变化 */
 .cal_loading {
-    margin-bottom: 243px
+    margin-bottom: 243px;
 }
 
 #calendar {
-    color: #212529
+    color: #212529;
 }
 
 .calendartop {
@@ -584,52 +658,88 @@ body {
     width: 100%;
     text-align: center;
     margin-bottom: 10px;
-    color: #000
+    color: #000;
 }
 
 .calendartop a {
-    font-weight: 100 !important
+    font-weight: 100 !important;
 }
 
 .calendar {
     margin-bottom: -10px;
-    width: 100%
+    width: 100%;
 }
 
 .calendar td {
     text-align: center;
     padding: 1px 10px;
-    line-height: 1.6
+    line-height: 1.6;
 }
 
 .calendar td a:link {
     color: #000;
     font-weight: bolder;
-    text-decoration: underline
+    text-decoration: underline;
 }
 
 .calendar td a:hover {
     color: #886353;
-    text-decoration: none
+    text-decoration: none;
 }
 
 .calendar tr {
-    height: 40px
+    height: 40px;
 }
 
 .day {
     color: #212529;
     background: #eaeaea;
-    border-radius: var(--marRadius)
+    border-radius: var(--marRadius);
 }
 
 .sun {
-    color: #333
+    color: #333;
 }
 
 .week {
-    color: #333
+    color: #333;
 }
+
+/* 黑夜模式下的日历样式 */
+[data-theme="dark"] #calendar {
+    color: #cfcfcf;
+}
+
+[data-theme="dark"] .calendartop {
+    color: #cfcfcf;
+}
+
+[data-theme="dark"] .calendar td {
+    color: #cfcfcf;
+}
+
+[data-theme="dark"] .calendar td a:link {
+    color: #cfcfcf;
+}
+
+[data-theme="dark"] .calendar td a:hover {
+    color: #f6607d;
+}
+
+[data-theme="dark"] .day {
+    color: #cfcfcf;
+    background: #3a3a3a;
+    border-radius: var(--marRadius);
+}
+
+[data-theme="dark"] .sun {
+    color: #a8a8a8;
+}
+
+[data-theme="dark"] .week {
+    color: #a8a8a8;
+}
+
 
 /* 侧边栏卡片样式
 ---------------------------------------------------*/
@@ -845,7 +955,6 @@ body {
     margin: 10px 0;
     padding: 10px 0px;
     font-size: medium;
-    border-bottom: 1px #f7f7f7 solid;
     overflow: hidden;
     color: #333
 }

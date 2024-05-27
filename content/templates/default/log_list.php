@@ -26,7 +26,6 @@ defined('EMLOG_ROOT') || exit('access denied!');
                                 <div class="loglist-content markdown"><?php echo subContent($value['log_description'], 180, 1); ?></div>
                                 <div class="loglist-tag"><?php blog_tag($value['logid']) ?></div>
                             </div>
-                            <hr class="list-line"/>
                             <div class="row info-row">
                                 <div class="log-info">
                                     <?php blog_author($value['author']) ?>&nbsp;发布于&nbsp;

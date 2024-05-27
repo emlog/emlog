@@ -351,40 +351,58 @@ $(document).ready(function () {
 
     $(".com-reply").click(function () {
         myBlog.toggleCommentInput($(this))
-    }),
+    })
 
-        $(".blog-header-toggle").click(function () {
-            myBlog.navToggle($(this))
-        }),
+    $(".blog-header-toggle").click(function () {
+        myBlog.navToggle($(this))
+    })
 
-        $(".has-down").mouseenter(function () {
-            myBlog.calMargin($(this))
-        }),
+    $(".has-down").mouseenter(function () {
+        myBlog.calMargin($(this))
+    })
 
-        $("#captcha").click(function () {
-            myBlog.captchaRefresh($(this))
-        }),
+    $("#captcha").click(function () {
+        myBlog.captchaRefresh($(this))
+    })
 
-        $('#comment_submit[type="button"], #close-modal').click(function () {
-            myBlog.comSubmitTip('judge')
-            if (myBlog.comSubmitTip()) {  // 在显示评论的验证码模态框前，先校验一下评论区内容
-                myBlog.viewModal()
-            }
-        }),
+    $('#comment_submit[type="button"], #close-modal').click(function () {
+        myBlog.comSubmitTip('judge')
+        if (myBlog.comSubmitTip()) {  // 在显示评论的验证码模态框前，先校验一下评论区内容
+            myBlog.viewModal()
+        }
+    })
 
-        $(".form-control").blur(function () {
-            myBlog.comSubmitTip('judge')
-        }),
+    $(".form-control").blur(function () {
+        myBlog.comSubmitTip('judge')
+    })
 
-        $(".markdown img").click(function () {
-            myBlog.toggleImgSrc($(this))
-        }),
+    $(".markdown img").click(function () {
+        myBlog.toggleImgSrc($(this))
+    })
 
-        $("#archive").change(function () {
-            myBlog.jumpLink($(this))
-        }),
+    $("#archive").change(function () {
+        myBlog.jumpLink($(this))
+    })
 
-        $("#closeToc").click(function () {
-            myBlog.tocClose()
-        })
+    $("#closeToc").click(function () {
+        myBlog.tocClose()
+    })
+
+    // 切换夜间模式主题
+    const toggleButton = document.getElementById('theme-toggle');
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    }
+    toggleButton.addEventListener('click', () => {
+        let currentTheme = document.documentElement.getAttribute('data-theme');
+        let targetTheme = 'light';
+
+        if (currentTheme === 'light') {
+            targetTheme = 'dark';
+        }
+
+        document.documentElement.setAttribute('data-theme', targetTheme);
+        localStorage.setItem('theme', targetTheme);
+    });
 })
