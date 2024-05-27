@@ -2,7 +2,7 @@
  * markdown 输出样式
  */
 
- .markdown {
+.markdown {
     overflow-wrap: break-word;
     text-align: justify
 }
@@ -121,25 +121,25 @@
 }
 
 .markdown thead tr {
-    background-color: #F8F8F8
+    background-color: var(--bodyBground)
 }
 
 .markdown td {
     padding: 6px 13px;
-    border: 1px solid #ddd
+    border: 1px solid var(--borderColor)
 }
 
 .markdown th {
     padding: 6px 13px;
-    border: 1px solid #ddd
+    border: 1px solid var(--borderColor)
 }
 
 .markdown table tr:nth-child(even) {
-    background: #f8f8f8
+    background: var(--bodyBground)
 }
 
 .markdown code {
-    background: #f6f6f6;
+    background: var(--borderColor);
     border-radius: 3px;
     font-size: 14px;
     padding: 4px 4px 4px 4px;
@@ -149,7 +149,7 @@
 .markdown pre {
     padding: 10px;
     border: 1px solid #ddd;
-    background: #f6f6f6;
+    background: var(--borderColor);
     overflow: auto
 }
 
