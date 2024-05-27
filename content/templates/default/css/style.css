@@ -14,9 +14,9 @@
     --inputBgColor: #ffffff;
     --inputBorderColor: #cccccc;
     --inputTextColor: #333333;
-    --buttonBgColor: #007bff;
+    --buttonBgColor: #cccccc;
     --buttonTextColor: #ffffff;
-    --buttonBorderColor: #007bff;
+    --buttonBorderColor: #cccccc;
     --selectBgColor: #ffffff;
     --selectBorderColor: #cccccc;
     --selectTextColor: #333333;
@@ -786,9 +786,9 @@ body {
 }
 
 .pagination a {
-    color: #c0bcbc;
+    color: var(--aColor);
     padding: 5.5px 10px 6px 10px;
-    background: white;
+    background: var(--buttonBgColor);
     margin: 0 5px;
     line-height: 3;
     border-radius: 8px
@@ -1057,28 +1057,14 @@ body {
 }
 
 .unstyle-li input[type="submit"] {
-    background-color: #313131;
-    color: #FFFFFF;
+    background-color: var(--inputBorderColor);
+    color: var(--buttonTextColor);
     margin-left: -25px;
     height: 39px;
     width: 55px;
     border: 0;
     border-radius: 0 3px 3px 0;
     padding: 0
-}
-
-/* 评论区的 回复、取消回复 按钮 */
-.comment-replay-btn {
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    background-color: var(--bodyBground);
-}
-
-.comment-replay-btn:hover {
-    color: var(--aHoverColor);
-    text-decoration: underline;
-    transition: all 0.2s
 }
 
 /*文章条目中的部分样式
