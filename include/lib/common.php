@@ -419,7 +419,7 @@ function upload2local($attach, &$result) {
             break;
         case '101':
         case '104':
-            $message = '上传文件失败,错误码：' . $ret;
+            $message = '上传失败,错误码：' . $errorNum;
             break;
         case '102':
             $message = '错误的文件类型';
