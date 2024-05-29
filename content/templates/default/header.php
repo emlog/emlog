@@ -29,16 +29,21 @@ if (!function_exists('_g')) {
     <link href="<?= TEMPLATE_URL ?>css/style.css?v=1716821758&t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>" rel="stylesheet" type="text/css"/>
     <link href="<?= TEMPLATE_URL ?>css/icon/iconfont.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>" rel="stylesheet" type="text/css"/>
     <link href="<?= TEMPLATE_URL ?>css/markdown.css?v=1716821758&t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>" rel="stylesheet" type="text/css"/>
+    <link href="<?= empty(_g('favicon')) ? BLOG_URL . 'favicon.ico' : _g('favicon'); ?>" rel="icon">
     <script src="<?= TEMPLATE_URL ?>js/jquery.min.3.5.1.js?v=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
+    <?php doAction('index_head') ?>
     <script>
         // 日历生成和翻页
         function sendinfo(url) {
             $("#calendar").load(url)
         }
+
+        // 切换夜间模式主题
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        }
     </script>
-    <?php doAction('index_head') ?>
-    <!-- Favicon -->
-    <link href="<?= empty(_g('favicon')) ? BLOG_URL . 'favicon.ico' : _g('favicon'); ?>" rel="icon">
 </head>
 <body>
 <nav class="blog-header">
