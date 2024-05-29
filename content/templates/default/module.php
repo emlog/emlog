@@ -369,7 +369,7 @@ function topflg($top, $sortop = 'n', $sortid = null) {
  * 文章详情页：编辑链接
  */
 function editflg($logid, $author) {
-    $editflg = User::haveEditPermission() || $author == UID ? '&nbsp;&nbsp;&nbsp;<a href="' . BLOG_URL . 'admin/article.php?action=edit&gid=' . $logid . '" target="_blank">编辑</a>' : '';
+    $editflg = User::haveEditPermission() || $author == UID ? '<a href="' . BLOG_URL . 'admin/article.php?action=edit&gid=' . $logid . '" target="_blank"><span class="iconfont icon-edit"></span></a>' : '';
     echo $editflg;
 }
 
@@ -439,10 +439,10 @@ function blog_author($uid) {
 function neighbor_log($neighborLog) {
     extract($neighborLog) ?>
     <?php if ($prevLog): ?>
-        <span class="prev-log"><a href="<?= Url::log($prevLog['gid']) ?>" title="<?= $prevLog['title'] ?>">上一篇</a></span>
+        <span class="prev-log"><a href="<?= Url::log($prevLog['gid']) ?>" title="上一篇：<?= $prevLog['title'] ?>"><span class="iconfont icon-prev"></span></a></span>
     <?php endif ?>
     <?php if ($nextLog): ?>
-        <span class="next-log"><a href="<?= Url::log($nextLog['gid']) ?>" title="<?= $nextLog['title'] ?>">下一篇</a></span>
+        <span class="next-log"><a href="<?= Url::log($nextLog['gid']) ?>" title="下一篇：<?= $nextLog['title'] ?>"><span class="iconfont icon-next"></span></a></span>
     <?php endif ?>
 <?php } ?>
 <?php

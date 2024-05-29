@@ -1,8 +1,7 @@
 @font-face {
-  font-family: "iconfont"; /* Project id 4562378 */
-  src: url('iconfont.woff2?t=1716772754233') format('woff2'),
-       url('iconfont.woff?t=1716772754233') format('woff'),
-       url('iconfont.ttf?t=1716772754233') format('truetype');
+  font-family: "iconfont"; /* Project id 4562351 */
+  src: url('iconfont.woff2?t=1716943945952') format('woff2'),
+       url('iconfont.woff?t=1716943945952') format('woff');
 }
 
 .iconfont {
@@ -14,6 +13,26 @@
 }
 
 .icon-DarkTheme:before {
-  content: "\e65a";
+  content: "\e604";
+}
+
+.icon-next:before {
+  content: "\e615";
+}
+
+.icon-prev:before {
+  content: "\e65f";
+}
+
+.icon-edit:before {
+  content: "\e6c0";
+}
+
+.icon-comment:before {
+  content: "\e668";
+}
+
+.icon-view:before {
+  content: "\e847";
 }
 

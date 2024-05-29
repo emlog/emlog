@@ -224,7 +224,7 @@ function isAudio($fileName) {
 
 function isZip($fileName) {
     $suffix = getFileSuffix($fileName);
-    if (in_array($suffix, ['zip', 'rar'])) {
+    if (in_array($suffix, ['zip', 'rar', '7z', 'gz'])) {
         return true;
     }
     return false;

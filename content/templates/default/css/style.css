@@ -126,6 +126,21 @@ hr {
     margin: 20px 0;
 }
 
+.small {
+    font-size: 12px;
+}
+
+.m-r-3 {
+    margin-right: 3px;
+}
+
+.m-r-5 {
+    margin-right: 5px;
+}
+
+.m-r-10 {
+    margin-right: 10px;
+}
 
 /* 定义所有元素的 width =（border+padding），方便后续计算 */
 * {

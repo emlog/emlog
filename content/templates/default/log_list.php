@@ -32,8 +32,8 @@ defined('EMLOG_ROOT') || exit('access denied!');
                                     <?= date('Y-n-j H:i', $value['date']) ?>&nbsp;
                                 </div>
                                 <div class="log-count">
-                                    <a href="<?= $value['log_url'] ?>"><?= $value['views'] ?>&nbsp;阅读</a>
-                                    <a href="<?= $value['log_url'] ?>#comment"><?= $value['comnum'] ?>&nbsp;评论</a>
+                                    <a href="<?= $value['log_url'] ?>" class="m-r-10"><span class="iconfont icon-view"></span> <?= $value['views'] ?></a>
+                                    <a href="<?= $value['log_url'] ?>#comment"><span class="iconfont icon-comment"></span> <?= $value['comnum'] ?></a>
                                 </div>
                             </div>
                         </div>
