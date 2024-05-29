@@ -35,7 +35,7 @@ $options = [
         'values'      => [
             TEMPLATE_URL . 'images/logo.png',
         ],
-        'description' => '上传LOGO图片。'
+        'description' => '上传LOGO图片，推荐尺寸 180x60像素，高度不超60像素'
     ],
     'favicon'        => [
         'labels'      => 'tpl-head',
