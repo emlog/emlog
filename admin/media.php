@@ -57,8 +57,10 @@ if ($action === 'lib') {
     $ret['hasMore'] = !(count($medias) < $perPageCount);
     foreach ($medias as $v) {
         $data['media_id'] = $v['aid'];
+        $data['media_alias'] = $v['alias'];
         $data['media_path'] = $v['filepath'];
         $data['media_url'] = rmUrlParams(getFileUrl($v['filepath']));
+        $data['media_down_url'] = BLOG_URL . '?resource_alias=' . $v['alias'];
         $data['media_name'] = subString($v['filename'], 0, 20);
         $data['attsize'] = $v['attsize'];
         $data['media_type'] = '';
@@ -68,6 +70,7 @@ if ($action === 'lib') {
             $data['media_type'] = 'image';
         } elseif (isZip($v['filename'])) {
             $data['media_icon'] = "./views/images/zip.jpg";
+            $data['media_type'] = 'zip';
         } elseif (isVideo($v['filename'])) {
             $data['media_type'] = 'video';
             $data['media_icon'] = "./views/images/video.png";
