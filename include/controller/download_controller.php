@@ -29,13 +29,12 @@ class Download_Controller {
         }
 
         $r = $this->Media_Model->getDetailByAlias($resource_alias);
-        if (!$r) {
+        if (!$this->isInvalidResource($r)) {
             show_404_page();
         }
 
-        if (empty($r['filepath']) || $r['mimetype'] !== 'application/zip') {
-            show_404_page();
-        }
+        doAction('download_resource', $r);
+
         $this->download($r['filepath'], $r['filename'], BLOG_URL, getUA());
     }
 
@@ -75,5 +74,9 @@ class Download_Controller {
 
         echo $file_content;
         exit;
+    }
+
+    private function isInvalidResource($resource) {
+        return !$resource || empty($resource['filepath']) || $resource['mimetype'] !== 'application/zip';
     }
 }
