@@ -34,9 +34,9 @@ class LoginAuth {
             return;
         }
         if ($error_code) {
-            emDirect("./account.php?action=signin&code=$error_code");
+            emDirect(BLOG_URL . "admin/account.php?action=signin&code=$error_code");
         } else {
-            emDirect("./account.php?action=signin");
+            emDirect(BLOG_URL . "admin/account.php?action=signin");
         }
     }
 

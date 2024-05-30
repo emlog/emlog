@@ -19,8 +19,9 @@ class Download_Controller {
     public $Cache;
 
     function index() {
-        $this->Media_Model = new Media_Model();
+        loginAuth::checkLogin();
 
+        $this->Media_Model = new Media_Model();
         $resource_alias = Input::getStrVar('resource_alias');
 
         if (empty($resource_alias) || !preg_match('/^\w{16}$/', $resource_alias)) {
@@ -32,14 +33,13 @@ class Download_Controller {
             show_404_page();
         }
 
-        if (empty($r['file_url']) || $r['mimetype'] !== 'application/zip') {
+        if (empty($r['filepath']) || $r['mimetype'] !== 'application/zip') {
             show_404_page();
         }
         $this->download($r['filepath'], $r['filename'], BLOG_URL, getUA());
-
     }
 
-    function download($file_path, $file_name, $referer = '', $user_agent = '') {
+    private function download($file_path, $file_name, $referer = '', $user_agent = '') {
         if (filter_var($file_path, FILTER_VALIDATE_URL)) {
             $file_url = $file_path;
         } else {
@@ -76,5 +76,4 @@ class Download_Controller {
         echo $file_content;
         exit;
     }
-
 }

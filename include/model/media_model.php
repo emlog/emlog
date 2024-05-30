@@ -48,6 +48,9 @@ class Media_Model {
         }
         $sql = sprintf("SELECT * FROM $this->table WHERE alias = '%s'", $alias);
         $row = $this->db->once_fetch_array($sql);
+        if (empty($row)) {
+            return false;
+        }
         return $this->fetchMediaData($row);
     }
 
@@ -57,6 +60,9 @@ class Media_Model {
         }
         $sql = sprintf("SELECT * FROM $this->table WHERE aid = '%s'", $id);
         $row = $this->db->once_fetch_array($sql);
+        if (empty($row)) {
+            return false;
+        }
         return $this->fetchMediaData($row);
     }
 
@@ -68,7 +74,7 @@ class Media_Model {
             'aid'           => $row['aid'],
             'filepath_thum' => $row['filepath'],
             'filepath'      => str_replace("thum-", '', $row['filepath']),
-            'file_url' => getFileUrl($row['filepath']),
+            'file_url'      => getFileUrl($row['filepath']),
             'width'         => $row['width'],
             'height'        => $row['height'],
             'mimetype'      => $row['mimetype'],
