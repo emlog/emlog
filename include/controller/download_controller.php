@@ -29,7 +29,7 @@ class Download_Controller {
         }
 
         $r = $this->Media_Model->getDetailByAlias($resource_alias);
-        if ($this->isInvalidResource($r)) {
+        if (!$this->isValidResource($r)) {
             show_404_page();
         }
 
@@ -76,7 +76,7 @@ class Download_Controller {
         exit;
     }
 
-    private function isInvalidResource($resource) {
-        return !$resource || empty($resource['filepath']) || $resource['mimetype'] !== 'application/zip';
+    private function isValidResource($resource) {
+        return $resource && !empty($resource['filepath']) && $resource['mimetype'] === 'application/zip';
     }
 }

@@ -8,10 +8,12 @@ defined('EMLOG_ROOT') || exit('access denied!');
 
 // 为下载文件链接添加按钮样式
 function add_download_style($logData, &$result) {
-    $pattern = '/(href="[^"]*\?resource_alias=.{16})">/';
+    // 修改正则表达式以匹配 href 带有 ?resource_alias 和文件后缀为 .zip 等的下载链接
+    $pattern = '/(href="[^"]*(\?resource_alias=.{16}|\.zip|\.rar|\.7z|\.gz|\.bz2))">/';
     $replacement = '$1" class="em-download-btn"><span class="iconfont icon-clouddownload"></span> ';
     $result['log_content'] = preg_replace($pattern, $replacement, $logData['log_content']);
 }
+
 addAction('article_content_echo', 'add_download_style');
 
 // 定义下载按钮样式
@@ -31,4 +33,5 @@ function render_download_btn() {
 </style>
 EOT;
 }
+
 addAction('index_head', 'render_download_btn');
