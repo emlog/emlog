@@ -67,15 +67,22 @@
                         <p class="card-text text-muted small">
                             <a href="#" data-toggle="modal" data-target="#editMediaModal" data-id="<?= $value['aid'] ?>" data-filename="<?= $media_name ?>"><?= $media_name ?></a> <span class="badge badge-primary"><?= $sort_name ?></span><br>
                             时间：<?= $value['addtime'] ?><br>
-                            创建人：<?= $author ?> ,
+                            创建人：
                             <?php if (User::haveEditPermission()): ?>
-                                <a href="./media.php?uid=<?= $value['author'] ?>">仅看TA的</a><br>
-                            <?php endif ?>
+                                <a href="./media.php?uid=<?= $value['author'] ?>"><?= $author ?> </a>
+                            <?php else: ?>
+                                <?= $author ?>
+                            <?php endif; ?><br>
                             文件大小：<?= $value['attsize'] ?>
                             <?php if ($value['width'] && $value['height']): ?>
                                 ，图片尺寸：<?= $value['width'] ?>x<?= $value['height'] ?>
                             <?php endif ?><br>
-                            原文件：<a href="#" class="copy-link text-gray-400" data-toggle="popover" data-url="<?= $media_url ?>"><?= $media_url ?></a>
+                            <a href="#" class="copy-link" data-toggle="popover" data-url="<?= $media_url ?>" title="<?= $media_url ?>">原文件地址</a>
+                            <?php if ($value['alias'] && $value['mimetype'] === 'application/zip'):
+                                $media_down_url = BLOG_URL . '?resource_alias=' . $value['alias'];
+                                ?>
+                                ｜ <a href="#" class="copy-link" data-toggle="popover" data-url="<?= $media_down_url ?>" title="<?= $media_down_url ?>">用户下载地址</a>
+                            <?php endif ?>
                         </p>
                         <p class="card-text d-flex justify-content-between">
                             <a href="javascript: em_confirm(<?= $value['aid'] ?>, 'media', '<?= LoginAuth::genToken() ?>');" class="text-danger small">删除</a>

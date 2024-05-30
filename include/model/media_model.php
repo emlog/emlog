@@ -58,7 +58,7 @@ class Media_Model {
         if (empty($id)) {
             return false;
         }
-        $sql = sprintf("SELECT * FROM $this->table WHERE aid = '%s'", $id);
+        $sql = sprintf("SELECT * FROM $this->table WHERE aid = '%d'", $id);
         $row = $this->db->once_fetch_array($sql);
         if (empty($row)) {
             return false;
@@ -68,6 +68,7 @@ class Media_Model {
 
     private function fetchMediaData($row) {
         return [
+            'alias'         => $row['alias'],
             'attsize'       => changeFileSize($row['filesize']),
             'filename'      => htmlspecialchars($row['filename']),
             'addtime'       => date("Y-m-d H:i:s", $row['addtime']),
