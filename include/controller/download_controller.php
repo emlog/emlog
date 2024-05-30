@@ -29,7 +29,7 @@ class Download_Controller {
         }
 
         $r = $this->Media_Model->getDetailByAlias($resource_alias);
-        if (!$this->isInvalidResource($r)) {
+        if ($this->isInvalidResource($r)) {
             show_404_page();
         }
 
