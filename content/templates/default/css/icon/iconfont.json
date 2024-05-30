@@ -6,6 +6,13 @@
   "description": "emlog的默认主题",
   "glyphs": [
     {
+      "icon_id": "6151277",
+      "name": "cloud download",
+      "font_class": "clouddownload",
+      "unicode": "e81b",
+      "unicode_decimal": 59419
+    },
+    {
       "icon_id": "29071860",
       "name": "DarkTheme",
       "font_class": "DarkTheme",

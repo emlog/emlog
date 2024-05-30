@@ -1,7 +1,7 @@
 @font-face {
   font-family: "iconfont"; /* Project id 4562351 */
-  src: url('iconfont.woff2?t=1716943945952') format('woff2'),
-       url('iconfont.woff?t=1716943945952') format('woff');
+  src: url('iconfont.woff2?t=1717083971407') format('woff2'),
+       url('iconfont.woff?t=1717083971407') format('woff');
 }
 
 .iconfont {
@@ -10,6 +10,10 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-clouddownload:before {
+  content: "\e81b";
 }
 
 .icon-DarkTheme:before {

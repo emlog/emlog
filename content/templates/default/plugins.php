@@ -6,21 +6,29 @@
 
 defined('EMLOG_ROOT') || exit('access denied!');
 
-/* eg:
-
-function sameFunc() {
-    echo "hello world";
+// 为下载文件链接添加按钮样式
+function add_download_style($logData, &$result) {
+    $pattern = '/(href="[^"]*\?resource_alias=.{16})">/';
+    $replacement = '$1" class="em-download-btn"><span class="iconfont icon-clouddownload"></span> ';
+    $result['log_content'] = preg_replace($pattern, $replacement, $logData['log_content']);
 }
+addAction('article_content_echo', 'add_download_style');
 
-addAction('adm_head', 'sameFunc');
-
-*/
-
-/*
-// 后台模板设置菜单增加 icon 图标
-function optionIconFont() {
-    echo sprintf('<link rel="stylesheet" href="%s">', 'https://cdn.bootcdn.net/ajax/libs/remixicon/3.5.0/remixicon.min.css?ver=' . Option::EMLOG_VERSION_TIMESTAMP);
+// 定义下载按钮样式
+function render_download_btn() {
+    echo <<<EOT
+<style>
+.em-download-btn {
+    background-color: var(--buttonBgColor);
+    color: var(--fontColor);
+    border: 1px solid var(--buttonBorderColor);
+    padding: 10px 20px;
+    border-radius: var(--marRadius);
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none !important;
 }
-
-addAction('adm_head', 'optionIconFont');
-*/
+</style>
+EOT;
+}
+addAction('index_head', 'render_download_btn');
