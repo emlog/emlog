@@ -421,6 +421,7 @@ INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,author,views,comnum
 DROP TABLE IF EXISTS {$db_prefix}attachment;
 CREATE TABLE {$db_prefix}attachment (
   aid int(11) unsigned NOT NULL auto_increment COMMENT '资源文件表',
+  alias varchar(64) NOT NULL default '' COMMENT '资源别名',
   author int(11) unsigned NOT NULL default '1' COMMENT '作者UID',
   sortid int(11) NOT NULL default '0' COMMENT '分类ID',
   blogid int(11) unsigned NOT NULL default '0' COMMENT '文章ID（已废弃）',

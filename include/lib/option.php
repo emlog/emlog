@@ -121,6 +121,11 @@ class Option {
                 'reg_0'  => '|^.*/\?(rest-api)=(\w+)([\?&].*)?$|',
             ],
             [
+                'model'  => 'Download_Controller',
+                'method' => 'index',
+                'reg_0'  => '|^.*/\?(resource_alias)=(\w+)$|',
+            ],
+            [
                 'model'  => 'Log_Controller',
                 'method' => 'display',
                 'reg_0'  => '|^/?([\?&].*)?$|',

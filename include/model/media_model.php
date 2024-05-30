@@ -28,20 +28,7 @@ class Media_Model {
         $query = $this->db->query($sql);
         $medias = [];
         while ($row = $this->db->fetch_array($query)) {
-            $medias[$row['aid']] = [
-                'attsize'       => changeFileSize($row['filesize']),
-                'filename'      => htmlspecialchars($row['filename']),
-                'addtime'       => date("Y-m-d H:i:s", $row['addtime']),
-                'aid'           => $row['aid'],
-                'filepath_thum' => $row['filepath'],
-                'filepath'      => str_replace("thum-", '', $row['filepath']),
-                'width'         => $row['width'],
-                'height'        => $row['height'],
-                'mimetype'      => $row['mimetype'],
-                'author'        => $row['author'],
-                'sortid'        => $row['sortid'],
-                'sortname'      => htmlspecialchars(isset($row['sortname']) ? $row['sortname'] : ''),
-            ];
+            $medias[$row['aid']] = $this->fetchMediaData($row);
         }
         return $medias;
     }
@@ -55,6 +42,42 @@ class Media_Model {
         return $res['count'];
     }
 
+    function getDetailByAlias($alias) {
+        if (empty($alias)) {
+            return false;
+        }
+        $sql = sprintf("SELECT * FROM $this->table WHERE alias = '%s'", $alias);
+        $row = $this->db->once_fetch_array($sql);
+        return $this->fetchMediaData($row);
+    }
+
+    function getDetail($id) {
+        if (empty($id)) {
+            return false;
+        }
+        $sql = sprintf("SELECT * FROM $this->table WHERE aid = '%s'", $id);
+        $row = $this->db->once_fetch_array($sql);
+        return $this->fetchMediaData($row);
+    }
+
+    private function fetchMediaData($row) {
+        return [
+            'attsize'       => changeFileSize($row['filesize']),
+            'filename'      => htmlspecialchars($row['filename']),
+            'addtime'       => date("Y-m-d H:i:s", $row['addtime']),
+            'aid'           => $row['aid'],
+            'filepath_thum' => $row['filepath'],
+            'filepath'      => str_replace("thum-", '', $row['filepath']),
+            'file_url' => getFileUrl($row['filepath']),
+            'width'         => $row['width'],
+            'height'        => $row['height'],
+            'mimetype'      => $row['mimetype'],
+            'author'        => $row['author'],
+            'sortid'        => $row['sortid'],
+            'sortname'      => htmlspecialchars(isset($row['sortname']) ? $row['sortname'] : ''),
+        ];
+    }
+
     function addMedia($file_info, $sortid, $uid = UID) {
         $file_name = $file_info['file_name'];
         $file_size = $file_info['size'];
@@ -63,14 +86,15 @@ class Media_Model {
         $img_width = $file_info['width'];
         $img_height = $file_info['height'];
         $create_time = time();
+        $alias = getRandStr(16, false);
 
         if (isset($file_info['thum_file'])) {
             $file_path = $file_info['thum_file'];
         }
 
-        $query = "INSERT INTO $this->table (author, sortid, filename, filesize, filepath, addtime, width, height, mimetype, thumfor)
-                  VALUES('%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')";
-        $query = sprintf($query, $uid, $sortid, $file_name, $file_size, $file_path, $create_time, $img_width, $img_height, $file_mime_type, 0);
+        $query = "INSERT INTO $this->table (alias, author, sortid, filename, filesize, filepath, addtime, width, height, mimetype, thumfor)
+                  VALUES('%s', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')";
+        $query = sprintf($query, $alias, $uid, $sortid, $file_name, $file_size, $file_path, $create_time, $img_width, $img_height, $file_mime_type, 0);
         $this->db->query($query);
         return $this->db->insert_id();
     }
