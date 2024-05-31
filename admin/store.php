@@ -178,6 +178,7 @@ if ($action === 'top') {
 if ($action === 'error') {
     $keyword = '';
     $sub_title = '';
+    $sid = '';
 
     include View::getAdmView('header');
     require_once(View::getAdmView('store'));
