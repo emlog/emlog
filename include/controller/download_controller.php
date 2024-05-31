@@ -35,6 +35,8 @@ class Download_Controller {
 
         doAction('download_resource', $r);
 
+        $this->Media_Model->incrDownloadCount($r['aid']);
+
         $this->download($r['filepath'], $r['filename'], BLOG_URL, getUA());
     }
 

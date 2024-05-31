@@ -433,6 +433,7 @@ CREATE TABLE {$db_prefix}attachment (
   height int(11) NOT NULL default '0' COMMENT '图片高度',
   mimetype varchar(40) NOT NULL default '' COMMENT '文件mime类型',
   thumfor int(11) NOT NULL default 0 COMMENT '缩略图的原资源ID（已废弃）',
+  download_count bigint(20) unsigned NOT NULL DEFAULT 0 COMMENT '下载次数',
   PRIMARY KEY  (aid),
   KEY thum_uid (thumfor,author),
   KEY addtime (addtime)

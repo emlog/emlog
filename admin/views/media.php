@@ -81,7 +81,7 @@
                             <?php if ($value['alias'] && $value['mimetype'] === 'application/zip'):
                                 $media_down_url = BLOG_URL . '?resource_alias=' . $value['alias'];
                                 ?>
-                                ｜ <a href="#" class="copy-link" data-toggle="popover" data-url="<?= $media_down_url ?>" title="<?= $media_down_url ?>">用户下载地址</a>
+                                ｜ <a href="#" class="copy-link" data-toggle="popover" data-url="<?= $media_down_url ?>" title="<?= $media_down_url ?>">用户下载地址</a> （下载<?= $value['download_count'] ?>）
                             <?php endif ?>
                         </p>
                         <p class="card-text d-flex justify-content-between">

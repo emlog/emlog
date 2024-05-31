@@ -68,20 +68,21 @@ class Media_Model {
 
     private function fetchMediaData($row) {
         return [
-            'alias'         => $row['alias'],
-            'attsize'       => changeFileSize($row['filesize']),
-            'filename'      => htmlspecialchars($row['filename']),
-            'addtime'       => date("Y-m-d H:i:s", $row['addtime']),
-            'aid'           => $row['aid'],
-            'filepath_thum' => $row['filepath'],
-            'filepath'      => str_replace("thum-", '', $row['filepath']),
-            'file_url'      => getFileUrl($row['filepath']),
-            'width'         => $row['width'],
-            'height'        => $row['height'],
-            'mimetype'      => $row['mimetype'],
-            'author'        => $row['author'],
-            'sortid'        => $row['sortid'],
-            'sortname'      => htmlspecialchars(isset($row['sortname']) ? $row['sortname'] : ''),
+            'alias'          => $row['alias'],
+            'attsize'        => changeFileSize($row['filesize']),
+            'filename'       => htmlspecialchars($row['filename']),
+            'addtime'        => date("Y-m-d H:i:s", $row['addtime']),
+            'aid'            => $row['aid'],
+            'filepath_thum'  => $row['filepath'],
+            'filepath'       => str_replace("thum-", '', $row['filepath']),
+            'file_url'       => getFileUrl($row['filepath']),
+            'width'          => $row['width'],
+            'height'         => $row['height'],
+            'mimetype'       => $row['mimetype'],
+            'author'         => $row['author'],
+            'sortid'         => $row['sortid'],
+            'sortname'       => htmlspecialchars(isset($row['sortname']) ? $row['sortname'] : ''),
+            'download_count' => $row['download_count'],
         ];
     }
 
@@ -135,6 +136,10 @@ class Media_Model {
         }
         $upStr = implode(',', $Item);
         $this->db->query("UPDATE $this->table SET $upStr WHERE aid=$media_id $author");
+    }
+
+    function incrDownloadCount($media_id) {
+        $this->db->query("UPDATE $this->table SET download_count=download_count+1 WHERE aid=$media_id");
     }
 
 }
