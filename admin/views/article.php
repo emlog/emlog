@@ -143,17 +143,16 @@ $isdraft = $draft ? '&draft=1' : '';
                                     <a class="badge badge-success"
                                        href="article.php?action=operate_log&operate=check&gid=<?= $value['gid'] ?>&token=<?= LoginAuth::genToken() ?>">审核</a>
                                 <?php endif ?>
-                                <?php
-                                if (!$draft && User::haveEditPermission() && $author_role == User::ROLE_WRITER):
-                                    $multiCheckBtn = true;
-                                    ?>
-                                    <a class="badge badge-warning"
-                                       href="#" data-gid="<?= $value['gid'] ?>" data-toggle="modal" data-target="#uncheckModel">驳回</a>
-                                <?php endif ?>
                                 <?php if ($draft): ?>
                                     <a href="javascript: em_confirm(<?= $value['gid'] ?>, 'draft', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger">删除</a>
                                 <?php else: ?>
                                     <a href="javascript: em_confirm(<?= $value['gid'] ?>, 'article', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger">删除</a>
+                                <?php endif ?>
+                                <?php
+                                if (!$draft && User::haveEditPermission() && $author_role == User::ROLE_WRITER):
+                                    $multiCheckBtn = true;
+                                    ?>
+                                    <a class="badge badge-warning" href="#" data-gid="<?= $value['gid'] ?>" data-toggle="modal" data-target="#uncheckModel">驳回</a>
                                 <?php endif ?>
                             </td>
                         </tr>
