@@ -41,6 +41,7 @@ class Download_Controller {
     private function download($file_path, $file_name, $referer = '', $user_agent = '') {
         if (filter_var($file_path, FILTER_VALIDATE_URL)) {
             $file_url = $file_path;
+            emDirect($file_url);
         } else {
             $file_url = EMLOG_ROOT . ltrim($file_path, '.');
         }
