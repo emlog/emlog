@@ -18,7 +18,7 @@
         <div>
             <a href="media.php" class="btn btn-sm btn-primary mr-2 my-1">全部资源</a>
             <?php foreach ($sorts as $key => $val):
-                $cur_tab = $val['id'] == $sid ? "btn-success" : "btn-primary";
+                $cur_tab = $val['id'] == $sid ? "btn-info" : "btn-success";
                 ?>
                 <div class="btn-group mr-2 my-1">
                     <a href="media.php?sid=<?= $val['id'] ?>" class="btn btn-sm <?= $cur_tab ?>"><?= $val['sortname'] ?></a>
