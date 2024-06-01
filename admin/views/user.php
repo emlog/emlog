@@ -55,7 +55,6 @@
                     <th>用户昵称</th>
                     <th>邮箱</th>
                     <th>用户ID</th>
-                    <th>文章</th>
                     <th>登录IP</th>
                     <th>活跃时间</th>
                     <th>创建时间</th>
@@ -77,14 +76,20 @@
                             <?php else: ?>
                                 <a href="blogger.php"><?= empty($val['name']) ? $val['login'] : $val['name'] ?></a>
                             <?php endif ?>
-                            <span class="small"><?= "<br/>" . $val['role'] ?></span>
                             <?php if ($forbid): ?>
                                 <span class="badge badge-warning">已禁用</span>
+                            <?php endif ?>
+                            <br/>
+                            <span class="small"><?= $val['role'] ?><br/></span>
+                            <?php if ($user_log_num > 0): ?>
+                                <span class="small">文章：<a href="article.php?uid=<?= $val['uid'] ?>"><?= $user_log_num ?></a></span>
+                            <?php endif ?>
+                            <?php if ($val['credits'] > 0): ?>
+                                <span class="small">  积分：<?= $val['credits'] ?></span>
                             <?php endif ?>
                         </td>
                         <td><?= $val['email'] ?></td>
                         <td><?= $val['uid'] ?></td>
-                        <td><a href="article.php?uid=<?= $val['uid'] ?>"><?= $user_log_num ?></a></td>
                         <td><?= $val['ip'] ?></td>
                         <td><?= $val['update_time'] ?></td>
                         <td><?= $val['create_time'] ?></td>
