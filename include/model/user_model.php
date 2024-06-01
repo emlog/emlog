@@ -165,7 +165,7 @@ class User_Model {
         if ($count < 0) {
             $count = 0;
         }
-        $this->db->query("UPDATE $this->table SET credits=credits+$count WHERE WHERE uid=$uid");
+        $this->db->query("UPDATE $this->table SET credits=credits+$count WHERE uid=$uid");
         return true;
     }
 
@@ -178,7 +178,7 @@ class User_Model {
         if ($count < 0) {
             $count = 0;
         }
-        $this->db->query("UPDATE $this->table SET credits=GREATEST(credits-$count, 0) WHERE uid=$uid");
+        $this->db->query("UPDATE $this->table SET credits = IF(credits >= $count, credits - $count, 0) WHERE uid = $uid");
         return true;
     }
 
