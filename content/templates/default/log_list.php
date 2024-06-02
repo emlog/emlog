@@ -27,15 +27,9 @@ defined('EMLOG_ROOT') || exit('access denied!');
                         <a class="slideshow-prev" onclick="plusSlides(-1)">&#10094;</a>
                         <a class="slideshow-next" onclick="plusSlides(1)">&#10095;</a>
                     </div>
-                    <div style="text-align:center">
-                        <?php foreach ($slides as $key => $item): ?>
-                            <span class="slideshow-dot" onclick="currentSlide(<?= $key + 1 ?>)"></span>
-                        <?php endforeach; ?>
-                    </div>
                     <br>
                     <script>
                         let slides = document.querySelectorAll('.mySlides');
-                        let dots = document.querySelectorAll('.slideshow-dot');
                         let slideIndex = 1;
                         let timeoutID;
 
@@ -53,12 +47,7 @@ defined('EMLOG_ROOT') || exit('access denied!');
                                 slides[i].style.display = "none";
                             }
 
-                            for (i = 0; i < slides.length; i++) {
-                                dots[i].setAttribute('class', 'slideshow-dot');
-                            }
-
                             slides[slideIndex - 1].style.display = 'block';
-                            dots[slideIndex - 1].setAttribute('class', 'slideshow-dot active');
                             clearTimeout(timeoutID);
                             timeoutID = setTimeout(autoSlides, 2000);
                         };
@@ -83,12 +72,7 @@ defined('EMLOG_ROOT') || exit('access denied!');
                                 slideIndex = 1;
                             }
 
-                            for (i = 0; i < slides.length; i++) {
-                                dots[i].setAttribute('class', 'slideshow-dot');
-                            }
-
                             slides[slideIndex - 1].style.display = "block";
-                            dots[slideIndex - 1].setAttribute('class', 'slideshow-dot active');
                             timeoutID = setTimeout(autoSlides, 2000);
                         }
 
