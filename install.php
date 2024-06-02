@@ -524,6 +524,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES
 ('is_signup','y'),
 ('ischkarticle','y'),
 ('article_uneditable','n'),
+('forbid_user_upload','n'),
 ('posts_per_day',10),
 ('smtp_mail',''),
 ('smtp_pw',''),

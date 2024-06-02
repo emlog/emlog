@@ -36,9 +36,13 @@
                 <input class="form-check-input" type="checkbox" value="y" name="article_uneditable" id="article_uneditable" <?= $conf_article_uneditable ?> />
                 <label for="article_uneditable">审核通过的文章用户不可编辑、删除</label>
             </div>
+            <div class="form-group form-check">
+                <input class="form-check-input" type="checkbox" value="y" name="forbid_user_upload" id="forbid_user_upload" <?= $conf_forbid_user_upload ?> />
+                <label class="form-check-label" for="forbid_user_upload">注册用户禁止上传图文资源</label>
+            </div>
             <div class="form-group form-inline">
                 <label for="posts_per_day">注册用户限制24小时发文数量（包括草稿）：</label>
-                <input class="form-control mx-sm-3" style="width:60px;" value="<?= $conf_posts_per_day ?>" type="number" min="0" name="posts_per_day" id="posts_per_day"/> （为0同时禁止上传图文资源）
+                <input class="form-control mx-sm-3" style="width:60px;" value="<?= $conf_posts_per_day ?>" type="number" min="0" name="posts_per_day" id="posts_per_day"/>
             </div>
             <div class="form-group form-inline">
                 <label for="posts_name">用户中心文章别名：</label>

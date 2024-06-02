@@ -92,7 +92,7 @@ if ($action === 'upload') {
     }
 
     // 注册用户限制24小时发文数量（包括草稿）, 为0时禁止发布微语和上传图文资源
-    if (!User::haveEditPermission() && Option::get('posts_per_day') <= 0) {
+    if (!User::haveEditPermission() && Option::get('forbid_user_upload') === 'y') {
         $ret['message'] = '抱歉，系统限制用户上传资源';
         if ($editor) {
             exit(json_encode($ret));

@@ -344,6 +344,7 @@ if ($action == 'user') {
     $login_code = isset($options_cache['login_code']) ? $options_cache['login_code'] : '';
     $ischkarticle = isset($options_cache['ischkarticle']) ? $options_cache['ischkarticle'] : '';
     $article_uneditable = isset($options_cache['article_uneditable']) ? $options_cache['article_uneditable'] : '';
+    $forbid_user_upload = isset($options_cache['forbid_user_upload']) ? $options_cache['forbid_user_upload'] : '';
     $posts_per_day = isset($options_cache['posts_per_day']) ? $options_cache['posts_per_day'] : '';
     $posts_name = isset($options_cache['posts_name']) ? $options_cache['posts_name'] : '';
     $email_code = isset($options_cache['email_code']) ? $options_cache['email_code'] : '';
@@ -352,6 +353,7 @@ if ($action == 'user') {
     $conf_login_code = $login_code == 'y' ? 'checked="checked"' : '';
     $conf_email_code = $email_code == 'y' ? 'checked="checked"' : '';
     $conf_ischkarticle = $ischkarticle == 'y' ? 'checked="checked"' : '';
+    $conf_forbid_user_upload = $forbid_user_upload == 'y' ? 'checked="checked"' : '';
     $conf_article_uneditable = $article_uneditable == 'y' ? 'checked="checked"' : '';
     $conf_posts_per_day = $posts_per_day;
     $conf_posts_name = $posts_name;
@@ -370,6 +372,7 @@ if ($action == 'user_save') {
         'email_code'         => Input::postStrVar('email_code', 'n'),
         'ischkarticle'       => Input::postStrVar('ischkarticle', 'n'),
         'article_uneditable' => Input::postStrVar('article_uneditable', 'n'),
+        'forbid_user_upload' => Input::postStrVar('forbid_user_upload', 'n'),
         'posts_per_day'      => Input::postIntVar('posts_per_day', 0),
         'posts_name'         => Input::postStrVar('posts_name'),
     ];
