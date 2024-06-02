@@ -16,7 +16,7 @@
         </div>
     </div>
 
-    <a class="btn btn-primary px-4 py-3" href="./article.php?action=write">
+    <a class="btn btn-success px-4 py-3" href="./article.php?action=write">
         <div class="d-inline-block bi bi-download me-2"></div>
         <i class="icofont-plus"></i>发新<?= Option::get("posts_name") ?>
     </a>
