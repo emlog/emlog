@@ -14,6 +14,7 @@ $options = [
         'name'        => '定义设置项标签页名称',
         'values'      => [
             'tpl-head' => '头部设置',
+            'tpl-home' => '首页设置',
         ],
         'description' => '<p>你好，这是默认模板的设置界面，请点击上方菜单进入设置项。</p>'
     ],
@@ -45,5 +46,12 @@ $options = [
             TEMPLATE_URL . 'images/favicon.png',
         ],
         'description' => '上传浏览器图标，推荐尺寸48×48的PNG或JPG图片'
+    ],
+    'slideShow'      => [
+        'labels'      => 'tpl-home',
+        'type'        => 'text',
+        'name'        => '首页轮播图',
+        'multi'       => true,
+        'description' => '每行一个，图片高度推荐260像素，格式：图片地址 | 图片标题 | 跳转地址',
     ],
 ];
