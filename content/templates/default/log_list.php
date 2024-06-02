@@ -73,7 +73,7 @@ defined('EMLOG_ROOT') || exit('access denied!');
                             }
 
                             slides[slideIndex - 1].style.display = "block";
-                            timeoutID = setTimeout(autoSlides, 2000);
+                            timeoutID = setTimeout(autoSlides, 6000);
                         }
 
                         autoSlides();
