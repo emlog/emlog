@@ -65,7 +65,7 @@
                     <a href="<?= $media_url ?>" <?= $imgviewer ?> target="_blank"><img class="card-img-top" src="<?= $media_icon ?>"/></a>
                     <div class="card-body">
                         <p class="card-text text-muted small">
-                            <a href="#" data-toggle="modal" data-target="#editMediaModal" data-id="<?= $value['aid'] ?>" data-filename="<?= $media_name ?>"><?= $media_name ?></a> <span class="badge badge-primary"><?= $sort_name ?></span><br>
+                            <a href="#" data-toggle="modal" data-target="#editMediaModal" data-id="<?= $value['aid'] ?>" data-filename="<?= $media_name ?>"><?= $media_name ?></a> <span class="badge badge-success"><?= $sort_name ?></span><br>
                             时间：<?= $value['addtime'] ?><br>
                             创建人：
                             <?php if (User::haveEditPermission()): ?>

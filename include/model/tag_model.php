@@ -8,9 +8,13 @@
 class Tag_Model {
 
     private $db;
+    private $table;
+    private $table_blog;
 
     function __construct() {
         $this->db = Database::getInstance();
+        $this->table = DB_PREFIX . 'tag';
+        $this->table_blog = DB_PREFIX . 'blog';
     }
 
     /**
@@ -37,7 +41,7 @@ class Tag_Model {
 
     function getOneTag($tagId) {
         $tag = [];
-        $row = $this->db->once_fetch_array("SELECT tagname,tid FROM " . DB_PREFIX . "tag WHERE tid=$tagId");
+        $row = $this->db->once_fetch_array("SELECT tagname,tid FROM $this->table WHERE tid=$tagId");
         $tag['tagname'] = htmlspecialchars(trim($row['tagname']));
         $tag['tagid'] = (int)$row['tid'];
         return $tag;
@@ -92,7 +96,7 @@ class Tag_Model {
 
         // 保存当前文章关联的标签Id列表
         $tag_string = implode(',', $tags);
-        $sql = "UPDATE `" . DB_PREFIX . "blog` SET `tags` = '" . $this->db->escape_string($tag_string) . "' WHERE `gid` = " . $blogId;
+        $sql = "UPDATE `$this->table_blog` SET `tags` = '" . $this->db->escape_string($tag_string) . "' WHERE `gid` = " . $blogId;
         $this->db->query($sql);
     }
 
@@ -146,12 +150,12 @@ class Tag_Model {
 
         // 更新文章Tag映射
         $new_tag_string = implode(',', $new_tags);
-        $sql = "UPDATE `" . DB_PREFIX . "blog` SET `tags` = '" . $this->db->escape_string($new_tag_string) . "' WHERE `gid` = " . $blogId;
+        $sql = "UPDATE `$this->table_blog` SET `tags` = '" . $this->db->escape_string($new_tag_string) . "' WHERE `gid` = " . $blogId;
         $this->db->query($sql);
     }
 
     function updateTagName($tagId, $tagName) {
-        $sql = "UPDATE " . DB_PREFIX . "tag SET tagname='$tagName' WHERE tid=$tagId";
+        $sql = "UPDATE $this->table SET tagname='$tagName' WHERE tid=$tagId";
         $this->db->query($sql);
     }
 
@@ -163,7 +167,7 @@ class Tag_Model {
             $this->removeTagIdFromBlog($blogId, $tagId);
         }
 
-        $this->db->query("DELETE FROM " . DB_PREFIX . "tag where tid=$tagId");
+        $this->db->query("DELETE FROM $this->table where tid=$tagId");
     }
 
     /**
@@ -172,7 +176,7 @@ class Tag_Model {
      * @return int|bool 标签ID | FALSE(未找到标签)
      */
     function getIdFromName($tagName) {
-        $sql = "SELECT `tid` FROM `" . DB_PREFIX . "tag` WHERE `tagname` = '" . $tagName . "'";
+        $sql = "SELECT `tid` FROM `$this->table` WHERE `tagname` = '" . $tagName . "'";
         $query = $this->db->query($sql);
 
         if ($this->db->num_rows($query) === 0) {
@@ -218,7 +222,7 @@ class Tag_Model {
 
         if (!empty($tagIds)) {
             $tag_string = implode(',', $tagIds);
-            $sql = "SELECT `tid`, `tagname` FROM `" . DB_PREFIX . "tag` WHERE `tid` IN (" . $this->db->escape_string($tag_string) . ")";
+            $sql = "SELECT `tid`, `tagname` FROM `$this->table` WHERE `tid` IN (" . $this->db->escape_string($tag_string) . ")";
             $query = $this->db->query($sql);
 
             if ($this->db->num_rows($query) > 0) {
@@ -241,7 +245,7 @@ class Tag_Model {
         $existTag = $this->getIdFromName($tagName);
 
         if (!$existTag) {
-            $this->db->query("INSERT INTO `" . DB_PREFIX . "tag` (`tagname`,`gid`) VALUES('" . $this->db->escape_string($tagName) . "', '$blogId')");
+            $this->db->query("INSERT INTO `$this->table` (`tagname`,`gid`) VALUES('" . $this->db->escape_string($tagName) . "', '$blogId')");
             $existTag = $this->db->insert_id();
         }
 
@@ -278,7 +282,7 @@ class Tag_Model {
 
         $tags = [];
 
-        $sql = "SELECT `tags` FROM `" . DB_PREFIX . "blog` WHERE `gid` = " . $blogId;
+        $sql = "SELECT `tags` FROM `$this->table_blog` WHERE `gid` = " . $blogId;
 
         $query = $this->db->query($sql);
 
@@ -296,7 +300,7 @@ class Tag_Model {
     function getAllTagIds() {
         $tags = [];
 
-        $sql = "SELECT `tid` FROM `" . DB_PREFIX . "tag`";
+        $sql = "SELECT `tid` FROM `$this->table`";
         $query = $this->db->query($sql);
 
         if ($this->db->num_rows($query) > 0) {
@@ -319,7 +323,7 @@ class Tag_Model {
 
         $tags = [];
 
-        $sql = "SELECT * FROM `" . DB_PREFIX . "tag`  where 1=1 $condition ORDER BY `tid` DESC $limit";
+        $sql = "SELECT * FROM `$this->table`  where 1=1 $condition ORDER BY `tid` DESC $limit";
         $query = $this->db->query($sql);
 
         if ($this->db->num_rows($query) > 0) {
@@ -332,7 +336,7 @@ class Tag_Model {
     }
 
     function getTagsCount() {
-        $data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "tag");
+        $data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM $this->table");
         return $data['total'];
     }
 
@@ -345,7 +349,7 @@ class Tag_Model {
     function getBlogIdsFromTagId($tagId) {
         $blogs = [];
 
-        $sql = "SELECT `gid` FROM `" . DB_PREFIX . "tag` WHERE `tid` = " . $tagId;
+        $sql = "SELECT `gid` FROM `$this->table` WHERE `tid` = " . $tagId;
         $query = $this->db->query($sql);
 
         if ($this->db->num_rows($query) > 0) {
@@ -382,7 +386,7 @@ class Tag_Model {
             }
 
             $blog_string = implode(',', $new_blogs);
-            $sql = "UPDATE `" . DB_PREFIX . "tag` SET `gid` = '" . $this->db->escape_string($blog_string) . "' WHERE `tid` = " . $tagId;
+            $sql = "UPDATE `$this->table` SET `gid` = '" . $this->db->escape_string($blog_string) . "' WHERE `tid` = " . $tagId;
             $this->db->query($sql);
         }
     }
@@ -409,7 +413,7 @@ class Tag_Model {
                 }
 
                 $tag_string = implode(',', $new_tags);
-                $sql = "UPDATE `" . DB_PREFIX . "blog` SET `tags` = '" . $this->db->escape_string($tag_string) . "' WHERE `gid` = " . $blogId;
+                $sql = "UPDATE `$this->table_blog` SET `tags` = '" . $this->db->escape_string($tag_string) . "' WHERE `gid` = " . $blogId;
                 $this->db->query($sql);
             }
         }
@@ -427,7 +431,7 @@ class Tag_Model {
             $exist_blogs[] = $blogId;
 
             $blog_string = implode(',', $exist_blogs);
-            $sql = "UPDATE `" . DB_PREFIX . "tag` SET `gid` = '" . $this->db->escape_string($blog_string) . "' WHERE `tid` = " . $tagId;
+            $sql = "UPDATE `$this->table` SET `gid` = '" . $this->db->escape_string($blog_string) . "' WHERE `tid` = " . $tagId;
             $this->db->query($sql);
         }
     }
