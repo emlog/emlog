@@ -141,12 +141,12 @@
 .markdown code {
     border-radius: 3px;
     font-size: 14px;
-    padding: 4px 4px 4px 4px;
     margin-right: 4px;
 }
 
 .markdown pre {
     padding: 10px;
+    border-radius: 5px;
     border: 1px solid var(--borderColor);
     background: var(--borderColor);
     overflow: auto
