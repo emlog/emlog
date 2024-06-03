@@ -101,7 +101,7 @@ defined('EMLOG_ROOT') || exit('access denied!');
                             <div class="row info-row">
                                 <div class="log-info">
                                     <?php blog_author($value['author']) ?>&nbsp;发布于&nbsp;
-                                    <?= date('Y-n-j H:i', $value['date']) ?>&nbsp;
+                                    <time><?= date('Y-n-j H:i', $value['date']) ?></time>
                                 </div>
                                 <div class="log-count">
                                     <a href="<?= $value['log_url'] ?>" class="m-r-10"><span class="iconfont icon-view"></span> <?= $value['views'] ?></a>
