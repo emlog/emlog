@@ -26,9 +26,9 @@ if (!function_exists('_g')) {
     <meta name="description" content="<?= $site_description ?>"/>
     <base href="<?= BLOG_URL ?>"/>
     <link rel="alternate" title="RSS" href="<?= BLOG_URL ?>rss.php" type="application/rss+xml"/>
-    <link href="<?= TEMPLATE_URL ?>css/style.css?v=1717317557&t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>" rel="stylesheet" type="text/css"/>
-    <link href="<?= TEMPLATE_URL ?>css/icon/iconfont.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>" rel="stylesheet" type="text/css"/>
-    <link href="<?= TEMPLATE_URL ?>css/markdown.css?v=1717317557&t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>" rel="stylesheet" type="text/css"/>
+    <link href="<?= TEMPLATE_URL ?>css/style.css?v=1717317557&t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>" rel="stylesheet"/>
+    <link href="<?= TEMPLATE_URL ?>css/icon/iconfont.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>" rel="stylesheet"/>
+    <link href="<?= TEMPLATE_URL ?>css/markdown.css?v=1717317557&t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>" rel="stylesheet"/>
     <link href="<?= empty(_g('favicon')) ? BLOG_URL . 'favicon.ico' : _g('favicon'); ?>" rel="icon">
     <script src="<?= TEMPLATE_URL ?>js/jquery.min.3.5.1.js?v=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
     <script src="<?= TEMPLATE_URL ?>js/common_tpl.js?v=1717317557&t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>

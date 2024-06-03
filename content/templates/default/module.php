@@ -255,7 +255,7 @@ function widget_search($title) { ?>
         </div>
         <div class="unstyle-li" style="text-align: center;">
             <form name="keyform" method="get" action="<?= BLOG_URL ?>index.php">
-                <input name="keyword" class="search form-control" autocomplete="off" aria-label="Search" type="text"/>
+                <input name="keyword" class="search form-control" autocomplete="off" aria-label="Search" type="search"/>
                 <input type="submit" value="搜索">
             </form>
         </div>
@@ -522,7 +522,7 @@ function blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allo
                             <input class="form-control com_control comment-name" id="info_n" autocomplete="off" type="text" name="comname" maxlength="49"
                                    value="<?= $ckname ?>" size="22"
                                    tabindex="1" placeholder="昵称*" required/>
-                            <input class="form-control com_control comment-mail" id="info_m" autocomplete="off" type="text" name="commail" maxlength="128"
+                            <input class="form-control com_control comment-mail" id="info_m" autocomplete="off" type="email" name="commail" maxlength="128"
                                    value="<?= $ckmail ?>" size="22"
                                    tabindex="2" placeholder="邮箱"/>
                         </div>
@@ -539,9 +539,9 @@ function blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allo
                         <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content" style="display: table-cell;">
-                                    <div class="modal-header" style="border-bottom: 0px;">输入验证码</div>
+                                    <div class="modal-header" style="border-bottom: 0;">输入验证码</div>
                                     <?= $verifyCode ?>
-                                    <div class="modal-footer" style="border-top: 0px;">
+                                    <div class="modal-footer" style="border-top: 0;">
                                         <button type="button" class="btn" id="close-modal" data-dismiss="modal">关闭</button>
                                         <button type="submit" class="btn" id="comment_submit2">提交</button>
                                     </div>
