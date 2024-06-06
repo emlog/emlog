@@ -5,24 +5,23 @@
  * @link https://www.emlog.net
  */
 
-const ENVIRONMENT = 'production'; // 运行环境：production 生产环境，develop 开发环境
-if (getenv('EMLOG_ENV') === 'develop' || ENVIRONMENT === 'develop') {
-    error_reporting(E_ALL);
-} else {
-    error_reporting(1);
-}
-
 ob_start();
 header('Content-Type: text/html; charset=UTF-8');
 
 const EMLOG_ROOT = __DIR__;
 
+require_once EMLOG_ROOT . '/config.php';
+require_once EMLOG_ROOT . '/include/lib/common.php';
+
+if (getenv('EMLOG_ENV') === 'develop' || (defined('ENVIRONMENT') && ENVIRONMENT === 'develop')) {
+    error_reporting(E_ALL);
+} else {
+    error_reporting(1);
+}
+
 if (extension_loaded('mbstring')) {
     mb_internal_encoding('UTF-8');
 }
-
-require_once EMLOG_ROOT . '/config.php';
-require_once EMLOG_ROOT . '/include/lib/common.php';
 
 spl_autoload_register("emAutoload");
 
