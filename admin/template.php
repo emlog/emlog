@@ -31,6 +31,8 @@ if ($action === 'use') {
 
     Option::updateOption('nonce_templet', $tplName);
     $CACHE->updateCache('options');
+    $Template_Model->initCallback($tplName);
+
     emDirect("./template.php?activated=1");
 }
 
@@ -45,6 +47,7 @@ if ($action === 'del') {
 
     $path = preg_replace("/^([\w-]+)$/i", "$1", $tplName);
     if ($path && true === emDeleteFile(TPLS_PATH . $path)) {
+        $Template_Model->rmCallback($tplName);
         emDirect("./template.php?activate_del=1#tpllib");
     } else {
         emDirect("./template.php?error_f=1#tpllib");
@@ -138,6 +141,7 @@ if ($action === 'upgrade') {
     @unlink($temp_file);
     switch ($ret) {
         case 0:
+            $Template_Model->upCallback($alias);
             emDirect("./template.php?activate_upgrade=1");
             break;
         case 1:

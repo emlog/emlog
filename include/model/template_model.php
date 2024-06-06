@@ -107,4 +107,37 @@ class Template_Model {
         return $comment;
     }
 
+    // init callback
+    public function initCallback($tplName) {
+        $callback_file = "../content/templates/$tplName/callback.php";
+        if (file_exists($callback_file)) {
+            require_once $callback_file;
+            if (function_exists('callback_init')) {
+                callback_init();
+            }
+        }
+    }
+
+    // delete callback
+    public function rmCallback($tplName) {
+        $callback_file = "../content/templates/$tplName/callback.php";
+        if (file_exists($callback_file)) {
+            require_once $callback_file;
+            if (function_exists('callback_rm')) {
+                callback_rm();
+            }
+        }
+    }
+
+    // upgrade callback
+    public function upCallback($tplName) {
+        $callback_file = "../content/templates/$tplName/callback.php";
+        if (file_exists($callback_file)) {
+            require_once $callback_file;
+            if (function_exists('callback_up')) {
+                callback_up();
+            }
+        }
+    }
+
 }
