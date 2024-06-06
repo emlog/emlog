@@ -12,11 +12,12 @@
 
 require_once 'globals.php';
 
+$Template_Model = new Template_Model();
+
 if ($action === '') {
     $nonce_template = Option::get('nonce_templet');
     $nonce_template_data = @file(TPLS_PATH . $nonce_template . '/header.php');
 
-    $Template_Model = new Template_Model();
     $templates = $Template_Model->getTemplates();
 
     include View::getAdmView('header');
