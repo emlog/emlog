@@ -138,10 +138,14 @@
     background: var(--bodyBground)
 }
 
-.markdown code {
+/* 选择不在 <pre> 标签中的 <code> 元素 */
+.markdown code:not(pre > code) {
     border-radius: 3px;
     font-size: 14px;
     margin-right: 4px;
+    color: var(--aHoverColor);
+    background: var(--borderColor);
+    padding: 2px 4px;
 }
 
 .markdown pre {
