@@ -76,13 +76,13 @@
                             <?php else: ?>
                                 <a href="blogger.php"><?= empty($val['name']) ? $val['login'] : $val['name'] ?></a>
                             <?php endif ?>
+                            <span class="small"><?= $val['role'] ?></span>
                             <?php if ($forbid): ?>
                                 <span class="badge badge-warning">已禁用</span>
                             <?php endif ?>
                             <br/>
-                            <span class="small"><?= $val['role'] ?><br/></span>
                             <?php if ($user_log_num > 0): ?>
-                                <span class="small">文章：<a href="article.php?uid=<?= $val['uid'] ?>"><?= $user_log_num ?></a></span>
+                                <span class="small mr-2">文章：<a href="article.php?uid=<?= $val['uid'] ?>"><?= $user_log_num ?></a></span>
                             <?php endif ?>
                             <?php if ($val['credits'] > 0): ?>
                                 <span class="small">  积分：<?= $val['credits'] ?></span>
