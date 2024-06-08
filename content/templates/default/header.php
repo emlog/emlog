@@ -24,7 +24,6 @@ if (!function_exists('_g')) {
     <title><?= $site_title ?></title>
     <meta name="keywords" content="<?= $site_key ?>"/>
     <meta name="description" content="<?= $site_description ?>"/>
-    <base href="<?= BLOG_URL ?>"/>
     <link rel="alternate" title="RSS" href="<?= BLOG_URL ?>rss.php" type="application/rss+xml"/>
     <link href="<?= TEMPLATE_URL ?>css/style.css?v=1717749414&t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>" rel="stylesheet"/>
     <link href="<?= TEMPLATE_URL ?>css/icon/iconfont.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>" rel="stylesheet"/>
