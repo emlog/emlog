@@ -113,11 +113,12 @@
 .markdown table {
     display: block;
     width: 100%;
+    max-width: 100%;
     overflow: auto;
-    word-break: normal;
     word-break: keep-all;
     border-collapse: collapse;
-    margin-bottom: 16px
+    margin-bottom: 16px;
+    table-layout: auto;
 }
 
 .markdown thead tr {
