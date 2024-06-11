@@ -28,8 +28,8 @@
 [data-theme="dark"] {
     --conBgcolor: #2e2e2e; /* 导航、卡片、内容的背景颜色 */
     --bodyBground: #121212; /* 页面背景颜色 */
-    --fontColor: #cfcfcf; /* 普通文本的颜色 */
-    --aColor: #a8a8a8; /* a 标签的颜色 */
+    --fontColor: #ffffff; /* 普通文本的颜色 */
+    --aColor: #cfcfcf; /* a 标签的颜色 */
     --aHoverColor: #f6607d; /* a 标签 hover 状态的颜色 */
     --lightColor: #757575; /* 比较浅一点的文本颜色 */
 
