@@ -46,6 +46,9 @@
                     <label>个人描述</label>
                     <textarea name="description" class="form-control"><?= $description ?></textarea>
                 </div>
+                <div class="form-group">
+                    <?php doAction('blogger_ext') ?>
+                </div>
                 <input name="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
                 <input type="submit" value="保存资料" name="submit_form" id="submit_form" class="btn btn-sm btn-success"/>
                 <a href="#" type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#editPasswordModal">修改密码</a>
