@@ -23,7 +23,7 @@ class Register {
     public static function getRegType() {
         $CACHE = Cache::getInstance();
         $options_cache = $CACHE->readCache('options');
-        return isset($options_cache['emkey_type']) ? (int)$options_cache['emkey_type'] : '';
+        return isset($options_cache['emkey_type']) ? (int)$options_cache['emkey_type'] : 0;
     }
 
     public static function isRegServer() {

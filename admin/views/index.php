@@ -98,9 +98,9 @@
                             <span>
                             <?php if (!Register::isRegLocal()) : ?>
                                 <a href="auth.php"><span class="badge badge-secondary">Emlog <?= Option::EMLOG_VERSION ?> 未注册，点击注册</span></a>
-                            <?php elseif (Register::getRegType() == 2): ?>
+                            <?php elseif (Register::getRegType() === 2): ?>
                                 <span class="badge badge-success">Emlog <?= ucfirst(Option::EMLOG_VERSION) ?></span> <a href="https://www.emlog.net/register" class="badge badge-warning">铁杆SVIP</a>
-                            <?php elseif (Register::getRegType() == 1): ?>
+                            <?php elseif (Register::getRegType() === 1): ?>
                                 <span class="badge badge-success">Emlog <?= ucfirst(Option::EMLOG_VERSION) ?></span> <a href="https://www.emlog.net/register" class="badge badge-success"> 友情VIP</a>
                             <?php else: ?>
                                 <span class="badge badge-success">Emlog <?= ucfirst(Option::EMLOG_VERSION) ?></span> <a href="https://www.emlog.net/register" class="badge badge-success"> 已注册</a>

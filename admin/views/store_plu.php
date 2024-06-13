@@ -90,7 +90,7 @@
                                         <?php if ($v['purchased'] === true): ?>
                                             <a href="store.php?action=mine" class="btn btn-light">已购买</a>
                                             <a href="#" class="btn btn-success installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-cdn-url="<?= urlencode($v['cdn_download_url']) ?>" data-type="plugin">立即安装</a>
-                                        <?php elseif ($v['svip'] && Register::getRegType() == 2): ?>
+                                        <?php elseif ($v['svip'] && Register::getRegType() === 2): ?>
                                             <a href="#" class="btn btn-warning installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-cdn-url="<?= urlencode($v['cdn_download_url']) ?>" data-type="plugin">立即安装</a>
                                         <?php else: ?>
                                             <a href="https://www.emlog.net/order/submit/plugin/<?= $v['id'] ?>" class="btn btn-danger" target="_blank">立即购买</a>
