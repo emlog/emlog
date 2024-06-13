@@ -21,6 +21,7 @@
     <div class="d-flex flex-wrap app-list">
         <?php foreach ($addons as $k => $v):
             $icon = $v['icon'] ?: "./views/images/theme.png";
+            $type = $v['app_type'] === 'template' ? 'tpl' : 'plugin';
             ?>
             <div class="col-md-6 col-lg-3">
                 <div class="card mb-4 shadow-sm">
@@ -30,6 +31,11 @@
                     <div class="card-body">
                         <p class="card-text font-weight-bold">
                             <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="<?= $v['name'] ?>" data-url="<?= $v['app_url'] ?>" data-buy-url="<?= $v['buy_url'] ?>"><?= $v['name'] ?></a>
+                            <?php if ($type === 'tpl'): ?>
+                                <span class="badge badge-success p-1">模板</span>
+                            <?php else: ?>
+                                <span class="badge badge-primary p-1">插件</span>
+                            <?php endif; ?>
                         </p>
                         <p class="card-text text-muted small">
                             开发者：<?= $v['author'] ?><br>
@@ -40,7 +46,7 @@
                         <div class="card-text d-flex justify-content-between">
                             <div class="installMsg"></div>
                             <div>
-                                <a href="#" class="btn btn-warning installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-cdn-url="<?= urlencode($v['cdn_download_url']) ?>" data-type="plu">立即安装</a>
+                                <a href="#" class="btn btn-warning installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-cdn-url="<?= urlencode($v['cdn_download_url']) ?>" data-type="<?= $type ?>">立即安装</a>
                             </div>
                         </div>
                     </div>
