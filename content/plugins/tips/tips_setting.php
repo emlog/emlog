@@ -32,11 +32,11 @@ function plugin_setting_view() {
     </div>
     <script>
         setTimeout(hideActived, 3600);
-        $("#menu_category_ext").addClass('active');
-        $("#menu_ext").addClass('show');
-        $("#menu_plug").addClass('active');
 
-        // Ajax异步提交表单
+        // 左侧插件菜单高亮
+        $("#menu_category_ext").addClass('active');
+
+        // 异步提交表单
         $("#tips_form").submit(function (event) {
             event.preventDefault();
             submitForm("#tips_form");
