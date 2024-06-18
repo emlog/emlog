@@ -19,7 +19,7 @@ function plugin_setting_view() {
             <form method="post" id="tips_form" action="./plugin.php?plugin=tips&action=setting">
                 <div class="form-group">
                     <p>这是世界上第一个emlog插件，它会在你的管理页面送上一句温馨的小提示，样式如下。</p>
-                    <?php tips(); ?>
+                    <?php tips_init(); ?>
                     <hr>
                     <p>另外该插件也是一个demo，可以在这个插件基础上修改，开发出你自己的插件。</p>
                 </div>

@@ -26,14 +26,14 @@ $array_tips = [
     '面朝大海，春暖花开',
 ];
 
-function tips() {
+function tips_init() {
     global $array_tips;
     $i = mt_rand(0, count($array_tips) - 1);
     $tip = $array_tips[$i];
     echo "<div id=\"tip\"> $tip</div>";
 }
 
-addAction('adm_main_top', 'tips');
+addAction('adm_main_top', 'tips_init');
 
 function tips_css() {
     echo "<style>
