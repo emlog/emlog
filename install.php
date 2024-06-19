@@ -546,7 +546,7 @@ CREATE TABLE {$db_prefix}link (
   taxis int(11) unsigned NOT NULL default '0' COMMENT '排序序号',
   PRIMARY KEY  (id)
 )" . $table_charset_sql . "
-INSERT INTO {$db_prefix}link (id, sitename, siteurl, icon, description, taxis) VALUES (1, 'emlog.net', 'http://www.emlog.net', 'https://oss-pub.emlog.net/img/logo.png', 'emlog官方主页', 0);
+INSERT INTO {$db_prefix}link (id, sitename, siteurl, icon, description, taxis) VALUES (1, 'emlog.net', 'http://www.emlog.net', '', 'emlog官方主页', 0);
 DROP TABLE IF EXISTS {$db_prefix}navi;
 CREATE TABLE {$db_prefix}navi (
   id int(11) unsigned NOT NULL auto_increment COMMENT '导航表',
