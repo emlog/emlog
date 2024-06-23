@@ -49,7 +49,7 @@ if ($action == 'inactive') {
 
 // Load plug-in configuration page
 if (empty($action) && $plugin) {
-    require_once "../content/plugins/{$plugin}/{$plugin}_setting.php";
+    require_once "../content/plugins/$plugin/{$plugin}_setting.php";
     include View::getAdmView('header');
     plugin_setting_view();
     include View::getAdmView('footer');
@@ -58,7 +58,7 @@ if (empty($action) && $plugin) {
 // Save plug-in settings
 if ($action == 'setting') {
     if (!empty($_POST)) {
-        require_once "../content/plugins/{$plugin}/{$plugin}_setting.php";
+        require_once "../content/plugins/$plugin/{$plugin}_setting.php";
         if (false === plugin_setting()) {
             emDirect("./plugin.php?plugin={$plugin}&error=1");
         } else {
