@@ -1,6 +1,6 @@
 <?php
 /**
- * navibar model
+ * navi model
  * @package EMLOG
  * @link https://www.emlog.net
  */

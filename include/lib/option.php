@@ -18,7 +18,6 @@ class Option {
 
         switch ($option) {
             case 'active_plugins':
-            case 'navibar':
             case 'widget_title':
             case 'custom_widget':
             case 'widgets1':
