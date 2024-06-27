@@ -13,91 +13,88 @@ function timestamp() {
 }
 
 function em_confirm(id, property, token) {
-    let url, msg;
-    let text = '删除后可能无法恢复'
+    let url;
+    let msg = '';
+    let text = ''
     switch (property) {
         case 'article':
             url = 'article.php?action=del&gid=' + id;
-            msg = '确定要删除该篇文章吗？';
-            text = '彻底删除将无法恢复'
+            text = '确定要删除该篇文章吗？';
             delArticle(msg, text, url, token)
             break;
         case 'draft':
             url = 'article.php?action=del&draft=1&gid=' + id;
-            msg = '确定要删除该篇草稿吗？';
+            text = '确定要删除该篇草稿吗？';
             delAlert(msg, text, url, token)
             break;
         case 'tw':
             url = 'twitter.php?action=del&id=' + id;
-            msg = '确定要删除该条微语吗？';
+            text = '确定要删除该条微语吗？';
             delAlert(msg, text, url, token)
             break;
         case 'comment':
             url = 'comment.php?action=del&id=' + id;
-            msg = '确定要删除该评论吗？';
+            text = '确定要删除该评论吗？';
             delAlert(msg, text, url, token)
             break;
         case 'commentbyip':
             url = 'comment.php?action=delbyip&ip=' + id;
-            msg = '确定要删除来自该IP的所有评论吗？';
+            text = '确定要删除来自该IP的所有评论吗？';
             delAlert(msg, text, url, token)
             break;
         case 'link':
             url = 'link.php?action=del&linkid=' + id;
-            msg = '确定要删除该链接吗？';
+            text = '确定要删除该链接吗？';
             delAlert(msg, text, url, token)
             break;
         case 'navi':
             url = 'navbar.php?action=del&id=' + id;
-            msg = '确定要删除该导航吗？';
+            text = '确定要删除该导航吗？';
             delAlert(msg, text, url, token)
             break;
         case 'media':
             url = 'media.php?action=delete&aid=' + id;
-            msg = '确定要删除该媒体文件吗？';
+            text = '确定要删除该媒体文件吗？';
             delAlert(msg, text, url, token)
             break;
         case 'avatar':
             url = 'blogger.php?action=delicon';
-            msg = '确定要删除头像吗？';
+            text = '确定要删除头像吗？';
             delAlert(msg, text, url, token)
             break;
         case 'sort':
             url = 'sort.php?action=del&sid=' + id;
-            msg = '确定要删除该分类吗？';
+            text = '确定要删除该分类吗？';
             delAlert(msg, text, url, token)
             break;
         case 'del_user':
             url = 'user.php?action=del&uid=' + id;
-            msg = '确定要删除该用户吗？';
+            text = '确定要删除该用户吗？';
             delAlert(msg, text, url, token)
             break;
         case 'forbid_user':
             url = 'user.php?action=forbid&uid=' + id;
-            msg = '提示';
             text = '确定要禁用该用户吗？';
             delAlert(msg, text, url, token)
             break;
         case 'tpl':
             url = 'template.php?action=del&tpl=' + id;
-            msg = '确定要删除该模板吗？';
+            text = '确定要删除该模板吗？';
             delAlert(msg, text, url, token)
             break;
         case 'reset_widget':
             url = 'widgets.php?action=reset';
-            msg = '确定要重置组件吗？';
-            text = '重置会丢失自定义的组件';
+            text = '确定要重置组件吗？重置会丢失自定义的组件';
             delAlert(msg, text, url, token)
             break;
         case 'plu':
             url = 'plugin.php?action=del&plugin=' + id;
-            msg = '确定要删除该插件吗？';
+            text = '确定要删除该插件吗？';
             delAlert(msg, text, url, token)
             break;
         case 'media_sort':
             url = 'media.php?action=del_media_sort&id=' + id;
-            msg = '确定要删除该资源分类吗？';
-            text = '不会删除分类下资源文件';
+            text = '确定要删除该资源分类吗？不会删除分类下资源文件';
             delAlert(msg, text, url, token)
             break;
     }
