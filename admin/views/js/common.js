@@ -19,82 +19,82 @@ function em_confirm(id, property, token) {
     switch (property) {
         case 'article':
             url = 'article.php?action=del&gid=' + id;
-            text = '确定要删除该篇文章吗？';
+            text = '删除这篇文章？';
             delArticle(msg, text, url, token)
             break;
         case 'draft':
             url = 'article.php?action=del&draft=1&gid=' + id;
-            text = '确定要删除该篇草稿吗？';
+            text = '删除这篇草稿？';
             delAlert(msg, text, url, token)
             break;
         case 'tw':
             url = 'twitter.php?action=del&id=' + id;
-            text = '确定要删除该条微语吗？';
+            text = '删除这条微语？';
             delAlert(msg, text, url, token)
             break;
         case 'comment':
             url = 'comment.php?action=del&id=' + id;
-            text = '确定要删除该评论吗？';
+            text = '删除这条评论？';
             delAlert(msg, text, url, token)
             break;
         case 'commentbyip':
             url = 'comment.php?action=delbyip&ip=' + id;
-            text = '确定要删除来自该IP的所有评论吗？';
+            text = '删除来自该IP的所有评论？';
             delAlert(msg, text, url, token)
             break;
         case 'link':
             url = 'link.php?action=del&linkid=' + id;
-            text = '确定要删除该链接吗？';
+            text = '删除该链接？';
             delAlert(msg, text, url, token)
             break;
         case 'navi':
             url = 'navbar.php?action=del&id=' + id;
-            text = '确定要删除该导航吗？';
+            text = '删除该导航？';
             delAlert(msg, text, url, token)
             break;
         case 'media':
             url = 'media.php?action=delete&aid=' + id;
-            text = '确定要删除该媒体文件吗？';
+            text = '删除该文件？';
             delAlert(msg, text, url, token)
             break;
         case 'avatar':
             url = 'blogger.php?action=delicon';
-            text = '确定要删除头像吗？';
+            text = '删除头像？';
             delAlert(msg, text, url, token)
             break;
         case 'sort':
             url = 'sort.php?action=del&sid=' + id;
-            text = '确定要删除该分类吗？';
+            text = '删除该分类？';
             delAlert(msg, text, url, token)
             break;
         case 'del_user':
             url = 'user.php?action=del&uid=' + id;
-            text = '确定要删除该用户吗？';
+            text = '删除该用户？';
             delAlert(msg, text, url, token)
             break;
         case 'forbid_user':
             url = 'user.php?action=forbid&uid=' + id;
-            text = '确定要禁用该用户吗？';
-            delAlert(msg, text, url, token)
+            text = '禁用该用户？';
+            delAlert(msg, text, url, token, '禁用')
             break;
         case 'tpl':
             url = 'template.php?action=del&tpl=' + id;
-            text = '确定要删除该模板吗？';
+            text = '删除该模板？';
             delAlert(msg, text, url, token)
             break;
         case 'reset_widget':
             url = 'widgets.php?action=reset';
-            text = '确定要重置组件吗？重置会丢失自定义的组件';
-            delAlert(msg, text, url, token)
+            text = '重置组件？重置会丢失自定义的组件';
+            delAlert(msg, text, url, token, '重置')
             break;
         case 'plu':
             url = 'plugin.php?action=del&plugin=' + id;
-            text = '确定要删除该插件吗？';
+            text = '删除该插件？';
             delAlert(msg, text, url, token)
             break;
         case 'media_sort':
             url = 'media.php?action=del_media_sort&id=' + id;
-            text = '确定要删除该资源分类吗？不会删除分类下资源文件';
+            text = '删除该资源分类？不会删除分类下资源文件';
             delAlert(msg, text, url, token)
             break;
     }
@@ -108,9 +108,9 @@ function infoAlert(msg) {
     });
 }
 
-function delAlert(msg, text, url, token) {
+function delAlert(msg, text, url, token, btnText = '删除') {
     // icon: 0 default, 1 ok, 2 err, 3 ask
-    layer.confirm(text, {icon: 0, title: msg, skin: 'class-layer-danger'}, function (index) {
+    layer.confirm(text, {icon: 3, title: msg, skin: 'class-layer-danger', btn: [btnText, '取消']}, function (index) {
         window.location = url + '&token=' + token;
         layer.close(index);
     });
