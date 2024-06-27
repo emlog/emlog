@@ -25,7 +25,7 @@ if ($action === 'backup') {
 
     $DB = Database::getInstance();
     $tables = $DB->listTables();
-    
+
     $bakfname = 'emlog_' . date('Ymd') . '_' . substr(md5(AUTH_KEY . uniqid('', true)), 0, 18);
     $filename = '';
     $sqldump = '';
@@ -103,7 +103,7 @@ if ($action === 'import') {
 function checkSqlFileInfo($sqlfile) {
     $fp = @fopen($sqlfile, 'r');
     if (!$fp) {
-        emMsg('导入失败！读取文件失败');
+        emMsg('读取备份文件失败，检查文件权限');
     }
     $dumpinfo = [];
     $line = 0;
@@ -120,13 +120,20 @@ function checkSqlFileInfo($sqlfile) {
     }
     fclose($fp);
     if (empty($dumpinfo)) {
-        emMsg('导入失败！该文件不是emlog的数据备份文件!');
+        emMsg('该文件不是emlog的数据备份文件');
     }
-    if (!strstr($dumpinfo[0], '#version:emlog ' . Option::EMLOG_VERSION)) {
-        emMsg('导入失败！该文件不是emlog' . Option::EMLOG_VERSION . '生成的备份!');
+
+    if (preg_match("/pro\s\d+\.\d+\.\d+/", $dumpinfo[0], $matches)) {
+        $v = $matches[0];
+        if ($v !== Option::EMLOG_VERSION) {
+            emMsg('不是当前版本生成的数据备份，请安装 emlog ' . $v . ' 导入。');
+        }
+    } else {
+        emMsg('该文件不是 emlog pro 的数据备份文件');
     }
+
     if (preg_match('/#tableprefix:' . DB_PREFIX . '/', $dumpinfo[2]) === 0) {
-        emMsg('导入失败！备份文件中的数据库表前缀与当前系统数据库表前缀不一致' . $dumpinfo[2]);
+        emMsg('备份文件中的数据库表前缀与当前系统数据库表前缀不一致' . $dumpinfo[2]);
     }
 }
 
