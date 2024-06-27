@@ -111,7 +111,7 @@
         }
 
         if (act === 'del') {
-            delAlert2('确定要删除所选标签吗', '删除后可能无法恢复', function () {
+            delAlert2('', '删除所选标签？', function () {
                 $("#operate").val(act);
                 $("#form_tag").submit();
             })
@@ -123,7 +123,7 @@
 
     function deltags() {
         var tid = $('#tid').val()
-        delAlert2('确定要删除所选标签吗', '删除后可能无法恢复', function () {
+        delAlert2('', '删除所选标签？', function () {
             window.open("./tag.php?action=del_tag&token=<?= LoginAuth::genToken() ?>&tid=" + tid, "_self");
         })
     }

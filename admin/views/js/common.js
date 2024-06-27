@@ -116,8 +116,8 @@ function delAlert(msg, text, url, token, btnText = '删除') {
     });
 }
 
-function delAlert2(msg, text, actionClosure) {
-    layer.confirm(text, {icon: 0, title: msg}, function (index) {
+function delAlert2(msg, text, actionClosure, btnText = '删除') {
+    layer.confirm(text, {icon: 0, title: msg, skin: 'class-layer-danger', btn: [btnText, '取消']}, function (index) {
         actionClosure(); // 执行闭包
         layer.close(index);
     });

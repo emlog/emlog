@@ -276,7 +276,7 @@ $isdraft = $draft ? '&draft=1' : '';
         }
 
         if (act === 'del_draft') {
-            delAlert2('确定要删除所选草稿吗', '删除将无法恢复', function () {
+            delAlert2('', '删除所选草稿？', function () {
                 $("#operate").val("del");
                 $("#form_log").submit();
             })

@@ -163,7 +163,7 @@
         }
 
         if (act === 'del') {
-            delAlert2('确定要删除所选评论吗', '删除后可能无法恢复', function () {
+            delAlert2('', '删除所选评论？', function () {
                 $("#operate").val(act);
                 $("#form_com").submit();
             })
