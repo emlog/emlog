@@ -833,3 +833,24 @@ input[type="checkbox"]:hover, select:hover {
         max-width: 90%;
     }
 }
+
+/* layui 弹窗：自定义按钮样式  */
+.class-layer-danger .layui-layer-title {
+    background-color: #EDEFF2;
+}
+
+.class-layer-danger .layui-layer-btn {
+    padding: 5px 10px 10px;
+}
+
+.class-layer-danger .layui-layer-btn a {
+    background: #fff;
+    border-color: #E9E7E7;
+    color: #333;
+}
+
+.class-layer-danger .layui-layer-btn .layui-layer-btn0 {
+    background-color: #e74a3b;
+    border-color: #e74a3b;
+    color: #fff;
+}

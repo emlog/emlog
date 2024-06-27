@@ -110,7 +110,7 @@ function infoAlert(msg) {
 
 function delAlert(msg, text, url, token) {
     // icon: 0 default, 1 ok, 2 err, 3 ask
-    layer.confirm(text, {icon: 0, title: msg}, function (index) {
+    layer.confirm(text, {icon: 0, title: msg, skin: 'class-layer-danger'}, function (index) {
         window.location = url + '&token=' + token;
         layer.close(index);
     });
