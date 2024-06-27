@@ -8,12 +8,12 @@
                 <input class="form-control" id="naviname" value="<?= $naviname ?>" name="naviname">
             </div>
             <div class="form-group">
-                <label for="alias">导航地址</label>
+                <label for="alias">导航网址</label>
                 <input class="form-control" id="url" value="<?= $url ?>" name="url" <?= $conf_isdefault ?>>
             </div>
             <div class="form-group">
-                <label for="newtab">在新窗口打开</label>
                 <input type="checkbox" value="y" name="newtab" id="newtab" <?= $conf_newtab ?> />
+                <label for="newtab">新窗口打开</label>
             </div>
             <?php if ($type == Navi_Model::navitype_custom && $pid != 0): ?>
                 <div class="form-group">

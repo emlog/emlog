@@ -138,11 +138,11 @@
                     <input class="form-control" name="naviname" placeholder="导航名称" required/>
                 </div>
                 <div class="form-group">
-                    <textarea maxlength="512" class="form-control" placeholder="地址（URL）" name="url" id="url" required></textarea>
+                    <textarea maxlength="512" class="form-control" placeholder="导航网址" name="url" id="url" required></textarea>
                 </div>
                 <div class="form-group form-check">
                     <input type="checkbox" class="form-check-input" value="y" name="newtab" id="newtab">
-                    <label class="form-check-label" for="newtab">在新窗口打开</label>
+                    <label class="form-check-label" for="newtab">新窗口打开</label>
                 </div>
                 <div class="form-group">
                     <label>父导航</label>
