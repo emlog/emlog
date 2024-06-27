@@ -17,12 +17,12 @@
     </div>
     <div class="form-row align-items-center">
         <div class="col-auto">
-            <button type="submit" class="btn btn-sm btn-success">发布</button>
+            <button type="submit" class="btn btn-success btn-sm mb-2">发布</button>
         </div>
-        <div class="col-auto ml-2">
+        <div class="col-auto">
             <div class="form-check mb-2">
-                <input class="form-check-input" type="checkbox" value="y" name="private" id="private"/>
-                <label class="form-check-label" for="private">私密</label>
+                <input class="form-check-input" type="checkbox" value="y" name="private" id="private">
+                <label class="form-check-label small" for="private">私密</label>
             </div>
         </div>
     </div>
@@ -87,10 +87,10 @@
     $(function () {
         Editor = editormd("t", {
             width: "100%",
-            height: 340,
+            height: 260,
             toolbarIcons: function () {
                 return ["bold", "del", "italic", "quote", "|", "h1", "h2", "h3", "|", "list-ul", "list-ol", "|",
-                    "link", "image", "table", "|", "preview"]
+                    "link", "image", "|", "preview"]
             },
             path: "editor.md/lib/",
             tex: false,
