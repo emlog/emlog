@@ -117,7 +117,7 @@ function delAlert(msg, text, url, token, btnText = '删除') {
 }
 
 function delAlert2(msg, text, actionClosure, btnText = '删除') {
-    layer.confirm(text, {icon: 0, title: msg, skin: 'class-layer-danger', btn: [btnText, '取消']}, function (index) {
+    layer.confirm(text, {icon: 3, title: msg, skin: 'class-layer-danger', btn: [btnText, '取消']}, function (index) {
         actionClosure(); // 执行闭包
         layer.close(index);
     });
@@ -126,7 +126,7 @@ function delAlert2(msg, text, actionClosure, btnText = '删除') {
 function delArticle(msg, text, url, token) {
     layer.confirm(text, {
         title: msg,
-        icon: 0,
+        icon: 3,
         btn: ['放入草稿', '<span class="text-danger">彻底删除</span>', '取消']
     }, function (index) {
         window.location = url + '&token=' + token;
