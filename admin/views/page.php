@@ -76,10 +76,10 @@
                 <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
                 <input name="operate" id="operate" value="" type="hidden"/>
             </div>
-            <div class="page"><?= $pageurl ?></div>
-            <div class="text-center small">(有 <?= $pageNum ?> 个页面 )</div>
         </div>
     </div>
+    <div class="page"><?= $pageurl ?></div>
+    <div class="text-center small">有 <?= $pageNum ?> 个页面</div>
 </form>
 <script>
     $(function () {

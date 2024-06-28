@@ -119,7 +119,7 @@
     <?php endif; ?>
 </form>
 <div class="page"><?= $page ?> </div>
-<div class="text-center small">(有 <?= $count ?> 个资源 )</div>
+<div class="text-center small">有 <?= $count ?> 个资源</div>
 
 <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -133,7 +133,6 @@
             <div class="modal-body">
                 <form action="./media.php?action=upload<?= '&sid=' . $sid ?>" class="dropzone" id="up-form"></form>
             </div>
-
         </div>
     </div>
 </div>
@@ -159,7 +158,6 @@
                     <button type="submit" class="btn btn-sm btn-success">保存</button>
                 </div>
             </form>
-
         </div>
     </div>
 </div>

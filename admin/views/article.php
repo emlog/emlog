@@ -222,10 +222,10 @@ $isdraft = $draft ? '&draft=1' : '';
                 </div>
             </div>
         </form>
-        <div class="page"><?= $pageurl ?> </div>
-        <div class="text-center small">(有 <?= $logNum ?> 篇<?= $draft ? '草稿' : '文章' ?>)</div>
     </div>
 </div>
+<div class="page"><?= $pageurl ?> </div>
+<div class="text-center small">有 <?= $logNum ?> 篇<?= $draft ? '草稿' : '文章' ?></div>
 <!--驳回文章-->
 <div class="modal fade" id="uncheckModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

@@ -123,10 +123,10 @@
                 </div>
                 <input name="operate" id="operate" value="" type="hidden"/>
             </div>
-            <div class="page"><?= $pageurl ?> </div>
-            <div class="text-center small">(有 <?= $cmnum ?> 条评论 )</div>
         </div>
     </div>
+    <div class="page"><?= $pageurl ?></div>
+    <div class="text-center small">有 <?= $cmnum ?> 条评论</div>
 </form>
 <div class="modal fade" id="replyModal" tabindex="-1" role="dialog" aria-labelledby="replyModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

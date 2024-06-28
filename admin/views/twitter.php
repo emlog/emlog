@@ -75,7 +75,7 @@
     </div>
 </div>
 <div class="page"><?= $pageurl ?> </div>
-<div class="text-center small">(有 <?= $twnum ?> 条微语 )</div>
+<div class="text-center small">有 <?= $twnum ?> 条微语</div>
 
 <link rel="stylesheet" type="text/css" href="./views/css/markdown.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>">
 <script src="./editor.md/editormd.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
