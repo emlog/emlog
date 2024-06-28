@@ -78,6 +78,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
                 <button type="button" id="crop" class="btn btn-sm btn-success">保存</button>
+                <button type="button" id="use_original_image" class="btn btn-sm btn-primary">使用原图</button>
             </div>
         </div>
     </div>
@@ -160,6 +161,7 @@
             cropper.destroy();
             cropper = null;
         });
+
         $('#crop').click(function () {
             canvas = cropper.getCroppedCanvas({
                 width: 160,
@@ -167,32 +169,41 @@
             });
 
             canvas.toBlob(function (blob) {
-                var formData = new FormData();
-                formData.append('image', blob, 'avatar.jpg');
-                $.ajax('./blogger.php?action=update_avatar', {
-                    method: 'POST',
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    success: function (data) {
-                        $modal.modal('hide');
-                        if (data.code == 0) {
-                            $('#avatar_image').attr('src', data.data);
-                        } else {
-                            alert(data.msg);
-                        }
-                    },
-                    error: function (xhr) {
-                        var data = xhr.responseJSON;
-                        if (data && typeof data === "object") {
-                            alert(data.msg);
-                        } else {
-                            alert("An error occurred during the file upload.");
-                        }
-                    }
-                });
+                uploadImage(blob)
             });
-
         });
+
+        $('#use_original_image').click(function () {
+            var blob = $('#upload_image')[0].files[0];
+            uploadImage(blob)
+        });
+
+        // 上传图片
+        function uploadImage(blob) {
+            var formData = new FormData();
+            formData.append('image', blob, 'avatar.jpg');
+            $.ajax('./blogger.php?action=update_avatar', {
+                method: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    $modal.modal('hide');
+                    if (data.code == 0) {
+                        $('#avatar_image').attr('src', data.data);
+                    } else {
+                        alert(data.msg);
+                    }
+                },
+                error: function (xhr) {
+                    var data = xhr.responseJSON;
+                    if (data && typeof data === "object") {
+                        alert(data.msg);
+                    } else {
+                        alert("An error occurred during the file upload.");
+                    }
+                }
+            });
+        }
     });
 </script>

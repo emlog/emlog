@@ -210,7 +210,7 @@
                 <div>
                     <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
                     <button type="button" id="crop" class="btn btn-sm btn-success">保存</button>
-                    <button type="button" id="use_original_image" class="btn btn-sm btn-google">使用原图</button>
+                    <button type="button" id="use_original_image" class="btn btn-sm btn-primary">使用原图</button>
                 </div>
             </div>
         </div>
@@ -324,6 +324,7 @@
                 }
             });
         }
+
         $('#crop').click(function () {
             canvas = cropper.getCroppedCanvas({
                 width: 650,
