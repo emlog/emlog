@@ -19,14 +19,11 @@
 <div class="card shadow mb-4 mt-2">
     <div class="card-body">
         <div class="row m-5">
-            <div class="col-md-4">
-                <label for="upload_image">
-                    <img src="<?= $icon ?>" width="120" id="avatar_image" class="rounded-circle"/>
-                    <input type="file" name="image" class="image" id="upload_image" style="display:none"/>
-                </label>
-            </div>
+            <label for="upload_image">
+                <img src="<?= $icon ?>" width="120" id="avatar_image" class="rounded-circle"/>
+                <input type="file" name="image" class="image" id="upload_image" style="display:none"/>
+            </label>
         </div>
-
         <form action="blogger.php?action=update" method="post" name="profile_setting_form" id="profile_setting_form" enctype="multipart/form-data">
             <div class="form-group">
                 <div class="form-group">
