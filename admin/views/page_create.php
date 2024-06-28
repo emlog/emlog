@@ -131,6 +131,7 @@
                 <div>
                     <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
                     <button type="button" id="crop" class="btn btn-sm btn-success">保存</button>
+                    <button type="button" id="use_original_image" class="btn btn-sm btn-google">使用原图</button>
                 </div>
             </div>
         </div>
@@ -231,40 +232,50 @@
             cropper.destroy();
             cropper = null;
         });
+
+        // 上传图片
+        function uploadImage(blob) {
+            var formData = new FormData();
+            formData.append('image', blob, 'cover.jpg');
+            $.ajax('./article.php?action=upload_cover', {
+                method: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    $modal.modal('hide');
+                    if (data.code == 0) {
+                        $('#cover_image').attr('src', data.data);
+                        $('#cover').val(data.data);
+                        $('#cover_rm').show();
+                    } else {
+                        alert(data.msg);
+                    }
+                },
+                error: function (xhr) {
+                    var data = xhr.responseJSON;
+                    if (data && typeof data === "object") {
+                        alert(data.msg);
+                    } else {
+                        alert("An error occurred during the file upload.");
+                    }
+                }
+            });
+        }
+
         $('#crop').click(function () {
             canvas = cropper.getCroppedCanvas({
                 width: 650,
                 height: 366
             });
             canvas.toBlob(function (blob) {
-                var formData = new FormData();
-                formData.append('image', blob, 'cover.jpg');
-                $.ajax('./article.php?action=upload_cover', {
-                    method: 'POST',
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    success: function (data) {
-                        $modal.modal('hide');
-                        if (data.code == 0) {
-                            $('#cover_image').attr('src', data.data);
-                            $('#cover').val(data.data);
-                            $('#cover_rm').show();
-                        } else {
-                            alert(data.msg);
-                        }
-                    },
-                    error: function (xhr) {
-                        var data = xhr.responseJSON;
-                        if (data && typeof data === "object") {
-                            alert(data.msg);
-                        } else {
-                            alert("An error occurred during the file upload.");
-                        }
-                    }
-
-                });
+                uploadImage(blob)
             });
+        });
+
+        $('#use_original_image').click(function () {
+            var blob = $('#upload_img')[0].files[0];
+            uploadImage(blob)
         });
 
         $('#cover_rm').click(function () {
