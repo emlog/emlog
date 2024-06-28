@@ -46,7 +46,9 @@
             </div>
             <div class="shadow-sm p-3 bg-white rounded" id="post_side">
                 <div class="form-group">
-                    <input name="cover" id="cover" class="form-control" placeholder="封面图URL" value="<?= $cover ?>"/>
+                    <label>封面图：</label>
+                    <input name="cover" id="cover" class="form-control" placeholder="" value="<?= $cover ?>"/>
+                    <small class="text-muted">填写封面图URL或点击下方上传</small>
                     <div class="row mt-3">
                         <div class="col-md-4">
                             <label for="upload_img">
