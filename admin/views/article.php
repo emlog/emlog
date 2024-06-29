@@ -175,10 +175,12 @@ $isdraft = $draft ? '&draft=1' : '';
                             <a href="javascript:logact('pub');" class="dropdown-item">发布</a>
                             <a href="javascript:logact('del_draft');" class="dropdown-item text-danger">删除</a>
                         <?php else: ?>
-                            <a href="javascript:logact('top');" class="dropdown-item">首页置顶</a>
-                            <a href="javascript:logact('sortop');" class="dropdown-item">分类置顶</a>
-                            <a href="javascript:logact('notop');" class="dropdown-item">取消置顶</a>
-                            <hr>
+                            <?php if (User::haveEditPermission()): ?>
+                                <a href="javascript:logact('top');" class="dropdown-item">首页置顶</a>
+                                <a href="javascript:logact('sortop');" class="dropdown-item">分类置顶</a>
+                                <a href="javascript:logact('notop');" class="dropdown-item">取消置顶</a>
+                                <hr>
+                            <?php endif ?>
                             <a href="javascript:logact('hide');" class="dropdown-item">放入草稿箱</a>
                             <a href="javascript:logact('del');" class="dropdown-item text-danger">删除</a>
                         <?php endif ?>
