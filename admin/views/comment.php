@@ -110,7 +110,7 @@
             </div>
             <div class="list_footer">
                 <div class="btn-group">
-                    <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">操作</button>
+                    <button class="btn btn-success btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">操作</button>
                     <div class="dropdown-menu">
                         <?php if (User::haveEditPermission()): ?>
                             <a href="javascript:commentact('top');" class="dropdown-item">置顶</a>

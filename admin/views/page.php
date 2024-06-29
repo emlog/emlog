@@ -66,7 +66,7 @@
             </div>
             <div class="list_footer">
                 <div class="btn-group">
-                    <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">操作</button>
+                    <button class="btn btn-success btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">操作</button>
                     <div class="dropdown-menu">
                         <a href="javascript:pageact('hide');" class="dropdown-item">转为草稿</a>
                         <a href="javascript:pageact('pub');" class="dropdown-item">发布</a>
