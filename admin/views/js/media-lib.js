@@ -1,6 +1,7 @@
 // 资源管理
 function insert_media_img(fileurl) {
-    Editor.insertValue('![](' + fileurl + ')\n\n');
+    var filename = fileurl.split('/').pop();
+    Editor.insertValue('![' + filename + '](' + fileurl + ')\n\n');
 }
 
 function insert_media_video(fileurl) {
