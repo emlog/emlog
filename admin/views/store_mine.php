@@ -55,7 +55,7 @@
         </div>
     <?php else: ?>
         <div class="col-md-12">
-            <p class="alert alert-warning my-3">您还没有购买任何应用。</p>
+            <p class="alert alert-warning my-3">还没有购买任何应用。</p>
         </div>
     <?php endif; ?>
 </div>

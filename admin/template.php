@@ -43,7 +43,7 @@ if ($action === 'del') {
 
     $nonce_templet = Option::get('nonce_templet');
     if ($tplName === $nonce_templet) {
-        emMsg('您不能删除正在使用的模板');
+        emMsg('不能删除正在使用的模板');
     }
 
     $Template_Model->rmCallback($tplName);

@@ -20,7 +20,7 @@
             </form>
         <?php else: ?>
             <div class="text-center">
-                <p class="lead text-success my-5">🎉 恭喜您，已经成功完成注册 🎉</p>
+                <p class="lead text-success my-5">🎉 恭喜，成功完成注册 🎉</p>
             </div>
         <?php endif ?>
     </div>
