@@ -13,6 +13,10 @@ class User {
     const ROLE_VISITOR = 'visitor'; // 游客
     const ROLE_EDITOR = 'editor';   // 内容编辑
 
+    static function isFounder($role = ROLE, $uid = UID) {
+        return $role == self::ROLE_ADMIN && $uid === 1;
+    }
+
     static function isAdmin($role = ROLE) {
         return $role == self::ROLE_ADMIN;
     }

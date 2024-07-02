@@ -38,7 +38,7 @@ const ROLE_WRITER = 'writer';
 const ROLE_VISITOR = 'visitor';
 
 define('ROLE', ISLOGIN === true ? $userData['role'] : User::ROLE_VISITOR);
-define('UID', ISLOGIN === true ? $userData['uid'] : '');
+define('UID', ISLOGIN === true ? (int)$userData['uid'] : 0);
 
 define('BLOG_URL', Option::get('blogurl'));
 

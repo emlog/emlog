@@ -6,7 +6,7 @@
 <?php if (isset($_GET['active_unfb'])): ?>
     <div class="alert alert-success">解禁成功</div><?php endif ?>
 <?php if (isset($_GET['active_update'])): ?>
-    <div class="alert alert-success">修改用户资料成功</div><?php endif ?>
+    <div class="alert alert-success">修改成功</div><?php endif ?>
 <?php if (isset($_GET['active_add'])): ?>
     <div class="alert alert-success">添加用户成功</div><?php endif ?>
 <?php if (isset($_GET['error_email'])): ?>
@@ -71,11 +71,7 @@
                     <tr>
                         <td><img src="<?= $avatar ?>" height="35" width="35" class="rounded-circle"/></td>
                         <td>
-                            <?php if (UID != $val['uid']): ?>
-                                <a href="user.php?action=edit&uid=<?= $val['uid'] ?>"><?= empty($val['name']) ? $val['login'] : $val['name'] ?></a>
-                            <?php else: ?>
-                                <a href="blogger.php"><?= empty($val['name']) ? $val['login'] : $val['name'] ?></a>
-                            <?php endif ?>
+                            <a href="user.php?action=edit&uid=<?= $val['uid'] ?>"><?= empty($val['name']) ? $val['login'] : $val['name'] ?></a>
                             <span class="small"><?= $val['role'] ?></span>
                             <?php if ($forbid): ?>
                                 <span class="badge badge-warning">已禁用</span>

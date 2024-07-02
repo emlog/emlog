@@ -109,11 +109,8 @@ if ($action == 'update') {
 
     LoginAuth::checkToken();
 
-    if (UID == $uid) {
-        emDirect('./user.php');
-    }
     //创始人账户不能被他人编辑
-    if ($uid == 1) {
+    if (!User::isFounder() && $uid == 1) {
         emDirect('./user.php?error_del_b=1');
     }
     if (empty($nickname)) {
