@@ -1,8 +1,8 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
 <?php if (isset($_GET['error_nickname'])): ?>
-    <div class="alert alert-danger">昵称不能都为空</div><?php endif ?>
+    <div class="alert alert-danger">昵称不能为空</div><?php endif ?>
 <?php if (isset($_GET['error_email'])): ?>
-    <div class="alert alert-danger">邮箱不能都为空</div><?php endif ?>
+    <div class="alert alert-danger">邮箱和用户名不能都为空</div><?php endif ?>
 <?php if (isset($_GET['error_exist'])): ?>
     <div class="alert alert-danger">用户名已被占用</div><?php endif ?>
 <?php if (isset($_GET['error_exist_email'])): ?>
