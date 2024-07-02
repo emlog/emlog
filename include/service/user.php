@@ -14,6 +14,7 @@ class User {
     const ROLE_EDITOR = 'editor';   // 内容编辑
 
     static function isFounder($role = ROLE, $uid = UID) {
+        $uid = (int)$uid;
         return $role == self::ROLE_ADMIN && $uid === 1;
     }
 

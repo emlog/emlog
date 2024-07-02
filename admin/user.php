@@ -110,8 +110,11 @@ if ($action == 'update') {
     LoginAuth::checkToken();
 
     //创始人账户不能被他人编辑
-    if (!User::isFounder() && $uid == 1) {
+    if (!User::isFounder() && $uid === 1) {
         emDirect('./user.php?error_del_b=1');
+    }
+    if ($uid === 1) {
+        $role = User::ROLE_ADMIN;
     }
     if (empty($nickname)) {
         emDirect("./user.php?action=edit&uid={$uid}&error_nickname=1");
