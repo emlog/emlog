@@ -21,7 +21,7 @@ if (!$action) {
 
 if ($action === 'backup') {
     LoginAuth::checkToken();
-    $zipbak = isset($_POST['zipbak']) ? $_POST['zipbak'] : 'n';
+    $zipbak = Input::postStrVar('zipbak', 'n');
 
     $DB = Database::getInstance();
     $tables = $DB->listTables();
@@ -51,13 +51,9 @@ if ($action === 'backup') {
         header('Content-Type: text/x-sql');
         header('Content-Disposition: attachment; filename=' . $filename . '.sql');
     }
-    if (preg_match("/MSIE ([0-9].[0-9]{1,2})/", getUA())) {
-        header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-        header('Pragma: public');
-    } else {
-        header('Pragma: no-cache');
-        header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
-    }
+
+    header('Pragma: no-cache');
+    header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
     header('Expires: ' . gmdate('D, d M Y H:i:s') . ' GMT');
     echo $dumpfile;
 }
@@ -98,6 +94,41 @@ if ($action === 'import') {
     importData($sqlfile['tmp_name']);
     $CACHE->updateCache();
     emDirect('./data.php?active_import=1');
+}
+
+/**
+ * Backup database structure and all data
+ *
+ * @param string $table table name
+ * @return string
+ */
+function exportData($table) {
+    $DB = Database::getInstance();
+    $sql = "DROP TABLE IF EXISTS $table;\n";
+    $createtable = $DB->query("SHOW CREATE TABLE $table");
+    $create = $DB->fetch_row($createtable);
+    $sql .= $create[1] . ";\n\n";
+
+    $rows = $DB->query("SELECT * FROM $table");
+    $numfields = $DB->num_fields($rows);
+    while ($row = $DB->fetch_row($rows)) {
+        $comma = '';
+        $sql .= "INSERT INTO $table VALUES(";
+        for ($i = 0; $i < $numfields; $i++) {
+            $fieldValue = $row[$i];
+            if (is_null($fieldValue)) {
+                // Handle default value of NULL
+                $sql .= $comma . 'NULL';
+            } else {
+                // Escape and add the field value
+                $sql .= $comma . "'" . $DB->escape_string($fieldValue) . "'";
+            }
+            $comma = ',';
+        }
+        $sql .= ");\n";
+    }
+    $sql .= "\n";
+    return $sql;
 }
 
 function checkSqlFileInfo($sqlfile) {
@@ -163,41 +194,6 @@ function importData($filename) {
             $query = '';
         }
     }
-}
-
-/**
- * Backup database structure and all data
- *
- * @param string $table table name
- * @return string
- */
-function exportData($table) {
-    $DB = Database::getInstance();
-    $sql = "DROP TABLE IF EXISTS $table;\n";
-    $createtable = $DB->query("SHOW CREATE TABLE $table");
-    $create = $DB->fetch_row($createtable);
-    $sql .= $create[1] . ";\n\n";
-
-    $rows = $DB->query("SELECT * FROM $table");
-    $numfields = $DB->num_fields($rows);
-    while ($row = $DB->fetch_row($rows)) {
-        $comma = '';
-        $sql .= "INSERT INTO $table VALUES(";
-        for ($i = 0; $i < $numfields; $i++) {
-            $fieldValue = $row[$i];
-            if (is_null($fieldValue)) {
-                // Handle default value of NULL
-                $sql .= $comma . 'NULL';
-            } else {
-                // Escape and add the field value
-                $sql .= $comma . "'" . $DB->escape_string($fieldValue) . "'";
-            }
-            $comma = ',';
-        }
-        $sql .= ");\n";
-    }
-    $sql .= "\n";
-    return $sql;
 }
 
 /**
