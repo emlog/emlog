@@ -100,14 +100,14 @@
                                     <a href="auth.php"><span class="badge badge-secondary">Emlog <?= Option::EMLOG_VERSION ?> 未注册，点击注册</span></a>
                                 <?php else: ?>
                                     <a href="https://www.emlog.net" target="_blank"><span class="badge badge-success">Emlog <?= ucfirst(Option::EMLOG_VERSION) ?></span></a>
+                                    <?php if (Register::getRegType() === 2): ?>
+                                        <a href="https://www.emlog.net/register" target="_blank" class="badge badge-warning">铁杆SVIP</a>
+                                    <?php elseif (Register::getRegType() === 1): ?>
+                                        <a href="https://www.emlog.net/register" target="_blank" class="badge badge-success">友情VIP</a>
+                                    <?php else: ?>
+                                        <a href="https://www.emlog.net/register" target="_blank" class="badge badge-success">已注册</a>
+                                    <?php endif ?>
                                 <?php endif; ?>
-                                <?php if (Register::getRegType() === 2): ?>
-                                    <a href="https://www.emlog.net/register" target="_blank" class="badge badge-warning">铁杆SVIP</a>
-                                <?php elseif (Register::getRegType() === 1): ?>
-                                    <a href="https://www.emlog.net/register" target="_blank" class="badge badge-success">友情VIP</a>
-                                <?php else: ?>
-                                    <a href="https://www.emlog.net/register" target="_blank" class="badge badge-success">已注册</a>
-                                <?php endif ?>
                             </div>
                             <div>
                                 <a id="ckup" href="javascript:checkUpdate();" class="badge badge-success d-flex align-items-center"><span>更新</span></a>
