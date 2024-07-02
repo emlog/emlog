@@ -30,18 +30,13 @@ if ($action == 'update') {
     LoginAuth::checkToken();
     $User_Model = new User_Model();
     $nickname = Input::postStrVar('name');
-    $email = Input::postStrVar('email');
     $description = Input::postStrVar('description');
     $login = Input::postStrVar('username');
 
     if (empty($nickname)) {
         Output::error('昵称不能为空');
-    } elseif (!checkMail($email)) {
-        Output::error('请正确填写邮箱');
     } elseif ($User_Model->isNicknameExist($nickname, UID)) {
         Output::error('昵称已被占用');
-    } elseif ($User_Model->isMailExist($email, UID)) {
-        Output::error('邮箱已被占用');
     } elseif ($User_Model->isUserExist($login, UID)) {
         Output::error('登录名已被占用');
     }
@@ -49,7 +44,6 @@ if ($action == 'update') {
     $d = [
         'nickname'    => $nickname,
         'description' => $description,
-        'email'       => $email,
         'username'    => $login,
     ];
 
@@ -73,6 +67,31 @@ if ($action === 'change_password') {
     $PHPASS = new PasswordHash(8, true);
     $new_passwd = $PHPASS->HashPassword($new_passwd);
     $d['password'] = $new_passwd;
+
+    $User_Model->updateUser($d, UID);
+    $CACHE->updateCache('user');
+    Output::ok();
+}
+
+if ($action === 'change_email') {
+    LoginAuth::checkToken();
+    $User_Model = new User_Model();
+    $email = Input::postStrVar('email');
+    $mail_code = Input::postStrVar('mail_code');
+
+    if (!checkMail($email)) {
+        Output::error('请正确填写邮箱');
+    } elseif ($User_Model->isMailExist($email, UID)) {
+        Output::error('邮箱已被占用');
+    }
+
+    if (!User::checkMailCode($mail_code)) {
+        Output::error('验证码错误');
+    }
+
+    $d = [
+        'email' => $email,
+    ];
 
     $User_Model->updateUser($d, UID);
     $CACHE->updateCache('user');

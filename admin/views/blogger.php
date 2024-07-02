@@ -35,9 +35,12 @@
                     <input class="form-control" value="<?= $username ?>" name="username" id="username">
                     <small>未设置用户名时，请使用邮箱登录</small>
                 </div>
-                <div class="form-group">
-                    <label>邮箱</label>
-                    <input type="email" name="email" class="form-control" value="<?= $email ?>" required>
+                <label>邮箱</label>
+                <div class="input-group mb-3">
+                    <input type="email" class="form-control" placeholder="" value="<?= $email ?>" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-success" type="button" id="button-addon2" data-toggle="modal" data-target="#editEmailModal" data-email="<?= $email ?>">修改</button>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label>个人描述</label>
@@ -111,6 +114,39 @@
     </div>
 </div>
 
+<div class="modal fade" id="editEmailModal" tabindex="-1" role="dialog" aria-labelledby="editEmailModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">修改邮箱</h5>
+                <span id="message" class="small ml-5"></span>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="blogger.php?action=change_email" id="email_setting_form" method="post">
+                    <div class="form-group">
+                        <label>邮箱</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="邮件验证码" name="mail_code" required>
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-success" type="button" id="button-send-auth-email">发送验证码</button>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input name="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
+                        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-sm btn-success">保存</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     $(function () {
         $("#menu_category_sys").addClass('active');
@@ -124,11 +160,58 @@
             submitForm("#profile_setting_form");
         });
 
-        // 修改用户密码表单
+        // 修改用户密码表单提交
         $("#passwd_setting_form").submit(function (event) {
             event.preventDefault();
             submitForm("#passwd_setting_form", '密码修改成功, 请退出重新登录');
             $("#editPasswordModal").modal('hide');
+        });
+
+        // 修改邮箱表单提交
+        $("#email_setting_form").submit(function (event) {
+            event.preventDefault();
+            submitForm("#email_setting_form", '邮箱修改成功');
+            $("#editEmailModal").modal('hide');
+        });
+
+        // 修改邮箱
+        $('#editEmailModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            var email = button.data('email')
+            var modal = $(this)
+            modal.find('.modal-body #email').val(email)
+        })
+        // 邮箱验证
+        $('#button-send-auth-email').click(function () {
+            var email = $('#email').val();
+            var $btn = $(this);
+            var $message = $('#message');
+            $btn.prop('disabled', true);
+            var count = 60;
+            var countdown = setInterval(function () {
+                $btn.text('重新发送 (' + count + ')');
+                if (count == 0) {
+                    clearInterval(countdown);
+                    $btn.text('发送验证码');
+                    $btn.prop('disabled', false);
+                }
+                count--;
+            }, 1000);
+
+            $.ajax({
+                url: 'account.php?action=send_email_code',
+                method: 'POST',
+                data: {mail: email},
+                success: function (response) {
+                    $message.text('验证码已发送，请查收邮件').css('color', 'green');
+                },
+                error: function (data) {
+                    $message.text(data.responseJSON.msg).css('color', 'red');
+                    clearInterval(countdown);
+                    $btn.text('发送验证码');
+                    $btn.prop('disabled', false);
+                }
+            });
         });
 
         // 裁剪上传头像

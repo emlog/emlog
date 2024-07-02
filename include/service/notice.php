@@ -9,8 +9,8 @@
 
 class Notice {
 
-    // Send user registration verification code email
-    public static function sendRegMailCode($mail) {
+    // Send verification code email
+    public static function sendVerifyMailCode($mail) {
         if (!self::smtpServerReady()) {
             return false;
         }
@@ -21,8 +21,8 @@ class Notice {
         $_SESSION['mail_code'] = $randCode;
         $_SESSION['mail'] = $mail;
 
-        $title = "注册用户邮件验证码";
-        $content = sprintf('<div id="email_code">邮件验证码：<span>%s</span></div>', $randCode);
+        $title = "邮件验证码";
+        $content = sprintf('<div id="email_code">邮件验证码：<b style="color: orange;">%s</b></div>', $randCode);
         return self::sendMail($mail, $title, $content);
     }
 
