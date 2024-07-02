@@ -480,28 +480,6 @@ function imgPasteExpand(thisEditor) {
 hooks.addAction("loaded", imgPasteExpand);
 hooks.addAction("page_loaded", imgPasteExpand);
 
-function loadTopAddons() {
-    $.ajax({
-        type: 'GET', url: './store.php?action=top', success: function (resp) {
-            $.each(resp.data, function (i, app) {
-                let insertBtnHtml;
-                let storeUlr = './store.php?';
-                if (app.type === 'plu') {
-                    storeUlr = './store.php?action=plu';
-                }
-                if (app.price > 0) {
-                    insertBtnHtml = app.price + '元';
-                } else {
-                    insertBtnHtml = '免费';
-                }
-                apptitle = '<a href="' + storeUlr + '&keyword=' + app.name + '">' + app.name + '</a>';
-                const cardHtml = '<li class="list-group-item d-flex justify-content-between align-items-center"><span>' + apptitle + '<small class="text-muted"><br>' + app.info + '</small></span>' + '<span class="small">' + insertBtnHtml + '</span></li>';
-                $('#app-list').append(cardHtml);
-            });
-        },
-    });
-}
-
 function checkUpdate() {
     const updateModal = $("#update-modal");
     const updateModalLoading = $("#update-modal-loading");

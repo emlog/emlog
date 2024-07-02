@@ -532,8 +532,6 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES
 ('smtp_port',''),
 ('is_openapi','n'),
 ('apikey','$apikey'),
-('accept_app_recs','y'),
-('help_guide','y'),
 ('panel_menu_title','');
 DROP TABLE IF EXISTS {$db_prefix}link;
 CREATE TABLE {$db_prefix}link (

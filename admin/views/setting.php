@@ -131,16 +131,7 @@
                 <label>每页展示条目数量</label>
                 <input class="form-control mx-sm-3" style="width:80px;" value="<?= $admin_perpage_num ?>" name="admin_perpage_num" type="number" min="1" max="1000"/> （影响后台文章、评论、用户列表）
             </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="y" name="accept_app_recs" id="accept_app_recs" <?= $conf_accept_app_recs ?> />
-                <label for="accept_app_recs">接收来自官方应用商店信息（影响台首页应用更新模块）</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="y" name="help_guide" id="help_guide" <?= $conf_help_guide ?> />
-                <label for="help_guide">开启获取帮助模块（影响台首页获取帮助模块）</label>
-            </div>
             <hr>
-
             <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
             <input type="submit" value="保存设置" class="btn btn-sm btn-success"/>
         </form>

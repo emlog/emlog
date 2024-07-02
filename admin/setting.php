@@ -23,8 +23,6 @@ if (empty($action)) {
     $conf_isthumbnail = $isthumbnail == 'y' ? 'checked="checked"' : '';
     $conf_comment_paging = $comment_paging == 'y' ? 'checked="checked"' : '';
     $conf_detect_url = $detect_url == 'y' ? 'checked="checked"' : '';
-    $conf_accept_app_recs = $accept_app_recs == 'y' ? 'checked="checked"' : '';
-    $conf_help_guide = $help_guide == 'y' ? 'checked="checked"' : '';
 
     $ex1 = $ex2 = $ex3 = $ex4 = '';
     if ($rss_output_fulltext == 'y') {
@@ -177,8 +175,6 @@ if ($action == 'save') {
         'att_imgmaxh'         => Input::postIntVar('att_imgmaxh', 460),
         'detect_url'          => Input::postStrVar('detect_url', 'n'),
         'admin_perpage_num'   => Input::postIntVar('admin_perpage_num'),
-        'accept_app_recs'     => Input::postStrVar('accept_app_recs', 'n'),
-        'help_guide'          => Input::postStrVar('help_guide', 'n'),
         'panel_menu_title'    => Input::postStrVar('panel_menu_title'),
     ];
 
