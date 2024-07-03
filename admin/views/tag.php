@@ -34,7 +34,7 @@
                     </div>
                 <?php endforeach ?>
             <?php else: ?>
-                <p class="m-3">还没有标签，写文章的时候可以给文章打标签</p>
+                <p class="m-3">还没有标签，写文章时可以打标签</p>
             <?php endif ?>
         </div>
         <div class="form-row align-items-center mx-4 mb-4">
