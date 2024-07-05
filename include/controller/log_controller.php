@@ -119,7 +119,7 @@ class Log_Controller {
             return extractHtmlData($excerpt, 200);
         }
 
-        return extractHtmlData($logContent, 120);
+        return extractHtmlData($logContent, 200);
     }
 
     private function setSiteKey($tagIdStr, $siteKey, $logId) {
