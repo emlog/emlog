@@ -16,9 +16,13 @@ class Output {
         die(json_encode($result, JSON_UNESCAPED_UNICODE));
     }
 
-    public static function error($msg) {
+    public static function error($msg, $httpCode = 400) {
         header('Content-Type: application/json; charset=UTF-8');
-        header("HTTP/1.1 400 Bad Request");
+        if ($httpCode == 200) {
+            header("HTTP/1.1 200 OK");
+        } else {
+            header("HTTP/1.1 400 Bad Request");
+        }
         $result = [
             'code' => 1,
             'msg'  => $msg,
