@@ -81,7 +81,7 @@ class Log_Controller {
         }
         // tdk
         $site_title = $this->setSiteTitle($log_title_style, $log_title, $blogname, $site_title, $logid);
-        $site_description = $this->setSiteDes($site_description, $log_content, $logid);
+        $site_description = $this->setSiteDes($site_description, $log_content, $excerpt, $logid);
         $site_key = $this->setSiteKey($tags, $site_key, $logid);
 
         //comments
@@ -110,12 +110,16 @@ class Log_Controller {
         }
     }
 
-    private function setSiteDes($siteDescription, $logContent, $logId) {
+    private function setSiteDes($siteDescription, $logContent, $excerpt, $logId) {
         if ($this->isHomePage($logId)) {
             return $siteDescription;
         }
 
-        return extractHtmlData($logContent, 90);
+        if ($excerpt) {
+            return extractHtmlData($excerpt, 200);
+        }
+
+        return extractHtmlData($logContent, 120);
     }
 
     private function setSiteKey($tagIdStr, $siteKey, $logId) {
