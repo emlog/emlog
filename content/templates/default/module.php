@@ -539,6 +539,7 @@ function blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allo
                         <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content" style="display: table-cell;">
+                                    <input type="hidden" id="blog_url" value="<?= BLOG_URL ?>"/>
                                     <div class="modal-header" style="border-bottom: 0;">输入验证码</div>
                                     <?= $verifyCode ?>
                                     <div class="modal-footer" style="border-top: 0;">

@@ -121,7 +121,7 @@ var myBlog = {
      */
     captchaRefresh: function ($t) {
         var timestamp = new Date().getTime()
-        var blogUrl = $("base").attr("href")
+        var blogUrl = $("#blog_url").val();
 
         $t.attr("src", blogUrl + "/include/lib/checkcode.php?" + timestamp)
     },
