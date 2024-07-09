@@ -189,7 +189,7 @@ class Tag_Model {
 
     /**
      * 从一堆标签名查找一堆标签ID
-     * @param string $tagNames 标签名 (以半角逗号分隔)
+     * @param string $tagNames 标签名 (以英文逗号分隔)
      * @return array 标签ID
      */
     function getIdsFromNames($tagNames) {
@@ -254,7 +254,7 @@ class Tag_Model {
 
     /**
      * 创建一堆新标签
-     * @param mixed $tagNames 标签名 (以半角逗号分隔)
+     * @param mixed $tagNames 标签名 (以英文逗号分隔)
      */
     function createTags($tagNames) {
         $tagNameArray = explode(',', $tagNames);
