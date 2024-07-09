@@ -169,8 +169,6 @@ if ($action == 'save') {
         'comment_paging'      => Input::postStrVar('comment_paging', 'n'),
         'comment_pnum'        => Input::postIntVar('comment_pnum'),
         'comment_order'       => Input::postStrVar('comment_order', 'newer'),
-        'att_maxsize'         => Input::postIntVar('att_maxsize', 20480),
-        'att_type'            => str_replace('php', 'x', strtolower(Input::postStrVar('att_type', ''))),
         'att_imgmaxw'         => Input::postIntVar('att_imgmaxw', 420),
         'att_imgmaxh'         => Input::postIntVar('att_imgmaxh', 460),
         'detect_url'          => Input::postStrVar('detect_url', 'n'),
@@ -344,6 +342,8 @@ if ($action == 'user') {
     $posts_per_day = isset($options_cache['posts_per_day']) ? $options_cache['posts_per_day'] : '';
     $posts_name = isset($options_cache['posts_name']) ? $options_cache['posts_name'] : '';
     $email_code = isset($options_cache['email_code']) ? $options_cache['email_code'] : '';
+    $att_maxsize = isset($options_cache['att_maxsize']) ? $options_cache['att_maxsize'] : '';
+    $att_type = isset($options_cache['att_type']) ? $options_cache['att_type'] : '';
 
     $conf_is_signup = $is_signup == 'y' ? 'checked="checked"' : '';
     $conf_login_code = $login_code == 'y' ? 'checked="checked"' : '';
@@ -351,8 +351,6 @@ if ($action == 'user') {
     $conf_ischkarticle = $ischkarticle == 'y' ? 'checked="checked"' : '';
     $conf_forbid_user_upload = $forbid_user_upload == 'y' ? 'checked="checked"' : '';
     $conf_article_uneditable = $article_uneditable == 'y' ? 'checked="checked"' : '';
-    $conf_posts_per_day = $posts_per_day;
-    $conf_posts_name = $posts_name;
 
     include View::getAdmView('header');
     require_once(View::getAdmView('setting_user'));
@@ -371,6 +369,8 @@ if ($action == 'user_save') {
         'forbid_user_upload' => Input::postStrVar('forbid_user_upload', 'n'),
         'posts_per_day'      => Input::postIntVar('posts_per_day', 0),
         'posts_name'         => Input::postStrVar('posts_name'),
+        'att_maxsize'        => Input::postIntVar('att_maxsize', 20480),
+        'att_type'           => str_replace('php', 'x', strtolower(Input::postStrVar('att_type', ''))),
     ];
 
     if ($data['login_code'] == 'y' && !checkGDSupport()) {

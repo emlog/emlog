@@ -102,20 +102,14 @@
                 </select>
             </div>
             <div class="alert alert-primary">
-                RSS地址(用于RSS阅读器订阅你的站点内容)：<?= $blogurl . 'rss.php' ?>
+                RSS订阅地址 (用于RSS阅读器订阅站点内容)：<?= $blogurl . 'rss.php' ?>
             </div>
 
             <hr>
 
             <h4>上传设置</h4>
             <div class="form-group form-inline">
-                文件上传最大限制 <input maxlength="20" style="width:120px;" class="form-control" value="<?= $att_maxsize ?>" name="att_maxsize"/> （单位：KB，1MB=1024KB）
-            </div>
-            <div class="form-group form-inline">
-                允许上传的文件类型 <input maxlength="200" style="width:500px;" class="form-control" value="<?= $att_type ?>" name="att_type"/>（多个用半角逗号分隔）
-            </div>
-            <div class="form-group form-inline">
-                <input type="checkbox" value="y" name="isthumbnail" id="isthumbnail" <?= $conf_isthumbnail ?> />
+                <input type="checkbox" value="y" name="isthumbnail" id="isthumbnail" class="mr-1" <?= $conf_isthumbnail ?> />
                 <label for="isthumbnail">上传图片生成缩略图</label>，最大尺寸：
                 <input maxlength="5" style="width:80px;" class="form-control" value="<?= $att_imgmaxw ?>" name="att_imgmaxw"/> x
                 <input maxlength="5" style="width:80px;" class="form-control" value="<?= $att_imgmaxh ?>" name="att_imgmaxh"/>（单位：像素）

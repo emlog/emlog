@@ -36,17 +36,25 @@
                 <input class="form-check-input" type="checkbox" value="y" name="article_uneditable" id="article_uneditable" <?= $conf_article_uneditable ?> />
                 <label for="article_uneditable">审核通过的文章用户不可编辑、删除</label>
             </div>
-            <div class="form-group form-check">
-                <input class="form-check-input" type="checkbox" value="y" name="forbid_user_upload" id="forbid_user_upload" <?= $conf_forbid_user_upload ?> />
-                <label class="form-check-label" for="forbid_user_upload">注册用户禁止上传图文资源</label>
-            </div>
             <div class="form-group form-inline">
                 <label for="posts_per_day">注册用户限制24小时发文数量（包括草稿）：</label>
-                <input class="form-control mx-sm-3" style="width:60px;" value="<?= $conf_posts_per_day ?>" type="number" min="0" name="posts_per_day" id="posts_per_day"/>
+                <input class="form-control mx-sm-3" style="width:60px;" value="<?= $posts_per_day ?>" type="number" min="0" name="posts_per_day" id="posts_per_day"/>
+            </div>
+            <hr>
+            <div class="form-group form-check">
+                <input class="form-check-input" type="checkbox" value="y" name="forbid_user_upload" id="forbid_user_upload" <?= $conf_forbid_user_upload ?> />
+                <label class="form-check-label" for="forbid_user_upload">禁止注册用户上传图文资源</label>
             </div>
             <div class="form-group form-inline">
+                注册用户上传最大限制 <input maxlength="20" style="width:120px;" class="form-control" value="<?= $att_maxsize ?>" name="att_maxsize"/> （单位：KB，1MB=1024KB）
+            </div>
+            <div class="form-group form-inline">
+                允许注册用户上传的文件类型 <input maxlength="200" style="width:500px;" class="form-control" value="<?= $att_type ?>" name="att_type"/>（多个用半角逗号分隔）
+            </div>
+            <hr>
+            <div class="form-group form-inline">
                 <label for="posts_name">用户中心文章别名：</label>
-                <input class="form-control mx-sm-3" style="width:80px;" value="<?= $conf_posts_name ?>" name="posts_name" id="posts_name"/> 如：帖子、投稿、资源等
+                <input class="form-control mx-sm-3" style="width:80px;" value="<?= $posts_name ?>" name="posts_name" id="posts_name"/> 如：帖子、投稿、资源等
             </div>
             <div class="form-group">
                 <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
