@@ -675,7 +675,7 @@ class TplOptions {
             $result['msg'] = '错误的文件类型';
             return $result;
         }
-        $maxSize = Option::getAttMaxSize();
+        $maxSize = defined(UPLOAD_MAX_SIZE) ? UPLOAD_MAX_SIZE : 2097152;
 
         if ($file['size'] > $maxSize) {
             $result['code'] = 103;
