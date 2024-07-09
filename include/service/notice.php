@@ -9,7 +9,24 @@
 
 class Notice {
 
-    // Send verification code email
+    // 发送用户注册邮件验证码，部分主题依赖该函数
+    public static function sendRegMailCode($mail) {
+        if (!self::smtpServerReady()) {
+            return false;
+        }
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        $randCode = getRandStr(6, false, true);
+        $_SESSION['mail_code'] = $randCode;
+        $_SESSION['mail'] = $mail;
+
+        $title = "用户注册邮件验证码";
+        $content = sprintf('<div id="email_code">邮件验证码：<b style="color: orange;">%s</b></div>', $randCode);
+        return self::sendMail($mail, $title, $content);
+    }
+
+    // 通用的发送验证码方法
     public static function sendVerifyMailCode($mail) {
         if (!self::smtpServerReady()) {
             return false;
