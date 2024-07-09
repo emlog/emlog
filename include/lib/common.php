@@ -409,13 +409,12 @@ function upload2local($attach, &$result) {
 
     $isthum = Option::get('isthumbnail') === 'y';
     $fileName = Database::getInstance()->escape_string($fileName);
-    $type = Option::getAttType();
 
-    $ret = upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $isthum);
+    $ret = upload($fileName, $errorNum, $tmpFile, $fileSize, [], $isthum);
     $success = 0;
     switch ($ret) {
         case '100':
-            $message = '文件大小超过系统' . ini_get('upload_max_filesize') . '限制';
+            $message = '文件大小超过PHP' . ini_get('upload_max_filesize') . '限制';
             break;
         case '101':
         case '104':
@@ -425,8 +424,7 @@ function upload2local($attach, &$result) {
             $message = '错误的文件类型';
             break;
         case '103':
-            $r = changeFileSize(Option::getAttMaxSize());
-            $message = "文件大小超出系统限制：$r";
+            $message = "文件大小超出系统限制";
             break;
         case '105':
             $message = '上传失败。文件上传目录不可写 (content/uploadfile)';
@@ -466,20 +464,26 @@ function upload2local($attach, &$result) {
  * @return array | string 文件数据 索引
  *
  */
-function upload($fileName, $errorNum, $tmpFile, $fileSize, $type, $is_thumbnail = true) {
+function upload($fileName, $errorNum, $tmpFile, $fileSize, $type = [], $is_thumbnail = true) {
     if ($errorNum == 1) {
         return '100'; //文件大小超过系统限制
     }
     if ($errorNum > 1) {
         return '101'; //上传文件失败
     }
+
     $extension = getFileSuffix($fileName);
-    if (!in_array($extension, $type)) {
-        return '102'; //错误的文件类型
+
+    // 检查类型和大小限制
+    $attType = User::haveEditPermission() ? Option::getAdminAttType() : Option::getAttType();
+    $maxSize = User::haveEditPermission() ? Option::getAdminAttMaxSize() : Option::getAttMaxSize();
+    if (!in_array($extension, $attType)) {
+        return '102';
     }
-    if ($fileSize > Option::getAttMaxSize()) {
-        return '103'; //文件大小超出系统限制
+    if ($fileSize > $maxSize) {
+        return '103';
     }
+
     $file_info = [];
     $file_info['file_name'] = $fileName;
     $file_info['mime_type'] = get_mimetype($extension);

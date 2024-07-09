@@ -151,6 +151,23 @@ class Option {
         return self::get('att_maxsize') * 1024;
     }
 
+    static function getAdminAttType() {
+        if (defined('UPLOAD_ATT_TYPE')) {
+            return explode(',', UPLOAD_ATT_TYPE);
+        } else {
+            return [
+                'rar', 'zip', '7z', 'gz',
+                'gif', 'jpg', 'jpeg', 'png', 'webp',
+                'txt', 'pdf', 'docx', 'doc', 'xls', 'xlsx', 'key', 'ppt', 'pptx',
+                'mp4', 'mp3', 'mkv', 'webm', 'avi',
+            ];
+        }
+    }
+
+    static function getAdminAttMaxSize() {
+        return defined('UPLOAD_MAX_SIZE') ? UPLOAD_MAX_SIZE : 2097152;
+    }
+
     static function getWidgetTitle() {
         return [
             'blogger'     => '个人资料',
