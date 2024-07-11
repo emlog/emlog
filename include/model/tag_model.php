@@ -220,15 +220,41 @@ class Tag_Model {
     function getNamesFromIds($tagIds = NULL) {
         $names = [];
 
-        if (!empty($tagIds)) {
-            $tag_string = implode(',', $tagIds);
-            $sql = "SELECT `tid`, `tagname` FROM `$this->table` WHERE `tid` IN (" . $this->db->escape_string($tag_string) . ")";
-            $query = $this->db->query($sql);
+        if (empty($tagIds)) {
+            return $names;
+        }
 
-            if ($this->db->num_rows($query) > 0) {
-                while ($result = $this->db->fetch_array($query)) {
-                    $names[$result['tid']] = $result['tagname'];
-                }
+        $tag_string = implode(',', $tagIds);
+        $sql = "SELECT `tid`, `tagname` FROM `$this->table` WHERE `tid` IN (" . $this->db->escape_string($tag_string) . ")";
+        $query = $this->db->query($sql);
+
+        if ($this->db->num_rows($query) > 0) {
+            while ($result = $this->db->fetch_array($query)) {
+                $names[$result['tid']] = $result['tagname'];
+            }
+        }
+
+        return $names;
+    }
+
+    /**
+     * 查找一堆标签名
+     * @param string $tagIdStr
+     * @return array
+     */
+    function getNamesFromIdStr($tagIdStr = '') {
+        $names = [];
+
+        if (empty($tagIdStr)) {
+            return $names;
+        }
+
+        $sql = "SELECT `tid`, `tagname` FROM `$this->table` WHERE `tid` IN (" . $this->db->escape_string($tagIdStr) . ")";
+        $query = $this->db->query($sql);
+
+        if ($this->db->num_rows($query) > 0) {
+            while ($result = $this->db->fetch_array($query)) {
+                $names[$result['tid']] = $result['tagname'];
             }
         }
 

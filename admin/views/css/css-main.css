@@ -854,3 +854,14 @@ input[type="checkbox"]:hover, select:hover {
     border-color: #e74a3b;
     color: #fff;
 }
+
+.em-badge {
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 3px;
+}
+
+.em-badge-tag {
+    background-color: #e9e8f3;
+    color: #858796;
+}
