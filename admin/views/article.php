@@ -273,7 +273,7 @@ $isdraft = $draft ? '&draft=1' : '';
                     <div class="form-group">
                         <input name="tag" id="tag" class="form-control" value=""/>
                         <input type="hidden" value="" name="gid" id="gid"/>
-                        <small class="text-muted">多个标签英文逗号分隔</small>
+                        <small class="text-muted">多个标签用英文逗号分隔</small>
                     </div>
                 </div>
                 <div class="modal-footer">

@@ -21,13 +21,13 @@ $MediaSort_Model = new MediaSort_Model();
 $Template_Model = new Template_Model();
 
 if (empty($action)) {
-    $draft = isset($_GET['draft']) ? (int)$_GET['draft'] : 0;
-    $tagId = isset($_GET['tagid']) ? (int)$_GET['tagid'] : '';
-    $sid = isset($_GET['sid']) ? (int)$_GET['sid'] : '';
-    $uid = isset($_GET['uid']) ? (int)$_GET['uid'] : '';
-    $keyword = isset($_GET['keyword']) ? addslashes(trim($_GET['keyword'])) : '';
-    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-    $checked = isset($_GET['checked']) ? addslashes($_GET['checked']) : '';
+    $draft = Input::getIntVar('draft');
+    $tagId = Input::getIntVar('tagid');
+    $sid = Input::getIntVar('sid');
+    $uid = Input::getIntVar('uid');
+    $page = Input::getIntVar('page', 1);
+    $keyword = Input::getStrVar('keyword');
+    $checked = Input::getStrVar('checked');
 
     $sortView = (isset($_GET['sortView']) && $_GET['sortView'] == 'ASC') ? 'DESC' : 'ASC';
     $sortComm = (isset($_GET['sortComm']) && $_GET['sortComm'] == 'ASC') ? 'DESC' : 'ASC';
