@@ -149,7 +149,7 @@ $isdraft = $draft ? '&draft=1' : '';
                                 <?php if ($draft): ?>
                                     <a href="javascript: em_confirm(<?= $value['gid'] ?>, 'draft', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger">删除</a>
                                 <?php else: ?>
-                                    <a class="badge badge-primary" href="#" data-tag="<?= implode(',', $tags) ?>" data-toggle="modal" data-target="#tagModel">标签</a>
+                                    <a class="badge badge-primary" href="#" data-tag="<?= implode(',', $tags) ?>" data-gid="<?= $value['gid'] ?>" data-toggle="modal" data-target="#tagModel">标签</a>
                                     <a href="javascript: em_confirm(<?= $value['gid'] ?>, 'article', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger">删除</a>
                                 <?php endif ?>
                                 <?php if (!$draft && User::haveEditPermission() && $value['checked'] == 'n'): ?>
@@ -258,6 +258,7 @@ $isdraft = $draft ? '&draft=1' : '';
         </div>
     </div>
 </div>
+<!--打标签-->
 <div class="modal fade" id="tagModel" tabindex="-1" role="dialog" aria-labelledby="tagModelLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -267,10 +268,11 @@ $isdraft = $draft ? '&draft=1' : '';
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="article.php?action=operate_log&operate=uncheck&token=<?= LoginAuth::genToken() ?>" method="post">
+            <form action="article.php?action=tag" method="post">
                 <div class="modal-body">
                     <div class="form-group">
                         <input name="tag" id="tag" class="form-control" value=""/>
+                        <input type="hidden" value="" name="gid" id="gid"/>
                         <small class="text-muted">多个标签英文逗号分隔</small>
                     </div>
                 </div>
@@ -362,8 +364,10 @@ $isdraft = $draft ? '&draft=1' : '';
         $('#tagModel').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget)
             var tag = button.data('tag')
+            var gid = button.data('gid')
             var modal = $(this)
             modal.find('.modal-body #tag').val(tag)
+            modal.find('.modal-body #gid').val(gid)
         })
     });
 </script>

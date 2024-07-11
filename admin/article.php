@@ -99,6 +99,18 @@ if ($action == 'del') {
     emDirect("./article.php?&active_del=1&draft=$draft");
 }
 
+if ($action == 'tag') {
+    $gid = Input::postIntVar('gid');
+    $tagsStr = strip_tags(Input::postStrVar('tag'));
+
+    if (!User::haveEditPermission()) {
+        emMsg('权限不足！', './');
+    }
+
+    $Tag_Model->updateTag($tagsStr, $gid);
+    emDirect("./article.php");
+}
+
 if ($action == 'operate_log') {
     $operate = Input::requestStrVar('operate');
     $draft = Input::postIntVar('draft');
