@@ -97,7 +97,7 @@
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <div>
                                 <?php if (!Register::isRegLocal()) : ?>
-                                    <a href="auth.php"><span class="badge badge-secondary">Emlog <?= Option::EMLOG_VERSION ?> 未注册，点击注册</span></a>
+                                    <a href="https://www.emlog.net/register" target="_blank"><span class="badge badge-secondary">Emlog <?= Option::EMLOG_VERSION ?> 未注册</span></a>
                                 <?php else: ?>
                                     <a href="https://www.emlog.net" target="_blank"><span class="badge badge-success">Emlog <?= ucfirst(Option::EMLOG_VERSION) ?></span></a>
                                     <?php if (Register::getRegType() === 2): ?>
