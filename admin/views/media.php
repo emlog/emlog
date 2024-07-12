@@ -133,6 +133,9 @@
             <div class="modal-body">
                 <form action="./media.php?action=upload<?= '&sid=' . $sid ?>" class="dropzone" id="up-form"></form>
             </div>
+            <?php if (User::isWriter()): ?>
+                <div class="mx-3 mb-2"><small>当前允许上传最大：<?= changeFileSize(Option::getAttMaxSize()) ?></small></div>
+            <?php endif; ?>
         </div>
     </div>
 </div>
