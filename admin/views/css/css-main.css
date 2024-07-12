@@ -857,7 +857,6 @@ input[type="checkbox"]:hover, select:hover {
 
 .em-badge {
     letter-spacing: 1.5px;
-    text-transform: uppercase;
     padding: 3px;
 }
 
