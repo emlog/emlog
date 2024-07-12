@@ -1,6 +1,7 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
 <?php if (isset($_GET['add_shortcut_suc'])): ?>
-    <div class="alert alert-success">设置成功</div><?php endif ?>
+    <div class="alert alert-success">设置成功</div>
+<?php endif ?>
     <div class="d-flex align-items-center mb-3">
         <div class="flex-shrink-0">
             <a class="mr-2" href="blogger.php">
@@ -69,57 +70,59 @@
             </div>
         </div>
         <?php if (User::isAdmin()): ?>
-        <div class="col-lg-6 mb-3">
-            <div class="card shadow mb-3">
-                <h6 class="card-header">软件信息</h6>
-                <div class="card-body">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            PHP
-                            <span class="small"><?= $php_ver ?></span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            数据库
-                            <span class="small">MySQL <?= $mysql_ver ?></span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Web服务
-                            <span class="small"><?= $server_app ?></span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            操作系统
-                            <span class="small"><?= $os ?></span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            系统时区
-                            <span class="small"><?= Option::get('timezone') ?></span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <div>
-                                <?php if (!Register::isRegLocal()) : ?>
-                                    <a href="https://www.emlog.net/register" target="_blank"><span class="badge badge-secondary">Emlog <?= Option::EMLOG_VERSION ?> 未注册</span></a>
-                                <?php else: ?>
-                                    <a href="https://www.emlog.net" target="_blank"><span class="badge badge-success">Emlog <?= ucfirst(Option::EMLOG_VERSION) ?></span></a>
-                                    <?php if (Register::getRegType() === 2): ?>
-                                        <a href="https://www.emlog.net/register" target="_blank" class="badge badge-warning">铁杆SVIP</a>
-                                    <?php elseif (Register::getRegType() === 1): ?>
-                                        <a href="https://www.emlog.net/register" target="_blank" class="badge badge-success">友情VIP</a>
+            <div class="col-lg-6 mb-3">
+                <div class="card shadow mb-3">
+                    <h6 class="card-header">软件信息</h6>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                PHP
+                                <span class="small"><?= $php_ver ?></span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                数据库
+                                <span class="small">MySQL <?= $mysql_ver ?></span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Web服务
+                                <span class="small"><?= $server_app ?></span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                操作系统
+                                <span class="small"><?= $os ?></span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                系统时区
+                                <span class="small"><?= Option::get('timezone') ?></span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    <?php if (!Register::isRegLocal()) : ?>
+                                        <a href="https://www.emlog.net/register" target="_blank"><span class="badge badge-secondary">Emlog <?= Option::EMLOG_VERSION ?> 未注册</span></a>
                                     <?php else: ?>
-                                        <a href="https://www.emlog.net/register" target="_blank" class="badge badge-success">已注册</a>
-                                    <?php endif ?>
-                                <?php endif; ?>
-                            </div>
-                            <div>
-                                <a id="ckup" href="javascript:checkUpdate();" class="badge badge-success d-flex align-items-center"><span>更新</span></a>
-                            </div>
-                        </li>
-                    </ul>
+                                        <a href="https://www.emlog.net" target="_blank"><span class="badge badge-success">Emlog <?= ucfirst(Option::EMLOG_VERSION) ?></span></a>
+                                        <?php if (Register::getRegType() === 2): ?>
+                                            <a href="https://www.emlog.net/register" target="_blank" class="badge badge-warning">铁杆SVIP</a>
+                                        <?php elseif (Register::getRegType() === 1): ?>
+                                            <a href="https://www.emlog.net/register" target="_blank" class="badge badge-success">友情VIP</a>
+                                        <?php else: ?>
+                                            <a href="https://www.emlog.net/register" target="_blank" class="badge badge-success">已注册</a>
+                                        <?php endif ?>
+                                    <?php endif; ?>
+                                </div>
+                                <div>
+                                    <a id="ckup" href="javascript:checkUpdate();" class="badge badge-success d-flex align-items-center"><span>更新</span></a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
+        <?php endif; ?>
     </div>
-    <div class="row">
-        <?php if (!Register::isRegLocal()) : ?>
+<?php if (User::isAdmin()): ?>
+    <?php if (!Register::isRegLocal()) : ?>
+        <div class="row">
             <div class="col-lg-6 mb-3">
                 <div class="card shadow">
                     <div class="card-header bg-danger text-white">
@@ -137,8 +140,8 @@
                     </div>
                 </div>
             </div>
-        <?php endif ?>
-    </div>
+        </div>
+    <?php endif ?>
     <div class="modal fade" id="update-modal" tabindex="-1" role="dialog" aria-labelledby="update-modal-label" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -157,7 +160,6 @@
             </div>
         </div>
     </div>
-
     <div class="modal fade" id="shortcutModal" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
             <div class="modal-content">
