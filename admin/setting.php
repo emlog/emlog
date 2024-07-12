@@ -369,7 +369,7 @@ if ($action == 'user_save') {
         'forbid_user_upload' => Input::postStrVar('forbid_user_upload', 'n'),
         'posts_per_day'      => Input::postIntVar('posts_per_day', 0),
         'posts_name'         => Input::postStrVar('posts_name'),
-        'att_maxsize'        => Input::postIntVar('att_maxsize', 20480),
+        'att_maxsize'        => Input::postIntVar('att_maxsize'),
         'att_type'           => str_replace('php', 'x', strtolower(Input::postStrVar('att_type', ''))),
     ];
 
