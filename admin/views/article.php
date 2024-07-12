@@ -137,7 +137,7 @@ $isdraft = $draft ? '&draft=1' : '';
                                 <?php endif ?>
                                 <br>
                                 <?php foreach ($tags as $tid => $t): ?>
-                                    <a href="./article.php?tagid=<?= $tid ?>" class='em-badge small em-badge-tag'><?= htmlspecialchars($t) ?></a>
+                                    <a href="./article.php?tagid=<?= $tid . $isdraft ?>" class='em-badge small em-badge-tag'><?= htmlspecialchars($t) ?></a>
                                 <?php endforeach; ?>
                             </td>
                             <td><a href="comment.php?gid=<?= $value['gid'] ?>" class="badge badge-primary mx-2 px-3"><?= $value['comnum'] ?></a></td>
