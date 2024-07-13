@@ -81,21 +81,5 @@
             event.preventDefault();
             submitForm("#user_setting_form");
         });
-
-        // 禁止用户上传设置折叠
-        toggleUploadSettings();
-        $('#forbid_user_upload').change(function () {
-            toggleUploadSettings();
-        });
-
-        function toggleUploadSettings() {
-            if ($('#forbid_user_upload').is(':checked')) {
-                $('#form_att_maxsize').hide();
-                $('#form_att_type').hide();
-            } else {
-                $('#form_att_maxsize').show();
-                $('#form_att_type').show();
-            }
-        }
     });
 </script>
