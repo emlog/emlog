@@ -20,7 +20,7 @@
     <div class="card-body">
         <div class="row m-5">
             <label for="upload_image">
-                <img src="<?= $icon ?>" width="120" id="avatar_image" class="rounded-circle"/>
+                <img src="<?= $icon ?>" width="120" height="120" id="avatar_image" class="rounded-circle"/>
                 <input type="file" name="image" class="image" id="upload_image" style="display:none"/>
             </label>
         </div>

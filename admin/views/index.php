@@ -7,7 +7,7 @@
             <a class="mr-2" href="blogger.php">
                 <img src="<?= empty($user_cache[UID]['avatar']) ? './views/images/avatar.svg' : '../' . $user_cache[UID]['avatar'] ?>"
                      alt="avatar" class="img-fluid rounded-circle border border-mute border-3"
-                     style="width: 56px;">
+                     style="width: 56px; height: 56px;">
             </a>
         </div>
         <div class="flex-grow-1 ms-3">
