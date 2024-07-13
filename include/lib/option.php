@@ -165,7 +165,7 @@ class Option {
     }
 
     static function getAdminAttMaxSize() {
-        return defined('UPLOAD_MAX_SIZE') ? UPLOAD_MAX_SIZE : 2097152;
+        return (defined('UPLOAD_MAX_SIZE') ? UPLOAD_MAX_SIZE : 2097152) * 1024;
     }
 
     static function getWidgetTitle() {
