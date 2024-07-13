@@ -403,29 +403,15 @@ function getRandStr($length = 12, $special_chars = true, $numeric_only = false) 
  */
 function upload2local($attach, &$result) {
     $fileName = $attach['name'];
-    $errorNum = $attach['error'];
     $tmpFile = $attach['tmp_name'];
     $fileSize = $attach['size'];
 
     $isthum = Option::get('isthumbnail') === 'y';
     $fileName = Database::getInstance()->escape_string($fileName);
 
-    $ret = upload($fileName, $errorNum, $tmpFile, $fileSize, [], $isthum);
+    $ret = upload($fileName, $tmpFile, $fileSize, $isthum);
     $success = 0;
     switch ($ret) {
-        case '100':
-            $message = '文件大小超过PHP' . ini_get('upload_max_filesize') . '限制';
-            break;
-        case '101':
-        case '104':
-            $message = '上传失败,错误码：' . $errorNum;
-            break;
-        case '102':
-            $message = '错误的文件类型';
-            break;
-        case '103':
-            $message = "文件大小超出系统限制";
-            break;
         case '105':
             $message = '上传失败。文件上传目录不可写 (content/uploadfile)';
             break;
@@ -464,26 +450,8 @@ function upload2local($attach, &$result) {
  * @return array | string 文件数据 索引
  *
  */
-function upload($fileName, $errorNum, $tmpFile, $fileSize, $type = [], $is_thumbnail = true) {
-    if ($errorNum == 1) {
-        return '100'; //文件大小超过系统限制
-    }
-    if ($errorNum > 1) {
-        return '101'; //上传文件失败
-    }
-
+function upload($fileName, $tmpFile, $fileSize, $is_thumbnail = true) {
     $extension = getFileSuffix($fileName);
-
-    // 检查类型和大小限制
-    $attType = User::haveEditPermission() ? Option::getAdminAttType() : Option::getAttType();
-    $maxSize = User::haveEditPermission() ? Option::getAdminAttMaxSize() : Option::getAttMaxSize();
-    if (!in_array($extension, $attType)) {
-        return '102';
-    }
-    if ($fileSize > $maxSize) {
-        return '103';
-    }
-
     $file_info = [];
     $file_info['file_name'] = $fileName;
     $file_info['mime_type'] = get_mimetype($extension);
@@ -1123,8 +1091,10 @@ function getTimeZoneOffset($remote_tz, $origin_tz = 'UTC') {
  */
 function uploadCropImg() {
     $attach = isset($_FILES['image']) ? $_FILES['image'] : '';
-    if (!$attach || $attach['error'] === 4) {
-        Output::error('文件上传失败');
+
+    $uploadCheckResult = Media::checkUpload($attach);
+    if ($uploadCheckResult !== true) {
+        Output::error($uploadCheckResult);
     }
 
     $ret = '';

@@ -92,23 +92,12 @@ if ($action === 'upload') {
     }
 
     if (!User::haveEditPermission() && Option::get('forbid_user_upload') === 'y') {
-        $ret['message'] = '系统关闭了资源上传';
-        if ($editor) {
-            exit(json_encode($ret));
-        } else {
-            header("HTTP/1.0 400 Bad Request");
-            exit($ret['message']);
-        }
+        Media::uploadRespond(['message' => '系统关闭了资源上传'], $editor);
     }
 
-    if (!$attach || $attach['error'] === 4) {
-        if ($editor) {
-            echo json_encode(['success' => 0, 'message' => 'upload error']);
-        } else {
-            header("HTTP/1.0 400 Bad Request");
-            echo "upload error";
-        }
-        exit;
+    $uploadCheckResult = Media::checkUpload($attach);
+    if ($uploadCheckResult !== true) {
+        Media::uploadRespond(['message' => $uploadCheckResult], $editor);
     }
 
     $ret = '';
@@ -117,21 +106,11 @@ if ($action === 'upload') {
     doOnceAction('upload_media', $attach, $ret);
 
     if (empty($ret['success'])) {
-        if ($editor) {
-            echo json_encode($ret);
-        } else {
-            header("HTTP/1.0 400 Bad Request");
-            echo $ret['message'];
-        }
-        exit;
+        Media::uploadRespond($ret, $editor);
     }
 
     $aid = $Media_Model->addMedia($ret['file_info'], $sid);
-    if ($editor) {
-        echo json_encode($ret);
-    } else {
-        echo 'success';
-    }
+    Media::uploadRespond($ret, $editor, true);
 }
 
 if ($action === 'delete') {
