@@ -443,7 +443,6 @@ function upload2local($attach, &$result) {
  * @param string $fileName 文件名
  * @param string $tmpFile 上传后的临时文件
  * @param string $fileSize 文件大小 KB
- * @param boolean $is_thumbnail 是否生成缩略图
  * @return array | string 文件数据 索引
  *
  */
