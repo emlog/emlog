@@ -406,10 +406,9 @@ function upload2local($attach, &$result) {
     $tmpFile = $attach['tmp_name'];
     $fileSize = $attach['size'];
 
-    $isthum = Option::get('isthumbnail') === 'y';
     $fileName = Database::getInstance()->escape_string($fileName);
 
-    $ret = upload($fileName, $tmpFile, $fileSize, $isthum);
+    $ret = upload($fileName, $tmpFile, $fileSize);
     $success = 0;
     switch ($ret) {
         case '105':
@@ -442,15 +441,13 @@ function upload2local($attach, &$result) {
  * thum_file   缩略图的路径
  *
  * @param string $fileName 文件名
- * @param string $errorNum 错误码：$_FILES['error']
  * @param string $tmpFile 上传后的临时文件
  * @param string $fileSize 文件大小 KB
- * @param array $type 允许上传的文件类型
  * @param boolean $is_thumbnail 是否生成缩略图
  * @return array | string 文件数据 索引
  *
  */
-function upload($fileName, $tmpFile, $fileSize, $is_thumbnail = true) {
+function upload($fileName, $tmpFile, $fileSize) {
     $extension = getFileSuffix($fileName);
     $file_info = [];
     $file_info['file_name'] = $fileName;
@@ -474,12 +471,13 @@ function upload($fileName, $tmpFile, $fileSize, $is_thumbnail = true) {
     $file_info['file_path'] = $uploadFile;
 
     if (!createDirectoryIfNeeded($uploadFullPath)) {
-        return '105'; //创建上传目录失败
+        return '105'; // 创建上传目录失败
     }
 
     doAction('attach_upload', $tmpFile);
 
     // 生成缩略图
+    $is_thumbnail = Option::get('isthumbnail') === 'y';
     if ($is_thumbnail && resizeImage($tmpFile, $thumFullFile, Option::get('att_imgmaxw'), Option::get('att_imgmaxh'))) {
         $file_info['thum_file'] = $thumFile;
     }
