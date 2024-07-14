@@ -26,10 +26,10 @@ class Media {
         $attType = User::haveEditPermission() ? Option::getAdminAttType() : Option::getAttType();
         $maxSize = User::haveEditPermission() ? Option::getAdminAttMaxSize() : Option::getAttMaxSize();
         if (!in_array($extension, $attType)) {
-            return '错误的文件类型';
+            return '不能上传该类型文件';
         }
         if ($fileSize > $maxSize) {
-            return '文件大小超出系统限制';
+            return '文件太大了，系统限制上传：' . changeFileSize($maxSize);
         }
         return true;
     }
