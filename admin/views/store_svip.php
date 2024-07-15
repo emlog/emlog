@@ -38,7 +38,7 @@
                             <?php endif; ?>
                         </p>
                         <p class="card-text text-muted small">
-                            开发者：<?= $v['author'] ?><br>
+                            开发者：<a href="./store.php?author_id=<?= $v['author_id'] ?>"><?= $v['author'] ?></a><br>
                             版本号：<?= $v['ver'] ?><br>
                             下载次数：<?= $v['downloads'] ?><br>
                             更新时间：<?= $v['update_time'] ?><br>
