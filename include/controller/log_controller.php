@@ -75,7 +75,7 @@ class Log_Controller {
 
         // password
         if (!empty($password)) {
-            $postpwd = isset($_POST['logpwd']) ? addslashes(trim($_POST['logpwd'])) : '';
+            $postpwd = Input::postStrVar('logpwd');
             $cookiepwd = isset($_COOKIE['em_logpwd_' . $logid]) ? addslashes(trim($_COOKIE['em_logpwd_' . $logid])) : '';
             $Log_Model->AuthPassword($postpwd, $cookiepwd, $password, $logid);
         }
