@@ -249,19 +249,19 @@
             });
 
             canvas.toBlob(function (blob) {
-                uploadImage(blob)
+                uploadImage(blob, 'avatar.jpg');
             });
         });
 
         $('#use_original_image').click(function () {
             var blob = $('#upload_image')[0].files[0];
-            uploadImage(blob)
+            uploadImage(blob, blob.name)
         });
 
         // 上传图片
-        function uploadImage(blob) {
+        function uploadImage(blob, filename) {
             var formData = new FormData();
-            formData.append('image', blob, 'avatar.jpg');
+            formData.append('image', blob, filename);
             $.ajax('./blogger.php?action=update_avatar', {
                 method: 'POST',
                 data: formData,

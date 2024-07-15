@@ -298,9 +298,9 @@
         });
 
         // 上传图片
-        function uploadImage(blob) {
+        function uploadImage(blob, filename) {
             var formData = new FormData();
-            formData.append('image', blob, 'cover.jpg');
+            formData.append('image', blob, filename);
             $.ajax('./article.php?action=upload_cover', {
                 method: 'POST',
                 data: formData,
@@ -333,13 +333,13 @@
                 height: 366
             });
             canvas.toBlob(function (blob) {
-                uploadImage(blob)
+                uploadImage(blob, 'cover.jpg')
             });
         });
 
         $('#use_original_image').click(function () {
             var blob = $('#upload_img')[0].files[0];
-            uploadImage(blob)
+            uploadImage(blob, blob.name)
         });
 
         $('#cover_rm').click(function () {
