@@ -22,6 +22,7 @@ if (empty($action)) {
     $page = Input::getIntVar('page', 1);
     $date = Input::getStrVar('date');
     $uid = Input::getIntVar('uid');
+    $keyword = Input::getStrVar('keyword');
 
     if (!User::haveEditPermission()) {
         $uid = UID;
@@ -32,9 +33,10 @@ if (empty($action)) {
     $page_url .= $sid ? "sid=$sid&" : '';
     $page_url .= $date ? "date=$date&" : '';
     $page_url .= $uid ? "uid=$uid&" : '';
+    $page_url .= $keyword ? "keyword=$keyword&" : '';
     $dateTime = $date . ' 23:59:59';
-    $medias = $Media_Model->getMedias($page, $page_count, $uid, $sid, $dateTime);
-    $count = $Media_Model->getMediaCount($uid, $sid, $dateTime);
+    $medias = $Media_Model->getMedias($page, $page_count, $uid, $sid, $dateTime, $keyword);
+    $count = $Media_Model->getMediaCount($uid, $sid, $dateTime, $keyword);
     $page = pagination($count, $page_count, $page, $page_url . 'page=');
 
     $sorts = $MediaSortModel->getSorts();

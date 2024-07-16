@@ -17,14 +17,15 @@ class Media_Model {
         $this->table_sort = DB_PREFIX . 'media_sort';
     }
 
-    function getMedias($page = 1, $perpage_count = 24, $uid = 0, $sid = 0, $dateTime = '') {
+    function getMedias($page = 1, $perpage_count = 24, $uid = 0, $sid = 0, $dateTime = '', $keyword = '') {
         $startId = ($page - 1) * $perpage_count;
         $author = $uid ? 'and author=' . $uid : '';
         $sort = $sid ? 'and sortid=' . $sid : '';
         $date = $dateTime ? 'and addtime <= ' . strtotime($dateTime) : '';
+        $keyword = $keyword ? 'and filename like "%' . $keyword . '%"' : '';
         $limit = "LIMIT $startId, " . $perpage_count;
 
-        $sql = "SELECT * FROM $this->table m LEFT JOIN $this->table_sort s ON m.sortid=s.id WHERE m.thumfor = 0 $author $sort $date order by m.aid desc $limit";
+        $sql = "SELECT * FROM $this->table m LEFT JOIN $this->table_sort s ON m.sortid=s.id WHERE m.thumfor = 0 $author $sort $date $keyword order by m.aid desc $limit";
         $query = $this->db->query($sql);
         $medias = [];
         while ($row = $this->db->fetch_array($query)) {
@@ -33,11 +34,12 @@ class Media_Model {
         return $medias;
     }
 
-    function getMediaCount($uid = null, $sid = null, $dateTime = '') {
+    function getMediaCount($uid = null, $sid = null, $dateTime = '', $keyword = '') {
         $author = $uid ? 'and author=' . $uid : '';
         $sort = $sid ? 'and sortid=' . $sid : '';
         $date = $dateTime ? 'and addtime<=' . strtotime($dateTime) : '';
-        $sql = "SELECT count(*) as count FROM $this->table WHERE thumfor = 0 $author $sort $date";
+        $keyword = $keyword ? 'and filename like "%' . $keyword . '%"' : '';
+        $sql = "SELECT count(*) as count FROM $this->table WHERE thumfor = 0 $author $sort $date $keyword";
         $res = $this->db->once_fetch_array($sql);
         return $res['count'];
     }
