@@ -280,6 +280,10 @@
                 $modal.modal('show');
             };
             if (files && files.length > 0) {
+                if (!files[0].type.startsWith('image')) {
+                    alert('只能上传图片');
+                    return;
+                }
                 reader = new FileReader();
                 reader.onload = function (event) {
                     done(reader.result);
@@ -321,7 +325,7 @@
                     if (data && typeof data === "object") {
                         alert(data.msg);
                     } else {
-                        alert("An error occurred during the file upload.");
+                        alert("上传图片出错了");
                     }
                 }
             });

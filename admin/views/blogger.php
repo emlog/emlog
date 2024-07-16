@@ -225,6 +225,10 @@
                 $modal.modal('show');
             };
             if (files && files.length > 0) {
+                if (!files[0].type.startsWith('image')) {
+                    alert('只能上传图片');
+                    return;
+                }
                 reader = new FileReader();
                 reader.onload = function (event) {
                     done(reader.result);
