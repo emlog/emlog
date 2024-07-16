@@ -1056,6 +1056,7 @@ body {
 /* 评论人的头像 */
 .avatar img {
     width: 40px;
+    height: 40px;
     margin-top: 9px;
     margin-right: 4px;
     border-radius: 50%
@@ -1401,6 +1402,7 @@ body {
 
 .comment-info_img {
     width: 27px;
+    height: 27px;
     margin-bottom: 4px;
     margin-right: 3px;
     border-radius: 50%;
