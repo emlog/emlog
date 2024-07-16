@@ -116,9 +116,9 @@ $isdraft = $draft ? '&draft=1' : '';
                         $sortName = $value['sortid'] == -1 ? '未分类' : $sortName;
                         $author = isset($user_cache[$value['author']]['name']) ? $user_cache[$value['author']]['name'] : '未知作者';
                         $author_role = isset($user_cache[$value['author']]['role']) ? $user_cache[$value['author']]['role'] : '未知角色';
-                        $tags = [];
+                        $logTags = [];
                         if ($value['tags']) {
-                            $tags = $Tag_Model->getNamesFromIdStr($value['tags']);
+                            $logTags = $Tag_Model->getNamesFromIdStr($value['tags']);
                         }
                         ?>
                         <tr>
@@ -136,7 +136,7 @@ $isdraft = $draft ? '&draft=1' : '';
                                     <?= $value['feedback'] ? '<br><small class="text-secondary">审核反馈：' . $value['feedback'] . '</small>' : '' ?>
                                 <?php endif ?>
                                 <br>
-                                <?php foreach ($tags as $tid => $t): ?>
+                                <?php foreach ($logTags as $tid => $t): ?>
                                     <a href="./article.php?tagid=<?= $tid . $isdraft ?>" class='em-badge small em-badge-tag'><?= htmlspecialchars($t) ?></a>
                                 <?php endforeach; ?>
                             </td>
@@ -149,7 +149,7 @@ $isdraft = $draft ? '&draft=1' : '';
                                 <?php if ($draft): ?>
                                     <a href="javascript: em_confirm(<?= $value['gid'] ?>, 'draft', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger">删除</a>
                                 <?php else: ?>
-                                    <a class="badge badge-primary" href="#" data-tag="<?= implode(',', $tags) ?>" data-gid="<?= $value['gid'] ?>" data-toggle="modal" data-target="#tagModel">标签</a>
+                                    <a class="badge badge-primary" href="#" data-tag="<?= implode(',', $logTags) ?>" data-gid="<?= $value['gid'] ?>" data-toggle="modal" data-target="#tagModel">标签</a>
                                     <a href="javascript: em_confirm(<?= $value['gid'] ?>, 'article', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger">删除</a>
                                 <?php endif ?>
                                 <?php if (!$draft && User::haveEditPermission() && $value['checked'] == 'n'): ?>
@@ -275,6 +275,15 @@ $isdraft = $draft ? '&draft=1' : '';
                         <input type="hidden" value="" name="gid" id="gid"/>
                         <small class="text-muted">多个标签用英文逗号分隔</small>
                     </div>
+                    <?php if ($tags): ?>
+                        <div id="tags" class="mb-2">
+                            <?php
+                            foreach ($tags as $val) {
+                                echo " <a class=\"em-badge small em-badge-tag\" href=\"javascript: insertTag('{$val['tagname']}','tag');\">{$val['tagname']}</a> ";
+                            }
+                            ?>
+                        </div>
+                    <?php endif; ?>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>

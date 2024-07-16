@@ -90,7 +90,7 @@
                         <div id="tags" class="mb-2" style="display: none">
                             <?php
                             foreach ($tags as $val) {
-                                echo " <a class=\"badge badge-primary\" href=\"javascript: insertTag('{$val['tagname']}','tag');\">{$val['tagname']}</a> ";
+                                echo " <a class=\"em-badge small em-badge-tag\" href=\"javascript: insertTag('{$val['tagname']}','tag');\">{$val['tagname']}</a> ";
                             }
                             ?>
                         </div>

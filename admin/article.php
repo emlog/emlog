@@ -70,6 +70,7 @@ if (empty($action)) {
     $logNum = $Log_Model->getLogNum($hide_state, $condition, 'blog', 1);
     $logs = $Log_Model->getLogsForAdmin($condition . $orderBy, $hide_state, $page);
     $sorts = $CACHE->readCache('sort');
+    $tags = $Tag_Model->getTags();
 
     $subPage = '';
     foreach ($_GET as $key => $val) {
