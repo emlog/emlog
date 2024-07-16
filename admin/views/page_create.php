@@ -261,7 +261,7 @@
                     if (data && typeof data === "object") {
                         alert(data.msg);
                     } else {
-                        alert("上传图片出错了");
+                        alert("上传封面出错了");
                     }
                 }
             });

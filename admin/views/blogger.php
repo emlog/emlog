@@ -284,7 +284,7 @@
                     if (data && typeof data === "object") {
                         alert(data.msg);
                     } else {
-                        alert("An error occurred during the file upload.");
+                        alert("上传头像出错了");
                     }
                 }
             });
