@@ -32,12 +32,14 @@
                 <?php } ?>
             </select>
         </form>
-        <form action="./store.php" method="get" class="form-inline ml-2">
+        <form action="./store.php" method="get" class="form-inline ml-2 mr-3">
             <div class="input-group">
                 <input type="hidden" name="action" value="tpl">
                 <input type="text" name="keyword" value="<?= $keyword ?>" class="form-control small" placeholder="搜索模板...">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-success" type="submit">搜索</button>
+                    <button class="btn btn-sm btn-success" type="submit">
+                        <i class="icofont-search-2"></i>
+                    </button>
                 </div>
             </div>
         </form>
