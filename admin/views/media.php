@@ -50,29 +50,30 @@
     <div class="row checkboxContainer">
         <?php foreach ($medias as $key => $value):
             $media_url = getFileUrl($value['filepath']);
+            $thumbnail_url = $value['thumbnail_url'];
             $sort_name = $value['sortname'];
             $media_name = $value['filename'];
             $author = $user_cache[$value['author']]['name'];
             if (isImage($value['mimetype'])) {
                 $media_icon = getFileUrl($value['filepath_thum']);
-                $imgviewer = 'class="highslide" onclick="return hs.expand(this)"';
+                $img_viewer = 'class="highslide" onclick="return hs.expand(this)"';
             } elseif (isZip($value['filename'])) {
                 $media_icon = "./views/images/zip.jpg";
-                $imgviewer = '';
+                $img_viewer = '';
             } elseif (isVideo($value['filename'])) {
                 $media_icon = "./views/images/video.png";
-                $imgviewer = '';
+                $img_viewer = '';
             } elseif (isAudio($value['filename'])) {
                 $media_icon = "./views/images/audio.png";
-                $imgviewer = '';
+                $img_viewer = '';
             } else {
                 $media_icon = "./views/images/fnone.png";
-                $imgviewer = '';
+                $img_viewer = '';
             }
             ?>
             <div class="col-md-4">
                 <div class="card mb-4 shadow-sm">
-                    <a href="<?= $media_url ?>" <?= $imgviewer ?> target="_blank"><img class="card-img-top" src="<?= $media_icon ?>"/></a>
+                    <a href="<?= $media_url ?>" <?= $img_viewer ?> target="_blank"><img class="card-img-top" src="<?= $media_icon ?>"/></a>
                     <div class="card-body">
                         <p class="card-text text-muted small">
                             <a href="#" data-toggle="modal" data-target="#editMediaModal" data-id="<?= $value['aid'] ?>" data-filename="<?= $media_name ?>"><?= $media_name ?></a> <span class="badge badge-success"><?= $sort_name ?></span><br>
@@ -87,11 +88,14 @@
                             <?php if ($value['width'] && $value['height']): ?>
                                 ，图片尺寸：<?= $value['width'] ?>x<?= $value['height'] ?>
                             <?php endif ?><br>
-                            <a href="#" class="copy-link" data-toggle="popover" data-url="<?= $media_url ?>" title="<?= $media_url ?>">原文件地址</a>
+                            <a href="#" class="copy-link" data-toggle="popover" data-url="<?= $media_url ?>">原文件地址</a>
                             <?php if ($value['alias'] && $value['mimetype'] === 'application/zip'):
                                 $media_down_url = BLOG_URL . '?resource_alias=' . $value['alias'];
                                 ?>
-                                ｜ <a href="#" class="copy-link" data-toggle="popover" data-url="<?= $media_down_url ?>" title="<?= $media_down_url ?>">用户下载地址</a> （下载<?= $value['download_count'] ?>）
+                                ｜ <a href="#" class="copy-link" data-toggle="popover" data-url="<?= $media_down_url ?>">用户下载地址</a> （下载<?= $value['download_count'] ?>）
+                            <?php endif ?>
+                            <?php if ($thumbnail_url): ?>
+                                ｜ <a href="#" class="copy-link" data-toggle="popover" data-url="<?= $thumbnail_url ?>">缩略图地址</a>
                             <?php endif ?>
                         </p>
                         <p class="card-text d-flex justify-content-between">
@@ -278,7 +282,7 @@
             var link = $(this).data('url');
             navigator.clipboard.writeText(link);
             $(this).popover({
-                content: '链接已复制',
+                content: '文件地址已复制',
                 placement: 'top',
                 trigger: 'manual'
             }).popover('show');

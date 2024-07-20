@@ -78,6 +78,7 @@ class Media_Model {
             'filepath_thum'  => $row['filepath'],
             'filepath'       => str_replace("thum-", '', $row['filepath']),
             'file_url'       => getFileUrl($row['filepath']),
+            'thumbnail_url'  => strpos($row['filepath'], 'thum-') !== false ? getFileUrl($row['filepath']) : '',
             'width'          => $row['width'],
             'height'         => $row['height'],
             'mimetype'       => $row['mimetype'],
