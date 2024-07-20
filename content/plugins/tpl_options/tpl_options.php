@@ -1364,6 +1364,9 @@ class TplOptions {
     }
 
     private function buildImageUrl($path) {
+        if (empty($path)) {
+            return '';
+        }
         if (is_array($path)) {
             return array_map(array(
                 $this,
