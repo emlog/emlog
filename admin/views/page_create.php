@@ -7,11 +7,15 @@
                 <div>
                     <input type="text" name="title" id="title" value="<?= $title ?>" class="form-control" placeholder="页面标题"/>
                 </div>
-                <div id="post_bar" class="small my-3">
+                <div class="small my-3">
                     <a href="#mediaModal" data-toggle="modal" data-target="#mediaModal"><i class="icofont-plus"></i>资源媒体库</a>
-                    <?php doAction('adm_writelog_head') ?>
+                    <?php doAction('adm_writelog_bar') ?>
                 </div>
                 <div id="pagecontent"><textarea><?= $content ?></textarea></div>
+                <div class="mt-3">
+                    <label id="post_bar_label">插件扩展：</label>
+                    <div id="post_bar"><?php doAction('adm_writelog_head') ?></div>
+                </div>
             </div>
         </div>
         <div class="col-xl-3">
@@ -300,4 +304,12 @@
             $('#cover_rm').show();
         }
     );
+
+    // 显示插件扩展label
+    const postBar = $("#post_bar");
+    var a = postBar.children()
+    console.log(a)
+    if (postBar.children().length === 0) {
+        $("#post_bar_label").hide();
+    }
 </script>
