@@ -111,4 +111,17 @@ class User {
         }
     }
 
+    static function getAvatar($avatar_path) {
+        if (empty($avatar_path)) {
+            return BLOG_URL . 'admin/views/images/avatar.svg';
+        }
+        if (filter_var($avatar_path, FILTER_VALIDATE_URL)) {
+            return $avatar_path;
+        }
+        if (strpos($avatar_path, '../') === false) {
+            return getFileUrl('../' . $avatar_path);
+        }
+        return getFileUrl($avatar_path);
+    }
+
 }

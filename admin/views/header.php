@@ -130,7 +130,7 @@
                     <li class="nav-item mx-1">
                         <a class="nav-link" href="blogger.php" role="button">
                             <img class="img-profile rounded-circle"
-                                 src="<?= empty($user_cache[UID]['avatar']) ? './views/images/avatar.svg' : '../' . $user_cache[UID]['avatar'] ?>">
+                                 src="<?= User::getAvatar($user_cache[UID]['avatar']) ?>">
                         </a>
                     </li>
                     <li class="topbar-divider d-none d-sm-block"></li>

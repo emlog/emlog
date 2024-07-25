@@ -18,7 +18,7 @@ if (empty($action)) {
     $row = $User_Model->getOneUser(UID);
     extract($row);
 
-    $icon = $photo ?: "./views/images/avatar.svg";
+    $icon = User::getAvatar($photo);
 
     include View::getAdmView(User::haveEditPermission() ? 'header' : 'uc_header');
     require_once(View::getAdmView('blogger'));

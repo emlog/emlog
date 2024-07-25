@@ -37,21 +37,25 @@ function widget_link($title) {
  * 侧边栏：个人资料
  */
 function widget_blogger($title) {
-    global $CACHE;
-    $user_cache = $CACHE->readCache('user');
-    $name = $user_cache[1]['name'] ?>
+    $userModel = new User_Model();
+    $uid = UID ?: 1;
+    $name = '';
+    $description = '';
+    $avatar = BLOG_URL . "admin/views/images/avatar.svg";
+    $user = $userModel->getOneUser($uid);
+    if ($user) {
+        $name = $user['nickname'];
+        $description = $user['description'];
+        $avatar = User::getAvatar($user['photo']);
+    }
+    ?>
     <div class="widget shadow-theme">
-        <div class="widget-title">
-            <h3><?= $title ?></h3>
-        </div>
         <div class="unstyle-li bloggerinfo">
-            <?php if (!empty($user_cache[1]['photo']['src'])): ?>
-                <div>
-                    <img class='bloggerinfo-img' src="<?= BLOG_URL . $user_cache[1]['photo']['src'] ?>" alt="blogger"/>
-                </div>
-            <?php endif ?>
+            <div>
+                <a href="./admin/blogger.php"><img class='bloggerinfo-img' src="<?= $avatar ?>" alt="blogger"/></a>
+            </div>
             <div class='bloginfo-name'><b><?= $name ?></b></div>
-            <div class='bloginfo-descript'><?= $user_cache[1]['des'] ?></div>
+            <div class='bloginfo-descript'><?= $description ?></div>
         </div>
     </div>
 <?php } ?>
