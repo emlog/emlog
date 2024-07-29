@@ -91,6 +91,15 @@ class MySqlii {
         return $query->fetch_array($type);
     }
 
+    public function fetch_all($sql, $fetchMode = MYSQLI_ASSOC) {
+        $this->result = $this->query($sql);
+        $data = [];
+        while ($row = $this->fetch_array($this->result, $fetchMode)) {
+            $data[] = $row;
+        }
+        return $data;
+    }
+
     public function once_fetch_array($sql) {
         $this->result = $this->query($sql);
         return $this->fetch_array($this->result);

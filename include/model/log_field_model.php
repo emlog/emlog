@@ -27,8 +27,7 @@ class Log_Field_Model {
 
     public function getFields($gid) {
         $query = "SELECT * FROM $this->table WHERE gid=$gid";
-        $ret = $this->db->query($query);
-        return $this->db->fetch_array($ret);
+        return $this->db->fetch_all($query);
     }
 
     public function deleteField($gid) {

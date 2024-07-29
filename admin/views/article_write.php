@@ -20,19 +20,24 @@
                     <textarea id="logexcerpt" name="logexcerpt" class="form-control" rows="5"><?= $excerpt ?></textarea>
                 </div>
                 <div class="mt-3">
-                    自定义字段（选填）：
+                    自定义字段：
+                    <a href="javascript:void (0);" class="field_add text-success cursor-pointer small"><i class="icofont-plus"></i>添加字段</a>
                     <div class="mt-2" id="field_box">
-                        <div class="form-inline field_list">
-                            <div class="form-group mb-2">
-                                <input type="text" name="field_keys[]" id="field_keys" class="form-control" placeholder="字段名称">
+                        <?php
+                        foreach ($fields as $field): ?>
+                            <div class="form-row field_list">
+                                <div class="col-sm-4">
+                                    <input type="text" name="field_keys[]" value="<?= $field['field_key'] ?>" id="field_keys" class="form-control" placeholder="字段名称">
+                                </div>
+                                <div class="col-sm-7 mx-sm-3">
+                                    <input type="text" name="field_values[]" value="<?= $field['field_value'] ?>" id="field_values" class="form-control" placeholder="字段值">
+                                </div>
+                                <div class="col-auto mt-1 text-align-right">
+                                    <button type="button" class="btn btn-sm btn-outline-danger field_del">删除</button>
+                                </div>
                             </div>
-                            <div class="form-group mx-sm-3 mb-2">
-                                <input type="text" name="field_values[]" id="field_values" class="form-control" placeholder="字段值">
-                            </div>
-                            <button type="button" class="btn btn-sm btn-outline-danger field_del">删除</button>
-                        </div>
+                        <?php endforeach ?>
                     </div>
-                    <button type="button" class="btn btn-sm btn-outline-success field_add">添加</button>
                 </div>
                 <div class="mt-3">
                     <label id="post_bar_label">插件扩展：</label>
@@ -415,14 +420,16 @@
     // 添加按钮功能
     $(document).on('click', '.field_add', function () {
         var newField = `
-                    <div class="form-inline field_list">
-                        <div class="form-group mb-2">
-                            <input type="text" name="field_keys[]" class="form-control" placeholder="字段名称">
+                    <div class="form-row field_list">
+                        <div class="col-sm-4">
+                            <input type="text" name="field_keys[]" value="" id="field_keys" class="form-control" placeholder="字段名称">
                         </div>
-                        <div class="form-group mx-sm-3 mb-2">
-                            <input type="text" name="field_values[]" class="form-control" placeholder="字段值">
+                        <div class="col-sm-7 mx-sm-3">
+                            <input type="text" name="field_values[]" value="" id="field_values" class="form-control" placeholder="字段值">
                         </div>
-                        <button type="button" class="btn btn-sm btn-outline-danger field_del">删除</button>
+                        <div class="col-auto mt-1">
+                            <button type="button" class="btn btn-sm btn-outline-danger field_del">删除</button>
+                        </div>
                     </div>
                 `;
         $('#field_box').append(newField);
