@@ -126,8 +126,8 @@ $isdraft = $draft ? '&draft=1' : '';
                             <td>
                                 <a href="article.php?action=edit&gid=<?= $value['gid'] ?>"><?= $value['title'] ?></a>
                                 <a href="<?= Url::log($value['gid']) ?>" target="_blank" class="text-muted ml-2"><i class="icofont-external-link"></i></a>
-                                <?php if ($value['top'] == 'y'): ?><span class="badge small badge-success">首页置顶</span><?php endif ?>
-                                <?php if ($value['sortop'] == 'y'): ?><span class="badge small badge-info">分类置顶</span><?php endif ?>
+                                <?php if ($value['top'] == 'y'): ?><a href="article.php?sortTop=DESC" class="badge small badge-success">首页置顶</a><?php endif ?>
+                                <?php if ($value['sortop'] == 'y'): ?><a href="article.php?sortTop=DESC" class="badge small badge-info">分类置顶</a><?php endif ?>
                                 <?php if (!$draft && $value['timestamp'] > time()): ?><span class="badge small badge-warning">定时发布</span><?php endif ?>
                                 <?php if ($value['password']): ?><span class="small">🔒</span><?php endif ?>
                                 <?php if ($value['link']): ?><span class="small">🔗</span><?php endif ?>

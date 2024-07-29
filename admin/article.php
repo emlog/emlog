@@ -32,6 +32,7 @@ if (empty($action)) {
     $sortView = (isset($_GET['sortView']) && $_GET['sortView'] == 'ASC') ? 'DESC' : 'ASC';
     $sortComm = (isset($_GET['sortComm']) && $_GET['sortComm'] == 'ASC') ? 'DESC' : 'ASC';
     $sortDate = (isset($_GET['sortDate']) && $_GET['sortDate'] == 'DESC') ? 'ASC' : 'DESC';
+    $sortTop = (isset($_GET['sortTop']) && $_GET['sortTop'] == 'DESC') ? 'ASC' : 'DESC';
 
     $condition = '';
     if ($tagId) {
@@ -54,8 +55,10 @@ if (empty($action)) {
         $orderBy .= "comnum $sortComm";
     } elseif (isset($_GET['sortDate'])) {
         $orderBy .= "date $sortDate";
+    } elseif (isset($_GET['sortTop'])) {
+        $orderBy .= "top DESC, sortop DESC";
     } else {
-        $orderBy .= 'top DESC, sortop DESC, date DESC';
+        $orderBy .= 'date DESC';
     }
 
     $hide_state = $draft ? 'y' : 'n';
