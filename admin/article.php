@@ -257,6 +257,7 @@ if ($action === 'write') {
     $postDate = date('Y-m-d H:i');
     $mediaSorts = $MediaSort_Model->getSorts();
     $customTemplates = $Template_Model->getCustomTemplates('log');
+    $fields = [];
 
     if (!Register::isRegLocal() && $sta_cache['lognum'] > 50) {
         emDirect("auth.php?error_article=1");
@@ -291,6 +292,9 @@ if ($action === 'edit') {
     $tags = $Tag_Model->getTags();
 
     $mediaSorts = $MediaSort_Model->getSorts();
+
+    // fields
+    $fields = Field::getFields($logid);
 
     $customTemplates = $Template_Model->getCustomTemplates('log');
 

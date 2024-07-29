@@ -1,6 +1,6 @@
 <?php
 /**
- * Service: Media
+ * Service: Field
  *
  * @package EMLOG
  * @link https://www.emlog.net
@@ -8,8 +8,12 @@
 
 class Field {
 
-    static public function updateField($gid, $field_keys, $field_values) {
+    static public function getFields($gid) {
+        $log_field_model = new Log_Field_Model();
+        return $log_field_model->getFields($gid);
+    }
 
+    static public function updateField($gid, $field_keys, $field_values) {
         $log_field_model = new Log_Field_Model();
         $log_field_model->deleteField($gid);
 
@@ -18,12 +22,11 @@ class Field {
         }
 
         foreach ($field_keys as $key => $field_name) {
-            if (empty($field_name) || empty($field_values[$key])) {
+            $field_value = isset($field_values[$key]) ? $field_values[$key] : '';
+            if (empty($field_name) || empty($field_value)) {
                 continue;
             }
             $log_field_model->addField($gid, $field_name, $field_values[$key]);
         }
-
     }
-
 }
