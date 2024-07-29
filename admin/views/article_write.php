@@ -20,17 +20,16 @@
                     <textarea id="logexcerpt" name="logexcerpt" class="form-control" rows="5"><?= $excerpt ?></textarea>
                 </div>
                 <div class="mt-3">
-                    自定义字段：
-                    <a href="javascript:void (0);" class="field_add text-success cursor-pointer small"><i class="icofont-plus"></i>添加字段</a>
+                    <a href="javascript:void (0);" class="field_add cursor-pointer">添加字段<i class="icofont-plus"></i></a>
                     <div class="mt-2" id="field_box">
                         <?php
                         foreach ($fields as $field): ?>
                             <div class="form-row field_list">
                                 <div class="col-sm-4">
-                                    <input type="text" name="field_keys[]" value="<?= $field['field_key'] ?>" id="field_keys" class="form-control" placeholder="字段名称">
+                                    <input type="text" name="field_keys[]" value="<?= $field['field_key'] ?>" id="field_keys" class="form-control" placeholder="字段名称" maxlength="120" required>
                                 </div>
                                 <div class="col-sm-7 mx-sm-3">
-                                    <input type="text" name="field_values[]" value="<?= $field['field_value'] ?>" id="field_values" class="form-control" placeholder="字段值">
+                                    <input type="text" name="field_values[]" value="<?= $field['field_value'] ?>" id="field_values" class="form-control" placeholder="字段值" required>
                                 </div>
                                 <div class="col-auto mt-1 text-align-right">
                                     <button type="button" class="btn btn-sm btn-outline-danger field_del">删除</button>
@@ -413,19 +412,17 @@
     }
 
     // 自定义字段
-    // 删除按钮功能
     $(document).on('click', '.field_del', function () {
         $(this).closest('.field_list').remove();
     });
-    // 添加按钮功能
     $(document).on('click', '.field_add', function () {
         var newField = `
                     <div class="form-row field_list">
                         <div class="col-sm-4">
-                            <input type="text" name="field_keys[]" value="" id="field_keys" class="form-control" placeholder="字段名称">
+                            <input type="text" name="field_keys[]" value="" id="field_keys" class="form-control" placeholder="字段名称" maxlength="120" required>
                         </div>
                         <div class="col-sm-7 mx-sm-3">
-                            <input type="text" name="field_values[]" value="" id="field_values" class="form-control" placeholder="字段值">
+                            <input type="text" name="field_values[]" value="" id="field_values" class="form-control" placeholder="字段值" required>
                         </div>
                         <div class="col-auto mt-1">
                             <button type="button" class="btn btn-sm btn-outline-danger field_del">删除</button>
