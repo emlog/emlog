@@ -20,6 +20,21 @@
                     <textarea id="logexcerpt" name="logexcerpt" class="form-control" rows="5"><?= $excerpt ?></textarea>
                 </div>
                 <div class="mt-3">
+                    自定义字段（选填）：
+                    <div class="mt-2" id="field_box">
+                        <div class="form-inline field_list">
+                            <div class="form-group mb-2">
+                                <input type="text" name="field_keys[]" id="field_keys" class="form-control" placeholder="字段名称">
+                            </div>
+                            <div class="form-group mx-sm-3 mb-2">
+                                <input type="text" name="field_values[]" id="field_values" class="form-control" placeholder="字段值">
+                            </div>
+                            <button type="button" class="btn btn-sm btn-outline-danger field_del">删除</button>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-sm btn-outline-success field_add">添加</button>
+                </div>
+                <div class="mt-3">
                     <label id="post_bar_label">插件扩展：</label>
                     <div id="post_bar">
                         <?php doAction('adm_writelog_head') ?>
@@ -391,4 +406,25 @@
     if (postBar.children().length === 0) {
         $("#post_bar_label").hide();
     }
+
+    // 自定义字段
+    // 删除按钮功能
+    $(document).on('click', '.field_del', function () {
+        $(this).closest('.field_list').remove();
+    });
+    // 添加按钮功能
+    $(document).on('click', '.field_add', function () {
+        var newField = `
+                    <div class="form-inline field_list">
+                        <div class="form-group mb-2">
+                            <input type="text" name="field_keys[]" class="form-control" placeholder="字段名称">
+                        </div>
+                        <div class="form-group mx-sm-3 mb-2">
+                            <input type="text" name="field_values[]" class="form-control" placeholder="字段值">
+                        </div>
+                        <button type="button" class="btn btn-sm btn-outline-danger field_del">删除</button>
+                    </div>
+                `;
+        $('#field_box').append(newField);
+    });
 </script>

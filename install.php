@@ -636,6 +636,16 @@ CREATE TABLE {$db_prefix}tpl_options_data (
   `data` longtext NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `template` (`template`,`name`)
+)" . $table_charset_sql . "
+DROP TABLE IF EXISTS {$db_prefix}blog_fields;
+CREATE TABLE {$db_prefix}blog_fields (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `gid` bigint unsigned NOT NULL DEFAULT '0',
+  `field_key` varchar(255) DEFAULT NULL DEFAULT '',
+  `field_value` longtext,
+  PRIMARY KEY (`id`),
+  KEY `gid` (`gid`),
+  KEY `key` (`field_key`)
 )" . $table_charset_sql;
 
     $array_sql = preg_split("/;[\r\n]/", $sql);
