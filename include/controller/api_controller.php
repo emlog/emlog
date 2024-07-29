@@ -79,6 +79,8 @@ class Api_Controller {
         $allow_remark = Input::postStrVar('allow_remark', 'n');
         $password = Input::postStrVar('password');
         $template = Input::postStrVar('template');
+        $field_keys = Input::postStrArray('field_keys');
+        $field_values = Input::postStrArray('field_values');
 
         $this->auth();
 
@@ -115,6 +117,8 @@ class Api_Controller {
         $article_id = $this->Log_Model->addlog($logData);
         $this->Tag_Model->addTag($tags, $article_id);
         $this->Cache->updateCache();
+
+        Field::updateField($article_id, $field_keys, $field_values);
 
         doAction('save_log', $article_id, '', $logData);
 
@@ -158,7 +162,7 @@ class Api_Controller {
         $this->Tag_Model->updateTag($tags, $id);
         $this->Cache->updateCache();
 
-        doAction('save_log', $id);
+        doAction('save_log', $id, '', $logData);
 
         output::ok();
     }
@@ -219,6 +223,7 @@ class Api_Controller {
                 'top'         => $value['top'],
                 'sortop'      => $value['sortop'],
                 'tags'        => $this->getTags((int)$value['gid']),
+                'fields'      => $value['fields'],
             ];
         }
 
@@ -259,6 +264,7 @@ class Api_Controller {
             'top'         => $r['top'],
             'sortop'      => $r['sortop'],
             'tags'        => $this->getTags($id),
+            'fields'      => $r['fields'],
         ];
 
         output::ok(['article' => $article,]);
