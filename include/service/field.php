@@ -10,7 +10,15 @@ class Field {
 
     static public function getFields($gid) {
         $log_field_model = new Log_Field_Model();
-        return $log_field_model->getFields($gid);
+        $rows = $log_field_model->getFields($gid);
+        if (empty($rows)) {
+            return [];
+        }
+        $fields = [];
+        foreach ($rows as $row) {
+            $fields[$row['field_key']] = $row['field_value'];
+        }
+        return $fields;
     }
 
     static public function updateField($gid, $field_keys, $field_values) {

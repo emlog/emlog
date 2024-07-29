@@ -181,6 +181,7 @@ class Log_Model {
             'template'     => $row['template'],
             'link'         => $row['link'],
             'tags'         => $row['tags'],
+            'fields'       => Field::getFields($blogId),
         ];
     }
 
@@ -223,6 +224,7 @@ class Log_Model {
             $row['attachment'] = '';
             $row['tag'] = '';
             $row['tbcount'] = 0;
+            $row['fields'] = Field::getFields($row['gid']);
             $logs[] = $row;
         }
         return $logs;

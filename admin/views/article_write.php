@@ -23,13 +23,13 @@
                     <a href="javascript:void (0);" class="field_add cursor-pointer">添加字段<i class="icofont-plus"></i></a>
                     <div class="mt-2" id="field_box">
                         <?php
-                        foreach ($fields as $field): ?>
+                        foreach ($fields as $key => $value): ?>
                             <div class="form-row field_list">
                                 <div class="col-sm-4">
-                                    <input type="text" name="field_keys[]" value="<?= $field['field_key'] ?>" id="field_keys" class="form-control" placeholder="字段名称" maxlength="120" required>
+                                    <input type="text" name="field_keys[]" value="<?= $key ?>" id="field_keys" class="form-control" placeholder="字段名称" maxlength="120" required>
                                 </div>
                                 <div class="col-sm-7 mx-sm-3">
-                                    <input type="text" name="field_values[]" value="<?= $field['field_value'] ?>" id="field_values" class="form-control" placeholder="字段值" required>
+                                    <input type="text" name="field_values[]" value="<?= $value ?>" id="field_values" class="form-control" placeholder="字段值" required>
                                 </div>
                                 <div class="col-auto mt-1 text-align-right">
                                     <button type="button" class="btn btn-sm btn-outline-danger field_del">删除</button>
