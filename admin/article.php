@@ -28,11 +28,7 @@ if (empty($action)) {
     $page = Input::getIntVar('page', 1);
     $keyword = Input::getStrVar('keyword');
     $checked = Input::getStrVar('checked');
-
-    $sortView = (isset($_GET['sortView']) && $_GET['sortView'] == 'ASC') ? 'DESC' : 'ASC';
-    $sortComm = (isset($_GET['sortComm']) && $_GET['sortComm'] == 'ASC') ? 'DESC' : 'ASC';
-    $sortDate = (isset($_GET['sortDate']) && $_GET['sortDate'] == 'DESC') ? 'ASC' : 'DESC';
-    $sortTop = (isset($_GET['sortTop']) && $_GET['sortTop'] == 'DESC') ? 'ASC' : 'DESC';
+    $order = Input::getStrVar('order');
 
     $condition = '';
     if ($tagId) {
@@ -49,16 +45,19 @@ if (empty($action)) {
     }
 
     $orderBy = ' ORDER BY ';
-    if (isset($_GET['sortView'])) {
-        $orderBy .= "views $sortView";
-    } elseif (isset($_GET['sortComm'])) {
-        $orderBy .= "comnum $sortComm";
-    } elseif (isset($_GET['sortDate'])) {
-        $orderBy .= "date $sortDate";
-    } elseif (isset($_GET['sortTop'])) {
-        $orderBy .= "top DESC, sortop DESC";
-    } else {
-        $orderBy .= 'date DESC';
+    switch ($order) {
+        case 'view':
+            $orderBy .= 'views DESC';
+            break;
+        case 'comm':
+            $orderBy .= 'comnum DESC';
+            break;
+        case 'top':
+            $orderBy .= 'top DESC, sortop DESC';
+            break;
+        default:
+            $orderBy .= 'date DESC';
+            break;
     }
 
     $hide_state = $draft ? 'y' : 'n';

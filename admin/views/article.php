@@ -77,6 +77,14 @@ $isdraft = $draft ? '&draft=1' : '';
                         </option>
                     </select>
                 </div>
+                <div id="f_t_order" class="mx-1">
+                    <select name="order" id="order" onChange="selectOrder(this);" class="form-control">
+                        <option value="date" <?= (empty($order)) ? 'selected' : '' ?>>最新发布</option>
+                        <option value="top" <?= ($order === 'top') ? 'selected' : '' ?>>置顶优先</option>
+                        <option value="comm" <?= ($order === 'comm') ? 'selected' : '' ?>>评论最多</option>
+                        <option value="view" <?= ($order === 'view') ? 'selected' : '' ?>>浏览最多</option>
+                    </select>
+                </div>
             </div>
             <form action="article.php" method="get">
                 <div class="form-inline search-inputs-nowrap">
@@ -100,11 +108,11 @@ $isdraft = $draft ? '&draft=1' : '';
                     <tr>
                         <th><input type="checkbox" id="checkAllItem"/></th>
                         <th>标题</th>
-                        <th><a href="article.php?sortComm=<?= $sortComm . $sorturl ?>">评论</a></th>
-                        <th><a href="article.php?sortView=<?= $sortView . $sorturl ?>">浏览</a></th>
+                        <th>评论</th>
+                        <th>浏览</th>
                         <th>作者</th>
                         <th>分类</th>
-                        <th><a href="article.php?sortDate=<?= $sortDate . $sorturl ?>">时间</a></th>
+                        <th>时间</th>
                         <th>操作</th>
                     </tr>
                     </thead>
@@ -126,8 +134,8 @@ $isdraft = $draft ? '&draft=1' : '';
                             <td>
                                 <a href="article.php?action=edit&gid=<?= $value['gid'] ?>"><?= $value['title'] ?></a>
                                 <a href="<?= Url::log($value['gid']) ?>" target="_blank" class="text-muted ml-2"><i class="icofont-external-link"></i></a>
-                                <?php if ($value['top'] == 'y'): ?><a href="article.php?sortTop=DESC" class="badge small badge-success">首页置顶</a><?php endif ?>
-                                <?php if ($value['sortop'] == 'y'): ?><a href="article.php?sortTop=DESC" class="badge small badge-info">分类置顶</a><?php endif ?>
+                                <?php if ($value['top'] == 'y'): ?><span class="badge small badge-success">首页置顶</span><?php endif ?>
+                                <?php if ($value['sortop'] == 'y'): ?><span class="badge small badge-info">分类置顶</span><?php endif ?>
                                 <?php if (!$draft && $value['timestamp'] > time()): ?><span class="badge small badge-warning">定时发布</span><?php endif ?>
                                 <?php if ($value['password']): ?><span class="small">🔒</span><?php endif ?>
                                 <?php if ($value['link']): ?><span class="small">🔗</span><?php endif ?>
@@ -351,6 +359,10 @@ $isdraft = $draft ? '&draft=1' : '';
 
     function selectSort(obj) {
         window.open("./article.php?sid=" + obj.value + "<?= $isdraft?>", "_self");
+    }
+
+    function selectOrder(obj) {
+        window.open("./article.php?order=" + obj.value + "<?= $isdraft?>", "_self");
     }
 
     function selectUser(obj) {
