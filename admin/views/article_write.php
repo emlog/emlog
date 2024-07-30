@@ -28,7 +28,7 @@
                                 <div class="col-sm-4">
                                     <input type="text" name="field_keys[]" value="<?= $key ?>" id="field_keys" class="form-control" placeholder="字段名称" maxlength="120" required>
                                 </div>
-                                <div class="col-sm-7 mx-sm-3">
+                                <div class="col-sm-6 mx-sm-3">
                                     <input type="text" name="field_values[]" value="<?= $value ?>" id="field_values" class="form-control" placeholder="字段值" required>
                                 </div>
                                 <div class="col-auto mt-1 text-align-right">
@@ -421,7 +421,7 @@
                         <div class="col-sm-4">
                             <input type="text" name="field_keys[]" value="" id="field_keys" class="form-control" placeholder="字段名称" maxlength="120" required>
                         </div>
-                        <div class="col-sm-7 mx-sm-3">
+                        <div class="col-sm-6 mx-sm-3">
                             <input type="text" name="field_values[]" value="" id="field_values" class="form-control" placeholder="字段值" required>
                         </div>
                         <div class="col-auto mt-1">
