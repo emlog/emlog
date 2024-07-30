@@ -30,11 +30,12 @@ class Field {
         }
 
         foreach ($field_keys as $key => $field_name) {
-            $field_value = isset($field_values[$key]) ? $field_values[$key] : '';
+            $field_name = addslashes(trim($field_name));
+            $field_value = addslashes(trim(isset($field_values[$key]) ? $field_values[$key] : ''));
             if (empty($field_name) || empty($field_value)) {
                 continue;
             }
-            $log_field_model->addField($gid, $field_name, $field_values[$key]);
+            $log_field_model->addField($gid, $field_name, $field_value);
         }
     }
 }

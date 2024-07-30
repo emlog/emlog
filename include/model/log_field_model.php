@@ -21,10 +21,6 @@ class Log_Field_Model {
         $this->db->query(sprintf($query, $this->table, $gid, $field_key, $field_value));
     }
 
-    public function updateField($gid, $field_key, $field_value) {
-        $this->db->query("UPDATE $this->table SET field_value='$field_value' WHERE gid=$gid AND field_key='$field_key'");
-    }
-
     public function getFields($gid) {
         $query = "SELECT * FROM $this->table WHERE gid=$gid";
         return $this->db->fetch_all($query);
