@@ -173,13 +173,28 @@ function displayToggle(id) {
     $("#" + id).toggle();
     if (icon_mod === "down") {
         icon_mod = "right";
-        $(".icofont-simple-down").attr("class", "icofont-simple-right")
+        $(".icofont-simple-down").attr("class", "icofont-simple-right");
     } else {
         icon_mod = "down";
-        $(".icofont-simple-right").attr("class", "icofont-simple-down")
+        $(".icofont-simple-right").attr("class", "icofont-simple-down");
     }
 
-    Cookies.set('em_' + id, icon_mod, {expires: 365})
+    // 使用本地存储来保存状态
+    localStorage.setItem('em_' + id, icon_mod);
+}
+
+function applyStoredState(id) {
+    let storedState = localStorage.getItem('em_' + id);
+    if (storedState) {
+        icon_mod = storedState;
+        if (icon_mod === "right") {
+            $("#" + id).hide();
+            $(".icofont-simple-down").attr("class", "icofont-simple-right");
+        } else {
+            $("#" + id).show();
+            $(".icofont-simple-right").attr("class", "icofont-simple-down");
+        }
+    }
 }
 
 function doToggle(id) {

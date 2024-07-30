@@ -131,11 +131,11 @@
                         <input type="checkbox" value="y" name="sortop" id="sortop" <?= $is_sortop; ?> />
                         <label for="sortop" style="margin-right: 8px;">分类置顶</label>
                     </div>
-                    <div><a class="show_advset" id="displayToggle" onclick="displayToggle('advset');">高级选项<i class="icofont-simple-right"></i></a></div>
+                    <div><a href="javascript:void (0);" class="show_adv_set cursor-pointer" onclick="displayToggle('adv_set');">高级选项<i class="icofont-simple-right"></i></a></div>
                 <?php else: ?>
                     <input type="hidden" value="y" name="allow_remark" id="allow_remark"/>
                 <?php endif; ?>
-                <div id="advset">
+                <div id="adv_set">
                     <?php if (User::haveEditPermission()): ?>
                         <div class="form-group">
                             <label>链接别名：</label>
@@ -431,4 +431,8 @@
                 `;
         $('#field_box').append(newField);
     });
+
+    // 检查右侧高级选项展开状态
+    applyStoredState('adv_set');
+
 </script>
