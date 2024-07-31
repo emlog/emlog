@@ -644,8 +644,7 @@ CREATE TABLE {$db_prefix}blog_fields (
   `field_key` varchar(255) DEFAULT NULL DEFAULT '',
   `field_value` longtext,
   PRIMARY KEY (`id`),
-  KEY `gid` (`gid`),
-  KEY `key` (`field_key`)
+  KEY `gid` (`gid`)
 )" . $table_charset_sql;
 
     $array_sql = preg_split("/;[\r\n]/", $sql);
