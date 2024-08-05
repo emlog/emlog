@@ -79,6 +79,7 @@
                         <iframe id="mail_review_frame"></iframe>
                     </div>
                 </div>
+                <div class="mb-3 small" id="mail_template_box">模板变量：{{mail_content}} 邮件内容，{{mail_site_title}} 站点标题</div>
             </div>
             <h4>邮件通知</h4>
             <div class="form-group form-check">
@@ -116,6 +117,9 @@
 <body style="font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f0f0f0;">
     <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 5px; padding: 20px;">
         <p>{{mail_content}}</p>
+    </div>
+    <div style="max-width: 600px; margin: 0 auto; padding-top:10px;">
+        <small>来自站点：{{mail_site_title}}</small>
     </div>
 </body>
 </html>`;

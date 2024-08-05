@@ -162,7 +162,7 @@ class Notice {
     public static function getMailTemplate($content) {
         $mailTemplate = Option::get('mail_template');
         if (!empty(trim($mailTemplate))) {
-            return str_replace('{{mail_content}}', $content, $mailTemplate);
+            return str_replace(['{{mail_content}}', '{{mail_site_title}}'], [$content, Option::get('blogname')], $mailTemplate);
         }
         return $content;
     }
