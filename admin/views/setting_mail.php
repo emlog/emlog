@@ -79,7 +79,7 @@
                         <iframe id="mail_review_frame"></iframe>
                     </div>
                 </div>
-                <div class="mb-3 small" id="mail_template_box">模板变量：{{mail_content}} 邮件内容，{{mail_site_title}} 站点标题</div>
+                <div class="mb-3 mt-1 small" id="mail_template_box">模板变量：{{mail_content}} 邮件内容，{{mail_site_title}} 站点标题</div>
             </div>
             <h4>邮件通知</h4>
             <div class="form-group form-check">
