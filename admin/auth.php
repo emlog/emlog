@@ -20,7 +20,7 @@ if (empty($action)) {
 }
 
 if ($action === 'auth') {
-    $emkey = $_POST['emkey'] ? addslashes(trim($_POST['emkey'])) : '';
+    $emkey = Input::postStrVar('emkey');
 
     if (empty($emkey)) {
         emDirect("./auth.php?error_b=1");
