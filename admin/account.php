@@ -156,6 +156,8 @@ if ($action == 'send_email_code') {
         Output::error('错误的邮箱');
     }
 
+    doAction('send_email_code', $mail);
+
     $ret = Notice::sendVerifyMailCode($mail);
     if ($ret) {
         Output::ok();
