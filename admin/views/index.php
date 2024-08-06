@@ -22,7 +22,6 @@
         <div class="col-lg-12 mb-3">
             <div class="card shadow mb-3">
                 <div class="card-body">
-                    快捷入口：
                     <a href="./article.php?action=write" class="mr-2">写文章</a>
                     <a href="article.php" class="mr-2">文章</a>
                     <a href="article.php?draft=1" class="mr-2">草稿</a>

@@ -47,7 +47,7 @@ class Comment_Controller {
             $err = '文章不存在';
         } elseif (Option::get('iscomment') == 'n' || $log['allow_remark'] == 'n') {
             $err = '该文章未开启评论';
-        } elseif (User::isVisitor() && $Comment_Model->isCommentTooFast() === true) {
+        } elseif (!User::haveEditPermission() && $Comment_Model->isCommentTooFast() === true) {
             $err = '评论发布太频繁';
         } elseif (empty($name)) {
             $err = '请填写昵称';
