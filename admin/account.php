@@ -181,8 +181,8 @@ if ($action == 'reset') {
 if ($action == 'doreset') {
     loginAuth::checkLogged();
 
-    $mail = isset($_POST['mail']) ? addslashes(trim($_POST['mail'])) : '';
-    $login_code = isset($_POST['login_code']) ? addslashes(strtoupper(trim($_POST['login_code']))) : '';
+    $mail = Input::postStrVar('mail');
+    $login_code = strtoupper(Input::postStrVar('login_code'));
     $resp = Input::postStrVar('resp'); // eg: json (only support json now)
 
     if (!User::checkLoginCode($login_code)) {
@@ -227,9 +227,9 @@ if ($action == 'reset2') {
 }
 
 if ($action == 'doreset2') {
-    $mail_code = isset($_POST['mail_code']) ? addslashes(trim($_POST['mail_code'])) : '';
-    $passwd = isset($_POST['passwd']) ? addslashes(trim($_POST['passwd'])) : '';
-    $repasswd = isset($_POST['repasswd']) ? addslashes(trim($_POST['repasswd'])) : '';
+    $mail_code = Input::postStrVar('mail_code');
+    $passwd = Input::postStrVar('passwd');
+    $repasswd = Input::postStrVar('repasswd');
     $resp = Input::postStrVar('resp'); // only json
 
     if (strlen($passwd) < 6) {
