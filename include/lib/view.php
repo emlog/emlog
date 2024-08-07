@@ -7,10 +7,12 @@
 
 class View {
     public static function getView($template, $ext = '.php') {
-        if (!is_dir(TEMPLATE_PATH)) {
+        $templatePath = TEMPLATE_PATH;
+        doOnceAction('template_path', $templatePath, $templatePath);
+        if (!is_dir($templatePath)) {
             emMsg('当前使用的模板已被删除或损坏，请登录后台更换其他模板。', BLOG_URL . 'admin/template.php');
         }
-        return TEMPLATE_PATH . $template . $ext;
+        return $templatePath . $template . $ext;
     }
 
     public static function getAdmView($template, $ext = '.php') {
