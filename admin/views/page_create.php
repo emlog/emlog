@@ -52,6 +52,21 @@
                     <small class="text-muted">填写后不展示页面内容，直接跳转该地址</small>
                 </div>
                 <div class="form-group">
+                    <label>标签：</label>
+                    <?php if ($tags): ?>
+                        <span class="small"> <a href="javascript:doToggle('tags', 1);">近期使用的+</a></span>
+                        <div id="tags" class="mb-2" style="display: none">
+                            <?php
+                            foreach ($tags as $val) {
+                                echo " <a class=\"em-badge small em-badge-tag\" href=\"javascript: insertTag('{$val['tagname']}','tag');\">{$val['tagname']}</a> ";
+                            }
+                            ?>
+                        </div>
+                    <?php endif; ?>
+                    <input name="tag" id="tag" class="form-control" value="<?= $tagStr ?>"/>
+                    <small class="text-muted">也用于页面关键词，英文逗号分隔</small>
+                </div>
+                <div class="form-group">
                     <label>页面模板：</label>
                     <?php if ($customTemplates):
                         $sortListHtml = '<option value="">默认</option>';
