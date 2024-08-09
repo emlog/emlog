@@ -155,6 +155,7 @@ $isdraft = $draft ? '&draft=1' : '';
                             <td class="small"><?= $value['date'] ?></td>
                             <td>
                                 <?php if ($draft): ?>
+                                    <a href="article.php?action=pub&gid=<?= $value['gid'] ?>" class="badge badge-success">发布</a>
                                     <a href="javascript: em_confirm(<?= $value['gid'] ?>, 'draft', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger">删除</a>
                                 <?php else: ?>
                                     <a class="badge badge-primary" href="#" data-tag="<?= implode(',', $logTags) ?>" data-gid="<?= $value['gid'] ?>" data-toggle="modal" data-target="#tagModel">标签</a>

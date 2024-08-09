@@ -114,6 +114,18 @@ if ($action == 'tag') {
     emDirect("./article.php");
 }
 
+if ($action === 'pub') {
+    $gid = Input::getIntVar('gid');
+
+    $Log_Model->hideSwitch($gid, 'n');
+    if (User::haveEditPermission()) {
+        $Log_Model->checkSwitch($gid, 'y');
+    }
+
+    $CACHE->updateCache();
+    emDirect("./article.php?draft=1&active_post=1&draft=1");
+}
+
 if ($action == 'operate_log') {
     $operate = Input::requestStrVar('operate');
     $draft = Input::postIntVar('draft');

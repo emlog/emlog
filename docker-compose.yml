@@ -69,6 +69,11 @@ services:
     depends_on:
       - php
 
+  redis:
+    image: redis
+    networks:
+      - emlog_network
+
 networks:
   emlog_network:
     external: true
