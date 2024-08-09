@@ -11,7 +11,6 @@
  */
 
 require_once 'globals.php';
-$Tag_Model = new Tag_Model();
 
 if (empty($action)) {
     $emPage = new Log_Model();
@@ -49,8 +48,6 @@ if ($action == 'new') {
 
     $MediaSort_Model = new MediaSort_Model();
     $mediaSorts = $MediaSort_Model->getSorts();
-    $tagStr = '';
-    $tags = $Tag_Model->getTags();
 
     $Template_Model = new Template_Model();
     $customTemplates = $Template_Model->getCustomTemplates('page');
@@ -79,15 +76,6 @@ if ($action == 'mod') {
     $MediaSort_Model = new MediaSort_Model();
     $mediaSorts = $MediaSort_Model->getSorts();
 
-    //tag
-    $tags = [];
-    foreach ($Tag_Model->getTag($pageId) as $val) {
-        $tags[] = $val['tagname'];
-    }
-    $tagStr = implode(',', $tags);
-    //old tag
-    $tags = $Tag_Model->getTags();
-
     $is_allow_remark = $allow_remark == 'y' ? 'checked="checked"' : '';
     $is_home_page = Option::get('home_page_id') == $pageId ? 'checked="checked"' : '';
 
@@ -111,7 +99,6 @@ if ($action == 'save') {
     $home_page = isset($_POST['home_page']) ? addslashes(trim($_POST['home_page'])) : 'n';
     $link = Input::postStrVar('link');
     $cover = Input::postStrVar('cover');
-    $tagstring = isset($_POST['tag']) ? strip_tags(addslashes(trim($_POST['tag']))) : '';
 
     $postTime = time();
 
@@ -138,11 +125,9 @@ if ($action == 'save') {
     if ($pageId > 0) {
         $emPage->updateLog($logData, $pageId);
         $directUrl = './page.php?active_pubpage=1';
-        $Tag_Model->updateTag($tagstring, $pageId);
     } else {
         $pageId = $emPage->addlog($logData);
         $directUrl = './page.php?active_hide_n=1';
-        $Tag_Model->addTag($tagstring, $pageId);
     }
 
     if ($home_page === 'y') {
