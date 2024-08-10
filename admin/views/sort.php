@@ -59,6 +59,7 @@
                                    data-alias="<?= $value['alias'] ?>"
                                    data-description="<?= $value['description'] ?>"
                                    data-kw="<?= $value['kw'] ?>"
+                                   data-title="<?= $value['title'] ?>"
                                    data-pid="<?= $value['pid'] ?>"
                                    data-sortimg="<?= $value['sortimg'] ?>"
                                    data-template="<?= $value['template'] ?>"><?= $value['sortname'] ?></a>
@@ -161,6 +162,11 @@
                         <input class="form-control" id="sortimg" name="sortimg" type="url" placeholder="https://">
                     </div>
                     <div class="form-group">
+                        <label for="title">标题（用于分类页的 title）</label>
+                        <textarea name="title" id="title" type="text" class="form-control"></textarea>
+                        <small class="form-text text-muted">支持变量: {{site_title}},{{site_name}},{{sort_name}}</small>
+                    </div>
+                    <div class="form-group">
                         <label for="alias">描述（也用于分类页的 description）</label>
                         <textarea name="description" id="description" type="text" class="form-control"></textarea>
                     </div>
@@ -259,6 +265,7 @@
             var alias = button.data('alias')
             var description = button.data('description')
             var kw = button.data('kw')
+            var title = button.data('title')
             var pid = button.data('pid')
             var template = button.data('template')
             var sortimg = button.data('sortimg')
@@ -267,6 +274,7 @@
             modal.find('.modal-body #alias').val(alias)
             modal.find('.modal-body #description').val(description)
             modal.find('.modal-body #kw').val(kw)
+            modal.find('.modal-body #title').val(title)
             modal.find('.modal-body #pid').val(pid)
             modal.find('.modal-body #template').val(template)
             modal.find('.modal-body #sortimg').val(sortimg)

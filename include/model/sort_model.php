@@ -29,6 +29,7 @@ class Sort_Model {
                 'alias'       => $row['alias'],
                 'description' => htmlspecialchars($row['description']),
                 'kw'          => $row['kw'],
+                'title'       => $row['title'],
                 'sid'         => (int)$row['sid'],
                 'taxis'       => (int)$row['taxis'],
                 'pid'         => (int)$row['pid'],
@@ -84,7 +85,7 @@ class Sort_Model {
                 'pid'         => $row['pid'],
                 'description' => htmlspecialchars(trim($row['description'])),
                 'template'    => !empty($row['template']) ? htmlspecialchars(trim($row['template'])) : 'log_list',
-                'sortimg' => htmlspecialchars(trim($row['sortimg'])),
+                'sortimg'     => htmlspecialchars(trim($row['sortimg'])),
             );
         }
         return $sortData;

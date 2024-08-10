@@ -51,6 +51,7 @@ if ($action == 'save') {
     $template = isset($_POST['template']) && $_POST['template'] != 'log_list' ? addslashes(trim($_POST['template'])) : '';
     $description = Input::postStrVar('description');
     $kw = Input::postStrVar('kw');
+    $title = Input::postStrVar('title');
     $sortimg = Input::postStrVar('sortimg');
 
     if (empty($sortname)) {
@@ -87,6 +88,7 @@ if ($action == 'save') {
         'template'    => $template,
         'description' => $description,
         'kw'          => $kw,
+        'title'       => $title,
         'alias'       => $alias,
         'sortimg'     => $sortimg
     ];
