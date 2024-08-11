@@ -59,7 +59,7 @@
                                    data-alias="<?= $value['alias'] ?>"
                                    data-description="<?= $value['description'] ?>"
                                    data-kw="<?= $value['kw'] ?>"
-                                   data-title="<?= $value['title'] ?>"
+                                   data-title="<?= $value['title_origin'] ?>"
                                    data-pid="<?= $value['pid'] ?>"
                                    data-sortimg="<?= $value['sortimg'] ?>"
                                    data-template="<?= $value['template'] ?>"><?= $value['sortname'] ?></a>
@@ -97,6 +97,7 @@
                                             data-alias="<?= $value['alias'] ?>"
                                             data-description="<?= $value['description'] ?>"
                                             data-kw="<?= $value['kw'] ?>"
+                                            data-title="<?= $value['title_origin'] ?>"
                                             data-pid="<?= $value['pid'] ?>"
                                             data-sortimg="<?= $value['sortimg'] ?>"
                                             data-template="<?= $value['template'] ?>"><?= $value['sortname'] ?></a>

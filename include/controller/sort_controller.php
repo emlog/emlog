@@ -46,11 +46,6 @@ class Sort_Controller {
         $sortDesc = isset($sort['description']) ? $sort['description'] : '';
         //page meta
         if ($sortTitle) {
-            $sortTitle = strtr($sortTitle, [
-                '{{site_title}}' => $site_title,
-                '{{site_name}}'  => $blogname,
-                '{{sort_name}}'  => $sortName
-            ]);
             $site_title = $sortTitle;
         } else {
             $site_title = $sortName . ' - ' . $site_title;

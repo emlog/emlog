@@ -24,17 +24,18 @@ class Sort_Model {
             $data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "blog WHERE sortid=" . $row['sid'] . " AND hide='n' AND checked='y' AND type='blog'");
             $logNum = $data['total'];
             $sortData = array(
-                'lognum'      => $logNum,
-                'sortname'    => htmlspecialchars($row['sortname']),
-                'alias'       => $row['alias'],
-                'description' => htmlspecialchars($row['description']),
-                'kw'          => $row['kw'],
-                'title'       => $row['title'],
-                'sid'         => (int)$row['sid'],
-                'taxis'       => (int)$row['taxis'],
-                'pid'         => (int)$row['pid'],
-                'template'    => htmlspecialchars($row['template']),
-                'sortimg'     => htmlspecialchars($row['sortimg'])
+                'lognum'       => $logNum,
+                'sortname'     => htmlspecialchars($row['sortname']),
+                'alias'        => $row['alias'],
+                'description'  => htmlspecialchars($row['description']),
+                'kw'           => htmlspecialchars($row['kw']),
+                'title_origin' => $row['title'],
+                'title'        => htmlspecialchars(Sort::formatSortTitle($row['title'], $row['sortname'])),
+                'sid'          => (int)$row['sid'],
+                'taxis'        => (int)$row['taxis'],
+                'pid'          => (int)$row['pid'],
+                'template'     => htmlspecialchars($row['template']),
+                'sortimg'      => htmlspecialchars($row['sortimg'])
             );
             if ($sortData['pid'] == 0) {
                 $sortData['children'] = [];
@@ -80,12 +81,15 @@ class Sort_Model {
         $sortData = [];
         if ($row) {
             $sortData = array(
-                'sortname'    => htmlspecialchars(trim($row['sortname'])),
-                'alias'       => $row['alias'],
-                'pid'         => $row['pid'],
-                'description' => htmlspecialchars(trim($row['description'])),
-                'template'    => !empty($row['template']) ? htmlspecialchars(trim($row['template'])) : 'log_list',
-                'sortimg'     => htmlspecialchars(trim($row['sortimg'])),
+                'sortname'     => htmlspecialchars(trim($row['sortname'])),
+                'alias'        => $row['alias'],
+                'pid'          => $row['pid'],
+                'title_origin' => $row['title'],
+                'title'        => htmlspecialchars(Sort::formatSortTitle($row['title'], $row['sortname'])),
+                'kw'           => htmlspecialchars($row['kw']),
+                'description'  => htmlspecialchars(trim($row['description'])),
+                'template'     => !empty($row['template']) ? htmlspecialchars(trim($row['template'])) : 'log_list',
+                'sortimg'      => htmlspecialchars(trim($row['sortimg'])),
             );
         }
         return $sortData;
