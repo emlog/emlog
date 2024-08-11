@@ -168,11 +168,11 @@
                         <small class="form-text text-muted">支持变量: {{site_title}}, {{site_name}}, {{sort_name}}</small>
                     </div>
                     <div class="form-group">
-                        <label for="alias">描述（也用于分类页的 description）</label>
+                        <label for="alias">描述（用于分类页的 description）</label>
                         <textarea name="description" id="description" type="text" class="form-control"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="kw">关键词（英文逗号分割，用于分类页的 keywords）</label>
+                        <label for="kw">关键词（用于分类页的 keywords，英文逗号分割）</label>
                         <textarea name="kw" id="kw" type="text" class="form-control"></textarea>
                     </div>
                     <div class="form-group">
