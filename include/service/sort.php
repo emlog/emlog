@@ -11,6 +11,10 @@ class Sort {
         $site_title = Option::get('site_title');
         $blogname = Option::get('blogname');
 
+        if (empty($site_title)) {
+            $site_title = $blogname;
+        }
+
         return strtr($title, [
             '{{site_title}}' => $site_title,
             '{{site_name}}'  => $blogname,
