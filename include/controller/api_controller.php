@@ -365,6 +365,28 @@ class Api_Controller {
         output::ok(['userinfo' => $data]);
     }
 
+    public function user_detail() {
+        $uid = Input::getIntVar('id');
+
+        $this->checkApiKey();
+
+        $userInfo = $this->User_Model->getOneUser($uid);
+        if (empty($userInfo)) {
+            output::ok(['userinfo' => []]);
+        }
+
+        $data = [
+            'uid'         => (int)$userInfo['uid'],
+            'nickname'    => htmlspecialchars($userInfo['nickname']),
+            'role'        => $userInfo['role'],
+            'avatar'      => getFileUrl($userInfo['photo']),
+            'description' => htmlspecialchars($userInfo['description']),
+            'create_time' => (int)$userInfo['create_time'],
+        ];
+
+        output::ok(['userinfo' => $data]);
+    }
+
     public function upload() {
         $sid = Input::postIntVar('sid');
         $author_uid = Input::postIntVar('author_uid', 1);
@@ -430,7 +452,7 @@ class Api_Controller {
         $this->authReqSign = Input::requestStrVar('req_sign');
         $this->authReqTime = Input::requestStrVar('req_time');
 
-        if (empty($this->authApiKey) || empty($this->authReqSign) || empty($this->authReqTime)) {
+        if (empty($this->authApiKey) && (empty($this->authReqSign) || empty($this->authReqTime))) {
             Output::authError('auth param error');
         }
 
