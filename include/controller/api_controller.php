@@ -246,25 +246,27 @@ class Api_Controller {
 
         $user_info = $this->User_Model->getOneUser($r['author']);
         $author_name = isset($user_info['nickname']) ? $user_info['nickname'] : '';
+        $author_avatar = isset($user_info['photo']) ? getFileUrl($user_info['photo']) : '';
 
         $article = [
-            'title'       => $r['log_title'],
-            'date'        => date('Y-m-d H:i:s', $r['date']),
-            'id'          => (int)$r['logid'],
-            'sort_id'     => (int)$r['sortid'],
-            'sort_name'   => isset($sort_cache[$r['sortid']]['sortname']) ? $sort_cache[$r['sortid']]['sortname'] : '',
-            'type'        => $r['type'],
-            'author_id'   => (int)$r['author'],
-            'author_name' => $author_name,
-            'content'     => $r['log_content'],
-            'excerpt'     => $r['excerpt'],
-            'cover'       => $r['log_cover'],
-            'views'       => (int)$r['views'],
-            'comnum'      => (int)$r['comnum'],
-            'top'         => $r['top'],
-            'sortop'      => $r['sortop'],
-            'tags'        => $this->getTags($id),
-            'fields'      => $r['fields'],
+            'title'         => $r['log_title'],
+            'date'          => date('Y-m-d H:i:s', $r['date']),
+            'id'            => (int)$r['logid'],
+            'sort_id'       => (int)$r['sortid'],
+            'sort_name'     => isset($sort_cache[$r['sortid']]['sortname']) ? $sort_cache[$r['sortid']]['sortname'] : '',
+            'type'          => $r['type'],
+            'author_id'     => (int)$r['author'],
+            'author_name'   => $author_name,
+            'author_avatar' => $author_avatar,
+            'content'       => $r['log_content'],
+            'excerpt'       => $r['excerpt'],
+            'cover'         => $r['log_cover'],
+            'views'         => (int)$r['views'],
+            'comnum'        => (int)$r['comnum'],
+            'top'           => $r['top'],
+            'sortop'        => $r['sortop'],
+            'tags'          => $this->getTags($id),
+            'fields'        => $r['fields'],
         ];
 
         output::ok(['article' => $article,]);
