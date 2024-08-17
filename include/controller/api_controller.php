@@ -34,6 +34,7 @@ class Api_Controller {
     public $Comment_Model;
 
     public $Cache;
+    public $authApiKey;
     public $authReqSign;
     public $authReqTime;
     public $curUserInfo;
@@ -425,19 +426,25 @@ class Api_Controller {
     }
 
     private function checkApiKey() {
+        $this->authApiKey = Input::requestStrVar('api_key');
         $this->authReqSign = Input::requestStrVar('req_sign');
         $this->authReqTime = Input::requestStrVar('req_time');
 
-        if (empty($this->authReqSign) || empty($this->authReqTime)) {
+        if (empty($this->authApiKey) || empty($this->authReqSign) || empty($this->authReqTime)) {
             Output::authError('auth param error');
         }
 
         $apikey = Option::get('apikey');
-        $sign = md5($this->authReqTime . $apikey);
 
-        if ($sign !== $this->authReqSign) {
-            Output::authError('sign error');
+        if ($apikey === $this->authApiKey) {
+            return;
         }
+
+        $sign = md5($this->authReqTime . $apikey);
+        if ($sign === $this->authReqSign) {
+            return;
+        }
+        Output::authError('auth error');
     }
 
     private function checkAuthCookie() {
