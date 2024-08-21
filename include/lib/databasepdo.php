@@ -1,15 +1,15 @@
 <?php
 /**
- * MySQL PDO
+ * PDO Database Connection
  *
  * @package EMLOG
  * @link https://www.emlog.net
  */
 
-class Mysqlpdo {
+class DatabasePDO {
     /**
      * 内部实例对象
-     * @var object MySql
+     * @var object DatabasePDO
      */
     private static $instance = null;
 
@@ -30,36 +30,50 @@ class Mysqlpdo {
      */
     private $result;
 
-    private function __construct() {
+    /**
+     * 数据库类型
+     * @var string
+     */
+    private $dbType;
+
+    private function __construct($dbType = 'mysql') {
         if (!class_exists('PDO')) {
             emMsg('服务器空间PHP不支持PDO函数');
         }
 
+        $this->dbType = $dbType;
+
         try {
-            $dsn = 'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8mb4';
-            $options = [];
-            $dbh = new PDO($dsn, DB_USER, DB_PASSWD, $options);
-            $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);   //设置如果sql语句执行错误则抛出异常，事务会自动回滚
-            $dbh->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);           //禁用prepared statements的仿真效果(防SQL注入)
+            if ($this->dbType === 'mysql') {
+                $dsn = 'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8mb4';
+                $options = [];
+                $dbh = new PDO($dsn, DB_USER, DB_PASSWD, $options);
+            } elseif ($this->dbType === 'sqlite') {
+                $dsn = 'sqlite:' . DB_NAME; // DB_NAME should be the path to the SQLite file
+                $dbh = new PDO($dsn);
+            } else {
+                throw new PDOException("不支持的数据库类型: $this->dbType");
+            }
+
+            $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);   // 设置如果SQL语句执行错误则抛出异常，事务会自动回滚
+            $dbh->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);           // 禁用prepared statements的仿真效果(防SQL注入)
 
             $this->conn = $dbh;
         } catch (PDOException $e) {
             emMsg("连接数据库失败，请检查数据库信息。错误原因：" . $e->getMessage());
         }
-
     }
 
     /**
      * 静态方法，返回数据库连接实例
      */
-    public static function getInstance() {
+    public static function getInstance($dbType = 'mysql') {
         if (self::$instance === null) {
-            self::$instance = new mysqlpdo();
+            self::$instance = new DatabasePDO($dbType);
         }
 
         return self::$instance;
     }
-
 
     /**
      * 关闭数据库连接
@@ -74,7 +88,6 @@ class Mysqlpdo {
      * 发送查询语句
      */
     function query($sql, $ignore_err = FALSE) {
-
         try {
             $this->result = $this->conn->query($sql);
             $this->queryCount++;
@@ -89,16 +102,25 @@ class Mysqlpdo {
         } catch (\PDOException $e) {
             return $e->getMessage();
         }
-
     }
 
     /**
      * 从结果集中取得一行作为关联数组/数字索引数组
      */
     function fetch_array($query, $type = PDO::FETCH_ASSOC) {
-
         return $query->fetch($type);
+    }
 
+    /**
+     * 从结果集中取得一行作为关联数组/数字索引数组
+     */
+    public function fetch_all($sql, $fetchMode = MYSQLI_ASSOC) {
+        $this->result = $this->query($sql);
+        $data = [];
+        while ($row = $this->fetch_array($this->result, $fetchMode)) {
+            $data[] = $row;
+        }
+        return $data;
     }
 
     /**
@@ -109,13 +131,11 @@ class Mysqlpdo {
     function once_fetch_array($sql) {
         try {
             $result = $this->conn->query($sql);
-
             $resultDb = $result->fetchAll(PDO::FETCH_ASSOC);
             return isset($resultDb[0]) ? $resultDb[0] : [];
         } catch (\PDOException $e) {
             emMsg($e->getMessage());
         }
-
     }
 
     /**
@@ -127,7 +147,6 @@ class Mysqlpdo {
 
     /**
      * 取得行的数目
-     *
      */
     function num_rows($query) {
         $rows = $query->fetch(PDO::FETCH_NUM);
@@ -149,14 +168,14 @@ class Mysqlpdo {
     }
 
     /**
-     * 获取mysql错误
+     * 获取错误信息
      */
     function geterror() {
         return $this->conn->errorInfo();
     }
 
     /**
-     * 获取mysql错误编码
+     * 获取错误编码
      */
     function geterrno() {
         return $this->conn->errorCode();
@@ -166,7 +185,6 @@ class Mysqlpdo {
      * Get number of affected rows in previous MySQL operation
      */
     function affected_rows() {
-
         if ($this->result) {
             return $this->result->rowCount();
         }
@@ -176,7 +194,7 @@ class Mysqlpdo {
     /**
      * 取得数据库版本信息
      */
-    function getMysqlVersion() {
+    function getVersion() {
         return $this->conn->query('select version()')->fetchColumn();
     }
 
@@ -188,7 +206,7 @@ class Mysqlpdo {
     }
 
     /**
-     *  Escapes special characters
+     * Escapes special characters
      */
     function escape_string($sql) {
         return trim($sql);

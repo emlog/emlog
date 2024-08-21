@@ -173,7 +173,7 @@ function checkSqlFileInfo($sqlfile) {
  */
 function importData($filename) {
     $DB = Database::getInstance();
-    $setchar = $DB->getMysqlVersion() > '5.5' ? "ALTER DATABASE `" . DB_NAME . "` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;" : '';
+    $setchar = $DB->getVersion() > '5.5' ? "ALTER DATABASE `" . DB_NAME . "` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;" : '';
     $sql = file($filename);
     if (isset($sql[0]) && !empty($sql[0]) && checkBOM($sql[0])) {
         $sql[0] = substr($sql[0], 3);

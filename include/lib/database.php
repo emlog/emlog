@@ -14,7 +14,7 @@ class Database {
         }
 
         if (class_exists('pdo', false)) {
-            return Mysqlpdo::getInstance();
+            return DatabasePDO::getInstance();
         }
 
         emMsg('服务器PHP不支持MySQL数据库');

@@ -20,7 +20,7 @@ if (empty($action)) {
     // server info
     $server_app = $_SERVER['SERVER_SOFTWARE'];
     $DB = Database::getInstance();
-    $mysql_ver = $DB->getMysqlVersion();
+    $mysql_ver = $DB->getVersion();
     $max_execution_time = ini_get('max_execution_time') ?: '';
     $max_upload_size = ini_get('upload_max_filesize') ?: '';
     $php_ver = PHP_VERSION . ', ' . $max_execution_time . 's,' . $max_upload_size;
