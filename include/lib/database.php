@@ -9,6 +9,12 @@
 class Database {
 
     public static function getInstance() {
+
+        $db_type = getenv('EMLOG_DB_TYPE');
+        if ($db_type === 'sqlite') {
+            return DatabasePDO::getInstance('sqlite');
+        }
+
         if (class_exists('mysqli', FALSE)) {
             return MySqlii::getInstance();
         }
