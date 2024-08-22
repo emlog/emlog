@@ -217,14 +217,14 @@ if (!$act) {
                     <p class="install-title">MySQL数据库设置</p>
                     <div class="input-group mb10">
                         <label class="input-group-text">数据库地址</label>
-                        <input name="hostname" type="text" class="form-control" value="localhost">
+                        <input name="hostname" type="text" class="form-control" value="localhost" required>
                     </div>
                     <div class="mb10">
                         <label class="form-label care">通常为 localhost 或者指定端口 localhost:3306</label>
                     </div>
                     <div class="input-group mb10">
                         <span class="input-group-text">数据库用户名</span>
-                        <input name="dbuser" type="text" class="form-control" value="">
+                        <input name="dbuser" type="text" class="form-control" value="" required>
                     </div>
                     <div class="input-group mb10">
                         <span class="input-group-text">数据库密码</span>
@@ -232,7 +232,7 @@ if (!$act) {
                     </div>
                     <div class="input-group mb10">
                         <span class="input-group-text">数据库名</span>
-                        <input name="dbname" type="text" class="form-control" value="">
+                        <input name="dbname" type="text" class="form-control" value="" required>
                     </div>
                     <div class="mb10">
                         <label class="form-label care">程序不会自动创建数据库，请提前创建一个空数据库或使用已有数据库</label>
