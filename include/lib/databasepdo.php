@@ -48,9 +48,6 @@ class DatabasePDO {
                 $dsn = 'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8mb4';
                 $options = [];
                 $dbh = new PDO($dsn, DB_USER, DB_PASSWD, $options);
-            } elseif ($this->dbType === 'sqlite') {
-                $dsn = 'sqlite:' . DB_NAME; // the path to the SQLite file
-                $dbh = new PDO($dsn);
             } else {
                 throw new PDOException("不支持的数据库类型: $this->dbType");
             }
