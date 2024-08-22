@@ -27,8 +27,6 @@ $env_db_host = getenv('EMLOG_DB_HOST');
 $env_db_name = getenv('EMLOG_DB_NAME');
 $env_db_user = getenv('EMLOG_DB_USER');
 $env_db_password = getenv('EMLOG_DB_PASSWORD');
-$env_db_type = getenv('EMLOG_DB_TYPE');
-$env_db_path = getenv('EMLOG_DB_PATH');
 
 if (!$act) {
     ?>
@@ -204,14 +202,6 @@ if (!$act) {
                     <input name="dbuser" type="hidden" value="<?= $env_db_user ?>">
                     <input name="dbpasswd" type="hidden" value="<?= $env_db_password ?>">
                     <input name="dbname" type="hidden" value="<?= $env_db_name ?>">
-                    <input name="dbprefix" type="hidden" value="emlog_">
-                </div>
-            <?php elseif ($env_db_type === 'sqlite'): ?>
-                <div class="b">
-                    <input name="hostname" type="hidden" value="localhost">
-                    <input name="dbuser" type="hidden" value="root">
-                    <input name="dbpasswd" type="hidden" value="password">
-                    <input name="dbname" type="hidden" value="<?= $env_db_path ?>">
                     <input name="dbprefix" type="hidden" value="emlog_">
                 </div>
             <?php elseif (strpos($bt_db_username, 'BT_DB_') === false): ?>
