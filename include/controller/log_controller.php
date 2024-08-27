@@ -69,6 +69,11 @@ class Log_Controller {
             show_404_page();
         }
 
+        // tdk
+        $logData['site_title'] = $this->setSiteTitle($log_title_style, $logData['log_title'], $blogname, $site_title, $logid);
+        $logData['site_description'] = $this->setSiteDes($site_description, $logData['log_content'], $logData['excerpt'], $logid);
+        $logData['site_key'] = $this->setSiteKey($logData['tags'], $site_key, $logid);
+
         doMultiAction('article_content_echo', $logData, $logData);
 
         extract($logData);
@@ -79,10 +84,6 @@ class Log_Controller {
             $cookiepwd = isset($_COOKIE['em_logpwd_' . $logid]) ? addslashes(trim($_COOKIE['em_logpwd_' . $logid])) : '';
             $Log_Model->AuthPassword($postpwd, $cookiepwd, $password, $logid);
         }
-        // tdk
-        $site_title = $this->setSiteTitle($log_title_style, $log_title, $blogname, $site_title, $logid);
-        $site_description = $this->setSiteDes($site_description, $log_content, $excerpt, $logid);
-        $site_key = $this->setSiteKey($tags, $site_key, $logid);
 
         //comments
         $Comment_Model = new Comment_Model();
