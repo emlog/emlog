@@ -138,6 +138,8 @@ if ($action == 'save') {
 
     $CACHE->updateCache(array('options', 'logalias'));
 
+    doAction('save_page', $pageId, $logData);
+
     switch ($action) {
         case 'autosave':
             echo "autosave_gid:{$pageId}_df:0_";

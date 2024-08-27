@@ -73,6 +73,9 @@
                     <input type="checkbox" value="y" name="home_page" id="home_page" <?= $is_home_page ?> />
                     <label for="home_page">设为首页</label>
                 </div>
+                <div id="page_side_ext">
+                    <?php doAction('adm_write_page_side') ?>
+                </div>
             </div>
         </div>
     </div>
