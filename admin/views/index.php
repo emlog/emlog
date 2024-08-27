@@ -125,13 +125,13 @@
             <div class="col-lg-6 mb-3">
                 <div class="card shadow">
                     <div class="card-header bg-danger text-white">
-                        <h6 class="my-0">您安装的emlog尚未注册，完成注册可使用全部功能，包括如下：</h6>
+                        <h6 class="my-0">您安装的emlog尚未完成正版注册，完成注册可使用全部功能</h6>
                     </div>
                     <div class="card-body">
-                        <p>1. 解锁在线升级功能，一键升级到最新版本，获得来自官方的安全和功能更新</p>
-                        <p>2. 解锁应用商店，获得更多模板和插件，并支持应用在线一键更新</p>
-                        <p>3. 去除所有未注册提示及功能限制，加入专属Q群，获得官方技术指导问题解答</p>
-                        <p>4. 专属应用，20多款收费应用（限铁杆SVIP）</p>
+                        <p>1. 获得在线升级功能，一键升级到最新版本</p>
+                        <p>2. 解锁应用商店，获得更多模板和插件，并支持应用在线更新</p>
+                        <p>3. 去除所有未注册提示及功能限制</p>
+                        <p>4. 专属应用，超过20款付费插件、2款付费主题（限铁杆SVIP）</p>
                     </div>
                     <div class="card-footer text-center">
                         <a href="auth.php" class="btn btn-sm btn-primary shadow-lg">去注册</a>
