@@ -19,3 +19,26 @@ config.php
 # docker
 db_data/*
 
+# VS Code
+.vscode/*
+.history/*
+*.code-workspace
+
+# Logs
+logs/
+*.log
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Optional npm cache directory
+.npm/
+
+# Output of 'npm pack'
+*.tgz
+
+# Coverage directory used by tools like istanbul
+coverage/
