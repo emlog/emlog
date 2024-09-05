@@ -62,7 +62,7 @@
                 $icon = $v['icon'] ?: "./views/images/theme.png";
                 $type = $v['app_type'] === 'template' ? 'tpl' : 'plugin';
                 $order_url = 'https://www.emlog.net/order/submit/' . $type . '/' . $v['id']
-                ?>
+            ?>
                 <div class="col-md-6 col-lg-3">
                     <div class="card mb-4 shadow-sm">
                         <a href="#appModal" class="p-1" data-toggle="modal" data-target="#appModal" data-name="<?= $v['name'] ?>" data-url="<?= $v['app_url'] ?>" data-buy-url="<?= $v['buy_url'] ?>">
@@ -80,7 +80,7 @@
                                     <span class="badge badge-primary p-1">插件</span>
                                 <?php endif; ?>
                                 <?php if ($v['svip']): ?>
-                                    <a href="https://www.emlog.net/register" class="badge badge-warning p-1" target="_blank">铁杆专属</a>
+                                    <a href="https://www.emlog.net/register" class="badge badge-warning p-1" target="_blank">铁杆免费</a>
                                 <?php endif; ?>
                             </p>
                             <p class="card-text text-muted">
@@ -150,11 +150,11 @@
     </div>
 </div>
 <script>
-    $(function () {
+    $(function() {
         $("#menu_store").addClass('active');
         setTimeout(hideActived, 3600);
 
-        $('.category').on('change', function () {
+        $('.category').on('change', function() {
             var selectedCategory = $(this).val();
             if (selectedCategory) {
                 window.location.href = './store.php?sid=' + selectedCategory;
