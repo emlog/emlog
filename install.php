@@ -1,4 +1,5 @@
 <?php
+
 /**
  * install
  * @package EMLOG
@@ -29,9 +30,10 @@ $env_db_user = getenv('EMLOG_DB_USER');
 $env_db_password = getenv('EMLOG_DB_PASSWORD');
 
 if (!$act) {
-    ?>
+?>
     <!doctype html>
     <html lang="zh-cn">
+
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
@@ -191,89 +193,91 @@ if (!$act) {
             }
         </style>
     </head>
+
     <body>
-    <form name="form1" method="post" action="install.php?action=install">
-        <div class="main">
-            <p class="logo"></p>
-            <p class="title mb20">emlog <?= Option::EMLOG_VERSION ?></p>
-            <?php if ($env_db_user): ?>
-                <div class="b">
-                    <input name="hostname" type="hidden" value="<?= $env_db_host ?>">
-                    <input name="dbuser" type="hidden" value="<?= $env_db_user ?>">
-                    <input name="dbpasswd" type="hidden" value="<?= $env_db_password ?>">
-                    <input name="dbname" type="hidden" value="<?= $env_db_name ?>">
-                    <input name="dbprefix" type="hidden" value="emlog_">
-                </div>
-            <?php elseif (strpos($bt_db_username, 'BT_DB_') === false): ?>
-                <div class="b">
-                    <input name="hostname" type="hidden" value="<?= $bt_db_host ?>">
-                    <input name="dbuser" type="hidden" value="<?= $bt_db_username ?>">
-                    <input name="dbpasswd" type="hidden" value="<?= $bt_db_password ?>">
-                    <input name="dbname" type="hidden" value="<?= $bt_db_name ?>">
-                    <input name="dbprefix" type="hidden" value="emlog_">
-                </div>
-            <?php else: ?>
-                <div class="b mb20">
-                    <p class="install-title">MySQL数据库设置</p>
+        <form name="form1" method="post" action="install.php?action=install">
+            <div class="main">
+                <p class="logo"></p>
+                <p class="title mb20">emlog <?= Option::EMLOG_VERSION ?></p>
+                <?php if ($env_db_user): ?>
+                    <div class="b">
+                        <input name="hostname" type="hidden" value="<?= $env_db_host ?>">
+                        <input name="dbuser" type="hidden" value="<?= $env_db_user ?>">
+                        <input name="dbpasswd" type="hidden" value="<?= $env_db_password ?>">
+                        <input name="dbname" type="hidden" value="<?= $env_db_name ?>">
+                        <input name="dbprefix" type="hidden" value="emlog_">
+                    </div>
+                <?php elseif (strpos($bt_db_username, 'BT_DB_') === false): ?>
+                    <div class="b">
+                        <input name="hostname" type="hidden" value="<?= $bt_db_host ?>">
+                        <input name="dbuser" type="hidden" value="<?= $bt_db_username ?>">
+                        <input name="dbpasswd" type="hidden" value="<?= $bt_db_password ?>">
+                        <input name="dbname" type="hidden" value="<?= $bt_db_name ?>">
+                        <input name="dbprefix" type="hidden" value="emlog_">
+                    </div>
+                <?php else: ?>
+                    <div class="b mb20">
+                        <p class="install-title">MySQL数据库设置</p>
+                        <div class="input-group mb10">
+                            <label class="input-group-text">数据库地址</label>
+                            <input name="hostname" type="text" class="form-control" value="localhost" required>
+                        </div>
+                        <div class="mb10">
+                            <label class="form-label care">通常为 localhost 或者指定端口 localhost:3306</label>
+                        </div>
+                        <div class="input-group mb10">
+                            <span class="input-group-text">数据库用户名</span>
+                            <input name="dbuser" type="text" class="form-control" value="" required>
+                        </div>
+                        <div class="input-group mb10">
+                            <span class="input-group-text">数据库密码</span>
+                            <input name="dbpasswd" type="password" class="form-control" value="">
+                        </div>
+                        <div class="input-group mb10">
+                            <span class="input-group-text">数据库名</span>
+                            <input name="dbname" type="text" class="form-control" value="" required>
+                        </div>
+                        <div class="mb10">
+                            <label class="form-label care">程序不会自动创建数据库，请提前创建一个空数据库或使用已有数据库</label>
+                        </div>
+                        <div class="input-group mb10">
+                            <span class="input-group-text">数据库表前缀</span>
+                            <input name="dbprefix" type="text" class="form-control" value="emlog_">
+                        </div>
+                        <div class="mb10">
+                            <label class="form-label care">通常默认即可，不必修改。由英文字母、数字、下划线组成，且必须以下划线结束</label>
+                        </div>
+                    </div>
+                <?php endif; ?>
+                <div class="c">
+                    <p class="install-title">管理员设置</p>
                     <div class="input-group mb10">
-                        <label class="input-group-text">数据库地址</label>
-                        <input name="hostname" type="text" class="form-control" value="localhost" required>
-                    </div>
-                    <div class="mb10">
-                        <label class="form-label care">通常为 localhost 或者指定端口 localhost:3306</label>
+                        <span class="input-group-text">登录名</span>
+                        <input name="username" type="text" class="form-control" required>
                     </div>
                     <div class="input-group mb10">
-                        <span class="input-group-text">数据库用户名</span>
-                        <input name="dbuser" type="text" class="form-control" value="" required>
+                        <span class="input-group-text">密码</span>
+                        <input name="password" type="password" class="form-control" placeholder="不小于6位" required>
                     </div>
                     <div class="input-group mb10">
-                        <span class="input-group-text">数据库密码</span>
-                        <input name="dbpasswd" type="password" class="form-control" value="">
+                        <span class="input-group-text">重复密码</span>
+                        <input name="repassword" type="password" class="form-control" required>
                     </div>
                     <div class="input-group mb10">
-                        <span class="input-group-text">数据库名</span>
-                        <input name="dbname" type="text" class="form-control" value="" required>
-                    </div>
-                    <div class="mb10">
-                        <label class="form-label care">程序不会自动创建数据库，请提前创建一个空数据库或使用已有数据库</label>
-                    </div>
-                    <div class="input-group mb10">
-                        <span class="input-group-text">数据库表前缀</span>
-                        <input name="dbprefix" type="text" class="form-control" value="emlog_">
-                    </div>
-                    <div class="mb10">
-                        <label class="form-label care">通常默认即可，不必修改。由英文字母、数字、下划线组成，且必须以下划线结束</label>
+                        <span class="input-group-text">邮箱</span>
+                        <input name="email" type="text" class="form-control">
                     </div>
                 </div>
-            <?php endif; ?>
-            <div class="c">
-                <p class="install-title">管理员设置</p>
-                <div class="input-group mb10">
-                    <span class="input-group-text">登录名</span>
-                    <input name="username" type="text" class="form-control" required>
-                </div>
-                <div class="input-group mb10">
-                    <span class="input-group-text">密码</span>
-                    <input name="password" type="password" class="form-control" placeholder="不小于6位" required>
-                </div>
-                <div class="input-group mb10">
-                    <span class="input-group-text">重复密码</span>
-                    <input name="repassword" type="password" class="form-control" required>
-                </div>
-                <div class="input-group mb10">
-                    <span class="input-group-text">邮箱</span>
-                    <input name="email" type="text" class="form-control">
+                <div class="next_btn">
+                    <button type="submit" class="btn">开始安装</button>
                 </div>
             </div>
-            <div class="next_btn">
-                <button type="submit" class="btn">开始安装</button>
-            </div>
-        </div>
-    </form>
-    <div class="footer">Powered by <a href="http://www.emlog.net">emlog</a></div>
+        </form>
+        <div class="footer">Powered by <a href="http://www.emlog.net">emlog</a></div>
     </body>
+
     </html>
-    <?php
+<?php
 }
 if ($act == 'install' || $act == 'reinstall') {
     $db_host = isset($_POST['hostname']) ? addslashes(trim($_POST['hostname'])) : '';
@@ -495,7 +499,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES
 ('admin_style','default'),
 ('tpl_sidenum','1'),
 ('comment_code','n'),
-('comment_needchinese','y'),
+('comment_needchinese','n'),
 ('comment_interval',60),
 ('isgravatar','y'),
 ('isthumbnail','n'),
