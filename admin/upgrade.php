@@ -1,4 +1,5 @@
 <?php
+
 /**
  * upgrade
  * @package EMLOG
@@ -82,8 +83,9 @@ if ($action === 'update' && User::isAdmin()) {
     $ret = emUnZip($temp_zip_file, '../', 'update');
     switch ($ret) {
         case 1:
-        case 2:
             exit('error_dir');
+        case 2:
+            exit('error_down');
         case 3:
             exit('error_zip');
     }

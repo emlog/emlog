@@ -1,4 +1,5 @@
 <?php
+
 /**
  * store
  * @package EMLOG
@@ -206,7 +207,7 @@ if ($action === 'install') {
         if (false === Register::verifyDownload($source)) {
             exit('emlog未注册，<a href="auth.php">去注册</a>');
         }
-        exit('安装失败，下载超时或没有权限');
+        exit('安装失败，下载超时');
     }
 
     if ($source_type == 'tpl') {
@@ -225,8 +226,9 @@ if ($action === 'install') {
         case 0:
             exit('安装成功 <a href="' . $suc_url . '">去启用</a>');
         case 1:
-        case 2:
             exit('安装失败，请检查content下目录是否可写');
+        case 2:
+            exit('安装失败，安装包下载异常');
         case 3:
             exit('安装失败，请安装php的Zip扩展');
         default:
