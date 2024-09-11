@@ -21,7 +21,7 @@ if ($action === 'check_update') {
         'timestamp' => Option::EMLOG_VERSION_TIMESTAMP,
     ]);
 
-    $emcurl->request('https://store.emlog.net/service/upgrade');
+    $emcurl->request(base64_decode('aHR0cHM6Ly9zdG9yZS5lbWxvZy5uZXQvc2VydmljZS91cGdyYWRl'));
     $retStatus = $emcurl->getHttpStatus();
     $response = $emcurl->getRespone();
     header('Content-Type: application/json; charset=UTF-8');

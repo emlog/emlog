@@ -54,7 +54,7 @@ class Store_Model
             'sid'       => $sid
         ];
         $emcurl->setPost($post_data);
-        $emcurl->request('https://store.emlog.net/store/pro');
+        $emcurl->request(base64_decode('aHR0cHM6Ly9zdG9yZS5lbWxvZy5uZXQvc3RvcmUvcHJv'));
 
         $retStatus = $emcurl->getHttpStatus();
         if ($retStatus !== MSGCODE_SUCCESS) {
