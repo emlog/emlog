@@ -1,15 +1,18 @@
 <?php
+
 /**
  * register check
  * @package EMLOG
  * @link https://www.emlog.net
  */
 
-class Register {
+class Register
+{
 
     const EMKEY_LEN = 32;
 
-    public static function isRegLocal() {
+    public static function isRegLocal()
+    {
         $CACHE = Cache::getInstance();
         $options_cache = $CACHE->readCache('options');
         $emkey = isset($options_cache['emkey']) ? $options_cache['emkey'] : '';
@@ -20,27 +23,30 @@ class Register {
         return true;
     }
 
-    public static function getRegType() {
+    public static function getRegType()
+    {
         $CACHE = Cache::getInstance();
         $options_cache = $CACHE->readCache('options');
         return isset($options_cache['emkey_type']) ? (int)$options_cache['emkey_type'] : 0;
     }
 
-    public static function isRegServer() {
+    public static function isRegServer()
+    {
         $CACHE = Cache::getInstance();
         $options_cache = $CACHE->readCache('options');
         $emkey = isset($options_cache['emkey']) ? $options_cache['emkey'] : '';
         return self::verifyEmKey($emkey);
     }
 
-    public static function doReg($emkey) {
+    public static function doReg($emkey)
+    {
         if (strlen($emkey) !== self::EMKEY_LEN) {
             return false;
         }
 
         $emcurl = new EmCurl();
         $emcurl->setPost(['emkey' => $emkey]);
-        $emcurl->request('https://www.emlog.net/proauth/register');
+        $emcurl->request('https://store.emlog.net/proauth/register');
         if ($emcurl->getHttpStatus() !== 200) {
             return false;
         }
@@ -56,14 +62,15 @@ class Register {
         return $response;
     }
 
-    public static function verifyEmKey($emkey) {
+    public static function verifyEmKey($emkey)
+    {
         if (strlen($emkey) !== self::EMKEY_LEN) {
             return false;
         }
 
         $emcurl = new EmCurl();
         $emcurl->setPost(['emkey' => $emkey]);
-        $emcurl->request('https://www.emlog.net/proauth/verify');
+        $emcurl->request('https://store.emlog.net/proauth/verify');
         if ($emcurl->getHttpStatus() !== 200) {
             return false;
         }
@@ -77,11 +84,12 @@ class Register {
         return $response;
     }
 
-    public static function verifyDownload($source) {
+    public static function verifyDownload($source)
+    {
         $emkey = Option::get('emkey');
         $emcurl = new EmCurl();
         $emcurl->setPost(['emkey' => $emkey]);
-        $emcurl->request('https://www.emlog.net/' . $source . '/1');
+        $emcurl->request('https://store.emlog.net/' . $source . '/1');
         if ($emcurl->getHttpStatus() === 403) {
             self::clean();
             return false;
@@ -91,11 +99,11 @@ class Register {
         return true;
     }
 
-    public static function clean() {
+    public static function clean()
+    {
         $CACHE = Cache::getInstance();
         Option::updateOption('emkey', '');
         Option::updateOption('emkey_type', '');
         $CACHE->updateCache('options');
     }
-
 }
