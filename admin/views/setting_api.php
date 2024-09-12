@@ -31,7 +31,7 @@
                 </div>
             </div>
             <div class="form-group mt-3">
-                <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
+                <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
             </div>
         </form>
         <div class="alert alert-warning">
@@ -42,18 +42,18 @@
             4. 微语列表<br>
             5. 资源文件上传<br>
             ……<br><br>
-            详见接口文档：<a href="https://www.emlog.net/docs/#/api" target="_blank">API接口文档→</a>
+            详见接口文档：<a href="https://www.emlog.net/docs/api" target="_blank">API接口文档→</a>
         </div>
     </div>
 </div>
 <script>
-    $(function () {
+    $(function() {
         $("#menu_category_sys").addClass('active');
         $("#menu_sys").addClass('show');
         $("#menu_setting").addClass('active');
         setTimeout(hideActived, 3600);
     });
-    $('#setting_api_form').change(function () {
+    $('#setting_api_form').change(function() {
         submitForm('#setting_api_form');
     });
 </script>

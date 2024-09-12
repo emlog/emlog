@@ -29,8 +29,8 @@
 
 ## 安装部署
 
-- [宝塔一键部署](https://www.emlog.net/docs/#/install_bt)
-- [1Panel部署](https://www.emlog.net/docs/#/install_1panel)
+- [宝塔一键部署](https://www.emlog.net/docs/install/install_bt)
+- [1Panel部署](https://www.emlog.net/docs/install/install_1panel)
 
 ## 快速开始（Docker）
 

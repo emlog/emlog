@@ -3,7 +3,7 @@
 
 /**
  * 模板设置的配置文件
- * 详见官网文档-模板开发：https://www.emlog.net/docs/#/template
+ * 详见官网文档-模板开发：https://www.emlog.net/docs/dev/template
  */
 
 defined('EMLOG_ROOT') || exit('access denied!');
