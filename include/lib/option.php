@@ -1,18 +1,21 @@
 <?php
+
 /**
  * Configuration item
  * @package EMLOG
  * @link https://www.emlog.net
  */
 
-class Option {
+class Option
+{
 
-    const EMLOG_VERSION = 'pro 2.3.15';
-    const EMLOG_VERSION_TIMESTAMP = 1724755541;
+    const EMLOG_VERSION = 'pro 2.3.16';
+    const EMLOG_VERSION_TIMESTAMP = 1726132161;
     const UPLOADFILE_PATH = '../content/uploadfile/';
     const UPLOADFILE_FULL_PATH = EMLOG_ROOT . '/content/uploadfile/';
 
-    static function get($option) {
+    static function get($option)
+    {
         $CACHE = Cache::getInstance();
         $options_cache = $CACHE->readCache('options');
 
@@ -39,7 +42,8 @@ class Option {
         }
     }
 
-    static function getRoutingTable() {
+    static function getRoutingTable()
+    {
         return [
             [
                 'model'  => 'calendar',
@@ -132,7 +136,8 @@ class Option {
         ];
     }
 
-    static function getAll() {
+    static function getAll()
+    {
         $CACHE = Cache::getInstance();
         $options_cache = $CACHE->readCache('options');
         $options_cache['site_title'] = $options_cache['site_title'] ?: $options_cache['blogname'];
@@ -143,32 +148,56 @@ class Option {
         return $options_cache;
     }
 
-    static function getAttType() {
+    static function getAttType()
+    {
         return explode(',', self::get('att_type'));
     }
 
-    static function getAttMaxSize() {
+    static function getAttMaxSize()
+    {
         return self::get('att_maxsize') * 1024;
     }
 
-    static function getAdminAttType() {
+    static function getAdminAttType()
+    {
         if (defined('UPLOAD_ATT_TYPE')) {
             return explode(',', UPLOAD_ATT_TYPE);
         } else {
             return [
-                'rar', 'zip', '7z', 'gz',
-                'gif', 'jpg', 'jpeg', 'png', 'webp',
-                'txt', 'pdf', 'docx', 'doc', 'xls', 'xlsx', 'key', 'ppt', 'pptx',
-                'mp4', 'mp3', 'mkv', 'webm', 'avi',
+                'rar',
+                'zip',
+                '7z',
+                'gz',
+                'gif',
+                'jpg',
+                'jpeg',
+                'png',
+                'webp',
+                'txt',
+                'pdf',
+                'docx',
+                'doc',
+                'xls',
+                'xlsx',
+                'key',
+                'ppt',
+                'pptx',
+                'mp4',
+                'mp3',
+                'mkv',
+                'webm',
+                'avi',
             ];
         }
     }
 
-    static function getAdminAttMaxSize() {
+    static function getAdminAttMaxSize()
+    {
         return (defined('UPLOAD_MAX_SIZE') ? UPLOAD_MAX_SIZE : 2097152) * 1024;
     }
 
-    static function getWidgetTitle() {
+    static function getWidgetTitle()
+    {
         return [
             'blogger'     => '个人资料',
             'calendar'    => '日历',
@@ -185,11 +214,13 @@ class Option {
         ];
     }
 
-    static function getDefWidget() {
+    static function getDefWidget()
+    {
         return ['blogger', 'newcomm', 'link', 'search'];
     }
 
-    static function getDefPlugin() {
+    static function getDefPlugin()
+    {
         return ['tips/tips.php', 'tpl_options/tpl_options.php'];
     }
 
@@ -199,7 +230,8 @@ class Option {
      * @param $value
      * @param $isSyntax is the update value is an expression
      */
-    static function updateOption($name, $value, $isSyntax = false) {
+    static function updateOption($name, $value, $isSyntax = false)
+    {
         $DB = Database::getInstance();
         $value = $isSyntax ? $value : "'$value'";
         $sql = 'INSERT INTO ' . DB_PREFIX . "options (option_name, option_value) values ('$name', $value) ON DUPLICATE KEY UPDATE option_value=$value, option_name='$name'";
