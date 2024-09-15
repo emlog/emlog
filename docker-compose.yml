@@ -69,10 +69,10 @@ services:
     depends_on:
       - php
 
-  redis:
-    image: redis
-    networks:
-      - emlog_network
+  # redis:
+  #   image: redis
+  #   networks:
+  #     - emlog_network
 
 networks:
   emlog_network:
