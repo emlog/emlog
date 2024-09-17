@@ -1,4 +1,5 @@
 <?php
+
 /**
  * homepage & article detail
  *
@@ -6,8 +7,10 @@
  * @link https://www.emlog.net
  */
 
-class Log_Controller {
-    function display($params) {
+class Log_Controller
+{
+    function display($params)
+    {
         $Log_Model = new Log_Model();
         $CACHE = Cache::getInstance();
 
@@ -32,7 +35,8 @@ class Log_Controller {
         include View::getView('log_list');
     }
 
-    function displayContent($params) {
+    function displayContent($params)
+    {
         $comment_page = isset($params[4]) && $params[4] == 'comment-page' ? (int)$params[5] : 1;
 
         $Log_Model = new Log_Model();
@@ -87,7 +91,7 @@ class Log_Controller {
 
         //comments
         $Comment_Model = new Comment_Model();
-        $verifyCode = ISLOGIN == false && $comment_code == 'y' ? "<img src=\"" . BLOG_URL . "include/lib/checkcode.php\" id=\"captcha\" /><input name=\"imgcode\" type=\"text\" class=\"input\" size=\"5\" tabindex=\"5\" />" : '';
+        $verifyCode = ISLOGIN == false && $comment_code == 'y' ? "<img src=\"" . BLOG_URL . "include/lib/checkcode.php\" id=\"captcha\" class=\"captcha\" /><input name=\"imgcode\" type=\"text\" class=\"captcha_input\" size=\"5\" tabindex=\"5\" />" : '';
         $ckname = isset($_COOKIE['commentposter']) ? htmlspecialchars(stripslashes($_COOKIE['commentposter'])) : '';
         $ckmail = isset($_COOKIE['postermail']) ? htmlspecialchars($_COOKIE['postermail']) : '';
         $ckurl = isset($_COOKIE['posterurl']) ? htmlspecialchars($_COOKIE['posterurl']) : '';
@@ -111,7 +115,8 @@ class Log_Controller {
         }
     }
 
-    private function setSiteDes($siteDescription, $logContent, $excerpt, $logId) {
+    private function setSiteDes($siteDescription, $logContent, $excerpt, $logId)
+    {
         if ($this->isHomePage($logId)) {
             return $siteDescription;
         }
@@ -123,7 +128,8 @@ class Log_Controller {
         return extractHtmlData($logContent, 200);
     }
 
-    private function setSiteKey($tagIdStr, $siteKey, $logId) {
+    private function setSiteKey($tagIdStr, $siteKey, $logId)
+    {
         if ($this->isHomePage($logId)) {
             return $siteKey;
         }
@@ -144,7 +150,8 @@ class Log_Controller {
         return $tagNames;
     }
 
-    private function setSiteTitle($logTitleStyle, $logTitle, $blogName, $siteTitle, $logId) {
+    private function setSiteTitle($logTitleStyle, $logTitle, $blogName, $siteTitle, $logId)
+    {
         if ($this->isHomePage($logId)) {
             return $siteTitle ?: $blogName;
         }
@@ -165,12 +172,12 @@ class Log_Controller {
         return $articleSeoTitle;
     }
 
-    private function isHomePage($logId) {
+    private function isHomePage($logId)
+    {
         $homePageId = Option::get('home_page_id');
         if ($homePageId && $homePageId == $logId) {
             return true;
         }
         return false;
     }
-
 }
