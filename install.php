@@ -316,7 +316,7 @@ if ($act == 'install' || $act == 'reinstall') {
 <html>
 <head>
 <meta charset="utf-8">
-<title>emlog system message</title>
+<title>emlog</title>
 <style>
 body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:150%;}
 .main {background-color:#FFFFFF;font-size: 12px;color: #666666;width:750px;margin:10px auto;padding:10px;list-style:none;border:#DFDFDF 1px solid;}
@@ -569,6 +569,9 @@ DROP TABLE IF EXISTS {$db_prefix}tag;
 CREATE TABLE {$db_prefix}tag (
   tid int(11) unsigned NOT NULL auto_increment COMMENT '标签表',
   tagname varchar(60) NOT NULL default '' COMMENT '标签名',
+  description text NOT NULL COMMENT '备注',
+  title VARCHAR(2048) NOT NULL DEFAULT '' COMMENT '页面标题',
+  kw VARCHAR(2048) NOT NULL DEFAULT '' COMMENT '关键词',
   gid text NOT NULL COMMENT '文章ID',
   PRIMARY KEY  (tid),
   KEY tagname (tagname)

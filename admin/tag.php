@@ -1,4 +1,5 @@
 <?php
+
 /**
  * tags
  * @package EMLOG
@@ -31,13 +32,16 @@ if (empty($action)) {
 
 if ($action == 'update_tag') {
     $tagName = Input::postStrVar('tagname');
+    $title = Input::postStrVar('title');
+    $kw = Input::postStrVar('kw');
+    $description = Input::postStrVar('description');
     $tagId = Input::postIntVar('tid');
 
     if (empty($tagName)) {
         emDirect("tag.php?error_a=1");
     }
 
-    $Tag_Model->updateTagName($tagId, $tagName);
+    $Tag_Model->updateTagName($tagId, $tagName, $kw, $title, $description);
     $CACHE->updateCache('tags');
     emDirect("./tag.php?active_edit=1");
 }

@@ -25,12 +25,12 @@
                 <?php foreach ($tags as $key => $v):
                     $count = empty($v['gid']) ? 0 : count(explode(',', $v['gid']));
                     $count_style = $count > 0 ? 'text-muted' : 'text-danger';
-                    ?>
+                ?>
                     <div class="badge badge-light m-3 p-2">
                         <h5><a href="#" data-toggle="modal" data-target="#editModal" data-tid="<?= $v['tid'] ?>"
-                               data-tagname="<?= $v['tagname'] ?>"><?= $v['tagname'] ?></a></h5>
+                                data-tagname="<?= $v['tagname'] ?>" data-kw="<?= $v['kw'] ?>" data-title="<?= $v['title'] ?>" data-desc="<?= $v['description'] ?>"><?= $v['tagname'] ?></a></h5>
                         <small class="<?= $count_style ?>">（<a href="./article.php?tagid=<?= $v['tid'] ?>" target="_blank">文章：<?= $count ?></a>）</small>
-                        <input type="checkbox" name="tids[]" value="<?= $v['tid'] ?>" class="tids align-top"/>
+                        <input type="checkbox" name="tids[]" value="<?= $v['tid'] ?>" class="tids align-top" />
                     </div>
                 <?php endforeach ?>
             <?php else: ?>
@@ -38,8 +38,8 @@
             <?php endif ?>
         </div>
         <div class="form-row align-items-center mx-4 mb-4">
-            <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
-            <input name="operate" id="operate" value="" type="hidden"/>
+            <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
+            <input name="operate" id="operate" value="" type="hidden" />
             <div class="col-auto my-1">
                 <div class="custom-control custom-checkbox mr-sm-2">
                     <input type="checkbox" class="custom-control-input" id="checkAllItem">
@@ -67,11 +67,25 @@
             <form method="post" action="tag.php?action=update_tag">
                 <div class="modal-body">
                     <div class="form-group">
+                        <label for="tagname">标签名</label>
                         <input type="text" class="form-control" id="tagname" name="tagname" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="title">标签页标题</label>
+                        <input type="text" class="form-control" id="title" name="title" required>
+                        <small class="form-text text-muted">支持变量: {{site_title}}, {{site_name}}, {{tag_name}}</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="kw">标签页关键词（英文逗号分割）</label>
+                        <input type="text" class="form-control" id="kw" name="kw" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="alias">标签页描述</label>
+                        <textarea name="description" id="description" type="text" class="form-control"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <input type="hidden" value="" id="tid" name="tid"/>
+                    <input type="hidden" value="" id="tid" name="tid" />
                     <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
                     <button type="submit" class="btn btn-sm btn-success">保存</button>
                     <a class="btn btn-sm btn-outline-danger" href="javascript:deltags();">删除</a>
@@ -82,18 +96,24 @@
 </div>
 
 <script>
-    $(function () {
+    $(function() {
         $("#menu_category_content").addClass('active');
         $("#menu_content").addClass('show');
         $("#menu_tag").addClass('active');
         setTimeout(hideActived, 3600);
 
-        $('#editModal').on('show.bs.modal', function (event) {
+        $('#editModal').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget)
             var tagname = button.data('tagname')
+            var kw = button.data('kw')
+            var title = button.data('title')
+            var desc = button.data('desc')
             var tid = button.data('tid')
             var modal = $(this)
-            modal.find('.modal-body input').val(tagname)
+            modal.find('.modal-body #tagname').val(tagname)
+            modal.find('.modal-body #title').val(title)
+            modal.find('.modal-body #kw').val(kw)
+            modal.find('.modal-body #description').val(desc)
             modal.find('.modal-footer input').val(tid)
         })
     });
@@ -105,7 +125,7 @@
         }
 
         if (act === 'del') {
-            delAlert2('', '删除所选标签？', function () {
+            delAlert2('', '删除所选标签？', function() {
                 $("#operate").val(act);
                 $("#form_tag").submit();
             })
@@ -117,7 +137,7 @@
 
     function deltags() {
         var tid = $('#tid').val()
-        delAlert2('', '删除所选标签？', function () {
+        delAlert2('', '删除所选标签？', function() {
             window.open("./tag.php?action=del_tag&token=<?= LoginAuth::genToken() ?>&tid=" + tid, "_self");
         })
     }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * tags
  *
@@ -6,8 +7,10 @@
  * @link https://www.emlog.net
  */
 
-class Tag_Controller {
-    function display($params) {
+class Tag_Controller
+{
+    function display($params)
+    {
         $Log_Model = new Log_Model();
         $options_cache = Option::getAll();
         extract($options_cache);
@@ -16,24 +19,36 @@ class Tag_Controller {
         $tag = isset($params[1]) && $params[1] == 'tag' ? addslashes(urldecode(trim($params[2]))) : '';
 
         $pageurl = '';
-
-        //page meta
-        $site_title = stripslashes($tag) . ' - ' . $site_title;
-
-        $Tag_Model = new Tag_Model();
-
-        if (!$Tag_Model->getIdFromName($tag)) {
-            show_404_page();
-        }
-
         $lognum = 0;
         $logs = [];
-        $blogIdStr = $Tag_Model->getTagByName($tag);
+        $Tag_Model = new Tag_Model();
+        $tag_detail = $Tag_Model->getDetailByName($tag);
+        if (empty($tag_detail)) {
+            show_404_page();
+        }
+        $blogIdStr = $Tag_Model->getTagById($tag_detail['tid']);
         if ($blogIdStr) {
             $sqlSegment = "and gid IN ($blogIdStr)";
             $orderBy = 'order by date desc';
             $lognum = $Log_Model->getLogNum('n', $sqlSegment);
             $logs = $Log_Model->getLogsForHome($sqlSegment . $orderBy, $page, $index_lognum);
+        }
+
+        $tagTitle = isset($tag_detail['title']) ? $tag_detail['title'] : '';
+        $tagKw = isset($tag_detail['kw']) ? $tag_detail['kw'] : '';
+        $tagDesc = isset($tag_detail['description']) ? $tag_detail['description'] : '';
+
+        //page meta
+        if ($tagTitle) {
+            $site_title = $tagTitle;
+        } else {
+            $site_title = stripslashes($tag) . ' - ' . $site_title;
+        }
+        if ($tagDesc) {
+            $site_description = $tagDesc;
+        }
+        if ($tagKw) {
+            $site_key = $tagKw;
         }
 
         $total_pages = ceil($lognum / $index_lognum);
