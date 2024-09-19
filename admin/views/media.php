@@ -19,7 +19,7 @@
             <a href="media.php" class="btn btn-sm btn-primary mr-2 my-1">全部资源</a>
             <?php foreach ($sorts as $key => $val):
                 $cur_tab = $val['id'] == $sid ? "btn-info" : "btn-success";
-                ?>
+            ?>
                 <div class="btn-group mr-2 my-1">
                     <a href="media.php?sid=<?= $val['id'] ?>" class="btn btn-sm <?= $cur_tab ?>"><?= $val['sortname'] ?></a>
                     <button type="button" class="btn <?= $cur_tab ?> btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false"></button>
@@ -70,10 +70,10 @@
                 $media_icon = "./views/images/fnone.png";
                 $img_viewer = '';
             }
-            ?>
+        ?>
             <div class="col-md-4">
                 <div class="card mb-4 shadow-sm">
-                    <a href="<?= $media_url ?>" <?= $img_viewer ?> target="_blank"><img class="card-img-top" src="<?= $media_icon ?>"/></a>
+                    <a href="<?= $media_url ?>" <?= $img_viewer ?> target="_blank"><img class="card-img-top" src="<?= $media_icon ?>" /></a>
                     <div class="card-body">
                         <p class="card-text text-muted small">
                             <a href="#" data-toggle="modal" data-target="#editMediaModal" data-id="<?= $value['aid'] ?>" data-filename="<?= $media_name ?>"><?= $media_name ?></a> <span class="badge badge-success"><?= $sort_name ?></span><br>
@@ -88,10 +88,11 @@
                             <?php if ($value['width'] && $value['height']): ?>
                                 ，图片尺寸：<?= $value['width'] ?>x<?= $value['height'] ?>
                             <?php endif ?><br>
+                            源文件：<a href="#" class="copy-link text-muted" data-toggle="popover" data-url="<?= $media_url ?>"><?= $media_url ?></a><br>
                             <a href="#" class="copy-link" data-toggle="popover" data-url="<?= $media_url ?>">原文件地址</a>
                             <?php if ($value['alias'] && $value['mimetype'] === 'application/zip'):
                                 $media_down_url = BLOG_URL . '?resource_alias=' . $value['alias'];
-                                ?>
+                            ?>
                                 ｜ <a href="#" class="copy-link" data-toggle="popover" data-url="<?= $media_down_url ?>">用户下载地址</a> （下载<?= $value['download_count'] ?>）
                             <?php endif ?>
                             <?php if ($thumbnail_url): ?>
@@ -100,7 +101,7 @@
                         </p>
                         <p class="card-text d-flex justify-content-between">
                             <a href="javascript: em_confirm(<?= $value['aid'] ?>, 'media', '<?= LoginAuth::genToken() ?>');" class="text-danger small">删除</a>
-                            <input type="checkbox" name="aids[]" value="<?= $value['aid'] ?>" class="aids"/>
+                            <input type="checkbox" name="aids[]" value="<?= $value['aid'] ?>" class="aids" />
                         </p>
                     </div>
                 </div>
@@ -109,8 +110,8 @@
     </div>
     <?php if ($count > 0): ?>
         <div class="form-row align-items-center">
-            <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
-            <input name="operate" id="operate" value="" type="hidden"/>
+            <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
+            <input name="operate" id="operate" value="" type="hidden" />
             <div class="col-auto my-1">
                 <div class="custom-control custom-checkbox mr-sm-2">
                     <input type="checkbox" class="custom-control-input" id="checkAllItem">
@@ -192,7 +193,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <input type="hidden" value="" id="id" name="id"/>
+                    <input type="hidden" value="" id="id" name="id" />
                     <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
                     <button type="submit" class="btn btn-sm btn-success">保存</button>
                 </div>
@@ -218,7 +219,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <input type="hidden" value="" id="id" name="id"/>
+                    <input type="hidden" value="" id="id" name="id" />
                     <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
                     <button type="submit" class="btn btn-sm btn-success">保存</button>
                 </div>
@@ -228,9 +229,9 @@
 </div>
 
 <script src="./views/js/dropzone.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
-<link rel="stylesheet" type="text/css" href="./views/components/highslide/highslide.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"/>
+<link rel="stylesheet" type="text/css" href="./views/components/highslide/highslide.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>" />
 <script src="./views/components/highslide/highslide.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
-<link rel="stylesheet" type="text/css" href="./views/components/bootstrap-datepicker/bootstrap-datepicker.min.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"/>
+<link rel="stylesheet" type="text/css" href="./views/components/bootstrap-datepicker/bootstrap-datepicker.min.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>" />
 <script src="./views/components/bootstrap-datepicker/bootstrap-datepicker.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
 <script src="./views/components/bootstrap-datepicker/bootstrap-datepicker.zh-CN.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
 <script>
@@ -238,20 +239,20 @@
         paramName: "file",
         maxFilesize: 20480, // 20G
         timeout: 3600000,
-        init: function () {
-            this.on("error", function (file, response) {
+        init: function() {
+            this.on("error", function(file, response) {
                 // alert(response);
             });
         }
     };
-    $(function () {
+    $(function() {
         $("#menu_media").addClass('active');
         setTimeout(hideActived, 3600);
-        $('#exampleModal').on('hidden.bs.modal', function (e) {
+        $('#exampleModal').on('hidden.bs.modal', function(e) {
             window.location.reload();
         });
 
-        $('#editModal').on('show.bs.modal', function (event) {
+        $('#editModal').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget)
             var sortname = button.data('sortname')
             var id = button.data('id')
@@ -260,7 +261,7 @@
             modal.find('.modal-footer input').val(id)
         })
 
-        $('#editMediaModal').on('show.bs.modal', function (event) {
+        $('#editMediaModal').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget)
             var filename = button.data('filename')
             var id = button.data('id')
@@ -273,16 +274,16 @@
             hs.graphicsDir = './views/components/highslide/graphics/';
             hs.wrapperClassName = 'rounded-white';
         } else {
-            $('.highslide').removeAttr('onclick')  // 如果是移动端，则不使用 highslide 功能
+            $('.highslide').removeAttr('onclick') // 如果是移动端，则不使用 highslide 功能
         }
 
         // copy url
-        $('.copy-link').click(function (e) {
+        $('.copy-link').click(function(e) {
             e.preventDefault();
             var link = $(this).data('url');
             navigator.clipboard.writeText(link);
             $(this).popover({
-                content: '文件地址已复制',
+                content: '地址已复制',
                 placement: 'top',
                 trigger: 'manual'
             }).popover('show');
@@ -301,7 +302,7 @@
             selectedDate = new Date(defaultDate);
             datePicker.datepicker('setDate', defaultDate);
         }
-        datePicker.on('changeDate', function (e) {
+        datePicker.on('changeDate', function(e) {
             selectedDate = e.date;
             var formattedDate = selectedDate.toLocaleDateString();
             var url = 'media.php?date=' + formattedDate;
@@ -316,7 +317,7 @@
         }
 
         if (act === 'del') {
-            delAlert2('', '删除所选资源文件？', function () {
+            delAlert2('', '删除所选资源文件？', function() {
                 $("#operate").val(act);
                 $("#form_media").submit();
             })
