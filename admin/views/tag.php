@@ -28,8 +28,10 @@
                 ?>
                     <div class="badge badge-light m-3 p-2">
                         <h5><a href="#" data-toggle="modal" data-target="#editModal" data-tid="<?= $v['tid'] ?>"
-                                data-tagname="<?= $v['tagname'] ?>" data-kw="<?= $v['kw'] ?>" data-title="<?= $v['title'] ?>" data-desc="<?= $v['description'] ?>"><?= $v['tagname'] ?></a></h5>
-                        <small class="<?= $count_style ?>">（<a href="./article.php?tagid=<?= $v['tid'] ?>" target="_blank">文章：<?= $count ?></a>）</small>
+                                data-tagname="<?= $v['tagname'] ?>" data-kw="<?= $v['kw'] ?>" data-title="<?= $v['title'] ?>" data-desc="<?= $v['description'] ?>"><?= $v['tagname'] ?></a>
+                        </h5>
+                        <a href="<?= Url::tag($v['tagname']) ?>" target="_blank" class="text-muted ml-2"><i class="icofont-external-link"></i></a>
+                        <span class="<?= $count_style ?>">（<a href="./article.php?tagid=<?= $v['tid'] ?>" target="_blank"><?= $count ?>篇文章</a>）</span>
                         <input type="checkbox" name="tids[]" value="<?= $v['tid'] ?>" class="tids align-top" />
                     </div>
                 <?php endforeach ?>
