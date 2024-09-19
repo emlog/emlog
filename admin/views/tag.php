@@ -74,12 +74,12 @@
                     </div>
                     <div class="form-group">
                         <label for="title">标签页标题</label>
-                        <input type="text" class="form-control" id="title" name="title" required>
+                        <input type="text" class="form-control" id="title" name="title">
                         <small class="form-text text-muted">支持变量: {{site_title}}, {{site_name}}, {{tag_name}}</small>
                     </div>
                     <div class="form-group">
                         <label for="kw">标签页关键词（英文逗号分割）</label>
-                        <input type="text" class="form-control" id="kw" name="kw" required>
+                        <input type="text" class="form-control" id="kw" name="kw">
                     </div>
                     <div class="form-group">
                         <label for="alias">标签页描述</label>

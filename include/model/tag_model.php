@@ -163,19 +163,9 @@ class Tag_Model
         $this->db->query($sql);
     }
 
-    function updateTagName($tagId, $tagName, $kw = '', $title = '', $description = '')
+    function updateTagName($tagId, $tagName, $kw, $title, $description)
     {
-        $sql = "UPDATE $this->table SET tagname='$tagName'";
-        if (!empty($kw)) {
-            $sql .= ", kw='$kw'";
-        }
-        if (!empty($title)) {
-            $sql .= ", title='$title'";
-        }
-        if (!empty($description)) {
-            $sql .= ", description='$description'";
-        }
-        $sql .= " WHERE tid=$tagId";
+        $sql = "UPDATE $this->table SET tagname='$tagName', kw='$kw', title='$title', description='$description' WHERE tid=$tagId";
         $this->db->query($sql);
     }
 
