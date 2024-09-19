@@ -1,4 +1,5 @@
 <?php
+
 /**
  * account administration
  * @package EMLOG
@@ -56,6 +57,7 @@ if ($action == 'dosignin') {
             Register::isRegServer();
             $User_Model->updateUser(['ip' => getIp()], $uid);
             LoginAuth::setAuthCookie($username, $persist);
+            doAction('login_succeed', $uid);
             if ($resp === 'json') {
                 Output::ok();
             }
@@ -63,6 +65,7 @@ if ($action == 'dosignin') {
             break;
         case LoginAuth::LOGIN_ERROR_USER:
         case LoginAuth::LOGIN_ERROR_PASSWD:
+            doAction('login_fail');
             if ($resp === 'json') {
                 Output::error('用户或密码错误');
             }
