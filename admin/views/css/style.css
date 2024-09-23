@@ -126,3 +126,10 @@ body {
 .t ul li {
     list-style-type: disc !important;
 }
+
+#modal_t img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}

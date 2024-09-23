@@ -1,4 +1,5 @@
 <?php
+
 /**
  * notes model
  *
@@ -6,19 +7,22 @@
  * @link https://www.emlog.net
  */
 
-class Twitter_Model {
+class Twitter_Model
+{
 
     private $db;
     private $parsedown;
     private $table;
 
-    function __construct() {
+    function __construct()
+    {
         $this->db = Database::getInstance();
         $this->parsedown = new Parsedown();
         $this->table = DB_PREFIX . 'twitter';
     }
 
-    function addTwitter($tData) {
+    function addTwitter($tData)
+    {
         $kItem = [];
         $dItem = [];
         foreach ($tData as $key => $data) {
@@ -31,7 +35,8 @@ class Twitter_Model {
         return $this->db->insert_id();
     }
 
-    function update($data, $id) {
+    function update($data, $id)
+    {
         $Item = [];
         foreach ($data as $key => $value) {
             $Item[] = "$key='$value'";
@@ -40,7 +45,8 @@ class Twitter_Model {
         $this->db->query("update $this->table set $upStr where id=$id");
     }
 
-    function getCount($uid = UID) {
+    function getCount($uid = UID)
+    {
         $author = $uid ? 'and author=' . $uid : '';
         $data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM $this->table WHERE 1=1 $author");
         return $data['total'];
@@ -54,7 +60,8 @@ class Twitter_Model {
      * @param bool $private 是否返回私密微语
      * @return array
      */
-    function getTwitters($uid, $page = 1, $perpage_num = 20, $private = false) {
+    function getTwitters($uid, $page = 1, $perpage_num = 20, $private = false)
+    {
         $start_limit = !empty($page) ? ($page - 1) * $perpage_num : 0;
         $author = $uid ? 'and author=' . $uid : '';
         $privateCondition = $private ? '' : 'AND private="n"';
@@ -65,13 +72,15 @@ class Twitter_Model {
         while ($row = $this->db->fetch_array($res)) {
             $row['t'] = $this->parsedown->text($row['content']);
             $row['t_raw'] = $row['content'];
+            $row['t_img'] = getFirstImage($row['content']);
             $row['date'] = smartDate($row['date']);
             $tws[] = $row;
         }
         return $tws;
     }
 
-    function delTwitter($tid) {
+    function delTwitter($tid)
+    {
         $author = User::haveEditPermission() ? '' : 'and author=' . UID;
         $query = $this->db->query("select img from $this->table where id=$tid $author");
         $row = $this->db->fetch_array($query);
