@@ -93,6 +93,10 @@ body {
     background: #f6f6f6;
 }
 
+.pointer-cursor {
+    cursor: pointer;
+}
+
 .editormd {
     z-index: 0;
 }

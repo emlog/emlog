@@ -6,7 +6,7 @@
         <div class="col-xl-9">
             <div id="post" class="form-group">
                 <div>
-                    <input type="text" name="title" id="title" value="<?= $title ?>" class="form-control" placeholder="标题" autofocus required/>
+                    <input type="text" name="title" id="title" value="<?= $title ?>" class="form-control" placeholder="标题" autofocus required />
                 </div>
                 <div class="small my-3">
                     <a href="#mediaModal" data-toggle="modal" data-target="#mediaModal"><i class="icofont-plus"></i>资源媒体库</a>
@@ -20,7 +20,7 @@
                     <textarea id="logexcerpt" name="logexcerpt" class="form-control" rows="5"><?= $excerpt ?></textarea>
                 </div>
                 <div class="mt-3">
-                    <a href="javascript:void (0);" class="field_add cursor-pointer">添加字段<i class="icofont-plus"></i></a>
+                    <a href="javascript:void (0);" class="field_add small"><i class="icofont-plus"></i>添加字段</a>
                     <div class="mt-2" id="field_box">
                         <?php
                         foreach ($fields as $key => $value): ?>
@@ -48,32 +48,32 @@
         </div>
         <div class="col-xl-3">
             <div id="post_button">
-                <input type="hidden" name="ishide" id="ishide" value="<?= $hide ?>"/>
-                <input type="hidden" name="as_logid" id="as_logid" value="<?= $logid ?>"/>
-                <input type="hidden" name="gid" id="gid" value="<?= $logid ?>"/>
-                <input type="hidden" name="author" id="author" value="<?= $author ?>"/>
+                <input type="hidden" name="ishide" id="ishide" value="<?= $hide ?>" />
+                <input type="hidden" name="as_logid" id="as_logid" value="<?= $logid ?>" />
+                <input type="hidden" name="gid" id="gid" value="<?= $logid ?>" />
+                <input type="hidden" name="author" id="author" value="<?= $author ?>" />
                 <?php if ($logid < 0): ?>
-                    <input type="submit" name="pubPost" id="pubPost" value="立即发布" onclick="return checkform();" class="btn btn-success btn-sm"/>
-                    <input type="button" name="savedf" id="savedf" value="保存草稿" onclick="autosave(2);" class="btn btn-primary btn-sm"/>
+                    <input type="submit" name="pubPost" id="pubPost" value="立即发布" onclick="return checkform();" class="btn btn-success btn-sm" />
+                    <input type="button" name="savedf" id="savedf" value="保存草稿" onclick="autosave(2);" class="btn btn-primary btn-sm" />
                 <?php else: ?>
-                    <input type="submit" value="保存并返回" onclick="return checkform();" class="btn btn-success btn-sm"/>
-                    <input type="button" name="savedf" id="savedf" value="保存" onclick="autosave(2);" class="btn btn-primary btn-sm"/>
+                    <input type="submit" value="保存并返回" onclick="return checkform();" class="btn btn-success btn-sm" />
+                    <input type="button" name="savedf" id="savedf" value="保存" onclick="autosave(2);" class="btn btn-primary btn-sm" />
                     <?php if ($isdraft) : ?>
-                        <input type="submit" name="pubPost" id="pubPost" value="发布" onclick="return checkform();" class="btn btn-success btn-sm"/>
+                        <input type="submit" name="pubPost" id="pubPost" value="发布" onclick="return checkform();" class="btn btn-success btn-sm" />
                     <?php endif ?>
                 <?php endif ?>
             </div>
             <div class="shadow-sm p-3 bg-white rounded" id="post_side">
                 <div class="form-group">
                     <label>封面图：</label>
-                    <input name="cover" id="cover" class="form-control" placeholder="" value="<?= $cover ?>"/>
+                    <input name="cover" id="cover" class="form-control" placeholder="" value="<?= $cover ?>" />
                     <small class="text-muted">填写封面图URL或点击下方上传</small>
                     <div class="row mt-3">
                         <div class="col-md-4">
                             <label for="upload_img">
-                                <img src="<?= $cover ?: './views/images/cover.svg' ?>" width="200" id="cover_image" class="rounded" alt="封面图片"/>
-                                <input type="file" name="upload_img" class="image" id="upload_img" style="display:none"/>
-                                <button type="button" id="cover_rm" class="btn-sm btn btn-link" <?php if (!$cover): ?>style="display:none"<?php endif ?>>x</button>
+                                <img src="<?= $cover ?: './views/images/cover.svg' ?>" width="200" id="cover_image" class="rounded" alt="封面图片" />
+                                <input type="file" name="upload_img" class="image" id="upload_img" style="display:none" />
+                                <button type="button" id="cover_rm" class="btn-sm btn btn-link" <?php if (!$cover): ?>style="display:none" <?php endif ?>>x</button>
                             </label>
                         </div>
                     </div>
@@ -87,16 +87,16 @@
                                 continue;
                             }
                             $flg = $value['sid'] == $sortid ? 'selected' : '';
-                            ?>
+                        ?>
                             <option value="<?= $value['sid'] ?>" <?= $flg ?>><?= $value['sortname'] ?></option>
                             <?php
                             $children = $value['children'];
                             foreach ($children as $key):
                                 $value = $sorts[$key];
                                 $flg = $value['sid'] == $sortid ? 'selected' : '';
-                                ?>
+                            ?>
                                 <option value="<?= $value['sid'] ?>" <?= $flg ?>>&nbsp; &nbsp; &nbsp; <?= $value['sortname'] ?></option>
-                            <?php
+                        <?php
                             endforeach;
                         endforeach;
                         ?>
@@ -114,13 +114,13 @@
                             ?>
                         </div>
                     <?php endif; ?>
-                    <input name="tag" id="tag" class="form-control" value="<?= $tagStr ?>"/>
+                    <input name="tag" id="tag" class="form-control" value="<?= $tagStr ?>" />
                     <small class="text-muted">也用于页面关键词，英文逗号分隔</small>
                 </div>
                 <?php if (User::haveEditPermission()): ?>
                     <div class="form-group">
                         <label>发布时间：</label>
-                        <input type="text" maxlength="200" name="postdate" id="postdate" value="<?= $postDate ?>" class="form-control"/>
+                        <input type="text" maxlength="200" name="postdate" id="postdate" value="<?= $postDate ?>" class="form-control" />
                         <small class="text-muted">当设置未来时间，文章将在该时间点定时发布</small>
                     </div>
                     <div class="form-group">
@@ -131,25 +131,25 @@
                         <input type="checkbox" value="y" name="sortop" id="sortop" <?= $is_sortop; ?> />
                         <label for="sortop" style="margin-right: 8px;">分类置顶</label>
                     </div>
-                    <div><a href="javascript:void (0);" class="show_adv_set cursor-pointer" onclick="displayToggle('adv_set');">高级选项<i class="icofont-simple-right"></i></a></div>
+                    <div><a href="javascript:void (0);" class="show_adv_set" onclick="displayToggle('adv_set');">高级选项<i class="icofont-simple-right"></i></a></div>
                 <?php else: ?>
-                    <input type="hidden" value="y" name="allow_remark" id="allow_remark"/>
+                    <input type="hidden" value="y" name="allow_remark" id="allow_remark" />
                 <?php endif; ?>
                 <div id="adv_set">
                     <?php if (User::haveEditPermission()): ?>
                         <div class="form-group">
                             <label>链接别名：</label>
-                            <input name="alias" id="alias" class="form-control" value="<?= $alias ?>"/>
+                            <input name="alias" id="alias" class="form-control" value="<?= $alias ?>" />
                             <small class="text-muted">英文字母、数字组成，用于<a href="./setting.php?action=seo">seo设置</a></small>
                         </div>
                         <div class="form-group">
                             <label>跳转链接：</label>
-                            <input name="link" id="link" type="url" class="form-control" value="<?= $link ?>" placeholder="https://"/>
+                            <input name="link" id="link" type="url" class="form-control" value="<?= $link ?>" placeholder="https://" />
                             <small class="text-muted">填写后不展示文章内容直接跳转该地址</small>
                         </div>
                         <div class="form-group">
                             <label>访问密码：</label>
-                            <input type="text" name="password" id="password" class="form-control" value="<?= $password ?>"/>
+                            <input type="text" name="password" id="password" class="form-control" value="<?= $password ?>" />
                         </div>
                         <?php if ($customTemplates): ?>
                             <div class="form-group">
@@ -221,7 +221,7 @@
                 <div class="img-container">
                     <div class="row">
                         <div class="col-md-11">
-                            <img src="" id="sample_image"/>
+                            <img src="" id="sample_image" />
                         </div>
                     </div>
                 </div>
@@ -242,7 +242,7 @@
 <script src="./views/js/media-lib.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
 <script src="./editor.md/editormd.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
 <script>
-    $("#alias").keyup(function () {
+    $("#alias").keyup(function() {
         checkalias();
     });
     setTimeout("autosave(1)", 60000);
@@ -252,13 +252,14 @@
 
     // 编辑器
     var Editor;
-    $(function () {
+    $(function() {
         Editor = editormd("logcontent", {
             width: "100%",
             height: 745,
-            toolbarIcons: function () {
+            toolbarIcons: function() {
                 return ["bold", "del", "italic", "quote", "|", "h1", "h2", "h3", "|", "list-ul", "list-ol", "hr", "|",
-                    "link", "image", "video", "code", "preformatted-text", "code-block", "table", "|", "search", "preview", "fullscreen", "help"]
+                    "link", "image", "video", "code", "preformatted-text", "code-block", "table", "|", "search", "preview", "fullscreen", "help"
+                ]
             },
             path: "editor.md/lib/",
             tex: false,
@@ -274,13 +275,13 @@
             videoUpload: false, //开启视频上传
             syncScrolling: "single",
             placeholder: "使用 Markdown 开始你的创作吧...",
-            onfullscreen: function () {
+            onfullscreen: function() {
                 this.watch();
             },
-            onfullscreenExit: function () {
+            onfullscreenExit: function() {
                 this.unwatch();
             },
-            onload: function () {
+            onload: function() {
                 hooks.doAction("loaded", this);
             }
         });
@@ -288,13 +289,13 @@
     });
 
     // 封面图
-    $(function () {
+    $(function() {
         var $modal = $('#modal');
         var image = document.getElementById('sample_image');
         var cropper;
-        $('#upload_img').change(function (event) {
+        $('#upload_img').change(function(event) {
             var files = event.target.files;
-            var done = function (url) {
+            var done = function(url) {
                 image.src = url;
                 $modal.modal('show');
             };
@@ -304,18 +305,18 @@
                     return;
                 }
                 reader = new FileReader();
-                reader.onload = function (event) {
+                reader.onload = function(event) {
                     done(reader.result);
                 };
                 reader.readAsDataURL(files[0]);
             }
         });
-        $modal.on('shown.bs.modal', function () {
+        $modal.on('shown.bs.modal', function() {
             cropper = new Cropper(image, {
                 aspectRatio: NaN,
                 viewMode: 1
             });
-        }).on('hidden.bs.modal', function () {
+        }).on('hidden.bs.modal', function() {
             cropper.destroy();
             cropper = null;
         });
@@ -329,7 +330,7 @@
                 data: formData,
                 processData: false,
                 contentType: false,
-                success: function (data) {
+                success: function(data) {
                     $modal.modal('hide');
                     if (data.code == 0) {
                         $('#cover_image').attr('src', data.data);
@@ -339,7 +340,7 @@
                         alert(data.msg);
                     }
                 },
-                error: function (xhr) {
+                error: function(xhr) {
                     var data = xhr.responseJSON;
                     if (data && typeof data === "object") {
                         alert(data.msg);
@@ -350,47 +351,46 @@
             });
         }
 
-        $('#crop').click(function () {
+        $('#crop').click(function() {
             canvas = cropper.getCroppedCanvas({
                 width: 650,
                 height: 366
             });
-            canvas.toBlob(function (blob) {
+            canvas.toBlob(function(blob) {
                 uploadImage(blob, 'cover.jpg')
             });
         });
 
-        $('#use_original_image').click(function () {
+        $('#use_original_image').click(function() {
             var blob = $('#upload_img')[0].files[0];
             uploadImage(blob, blob.name)
         });
 
-        $('#cover_rm').click(function () {
+        $('#cover_rm').click(function() {
             $('#cover_image').attr('src', "./views/images/cover.svg");
             $('#cover').val("");
             $('#cover_rm').hide();
         });
     });
 
-    $('#cover').blur(function () {
-            c = $('#cover').val();
-            if (!c) {
-                $('#cover_image').attr('src', "./views/images/cover.svg");
-                $('#cover_rm').hide();
-                return
-            }
-            $('#cover_image').attr('src', c);
-            $('#cover_rm').show();
+    $('#cover').blur(function() {
+        c = $('#cover').val();
+        if (!c) {
+            $('#cover_image').attr('src', "./views/images/cover.svg");
+            $('#cover_rm').hide();
+            return
         }
-    );
+        $('#cover_image').attr('src', c);
+        $('#cover_rm').show();
+    });
 
     // 离开页面时，如果文章内容已做修改，则询问用户是否离开
     var articleTextRecord;
     var titleText = $('title').text();
-    hooks.addAction("loaded", function () {
+    hooks.addAction("loaded", function() {
         articleTextRecord = $("textarea[name=logcontent]").text();
     });
-    window.onbeforeunload = function (e) {
+    window.onbeforeunload = function(e) {
         if ($("textarea[name=logcontent]").text() == articleTextRecord) return
         e = e || window.event;
         if (e) e.returnValue = '离开页面提示';
@@ -398,7 +398,7 @@
     }
 
     // 文章编辑界面全局快捷键 Ctrl（Cmd）+ S 保存内容
-    document.addEventListener('keydown', function (e) {
+    document.addEventListener('keydown', function(e) {
         if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
             e.preventDefault();
             autosave(2);
@@ -412,10 +412,10 @@
     }
 
     // 自定义字段
-    $(document).on('click', '.field_del', function () {
+    $(document).on('click', '.field_del', function() {
         $(this).closest('.field_list').remove();
     });
-    $(document).on('click', '.field_add', function () {
+    $(document).on('click', '.field_add', function() {
         var newField = `
                     <div class="form-row field_list">
                         <div class="col-sm-4">
@@ -434,5 +434,4 @@
 
     // 检查右侧高级选项展开状态
     applyStoredState('adv_set');
-
 </script>
