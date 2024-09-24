@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Rest API controller
  *
@@ -6,7 +7,8 @@
  * @link https://www.emlog.net
  */
 
-class Api_Controller {
+class Api_Controller
+{
 
     /**
      * @var Log_Model
@@ -40,7 +42,8 @@ class Api_Controller {
     public $curUserInfo;
     public $curUid;
 
-    function starter($params) {
+    function starter($params)
+    {
         $_func = isset($_GET['rest-api']) ? addslashes($_GET['rest-api']) : '';
         if (empty($_func)) {
             Output::error('error router');
@@ -64,7 +67,8 @@ class Api_Controller {
         }
     }
 
-    private function article_post() {
+    private function article_post()
+    {
         $title = Input::postStrVar('title');
         $content = Input::postStrVar('content');
         $excerpt = Input::postStrVar('excerpt');
@@ -126,7 +130,8 @@ class Api_Controller {
         output::ok(['article_id' => $article_id,]);
     }
 
-    private function article_update() {
+    private function article_update()
+    {
         $id = Input::postIntVar('id');
         $title = Input::postStrVar('title');
         $content = Input::postStrVar('content');
@@ -168,7 +173,8 @@ class Api_Controller {
         output::ok();
     }
 
-    private function article_list() {
+    private function article_list()
+    {
         $page = isset($_GET['page']) ? (int)trim($_GET['page']) : 1;
         $count = isset($_GET['count']) ? (int)trim($_GET['count']) : Option::get('index_lognum');
         $sort_id = isset($_GET['sort_id']) ? (int)trim($_GET['sort_id']) : 0;
@@ -224,6 +230,7 @@ class Api_Controller {
                 'top'         => $value['top'],
                 'sortop'      => $value['sortop'],
                 'tags'        => $this->getTags((int)$value['gid']),
+                'need_pwd'    => $value['password'] ? true : false,
                 'fields'      => $value['fields'],
             ];
         }
@@ -231,7 +238,8 @@ class Api_Controller {
         output::ok(['articles' => $articles,]);
     }
 
-    private function article_detail() {
+    private function article_detail()
+    {
         $id = isset($_GET['id']) ? (int)trim($_GET['id']) : 0;
 
         $r = $this->Log_Model->getOneLogForHome($id);
@@ -273,7 +281,8 @@ class Api_Controller {
         output::ok(['article' => $article,]);
     }
 
-    private function sort_list() {
+    private function sort_list()
+    {
         $sort_cache = $this->Cache->readCache('sort');
         $data = [];
         foreach ($sort_cache as $sort_id => $value) {
@@ -288,7 +297,8 @@ class Api_Controller {
         output::ok(['sorts' => $data,]);
     }
 
-    private function note_post() {
+    private function note_post()
+    {
         $t = Input::postStrVar('t');
         $private = Input::postStrVar('private', 'n');
         $author_uid = Input::postIntVar('author_uid', 1);
@@ -320,7 +330,8 @@ class Api_Controller {
         output::ok(['note_id' => $id,]);
     }
 
-    private function note_list() {
+    private function note_list()
+    {
         $page = Input::getIntVar('page', 1);
         $author_uid = Input::getIntVar('author_uid');
         $count = Input::getIntVar('count', 20);
@@ -347,7 +358,8 @@ class Api_Controller {
         output::ok(['notes' => $notes,]);
     }
 
-    public function userinfo() {
+    public function userinfo()
+    {
         $this->checkAuthCookie();
 
         $data = [
@@ -365,7 +377,8 @@ class Api_Controller {
         output::ok(['userinfo' => $data]);
     }
 
-    public function user_detail() {
+    public function user_detail()
+    {
         $uid = Input::getIntVar('id');
 
         $this->checkApiKey();
@@ -387,7 +400,8 @@ class Api_Controller {
         output::ok(['userinfo' => $data]);
     }
 
-    public function upload() {
+    public function upload()
+    {
         $sid = Input::postIntVar('sid');
         $author_uid = Input::postIntVar('author_uid', 1);
         $attach = isset($_FILES['file']) ? $_FILES['file'] : '';
@@ -411,7 +425,8 @@ class Api_Controller {
         Output::ok(['media_id' => $aid, 'url' => $ret['url'], 'file_info' => $ret['file_info']]);
     }
 
-    private function comment_list() {
+    private function comment_list()
+    {
         $id = Input::getIntVar('id');
         $page = Input::getIntVar('page', 1);
 
@@ -419,7 +434,8 @@ class Api_Controller {
         output::ok($comments);
     }
 
-    private function getTags($id) {
+    private function getTags($id)
+    {
         $tag_ids = $this->Tag_Model->getTagIdsFromBlogId($id);
         $tag_names = $this->Tag_Model->getNamesFromIds($tag_ids);
         $tags = [];
@@ -434,12 +450,14 @@ class Api_Controller {
         return $tags;
     }
 
-    private function getAuthorName($uid) {
+    private function getAuthorName($uid)
+    {
         $userInfo = $this->User_Model->getOneUser($uid);
         return isset($userInfo['nickname']) ? $userInfo['nickname'] : '';
     }
 
-    private function auth() {
+    private function auth()
+    {
         if (isset($_COOKIE[AUTH_COOKIE_NAME])) {
             $this->checkAuthCookie();
         } else {
@@ -447,7 +465,8 @@ class Api_Controller {
         }
     }
 
-    private function checkApiKey() {
+    private function checkApiKey()
+    {
         $this->authApiKey = Input::requestStrVar('api_key');
         $this->authReqSign = Input::requestStrVar('req_sign');
         $this->authReqTime = Input::requestStrVar('req_time');
@@ -469,7 +488,8 @@ class Api_Controller {
         Output::authError('auth error');
     }
 
-    private function checkAuthCookie() {
+    private function checkAuthCookie()
+    {
         if (!isset($_COOKIE[AUTH_COOKIE_NAME])) {
             Output::authError('auth cookie error');
         }
