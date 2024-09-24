@@ -569,7 +569,7 @@ DROP TABLE IF EXISTS {$db_prefix}tag;
 CREATE TABLE {$db_prefix}tag (
   tid int(11) unsigned NOT NULL auto_increment COMMENT '标签表',
   tagname varchar(60) NOT NULL default '' COMMENT '标签名',
-  description text NOT NULL COMMENT '备注',
+  description VARCHAR(2048) NOT NULL DEFAULT '' COMMENT '页面描述',
   title VARCHAR(2048) NOT NULL DEFAULT '' COMMENT '页面标题',
   kw VARCHAR(2048) NOT NULL DEFAULT '' COMMENT '关键词',
   gid text NOT NULL COMMENT '文章ID',
