@@ -247,12 +247,11 @@ class Api_Controller
         $r = $this->Log_Model->getOneLogForHome($id);
         $article = '';
         if (empty($r)) {
-            output::ok(['article' => $article,]);
+            Output::error('Article not found');
         }
 
         if ($r['password'] && $r['password'] !== $password) {
             Output::error('Wrong password');
-            return;
         }
 
         $user_info = $this->User_Model->getOneUser($r['author']);
