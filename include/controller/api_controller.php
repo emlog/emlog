@@ -230,7 +230,7 @@ class Api_Controller
                 'top'         => $value['top'],
                 'sortop'      => $value['sortop'],
                 'tags'        => $this->getTags((int)$value['gid']),
-                'need_pwd'    => $value['password'] ? true : false,
+                'need_pwd'    => $value['password'] ? 'y' : 'n',
                 'fields'      => $value['fields'],
             ];
         }
