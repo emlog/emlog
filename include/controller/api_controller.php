@@ -240,17 +240,19 @@ class Api_Controller
 
     private function article_detail()
     {
-        $id = isset($_GET['id']) ? (int)trim($_GET['id']) : 0;
+        $id = Input::getIntVar('id', 0);
+        $password = Input::getStrVar('password');
 
-        $r = $this->Log_Model->getOneLogForHome($id);
         $sort_cache = $this->Cache->readCache('sort');
+        $r = $this->Log_Model->getOneLogForHome($id);
         $article = '';
         if (empty($r)) {
             output::ok(['article' => $article,]);
         }
 
-        if (!empty($r['password'])) {
-            Output::error('This article is private');
+        if ($r['password'] && $r['password'] !== $password) {
+            Output::error('Wrong password');
+            return;
         }
 
         $user_info = $this->User_Model->getOneUser($r['author']);
