@@ -268,7 +268,7 @@ if ($action === 'write') {
     $is_top = '';
     $is_sortop = '';
     $is_allow_remark = 'checked="checked"';
-    $postDate = date('Y-m-d H:i');
+    $postDate = date('Y-m-d H:i:s');
     $mediaSorts = $MediaSort_Model->getSorts();
     $customTemplates = $Template_Model->getCustomTemplates('log');
     $fields = [];
@@ -293,7 +293,7 @@ if ($action === 'edit') {
     $isdraft = $hide == 'y' ? true : false;
     $postsName = User::isAdmin() ? '文章' : Option::get('posts_name');
     $containerTitle = $isdraft ? '编辑草稿' : '编辑' . $postsName;
-    $postDate = date('Y-m-d H:i', $date);
+    $postDate = date('Y-m-d H:i:s', $date);
     $sorts = $CACHE->readCache('sort');
 
     //tag
