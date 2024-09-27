@@ -290,10 +290,12 @@
 
     // 日期选择器关闭的回调函数
     function onDatepickerClose(dateText, inst) {
-        var date = new Date(dateText);
-        var formattedDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
-        var url = 'media.php?date=' + formattedDate;
-        window.location.href = url;
+        if (dateText) {
+            var date = new Date(dateText);
+            var formattedDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+            var url = 'media.php?date=' + formattedDate;
+            window.location.href = url;
+        }
     }
 
     function mediaact(act) {
