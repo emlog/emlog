@@ -133,6 +133,7 @@
                     </div>
                     <div><a href="javascript:void (0);" class="show_adv_set" onclick="displayToggle('adv_set');">高级选项<i class="icofont-simple-right"></i></a></div>
                 <?php else: ?>
+                    <input type="hidden" name="postdate" id="postdate" value="<?= $postDate ?>" />
                     <input type="hidden" value="y" name="allow_remark" id="allow_remark" />
                 <?php endif; ?>
                 <div id="adv_set">
