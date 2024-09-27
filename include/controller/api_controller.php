@@ -435,6 +435,14 @@ class Api_Controller
         output::ok($comments);
     }
 
+    private function comment_list_simple()
+    {
+        $id = Input::getIntVar('id');
+
+        $comments = $this->Comment_Model->getCommentList($id, 'n');
+        output::ok(['comments' => $comments]);
+    }
+
     private function getTags($id)
     {
         $tag_ids = $this->Tag_Model->getTagIdsFromBlogId($id);

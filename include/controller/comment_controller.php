@@ -1,4 +1,5 @@
 <?php
+
 /**
  * comment controller
  *
@@ -6,12 +7,15 @@
  * @link https://www.emlog.net
  */
 
-class Comment_Controller {
-    function addComment($params) {
+class Comment_Controller
+{
+    function addComment($params)
+    {
         $name = Input::postStrVar('comname');
         $content = Input::postStrVar('comment');
         $mail = Input::postStrVar('commail');
         $url = Input::postStrVar('comurl');
+        $avatar = Input::postStrVar('avatar');
         $imgcode = strtoupper(Input::postStrVar('imgcode'));
         $blogId = Input::postIntVar('gid', -1);
         $pid = Input::postIntVar('pid');
@@ -68,7 +72,7 @@ class Comment_Controller {
         if ($err) {
             $resp === 'json' ? Output::error($err) : emMsg($err);
         }
-        $r = $Comment_Model->addComment($uid, $name, $content, $mail, $url, $blogId, $pid);
+        $r = $Comment_Model->addComment($uid, $name, $content, $mail, $url, $avatar, $blogId, $pid);
         $cid = isset($r['cid']) ? $r['cid'] : 0;
         $hide = isset($r['hide']) ? $r['hide'] : '';
 

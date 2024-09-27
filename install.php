@@ -455,6 +455,7 @@ CREATE TABLE {$db_prefix}comment (
   pid int(11) unsigned NOT NULL default '0' COMMENT '父级评论ID',
   top enum('n','y') NOT NULL default 'n' COMMENT '置顶',
   poster varchar(20) NOT NULL default '' COMMENT '发布人昵称',
+  avatar varchar(512) NOT NULL default '' COMMENT '头像URL',
   uid int(11) NOT NULL default '0' COMMENT '发布人UID',
   comment text NOT NULL COMMENT '评论内容',
   mail varchar(60) NOT NULL default '' COMMENT 'email',
