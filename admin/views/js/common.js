@@ -696,8 +696,10 @@ $(function () {
                     left: $(".datepicker.active").offset().left - _left
                 });
             }, 0);
-        }
-    });
+        },
+        onClose: function (dateText, inst) {
+            typeof onDatepickerClose === "function" && onDatepickerClose(dateText, inst);
+        }    });
 
     $('body').on('focus', '.datepicker', function () {
         let _this = $(this)

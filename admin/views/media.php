@@ -32,7 +32,7 @@
             <a href="#" class="btn btn-success btn-sm my-1" data-toggle="modal" data-target="#mediaSortModal"><i class="icofont-plus"></i> 分类</a>
         </div>
         <div class="d-flex mb-3 mb-sm-0">
-            <input type="text" id="datePicker" class="form-control" placeholder="查看该日期及之前的资源">
+            <input type="text" class="form-control datepicker" placeholder="查看该日期及之前的资源">
             <form action="./media.php" method="get" class="form-inline ml-2 mr-3 w-100">
                 <div class="input-group">
                     <input type="text" name="keyword" value="<?= $keyword ?>" class="form-control small" placeholder="搜索资源文件名...">
@@ -231,9 +231,6 @@
 <script src="./views/js/dropzone.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
 <link rel="stylesheet" type="text/css" href="./views/components/highslide/highslide.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>" />
 <script src="./views/components/highslide/highslide.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
-<link rel="stylesheet" type="text/css" href="./views/components/bootstrap-datepicker/bootstrap-datepicker.min.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>" />
-<script src="./views/components/bootstrap-datepicker/bootstrap-datepicker.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
-<script src="./views/components/bootstrap-datepicker/bootstrap-datepicker.zh-CN.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
 <script>
     Dropzone.options.upForm = {
         paramName: "file",
@@ -289,26 +286,15 @@
             }).popover('show');
             setTimeout(() => $(this).popover('hide'), 1000);
         });
-
-        // 日期选择器
-        var datePicker = $('#datePicker').datepicker({
-            format: 'yyyy-mm-dd',
-            language: 'zh-CN',
-            autoclose: true,
-            todayHighlight: true,
-        });
-        var defaultDate = '<?= $date ?>';
-        if (defaultDate) {
-            selectedDate = new Date(defaultDate);
-            datePicker.datepicker('setDate', defaultDate);
-        }
-        datePicker.on('changeDate', function(e) {
-            selectedDate = e.date;
-            var formattedDate = selectedDate.toLocaleDateString();
-            var url = 'media.php?date=' + formattedDate;
-            window.location.href = url;
-        });
     });
+
+    // 日期选择器关闭的回调函数
+    function onDatepickerClose(dateText, inst) {
+        var date = new Date(dateText);
+        var formattedDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+        var url = 'media.php?date=' + formattedDate;
+        window.location.href = url;
+    }
 
     function mediaact(act) {
         if (getChecked('aids') === false) {
