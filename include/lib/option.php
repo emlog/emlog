@@ -99,6 +99,11 @@ class Option
                 'reg_0'  => '|^.*/\?(action)=(addcom)([\?&].*)?$|',
             ],
             [
+                'model'  => 'Like_Controller',
+                'method' => 'addLike',
+                'reg_0'  => '|^.*/\?(action)=(addlike)([\?&].*)?$|',
+            ],
+            [
                 'model'  => 'Plugin_Controller',
                 'method' => 'loadPluginShow',
                 'reg_0'  => '|^.*/\?(plugin)=([\w\-]+).*([\?&].*)?$|',

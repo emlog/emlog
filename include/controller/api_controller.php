@@ -34,6 +34,10 @@ class Api_Controller
      * @var Comment_Model
      */
     public $Comment_Model;
+    /**
+     * @var Like_Model
+     */
+    public $Like_Model;
 
     public $Cache;
     public $authApiKey;
@@ -60,6 +64,7 @@ class Api_Controller
             $this->User_Model = new User_Model();
             $this->Media_Model = new Media_Model();
             $this->Comment_Model = new Comment_Model();
+            $this->Like_Model = new Like_Model();
             $this->Cache = Cache::getInstance();
             $this->$_func();
         } else {
@@ -227,6 +232,7 @@ class Api_Controller
                 'sort_name'   => isset($sort_cache[$value['sortid']]['sortname']) ? $sort_cache[$value['sortid']]['sortname'] : '',
                 'views'       => (int)$value['views'],
                 'comnum'      => (int)$value['comnum'],
+                'like_count'  => (int)$value['like_count'],
                 'top'         => $value['top'],
                 'sortop'      => $value['sortop'],
                 'tags'        => $this->getTags((int)$value['gid']),
@@ -273,6 +279,7 @@ class Api_Controller
             'cover'         => $r['log_cover'],
             'views'         => (int)$r['views'],
             'comnum'        => (int)$r['comnum'],
+            'like_count'    => (int)$r['like_count'],
             'top'           => $r['top'],
             'sortop'        => $r['sortop'],
             'tags'          => $this->getTags($id),
@@ -441,6 +448,14 @@ class Api_Controller
 
         $comments = $this->Comment_Model->getCommentList($id, 'n');
         output::ok(['comments' => $comments]);
+    }
+
+    private function like_list()
+    {
+        $id = Input::getIntVar('id');
+
+        $likes = $this->Like_Model->getList($id);
+        output::ok(['likes' => $likes]);
     }
 
     private function getTags($id)
