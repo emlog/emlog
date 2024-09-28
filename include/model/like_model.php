@@ -72,6 +72,18 @@ class Like_Model
         return (int)$row['num'] > 0;
     }
 
+    function isLiked($blogId, $uid = 0, $ip = '')
+    {
+        $sql = "SELECT COUNT(*) AS total FROM " . DB_PREFIX . "like WHERE gid=$blogId";
+        if ($uid) {
+            $sql .= " AND uid=$uid";
+        } else {
+            $sql .= " AND ip='$ip'";
+        }
+        $data = $this->db->once_fetch_array($sql);
+        return $data['total'] > 0;
+    }
+
     function getAvatar($uid, $avatar = '')
     {
         if ($avatar) {
