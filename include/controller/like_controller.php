@@ -35,10 +35,10 @@ class Like_Controller
 
         if ($blogId <= 0 || empty($log)) {
             $err = '文章不存在';
-        } elseif (!User::haveEditPermission() && $Like_Model->isTooFast() === true) {
-            $err = '操作太频繁';
         } elseif ($Like_Model->isLiked($blogId, $uid, $ip) === true) {
             $err = '已经赞过了';
+        } elseif (!User::haveEditPermission() && $Like_Model->isTooFast() === true) {
+            $err = '操作太频繁';
         } elseif (strlen($name) > 100) {
             $err = '昵称太长了';
         } elseif (empty($ip) || empty($ua) || preg_match('/bot|crawler|spider|robot|crawling/i', $ua)) {
