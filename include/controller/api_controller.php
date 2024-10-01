@@ -109,13 +109,8 @@ class Api_Controller
 
         $checked = 'y';
         if (isset($_COOKIE[AUTH_COOKIE_NAME])) {
-            // 每日发文限制
-            if (User::isWriter()) {
-                $count = $this->Log_Model->getPostCountByUid(UID, time() - 3600 * 24);
-                $post_per_day = Option::get('posts_per_day');
-                if ($count >= $post_per_day) {
-                    Output::error('Exceeded daily posting limit');
-                }
+            if (Article::hasReachedDailyPostLimit()) {
+                Output::error('Exceeded daily posting limit');
             }
             //管理员发文不审核,注册用户受开关控制
             $checked = Option::get('ischkarticle') == 'y' && !User::haveEditPermission() ? 'n' : 'y';
