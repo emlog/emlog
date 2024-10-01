@@ -1,4 +1,5 @@
 <?php
+
 /**
  * article save and update
  * @package EMLOG
@@ -80,6 +81,7 @@ $logData = [
     'template'     => $template,
 ];
 
+// 每日发文限制
 if (User::isWriter()) {
     $count = $Log_Model->getPostCountByUid(UID, time() - 3600 * 24);
     $post_per_day = Option::get('posts_per_day');
