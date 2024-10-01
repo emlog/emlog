@@ -464,7 +464,7 @@ class Api_Controller
             Output::error('parameter error');
         }
 
-        $comments = $this->Comment_Model->getCommentList($id, 'n');
+        $comments = $this->Comment_Model->getCommentListForApi($id, 'n');
         output::ok(['comments' => $comments]);
     }
 

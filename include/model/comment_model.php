@@ -74,7 +74,7 @@ class Comment_Model
         return $comments;
     }
 
-    function getCommentList($blogId = null, $hide = null)
+    function getCommentListForApi($blogId = null, $hide = null)
     {
         $andQuery = '1=1';
         $andQuery .= $blogId ? " and a.gid=$blogId" : '';
@@ -86,16 +86,19 @@ class Comment_Model
         $ret = $this->db->query($sql);
         $comments = [];
         while ($row = $this->db->fetch_array($ret)) {
-            $row['poster'] = htmlspecialchars($row['poster']);
-            $row['avatar'] = $this->getAvatar($row['uid'], $row['mail'], $row['avatar']);
-            $row['mail'] = htmlspecialchars($row['mail']);
-            $row['url'] = htmlspecialchars($row['url']);
-            $row['content'] = htmlClean($row['comment']);
-            $row['date'] = smartDate($row['date']);
-            $row['children'] = [];
-            $comments[$row['cid']] = $row;
+            $comments[$row['cid']] = [
+                'cid' => (int)$row['cid'],
+                'gid' => (int)$row['gid'],
+                'pid' => (int)$row['pid'],
+                'uid' => (int)$row['uid'],
+                'top' => $row['top'],
+                'poster' => htmlspecialchars($row['poster']),
+                'avatar' => $this->getAvatar($row['uid'], $row['mail'], $row['avatar']),
+                'url' => htmlspecialchars($row['url']),
+                'content' => htmlClean($row['comment']),
+                'date' => smartDate($row['date']),
+            ];
         }
-
         foreach ($comments as $cid => $comment) {
             $pid = $comment['pid'];
             if ($pid != 0 && isset($comments[$pid])) {
