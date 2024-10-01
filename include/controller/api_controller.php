@@ -107,6 +107,12 @@ class Api_Controller
             $author_uid = $this->curUid;
         }
 
+        //管理员发文不审核,注册用户受开关控制
+        $checked = 'y';
+        if (isset($_COOKIE[AUTH_COOKIE_NAME])) {
+            $checked = Option::get('ischkarticle') == 'y' && !User::haveEditPermission() ? 'n' : 'y';
+        }
+
         $logData = [
             'title'        => $title,
             'content'      => $content,
@@ -116,6 +122,7 @@ class Api_Controller
             'cover'        => $cover,
             'date'         => strtotime($post_date ?: date('Y-m-d H:i:s')),
             'hide'         => $draft === 'y' ? 'y' : 'n',
+            'checked'      => $checked,
             'alias'        => $alias,
             'top '         => $top,
             'sortop '      => $sortop,
@@ -438,6 +445,10 @@ class Api_Controller
         $id = Input::getIntVar('id');
         $page = Input::getIntVar('page', 1);
 
+        if (empty($id)) {
+            Output::error('parameter error');
+        }
+
         $comments = $this->Comment_Model->getComments($id, 'n', $page);
         output::ok($comments);
     }
@@ -446,6 +457,10 @@ class Api_Controller
     {
         $id = Input::getIntVar('id');
 
+        if (empty($id)) {
+            Output::error('parameter error');
+        }
+
         $comments = $this->Comment_Model->getCommentList($id, 'n');
         output::ok(['comments' => $comments]);
     }
@@ -453,6 +468,10 @@ class Api_Controller
     private function like_list()
     {
         $id = Input::getIntVar('id');
+
+        if (empty($id)) {
+            Output::error('parameter error');
+        }
 
         $likes = $this->Like_Model->getList($id);
         output::ok(['likes' => $likes]);
