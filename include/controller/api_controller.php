@@ -476,7 +476,20 @@ class Api_Controller
             Output::error('parameter error');
         }
 
-        $likes = $this->Like_Model->getList($id);
+        $r = $this->Like_Model->getList($id);
+
+        $likes = [];
+        foreach ($r as $value) {
+            $likes[] = [
+                'id'          => (int)$value['id'],
+                'gid'         => (int)$value['gid'],
+                'uid'         => (int)$value['uid'],
+                'date'        => $value['date'],
+                'avatar'      => $value['avatar'],
+                'poster'      => $value['poster'],
+            ];
+        }
+
         output::ok(['likes' => $likes]);
     }
 
