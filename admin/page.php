@@ -66,7 +66,7 @@ if ($action == 'mod') {
     $customTemplates = $Template_Model->getCustomTemplates('page');
 
     $containertitle = '编辑页面';
-    $pageId = isset($_GET['id']) ? (int)$_GET['id'] : '';
+    $pageId = Input::getIntVar('id');
     $pageData = $emPage->getOneLogForAdmin($pageId);
     extract($pageData);
 
