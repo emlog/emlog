@@ -1,4 +1,5 @@
 <?php
+
 /**
  * page
  * @package EMLOG
@@ -15,7 +16,7 @@ require_once 'globals.php';
 if (empty($action)) {
     $emPage = new Log_Model();
 
-    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $page = Input::getIntVar('page', 1);
 
     $sqlSegment = ' ORDER BY date DESC';
     $pages = $emPage->getLogsForAdmin($sqlSegment, '', $page, 'page');
@@ -89,14 +90,14 @@ if ($action == 'save') {
     $emPage = new Log_Model();
     $Navi_Model = new Navi_Model();
 
-    $title = isset($_POST['title']) ? addslashes(trim($_POST['title'])) : '';
-    $content = isset($_POST['pagecontent']) ? addslashes(trim($_POST['pagecontent'])) : '';
-    $alias = isset($_POST['alias']) ? addslashes(trim($_POST['alias'])) : '';
-    $pageId = isset($_POST['pageid']) ? (int)trim($_POST['pageid']) : -1;
+    $title = Input::postStrVar('title');
+    $content = Input::postStrVar('pagecontent');
+    $alias = Input::postStrVar('alias');
+    $pageId = Input::postIntVar('pageid', -1);
     $ishide = isset($_POST['ishide']) && empty($_POST['ishide']) ? 'n' : addslashes($_POST['ishide']);
     $template = isset($_POST['template']) && $_POST['template'] != 'page' ? addslashes(trim($_POST['template'])) : '';
-    $allow_remark = isset($_POST['allow_remark']) ? addslashes(trim($_POST['allow_remark'])) : 'n';
-    $home_page = isset($_POST['home_page']) ? addslashes(trim($_POST['home_page'])) : 'n';
+    $allow_remark = Input::postStrVar('allow_remark', 'n');
+    $home_page = Input::postStrVar('home_page', 'n');
     $link = Input::postStrVar('link');
     $cover = Input::postStrVar('cover');
 
@@ -151,8 +152,8 @@ if ($action == 'save') {
 }
 
 if ($action == 'operate_page') {
-    $operate = isset($_POST['operate']) ? $_POST['operate'] : '';
-    $pages = isset($_POST['page']) ? array_map('intval', $_POST['page']) : array();
+    $operate = Input::postStrVar('operate');
+    $pages = Input::postIntArray('page');
 
     LoginAuth::checkToken();
 
