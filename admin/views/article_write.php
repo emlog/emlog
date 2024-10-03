@@ -120,7 +120,7 @@
                 <?php if (User::haveEditPermission()): ?>
                     <div class="form-group">
                         <label>发布时间：</label>
-                        <input type="text" maxlength="200" name="postdate" id="postdate" value="<?= $postDate ?>" class="form-control datepicker" />
+                        <input type="text" maxlength="200" name="postdate" id="postdate" value="<?= $postDate ?>" class="form-control datepicker" required />
                         <small class="text-muted">当设置未来时间，文章将在该时间点定时发布</small>
                     </div>
                     <div class="form-group">
