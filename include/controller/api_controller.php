@@ -445,8 +445,6 @@ class Api_Controller
 
     private function comment_list()
     {
-        Output::error('api has been deprecated');
-
         $id = Input::getIntVar('id');
         $page = Input::getIntVar('page', 1);
 
