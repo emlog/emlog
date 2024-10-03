@@ -32,7 +32,7 @@
             <a href="#" class="btn btn-success btn-sm my-1" data-toggle="modal" data-target="#mediaSortModal"><i class="icofont-plus"></i> 分类</a>
         </div>
         <div class="d-flex mb-3 mb-sm-0">
-            <input type="text" class="form-control datepicker" placeholder="查看该日期及之前的资源">
+            <input type="text" class="form-control datepicker" value="<?= $dateTime ?>" placeholder="查看该日期及之前的资源">
             <form action="./media.php" method="get" class="form-inline ml-2 mr-3 w-100">
                 <div class="input-group">
                     <input type="text" name="keyword" value="<?= $keyword ?>" class="form-control small" placeholder="搜索资源文件名...">

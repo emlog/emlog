@@ -1,4 +1,5 @@
 <?php
+
 /**
  * media
  * @package EMLOG
@@ -34,7 +35,7 @@ if (empty($action)) {
     $page_url .= $date ? "date=$date&" : '';
     $page_url .= $uid ? "uid=$uid&" : '';
     $page_url .= $keyword ? "keyword=$keyword&" : '';
-    $dateTime = $date . ' 23:59:59';
+    $dateTime = $date ? $date . ' 23:59:59' : '';
     $medias = $Media_Model->getMedias($page, $page_count, $uid, $sid, $dateTime, $keyword);
     $count = $Media_Model->getMediaCount($uid, $sid, $dateTime, $keyword);
     $page = pagination($count, $page_count, $page, $page_url . 'page=');
