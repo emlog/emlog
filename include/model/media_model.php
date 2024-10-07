@@ -1,23 +1,27 @@
 <?php
+
 /**
  * media model
  * @package EMLOG
  * @link https://www.emlog.net
  */
 
-class Media_Model {
+class Media_Model
+{
 
     private $db;
     private $table;
     private $table_sort;
 
-    function __construct() {
+    function __construct()
+    {
         $this->db = Database::getInstance();
         $this->table = DB_PREFIX . 'attachment';
         $this->table_sort = DB_PREFIX . 'media_sort';
     }
 
-    function getMedias($page = 1, $perpage_count = 24, $uid = 0, $sid = 0, $dateTime = '', $keyword = '') {
+    function getMedias($page = 1, $perpage_count = 24, $uid = 0, $sid = 0, $dateTime = '', $keyword = '')
+    {
         $startId = ($page - 1) * $perpage_count;
         $author = $uid ? 'and author=' . $uid : '';
         $sort = $sid ? 'and sortid=' . $sid : '';
@@ -34,7 +38,8 @@ class Media_Model {
         return $medias;
     }
 
-    function getMediaCount($uid = null, $sid = null, $dateTime = '', $keyword = '') {
+    function getMediaCount($uid = null, $sid = null, $dateTime = '', $keyword = '')
+    {
         $author = $uid ? 'and author=' . $uid : '';
         $sort = $sid ? 'and sortid=' . $sid : '';
         $date = $dateTime ? 'and addtime<=' . strtotime($dateTime) : '';
@@ -44,7 +49,8 @@ class Media_Model {
         return $res['count'];
     }
 
-    function getDetailByAlias($alias) {
+    function getDetailByAlias($alias)
+    {
         if (empty($alias)) {
             return false;
         }
@@ -56,7 +62,8 @@ class Media_Model {
         return $this->fetchMediaData($row);
     }
 
-    function getDetail($id) {
+    function getDetail($id)
+    {
         if (empty($id)) {
             return false;
         }
@@ -68,7 +75,8 @@ class Media_Model {
         return $this->fetchMediaData($row);
     }
 
-    private function fetchMediaData($row) {
+    private function fetchMediaData($row)
+    {
         return [
             'alias'          => $row['alias'],
             'attsize'        => changeFileSize($row['filesize']),
@@ -89,7 +97,8 @@ class Media_Model {
         ];
     }
 
-    function addMedia($file_info, $sortid, $uid = UID) {
+    function addMedia($file_info, $sortid, $uid = UID)
+    {
         $file_name = $file_info['file_name'];
         $file_size = $file_info['size'];
         $file_path = $file_info['file_path'];
@@ -110,7 +119,8 @@ class Media_Model {
         return $this->db->insert_id();
     }
 
-    function deleteMedia($media_id) {
+    function deleteMedia($media_id)
+    {
         $author = User::haveEditPermission() ? '' : 'and author=' . UID;
         $query = $this->db->query("SELECT * FROM $this->table WHERE aid = $media_id $author");
         $attach = $this->db->fetch_array($query);
@@ -131,7 +141,8 @@ class Media_Model {
         return $this->db->query("DELETE FROM $this->table WHERE aid = $media_id $author");
     }
 
-    function updateMedia($data, $media_id) {
+    function updateMedia($data, $media_id)
+    {
         $author = User::haveEditPermission() ? '' : 'and author=' . UID;
         $Item = [];
         foreach ($data as $key => $val) {
@@ -141,8 +152,8 @@ class Media_Model {
         $this->db->query("UPDATE $this->table SET $upStr WHERE aid=$media_id $author");
     }
 
-    function incrDownloadCount($media_id) {
+    function incrDownloadCount($media_id)
+    {
         $this->db->query("UPDATE $this->table SET download_count=download_count+1 WHERE aid=$media_id");
     }
-
 }

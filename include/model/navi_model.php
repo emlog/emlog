@@ -1,28 +1,32 @@
 <?php
+
 /**
  * navi model
  * @package EMLOG
  * @link https://www.emlog.net
  */
 
-class Navi_Model {
+class Navi_Model
+{
 
     private $db;
     private $table;
 
-    const navitype_custom = 0;//自定义
+    const navitype_custom = 0; //自定义
     const navitype_home = 1;  //首页
     const navitype_t = 2;     //微语
     const navitype_admin = 3; //后台管理
     const navitype_sort = 4;  //分类
     const navitype_page = 5;  //页面
 
-    function __construct() {
+    function __construct()
+    {
         $this->db = Database::getInstance();
         $this->table = DB_PREFIX . 'navi';
     }
 
-    function getNavis() {
+    function getNavis()
+    {
         $navis = [];
         $query = $this->db->query("SELECT * FROM $this->table ORDER BY pid ASC, taxis ASC");
         while ($row = $this->db->fetch_array($query)) {
@@ -51,7 +55,8 @@ class Navi_Model {
         return $navis;
     }
 
-    function updateNavi($naviData, $navid) {
+    function updateNavi($naviData, $navid)
+    {
         $Item = [];
         foreach ($naviData as $key => $data) {
             $Item[] = "$key='$data'";
@@ -60,7 +65,8 @@ class Navi_Model {
         $this->db->query("update $this->table set $upStr where id=$navid");
     }
 
-    function addNavi($name, $url, $taxis, $pid, $newtab, $type = 0, $typeId = 0) {
+    function addNavi($name, $url, $taxis, $pid, $newtab, $type = 0, $typeId = 0)
+    {
         if ($taxis > 30000 || $taxis < 0) {
             $taxis = 0;
         }
@@ -68,7 +74,8 @@ class Navi_Model {
         $this->db->query($sql);
     }
 
-    function getOneNavi($navid) {
+    function getOneNavi($navid)
+    {
         $sql = "select * from $this->table where id=$navid ";
         $res = $this->db->query($sql);
         $row = $this->db->fetch_array($res);
@@ -87,7 +94,8 @@ class Navi_Model {
         return $naviData;
     }
 
-    function getNaviNameByUrl($url) {
+    function getNaviNameByUrl($url)
+    {
         $CACHE = Cache::getInstance();
         $navi_cache = $CACHE->readCache('navi');
         foreach ($navi_cache as $val) {
@@ -99,7 +107,8 @@ class Navi_Model {
         return '';
     }
 
-    function getNaviNameByType($type) {
+    function getNaviNameByType($type)
+    {
         $CACHE = Cache::getInstance();
         $navi_cache = $CACHE->readCache('navi');
         foreach ($navi_cache as $val) {
@@ -111,9 +120,9 @@ class Navi_Model {
         return '';
     }
 
-    function deleteNavi($navid) {
+    function deleteNavi($navid)
+    {
         $this->db->query("DELETE FROM $this->table where id=$navid");
         $this->db->query("UPDATE $this->table set pid=0 where pid=$navid");
     }
-
 }

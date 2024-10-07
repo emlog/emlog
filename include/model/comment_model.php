@@ -10,10 +10,13 @@ class Comment_Model
 {
 
     private $db;
+    private $table;
 
     function __construct()
     {
         $this->db = Database::getInstance();
+        $this->table = DB_PREFIX . 'comment';
+        $this->table_blog = DB_PREFIX . 'blog';
     }
 
     /**
@@ -26,7 +29,7 @@ class Comment_Model
         $andQuery .= $hide ? " and a.hide='$hide'" : '';
         $condition = '';
 
-        $sql = "SELECT * FROM " . DB_PREFIX . "comment as a where $andQuery ORDER BY a.top ASC, a.date ASC $condition";
+        $sql = "SELECT * FROM $this->table as a where $andQuery ORDER BY a.top ASC, a.date ASC $condition";
 
         $ret = $this->db->query($sql);
         $comments = [];
@@ -81,7 +84,7 @@ class Comment_Model
         $andQuery .= $hide ? " and a.hide='$hide'" : '';
         $condition = '';
 
-        $sql = "SELECT * FROM " . DB_PREFIX . "comment as a where $andQuery ORDER BY a.top ASC, a.date ASC $condition";
+        $sql = "SELECT * FROM $this->table as a where $andQuery ORDER BY a.top ASC, a.date ASC $condition";
 
         $ret = $this->db->query($sql);
         $comments = [];
@@ -137,7 +140,7 @@ class Comment_Model
         }
 
         $andQuery .= !User::haveEditPermission() ? ' and b.author=' . UID : '';
-        $sql = "SELECT *,a.hide,a.date,a.top FROM " . DB_PREFIX . "comment as a, " . DB_PREFIX . "blog as b where $andQuery and a.gid=b.gid $orderBy $condition";
+        $sql = "SELECT *,a.hide,a.date,a.top FROM $this->table as a, $this->table_blog as b where $andQuery and a.gid=b.gid $orderBy $condition";
 
         $ret = $this->db->query($sql);
         $comments = [];
@@ -158,7 +161,7 @@ class Comment_Model
 
     function getOneComment($commentId, $nl2br = false)
     {
-        $sql = "select * from " . DB_PREFIX . "comment where cid=$commentId";
+        $sql = "select * from $this->table where cid=$commentId";
         $res = $this->db->query($sql);
         if ($this->db->affected_rows() < 1) {
             return false;
@@ -177,9 +180,9 @@ class Comment_Model
         $andQuery .= $uid ? " and a.uid=$uid" : '';
         $andQuery .= $hide ? " and a.hide='$hide'" : '';
         if (User::haveEditPermission()) {
-            $sql = "SELECT count(*) FROM " . DB_PREFIX . "comment as a where $andQuery";
+            $sql = "SELECT count(*) FROM $this->table as a where $andQuery";
         } else {
-            $sql = "SELECT count(*) FROM " . DB_PREFIX . "comment as a, " . DB_PREFIX . "blog as b where $andQuery and a.gid=b.gid and b.author=" . UID;
+            $sql = "SELECT count(*) FROM $this->table as a, $this->table_blog as b where $andQuery and a.gid=b.gid and b.author=" . UID;
         }
         $res = $this->db->once_fetch_array($sql);
         return $res['count(*)'];
@@ -188,65 +191,65 @@ class Comment_Model
     function delComment($commentId)
     {
         $this->isYoursComment($commentId);
-        $row = $this->db->once_fetch_array("SELECT gid FROM " . DB_PREFIX . "comment WHERE cid=$commentId");
+        $row = $this->db->once_fetch_array("SELECT gid FROM $this->table WHERE cid=$commentId");
         $blogId = (int)$row['gid'];
         $commentIds = array($commentId);
 
-        $query = $this->db->query("SELECT cid,pid FROM " . DB_PREFIX . "comment WHERE gid=$blogId AND cid>$commentId ");
+        $query = $this->db->query("SELECT cid,pid FROM $this->table WHERE gid=$blogId AND cid>$commentId ");
         while ($row = $this->db->fetch_array($query)) {
             if (in_array($row['pid'], $commentIds)) {
                 $commentIds[] = $row['cid'];
             }
         }
         $commentIds = implode(',', $commentIds);
-        $this->db->query("DELETE FROM " . DB_PREFIX . "comment WHERE cid IN ($commentIds)");
+        $this->db->query("DELETE FROM $this->table WHERE cid IN ($commentIds)");
         $this->updateCommentNum($blogId);
     }
 
     function delCommentByIp($ip)
     {
         $blogids = [];
-        $sql = "SELECT DISTINCT gid FROM " . DB_PREFIX . "comment WHERE ip='$ip'";
+        $sql = "SELECT DISTINCT gid FROM $this->table WHERE ip='$ip'";
         $query = $this->db->query($sql);
         while ($row = $this->db->fetch_array($query)) {
             $blogids[] = $row['gid'];
         }
-        $this->db->query("DELETE FROM " . DB_PREFIX . "comment WHERE ip='$ip'");
+        $this->db->query("DELETE FROM $this->table WHERE ip='$ip'");
         $this->updateCommentNum($blogids);
     }
 
     function hideComment($commentId)
     {
         $this->isYoursComment($commentId);
-        $row = $this->db->once_fetch_array("SELECT gid FROM " . DB_PREFIX . "comment WHERE cid=$commentId");
+        $row = $this->db->once_fetch_array("SELECT gid FROM $this->table WHERE cid=$commentId");
         $blogId = (int)$row['gid'];
         $commentIds = array($commentId);
         /* 获取子评论ID */
-        $query = $this->db->query("SELECT cid,pid FROM " . DB_PREFIX . "comment WHERE gid=$blogId AND cid>$commentId ");
+        $query = $this->db->query("SELECT cid,pid FROM $this->table WHERE gid=$blogId AND cid>$commentId ");
         while ($row = $this->db->fetch_array($query)) {
             if (in_array($row['pid'], $commentIds)) {
                 $commentIds[] = $row['cid'];
             }
         }
         $commentIds = implode(',', $commentIds);
-        $this->db->query("UPDATE " . DB_PREFIX . "comment SET hide='y' WHERE cid IN ($commentIds)");
+        $this->db->query("UPDATE $this->table SET hide='y' WHERE cid IN ($commentIds)");
         $this->updateCommentNum($blogId);
     }
 
     function showComment($commentId)
     {
         $this->isYoursComment($commentId);
-        $row = $this->db->once_fetch_array("SELECT gid,pid FROM " . DB_PREFIX . "comment WHERE cid=$commentId");
+        $row = $this->db->once_fetch_array("SELECT gid,pid FROM $this->table WHERE cid=$commentId");
         $blogId = (int)$row['gid'];
         $commentIds = array($commentId);
 
         while ($row['pid'] != 0) {
             $commentId = (int)$row['pid'];
             $commentIds[] = $commentId;
-            $row = $this->db->once_fetch_array("SELECT pid FROM " . DB_PREFIX . "comment WHERE cid=$commentId");
+            $row = $this->db->once_fetch_array("SELECT pid FROM $this->table WHERE cid=$commentId");
         }
         $commentIds = implode(',', $commentIds);
-        $this->db->query("UPDATE " . DB_PREFIX . "comment SET hide='n' WHERE cid IN ($commentIds)");
+        $this->db->query("UPDATE $this->table SET hide='n' WHERE cid IN ($commentIds)");
         $this->updateCommentNum($blogId);
     }
 
@@ -255,7 +258,7 @@ class Comment_Model
         $this->isYoursComment($commentId);
         $commentIds = array($commentId);
         $commentIds = implode(',', $commentIds);
-        $this->db->query("UPDATE " . DB_PREFIX . "comment SET top='$top' WHERE cid IN ($commentIds)");
+        $this->db->query("UPDATE $this->table SET top='$top' WHERE cid IN ($commentIds)");
     }
 
     function replyComment($blogId, $pid, $content, $hide)
@@ -273,7 +276,7 @@ class Comment_Model
         $ipaddr = getIp();
         $timestamp = time();
         $useragent = addslashes(getUA());
-        $this->db->query("INSERT INTO " . DB_PREFIX . "comment (date,poster,uid,gid,comment,mail,url,hide,ip,agent,pid)
+        $this->db->query("INSERT INTO $this->table (date,poster,uid,gid,comment,mail,url,hide,ip,agent,pid)
                     VALUES ('$timestamp','$name',$uid,$blogId,'$content','','','$hide','$ipaddr','$useragent',$pid)");
         $this->updateCommentNum($blogId);
     }
@@ -316,10 +319,10 @@ class Comment_Model
                 $this->updateCommentNum($val);
             }
         } else {
-            $sql = "SELECT count(*) FROM " . DB_PREFIX . "comment WHERE gid=$blogId AND hide='n'";
+            $sql = "SELECT count(*) FROM $this->table WHERE gid=$blogId AND hide='n'";
             $res = $this->db->once_fetch_array($sql);
             $comNum = $res['count(*)'];
-            $this->db->query("UPDATE " . DB_PREFIX . "blog SET comnum=$comNum WHERE gid=$blogId");
+            $this->db->query("UPDATE $this->table_blog SET comnum=$comNum WHERE gid=$blogId");
             return $comNum;
         }
     }
@@ -337,14 +340,14 @@ class Comment_Model
 
         $hide = Option::get('ischkcomment') == 'y' && !User::haveEditPermission() ? 'y' : 'n';
 
-        $sql = 'INSERT INTO ' . DB_PREFIX . "comment (uid,date,poster,gid,comment,mail,url,avatar,hide,ip,agent,pid)
+        $sql = "INSERT INTO $this->table (uid,date,poster,gid,comment,mail,url,avatar,hide,ip,agent,pid)
                 VALUES ($uid,'$timestamp','$name','$blogId','$content','$mail','$url','$avatar','$hide','$ipaddr','$useragent','$pid')";
         $this->db->query($sql);
         $cid = $this->db->insert_id();
         $CACHE = Cache::getInstance();
 
         if ($hide === 'n') {
-            $this->db->query('UPDATE ' . DB_PREFIX . "blog SET comnum = comnum + 1 WHERE gid='$blogId'");
+            $this->db->query("UPDATE $this->table_blog SET comnum = comnum + 1 WHERE gid='$blogId'");
             $CACHE->updateCache(array('sta', 'comment'));
             doAction('comment_saved', $cid);
             return ['cid' => $cid, 'hide' => 'n'];
@@ -356,7 +359,7 @@ class Comment_Model
 
     function isCommentExist($blogId, $name, $content)
     {
-        $data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "comment WHERE gid=$blogId AND poster='$name' AND comment='$content'");
+        $data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM $this->table WHERE gid=$blogId AND poster='$name' AND comment='$content'");
         return $data['total'] > 0;
     }
 
@@ -365,7 +368,7 @@ class Comment_Model
         if (User::haveEditPermission() || User::isVisitor()) {
             return true;
         }
-        $query = $this->db->query("SELECT a.cid FROM " . DB_PREFIX . "comment as a," . DB_PREFIX . "blog as b WHERE a.cid=$cid and a.gid=b.gid AND b.author=" . UID);
+        $query = $this->db->query("SELECT a.cid FROM $this->table as a,$this->table_blog as b WHERE a.cid=$cid and a.gid=b.gid AND b.author=" . UID);
         $result = $this->db->num_rows($query);
         if ($result <= 0) {
             emMsg('权限不足！', './');
@@ -377,7 +380,7 @@ class Comment_Model
         $ipaddr = getIp();
         $utctimestamp = time() - Option::get('comment_interval');
 
-        $sql = 'select count(*) as num from ' . DB_PREFIX . "comment where date > $utctimestamp AND ip='$ipaddr'";
+        $sql = "select count(*) as num from $this->table where date > $utctimestamp AND ip='$ipaddr'";
         $res = $this->db->query($sql);
         $row = $this->db->fetch_array($res);
 

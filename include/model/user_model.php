@@ -1,21 +1,26 @@
 <?php
+
 /**
  * user model
  * @package EMLOG
  * @link https://www.emlog.net
  */
 
-class User_Model {
+class User_Model
+{
 
     private $db;
     private $table;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->db = Database::getInstance();
         $this->table = DB_PREFIX . 'user';
+        $this->table_blog = DB_PREFIX . 'blog';
     }
 
-    public function getUsers($email = '', $nickname = '', $admin = '', $page = 1) {
+    public function getUsers($email = '', $nickname = '', $admin = '', $page = 1)
+    {
         $condition = $limit = '';
         if ($email) {
             $condition = " and email like '$email%'";
@@ -46,7 +51,8 @@ class User_Model {
         return $users;
     }
 
-    public function getOneUser($uid) {
+    public function getOneUser($uid)
+    {
         $uid = (int)$uid;
         $row = $this->db->once_fetch_array("select * from $this->table where uid=$uid");
 
@@ -66,7 +72,8 @@ class User_Model {
         return $row;
     }
 
-    public function updateUser($userData, $uid) {
+    public function updateUser($userData, $uid)
+    {
         $utctimestamp = time();
         $Item = ["update_time=$utctimestamp"];
         foreach ($userData as $key => $data) {
@@ -76,7 +83,8 @@ class User_Model {
         $this->db->query("update $this->table set $upStr where uid=$uid");
     }
 
-    public function updateUserByMail($userData, $mail) {
+    public function updateUserByMail($userData, $mail)
+    {
         $timestamp = time();
         $Item = ["update_time=$timestamp"];
         foreach ($userData as $key => $data) {
@@ -86,23 +94,27 @@ class User_Model {
         $this->db->query("update $this->table set $upStr where email='$mail'");
     }
 
-    public function addUser($username, $mail, $password, $role) {
+    public function addUser($username, $mail, $password, $role)
+    {
         $timestamp = time();
         $nickname = getRandStr(8, false);
         $sql = "insert into $this->table (username,email,password,nickname,role,create_time,update_time) values('$username','$mail','$password','$nickname','$role',$timestamp,$timestamp)";
         $this->db->query($sql);
     }
 
-    public function deleteUser($uid) {
-        $this->db->query("update " . DB_PREFIX . "blog set author=1, checked='y' where author=$uid");
+    public function deleteUser($uid)
+    {
+        $this->db->query("update $this->table_blog set author=1, checked='y' where author=$uid");
         $this->db->query("delete from $this->table where uid=$uid");
     }
 
-    public function forbidUser($uid) {
+    public function forbidUser($uid)
+    {
         $this->db->query("update $this->table set state=1 where uid=$uid");
     }
 
-    public function unforbidUser($uid) {
+    public function unforbidUser($uid)
+    {
         $this->db->query("update $this->table set state=0 where uid=$uid");
     }
 
@@ -113,7 +125,8 @@ class User_Model {
      * @param int $uid 兼容更新作者资料时用户名未变更情况
      * @return boolean
      */
-    public function isUserExist($user_name, $uid = '') {
+    public function isUserExist($user_name, $uid = '')
+    {
         if (empty($user_name)) {
             return false;
         }
@@ -122,7 +135,8 @@ class User_Model {
         return $data['total'] > 0;
     }
 
-    public function isNicknameExist($nickname, $uid = '') {
+    public function isNicknameExist($nickname, $uid = '')
+    {
         if (empty($nickname)) {
             return FALSE;
         }
@@ -131,7 +145,8 @@ class User_Model {
         return $data['total'] > 0;
     }
 
-    public function isMailExist($mail, $uid = '') {
+    public function isMailExist($mail, $uid = '')
+    {
         if (empty($mail)) {
             return FALSE;
         }
@@ -140,7 +155,8 @@ class User_Model {
         return $data['total'] > 0;
     }
 
-    public function getUserCount($email = '', $nickname = '', $admin = '') {
+    public function getUserCount($email = '', $nickname = '', $admin = '')
+    {
         $condition = '';
         if ($email) {
             $condition = " and email like '$email%'";
@@ -158,7 +174,8 @@ class User_Model {
     /**
      * 增加用户的积分
      */
-    public function addCredits($uid, $count) {
+    public function addCredits($uid, $count)
+    {
         $uid = (int)$uid;
         $count = (int)$count;
         if ($count < 0) {
@@ -171,7 +188,8 @@ class User_Model {
     /**
      * 减少用户的积分
      */
-    public function reduceCredits($uid, $count) {
+    public function reduceCredits($uid, $count)
+    {
         $uid = (int)$uid;
         $count = (int)$count;
         if ($count < 0) {
@@ -180,5 +198,4 @@ class User_Model {
         $this->db->query("UPDATE $this->table SET credits = IF(credits >= $count, credits - $count, 0) WHERE uid = $uid");
         return true;
     }
-
 }

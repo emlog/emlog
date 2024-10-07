@@ -74,7 +74,7 @@ class Like_Model
 
     function isLiked($blogId, $uid = 0, $ip = '')
     {
-        $sql = "SELECT COUNT(*) AS total FROM " . DB_PREFIX . "like WHERE gid=$blogId";
+        $sql = "SELECT COUNT(*) AS total FROM $this->table WHERE gid=$blogId";
         if ($uid) {
             $sql .= " AND uid=$uid";
         } else {

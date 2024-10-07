@@ -22,6 +22,7 @@ class Log_Model
         $this->table = DB_PREFIX . 'blog';
         $this->table_user = DB_PREFIX . 'user';
         $this->table_sort = DB_PREFIX . 'sort';
+        $this->table_comment = DB_PREFIX . 'comment';
         $this->Parsedown = new Parsedown();
         $this->Parsedown->setBreaksEnabled(true); //automatic line wrapping
     }
@@ -314,7 +315,7 @@ class Log_Model
             emMsg('权限不足！', './');
         }
         // comment
-        $this->db->query("DELETE FROM " . DB_PREFIX . "comment where gid=$blogId");
+        $this->db->query("DELETE FROM $this->table_comment where gid=$blogId");
         // tag
         if (!empty($detail['tags'])) {
             $TagModel = new Tag_Model();
@@ -329,7 +330,7 @@ class Log_Model
     {
         $author = User::haveEditPermission() ? '' : 'and author=' . UID;
         $this->db->query("UPDATE $this->table SET hide='$state' WHERE gid=$blogId $author");
-        $this->db->query("UPDATE " . DB_PREFIX . "comment SET hide='$state' WHERE gid=$blogId");
+        $this->db->query("UPDATE $this->table_comment SET hide='$state' WHERE gid=$blogId");
         $Comment_Model = new Comment_Model();
         $Comment_Model->updateCommentNum($blogId);
     }
@@ -338,7 +339,7 @@ class Log_Model
     {
         $this->db->query("UPDATE $this->table SET checked='$state' WHERE gid=$blogId");
         $state = $state == 'y' ? 'n' : 'y';
-        $this->db->query("UPDATE " . DB_PREFIX . "comment SET hide='$state' WHERE gid=$blogId");
+        $this->db->query("UPDATE $this->table_comment SET hide='$state' WHERE gid=$blogId");
         $Comment_Model = new Comment_Model();
         $Comment_Model->updateCommentNum($blogId);
     }
@@ -346,7 +347,7 @@ class Log_Model
     public function unCheck($blogId, $feedback)
     {
         $this->db->query("UPDATE $this->table SET checked='n', feedback='$feedback' WHERE gid=$blogId");
-        $this->db->query("UPDATE " . DB_PREFIX . "comment SET hide='y' WHERE gid=$blogId");
+        $this->db->query("UPDATE $this->table_comment SET hide='y' WHERE gid=$blogId");
         $Comment_Model = new Comment_Model();
         $Comment_Model->updateCommentNum($blogId);
     }

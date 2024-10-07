@@ -1,13 +1,16 @@
 <?php
+
 /**
  * Template model
  * @package EMLOG
  * @link https://www.emlog.net
  */
 
-class Template_Model {
+class Template_Model
+{
 
-    function getTemplates() {
+    function getTemplates()
+    {
         $nonce_template = Option::get('nonce_templet');
 
         $templates = [];
@@ -49,7 +52,8 @@ class Template_Model {
         return $templates;
     }
 
-    function getCustomTemplates($type) {
+    function getCustomTemplates($type)
+    {
         $nonce_template = Option::get('nonce_templet') . '/';
         if (!is_dir(TPLS_PATH . $nonce_template)) {
             return false;
@@ -87,7 +91,8 @@ class Template_Model {
         return $php_files;
     }
 
-    function getTemplateComment($filename) {
+    function getTemplateComment($filename)
+    {
         $nonce_template = Option::get('nonce_templet') . '/';
         $comment = '';
         $file = fopen(TPLS_PATH . $nonce_template . $filename, 'rb');
@@ -108,7 +113,8 @@ class Template_Model {
     }
 
     // init callback
-    public function initCallback($tplName) {
+    public function initCallback($tplName)
+    {
         $callback_file = "../content/templates/$tplName/callback.php";
         if (file_exists($callback_file)) {
             require_once $callback_file;
@@ -119,7 +125,8 @@ class Template_Model {
     }
 
     // delete callback
-    public function rmCallback($tplName) {
+    public function rmCallback($tplName)
+    {
         $callback_file = "../content/templates/$tplName/callback.php";
         if (file_exists($callback_file)) {
             require_once $callback_file;
@@ -130,7 +137,8 @@ class Template_Model {
     }
 
     // upgrade callback
-    public function upCallback($tplName) {
+    public function upCallback($tplName)
+    {
         $callback_file = "../content/templates/$tplName/callback.php";
         if (file_exists($callback_file)) {
             require_once $callback_file;
@@ -139,5 +147,4 @@ class Template_Model {
             }
         }
     }
-
 }

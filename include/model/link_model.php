@@ -1,21 +1,25 @@
 <?php
+
 /**
  * links model
  * @package EMLOG
  * @link https://www.emlog.net
  */
 
-class Link_Model {
+class Link_Model
+{
 
     private $db;
     private $table;
 
-    function __construct() {
+    function __construct()
+    {
         $this->db = Database::getInstance();
         $this->table = DB_PREFIX . 'link';
     }
 
-    function getLinks() {
+    function getLinks()
+    {
         $res = $this->db->query("SELECT * FROM $this->table ORDER BY taxis ASC");
         $links = [];
         while ($row = $this->db->fetch_array($res)) {
@@ -26,7 +30,8 @@ class Link_Model {
         return $links;
     }
 
-    function updateLink($linkData, $linkId) {
+    function updateLink($linkData, $linkId)
+    {
         $Item = [];
         foreach ($linkData as $key => $data) {
             $Item[] = "$key='$data'";
@@ -35,7 +40,8 @@ class Link_Model {
         $this->db->query("update $this->table set $upStr where id=$linkId");
     }
 
-    public function addLink($logData) {
+    public function addLink($logData)
+    {
         $kItem = $dItem = [];
         foreach ($logData as $key => $data) {
             $kItem[] = $key;
@@ -47,7 +53,8 @@ class Link_Model {
         return $this->db->insert_id();
     }
 
-    function deleteLink($linkId) {
+    function deleteLink($linkId)
+    {
         $this->db->query("DELETE FROM $this->table where id=$linkId");
     }
 }
