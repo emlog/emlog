@@ -631,8 +631,8 @@ function chImageSize($img, $max_w, $max_h) {
  */
 if (!function_exists('getGravatar')) {
     function getGravatar($email, $s = 40) {
-        $hash = md5($email);
-        $gravatar_url = "//cravatar.cn/avatar/$hash?s=$s";
+        $hash = hash('sha256', $email);
+        $gravatar_url = "//weavatar.com/avatar/$hash?s=$s";
         doOnceAction('get_Gravatar', $email, $gravatar_url);
 
         return $gravatar_url;
