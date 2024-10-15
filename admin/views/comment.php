@@ -50,61 +50,65 @@
             <div class="table-responsive">
                 <table class="table table-bordered table-striped table-hover" id="dataTable" width="100%" cellspacing="0">
                     <thead>
-                    <tr>
-                        <th><input type="checkbox" id="checkAllItem"/></th>
-                        <th>内容</th>
-                        <th>评论人</th>
-                        <th>来自文章</th>
-                        <th>发布时间</th>
-                        <th>操作</th>
-                    </tr>
+                        <tr>
+                            <th><input type="checkbox" id="checkAllItem" /></th>
+                            <th>内容</th>
+                            <th>评论人</th>
+                            <th>来自文章</th>
+                            <th>发布时间</th>
+                            <th>操作</th>
+                        </tr>
                     </thead>
                     <tbody class="checkboxContainer">
-                    <?php foreach ($comment as $key => $value):
-                        $ishide = $value['hide'] == 'y' ? '<span class="text-danger">待审</span>' : '';
-                        $mail = $value['mail'] ? " <br />email: {$value['mail']}" : '';
-                        $ip = $value['ip'];
-                        $gid = $value['gid'];
-                        $cid = $value['cid'];
-                        $ip_info = $ip ? "<br />IP：{$ip}" : '';
-                        $comment = $value['comment'];
-                        $poster = !empty($value['uid']) ? '<a href="./comment.php?uid=' . $value['uid'] . '">' . $value['poster'] . '</a>' : $value['poster'];
-                        $title = subString($value['title'], 0, 42);
-                        $hide = $value['hide'];
-                        $date = $value['date'];
-                        $top = $value['top'];
-                        doAction('adm_comment_display');
+                        <?php foreach ($comment as $key => $value):
+                            $ishide = $value['hide'] == 'y' ? '<span class="text-danger">待审</span>' : '';
+                            $mail = $value['mail'] ? " <br />email: {$value['mail']}" : '';
+                            $ip = $value['ip'];
+                            $gid = $value['gid'];
+                            $cid = $value['cid'];
+                            $ip_info = $ip ? "<br />IP：{$ip}" : '';
+                            $comment = $value['comment'];
+                            $poster = !empty($value['uid']) ? '<a href="./comment.php?uid=' . $value['uid'] . '">' . $value['poster'] . '</a>' : $value['poster'];
+                            $title = subString($value['title'], 0, 42);
+                            $hide = $value['hide'];
+                            $date = $value['date'];
+                            $top = $value['top'];
+                            doAction('adm_comment_display');
                         ?>
-                        <tr>
-                            <td style="width: 19px;"><input type="checkbox" value="<?= $cid ?>" name="com[]" class="ids"/></td>
-                            <td>
-                                <?= $comment ?>
-                                <?= $ishide ?>
-                                <?php if ($top == 'y'): ?><span class="text-success">置顶</span><?php endif ?>
-                            </td>
-                            <td class="small">
-                                <?= $poster ?><?= $mail ?><?= $ip_info ?>
-                                <br><?= $value['os'] ?> - <?= $value['browse'] ?>
-                            </td>
-                            <td class="small">
-                                <a href="<?= Url::log($gid) ?>" target="_blank"><?= $title ?></a><br>
-                                <a href="comment.php?gid=<?= $gid ?>" class="badge badge-info">该文所有评论</a>
-                            </td>
-                            <td class="small"><?= $date ?></td>
-                            <td>
-                                <a href="#" data-toggle="modal" class="badge badge-success" data-target="#replyModal"
-                                   data-cid="<?= $cid ?>"
-                                   data-comment="<?= $comment ?>"
-                                   data-hide="<?= $value['hide'] ?>">回复评论
-                                </a>
-                                <?php if (User::haveEditPermission()): ?>
-                                    <a href="javascript: em_confirm('<?= $ip ?>', 'commentbyip', '<?= LoginAuth::genToken() ?>');"
-                                       class="badge badge-pill badge-warning">按IP删除</a>
-                                    <a href="javascript: em_confirm(<?= $cid ?>, 'comment', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger">删除</a>
-                                <?php endif ?>
-                            </td>
-                        </tr>
-                    <?php endforeach ?>
+                            <tr>
+                                <td style="width: 19px;"><input type="checkbox" value="<?= $cid ?>" name="com[]" class="ids" /></td>
+                                <td>
+                                    <?= $comment ?>
+                                    <?= $ishide ?>
+                                    <?php if ($top == 'y'): ?><span class="text-success">置顶</span><?php endif ?>
+                                </td>
+                                <td class="small">
+                                    <?= $poster ?>
+                                    <?php if (User::haveEditPermission()): ?>
+                                        <?= $mail ?>
+                                        <?= $ip_info ?>
+                                        <br><?= $value['os'] ?> - <?= $value['browse'] ?>
+                                    <?php endif ?>
+                                </td>
+                                <td class="small">
+                                    <a href="<?= Url::log($gid) ?>" target="_blank"><?= $title ?></a><br>
+                                    <a href="comment.php?gid=<?= $gid ?>" class="badge badge-info">该文所有评论</a>
+                                </td>
+                                <td class="small"><?= $date ?></td>
+                                <td>
+                                    <a href="#" data-toggle="modal" class="badge badge-success" data-target="#replyModal"
+                                        data-cid="<?= $cid ?>"
+                                        data-comment="<?= $comment ?>"
+                                        data-hide="<?= $value['hide'] ?>">回复评论
+                                    </a>
+                                    <?php if (User::haveEditPermission()): ?>
+                                        <a href="javascript: em_confirm('<?= $ip ?>', 'commentbyip', '<?= LoginAuth::genToken() ?>');"
+                                            class="badge badge-pill badge-warning">按IP删除</a>
+                                        <a href="javascript: em_confirm(<?= $cid ?>, 'comment', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger">删除</a>
+                                    <?php endif ?>
+                                </td>
+                            </tr>
+                        <?php endforeach ?>
                     </tbody>
                 </table>
             </div>
@@ -121,7 +125,7 @@
                         <a href="javascript:commentact('del');" class="dropdown-item text-danger">删除</a>
                     </div>
                 </div>
-                <input name="operate" id="operate" value="" type="hidden"/>
+                <input name="operate" id="operate" value="" type="hidden" />
             </div>
         </div>
     </div>
@@ -141,8 +145,8 @@
                 <div class="modal-body">
                     <p class="comment-replay-content"></p>
                     <div class="form-group">
-                        <input type="hidden" value="" name="cid" id="cid"/>
-                        <input type="hidden" value="" name="hide" id="hide"/>
+                        <input type="hidden" value="" name="cid" id="cid" />
+                        <input type="hidden" value="" name="hide" id="hide" />
                         <textarea class="form-control" id="reply" name="reply" required></textarea>
                     </div>
                 </div>
@@ -163,7 +167,7 @@
         }
 
         if (act === 'del') {
-            delAlert2('', '删除所选评论？', function () {
+            delAlert2('', '删除所选评论？', function() {
                 $("#operate").val(act);
                 $("#form_com").submit();
             })
@@ -173,11 +177,11 @@
         $("#form_com").submit();
     }
 
-    $(function () {
+    $(function() {
         $("#menu_cm").addClass('active');
         setTimeout(hideActived, 3600);
 
-        $('#replyModal').on('show.bs.modal', function (event) {
+        $('#replyModal').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget)
             var comment = button.html()
             var cid = button.data('cid')
