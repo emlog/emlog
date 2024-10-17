@@ -16,7 +16,7 @@ $options = [
             'tpl-head' => '头部设置',
             'tpl-home' => '首页设置',
         ],
-        'description' => '<p>你好，这是默认模板的设置界面，请点击上方菜单进入设置项。</p>'
+        'description' => '<p>你好，这是默认模板的设置界面，请点击左侧菜单进入设置项。</p>'
     ],
     'logotype'       => [
         'labels'  => 'tpl-head',
