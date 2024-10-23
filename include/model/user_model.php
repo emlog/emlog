@@ -74,6 +74,7 @@ class User_Model
 
     public function updateUser($userData, $uid)
     {
+        $uid = (int)$uid;
         $utctimestamp = time();
         $Item = ["update_time=$utctimestamp"];
         foreach ($userData as $key => $data) {
@@ -104,17 +105,20 @@ class User_Model
 
     public function deleteUser($uid)
     {
+        $uid = (int)$uid;
         $this->db->query("update $this->table_blog set author=1, checked='y' where author=$uid");
         $this->db->query("delete from $this->table where uid=$uid");
     }
 
     public function forbidUser($uid)
     {
+        $uid = (int)$uid;
         $this->db->query("update $this->table set state=1 where uid=$uid");
     }
 
     public function unforbidUser($uid)
     {
+        $uid = (int)$uid;
         $this->db->query("update $this->table set state=0 where uid=$uid");
     }
 
@@ -127,6 +131,7 @@ class User_Model
      */
     public function isUserExist($user_name, $uid = '')
     {
+        $uid = (int)$uid;
         if (empty($user_name)) {
             return false;
         }

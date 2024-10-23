@@ -45,6 +45,8 @@ class Like_Model
     }
     function addLike($uid, $name, $avatar, $blogId, $ip, $ua)
     {
+        $uid = (int)$uid;
+        $blogId = (int)$blogId;
         $timestamp = time();
         $ua = addslashes($ua);
 
@@ -58,6 +60,23 @@ class Like_Model
         $CACHE->updateCache(array('sta'));
         doAction('like_saved', $blogId, $id);
         return ['id' => $id];
+    }
+
+    function unLike($uid, $blogId)
+    {
+        $uid = (int)$uid;
+        $blogId = (int)$blogId;
+
+        if ($this->isLiked($blogId, $uid) === false) {
+            return false;
+        }
+
+        $this->db->query("DELETE FROM $this->table WHERE uid=$uid AND gid=$blogId");
+        $sql = "UPDATE " . $this->table_blog . " SET like_count = IF(like_count > 0, like_count - 1, 0) WHERE gid=$blogId";
+        $this->db->query($sql);
+        $CACHE = Cache::getInstance();
+        $CACHE->updateCache(array('sta'));
+        doAction('unlike_saved', $blogId, $uid);
     }
 
     function isTooFast()

@@ -468,6 +468,25 @@ class Api_Controller
         output::ok(['comments' => $comments]);
     }
 
+    private function unlike()
+    {
+        $blogId = Input::postIntVar('id', -1);
+
+        $this->checkAuthCookie();
+
+        if (empty($blogId)) {
+            Output::error('parameter error');
+        }
+
+        $r = $this->Like_Model->unLike($this->curUid, $blogId);
+
+        if ($r === false) {
+            Output::error('unlike failed');
+        }
+
+        output::ok();
+    }
+
     private function like_list()
     {
         $id = Input::getIntVar('id');
