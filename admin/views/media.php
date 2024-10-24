@@ -90,7 +90,7 @@
                             <?php endif ?><br>
                             源文件：<a href="#" class="copy-link text-muted" data-toggle="popover" data-url="<?= $media_url ?>"><?= $media_url ?></a><br>
                             <a href="#" class="copy-link" data-toggle="popover" data-url="<?= $media_url ?>">原文件地址</a>
-                            <?php if ($value['alias'] && $value['mimetype'] === 'application/zip'):
+                            <?php if ($value['alias'] && isZip($value['filename'])):
                                 $media_down_url = BLOG_URL . '?resource_alias=' . $value['alias'];
                             ?>
                                 ｜ <a href="#" class="copy-link" data-toggle="popover" data-url="<?= $media_down_url ?>">用户下载地址</a> （下载<?= $value['download_count'] ?>）
