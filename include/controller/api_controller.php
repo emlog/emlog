@@ -248,6 +248,7 @@ class Api_Controller
                 'tags'        => $this->getTags((int)$value['gid']),
                 'need_pwd'    => $value['password'] ? 'y' : 'n',
                 'fields'      => $value['fields'],
+                'parent_id'   => (int)$value['parent_id'],
             ];
         }
 
@@ -294,6 +295,7 @@ class Api_Controller
             'sortop'        => $r['sortop'],
             'tags'          => $this->getTags($id),
             'fields'        => $r['fields'],
+            'parent_id'     => (int)$r['parent_id'],
         ];
 
         output::ok(['article' => $article,]);

@@ -414,6 +414,7 @@ CREATE TABLE {$db_prefix}blog (
   tags text COMMENT '标签',
   link varchar(255) NOT NULL DEFAULT '' COMMENT '文章跳转链接',
   feedback varchar(2048) NOT NULL DEFAULT '' COMMENT 'audit feedback',
+  parent_id bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '文章层级关系-父级ID',
   PRIMARY KEY (gid),
   KEY author (author),
   KEY views (views),
@@ -681,10 +682,9 @@ CREATE TABLE {$db_prefix}blog_fields (
     $CACHE->updateCache();
     $result = '';
     $result .= "
-        <p style=\"font-size:24px; border-bottom:1px solid #E6E6E6; padding:10px 0px;\">恭喜，安装成功</p>
-        <p>emlog已经安装好了，现在可以开始你的创作了。</p>
+        <p style=\"font-size:24px; border-bottom:1px solid #E6E6E6; padding:10px 0px;\">安装成功了🎉</p>
         <p><b>用户名</b>：{$username}</p>
-        <p><b>密 码</b>：刚才你设定的密码</p>";
+        <p><b>密 码</b>：刚才设定的密码</p>";
     if ($env_emlog_env === 'develop' || ($env_emlog_env !== 'develop' && !@unlink('./install.php'))) {
         $result .= '<p style="color:#ff0000;margin:10px 20px;">警告：请手动删除根目录下安装文件：install.php</p> ';
     }

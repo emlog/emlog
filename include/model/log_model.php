@@ -48,6 +48,8 @@ class Log_Model
      */
     public function updateLog($logData, $blogId, $uid = UID)
     {
+        $blogId = (int)$blogId;
+        $uid = (int)$uid;
         $author = User::haveEditPermission() ? '' : 'and author=' . $uid;
         $Item = [];
         foreach ($logData as $key => $data) {
@@ -59,6 +61,7 @@ class Log_Model
 
     public function getCount($uid = UID)
     {
+        $uid = (int)$uid;
         $sql = sprintf("SELECT count(*) as num FROM $this->table WHERE author=%d AND type='%s'", $uid, 'blog');
         $res = $this->db->once_fetch_array($sql);
         return $res['num'];
@@ -94,6 +97,7 @@ class Log_Model
 
     public function getPostCountByUid($uid, $time = 0)
     {
+        $uid = (int)$uid;
         $date = '';
         if ($time) {
             $date = "and date > $time";
@@ -105,6 +109,7 @@ class Log_Model
 
     public function getOneLogForAdmin($blogId)
     {
+        $blogId = (int)$blogId;
         $author = User::haveEditPermission() ? '' : 'AND author=' . UID;
         $sql = "SELECT * FROM $this->table WHERE gid=$blogId $author";
         $res = $this->db->query($sql);
@@ -123,8 +128,15 @@ class Log_Model
         return false;
     }
 
+    /**
+     * 获取文章详情.
+     *
+     * @param int $blogId ID of the article to be retrieved.
+     * @return array|false An array of article record, or false if not found.
+     */
     public function getDetail($blogId)
     {
+        $blogId = (int)$blogId;
         if (empty($blogId)) {
             return false;
         }
@@ -137,6 +149,12 @@ class Log_Model
         return false;
     }
 
+    /**
+     * 批量获取文章详情.
+     *
+     * @param array $blogIds IDs of articles to be retrieved.
+     * @return array|false An array of article records, or false if no records are found.
+     */
     public function getDetails($blogIds)
     {
         if (empty($blogIds) || !is_array($blogIds)) {
@@ -144,6 +162,27 @@ class Log_Model
         }
         $blogIdsString = implode(',', $blogIds);
         $sql = "SELECT t1.*, t2.sid, t2.sortname, t2.alias as sort_alias FROM $this->table t1 LEFT JOIN $this->table_sort t2 ON t1.sortid=t2.sid WHERE t1.gid IN ($blogIdsString)";
+        $res = $this->db->query($sql);
+        $rows = array();
+        while ($row = $this->db->fetch_array($res)) {
+            $rows[] = $row;
+        }
+        return $rows;
+    }
+
+    /**
+     * 查询所有的子文章.
+     *
+     * @param int $parentID The ID of the parent to filter logs.
+     * @return array|false An array of logs matching the parent ID, or false if the parent ID is invalid.
+     */
+    public function getLogsByParentID($parentID)
+    {
+        $parentID = (int)$parentID;
+        if (empty($parentID)) {
+            return false;
+        }
+        $sql = "SELECT t1.*, t2.sid, t2.sortname, t2.alias as sort_alias FROM $this->table t1 LEFT JOIN $this->table_sort t2 ON t1.sortid=t2.sid WHERE t1.parent_id=$parentID";
         $res = $this->db->query($sql);
         $rows = array();
         while ($row = $this->db->fetch_array($res)) {
@@ -161,6 +200,7 @@ class Log_Model
      */
     public function getOneLogForHome($blogId, $ignoreHide = false, $ignoreChecked = false)
     {
+        $blogId = (int)$blogId;
         $hide = $ignoreHide ? "" : "AND hide='n'";
         $checked = $ignoreChecked ? "" : "AND checked='y'";
         $sql = "SELECT * FROM $this->table WHERE gid=$blogId $hide $checked";
@@ -196,6 +236,7 @@ class Log_Model
             'link'         => $row['link'],
             'tags'         => $row['tags'],
             'fields'       => Field::getFields($blogId),
+            'parent_id'    => (int)$row['parent_id'],
         ];
     }
 
@@ -307,6 +348,7 @@ class Log_Model
 
     public function deleteLog($blogId)
     {
+        $blogId = (int)$blogId;
         $this->checkEditable($blogId);
         $detail = $this->getDetail($blogId);
         $author = User::haveEditPermission() ? '' : 'and author=' . UID;
@@ -328,6 +370,7 @@ class Log_Model
 
     public function hideSwitch($blogId, $state)
     {
+        $blogId = (int)$blogId;
         $author = User::haveEditPermission() ? '' : 'and author=' . UID;
         $this->db->query("UPDATE $this->table SET hide='$state' WHERE gid=$blogId $author");
         $this->db->query("UPDATE $this->table_comment SET hide='$state' WHERE gid=$blogId");
@@ -337,6 +380,7 @@ class Log_Model
 
     public function checkSwitch($blogId, $state)
     {
+        $blogId = (int)$blogId;
         $this->db->query("UPDATE $this->table SET checked='$state' WHERE gid=$blogId");
         $state = $state == 'y' ? 'n' : 'y';
         $this->db->query("UPDATE $this->table_comment SET hide='$state' WHERE gid=$blogId");
@@ -346,6 +390,7 @@ class Log_Model
 
     public function unCheck($blogId, $feedback)
     {
+        $blogId = (int)$blogId;
         $this->db->query("UPDATE $this->table SET checked='n', feedback='$feedback' WHERE gid=$blogId");
         $this->db->query("UPDATE $this->table_comment SET hide='y' WHERE gid=$blogId");
         $Comment_Model = new Comment_Model();
@@ -354,6 +399,7 @@ class Log_Model
 
     public function updateViewCount($blogId)
     {
+        $blogId = (int)$blogId;
         $this->db->query("UPDATE $this->table SET views=views+1 WHERE gid=$blogId");
     }
 
@@ -385,6 +431,7 @@ class Log_Model
     {
         global $CACHE;
         $now = time();
+        $num = (int)$num;
         $date_state = "and date<=$now";
         $sta_cache = $CACHE->readCache('sta');
         $lognum = $sta_cache['lognum'];
@@ -403,6 +450,7 @@ class Log_Model
     public function getHotLog($num)
     {
         $now = time();
+        $num = (int)$num;
         $date_state = "and date<=$now";
         $sql = "SELECT * FROM $this->table WHERE hide='n' and checked='y' and type='blog' $date_state ORDER BY views DESC, comnum DESC LIMIT 0, $num";
         $res = $this->db->query($sql);
