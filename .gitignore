@@ -7,6 +7,14 @@ config.php
 /content/cache/*
 /content/uploadfile/*
 
+# 排除目录下的所有内容
+/content/plugins/*
+/content/templates/*
+# 但不排除
+!/content/plugins/tips
+!/content/plugins/tpl_options
+!/content/templates/default
+
 # IDE
 .project
 .settings

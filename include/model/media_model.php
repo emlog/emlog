@@ -97,7 +97,7 @@ class Media_Model
         ];
     }
 
-    function addMedia($file_info, $sortid, $uid = UID)
+    function addMedia($file_info, $sortid = 0, $uid = UID)
     {
         $file_name = $file_info['file_name'];
         $file_size = $file_info['size'];
