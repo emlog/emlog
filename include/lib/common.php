@@ -1,11 +1,13 @@
 <?php
+
 /**
  * Common function library
  * @package EMLOG
  * @link https://www.emlog.net
  */
 
-function emAutoload($class) {
+function emAutoload($class)
+{
     $class = strtolower($class);
     if (file_exists(EMLOG_ROOT . '/include/model/' . $class . '.php')) {
         require_once(EMLOG_ROOT . '/include/model/' . $class . '.php');
@@ -21,7 +23,8 @@ function emAutoload($class) {
 /**
  * Convert HTML Code
  */
-function htmlClean($content, $nl2br = true) {
+function htmlClean($content, $nl2br = true)
+{
     $content = htmlspecialchars($content, ENT_QUOTES, 'UTF-8');
     if ($nl2br) {
         $content = nl2br($content);
@@ -32,7 +35,8 @@ function htmlClean($content, $nl2br = true) {
 }
 
 if (!function_exists('getIp')) {
-    function getIp() {
+    function getIp()
+    {
         $ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
         if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
             $list = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
@@ -46,7 +50,8 @@ if (!function_exists('getIp')) {
 }
 
 if (!function_exists('getUA')) {
-    function getUA() {
+    function getUA()
+    {
         return isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '';
     }
 }
@@ -54,7 +59,8 @@ if (!function_exists('getUA')) {
 /**
  * 获取站点地址(仅限根目录脚本使用,目前仅用于首页ajax请求)
  */
-function getBlogUrl() {
+function getBlogUrl()
+{
     $phpself = isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME'] : '';
     if (preg_match("/^.*\//", $phpself, $matches)) {
         return 'http://' . $_SERVER['HTTP_HOST'] . $matches[0];
@@ -66,7 +72,8 @@ function getBlogUrl() {
 /**
  * 获取当前访问的base url
  */
-function realUrl() {
+function realUrl()
+{
     static $real_url = NULL;
     if ($real_url !== NULL) {
         return $real_url;
@@ -105,7 +112,8 @@ function realUrl() {
 /**
  * 检查插件
  */
-function checkPlugin($plugin) {
+function checkPlugin($plugin)
+{
     if (is_string($plugin) && preg_match("/^[\w\-\/]+\.php$/", $plugin) && file_exists(EMLOG_ROOT . '/content/plugins/' . $plugin)) {
         return true;
     }
@@ -116,7 +124,8 @@ function checkPlugin($plugin) {
 /**
  * 验证email地址格式
  */
-function checkMail($email) {
+function checkMail($email)
+{
     if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
         return true;
     }
@@ -131,7 +140,8 @@ function checkMail($email) {
  * @param int $start 开始处 eg:0
  * @param int $length 截取长度
  */
-function subString($strings, $start, $length) {
+function subString($strings, $start, $length)
+{
     $sub_str = mb_substr($strings, $start, $length, 'utf8');
     return mb_strlen($sub_str, 'utf8') < mb_strlen($strings, 'utf8') ? $sub_str . '...' : $sub_str;
 }
@@ -139,7 +149,8 @@ function subString($strings, $start, $length) {
 /**
  * 从可能包含html标记的内容中萃取纯文本摘要
  */
-function extractHtmlData($data, $len) {
+function extractHtmlData($data, $len)
+{
     $data = subString(strip_tags($data), 0, $len + 30);
     $search = array(
         "/([\r\n])[\s]+/", // 去掉空白字符
@@ -164,7 +175,8 @@ function extractHtmlData($data, $len) {
  *
  * @param string $fileSize 文件大小 kb
  */
-function changeFileSize($fileSize) {
+function changeFileSize($fileSize)
+{
     if ($fileSize >= 1073741824) {
         $fileSize = round($fileSize / 1073741824, 2) . 'GB';
     } elseif ($fileSize >= 1048576) {
@@ -180,14 +192,16 @@ function changeFileSize($fileSize) {
 /**
  * 获取文件名后缀
  */
-function getFileSuffix($fileName) {
+function getFileSuffix($fileName)
+{
     return strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
 }
 
 /**
  * 将相对路径转换为完整URL，eg：../content/uploadfile/xxx.jpeg
  */
-function getFileUrl($filePath) {
+function getFileUrl($filePath)
+{
     if (stripos($filePath, 'http') === false) {
         return BLOG_URL . substr($filePath, 3);
     }
@@ -197,7 +211,8 @@ function getFileUrl($filePath) {
 /**
  * 去除url的参数
  */
-function rmUrlParams($url) {
+function rmUrlParams($url)
+{
     $urlInfo = explode("?", $url);
     if (empty($urlInfo[0])) {
         return $url;
@@ -205,24 +220,28 @@ function rmUrlParams($url) {
     return $urlInfo[0];
 }
 
-function isImage($mimetype) {
+function isImage($mimetype)
+{
     if (strpos($mimetype, "image") !== false) {
         return true;
     }
     return false;
 }
 
-function isVideo($fileName) {
+function isVideo($fileName)
+{
     $suffix = getFileSuffix($fileName);
     return $suffix === 'mp4';
 }
 
-function isAudio($fileName) {
+function isAudio($fileName)
+{
     $suffix = getFileSuffix($fileName);
     return $suffix === 'mp3';
 }
 
-function isZip($fileName) {
+function isZip($fileName)
+{
     $suffix = getFileSuffix($fileName);
     if (in_array($suffix, ['zip', 'rar', '7z', 'gz'])) {
         return true;
@@ -239,7 +258,8 @@ function isZip($fileName) {
  * @param string $url 页码的地址
  * @return string
  */
-function pagination($count, $perlogs, $page, $url, $anchor = '') {
+function pagination($count, $perlogs, $page, $url, $anchor = '')
+{
     $pnums = @ceil($count / $perlogs);
     $re = '';
     $urlHome = preg_replace("|[\?&/][^\./\?&=]*page[=/\-]|", "", $url);
@@ -298,7 +318,8 @@ function pagination($count, $perlogs, $page, $url, $anchor = '') {
 /**
  * 该函数在插件中调用,挂载插件函数到预留的钩子上
  */
-function addAction($hook, $actionFunc) {
+function addAction($hook, $actionFunc)
+{
     // 通过全局变量来存储挂载点上挂载的插件函数
     global $emHooks;
     if (!isset($emHooks[$hook]) || !in_array($actionFunc, $emHooks[$hook])) {
@@ -311,7 +332,8 @@ function addAction($hook, $actionFunc) {
  * 挂载执行方式1（插入式挂载）：执行挂在钩子上的函数,支持多参数 eg:doAction('post_comment', $author, $email, $url, $comment);
  * eg：在挂载点插入扩展内容
  */
-function doAction($hook) {
+function doAction($hook)
+{
     global $emHooks;
     $args = array_slice(func_get_args(), 1);
     if (isset($emHooks[$hook])) {
@@ -325,7 +347,8 @@ function doAction($hook) {
  * 挂载执行方式2（单次接管式挂载）：执行挂在钩子上的第一个函数,仅执行行一次，接收输入input，且会修改传入的变量$ret
  * eg：接管文件上传函数，将上传本地改为上传云端
  */
-function doOnceAction($hook, $input, &$ret) {
+function doOnceAction($hook, $input, &$ret)
+{
     global $emHooks;
     $args = [$input, &$ret];
     $func = !empty($emHooks[$hook][0]) ? $emHooks[$hook][0] : '';
@@ -338,7 +361,8 @@ function doOnceAction($hook, $input, &$ret) {
  * 挂载执行方式3（轮流接管式挂载）：执行挂在钩子上的所有函数，上一个执行结果作为下一个的输入，且会修改传入的变量$ret
  * eg：不同插件对文章内容进行不同的修改替换。
  */
-function doMultiAction($hook, $input, &$ret) {
+function doMultiAction($hook, $input, &$ret)
+{
     global $emHooks;
     $args = [$input, &$ret];
     if (isset($emHooks[$hook])) {
@@ -352,7 +376,8 @@ function doMultiAction($hook, $input, &$ret) {
 /**
  * 截取文章内容前len个字符
  */
-function subContent($content, $len, $clean = 0) {
+function subContent($content, $len, $clean = 0)
+{
     if ($clean) {
         $content = strip_tags($content);
     }
@@ -365,7 +390,8 @@ function subContent($content, $len, $clean = 0) {
  * @param $format
  * @return false|string
  */
-function smartDate($timestamp, $format = 'Y-m-d H:i') {
+function smartDate($timestamp, $format = 'Y-m-d H:i')
+{
     $sec = time() - $timestamp;
     if ($sec < 60) {
         $op = $sec . ' 秒前';
@@ -379,7 +405,8 @@ function smartDate($timestamp, $format = 'Y-m-d H:i') {
     return $op;
 }
 
-function getRandStr($length = 12, $special_chars = true, $numeric_only = false) {
+function getRandStr($length = 12, $special_chars = true, $numeric_only = false)
+{
     if ($numeric_only) {
         $chars = '0123456789';
     } else {
@@ -401,7 +428,8 @@ function getRandStr($length = 12, $special_chars = true, $numeric_only = false) 
  * @param $attach array 文件FILE信息
  * @param $result array 上传结果
  */
-function upload2local($attach, &$result) {
+function upload2local($attach, &$result)
+{
     $fileName = $attach['name'];
     $tmpFile = $attach['tmp_name'];
     $fileSize = $attach['size'];
@@ -446,7 +474,8 @@ function upload2local($attach, &$result) {
  * @return array | string 文件数据 索引
  *
  */
-function upload($fileName, $tmpFile, $fileSize) {
+function upload($fileName, $tmpFile, $fileSize)
+{
     $extension = getFileSuffix($fileName);
     $file_info = [];
     $file_info['file_name'] = $fileName;
@@ -498,7 +527,8 @@ function upload($fileName, $tmpFile, $fileSize) {
     return $file_info;
 }
 
-function createDirectoryIfNeeded($path) {
+function createDirectoryIfNeeded($path)
+{
     if (!is_dir($path)) {
         if (!mkdir($path, 0777, true) && !is_dir($path)) {
             return false;
@@ -516,7 +546,8 @@ function createDirectoryIfNeeded($path) {
  * @param int $max_h 缩略图最大高度 px
  * @return bool
  */
-function resizeImage($img, $thum_path, $max_w, $max_h) {
+function resizeImage($img, $thum_path, $max_w, $max_h)
+{
     if (!in_array(getFileSuffix($thum_path), array('jpg', 'png', 'jpeg', 'gif'))) {
         return false;
     }
@@ -549,7 +580,8 @@ function resizeImage($img, $thum_path, $max_w, $max_h) {
  * @param int $src_w 原图宽度
  * @param int $src_h 原图高度
  */
-function imageCropAndResize($src_image, $dst_path, $dst_x, $dst_y, $src_x, $src_y, $dst_w, $dst_h, $src_w, $src_h) {
+function imageCropAndResize($src_image, $dst_path, $dst_x, $dst_y, $src_x, $src_y, $dst_w, $dst_h, $src_w, $src_h)
+{
     if (!function_exists('imagecreatefromstring')) {
         return false;
     }
@@ -600,7 +632,8 @@ function imageCropAndResize($src_image, $dst_path, $dst_x, $dst_y, $src_x, $src_
  * @param int $max_h 最大缩放高
  * @return array
  */
-function chImageSize($img, $max_w, $max_h) {
+function chImageSize($img, $max_w, $max_h)
+{
     $size = @getimagesize($img);
     if (!$size) {
         return [];
@@ -630,7 +663,8 @@ function chImageSize($img, $max_w, $max_h) {
  * 获取Gravatar头像
  */
 if (!function_exists('getGravatar')) {
-    function getGravatar($email, $s = 40) {
+    function getGravatar($email, $s = 120)
+    {
         $hash = md5($email);
         $gravatar_url = "//cravatar.cn/avatar/$hash?s=$s";
         doOnceAction('get_Gravatar', $email, $gravatar_url);
@@ -645,7 +679,8 @@ if (!function_exists('getGravatar')) {
  * @param $year string 年份 0000
  * @return false|string
  */
-function getMonthDayNum($month, $year) {
+function getMonthDayNum($month, $year)
+{
     return date("t", strtotime($year . $month . '01'));
 }
 
@@ -656,13 +691,14 @@ function getMonthDayNum($month, $year) {
  * @param string $type
  * @return int
  */
-function emUnZip($zipfile, $path, $type = 'tpl') {
+function emUnZip($zipfile, $path, $type = 'tpl')
+{
     if (!class_exists('ZipArchive', FALSE)) {
-        return 3;//zip模块问题
+        return 3; //zip模块问题
     }
     $zip = new ZipArchive();
     if (@$zip->open($zipfile) !== TRUE) {
-        return 2;//文件权限问题
+        return 2; //文件权限问题
     }
     $r = explode('/', $zip->getNameIndex(0), 2);
     $dir = isset($r[0]) ? $r[0] . '/' : '';
@@ -700,7 +736,8 @@ function emUnZip($zipfile, $path, $type = 'tpl') {
 /**
  * Zip compression
  */
-function emZip($orig_fname, $content) {
+function emZip($orig_fname, $content)
+{
     if (!class_exists('ZipArchive', FALSE)) {
         return false;
     }
@@ -723,7 +760,8 @@ function emZip($orig_fname, $content) {
  * @param string $source file url
  * @return string Temporary file path
  */
-function emFetchFile($source) {
+function emFetchFile($source)
+{
     $temp_file = tempnam(EMLOG_ROOT . '/content/cache/', 'tmp_');
     $wh = fopen($temp_file, 'w+b');
 
@@ -750,7 +788,8 @@ function emFetchFile($source) {
  * @param string $source file url
  * @return string Temporary file path
  */
-function emDownFile($source) {
+function emDownFile($source)
+{
     $ctx_opt = set_ctx_option();
     $context = stream_context_create($ctx_opt);
     $content = file_get_contents($source, false, $context);
@@ -770,7 +809,8 @@ function emDownFile($source) {
     return $temp_file;
 }
 
-function set_ctx_option() {
+function set_ctx_option()
+{
     $emkey = Option::get('emkey');
     return [
         'http' => [
@@ -790,7 +830,8 @@ function set_ctx_option() {
 /**
  * 删除文件或目录
  */
-function emDeleteFile($file) {
+function emDeleteFile($file)
+{
     if (empty($file)) {
         return false;
     }
@@ -820,7 +861,8 @@ function emDeleteFile($file) {
 /**
  * 页面跳转
  */
-function emDirect($directUrl) {
+function emDirect($directUrl)
+{
     header("Location: $directUrl");
     exit;
 }
@@ -832,7 +874,8 @@ function emDirect($directUrl) {
  * @param string $url 返回地址
  * @param boolean $isAutoGo 是否自动返回 true false
  */
-function emMsg($msg, $url = 'javascript:history.back(-1);', $isAutoGo = false) {
+function emMsg($msg, $url = 'javascript:history.back(-1);', $isAutoGo = false)
+{
     if ($msg == '404') {
         header("HTTP/1.1 404 Not Found");
         $msg = '抱歉，你所请求的页面不存在！';
@@ -899,7 +942,8 @@ EOT;
     exit;
 }
 
-function show_404_page($show_404_only = false) {
+function show_404_page($show_404_only = false)
+{
     doAction('page_not_found');
     if ($show_404_only) {
         header("HTTP/1.1 404 Not Found");
@@ -924,7 +968,8 @@ function show_404_page($show_404_only = false) {
  * @return unknown
  */
 if (!function_exists('hash_hmac')) {
-    function hash_hmac($algo, $data, $key) {
+    function hash_hmac($algo, $data, $key)
+    {
         $packs = array('md5' => 'H32', 'sha1' => 'H40');
 
         if (!isset($packs[$algo])) {
@@ -949,7 +994,8 @@ if (!function_exists('hash_hmac')) {
 /**
  * 根据文件后缀获取其mine类型
  */
-function get_mimetype($extension) {
+function get_mimetype($extension)
+{
     $ct['htm'] = 'text/html';
     $ct['html'] = 'text/html';
     $ct['txt'] = 'text/plain';
@@ -1016,7 +1062,8 @@ function get_mimetype($extension) {
 /**
  * 将字符串转换为时区无关的UNIX时间戳
  */
-function emStrtotime($timeStr) {
+function emStrtotime($timeStr)
+{
     if (!$timeStr) {
         return false;
     }
@@ -1049,7 +1096,8 @@ function emStrtotime($timeStr) {
 /**
  * 加载jQuery
  */
-function emLoadJQuery() {
+function emLoadJQuery()
+{
     static $isJQueryLoaded = false;
     if (!$isJQueryLoaded) {
         global $emHooks;
@@ -1059,7 +1107,8 @@ function emLoadJQuery() {
         array_unshift($emHooks['index_head'], 'loadJQuery');
         $isJQueryLoaded = true;
 
-        function loadJQuery() {
+        function loadJQuery()
+        {
             echo '<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>';
         }
     }
@@ -1072,7 +1121,8 @@ function emLoadJQuery() {
  *
  * @throws Exception
  */
-function getTimeZoneOffset($remote_tz, $origin_tz = 'UTC') {
+function getTimeZoneOffset($remote_tz, $origin_tz = 'UTC')
+{
     if (($origin_tz === null) && !is_string($origin_tz = date_default_timezone_get())) {
         return false; // A UTC timestamp was returned -- bail out!
     }
@@ -1086,7 +1136,8 @@ function getTimeZoneOffset($remote_tz, $origin_tz = 'UTC') {
 /**
  * Upload the cut pictures (cover and avatar)
  */
-function uploadCropImg() {
+function uploadCropImg()
+{
     $attach = isset($_FILES['image']) ? $_FILES['image'] : '';
 
     $uploadCheckResult = Media::checkUpload($attach);
@@ -1103,13 +1154,15 @@ function uploadCropImg() {
 }
 
 if (!function_exists('split')) {
-    function split($str, $delimiter) {
+    function split($str, $delimiter)
+    {
         return preg_split($str, $delimiter);
     }
 }
 
 if (!function_exists('get_os')) {
-    function get_os($user_agent) {
+    function get_os($user_agent)
+    {
         if (false !== stripos($user_agent, "win")) {
             $os = 'Windows';
         } else if (false !== stripos($user_agent, "mac")) {
@@ -1128,7 +1181,8 @@ if (!function_exists('get_os')) {
 }
 
 if (!function_exists('get_browse')) {
-    function get_browse($user_agent) {
+    function get_browse($user_agent)
+    {
         if (false !== stripos($user_agent, "MSIE")) {
             $br = 'MSIE';
         } else if (false !== stripos($user_agent, "Edg")) {
@@ -1150,7 +1204,8 @@ if (!function_exists('get_browse')) {
 
 // 获取内容中的第一张图片
 if (!function_exists('getFirstImage')) {
-    function getFirstImage($content) {
+    function getFirstImage($content)
+    {
         // 匹配 Markdown 中的图片
         preg_match('/!\[.*?\]\((.*?)\)/', $content, $matches);
 
@@ -1176,7 +1231,8 @@ if (!function_exists('getFirstImage')) {
 }
 
 // 检查PHP是否支持GD图形库
-function checkGDSupport() {
+function checkGDSupport()
+{
     if (function_exists("gd_info") && function_exists('imagepng')) {
         return true;
     } else {
