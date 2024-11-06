@@ -1008,6 +1008,8 @@ function get_mimetype($extension)
     $ct['png'] = 'image/png';
     $ct['webp'] = 'image/webp';
     $ct['ico'] = 'image/vnd.microsoft.icon';
+    $ct['svg'] = 'image/svg+xml';
+    $ct['avif'] = 'image/avif';
     $ct['mpeg'] = 'video/mpeg';
     $ct['mpg'] = 'video/mpeg';
     $ct['mpe'] = 'video/mpeg';
@@ -1015,6 +1017,7 @@ function get_mimetype($extension)
     $ct['mov'] = 'video/quicktime';
     $ct['avi'] = 'video/x-msvideo';
     $ct['wmv'] = 'video/x-ms-wmv';
+    $ct['mp4'] = 'video/mp4';
     $ct['mp2'] = 'audio/mpeg';
     $ct['mp3'] = 'audio/mpeg';
     $ct['rm'] = 'audio/x-pn-realaudio';

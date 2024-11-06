@@ -178,6 +178,8 @@ class Option
                 'jpeg',
                 'png',
                 'webp',
+                'avif',
+                'svg',
                 'txt',
                 'pdf',
                 'docx',
@@ -192,6 +194,7 @@ class Option
                 'mkv',
                 'webm',
                 'avi',
+                'exe',
             ];
         }
     }
