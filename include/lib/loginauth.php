@@ -1,17 +1,20 @@
 <?php
+
 /**
  * Login authentication
  * @package EMLOG
  * @link https://www.emlog.net
  */
 
-class LoginAuth {
+class LoginAuth
+{
 
     const LOGIN_ERROR_USER = -1;
     const LOGIN_ERROR_PASSWD = -2;
 
 
-    public static function isLogin() {
+    public static function isLogin()
+    {
         global $userData;
 
         if (isset($_COOKIE[AUTH_COOKIE_NAME])) {
@@ -29,7 +32,8 @@ class LoginAuth {
         return true;
     }
 
-    public static function checkLogin($error_code = NULL) {
+    public static function checkLogin($error_code = NULL)
+    {
         if (self::isLogin() === true) {
             return;
         }
@@ -40,14 +44,16 @@ class LoginAuth {
         }
     }
 
-    public static function checkLogged() {
+    public static function checkLogged()
+    {
         if (self::isLogin() === false) {
             return;
         }
         emDirect("./");
     }
 
-    public static function checkUser($username, $password) {
+    public static function checkUser($username, $password)
+    {
         if (empty($username) || empty($password)) {
             return self::LOGIN_ERROR_USER;
         }
@@ -62,7 +68,8 @@ class LoginAuth {
         return self::LOGIN_ERROR_PASSWD;
     }
 
-    public static function getUserDataByLogin($account) {
+    public static function getUserDataByLogin($account)
+    {
         $DB = Database::getInstance();
         if (empty($account)) {
             return false;
@@ -88,7 +95,8 @@ class LoginAuth {
         return $userData;
     }
 
-    public static function checkPassword($password, $hash) {
+    public static function checkPassword($password, $hash)
+    {
         global $em_hasher;
         if (empty($em_hasher)) {
             $em_hasher = new PasswordHash(8, true);
@@ -96,7 +104,8 @@ class LoginAuth {
         return $em_hasher->CheckPassword($password, $hash);
     }
 
-    public static function setAuthCookie($user_login, $persist = false) {
+    public static function setAuthCookie($user_login, $persist = false)
+    {
         if ($persist) {
             $expiration = time() + 3600 * 24 * 30 * 12;
         } else {
@@ -107,18 +116,21 @@ class LoginAuth {
         setcookie($auth_cookie_name, $auth_cookie, $expiration, '/', '', false, true);
     }
 
-    private static function generateAuthCookie($user_login, $expiration) {
+    private static function generateAuthCookie($user_login, $expiration)
+    {
         $key = self::emHash($user_login . '|' . $expiration);
         $hash = hash_hmac('md5', $user_login . '|' . $expiration, $key);
 
         return $user_login . '|' . $expiration . '|' . $hash;
     }
 
-    private static function emHash($data) {
+    private static function emHash($data)
+    {
         return hash_hmac('md5', $data, AUTH_KEY);
     }
 
-    public static function validateAuthCookie($cookie = '') {
+    public static function validateAuthCookie($cookie = '')
+    {
         if (empty($cookie)) {
             return false;
         }
@@ -148,7 +160,8 @@ class LoginAuth {
         return $user;
     }
 
-    public static function genToken() {
+    public static function genToken()
+    {
         if (!isset($_SESSION)) {
             session_start();
         }
@@ -160,7 +173,8 @@ class LoginAuth {
         return $token;
     }
 
-    public static function getToken() {
+    public static function getToken()
+    {
         if (!isset($_SESSION)) {
             session_start();
         }
@@ -171,7 +185,8 @@ class LoginAuth {
         return $token;
     }
 
-    public static function checkToken() {
+    public static function checkToken()
+    {
         $token = isset($_REQUEST['token']) ? addslashes($_REQUEST['token']) : '';
         $sessionToken = self::getToken();
         // The session is abnormal, the /tmp directory may not be writable, skip the check
@@ -179,7 +194,7 @@ class LoginAuth {
             return;
         }
         if ($token !== $sessionToken) {
-            emMsg('安全token校验失败，请尝试刷新页面或者更换浏览器重试');
+            emMsg('Token校验失败，请尝试清理浏览器cookie后刷新页面或者更换浏览器重试');
         }
     }
 }
