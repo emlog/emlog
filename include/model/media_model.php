@@ -23,13 +23,13 @@ class Media_Model
     function getMedias($page = 1, $perpage_count = 24, $uid = 0, $sid = 0, $dateTime = '', $keyword = '')
     {
         $startId = ($page - 1) * $perpage_count;
-        $author = $uid ? 'and author=' . $uid : '';
-        $sort = $sid ? 'and sortid=' . $sid : '';
-        $date = $dateTime ? 'and addtime <= ' . strtotime($dateTime) : '';
-        $keyword = $keyword ? 'and filename like "%' . $keyword . '%"' : '';
+        $author = $uid ? 'AND author=' . $uid : '';
+        $sort = $sid ? 'AND sortid=' . $sid : '';
+        $date = $dateTime ? 'AND addtime <= ' . strtotime($dateTime) : '';
+        $keywordCondition = $keyword ? 'AND (filename LIKE "%' . $keyword . '%" OR filepath LIKE "%' . $keyword . '%")' : '';
         $limit = "LIMIT $startId, " . $perpage_count;
 
-        $sql = "SELECT * FROM $this->table m LEFT JOIN $this->table_sort s ON m.sortid=s.id WHERE m.thumfor = 0 $author $sort $date $keyword order by m.aid desc $limit";
+        $sql = "SELECT * FROM $this->table m LEFT JOIN $this->table_sort s ON m.sortid=s.id WHERE m.thumfor = 0 $author $sort $date $keywordCondition order by m.aid desc $limit";
         $query = $this->db->query($sql);
         $medias = [];
         while ($row = $this->db->fetch_array($query)) {
@@ -40,11 +40,11 @@ class Media_Model
 
     function getMediaCount($uid = null, $sid = null, $dateTime = '', $keyword = '')
     {
-        $author = $uid ? 'and author=' . $uid : '';
-        $sort = $sid ? 'and sortid=' . $sid : '';
-        $date = $dateTime ? 'and addtime<=' . strtotime($dateTime) : '';
-        $keyword = $keyword ? 'and filename like "%' . $keyword . '%"' : '';
-        $sql = "SELECT count(*) as count FROM $this->table WHERE thumfor = 0 $author $sort $date $keyword";
+        $author = $uid ? 'AND author=' . $uid : '';
+        $sort = $sid ? 'AND sortid=' . $sid : '';
+        $date = $dateTime ? 'AND addtime<=' . strtotime($dateTime) : '';
+        $keywordCondition = $keyword ? 'AND (filename LIKE "%' . $keyword . '%" OR filepath LIKE "%' . $keyword . '%")' : '';
+        $sql = "SELECT COUNT(*) AS count FROM $this->table WHERE thumfor = 0 $author $sort $date $keywordCondition";
         $res = $this->db->once_fetch_array($sql);
         return $res['count'];
     }
@@ -143,7 +143,7 @@ class Media_Model
 
     function updateMedia($data, $media_id)
     {
-        $author = User::haveEditPermission() ? '' : 'and author=' . UID;
+        $author = User::haveEditPermission() ? '' : 'AND author=' . UID;
         $Item = [];
         foreach ($data as $key => $val) {
             $Item[] = "$key='$val'";
