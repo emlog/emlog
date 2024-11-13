@@ -1,4 +1,5 @@
 <?php
+
 /**
  * comments
  *
@@ -52,10 +53,23 @@ if ($action === 'delbyip') {
     if (!User::haveEditPermission()) {
         emMsg('权限不足！', './');
     }
-    $ip = $_GET['ip'] ? addslashes($_GET['ip']) : '';
+    $ip = Input::getStrVar('ip');
     $Comment_Model->delCommentByIp($ip);
     $CACHE->updateCache(array('sta', 'comment'));
     emDirect("./comment.php?active_del=1");
+}
+
+if ($action === 'pub') {
+    LoginAuth::checkToken();
+    if (!User::haveEditPermission()) {
+        emMsg('权限不足！', './');
+    }
+
+    $id = Input::getIntVar('id');
+
+    $Comment_Model->showComment($id);
+    $CACHE->updateCache(array('sta', 'comment'));
+    emDirect("./comment.php?active_show=1");
 }
 
 if ($action === 'batch_operation') {
@@ -67,7 +81,7 @@ if ($action === 'batch_operation') {
     }
 
     switch ($operate) {
-        case 'del' :
+        case 'del':
             $Comment_Model->batchComment('delcom', $comments);
             $CACHE->updateCache(array('sta', 'comment'));
             emDirect("./comment.php?active_del=1");

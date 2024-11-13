@@ -96,15 +96,17 @@
                                 </td>
                                 <td class="small"><?= $date ?></td>
                                 <td>
+                                    <?php if (User::haveEditPermission()): ?>
+                                        <a href="javascript: em_confirm('<?= $ip ?>', 'commentbyip', '<?= LoginAuth::genToken() ?>');" class="badge badge-pill badge-danger">按IP删</a>
+                                        <a href="javascript: em_confirm(<?= $cid ?>, 'comment', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger">删除</a>
+                                    <?php endif ?>
                                     <a href="#" data-toggle="modal" class="badge badge-success" data-target="#replyModal"
                                         data-cid="<?= $cid ?>"
                                         data-comment="<?= $comment ?>"
-                                        data-hide="<?= $value['hide'] ?>">回复评论
+                                        data-hide="<?= $value['hide'] ?>">回复
                                     </a>
-                                    <?php if (User::haveEditPermission()): ?>
-                                        <a href="javascript: em_confirm('<?= $ip ?>', 'commentbyip', '<?= LoginAuth::genToken() ?>');"
-                                            class="badge badge-pill badge-warning">按IP删除</a>
-                                        <a href="javascript: em_confirm(<?= $cid ?>, 'comment', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger">删除</a>
+                                    <?php if ($value['hide'] === 'y' && User::haveEditPermission()): ?>
+                                        <a class="badge badge-warning" href="comment.php?action=pub&id=<?= $cid ?>&token=<?= LoginAuth::genToken() ?>">审核</a>
                                     <?php endif ?>
                                 </td>
                             </tr>
