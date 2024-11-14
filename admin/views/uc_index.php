@@ -4,14 +4,14 @@
         <div class="flex-shrink-0">
             <a class="mr-2" href="blogger.php">
                 <img src="<?= User::getAvatar($user_cache[UID]['avatar']) ?>"
-                     alt="avatar" class="img-fluid rounded-circle border border-secondary border-3"
-                     style="width: 60px;">
+                    alt="avatar" class="img-fluid rounded-circle border border-secondary border-3"
+                    style="width: 60px;">
             </a>
         </div>
         <div class="flex-grow-1 ms-3">
             <div class="align-items-center mb-2">
                 <p class="mb-0 m-2"><a class="mr-2" href="blogger.php"><?= $user_cache[UID]['name'] ?></a></p>
-                <p class="mb-0 m-2 small"><?= $user_cache[UID]['des'] ?: "当风吹过，留下微笑" ?></p>
+                <p class="mb-0 m-2 small">注册用户</p>
             </div>
         </div>
     </div>
@@ -57,13 +57,13 @@
 <div class="row">
     <div class="col-lg-6 mb-4">
         <div class="card shadow mb-4">
-            <h6 class="card-header">最近发布的文章</h6>
+            <h6 class="card-header">最近发布的<?= Option::get("posts_name") ?></h6>
             <div class="card-body admin_index_list">
                 <ul class="list-group list-group-flush">
                     <?php
                     if ($logs):
                         foreach ($logs as $v) :
-                            ?>
+                    ?>
                             <li class="msg_type_0 d-flex justify-content-between align-items-center">
                                 <a href="<?= Url::log($v['gid']) ?>" target="_blank"><?= $v['title'] ?></a>
                                 <span class="badge badge-primary rounded-pill"><?= $v['views'] ?></span>
