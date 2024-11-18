@@ -72,7 +72,7 @@
                         endforeach;
                     else:
                         ?>
-                        <p class="m-3">还没有发布过文章。</p>
+                        <p class="m-2">这里是空的。</p>
                     <?php endif; ?>
                 </ul>
             </div>
@@ -90,7 +90,7 @@
                         <?php endforeach;
                     else:
                         ?>
-                        <p class="m-3">还没收到评论。</p>
+                        <p class="m-2">这里是空的。</p>
                     <?php endif; ?>
                 </ul>
             </div>
