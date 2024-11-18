@@ -74,7 +74,7 @@ if ($action === 'lib') {
         } elseif (isZip($v['filename'])) {
             $data['media_icon'] = "./views/images/zip.webp";
             $data['media_type'] = 'zip';
-        } elseif (isVideo($v['filename'])) {
+        } elseif (isVideo($v['mimetype'])) {
             $data['media_type'] = 'video';
             $data['media_icon'] = "./views/images/video.webp";
         } elseif (isAudio($v['filename'])) {

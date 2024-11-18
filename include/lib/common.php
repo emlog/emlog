@@ -228,10 +228,12 @@ function isImage($mimetype)
     return false;
 }
 
-function isVideo($fileName)
+function isVideo($mimetype)
 {
-    $suffix = getFileSuffix($fileName);
-    return $suffix === 'mp4';
+    if (strpos($mimetype, "video") !== false) {
+        return true;
+    }
+    return false;
 }
 
 function isAudio($fileName)
@@ -996,10 +998,18 @@ if (!function_exists('hash_hmac')) {
  */
 function get_mimetype($extension)
 {
-    $ct['htm'] = 'text/html';
-    $ct['html'] = 'text/html';
     $ct['txt'] = 'text/plain';
     $ct['asc'] = 'text/plain';
+    $ct['css'] = 'text/css';
+    $ct['htm'] = 'text/html';
+    $ct['html'] = 'text/html';
+    $ct['js'] = 'application/x-javascript';
+    $ct['xhtml'] = 'application/xhtml+xml';
+    $ct['xml'] = 'text/xml';
+    $ct['xsl'] = 'text/xml';
+    $ct['wml'] = 'text/vnd.wap.wml';
+    $ct['wmls'] = 'text/vnd.wap.wmlscript';
+    $ct['rtf'] = 'text/rtf';
     $ct['bmp'] = 'image/bmp';
     $ct['gif'] = 'image/gif';
     $ct['jpeg'] = 'image/jpeg';
@@ -1007,57 +1017,40 @@ function get_mimetype($extension)
     $ct['jpe'] = 'image/jpeg';
     $ct['png'] = 'image/png';
     $ct['webp'] = 'image/webp';
-    $ct['ico'] = 'image/vnd.microsoft.icon';
     $ct['svg'] = 'image/svg+xml';
     $ct['avif'] = 'image/avif';
-    $ct['mpeg'] = 'video/mpeg';
+    $ct['tiff'] = 'image/tiff';
+    $ct['tif'] = 'image/tiff';
+    $ct['ico'] = 'image/vnd.microsoft.icon';
+    $ct['midi'] = 'audio/midi';
+    $ct['mid'] = 'audio/midi';
+    $ct['mp3'] = 'audio/mpeg';
+    $ct['wav'] = 'audio/x-wav';
     $ct['mpg'] = 'video/mpeg';
+    $ct['mpeg'] = 'video/mpeg';
     $ct['mpe'] = 'video/mpeg';
     $ct['qt'] = 'video/quicktime';
+    $ct['webm'] = 'video/webm';
     $ct['mov'] = 'video/quicktime';
     $ct['avi'] = 'video/x-msvideo';
     $ct['wmv'] = 'video/x-ms-wmv';
     $ct['mp4'] = 'video/mp4';
-    $ct['mp2'] = 'audio/mpeg';
-    $ct['mp3'] = 'audio/mpeg';
-    $ct['rm'] = 'audio/x-pn-realaudio';
-    $ct['ram'] = 'audio/x-pn-realaudio';
-    $ct['rpm'] = 'audio/x-pn-realaudio-plugin';
-    $ct['ra'] = 'audio/x-realaudio';
-    $ct['wav'] = 'audio/x-wav';
-    $ct['css'] = 'text/css';
-    $ct['zip'] = 'application/zip';
-    $ct['pdf'] = 'application/pdf';
-    $ct['doc'] = 'application/msword';
+    $ct['mkv'] = 'video/x-matroska';
     $ct['bin'] = 'application/octet-stream';
-    $ct['exe'] = 'application/octet-stream';
     $ct['class'] = 'application/octet-stream';
     $ct['dll'] = 'application/octet-stream';
-    $ct['xls'] = 'application/vnd.ms-excel';
+    $ct['dvi'] = 'application/x-dvi';
+    $ct['exe'] = 'application/octet-stream';
+    $ct['gtar'] = 'application/x-gtar';
+    $ct['gzip'] = 'application/x-gzip';
+    $ct['pdf'] = 'application/pdf';
+    $ct['doc'] = 'application/msword';
     $ct['ppt'] = 'application/vnd.ms-powerpoint';
     $ct['wbxml'] = 'application/vnd.wap.wbxml';
     $ct['wmlc'] = 'application/vnd.wap.wmlc';
     $ct['wmlsc'] = 'application/vnd.wap.wmlscriptc';
-    $ct['dvi'] = 'application/x-dvi';
-    $ct['spl'] = 'application/x-futuresplash';
-    $ct['gtar'] = 'application/x-gtar';
-    $ct['gzip'] = 'application/x-gzip';
-    $ct['js'] = 'application/x-javascript';
-    $ct['swf'] = 'application/x-shockwave-flash';
-    $ct['tar'] = 'application/x-tar';
-    $ct['xhtml'] = 'application/xhtml+xml';
-    $ct['au'] = 'audio/basic';
-    $ct['snd'] = 'audio/basic';
-    $ct['midi'] = 'audio/midi';
-    $ct['mid'] = 'audio/midi';
-    $ct['m3u'] = 'audio/x-mpegurl';
-    $ct['tiff'] = 'image/tiff';
-    $ct['tif'] = 'image/tiff';
-    $ct['rtf'] = 'text/rtf';
-    $ct['wml'] = 'text/vnd.wap.wml';
-    $ct['wmls'] = 'text/vnd.wap.wmlscript';
-    $ct['xsl'] = 'text/xml';
-    $ct['xml'] = 'text/xml';
+    $ct['xls'] = 'application/vnd.ms-excel';
+    $ct['zip'] = 'application/zip';
 
     return isset($ct[strtolower($extension)]) ? $ct[strtolower($extension)] : 'text/html';
 }

@@ -60,7 +60,7 @@
             } elseif (isZip($value['filename'])) {
                 $media_icon = "./views/images/zip.webp";
                 $img_viewer = '';
-            } elseif (isVideo($value['filename'])) {
+            } elseif (isVideo($value['mimetype'])) {
                 $media_icon = "./views/images/video.webp";
                 $img_viewer = '';
             } elseif (isAudio($value['filename'])) {
