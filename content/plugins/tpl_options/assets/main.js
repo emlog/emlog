@@ -165,7 +165,7 @@ $(function () {
                 '<div class="tpl-image-preview"><img src=""></div><div class="tpl-block-upload-input">' +
                 '<input type="text" name="' + _name + '[content][]" value=""><label>\n' +
                 '<a class="btn btn-primary"><i class="icofont-plus"></i>上传</a>\n' +
-                '<input class="d-none tpl-image" type="file" name="image" data-url="' + _url + '" accept="image/gif,image/jpeg,image/jpg,image/png">\n' +
+                '<input class="d-none tpl-image" type="file" name="image" data-url="' + _url + '" accept="image/svg+xml,image/webp,image/avif,image/jpeg,image/jpg,image/png,image/gif">\n' +
                 '</label>'
             type_html += '</div></div>';
         } else {

@@ -1229,7 +1229,7 @@ class TplOptions
                         <input type="text" name="{name}" value="{value}">
                         <label>
                             <a class="btn btn-primary"><i class="icofont-plus"></i>上传</a>
-                            <input class="d-none tpl-image" type="file" name="image" data-url="' . BLOG_URL . '" accept="image/gif,image/jpeg,image/jpg,image/png">
+                            <input class="d-none tpl-image" type="file" name="image" data-url="' . BLOG_URL . '" accept="image/svg+xml,image/webp,image/avif,image/jpeg,image/jpg,image/png,image/gif">
                         </label>
                     </div>
                 </div>';
@@ -1254,7 +1254,7 @@ class TplOptions
                              <input type="text" name="{name}" value="{value}">
                              <label>
                                 <a class="btn btn-primary"><i class="icofont-plus"></i>上传</a>
-                                <input class="d-none tpl-image" type="file" name="image" data-url="' . BLOG_URL . '" accept="image/gif,image/jpeg,image/jpg,image/png">
+                                <input class="d-none tpl-image" type="file" name="image" data-url="' . BLOG_URL . '" accept="image/svg+xml,image/webp,image/avif,image/jpeg,image/jpg,image/png,image/gif">
                              </label>
                          </div>
                      </div>';
