@@ -15,6 +15,7 @@ class Log_Model
     private $table;
     private $table_user;
     private $table_sort;
+    private $table_comment;
 
     public function __construct()
     {

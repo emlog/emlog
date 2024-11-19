@@ -11,6 +11,7 @@ class Comment_Model
 
     private $db;
     private $table;
+    private $table_blog;
 
     function __construct()
     {

@@ -11,6 +11,7 @@ class User_Model
 
     private $db;
     private $table;
+    private $table_blog;
 
     public function __construct()
     {
