@@ -162,11 +162,14 @@ class Cache
 
     private function mc_sta()
     {
-        $data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "blog WHERE type='blog' AND hide='n' AND checked='y' ");
-        $log_num = $data['total'];
-
-        $data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "blog WHERE type='blog' AND hide='n' AND checked='n' ");
-        $check_num = $data['total'];
+        $now = time();
+        $sql = "SELECT 
+        SUM(CASE WHEN type = 'blog' AND hide = 'n' AND checked = 'y' AND date <= $now THEN 1 ELSE 0 END) AS log_num,
+        SUM(CASE WHEN type = 'blog' AND hide = 'n' AND checked = 'n' THEN 1 ELSE 0 END) AS check_num 
+        FROM `emlog_blog`";
+        $data = $this->db->once_fetch_array($sql);
+        $log_num = $data['log_num'];
+        $check_num = $data['check_num'];
 
         $data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "twitter");
         $note_num = $data['total'];
@@ -174,11 +177,13 @@ class Cache
         $data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "like");
         $like_num = $data['total'];
 
-        $data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "comment WHERE hide='n' ");
-        $com_num = $data['total'];
-
-        $data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "comment WHERE hide='y' ");
-        $hide_com_num = $data['total'];
+        $sql = "SELECT 
+        SUM(CASE WHEN hide = 'n' THEN 1 ELSE 0 END) AS com_num,
+        SUM(CASE WHEN hide = 'y' THEN 1 ELSE 0 END) AS hide_com_num 
+        FROM " . DB_PREFIX . "comment";
+        $data = $this->db->once_fetch_array($sql);
+        $com_num = $data['com_num'];
+        $hide_com_num = $data['hide_com_num'];
 
         $sta_cache = [
             'lognum'     => $log_num,
