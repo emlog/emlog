@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 阅读文章页面
  */
@@ -14,7 +15,7 @@ defined('EMLOG_ROOT') || exit('access denied!');
         <span class="m-r-5"><?php blog_sort($sortid) ?></span>
         <?php editflg($logid, $author) ?>
     </p>
-    <hr class="bottom-5"/>
+    <hr class="bottom-5" />
     <div class="markdown" id="emlogEchoLog"><?= $log_content ?></div>
     <p class="top-5"><?php blog_tag($logid) ?></p>
 

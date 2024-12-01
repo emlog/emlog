@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 加密文章输入密码页面
  */
@@ -6,14 +7,14 @@ defined('EMLOG_ROOT') || exit('access denied!');
 ?>
 <!doctype html>
 <html lang="zh-cn">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>请输入文章访问密码</title>
     <style>
         body {
-            font-family: helvetica neue, Helvetica, Arial, sans-serif
-            background-color: #f5f5f5;
+            font-family: helvetica neue, Helvetica, Arial, sans-serif background-color: #f5f5f5;
         }
 
         form {
@@ -69,16 +70,16 @@ defined('EMLOG_ROOT') || exit('access denied!');
         }
     </style>
 </head>
+
 <body>
-<form action="" method="post">
-    <h1>请输入文章访问密码</h1>
-    <div style="display: flex;">
-        <input type="password" id="logpwd" name="logpwd" required autofocus>
-        <button type="submit">提交</button>
-    </div>
-    <a href="<?= BLOG_URL ?>">&larr;返回首页</a>
-</form>
+    <form action="" method="post">
+        <h1>请输入文章访问密码</h1>
+        <div style="display: flex;">
+            <input type="password" id="logpwd" name="logpwd" required autofocus>
+            <button type="submit">提交</button>
+        </div>
+        <a href="<?= BLOG_URL ?>">&larr;返回首页</a>
+    </form>
 </body>
+
 </html>
-
-

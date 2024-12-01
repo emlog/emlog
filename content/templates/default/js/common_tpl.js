@@ -20,18 +20,6 @@ var myBlog = {
             $(".commentform #comment").css("height", "140px")
                 .css('border-radius', '10px')
         }
-        for (let num = 0; num < $(".markdown img").length; num++) {  // 为正文中的图片添加查看大图（默认认为图片父标签<a>中的链接是图片原地址）
-            let $this = $(".markdown img:eq(" + num + ")")
-            let sourceSrc = $(".markdown img:eq(" + num + ")").parent().attr('href')
-
-            if (typeof sourceSrc === "undefined" || sourceSrc.match(/\.(jpeg|jpg|gif|png)$/i) === null) {
-                continue
-            }
-
-            $this.attr("data-action", "zoom")
-                .parent().attr("sourcesrc", sourceSrc)
-                .removeAttr("href")
-        }
         $("#commentform").attr("onsubmit", "return myBlog.comSubmitTip()")  // 评论提交在表单验证未通过的情况下是不能提交的
     },
     /**

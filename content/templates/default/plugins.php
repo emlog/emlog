@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 模板的系统调用文件
  * 模板启用后，该文件会被系统自动加载。可用于实现类似插件的功能。
@@ -7,7 +8,8 @@
 defined('EMLOG_ROOT') || exit('access denied!');
 
 // 为下载链接添加按钮样式
-function add_download_style($logData, &$result) {
+function add_download_style($logData, &$result)
+{
     // 修改正则表达式以匹配 href 带有 ?resource_alias 和文件后缀为 .zip 等的下载链接
     $pattern = '/(href="[^"]*(\?resource_alias=.{16}|\.zip|\.rar|\.7z|\.gz|\.bz2))">/';
     $replacement = '$1" class="em-download-btn"><span class="iconfont icon-clouddownload"></span> ';
@@ -17,7 +19,8 @@ function add_download_style($logData, &$result) {
 addAction('article_content_echo', 'add_download_style');
 
 // 定义下载按钮样式
-function render_download_btn() {
+function render_download_btn()
+{
     echo <<<EOT
 <style>
 .em-download-btn {
