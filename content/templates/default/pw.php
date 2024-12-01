@@ -14,7 +14,8 @@ defined('EMLOG_ROOT') || exit('access denied!');
     <title>请输入文章访问密码</title>
     <style>
         body {
-            font-family: helvetica neue, Helvetica, Arial, sans-serif background-color: #f5f5f5;
+            font-family: helvetica neue, Helvetica, Arial, sans-serif;
+            background-color: #f5f5f5;
         }
 
         form {
