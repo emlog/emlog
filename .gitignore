@@ -1,6 +1,7 @@
 # emlog
 .htaccess
 .user.ini
+sitemap.xml
 Dockerfile
 config.php
 /content/backup/*.sql
