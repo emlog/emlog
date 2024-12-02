@@ -22,7 +22,7 @@
         <?php foreach ($addons as $k => $v):
             $icon = $v['icon'] ?: "./views/images/theme.png";
             $type = $v['app_type'] === 'template' ? 'tpl' : 'plugin';
-            ?>
+        ?>
             <div class="col-md-6 col-lg-3">
                 <div class="card mb-4 shadow-sm">
                     <a href="#appModal" class="p-1" data-toggle="modal" data-target="#appModal" data-name="<?= $v['name'] ?>" data-url="<?= $v['app_url'] ?>" data-buy-url="<?= $v['buy_url'] ?>">
@@ -40,7 +40,7 @@
                         <p class="card-text text-muted small">
                             开发者：<a href="./store.php?author_id=<?= $v['author_id'] ?>"><?= $v['author'] ?></a><br>
                             版本号：<?= $v['ver'] ?><br>
-                            下载次数：<?= $v['downloads'] ?><br>
+                            安装次数：<?= $v['downloads'] ?><br>
                             更新时间：<?= $v['update_time'] ?><br>
                         </p>
                         <div class="card-text d-flex justify-content-between">
@@ -73,7 +73,7 @@
     </div>
 </div>
 <script>
-    $(function () {
+    $(function() {
         $("#menu_store").addClass('active');
         setTimeout(hideActived, 3600);
     });
