@@ -102,6 +102,7 @@ class User_Model
         $nickname = getRandStr(8, false);
         $sql = "insert into $this->table (username,email,password,nickname,role,create_time,update_time) values('$username','$mail','$password','$nickname','$role',$timestamp,$timestamp)";
         $this->db->query($sql);
+        return $this->db->insert_id();
     }
 
     public function deleteUser($uid)

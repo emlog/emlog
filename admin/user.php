@@ -1,4 +1,5 @@
 <?php
+
 /**
  * user
  * @package EMLOG
@@ -169,6 +170,7 @@ if ($action == 'del') {
 
     $User_Model->deleteUser($uid);
     $CACHE->updateCache(array('sta', 'user'));
+    doAction('delete_user', $uid);
     emDirect('./user.php?active_del=1');
 }
 

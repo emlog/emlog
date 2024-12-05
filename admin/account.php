@@ -144,8 +144,11 @@ if ($action == 'dosignup') {
     $PHPASS = new PasswordHash(8, true);
     $passwd = $PHPASS->HashPassword($passwd);
 
-    $User_Model->addUser('', $mail, $passwd, User::ROLE_WRITER);
+    $uid = $User_Model->addUser('', $mail, $passwd, User::ROLE_WRITER);
     $CACHE->updateCache(['sta', 'user']);
+
+    doAction('register_succeed', $uid);
+
     if ($resp === 'json') {
         Output::ok();
     }
