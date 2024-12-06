@@ -1,4 +1,5 @@
 <?php
+
 /**
  * user profile
  *
@@ -31,20 +32,20 @@ if ($action == 'update') {
     $User_Model = new User_Model();
     $nickname = Input::postStrVar('name');
     $description = Input::postStrVar('description');
-    $login = Input::postStrVar('username');
+    $username = Input::postStrVar('username');
 
     if (empty($nickname)) {
         Output::error('昵称不能为空');
     } elseif ($User_Model->isNicknameExist($nickname, UID)) {
         Output::error('昵称已被占用');
-    } elseif ($User_Model->isUserExist($login, UID)) {
+    } elseif ($User_Model->isUserExist($username, UID)) {
         Output::error('登录名已被占用');
     }
 
     $d = [
         'nickname'    => $nickname,
         'description' => $description,
-        'username'    => $login,
+        'username'    => $username,
     ];
 
     $User_Model->updateUser($d, UID);
