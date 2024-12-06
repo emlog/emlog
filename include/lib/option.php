@@ -109,6 +109,11 @@ class Option
                 'reg_0'  => '|^.*/\?(plugin)=([\w\-]+).*([\?&].*)?$|',
             ],
             [
+                'model'  => 'User_Controller',
+                'method' => 'index',
+                'reg_0'  => '|\/(user)(?:\/([\w\-]+))?|',
+            ],
+            [
                 'model'  => 'Plugin_Controller',
                 'method' => 'loadPluginShow',
                 'reg_0'  => '|\/(plugin)/([\w\-]+)|',

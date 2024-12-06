@@ -90,6 +90,7 @@ class LoginAuth
         $userData['email'] = $ret['email'];
         $userData['description'] = $ret['description'];
         $userData['ip'] = $ret['ip'];
+        $userData['credits'] = (int)$ret['credits'];
         $userData['create_time'] = $ret['create_time'];
         $userData['update_time'] = $ret['update_time'];
         return $userData;
