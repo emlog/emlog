@@ -17,18 +17,21 @@ $userData['nickname']
 $userData['description']
 $userData['email']
 
-获取当前路由
-user/profile
+根据路由判断是否引入头部
+if (in_array($routerPath, ['', 'vip', 'order', 'like', 'account', 'profile'])) {
+    include View::getView('header');
+}
+
+实现对应功能
 if ($routerPath === 'profile') {
     //展示个人资料页
+} elseif ($routerPath === 'order_calback') {
+    // do payment callback
+} else {
+    show_404_page();
 }
 
-user/order_calback
-if ($routerPath === 'order_calback') {
-    //实现支付回调逻辑
-}
-
-引入其他模板文件
+引入底部模板文件
 include View::getView('footer')
 */
 

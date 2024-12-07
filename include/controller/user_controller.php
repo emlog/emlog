@@ -28,7 +28,6 @@ class User_Controller
         $options_cache = Option::getAll();
         extract($options_cache);
 
-        include View::getView('header');
         include View::getView('user');
     }
 }
