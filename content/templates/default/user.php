@@ -17,12 +17,12 @@ $userData['nickname']
 $userData['description']
 $userData['email']
 
-根据路由判断是否引入头部
-if (in_array($routerPath, ['', 'vip', 'order', 'like', 'account', 'profile'])) {
+引入头部模板文件（可根据路由判断是否引入）
+if (in_array($routerPath, ['', 'order', 'account', 'profile'])) {
     include View::getView('header');
 }
 
-实现对应功能
+实现路由对应功能
 if ($routerPath === 'profile') {
     //展示个人资料页
 } elseif ($routerPath === 'order_calback') {
