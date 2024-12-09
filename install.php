@@ -390,109 +390,109 @@ EOT;
     $sql = "
 DROP TABLE IF EXISTS {$db_prefix}blog;
 CREATE TABLE {$db_prefix}blog (
-  gid int(11) unsigned NOT NULL auto_increment COMMENT '文章表',
-  title varchar(255) NOT NULL default '' COMMENT '文章标题',
-  date bigint(20) NOT NULL COMMENT '发布时间',
-  content longtext NOT NULL  COMMENT '文章内容',
-  excerpt longtext NOT NULL  COMMENT '文章摘要',
-  cover varchar(255) NOT NULL DEFAULT '' COMMENT '封面图',
-  alias varchar(255) NOT NULL DEFAULT '' COMMENT '文章别名',
-  author int(11) NOT NULL default '1' COMMENT '作者UID',
-  sortid int(11) NOT NULL default '-1' COMMENT '分类ID',
-  type varchar(20) NOT NULL default 'blog' COMMENT '文章OR页面',
-  views int(11) unsigned NOT NULL default '0' COMMENT '阅读量',
-  comnum int(11) unsigned NOT NULL default '0' COMMENT '评论数量',
-  like_count int(11) unsigned NOT NULL default '0' COMMENT '点赞量',
-  attnum int(11) unsigned NOT NULL default '0' COMMENT '附件数量（已废弃）',
-  top enum('n','y') NOT NULL default 'n' COMMENT '置顶',
-  sortop enum('n','y') NOT NULL default 'n' COMMENT '分类置顶',
-  hide enum('n','y') NOT NULL default 'n' COMMENT '草稿y',
-  checked enum('n','y') NOT NULL default 'y' COMMENT '文章是否审核',
-  allow_remark enum('n','y') NOT NULL default 'y' COMMENT '允许评论y',
-  password varchar(255) NOT NULL default '' COMMENT '访问密码',
-  template varchar(255) NOT NULL default '' COMMENT '模板',
-  tags text COMMENT '标签',
-  link varchar(255) NOT NULL DEFAULT '' COMMENT '文章跳转链接',
-  feedback varchar(2048) NOT NULL DEFAULT '' COMMENT 'audit feedback',
-  parent_id bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '文章层级关系-父级ID',
-  PRIMARY KEY (gid),
-  KEY author (author),
-  KEY views (views),
-  KEY comnum (comnum),
-  KEY sortid (sortid),
-  KEY top (top,date),
-  KEY date (date)
+    gid int(11) unsigned NOT NULL auto_increment COMMENT '文章表',
+    title varchar(255) NOT NULL default '' COMMENT '文章标题',
+    date bigint(20) NOT NULL COMMENT '发布时间',
+    content longtext NOT NULL  COMMENT '文章内容',
+    excerpt longtext NOT NULL  COMMENT '文章摘要',
+    cover varchar(255) NOT NULL DEFAULT '' COMMENT '封面图',
+    alias varchar(255) NOT NULL DEFAULT '' COMMENT '文章别名',
+    author int(11) NOT NULL default '1' COMMENT '作者UID',
+    sortid int(11) NOT NULL default '-1' COMMENT '分类ID',
+    type varchar(20) NOT NULL default 'blog' COMMENT '文章OR页面',
+    views int(11) unsigned NOT NULL default '0' COMMENT '阅读量',
+    comnum int(11) unsigned NOT NULL default '0' COMMENT '评论数量',
+    like_count int(11) unsigned NOT NULL default '0' COMMENT '点赞量',
+    attnum int(11) unsigned NOT NULL default '0' COMMENT '附件数量（已废弃）',
+    top enum('n','y') NOT NULL default 'n' COMMENT '置顶',
+    sortop enum('n','y') NOT NULL default 'n' COMMENT '分类置顶',
+    hide enum('n','y') NOT NULL default 'n' COMMENT '草稿y',
+    checked enum('n','y') NOT NULL default 'y' COMMENT '文章是否审核',
+    allow_remark enum('n','y') NOT NULL default 'y' COMMENT '允许评论y',
+    password varchar(255) NOT NULL default '' COMMENT '访问密码',
+    template varchar(255) NOT NULL default '' COMMENT '模板',
+    tags text COMMENT '标签',
+    link varchar(255) NOT NULL DEFAULT '' COMMENT '文章跳转链接',
+    feedback varchar(2048) NOT NULL DEFAULT '' COMMENT 'audit feedback',
+    parent_id bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '文章层级关系-父级ID',
+    PRIMARY KEY (gid),
+    KEY author (author),
+    KEY views (views),
+    KEY comnum (comnum),
+    KEY sortid (sortid),
+    KEY top (top,date),
+    KEY date (date)
 )" . $table_charset_sql . "
 INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,author,views,comnum,attnum,top,sortop,hide,allow_remark,password) VALUES (1, '欢迎使用emlog', '" . time() . "', '这是系统生成的演示文章。编辑或者删除它，然后开始您的创作吧！', '', 1, 0, 1, 0, 'n', 'n', 'n', 'y', '');
 DROP TABLE IF EXISTS {$db_prefix}attachment;
 CREATE TABLE {$db_prefix}attachment (
-  aid int(11) unsigned NOT NULL auto_increment COMMENT '资源文件表',
-  alias varchar(64) NOT NULL default '' COMMENT '资源别名',
-  author int(11) unsigned NOT NULL default '1' COMMENT '作者UID',
-  sortid int(11) NOT NULL default '0' COMMENT '分类ID',
-  blogid int(11) unsigned NOT NULL default '0' COMMENT '文章ID（已废弃）',
-  filename varchar(255) NOT NULL default '' COMMENT '文件名',
-  filesize int(11) NOT NULL default '0' COMMENT '文件大小',
-  filepath varchar(255) NOT NULL default '' COMMENT '文件路径',
-  addtime bigint(20) NOT NULL default '0' COMMENT '创建时间',
-  width int(11) NOT NULL default '0' COMMENT '图片宽度',
-  height int(11) NOT NULL default '0' COMMENT '图片高度',
-  mimetype varchar(40) NOT NULL default '' COMMENT '文件mime类型',
-  thumfor int(11) NOT NULL default 0 COMMENT '缩略图的原资源ID（已废弃）',
-  download_count bigint(20) unsigned NOT NULL DEFAULT 0 COMMENT '下载次数',
-  PRIMARY KEY  (aid),
-  KEY thum_uid (thumfor,author),
-  KEY addtime (addtime)
+    aid int(11) unsigned NOT NULL auto_increment COMMENT '资源文件表',
+    alias varchar(64) NOT NULL default '' COMMENT '资源别名',
+    author int(11) unsigned NOT NULL default '1' COMMENT '作者UID',
+    sortid int(11) NOT NULL default '0' COMMENT '分类ID',
+    blogid int(11) unsigned NOT NULL default '0' COMMENT '文章ID（已废弃）',
+    filename varchar(255) NOT NULL default '' COMMENT '文件名',
+    filesize int(11) NOT NULL default '0' COMMENT '文件大小',
+    filepath varchar(255) NOT NULL default '' COMMENT '文件路径',
+    addtime bigint(20) NOT NULL default '0' COMMENT '创建时间',
+    width int(11) NOT NULL default '0' COMMENT '图片宽度',
+    height int(11) NOT NULL default '0' COMMENT '图片高度',
+    mimetype varchar(40) NOT NULL default '' COMMENT '文件mime类型',
+    thumfor int(11) NOT NULL default 0 COMMENT '缩略图的原资源ID（已废弃）',
+    download_count bigint(20) unsigned NOT NULL DEFAULT 0 COMMENT '下载次数',
+    PRIMARY KEY  (aid),
+    KEY thum_uid (thumfor,author),
+    KEY addtime (addtime)
 )" . $table_charset_sql . "
 DROP TABLE IF EXISTS {$db_prefix}media_sort;
 CREATE TABLE {$db_prefix}media_sort (
-  id int(11) unsigned NOT NULL auto_increment COMMENT '资源分类表',
-  sortname varchar(255) NOT NULL default '' COMMENT '分类名',
-  PRIMARY KEY  (id)
+    id int(11) unsigned NOT NULL auto_increment COMMENT '资源分类表',
+    sortname varchar(255) NOT NULL default '' COMMENT '分类名',
+    PRIMARY KEY  (id)
 )" . $table_charset_sql . "
 DROP TABLE IF EXISTS {$db_prefix}comment;
 CREATE TABLE {$db_prefix}comment (
-  cid int(11) unsigned NOT NULL auto_increment COMMENT '评论表',
-  gid int(11) unsigned NOT NULL default '0' COMMENT '文章ID',
-  pid int(11) unsigned NOT NULL default '0' COMMENT '父级评论ID',
-  top enum('n','y') NOT NULL default 'n' COMMENT '置顶',
-  poster varchar(20) NOT NULL default '' COMMENT '发布人昵称',
-  avatar varchar(512) NOT NULL default '' COMMENT '头像URL',
-  uid int(11) NOT NULL default '0' COMMENT '发布人UID',
-  comment text NOT NULL COMMENT '评论内容',
-  mail varchar(60) NOT NULL default '' COMMENT 'email',
-  url varchar(75) NOT NULL default '' COMMENT 'homepage',
-  ip varchar(128) NOT NULL default '' COMMENT 'ip address',
-  agent varchar(512) NOT NULL default '' COMMENT 'user agent',
-  hide enum('n','y') NOT NULL default 'n' COMMENT '是否审核',
-  date bigint(20) NOT NULL COMMENT '创建时间',
-  PRIMARY KEY  (cid),
-  KEY gid (gid),
-  KEY date (date),
-  KEY hide (hide)
+    cid int(11) unsigned NOT NULL auto_increment COMMENT '评论表',
+    gid int(11) unsigned NOT NULL default '0' COMMENT '文章ID',
+    pid int(11) unsigned NOT NULL default '0' COMMENT '父级评论ID',
+    top enum('n','y') NOT NULL default 'n' COMMENT '置顶',
+    poster varchar(20) NOT NULL default '' COMMENT '发布人昵称',
+    avatar varchar(512) NOT NULL default '' COMMENT '头像URL',
+    uid int(11) NOT NULL default '0' COMMENT '发布人UID',
+    comment text NOT NULL COMMENT '评论内容',
+    mail varchar(60) NOT NULL default '' COMMENT 'email',
+    url varchar(75) NOT NULL default '' COMMENT 'homepage',
+    ip varchar(128) NOT NULL default '' COMMENT 'ip address',
+    agent varchar(512) NOT NULL default '' COMMENT 'user agent',
+    hide enum('n','y') NOT NULL default 'n' COMMENT '是否审核',
+    date bigint(20) NOT NULL COMMENT '创建时间',
+    PRIMARY KEY  (cid),
+    KEY gid (gid),
+    KEY date (date),
+    KEY hide (hide)
 )" . $table_charset_sql . "
 INSERT INTO {$db_prefix}comment (gid, date, poster, comment) VALUES (1, '" . time() . "', 'emlog', '这是系统生成的演示评论');
 DROP TABLE IF EXISTS {$db_prefix}like;
 CREATE TABLE {$db_prefix}like (
-  id int(11) unsigned NOT NULL auto_increment COMMENT '点赞表',
-  gid int(11) unsigned NOT NULL default '0' COMMENT '文章ID',
-  poster varchar(20) NOT NULL default '' COMMENT '昵称',
-  avatar varchar(512) NOT NULL default '' COMMENT '头像URL',
-  uid int(11) NOT NULL default '0',
-  ip varchar(128) NOT NULL default '',
-  agent varchar(512) NOT NULL default '',
-  date bigint(20) NOT NULL,
-  PRIMARY KEY  (id),
-  KEY gid (gid),
-  KEY date (date)
+    id int(11) unsigned NOT NULL auto_increment COMMENT '点赞表',
+    gid int(11) unsigned NOT NULL default '0' COMMENT '文章ID',
+    poster varchar(20) NOT NULL default '' COMMENT '昵称',
+    avatar varchar(512) NOT NULL default '' COMMENT '头像URL',
+    uid int(11) NOT NULL default '0',
+    ip varchar(128) NOT NULL default '',
+    agent varchar(512) NOT NULL default '',
+    date bigint(20) NOT NULL,
+    PRIMARY KEY  (id),
+    KEY gid (gid),
+    KEY date (date)
 )" . $table_charset_sql . "
 DROP TABLE IF EXISTS {$db_prefix}options;
 CREATE TABLE {$db_prefix}options (
-option_id INT( 11 ) UNSIGNED NOT NULL auto_increment COMMENT '站点配置信息表',
-option_name VARCHAR( 75 ) NOT NULL COMMENT '配置项',
-option_value LONGTEXT NOT NULL COMMENT '配置项值',
-PRIMARY KEY (option_id),
-UNIQUE KEY `option_name_uindex` (`option_name`)
+    option_id INT( 11 ) UNSIGNED NOT NULL auto_increment COMMENT '站点配置信息表',
+    option_name VARCHAR( 75 ) NOT NULL COMMENT '配置项',
+    option_value LONGTEXT NOT NULL COMMENT '配置项值',
+    PRIMARY KEY (option_id),
+    UNIQUE KEY `option_name_uindex` (`option_name`)
 )" . $table_charset_sql . "
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES 
 ('blogname','EMLOG'),
@@ -556,120 +556,140 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES
 ('panel_menu_title','');
 DROP TABLE IF EXISTS {$db_prefix}link;
 CREATE TABLE {$db_prefix}link (
-  id int(11) unsigned NOT NULL auto_increment COMMENT '链接表',
-  sitename varchar(255) NOT NULL default '' COMMENT '名称',
-  siteurl varchar(255) NOT NULL default '' COMMENT '地址',
-  icon varchar(512) NOT NULL default '' COMMENT '图标URL',
-  description varchar(512) NOT NULL default '' COMMENT '备注信息',
-  hide enum('n','y') NOT NULL default 'n' COMMENT '是否隐藏',
-  taxis int(11) unsigned NOT NULL default '0' COMMENT '排序序号',
-  PRIMARY KEY  (id)
+    id int(11) unsigned NOT NULL auto_increment COMMENT '链接表',
+    sitename varchar(255) NOT NULL default '' COMMENT '名称',
+    siteurl varchar(255) NOT NULL default '' COMMENT '地址',
+    icon varchar(512) NOT NULL default '' COMMENT '图标URL',
+    description varchar(512) NOT NULL default '' COMMENT '备注信息',
+    hide enum('n','y') NOT NULL default 'n' COMMENT '是否隐藏',
+    taxis int(11) unsigned NOT NULL default '0' COMMENT '排序序号',
+    PRIMARY KEY  (id)
 )" . $table_charset_sql . "
 INSERT INTO {$db_prefix}link (id, sitename, siteurl, icon, description, taxis) VALUES (1, 'EMLOG', 'https://www.emlog.net', '', 'emlog官方主页', 0);
 DROP TABLE IF EXISTS {$db_prefix}navi;
 CREATE TABLE {$db_prefix}navi (
-  id int(11) unsigned NOT NULL auto_increment COMMENT '导航表',
-  naviname varchar(30) NOT NULL default '' COMMENT '导航名称',
-  url varchar(512) NOT NULL default '' COMMENT '导航地址',
-  newtab enum('n','y') NOT NULL default 'n' COMMENT '在新窗口打开',
-  hide enum('n','y') NOT NULL default 'n' COMMENT '是否隐藏',
-  taxis int(11) unsigned NOT NULL default '0' COMMENT '排序序号',
-  pid int(11) unsigned NOT NULL default '0' COMMENT '父级ID',
-  isdefault enum('n','y') NOT NULL default 'n' COMMENT '是否系统默认导航，如首页',
-  type tinyint(3) unsigned NOT NULL default '0' COMMENT '导航类型 0自定义 1首页 2微语 3后台管理 4分类 5页面',
-  type_id int(11) unsigned NOT NULL default '0' COMMENT '导航类型对应ID',
-  PRIMARY KEY  (id)
+    id int(11) unsigned NOT NULL auto_increment COMMENT '导航表',
+    naviname varchar(30) NOT NULL default '' COMMENT '导航名称',
+    url varchar(512) NOT NULL default '' COMMENT '导航地址',
+    newtab enum('n','y') NOT NULL default 'n' COMMENT '在新窗口打开',
+    hide enum('n','y') NOT NULL default 'n' COMMENT '是否隐藏',
+    taxis int(11) unsigned NOT NULL default '0' COMMENT '排序序号',
+    pid int(11) unsigned NOT NULL default '0' COMMENT '父级ID',
+    isdefault enum('n','y') NOT NULL default 'n' COMMENT '是否系统默认导航，如首页',
+    type tinyint(3) unsigned NOT NULL default '0' COMMENT '导航类型 0自定义 1首页 2微语 3后台管理 4分类 5页面',
+    type_id int(11) unsigned NOT NULL default '0' COMMENT '导航类型对应ID',
+    PRIMARY KEY  (id)
 )" . $table_charset_sql . "
 INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault, type) VALUES (1, '首页', '', 1, 'y', 1);
 INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault, type) VALUES (3, '登录', 'admin', 3, 'y', 3);
 DROP TABLE IF EXISTS {$db_prefix}tag;
 CREATE TABLE {$db_prefix}tag (
-  tid int(11) unsigned NOT NULL auto_increment COMMENT '标签表',
-  tagname varchar(60) NOT NULL default '' COMMENT '标签名',
-  description VARCHAR(2048) NOT NULL DEFAULT '' COMMENT '页面描述',
-  title VARCHAR(2048) NOT NULL DEFAULT '' COMMENT '页面标题',
-  kw VARCHAR(2048) NOT NULL DEFAULT '' COMMENT '关键词',
-  gid text NOT NULL COMMENT '文章ID',
-  PRIMARY KEY  (tid),
-  KEY tagname (tagname)
+    tid int(11) unsigned NOT NULL auto_increment COMMENT '标签表',
+    tagname varchar(60) NOT NULL default '' COMMENT '标签名',
+    description VARCHAR(2048) NOT NULL DEFAULT '' COMMENT '页面描述',
+    title VARCHAR(2048) NOT NULL DEFAULT '' COMMENT '页面标题',
+    kw VARCHAR(2048) NOT NULL DEFAULT '' COMMENT '关键词',
+    gid text NOT NULL COMMENT '文章ID',
+    PRIMARY KEY  (tid),
+    KEY tagname (tagname)
 )" . $table_charset_sql . "
 DROP TABLE IF EXISTS {$db_prefix}sort;
 CREATE TABLE {$db_prefix}sort (
-  sid int(11) unsigned NOT NULL auto_increment COMMENT '分类表',
-  sortname varchar(255) NOT NULL default '' COMMENT '分类名',
-  alias VARCHAR(255) NOT NULL DEFAULT '' COMMENT '别名',
-  taxis int(11) unsigned NOT NULL default '0' COMMENT '排序序号',
-  pid int(11) unsigned NOT NULL default '0' COMMENT '父分类ID',
-  description text NOT NULL COMMENT '备注',
-  kw VARCHAR(2048) NOT NULL DEFAULT '' COMMENT '关键词',
-  title VARCHAR(2048) NOT NULL DEFAULT '' COMMENT '页面标题',
-  template varchar(255) NOT NULL default '' COMMENT '分类模板',
-  sortimg varchar(512) NOT NULL default '' COMMENT '分类图像',
-  PRIMARY KEY  (sid)
+    sid int(11) unsigned NOT NULL auto_increment COMMENT '分类表',
+    sortname varchar(255) NOT NULL default '' COMMENT '分类名',
+    alias VARCHAR(255) NOT NULL DEFAULT '' COMMENT '别名',
+    taxis int(11) unsigned NOT NULL default '0' COMMENT '排序序号',
+    pid int(11) unsigned NOT NULL default '0' COMMENT '父分类ID',
+    description text NOT NULL COMMENT '备注',
+    kw VARCHAR(2048) NOT NULL DEFAULT '' COMMENT '关键词',
+    title VARCHAR(2048) NOT NULL DEFAULT '' COMMENT '页面标题',
+    template varchar(255) NOT NULL default '' COMMENT '分类模板',
+    sortimg varchar(512) NOT NULL default '' COMMENT '分类图像',
+    PRIMARY KEY  (sid)
 )" . $table_charset_sql . "
 DROP TABLE IF EXISTS {$db_prefix}user;
 CREATE TABLE {$db_prefix}user (
-  uid int(11) unsigned NOT NULL auto_increment COMMENT '用户表',
-  username varchar(32) NOT NULL default '' COMMENT '用户名',
-  password varchar(64) NOT NULL default '' COMMENT '用户密码',
-  nickname varchar(20) NOT NULL default '' COMMENT '昵称',
-  role varchar(60) NOT NULL default '' COMMENT '用户组',
-  ischeck enum('n','y') NOT NULL default 'n' COMMENT '内容是否需要管理员审核',
-  photo varchar(255) NOT NULL default '' COMMENT '头像',
-  email varchar(60) NOT NULL default '' COMMENT '邮箱',
-  description varchar(255) NOT NULL default '' COMMENT '备注',
-  ip varchar(128) NOT NULL default '' COMMENT 'ip地址',
-  state tinyint NOT NULL DEFAULT '0' COMMENT '用户状态 0正常 1禁用',
-  credits int(11) unsigned NOT NULL DEFAULT '0' COMMENT '用户积分',
-  create_time int(11) NOT NULL COMMENT '创建时间',
-  update_time int(11) NOT NULL COMMENT '更新时间',
-PRIMARY KEY  (uid),
-KEY username (username),
-KEY email (email)         
+    uid int(11) unsigned NOT NULL auto_increment COMMENT '用户表',
+    username varchar(32) NOT NULL default '' COMMENT '用户名',
+    password varchar(64) NOT NULL default '' COMMENT '用户密码',
+    nickname varchar(20) NOT NULL default '' COMMENT '昵称',
+    role varchar(60) NOT NULL default '' COMMENT '用户组',
+    ischeck enum('n','y') NOT NULL default 'n' COMMENT '内容是否需要管理员审核',
+    photo varchar(255) NOT NULL default '' COMMENT '头像',
+    email varchar(60) NOT NULL default '' COMMENT '邮箱',
+    description varchar(255) NOT NULL default '' COMMENT '备注',
+    ip varchar(128) NOT NULL default '' COMMENT 'ip地址',
+    state tinyint NOT NULL DEFAULT '0' COMMENT '用户状态 0正常 1禁用',
+    credits int(11) unsigned NOT NULL DEFAULT '0' COMMENT '用户积分',
+    create_time int(11) NOT NULL COMMENT '创建时间',
+    update_time int(11) NOT NULL COMMENT '更新时间',
+    PRIMARY KEY  (uid),
+    KEY username (username),
+    KEY email (email)         
 )" . $table_charset_sql . "
 INSERT INTO {$db_prefix}user (uid, username, email, password, nickname, role, create_time, update_time) VALUES (1,'$username','$email','$password', 'emer','admin', " . time() . ", " . time() . ");
 DROP TABLE IF EXISTS {$db_prefix}twitter;
 CREATE TABLE {$db_prefix}twitter (
-id INT NOT NULL AUTO_INCREMENT COMMENT '微语笔记表',
-content text NOT NULL COMMENT '微语内容',
-img varchar(255) DEFAULT NULL COMMENT '图片',
-author int(11) NOT NULL default '1' COMMENT '作者UID',
-date bigint(20) NOT NULL COMMENT '创建时间',
-replynum int(11) unsigned NOT NULL default '0' COMMENT '回复数量',
-private enum('n','y') NOT NULL default 'n' COMMENT '是否私密',
-PRIMARY KEY (id),
-KEY author (author)
+    id INT NOT NULL AUTO_INCREMENT COMMENT '微语笔记表',
+    content text NOT NULL COMMENT '微语内容',
+    img varchar(255) DEFAULT NULL COMMENT '图片',
+    author int(11) NOT NULL default '1' COMMENT '作者UID',
+    date bigint(20) NOT NULL COMMENT '创建时间',
+    replynum int(11) unsigned NOT NULL default '0' COMMENT '回复数量',
+    private enum('n','y') NOT NULL default 'n' COMMENT '是否私密',
+    PRIMARY KEY (id),
+    KEY author (author)
 )" . $table_charset_sql . "
 DROP TABLE IF EXISTS {$db_prefix}storage;
 CREATE TABLE {$db_prefix}storage (
-  `sid` int(8) NOT NULL AUTO_INCREMENT COMMENT '对象存储表',
-  `plugin` varchar(32) NOT NULL COMMENT '插件名',
-  `name` varchar(32) NOT NULL COMMENT '对象名',
-  `type` varchar(8) NOT NULL COMMENT '对象数据类型',
-  `value` text NOT NULL COMMENT '对象值',
-  `createdate` int(11) NOT NULL COMMENT '创建时间',
-  `lastupdate` int(11) NOT NULL COMMENT '更新时间',
-  PRIMARY KEY (`sid`),
-  UNIQUE KEY `plugin` (`plugin`,`name`)
+    `sid` int(8) NOT NULL AUTO_INCREMENT COMMENT '对象存储表',
+    `plugin` varchar(32) NOT NULL COMMENT '插件名',
+    `name` varchar(32) NOT NULL COMMENT '对象名',
+    `type` varchar(8) NOT NULL COMMENT '对象数据类型',
+    `value` text NOT NULL COMMENT '对象值',
+    `createdate` int(11) NOT NULL COMMENT '创建时间',
+    `lastupdate` int(11) NOT NULL COMMENT '更新时间',
+    PRIMARY KEY (`sid`),
+    UNIQUE KEY `plugin` (`plugin`,`name`)
 )" . $table_charset_sql . "
 DROP TABLE IF EXISTS {$db_prefix}tpl_options_data;
 CREATE TABLE {$db_prefix}tpl_options_data (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `template` varchar(64) NOT NULL,
-  `name` varchar(64) NOT NULL,
-  `depend` varchar(64) NOT NULL DEFAULT '',
-  `data` longtext NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `template` (`template`,`name`)
+    `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+    `template` varchar(64) NOT NULL,
+    `name` varchar(64) NOT NULL,
+    `depend` varchar(64) NOT NULL DEFAULT '',
+    `data` longtext NOT NULL,
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `template` (`template`,`name`)
+)" . $table_charset_sql . "
+DROP TABLE IF EXISTS {$db_prefix}order;
+CREATE TABLE {$db_prefix}order (
+    id bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '订单表',
+    app_name varchar(32) NOT NULL COMMENT '应用英文别名',
+    order_id varchar(64) NOT NULL DEFAULT '' COMMENT '订单编号',
+    order_uid int unsigned NOT NULL COMMENT '用户id',
+    out_trade_no varchar(255) DEFAULT '' COMMENT '支付平台流水号',
+    pay_type varchar(64) NOT NULL DEFAULT '' COMMENT '支付方式（alipay/wechat）',
+    sku_name varchar(64) NOT NULL DEFAULT '' COMMENT '商品类型',
+    sku_id int NOT NULL,
+    price decimal(10, 2) NOT NULL COMMENT '应付金额',
+    pay_price decimal(10, 2) DEFAULT '0.00' COMMENT '实付金额',
+    refund_amount decimal(10, 2) NOT NULL DEFAULT '0.00' COMMENT '退款金额',
+    update_time int unsigned NOT NULL COMMENT '更新时间',
+    create_time int unsigned NOT NULL COMMENT '创建时间',
+    PRIMARY KEY (id),
+    UNIQUE KEY order_id (order_id),
+    KEY idx_uid_ctime (order_uid, create_time),
+    KEY idx_ctime (create_time)
 )" . $table_charset_sql . "
 DROP TABLE IF EXISTS {$db_prefix}blog_fields;
 CREATE TABLE {$db_prefix}blog_fields (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `gid` bigint unsigned NOT NULL DEFAULT '0',
-  `field_key` varchar(255) DEFAULT NULL DEFAULT '',
-  `field_value` longtext,
-  PRIMARY KEY (`id`),
-  KEY `gid` (`gid`)
+    `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+    `gid` bigint unsigned NOT NULL DEFAULT '0',
+    `field_key` varchar(255) DEFAULT NULL DEFAULT '',
+    `field_value` longtext,
+    PRIMARY KEY (`id`),
+    KEY `gid` (`gid`)
 )" . $table_charset_sql;
 
     $array_sql = preg_split("/;[\r\n]/", $sql);
