@@ -9,7 +9,18 @@
 
 class Like_Controller
 {
-    function addLike($params)
+    function index($params)
+    {
+        $action = Input::getStrVar('action');
+
+        if ($action == 'addlike') {
+            $this->addLike();
+        } elseif ($action == 'unlike') {
+            $this->unLike();
+        }
+    }
+
+    function addLike()
     {
         $name = Input::postStrVar('name');
         $avatar = Input::postStrVar('avatar');
@@ -52,5 +63,26 @@ class Like_Controller
         $id = isset($r['id']) ? $r['id'] : 0;
 
         Output::ok(['id' => $id]);
+    }
+
+    function unLike()
+    {
+        $uid = 0;
+
+        if (ISLOGIN === true) {
+            $User_Model = new User_Model();
+            $user_info = $User_Model->getOneUser(UID);
+            $uid = UID;
+        }
+
+        $blogId = Input::postIntVar('gid');
+        $Like_Model = new Like_Model();
+        $r = $Like_Model->unLike($uid, $blogId);
+
+        if ($r === false) {
+            Output::error('取消失败');
+        }
+
+        Output::ok();
     }
 }

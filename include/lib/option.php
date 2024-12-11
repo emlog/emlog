@@ -100,8 +100,8 @@ class Option
             ],
             [
                 'model'  => 'Like_Controller',
-                'method' => 'addLike',
-                'reg_0'  => '|^.*/\?(action)=(addlike)([\?&].*)?$|',
+                'method' => 'index',
+                'reg_0'  => '|^.*/\?(action)=([a-z]+)([\?&].*)?$|',
             ],
             [
                 'model'  => 'Plugin_Controller',

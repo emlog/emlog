@@ -130,11 +130,19 @@ class Like_Model
         $page = (int)$page;
         $perpage = (int)$perpage;
         $start = ($page - 1) * $perpage;
-        $sql = "SELECT b.* FROM $this->table AS l JOIN $this->table_blog AS b ON l.gid = b.gid WHERE l.uid = $uid ORDER BY l.date DESC LIMIT $start, $perpage";
+        $sql = "SELECT l.date as like_date,b.* FROM $this->table AS l JOIN $this->table_blog AS b ON l.gid = b.gid WHERE l.uid = $uid ORDER BY l.date DESC LIMIT $start, $perpage";
         $ret = $this->db->query($sql);
         $blogs = [];
         while ($row = $this->db->fetch_array($ret)) {
-            $blogs[] = $row;
+            $blogs[] = array(
+                'gid' => $row['gid'],
+                'title' => $row['title'],
+                'cover' => $row['cover'],
+                'author' => $row['author'],
+                'sortid' => $row['sortid'],
+                'date' => $row['date'],
+                'like_date' => $row['like_date'],
+            );
         }
         return $blogs;
     }
