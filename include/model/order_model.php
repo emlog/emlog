@@ -11,9 +11,11 @@ class Order_Model
 
     private $db;
     private $table;
+    private $app_name;
 
-    function __construct()
+    function __construct($app_name)
     {
+        $this->app_name = $app_name;
         $this->db = Database::getInstance();
         $this->table = DB_PREFIX . 'order';
     }
@@ -30,13 +32,17 @@ class Order_Model
         return $order ? $this->formatOrder($order) : null;
     }
 
-    function getOrdersByUserId($userId, $limit = 10, $offset = 0)
+    function getOrdersByUserId($userId, $limit = 10, $offset = 0, $isPaid = false)
     {
         $userId = (int)$userId;
+        $where = "WHERE order_uid=$userId AND app_name='$this->app_name'";
+        if ($isPaid) {
+            $where .= " AND pay_price > 0";
+        }
         $sql = sprintf(
-            "SELECT * FROM `%s` WHERE order_uid=%d ORDER BY create_time DESC LIMIT %d OFFSET %d",
+            "SELECT * FROM `%s` %s ORDER BY create_time DESC LIMIT %d OFFSET %d",
             $this->table,
-            $userId,
+            $where,
             (int)$limit,
             (int)$offset
         );
@@ -65,7 +71,7 @@ class Order_Model
             'create_time'
         ];
         $values = array_map('addslashes', [
-            $data['app_name'],
+            $this->app_name,
             $data['order_id'],
             $data['order_uid'],
             $data['out_trade_no'],
@@ -102,14 +108,6 @@ class Order_Model
             implode(',', $updates),
             $orderId
         );
-        $this->db->query($sql);
-        return $this->db->affected_rows();
-    }
-
-    function deleteOrder($orderId)
-    {
-        $orderId = addslashes($orderId);
-        $sql = sprintf("DELETE FROM `%s` WHERE order_id='%s'", $this->table, $orderId);
         $this->db->query($sql);
         return $this->db->affected_rows();
     }
