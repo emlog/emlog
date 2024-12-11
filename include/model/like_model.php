@@ -43,6 +43,7 @@ class Like_Model
 
         return $likes;
     }
+
     function addLike($uid, $name, $avatar, $blogId, $ip, $ua)
     {
         $uid = (int)$uid;
@@ -114,5 +115,27 @@ class Like_Model
             $avatar = getFileUrl($user['photo']);
         }
         return $avatar ?: BLOG_URL . "admin/views/images/avatar.svg";
+    }
+
+    /**
+     * 获取我点赞的文章列表
+     *
+     * @param int $page
+     * @param int $perpage
+     * @return array
+     */
+    function getMyLiked($uid, $page = 1, $perpage = 20)
+    {
+        $uid = (int)$uid;
+        $page = (int)$page;
+        $perpage = (int)$perpage;
+        $start = ($page - 1) * $perpage;
+        $sql = "SELECT b.* FROM $this->table AS l JOIN $this->table_blog AS b ON l.gid = b.gid WHERE l.uid = $uid ORDER BY l.date DESC LIMIT $start, $perpage";
+        $ret = $this->db->query($sql);
+        $blogs = [];
+        while ($row = $this->db->fetch_array($ret)) {
+            $blogs[] = $row;
+        }
+        return $blogs;
     }
 }
