@@ -118,6 +118,27 @@ class Order_Model
         return $order && $order['pay_price'] >= $order['price'];
     }
 
+    function hasPurchasedSku($userId, $skuId, $skuName = '')
+    {
+        $userId = (int)$userId;
+        $skuId = (int)$skuId;
+
+        $sql = sprintf(
+            "SELECT COUNT(*) AS total FROM `%s` WHERE order_uid=%d AND sku_id=%d AND pay_price >= price",
+            $this->table,
+            $userId,
+            $skuId
+        );
+
+        if (!empty($skuName)) {
+            $skuName = addslashes($skuName);
+            $sql .= sprintf(" AND sku_name='%s'", $skuName);
+        }
+
+        $result = $this->db->once_fetch_array($sql);
+        return (int)$result['total'] > 0;
+    }
+
     private function formatOrder($order)
     {
         $order['id'] = (int)$order['id'];
