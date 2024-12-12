@@ -145,6 +145,7 @@ class Log_Model
         $res = $this->db->query($sql);
         $row = $this->db->fetch_array($res);
         if ($row) {
+            $row['fields'] = Field::getFields($blogId);
             return $row;
         }
         return false;
