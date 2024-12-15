@@ -20,6 +20,18 @@ class Order_Model
         $this->table = DB_PREFIX . 'order';
     }
 
+    function generateOrderNumber()
+    {
+        // 当前时间戳（精确到毫秒）
+        $microtime = microtime(true);
+        // 转换为毫秒后移除小数点
+        $timestamp = str_replace('.', '', $microtime);
+        $randomNumber = mt_rand(100000, 999999);
+        $orderNumber = $timestamp . $randomNumber;
+        return $orderNumber;
+    }
+
+
     function getOrderById($orderId)
     {
         $orderId = addslashes($orderId);
@@ -54,44 +66,30 @@ class Order_Model
         return $orders;
     }
 
-    function createOrder($data)
+    function createOrder($uid, $pay_type, $sku_name, $sku_id, $price)
     {
-        $fields = [
-            'app_name',
-            'order_id',
-            'order_uid',
-            'out_trade_no',
-            'pay_type',
-            'sku_name',
-            'sku_id',
-            'price',
-            'pay_price',
-            'refund_amount',
-            'update_time',
-            'create_time'
+        $order_id = $this->generateOrderNumber();
+        $data = [
+            'app_name' => $this->app_name,
+            'order_id' => $order_id,
+            'order_uid' => $uid,
+            'pay_type' => $pay_type,
+            'sku_name' => $sku_name,
+            'sku_id' => $sku_id,
+            'price' => $price,
+            'update_time' => time(),
+            'create_time' => time()
         ];
-        $values = array_map('addslashes', [
-            $this->app_name,
-            $data['order_id'],
-            $data['order_uid'],
-            $data['out_trade_no'],
-            $data['pay_type'],
-            $data['sku_name'],
-            $data['sku_id'],
-            $data['price'],
-            $data['pay_price'],
-            $data['refund_amount'],
-            time(),
-            time()
-        ]);
+        $fields = implode(',', array_keys($data));
+        $values = "'" . implode("','", array_map('addslashes', $data)) . "'";
         $sql = sprintf(
-            "INSERT INTO `%s` (%s) VALUES ('%s')",
+            "INSERT INTO `%s` (%s) VALUES (%s)",
             $this->table,
-            implode(',', $fields),
-            implode("','", $values)
+            $fields,
+            $values
         );
         $this->db->query($sql);
-        return $this->db->insert_id();
+        return $order_id;
     }
 
     function updateOrder($orderId, $data)
