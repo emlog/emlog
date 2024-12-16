@@ -8,7 +8,6 @@
 
 class Order_Model
 {
-
     private $db;
     private $table;
     private $app_name;
@@ -22,15 +21,12 @@ class Order_Model
 
     function generateOrderNumber()
     {
-        // 当前时间戳（精确到毫秒）
         $microtime = microtime(true);
-        // 转换为毫秒后移除小数点
         $timestamp = str_replace('.', '', $microtime);
         $randomNumber = mt_rand(100000, 999999);
         $orderNumber = $timestamp . $randomNumber;
         return $orderNumber;
     }
-
 
     function getOrderById($orderId)
     {
@@ -44,18 +40,84 @@ class Order_Model
         return $order ? $this->formatOrder($order) : null;
     }
 
-    function getOrdersByUserId($userId, $limit = 10, $offset = 0, $isPaid = false)
+    /**
+     * 获取全部订单列表
+     * @param int $page
+     * @param int $perpage
+     * @return array
+     */
+    function getOrders($page = 1, $perpage = 10)
     {
-        $userId = (int)$userId;
-        $where = "WHERE order_uid=$userId AND app_name='$this->app_name'";
-        if ($isPaid) {
-            $where .= " AND pay_price > 0";
+        $page = (int)$page;
+        $perpage = (int)$perpage;
+
+        $offset = ($page - 1) * $perpage;
+        $sql = sprintf(
+            "SELECT * FROM `%s` ORDER BY create_time DESC LIMIT %d OFFSET %d",
+            $this->table,
+            $perpage,
+            (int)$offset
+        );
+        $result = $this->db->query($sql);
+        $orders = [];
+        while ($row = $this->db->fetch_array($result)) {
+            $orders[] = $this->formatOrder($row);
         }
+        return $orders;
+    }
+
+    /**
+     * 获取当前应用的订单列表
+     * @param int $page 页码
+     * @param int $perpage 每页的订单数量
+     * @return array 订单列表
+     */
+    function getAppOrders($page = 1, $perpage = 10)
+    {
+        $page = (int)$page;
+        $perpage = (int)$perpage;
+
+        $where = "WHERE app_name='$this->app_name'";
+        $offset = ($page - 1) * $perpage;
         $sql = sprintf(
             "SELECT * FROM `%s` %s ORDER BY create_time DESC LIMIT %d OFFSET %d",
             $this->table,
             $where,
-            (int)$limit,
+            (int)$perpage,
+            (int)$offset
+        );
+        $result = $this->db->query($sql);
+        $orders = [];
+        while ($row = $this->db->fetch_array($result)) {
+            $orders[] = $this->formatOrder($row);
+        }
+        return $orders;
+    }
+
+    /**
+     * 根据用户ID获取订单列表
+     * @param int $userId 用户ID
+     * @param int $page 页码
+     * @param int $perpage 每页的订单数量
+     * @param bool $isPaid 是否只获取已经支付的订单
+     * @return array 订单列表
+     */
+    function getOrdersByUserId($userId, $page = 1, $perpage = 10, $isPaid = false)
+    {
+        $userId = (int)$userId;
+        $page = (int)$page;
+        $perpage = (int)$perpage;
+
+        $where = "WHERE order_uid=$userId AND app_name='$this->app_name'";
+        if ($isPaid) {
+            $where .= " AND pay_price > 0";
+        }
+        $offset = ($page - 1) * $perpage;
+        $sql = sprintf(
+            "SELECT * FROM `%s` %s ORDER BY create_time DESC LIMIT %d OFFSET %d",
+            $this->table,
+            $where,
+            (int)$perpage,
             (int)$offset
         );
         $result = $this->db->query($sql);
