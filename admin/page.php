@@ -17,10 +17,29 @@ if (empty($action)) {
     $emPage = new Log_Model();
 
     $page = Input::getIntVar('page', 1);
+    $keyword = Input::getStrVar('keyword');
+    $order = Input::getStrVar('order');
 
-    $sqlSegment = ' ORDER BY date DESC';
-    $pages = $emPage->getLogsForAdmin($sqlSegment, '', $page, 'page');
-    $pageNum = $emPage->getLogNum('', '', 'page', 1);
+    $condition = '';
+    if ($keyword) {
+        $condition = "and title like '%$keyword%'";
+    }
+
+    $orderBy = ' ORDER BY ';
+    switch ($order) {
+        case 'view':
+            $orderBy .= 'views DESC';
+            break;
+        case 'comm':
+            $orderBy .= 'comnum DESC';
+            break;
+        default:
+            $orderBy .= 'date DESC';
+            break;
+    }
+
+    $pages = $emPage->getLogsForAdmin($condition . $orderBy, '', $page, 'page');
+    $pageNum = $emPage->getLogNum('', $condition, 'page', 1);
 
     $pageurl = pagination($pageNum, Option::get('admin_perpage_num'), $page, "./page.php?page=");
 
