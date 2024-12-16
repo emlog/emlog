@@ -157,6 +157,8 @@ class Api_Controller
         $tags = isset($_POST['tags']) ? strip_tags(addslashes(trim($_POST['tags']))) : '';
         $author_uid = isset($_POST['author_uid']) ? (int)trim($_POST['author_uid']) : 1;
         $draft = Input::postStrVar('draft', 'n');
+        $field_keys = Input::postStrArray('field_keys');
+        $field_values = Input::postStrArray('field_values');
 
         $this->auth();
 
@@ -182,6 +184,8 @@ class Api_Controller
         $this->Log_Model->updateLog($logData, $id, $author_uid);
         $this->Tag_Model->updateTag($tags, $id);
         $this->Cache->updateCache();
+
+        Field::updateField($id, $field_keys, $field_values);
 
         doAction('save_log', $id, '', $logData);
 
