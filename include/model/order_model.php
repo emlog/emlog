@@ -147,6 +147,9 @@ class Order_Model
         $order['refund_amount'] = (float)$order['refund_amount'];
         $order['update_time'] = date('Y-m-d H:i:s', $order['update_time']);
         $order['create_time'] = date('Y-m-d H:i:s', $order['create_time']);
+        $order['out_trade_no'] = (string)$order['out_trade_no'];
+        $order['pay_type'] = (string)$order['pay_type'];
+        $order['sku_name'] = (string)$order['sku_name'];
         return $order;
     }
 }
