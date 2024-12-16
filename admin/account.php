@@ -57,7 +57,7 @@ if ($action == 'dosignin') {
             Register::isRegServer();
             $User_Model->updateUser(['ip' => getIp()], $uid);
             LoginAuth::setAuthCookie($username, $persist);
-            doAction('login_succeed', $uid);
+            doAction('login_succeed', $uid, $resp);
             if ($resp === 'json') {
                 Output::ok();
             }
