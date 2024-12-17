@@ -166,7 +166,7 @@ class Cache
         $sql = "SELECT 
         SUM(CASE WHEN type = 'blog' AND hide = 'n' AND checked = 'y' AND date <= $now THEN 1 ELSE 0 END) AS log_num,
         SUM(CASE WHEN type = 'blog' AND hide = 'n' AND checked = 'n' THEN 1 ELSE 0 END) AS check_num 
-        FROM `emlog_blog`";
+        FROM `" . DB_PREFIX . "blog`";
         $data = $this->db->once_fetch_array($sql);
         $log_num = $data['log_num'];
         $check_num = $data['check_num'];
