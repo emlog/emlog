@@ -305,6 +305,8 @@ class Api_Controller
             'parent_id'     => (int)$r['parent_id'],
         ];
 
+        $this->Log_Model->updateViewCount($id);
+
         output::ok(['article' => $article,]);
     }
 
