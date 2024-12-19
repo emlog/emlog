@@ -7,10 +7,12 @@
  * @link https://www.emlog.net
  */
 
-class Notice {
+class Notice
+{
 
     // 发送用户注册邮件验证码，部分主题依赖该函数
-    public static function sendRegMailCode($mail) {
+    public static function sendRegMailCode($mail)
+    {
         if (!self::smtpServerReady()) {
             return false;
         }
@@ -27,7 +29,8 @@ class Notice {
     }
 
     // 通用的发送验证码方法
-    public static function sendVerifyMailCode($mail) {
+    public static function sendVerifyMailCode($mail)
+    {
         if (!self::smtpServerReady()) {
             return false;
         }
@@ -43,7 +46,8 @@ class Notice {
         return self::sendMail($mail, $title, $content);
     }
 
-    public static function sendResetMailCode($mail) {
+    public static function sendResetMailCode($mail)
+    {
         if (!self::smtpServerReady()) {
             return false;
         }
@@ -59,7 +63,8 @@ class Notice {
         return self::sendMail($mail, $title, $content);
     }
 
-    public static function sendNewPostMail($postTitle, $gid) {
+    public static function sendNewPostMail($postTitle, $gid)
+    {
         if (!self::smtpServerReady()) {
             return false;
         }
@@ -76,7 +81,8 @@ class Notice {
         return self::sendMail($mail, $title, $content);
     }
 
-    public static function sendNewCommentMail($comment, $gid, $pid) {
+    public static function sendNewCommentMail($comment, $gid, $pid)
+    {
         if (!self::smtpServerReady()) {
             return false;
         }
@@ -106,23 +112,8 @@ class Notice {
         return self::sendMail($mail, $title, $content);
     }
 
-    private static function smtpServerReady() {
-        if (empty(Option::get('smtp_pw')) || empty(Option::get('smtp_mail'))) {
-            return false;
-        }
-        return true;
-    }
-
-    private static function getArticleInfo($gid) {
-        $Log_Model = new Log_Model();
-        $r = $Log_Model->getOneLogForHome($gid);
-        if (isset($r['author'])) {
-            return $r;
-        }
-        return false;
-    }
-
-    private static function getFounderEmail() {
+    public static function getFounderEmail()
+    {
         $User_Model = new User_Model();
         $r = $User_Model->getOneUser(1);
         if (isset($r['email']) && checkMail($r['email'])) {
@@ -131,7 +122,8 @@ class Notice {
         return false;
     }
 
-    private static function getArticleAuthorEmail($uid) {
+    public static function getArticleAuthorEmail($uid)
+    {
         $User_Model = new User_Model();
         $r = $User_Model->getOneUser($uid);
         if (isset($r['email']) && checkMail($r['email'])) {
@@ -140,7 +132,8 @@ class Notice {
         return false;
     }
 
-    private static function getCommentAuthorEmail($cid) {
+    public static function getCommentAuthorEmail($cid)
+    {
         $Comment_Model = new Comment_Model();
         $r = $Comment_Model->getOneComment($cid);
         if (isset($r['mail']) && checkMail($r['mail'])) {
@@ -149,7 +142,8 @@ class Notice {
         return false;
     }
 
-    public static function sendMail($mail, $title, $content) {
+    public static function sendMail($mail, $title, $content)
+    {
         $content = self::getMailTemplate($content);
         $sendmail = new SendMail();
         $ret = $sendmail->send($mail, $title, $content);
@@ -159,11 +153,45 @@ class Notice {
         return false;
     }
 
-    public static function getMailTemplate($content) {
+    public static function sendMail2Founder($title, $content)
+    {
+        $mail = self::getFounderEmail();
+        if (!$mail) {
+            return false;
+        }
+        $content = self::getMailTemplate($content);
+        $sendmail = new SendMail();
+        $ret = $sendmail->send($mail, $title, $content);
+        if ($ret) {
+            return true;
+        }
+        return false;
+    }
+
+    public static function getMailTemplate($content)
+    {
         $mailTemplate = Option::get('mail_template');
         if (!empty(trim($mailTemplate))) {
             return str_replace(['{{mail_content}}', '{{mail_site_title}}'], [$content, Option::get('blogname')], $mailTemplate);
         }
         return $content;
+    }
+
+    private static function smtpServerReady()
+    {
+        if (empty(Option::get('smtp_pw')) || empty(Option::get('smtp_mail'))) {
+            return false;
+        }
+        return true;
+    }
+
+    private static function getArticleInfo($gid)
+    {
+        $Log_Model = new Log_Model();
+        $r = $Log_Model->getOneLogForHome($gid);
+        if (isset($r['author'])) {
+            return $r;
+        }
+        return false;
     }
 }

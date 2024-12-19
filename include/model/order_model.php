@@ -169,7 +169,7 @@ class Order_Model
             $orderId
         );
         $this->db->query($sql);
-        return $this->db->affected_rows();
+        return $this->db->affected_rows() > 0;
     }
 
     function isOrderPaid($orderId)
