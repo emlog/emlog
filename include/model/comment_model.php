@@ -388,6 +388,17 @@ class Comment_Model
         return (int)$row['num'] > 0;
     }
 
+    function hasCommented($blogId, $uid)
+    {
+        $ipaddr = getIp();
+
+        $sql = "SELECT COUNT(*) as num FROM $this->table WHERE gid = $blogId AND (uid = $uid OR ip = '$ipaddr')";
+        $res = $this->db->query($sql);
+        $row = $this->db->fetch_array($res);
+
+        return (int)$row['num'] > 0;
+    }
+
     function setCommentCookie($name, $mail, $url)
     {
         $cookietime = time() + 31536000;
