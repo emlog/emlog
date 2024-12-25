@@ -69,7 +69,7 @@ class Log_Controller
         }
 
         // 作者和管理可以预览草稿及待审核文章
-        if (($logData['hide'] === 'y' || $logData['checked'] === 'n') && $logData['author'] != UID && !User::haveEditPermission()) {
+        if (($logData['hide'] === 'y' || $logData['checked'] === 'n' || $logData['timestamp'] > time()) && $logData['author'] != UID && !User::haveEditPermission()) {
             show_404_page();
         }
 
