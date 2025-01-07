@@ -9,6 +9,7 @@
         <li class="nav-item"><a class="nav-link active" href="./setting.php?action=mail">邮件通知</a></li>
         <li class="nav-item"><a class="nav-link" href="./setting.php?action=seo">SEO设置</a></li>
         <li class="nav-item"><a class="nav-link" href="./setting.php?action=api">API</a></li>
+        <li class="nav-item"><a class="nav-link" href="./setting.php?action=ai">🤖AI</a></li>
         <li class="nav-item"><a class="nav-link" href="./blogger.php">个人信息</a></li>
     </ul>
 </div>
@@ -37,7 +38,7 @@
                 <input class="form-control" value="<?= $smtp_port ?>" name="smtp_port">
             </div>
             <div class="form-group">
-                <input type="button" value="发送测试" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#testMail"/>
+                <input type="button" value="发送测试" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#testMail" />
             </div>
             <div class="alert alert-warning">
                 <b>以QQ邮箱配置为例</b><br>
@@ -87,13 +88,13 @@
                 <label class="form-check-label" for="mail_notice_comment">评论通知（评论通知文章作者，回复评论通知评论人）</label>
             </div>
             <div class="form-group form-check">
-                <input class="form-check-input" type="checkbox" value="y" name="mail_notice_post" id="mail_notice_post" <?= $conf_mail_notice_post ?> >
+                <input class="form-check-input" type="checkbox" value="y" name="mail_notice_post" id="mail_notice_post" <?= $conf_mail_notice_post ?>>
                 <label class="form-check-label" for="mail_notice_post">文章投稿通知（仅发送到创始人邮箱）</label>
             </div>
             <div class="form-group">
                 <hr>
-                <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
-                <input type="submit" value="保存设置" class="btn btn-sm btn-success"/>
+                <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
+                <input type="submit" value="保存设置" class="btn btn-sm btn-success" />
             </div>
         </form>
     </div>
@@ -133,7 +134,7 @@
     updatePreview();
     htmlInput.addEventListener('input', updatePreview);
 
-    $(function () {
+    $(function() {
         // menu
         $("#menu_category_sys").addClass('active');
         $("#menu_sys").addClass('show');
@@ -141,15 +142,15 @@
         setTimeout(hideActived, 3600);
 
         // 提交表单
-        $("#mail_setting_form").submit(function (event) {
+        $("#mail_setting_form").submit(function(event) {
             event.preventDefault();
             submitForm("#mail_setting_form");
         });
 
         // test sendmail
-        $("#testSendBtn").click(function () {
+        $("#testSendBtn").click(function() {
             $("#testMailMsg").html("<small class='text-secondary'>发送中...<small>");
-            $.post("setting.php?action=mail_test", $("#mail_setting_form").serialize(), function (data) {
+            $.post("setting.php?action=mail_test", $("#mail_setting_form").serialize(), function(data) {
                 if (data === '') {
                     $("#testMailMsg").html("<small class='text-success'>发送成功</small>");
                 } else {

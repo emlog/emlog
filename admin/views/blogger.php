@@ -12,6 +12,7 @@
             <li class="nav-item"><a class="nav-link" href="./setting.php?action=mail">邮件通知</a></li>
             <li class="nav-item"><a class="nav-link" href="./setting.php?action=seo">SEO设置</a></li>
             <li class="nav-item"><a class="nav-link" href="./setting.php?action=api">API</a></li>
+            <li class="nav-item"><a class="nav-link" href="./setting.php?action=ai">🤖AI</a></li>
             <li class="nav-item"><a class="nav-link active" href="./blogger.php">个人信息</a></li>
         </ul>
     <?php endif; ?>
@@ -20,8 +21,8 @@
     <div class="card-body">
         <div class="row m-5">
             <label for="upload_image">
-                <img src="<?= $icon ?>" width="120" height="120" id="avatar_image" class="rounded-circle"/>
-                <input type="file" name="image" class="image" id="upload_image" style="display:none"/>
+                <img src="<?= $icon ?>" width="120" height="120" id="avatar_image" class="rounded-circle" />
+                <input type="file" name="image" class="image" id="upload_image" style="display:none" />
             </label>
         </div>
         <form action="blogger.php?action=update" method="post" name="profile_setting_form" id="profile_setting_form" enctype="multipart/form-data">
@@ -49,8 +50,8 @@
                 <div class="form-group">
                     <?php doAction('blogger_ext') ?>
                 </div>
-                <input name="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
-                <input type="submit" value="保存资料" name="submit_form" id="submit_form" class="btn btn-sm btn-success"/>
+                <input name="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
+                <input type="submit" value="保存资料" name="submit_form" id="submit_form" class="btn btn-sm btn-success" />
                 <a href="#" type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#editPasswordModal">修改密码</a>
             </div>
         </form>
@@ -70,7 +71,7 @@
                 <div class="img-container">
                     <div class="row">
                         <div class="col-md-11">
-                            <img src="" id="sample_image"/>
+                            <img src="" id="sample_image" />
                         </div>
                     </div>
                 </div>
@@ -104,7 +105,7 @@
                         <input type="password" class="form-control" id="new_passwd2" name="new_passwd2" minlength="6" required>
                     </div>
                     <div class="modal-footer">
-                        <input name="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
+                        <input name="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
                         <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
                         <button type="submit" class="btn btn-sm btn-success">保存</button>
                     </div>
@@ -137,7 +138,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <input name="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
+                        <input name="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
                         <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
                         <button type="submit" class="btn btn-sm btn-success">保存</button>
                     </div>
@@ -148,47 +149,47 @@
 </div>
 
 <script>
-    $(function () {
+    $(function() {
         $("#menu_category_sys").addClass('active');
         $("#menu_sys").addClass('show');
         $("#menu_setting").addClass('active');
         setTimeout(hideActived, 3600);
 
         // 提交表单
-        $("#profile_setting_form").submit(function (event) {
+        $("#profile_setting_form").submit(function(event) {
             event.preventDefault();
             submitForm("#profile_setting_form");
         });
 
         // 修改用户密码表单提交
-        $("#passwd_setting_form").submit(function (event) {
+        $("#passwd_setting_form").submit(function(event) {
             event.preventDefault();
             submitForm("#passwd_setting_form", '密码修改成功, 请退出重新登录');
             $("#editPasswordModal").modal('hide');
         });
 
         // 修改邮箱表单提交
-        $("#email_setting_form").submit(function (event) {
+        $("#email_setting_form").submit(function(event) {
             event.preventDefault();
             submitForm("#email_setting_form", '邮箱修改成功');
             $("#editEmailModal").modal('hide');
         });
 
         // 修改邮箱
-        $('#editEmailModal').on('show.bs.modal', function (event) {
+        $('#editEmailModal').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget)
             var email = button.data('email')
             var modal = $(this)
             modal.find('.modal-body #email').val(email)
         })
         // 邮箱验证
-        $('#button-send-auth-email').click(function () {
+        $('#button-send-auth-email').click(function() {
             var email = $('#email').val();
             var $btn = $(this);
             var $message = $('#message');
             $btn.prop('disabled', true);
             var count = 60;
-            var countdown = setInterval(function () {
+            var countdown = setInterval(function() {
                 $btn.text('重新发送 (' + count + ')');
                 if (count == 0) {
                     clearInterval(countdown);
@@ -201,11 +202,13 @@
             $.ajax({
                 url: 'account.php?action=send_email_code',
                 method: 'POST',
-                data: {mail: email},
-                success: function (response) {
+                data: {
+                    mail: email
+                },
+                success: function(response) {
                     $message.text('验证码已发送，请查收邮件').css('color', 'green');
                 },
-                error: function (data) {
+                error: function(data) {
                     $message.text(data.responseJSON.msg).css('color', 'red');
                     clearInterval(countdown);
                     $btn.text('发送验证码');
@@ -218,9 +221,9 @@
         var $modal = $('#modal');
         var image = document.getElementById('sample_image');
         var cropper;
-        $('#upload_image').change(function (event) {
+        $('#upload_image').change(function(event) {
             var files = event.target.files;
-            var done = function (url) {
+            var done = function(url) {
                 image.src = url;
                 $modal.modal('show');
             };
@@ -230,34 +233,34 @@
                     return;
                 }
                 reader = new FileReader();
-                reader.onload = function (event) {
+                reader.onload = function(event) {
                     done(reader.result);
                 };
                 reader.readAsDataURL(files[0]);
             }
         });
-        $modal.on('shown.bs.modal', function () {
+        $modal.on('shown.bs.modal', function() {
             cropper = new Cropper(image, {
                 aspectRatio: 1,
                 viewMode: 1,
             });
-        }).on('hidden.bs.modal', function () {
+        }).on('hidden.bs.modal', function() {
             cropper.destroy();
             cropper = null;
         });
 
-        $('#crop').click(function () {
+        $('#crop').click(function() {
             canvas = cropper.getCroppedCanvas({
                 width: 160,
                 height: 160
             });
 
-            canvas.toBlob(function (blob) {
+            canvas.toBlob(function(blob) {
                 uploadImage(blob, 'avatar.jpg');
             });
         });
 
-        $('#use_original_image').click(function () {
+        $('#use_original_image').click(function() {
             var blob = $('#upload_image')[0].files[0];
             uploadImage(blob, blob.name)
         });
@@ -271,7 +274,7 @@
                 data: formData,
                 processData: false,
                 contentType: false,
-                success: function (data) {
+                success: function(data) {
                     $modal.modal('hide');
                     if (data.code == 0) {
                         $('#avatar_image').attr('src', data.data);
@@ -279,7 +282,7 @@
                         alert(data.msg);
                     }
                 },
-                error: function (xhr) {
+                error: function(xhr) {
                     var data = xhr.responseJSON;
                     if (data && typeof data === "object") {
                         alert(data.msg);

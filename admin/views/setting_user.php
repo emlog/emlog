@@ -9,6 +9,7 @@
         <li class="nav-item"><a class="nav-link" href="./setting.php?action=mail">邮件通知</a></li>
         <li class="nav-item"><a class="nav-link" href="./setting.php?action=seo">SEO设置</a></li>
         <li class="nav-item"><a class="nav-link" href="./setting.php?action=api">API</a></li>
+        <li class="nav-item"><a class="nav-link" href="./setting.php?action=ai">🤖AI</a></li>
         <li class="nav-item"><a class="nav-link" href="./blogger.php">个人信息</a></li>
     </ul>
 </div>
@@ -20,11 +21,11 @@
                 <label class="form-check-label" for="is_signup">开启用户注册</label>
             </div>
             <div class="form-group form-check">
-                <input class="form-check-input" type="checkbox" value="y" name="login_code" id="login_code" <?= $conf_login_code ?> >
+                <input class="form-check-input" type="checkbox" value="y" name="login_code" id="login_code" <?= $conf_login_code ?>>
                 <label class="form-check-label" for="login_code">开启登录注册图形验证码</label>
             </div>
             <div class="form-group form-check">
-                <input class="form-check-input" type="checkbox" value="y" name="email_code" id="email_code" <?= $conf_email_code ?> >
+                <input class="form-check-input" type="checkbox" value="y" name="email_code" id="email_code" <?= $conf_email_code ?>>
                 <label class="form-check-label" for="email_code">开启注册邮件验证码（开启需配置邮件通知服务）</label>
             </div>
             <hr>
@@ -38,7 +39,7 @@
             </div>
             <div class="form-group form-inline">
                 <label for="posts_per_day">注册用户限制24小时发文数量（包括草稿）：</label>
-                <input class="form-control mx-sm-3" style="width:60px;" value="<?= $posts_per_day ?>" type="number" min="0" name="posts_per_day" id="posts_per_day"/>
+                <input class="form-control mx-sm-3" style="width:60px;" value="<?= $posts_per_day ?>" type="number" min="0" name="posts_per_day" id="posts_per_day" />
             </div>
             <hr>
             <div class="form-group form-check">
@@ -46,19 +47,19 @@
                 <label class="form-check-label" for="forbid_user_upload">禁止注册用户上传图文资源</label>
             </div>
             <div class="form-group form-inline" id="form_att_maxsize">
-                注册用户上传最大限制：<input type="number" min="0" style="width:200px;" class="form-control" value="<?= $att_maxsize ?>" name="att_maxsize"/> （单位：KB）
+                注册用户上传最大限制：<input type="number" min="0" style="width:200px;" class="form-control" value="<?= $att_maxsize ?>" name="att_maxsize" /> （单位：KB）
             </div>
             <div class="form-group form-inline" id="form_att_type">
-                允许注册用户上传的文件类型：<input maxlength="200" style="width:500px;" class="form-control" value="<?= $att_type ?>" name="att_type"/>（多个用英文逗号分隔）
+                允许注册用户上传的文件类型：<input maxlength="200" style="width:500px;" class="form-control" value="<?= $att_type ?>" name="att_type" />（多个用英文逗号分隔）
             </div>
             <hr>
             <div class="form-group form-inline">
                 <label for="posts_name">用户中心文章别名：</label>
-                <input class="form-control mx-sm-3" style="width:80px;" value="<?= $posts_name ?>" name="posts_name" id="posts_name"/> 如：帖子、投稿、资源等
+                <input class="form-control mx-sm-3" style="width:80px;" value="<?= $posts_name ?>" name="posts_name" id="posts_name" /> 如：帖子、投稿、资源等
             </div>
             <div class="form-group">
-                <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
-                <input type="submit" value="保存设置" class="btn btn-sm btn-success"/>
+                <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
+                <input type="submit" value="保存设置" class="btn btn-sm btn-success" />
             </div>
         </form>
         <div class="alert alert-warning">
@@ -70,14 +71,14 @@
     </div>
 </div>
 <script>
-    $(function () {
+    $(function() {
         $("#menu_category_sys").addClass('active');
         $("#menu_sys").addClass('show');
         $("#menu_setting").addClass('active');
         setTimeout(hideActived, 3600);
 
         // 提交表单
-        $("#user_setting_form").submit(function (event) {
+        $("#user_setting_form").submit(function(event) {
             event.preventDefault();
             submitForm("#user_setting_form");
         });

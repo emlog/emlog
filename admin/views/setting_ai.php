@@ -1,0 +1,106 @@
+<?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h4 mb-0 text-gray-800">设置</h1>
+</div>
+<div class="panel-heading">
+    <ul class="nav nav-pills">
+        <li class="nav-item"><a class="nav-link" href="./setting.php">基础设置</a></li>
+        <li class="nav-item"><a class="nav-link" href="./setting.php?action=user">用户设置</a></li>
+        <li class="nav-item"><a class="nav-link" href="./setting.php?action=mail">邮件通知</a></li>
+        <li class="nav-item"><a class="nav-link" href="./setting.php?action=seo">SEO设置</a></li>
+        <li class="nav-item"><a class="nav-link" href="./setting.php?action=api">API</a></li>
+        <li class="nav-item"><a class="nav-link active" href="./setting.php?action=ai">🤖AI</a></li>
+        <li class="nav-item"><a class="nav-link" href="./blogger.php">个人信息</a></li>
+    </ul>
+</div>
+<div class="card shadow mb-4 mt-2">
+    <div class="card-body">
+        <form action="setting.php?action=ai_save" method="post" name="setting_ai_form" id="setting_ai_form">
+            <p>API URL：</p>
+            <div class="form-group">
+                <input type="url" class="form-control" name="ai_api_url" id="ai_api_url" value="<?= $aiApiUrl ?>" />
+            </div>
+            <p>API Key：</p>
+            <div class="form-group">
+                <input type="text" class="form-control" name="ai_api_key" id="ai_api_key" value="<?= $aiApiKey ?>" />
+            </div>
+            <p>Model：</p>
+            <div class="form-group">
+                <input type="text" class="form-control" name="ai_model" id="ai_model" value="<?= $aiModel ?>" />
+            </div>
+            <div class="form-group mt-3">
+                <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
+                <button type="submit" class="btn btn-primary">保存设置</button>
+            </div>
+            <div class="alert alert-warning">
+                <b>仅支持配置openai协议的大模型</b><br>
+                <a href="https://www.deepseek.com/" target="_blank">DeepSeek</a> 配置示例：<br>
+                API URL：https://api.deepseek.com/v1/chat/completions<br>
+                API Key：<a href="https://platform.deepseek.com/api_keys" target="_blank">生成自己api key</a>，格式如：sk-****<br>
+                Model：deepseek-chat<br>
+                <hr>
+                <a href="https://tongyi.aliyun.com/" target="_blank">阿里通义大模型</a> 配置示例：<br>
+                API URL：https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions<br>
+                API Key：<a href="https://bailian.console.aliyun.com/?apiKey=1#/api-key" target="_blank">生成自己api key</a>，格式如：sk-****<br>
+                Model：qwen-max、qwen-plus、qwen-turbo 等<br>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    $(function() {
+        $("#menu_category_sys").addClass('active');
+        $("#menu_sys").addClass('show');
+        $("#menu_setting").addClass('active');
+        setTimeout(hideActived, 3600);
+    });
+    $("#setting_ai_form").submit(function(event) {
+        event.preventDefault();
+        submitForm("#setting_ai_form");
+    });
+</script>
+<div class="card shadow mb-4 mt-2">
+    <div class="card-body">
+        <h5 class="card-title">AI 对话聊天</h5>
+        <div id="chat-box" style="height: 300px; overflow-y: scroll; border: 1px solid #ddd; padding: 10px; margin-bottom: 10px;">
+            <!-- Chat messages will appear here -->
+        </div>
+        <div class="input-group">
+            <input type="text" class="form-control" id="chat-input" placeholder="输入消息...">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="button" id="send-btn">发送</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+        $('#send-btn').click(function() {
+            var message = $('#chat-input').val();
+            if (message.trim() === '') return;
+
+            $('#chat-box').append('<div><b>😄：</b> ' + $('<div>').text(message).html() + '</div>');
+            $('#chat-input').val('');
+
+            var formData = new FormData();
+            formData.append('message', message);
+
+            $.ajax({
+                url: 'setting.php?action=ai_chat',
+                method: 'POST',
+                processData: false,
+                contentType: false,
+                data: formData,
+                success: function(response) {
+                    var aiMessage = response.data.replace(/\n/g, '<br>');
+                    $('#chat-box').append('<div><b>🤖：</b> ' + $('<div>').html(aiMessage).html() + '</div>');
+                    $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
+                },
+                error: function() {
+                    $('#chat-box').append('<div><b>🤖：</b> 出错了，请稍后再试。</div>');
+                    $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
+                }
+            });
+        });
+    });
+</script>

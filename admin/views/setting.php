@@ -9,6 +9,7 @@
         <li class="nav-item"><a class="nav-link" href="./setting.php?action=mail">邮件通知</a></li>
         <li class="nav-item"><a class="nav-link" href="./setting.php?action=seo">SEO设置</a></li>
         <li class="nav-item"><a class="nav-link" href="./setting.php?action=api">API</a></li>
+        <li class="nav-item"><a class="nav-link" href="./setting.php?action=ai">🤖AI</a></li>
         <li class="nav-item"><a class="nav-link" href="./blogger.php">个人信息</a></li>
     </ul>
 </div>
@@ -45,7 +46,7 @@
 
             <div class="form-group">
                 <label>ICP备案号</label>
-                <input class="form-control" value="<?= $icp ?>" name="icp"/>
+                <input class="form-control" value="<?= $icp ?>" name="icp" />
             </div>
             <div class="form-group">
                 <label>首页底部信息(支持html，可用于添加流量统计代码)</label>
@@ -74,7 +75,7 @@
                 <label for="comment_paging">评论分页</label>
             </div>
             <div class="form-group form-inline">
-                每页显示评论条数：<input maxlength="5" style="width:80px;" class="form-control" value="<?= $comment_pnum ?>" name="comment_pnum" type="number" min="0"/>
+                每页显示评论条数：<input maxlength="5" style="width:80px;" class="form-control" value="<?= $comment_pnum ?>" name="comment_pnum" type="number" min="0" />
             </div>
             <div class="form-group form-inline">
                 评论排序方式：<select name="comment_order" class="form-control" style="width: 120px;">
@@ -83,7 +84,7 @@
                 </select>
             </div>
             <div class="form-group form-inline">
-                发表评论间隔（秒）： <input class="form-control mx-sm-3" value="<?= $comment_interval ?>" name="comment_interval" style="width:80px;" type="number" min="0"/>
+                发表评论间隔（秒）： <input class="form-control mx-sm-3" value="<?= $comment_interval ?>" name="comment_interval" style="width:80px;" type="number" min="0" />
             </div>
 
             <hr>
@@ -91,11 +92,11 @@
             <h4>文章设置</h4>
             <div class="form-group form-inline">
                 <label>每页显示文章数量</label>
-                <input class="form-control mx-sm-3" style="width:80px;" value="<?= $index_lognum ?>" name="index_lognum" type="number" min="1"/>
+                <input class="form-control mx-sm-3" style="width:80px;" value="<?= $index_lognum ?>" name="index_lognum" type="number" min="1" />
             </div>
 
             <div class="form-group form-inline">
-                RSS输出 <input maxlength="5" style="width:80px;" value="<?= $rss_output_num ?>" type="number" min="0" class="form-control" name="rss_output_num"/> 篇文章（0为关闭），且输出
+                RSS输出 <input maxlength="5" style="width:80px;" value="<?= $rss_output_num ?>" type="number" min="0" class="form-control" name="rss_output_num" /> 篇文章（0为关闭），且输出
                 <select name="rss_output_fulltext" class="form-control">
                     <option value="y" <?= $ex1 ?>>全文</option>
                     <option value="n" <?= $ex2 ?>>摘要</option>
@@ -111,8 +112,8 @@
             <div class="form-group form-inline">
                 <input type="checkbox" value="y" name="isthumbnail" id="isthumbnail" class="mr-1" <?= $conf_isthumbnail ?> />
                 <label for="isthumbnail">上传图片生成缩略图</label>，最大尺寸：
-                <input maxlength="5" style="width:80px;" class="form-control" value="<?= $att_imgmaxw ?>" name="att_imgmaxw"/> x
-                <input maxlength="5" style="width:80px;" class="form-control" value="<?= $att_imgmaxh ?>" name="att_imgmaxh"/>（单位：像素）
+                <input maxlength="5" style="width:80px;" class="form-control" value="<?= $att_imgmaxw ?>" name="att_imgmaxw" /> x
+                <input maxlength="5" style="width:80px;" class="form-control" value="<?= $att_imgmaxh ?>" name="att_imgmaxh" />（单位：像素）
             </div>
             <hr>
 
@@ -123,23 +124,23 @@
             </div>
             <div class="form-group form-inline">
                 <label>每页展示条目数量</label>
-                <input class="form-control mx-sm-3" style="width:80px;" value="<?= $admin_perpage_num ?>" name="admin_perpage_num" type="number" min="1" max="1000"/> （影响后台文章、评论、用户列表）
+                <input class="form-control mx-sm-3" style="width:80px;" value="<?= $admin_perpage_num ?>" name="admin_perpage_num" type="number" min="1" max="1000" /> （影响后台文章、评论、用户列表）
             </div>
             <hr>
-            <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
-            <input type="submit" value="保存设置" class="btn btn-sm btn-success"/>
+            <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
+            <input type="submit" value="保存设置" class="btn btn-sm btn-success" />
         </form>
     </div>
 </div>
 <script>
-    $(function () {
+    $(function() {
         $("#menu_category_sys").addClass('active');
         $("#menu_sys").addClass('show');
         $("#menu_setting").addClass('active');
         setTimeout(hideActived, 3600);
 
         // 提交表单
-        $("#setting_form").submit(function (event) {
+        $("#setting_form").submit(function(event) {
             event.preventDefault();
             submitForm("#setting_form");
         });

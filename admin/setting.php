@@ -1,4 +1,5 @@
 <?php
+
 /**
  * setting
  * @package EMLOG
@@ -271,7 +272,6 @@ if ($action == 'mail') {
     require_once(View::getAdmView('setting_mail'));
     include View::getAdmView('footer');
     View::output();
-
 }
 
 if ($action == 'mail_save') {
@@ -413,4 +413,43 @@ if ($action == 'api_reset') {
     Option::updateOption('apikey', $apikey);
     $CACHE->updateCache('options');
     header('Location: ./setting.php?action=api&ok_reset=1');
+}
+
+if ($action == 'ai') {
+    $aiApiUrl = Option::get('ai_api_url');
+    $aiApiKey = Option::get('ai_api_key');
+    $aiModel = Option::get('ai_model');
+
+    include View::getAdmView('header');
+    require_once(View::getAdmView('setting_ai'));
+    include View::getAdmView('footer');
+    View::output();
+}
+
+if ($action == 'ai_save') {
+    LoginAuth::checkToken();
+
+    $aiApiUrl = Input::postStrVar('ai_api_url');
+    $aiApiKey = Input::postStrVar('ai_api_key');
+    $aiModel = Input::postStrVar('ai_model');
+
+    Option::updateOption('ai_api_url', $aiApiUrl);
+    Option::updateOption('ai_api_key', $aiApiKey);
+    Option::updateOption('ai_model', $aiModel);
+
+    $CACHE->updateCache('options');
+
+    Output::ok();
+}
+
+if ($action == 'ai_chat') {
+    $message = Input::postStrVar('message');
+
+    $r = Ai::chat($message);
+
+    if (!$r) {
+        Output::error('AI接口配置错误，或者是网络问题');
+    }
+
+    Output::ok($r);
 }
