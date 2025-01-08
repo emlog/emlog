@@ -31,7 +31,7 @@ class Ai
         if (isset($decodedResponse['choices'][0]['message']['content'])) {
             return $decodedResponse['choices'][0]['message']['content'];
         }
-        return null;
+        return '大模型处理异常，请稍后再试，错误信息：' . $response;
     }
 
     public static function send($messages)
@@ -45,7 +45,7 @@ class Ai
             'messages' => $messages,
             'model' => $model,
             'frequency_penalty' => 0,
-            'max_tokens' => 20480,
+            'max_tokens' => 2048,
             'presence_penalty' => 0,
             'response_format' => ['type' => 'text'],
             'stop' => null,
@@ -69,7 +69,7 @@ class Ai
         $emcurl->request($apiUrl, $headers);
         $retStatus = $emcurl->getHttpStatus();
         if ($retStatus !== MSGCODE_SUCCESS) {
-            return $emcurl->getError();
+            return $retStatus . '.' . $emcurl->getError();
         }
         $response = $emcurl->getRespone();
         return $response;

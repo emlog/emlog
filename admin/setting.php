@@ -444,12 +444,6 @@ if ($action == 'ai_save') {
 
 if ($action == 'ai_chat') {
     $message = Input::postStrVar('message');
-
     $r = Ai::chat($message);
-
-    if (!$r) {
-        Output::error('AI接口配置错误，或者是网络问题');
-    }
-
     Output::ok($r);
 }
