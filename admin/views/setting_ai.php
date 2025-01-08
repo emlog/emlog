@@ -36,13 +36,22 @@
                 <b>仅支持配置openai协议的大模型</b><br>
                 <a href="https://www.deepseek.com/" target="_blank">DeepSeek</a> 配置示例：<br>
                 API URL：https://api.deepseek.com/v1/chat/completions<br>
-                API Key：<a href="https://platform.deepseek.com/api_keys" target="_blank">生成自己api key</a>，格式如：sk-****<br>
+                API Key：<a href="https://platform.deepseek.com/api_keys" target="_blank">生成api key</a>，格式如：sk-****<br>
                 Model：deepseek-chat<br>
                 <hr>
-                <a href="https://tongyi.aliyun.com/" target="_blank">阿里通义大模型</a> 配置示例：<br>
-                API URL：https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions<br>
-                API Key：<a href="https://bailian.console.aliyun.com/?apiKey=1#/api-key" target="_blank">生成自己api key</a>，格式如：sk-****<br>
-                Model：qwen-max、qwen-plus、qwen-turbo 等<br>
+                <a href="#" id="more-config" onclick="$('#more-config-details').toggle(); return false;">点击查看更多</a>
+                <div id="more-config-details" style="display:none;">
+                    <hr>
+                    <a href="https://bigmodel.cn/" target="_blank">智谱AI</a> 配置示例：<br>
+                    API URL：https://open.bigmodel.cn/api/paas/v4/chat/completions<br>
+                    API Key：<a href="https://bigmodel.cn/usercenter/proj-mgmt/apikeys" target="_blank">生成api key</a><br>
+                    Model：glm-4-plus<br>
+                    <hr>
+                    <a href="https://tongyi.aliyun.com/" target="_blank">阿里通义大模型</a> 配置示例：<br>
+                    API URL：https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions<br>
+                    API Key：<a href="https://bailian.console.aliyun.com/?apiKey=1#/api-key" target="_blank">生成api key</a>，格式如：sk-****<br>
+                    Model：qwen-max、qwen-plus、qwen-turbo 等<br>
+                </div>
             </div>
         </form>
     </div>
@@ -65,17 +74,20 @@
         <div id="chat-box" style="height: 300px; overflow-y: scroll; border: 1px solid #ddd; padding: 10px; margin-bottom: 10px;">
             <!-- Chat messages will appear here -->
         </div>
-        <div class="input-group">
-            <input type="text" class="form-control" id="chat-input" placeholder="输入消息...">
-            <div class="input-group-append">
-                <button class="btn btn-primary" type="button" id="send-btn">发送</button>
+        <form id="chat-form">
+            <div class="input-group">
+                <input type="text" class="form-control" id="chat-input" placeholder="输入消息...">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit" id="send-btn">发送</button>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>
 <script>
     $(document).ready(function() {
-        $('#send-btn').click(function() {
+        $('#chat-form').submit(function(event) {
+            event.preventDefault();
             var message = $('#chat-input').val();
             if (message.trim() === '') return;
 
@@ -97,7 +109,7 @@
                     $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
                 },
                 error: function() {
-                    $('#chat-box').append('<div><b>🤖：</b> 出错了，请稍后再试。</div>');
+                    $('#chat-box').append('<div><b>🤖：</b> 出错了，可能是 AI 配置错误或网络问题。</div>');
                     $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
                 }
             });

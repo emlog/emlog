@@ -22,7 +22,6 @@ class Ai
             ]
         ];
         $response = self::send($messages);
-        var_dump($response);
         return self::formatResponse($response);
     }
 
