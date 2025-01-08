@@ -30,28 +30,25 @@
             </div>
             <div class="form-group mt-3">
                 <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
-                <button type="submit" class="btn btn-primary">保存设置</button>
+                <button type="submit" class="btn btn-success btn-sm">保存设置</button>
+                <button type="button" class="btn btn-primary btn-sm" id="more-config" onclick="$('#more-config-details').toggle();">配置示例</button>
             </div>
-            <div class="alert alert-warning">
+            <div id="more-config-details" class="alert alert-warning" style="display:none;">
                 <b>仅支持配置openai协议的大模型</b><br>
                 <a href="https://www.deepseek.com/" target="_blank">DeepSeek</a> 配置示例：<br>
                 API URL：https://api.deepseek.com/v1/chat/completions<br>
                 API Key：<a href="https://platform.deepseek.com/api_keys" target="_blank">生成api key</a>，格式如：sk-****<br>
                 Model：deepseek-chat<br>
                 <hr>
-                <a href="#" id="more-config" onclick="$('#more-config-details').toggle(); return false;">点击查看更多</a>
-                <div id="more-config-details" style="display:none;">
-                    <hr>
-                    <a href="https://bigmodel.cn/" target="_blank">智谱AI</a> 配置示例：<br>
-                    API URL：https://open.bigmodel.cn/api/paas/v4/chat/completions<br>
-                    API Key：<a href="https://bigmodel.cn/usercenter/proj-mgmt/apikeys" target="_blank">生成api key</a><br>
-                    Model：glm-4-plus<br>
-                    <hr>
-                    <a href="https://tongyi.aliyun.com/" target="_blank">阿里通义大模型</a> 配置示例：<br>
-                    API URL：https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions<br>
-                    API Key：<a href="https://bailian.console.aliyun.com/?apiKey=1#/api-key" target="_blank">生成api key</a>，格式如：sk-****<br>
-                    Model：qwen-max、qwen-plus、qwen-turbo 等<br>
-                </div>
+                <a href="https://bigmodel.cn/" target="_blank">智谱AI</a> 配置示例：<br>
+                API URL：https://open.bigmodel.cn/api/paas/v4/chat/completions<br>
+                API Key：<a href="https://bigmodel.cn/usercenter/proj-mgmt/apikeys" target="_blank">生成api key</a><br>
+                Model：glm-4-plus<br>
+                <hr>
+                <a href="https://www.moonshot.cn/" target="_blank">Moonshot</a> 配置示例：<br>
+                API URL：https://api.moonshot.cn/v1/chat/completions<br>
+                API Key：<a href="https://platform.moonshot.cn/console/api-keys" target="_blank">生成api key</a>，格式如：sk-****<br>
+                Model：moonshot-v1-8k、moonshot-v1-32k、moonshot-v1-128k 等<br>
             </div>
         </form>
     </div>
@@ -97,6 +94,9 @@
             var formData = new FormData();
             formData.append('message', message);
 
+            var $sendBtn = $('#send-btn');
+            $sendBtn.prop('disabled', true).text('发送中...');
+
             $.ajax({
                 url: 'setting.php?action=ai_chat',
                 method: 'POST',
@@ -111,6 +111,9 @@
                 error: function() {
                     $('#chat-box').append('<div><b>🤖：</b> 出错了，可能是 AI 配置错误或网络问题。</div>');
                     $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
+                },
+                complete: function() {
+                    $sendBtn.prop('disabled', false).text('发送');
                 }
             });
         });
