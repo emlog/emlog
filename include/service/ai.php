@@ -40,12 +40,12 @@ class Ai
         $apiKey = Option::get('ai_api_key');
         $model = Option::get('ai_model');
 
-        $emcurl = new EmCurl();
+        $emcurl = new EmCurl(10);
         $post_data = json_encode([
             'messages' => $messages,
             'model' => $model,
             'frequency_penalty' => 0,
-            'max_tokens' => 2048,
+            'max_tokens' => 20480,
             'presence_penalty' => 0,
             'response_format' => ['type' => 'text'],
             'stop' => null,
