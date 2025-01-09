@@ -20,7 +20,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div id="chat-box" style="height: 500px; overflow-y: scroll; border: 1px solid #ddd; padding: 10px; margin-bottom: 10px;">
+                <div id="chat-box" style="height: 500px; overflow-y: scroll; border: 1px solid #ddd; padding: 10px; margin-bottom: 10px; border-radius: 8px;">
                     <!-- Chat messages will appear here -->
                 </div>
                 <form id="chat-form">
@@ -30,6 +30,7 @@
                             <button class="btn btn-primary" type="submit" id="send-btn">发送</button>
                         </div>
                     </div>
+                    <div class="text-muted text-xs mt-2">Model：<?= Option::get('ai_model') ?>，按 Shift + Enter 换行</div>
                 </form>
                 <script>
                     $(document).ready(function() {
@@ -64,7 +65,7 @@
             if (message === '') return;
 
             // 显示用户消息
-            $('#chat-box').append('<div><b>😄：</b> ' + $('<div>').text(message).html() + '</div>');
+            $('#chat-box').append('<div style="background-color: #f1f1f1; border-radius: 10px; padding: 10px; margin: 5px 0;"><b>😄：</b> ' + $('<div>').text(message).html() + '</div>');
             $('#chat-input').val('');
             $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
 
@@ -73,7 +74,7 @@
 
             // 初始化 EventSource 进行流式通信
             var eventSource = new EventSource('ai.php?action=chat_stream&message=' + encodeURIComponent(message));
-            var $aiMessage = $('<div><b>🤖：</b> <span class="ai-typing"></span></div>');
+            var $aiMessage = $('<div style="background-color: #f1f1f1; border-radius: 10px; padding: 10px; margin: 5px 0;"><b>🤖：</b> <span class="ai-typing"></span></div>');
             $('#chat-box').append($aiMessage);
 
             var fullMessage = '';
@@ -101,7 +102,7 @@
             };
 
             eventSource.onerror = function() {
-                $('#chat-box').append('<div><b>🤖：</b> <span style="color:red;">连接出错，请稍后再试。</span></div>');
+                $('#chat-box').append('<div style="background-color: #f1f1f1; border-radius: 10px; padding: 10px; margin: 5px 0;"><b>🤖：</b> <span style="color:red;">连接出错，请稍后再试。</span></div>');
                 $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
                 $sendBtn.prop('disabled', false).text('发送');
                 eventSource.close();
