@@ -9,7 +9,7 @@
         <li class="nav-item"><a class="nav-link" href="./setting.php?action=mail">邮件通知</a></li>
         <li class="nav-item"><a class="nav-link" href="./setting.php?action=seo">SEO设置</a></li>
         <li class="nav-item"><a class="nav-link" href="./setting.php?action=api">API</a></li>
-        <li class="nav-item"><a class="nav-link active" href="./setting.php?action=ai">🤖AI</a></li>
+        <li class="nav-item"><a class="nav-link active" href="./setting.php?action=ai">✨AI</a></li>
         <li class="nav-item"><a class="nav-link" href="./blogger.php">个人信息</a></li>
     </ul>
 </div>
@@ -99,7 +99,7 @@
             $sendBtn.prop('disabled', true).text('发送中...');
 
             $.ajax({
-                url: 'setting.php?action=ai_chat',
+                url: 'ai.php?action=chat',
                 method: 'POST',
                 processData: false,
                 contentType: false,

@@ -484,9 +484,3 @@ if ($action == 'delete_model') {
         emDirect("./setting.php?action=ai");
     }
 }
-
-if ($action == 'ai_chat') {
-    $message = Input::postStrVar('message');
-    $r = Ai::chat($message);
-    Output::ok($r);
-}

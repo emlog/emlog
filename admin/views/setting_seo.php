@@ -9,7 +9,7 @@
         <li class="nav-item"><a class="nav-link" href="./setting.php?action=mail">邮件通知</a></li>
         <li class="nav-item"><a class="nav-link active" href="./setting.php?action=seo">SEO设置</a></li>
         <li class="nav-item"><a class="nav-link" href="./setting.php?action=api">API</a></li>
-        <li class="nav-item"><a class="nav-link" href="./setting.php?action=ai">🤖AI</a></li>
+        <li class="nav-item"><a class="nav-link" href="./setting.php?action=ai">✨AI</a></li>
         <li class="nav-item"><a class="nav-link" href="./blogger.php">个人信息</a></li>
     </ul>
 </div>
