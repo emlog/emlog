@@ -36,9 +36,13 @@ class Ai
 
     public static function send($messages)
     {
-        $apiUrl = Option::get('ai_api_url');
-        $apiKey = Option::get('ai_api_key');
-        $model = Option::get('ai_model');
+        $model = self::getCurrentModelInfo();
+        if ($model === null || !isset($model['api_url'])) {
+            return 'AI 模型未配置';
+        }
+        $apiUrl = $model['api_url'];
+        $apiKey = $model['api_key'];
+        $model = $model['model'];
 
         $emcurl = new EmCurl(10);
         $post_data = json_encode([
@@ -73,5 +77,17 @@ class Ai
         }
         $response = $emcurl->getRespone();
         return $response;
+    }
+
+    public static function getCurrentModelInfo()
+    {
+        $currentModel = Option::get('ai_model');
+        $aiModels = json_decode(Option::get('ai_models'), true);
+
+        if (isset($aiModels[$currentModel])) {
+            return $aiModels[$currentModel];
+        }
+
+        return null;
     }
 }
