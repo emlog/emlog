@@ -44,7 +44,10 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>个人描述</label><a href="javascript:void(0);" class="ml-3" id="ai_button">✨</a>
+                    <label>个人描述</label>
+                    <?php if (User::haveEditPermission()): ?>
+                        <a href="javascript:void(0);" class="ml-3" id="ai_button">✨</a>
+                    <?php endif; ?>
                     <textarea name="description" class="form-control" id="description"><?= $description ?></textarea>
                 </div>
                 <script>

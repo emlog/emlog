@@ -504,7 +504,6 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES
 ('blogurl','" . BLOG_URL . "'),
 ('icp',''),
 ('footer_info','powered by <a href=\"https://www.emlog.net\">emlog</a>'),
-('admin_perpage_num','15'),
 ('rss_output_num','10'),
 ('rss_output_fulltext','y'),
 ('index_lognum','10'),
