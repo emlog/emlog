@@ -20,7 +20,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div id="chat-box" style="height: 300px; overflow-y: scroll; border: 1px solid #ddd; padding: 10px; margin-bottom: 10px;">
+                <div id="chat-box" style="height: 500px; overflow-y: scroll; border: 1px solid #ddd; padding: 10px; margin-bottom: 10px;">
                     <!-- Chat messages will appear here -->
                 </div>
                 <form id="chat-form">
