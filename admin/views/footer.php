@@ -39,37 +39,52 @@
     $(document).ready(function() {
         $('#chat-form').submit(function(event) {
             event.preventDefault();
-            var message = $('#chat-input').val();
-            if (message.trim() === '') return;
+            var message = $('#chat-input').val().trim();
+            if (message === '') return;
 
+            // 显示用户消息
             $('#chat-box').append('<div><b>😄：</b> ' + $('<div>').text(message).html() + '</div>');
             $('#chat-input').val('');
-
-            var formData = new FormData();
-            formData.append('message', message);
+            $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
 
             var $sendBtn = $('#send-btn');
             $sendBtn.prop('disabled', true).text('发送中...');
 
-            $.ajax({
-                url: 'ai.php?action=chat',
-                method: 'POST',
-                processData: false,
-                contentType: false,
-                data: formData,
-                success: function(response) {
-                    var aiMessage = response.data.replace(/\n/g, '<br>');
-                    $('#chat-box').append('<div><b>🤖：</b> ' + $('<div>').html(aiMessage).html() + '</div>');
-                    $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
-                },
-                error: function() {
-                    $('#chat-box').append('<div><b>🤖：</b> 出错了，可能是 AI 配置错误或网络问题。</div>');
-                    $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
-                },
-                complete: function() {
+            // 初始化 EventSource 进行流式通信
+            var eventSource = new EventSource('ai.php?action=chat_stream&message=' + encodeURIComponent(message));
+            var $aiMessage = $('<div><b>🤖：</b> <span class="ai-typing"></span></div>');
+            $('#chat-box').append($aiMessage);
+
+            var fullMessage = '';
+
+            eventSource.onmessage = function(event) {
+                if (event.data === '[DONE]') {
                     $sendBtn.prop('disabled', false).text('发送');
+                    eventSource.close();
+                } else {
+                    try {
+                        var data = JSON.parse(event.data);
+                        if (data.choices && data.choices[0].delta && data.choices[0].delta.content) {
+                            var chunk = data.choices[0].delta.content;
+                            fullMessage += chunk;
+
+                            var $typing = $aiMessage.find('.ai-typing');
+                            var currentContent = $typing.html();
+                            $typing.html(currentContent + $('<div>').text(chunk).html());
+                            $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
+                        }
+                    } catch (err) {
+                        console.error('解析流数据错误:', err);
+                    }
                 }
-            });
+            };
+
+            eventSource.onerror = function() {
+                $('#chat-box').append('<div><b>🤖：</b> <span style="color:red;">连接出错，请稍后再试。</span></div>');
+                $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
+                $sendBtn.prop('disabled', false).text('发送');
+                eventSource.close();
+            };
         });
     });
 </script>

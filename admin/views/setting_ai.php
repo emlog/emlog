@@ -26,7 +26,7 @@
                                     <span class="badge badge-success">已启用</span>
                                 <?php endif; ?>
                             </h5>
-                            <div class="small">
+                            <div class="small my-3">
                                 <?= $val['api_url'] ?><br>
                                 <?= $val['api_key'] ?><br>
                             </div>
@@ -77,7 +77,7 @@
 </script>
 <!-- Modal for adding custom model -->
 <div class="modal fade" id="addModelModal" tabindex="-1" role="dialog" aria-labelledby="addModelModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="addModelModalLabel">添加AI模型</h5>

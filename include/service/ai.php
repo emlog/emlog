@@ -25,16 +25,67 @@ class Ai
         return self::formatResponse($response);
     }
 
-    private static function formatResponse($response)
+    public static function chatStream($prompt, $system_prompt = '你是一个有用的助手')
     {
-        $decodedResponse = json_decode($response, true);
-        if (isset($decodedResponse['choices'][0]['message']['content'])) {
-            return $decodedResponse['choices'][0]['message']['content'];
-        }
-        return '大模型处理异常，请稍后再试，错误信息：' . $response;
+        $messages = [
+            [
+                "content" => $system_prompt,
+                "role" => "system"
+            ],
+            [
+                "content" => $prompt,
+                "role" => "user"
+            ]
+        ];
+        return self::sendStream($messages);
     }
 
-    public static function send($messages)
+    public static function sendStream($messages)
+    {
+        $modelInfo = self::getCurrentModelInfo();
+        if ($modelInfo === null || !isset($modelInfo['api_url'])) {
+            return ['error' => 'AI 模型未配置'];
+        }
+
+        $apiUrl = $modelInfo['api_url'];
+        $apiKey = $modelInfo['api_key'];
+        $model = $modelInfo['model'];
+
+        $post_data = json_encode([
+            'messages' => $messages,
+            'model' => $model,
+            'stream' => true,
+            'temperature' => 1,
+            'max_tokens' => 2048
+        ]);
+
+        $headers = [
+            'Content-Type: application/json',
+            'Authorization: Bearer ' . $apiKey
+        ];
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $apiUrl);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, false); // Disable full response buffering
+        curl_setopt($ch, CURLOPT_WRITEFUNCTION, function ($curl, $data) {
+            echo $data . "\n\n";
+            ob_flush();
+            flush();
+            return strlen($data);
+        });
+
+        curl_exec($ch);
+        if (curl_errno($ch)) {
+            echo "data: [ERROR] " . curl_error($ch) . "\n\n";
+        }
+
+        curl_close($ch);
+    }
+
+    public static function send($messages, $stream = false)
     {
         $model = self::getCurrentModelInfo();
         if ($model === null || !isset($model['api_url'])) {
@@ -52,14 +103,14 @@ class Ai
             'max_tokens' => 2048,
             'presence_penalty' => 0,
             'response_format' => ['type' => 'text'],
-            //'stop' => '',
             'stream' => false,
-            //'stream_options' => null,
             'temperature' => 1,
             'top_p' => 1,
-            //'tools' => null,
             'tool_choice' => 'none',
             'logprobs' => false,
+            //'stop' => '',
+            //'stream_options' => null,
+            //'tools' => null,
             //'top_logprobs' => null
         ]);
 
@@ -77,6 +128,15 @@ class Ai
         }
         $response = $emcurl->getRespone();
         return $response;
+    }
+
+    private static function formatResponse($response)
+    {
+        $decodedResponse = json_decode($response, true);
+        if (isset($decodedResponse['choices'][0]['message']['content'])) {
+            return $decodedResponse['choices'][0]['message']['content'];
+        }
+        return '大模型处理异常，请稍后再试，错误信息：' . $response;
     }
 
     public static function getCurrentModelInfo()
