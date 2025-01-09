@@ -44,9 +44,25 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>个人描述</label>
-                    <textarea name="description" class="form-control"><?= $description ?></textarea>
+                    <label>个人描述</label><a href="javascript:void(0);" class="ml-3" id="ai_button">✨</a>
+                    <textarea name="description" class="form-control" id="description"><?= $description ?></textarea>
                 </div>
+                <script>
+                    $(document).ready(function() {
+                        $('#ai_button').click(function() {
+                            $.ajax({
+                                url: 'ai.php?action=genBio',
+                                method: 'GET',
+                                success: function(response) {
+                                    $('#description').val(response.data);
+                                },
+                                error: function(xhr) {
+                                    alert('AI 请求失败，请稍后再试');
+                                }
+                            });
+                        });
+                    });
+                </script>
                 <div class="form-group">
                     <?php doAction('blogger_ext') ?>
                 </div>
