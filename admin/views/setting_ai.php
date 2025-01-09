@@ -44,6 +44,15 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-4 mb-3">
+                <div class="card h-100">
+                    <div class="card-body d-flex align-items-center justify-content-center">
+                        <a type="button" class="" data-toggle="modal" data-target="#aiChatModal">
+                            ✨AI对话
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
