@@ -31,6 +31,7 @@ if (empty($action)) {
     $keyword = Input::getStrVar('keyword');
     $checked = Input::getStrVar('checked');
     $order = Input::getStrVar('order');
+    $perpage_num = Input::getStrVar('perpage_num');
 
     $condition = '';
     if ($tagId) {
@@ -44,6 +45,15 @@ if (empty($action)) {
         $condition = "and checked='$checked'";
     } elseif ($keyword) {
         $condition = "and title like '%$keyword%'";
+    }
+
+    if ($perpage_num > 0) {
+        $perPage = $perpage_num;
+        Option::updateOption('admin_article_perpage_num', $perpage_num);
+        $CACHE->updateCache('options');
+    } else {
+        $admin_article_perpage_num = Option::get('admin_article_perpage_num');
+        $perPage = $admin_article_perpage_num ? $admin_article_perpage_num : 20;
     }
 
     $orderBy = ' ORDER BY ';
@@ -72,7 +82,7 @@ if (empty($action)) {
     }
 
     $logNum = $Log_Model->getLogNum($hide_state, $condition, 'blog', 1);
-    $logs = $Log_Model->getLogsForAdmin($condition . $orderBy, $hide_state, $page);
+    $logs = $Log_Model->getLogsForAdmin($condition . $orderBy, $hide_state, $page, 'blog', $perPage);
     $sorts = $CACHE->readCache('sort');
     $tags = $Tag_Model->getTags();
 
@@ -80,7 +90,7 @@ if (empty($action)) {
     foreach ($_GET as $key => $val) {
         $subPage .= $key != 'page' ? "&$key=$val" : '';
     }
-    $pageurl = pagination($logNum, Option::get('admin_perpage_num'), $page, "article.php?{$subPage}&page=");
+    $pageurl = pagination($logNum, $perPage, $page, "article.php?{$subPage}&page=");
 
     include View::getAdmView(User::haveEditPermission() ? 'header' : 'uc_header');
     require_once View::getAdmView('article');

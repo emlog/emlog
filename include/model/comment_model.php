@@ -123,7 +123,7 @@ class Comment_Model
     /**
      * get comment list for admin
      */
-    function getCommentsForAdmin($blogId = null, $uid = null, $hide = null, $page = null)
+    function getCommentsForAdmin($blogId = null, $uid = null, $hide = null, $page = null, $per_page_num = 20)
     {
         $orderBy = $blogId ? "ORDER BY a.top DESC, a.date DESC" : 'ORDER BY a.date DESC';
         $andQuery = '1=1';
@@ -132,7 +132,6 @@ class Comment_Model
         $andQuery .= $hide ? " and a.hide='$hide'" : '';
         $condition = '';
         if ($page) {
-            $per_page_num = Option::get('admin_perpage_num');
             if ($page > PHP_INT_MAX) {
                 $page = PHP_INT_MAX;
             }

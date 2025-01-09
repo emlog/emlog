@@ -122,10 +122,6 @@
                 <label>左侧菜单标题</label>
                 <input class="form-control ml-2" value="<?= $panel_menu_title ?>" name="panel_menu_title">
             </div>
-            <div class="form-group form-inline">
-                <label>每页展示条目数量</label>
-                <input class="form-control mx-sm-3" style="width:80px;" value="<?= $admin_perpage_num ?>" name="admin_perpage_num" type="number" min="1" max="1000" /> （影响后台文章、评论、用户列表）
-            </div>
             <hr>
             <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
             <input type="submit" value="保存设置" class="btn btn-sm btn-success" />

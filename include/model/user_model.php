@@ -20,7 +20,7 @@ class User_Model
         $this->table_blog = DB_PREFIX . 'blog';
     }
 
-    public function getUsers($email = '', $nickname = '', $order = '', $page = 1)
+    public function getUsers($email = '', $nickname = '', $order = '', $page = 1, $perpage_num = 20)
     {
         $condition = $limit = '';
         if ($email) {
@@ -30,7 +30,6 @@ class User_Model
             $condition = " and nickname like '%$nickname%'";
         }
         if ($page) {
-            $perpage_num = Option::get('admin_perpage_num');
             $startId = ($page - 1) * $perpage_num;
             $limit = "LIMIT $startId, " . $perpage_num;
         }

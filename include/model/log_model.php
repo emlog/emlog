@@ -244,9 +244,8 @@ class Log_Model
         ];
     }
 
-    public function getLogsForAdmin($condition = '', $hide_state = '', $page = 1, $type = 'blog')
+    public function getLogsForAdmin($condition = '', $hide_state = '', $page = 1, $type = 'blog', $perpage_num = 20)
     {
-        $perpage_num = Option::get('admin_perpage_num');
         $start_limit = !empty($page) ? ($page - 1) * $perpage_num : 0;
         $author = User::haveEditPermission() ? '' : 'and author=' . UID;
         $hide_state = $hide_state ? "and hide='$hide_state'" : '';

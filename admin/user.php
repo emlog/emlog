@@ -19,6 +19,7 @@ if (empty($action)) {
     $page = Input::getIntVar('page', 1);
     $keyword = Input::getStrVar('keyword');
     $order = Input::getStrVar('order');
+    $perpage_num = Input::getStrVar('perpage_num');
 
     $email = $nickname = '';
     if (filter_var($keyword, FILTER_VALIDATE_EMAIL)) {
@@ -27,14 +28,23 @@ if (empty($action)) {
         $nickname = $keyword;
     }
 
-    $users = $User_Model->getUsers($email, $nickname, $order, $page);
+    if ($perpage_num > 0) {
+        $perPage = $perpage_num;
+        Option::updateOption('admin_user_perpage_num', $perpage_num);
+        $CACHE->updateCache('options');
+    } else {
+        $admin_user_perpage_num = Option::get('admin_user_perpage_num');
+        $perPage = $admin_user_perpage_num ? $admin_user_perpage_num : 20;
+    }
+
+    $users = $User_Model->getUsers($email, $nickname, $order, $page, $perPage);
     $userCount = $User_Model->getUserCount($email, $nickname);
 
     $subPage = '';
     foreach ($_GET as $key => $val) {
         $subPage .= $key != 'page' ? "&$key=$val" : '';
     }
-    $pageurl = pagination($userCount, Option::get('admin_perpage_num'), $page, "user.php?{$subPage}&page=");
+    $pageurl = pagination($userCount, $perPage, $page, "user.php?{$subPage}&page=");
 
     include View::getAdmView('header');
     require_once View::getAdmView('user');

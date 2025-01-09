@@ -38,10 +38,11 @@ if (empty($action)) {
             break;
     }
 
-    $pages = $emPage->getLogsForAdmin($condition . $orderBy, '', $page, 'page');
+    $perPage = 20;
+    $pages = $emPage->getLogsForAdmin($condition . $orderBy, '', $page, 'page', $perPage);
     $pageNum = $emPage->getLogNum('', $condition, 'page', 1);
 
-    $pageurl = pagination($pageNum, Option::get('admin_perpage_num'), $page, "./page.php?page=");
+    $pageurl = pagination($pageNum, $perPage, $page, "./page.php?page=");
 
     include View::getAdmView('header');
     require_once(View::getAdmView('page'));

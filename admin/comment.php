@@ -21,16 +21,26 @@ if (!$action) {
     $uid = Input::getIntVar('uid');
     $hide = Input::getStrVar('hide');
     $page = Input::getIntVar('page', 1);
+    $perpage_num = Input::getStrVar('perpage_num');
 
     $addUrl_0 = $uid ? "uid=$uid&" : '';
     $addUrl_1 = $blogId ? "gid=$blogId&" : '';
     $addUrl_2 = $hide ? "hide=$hide&" : '';
     $addUrl = $addUrl_0 . $addUrl_1 . $addUrl_2;
 
-    $comment = $Comment_Model->getCommentsForAdmin($blogId, $uid, $hide, $page);
+    if ($perpage_num > 0) {
+        $perPage = $perpage_num;
+        Option::updateOption('admin_comment_perpage_num', $perpage_num);
+        $CACHE->updateCache('options');
+    } else {
+        $admin_comment_perpage_num = Option::get('admin_comment_perpage_num');
+        $perPage = $admin_comment_perpage_num ? $admin_comment_perpage_num : 20;
+    }
+
+    $comment = $Comment_Model->getCommentsForAdmin($blogId, $uid, $hide, $page, $perPage);
     $cmnum = $Comment_Model->getCommentNum($blogId, $uid, $hide);
     $hideCommNum = $Comment_Model->getCommentNum($blogId, $uid, 'y');
-    $pageurl = pagination($cmnum, Option::get('admin_perpage_num'), $page, "comment.php?{$addUrl}page=");
+    $pageurl = pagination($cmnum, $perPage, $page, "comment.php?{$addUrl}page=");
 
     include View::getAdmView(User::haveEditPermission() ? 'header' : 'uc_header');
     require_once(View::getAdmView('comment'));

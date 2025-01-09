@@ -132,7 +132,27 @@
         </div>
     </div>
     <div class="page"><?= $pageurl ?></div>
-    <div class="text-center small">有 <?= $cmnum ?> 条评论</div>
+    <div class="d-flex justify-content-center mb-4 small">
+        <div class="form-inline">
+            <label for="perpage_num" class="mr-2">有 <?= $cmnum ?> 条评论，每页显示</label>
+            <select name="perpage_num" id="perpage_num" class="form-control form-control-sm" onChange="changePerPage(this);">
+                <option value="1" <?= ($perPage == 1) ? 'selected' : '' ?>>1</option>
+                <option value="10" <?= ($perPage == 10) ? 'selected' : '' ?>>10</option>
+                <option value="20" <?= ($perPage == 20) ? 'selected' : '' ?>>20</option>
+                <option value="50" <?= ($perPage == 50) ? 'selected' : '' ?>>50</option>
+                <option value="100" <?= ($perPage == 100) ? 'selected' : '' ?>>100</option>
+                <option value="500" <?= ($perPage == 500) ? 'selected' : '' ?>>500</option>
+            </select>
+        </div>
+        <script>
+            function changePerPage(select) {
+                const params = new URLSearchParams(window.location.search);
+                params.set('perpage_num', select.value);
+                params.set('page', '1');
+                window.location.search = params.toString();
+            }
+        </script>
+    </div>
 </form>
 <div class="modal fade" id="replyModal" tabindex="-1" role="dialog" aria-labelledby="replyModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

@@ -173,7 +173,6 @@ if ($action == 'save') {
         'att_imgmaxw'         => Input::postIntVar('att_imgmaxw', 420),
         'att_imgmaxh'         => Input::postIntVar('att_imgmaxh', 460),
         'detect_url'          => Input::postStrVar('detect_url', 'n'),
-        'admin_perpage_num'   => Input::postIntVar('admin_perpage_num'),
         'panel_menu_title'    => Input::postStrVar('panel_menu_title'),
     ];
 

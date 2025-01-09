@@ -80,12 +80,8 @@
                                     <span class="badge badge-warning">已禁用</span>
                                 <?php endif ?>
                                 <br />
-                                <?php if ($user_log_num > 0): ?>
-                                    <span class="small mr-2">文章：<a href="article.php?uid=<?= $val['uid'] ?>"><?= $user_log_num ?></a></span>
-                                <?php endif ?>
-                                <?php if ($val['credits'] > 0): ?>
-                                    <span class="small"> 积分：<?= $val['credits'] ?></span>
-                                <?php endif ?>
+                                <span class="small mr-2">文章：<a href="article.php?uid=<?= $val['uid'] ?>"><?= $user_log_num ?></a></span>
+                                <span class="small"> 积分：<?= $val['credits'] ?></span>
                             </td>
                             <td><?= $val['email'] ?></td>
                             <td><?= $val['uid'] ?></td>
@@ -110,7 +106,18 @@
     </div>
 </div>
 <div class="page"><?= $pageurl ?></div>
-<div class="text-center small">有 <?= $userCount ?> 个用户</div>
+<div class="d-flex justify-content-center mb-4 small">
+    <form action="user.php" method="get" class="form-inline">
+        <label for="perpage_num" class="mr-2">有 <?= $userCount ?> 个用户，每页显示</label>
+        <select name="perpage_num" id="perpage_num" class="form-control form-control-sm" onChange="this.form.submit();">
+            <option value="10" <?= ($perPage == 10) ? 'selected' : '' ?>>10</option>
+            <option value="20" <?= ($perPage == 20) ? 'selected' : '' ?>>20</option>
+            <option value="50" <?= ($perPage == 50) ? 'selected' : '' ?>>50</option>
+            <option value="100" <?= ($perPage == 100) ? 'selected' : '' ?>>100</option>
+            <option value="500" <?= ($perPage == 500) ? 'selected' : '' ?>>500</option>
+        </select>
+    </form>
+</div>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
