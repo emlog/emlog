@@ -10604,33 +10604,6 @@ a:focus {
     padding-right: 1.5rem;
 }
 
-.scroll-to-top {
-    position: fixed;
-    right: 1rem;
-    bottom: 3.75rem;
-    display: none;
-    width: 2.75rem;
-    height: 2.75rem;
-    text-align: center;
-    color: #fff;
-    background: #4E73DF;
-    line-height: 2.75rem;
-    font-size: 2rem;
-}
-
-.scroll-to-top:focus, .scroll-to-top:hover {
-    color: white;
-}
-
-.scroll-to-top:hover {
-    background: #5a5c69;
-    text-decoration: none;
-}
-
-.scroll-to-top i {
-    font-weight: 800;
-}
-
 @-webkit-keyframes growIn {
     0% {
         transform: scale(0.9);

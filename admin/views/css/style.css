@@ -328,3 +328,44 @@ body {
     background-color: #f8f9fc;
     border-radius: 5px;
 }
+
+.scroll-to-top,
+    .ai-chat-button {
+        position: fixed;
+        right: 1.5rem;
+        width: 2rem;
+        height: 2rem;
+        text-align: center;
+        color: #fff;
+        background: #4E73DF;
+        border-radius: 0.25rem;
+        line-height: 2rem;
+        font-size: 1rem;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        transition: background-color 0.3s, transform 0.3s, opacity 0.3s;
+        z-index: 1050;
+    }
+
+    .scroll-to-top {
+        bottom: 6rem;
+        display: none;
+    }
+
+    .ai-chat-button {
+        bottom: 3.5rem;
+    }
+
+    .scroll-to-top:focus,
+    .scroll-to-top:hover,
+    .ai-chat-button:focus,
+    .ai-chat-button:hover {
+        color: white;
+        background: #0056b3;
+        transform: translateY(-0.25rem);
+        text-decoration: none;
+    }
+
+    .scroll-to-top i,
+    .ai-chat-button span {
+        font-weight: 800;
+    }

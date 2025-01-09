@@ -66,66 +66,12 @@
         });
     });
 </script>
-<div class="card shadow mb-4 mt-2">
-    <div class="card-body">
-        <h5 class="card-title">AI 对话聊天</h5>
-        <div id="chat-box" style="height: 300px; overflow-y: scroll; border: 1px solid #ddd; padding: 10px; margin-bottom: 10px;">
-            <!-- Chat messages will appear here -->
-        </div>
-        <form id="chat-form">
-            <div class="input-group">
-                <input type="text" class="form-control" id="chat-input" placeholder="输入消息...">
-                <div class="input-group-append">
-                    <button class="btn btn-primary" type="submit" id="send-btn">发送</button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-<script>
-    $(document).ready(function() {
-        $('#chat-form').submit(function(event) {
-            event.preventDefault();
-            var message = $('#chat-input').val();
-            if (message.trim() === '') return;
-
-            $('#chat-box').append('<div><b>😄：</b> ' + $('<div>').text(message).html() + '</div>');
-            $('#chat-input').val('');
-
-            var formData = new FormData();
-            formData.append('message', message);
-
-            var $sendBtn = $('#send-btn');
-            $sendBtn.prop('disabled', true).text('发送中...');
-
-            $.ajax({
-                url: 'ai.php?action=chat',
-                method: 'POST',
-                processData: false,
-                contentType: false,
-                data: formData,
-                success: function(response) {
-                    var aiMessage = response.data.replace(/\n/g, '<br>');
-                    $('#chat-box').append('<div><b>🤖：</b> ' + $('<div>').html(aiMessage).html() + '</div>');
-                    $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
-                },
-                error: function() {
-                    $('#chat-box').append('<div><b>🤖：</b> 出错了，可能是 AI 配置错误或网络问题。</div>');
-                    $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
-                },
-                complete: function() {
-                    $sendBtn.prop('disabled', false).text('发送');
-                }
-            });
-        });
-    });
-</script>
 <!-- Modal for adding custom model -->
 <div class="modal fade" id="addModelModal" tabindex="-1" role="dialog" aria-labelledby="addModelModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addModelModalLabel">添加自定义模型</h5>
+                <h5 class="modal-title" id="addModelModalLabel">添加AI模型</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
