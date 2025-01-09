@@ -25,82 +25,85 @@
     <h1 class="h4 mb-0 text-gray-800">用户</h1>
     <a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#exampleModal"><i class="icofont-plus"></i> 添加用户</a>
 </div>
-<div class="panel-heading justify-content-between d-flex">
-    <ul class="nav nav-tabs">
-        <li class="nav-item">
-            <a class="nav-link <?= $admin == '' ? 'active' : '' ?>" href="./user.php">全部</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link <?= $admin == 'y' ? 'active' : '' ?>" href="./user.php?admin=y">管理员</a>
-        </li>
-    </ul>
-    <form action="user.php" method="get">
-        <div class="form-inline search-inputs-nowrap">
-            <input type="text" name="keyword" value="<?= $keyword ?>" class="form-control m-1 small" placeholder="输入邮箱或用户昵称搜索...">
-            <div class="input-group-append">
-                <button class="btn btn-sm btn-success" type="submit">
-                    <i class="icofont-search-2"></i>
-                </button>
-            </div>
-        </div>
-    </form>
-</div>
 <div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <div class="row justify-content-between">
+            <div class="form-inline">
+                <div id="f_t_order" class="mx-1">
+                    <select name="order" id="order" onChange="selectOrder(this);" class="form-control">
+                        <option value="date" <?= (empty($order)) ? 'selected' : '' ?>>最近注册</option>
+                        <option value="update" <?= ($order === 'update') ? 'selected' : '' ?>>最近活跃</option>
+                        <option value="admin" <?= ($order === 'admin') ? 'selected' : '' ?>>管理员优先</option>
+                    </select>
+                </div>
+            </div>
+            <form action="user.php" method="get">
+                <div class="form-inline search-inputs-nowrap">
+                    <input type="text" name="keyword" value="<?= $keyword ?>" class="form-control m-1 small" placeholder="输入邮箱或用户昵称搜索...">
+                    <div class="input-group-append">
+                        <button class="btn btn-sm btn-success" type="submit">
+                            <i class="icofont-search-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-bordered table-striped table-hover dataTable no-footer" id="adm_comment_list">
                 <thead>
-                <tr>
-                    <th></th>
-                    <th>用户昵称</th>
-                    <th>邮箱</th>
-                    <th>用户ID</th>
-                    <th>登录IP</th>
-                    <th>活跃时间</th>
-                    <th>创建时间</th>
-                    <th>操作</th>
-                </tr>
+                    <tr>
+                        <th></th>
+                        <th>用户昵称</th>
+                        <th>邮箱</th>
+                        <th>用户ID</th>
+                        <th>登录IP</th>
+                        <th>活跃时间</th>
+                        <th>创建时间</th>
+                        <th>操作</th>
+                    </tr>
                 </thead>
                 <tbody>
-                <?php
-                foreach ($users as $key => $val):
-                    $avatar = User::getAvatar($user_cache[$val['uid']]['avatar']);
-                    $forbid = $val['state'] == 1;
-                    $user_log_num = isset($sta_cache[$val['uid']]['lognum']) ? $sta_cache[$val['uid']]['lognum'] : 0;
+                    <?php
+                    foreach ($users as $key => $val):
+                        $avatar = User::getAvatar($user_cache[$val['uid']]['avatar']);
+                        $forbid = $val['state'] == 1;
+                        $user_log_num = isset($sta_cache[$val['uid']]['lognum']) ? $sta_cache[$val['uid']]['lognum'] : 0;
                     ?>
-                    <tr>
-                        <td><img src="<?= $avatar ?>" height="35" width="35" class="rounded-circle"/></td>
-                        <td>
-                            <a href="user.php?action=edit&uid=<?= $val['uid'] ?>"><?= empty($val['name']) ? $val['login'] : $val['name'] ?></a>
-                            <span class="small"><?= $val['role'] ?></span>
-                            <?php if ($forbid): ?>
-                                <span class="badge badge-warning">已禁用</span>
-                            <?php endif ?>
-                            <br/>
-                            <?php if ($user_log_num > 0): ?>
-                                <span class="small mr-2">文章：<a href="article.php?uid=<?= $val['uid'] ?>"><?= $user_log_num ?></a></span>
-                            <?php endif ?>
-                            <?php if ($val['credits'] > 0): ?>
-                                <span class="small">  积分：<?= $val['credits'] ?></span>
-                            <?php endif ?>
-                        </td>
-                        <td><?= $val['email'] ?></td>
-                        <td><?= $val['uid'] ?></td>
-                        <td><?= $val['ip'] ?></td>
-                        <td><?= $val['update_time'] ?></td>
-                        <td><?= $val['create_time'] ?></td>
-                        <td>
-                            <?php if (UID != $val['uid']): ?>
-                                <a href="javascript: em_confirm(<?= $val['uid'] ?>, 'del_user', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger">删除</a>
+                        <tr>
+                            <td><img src="<?= $avatar ?>" height="35" width="35" class="rounded-circle" /></td>
+                            <td>
+                                <a href="user.php?action=edit&uid=<?= $val['uid'] ?>"><?= empty($val['name']) ? $val['login'] : $val['name'] ?></a>
+                                <span class="small"><?= $val['role'] ?></span>
                                 <?php if ($forbid): ?>
-                                    <a href="user.php?action=unforbid&uid=<?= $val['uid'] ?>&token=<?= LoginAuth::genToken() ?>" class="badge badge-success">解禁</a>
-                                <?php else: ?>
-                                    <a href="javascript: em_confirm(<?= $val['uid'] ?>, 'forbid_user', '<?= LoginAuth::genToken() ?>');" class="badge badge-warning">禁用</a>
+                                    <span class="badge badge-warning">已禁用</span>
                                 <?php endif ?>
-                            <?php endif ?>
-                        </td>
-                    </tr>
-                <?php endforeach ?>
+                                <br />
+                                <?php if ($user_log_num > 0): ?>
+                                    <span class="small mr-2">文章：<a href="article.php?uid=<?= $val['uid'] ?>"><?= $user_log_num ?></a></span>
+                                <?php endif ?>
+                                <?php if ($val['credits'] > 0): ?>
+                                    <span class="small"> 积分：<?= $val['credits'] ?></span>
+                                <?php endif ?>
+                            </td>
+                            <td><?= $val['email'] ?></td>
+                            <td><?= $val['uid'] ?></td>
+                            <td><?= $val['ip'] ?></td>
+                            <td><?= $val['update_time'] ?></td>
+                            <td><?= $val['create_time'] ?></td>
+                            <td>
+                                <?php if (UID != $val['uid']): ?>
+                                    <a href="javascript: em_confirm(<?= $val['uid'] ?>, 'del_user', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger">删除</a>
+                                    <?php if ($forbid): ?>
+                                        <a href="user.php?action=unforbid&uid=<?= $val['uid'] ?>&token=<?= LoginAuth::genToken() ?>" class="badge badge-success">解禁</a>
+                                    <?php else: ?>
+                                        <a href="javascript: em_confirm(<?= $val['uid'] ?>, 'forbid_user', '<?= LoginAuth::genToken() ?>');" class="badge badge-warning">禁用</a>
+                                    <?php endif ?>
+                                <?php endif ?>
+                            </td>
+                        </tr>
+                    <?php endforeach ?>
                 </tbody>
             </table>
         </div>
@@ -147,7 +150,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
+                    <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
                     <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
                     <button type="submit" class="btn btn-sm btn-success">保存</button>
                     <span id="alias_msg_hook"></span>
@@ -157,8 +160,12 @@
     </div>
 </div>
 <script>
-    $(function () {
+    $(function() {
         setTimeout(hideActived, 3600);
         $("#menu_user").addClass('active');
     });
+
+    function selectOrder(obj) {
+        window.open("./user.php?order=" + obj.value, "_self");
+    }
 </script>

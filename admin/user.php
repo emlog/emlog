@@ -18,7 +18,7 @@ $User_Model = new User_Model();
 if (empty($action)) {
     $page = Input::getIntVar('page', 1);
     $keyword = Input::getStrVar('keyword');
-    $admin = Input::getStrVar('admin');
+    $order = Input::getStrVar('order');
 
     $email = $nickname = '';
     if (filter_var($keyword, FILTER_VALIDATE_EMAIL)) {
@@ -27,11 +27,14 @@ if (empty($action)) {
         $nickname = $keyword;
     }
 
-    $addUrl = $admin ? "admin=y&" : '';
+    $users = $User_Model->getUsers($email, $nickname, $order, $page);
+    $userCount = $User_Model->getUserCount($email, $nickname);
 
-    $users = $User_Model->getUsers($email, $nickname, $admin, $page);
-    $userCount = $User_Model->getUserCount($email, $nickname, $admin);
-    $pageurl = pagination($userCount, Option::get('admin_perpage_num'), $page, "./user.php?{$addUrl}page=");
+    $subPage = '';
+    foreach ($_GET as $key => $val) {
+        $subPage .= $key != 'page' ? "&$key=$val" : '';
+    }
+    $pageurl = pagination($userCount, Option::get('admin_perpage_num'), $page, "user.php?{$subPage}&page=");
 
     include View::getAdmView('header');
     require_once View::getAdmView('user');

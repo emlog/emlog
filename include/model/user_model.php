@@ -20,7 +20,7 @@ class User_Model
         $this->table_blog = DB_PREFIX . 'blog';
     }
 
-    public function getUsers($email = '', $nickname = '', $admin = '', $page = 1)
+    public function getUsers($email = '', $nickname = '', $order = '', $page = 1)
     {
         $condition = $limit = '';
         if ($email) {
@@ -29,15 +29,22 @@ class User_Model
         if ($nickname) {
             $condition = " and nickname like '%$nickname%'";
         }
-        if ($admin) {
-            $condition = " and role IN('admin','editor')";
-        }
         if ($page) {
             $perpage_num = Option::get('admin_perpage_num');
             $startId = ($page - 1) * $perpage_num;
             $limit = "LIMIT $startId, " . $perpage_num;
         }
-        $res = $this->db->query("SELECT * FROM $this->table where 1=1 $condition order by uid desc $limit");
+        switch ($order) {
+            case 'update':
+                $condition .= ' ORDER BY update_time DESC';
+                break;
+            case 'admin':
+                $condition .= " ORDER BY role IN('admin','editor') DESC";
+                break;
+            default:
+                $condition .= ' ORDER BY uid DESC';
+        }
+        $res = $this->db->query("SELECT * FROM $this->table where 1=1 $condition $limit");
         $users = [];
         while ($row = $this->db->fetch_array($res)) {
             $row['name'] = htmlspecialchars($row['nickname']);
@@ -162,7 +169,7 @@ class User_Model
         return $data['total'] > 0;
     }
 
-    public function getUserCount($email = '', $nickname = '', $admin = '')
+    public function getUserCount($email = '', $nickname = '')
     {
         $condition = '';
         if ($email) {
@@ -170,9 +177,6 @@ class User_Model
         }
         if ($nickname) {
             $condition = " and nickname like '%$nickname%'";
-        }
-        if ($admin) {
-            $condition = " and role IN('admin','editor')";
         }
         $data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM $this->table where 1=1 $condition");
         return $data['total'];
