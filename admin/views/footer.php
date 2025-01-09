@@ -65,7 +65,7 @@
             if (message === '') return;
 
             // 显示用户消息
-            $('#chat-box').append('<div style="background-color: #f1f1f1; border-radius: 10px; padding: 10px; margin: 5px 0;"><b>😄：</b> ' + $('<div>').text(message).html() + '</div>');
+            $('#chat-box').append('<div style="background-color:#69b4ff; color:#FFFFFF; border-radius: 10px; padding: 10px; margin: 5px 0;"><b>😄：</b> ' + $('<div>').text(message).html() + '</div>');
             $('#chat-input').val('');
             $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
 
