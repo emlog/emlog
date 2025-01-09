@@ -25,12 +25,33 @@
                 </div>
                 <form id="chat-form">
                     <div class="input-group">
-                        <input type="text" class="form-control" id="chat-input" placeholder="输入消息...">
+                        <textarea class="form-control" id="chat-input" placeholder="输入消息..." rows="1" style="resize: none; overflow: hidden;"></textarea>
                         <div class="input-group-append">
                             <button class="btn btn-primary" type="submit" id="send-btn">发送</button>
                         </div>
                     </div>
                 </form>
+                <script>
+                    $(document).ready(function() {
+                        $('#chat-input').on('input', function() {
+                            this.style.height = 'auto';
+                            this.style.height = (this.scrollHeight) + 'px';
+                            $('#send-btn').css('height', this.style.height);
+                        });
+
+                        $('#chat-input').on('keydown', function(event) {
+                            if (event.key === 'Enter' && !event.shiftKey) {
+                                event.preventDefault();
+                                $('#send-btn').click();
+                            }
+                        });
+
+                        $('#chat-form').submit(function() {
+                            $('#chat-input').css('height', 'auto');
+                            $('#send-btn').css('height', 'auto');
+                        });
+                    });
+                </script>
             </div>
         </div>
     </div>
@@ -70,7 +91,7 @@
 
                             var $typing = $aiMessage.find('.ai-typing');
                             var currentContent = $typing.html();
-                            $typing.html(currentContent + $('<div>').text(chunk).html());
+                            $typing.html(currentContent + $('<div>').text(chunk).html().replace(/\n/g, '<br>'));
                             $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
                         }
                     } catch (err) {
