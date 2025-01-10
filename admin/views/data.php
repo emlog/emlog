@@ -33,36 +33,40 @@
                         <input type="checkbox" value="y" name="zipbak" id="zipbak">
                         <label for="zipbak">压缩成zip包</label>
                     </p>
-                    <p>
-                        <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
-                        <input type="submit" value="开始备份" class="btn btn-sm btn-success" />
-                    </p>
                 </div>
+        </div>
+        <div class="card-footer text-right">
+            <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
+            <input type="submit" value="开始备份" class="btn btn-sm btn-success" />
             </form>
         </div>
     </div>
     <div class="card">
         <h5 class="card-header">导入备份</h5>
-        <div class="card-body">
-            <form action="data.php?action=import" enctype="multipart/form-data" method="post">
+        <form action="data.php?action=import" enctype="multipart/form-data" method="post">
+            <div class="card-body">
                 <div id="import">
                     <p class="des">仅可导入相同版本emlog的数据库备份文件，且数据库表前缀需保持一致。<br />当前数据库表前缀：<?= DB_PREFIX ?></p>
-                    <p>
-                        <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
-                        <input type="file" name="sqlfile" required />
-                        <input type="submit" value="导入" class="btn btn-sm btn-success" />
-                    </p>
+                    <div>
+                        <input type="file" id="sqlfile" name="sqlfile" required>
+                    </div>
                 </div>
-            </form>
-        </div>
+            </div>
+            <div class="card-footer text-right">
+                <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
+                <input type="submit" value="导入备份" class="btn btn-sm btn-success" />
+            </div>
+        </form>
     </div>
     <div class="card">
         <h5 class="card-header">更新缓存</h5>
         <div class="card-body">
             <div id="cache">
                 <p class="des">缓存可以加快站点的加载速度，通常系统会自动更新缓存。特殊情况需要手动更新，如：缓存文件被修改、手动修改过数据库、页面出现异常等。</p>
-                <p><input type="button" onclick="window.location='data.php?action=Cache';" value="更新缓存" class="btn btn-sm btn-success" /></p>
             </div>
+        </div>
+        <div class="card-footer text-right">
+            <input type="button" onclick="window.location='data.php?action=Cache';" value="更新缓存" class="btn btn-sm btn-success" />
         </div>
     </div>
 </div>
