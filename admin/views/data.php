@@ -26,18 +26,14 @@
     <div class="card">
         <h5 class="card-header">备份数据库</h5>
         <div class="card-body">
-            <form action="data.php?action=backup" method="post">
-                <div id="backup">
-                    <p>将站点数据库备份到自己电脑上，包括文章、评论、用户等信息，但不包括上传的文件图片。</p>
-                    <p id="local_bakzip">
-                        <input type="checkbox" value="y" name="zipbak" id="zipbak">
-                        <label for="zipbak">压缩成zip包</label>
-                    </p>
-                </div>
+            <div id="backup">
+                <p>将站点数据库备份到自己电脑上，包括文章、评论、用户等信息，但不包括上传的文件图片。</p>
+            </div>
         </div>
-        <div class="card-footer text-right">
-            <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
-            <input type="submit" value="开始备份" class="btn btn-sm btn-success" />
+        <div class="card-footer">
+            <form action="data.php?action=backup" method="post" class="text-right">
+                <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
+                <input type="submit" value="开始备份" class="btn btn-sm btn-success" />
             </form>
         </div>
     </div>
@@ -47,9 +43,9 @@
             <div class="card-body">
                 <div id="import">
                     <p class="des">仅可导入相同版本emlog的数据库备份文件，且数据库表前缀需保持一致。<br />当前数据库表前缀：<?= DB_PREFIX ?></p>
-                    <div>
-                        <input type="file" id="sqlfile" name="sqlfile" required>
-                    </div>
+                </div>
+                <div>
+                    <input type="file" id="sqlfile" name="sqlfile" required>
                 </div>
             </div>
             <div class="card-footer text-right">

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * data backup
  * @package EMLOG
@@ -21,7 +22,6 @@ if (!$action) {
 
 if ($action === 'backup') {
     LoginAuth::checkToken();
-    $zipbak = Input::postStrVar('zipbak', 'n');
 
     $DB = Database::getInstance();
     $tables = $DB->listTables();
@@ -41,17 +41,12 @@ if ($action === 'backup') {
     $dumpfile .= "\n#the end of backup";
 
     $filename = 'emlog_' . Option::EMLOG_VERSION . '_' . date('Ymd_His');
-    if ($zipbak == 'y') {
-        if (($dumpfile = emZip($filename . '.sql', $dumpfile)) === false) {
-            emDirect('./data.php?error_f=1');
-        }
-        header('Content-Type: application/zip');
-        header('Content-Disposition: attachment; filename=' . $filename . '.zip');
-    } else {
-        header('Content-Type: text/x-sql');
-        header('Content-Disposition: attachment; filename=' . $filename . '.sql');
-    }
 
+    if (($dumpfile = emZip($filename . '.sql', $dumpfile)) === false) {
+        emDirect('./data.php?error_f=1');
+    }
+    header('Content-Type: application/zip');
+    header('Content-Disposition: attachment; filename=' . $filename . '.zip');
     header('Pragma: no-cache');
     header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
     header('Expires: ' . gmdate('D, d M Y H:i:s') . ' GMT');
@@ -102,7 +97,8 @@ if ($action === 'import') {
  * @param string $table table name
  * @return string
  */
-function exportData($table) {
+function exportData($table)
+{
     $DB = Database::getInstance();
     $sql = "DROP TABLE IF EXISTS $table;\n";
     $createtable = $DB->query("SHOW CREATE TABLE $table");
@@ -131,7 +127,8 @@ function exportData($table) {
     return $sql;
 }
 
-function checkSqlFileInfo($sqlfile) {
+function checkSqlFileInfo($sqlfile)
+{
     $fp = @fopen($sqlfile, 'r');
     if (!$fp) {
         emMsg('读取备份文件失败，检查文件权限');
@@ -171,7 +168,8 @@ function checkSqlFileInfo($sqlfile) {
 /**
  * Execute SQL statement of backup file
  */
-function importData($filename) {
+function importData($filename)
+{
     $DB = Database::getInstance();
     $setchar = $DB->getVersion() > '5.5' ? "ALTER DATABASE `" . DB_NAME . "` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;" : '';
     $sql = file($filename);
@@ -199,7 +197,8 @@ function importData($filename) {
 /**
  * check BOM (byte order mark)
  */
-function checkBOM($contents) {
+function checkBOM($contents)
+{
     $charset[1] = substr($contents, 0, 1);
     $charset[2] = substr($contents, 1, 1);
     $charset[3] = substr($contents, 2, 1);
