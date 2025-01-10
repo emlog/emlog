@@ -89,7 +89,6 @@
                         if (data.choices && data.choices[0].delta && data.choices[0].delta.content) {
                             var chunk = data.choices[0].delta.content;
                             fullMessage += chunk;
-
                             var $typing = $aiMessage.find('.ai-typing');
                             var currentContent = $typing.html();
                             $typing.html(currentContent + $('<div>').text(chunk).html().replace(/\n/g, '<br>'));
@@ -102,7 +101,9 @@
             };
 
             eventSource.onerror = function() {
-                $('#chat-box').append('<div style="background-color: #f1f1f1; border-radius: 10px; padding: 10px; margin: 5px 0;"><b>🤖：</b> <span style="color:red;">连接出错，请稍后再试。</span></div>');
+                var $typing = $aiMessage.find('.ai-typing');
+                var currentContent = $typing.html();
+                $typing.html(currentContent + "连接出错，可能是模型配置或者网络问题");
                 $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
                 $sendBtn.prop('disabled', false).text('发送');
                 eventSource.close();

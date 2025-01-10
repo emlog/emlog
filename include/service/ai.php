@@ -44,7 +44,8 @@ class Ai
     {
         $modelInfo = self::getCurrentModelInfo();
         if ($modelInfo === null || !isset($modelInfo['api_url'])) {
-            return ['error' => 'AI 模型未配置'];
+            echo "data: " . json_encode(["error" => "AI 模型未配置"]) . "\n\n";
+            return;
         }
 
         $apiUrl = $modelInfo['api_url'];
@@ -71,7 +72,7 @@ class Ai
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, false); // Disable full response buffering
         curl_setopt($ch, CURLOPT_WRITEFUNCTION, function ($curl, $data) {
-            echo $data . "\n\n";
+            echo $data;
             ob_flush();
             flush();
             return strlen($data);
