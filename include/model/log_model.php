@@ -329,8 +329,12 @@ class Log_Model
      * @param $type
      * @return false|float
      */
-    public function getPageOffset($date, $pageSize = 20, $type = 'blog')
+    public function getPageOffset($date, $type = 'blog')
     {
+        $pageSize = Option::get('admin_article_perpage_num');
+        if ((int)$pageSize <= 0) {
+            return 1;
+        }
         $data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM $this->table WHERE type='$type' AND hide='n' AND (date >= $date OR top = 'y' OR sortop = 'y')");
         $count = $data['total'];
         return ceil($count / $pageSize);

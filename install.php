@@ -552,7 +552,10 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES
 ('smtp_port',''),
 ('is_openapi','n'),
 ('apikey','$apikey'),
-('panel_menu_title','');
+('panel_menu_title',''),
+('admin_article_perpage_num','20'),
+('admin_user_perpage_num','20'),
+('admin_comment_perpage_num','20');
 DROP TABLE IF EXISTS {$db_prefix}link;
 CREATE TABLE {$db_prefix}link (
     id int(11) unsigned NOT NULL auto_increment COMMENT '链接表',

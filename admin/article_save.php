@@ -121,5 +121,5 @@ if ($pubPost) {
 }
 
 // 编辑文章（保存并返回）
-$page = $Log_Model->getPageOffset($postDate, Option::get('admin_article_perpage_num'));
+$page = $Log_Model->getPageOffset($postDate);
 emDirect("./article.php?active_savelog=1&page=" . $page);
