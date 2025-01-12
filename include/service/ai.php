@@ -43,8 +43,8 @@ class Ai
     public static function sendStream($messages)
     {
         $modelInfo = self::getCurrentModelInfo();
-        if ($modelInfo === null || !isset($modelInfo['api_url'])) {
-            echo "data: " . json_encode(["error" => "AI 模型未配置"]) . "\n\n";
+        if (empty($modelInfo) || !isset($modelInfo['api_url'])) {
+            echo "data: " . json_encode(["error" => "AI Model not configured"]) . "\n\n";
             return;
         }
 
