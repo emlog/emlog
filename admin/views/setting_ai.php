@@ -39,7 +39,7 @@
                 <div class="card h-100">
                     <div class="card-body d-flex align-items-center justify-content-center">
                         <a type="button" class="" data-toggle="modal" data-target="#addModelModal">
-                            +添加模型
+                            +添加AI模型
                         </a>
                     </div>
                 </div>
@@ -115,7 +115,7 @@
                         API Key：<a href="https://bigmodel.cn/usercenter/proj-mgmt/apikeys" target="_blank">生成api key</a><br>
                         Model：glm-4-plus<br>
                         <hr>
-                        <a href="https://www.moonshot.cn/" target="_blank">Moonshot</a><br>
+                        <a href="https://www.moonshot.cn/" target="_blank">Kimi - moonshot</a><br>
                         API URL：https://api.moonshot.cn/v1/chat/completions<br>
                         API Key：<a href="https://platform.moonshot.cn/console/api-keys" target="_blank">生成api key</a>，格式如：sk-****<br>
                         Model：moonshot-v1-8k、moonshot-v1-32k、moonshot-v1-128k<br>
