@@ -21,9 +21,11 @@
                     <div class="card model-card">
                         <div class="card-body align-items-center justify-content-center">
                             <h5 class="card-title model-name">
-                                <a href="./setting.php?action=ai_model&ai_model=<?= $val['model'] ?>"><?= $val['model'] ?></a>
                                 <?php if ($val['model'] == $aiModel): ?>
+                                    <?= $val['model'] ?>
                                     <span class="badge badge-success">已启用</span>
+                                <?php else: ?>
+                                    <a href="./setting.php?action=ai_model&ai_model=<?= $val['model'] ?>"><?= $val['model'] ?></a>
                                 <?php endif; ?>
                             </h5>
                             <div class="small my-3">
