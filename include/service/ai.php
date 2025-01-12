@@ -68,6 +68,7 @@ class Ai
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $apiUrl);
         curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 600);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, false); // Disable full response buffering
@@ -96,7 +97,7 @@ class Ai
         $apiKey = $model['api_key'];
         $model = $model['model'];
 
-        $emcurl = new EmCurl(10);
+        $emcurl = new EmCurl(600);
         $post_data = json_encode([
             'messages' => $messages,
             'model' => $model,
