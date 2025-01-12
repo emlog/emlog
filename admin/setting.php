@@ -415,11 +415,8 @@ if ($action == 'api_reset') {
 }
 
 if ($action == 'ai') {
-    $aiModel = Option::get('ai_model');
-    $aiModels = json_decode(Option::get('ai_models'), true);
-    if (!is_array($aiModels)) {
-        $aiModels = [];
-    }
+    $aiModel = AI::model();
+    $aiModels = AI::models();
 
     include View::getAdmView('header');
     require_once(View::getAdmView('setting_ai'));
@@ -434,11 +431,7 @@ if ($action == 'ai_save') {
     $aiApiKey = Input::postStrVar('ai_api_key');
     $aiModel = Input::postStrVar('ai_model');
 
-    $aiModels = json_decode(Option::get('ai_models'), true);
-    if (!is_array($aiModels)) {
-        $aiModels = [];
-    }
-
+    $aiModels = AI::models();
     $aiModels[$aiModel] = [
         'api_url' => $aiApiUrl,
         'api_key' => $aiApiKey,
@@ -469,8 +462,8 @@ if ($action == 'ai_model') {
 
 if ($action == 'delete_model') {
     $aiModel = Input::getStrVar('ai_model');
-    $aiModels = json_decode(Option::get('ai_models'), true);
-    $currentAiModel = Option::get('ai_model');
+    $aiModels = AI::models();
+    $currentAiModel = AI::model();
     if (is_array($aiModels) && isset($aiModels[$aiModel])) {
         unset($aiModels[$aiModel]);
         Option::updateOption('ai_models', json_encode($aiModels));

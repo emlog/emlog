@@ -143,13 +143,35 @@ class Ai
 
     public static function getCurrentModelInfo()
     {
-        $currentModel = Option::get('ai_model');
-        $aiModels = json_decode(Option::get('ai_models'), true);
+        $currentModel = self::model();
+        $aiModels = self::models();
 
         if (isset($aiModels[$currentModel])) {
             return $aiModels[$currentModel];
         }
 
         return null;
+    }
+
+    public static function model()
+    {
+        $currentModel = Option::get('ai_model');
+        if ($currentModel) {
+            return $currentModel;
+        }
+        return '';
+    }
+
+    public static function models()
+    {
+        $aiModels = Option::get('ai_models');
+        if (empty($aiModels)) {
+            return [];
+        }
+        $aiModels = json_decode(Option::get('ai_models'), true);
+        if ($aiModels) {
+            return $aiModels;
+        }
+        return [];
     }
 }
