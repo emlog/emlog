@@ -105,8 +105,7 @@
                         <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
                         <button type="submit" class="btn btn-success btn-sm">保存设置</button>
                     </div>
-                    <div id="more-config-details" class="alert alert-warning">
-                        <b>仅支持配置openai协议的大模型</b><br>
+                    <div id="more-config-details" class="alert alert-warning small">
                         <a href="https://www.deepseek.com/" target="_blank">DeepSeek</a><br>
                         API URL：https://api.deepseek.com/v1/chat/completions<br>
                         API Key：<a href="https://platform.deepseek.com/api_keys" target="_blank">生成api key</a>，格式如：sk-****<br>
@@ -126,7 +125,9 @@
                         API URL：https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions
                         <br>
                         API Key：<a href="https://bailian.console.aliyun.com/?apiKey=1#/api-key" target="_blank">生成api key</a>，格式如：sk-****<br>
-                        Model：qwen-max、qwen-plus、qwen-turbo、qwen-long 等<br>
+                        Model：qwen-max、qwen-plus、qwen-turbo、qwen-long 等
+                        <hr>
+                        仅支持配置openai协议的大模型，<a href="https://www.emlog.net/docs/ai/ai_emlog" target="_blank">查看更多</a><br>
                     </div>
                 </form>
             </div>
