@@ -140,10 +140,10 @@ function checkMail($email)
  * @param int $start 开始处 eg:0
  * @param int $length 截取长度
  */
-function subString($strings, $start, $length)
+function subString($strings, $start, $length, $dot = '...')
 {
     $sub_str = mb_substr($strings, $start, $length, 'utf8');
-    return mb_strlen($sub_str, 'utf8') < mb_strlen($strings, 'utf8') ? $sub_str . '...' : $sub_str;
+    return mb_strlen($sub_str, 'utf8') < mb_strlen($strings, 'utf8') ? $sub_str . $dot : $sub_str;
 }
 
 /**

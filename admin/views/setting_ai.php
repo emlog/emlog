@@ -30,7 +30,7 @@
                             </h5>
                             <div class="small my-3">
                                 <?= $val['api_url'] ?><br>
-                                <?= $val['api_key'] ?><br>
+                                <?= subString($val['api_key'], 0, 16, '******') ?><br>
                             </div>
                             <a href="./setting.php?action=delete_model&ai_model=<?= $val['model'] ?>" class="delete-link small text-danger" style="position: absolute; bottom: 10px; right: 10px;">删除</a>
                         </div>
