@@ -88,6 +88,7 @@ class Api_Controller
         $sortop = Input::postStrVar('sortop', 'n');
         $allow_remark = Input::postStrVar('allow_remark', 'n');
         $password = Input::postStrVar('password');
+        $link = Input::postStrVar('link');
         $template = Input::postStrVar('template');
         $field_keys = Input::postStrArray('field_keys');
         $field_values = Input::postStrArray('field_values');
@@ -131,6 +132,7 @@ class Api_Controller
             'sortop '      => $sortop,
             'allow_remark' => $allow_remark,
             'password'     => $password,
+            'link'         => $link,
             'template'     => $template,
         ];
 
