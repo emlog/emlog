@@ -211,6 +211,8 @@ class Order_Model
         $order['price'] = (float)$order['price'];
         $order['pay_price'] = (float)$order['pay_price'];
         $order['refund_amount'] = (float)$order['refund_amount'];
+        $order['update_timestamp'] = $order['update_time'];
+        $order['create_timestamp'] = $order['create_time'];
         $order['update_time'] = date('Y-m-d H:i:s', $order['update_time']);
         $order['create_time'] = date('Y-m-d H:i:s', $order['create_time']);
         $order['out_trade_no'] = (string)$order['out_trade_no'];
