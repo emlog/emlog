@@ -103,19 +103,10 @@ class Ai
         $post_data = json_encode([
             'messages' => $messages,
             'model' => $model,
-            'frequency_penalty' => 0,
             'max_tokens' => 2048,
-            'presence_penalty' => 0,
             'response_format' => ['type' => 'text'],
             'stream' => false,
             'temperature' => 1,
-            'top_p' => 1,
-            'tool_choice' => 'none',
-            'logprobs' => false,
-            //'stop' => '',
-            //'stream_options' => null,
-            //'tools' => null,
-            //'top_logprobs' => null
         ]);
 
         $headers = [
