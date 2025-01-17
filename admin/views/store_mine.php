@@ -10,7 +10,7 @@
         <li class="nav-item"><a class="nav-link" href="./store.php">全部应用</a></li>
         <li class="nav-item"><a class="nav-link" href="./store.php?action=tpl">模板主题</a></li>
         <li class="nav-item"><a class="nav-link" href="./store.php?action=plu">扩展插件</a></li>
-        <li class="nav-item"><a class="nav-link" href="./store.php?action=svip">铁杆专属</a></li>
+        <li class="nav-item"><a class="nav-link" href="./store.php?action=svip">铁杆免费</a></li>
         <li class="nav-item"><a class="nav-link active" href="./store.php?action=mine">我的已购</a></li>
     </ul>
 </div>
@@ -19,7 +19,7 @@
         <div class="d-flex flex-wrap app-list">
             <?php foreach ($addons as $k => $v):
                 $icon = $v['icon'] ?: "./views/images/theme.png";
-                ?>
+            ?>
                 <div class="col-md-6 col-lg-3">
                     <div class="card mb-4 shadow-sm">
                         <a href="#appModal" class="p-1" data-toggle="modal" data-target="#appModal" data-name="<?= $v['name'] ?>" data-url="<?= $v['app_url'] ?>" data-buy-url="<?= $v['buy_url'] ?>">
@@ -77,7 +77,7 @@
     </div>
 </div>
 <script>
-    $(function () {
+    $(function() {
         $("#menu_store").addClass('active');
         setTimeout(hideActived, 3600);
     });

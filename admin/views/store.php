@@ -10,7 +10,7 @@
         <li class="nav-item"><a class="nav-link active" href="./store.php">全部应用</a></li>
         <li class="nav-item"><a class="nav-link" href="./store.php?action=tpl">模板主题</a></li>
         <li class="nav-item"><a class="nav-link" href="./store.php?action=plu">扩展插件</a></li>
-        <li class="nav-item"><a class="nav-link" href="./store.php?action=svip">铁杆专属</a></li>
+        <li class="nav-item"><a class="nav-link" href="./store.php?action=svip">铁杆免费</a></li>
         <li class="nav-item"><a class="nav-link" href="./store.php?action=mine">我的已购</a></li>
     </ul>
 </div>
