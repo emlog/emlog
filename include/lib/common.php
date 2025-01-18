@@ -142,8 +142,13 @@ function checkMail($email)
  */
 function subString($strings, $start, $length, $dot = '...')
 {
-    $sub_str = mb_substr($strings, $start, $length, 'utf8');
-    return mb_strlen($sub_str, 'utf8') < mb_strlen($strings, 'utf8') ? $sub_str . $dot : $sub_str;
+    if (function_exists('mb_substr') && function_exists('mb_strlen')) {
+        $sub_str = mb_substr($strings, $start, $length, 'UTF-8');
+        return mb_strlen($sub_str, 'UTF-8') < mb_strlen($strings, 'UTF-8') ? $sub_str . $dot : $sub_str;
+    } else {
+        $sub_str = substr($strings, $start, $length);
+        return strlen($sub_str) < strlen($strings) ? $sub_str . $dot : $sub_str;
+    }
 }
 
 /**
