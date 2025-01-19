@@ -70,6 +70,12 @@ if ($action == 'setting') {
     }
 }
 
+// Save plug-in settings (new version)
+if ($action == 'save_setting') {
+    require_once "../content/plugins/$plugin/{$plugin}_setting.php";
+    plugin_setting();
+}
+
 if ($action == 'del') {
     LoginAuth::checkToken();
     $Plugin_Model = new Plugin_Model();
