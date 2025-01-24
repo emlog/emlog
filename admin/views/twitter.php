@@ -105,31 +105,39 @@
     });
 
     function initPageScripts() {
+        var cssLink = document.createElement('link');
+        cssLink.rel = 'stylesheet';
+        cssLink.type = 'text/css';
+        cssLink.href = './views/css/markdown.css?t=' + '<?= Option::EMLOG_VERSION_TIMESTAMP ?>';
+        document.head.appendChild(cssLink);
+
+        $.getScript('./editor.md/editormd.js?t=' + '<?= Option::EMLOG_VERSION_TIMESTAMP ?>', function() {
+            Editor = editormd("t", {
+                width: "100%",
+                height: 260,
+                toolbarIcons: function() {
+                    return ["bold", "del", "italic", "quote", "|", "h1", "h2", "h3", "|", "list-ul", "list-ol", "|",
+                        "link", "image", "|", "preview"
+                    ];
+                },
+                path: "editor.md/lib/",
+                tex: false,
+                watch: false,
+                htmlDecode: true,
+                flowChart: false,
+                autoFocus: false,
+                lineNumbers: false,
+                sequenceDiagram: false,
+                imageUpload: true,
+                imageFormats: ["jpg", "jpeg", "gif", "png"],
+                imageUploadURL: "media.php?action=upload&editor=1",
+                syncScrolling: "single",
+            });
+            Editor.setToolbarAutoFixed(false);
+        });
+
         $("#menu_twitter").addClass('active');
         setTimeout(hideActived, 3600);
-
-        Editor = editormd("t", {
-            width: "100%",
-            height: 260,
-            toolbarIcons: function() {
-                return ["bold", "del", "italic", "quote", "|", "h1", "h2", "h3", "|", "list-ul", "list-ol", "|",
-                    "link", "image", "|", "preview"
-                ];
-            },
-            path: "editor.md/lib/",
-            tex: false,
-            watch: false,
-            htmlDecode: true,
-            flowChart: false,
-            autoFocus: false,
-            lineNumbers: false,
-            sequenceDiagram: false,
-            imageUpload: true,
-            imageFormats: ["jpg", "jpeg", "gif", "png"],
-            imageUploadURL: "media.php?action=upload&editor=1",
-            syncScrolling: "single",
-        });
-        Editor.setToolbarAutoFixed(false);
 
         $('#editModal').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget);

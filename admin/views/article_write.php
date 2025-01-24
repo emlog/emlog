@@ -241,6 +241,7 @@
 <div class="dropzone-previews" style="display: none;"></div>
 <script src="./views/js/dropzone.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
 <script src="./views/js/media-lib.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
+<script src="./editor.md/editormd.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
 <script>
     $("#alias").keyup(function() {
         checkalias();
