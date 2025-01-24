@@ -706,4 +706,10 @@ $(function () {
         $('.datepicker').removeClass('active')
         _this.addClass('active')
     })
+
+    //pjax
+    $(document).pjax('a[data-pjax]', '#main-container', {fragment: '#main-container',timeout: 5000});
+    $(document).on('pjax:success', function() {
+        initPageScripts();
+    });
 })

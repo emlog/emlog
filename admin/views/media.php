@@ -214,7 +214,7 @@
             <form method="post" action="media.php?action=update_media">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="alias">资源名称</label>
+                        <label for="filename">资源名称</label>
                         <input type="text" class="form-control" id="filename" name="filename" required>
                     </div>
                 </div>

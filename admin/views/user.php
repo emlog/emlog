@@ -131,7 +131,7 @@
             <form action="user.php?action=new" method="post" autocomplete="off">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="sortname">用户组</label>
+                        <label for="role">用户组</label>
                         <select name="role" id="role" class="form-control">
                             <option value="writer">注册用户</option>
                             <option value="editor">内容编辑</option>
@@ -144,8 +144,8 @@
                         管理员：拥有站点全部管理权限，可以管理用户、进行系统设置等<br>
                     </div>
                     <div class="form-group">
-                        <label for="username">登录邮箱</label>
-                        <input type="email" name="email" class="form-control" value="<?= $email ?>" required>
+                        <label for="email">登录邮箱</label>
+                        <input type="email" name="email" id="email" class="form-control" value="<?= $email ?>" required>
                     </div>
                     <div class="form-group">
                         <label for="password">密码 (不少于6位)</label>

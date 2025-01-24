@@ -82,7 +82,7 @@
                         <input type="text" class="form-control" id="kw" name="kw">
                     </div>
                     <div class="form-group">
-                        <label for="alias">标签页描述</label>
+                        <label for="description">标签页描述</label>
                         <textarea name="description" id="description" type="text" class="form-control"></textarea>
                     </div>
                 </div>

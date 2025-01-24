@@ -15,67 +15,67 @@
             <div class="table-responsive">
                 <table class="table table-bordered table-striped table-hover" id="dataTable">
                     <thead>
-                    <tr>
-                        <th>名称</th>
-                        <th>链接</th>
-                        <th>操作</th>
-                    </tr>
+                        <tr>
+                            <th>名称</th>
+                            <th>链接</th>
+                            <th>操作</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    <?php
-                    foreach ($links as $key => $value):
-                        doAction('adm_link_display');
+                        <?php
+                        foreach ($links as $key => $value):
+                            doAction('adm_link_display');
                         ?>
-                        <tr style="cursor: move">
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="flex-shrink-0">
-                                        <?php if ($value['icon']): ?>
-                                            <img src="<?= $value['icon'] ?>" height="35" width="35" class="rounded"/>
-                                        <?php else: ?>
-                                            <img src="<?= './views/images/null.png' ?>" height="35" width="35" class="rounded"/>
-                                        <?php endif; ?>
-                                    </div>
-                                    <div class="flex-grow-1 ms-3">
-                                        <div class="align-items-center mb-3">
-                                            <p class="mb-0 m-2">
-                                                <input name="link[]" value="<?= $value['id'] ?>" type="hidden"/>
-                                                <a href="#" data-toggle="modal" data-target="#linkModel"
-                                                   data-linkid="<?= $value['id'] ?>"
-                                                   data-sitename="<?= $value['sitename'] ?>"
-                                                   data-siteurl="<?= $value['siteurl'] ?>"
-                                                   data-icon="<?= $value['icon'] ?>"
-                                                   data-description="<?= $value['description'] ?>"><?= $value['sitename'] ?></a>
-                                                <?php if ($value['hide'] === 'y'): ?>
-                                                    <span class="badge badge-warning">已隐藏</span>
-                                                <?php endif ?>
-                                            </p>
-                                            <p class="mb-0 m-2 small"><?= $value['description'] ?></p>
+                            <tr style="cursor: move">
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="flex-shrink-0">
+                                            <?php if ($value['icon']): ?>
+                                                <img src="<?= $value['icon'] ?>" height="35" width="35" class="rounded" />
+                                            <?php else: ?>
+                                                <img src="<?= './views/images/null.png' ?>" height="35" width="35" class="rounded" />
+                                            <?php endif; ?>
+                                        </div>
+                                        <div class="flex-grow-1 ms-3">
+                                            <div class="align-items-center mb-3">
+                                                <p class="mb-0 m-2">
+                                                    <input name="link[]" value="<?= $value['id'] ?>" type="hidden" />
+                                                    <a href="#" data-toggle="modal" data-target="#linkModel"
+                                                        data-linkid="<?= $value['id'] ?>"
+                                                        data-sitename="<?= $value['sitename'] ?>"
+                                                        data-siteurl="<?= $value['siteurl'] ?>"
+                                                        data-icon="<?= $value['icon'] ?>"
+                                                        data-description="<?= $value['description'] ?>"><?= $value['sitename'] ?></a>
+                                                    <?php if ($value['hide'] === 'y'): ?>
+                                                        <span class="badge badge-warning">已隐藏</span>
+                                                    <?php endif ?>
+                                                </p>
+                                                <p class="mb-0 m-2 small"><?= $value['description'] ?></p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                            </td>
-                            <td>
-                                <a href="<?= $value['siteurl'] ?>" target="_blank"><?= subString($value['siteurl'], 0, 39) ?></a>
-                            </td>
-                            <td>
-                                <?php if ($value['hide'] == 'n'): ?>
-                                    <a href="link.php?action=hide&amp;linkid=<?= $value['id'] ?>" class="badge badge-primary">隐藏</a>
-                                <?php else: ?>
-                                    <a href="link.php?action=show&amp;linkid=<?= $value['id'] ?>" class="badge badge-warning">显示</a>
-                                <?php endif ?>
-                                <a href="javascript: em_confirm(<?= $value['id'] ?>, 'link', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger">删除</a>
-                            </td>
-                        </tr>
-                    <?php endforeach ?>
+                                </td>
+                                <td>
+                                    <a href="<?= $value['siteurl'] ?>" target="_blank"><?= subString($value['siteurl'], 0, 39) ?></a>
+                                </td>
+                                <td>
+                                    <?php if ($value['hide'] == 'n'): ?>
+                                        <a href="link.php?action=hide&amp;linkid=<?= $value['id'] ?>" class="badge badge-primary">隐藏</a>
+                                    <?php else: ?>
+                                        <a href="link.php?action=show&amp;linkid=<?= $value['id'] ?>" class="badge badge-warning">显示</a>
+                                    <?php endif ?>
+                                    <a href="javascript: em_confirm(<?= $value['id'] ?>, 'link', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger">删除</a>
+                                </td>
+                            </tr>
+                        <?php endforeach ?>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
     <div class="list_footer">
-        <input type="submit" value="保存拖动排序" class="btn btn-sm btn-success shadow-sm"/>
+        <input type="submit" value="保存拖动排序" class="btn btn-sm btn-success shadow-sm" />
     </div>
 </form>
 
@@ -93,24 +93,24 @@
             <form action="link.php?action=save" method="post" name="link" id="link">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="alias">名称</label>
+                        <label for="sitename">名称</label>
                         <input class="form-control" id="sitename" maxlength="255" name="sitename" required>
                     </div>
                     <div class="form-group">
-                        <label for="template">地址</label>
+                        <label for="siteurl">地址</label>
                         <input class="form-control" id="siteurl" maxlength="255" name="siteurl" type="url" required>
                     </div>
                     <div class="form-group">
-                        <label for="template">图标URL</label>
+                        <label for="icon">图标URL</label>
                         <input class="form-control" id="icon" name="icon" type="url">
                     </div>
                     <div class="form-group">
-                        <label for="alias">描述</label>
+                        <label for="description">描述</label>
                         <textarea name="description" id="description" maxlength="512" type="text" class="form-control"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <input type="hidden" value="" name="linkid" id="linkid"/>
+                    <input type="hidden" value="" name="linkid" id="linkid" />
                     <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
                     <button type="submit" class="btn btn-sm btn-success">保存</button>
                     <span id="alias_msg_hook"></span>
@@ -121,14 +121,14 @@
 </div>
 
 <script>
-    $(function () {
+    $(function() {
         $("#menu_category_view").addClass('active');
         $("#menu_view").addClass('show');
         $("#menu_link").addClass('active');
         setTimeout(hideActived, 3600);
 
         // 编辑链接
-        $('#linkModel').on('show.bs.modal', function (event) {
+        $('#linkModel').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget)
             var linkid = button.data('linkid')
             var sitename = button.data('sitename')
@@ -144,7 +144,7 @@
         })
 
         // 提交表单
-        $("#link_form").submit(function (event) {
+        $("#link_form").submit(function(event) {
             event.preventDefault();
             submitForm("#link_form");
         });

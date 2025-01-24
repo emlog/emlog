@@ -99,22 +99,22 @@
         </div>
     </div>
 </div>
-
-<link rel="stylesheet" type="text/css" href="./views/css/markdown.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>">
-<script src="./editor.md/editormd.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
 <script>
-    $("#menu_twitter").addClass('active');
-    setTimeout(hideActived, 3600);
+    $(document).ready(function() {
+        initPageScripts();
+    });
 
-    var Editor;
-    $(function() {
+    function initPageScripts() {
+        $("#menu_twitter").addClass('active');
+        setTimeout(hideActived, 3600);
+
         Editor = editormd("t", {
             width: "100%",
             height: 260,
             toolbarIcons: function() {
                 return ["bold", "del", "italic", "quote", "|", "h1", "h2", "h3", "|", "list-ul", "list-ol", "|",
                     "link", "image", "|", "preview"
-                ]
+                ];
             },
             path: "editor.md/lib/",
             tex: false,
@@ -132,18 +132,19 @@
         Editor.setToolbarAutoFixed(false);
 
         $('#editModal').on('show.bs.modal', function(event) {
-            var button = $(event.relatedTarget)
-            var id = button.data('id')
-            var t = button.data('t')
-            var modal = $(this)
-            modal.find('.modal-body #t').val(t)
-            modal.find('.modal-footer #id').val(id)
+            var button = $(event.relatedTarget);
+            var id = button.data('id');
+            var t = button.data('t');
+            var modal = $(this);
+            modal.find('.modal-body #t').val(t);
+            modal.find('.modal-footer #id').val(id);
         });
+
         $('#tModal').on('show.bs.modal', function(event) {
-            var button = $(event.relatedTarget)
-            var t = button.data('t')
-            var modal = $(this)
-            modal.find('.modal-body #modal_t').html(t)
+            var button = $(event.relatedTarget);
+            var t = button.data('t');
+            var modal = $(this);
+            modal.find('.modal-body #modal_t').html(t);
         });
-    });
+    }
 </script>

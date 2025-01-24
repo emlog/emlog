@@ -5,7 +5,7 @@
         <div class="col-xl-9">
             <div id="post" class="form-group">
                 <div>
-                    <input type="text" name="title" id="title" value="<?= $title ?>" class="form-control" placeholder="页面标题"/>
+                    <input type="text" name="title" id="title" value="<?= $title ?>" class="form-control" placeholder="页面标题" />
                 </div>
                 <div class="small my-3">
                     <a href="#mediaModal" data-toggle="modal" data-target="#mediaModal"><i class="icofont-plus"></i>资源媒体库</a>
@@ -20,35 +20,35 @@
         </div>
         <div class="col-xl-3">
             <div id="post_button">
-                <input type="hidden" name="ishide" id="ishide" value="<?= $hide ?>"/>
-                <input type="hidden" name="pageid" value="<?= $pageId ?>"/>
+                <input type="hidden" name="ishide" id="ishide" value="<?= $hide ?>" />
+                <input type="hidden" name="pageid" value="<?= $pageId ?>" />
                 <?php if ($pageId < 0): ?>
-                    <input type="submit" value="发布页面" onclick="return checkform();" class="btn btn-success btn-sm"/>
+                    <input type="submit" value="发布页面" onclick="return checkform();" class="btn btn-success btn-sm" />
                 <?php else: ?>
-                    <input type="submit" value="保存并返回" onclick="return checkform();" class="btn btn-success btn-sm"/>
+                    <input type="submit" value="保存并返回" onclick="return checkform();" class="btn btn-success btn-sm" />
                 <?php endif ?>
             </div>
             <div class="shadow-sm p-3 mb-2 bg-white rounded">
                 <div class="form-group">
-                    <input name="cover" id="cover" class="form-control" placeholder="封面图URL" value="<?= $cover ?>"/>
+                    <input name="cover" id="cover" class="form-control" placeholder="封面图URL" value="<?= $cover ?>" />
                     <div class="row mt-3">
                         <div class="col-md-4">
                             <label for="upload_img">
-                                <img src="<?= $cover ?: './views/images/cover.svg' ?>" width="200" id="cover_image" class="rounded" alt="封面图片"/>
-                                <input type="file" name="upload_img" class="image" id="upload_img" style="display:none"/>
-                                <button type="button" id="cover_rm" class="btn-sm btn btn-link" <?php if (!$cover): ?>style="display:none"<?php endif ?>>x</button>
+                                <img src="<?= $cover ?: './views/images/cover.svg' ?>" width="200" id="cover_image" class="rounded" alt="封面图片" />
+                                <input type="file" name="upload_img" class="image" id="upload_img" style="display:none" />
+                                <button type="button" id="cover_rm" class="btn-sm btn btn-link" <?php if (!$cover): ?>style="display:none" <?php endif ?>>x</button>
                             </label>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label>链接别名：</label>
-                    <input name="alias" id="alias" class="form-control" value="<?= $alias ?>"/>
+                    <input name="alias" id="alias" class="form-control" value="<?= $alias ?>" />
                     <small class="text-muted">英文字母、数字组成，用于<a href="./setting.php?action=seo">seo设置</a></small>
                 </div>
                 <div class="form-group">
                     <label>跳转链接：</label>
-                    <input name="link" id="link" type="url" class="form-control" value="<?= $link ?>" placeholder="https://"/>
+                    <input name="link" id="link" type="url" class="form-control" value="<?= $link ?>" placeholder="https://" />
                     <small class="text-muted">填写后不展示页面内容，直接跳转该地址</small>
                 </div>
                 <div class="form-group">
@@ -59,7 +59,7 @@
                             $select = $v['filename'] == $template ? 'selected="selected"' : '';
                             $sortListHtml .= '<option value="' . str_replace('.php', '', $v['filename']) . '" ' . $select . '>' . ($v['comment']) . '</option>';
                         }
-                        ?>
+                    ?>
                         <select id="template" name="template" class="form-control"><?= $sortListHtml; ?></select>
                         <small class="form-text text-muted">选择当前模板支持的页面模板，可不选</small>
                     <?php else: ?>
@@ -128,7 +128,7 @@
                 <div class="img-container">
                     <div class="row">
                         <div class="col-md-11">
-                            <img src="" id="sample_image"/>
+                            <img src="" id="sample_image" />
                         </div>
                     </div>
                 </div>
@@ -147,20 +147,19 @@
 <div class="dropzone-previews" style="display: none;"></div>
 <script src="./views/js/dropzone.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
 <script src="./views/js/media-lib.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
-<script src="./editor.md/editormd.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
 <script>
     $("#menu_category_view").addClass('active');
     $("#menu_view").addClass('show');
     $("#menu_page").addClass('active');
 
     checkalias();
-    $("#alias").keyup(function () {
+    $("#alias").keyup(function() {
         checkalias();
     });
-    $("#title").focus(function () {
+    $("#title").focus(function() {
         $("#title_label").hide();
     });
-    $("#title").blur(function () {
+    $("#title").blur(function() {
         if ($("#title").val() == '') {
             $("#title_label").show();
         }
@@ -168,15 +167,16 @@
     if ($("#title").val() != '') $("#title_label").hide();
 
     var Editor;
-    $(function () {
+    $(function() {
         Editor = editormd("pagecontent", {
             width: "100%",
             height: 745,
-            toolbarIcons: function () {
+            toolbarIcons: function() {
                 return ["bold", "del", "italic", "quote", "|",
                     "h1", "h2", "h3", "|",
                     "list-ul", "list-ol", "hr", "|",
-                    "link", "image", "preformatted-text", "table", "|", "preview", "help"]
+                    "link", "image", "preformatted-text", "table", "|", "preview", "help"
+                ]
             },
             path: "editor.md/lib/",
             tex: false,
@@ -186,7 +186,7 @@
             lineNumbers: false,
             sequenceDiagram: false,
             syncScrolling: "single",
-            onload: function () {
+            onload: function() {
                 hooks.doAction("page_loaded", this);
             }
         });
@@ -194,17 +194,17 @@
     });
     // 离开页面时，如果页面内容已做修改，则询问用户是否离开
     var pageText;
-    hooks.addAction("page_loaded", function () {
+    hooks.addAction("page_loaded", function() {
         pageText = $("textarea").text();
     });
-    window.onbeforeunload = function (e) {
+    window.onbeforeunload = function(e) {
         if ($("textarea").text() == pageText) return
         e = e || window.event;
         if (e) e.returnValue = '离开页面提示';
         return '离开页面提示';
     }
     // 页面编辑界面全局快捷键 Ctrl（Cmd）+ S 保存内容
-    document.addEventListener('keydown', function (e) {
+    document.addEventListener('keydown', function(e) {
         if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
             e.preventDefault();
             pagesave();
@@ -212,13 +212,13 @@
     });
 
     // 封面图
-    $(function () {
+    $(function() {
         var $modal = $('#modal');
         var image = document.getElementById('sample_image');
         var cropper;
-        $('#upload_img').change(function (event) {
+        $('#upload_img').change(function(event) {
             var files = event.target.files;
-            var done = function (url) {
+            var done = function(url) {
                 image.src = url;
                 $modal.modal('show');
             };
@@ -228,18 +228,18 @@
                     return;
                 }
                 reader = new FileReader();
-                reader.onload = function (event) {
+                reader.onload = function(event) {
                     done(reader.result);
                 };
                 reader.readAsDataURL(files[0]);
             }
         });
-        $modal.on('shown.bs.modal', function () {
+        $modal.on('shown.bs.modal', function() {
             cropper = new Cropper(image, {
                 aspectRatio: NaN,
                 viewMode: 1
             });
-        }).on('hidden.bs.modal', function () {
+        }).on('hidden.bs.modal', function() {
             cropper.destroy();
             cropper = null;
         });
@@ -253,7 +253,7 @@
                 data: formData,
                 processData: false,
                 contentType: false,
-                success: function (data) {
+                success: function(data) {
                     $modal.modal('hide');
                     if (data.code == 0) {
                         $('#cover_image').attr('src', data.data);
@@ -263,7 +263,7 @@
                         alert(data.msg);
                     }
                 },
-                error: function (xhr) {
+                error: function(xhr) {
                     var data = xhr.responseJSON;
                     if (data && typeof data === "object") {
                         alert(data.msg);
@@ -274,39 +274,38 @@
             });
         }
 
-        $('#crop').click(function () {
+        $('#crop').click(function() {
             canvas = cropper.getCroppedCanvas({
                 width: 650,
                 height: 366
             });
-            canvas.toBlob(function (blob) {
+            canvas.toBlob(function(blob) {
                 uploadImage(blob, 'cover.jpg')
             });
         });
 
-        $('#use_original_image').click(function () {
+        $('#use_original_image').click(function() {
             var blob = $('#upload_img')[0].files[0];
             uploadImage(blob, blob.name)
         });
 
-        $('#cover_rm').click(function () {
+        $('#cover_rm').click(function() {
             $('#cover_image').attr('src', "./views/images/cover.svg");
             $('#cover').val("");
             $('#cover_rm').hide();
         });
     });
 
-    $('#cover').blur(function () {
-            c = $('#cover').val();
-            if (!c) {
-                $('#cover_image').attr('src', "./views/images/cover.svg");
-                $('#cover_rm').hide();
-                return
-            }
-            $('#cover_image').attr('src', c);
-            $('#cover_rm').show();
+    $('#cover').blur(function() {
+        c = $('#cover').val();
+        if (!c) {
+            $('#cover_image').attr('src', "./views/images/cover.svg");
+            $('#cover_rm').hide();
+            return
         }
-    );
+        $('#cover_image').attr('src', c);
+        $('#cover_rm').show();
+    });
 
     // 显示插件扩展label
     const postBar = $("#post_bar");
