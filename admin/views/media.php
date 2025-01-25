@@ -80,8 +80,8 @@
     <?php if ($show === 'list'): ?>
         <!-- 列表模式 -->
         <div class="card shadow mb-4">
-            <div class="card-body">
-                <table class="table table-striped table-hover">
+            <div class="card-body table-responsive">
+                <table class="table table-bordered table-striped table-hover dataTable no-footer">
                     <thead>
                         <tr>
                             <th><input type="checkbox" id="checkAllItem" /></th>
