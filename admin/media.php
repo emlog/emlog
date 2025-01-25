@@ -39,7 +39,7 @@ if (empty($action)) {
         $show = 'grid';
     }
 
-    $page_count = $show === 'list' ? 24 : 18;
+    $page_count = 24;
     $page_url = 'media.php?';
     $page_url .= $sid ? "sid=$sid&" : '';
     $page_url .= $date ? "date=$date&" : '';
