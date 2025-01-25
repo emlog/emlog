@@ -31,83 +31,173 @@
             <?php endforeach ?>
             <a href="#" class="btn btn-success btn-sm my-1" data-toggle="modal" data-target="#mediaSortModal"><i class="icofont-plus"></i> 分类</a>
         </div>
-        <div class="d-flex mb-3 mb-sm-0">
-            <input type="text" class="form-control datepicker" value="<?= $dateTime ?>" placeholder="查看该日期及之前的资源">
-            <form action="./media.php" method="get" class="form-inline ml-2 mr-3 w-100">
-                <div class="input-group">
-                    <input type="text" name="keyword" value="<?= $keyword ?>" class="form-control small" placeholder="搜索资源文件名...">
-                    <div class="input-group-append">
-                        <button class="btn btn-sm btn-success" type="submit">
-                            <i class="icofont-search-2"></i>
-                        </button>
+        <div class="d-flex align-items-center mb-3 mb-sm-0">
+            <div class="mr-2">
+                <?php if ($show === 'grid'): ?>
+                    <a href="media.php?show=list">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                            <g id="SVGRepo_iconCarrier">
+                                <path d="M8 6L21 6.00078M8 12L21 12.0008M8 18L21 18.0007M3 6.5H4V5.5H3V6.5ZM3 12.5H4V11.5H3V12.5ZM3 18.5H4V17.5H3V18.5Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </g>
+                        </svg>
+                    </a>
+                <?php else: ?>
+                    <a href="media.php?show=grid">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                            <g id="SVGRepo_iconCarrier">
+                                <path d="M3.5 3.5H10.5V10.5H3.5V3.5Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <path d="M3.5 13.5H10.5V20.5H3.5V13.5Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <path d="M13.5 3.5H20.5V10.5H13.5V3.5Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <path d="M13.5 13.5H20.5V20.5H13.5V13.5Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </g>
+                        </svg>
+                    </a>
+                <?php endif ?>
+            </div>
+            <div class="flex-fill">
+                <input type="text" class="form-control datepicker" value="<?= $dateTime ?>" placeholder="查看该日期及之前的资源">
+            </div>
+            <div class="ml-2">
+                <form action="./media.php" method="get" class="form-inline w-100">
+                    <div class="input-group">
+                        <input type="text" name="keyword" value="<?= $keyword ?>" class="form-control small" placeholder="搜索资源文件名...">
+                        <div class="input-group-append">
+                            <button class="btn btn-sm btn-success" type="submit">
+                                <i class="icofont-search-2"></i>
+                            </button>
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
 <?php endif; ?>
 <form action="media.php?action=operate_media" method="post" name="form_media" id="form_media">
-    <div class="row checkboxContainer">
-        <?php foreach ($medias as $key => $value):
-            $media_url = getFileUrl($value['filepath']);
-            $thumbnail_url = $value['thumbnail_url'];
-            $sort_name = $value['sortname'];
-            $media_name = $value['filename'];
-            $author = $user_cache[$value['author']]['name'];
-            if (isImage($value['mimetype'])) {
-                $media_icon = getFileUrl($value['filepath_thum']);
-                $img_viewer = 'class="highslide" onclick="return hs.expand(this)"';
-            } elseif (isZip($value['filename'])) {
-                $media_icon = "./views/images/zip.webp";
-                $img_viewer = '';
-            } elseif (isVideo($value['mimetype'])) {
-                $media_icon = "./views/images/video.webp";
-                $img_viewer = '';
-            } elseif (isAudio($value['filename'])) {
-                $media_icon = "./views/images/audio.webp";
-                $img_viewer = '';
-            } else {
-                $media_icon = "./views/images/fnone.webp";
-                $img_viewer = '';
-            }
-        ?>
-            <div class="col-md-4">
-                <div class="card mb-4 shadow-sm">
-                    <a href="<?= $media_url ?>" <?= $img_viewer ?> target="_blank"><img class="card-img-top" src="<?= $media_icon ?>" /></a>
-                    <div class="card-body">
-                        <p class="card-text text-muted small">
-                            <a href="#" data-toggle="modal" data-target="#editMediaModal" data-id="<?= $value['aid'] ?>" data-filename="<?= $media_name ?>"><?= $media_name ?></a> <span class="badge badge-success"><?= $sort_name ?></span><br>
-                            时间：<?= $value['addtime'] ?><br>
-                            创建人：
-                            <?php if (User::haveEditPermission()): ?>
-                                <a href="./media.php?uid=<?= $value['author'] ?>"><?= $author ?> </a>
-                            <?php else: ?>
-                                <?= $author ?>
-                            <?php endif; ?><br>
-                            文件大小：<?= $value['attsize'] ?>
-                            <?php if ($value['width'] && $value['height']): ?>
-                                ，图片尺寸：<?= $value['width'] ?>x<?= $value['height'] ?>
-                            <?php endif ?><br>
-                            源文件：<a href="#" class="copy-link text-muted" data-toggle="popover" data-url="<?= $media_url ?>"><?= $media_url ?></a><br>
-                            <a href="#" class="copy-link" data-toggle="popover" data-url="<?= $media_url ?>">原文件地址</a>
-                            <?php if ($value['alias'] && isZip($value['filename'])):
-                                $media_down_url = BLOG_URL . '?resource_alias=' . $value['alias'];
-                            ?>
-                                ｜ <a href="#" class="copy-link" data-toggle="popover" data-url="<?= $media_down_url ?>">用户下载地址</a> （下载<?= $value['download_count'] ?>）
-                            <?php endif ?>
-                            <?php if ($thumbnail_url): ?>
-                                ｜ <a href="#" class="copy-link" data-toggle="popover" data-url="<?= $thumbnail_url ?>">缩略图地址</a>
-                            <?php endif ?>
-                        </p>
-                        <p class="card-text d-flex justify-content-between">
-                            <a href="javascript: em_confirm(<?= $value['aid'] ?>, 'media', '<?= LoginAuth::genToken() ?>');" class="text-danger small">删除</a>
-                            <input type="checkbox" name="aids[]" value="<?= $value['aid'] ?>" class="aids" />
-                        </p>
+    <?php if ($show === 'list'): ?>
+        <!-- 列表模式 -->
+        <div class="card shadow mb-4">
+            <div class="card-body">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox" id="checkAllItem" /></th>
+                            <th>资源名称</th>
+                            <th>文件大小</th>
+                            <th>创建人</th>
+                            <th>时间</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody class="checkboxContainer">
+                        <?php foreach ($medias as $key => $value):
+                            $media_url = getFileUrl($value['filepath']);
+                            $sort_name = $value['sortname'];
+                            $media_name = $value['filename'];
+                            $author = $user_cache[$value['author']]['name'];
+                            if (isImage($value['mimetype'])) {
+                                $media_icon = '🖼️';
+                                $img_viewer = 'class="highslide" onclick="return hs.expand(this)"';
+                            } elseif (isZip($value['filename'])) {
+                                $media_icon = "📦";
+                                $img_viewer = '';
+                            } elseif (isVideo($value['mimetype'])) {
+                                $media_icon = "🎬";
+                                $img_viewer = '';
+                            } elseif (isAudio($value['filename'])) {
+                                $media_icon = "🎧";
+                                $img_viewer = '';
+                            } else {
+                                $media_icon = "";
+                                $img_viewer = '';
+                            }
+                        ?>
+                            <tr>
+                                <td style="width: 20px;"><input type="checkbox" name="aids[]" value="<?= $value['aid'] ?>" class="aids" /></td>
+                                <td>
+                                    <?= $media_icon ?>
+                                    <a href="<?= $media_url ?>" <?= $img_viewer ?> target="_blank"><?= $media_name ?></a> <span class="badge badge-success"><?= $sort_name ?></span>
+                                    <br><span class="small">源文件：<a href="#" class="copy-link text-muted" data-toggle="popover" data-url="<?= $media_url ?>"><?= $media_url ?></a></span>
+                                </td>
+                                <td><?= $value['attsize'] ?></td>
+                                <td><?= $author ?></td>
+                                <td><?= $value['addtime'] ?></td>
+                                <td>
+                                    <a href="javascript: em_confirm(<?= $value['aid'] ?>, 'media', '<?= LoginAuth::genToken() ?>');" class="text-danger small">删除</a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    <?php else: ?>
+        <div class="row checkboxContainer">
+            <!-- 宫格卡片模式 -->
+            <?php foreach ($medias as $key => $value):
+                $media_url = getFileUrl($value['filepath']);
+                $thumbnail_url = $value['thumbnail_url'];
+                $sort_name = $value['sortname'];
+                $media_name = $value['filename'];
+                $author = $user_cache[$value['author']]['name'];
+                if (isImage($value['mimetype'])) {
+                    $media_icon = getFileUrl($value['filepath_thum']);
+                    $img_viewer = 'class="highslide" onclick="return hs.expand(this)"';
+                } elseif (isZip($value['filename'])) {
+                    $media_icon = "./views/images/zip.webp";
+                    $img_viewer = '';
+                } elseif (isVideo($value['mimetype'])) {
+                    $media_icon = "./views/images/video.webp";
+                    $img_viewer = '';
+                } elseif (isAudio($value['filename'])) {
+                    $media_icon = "./views/images/audio.webp";
+                    $img_viewer = '';
+                } else {
+                    $media_icon = "./views/images/fnone.webp";
+                    $img_viewer = '';
+                }
+            ?>
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <a href="<?= $media_url ?>" <?= $img_viewer ?> target="_blank"><img class="card-img-top" loading="lazy" src="<?= $media_icon ?>" /></a>
+                        <div class="card-body">
+                            <p class="card-text text-muted small">
+                                <a href="#" data-toggle="modal" data-target="#editMediaModal" data-id="<?= $value['aid'] ?>" data-filename="<?= $media_name ?>"><?= $media_name ?></a> <span class="badge badge-success"><?= $sort_name ?></span><br>
+                                时间：<?= $value['addtime'] ?><br>
+                                创建人：
+                                <?php if (User::haveEditPermission()): ?>
+                                    <a href="./media.php?uid=<?= $value['author'] ?>"><?= $author ?> </a>
+                                <?php else: ?>
+                                    <?= $author ?>
+                                <?php endif; ?><br>
+                                文件大小：<?= $value['attsize'] ?>
+                                <?php if ($value['width'] && $value['height']): ?>
+                                    ，图片尺寸：<?= $value['width'] ?>x<?= $value['height'] ?>
+                                <?php endif ?><br>
+                                源文件：<a href="#" class="copy-link text-muted" data-toggle="popover" data-url="<?= $media_url ?>"><?= $media_url ?></a><br>
+                                <a href="#" class="copy-link" data-toggle="popover" data-url="<?= $media_url ?>">原文件地址</a>
+                                <?php if ($value['alias'] && isZip($value['filename'])):
+                                    $media_down_url = BLOG_URL . '?resource_alias=' . $value['alias'];
+                                ?>
+                                    ｜ <a href="#" class="copy-link" data-toggle="popover" data-url="<?= $media_down_url ?>">用户下载地址</a> （下载<?= $value['download_count'] ?>）
+                                <?php endif ?>
+                                <?php if ($thumbnail_url): ?>
+                                    ｜ <a href="#" class="copy-link" data-toggle="popover" data-url="<?= $thumbnail_url ?>">缩略图地址</a>
+                                <?php endif ?>
+                            </p>
+                            <p class="card-text d-flex justify-content-between">
+                                <a href="javascript: em_confirm(<?= $value['aid'] ?>, 'media', '<?= LoginAuth::genToken() ?>');" class="text-danger small">删除</a>
+                                <input type="checkbox" name="aids[]" value="<?= $value['aid'] ?>" class="aids" />
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        <?php endforeach ?>
-    </div>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
     <?php if ($count > 0): ?>
         <div class="form-row align-items-center">
             <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
