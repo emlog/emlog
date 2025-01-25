@@ -11087,7 +11087,7 @@ a:focus {
 
 .sidebar {
     width: 6.5rem;
-    min-height: 99.4vh;
+    min-height: calc(100vh - 0.5rem);
 }
 
 .sidebar .nav-item {
