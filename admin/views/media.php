@@ -121,12 +121,22 @@
                                     <?= $media_icon ?>
                                     <a href="<?= $media_url ?>" <?= $img_viewer ?> target="_blank"><?= $media_name ?></a> <span class="badge badge-success"><?= $sort_name ?></span>
                                     <br><span class="small">源文件：<a href="#" class="copy-link text-muted" data-toggle="popover" data-url="<?= $media_url ?>"><?= $media_url ?></a></span>
+                                    <?php if ($value['width'] && $value['height']): ?>
+                                        <br><span class="small">图片尺寸：<?= $value['width'] ?>x<?= $value['height'] ?></span>
+                                    <?php endif ?>
                                 </td>
                                 <td><?= $value['attsize'] ?></td>
-                                <td><?= $author ?></td>
+                                <td>
+                                    <?php if (User::haveEditPermission()): ?>
+                                        <a href="./media.php?uid=<?= $value['author'] ?>"><?= $author ?> </a>
+                                    <?php else: ?>
+                                        <?= $author ?>
+                                    <?php endif; ?>
+                                </td>
                                 <td><?= $value['addtime'] ?></td>
                                 <td>
-                                    <a href="javascript: em_confirm(<?= $value['aid'] ?>, 'media', '<?= LoginAuth::genToken() ?>');" class="text-danger small">删除</a>
+                                    <a href="#" data-toggle="modal" data-target="#editMediaModal" data-id="<?= $value['aid'] ?>" data-filename="<?= $media_name ?>" class="badge badge-success">改名</a>
+                                    <a href="javascript: em_confirm(<?= $value['aid'] ?>, 'media', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger">删除</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
