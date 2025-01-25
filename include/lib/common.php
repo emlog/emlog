@@ -405,7 +405,16 @@ function smartDate($timestamp, $format = 'Y-m-d H:i')
     } elseif ($sec < 3600) {
         $op = floor($sec / 60) . " 分钟前";
     } elseif ($sec < 3600 * 24) {
-        $op = "约 " . floor($sec / 3600) . " 小时前";
+        $op = floor($sec / 3600) . " 小时前";
+    } elseif ($sec < 3600 * 24 * 30) {
+        $days = floor($sec / (3600 * 24));
+        $op = $days . " 天前";
+    } elseif ($sec < 3600 * 24 * 365) {
+        $months = floor($sec / (3600 * 24 * 30));
+        $op = $months . " 个月前";
+    } elseif ($sec < 3600 * 24 * 365 * 5) {
+        $years = floor($sec / (3600 * 24 * 365));
+        $op = $years . " 年前";
     } else {
         $op = date($format, $timestamp);
     }
