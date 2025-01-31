@@ -913,7 +913,7 @@ EOT;
 <title>提示信息</title>
 <style>
 body {
-    background-color:#4e73df;
+    background-color:#f8f9fc;
     font-family: Arial;
     font-size: 12px;
     line-height:150%;
