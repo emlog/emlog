@@ -919,15 +919,34 @@ body {
     line-height:150%;
 }
 .main {
-    background-color:#FFFFFF;
-    font-size: 12px;
-    color: #666666;
-    width:650px;
-    margin:60px auto 0px;
-    border-radius: 10px;
-    padding:10px;
-    list-style:none;
-    border:#DFDFDF 1px solid;
+    background-color: #ffffff;
+    font-size: 14px;
+    color: #333333;
+    width: 650px;
+    margin: 80px auto 0;
+    border-radius: 8px;
+    padding: 20px;
+    list-style: none;
+    border: 1px solid #e8e8e8;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    line-height: 1.5;
+    transition: all 0.3s ease;
+}
+
+.main p {
+    margin: 16px 0;
+    color: #444444;
+}
+
+.main a {
+    color: #1890ff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.main a:hover {
+    color: #40a9ff;
+    text-decoration: underline;
 }
 .main p {
     line-height: 18px;
