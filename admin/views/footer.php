@@ -9,6 +9,11 @@
 <a class="scroll-to-top" href="#page-top">
     <i class="icofont-rounded-up"></i>
 </a>
+<footer class="sticky-footer bg-white">
+    <div class="text-right my-auto mr-4">
+        <small><a href="https://www.emlog.net" target="_blank">EMLOG</a> - <?= ucfirst(Option::EMLOG_VERSION) ?></small>
+    </div>
+</footer>
 <!-- AI Chat Modal -->
 <div class="modal fade" id="aiChatModal" tabindex="-1" role="dialog" aria-labelledby="aiChatModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
@@ -57,8 +62,96 @@
         </div>
     </div>
 </div>
+</div>
+</div>
+<?php doAction('adm_footer') ?>
+<script src="./views/js/sb-admin-2.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
 <script>
-    $(document).ready(function() {
+    $(function() {
+        // Scroll to top button appear
+        $(document).on('scroll', function() {
+            var scrollDistance = $(this).scrollTop();
+            if (scrollDistance > 100) {
+                $('.scroll-to-top').fadeIn();
+            } else {
+                $('.scroll-to-top').fadeOut();
+            }
+        });
+        // Smooth scrolling using jQuery easing
+        $(document).on('click', 'a.scroll-to-top', function(e) {
+            var $anchor = $(this);
+            $('html, body').stop().animate({
+                scrollTop: ($($anchor.attr('href')).offset().top)
+            }, 1000, 'easeInOutExpo');
+            e.preventDefault();
+        });
+
+        //pjax
+        $(document).pjax('a[data-pjax]', '#main-container', {
+            fragment: '#main-container',
+            timeout: 5000
+        });
+        $(document).on('pjax:success', function() {
+            initPageScripts();
+        });
+
+        // 时间选择控件
+        $.timepicker.regional['zh-CN'] = {
+            timeOnlyTitle: '选择时间',
+            timeText: '时间',
+            hourText: '时',
+            minuteText: '分',
+            secondText: '秒',
+            millisecText: '毫秒',
+            microsecText: '微秒',
+            timezoneText: '时区',
+            currentText: '现在时间',
+            closeText: '关闭',
+            timeFormat: 'HH:mm',
+            timeSuffix: '',
+            amNames: ['AM', 'A'],
+            pmNames: ['PM', 'P'],
+            isRTL: false,
+            prevText: '上个月',
+            nextText: '下个月',
+            showMonthAfterYear: true,
+            weekHeader: '周',
+            yearSuffix: '年',
+        };
+        $.timepicker.setDefaults($.timepicker.regional['zh-CN']);
+        let dayNamesMin = ["日", "一", "二", "三", "四", "五", "六"];
+        let monthNamesShort = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
+        const screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        let _left = screenWidth < 1200 ? 0 : 50;
+        $(".datepicker").length && $(".datepicker").datetimepicker({
+            controlType: "select",
+            dayNamesMin: dayNamesMin,
+            monthNamesShort: monthNamesShort,
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "c-30:c+10",
+            showSecond: true,
+            dateFormat: "yy-mm-dd",
+            timeFormat: "HH:mm:ss",
+            beforeShow: function(input, inst) {
+                setTimeout(function() {
+                    inst.dpDiv.css({
+                        top: $(".datepicker.active").offset().top + 50,
+                        left: $(".datepicker.active").offset().left - _left
+                    });
+                }, 0);
+            },
+            onClose: function(dateText, inst) {
+                typeof onDatepickerClose === "function" && onDatepickerClose(dateText, inst);
+            }
+        });
+        $('body').on('focus', '.datepicker', function() {
+            let _this = $(this)
+            $('.datepicker').removeClass('active')
+            _this.addClass('active')
+        })
+
+        // AI Chat
         $('#chat-form').submit(function(event) {
             event.preventDefault();
             var message = $('#chat-input').val().trim();
@@ -108,36 +201,6 @@
                 $sendBtn.prop('disabled', false).text('发送');
                 eventSource.close();
             };
-        });
-    });
-</script>
-<footer class="sticky-footer bg-white">
-    <div class="text-right my-auto mr-4">
-        <small><a href="https://www.emlog.net" target="_blank">EMLOG</a> - <?= ucfirst(Option::EMLOG_VERSION) ?></small>
-    </div>
-</footer>
-</div>
-</div>
-<?php doAction('adm_footer') ?>
-<script src="./views/js/sb-admin-2.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
-<script>
-    $(function() {
-        // Scroll to top button appear
-        $(document).on('scroll', function() {
-            var scrollDistance = $(this).scrollTop();
-            if (scrollDistance > 100) {
-                $('.scroll-to-top').fadeIn();
-            } else {
-                $('.scroll-to-top').fadeOut();
-            }
-        });
-        // Smooth scrolling using jQuery easing
-        $(document).on('click', 'a.scroll-to-top', function(e) {
-            var $anchor = $(this);
-            $('html, body').stop().animate({
-                scrollTop: ($($anchor.attr('href')).offset().top)
-            }, 1000, 'easeInOutExpo');
-            e.preventDefault();
         });
     });
 </script>
