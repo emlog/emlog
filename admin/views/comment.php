@@ -170,6 +170,7 @@
                         <input type="hidden" value="" name="hide" id="hide" />
                         <textarea class="form-control" id="reply" name="reply" required></textarea>
                     </div>
+                    <p><a href="javascript:void(0);" class="" id="ai_button_reply">✨</a></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
@@ -204,13 +205,46 @@
 
         $('#replyModal').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget)
-            var comment = button.html()
+            var comment = button.data('comment')
             var cid = button.data('cid')
             var hide = button.data('hide')
             var modal = $(this)
-            modal.find('.modal-body p').html(comment)
+            modal.find('.modal-body .comment-replay-content').html(comment)
             modal.find('.modal-body #cid').val(cid)
             modal.find('.modal-body #hide').val(hide)
         })
+
+        // AI 生成评论回复
+        $('#ai_button_reply').click(function() {
+            var $button = $(this);
+            var $reply = $('#reply');
+            var comment = $('.comment-replay-content').html();
+
+            // 禁用按钮，显示加载状态
+            $button.prop('disabled', true).text('AI生成中...');
+
+            $.ajax({
+                url: 'ai.php?action=genReply',
+                method: 'POST',
+                data: {
+                    comment: comment
+                },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.code === 0) {
+                        $reply.val(response.data);
+                    } else {
+                        alert(response.msg || 'AI 生成失败');
+                    }
+                },
+                error: function(xhr) {
+                    alert('AI 请求失败，请稍后再试');
+                },
+                complete: function() {
+                    // 恢复按钮状态
+                    $button.prop('disabled', false).text('✨');
+                }
+            });
+        });
     });
 </script>

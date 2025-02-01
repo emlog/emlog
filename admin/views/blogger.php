@@ -50,22 +50,6 @@
                     <?php endif; ?>
                     <textarea name="description" class="form-control" id="description"><?= $description ?></textarea>
                 </div>
-                <script>
-                    $(document).ready(function() {
-                        $('#ai_button').click(function() {
-                            $.ajax({
-                                url: 'ai.php?action=genBio',
-                                method: 'GET',
-                                success: function(response) {
-                                    $('#description').val(response.data);
-                                },
-                                error: function(xhr) {
-                                    alert('AI 请求失败，请稍后再试');
-                                }
-                            });
-                        });
-                    });
-                </script>
                 <div class="form-group">
                     <?php doAction('blogger_ext') ?>
                 </div>
@@ -311,5 +295,19 @@
                 }
             });
         }
+
+        // AI 生成个人描述
+        $('#ai_button').click(function() {
+            $.ajax({
+                url: 'ai.php?action=genBio',
+                method: 'GET',
+                success: function(response) {
+                    $('#description').val(response.data);
+                },
+                error: function(xhr) {
+                    alert('AI 请求失败，请稍后再试');
+                }
+            });
+        });
     });
 </script>

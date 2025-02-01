@@ -35,3 +35,10 @@ if ($action == 'genBio') {
     $r = Ai::chat($prompt);
     Output::ok($r);
 }
+
+if ($action == 'genReply') {
+    $comment = Input::postStrVar('comment');
+    $prompt = $comment . '。=== 请礼貌而专业的回复 === 前面这段用户评论，避免输出任何提示性内容。';
+    $r = Ai::chat($prompt);
+    Output::ok($r);
+}
