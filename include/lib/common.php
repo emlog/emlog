@@ -434,9 +434,21 @@ function getRandStr($length = 12, $special_chars = true, $numeric_only = false)
     $randStr = '';
     $chars_length = strlen($chars);
     for ($i = 0; $i < $length; $i++) {
-        $randStr .= substr($chars, mt_rand(0, $chars_length - 1), 1);
+        $randStr .= substr($chars, em_rand(0, $chars_length - 1), 1);
     }
     return $randStr;
+}
+
+function em_rand($min = 0, $max = 0)
+{
+    if (function_exists('random_int')) {
+        try {
+            return random_int($min, $max);
+        } catch (Exception $e) {
+            // 失败时继续使用其他方法
+        }
+    }
+    return mt_rand($min, $max);
 }
 
 /**

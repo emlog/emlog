@@ -23,7 +23,7 @@ class Order_Model
     {
         $microtime = microtime(true);
         $timestamp = str_replace('.', '', $microtime);
-        $randomNumber = mt_rand(100000, 999999);
+        $randomNumber = em_rand(100000, 999999);
         $orderNumber = $timestamp . $randomNumber;
         return $orderNumber;
     }

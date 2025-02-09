@@ -1,6 +1,7 @@
 # emlog
 .htaccess
 .user.ini
+.php-version
 sitemap.xml
 Dockerfile
 config.php

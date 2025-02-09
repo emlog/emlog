@@ -442,7 +442,7 @@ class Log_Model
         $date_state = "and date<=$now";
         $sta_cache = $CACHE->readCache('sta');
         $lognum = $sta_cache['lognum'];
-        $start = $lognum > $num ? mt_rand(0, $lognum - $num) : 0;
+        $start = $lognum > $num ? em_rand(0, $lognum - $num) : 0;
         $sql = "SELECT gid,title FROM $this->table WHERE hide='n' and checked='y' and type='blog' $date_state LIMIT $start, $num";
         $res = $this->db->query($sql);
         $logs = [];
