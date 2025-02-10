@@ -146,7 +146,6 @@ $isdraft = $draft ? '&draft=1' : '';
                                     <br>
                                     <span class="small"> ID:<?= $value['gid'] ?></span>
                                     <?php if ($value['alias']): ?> <span class="small">(<?= $value['alias'] ?>)</span><?php endif ?>
-                                    <?php if ($value['allow_remark'] === 'n'): ?> <span class="small text-danger" title="禁止评论">🚫</span><?php endif ?>
                                     <?php foreach ($logTags as $tid => $t): ?>
                                         <a href="./article.php?tagid=<?= $tid . $isdraft ?>" class='em-badge small em-badge-tag'><?= htmlspecialchars($t) ?></a>
                                     <?php endforeach; ?>
