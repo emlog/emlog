@@ -49,9 +49,12 @@
             <div class="col-md-4 mb-3">
                 <div class="card h-100">
                     <div class="card-body d-flex align-items-center justify-content-center">
-                        <a type="button" class="" data-toggle="modal" data-target="#aiChatModal">
-                            ✨AI对话
-                        </a>
+                        <div>
+                            <a type="button" class="" data-toggle="modal" data-target="#aiChatModal">
+                                ✨AI对话
+                            </a>，
+                            <a href="store.php?action=plu&keyword=AI">更多AI应用</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -109,7 +112,7 @@
                         <a href="https://www.deepseek.com/" target="_blank">DeepSeek</a><br>
                         API URL：https://api.deepseek.com/v1/chat/completions<br>
                         API Key：<a href="https://platform.deepseek.com/api_keys" target="_blank">生成api key</a>，格式如：sk-****<br>
-                        Model：deepseek-chat<br>
+                        Model：deepseek-chat、deepseek-reasoner<br>
                         <hr>
                         <a href="https://bigmodel.cn/" target="_blank">智谱AI</a><br>
                         API URL：https://open.bigmodel.cn/api/paas/v4/chat/completions<br>
