@@ -45,12 +45,19 @@ if ($action === 'backup') {
     if (($dumpfile = emZip($filename . '.sql', $dumpfile)) === false) {
         emDirect('./data.php?error_f=1');
     }
+
+    // Clear output buffer to prevent any accidental output
+    if (ob_get_length()) {
+        ob_end_clean();
+    }
+
     header('Content-Type: application/zip');
     header('Content-Disposition: attachment; filename=' . $filename . '.zip');
     header('Pragma: no-cache');
     header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
     header('Expires: ' . gmdate('D, d M Y H:i:s') . ' GMT');
     echo $dumpfile;
+    exit;
 }
 
 if ($action === 'import') {
