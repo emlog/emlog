@@ -182,8 +182,8 @@ class Cache
         SUM(CASE WHEN hide = 'y' THEN 1 ELSE 0 END) AS hide_com_num 
         FROM " . DB_PREFIX . "comment";
         $data = $this->db->once_fetch_array($sql);
-        $com_num = $data['com_num'];
-        $hide_com_num = $data['hide_com_num'];
+        $com_num = $data['com_num'] ? $data['com_num'] : 0;
+        $hide_com_num = $data['hide_com_num'] ? $data['hide_com_num'] : 0;
 
         $sta_cache = [
             'lognum'     => $log_num,
