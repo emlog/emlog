@@ -976,7 +976,7 @@ a {
 </head>
 <body>
 <div class="main">
-<p>$msg</p>
+<p>🚫 $msg</p>
 EOT;
     if ($url != 'none') {
         echo '<p><a href="' . $url . '">&larr; 点击返回</a></p>';
