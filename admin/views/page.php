@@ -72,7 +72,11 @@
                                             <span class="badge small badge-danger">首页</span> 已设为首页，原默认首页：<a href="<?= BLOG_URL ?>posts" target="_blank"><?= BLOG_URL ?>posts</a>
                                         </span>
                                     <?php endif; ?>
-                                    <?php if ($value['link']): ?><br><span class="small">🔗</span><?php endif ?>
+                                    <br>
+                                    <span class="small"> ID:<?= $value['gid'] ?></span>
+                                    <?php if ($value['alias']): ?> <span class="small">(<?= $value['alias'] ?>)</span><?php endif ?>
+                                    <?php if ($value['allow_remark'] === 'n'): ?> <span class="small text-danger" title="禁止评论">🚫</span><?php endif ?>
+                                    <?php if ($value['link']): ?><span class="small">🔗</span><?php endif ?>
                                 </td>
                                 <td>
                                     <a href="comment.php?gid=<?= $value['gid'] ?>" class="badge badge-primary mx-2 px-3"><?= $value['comnum'] ?></a>
