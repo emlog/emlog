@@ -570,28 +570,31 @@ body {
 /* 验证码模态窗的配置 */
 .modal-dialog {
     display: none;
-    background-color: var(--bodyBground);
+    background-color: var(--conBgcolor);
     border-radius: var(--marRadius);
-    border: 1px solid var(--bodyBground);
+    border: 1px solid var(--borderColor);
     position: fixed;
     z-index: 100;
-    /* 定位 */
-    top: 35%;
+    top: 50%;
     left: 50%;
-    transform: translate3d(-50%, -50%, 0)
+    transform: translate(-50%, -50%);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    max-width: 90%;
+    padding: 20px;
 }
 
 /* 验证码模态窗的按钮 */
 .btn {
     cursor: pointer;
-    color: var(--fontColor);
-    background-color: var(--bodyBground);
-    padding: 8px 11px;
-    font-weight: 800;
+    color: var(--buttonTextColor);
+    background-color: var(--buttonBgColor);
+    padding: 10px 15px;
+    font-weight: 600;
     border-radius: var(--marRadius);
-    margin-block: 12px;
-    margin-inline: 17.5px;
-    border: 1px solid var(--bodyBground);
+    margin: 10px 0;
+    border: none;
+    transition: background-color 0.3s;
 }
 
 .btn:hover {
@@ -600,30 +603,31 @@ body {
 
 .modal-header {
     text-align: center;
-    border-bottom: 0px;
-    width: 250px;
-    padding: 20px
+    border-bottom: 1px solid var(--dividerColor);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: 600;
 }
 
 .modal-content img {
-    float: left;
-    height: 32px;
-    margin-left: 20px;
-    margin-block: 30px
+    display: block;
+    margin: 0 auto 20px;
+    height: 40px;
 }
 
 .modal-content input[name="imgcode"] {
-    padding: 6px 8px !important;
-    margin-right: 20px;
-    margin-left: 8px;
-    text-align: left;
-    margin-block: 30px;
-    border: 1px solid var(--borderColor)
+    padding: 10px;
+    margin: 10px 0;
+    width: calc(100% - 20px);
+    border: 1px solid var(--borderColor);
+    border-radius: var(--marRadius);
+    box-sizing: border-box;
 }
 
 .modal-content .modal-footer {
-    padding: 10px;
-    text-align: center
+    text-align: center;
+    padding-top: 10px;
 }
 
 /* 弹出验证码模态窗后，屏幕背景要锁住 */
@@ -633,15 +637,16 @@ body {
     position: fixed;
     width: 100vw;
     height: 100vh;
-    background-color: #2d2d2b;
+    background-color: rgba(0, 0, 0, 0.5);
     top: 0;
     left: 0;
-    opacity: 0.5
 }
 
 /* 验证码的点击样式 */
 #captcha {
-    cursor: pointer
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
 }
 
 /* 禁止滚动 */
@@ -1833,6 +1838,10 @@ img.zoom-img {
     }
 
     .comment-mail {
+        margin-bottom: 10px;
+    }
+
+    .comment-name {
         margin-bottom: 10px;
     }
 
