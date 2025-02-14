@@ -206,24 +206,24 @@ function widget_newcomm($title)
  */
 function widget_newlog($title)
 {
-    global $CACHE;
-    $newLogs_cache = $CACHE->readCache('newlog');
+    $Log_Model = new Log_Model();
+    $newLogs = $Log_Model->getLogsForHome(' ORDER BY date DESC', 1, (int)Option::get('index_newlognum'));
 ?>
     <div class="widget shadow-theme">
         <div class="widget-title m">
             <h3><?= $title ?></h3>
         </div>
         <ul class="unstyle-li">
-            <?php foreach ($newLogs_cache as $value): ?>
+            <?php foreach ($newLogs as $value): ?>
                 <li class="blog-lates" style="position: relative;">
-                    <?php if ($value['cover']): ?>
-                        <div class="side-cover-image" style="background-image: url('<?= $value['cover'] ?>');">
+                    <?php if ($value['log_cover']): ?>
+                        <div class="side-cover-image" style="background-image: url('<?= $value['log_cover'] ?>');">
                             <div class="side-title-container">
-                                <a href="<?= Url::log($value['gid']) ?>"><?= $value['title'] ?></a>
+                                <a href="<?= $value['log_url'] ?>"><?= $value['log_title'] ?></a>
                             </div>
                         </div>
                     <?php else: ?>
-                        <a href="<?= Url::log($value['gid']) ?>"><?= $value['title'] ?></a>
+                        <a href="<?= $value['log_url'] ?>"><?= $value['log_title'] ?></a>
                     <?php endif ?>
                 </li>
             <?php endforeach ?>
