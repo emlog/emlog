@@ -146,11 +146,11 @@
                         API Key：<a href="https://platform.moonshot.cn/console/api-keys" target="_blank">生成api key</a>，格式如：sk-****<br>
                         Model：moonshot-v1-8k、moonshot-v1-32k、moonshot-v1-128k<br>
                         <hr>
-                        <a href="https://tongyi.aliyun.com/" target="_blank">通义大模型</a><br>
+                        <a href="https://tongyi.aliyun.com/" target="_blank">阿里百炼</a><br>
                         API URL：https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions
                         <br>
                         API Key：<a href="https://bailian.console.aliyun.com/?apiKey=1#/api-key" target="_blank">生成api key</a>，格式如：sk-****<br>
-                        Model：qwen-max、qwen-plus、qwen-turbo、qwen-long 等
+                        Model：qwen-max、qwen-plus、deepseek-v3 等
                         <hr>
                         仅支持配置openai协议的大模型，<a href="https://www.emlog.net/docs/ai/ai_emlog" target="_blank">查看更多</a><br>
                     </div>
