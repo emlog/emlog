@@ -37,7 +37,7 @@
                                 <?php endif; ?>
                             </h4>
                             <div class="my-3">
-                                <span class="badge badge-secondary" style="font-size: 1.2em;"><?= $apiUrlDomain ?></span><br>
+                                <span class="badge badge-gray" style="font-size: 1.2em;"><?= $apiUrlDomain ?></span><br>
                             </div>
                             <a href="#" class="edit-link small text-primary" data-toggle="modal" data-target="#editModelModal" data-model="<?= $val['model'] ?>" data-url="<?= $val['api_url'] ?>" data-api_key="<?= $apiKey ?>" data-model_key="<?= $k ?>" style="position: absolute; bottom: 10px; right: 40px;">编辑</a>
                             <a href="javascript: em_confirm('<?= $k ?>', 'ai_model', '<?= LoginAuth::genToken() ?>');" class="delete-link small text-danger" style="position: absolute; bottom: 10px; right: 10px;">删除</a>
