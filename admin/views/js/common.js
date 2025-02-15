@@ -97,6 +97,11 @@ function em_confirm(id, property, token) {
             text = '删除该资源分类？不会删除分类下资源文件';
             delAlert(msg, text, url, token)
             break;
+        case 'ai_model':
+            url = 'setting.php?action=delete_model&ai_model_key=' + id;
+            text = '删除该模型？';
+            delAlert(msg, text, url, token)
+            break;
     }
 }
 

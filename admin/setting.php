@@ -417,6 +417,7 @@ if ($action == 'api_reset') {
 if ($action == 'ai') {
     $aiModel = AI::model();
     $aiModels = AI::models();
+    $currentModelKey = Option::get('ai_model');
 
     include View::getAdmView('header');
     require_once(View::getAdmView('setting_ai'));
@@ -432,7 +433,8 @@ if ($action == 'ai_save') {
     $aiModel = Input::postStrVar('ai_model');
 
     $aiModels = AI::models();
-    $aiModels[$aiModel] = [
+    $key = md5($aiModel . $aiApiUrl);
+    $aiModels[$key] = [
         'api_url' => $aiApiUrl,
         'api_key' => $aiApiKey,
         'model' => $aiModel,
@@ -442,7 +444,7 @@ if ($action == 'ai_save') {
 
     // If there is only one model available, set it as the current model
     if (count($aiModels) == 1) {
-        Option::updateOption('ai_model', $aiModel);
+        Option::updateOption('ai_model', $key);
     }
 
     $CACHE->updateCache('options');
@@ -450,24 +452,24 @@ if ($action == 'ai_save') {
 }
 
 if ($action == 'ai_model') {
-    $aiModel = Input::getStrVar('ai_model');
-    if (empty($aiModel)) {
+    $aiModelKey = Input::getStrVar('ai_model_key');
+    if (empty($aiModelKey)) {
         emDirect("./setting.php?action=ai");
     }
 
-    Option::updateOption('ai_model', $aiModel);
+    Option::updateOption('ai_model', $aiModelKey);
     $CACHE->updateCache('options');
     emDirect("./setting.php?action=ai");
 }
 
 if ($action == 'delete_model') {
-    $aiModel = Input::getStrVar('ai_model');
+    $aiModelKey = Input::getStrVar('ai_model_key');
     $aiModels = AI::models();
-    $currentAiModel = AI::model();
-    if (is_array($aiModels) && isset($aiModels[$aiModel])) {
-        unset($aiModels[$aiModel]);
+    $currentAiModelKey = AI::model();
+    if (is_array($aiModels) && isset($aiModels[$aiModelKey])) {
+        unset($aiModels[$aiModelKey]);
         Option::updateOption('ai_models', json_encode($aiModels));
-        if ($currentAiModel == $aiModel) {
+        if ($currentAiModel == $aiModelKey) {
             Option::updateOption('ai_model', '');
         }
         $CACHE->updateCache('options');
@@ -475,4 +477,21 @@ if ($action == 'delete_model') {
     } else {
         emDirect("./setting.php?action=ai");
     }
+}
+
+if ($action == 'ai_update') {
+    LoginAuth::checkToken();
+
+    $aiModelKey = Input::postStrVar('ai_model_key');
+    $aiModel = Input::postStrVar('edit_ai_model');
+
+    $aiModels = AI::models();
+    if (!isset($aiModels[$aiModelKey])) {
+        emDirect("./setting.php?action=ai");
+    }
+    $aiModels[$aiModelKey]['model'] = $aiModel;
+
+    Option::updateOption('ai_models', json_encode($aiModels));
+    $CACHE->updateCache('options');
+    emDirect("./setting.php?action=ai");
 }
