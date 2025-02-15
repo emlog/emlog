@@ -136,13 +136,14 @@ class Ai
 
     public static function getCurrentModelInfo()
     {
-        $currentModelKey = self::model();
+        $currentModelKey = Option::get('ai_model');
+        if (!$currentModelKey) {
+            return null;
+        }
         $aiModels = self::models();
-
         if (isset($aiModels[$currentModelKey])) {
             return $aiModels[$currentModelKey];
         }
-
         return null;
     }
 
