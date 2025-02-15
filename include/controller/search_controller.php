@@ -24,7 +24,7 @@ class Search_Controller
 
         $sqlSegment = "AND title LIKE '%$keyword%'";
         if ($sid) {
-            $sqlSegment .= "AND sortid=$sid";
+            $sqlSegment .= " AND sortid=$sid";
         }
         $orderBy = ' ORDER BY date DESC';
         $lognum = $Log_Model->getLogNum('n', $sqlSegment);
