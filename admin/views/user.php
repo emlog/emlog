@@ -2,7 +2,7 @@
 <?php if (isset($_GET['active_del'])): ?>
     <div class="alert alert-success">删除成功</div><?php endif ?>
 <?php if (isset($_GET['active_fb'])): ?>
-    <div class="alert alert-success">禁用成功，该用户无法再登录</div><?php endif ?>
+    <div class="alert alert-success">禁用成功</div><?php endif ?>
 <?php if (isset($_GET['active_unfb'])): ?>
     <div class="alert alert-success">解禁成功</div><?php endif ?>
 <?php if (isset($_GET['active_update'])): ?>
@@ -50,58 +50,72 @@
         </div>
     </div>
     <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-bordered table-striped table-hover dataTable no-footer" id="adm_comment_list">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>用户昵称</th>
-                        <th>邮箱</th>
-                        <th>用户ID</th>
-                        <th>登录IP</th>
-                        <th>活跃时间</th>
-                        <th>创建时间</th>
-                        <th>操作</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    foreach ($users as $key => $val):
-                        $avatar = User::getAvatar($user_cache[$val['uid']]['avatar']);
-                        $forbid = $val['state'] == 1;
-                        $user_log_num = isset($sta_cache[$val['uid']]['lognum']) ? $sta_cache[$val['uid']]['lognum'] : 0;
-                    ?>
+        <form action="user.php?action=operate_user" method="post" name="form_user" id="form_user">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover dataTable no-footer" id="adm_comment_list">
+                    <thead>
                         <tr>
-                            <td><img src="<?= $avatar ?>" height="35" width="35" class="rounded-circle" /></td>
-                            <td>
-                                <a href="user.php?action=edit&uid=<?= $val['uid'] ?>"><?= empty($val['name']) ? $val['login'] : $val['name'] ?></a>
-                                <span class="small"><?= $val['role'] ?></span>
-                                <?php if ($forbid): ?>
-                                    <span class="badge badge-warning">已禁用</span>
-                                <?php endif ?>
-                                <br />
-                                <span class="small mr-2">文章：<a href="article.php?uid=<?= $val['uid'] ?>"><?= $user_log_num ?></a></span>
-                                <span class="small"> 积分：<?= $val['credits'] ?></span>
-                            </td>
-                            <td><?= $val['email'] ?></td>
-                            <td><?= $val['uid'] ?></td>
-                            <td><?= $val['ip'] ?></td>
-                            <td><?= $val['update_time'] ?></td>
-                            <td><?= $val['create_time'] ?></td>
-                            <td>
-                                <?php if (UID != $val['uid']): ?>
-                                    <a href="javascript: em_confirm(<?= $val['uid'] ?>, 'del_user', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger">删除</a>
-                                    <?php if ($forbid): ?>
-                                        <a href="user.php?action=unforbid&uid=<?= $val['uid'] ?>&token=<?= LoginAuth::genToken() ?>" class="badge badge-success">解禁</a>
-                                    <?php else: ?>
-                                        <a href="javascript: em_confirm(<?= $val['uid'] ?>, 'forbid_user', '<?= LoginAuth::genToken() ?>');" class="badge badge-warning">禁用</a>
-                                    <?php endif ?>
-                                <?php endif ?>
-                            </td>
+                            <th><input type="checkbox" id="checkAllItem" /></th>
+                            <th>头像</th>
+                            <th>昵称</th>
+                            <th>邮箱</th>
+                            <th>登录IP</th>
+                            <th>活跃时间</th>
+                            <th>创建时间</th>
+                            <th>操作</th>
                         </tr>
-                    <?php endforeach ?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody class="checkboxContainer">
+                        <?php
+                        foreach ($users as $key => $val):
+                            $avatar = User::getAvatar($user_cache[$val['uid']]['avatar']);
+                            $forbid = $val['state'] == 1;
+                            $user_log_num = isset($sta_cache[$val['uid']]['lognum']) ? $sta_cache[$val['uid']]['lognum'] : 0;
+                        ?>
+                            <tr>
+                                <td style="width: 19px;">
+                                    <input type="checkbox" name="user_ids[]" value="<?= $val['uid'] ?>" class="ids" />
+                                </td>
+                                <td style="width: 25px;"><img src="<?= $avatar ?>" height="35" width="35" class="rounded-circle" /></td>
+                                <td>
+                                    <a href="user.php?action=edit&uid=<?= $val['uid'] ?>"><?= empty($val['name']) ? $val['login'] : $val['name'] ?></a>
+                                    <span class="small"><?= $val['role'] ?></span>
+                                    <?php if ($forbid): ?>
+                                        <span class="badge badge-warning">已禁用</span>
+                                    <?php endif ?>
+                                    <br />
+                                    <span class="small mr-2"> ID:<?= $val['uid'] ?></span>
+                                    <span class="small mr-2">文章:<a href="article.php?uid=<?= $val['uid'] ?>"><?= $user_log_num ?></a></span>
+                                    <span class="small"> 积分:<?= $val['credits'] ?></span>
+                                </td>
+                                <td><?= $val['email'] ?></td>
+                                <td><?= $val['ip'] ?></td>
+                                <td><?= $val['update_time'] ?></td>
+                                <td><?= $val['create_time'] ?></td>
+                                <td>
+                                    <?php if (UID != $val['uid']): ?>
+                                        <a href="javascript: em_confirm(<?= $val['uid'] ?>, 'del_user', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger">删除</a>
+                                        <?php if ($forbid): ?>
+                                            <a href="user.php?action=unforbid&uid=<?= $val['uid'] ?>&token=<?= LoginAuth::genToken() ?>" class="badge badge-success">解禁</a>
+                                        <?php else: ?>
+                                            <a href="javascript: em_confirm(<?= $val['uid'] ?>, 'forbid_user', '<?= LoginAuth::genToken() ?>');" class="badge badge-warning">禁用</a>
+                                        <?php endif ?>
+                                    <?php endif ?>
+                                </td>
+                            </tr>
+                        <?php endforeach ?>
+                    </tbody>
+                </table>
+            </div>
+            <input name="operate" id="operate" value="" type="hidden" />
+        </form>
+        <div class="form-inline">
+            <div class="btn-group">
+                <button class="btn btn-success btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">操作</button>
+                <div class="dropdown-menu">
+                    <a href="javascript:useract('forbid');" class="dropdown-item text-warning">禁用</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -174,5 +188,24 @@
 
     function selectOrder(obj) {
         window.open("./user.php?order=" + obj.value, "_self");
+    }
+
+    function useract(act) {
+        if (getChecked('ids') === false) {
+            infoAlert('请选择用户');
+            return;
+        }
+
+        if (act === 'forbid') {
+            delAlert2('', '封禁所选用户？', function() {
+                    $("#operate").val("forbid");
+                    $("#form_user").submit();
+                },
+                '封禁')
+            return;
+        }
+
+        $("#operate").val(act);
+        $("#form_user").submit();
     }
 </script>

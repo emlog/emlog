@@ -213,3 +213,25 @@ if ($action == 'unforbid') {
     $User_Model->unforbidUser($uid);
     emDirect('./user.php?active_unfb=1');
 }
+
+if ($action == 'operate_user') {
+    $operate = Input::requestStrVar('operate');
+    $user_ids = Input::postIntArray('user_ids');
+
+    if (!$operate) {
+        emDirect("./user.php");
+    }
+    if (empty($user_ids)) {
+        emDirect("./user.php");
+    }
+
+    if ($operate == 'forbid') {
+        foreach ($user_ids as $id) {
+            if ($id == 1) {
+                continue;
+            }
+            $User_Model->forbidUser($id);
+        }
+        emDirect('./user.php?active_fb=1');
+    }
+}
