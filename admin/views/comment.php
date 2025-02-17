@@ -27,8 +27,8 @@
     <h1 class="h4 mb-0 text-gray-800">评论</h1>
 </div>
 <?php if ($hideCommNum > 0) : ?>
-    <div class="panel-heading">
-        <ul class="nav nav-tabs">
+    <div class="panel-heading mb-3">
+        <ul class="nav nav-pills justify-content-start mb-2 mb-md-0">
             <li class="nav-item">
                 <a class="nav-link <?= $hide == '' ? 'active' : '' ?>" href="./comment.php?<?= $addUrl_1 ?>">全部</a>
             </li>
