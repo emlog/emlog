@@ -102,6 +102,7 @@
                     <div class="form-group">
                         <label>新的密码（不少于6位）</label>
                         <input type="password" class="form-control" id="new_passwd" name="new_passwd" minlength="6" required>
+                        <div id="passwordHelp" class="form-text mt-1"></div>
                     </div>
                     <div class="form-group">
                         <label>重复新的密码</label>
@@ -309,5 +310,34 @@
                 }
             });
         });
+
+        // 密码强度检查
+        $('#new_passwd').on('input', function() {
+            var password = $(this).val();
+            var strength = getPasswordStrength(password);
+            $('#passwordHelp').text('密码强度：' + strength.text).css('color', strength.color);
+        });
+
+        function getPasswordStrength(password) {
+            var strength = {
+                text: '弱',
+                color: 'red'
+            };
+            if (password.length >= 6) {
+                var strengthScore = [/[A-Z]/, /[a-z]/, /\d/, /\W/].reduce((score, regex) => score + regex.test(password), 0);
+                if (strengthScore >= 3) {
+                    strength = {
+                        text: '强',
+                        color: 'green'
+                    };
+                } else if (strengthScore >= 2) {
+                    strength = {
+                        text: '中等',
+                        color: 'orange'
+                    };
+                }
+            }
+            return strength;
+        }
     });
 </script>
