@@ -322,7 +322,7 @@
                 },
                 audio: {
                     title: "添加音频",
-                    url: "音频地址(MP3)",
+                    url: "音频地址(如MP3)",
                     uploadButton: "本地上传",
                     videoURLEmpty: "错误：音频地址不能为空。",
                     uploadFileEmpty: "错误：上传的音频不能为空。",
