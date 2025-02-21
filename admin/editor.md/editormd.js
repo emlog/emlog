@@ -213,6 +213,7 @@
             "reference-link": "fa-anchor",
             image: "fa-picture-o",
             video: "fa-video-camera",
+            audio: "fa-audio",
             code: "fa-code",
             "preformatted-text": "fa-file-code-o",
             "code-block": "fa-file-code-o",
@@ -260,6 +261,7 @@
                 "reference-link": "引用链接",
                 image: "添加图片",
                 video: "添加视频",
+                audio: "添加音频",
                 code: "行内代码",
                 "preformatted-text": "预格式文本 / 代码块（缩进风格）",
                 "code-block": "代码块（多语言风格）",
@@ -317,6 +319,14 @@
                     videoURLEmpty: "错误：视频地址不能为空。",
                     uploadFileEmpty: "错误：上传的视频不能为空。",
                     formatNotAllowed: "错误：只允许上传视频文件，允许上传的视频文件格式有："
+                },
+                audio: {
+                    title: "添加音频",
+                    url: "音频地址(MP3)",
+                    uploadButton: "本地上传",
+                    videoURLEmpty: "错误：音频地址不能为空。",
+                    uploadFileEmpty: "错误：上传的音频不能为空。",
+                    formatNotAllowed: "错误：只允许上传音频文件，允许上传的音频文件格式有："
                 },
                 preformattedText: {
                     title: "添加预格式文本或代码块",
@@ -2940,6 +2950,10 @@
 
         image: function () {
             this.executePlugin("imageDialog", "image-dialog/image-dialog");
+        },
+
+        audio: function () {
+            this.executePlugin("audioDialog", "audio-dialog/audio-dialog");
         },
 
         video: function () {

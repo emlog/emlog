@@ -1171,6 +1171,10 @@
   content: "\f03d";
 }
 
+.fa-audio:before {
+  content: "\f001";
+}
+
 .fa-photo:before,
 .fa-image:before,
 .fa-picture-o:before {

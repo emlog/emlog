@@ -259,7 +259,7 @@
             height: 745,
             toolbarIcons: function() {
                 return ["bold", "del", "italic", "quote", "|", "h1", "h2", "h3", "|", "list-ul", "list-ol", "hr", "|",
-                    "link", "image", "video", "code", "preformatted-text", "code-block", "table", "|", "search", "preview", "fullscreen", "help"
+                    "link", "image", "audio", "video", "code", "preformatted-text", "code-block", "table", "|", "search", "preview", "fullscreen", "help"
                 ]
             },
             path: "editor.md/lib/",
