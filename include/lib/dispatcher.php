@@ -1,28 +1,30 @@
 <?php
+
 /**
  * router
  * @package EMLOG
  * @link https://www.emlog.net
  */
 
-class Dispatcher {
+class Dispatcher
+{
 
     static $_instance;
 
     /**
      * Request module
      */
-    private $_model = '';
+    public $_model = '';
 
     /**
      * Request module method
      */
-    private $_method = '';
+    public $_method = '';
 
     /**
      * Request parameters
      */
-    private $_params;
+    public $_params;
 
     /**
      * Routing table
@@ -32,16 +34,18 @@ class Dispatcher {
     /**
      * path
      */
-    private $_path;
+    public $_path;
 
-    public static function getInstance() {
+    public static function getInstance()
+    {
         if (!self::$_instance instanceof self) {
             self::$_instance = new self();
         }
         return self::$_instance;
     }
 
-    private function __construct() {
+    private function __construct()
+    {
         $this->_path = $this->setPath();
         $this->_routingTable = Option::getRoutingTable();
 
@@ -103,13 +107,15 @@ class Dispatcher {
         }
     }
 
-    public function dispatch() {
+    public function dispatch()
+    {
         $module = new $this->_model();
         $method = $this->_method;
         $module->$method($this->_params);
     }
 
-    public static function setPath() {
+    public static function setPath()
+    {
         if (isset($_SERVER['HTTP_X_REWRITE_URL'])) { // for iis
             $path = $_SERVER['HTTP_X_REWRITE_URL'];
         } elseif (isset($_SERVER['REQUEST_URI'])) {
