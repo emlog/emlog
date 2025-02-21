@@ -53,7 +53,7 @@
                                 alert(audioLang.audioURLEmpty);
                                 return false;
                             }
-                            var audioHtml = '<audio preload="auto" id="audio" controls loop style="width: 100%;"><source src="' + url + '" type="audio/mp4">Your browser does not support the audio element.</audio>';
+                            var audioHtml = '<audio preload="auto" id="audio" controls loop style="width: 100%;"><source src="' + url + '" type="audio/mp4"></audio>';
                             audioHtml = "\n" + audioHtml + "\n";
                             cm.replaceSelection(audioHtml);
                             if (alt === "") {
