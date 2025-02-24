@@ -39,7 +39,7 @@
         </form>
         <div class="alert alert-warning">
             <b>API接口列表：</b><br><br>
-            1. 文章发布 (可用于对接内容发布软件，文章发布接口URL：<?= BLOG_URL ?>?rest-api=article_post)<br>
+            1. 文章发布 (可用于对接内容发布软件)<br>
             2. 分类列表<br>
             3. 微语发布<br>
             4. 微语列表<br>

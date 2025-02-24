@@ -507,6 +507,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES
 ('rss_output_num','10'),
 ('rss_output_fulltext','y'),
 ('index_lognum','10'),
+('isfullsearch','n'),
 ('index_comnum','10'),
 ('index_newlognum','5'),
 ('index_hotlognum','5'),

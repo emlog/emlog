@@ -34,7 +34,7 @@
                 <label class="custom-control-label" for="detect_url">自动检测站点地址 (如开启后首页样式丢失，请关闭并手动填写站点地址)</label>
             </div>
             <div class="form-group mt-3">
-                <label for="timezone">你所在时区</label>
+                <label>你所在时区</label>
                 <select name="timezone" style="width:320px;" class="form-control">
                     <?php foreach ($tzlist as $key => $value):
                         $ex = $key == $timezone ? "selected=\"selected\"" : '' ?>
@@ -90,7 +90,6 @@
                 <label>每页显示文章数量</label>
                 <input class="form-control mx-sm-3" style="width:80px;" value="<?= $index_lognum ?>" name="index_lognum" type="number" min="1" />
             </div>
-
             <div class="form-group form-inline">
                 RSS输出 <input maxlength="5" style="width:80px;" value="<?= $rss_output_num ?>" type="number" min="0" class="form-control" name="rss_output_num" /> 篇文章（0为关闭），且输出
                 <select name="rss_output_fulltext" class="form-control">
@@ -100,6 +99,10 @@
             </div>
             <div class="alert alert-primary">
                 RSS订阅地址 (用于RSS阅读器订阅站点内容)：<?= $blogurl . 'rss.php' ?>
+            </div>
+            <div class="custom-control custom-switch">
+                <input class="custom-control-input" type="checkbox" value="y" name="isfullsearch" id="isfullsearch" <?= $conf_isfullsearch ?> />
+                <label class="custom-control-label" for="isfullsearch">全文搜索（文章较多时开启可能会影响站点性能）</label>
             </div>
             <hr>
             <h4>上传设置</h4>
