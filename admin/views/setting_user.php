@@ -22,11 +22,11 @@
             </div>
             <div class="custom-control custom-switch">
                 <input class="custom-control-input" type="checkbox" value="y" name="login_code" id="login_code" <?= $conf_login_code ?>>
-                <label class="custom-control-label" for="login_code">开启登录注册图形验证码</label>
+                <label class="custom-control-label" for="login_code">登录注册图形验证码</label>
             </div>
             <div class="custom-control custom-switch">
                 <input class="custom-control-input" type="checkbox" value="y" name="email_code" id="email_code" <?= $conf_email_code ?>>
-                <label class="custom-control-label" for="email_code">开启注册邮件验证码（开启需配置邮件通知服务）</label>
+                <label class="custom-control-label" for="email_code">用户注册邮件验证码（开启需配置邮件通知服务）</label>
             </div>
             <hr>
             <div class="custom-control custom-switch">
