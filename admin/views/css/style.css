@@ -369,3 +369,11 @@ body {
     .ai-chat-button span {
         font-weight: 800;
     }
+
+    .custom-control-input {
+        cursor: pointer;
+    }
+    
+    .custom-control-label {
+        cursor: pointer;
+    }

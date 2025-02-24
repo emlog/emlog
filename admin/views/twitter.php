@@ -20,9 +20,9 @@
             <button type="submit" class="btn btn-success btn-sm mb-2">发布</button>
         </div>
         <div class="col-auto">
-            <div class="form-check mb-2">
-                <input class="form-check-input" type="checkbox" value="y" name="private" id="private">
-                <label class="form-check-label small" for="private">私密</label>
+            <div class="custom-control custom-switch mb-2">
+                <input class="custom-control-input" type="checkbox" value="y" name="private" id="private">
+                <label class="custom-control-label" for="private">私密</label>
             </div>
         </div>
     </div>

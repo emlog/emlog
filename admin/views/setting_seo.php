@@ -59,17 +59,17 @@
                     </tbody>
                 </table>
             </div>
-            <div class="form-check mt-3">
-                <input class="form-check-input" type="checkbox" value="y" name="isalias" id="isalias" <?= $isalias ?> />
-                <label for="isalias">启用链接别名：<span class="permalink_url"><?= BLOG_URL ?>abc</span></label>
+            <div class="custom-control custom-switch">
+                <input class="custom-control-input" type="checkbox" value="y" name="isalias" id="isalias" <?= $isalias ?> />
+                <label class="custom-control-label" for="isalias">启用链接别名：<span class="permalink_url"><?= BLOG_URL ?>abc</span></label>
             </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="y" name="isalias_html" id="isalias_html" <?= $isalias_html ?> />
-                <label for="isalias_html">启用链接别名html后缀：<span class="permalink_url"><?= BLOG_URL ?>abc.html</span></label>
+            <div class="custom-control custom-switch">
+                <input class="custom-control-input" type="checkbox" value="y" name="isalias_html" id="isalias_html" <?= $isalias_html ?> />
+                <label class="custom-control-label" for="isalias_html">启用链接别名html后缀：<span class="permalink_url"><?= BLOG_URL ?>abc.html</span></label>
             </div>
 
-            <div class="alert alert-warning">
-                如果修改后文章无法访问，可能是服务器空间不支持URL重写（伪静态），请修改回默认格式并关闭文章连接别名。<br>
+            <div class="alert alert-warning mt-3">
+                如果修改后文章无法访问，可能是服务器不支持URL重写（伪静态），请修改回默认格式并关闭文章连接别名。<br>
             </div>
 
             <div class="alert alert-primary">

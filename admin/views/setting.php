@@ -29,13 +29,12 @@
                 <label>站点地址</label>
                 <input class="form-control" value="<?= $blogurl ?>" name="blogurl" type="url" required>
             </div>
-            <div class="form-group form-check">
-                <input class="form-check-input" type="checkbox" value="y" name="detect_url" id="detect_url" <?= $conf_detect_url ?> />
-                <label class="form-check-label" for="detect_url">自动检测站点地址 (如开启后首页样式丢失，请关闭并手动填写站点地址)</label>
+            <div class="custom-control custom-switch">
+                <input class="custom-control-input" type="checkbox" value="y" name="detect_url" id="detect_url" <?= $conf_detect_url ?> />
+                <label class="custom-control-label" for="detect_url">自动检测站点地址 (如开启后首页样式丢失，请关闭并手动填写站点地址)</label>
             </div>
-
-            <div class="form-group">
-                <label>你所在时区</label>
+            <div class="form-group mt-3">
+                <label for="timezone">你所在时区</label>
                 <select name="timezone" style="width:320px;" class="form-control">
                     <?php foreach ($tzlist as $key => $value):
                         $ex = $key == $timezone ? "selected=\"selected\"" : '' ?>
@@ -43,7 +42,6 @@
                     <?php endforeach ?>
                 </select>
             </div>
-
             <div class="form-group">
                 <label>ICP备案号</label>
                 <input class="form-control" value="<?= $icp ?>" name="icp" />
@@ -54,25 +52,25 @@
             </div>
             <hr>
             <h4>评论设置</h4>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="y" name="iscomment" id="iscomment" <?= $conf_iscomment ?> />
-                <label for="iscomment">开启评论</label>
+            <div class="custom-control custom-switch">
+                <input class="custom-control-input" type="checkbox" value="y" name="iscomment" id="iscomment" <?= $conf_iscomment ?> />
+                <label class="custom-control-label" for="iscomment">开启评论</label>
             </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="y" name="ischkcomment" id="ischkcomment" <?= $conf_ischkcomment ?> />
-                <label for="ischkcomment">评论审核</label>
+            <div class="custom-control custom-switch">
+                <input class="custom-control-input" type="checkbox" value="y" name="ischkcomment" id="ischkcomment" <?= $conf_ischkcomment ?> />
+                <label class="custom-control-label" for="ischkcomment">评论审核</label>
             </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="y" name="comment_code" id="comment_code" <?= $conf_comment_code ?> />
-                <label for="comment_code">评论验证码</label>
+            <div class="custom-control custom-switch">
+                <input class="custom-control-input" type="checkbox" value="y" name="comment_code" id="comment_code" <?= $conf_comment_code ?> />
+                <label class="custom-control-label" for="comment_code">评论验证码</label>
             </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="y" name="login_comment" id="login_comment" <?= $conf_login_comment ?> />
-                <label for="login_comment">登录后评论，开启后仅登录用户可评论</label>
+            <div class="custom-control custom-switch">
+                <input class="custom-control-input" type="checkbox" value="y" name="login_comment" id="login_comment" <?= $conf_login_comment ?> />
+                <label class="custom-control-label" for="login_comment">登录后评论，开启后仅登录用户可评论</label>
             </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="y" name="comment_paging" id="comment_paging" <?= $conf_comment_paging ?> />
-                <label for="comment_paging">评论分页</label>
+            <div class="custom-control custom-switch">
+                <input class="custom-control-input" type="checkbox" value="y" name="comment_paging" id="comment_paging" <?= $conf_comment_paging ?> />
+                <label class="custom-control-label" for="comment_paging">评论分页</label>
             </div>
             <div class="form-group form-inline">
                 每页显示评论条数：<input maxlength="5" style="width:80px;" class="form-control" value="<?= $comment_pnum ?>" name="comment_pnum" type="number" min="0" />
@@ -86,9 +84,7 @@
             <div class="form-group form-inline">
                 发表评论间隔（秒）： <input class="form-control mx-sm-3" value="<?= $comment_interval ?>" name="comment_interval" style="width:80px;" type="number" min="0" />
             </div>
-
             <hr>
-
             <h4>文章设置</h4>
             <div class="form-group form-inline">
                 <label>每页显示文章数量</label>
@@ -105,18 +101,18 @@
             <div class="alert alert-primary">
                 RSS订阅地址 (用于RSS阅读器订阅站点内容)：<?= $blogurl . 'rss.php' ?>
             </div>
-
             <hr>
-
             <h4>上传设置</h4>
             <div class="form-group form-inline">
-                <input type="checkbox" value="y" name="isthumbnail" id="isthumbnail" class="mr-1" <?= $conf_isthumbnail ?> />
-                <label for="isthumbnail">上传图片生成缩略图</label>，最大尺寸：
+                <div class="custom-control custom-switch">
+                    <input type="checkbox" value="y" name="isthumbnail" id="isthumbnail" class="custom-control-input" <?= $conf_isthumbnail ?> />
+                    <label class="custom-control-label" for="isthumbnail">上传图片生成缩略图</label>
+                </div>
+                ，最大尺寸：
                 <input maxlength="5" style="width:80px;" class="form-control" value="<?= $att_imgmaxw ?>" name="att_imgmaxw" /> x
                 <input maxlength="5" style="width:80px;" class="form-control" value="<?= $att_imgmaxh ?>" name="att_imgmaxh" />（单位：像素）
             </div>
             <hr>
-
             <h4>面板设置</h4>
             <div class="form-group form-inline">
                 <label>左侧菜单标题</label>

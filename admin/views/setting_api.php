@@ -18,12 +18,14 @@
 <div class="card shadow mb-4 mt-2">
     <div class="card-body">
         <form action="setting.php?action=api_save" method="post" name="setting_api_form" id="setting_api_form">
-            <p>开启API：</p>
-            <div class="form-group form-check">
-                <input class="mui-switch mui-switch-animbg" type="checkbox" value="y" name="is_openapi" id="is_openapi" <?= $conf_is_openapi ?> />
+            <div class="custom-control custom-switch">
+                <input class="custom-control-input" type="checkbox" value="y" name="is_openapi" id="is_openapi" <?= $conf_is_openapi ?> />
+                <label class="custom-control-label" for="is_openapi">开启API</label>
             </div>
-            <p>API秘钥：</p>
-            <div class="input-group">
+            <div class="input-group mt-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">API秘钥</span>
+                </div>
                 <input type="text" class="form-control" disabled value="<?= $apikey ?>">
                 <div class="input-group-append">
                     <button class="btn btn-outline-success" type="button" onclick="window.location.href='setting.php?action=api_reset&token=<?= LoginAuth::genToken() ?>'">

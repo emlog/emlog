@@ -83,13 +83,13 @@
                 <div class="mb-3 mt-1 small" id="mail_template_box">模板变量：{{mail_content}} 邮件内容，{{mail_site_title}} 站点标题</div>
             </div>
             <h4>邮件通知</h4>
-            <div class="form-group form-check">
-                <input class="form-check-input" type="checkbox" value="y" name="mail_notice_comment" id="mail_notice_comment" <?= $conf_mail_notice_comment ?> />
-                <label class="form-check-label" for="mail_notice_comment">评论通知（评论通知文章作者，回复评论通知评论人）</label>
+            <div class="custom-control custom-switch">
+                <input class="custom-control-input" type="checkbox" value="y" name="mail_notice_comment" id="mail_notice_comment" <?= $conf_mail_notice_comment ?> />
+                <label class="custom-control-label" for="mail_notice_comment">评论通知（评论通知文章作者，回复评论通知评论人）</label>
             </div>
-            <div class="form-group form-check">
-                <input class="form-check-input" type="checkbox" value="y" name="mail_notice_post" id="mail_notice_post" <?= $conf_mail_notice_post ?>>
-                <label class="form-check-label" for="mail_notice_post">文章投稿通知（仅发送到创始人邮箱）</label>
+            <div class="custom-control custom-switch">
+                <input class="custom-control-input" type="checkbox" value="y" name="mail_notice_post" id="mail_notice_post" <?= $conf_mail_notice_post ?>>
+                <label class="custom-control-label" for="mail_notice_post">文章投稿通知（仅发送到创始人邮箱）</label>
             </div>
             <div class="form-group">
                 <hr>
