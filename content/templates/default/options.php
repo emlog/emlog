@@ -42,9 +42,6 @@ $options = [
         'labels'      => 'tpl-head',
         'type'        => 'image',
         'name'        => '浏览器图标（favicon）',
-        'values'      => [
-            TEMPLATE_URL . 'images/favicon.png',
-        ],
         'description' => '上传浏览器图标，推荐尺寸48×48的PNG或JPG图片'
     ],
     'slideShow'      => [
