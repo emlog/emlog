@@ -23,7 +23,7 @@ class Search_Controller
         $pageurl = '';
 
         $sqlSegment = "AND title LIKE '%$keyword%'";
-        if ($isfullsearch) {
+        if ($isfullsearch === 'y') {
             $sqlSegment = "AND (title LIKE '%$keyword%' OR content LIKE '%$keyword%')";
         }
         if ($sid) {
