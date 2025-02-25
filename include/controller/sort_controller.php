@@ -1,4 +1,5 @@
 <?php
+
 /**
  * sort
  *
@@ -6,8 +7,10 @@
  * @link https://www.emlog.net
  */
 
-class Sort_Controller {
-    function display($params) {
+class Sort_Controller
+{
+    function display($params)
+    {
         $Log_Model = new Log_Model();
         $CACHE = Cache::getInstance();
         $options_cache = Option::getAll();
@@ -44,6 +47,10 @@ class Sort_Controller {
         $sortTitle = isset($sort['title']) ? $sort['title'] : '';
         $sortKw = isset($sort['kw']) ? $sort['kw'] : '';
         $sortDesc = isset($sort['description']) ? $sort['description'] : '';
+        $sortPageCount = isset($sort['page_count']) ? $sort['page_count'] : 0;
+        if ($sortPageCount > 0) {
+            $index_lognum = $sortPageCount;
+        }
         //page meta
         if ($sortTitle) {
             $site_title = $sortTitle;

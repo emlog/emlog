@@ -39,7 +39,8 @@ class Sort_Model
                 'taxis'        => (int)$row['taxis'],
                 'pid'          => (int)$row['pid'],
                 'template'     => htmlspecialchars($row['template']),
-                'sortimg'      => htmlspecialchars($row['sortimg'])
+                'sortimg'      => htmlspecialchars($row['sortimg']),
+                'page_count'   => (int)$row['page_count']
             );
             if ($sortData['pid'] == 0) {
                 $sortData['children'] = [];

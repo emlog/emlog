@@ -1,4 +1,5 @@
 <?php
+
 /**
  * sort manager
  * @package EMLOG
@@ -53,6 +54,7 @@ if ($action == 'save') {
     $kw = Input::postStrVar('kw');
     $title = Input::postStrVar('title');
     $sortimg = Input::postStrVar('sortimg');
+    $page_count = Input::postIntVar('page_count');
 
     if (empty($sortname)) {
         emDirect("./sort.php?error_a=1");
@@ -90,7 +92,8 @@ if ($action == 'save') {
         'kw'          => $kw,
         'title'       => $title,
         'alias'       => $alias,
-        'sortimg'     => $sortimg
+        'sortimg'     => $sortimg,
+        'page_count'     => $page_count
     ];
 
     if ($sid) {
