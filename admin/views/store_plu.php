@@ -16,12 +16,12 @@
 </div>
 <div class="d-flex flex-column flex-sm-row justify-content-between mb-4 ml-1">
     <div class="mb-3 mb-sm-0">
-        <a href="./store.php?action=plu" class="badge badge-success m-1 p-2">全部</a>
+        <a href="./store.php?action=plu" class="badge badge-primary m-1 p-2">全部</a>
         <a href="./store.php?action=plu&tag=free" class="badge badge-success m-1 p-2">免费</a>
         <a href="./store.php?action=plu&tag=paid" class="badge badge-warning m-1 p-2">付费</a>
         <a href="./store.php?action=plu&tag=promo" class="badge badge-danger m-1 p-2">优惠</a>
-        <a href="./store.php?action=plu&tag=download_top" class="badge badge-light text-primary m-1 p-2 small">下载排行</a>
-        <a href="./store.php?action=plu&tag=paid_top" class="badge badge-light text-primary m-1 p-2 small">购买排行</a>
+        <a href="./store.php?action=plu&tag=download_top" class="badge badge-light text-primary p-2 small">下载排行</a>
+        <a href="./store.php?action=plu&tag=paid_top" class="badge badge-light text-primary p-2 small">销量排行</a>
     </div>
     <div class="d-flex mb-3 mb-sm-0">
         <form action="#" method="get" class="mr-sm-2">
