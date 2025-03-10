@@ -21,8 +21,6 @@
     <div class="alert alert-danger">只支持zip压缩格式的插件包</div><?php endif ?>
 <?php if (isset($_GET['error_g'])): ?>
     <div class="alert alert-danger">上传安装包大小超出PHP限制</div><?php endif ?>
-<?php if (isset($_GET['error_h'])): ?>
-    <div class="alert alert-danger">更新失败，无法下载更新包，可能是服务器网络问题。</div><?php endif ?>
 <?php if (isset($_GET['error_i'])): ?>
     <div class="alert alert-danger">您的emlog pro尚未注册</div><?php endif ?>
 <?php if (isset($_GET['error_sys'])): ?>
@@ -190,7 +188,11 @@
                     $.each(pluginsToUpdate, function(index, item) {
                         var $tr = $('table tbody tr[data-plugin-alias="' + item.name + '"]');
                         var $updateBtn = $tr.find('.update-btn');
-                        $updateBtn.append($('<a>').addClass('btn btn-success btn-sm').text('更新').attr("href", "./plugin.php?action=upgrade&alias=" + item.name));
+                        var $updateLink = $('<a>').addClass('btn btn-success btn-sm').text('更新').attr("href", "javascript:void(0);");
+                        $updateLink.on('click', function() {
+                            updatePlugin(item.name, $updateLink);
+                        });
+                        $updateBtn.append($updateLink);
                     });
                 } else {
                     $('#upMsg').html('插件更新检查无法正常进行,错误码:' + response.code).addClass('alert alert-warning');
@@ -220,5 +222,29 @@
         } else {
             window.location.href = './plugin.php?action=inactive&plugin=' + plugin + '&token=' + token + '<?= '&filter=' . $filter ?>';
         }
+    }
+
+    function updatePlugin(pluginAlias, $updateLink) {
+        $updateLink.text('更新中...').prop('disabled', true);
+        $.ajax({
+            url: './plugin.php?action=upgrade',
+            type: 'GET',
+            data: {
+                alias: pluginAlias,
+                token: '<?= LoginAuth::genToken() ?>'
+            },
+            success: function(response) {
+                if (response.code === 0) {
+                    location.href = 'plugin.php?activate_upgrade=1';
+                } else {
+                    $updateLink.text('更新').prop('disabled', false);
+                    cocoMessage.error(response.msg, 4000);
+                }
+            },
+            error: function(xhr) {
+                $updateLink.text('更新').prop('disabled', false);
+                cocoMessage.error('更新请求失败，请稍后重试', 4000)
+            }
+        });
     }
 </script>
