@@ -225,7 +225,7 @@
     }
 
     function updatePlugin(pluginAlias, $updateLink) {
-        $updateLink.text('更新中...').prop('disabled', true);
+        $updateLink.text('正在更新...').prop('disabled', true);
         $.ajax({
             url: './plugin.php?action=upgrade',
             type: 'GET',

@@ -23,8 +23,6 @@
     <div class="alert alert-danger">上传安装包大小超出PHP限制</div><?php endif ?>
 <?php if (isset($_GET['error_c'])): ?>
     <div class="alert alert-danger">服务器PHP不支持zip模块</div><?php endif ?>
-<?php if (isset($_GET['error_h'])): ?>
-    <div class="alert alert-danger">更新失败，无法下载更新包，可能是服务器网络问题。</div><?php endif ?>
 <?php if (isset($_GET['error_i'])): ?>
     <div class="alert alert-danger">您的emlog pro尚未注册</div><?php endif ?>
 
@@ -40,8 +38,8 @@
         <div class="col-md-4">
             <div class="card mb-4 shadow-sm" data-app-alias="<?= $value['tplfile'] ?>" data-app-version="<?= $value['version'] ?>">
                 <div class="card-header <?php if ($nonce_template == $value['tplfile']) {
-                    echo "bg-success text-white font-weight-bold";
-                } ?>">
+                                            echo "bg-success text-white font-weight-bold";
+                                        } ?>">
                     <?= $value['tplname'] ?>
                 </div>
                 <div class="card-body">
@@ -66,9 +64,9 @@
                     </div>
                     <div class="card-text d-flex justify-content-between mt-3">
                         <span>
-                        <?php if ($nonce_template !== $value['tplfile']): ?>
-                            <a class="btn btn-success btn-sm" href="template.php?action=use&tpl=<?= $value['tplfile'] ?>&token=<?= LoginAuth::genToken() ?>">启用</a>
-                        <?php endif; ?>
+                            <?php if ($nonce_template !== $value['tplfile']): ?>
+                                <a class="btn btn-success btn-sm" href="template.php?action=use&tpl=<?= $value['tplfile'] ?>&token=<?= LoginAuth::genToken() ?>">启用</a>
+                            <?php endif; ?>
                             <span class="update-btn"></span>
                         </span>
                         <span>
@@ -95,8 +93,8 @@
                     <div>
                         <p>上传一个zip压缩格式的模板安装包</p>
                         <p>
-                            <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
-                            <input name="tplzip" type="file"/>
+                            <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
+                            <input name="tplzip" type="file" />
                         </p>
                     </div>
                 </div>
@@ -112,14 +110,14 @@
 
 <script>
     // check for upgrade
-    $(function () {
+    $(function() {
         setTimeout(hideActived, 3600);
         $("#menu_category_view").addClass('active');
         $("#menu_view").addClass('show');
         $("#menu_tpl").addClass('active');
 
         var templateList = [];
-        $('.app-list .card').each(function () {
+        $('.app-list .card').each(function() {
             var $card = $(this);
             var alias = $card.data('app-alias');
             var version = $card.data('app-version');
@@ -134,21 +132,49 @@
             data: {
                 templates: templateList
             },
-            success: function (response) {
+            success: function(response) {
                 if (response.code === 0) {
                     var pluginsToUpdate = response.data;
-                    $.each(pluginsToUpdate, function (index, item) {
+                    $.each(pluginsToUpdate, function(index, item) {
                         var $tr = $('.app-list .card[data-app-alias="' + item.name + '"]');
                         var $updateBtn = $tr.find('.update-btn');
-                        $updateBtn.append($('<a>').addClass('btn btn-warning btn-sm').text('更新').attr("href", "./template.php?action=upgrade&alias=" + item.name));
+                        var $updateLink = $('<a>').addClass('btn btn-warning btn-sm').text('更新').attr("href", "javascript:void(0);");
+                        $updateLink.on('click', function() {
+                            updateTemplate(item.name, $updateLink);
+                        });
+                        $updateBtn.append($updateLink);
                     });
                 } else {
                     console.log('更新接口返回错误');
                 }
             },
-            error: function () {
+            error: function() {
                 console.log('请求更新接口失败');
             }
         });
     });
+
+    function updateTemplate(alias, $updateLink) {
+        $updateLink.text('正在更新...').prop('disabled', true);
+        $.ajax({
+            url: './template.php?action=upgrade',
+            type: 'GET',
+            data: {
+                alias: alias,
+                token: '<?= LoginAuth::genToken() ?>'
+            },
+            success: function(response) {
+                if (response.code === 0) {
+                    location.href = 'template.php?activate_upgrade=1';
+                } else {
+                    $updateLink.text('更新').prop('disabled', false);
+                    cocoMessage.error(response.msg, 4000);
+                }
+            },
+            error: function(xhr) {
+                $updateLink.text('更新').prop('disabled', false);
+                cocoMessage.error('更新请求失败，请稍后重试', 4000)
+            }
+        });
+    }
 </script>
