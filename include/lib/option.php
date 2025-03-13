@@ -41,6 +41,10 @@ class Option
         }
     }
 
+    /** 
+     * 获取路由表
+     * reg_0、reg_1、reg_2、reg_3 分别对应SEO设置中4种文章链接模式
+     */
     static function getRoutingTable()
     {
         return [
@@ -111,6 +115,11 @@ class Option
                 'model'  => 'User_Controller',
                 'method' => 'index',
                 'reg_0'  => '|\/(user)(?:\/([\w\-]+))?|',
+            ],
+            [
+                'model'  => 'User_Controller',
+                'method' => 'index',
+                'reg_0'  => '|^.*/\?(uc)=(\w+)([\?&].*)?$|',
             ],
             [
                 'model'  => 'Plugin_Controller',

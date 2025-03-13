@@ -16,8 +16,11 @@ class User_Controller
         }
 
         $routerPath = '';
+        $uc = Input::getStrVar('uc');
         if (!empty($params[2])) {
             $routerPath = $params[2];
+        } else if (!empty($uc)) {
+            $routerPath = $uc;
         }
 
         global $userData;
