@@ -184,11 +184,10 @@ function displayToggle(id) {
         $(".icofont-simple-right").attr("class", "icofont-simple-down");
     }
 
-    // 使用本地存储来保存状态
     localStorage.setItem('em_' + id, icon_mod);
 }
 
-function applyStoredState(id) {
+function initDisplayState(id) {
     let storedState = localStorage.getItem('em_' + id);
     if (storedState) {
         icon_mod = storedState;
@@ -572,6 +571,16 @@ function doUp(source, upSQL) {
 
         updateModalLoading.removeClass();
     });
+}
+
+function initCheckboxState(id) {
+    const isChecked = localStorage.getItem(id) === 'true';
+    $('#' + id).prop('checked', isChecked);
+}
+
+function toggleCheckbox(id) {
+    const isChecked = $('#' + id).prop('checked');
+    localStorage.setItem(id, isChecked);
 }
 
 $(function () {
