@@ -171,33 +171,26 @@ function hideActived() {
     $(".alert-danger").slideUp(300);
 }
 
-// Click action of [More Options] 
-let icon_mod = "down";
-
 function displayToggle(id) {
-    $("#" + id).toggle();
-    if (icon_mod === "down") {
-        icon_mod = "right";
-        $(".icofont-simple-down").attr("class", "icofont-simple-right");
-    } else {
-        icon_mod = "down";
-        $(".icofont-simple-right").attr("class", "icofont-simple-down");
-    }
+    const element = $("#" + id);
+    const iconElement = element.prev().find(".icofont-simple-down, .icofont-simple-right");
 
-    localStorage.setItem('em_' + id, icon_mod);
+    element.toggle();
+    const isVisible = element.is(":visible");
+
+    iconElement.attr("class", isVisible ? "icofont-simple-down" : "icofont-simple-right");
+    localStorage.setItem('em_' + id, isVisible ? "down" : "right");
 }
 
 function initDisplayState(id) {
-    let storedState = localStorage.getItem('em_' + id);
+    const storedState = localStorage.getItem('em_' + id);
+    const element = $("#" + id);
+    const iconElement = element.prev().find(".icofont-simple-down, .icofont-simple-right");
+
     if (storedState) {
-        icon_mod = storedState;
-        if (icon_mod === "right") {
-            $("#" + id).hide();
-            $(".icofont-simple-down").attr("class", "icofont-simple-right");
-        } else {
-            $("#" + id).show();
-            $(".icofont-simple-right").attr("class", "icofont-simple-down");
-        }
+        const isVisible = storedState === "down";
+        element.toggle(isVisible);
+        iconElement.attr("class", isVisible ? "icofont-simple-down" : "icofont-simple-right");
     }
 }
 
