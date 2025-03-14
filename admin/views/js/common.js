@@ -125,7 +125,7 @@ function delAlert(msg, text, url, token, btnText = '删除') {
 function delAlert2(msg, text, actionClosure, btnText = '删除') {
     layer.confirm(text, {icon: 3, title: msg, skin: 'class-layer-danger', btn: [btnText, '取消']}, function (index) {
         actionClosure(); // 执行闭包
-        localStorage.setItem('alert_action_success', '删除');
+        localStorage.setItem('alert_action_success', btnText);
         layer.close(index);
     });
 }

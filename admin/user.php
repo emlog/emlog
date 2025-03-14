@@ -203,7 +203,7 @@ if ($action == 'forbid') {
     }
 
     $User_Model->forbidUser($uid);
-    emDirect('./user.php?active_fb=1');
+    emDirect('./user.php');
 }
 
 if ($action == 'unforbid') {
@@ -232,6 +232,6 @@ if ($action == 'operate_user') {
             }
             $User_Model->forbidUser($id);
         }
-        emDirect('./user.php?active_fb=1');
+        emDirect('./user.php');
     }
 }
