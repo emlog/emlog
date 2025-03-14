@@ -115,5 +115,5 @@ if ($action == 'del') {
 
     $Sort_Model->deleteSort($sid);
     $CACHE->updateCache(['sort', 'logsort', 'navi']);
-    emDirect("./sort.php?active_del=1");
+    emDirect("./sort.php");
 }

@@ -5,8 +5,6 @@
     <div class="alert alert-success">模板安装成功</div><?php endif ?>
 <?php if (isset($_GET['activate_upgrade'])): ?>
     <div class="alert alert-success">模板更新成功</div><?php endif ?>
-<?php if (isset($_GET['activate_del'])): ?>
-    <div class="alert alert-success">删除模板成功</div><?php endif ?>
 <?php if (isset($_GET['error_f'])): ?>
     <div class="alert alert-danger">删除失败，请检查模板文件权限</div><?php endif ?>
 <?php if (!$nonce_template_data): ?>

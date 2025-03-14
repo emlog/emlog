@@ -1,6 +1,4 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
-<?php if (isset($_GET['active_del'])): ?>
-    <div class="alert alert-success">删除导航成功</div><?php endif ?>
 <?php if (isset($_GET['active_edit'])): ?>
     <div class="alert alert-success">修改导航成功</div><?php endif ?>
 <?php if (isset($_GET['active_add'])): ?>
@@ -22,108 +20,110 @@
             <div class="table-responsive">
                 <table class="table table-striped table-bordered table-hover dataTable no-footer" id="dataTable">
                     <thead>
-                    <tr>
-                        <th>导航</th>
-                        <th>类型</th>
-                        <th>查看</th>
-                        <th>地址</th>
-                        <th>操作</th>
-                    </tr>
+                        <tr>
+                            <th>导航</th>
+                            <th>类型</th>
+                            <th>查看</th>
+                            <th>地址</th>
+                            <th>操作</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    <?php
-                    if ($navis):
-                        foreach ($navis as $key => $value):
-                            if ($value['pid'] != 0) {
-                                continue;
-                            }
-                            $value['type_name'] = '';
-                            switch ($value['type']) {
-                                case Navi_Model::navitype_home:
-                                case Navi_Model::navitype_t:
-                                case Navi_Model::navitype_admin:
-                                    $value['type_name'] = '系统';
-                                    $value['url'] = '/' . $value['url'];
-                                    break;
-                                case Navi_Model::navitype_sort:
-                                    $value['type_name'] = '<span class="text-primary">分类</span>';
-                                    break;
-                                case Navi_Model::navitype_page:
-                                    $value['type_name'] = '<span class="text-success">页面</span>';
-                                    break;
-                                case Navi_Model::navitype_custom:
-                                    $value['type_name'] = '<span class="text-danger">自定</span>';
-                                    break;
-                            }
-                            doAction('adm_navi_display');
+                        <?php
+                        if ($navis):
+                            foreach ($navis as $key => $value):
+                                if ($value['pid'] != 0) {
+                                    continue;
+                                }
+                                $value['type_name'] = '';
+                                switch ($value['type']) {
+                                    case Navi_Model::navitype_home:
+                                    case Navi_Model::navitype_t:
+                                    case Navi_Model::navitype_admin:
+                                        $value['type_name'] = '系统';
+                                        $value['url'] = '/' . $value['url'];
+                                        break;
+                                    case Navi_Model::navitype_sort:
+                                        $value['type_name'] = '<span class="text-primary">分类</span>';
+                                        break;
+                                    case Navi_Model::navitype_page:
+                                        $value['type_name'] = '<span class="text-success">页面</span>';
+                                        break;
+                                    case Navi_Model::navitype_custom:
+                                        $value['type_name'] = '<span class="text-danger">自定</span>';
+                                        break;
+                                }
+                                doAction('adm_navi_display');
 
-                            ?>
-                            <tr style="cursor: move">
-                                <td>
-                                    <input type="hidden" name="navi[]" value="<?= $value['id'] ?>"/>
-                                    <a href="navbar.php?action=mod&amp;navid=<?= $value['id'] ?>"><?= $value['naviname'] ?></a>
-                                </td>
-                                <td><?= $value['type_name'] ?></td>
-                                <td>
-                                    <a href="<?= $value['url'] ?>" target="_blank">
-                                        <img src="./views/images/<?= $value['newtab'] == 'y' ? 'vlog.gif' : 'vlog2.gif' ?>"/>
-                                    </a>
-                                </td>
-                                <td><?= $value['url'] ?></td>
-                                <td>
-                                    <?php if ($value['hide'] == 'n'): ?>
-                                        <a href="navbar.php?action=hide&amp;id=<?= $value['id'] ?>"
-                                           class="badge badge-primary">显示</a>
-                                    <?php else: ?>
-                                        <a href="navbar.php?action=show&amp;id=<?= $value['id'] ?>"
-                                           class="badge badge-warning">隐藏</a>
-                                    <?php endif ?>
-                                    <?php if ($value['isdefault'] == 'n'): ?>
-                                        <a href="javascript: em_confirm(<?= $value['id'] ?>, 'navi', '<?= LoginAuth::genToken() ?>');"
-                                           class="badge badge-danger">删除</a>
-                                    <?php endif ?>
-                                </td>
+                        ?>
+                                <tr style="cursor: move">
+                                    <td>
+                                        <input type="hidden" name="navi[]" value="<?= $value['id'] ?>" />
+                                        <a href="navbar.php?action=mod&amp;navid=<?= $value['id'] ?>"><?= $value['naviname'] ?></a>
+                                    </td>
+                                    <td><?= $value['type_name'] ?></td>
+                                    <td>
+                                        <a href="<?= $value['url'] ?>" target="_blank">
+                                            <img src="./views/images/<?= $value['newtab'] == 'y' ? 'vlog.gif' : 'vlog2.gif' ?>" />
+                                        </a>
+                                    </td>
+                                    <td><?= $value['url'] ?></td>
+                                    <td>
+                                        <?php if ($value['hide'] == 'n'): ?>
+                                            <a href="navbar.php?action=hide&amp;id=<?= $value['id'] ?>"
+                                                class="badge badge-primary">显示</a>
+                                        <?php else: ?>
+                                            <a href="navbar.php?action=show&amp;id=<?= $value['id'] ?>"
+                                                class="badge badge-warning">隐藏</a>
+                                        <?php endif ?>
+                                        <?php if ($value['isdefault'] == 'n'): ?>
+                                            <a href="javascript: em_confirm(<?= $value['id'] ?>, 'navi', '<?= LoginAuth::genToken() ?>');"
+                                                class="badge badge-danger">删除</a>
+                                        <?php endif ?>
+                                    </td>
+                                </tr>
+                                <?php
+                                if (!empty($value['childnavi'])):
+                                    foreach ($value['childnavi'] as $val):
+                                ?>
+                                        <tr>
+                                            <td>
+                                                <input type="hidden" name="navi[]" value="<?= $val['id'] ?>" />
+                                                ----
+                                                <a href="navbar.php?action=mod&amp;navid=<?= $val['id'] ?>"><?= $val['naviname'] ?></a>
+                                            </td>
+                                            <td><?= $value['type_name'] ?></td>
+                                            <td>
+                                                <a href="<?= $val['url'] ?>" target="_blank">
+                                                    <img src="./views/images/<?= $val['newtab'] == 'y' ? 'vlog.gif' : 'vlog2.gif' ?>" /></a>
+                                            </td>
+                                            <td><?= $val['url'] ?></td>
+                                            <td>
+                                                <?php if ($val['hide'] == 'n'): ?>
+                                                    <a href="navbar.php?action=hide&amp;id=<?= $val['id'] ?>"
+                                                        class="badge badge-primary">显示</a>
+                                                <?php else: ?>
+                                                    <a href="navbar.php?action=show&amp;id=<?= $val['id'] ?>"
+                                                        class="badge badge-warning">隐藏</a>
+                                                <?php endif ?>
+                                                <?php if ($val['isdefault'] == 'n'): ?>
+                                                    <a href="javascript: em_confirm(<?= $val['id'] ?>, 'navi', '<?= LoginAuth::genToken() ?>');"
+                                                        class="badge badge-danger">删除</a>
+                                                <?php endif ?>
+                                            </td>
+                                        </tr>
+                                <?php endforeach;
+                                endif ?>
+                            <?php endforeach;
+                        else: ?>
+                            <tr>
+                                <td colspan="4">还没有添加导航</td>
                             </tr>
-                            <?php
-                            if (!empty($value['childnavi'])):
-                                foreach ($value['childnavi'] as $val):
-                                    ?>
-                                    <tr>
-                                        <td>
-                                            <input type="hidden" name="navi[]" value="<?= $val['id'] ?>"/>
-                                            ----
-                                            <a href="navbar.php?action=mod&amp;navid=<?= $val['id'] ?>"><?= $val['naviname'] ?></a>
-                                        </td>
-                                        <td><?= $value['type_name'] ?></td>
-                                        <td>
-                                            <a href="<?= $val['url'] ?>" target="_blank">
-                                                <img src="./views/images/<?= $val['newtab'] == 'y' ? 'vlog.gif' : 'vlog2.gif' ?>"/></a>
-                                        </td>
-                                        <td><?= $val['url'] ?></td>
-                                        <td>
-                                            <?php if ($val['hide'] == 'n'): ?>
-                                                <a href="navbar.php?action=hide&amp;id=<?= $val['id'] ?>"
-                                                   class="badge badge-primary">显示</a>
-                                            <?php else: ?>
-                                                <a href="navbar.php?action=show&amp;id=<?= $val['id'] ?>"
-                                                   class="badge badge-warning">隐藏</a>
-                                            <?php endif ?>
-                                            <?php if ($val['isdefault'] == 'n'): ?>
-                                                <a href="javascript: em_confirm(<?= $val['id'] ?>, 'navi', '<?= LoginAuth::genToken() ?>');"
-                                                   class="badge badge-danger">删除</a>
-                                            <?php endif ?>
-                                        </td>
-                                    </tr>
-                                <?php endforeach;endif ?>
-                        <?php endforeach; else: ?>
-                        <tr>
-                            <td colspan="4">还没有添加导航</td>
-                        </tr>
-                    <?php endif ?>
+                        <?php endif ?>
                     </tbody>
                 </table>
             </div>
-            <div class="list_footer"><input type="submit" value="保存拖动排序" class="btn btn-sm btn-success"/></div>
+            <div class="list_footer"><input type="submit" value="保存拖动排序" class="btn btn-sm btn-success" /></div>
         </form>
     </div>
 </div>
@@ -135,7 +135,7 @@
         <div class="card-body">
             <form action="navbar.php?action=add" method="post" name="navi" id="navi">
                 <div class="form-group">
-                    <input class="form-control" name="naviname" placeholder="导航名称" required/>
+                    <input class="form-control" name="naviname" placeholder="导航名称" required />
                 </div>
                 <div class="form-group">
                     <textarea maxlength="512" class="form-control" placeholder="导航网址" name="url" id="url" required></textarea>
@@ -153,7 +153,7 @@
                             if ($value['type'] != Navi_Model::navitype_custom || $value['pid'] != 0) {
                                 continue;
                             }
-                            ?>
+                        ?>
                             <option value="<?= $value['id'] ?>"><?= $value['naviname'] ?></option>
                         <?php endforeach ?>
                     </select>
@@ -176,27 +176,27 @@
                             if ($value['pid'] != 0) {
                                 continue;
                             }
-                            ?>
+                    ?>
                             <div class="form-group"><input type="checkbox" style="vertical-align:middle;"
-                                                           name="sort_ids[]" value="<?= $value['sid'] ?>" class="ids"/>
+                                    name="sort_ids[]" value="<?= $value['sid'] ?>" class="ids" />
                                 <?= $value['sortname'] ?>
                             </div>
                             <?php
                             $children = $value['children'];
                             foreach ($children as $key):
                                 $value = $sorts[$key];
-                                ?>
+                            ?>
                                 <div class="form-group">
                                     &nbsp; &nbsp; &nbsp; <input type="checkbox" style="vertical-align:middle;"
-                                                                name="sort_ids[]" value="<?= $value['sid'] ?>"
-                                                                class="ids"/>
+                                        name="sort_ids[]" value="<?= $value['sid'] ?>"
+                                        class="ids" />
                                     <?= $value['sortname'] ?>
                                 </div>
-                            <?php
+                        <?php
                             endforeach;
                         endforeach;
                         ?>
-                        <div class="form-group"><input type="submit" name="" class="btn btn-sm btn-success" value="保存"/></div>
+                        <div class="form-group"><input type="submit" name="" class="btn btn-sm btn-success" value="保存" /></div>
                         <div class="form-group"><a class="small" href="sort.php">+新建分类</a></div>
                     <?php else: ?>
                         还没有分类，<a href="sort.php">新建分类</a>
@@ -214,14 +214,14 @@
                 <?php
                 if ($pages):
                     foreach ($pages as $key => $value):
-                        ?>
+                ?>
                         <div class="form-group">
                             <input type="checkbox" style="vertical-align:middle;" name="pages[<?= $value['gid'] ?>]"
-                                   value="<?= $value['title'] ?>" class="ids"/>
+                                value="<?= $value['title'] ?>" class="ids" />
                             <?= $value['title'] ?>
                         </div>
                     <?php endforeach ?>
-                    <div class="form-group"><input type="submit" class="btn btn-sm btn-success" name="" value="保存"/></div>
+                    <div class="form-group"><input type="submit" class="btn btn-sm btn-success" name="" value="保存" /></div>
                     <div class="form-group"><a class="small" href="page.php?action=new">+新建页面</a></div>
                 <?php else: ?>
                     <div class="form-group">还没页面，<a href="page.php?action=new">新建页面</a></div>
@@ -232,14 +232,14 @@
 </div>
 
 <script>
-    $(function () {
+    $(function() {
         setTimeout(hideActived, 3600);
         $("#menu_category_view").addClass('active');
         $("#menu_view").addClass('show');
         $("#menu_navi").addClass('active');
 
         // 提交表单
-        $("#navi_form").submit(function (event) {
+        $("#navi_form").submit(function(event) {
             event.preventDefault();
             submitForm("#navi_form");
         });

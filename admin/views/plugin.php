@@ -3,8 +3,6 @@
     <div class="alert alert-success">插件安装成功，请开启使用</div><?php endif ?>
 <?php if (isset($_GET['activate_upgrade'])): ?>
     <div class="alert alert-success">插件更新成功</div><?php endif ?>
-<?php if (isset($_GET['activate_del'])): ?>
-    <div class="alert alert-success">删除成功</div><?php endif ?>
 <?php if (isset($_GET['active_error'])): ?>
     <div class="alert alert-danger">插件开启失败</div><?php endif ?>
 <?php if (isset($_GET['error_a'])): ?>

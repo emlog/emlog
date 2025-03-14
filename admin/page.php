@@ -190,7 +190,7 @@ if ($action == 'operate_page') {
                 }
             }
             $CACHE->updateCache(array('options', 'sta', 'comment', 'logalias'));
-            emDirect("./page.php?active_del=1");
+            emDirect("./page.php");
             break;
         case 'hide':
         case 'pub':

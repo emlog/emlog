@@ -25,7 +25,7 @@ function em_confirm(id, property, token) {
         case 'draft':
             url = 'article.php?action=del&draft=1&gid=' + id;
             text = '删除这篇草稿？';
-            delAlert(msg, text, url, token)
+            delAlert(msg, text, url, token, '删除', property)
             break;
         case 'tw':
             url = 'twitter.php?action=del&id=' + id;
@@ -116,6 +116,7 @@ function infoAlert(msg) {
 function delAlert(msg, text, url, token, btnText = '删除') {
     // icon: 0 default, 1 ok, 2 err, 3 ask
     layer.confirm(text, {icon: 3, title: msg, skin: 'class-layer-danger', btn: [btnText, '取消']}, function (index) {
+        localStorage.setItem('alert_action_success', btnText);
         window.location = url + '&token=' + token;
         layer.close(index);
     });
@@ -124,6 +125,7 @@ function delAlert(msg, text, url, token, btnText = '删除') {
 function delAlert2(msg, text, actionClosure, btnText = '删除') {
     layer.confirm(text, {icon: 3, title: msg, skin: 'class-layer-danger', btn: [btnText, '取消']}, function (index) {
         actionClosure(); // 执行闭包
+        localStorage.setItem('alert_action_success', '删除');
         layer.close(index);
     });
 }
@@ -137,6 +139,7 @@ function delArticle(msg, text, url, token) {
         window.location = url + '&token=' + token;
         layer.close(index);
     }, function (index) {
+        localStorage.setItem('alert_action_success', '删除');
         window.location = url + '&rm=1&token=' + token;
         layer.close(index);
     }, function (index) {
@@ -650,4 +653,11 @@ $(function () {
 
         modal.find('.modal-body').append(iframe);
     });
+
+    // 删除提示
+    const alert_action_success = localStorage.getItem('alert_action_success')
+    if (localStorage.getItem('alert_action_success')) {
+        cocoMessage.success(alert_action_success + '成功');
+        localStorage.removeItem('alert_action_success');
+    }
 })

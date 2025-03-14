@@ -3,8 +3,6 @@
     <div class="alert alert-success">发布成功</div><?php endif ?>
 <?php if (isset($_GET['active_set'])): ?>
     <div class="alert alert-success">保存成功</div><?php endif ?>
-<?php if (isset($_GET['active_del'])): ?>
-    <div class="alert alert-success">删除成功</div><?php endif ?>
 <?php if (isset($_GET['error_a'])): ?>
     <div class="alert alert-danger">内容不能为空</div><?php endif ?>
 <?php if (isset($_GET['error_forbid'])): ?>

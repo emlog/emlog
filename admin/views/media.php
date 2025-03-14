@@ -1,6 +1,4 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
-<?php if (isset($_GET['active_del'])): ?>
-    <div class="alert alert-success">删除成功</div><?php endif ?>
 <?php if (isset($_GET['active_mov'])): ?>
     <div class="alert alert-success">移动成功</div><?php endif ?>
 <?php if (isset($_GET['active_edit'])): ?>

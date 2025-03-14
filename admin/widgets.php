@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Widgets
  * @package EMLOG
@@ -76,10 +77,10 @@ if ($action === 'setwg') {
             $custom_widget = Option::get('custom_widget');
             $title = isset($_POST['title']) ? $_POST['title'] : '';
             $content = isset($_POST['content']) ? $_POST['content'] : '';
-            $custom_wg_id = isset($_POST['custom_wg_id']) ? $_POST['custom_wg_id'] : '';//要修改的组件id
+            $custom_wg_id = isset($_POST['custom_wg_id']) ? $_POST['custom_wg_id'] : ''; //要修改的组件id
             $new_title = isset($_POST['new_title']) ? $_POST['new_title'] : '';
             $new_content = isset($_POST['new_content']) ? $_POST['new_content'] : '';
-            $rmwg = isset($_GET['rmwg']) ? addslashes($_GET['rmwg']) : '';//要删除的组件id
+            $rmwg = isset($_GET['rmwg']) ? addslashes($_GET['rmwg']) : ''; //要删除的组件id
             //添加新自定义组件
             if ($new_content) {
                 //确定组件索引
@@ -142,5 +143,5 @@ if ($action === 'reset') {
     Option::updateOption("widgets1", $default_widget);
 
     $CACHE->updateCache('options');
-    emDirect("./widgets.php?activated=1");
+    emDirect("./widgets.php");
 }

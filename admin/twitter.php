@@ -1,4 +1,5 @@
 <?php
+
 /**
  * notes
  * @package EMLOG
@@ -79,5 +80,5 @@ if ($action == 'del') {
     $id = Input::getIntVar('id');
     $Twitter_Model->delTwitter($id);
     $CACHE->updateCache('sta');
-    emDirect("twitter.php?active_del=1");
+    emDirect("twitter.php");
 }

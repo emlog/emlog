@@ -55,7 +55,7 @@ if ($action == 'del_tag') {
     }
     $Tag_Model->deleteTag($tid);
     $CACHE->updateCache('tags');
-    emDirect("./tag.php?active_del=1");
+    emDirect("./tag.php");
 }
 
 if ($action === 'operate_tag') {
@@ -68,6 +68,6 @@ if ($action === 'operate_tag') {
             $Tag_Model->deleteTag($value);
         }
         $CACHE->updateCache('tags');
-        emDirect("./tag.php?active_del=1");
+        emDirect("./tag.php");
     }
 }

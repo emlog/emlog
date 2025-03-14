@@ -1,4 +1,5 @@
 <?php
+
 /**
  * links
  * @package EMLOG
@@ -76,7 +77,7 @@ if ($action == 'del') {
 
     $Link_Model->deleteLink($linkId);
     $CACHE->updateCache('link');
-    emDirect("./link.php?active_del=1");
+    emDirect("./link.php");
 }
 
 if ($action == 'hide') {

@@ -107,11 +107,13 @@ if ($action == 'del') {
     if ($draft || $isRm) {
         $Log_Model->deleteLog($gid);
         doAction('del_log', $gid);
+        $CACHE->updateCache();
+        emDirect("./article.php?draft=$draft");
     } else {
         $Log_Model->hideSwitch($gid, 'y');
+        $CACHE->updateCache();
+        emDirect("./article.php?&active_hide=1&draft=$draft");
     }
-    $CACHE->updateCache();
-    emDirect("./article.php?&active_del=1&draft=$draft");
 }
 
 if ($action == 'tag') {
@@ -163,7 +165,7 @@ if ($action == 'operate_log') {
                 doAction('del_log', $val);
             }
             $CACHE->updateCache();
-            emDirect("./article.php?draft=1&active_del=1&draft=$draft");
+            emDirect("./article.php?draft=$draft");
             break;
         case 'top':
             foreach ($logs as $val) {

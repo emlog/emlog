@@ -1,4 +1,5 @@
 <?php
+
 /**
  * navbar menu items
  * @package EMLOG
@@ -144,7 +145,7 @@ if ($action == 'del') {
     $navid = isset($_GET['id']) ? (int)$_GET['id'] : '';
     $Navi_Model->deleteNavi($navid);
     $CACHE->updateCache('navi');
-    emDirect("./navbar.php?active_del=1");
+    emDirect("./navbar.php");
 }
 
 if ($action == 'hide') {

@@ -130,7 +130,7 @@ if ($action === 'delete') {
     LoginAuth::checkToken();
     $aid = Input::getIntVar('aid');
     $Media_Model->deleteMedia($aid);
-    emDirect("media.php?active_del=1");
+    emDirect("media.php");
 }
 
 if ($action === 'delete_async') {
@@ -150,7 +150,7 @@ if ($action === 'operate_media') {
             foreach ($aids as $value) {
                 $Media_Model->deleteMedia($value);
             }
-            emDirect("media.php?active_del=1");
+            emDirect("media.php");
             break;
         case 'move':
             foreach ($aids as $id) {
@@ -210,5 +210,5 @@ if ($action === 'del_media_sort') {
     LoginAuth::checkToken();
 
     $MediaSortModel->deleteSort($id);
-    emDirect("./media.php?active_del=1");
+    emDirect("./media.php");
 }

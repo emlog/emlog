@@ -55,7 +55,7 @@ if ($action === 'del') {
 
     $Comment_Model->delComment($id);
     $CACHE->updateCache(array('sta', 'comment'));
-    emDirect("./comment.php?active_del=1");
+    emDirect("./comment.php");
 }
 
 if ($action === 'delbyip') {
@@ -66,7 +66,7 @@ if ($action === 'delbyip') {
     $ip = Input::getStrVar('ip');
     $Comment_Model->delCommentByIp($ip);
     $CACHE->updateCache(array('sta', 'comment'));
-    emDirect("./comment.php?active_del=1");
+    emDirect("./comment.php");
 }
 
 if ($action === 'pub') {
@@ -94,7 +94,7 @@ if ($action === 'batch_operation') {
         case 'del':
             $Comment_Model->batchComment('delcom', $comments);
             $CACHE->updateCache(array('sta', 'comment'));
-            emDirect("./comment.php?active_del=1");
+            emDirect("./comment.php");
             break;
         case 'hide':
             $Comment_Model->batchComment('hidecom', $comments);

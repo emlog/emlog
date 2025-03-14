@@ -2,8 +2,6 @@
 defined('EMLOG_ROOT') || exit('access denied!');
 $isdraft = $draft ? '&draft=1' : '';
 ?>
-<?php if (isset($_GET['active_del'])): ?>
-    <div class="alert alert-success">删除成功</div><?php endif ?>
 <?php if (isset($_GET['active_up'])): ?>
     <div class="alert alert-success">置顶成功</div><?php endif ?>
 <?php if (isset($_GET['active_down'])): ?>
@@ -340,6 +338,7 @@ $isdraft = $draft ? '&draft=1' : '';
                 $("#form_log").submit();
                 layer.close(index);
             }, function(index) {
+                localStorage.setItem('alert_action_success', '删除');
                 $("#operate").val(act);
                 $("#form_log").submit();
                 layer.close(index);
@@ -349,6 +348,7 @@ $isdraft = $draft ? '&draft=1' : '';
 
         if (act === 'del_draft') {
             delAlert2('', '删除所选草稿？', function() {
+                localStorage.setItem('alert_action_success', '删除');
                 $("#operate").val("del");
                 $("#form_log").submit();
             })
