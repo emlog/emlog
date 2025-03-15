@@ -170,8 +170,6 @@
             var $aiMessage = $('<div style="background-color: #f1f1f1; border-radius: 10px; padding: 10px; margin: 5px 0;"><b>🤖：</b> <span class="ai-typing"></span></div>');
             $('#chat-box').append($aiMessage);
 
-            var fullMessage = '';
-
             eventSource.onmessage = function(event) {
                 if (event.data === '[DONE]') {
                     $sendBtn.prop('disabled', false).text('发送');
@@ -179,12 +177,16 @@
                 } else {
                     try {
                         var data = JSON.parse(event.data);
-                        if (data.choices && data.choices[0].delta && data.choices[0].delta.content) {
+                        if (data.choices && data.choices[0].delta && (data.choices[0].delta.content || data.choices[0].delta.reasoning_content)) {
                             var chunk = data.choices[0].delta.content;
-                            fullMessage += chunk;
+                            var rchunk = data.choices[0].delta.reasoning_content;
                             var $typing = $aiMessage.find('.ai-typing');
                             var currentContent = $typing.html();
-                            $typing.html(currentContent + $('<div>').text(chunk).html().replace(/\n/g, '<br>'));
+                            if (chunk) {
+                                $typing.html(currentContent + $('<div>').text(chunk).html().replace(/\n/g, '<br>'));
+                            } else if (rchunk) {
+                                $typing.html(currentContent + $('<div>').text(rchunk).html().replace(/\n/g, '<br>'));
+                            }
                             $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
                         }
                     } catch (err) {
