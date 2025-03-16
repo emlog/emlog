@@ -101,19 +101,23 @@ if (empty($action)) {
 if ($action == 'del') {
     $draft = Input::getIntVar('draft');
     $gid = Input::getIntVar('gid');
-    $isRm = Input::getIntVar('rm');
+    $isRm = Input::getIntVar('rm'); // 是否彻底删除
 
     LoginAuth::checkToken();
+
+    $redirectUrl = './article.php';
     if ($draft || $isRm) {
         $Log_Model->deleteLog($gid);
         doAction('del_log', $gid);
-        $CACHE->updateCache();
-        emDirect("./article.php?draft=$draft");
+        if ($draft) {
+            $redirectUrl .= '?draft=1';
+        }
     } else {
         $Log_Model->hideSwitch($gid, 'y');
-        $CACHE->updateCache();
-        emDirect("./article.php?&active_hide=1&draft=$draft");
+        $redirectUrl .= "?active_hide=1";
     }
+    $CACHE->updateCache();
+    emDirect($redirectUrl);
 }
 
 if ($action == 'tag') {
