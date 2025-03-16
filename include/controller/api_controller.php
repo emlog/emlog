@@ -53,9 +53,7 @@ class Api_Controller
             Output::error('error router');
         }
 
-        if (Option::get('is_openapi') === 'n') {
-            Output::error('api is closed');
-        }
+        $this->checkApiOpen($_func);
 
         if (method_exists($this, $_func)) {
             $this->Log_Model = new Log_Model();
@@ -232,6 +230,11 @@ class Api_Controller
         }
 
         $r = $this->Log_Model->getLogsForHome($sub . $sub2, $page, $count);
+        $sta_cache = $this->Cache->readCache('sta');
+        $lognum = $sta_cache['lognum'];
+        $total_pages = $lognum > 0 ? ceil($lognum / $count) : 1;
+        $has_more = $page < $total_pages;
+
         $sort_cache = $this->Cache->readCache('sort');
         $articles = [];
         foreach ($r as $value) {
@@ -259,7 +262,12 @@ class Api_Controller
             ];
         }
 
-        output::ok(['articles' => $articles,]);
+        output::ok([
+            'articles' => $articles,
+            'page' => $page,
+            'total_pages' => $total_pages,
+            'has_more' => $has_more,
+        ]);
     }
 
     private function article_detail()
@@ -545,6 +553,16 @@ class Api_Controller
     {
         $userInfo = $this->User_Model->getOneUser($uid);
         return isset($userInfo['nickname']) ? $userInfo['nickname'] : '';
+    }
+
+    private function checkApiOpen($apiName)
+    {
+        if (in_array($apiName, ['article_list'])) {
+            return;
+        }
+        if (Option::get('is_openapi') === 'n') {
+            Output::error('api is closed');
+        }
     }
 
     private function auth()
