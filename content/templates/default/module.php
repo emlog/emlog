@@ -607,7 +607,7 @@ function getEmUserAvatar($uid, $mail)
     if ($uid) {
         $userModel = new User_Model();
         $user = $userModel->getOneUser($uid);
-        $avatar = $user['photo'];
+        $avatar = User::getAvatar($user['photo']);
     } elseif ($mail) {
         $avatar = getGravatar($mail);
     }
