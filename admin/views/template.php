@@ -39,7 +39,7 @@
 <div class="row app-list">
     <?php foreach ($templates as $key => $value): ?>
         <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100 border-0 shadow-sm hover-shadow-lg transition-all" data-app-alias="<?= $value['tplfile'] ?>" data-app-version="<?= $value['version'] ?>">
+            <div class="card h-100 border-0 shadow-sm hover-shadow-lg" data-app-alias="<?= $value['tplfile'] ?>" data-app-version="<?= $value['version'] ?>">
                 <div class="card-header border-0 py-3 <?php if ($nonce_template == $value['tplfile']) {
                                                             echo "bg-success text-white";
                                                         } ?>">

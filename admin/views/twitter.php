@@ -34,14 +34,14 @@
         $t_img = $val['t_img'];
         $t = subString(strip_tags($val['t']), 0, 300) . '...';
     ?>
-        <div class="card hover-shadow-lg <?= $private ? 'border-danger' : '' ?>" data-t="<?= htmlspecialchars($val['t']) ?>">
+        <div class="card hover-shadow-lg <?= $private ? 'border-danger' : '' ?>">
             <div class="card-body pointer-cursor" data-toggle="modal" data-target="#tModal" data-t="<?= htmlspecialchars($val['t']) ?>">
                 <?php if (!empty($t_img)): ?>
                     <img class="bd-placeholder-img card-img-top" alt="cover" width="100%" height="225" src="<?= $t_img ?>">
                 <?php endif ?>
                 <div class="markdown t mt-2"><?= $t ?></div>
             </div>
-            <footer class="mt-3 p-3">
+            <div class="card-footer bg-white border-0 mt-3 p-3">
                 <p class="text-muted small card-text d-flex justify-content-between">
                     <?= $val['date'] ?> | by <?= $author ?> <?= $private ? '｜ 私密' : '' ?>
                     <span>
@@ -49,7 +49,7 @@
                         <a href="javascript: em_confirm(<?= $tid ?>, 'tw', '<?= LoginAuth::genToken() ?>');" class="care">删除</a>
                     </span>
                 </p>
-            </footer>
+            </div>
         </div>
     <?php endforeach ?>
 </div>
