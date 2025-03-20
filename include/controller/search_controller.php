@@ -17,7 +17,6 @@ class Search_Controller
 
         $page = abs(Input::getIntVar('page', 1));
         $keyword = Input::getStrVar('keyword');
-        $keyword = htmlspecialchars(urldecode($keyword));
         $keyword = str_replace(array('%', '_'), array('\%', '\_'), $keyword);
         $sid = abs(Input::getIntVar('sid'));
         $pageurl = '';
