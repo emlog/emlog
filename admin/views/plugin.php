@@ -115,7 +115,7 @@
                                 </td>
                                 <td>
                                     <div class="mt-3">
-                                        <a href="javascript: em_confirm('<?= $alias ?>', 'plu', '<?= LoginAuth::genToken() ?>');" class="btn btn-sm btn-danger">删除</a>
+                                        <a href="javascript: em_confirm('<?= $alias ?>', 'plu', '<?= LoginAuth::genToken() ?>');" class="btn btn-outline-danger btn-sm">删除</a>
                                         <span class="update-btn"></span>
                                     </div>
                                 </td>
