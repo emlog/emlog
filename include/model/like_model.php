@@ -11,6 +11,7 @@ class Like_Model
 
     private $db;
     private $table;
+    private $table_blog;
 
     function __construct()
     {
@@ -37,7 +38,6 @@ class Like_Model
             $row['poster'] = htmlspecialchars($row['poster']);
             $row['avatar'] = $this->getAvatar($row['uid'], $row['avatar']);
             $row['date'] = smartDate($row['date']);
-            $row['ip'] = $row['ip'];
             $likes[] = $row;
         }
 
