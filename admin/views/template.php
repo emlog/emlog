@@ -76,8 +76,10 @@
                                 <a class="btn btn-outline-success btn-sm" href="template.php?action=use&tpl=<?= $value['tplfile'] ?>&token=<?= LoginAuth::genToken() ?>">
                                     <i class="icofont-check-circled mr-1"></i>启用
                                 </a>
+                            <?php else: ?>
+                                <span class="setting-btn"></span>
                             <?php endif ?>
-                            <span class="update-btn ml-2"></span>
+                            <span class="update-btn"></span>
                         </div>
                         <div>
                             <a class="btn btn-outline-danger btn-sm" href="javascript: em_confirm('<?= $value['tplfile'] ?>', 'tpl', '<?= LoginAuth::genToken() ?>');">
