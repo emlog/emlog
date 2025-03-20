@@ -25,7 +25,7 @@
         </div>
     </div>
 </form>
-<div class="card-columns mt-5">
+<div class="row mt-5">
     <?php
     foreach ($tws as $val):
         $tid = (int)$val['id'];
@@ -34,21 +34,23 @@
         $t_img = $val['t_img'];
         $t = subString(strip_tags($val['t']), 0, 300) . '...';
     ?>
-        <div class="card hover-shadow-lg <?= $private ? 'border-danger' : '' ?>">
-            <div class="card-body pointer-cursor" data-toggle="modal" data-target="#tModal" data-t="<?= htmlspecialchars($val['t']) ?>">
-                <?php if (!empty($t_img)): ?>
-                    <img class="bd-placeholder-img card-img-top" alt="cover" width="100%" height="225" src="<?= $t_img ?>">
-                <?php endif ?>
-                <div class="markdown t mt-2"><?= $t ?></div>
-            </div>
-            <div class="card-footer bg-white border-0 mt-3 p-3">
-                <p class="text-muted small card-text d-flex justify-content-between">
-                    <?= $val['date'] ?> | by <?= $author ?> <?= $private ? '｜ 私密' : '' ?>
-                    <span>
-                        <a href="#" class="text-muted" data-toggle="modal" data-target="#editModal" data-id="<?= $val['id'] ?>" data-t="<?= htmlspecialchars($val['t_raw']) ?>">编辑</a>
-                        <a href="javascript: em_confirm(<?= $tid ?>, 'tw', '<?= LoginAuth::genToken() ?>');" class="care">删除</a>
-                    </span>
-                </p>
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card hover-shadow-lg <?= $private ? 'border-danger' : '' ?>">
+                <div class="card-body pointer-cursor" data-toggle="modal" data-target="#tModal" data-t="<?= htmlspecialchars($val['t']) ?>">
+                    <?php if (!empty($t_img)): ?>
+                        <img class="bd-placeholder-img card-img-top" alt="cover" width="100%" height="225" src="<?= $t_img ?>">
+                    <?php endif ?>
+                    <div class="markdown t mt-2"><?= $t ?></div>
+                </div>
+                <div class="card-footer bg-white border-0 mt-3 p-3">
+                    <p class="text-muted small card-text d-flex justify-content-between">
+                        <?= $val['date'] ?> | by <?= $author ?> <?= $private ? '｜ 私密' : '' ?>
+                        <span>
+                            <a href="#" class="text-muted" data-toggle="modal" data-target="#editModal" data-id="<?= $val['id'] ?>" data-t="<?= htmlspecialchars($val['t_raw']) ?>">编辑</a>
+                            <a href="javascript: em_confirm(<?= $tid ?>, 'tw', '<?= LoginAuth::genToken() ?>');" class="care">删除</a>
+                        </span>
+                    </p>
+                </div>
             </div>
         </div>
     <?php endforeach ?>
