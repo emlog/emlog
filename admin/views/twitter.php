@@ -34,7 +34,7 @@
         $t_img = $val['t_img'];
         $t = subString(strip_tags($val['t']), 0, 300) . '...';
     ?>
-        <div class="card <?= $private ? 'border-danger' : '' ?>" data-t="<?= htmlspecialchars($val['t']) ?>">
+        <div class="card hover-shadow-lg <?= $private ? 'border-danger' : '' ?>" data-t="<?= htmlspecialchars($val['t']) ?>">
             <div class="card-body pointer-cursor" data-toggle="modal" data-target="#tModal" data-t="<?= htmlspecialchars($val['t']) ?>">
                 <?php if (!empty($t_img)): ?>
                     <img class="bd-placeholder-img card-img-top" alt="cover" width="100%" height="225" src="<?= $t_img ?>">

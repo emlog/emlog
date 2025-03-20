@@ -125,15 +125,6 @@
 </div>
 
 <style>
-    .hover-shadow-lg {
-        transition: all 0.3s ease;
-    }
-
-    .hover-shadow-lg:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175) !important;
-    }
-
     .template-preview {
         display: block;
         overflow: hidden;
@@ -145,10 +136,6 @@
 
     .template-preview:hover img {
         transform: scale(1.05);
-    }
-
-    .transition-all {
-        transition: all 0.3s ease;
     }
 </style>
 
