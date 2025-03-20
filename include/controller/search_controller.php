@@ -40,6 +40,7 @@ class Search_Controller
         $logs = $Log_Model->getLogsForHome($sqlSegment . $orderBy, $page, $index_lognum);
         $page_url = pagination($lognum, $index_lognum, $page, $pageurl);
 
+        $keyword = htmlspecialchars($keyword);
         include View::getView('header');
         include View::getView('log_list');
     }
