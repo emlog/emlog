@@ -261,6 +261,11 @@ class Comment_Model
         $this->db->query("UPDATE $this->table SET top='$top' WHERE cid IN ($commentIds)");
     }
 
+    function likeComment($commentId)
+    {
+        $this->db->query("UPDATE $this->table SET like_count = like_count + 1 WHERE cid = $commentId");
+    }
+
     function replyComment($blogId, $pid, $content, $hide)
     {
         $User_Model = new User_Model();

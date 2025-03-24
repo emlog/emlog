@@ -465,6 +465,7 @@ CREATE TABLE {$db_prefix}comment (
     ip varchar(128) NOT NULL default '' COMMENT 'ip address',
     agent varchar(512) NOT NULL default '' COMMENT 'user agent',
     hide enum('n','y') NOT NULL default 'n' COMMENT '是否审核',
+    like_count int(11) unsigned NOT NULL default '0' COMMENT '点赞量',
     date bigint(20) NOT NULL COMMENT '创建时间',
     PRIMARY KEY  (cid),
     KEY gid (gid),

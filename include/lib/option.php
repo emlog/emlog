@@ -97,12 +97,7 @@ class Option
                 'reg_0'  => '|^.*/\?(keyword)=([^/&]+)(&(page)=(\d+))?([\?&].*)?$|',
             ],
             [
-                'model'  => 'Comment_Controller',
-                'method' => 'addComment',
-                'reg_0'  => '|^.*/\?(action)=(addcom)([\?&].*)?$|',
-            ],
-            [
-                'model'  => 'Like_Controller',
+                'model'  => 'Log_Controller',
                 'method' => 'index',
                 'reg_0'  => '|^.*/\?(action)=([a-z]+)([\?&].*)?$|',
             ],

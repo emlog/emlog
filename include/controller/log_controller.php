@@ -9,6 +9,21 @@
 
 class Log_Controller
 {
+    function index()
+    {
+        $action = Input::getStrVar('action');
+
+        if ($action == 'addlike') {
+            $this->addLike();
+        } elseif ($action == 'unlike') {
+            $this->unLike();
+        } elseif ($action == 'addcom') {
+            $this->addComment();
+        } elseif ($action == 'likecom') {
+            $this->likeComment();
+        }
+    }
+
     function display($params)
     {
         $Log_Model = new Log_Model();
@@ -113,6 +128,178 @@ class Log_Controller
             $template = !empty($template) && file_exists(TEMPLATE_PATH . $template . '.php') ? $template : 'page';
             include View::getView($template);
         }
+    }
+
+    function addComment()
+    {
+        $name = Input::postStrVar('comname');
+        $content = Input::postStrVar('comment');
+        $mail = Input::postStrVar('commail');
+        $url = Input::postStrVar('comurl');
+        $avatar = Input::postStrVar('avatar');
+        $imgcode = strtoupper(Input::postStrVar('imgcode'));
+        $blogId = Input::postIntVar('gid', -1);
+        $pid = Input::postIntVar('pid');
+        $resp = Input::postStrVar('resp'); // eg: json (only support json now)
+        $uid = 0;
+        $ua = getUA();
+
+        if (ISLOGIN === true) {
+            $User_Model = new User_Model();
+            $user_info = $User_Model->getOneUser(UID);
+            $name = addslashes($user_info['name_orig']);
+            $mail = addslashes($user_info['email']);
+            $url = addslashes(BLOG_URL);
+            $uid = UID;
+        }
+
+        if ($url && strncasecmp($url, 'http', 4)) {
+            $url = 'https://' . $url;
+        }
+
+        doAction('comment_post');
+
+        $Comment_Model = new Comment_Model();
+        $Log_Model = new Log_Model();
+
+        $log = $Log_Model->getDetail($blogId);
+        $Comment_Model->setCommentCookie($name, $mail, $url);
+        $err = '';
+
+        if (!ISLOGIN && Option::get('login_comment') === 'y') {
+            $err = '请先完成登录，再发布评论';
+        } elseif ($blogId <= 0 || empty($log)) {
+            $err = '文章不存在';
+        } elseif (Option::get('iscomment') == 'n' || $log['allow_remark'] == 'n') {
+            $err = '该文章未开启评论';
+        } elseif (!User::haveEditPermission() && $Comment_Model->isCommentTooFast() === true) {
+            $err = '评论发布太频繁';
+        } elseif (empty($name)) {
+            $err = '请填写昵称';
+        } elseif (strlen($name) > 100) {
+            $err = '昵称太长了';
+        } elseif ($mail !== '' && !checkMail($mail)) {
+            $err = '不是有效的邮箱';
+        } elseif (empty($content)) {
+            $err = '请填写评论内容';
+        } elseif (strlen($content) > 60000) {
+            $err = '内容内容太长了';
+        } elseif (ISLOGIN === false && Option::get('comment_code') == 'y' && session_start() && (empty($imgcode) || $imgcode !== $_SESSION['code'])) {
+            $err = '验证码错误';
+        } elseif (empty($ua) || preg_match('/bot|crawler|spider|robot|crawling/i', $ua)) {
+            $err = '非正常请求';
+        }
+
+        if ($err) {
+            $resp === 'json' ? Output::error($err) : emMsg($err);
+        }
+        $r = $Comment_Model->addComment($uid, $name, $content, $mail, $url, $avatar, $blogId, $pid);
+        $cid = isset($r['cid']) ? $r['cid'] : 0;
+        $hide = isset($r['hide']) ? $r['hide'] : '';
+
+        $_SESSION['code'] = null;
+        notice::sendNewCommentMail($content, $blogId, $pid);
+
+        if ($hide === 'y') {
+            $msg = '评论成功，请等待管理员审核';
+            $resp === 'json' ? Output::ok($msg) : emMsg($msg);
+        }
+        if ($resp === 'json') {
+            Output::ok(['cid' => $cid]);
+        } else {
+            emDirect(Url::log($blogId) . '#' . $cid);
+        }
+    }
+
+    function likeComment()
+    {
+        $cid = Input::postIntVar('cid');
+        $ua = getUA();
+        $ip = getIp();
+
+        $Comment_Model = new Comment_Model();
+        $c = $Comment_Model->getOneComment($cid);
+
+        $err = '';
+
+        if (empty($c)) {
+            $err = '评论不存在';
+        } elseif (empty($ip) || empty($ua) || preg_match('/bot|crawler|spider|robot|crawling/i', $ua)) {
+            $err = '非正常请求';
+        }
+
+        if ($err) {
+            Output::error($err);
+        }
+        $Comment_Model->likeComment($cid);
+
+        Output::ok();
+    }
+
+    function addLike()
+    {
+        $name = Input::postStrVar('name');
+        $avatar = Input::postStrVar('avatar');
+        $blogId = Input::postIntVar('gid', -1);
+        $ua = getUA();
+        $ip = getIp();
+        $uid = 0;
+
+        if (ISLOGIN === true) {
+            $User_Model = new User_Model();
+            $user_info = $User_Model->getOneUser(UID);
+            $name = addslashes($user_info['name_orig']);
+            $uid = UID;
+        }
+
+        doAction('like_post');
+
+        $Like_Model = new Like_Model();
+        $Log_Model = new Log_Model();
+
+        $log = $Log_Model->getDetail($blogId);
+        $err = '';
+
+        if ($blogId <= 0 || empty($log)) {
+            $err = '文章不存在';
+        } elseif ($Like_Model->isLiked($blogId, $uid, $ip) === true) {
+            $err = '已经赞过了';
+        } elseif (!User::haveEditPermission() && $Like_Model->isTooFast() === true) {
+            $err = '操作太频繁';
+        } elseif (strlen($name) > 100) {
+            $err = '昵称太长了';
+        } elseif (empty($ip) || empty($ua) || preg_match('/bot|crawler|spider|robot|crawling/i', $ua)) {
+            $err = '非正常请求';
+        }
+
+        if ($err) {
+            Output::error($err);
+        }
+        $r = $Like_Model->addLike($uid, $name, $avatar, $blogId, $ip, $ua);
+        $id = isset($r['id']) ? $r['id'] : 0;
+
+        Output::ok(['id' => $id]);
+    }
+
+    function unLike()
+    {
+        $uid = 0;
+
+        if (ISLOGIN === true) {
+            $User_Model = new User_Model();
+            $user_info = $User_Model->getOneUser(UID);
+            $uid = UID;
+        }
+
+        $blogId = Input::postIntVar('gid');
+        $Like_Model = new Like_Model();
+        $r = $Like_Model->unLike($uid, $blogId);
+
+        if ($r === false) {
+            Output::error('取消失败');
+        }
+
+        Output::ok();
     }
 
     private function setSiteDes($siteDescription, $logContent, $excerpt, $logId)
