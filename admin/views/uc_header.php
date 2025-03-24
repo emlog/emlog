@@ -29,7 +29,7 @@
     <style>
         #uc-top-bar {
             background: #4e73df;
-            border-radius: 8px;
+            border-radius: 12px;
             max-width: 1200px;
             margin: 0 auto;
         }
