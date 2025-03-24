@@ -289,6 +289,7 @@ if ($action === 'write') {
     $postDate = date('Y-m-d H:i:s');
     $mediaSorts = $MediaSort_Model->getSorts();
     $customTemplates = $Template_Model->getCustomTemplates('log');
+    $customFields = $Template_Model->getCustomFields();
     $fields = [];
 
     if (!Register::isRegLocal() && $sta_cache['lognum'] > 50) {
@@ -329,6 +330,7 @@ if ($action === 'edit') {
     $fields = Field::getFields($logid);
 
     $customTemplates = $Template_Model->getCustomTemplates('log');
+    $customFields = $Template_Model->getCustomFields();
 
     $is_top = $top == 'y' ? 'checked="checked"' : '';
     $is_sortop = $sortop == 'y' ? 'checked="checked"' : '';

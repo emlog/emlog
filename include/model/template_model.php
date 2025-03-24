@@ -91,6 +91,24 @@ class Template_Model
         return $php_files;
     }
 
+    function getCustomFields()
+    {
+        $nonce_template = Option::get('nonce_templet') . '/';
+        if (!is_dir(TPLS_PATH . $nonce_template)) {
+            return false;
+        }
+
+        $optionsFieldPath = TPLS_PATH . $nonce_template . 'options_field.php';
+        if (file_exists($optionsFieldPath)) {
+            include $optionsFieldPath;
+            if (isset($options_field)) {
+                return $options_field;
+            }
+        }
+
+        return [];
+    }
+
     function getTemplateComment($filename)
     {
         $nonce_template = Option::get('nonce_templet') . '/';
