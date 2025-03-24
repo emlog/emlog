@@ -216,7 +216,7 @@
                     <label class="custom-control-label" for="checkAllItem">全选</label>
                 </div>
             </div>
-            <a href="javascript:mediaact('del');" class="btn btn-sm btn-danger">删除</a>
+            <a href="javascript:mediaact('del');" class="btn btn-outline-danger btn-sm">删除</a>
             <div class="col-auto my-1 form-inline">
                 <?php if (User::isAdmin()): ?>
                     <select name="sort" id="sort" onChange="changeSort(this);" class="form-control form-control-sm m-1">

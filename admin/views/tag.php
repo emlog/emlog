@@ -47,7 +47,7 @@
                 </div>
             </div>
             <div class="col-auto my-1 form-inline">
-                <a href="javascript:tagact('del');" class="btn btn-sm btn-danger">删除</a>
+                <a href="javascript:tagact('del');" class="btn btn-sm btn-outline-danger">删除</a>
             </div>
         </div>
     </form>
