@@ -6,23 +6,22 @@
 
 defined('EMLOG_ROOT') || exit('access denied!');
 
-
 /*
-$options_field = [
+$custom_fields = [
     'price' => [
         'type'        => 'text',
         'name'        => '价格',
-        'description' => '设置文章价格，如：100.00',
+        'description' => '如：9.99',
         'default'     => ''
     ],
-    'need_login' => [
+    'need_vip' => [
         'type'        => 'radio',
-        'name'        => '是否需要登录',
+        'name'        => '是否需要会员',
         'values'      => [
             '0' => '否',
             '1' => '是'
         ],
-        'description' => '设置文章是否需要登录才能查看',
+        'description' => '1是，0否',
         'default'     => '0'
     ],
 ];

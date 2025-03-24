@@ -98,11 +98,11 @@ class Template_Model
             return false;
         }
 
-        $optionsFieldPath = TPLS_PATH . $nonce_template . 'options_field.php';
-        if (file_exists($optionsFieldPath)) {
-            include $optionsFieldPath;
-            if (isset($options_field)) {
-                return $options_field;
+        $customFieldsPath = TPLS_PATH . $nonce_template . 'custom_fields.php';
+        if (file_exists($customFieldsPath)) {
+            include $customFieldsPath;
+            if (isset($custom_fields)) {
+                return $custom_fields;
             }
         }
 
