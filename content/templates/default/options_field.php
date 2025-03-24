@@ -6,6 +6,8 @@
 
 defined('EMLOG_ROOT') || exit('access denied!');
 
+
+/*
 $options_field = [
     'price' => [
         'type'        => 'text',
@@ -24,3 +26,4 @@ $options_field = [
         'default'     => '0'
     ],
 ];
+*/
