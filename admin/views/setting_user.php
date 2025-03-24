@@ -38,7 +38,7 @@
                 <label class="custom-control-label" for="article_uneditable">审核通过的文章用户不可编辑、删除</label>
             </div>
             <div class="form-group form-inline">
-                <label for="posts_per_day">注册用户限制24小时发文数量（包括草稿）：</label>
+                <label for="posts_per_day">注册用户限制24小时发文数量（包括草稿，0为禁止发文）：</label>
                 <input class="form-control mx-sm-3" style="width:60px;" value="<?= $posts_per_day ?>" type="number" min="0" name="posts_per_day" id="posts_per_day" />
             </div>
             <hr>

@@ -28,4 +28,16 @@ class Article
         }
         return false;
     }
+
+    /**
+     *  是否禁止用户发文
+     */
+    public static function hasForbidPost()
+    {
+        $post_per_day = Option::get('posts_per_day');
+        if (0 === (int)$post_per_day) {
+            return true;
+        }
+        return false;
+    }
 }
