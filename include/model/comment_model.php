@@ -96,6 +96,7 @@ class Comment_Model
                 'pid' => (int)$row['pid'],
                 'uid' => (int)$row['uid'],
                 'top' => $row['top'],
+                'like_count' => (int)$row['like_count'],
                 'poster' => htmlspecialchars($row['poster']),
                 'avatar' => $this->getAvatar($row['uid'], $row['mail'], $row['avatar']),
                 'url' => htmlspecialchars($row['url']),
