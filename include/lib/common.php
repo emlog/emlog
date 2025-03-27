@@ -38,13 +38,19 @@ if (!function_exists('getIp')) {
     function getIp()
     {
         $ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
-        if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+
+        // Check for Cloudflare
+        if (isset($_SERVER['HTTP_CF_CONNECTING_IP'])) {
+            $ip = $_SERVER['HTTP_CF_CONNECTING_IP'];
+        } elseif (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
             $list = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
-            $ip = $list[0];
+            $ip = trim($list[0]);
         }
+
         if (!ip2long($ip)) {
             $ip = '';
         }
+
         return $ip;
     }
 }
