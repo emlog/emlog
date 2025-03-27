@@ -25,14 +25,10 @@
     <div class="alert alert-danger">您的emlog pro尚未注册</div><?php endif ?>
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">模板主题</h1>
+    <h1 class="h4 mb-0 text-gray-800">模板主题</h1>
     <div>
-        <a href="store.php" class="btn btn-primary shadow-sm mr-2">
-            <i class="icofont-shopping-cart mr-1"></i>应用商店
-        </a>
-        <a href="#" class="btn btn-success shadow-sm" data-toggle="modal" data-target="#addModal">
-            <i class="icofont-plus mr-1"></i>安装模板
-        </a>
+        <a href="store.php" class="btn btn-primary btn-sm shadow-sm mr-2"><i class="icofont-shopping-cart mr-1"></i>应用商店</a>
+        <a href="#" class="btn btn-success btn-sm shadow-sm" data-toggle="modal" data-target="#addModal"><i class="icofont-plus mr-1"></i>安装模板</a>
     </div>
 </div>
 
@@ -97,7 +93,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content border-0 shadow">
             <div class="modal-header border-0">
-                <h5 class="modal-title">安装新模板</h5>
+                <h5 class="modal-title">安装模板</h5>
                 <button type="button" class="close" data-dismiss="modal">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -106,7 +102,7 @@
                 <div class="modal-body px-4">
                     <div class="custom-file">
                         <input type="file" class="custom-file-input" name="tplzip" id="tplzip">
-                        <label class="custom-file-label" for="tplzip">选择模板文件</label>
+                        <label class="custom-file-label" for="tplzip">选择模板安装包</label>
                         <input name="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
                     </div>
                     <small class="form-text text-muted mt-2">
@@ -115,9 +111,7 @@
                 </div>
                 <div class="modal-footer border-0">
                     <button type="button" class="btn btn-light" data-dismiss="modal">取消</button>
-                    <button type="submit" class="btn btn-success">
-                        <i class="icofont-upload mr-1"></i>上传安装
-                    </button>
+                    <button type="submit" class="btn btn-success">上传安装</button>
                 </div>
             </form>
         </div>
@@ -139,35 +133,6 @@
     }
 </style>
 
-<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">安装模板</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="./template.php?action=upload_zip" method="post" enctype="multipart/form-data">
-                <div class="modal-body">
-                    <div>
-                        <p>上传一个zip压缩格式的模板安装包</p>
-                        <p>
-                            <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
-                            <input name="tplzip" type="file" />
-                        </p>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
-                    <button type="submit" class="btn btn-sm btn-success">上传</button>
-                    <span id="alias_msg_hook"></span>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
 <script>
     // check for upgrade
     $(function() {
@@ -175,6 +140,12 @@
         $("#menu_category_view").addClass('active');
         $("#menu_view").addClass('show');
         $("#menu_tpl").addClass('active');
+
+        // 监听模板文件上传
+        $('#tplzip').on('change', function() {
+            var fileName = $(this).get(0).files[0] ? $(this).get(0).files[0].name : '';
+            $(this).next('.custom-file-label').text(fileName || '选择模板安装包');
+        });
 
         var templateList = [];
         $('.app-list .card').each(function() {

@@ -132,26 +132,29 @@
     </div>
 </div>
 
-<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">安装插件</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<div class="modal fade" id="addModal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header border-0">
+                <h5 class="modal-title">安装插件</h5>
+                <button type="button" class="close" data-dismiss="modal">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <form action="./plugin.php?action=upload_zip" method="post" enctype="multipart/form-data">
-                <div class="modal-body">
-                    <div id="plugin_new" class="form-group">
-                        <li>上传一个zip压缩格式的插件安装包</li>
-                        <li><input name="pluzip" type="file" /></li>
+                <div class="modal-body px-4">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" name="pluzip" id="pluzip">
+                        <label class="custom-file-label" for="pluzip">选择插件安装包</label>
+                        <input name="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
                     </div>
+                    <small class="form-text text-muted mt-2">
+                        请上传zip格式的插件安装包
+                    </small>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
-                    <button type="submit" class="btn btn-sm btn-success">上传</button>
-                    <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-light" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-success">上传安装</button>
                 </div>
             </form>
         </div>
@@ -163,6 +166,12 @@
     $(function() {
         setTimeout(hideActived, 3600);
         $("#menu_category_ext").addClass('active');
+
+        // 监听模板文件上传
+        $('#pluzip').on('change', function() {
+            var fileName = $(this).get(0).files[0] ? $(this).get(0).files[0].name : '';
+            $(this).next('.custom-file-label').text(fileName || '选择插件安装包');
+        });
 
         var pluginList = [];
         $('table tbody tr').each(function() {
