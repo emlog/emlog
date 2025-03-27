@@ -47,7 +47,7 @@
                 <input class="form-control" value="<?= $icp ?>" name="icp" />
             </div>
             <div class="form-group">
-                <label>首页底部信息(支持html，可用于添加流量统计代码)</label>
+                <label>首页底部信息(支持HTML)</label>
                 <textarea name="footer_info" rows="6" class="form-control"><?= $footer_info ?></textarea>
             </div>
             <hr>
