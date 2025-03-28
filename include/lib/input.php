@@ -35,7 +35,13 @@ class Input
     public static function postStrArray($var_name, $var_default = [])
     {
         $value = filter_input(INPUT_POST, $var_name, FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
-        return $value ?: $var_default;
+        if ($value) {
+            array_walk_recursive($value, function (&$item) {
+                $item = addslashes(trim($item));
+            });
+            return $value;
+        }
+        return $var_default;
     }
 
     public static function getStrVar($var_name, $var_default = '')
