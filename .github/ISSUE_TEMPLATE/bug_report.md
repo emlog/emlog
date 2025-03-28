@@ -1,6 +1,6 @@
 ---
 name: 使用问题反馈
-about: 反馈软件错误或问题
+about: 反馈软件错误或问题，🚨 请勿在 Issue 中提交安全漏洞！🚨
 title: "[Bug] 请简要描述问题"
 labels: ["bug"]
 assignees: []
