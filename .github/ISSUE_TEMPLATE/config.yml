@@ -1,5 +1,5 @@
 blank_issues_enabled: false
 contact_links:
   - name: 🚨 安全漏洞报告
-    url: https://github.com/emlog/emlog/security/advisories
+    url: https://github.com/emlog/emlog/blob/master/SECURITY.md
     about: 发现安全问题？请按照此指南提交，不要公开发布在Issue中！

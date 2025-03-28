@@ -1,13 +1,13 @@
 ---
 name: 使用问题反馈
-about: 反馈软件错误或问题，🚨 请勿在 Issue 中提交安全漏洞！🚨
+about: 反馈软件错误或问题，🚨 请勿在 Issue 中公开提交安全漏洞！🚨
 title: ""
 labels: bug
 assignees: ''
 ---
 
 ** 🚨🚨 请勿在 Issue 中提交安全漏洞！🚨🚨**
-👉 如发现安全问题，请您前往 [安全漏洞报告指南](https://github.com/emlog/emlog/security/policy) 按照指引提交。
+👉 如发现安全问题，请您前往 [安全漏洞报告指南](https://github.com/emlog/emlog/blob/master/SECURITY.md) 按照指引提交。
 
 **描述问题**
 请清晰描述你遇到的问题：
