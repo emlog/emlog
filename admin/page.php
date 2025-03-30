@@ -114,8 +114,8 @@ if ($action == 'save') {
     $content = Input::postStrVar('pagecontent');
     $alias = Input::postStrVar('alias');
     $pageId = Input::postIntVar('pageid', -1);
-    $ishide = isset($_POST['ishide']) && empty($_POST['ishide']) ? 'n' : addslashes($_POST['ishide']);
-    $template = isset($_POST['template']) && $_POST['template'] != 'page' ? addslashes(trim($_POST['template'])) : '';
+    $ishide = Input::postStrVar('ishide') === '' ? 'n' : Input::postStrVar('ishide');
+    $template = Input::postStrVar('template') != 'page' ? Input::postStrVar('template') : '';
     $allow_remark = Input::postStrVar('allow_remark', 'n');
     $home_page = Input::postStrVar('home_page', 'n');
     $link = Input::postStrVar('link');

@@ -24,7 +24,7 @@ if (empty($action)) {
 }
 
 if ($action == 'link_taxis') {
-    $link = isset($_POST['link']) ? $_POST['link'] : '';
+    $link = Input::postStrArray('link', []);
 
     if (empty($link)) {
         Output::error('没有可排序的链接');

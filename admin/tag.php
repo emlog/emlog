@@ -60,7 +60,7 @@ if ($action == 'del_tag') {
 
 if ($action === 'operate_tag') {
     $operate = Input::postStrVar('operate');
-    $tids = isset($_POST['tids']) ? array_map('intval', $_POST['tids']) : [];
+    $tids = Input::postIntArray('tids', []);
 
     LoginAuth::checkToken();
     if ($operate === 'del') {

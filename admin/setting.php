@@ -298,12 +298,12 @@ if ($action == 'mail_save') {
 
 if ($action == 'mail_test') {
     $data = [
-        'smtp_mail'      => isset($_POST['smtp_mail']) ? addslashes($_POST['smtp_mail']) : '',
-        'smtp_pw'        => isset($_POST['smtp_pw']) ? addslashes($_POST['smtp_pw']) : '',
-        'smtp_from_name' => isset($_POST['smtp_from_name']) ? addslashes($_POST['smtp_from_name']) : '',
-        'smtp_server'    => isset($_POST['smtp_server']) ? addslashes($_POST['smtp_server']) : '',
-        'smtp_port'      => isset($_POST['smtp_port']) ? (int)$_POST['smtp_port'] : '',
-        'testTo'         => isset($_POST['testTo']) ? $_POST['testTo'] : '',
+        'smtp_mail'      => Input::postStrVar('smtp_mail'),
+        'smtp_pw'        => Input::postStrVar('smtp_pw'),
+        'smtp_from_name' => Input::postStrVar('smtp_from_name'),
+        'smtp_server'    => Input::postStrVar('smtp_server'),
+        'smtp_port'      => Input::postIntVar('smtp_port'),
+        'testTo'         => Input::postStrVar('testTo'),
     ];
 
     if (!checkMail($data['testTo'])) {

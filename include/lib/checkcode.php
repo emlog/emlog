@@ -23,7 +23,8 @@ $width = 120;
 $height = 40;
 
 $img = imagecreate($width, $height);
-$bgColor = isset($_GET['mode']) && $_GET['mode'] == 't' ? imagecolorallocate($img, 245, 245, 245) : imagecolorallocate($img, 255, 255, 255);
+$mode = Input::getStrVar('mode');
+$bgColor = $mode == 't' ? imagecolorallocate($img, 245, 245, 245) : imagecolorallocate($img, 255, 255, 255);
 $pixColor = imagecolorallocate($img, em_rand(30, 180), em_rand(10, 100), em_rand(40, 250));
 
 // Load WOFF font

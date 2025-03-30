@@ -21,9 +21,10 @@ $Log_Model = new Log_Model();
 $Tag_Model = new Tag_Model();
 
 $title = Input::postStrVar('title');
-$postDate = isset($_POST['postdate']) ? strtotime(trim($_POST['postdate'])) : time();
+$postDate = Input::postStrVar('postDate');
+$postDate = $postDate ? strtotime($postDate) : time();
 $sort = Input::postIntVar('sort', -1);
-$tagstring = isset($_POST['tag']) ? strip_tags(addslashes(trim($_POST['tag']))) : '';
+$tagstring = strip_tags(Input::postStrVar('tag'));
 $content = Input::postStrVar('logcontent');
 $excerpt = Input::postStrVar('logexcerpt');
 $alias = Input::postStrVar('alias');
@@ -34,7 +35,8 @@ $password = Input::postStrVar('password');
 $template = Input::postStrVar('template');
 $cover = Input::postStrVar('cover');
 $link = Input::postStrVar('link');
-$author = isset($_POST['author']) && User::haveEditPermission() ? (int)trim($_POST['author']) : UID;
+$author  = Input::postIntVar('author');
+$author = $author && User::haveEditPermission() ? $author : UID; // 非管理员用户只能修改自己的文章
 $ishide = Input::postStrVar('ishide', 'y');
 $blogid = Input::postIntVar('as_logid', -1); //自动保存为草稿的文章id
 $pubPost = Input::postStrVar('pubPost'); // 是否直接发布文章，而非保存草稿
@@ -48,6 +50,7 @@ if ($auto_excerpt === 'y') {
     $excerpt = $parseDown->text($origContent);
     $excerpt = extractHtmlData($excerpt, 180);
     $excerpt = str_replace(["\r", "\n", "'", '"'], ' ', $excerpt);
+    $excerpt = addslashes($excerpt);
 }
 
 if ($pubPost) {

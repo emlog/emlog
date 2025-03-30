@@ -55,10 +55,10 @@ if (empty($action)) {
 }
 
 if ($action == 'new') {
-    $email = isset($_POST['email']) ? addslashes(trim($_POST['email'])) : '';
-    $password = isset($_POST['password']) ? addslashes(trim($_POST['password'])) : '';
-    $password2 = isset($_POST['password2']) ? addslashes(trim($_POST['password2'])) : '';
-    $role = isset($_POST['role']) ? addslashes(trim($_POST['role'])) : self::ROLE_WRITER;
+    $email = Input::postStrVar('email');
+    $password = Input::postStrVar('password');
+    $password2 = Input::postStrVar('password2');
+    $role = Input::postStrVar('role', User::ROLE_WRITER);
 
     LoginAuth::checkToken();
 
@@ -88,7 +88,7 @@ if ($action == 'new') {
 }
 
 if ($action == 'edit') {
-    $uid = isset($_GET['uid']) ? (int)$_GET['uid'] : '';
+    $uid = Input::getIntVar('uid');
 
     $data = $User_Model->getOneUser($uid);
 
@@ -114,14 +114,14 @@ if ($action == 'edit') {
 }
 
 if ($action == 'update') {
-    $username = isset($_POST['username']) ? addslashes(trim($_POST['username'])) : '';
-    $nickname = isset($_POST['nickname']) ? addslashes(trim($_POST['nickname'])) : '';
-    $password = isset($_POST['password']) ? addslashes(trim($_POST['password'])) : '';
-    $password2 = isset($_POST['password2']) ? addslashes(trim($_POST['password2'])) : '';
-    $email = isset($_POST['email']) ? addslashes(trim($_POST['email'])) : '';
-    $description = isset($_POST['description']) ? addslashes(trim($_POST['description'])) : '';
-    $role = isset($_POST['role']) ? addslashes(trim($_POST['role'])) : User::ROLE_WRITER;
-    $uid = isset($_POST['uid']) ? (int)$_POST['uid'] : '';
+    $username = Input::postStrVar('username');
+    $nickname = Input::postStrVar('nickname');
+    $password = Input::postStrVar('password');
+    $password2 = Input::postStrVar('password2');
+    $email = Input::postStrVar('email');
+    $description = Input::postStrVar('description');
+    $role = Input::postStrVar('role', User::ROLE_WRITER);
+    $uid = Input::postIntVar('uid');
 
     LoginAuth::checkToken();
 
@@ -172,7 +172,7 @@ if ($action == 'update') {
 
 if ($action == 'del') {
     LoginAuth::checkToken();
-    $uid = isset($_GET['uid']) ? (int)$_GET['uid'] : '';
+    $uid = Input::getIntVar('uid');
 
     if (UID == $uid) {
         emDirect('./user.php');
@@ -191,7 +191,7 @@ if ($action == 'del') {
 
 if ($action == 'forbid') {
     LoginAuth::checkToken();
-    $uid = isset($_GET['uid']) ? (int)$_GET['uid'] : '';
+    $uid = Input::getIntVar('uid');
 
     if (UID == $uid) {
         emDirect('./user.php');
@@ -208,7 +208,7 @@ if ($action == 'forbid') {
 
 if ($action == 'unforbid') {
     LoginAuth::checkToken();
-    $uid = isset($_GET['uid']) ? (int)$_GET['uid'] : '';
+    $uid = Input::getIntVar('uid');
 
     $User_Model->unforbidUser($uid);
     emDirect('./user.php?active_unfb=1');

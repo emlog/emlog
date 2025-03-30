@@ -36,8 +36,8 @@ if ($action === 'check_update') {
 }
 
 if ($action === 'update' && User::isAdmin()) {
-    $source = isset($_GET['source']) ? trim($_GET['source']) : '';
-    $upsql = isset($_GET['upsql']) ? trim($_GET['upsql']) : '';
+    $source = Input::getStrVar('source', '');
+    $upsql = Input::getStrVar('upsql', '');
 
     if (empty($source) || empty($upsql)) {
         exit('error');

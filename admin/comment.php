@@ -84,7 +84,7 @@ if ($action === 'pub') {
 
 if ($action === 'batch_operation') {
     $operate = Input::postStrVar('operate');
-    $comments = isset($_POST['com']) ? array_map('intval', $_POST['com']) : [];
+    $comments = Input::postIntArray('com', []);
 
     if (empty($comments)) {
         emDirect("./comment.php?error_a=1");

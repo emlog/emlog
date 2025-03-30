@@ -48,7 +48,7 @@ class Api_Controller
 
     function starter($params)
     {
-        $_func = isset($_GET['rest-api']) ? addslashes($_GET['rest-api']) : '';
+        $_func = Input::getStrVar('rest-api');
         if (empty($_func)) {
             Output::error('error router');
         }
@@ -151,11 +151,11 @@ class Api_Controller
         $title = Input::postStrVar('title');
         $content = Input::postStrVar('content');
         $excerpt = Input::postStrVar('excerpt');
-        $post_date = isset($_POST['post_date']) ? trim($_POST['post_date']) : '';
+        $post_date = Input::postStrVar('post_date');
         $sort_id = Input::postIntVar('sort_id', -1);
         $cover = Input::postStrVar('cover');
-        $tags = isset($_POST['tags']) ? strip_tags(addslashes(trim($_POST['tags']))) : '';
-        $author_uid = isset($_POST['author_uid']) ? (int)trim($_POST['author_uid']) : 1;
+        $tags = strip_tags(Input::postStrVar('tags'));
+        $author_uid = Input::postIntVar('author_uid', 1);
         $draft = Input::postStrVar('draft', 'n');
         $field_keys = Input::postStrArray('field_keys');
         $field_values = Input::postStrArray('field_values');
@@ -194,12 +194,14 @@ class Api_Controller
 
     private function article_list()
     {
-        $page = isset($_GET['page']) ? (int)trim($_GET['page']) : 1;
-        $count = isset($_GET['count']) ? (int)trim($_GET['count']) : Option::get('index_lognum');
-        $sort_id = isset($_GET['sort_id']) ? (int)trim($_GET['sort_id']) : 0;
-        $keyword = isset($_GET['keyword']) ? addslashes(htmlspecialchars(urldecode(trim($_GET['keyword'])))) : '';
+        $page = Input::getIntVar('page', 1);
+        $count = Input::getIntVar('count', Option::get('index_lognum'));
+        $sort_id = Input::getIntVar('sort_id', 0);
+        $keyword = Input::getStrVar('keyword');
+        $keyword = htmlspecialchars($keyword);
         $keyword = str_replace(['%', '_'], ['\%', '\_'], $keyword);
-        $tag = isset($_GET['tag']) ? addslashes(urldecode(trim($_GET['tag']))) : '';
+        $tag = Input::getStrVar('tag');
+        $tag = urldecode($tag);
         $order = Input::getStrVar('order');
 
         $sub = '';

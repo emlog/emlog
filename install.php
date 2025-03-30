@@ -16,7 +16,7 @@ if (PHP_VERSION < '5.6') {
     emMsg('PHP版本太低，请使用PHP5.6及以上版本(推荐7.4)');
 }
 
-$act = isset($_GET['action']) ? $_GET['action'] : '';
+$act = Input::getStrVar('action');
 
 $bt_db_host = 'localhost';
 $bt_db_username = 'BT_DB_USERNAME';
@@ -280,15 +280,15 @@ if (!$act) {
 <?php
 }
 if ($act == 'install' || $act == 'reinstall') {
-    $db_host = isset($_POST['hostname']) ? addslashes(trim($_POST['hostname'])) : '';
-    $db_user = isset($_POST['dbuser']) ? addslashes(trim($_POST['dbuser'])) : '';
-    $db_pw = isset($_POST['dbpasswd']) ? addslashes(trim($_POST['dbpasswd'])) : '';
-    $db_name = isset($_POST['dbname']) ? addslashes(trim($_POST['dbname'])) : '';
-    $db_prefix = isset($_POST['dbprefix']) ? addslashes(trim($_POST['dbprefix'])) : '';
-    $username = isset($_POST['username']) ? addslashes(trim($_POST['username'])) : '';
-    $password = isset($_POST['password']) ? addslashes(trim($_POST['password'])) : '';
-    $repassword = isset($_POST['repassword']) ? addslashes(trim($_POST['repassword'])) : '';
-    $email = isset($_POST['email']) ? addslashes(trim($_POST['email'])) : '';
+    $db_host = Input::postStrVar('hostname');
+    $db_user = Input::postStrVar('dbuser');
+    $db_pw = Input::postStrVar('dbpasswd');
+    $db_name = Input::postStrVar('dbname');
+    $db_prefix = Input::postStrVar('dbprefix');
+    $username = Input::postStrVar('username');
+    $password = Input::postStrVar('password');
+    $repassword = Input::postStrVar('repassword');
+    $email = Input::postStrVar('email');
 
     if ($db_prefix === '') {
         emMsg('数据库表前缀不能为空!');

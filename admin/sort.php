@@ -28,7 +28,7 @@ if (empty($action)) {
 }
 
 if ($action == 'taxis') {
-    $sort = isset($_POST['sort']) ? $_POST['sort'] : '';
+    $sort = Input::postStrArray('sort', []);
 
     if (empty($sort)) {
         Output::error('没有可排序的分类');
@@ -49,7 +49,7 @@ if ($action == 'save') {
     $sortname = Input::postStrVar('sortname');
     $alias = Input::postStrVar('alias');
     $pid = Input::postIntVar('pid');
-    $template = isset($_POST['template']) && $_POST['template'] != 'log_list' ? addslashes(trim($_POST['template'])) : '';
+    $template = Input::postStrVar('template') != 'log_list' ? Input::postStrVar('template') : '';
     $description = Input::postStrVar('description');
     $kw = Input::postStrVar('kw');
     $title = Input::postStrVar('title');

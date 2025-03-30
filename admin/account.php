@@ -16,7 +16,7 @@ require_once '../init.php';
 $sta_cache = $CACHE->readCache('sta');
 $user_cache = $CACHE->readCache('user');
 $action = Input::getStrVar('action');
-$admin_path_code = isset($_GET['s']) ? addslashes(htmlClean($_GET['s'])) : '';
+$admin_path_code = Input::getStrVar('s', '');
 $User_Model = new User_Model();
 
 if ($action == 'signin') {
@@ -42,7 +42,7 @@ if ($action == 'dosignin') {
     $password = Input::postStrVar('pw');
     $persist = Input::postIntVar('persist');
     $resp = Input::postStrVar('resp'); // eg: json (only support json now)
-    $login_code = Option::get('login_code') === 'y' && isset($_POST['login_code']) ? addslashes(strtoupper(trim($_POST['login_code']))) : '';
+    $login_code = Option::get('login_code') === 'y' ? strtoupper(Input::postStrVar('login_code')) : '';
 
     if (!User::checkLoginCode($login_code)) {
         if ($resp === 'json') {

@@ -142,7 +142,7 @@ if ($action === 'delete_async') {
 if ($action === 'operate_media') {
     $operate = Input::postStrVar('operate');
     $sort = Input::postIntVar('sort');
-    $aids = isset($_POST['aids']) ? array_map('intval', $_POST['aids']) : array();
+    $aids = Input::postIntArray('aids', []);
 
     LoginAuth::checkToken();
     switch ($operate) {
@@ -191,7 +191,7 @@ if ($action === 'update_media_sort') {
         emMsg('权限不足！', './');
     }
     $sortname = Input::postStrVar('sortname');
-    $id = isset($_POST['id']) ? (int)$_POST['id'] : '';
+    $id = Input::postIntVar('id');
 
     if (empty($sortname)) {
         emDirect("./media.php?error_a=1");

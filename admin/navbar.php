@@ -29,7 +29,7 @@ if (empty($action)) {
 }
 
 if ($action == 'taxis') {
-    $navi = isset($_POST['navi']) ? $_POST['navi'] : '';
+    $navi = Input::postStrArray('navi', []);
 
     if (empty($navi)) {
         Output::error('没有可排序的导航');
@@ -45,11 +45,11 @@ if ($action == 'taxis') {
 }
 
 if ($action == 'add') {
-    $taxis = isset($_POST['taxis']) ? (int)trim($_POST['taxis']) : 0;
-    $naviname = isset($_POST['naviname']) ? addslashes(trim($_POST['naviname'])) : '';
-    $url = isset($_POST['url']) ? addslashes(trim($_POST['url'])) : '';
-    $pid = isset($_POST['pid']) ? (int)$_POST['pid'] : 0;
-    $newtab = isset($_POST['newtab']) ? addslashes(trim($_POST['newtab'])) : 'n';
+    $taxis = Input::postIntVar('taxis', 0);
+    $naviname = Input::postStrVar('naviname');
+    $url = Input::postStrVar('url');
+    $pid = Input::postIntVar('pid', 0);
+    $newtab = Input::postStrVar('newtab', 'n');
 
     if ($naviname == '' || $url == '') {
         emDirect("./navbar.php?error_a=1");
@@ -61,7 +61,7 @@ if ($action == 'add') {
 }
 
 if ($action == 'add_sort') {
-    $sort_ids = isset($_POST['sort_ids']) ? $_POST['sort_ids'] : array();
+    $sort_ids = Input::postIntArray('sort_ids', []);
 
     $sorts = $CACHE->readCache('sort');
 
@@ -79,7 +79,7 @@ if ($action == 'add_sort') {
 }
 
 if ($action == 'add_page') {
-    $pages = isset($_POST['pages']) ? $_POST['pages'] : array();
+    $pages = Input::postStrArray('pages', []);
 
     if (empty($pages)) {
         emDirect("./navbar.php?error_e=1");
@@ -96,7 +96,7 @@ if ($action == 'add_page') {
 }
 
 if ($action == 'mod') {
-    $naviId = isset($_GET['navid']) ? (int)$_GET['navid'] : '';
+    $naviId = Input::getIntVar('navid');
     $navis = $CACHE->readCache('navi');
     $naviData = $Navi_Model->getOneNavi($naviId);
     extract($naviData);
@@ -113,12 +113,12 @@ if ($action == 'mod') {
 }
 
 if ($action == 'update') {
-    $naviname = isset($_POST['naviname']) ? addslashes(trim($_POST['naviname'])) : '';
-    $url = isset($_POST['url']) ? addslashes(trim($_POST['url'])) : '';
-    $newtab = isset($_POST['newtab']) ? addslashes(trim($_POST['newtab'])) : 'n';
-    $naviId = isset($_POST['navid']) ? (int)$_POST['navid'] : '';
-    $isdefault = isset($_POST['isdefault']) ? addslashes(trim($_POST['isdefault'])) : 'n';
-    $pid = isset($_POST['pid']) ? (int)trim($_POST['pid']) : 0;
+    $naviname = Input::postStrVar('naviname');
+    $url = Input::postStrVar('url');
+    $newtab = Input::postStrVar('newtab', 'n');
+    $naviId = Input::postIntVar('navid');
+    $isdefault = Input::postStrVar('isdefault', 'n');
+    $pid = Input::postIntVar('pid', 0);
 
     $navi_data = array(
         'naviname' => $naviname,
@@ -142,14 +142,14 @@ if ($action == 'update') {
 
 if ($action == 'del') {
     LoginAuth::checkToken();
-    $navid = isset($_GET['id']) ? (int)$_GET['id'] : '';
+    $navid = Input::getIntVar('id');
     $Navi_Model->deleteNavi($navid);
     $CACHE->updateCache('navi');
     emDirect("./navbar.php");
 }
 
 if ($action == 'hide') {
-    $naviId = isset($_GET['id']) ? (int)$_GET['id'] : '';
+    $naviId = Input::getIntVar('id');
 
     $Navi_Model->updateNavi(array('hide' => 'y'), $naviId);
 
@@ -158,7 +158,7 @@ if ($action == 'hide') {
 }
 
 if ($action == 'show') {
-    $naviId = isset($_GET['id']) ? (int)$_GET['id'] : '';
+    $naviId = Input::getIntVar('id');
 
     $Navi_Model->updateNavi(array('hide' => 'n'), $naviId);
 

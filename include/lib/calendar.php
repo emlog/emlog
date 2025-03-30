@@ -1,18 +1,22 @@
 <?php
+
 /**
  * Calendar
  * @package EMLOG
  * @link https://www.emlog.net
  */
 
-class Calendar {
+class Calendar
+{
 
-    static function url() {
+    static function url()
+    {
         $calendarUrl = isset($GLOBALS['record']) ? DYNAMIC_BLOGURL . '?action=cal&record=' . (int)$GLOBALS['record'] : DYNAMIC_BLOGURL . '?action=cal';
         return $calendarUrl;
     }
 
-    static function generate() {
+    static function generate()
+    {
         $DB = Database::getInstance();
 
         if (empty($_SERVER['HTTP_REFERER'])) {
@@ -35,11 +39,12 @@ class Calendar {
         $time = date("Ymd");
         $year_month = date("Ym");
 
-        if (isset($_GET['record'])) {
-            $n_year = substr((int)$_GET['record'], 0, 4);
-            $n_year2 = substr((int)$_GET['record'], 0, 4);
-            $n_month = substr((int)$_GET['record'], 4, 2);
-            $year_month = substr((int)$_GET['record'], 0, 6);
+        if (Input::getIntVar('record')) {
+            $record = Input::getIntVar('record');
+            $n_year = substr($record, 0, 4);
+            $n_year2 = substr($record, 0, 4);
+            $n_month = substr($record, 4, 2);
+            $year_month = substr($record, 0, 6);
         }
 
         //年月跳转连接
@@ -61,7 +66,7 @@ class Calendar {
             $year_down = $n_year - 1;
         }
         $url = DYNAMIC_BLOGURL . '?action=cal&record=' . ($n_year - 1) . $n_month; //上一年份
-        $url2 = DYNAMIC_BLOGURL . '?action=cal&record=' . ($n_year + 1) . $n_month;//下一年份
+        $url2 = DYNAMIC_BLOGURL . '?action=cal&record=' . ($n_year + 1) . $n_month; //下一年份
         $url3 = DYNAMIC_BLOGURL . '?action=cal&record=' . $year_down . $m;         //上一月份
         $url4 = DYNAMIC_BLOGURL . '?action=cal&record=' . $year_up . $mj;          //下一月份
 

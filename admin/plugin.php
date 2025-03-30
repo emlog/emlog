@@ -132,7 +132,7 @@ if ($action == 'upload_zip') {
 }
 
 if ($action === 'check_update') {
-    $plugins = isset($_POST['plugins']) ? $_POST['plugins'] : [];
+    $plugins = Input::postStrArray('plugins', []);
 
     $emcurl = new EmCurl();
     $post_data = [
@@ -158,7 +158,7 @@ if ($action === 'check_update') {
 }
 
 if ($action === 'upgrade') {
-    $alias = isset($_GET['alias']) ? trim($_GET['alias']) : '';
+    $alias = Input::getStrVar('alias');
 
     if (!Register::isRegLocal()) {
         Output::error('您的emlog尚未正版注册', 200);

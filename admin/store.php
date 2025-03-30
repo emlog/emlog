@@ -190,9 +190,9 @@ if ($action === 'error') {
 }
 
 if ($action === 'install') {
-    $source = isset($_GET['source']) ? trim($_GET['source']) : ''; // plugin/down/11
-    $cdn_source = isset($_GET['cdn_source']) ? trim($_GET['cdn_source']) : '';
-    $source_type = isset($_GET['type']) ? trim($_GET['type']) : '';
+    $source = Input::getStrVar('source', ''); // plugin/down/11
+    $cdn_source = Input::getStrVar('cdn_source', '');
+    $source_type = Input::getStrVar('type', '');
 
     if (empty($source)) {
         exit('安装失败');

@@ -29,7 +29,7 @@ if ($action === '') {
 
 if ($action === 'use') {
     LoginAuth::checkToken();
-    $tplName = isset($_GET['tpl']) ? addslashes($_GET['tpl']) : '';
+    $tplName = Input::getStrVar('tpl');
 
     Option::updateOption('nonce_templet', $tplName);
     $CACHE->updateCache('options');
@@ -40,7 +40,7 @@ if ($action === 'use') {
 
 if ($action === 'del') {
     LoginAuth::checkToken();
-    $tplName = isset($_GET['tpl']) ? addslashes($_GET['tpl']) : '';
+    $tplName = Input::getStrVar('tpl');
 
     $nonce_templet = Option::get('nonce_templet');
     if ($tplName === $nonce_templet) {
@@ -103,7 +103,7 @@ if ($action === 'upload_zip') {
 }
 
 if ($action === 'check_update') {
-    $templates = isset($_POST['templates']) ? $_POST['templates'] : [];
+    $templates = Input::postStrArray('templates', []);
 
     $emcurl = new EmCurl();
     $post_data = [
@@ -129,7 +129,7 @@ if ($action === 'check_update') {
 }
 
 if ($action === 'upgrade') {
-    $alias = isset($_GET['alias']) ? trim($_GET['alias']) : '';
+    $alias = Input::getStrVar('alias');
 
     if (!Register::isRegLocal()) {
         Output::error('您的emlog尚未正版注册', 200);
