@@ -179,12 +179,10 @@ if ($action === 'upgrade') {
             break;
         case 1:
         case 2:
-            Output::error('上传失败，插件目录(content/plugins)不可写', 200);
+            Output::error('更新失败，插件目录(content/plugins)不可写', 200);
             break;
         case 3:
-            Output::error('请选择一个zip插件安装包', 200);
-            break;
         default:
-            Output::error('安装失败，插件安装包不符合标准', 200);
+            Output::error('更新失败，更新包异常', 200);
     }
 }
