@@ -71,7 +71,11 @@
             </div>
             <h4>邮件模板</h4>
             <div class="my-3">
-                <div class="mb-3" id="mail_template_box">选择模板：<a href="javascript:useDefaultTemplate();">简约</a> <span id="mail_template_box_ext"></span></div>
+                <div class="mb-3" id="mail_template_box">选择模板：<a href="javascript:useDefaultTemplate();">简约</a>
+                    <a href="javascript:useDeepBlueTemplate();">深蓝</a>
+                    <a href="javascript:useGreenVibrantTemplate();">春意</a>
+                    <span id="mail_template_box_ext"></span>
+                </div>
                 <div class="row">
                     <div class="col-md-6">
                         <textarea id="mail_template" name="mail_template" rows="10" class="form-control" placeholder="邮件模板(支持html)，不使用模板请留空。"><?= $mail_template ?></textarea>
@@ -115,12 +119,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body style="font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f0f0f0;">
-    <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 5px; padding: 20px;">
-        <p>{{mail_content}}</p>
-    </div>
-    <div style="max-width: 600px; margin: 0 auto; padding-top:10px;">
-        <small>来自站点：{{mail_site_title}}</small>
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f7f7f7;">
+    <div style="max-width: 600px; margin: 0 auto; background-color: #fff; border-radius: 8px; padding: 20px; box-shadow: 0 4px 16px rgba(0,0,0,.1);">
+        <div style="border-bottom: 1px solid #e0e0e0; padding-bottom: 10px; margin-bottom: 20px;">
+            <h1 style="font-size: 24px; margin: 0; color: #333;">{{mail_site_title}}</h1>
+        </div>
+        <div style="font-size: 16px; color: #333; line-height: 1.6;">
+            <p>{{mail_content}}</p>
+        </div>
+        <div style="border-top: 1px solid #e0e0e0; padding-top: 10px; text-align: center; font-size: 12px; color: #888; margin-top: 20px;">
+            <small>来自站点：{{mail_site_title}}</small>
+        </div>
     </div>
 </body>
 </html>`;
@@ -128,6 +137,71 @@
         updatePreview();
     }
 
+    function useDeepBlueTemplate() {
+        const deepBlueTemplate = `<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body{font-family:Arial,sans-serif;margin:0;padding:0;background:#f7f9fb}.container{max-width:600px;margin:0 auto;background:#fff;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.1)}.header{background:#0066cc;color:#fff;padding:20px;text-align:center}.header h1{margin:0;font-size:24px}.content{padding:20px;color:#333;line-height:1.6}.footer{padding:15px;text-align:center;font-size:12px;color:#888;background:#f7f9fb}.divider{margin:20px 0;border-bottom:1px solid #e0e0e0}.cta-button{display:inline-block;background:#0066cc;color:#fff;padding:12px 20px;text-decoration:none;border-radius:30px;font-weight:bold;margin-top:20px}.cta-button:hover{background:#004d99}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>{{mail_site_title}}</h1>
+        </div>
+        <div class="content">
+            <p>{{mail_content}}</p>
+            <div class="divider"></div>
+        </div>
+        <div class="footer">
+            <small>来自站点：{{mail_site_title}}</small>
+        </div>
+    </div>
+</body>
+</html>`;
+        $('#mail_template').val(deepBlueTemplate);
+        updatePreview();
+    }
+
+    function useGreenVibrantTemplate() {
+        const greenVibrantTemplate = `<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body{font-family:'Arial',sans-serif;margin:0;padding:0;background:#e8f7ec}
+        .container{max-width:600px;margin:0 auto;background:#ffffff;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,.1)}
+        .header{background:#4caf50;color:#fff;padding:20px;text-align:center;border-radius:12px 12px 0 0}
+        .header h1{margin:0;font-size:28px;font-weight:bold}
+        .content{padding:25px;color:#333333;line-height:1.8;text-align:center}
+        .content p{font-size:18px;margin:0 0 20px}
+        .content .cta-button{display:inline-block;background:#66bb6a;color:#fff;padding:14px 24px;text-decoration:none;border-radius:50px;font-weight:bold;font-size:18px;box-shadow:0 4px 8px rgba(0,0,0,.1);transition:background-color .3s ease-in-out}
+        .content .cta-button:hover{background:#388e3c}
+        .footer{padding:15px;text-align:center;font-size:14px;color:#777;background:#4caf50;border-radius:0 0 12px 12px}
+        .footer small{display:block}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>{{mail_site_title}}</h1>
+        </div>
+        <div class="content">
+            <p>{{mail_content}}</p>
+        </div>
+        <div class="footer">
+            <small>来自站点：{{mail_site_title}}</small>
+        </div>
+    </div>
+</body>
+</html>`;
+        $('#mail_template').val(greenVibrantTemplate);
+        updatePreview();
+    }
     // mail template preview
     const htmlInput = document.getElementById('mail_template');
     const previewFrame = document.getElementById('mail_review_frame');
