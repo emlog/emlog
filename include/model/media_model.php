@@ -20,12 +20,12 @@ class Media_Model
         $this->table_sort = DB_PREFIX . 'media_sort';
     }
 
-    function getMedias($page = 1, $perpage_count = 24, $uid = 0, $sid = 0, $dateTime = '', $keyword = '')
+    function getMedias($page = 1, $perpage_count = 24, $uid = 0, $sid = 0, $time_stamp = '', $keyword = '')
     {
         $startId = ($page - 1) * $perpage_count;
         $author = $uid ? 'AND author=' . $uid : '';
         $sort = $sid ? 'AND sortid=' . $sid : '';
-        $date = $dateTime ? 'AND addtime <= ' . strtotime($dateTime) : '';
+        $date = $time_stamp ? 'AND addtime <= ' . $time_stamp : '';
         $keywordCondition = $keyword ? 'AND (filename LIKE "%' . $keyword . '%" OR filepath LIKE "%' . $keyword . '%")' : '';
         $limit = "LIMIT $startId, " . $perpage_count;
 
@@ -38,11 +38,11 @@ class Media_Model
         return $medias;
     }
 
-    function getMediaCount($uid = null, $sid = null, $dateTime = '', $keyword = '')
+    function getMediaCount($uid = null, $sid = null, $time_stamp = '', $keyword = '')
     {
         $author = $uid ? 'AND author=' . $uid : '';
         $sort = $sid ? 'AND sortid=' . $sid : '';
-        $date = $dateTime ? 'AND addtime<=' . strtotime($dateTime) : '';
+        $date = $time_stamp ? 'AND addtime<=' . $time_stamp : '';
         $keywordCondition = $keyword ? 'AND (filename LIKE "%' . $keyword . '%" OR filepath LIKE "%' . $keyword . '%")' : '';
         $sql = "SELECT COUNT(*) AS count FROM $this->table WHERE thumfor = 0 $author $sort $date $keywordCondition";
         $res = $this->db->once_fetch_array($sql);
