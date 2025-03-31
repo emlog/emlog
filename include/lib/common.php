@@ -182,9 +182,10 @@ function extractHtmlData($data, $len)
 }
 
 /**
- * 转换文件大小单位
+ * Convert file size units
  *
- * @param string $fileSize 文件大小 kb
+ * @param int $fileSize File size in bytes
+ * @return string Formatted file size with units
  */
 function changeFileSize($fileSize)
 {
@@ -195,7 +196,7 @@ function changeFileSize($fileSize)
     } elseif ($fileSize >= 1024) {
         $fileSize = round($fileSize / 1024, 2) . 'KB';
     } else {
-        $fileSize .= '字节';
+        $fileSize .= ' bytes';
     }
     return $fileSize;
 }
