@@ -191,18 +191,13 @@ if ($action === 'error') {
 
 if ($action === 'install') {
     $source = Input::getStrVar('source', ''); // plugin/down/11
-    $cdn_source = Input::getStrVar('cdn_source', '');
     $source_type = Input::getStrVar('type', '');
 
     if (empty($source)) {
         exit('安装失败');
     }
 
-    if ($cdn_source) {
-        $temp_file = emFetchFile($cdn_source);
-    } else {
-        $temp_file = emFetchFile('https://www.emlog.net/' . $source);
-    }
+    $temp_file = emFetchFile('https://www.emlog.net/' . $source);
 
     if (!$temp_file) {
         if (false === Register::verifyDownload($source)) {
