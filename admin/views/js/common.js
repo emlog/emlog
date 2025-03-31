@@ -614,12 +614,11 @@ $(function () {
         e.preventDefault();
         let link = $(this);
         let down_url = link.data('url');
-        let cdn_down_url = link.data('cdn-url');
         let type = link.data('type');
         link.text('安装中…');
         link.parent().prev(".installMsg").html("").addClass("spinner-border text-primary");
 
-        let url = './store.php?action=install&type=' + type + '&source=' + down_url + '&cdn_source=' + cdn_down_url;
+        let url = './store.php?action=install&type=' + type + '&source=' + down_url;
         $.get(url, function (data) {
             link.text('免费安装');
             link.parent().prev(".installMsg").html('<span class="text-danger">' + data + '</span>').removeClass("spinner-border text-primary");
