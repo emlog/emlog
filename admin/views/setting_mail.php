@@ -73,7 +73,7 @@
             <div class="my-3">
                 <div class="mb-3" id="mail_template_box">选择模板：<a href="javascript:useDefaultTemplate();">简约</a>
                     <a href="javascript:useDeepBlueTemplate();">深蓝</a>
-                    <a href="javascript:useGreenVibrantTemplate();">春意</a>
+                    <a href="javascript:useGreenVibrantTemplate();">草绿</a>
                     <span id="mail_template_box_ext"></span>
                 </div>
                 <div class="row">
