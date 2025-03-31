@@ -371,7 +371,7 @@ if ($action == 'user_save') {
         'posts_per_day'      => Input::postIntVar('posts_per_day', 0),
         'posts_name'         => Input::postStrVar('posts_name'),
         'att_maxsize'        => Input::postIntVar('att_maxsize'),
-        'att_type'           => str_replace('php', 'x', strtolower(Input::postStrVar('att_type', ''))),
+        'att_type'           => str_replace(['php', 'phtml', 'pht'], 'x', strtolower(Input::postStrVar('att_type', ''))),
     ];
 
     if ($data['login_code'] == 'y' && !checkGDSupport()) {
