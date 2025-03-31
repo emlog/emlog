@@ -6,11 +6,6 @@
  * @link https://www.emlog.net
  */
 
-/**
- * @var string $action
- * @var object $CACHE
- */
-
 require_once 'globals.php';
 
 if (empty($_POST)) {
@@ -57,6 +52,10 @@ if ($pubPost) {
     $ishide = 'n';
 }
 
+// 检查文章别名
+if (!preg_match('/^[a-zA-Z0-9_-]+$/', $alias)) {
+    $alias = '';
+}
 if (!empty($alias)) {
     $logalias_cache = $CACHE->readCache('logalias');
     $alias = $Log_Model->checkAlias($alias, $logalias_cache, $blogid);
