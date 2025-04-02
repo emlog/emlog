@@ -35,10 +35,12 @@ $author = $author && User::haveEditPermission() ? $author : UID; // 非管理员
 $ishide = Input::postStrVar('ishide', 'y');
 $blogid = Input::postIntVar('as_logid', -1); //自动保存为草稿的文章id
 $pubPost = Input::postStrVar('pubPost'); // 是否直接发布文章，而非保存草稿
-$auto_excerpt = Input::postStrVar('auto_excerpt');
+$auto_excerpt = Input::postStrVar('auto_excerpt', 'n');
+$auto_cover = Input::postStrVar('auto_cover', 'n');
 $field_keys = Input::postStrArray('field_keys');
 $field_values = Input::postStrArray('field_values');
 
+// 自动提取摘要
 if ($auto_excerpt === 'y') {
     $origContent = trim($_POST['logcontent']);
     $parseDown = new Parsedown();
@@ -46,6 +48,11 @@ if ($auto_excerpt === 'y') {
     $excerpt = extractHtmlData($excerpt, 180);
     $excerpt = str_replace(["\r", "\n", "'", '"'], ' ', $excerpt);
     $excerpt = addslashes($excerpt);
+}
+
+// 自动提取封面
+if (empty($cover) && $auto_cover === 'y') {
+    $cover = getFirstImage($content);
 }
 
 if ($pubPost) {

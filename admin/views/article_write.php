@@ -15,9 +15,11 @@
                 <div id="logcontent"><textarea><?= $content ?></textarea></div>
                 <div class="mt-3">
                     摘要（选填）：
-                    <input type="checkbox" value="y" name="auto_excerpt" id="auto_excerpt" onclick="toggleCheckbox('auto_excerpt')">
-                    <label for="auto_excerpt" style="margin-right: 8px;">自动截取摘要</label>
                     <textarea id="logexcerpt" name="logexcerpt" class="form-control" rows="5"><?= $excerpt ?></textarea>
+                    <div class="custom-control custom-switch mt-1">
+                        <input type="checkbox" class="custom-control-input" id="auto_excerpt" name="auto_excerpt" value="y" onclick="toggleCheckbox('auto_excerpt')">
+                        <label class="custom-control-label" for="auto_excerpt">自动截取摘要</label>
+                    </div>
                 </div>
                 <div class="mt-3">
                     <a href="javascript:void (0);" class="field_add small"><i class="icofont-plus"></i>添加字段</a>
@@ -82,8 +84,13 @@
                             </label>
                         </div>
                     </div>
+                    <div class="custom-control custom-switch mt-1">
+                        <input type="checkbox" class="custom-control-input" id="auto_cover" name="auto_cover" value="y" onclick="toggleCheckbox('auto_cover')">
+                        <label class="custom-control-label" for="auto_cover">自动获取文中图片作为封面</label>
+                    </div>
                 </div>
                 <div class="form-group">
+                    <label>分类：</label>
                     <select name="sort" id="sort" class="form-control">
                         <option value="-1">选择分类...</option>
                         <?php
@@ -129,12 +136,18 @@
                         <small class="text-muted">当设置未来时间，文章将在该时间点定时发布</small>
                     </div>
                     <div class="form-group">
-                        <input type="checkbox" value="y" name="allow_remark" id="allow_remark" <?= $is_allow_remark ?> />
-                        <label for="allow_remark" style="margin-right: 8px;">允许评论</label>
-                        <input type="checkbox" value="y" name="top" id="top" <?= $is_top; ?> />
-                        <label for="top" style="margin-right: 8px;">首页置顶</label>
-                        <input type="checkbox" value="y" name="sortop" id="sortop" <?= $is_sortop; ?> />
-                        <label for="sortop" style="margin-right: 8px;">分类置顶</label>
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" id="allow_remark" name="allow_remark" value="y" <?= $is_allow_remark ?>>
+                            <label class="custom-control-label" for="allow_remark">允许评论</label>
+                        </div>
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" id="top" name="top" value="y" <?= $is_top; ?>>
+                            <label class="custom-control-label" for="top">首页置顶</label>
+                        </div>
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" id="sortop" name="sortop" value="y" <?= $is_sortop; ?>>
+                            <label class="custom-control-label" for="sortop">分类置顶</label>
+                        </div>
                     </div>
                     <div><a href="javascript:void (0);" class="show_adv_set" onclick="displayToggle('adv_set');">高级选项<i class="icofont-simple-right"></i></a></div>
                 <?php else: ?>
@@ -447,4 +460,6 @@
     initDisplayState('adv_set');
     // 自动截取摘要状态
     initCheckboxState('auto_excerpt');
+    // 自动提取封面状态
+    initCheckboxState('auto_cover');
 </script>

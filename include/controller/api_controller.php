@@ -90,11 +90,17 @@ class Api_Controller
         $template = Input::postStrVar('template');
         $field_keys = Input::postStrArray('field_keys');
         $field_values = Input::postStrArray('field_values');
+        $auto_cover = Input::postStrVar('auto_cover', 'n');
 
         $this->auth();
 
         if (empty($title) || empty($content)) {
             Output::error('parameter error');
+        }
+
+        // 自动提取封面
+        if (empty($cover) && $auto_cover === 'y') {
+            $cover = getFirstImage($content);
         }
 
         $sta_cache = $this->Cache->readCache('sta');
