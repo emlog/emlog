@@ -179,6 +179,7 @@ $isdraft = $draft ? '&draft=1' : '';
             </div>
             <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
             <input name="operate" id="operate" value="" type="hidden" />
+            <input name="author" id="author" value="" type="hidden" />
             <div class="form-inline">
                 <div class="btn-group">
                     <button class="btn btn-success btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">操作</button>
@@ -196,6 +197,8 @@ $isdraft = $draft ? '&draft=1' : '';
                                 <a href="javascript:logact('top');" class="dropdown-item">首页置顶</a>
                                 <a href="javascript:logact('sortop');" class="dropdown-item">分类置顶</a>
                                 <a href="javascript:logact('notop');" class="dropdown-item">取消置顶</a>
+                                <hr>
+                                <a href="javascript:changeAuthorAlert();" class="dropdown-item">更改作者</a>
                                 <hr>
                             <?php endif ?>
                             <a href="javascript:logact('hide');" class="dropdown-item">放入草稿箱</a>
@@ -225,17 +228,6 @@ $isdraft = $draft ? '&draft=1' : '';
                     ?>
                     <option value="-1">未分类</option>
                 </select>
-                <?php
-                $c = count($user_cache);
-                if (User::haveEditPermission() && $c > 1 && $c < 50):
-                ?>
-                    <select name="author" id="author" onChange="changeAuthor(this);" class="form-control form-control-sm m-1">
-                        <option value="" selected="selected">更改作者</option>
-                        <?php foreach ($user_cache as $key => $val): ?>
-                            <option value="<?= $key ?>"><?= $val['name'] ?></option>
-                        <?php endforeach ?>
-                    </select>
-                <?php endif ?>
             </div>
         </form>
     </div>
@@ -385,10 +377,6 @@ $isdraft = $draft ? '&draft=1' : '';
 
     function selectOrder(obj) {
         window.open("./article.php?order=" + obj.value + "<?= $isdraft ?>", "_self");
-    }
-
-    function selectUser(obj) {
-        window.open("./article.php?uid=" + obj.value + "<?= $isdraft ?>", "_self");
     }
 
     $(function() {
