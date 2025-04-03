@@ -20,7 +20,7 @@
 <?php if (isset($_GET['error_g'])): ?>
     <div class="alert alert-danger">上传安装包大小超出PHP限制</div><?php endif ?>
 <?php if (isset($_GET['error_i'])): ?>
-    <div class="alert alert-danger">您的emlog pro尚未注册</div><?php endif ?>
+    <div class="alert alert-danger">您的emlog尚未注册</div><?php endif ?>
 <?php if (isset($_GET['error_sys'])): ?>
     <div class="alert alert-danger">系统依赖插件，请勿删除和关闭</div><?php endif ?>
 

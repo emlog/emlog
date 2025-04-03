@@ -526,7 +526,7 @@ function checkUpdate() {
 
     $.get("./upgrade.php?action=check_update", function (result) {
         if (result.code === 1001) {
-            rep_msg = "您的emlog pro尚未注册，<a href=\"auth.php\">去注册</a>";
+            rep_msg = "您的emlog尚未注册，<a href=\"auth.php\">去注册</a>";
         } else if (result.code === 1002) {
             rep_msg = "已经是最新版本";
         } else if (result.code === 200) {

@@ -129,13 +129,12 @@
                     </div>
                     <div class="card-body">
                         <p>1. 获得在线升级功能，一键升级到最新版本</p>
-                        <p>2. 解锁应用商店，获得更多模板和插件，并支持应用在线更新</p>
+                        <p>2. 解锁完整应用商店功能，包括应用在线更新</p>
                         <p>3. 去除所有未注册提示及功能限制</p>
-                        <p>4. 专属应用，超过20款付费插件、2款付费主题（限铁杆SVIP）</p>
-                        <hr>
+                        <p>4. 铁杆SVIP免费应用：超过20款付费插件、多款付费主题免费用</p>
                         <p>
-                            <a href="auth.php" class="btn btn-sm btn-primary shadow-lg">正版注册</a>
-                            <a href="https://emlog.net/register" target="_blank" class="btn btn-sm btn-success shadow-lg">获取注册码-></a>
+                            <a href="auth.php" class="btn btn-sm btn-primary shadow-lg"> 开始正版注册</a>
+                            <a href="https://emlog.net/register" target="_blank" class="btn btn-sm ml-3 btn-success shadow-lg">获取注册码-></a>
                         </p>
                     </div>
                 </div>

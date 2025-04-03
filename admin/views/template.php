@@ -22,7 +22,7 @@
 <?php if (isset($_GET['error_c'])): ?>
     <div class="alert alert-danger">服务器PHP不支持zip模块</div><?php endif ?>
 <?php if (isset($_GET['error_i'])): ?>
-    <div class="alert alert-danger">您的emlog pro尚未注册</div><?php endif ?>
+    <div class="alert alert-danger">您的emlog尚未注册</div><?php endif ?>
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h4 mb-0 text-gray-800">模板主题</h1>
