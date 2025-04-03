@@ -16,7 +16,7 @@ $Log_Model = new Log_Model();
 $Tag_Model = new Tag_Model();
 
 $title = Input::postStrVar('title');
-$postDate = Input::postStrVar('postDate');
+$postDate = Input::postStrVar('postdate');
 $postDate = $postDate ? strtotime($postDate) : time();
 $sort = Input::postIntVar('sort', -1);
 $tagstring = strip_tags(Input::postStrVar('tag'));
