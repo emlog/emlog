@@ -353,6 +353,9 @@ EOT;
     if (!is_writable(EMLOG_ROOT . '/content/cache')) {
         emMsg('缓存目录（content/cache）不可写。请检查目录读写权限。');
     }
+
+    $PHPASS = new PasswordHash(8, true);
+
     $config = "<?php\n"
         . "//MySQL database host\n"
         . "const DB_HOST = '$db_host';"
@@ -365,15 +368,14 @@ EOT;
         . "\n//Database Table Prefix\n"
         . "const DB_PREFIX = '$db_prefix';"
         . "\n//Auth key\n"
-        . "const AUTH_KEY = '" . getRandStr(32) . md5(getUA()) . "';"
+        . "const AUTH_KEY = '" . $PHPASS->HashPassword(getRandStr(32) . md5(getIp()) . microtime()) . "';"
         . "\n//Cookie name\n"
-        . "const AUTH_COOKIE_NAME = 'EM_AUTHCOOKIE_" . getRandStr(32, false) . "';";
+        . "const AUTH_COOKIE_NAME = 'EM_AUTHCOOKIE_" . sha1(getRandStr(32, false) . md5(getIp()) . microtime()) . "';";
 
     if (!file_put_contents('config.php', $config)) {
         emMsg('配置文件(config.php)不可写，请调整文件读写权限。');
     }
 
-    $PHPASS = new PasswordHash(8, true);
     $password = $PHPASS->HashPassword($password);
 
     $table_charset_sql = 'DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;';
