@@ -13,7 +13,7 @@ header('Content-Type: text/html; charset=UTF-8');
 spl_autoload_register("emAutoload");
 
 if (PHP_VERSION < '5.6') {
-    emMsg('PHP版本太低，请使用PHP5.6及以上版本(推荐7.4)');
+    emMsg('PHP版本太低，推荐使用PHP7.4及以上版本');
 }
 
 $act = Input::getStrVar('action');
