@@ -368,9 +368,9 @@ EOT;
         . "\n//Database Table Prefix\n"
         . "const DB_PREFIX = '$db_prefix';"
         . "\n//Auth key\n"
-        . "const AUTH_KEY = '" . $PHPASS->HashPassword(getRandStr(32) . md5(getIp()) . microtime()) . "';"
+        . "const AUTH_KEY = '" . $PHPASS->HashPassword(getRandStr(32) . md5(getIp()) . getUA() . microtime()) . "';"
         . "\n//Cookie name\n"
-        . "const AUTH_COOKIE_NAME = 'EM_AUTHCOOKIE_" . sha1(getRandStr(32, false) . md5(getIp()) . microtime()) . "';";
+        . "const AUTH_COOKIE_NAME = 'EM_AUTHCOOKIE_" . sha1(getRandStr(32, false) . md5(getIp()) . getUA() . microtime()) . "';";
 
     if (!file_put_contents('config.php', $config)) {
         emMsg('配置文件(config.php)不可写，请调整文件读写权限。');
