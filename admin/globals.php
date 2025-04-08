@@ -1,4 +1,5 @@
 <?php
+
 /**
  * global
  * @package EMLOG
@@ -18,3 +19,4 @@ $action = Input::getStrVar('action');
 
 loginAuth::checkLogin();
 User::checkRolePermission();
+User::updateUserActivity();

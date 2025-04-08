@@ -151,4 +151,21 @@ class User
         }
         return $avatar ?: BLOG_URL . "admin/views/images/avatar.svg";
     }
+
+    static function updateUserActivity($uid = UID)
+    {
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+
+        $lastActivity = isset($_SESSION['last_activity']) ? $_SESSION['last_activity'] : 0;
+        $currentTime = time();
+
+        // 每6小时更新一次用户活动时间
+        if ($currentTime - $lastActivity >= 21600) { // 21600 seconds = 6 hours
+            $userModel = new User_Model();
+            $userModel->updateUserActivityTime($uid);
+            $_SESSION['last_activity'] = $currentTime;
+        }
+    }
 }
