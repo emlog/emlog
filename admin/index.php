@@ -1,4 +1,5 @@
 <?php
+
 /**
  * control panel
  * @package EMLOG
@@ -88,8 +89,8 @@ if (empty($action)) {
     $article_amount = $Log_Model->getCount();
     $note_amount = $Note_Model->getCount();
     $comment_amount = $Comment_Model->getCommentNum();
-    $logs = $Log_Model->getLogsForAdmin();
-    $comments = $Comment_Model->getCommentsForAdmin(0, 0, null, 1);
+    $logs = $Log_Model->getLogsForAdmin(' ORDER BY date DESC', 'n', 1, 'blog', 5);
+    $comments = $Comment_Model->getCommentsForAdmin(0, 0, null, 1, 5);
 
     include View::getAdmView('uc_header');
     require_once(View::getAdmView('uc_index'));
