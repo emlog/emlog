@@ -152,8 +152,12 @@ class User
         return $avatar ?: BLOG_URL . "admin/views/images/avatar.svg";
     }
 
-    static function updateUserActivity($uid = UID)
+    static function updateUserActivity()
     {
+        $uid = UID;
+        if (!$uid) {
+            return;
+        }
         if (!isset($_SESSION)) {
             session_start();
         }
