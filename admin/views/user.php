@@ -29,7 +29,8 @@
                     <select name="order" id="order" onChange="selectOrder(this);" class="form-control">
                         <option value="date" <?= (empty($order)) ? 'selected' : '' ?>>最近注册</option>
                         <option value="update" <?= ($order === 'update') ? 'selected' : '' ?>>最近活跃</option>
-                        <option value="admin" <?= ($order === 'admin') ? 'selected' : '' ?>>管理员优先</option>
+                        <option value="admin" <?= ($order === 'admin') ? 'selected' : '' ?>>管理优先</option>
+                        <option value="forbid" <?= ($order === 'forbid') ? 'selected' : '' ?>>禁用优先</option>
                     </select>
                 </div>
             </div>
@@ -110,6 +111,7 @@
                 <button class="btn btn-success btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">操作</button>
                 <div class="dropdown-menu">
                     <a href="javascript:useract('forbid');" class="dropdown-item text-warning">禁用</a>
+                    <a href="javascript:useract('unforbid');" class="dropdown-item    ">解禁</a>
                 </div>
             </div>
         </div>
@@ -198,6 +200,15 @@
                     $("#form_user").submit();
                 },
                 '封禁')
+            return;
+        }
+
+        if (act === 'unforbid') {
+            delAlert2('', '解禁所选用户？', function() {
+                    $("#operate").val("unforbid");
+                    $("#form_user").submit();
+                },
+                '解禁')
             return;
         }
 

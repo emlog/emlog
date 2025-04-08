@@ -234,4 +234,14 @@ if ($action == 'operate_user') {
         }
         emDirect('./user.php');
     }
+
+    if ($operate == 'unforbid') {
+        foreach ($user_ids as $id) {
+            if ($id == 1) {
+                continue;
+            }
+            $User_Model->unforbidUser($id);
+        }
+        emDirect('./user.php');
+    }
 }

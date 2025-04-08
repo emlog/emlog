@@ -40,6 +40,9 @@ class User_Model
             case 'admin':
                 $condition .= " ORDER BY role IN('admin','editor') DESC";
                 break;
+            case 'forbid':
+                $condition .= " ORDER BY state DESC";
+                break;
             default:
                 $condition .= ' ORDER BY uid DESC';
         }
