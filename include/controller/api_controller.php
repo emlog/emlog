@@ -215,7 +215,7 @@ class Api_Controller
             $sub .= ' and sortid = ' . $sort_id;
         }
         if ($keyword) {
-            $sub .= " and title like '%{$keyword}%'";
+            $sub .= " and instr(title, '$keyword')>0";
         }
         if ($tag) {
             $blogIdStr = $this->Tag_Model->getTagByName($tag);

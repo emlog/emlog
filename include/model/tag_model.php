@@ -387,7 +387,7 @@ class Tag_Model
 
         $condition = '';
         if ($tag_name) {
-            $condition = " and tagname like '%$tag_name%'";
+            $condition = " instr(tagname, '$tag_name')>0";
         }
 
         $tags = [];

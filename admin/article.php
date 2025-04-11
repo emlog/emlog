@@ -44,7 +44,7 @@ if (empty($action)) {
     } elseif ($checked) {
         $condition = "and checked='$checked'";
     } elseif ($keyword) {
-        $condition = "and title like '%$keyword%'";
+        $condition = "and instr(title, '$keyword')>0";
     }
 
     if ($perpage_num > 0) {

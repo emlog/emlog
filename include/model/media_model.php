@@ -26,7 +26,7 @@ class Media_Model
         $author = $uid ? 'AND author=' . $uid : '';
         $sort = $sid ? 'AND sortid=' . $sid : '';
         $date = $time_stamp ? 'AND addtime <= ' . $time_stamp : '';
-        $keywordCondition = $keyword ? 'AND (filename LIKE "%' . $keyword . '%" OR filepath LIKE "%' . $keyword . '%")' : '';
+        $keywordCondition = $keyword ? 'AND (instr(filename, "' . $keyword . '")>0 OR instr(filepath, "' . $keyword . '")>0)' : '';
         $limit = "LIMIT $startId, " . $perpage_count;
 
         $sql = "SELECT * FROM $this->table m LEFT JOIN $this->table_sort s ON m.sortid=s.id WHERE m.thumfor = 0 $author $sort $date $keywordCondition order by m.aid desc $limit";
@@ -43,7 +43,7 @@ class Media_Model
         $author = $uid ? 'AND author=' . $uid : '';
         $sort = $sid ? 'AND sortid=' . $sid : '';
         $date = $time_stamp ? 'AND addtime<=' . $time_stamp : '';
-        $keywordCondition = $keyword ? 'AND (filename LIKE "%' . $keyword . '%" OR filepath LIKE "%' . $keyword . '%")' : '';
+        $keywordCondition = $keyword ? 'AND (instr(filename, "' . $keyword . '")>0 OR instr(filepath, "' . $keyword . '")>0)' : '';
         $sql = "SELECT COUNT(*) AS count FROM $this->table WHERE thumfor = 0 $author $sort $date $keywordCondition";
         $res = $this->db->once_fetch_array($sql);
         return $res['count'];

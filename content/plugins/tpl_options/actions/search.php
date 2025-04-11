@@ -52,9 +52,9 @@ if ($action === 'tpl_select_search') {
         case 'page':
         {
             if (strstr($s_key, "'")) {
-                $sqlSegment = 'and title like "%{$s_key}%" order by date desc';
+                $sqlSegment = 'and instr(title, "'. $s_key .'")>0 order by date desc';
             } else {
-                $sqlSegment = "and title like '%{$s_key}%' order by date desc";
+                $sqlSegment = "and instr(title, '$s_key')>0 order by date desc";
             }
             $html = '';
             $_this_sql_type = $type == 'post' ? 'blog' : 'page';

@@ -22,7 +22,7 @@ if (empty($action)) {
 
     $condition = '';
     if ($keyword) {
-        $condition = "and title like '%$keyword%'";
+        $condition = "and instr(title, '$keyword')>0";
     }
 
     $orderBy = ' ORDER BY ';

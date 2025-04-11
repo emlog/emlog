@@ -24,10 +24,10 @@ class User_Model
     {
         $condition = $limit = '';
         if ($email) {
-            $condition = " and email like '$email%'";
+            $condition = " and instr(email, '$email')>0";
         }
         if ($nickname) {
-            $condition = " and nickname like '%$nickname%'";
+            $condition = " and instr(nickname, '$nickname')>0";
         }
         if ($page) {
             $startId = ($page - 1) * $perpage_num;
@@ -175,10 +175,10 @@ class User_Model
     {
         $condition = '';
         if ($email) {
-            $condition = " and email like '$email%'";
+            $condition = " and instr(email, '$email')>0";
         }
         if ($nickname) {
-            $condition = " and nickname like '%$nickname%'";
+            $condition = " and instr(nickname, '$nickname')>0";
         }
         $data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM $this->table where 1=1 $condition");
         return $data['total'];

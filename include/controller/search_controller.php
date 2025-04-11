@@ -21,9 +21,9 @@ class Search_Controller
         $sid = abs(Input::getIntVar('sid'));
         $pageurl = '';
 
-        $sqlSegment = "AND title LIKE '%$keyword%'";
+        $sqlSegment = "AND instr(title, '$keyword')>0";
         if ($isfullsearch === 'y') {
-            $sqlSegment = "AND (title LIKE '%$keyword%' OR excerpt LIKE '%$keyword%' OR content LIKE '%$keyword%')";
+            $sqlSegment = "AND (instr(title, '$keyword')>0 OR instr(excerpt, '$keyword')>0 OR instr(content, '$keyword')>0)";
         }
         if ($sid) {
             $sqlSegment .= " AND sortid=$sid";
