@@ -393,11 +393,11 @@ EOT;
 DROP TABLE IF EXISTS {$db_prefix}blog;
 CREATE TABLE {$db_prefix}blog (
     gid int(11) unsigned NOT NULL auto_increment COMMENT '文章表',
-    title varchar(255) NOT NULL default '' COMMENT '文章标题',
+    title varchar(512) NOT NULL default '' COMMENT '文章标题',
     date bigint(20) NOT NULL COMMENT '发布时间',
     content longtext NOT NULL  COMMENT '文章内容',
     excerpt longtext NOT NULL  COMMENT '文章摘要',
-    cover varchar(255) NOT NULL DEFAULT '' COMMENT '封面图',
+    cover varchar(2048) NOT NULL DEFAULT '' COMMENT '封面图',
     alias varchar(255) NOT NULL DEFAULT '' COMMENT '文章别名',
     author int(11) NOT NULL default '1' COMMENT '作者UID',
     sortid int(11) NOT NULL default '-1' COMMENT '分类ID',
@@ -414,7 +414,7 @@ CREATE TABLE {$db_prefix}blog (
     password varchar(255) NOT NULL default '' COMMENT '访问密码',
     template varchar(255) NOT NULL default '' COMMENT '模板',
     tags text COMMENT '标签',
-    link varchar(255) NOT NULL DEFAULT '' COMMENT '文章跳转链接',
+    link varchar(2048) NOT NULL DEFAULT '' COMMENT '文章跳转链接',
     feedback varchar(2048) NOT NULL DEFAULT '' COMMENT 'audit feedback',
     parent_id bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '文章层级关系-父级ID',
     PRIMARY KEY (gid),
@@ -491,8 +491,8 @@ CREATE TABLE {$db_prefix}like (
 )" . $table_charset_sql . "
 DROP TABLE IF EXISTS {$db_prefix}options;
 CREATE TABLE {$db_prefix}options (
-    option_id INT( 11 ) UNSIGNED NOT NULL auto_increment COMMENT '站点配置信息表',
-    option_name VARCHAR( 75 ) NOT NULL COMMENT '配置项',
+    option_id INT(11) UNSIGNED NOT NULL auto_increment COMMENT '站点配置信息表',
+    option_name VARCHAR(75) NOT NULL COMMENT '配置项',
     option_value LONGTEXT NOT NULL COMMENT '配置项值',
     PRIMARY KEY (option_id),
     UNIQUE KEY `option_name_uindex` (`option_name`)
