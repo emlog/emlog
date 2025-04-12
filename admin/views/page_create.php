@@ -83,8 +83,8 @@
 <!--资源库-->
 <div class="modal fade" id="mediaModal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header border-0">
                 <h5 class="modal-title" id="exampleModalLabel">资源媒体库</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -117,8 +117,8 @@
 <!-- 封面图裁剪 -->
 <div class="modal fade" id="modal" tabindex="-2" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" data-backdrop="static">
     <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header border-0">
                 <h5 class="modal-title">上传封面</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
@@ -136,7 +136,7 @@
             <div class="modal-footer justify-content-between">
                 <div>按住 Shift 等比例调整裁剪区域</div>
                 <div>
-                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">取消</button>
                     <button type="button" id="crop" class="btn btn-sm btn-success">保存</button>
                     <button type="button" id="use_original_image" class="btn btn-sm btn-google">使用原图</button>
                 </div>

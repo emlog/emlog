@@ -116,8 +116,8 @@
 </div>
 <div class="modal fade" id="appModal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header border-0">
                 <h5 class="modal-title" id="exampleModalLabel"></h5>
                 <div>
                     <a href="" class="modal-buy-url text-muted" target="_blank">去官网查看</a>

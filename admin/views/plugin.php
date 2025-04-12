@@ -133,7 +133,7 @@
 </div>
 
 <div class="modal fade" id="addModal">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog">
         <div class="modal-content border-0 shadow">
             <div class="modal-header border-0">
                 <h5 class="modal-title">安装插件</h5>
@@ -153,8 +153,8 @@
                     </small>
                 </div>
                 <div class="modal-footer border-0">
-                    <button type="button" class="btn btn-light" data-dismiss="modal">取消</button>
-                    <button type="submit" class="btn btn-success">上传安装</button>
+                    <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-sm btn-success">上传安装</button>
                 </div>
             </form>
         </div>

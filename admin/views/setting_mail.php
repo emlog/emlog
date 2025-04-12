@@ -51,8 +51,8 @@
             <!-- 设置接收邮箱的模态框 -->
             <div class="modal fade" id="testMail">
                 <div class="modal-dialog modal-sm">
-                    <div class="modal-content">
-                        <div class="modal-header">
+                    <div class="modal-content border-0 shadow">
+                        <div class="modal-header border-0">
                             <h4 class="modal-title">发送测试</h4>
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
@@ -61,7 +61,7 @@
                                 <input class="form-control" type="email" name="testTo" placeholder="输入接收邮箱">
                             </div>
                         </div>
-                        <div class="modal-footer">
+                        <div class="modal-footer border-0">
                             <div id="testMailMsg"></div>
                             <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">关闭</button>
                             <button type="button" class="btn btn-success btn-sm" id="testSendBtn">发送</button>

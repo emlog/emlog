@@ -143,8 +143,8 @@
     <?php endif ?>
     <div class="modal fade" id="update-modal" tabindex="-1" role="dialog" aria-labelledby="update-modal-label" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header border-0">
                     <h5 class="modal-title" id="update-modal-label">检查更新</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -161,8 +161,8 @@
     </div>
     <div class="modal fade" id="shortcutModal" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header border-0">
                     <h5 class="modal-title" id="shortcutModalLabel">快捷入口</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -177,8 +177,8 @@
                             <label class="mr-2" for="shortcut-<?= $k ?>"><?= $v['name'] ?></label>
                         <?php endforeach; ?>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
+                    <div class="modal-footer border-0">
+                        <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">取消</button>
                         <button type="submit" class="btn btn-sm btn-success">保存</button>
                     </div>
                 </form>

@@ -63,8 +63,8 @@
 
 <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" data-backdrop="static">
     <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header border-0">
                 <h5 class="modal-title">裁剪并上传</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
@@ -79,8 +79,8 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
+            <div class="modal-footer border-0">
+                <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">取消</button>
                 <button type="button" id="crop" class="btn btn-sm btn-success">保存</button>
                 <button type="button" id="use_original_image" class="btn btn-sm btn-primary">使用原图</button>
             </div>
@@ -90,8 +90,8 @@
 
 <div class="modal fade" id="editPasswordModal" tabindex="-1" role="dialog" aria-labelledby="editPasswordModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header border-0">
                 <h5 class="modal-title" id="exampleModalLabel">修改密码</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -108,9 +108,9 @@
                         <label>重复新的密码</label>
                         <input type="password" class="form-control" id="new_passwd2" name="new_passwd2" minlength="6" required>
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer border-0">
                         <input name="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
-                        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">取消</button>
                         <button type="submit" class="btn btn-sm btn-success">保存</button>
                     </div>
                 </form>
@@ -121,8 +121,8 @@
 
 <div class="modal fade" id="editEmailModal" tabindex="-1" role="dialog" aria-labelledby="editEmailModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header border-0">
                 <h5 class="modal-title" id="exampleModalLabel">修改邮箱</h5>
                 <span id="message" class="small ml-5"></span>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -141,9 +141,9 @@
                             <button class="btn btn-outline-success" type="button" id="button-send-auth-email">发送验证码</button>
                         </div>
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer border-0">
                         <input name="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
-                        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">取消</button>
                         <button type="submit" class="btn btn-sm btn-success">保存</button>
                     </div>
                 </form>
