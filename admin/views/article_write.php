@@ -6,7 +6,7 @@
         <div class="col-xl-9">
             <div id="post" class="form-group">
                 <div>
-                    <input type="text" name="title" id="title" value="<?= $title ?>" class="form-control" placeholder="标题" autofocus required />
+                    <input type="text" name="title" id="title" value="<?= $title ?>" class="form-control" maxlength="512" placeholder="标题" autofocus required />
                 </div>
                 <div class="small my-3">
                     <a href="#mediaModal" data-toggle="modal" data-target="#mediaModal"><i class="icofont-plus"></i>资源媒体库</a>
@@ -73,7 +73,7 @@
             <div class="shadow-sm p-3 bg-white rounded" id="post_side">
                 <div class="form-group">
                     <label>封面图：</label>
-                    <input name="cover" id="cover" class="form-control" placeholder="" value="<?= $cover ?>" />
+                    <input name="cover" id="cover" class="form-control" maxlength="2048" placeholder="" value="<?= $cover ?>" />
                     <small class="text-muted">填写封面图URL或点击下方上传</small>
                     <div class="row mt-3">
                         <div class="col-md-4">
@@ -163,7 +163,7 @@
                         </div>
                         <div class="form-group">
                             <label>跳转链接：</label>
-                            <input name="link" id="link" type="url" class="form-control" value="<?= $link ?>" placeholder="https://" />
+                            <input name="link" id="link" type="url" class="form-control" maxlength="2048" value="<?= $link ?>" placeholder="https://" />
                             <small class="text-muted">填写后不展示文章内容直接跳转该地址</small>
                         </div>
                         <div class="form-group">
