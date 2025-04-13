@@ -69,7 +69,7 @@
             </li>
             <?php if (User::isAdmin()): ?>
                 <li class="nav-item" id="menu_user">
-                    <a class="nav-link" href="user.php"><i class="icofont-user"></i><span>用户</span></a>
+                    <a class="nav-link" data-pjax="true" href="user.php"><i class="icofont-user"></i><span>用户</span></a>
                 </li>
                 <li class="nav-item" id="menu_category_view">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_view" aria-expanded="true" aria-controls="menu_view">
