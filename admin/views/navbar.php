@@ -230,7 +230,7 @@
                             <button type="submit" class="btn btn-sm btn-success">保存</button>
                         </div>
                     <?php else: ?>
-                        <div class="alert alert-info">
+                        <div>
                             还没有分类，<a href="sort.php">新建分类</a>
                         </div>
                     <?php endif ?>
@@ -267,7 +267,7 @@
                             <button type="submit" class="btn btn-sm btn-success">保存</button>
                         </div>
                     <?php else: ?>
-                        <div class="alert alert-info">
+                        <div>
                             还没有页面，<a href="page.php?action=new">新建页面</a>
                         </div>
                     <?php endif ?>
