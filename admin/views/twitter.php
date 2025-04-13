@@ -104,6 +104,10 @@
         initPageScripts();
     });
 
+    function closePageScripts() {
+        $("#menu_twitter").removeClass('active');
+    }
+
     function initPageScripts() {
         var cssLink = document.createElement('link');
         cssLink.rel = 'stylesheet';

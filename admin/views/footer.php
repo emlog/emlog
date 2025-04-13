@@ -94,6 +94,9 @@
         $(document).on('pjax:success', function() {
             initPageScripts();
         });
+        $(document).on('pjax:beforeSend', function() {
+            closePageScripts();
+        });
 
         // 时间选择控件
         $.timepicker.regional['zh-CN'] = {
