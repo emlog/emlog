@@ -16,7 +16,7 @@
         <div>
             <a href="media.php" class="btn btn-sm btn-primary mr-2 my-1">全部资源</a>
             <?php foreach ($sorts as $key => $val):
-                $cur_tab = $val['id'] == $sid ? "btn-info" : "btn-success";
+                $cur_tab = $val['id'] == $sid ? "btn-primary" : "btn-success";
             ?>
                 <div class="btn-group mr-2 my-1">
                     <a href="media.php?sid=<?= $val['id'] ?>" class="btn btn-sm <?= $cur_tab ?>"><?= $val['sortname'] ?></a>
@@ -27,7 +27,10 @@
                     </div>
                 </div>
             <?php endforeach ?>
-            <a href="#" class="btn btn-success btn-sm my-1" data-toggle="modal" data-target="#mediaSortModal"><i class="icofont-plus"></i> 分类</a>
+            <?php if ($sorts): ?>
+                <a href="media.php?sid=na" class="btn btn-sm <?= $sid === 'na' ? "btn-primary" : "btn-light" ?> mr-2 my-1">未分类</a>
+            <?php endif ?>
+            <a href="#" class="btn btn-light btn-sm my-1" data-toggle="modal" data-target="#mediaSortModal"><i class="icofont-plus"></i> 分类</a>
         </div>
         <div class="d-flex align-items-center mb-3 mb-sm-0">
             <div class="mr-2">

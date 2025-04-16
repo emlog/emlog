@@ -24,7 +24,14 @@ class Media_Model
     {
         $startId = ($page - 1) * $perpage_count;
         $author = $uid ? 'AND author=' . $uid : '';
-        $sort = $sid ? 'AND sortid=' . $sid : '';
+
+        if ($sid === 'na') {
+            $sort = 'AND sortid=0';
+        } else {
+            $sid = (int)$sid;
+            $sort = $sid ? 'AND sortid=' . $sid : '';
+        }
+
         $date = $time_stamp ? 'AND addtime <= ' . $time_stamp : '';
         $keywordCondition = $keyword ? 'AND (filename LIKE "%' . $keyword . '%" OR filepath LIKE "%' . $keyword . '%")' : '';
         $limit = "LIMIT $startId, " . $perpage_count;
@@ -38,10 +45,15 @@ class Media_Model
         return $medias;
     }
 
-    function getMediaCount($uid = null, $sid = null, $time_stamp = '', $keyword = '')
+    function getMediaCount($uid = 0, $sid = 0, $time_stamp = '', $keyword = '')
     {
+        if ($sid === 'na') {
+            $sort = 'AND sortid=0';
+        } else {
+            $sid = (int)$sid;
+            $sort = $sid ? 'AND sortid=' . $sid : '';
+        }
         $author = $uid ? 'AND author=' . $uid : '';
-        $sort = $sid ? 'AND sortid=' . $sid : '';
         $date = $time_stamp ? 'AND addtime<=' . $time_stamp : '';
         $keywordCondition = $keyword ? 'AND (filename LIKE "%' . $keyword . '%" OR filepath LIKE "%' . $keyword . '%")' : '';
         $sql = "SELECT COUNT(*) AS count FROM $this->table WHERE thumfor = 0 $author $sort $date $keywordCondition";
