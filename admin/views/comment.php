@@ -192,6 +192,8 @@
         $("#menu_cm").addClass('active');
         setTimeout(hideActived, 3600);
 
+        initCheckboxSelectAll('#checkAllItem', '.checkboxContainer');
+
         $('#replyModal').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget)
             var comment = button.data('comment')

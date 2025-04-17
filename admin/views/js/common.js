@@ -590,35 +590,32 @@ function toggleCheckbox(id) {
     localStorage.setItem(id, isChecked);
 }
 
-$(function () {
-    // 设置界面: 自动检测站点地址 如果设置“自动检测地址”，则设置 input 为只读，以表示该项是无效的
-    if ($("#detect_url").prop("checked")) {
-        $("[name=blogurl]").attr("readonly", "readonly")
-    }
-    $("#detect_url").click(function () {
-        if ($(this).prop("checked")) {
-            $("[name=blogurl]").attr("readonly", "readonly")
-        } else {
-            $("[name=blogurl]").removeAttr("readonly")
-        }
-    })
-
-    // 复选框全选
-    $('#checkAllItem').click(function () {
-        let cardCheckboxes = $('.checkboxContainer').find('input[type=checkbox]');
+/**
+ * 封装复选框全选逻辑
+ * @param {string} checkAllSelector 全选按钮选择器
+ * @param {string} containerSelector 复选框容器选择器
+ */
+function initCheckboxSelectAll(checkAllSelector, containerSelector) {
+    $(checkAllSelector).click(function () {
+        let cardCheckboxes = $(containerSelector).find('input[type=checkbox]');
         cardCheckboxes.prop('checked', $(this).prop('checked'));
     });
 
-    $('.checkboxContainer').find('input[type=checkbox]').click(function () {
+    $(containerSelector).find('input[type=checkbox]').click(function () {
         let allChecked = true;
-        $('.checkboxContainer').find('input[type=checkbox]').each(function () {
+        $(containerSelector).find('input[type=checkbox]').each(function () {
             if (!$(this).prop('checked')) {
                 allChecked = false;
                 return false;
             }
         });
-        $('#checkAllItem').prop('checked', allChecked);
+        $(checkAllSelector).prop('checked', allChecked);
     });
+}
+
+$(function () {
+    // 复选框全选
+    initCheckboxSelectAll('#checkAllItem', '.checkboxContainer');
 
     // 应用商店：应用安装
     $('.installBtn').click(function (e) {

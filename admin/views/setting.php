@@ -139,5 +139,17 @@
             event.preventDefault();
             submitForm("#setting_form");
         });
+
+        // 设置界面: 自动检测站点地址 如果设置“自动检测地址”，则设置 input 为只读，以表示该项是无效的
+        if ($("#detect_url").prop("checked")) {
+            $("[name=blogurl]").attr("readonly", "readonly")
+        }
+        $("#detect_url").click(function() {
+            if ($(this).prop("checked")) {
+                $("[name=blogurl]").attr("readonly", "readonly")
+            } else {
+                $("[name=blogurl]").removeAttr("readonly")
+            }
+        })
     });
 </script>
