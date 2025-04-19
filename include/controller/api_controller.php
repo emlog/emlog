@@ -207,7 +207,6 @@ class Api_Controller
         $keyword = htmlspecialchars($keyword);
         $keyword = str_replace(['%', '_'], ['\%', '\_'], $keyword);
         $tag = Input::getStrVar('tag');
-        $tag = urldecode($tag);
         $order = Input::getStrVar('order');
 
         $sub = '';
