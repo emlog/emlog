@@ -11,7 +11,7 @@ class LoginAuth
 
     const LOGIN_ERROR_USER = -1;
     const LOGIN_ERROR_PASSWD = -2;
-
+    const LOGIN_ERROR_FORBID = -3;
 
     public static function isLogin()
     {
@@ -62,6 +62,10 @@ class LoginAuth
             return self::LOGIN_ERROR_USER;
         }
         $hash = $userData['password'];
+        $state = $userData['state'];
+        if ($state === User::USER_STATE_FORBID) {
+            return self::LOGIN_ERROR_FORBID;
+        }
         if (true === self::checkPassword($password, $hash)) {
             return $userData['uid'];
         }
@@ -70,30 +74,8 @@ class LoginAuth
 
     public static function getUserDataByLogin($account)
     {
-        $DB = Database::getInstance();
-        if (empty($account)) {
-            return false;
-        }
-        $ret = $DB->once_fetch_array("SELECT * FROM " . DB_PREFIX . "user WHERE username = '$account' AND state = 0");
-        if (!$ret) {
-            $ret = $DB->once_fetch_array("SELECT * FROM " . DB_PREFIX . "user WHERE email = '$account'  AND state = 0");
-            if (!$ret) {
-                return false;
-            }
-        }
-        $userData['nickname'] = htmlspecialchars($ret['nickname']);
-        $userData['username'] = htmlspecialchars($ret['username']);
-        $userData['password'] = $ret['password'];
-        $userData['uid'] = $ret['uid'];
-        $userData['role'] = $ret['role'];
-        $userData['photo'] = $ret['photo'];
-        $userData['email'] = $ret['email'];
-        $userData['description'] = $ret['description'];
-        $userData['ip'] = $ret['ip'];
-        $userData['credits'] = (int)$ret['credits'];
-        $userData['create_time'] = $ret['create_time'];
-        $userData['update_time'] = $ret['update_time'];
-        return $userData;
+        $User_Model = new User_Model();
+        return $User_Model->getUserDataByLogin($account);
     }
 
     public static function checkPassword($password, $hash)
@@ -154,11 +136,15 @@ class LoginAuth
             return false;
         }
 
-        $user = self::getUserDataByLogin($username);
-        if (!$user) {
+        $userData = self::getUserDataByLogin($username);
+        if (!$userData) {
             return false;
         }
-        return $user;
+        $state = isset($userData['state']) ? $userData['state'] : 0;
+        if ($state !== User::USER_STATE_NORMAL) {
+            return false;
+        }
+        return $userData;
     }
 
     public static function genToken()

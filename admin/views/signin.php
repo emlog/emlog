@@ -17,6 +17,8 @@
                                 <div class="alert alert-danger">验证错误，请重新输入</div><?php endif ?>
                             <?php if (isset($_GET['err_login'])): ?>
                                 <div class="alert alert-danger">用户或密码错误，请重新输入</div><?php endif ?>
+                            <?php if (isset($_GET['err_forbid'])): ?>
+                                <div class="alert alert-danger">账号已被停用</div><?php endif ?>
                             <form method="post" class="user" action="./account.php?action=dosignin&s=<?= $admin_path_code ?>">
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" id="user" name="user" aria-describedby="emailHelp" placeholder="用户名\邮箱"

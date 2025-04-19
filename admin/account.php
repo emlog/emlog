@@ -19,6 +19,7 @@ $action = Input::getStrVar('action');
 $admin_path_code = Input::getStrVar('s', '');
 $User_Model = new User_Model();
 
+// 登录页面
 if ($action == 'signin') {
     loginAuth::checkLogged();
     if (defined('ADMIN_PATH_CODE') && $admin_path_code !== ADMIN_PATH_CODE) {
@@ -33,6 +34,7 @@ if ($action == 'signin') {
     View::output();
 }
 
+// 登录验证
 if ($action == 'dosignin') {
     loginAuth::checkLogged();
     if (defined('ADMIN_PATH_CODE') && $admin_path_code !== ADMIN_PATH_CODE) {
@@ -71,9 +73,17 @@ if ($action == 'dosignin') {
             }
             emDirect("./account.php?action=signin&err_login=1");
             break;
+        case LoginAuth::LOGIN_ERROR_FORBID:
+            doAction('login_fail');
+            if ($resp === 'json') {
+                Output::error('账号已被停用');
+            }
+            emDirect("./account.php?action=signin&err_forbid=1");
+            break;
     }
 }
 
+// 注册页面
 if ($action == 'signup') {
     loginAuth::checkLogged();
     $login_code = Option::get('login_code') === 'y';
@@ -90,6 +100,7 @@ if ($action == 'signup') {
     View::output();
 }
 
+// 注册验证
 if ($action == 'dosignup') {
     loginAuth::checkLogged();
 

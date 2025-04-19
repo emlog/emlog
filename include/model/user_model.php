@@ -82,6 +82,34 @@ class User_Model
         return $row;
     }
 
+    public function getUserDataByLogin($account)
+    {
+        if (empty($account)) {
+            return false;
+        }
+        $ret = $this->db->once_fetch_array("SELECT * FROM " . DB_PREFIX . "user WHERE username = '$account'");
+        if (!$ret) {
+            $ret = $this->db->once_fetch_array("SELECT * FROM " . DB_PREFIX . "user WHERE email = '$account'");
+            if (!$ret) {
+                return false;
+            }
+        }
+        $userData['nickname'] = htmlspecialchars($ret['nickname']);
+        $userData['username'] = htmlspecialchars($ret['username']);
+        $userData['password'] = $ret['password'];
+        $userData['uid'] = $ret['uid'];
+        $userData['role'] = $ret['role'];
+        $userData['photo'] = $ret['photo'];
+        $userData['email'] = $ret['email'];
+        $userData['description'] = $ret['description'];
+        $userData['ip'] = $ret['ip'];
+        $userData['credits'] = (int)$ret['credits'];
+        $userData['create_time'] = $ret['create_time'];
+        $userData['update_time'] = $ret['update_time'];
+        $userData['state'] = (int)$ret['state'];
+        return $userData;
+    }
+
     public function updateUser($userData, $uid)
     {
         $uid = (int)$uid;
