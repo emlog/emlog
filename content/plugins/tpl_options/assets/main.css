@@ -355,20 +355,6 @@ span.tpl-options-setting:hover {
     height: 16px;
 }
 
-.upico:before {
-    font-family: 'IcoFont' !important;
-    content: '\eaa1';
-    font-size: 1.333rem;
-    color: #333;
-}
-
-.downico:before {
-    font-family: 'IcoFont' !important;
-    content: '\ea99';
-    font-size: 1.333rem;
-    color: #333;
-}
-
 .tpl-system {
     font-size: 16px;
     color: #333;
@@ -1194,7 +1180,7 @@ span.tpl-options-setting:hover {
     background-color: #181a1d;
 }
 
-.dark-theme .upico:before, .dark-theme .downico:before {
+.dark-theme, .dark-theme {
     color: #eee;
 }
 

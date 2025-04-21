@@ -879,7 +879,6 @@ class TplOptions
             $tip = '<small class="new-tip">' . trim($option['new']) . '</small>';
         }
         echo '<div class="option ' . @$option['labels'] . '" id="' . $option['id'] . '">';
-        echo '<div class="option-ico upico"></div>';
         echo '<div class="option-name" title="单击展开收缩设置内容" data-name="' . $this->encode($option['name']) . '" data-id="' . $option['id'] . '">', $this->encode($option['name']) . $tip, $desc, '</div>';
         $depend = isset($option['depend']) ? $option['depend'] : 'none';
         echo sprintf('<div class="option-body depend-%s %s">', $depend, $is_multi);

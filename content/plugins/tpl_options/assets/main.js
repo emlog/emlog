@@ -68,33 +68,12 @@ $(function () {
         document.getElementsByClassName("container-fluid")[0].children[0].style.cssText = 'display:flex !important';
         $('.container-fluid .row').fadeToggle();
         optionArea.slideUp(500), tplBox.show();
-    }).on('click', '.option-name', function () {
-        $(this).find('.option-description').fadeToggle();
-        $(this).parent().find('.option-body').fadeToggle();
-        if ($(this).parent().find('.option-ico').hasClass('upico')) {
-            $(this).parent().find('.option-ico').removeClass('upico').addClass('downico');
-        } else {
-            $(this).parent().find('.option-ico').removeClass('downico').addClass('upico');
-        }
-
     }).on('click', '.tpl-options-menu li', function () {
         //$('html,body').animate({scrollTop:$('#'+$(this).attr('data-id')).offset().top-80}, 500);
     }).on('click', '.vtpl-menu,.vtpl-nav.show ul li,.fixed-body', function () {
         $('.vtpl-nav').toggleClass('show')
     }).on('click', '.tpl-options-menubtn', function () {
         $('.tpl-options-menu').fadeToggle();
-    }).on('click', '.tpl-options-btns', function () {
-        if ($(this).attr('data-type') == 1) {
-            $(this).text('全部展开').attr('data-type', 0);
-            $('.option-body').fadeOut();
-            $('.option-description').fadeOut();
-            $('.option-ico').removeClass('upico').addClass('downico');
-        } else {
-            $(this).text('全部收缩').attr('data-type', 1);
-            $('.option-body').fadeIn();
-            $('.option-description').fadeIn();
-            $('.option-ico').removeClass('downico').addClass('upico');
-        }
     }).on('click', '.option-sort-tag-name', function () {
         var that = $(this);
         if (that.is('.selected')) {

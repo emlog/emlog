@@ -18,7 +18,6 @@ $is_has_menu = array_key_exists('TplOptionsNavi', $tplget);
                         <?php if ($is_has_menu): ?>
                             <input type="submit" class="button vtpl-menu none" value="菜单">
                         <?php endif; ?>
-                        <span class="button vtpl-collapse-section tpl-options-btns" data-type="1">全部收缩</span>
                     </div>
                 </div>
                 <div class="clear"></div>
@@ -41,7 +40,7 @@ $is_has_menu = array_key_exists('TplOptionsNavi', $tplget);
                         if ($tplnavi_icons) {
                             $icom_html = trim($tplnavi_icons[$key]) ? '<i class="' . $tplnavi_icons[$key] . ' ri-lg"></i>' : '';
                         }
-                        ?>
+                    ?>
                         <li onClick="TplShow('<?= $key; ?>')"><?= $icom_html . $v; ?></li>
                     <?php endforeach; ?>
                 </ul>
