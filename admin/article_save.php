@@ -51,7 +51,7 @@ if (empty($excerpt) && $auto_excerpt === 'y') {
 }
 
 // 自动提取封面
-if (empty($cover) && $auto_cover === 'y') {
+if ($content && empty($cover) && $auto_cover === 'y') {
     $cover = getFirstImage($content);
 }
 
