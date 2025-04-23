@@ -295,9 +295,7 @@ class Api_Controller
             Output::error('Wrong password');
         }
 
-        $user_info = $this->User_Model->getOneUser($r['author']);
-        $author_name = isset($user_info['nickname']) ? $user_info['nickname'] : '';
-        $author_avatar = isset($user_info['photo']) ? getFileUrl($user_info['photo']) : '';
+        $author = $this->getAuthor($r['author']);
 
         $article = [
             'title'         => $r['log_title'],
@@ -307,8 +305,8 @@ class Api_Controller
             'sort_name'     => isset($sort_cache[$r['sortid']]['sortname']) ? $sort_cache[$r['sortid']]['sortname'] : '',
             'type'          => $r['type'],
             'author_id'     => (int)$r['author'],
-            'author_name'   => $author_name,
-            'author_avatar' => $author_avatar,
+            'author_name'   => $author['nickname'],
+            'author_avatar' => $author['avatar'],
             'content'       => $r['log_content'],
             'content_raw'   => $r['content_raw'],
             'excerpt'       => $r['excerpt'],
