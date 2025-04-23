@@ -68,10 +68,14 @@
                     <?php endif; ?>
                 </div>
                 <div class="form-group">
-                    <input type="checkbox" value="y" name="allow_remark" id="allow_remark" <?= $is_allow_remark ?> />
-                    <label for="allow_remark">允许评论</label><br>
-                    <input type="checkbox" value="y" name="home_page" id="home_page" <?= $is_home_page ?> />
-                    <label for="home_page">设为首页</label>
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="allow_remark" name="allow_remark" value="y" <?= $is_allow_remark ?>>
+                        <label class="custom-control-label" for="allow_remark">允许评论</label>
+                    </div>
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="home_page" name="home_page" value="y" <?= $is_home_page ?>>
+                        <label class="custom-control-label" for="home_page">设为首页</label>
+                    </div>
                 </div>
                 <div id="page_side_ext">
                     <?php doAction('adm_write_page_side') ?>
