@@ -40,8 +40,8 @@ $auto_cover = Input::postStrVar('auto_cover', 'n');
 $field_keys = Input::postStrArray('field_keys');
 $field_values = Input::postStrArray('field_values');
 
-// 自动提取摘要
-if ($auto_excerpt === 'y') {
+// 自动截取摘要
+if (empty($excerpt) && $auto_excerpt === 'y') {
     $origContent = trim($_POST['logcontent']);
     $parseDown = new Parsedown();
     $excerpt = $parseDown->text($origContent);
