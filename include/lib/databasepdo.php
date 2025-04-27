@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PDO Database Connection
  *
@@ -6,7 +7,8 @@
  * @link https://www.emlog.net
  */
 
-class DatabasePDO {
+class DatabasePDO
+{
     /**
      * 内部实例对象
      * @var object DatabasePDO
@@ -36,7 +38,8 @@ class DatabasePDO {
      */
     private $dbType;
 
-    private function __construct($dbType = 'mysql') {
+    private function __construct($dbType = 'mysql')
+    {
         if (!class_exists('PDO')) {
             emMsg('服务器空间PHP不支持PDO函数');
         }
@@ -64,7 +67,8 @@ class DatabasePDO {
     /**
      * 静态方法，返回数据库连接实例
      */
-    public static function getInstance($dbType = 'mysql') {
+    public static function getInstance($dbType = 'mysql')
+    {
         if (self::$instance === null) {
             self::$instance = new DatabasePDO($dbType);
         }
@@ -75,7 +79,8 @@ class DatabasePDO {
     /**
      * 关闭数据库连接
      */
-    function close() {
+    function close()
+    {
         if (!is_null($this->conn)) {
             $this->conn = null;
         }
@@ -84,7 +89,8 @@ class DatabasePDO {
     /**
      * 发送查询语句
      */
-    function query($sql, $ignore_err = FALSE) {
+    function query($sql, $ignore_err = FALSE)
+    {
         try {
             $this->result = $this->conn->query($sql);
             $this->queryCount++;
@@ -104,14 +110,16 @@ class DatabasePDO {
     /**
      * 从结果集中取得一行作为关联数组/数字索引数组
      */
-    function fetch_array($query, $type = PDO::FETCH_ASSOC) {
+    function fetch_array($query, $type = PDO::FETCH_ASSOC)
+    {
         return $query->fetch($type);
     }
 
     /**
      * 从结果集中取得一行作为关联数组/数字索引数组
      */
-    public function fetch_all($sql, $fetchMode = MYSQLI_ASSOC) {
+    public function fetch_all($sql, $fetchMode = MYSQLI_ASSOC)
+    {
         $this->result = $this->query($sql);
         $data = [];
         while ($row = $this->fetch_array($this->result, $fetchMode)) {
@@ -121,11 +129,12 @@ class DatabasePDO {
     }
 
     /**
-     * 从结果级中取一行
+     * 从结果集中取一行
      * @param $sql
      * @return mixed
      */
-    function once_fetch_array($sql) {
+    function once_fetch_array($sql)
+    {
         try {
             $result = $this->conn->query($sql);
             $resultDb = $result->fetchAll(PDO::FETCH_ASSOC);
@@ -138,14 +147,16 @@ class DatabasePDO {
     /**
      * 从结果集中取得一行作为数字索引数组
      */
-    function fetch_row($query) {
+    function fetch_row($query)
+    {
         return $query->rowCount();
     }
 
     /**
      * 取得行的数目
      */
-    function num_rows($query) {
+    function num_rows($query)
+    {
         $rows = $query->fetch(PDO::FETCH_NUM);
         return isset($rows[0]) ? $rows[0] : 0;
     }
@@ -153,35 +164,40 @@ class DatabasePDO {
     /**
      * 取得结果集中字段的数目
      */
-    function num_fields($query) {
+    function num_fields($query)
+    {
         return $query->fetchColumn();
     }
 
     /**
      * 取得上一步 INSERT 操作产生的 ID
      */
-    function insert_id() {
+    function insert_id()
+    {
         return $this->conn->lastInsertId();
     }
 
     /**
      * 获取错误信息
      */
-    function geterror() {
+    function geterror()
+    {
         return $this->conn->errorInfo();
     }
 
     /**
      * 获取错误编码
      */
-    function geterrno() {
+    function geterrno()
+    {
         return $this->conn->errorCode();
     }
 
     /**
      * Get number of affected rows in previous MySQL operation
      */
-    function affected_rows() {
+    function affected_rows()
+    {
         if ($this->result) {
             return $this->result->rowCount();
         }
@@ -191,21 +207,24 @@ class DatabasePDO {
     /**
      * 取得数据库版本信息
      */
-    function getVersion() {
+    function getVersion()
+    {
         return $this->conn->query('select version()')->fetchColumn();
     }
 
     /**
      * 取得数据库查询次数
      */
-    function getQueryCount() {
+    function getQueryCount()
+    {
         return $this->queryCount;
     }
 
     /**
      * Escapes special characters
      */
-    function escape_string($sql) {
+    function escape_string($sql)
+    {
         return trim($sql);
     }
 }
