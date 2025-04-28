@@ -155,6 +155,10 @@
         })
 
         // AI Chat
+        $('#aiChatModal').on('shown.bs.modal', function() {
+            $('#chat-input').focus();
+        });
+
         $('#chat-form').submit(function(event) {
             event.preventDefault();
             var message = $('#chat-input').val().trim();

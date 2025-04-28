@@ -205,6 +205,10 @@
             modal.find('.modal-body #hide').val(hide)
         })
 
+        $('#replyModal').on('shown.bs.modal', function() {
+            $('#reply').focus();
+        });
+
         // AI 生成评论回复
         $('#ai_button_reply').click(function() {
             var $button = $(this);
