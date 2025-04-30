@@ -31,7 +31,7 @@ if (empty($action)) {
     $keyword = Input::getStrVar('keyword');
     $checked = Input::getStrVar('checked');
     $order = Input::getStrVar('order');
-    $perpage_num = Input::getStrVar('perpage_num');
+    $perpage_num = Input::getIntVar('perpage_num');
 
     $condition = '';
     if ($tagId) {

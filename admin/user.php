@@ -19,7 +19,7 @@ if (empty($action)) {
     $page = Input::getIntVar('page', 1);
     $keyword = Input::getStrVar('keyword');
     $order = Input::getStrVar('order');
-    $perpage_num = Input::getStrVar('perpage_num');
+    $perpage_num = Input::getIntVar('perpage_num');
 
     $email = $nickname = '';
     if (filter_var($keyword, FILTER_VALIDATE_EMAIL)) {

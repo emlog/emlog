@@ -19,7 +19,7 @@ $Media_Model = new Media_Model();
 $MediaSortModel = new MediaSort_Model();
 
 if (empty($action)) {
-    $sid = Input::getStrVar('sid');
+    $sid = Input::getIntVar('sid');
     $page = Input::getIntVar('page', 1);
     $date = Input::getStrVar('date');
     $uid = Input::getIntVar('uid');

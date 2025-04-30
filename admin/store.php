@@ -49,7 +49,7 @@ if (empty($action)) {
     $page = Input::getIntVar('page', 1);
     $keyword = Input::getStrVar('keyword');
     $author_id = Input::getStrVar('author_id');
-    $sid = Input::getStrVar('sid');
+    $sid = Input::getIntVar('sid');
 
     $r = $Store_Model->getApps($tag, $keyword, $page, $author_id, $sid);
     $apps = $r['apps'];
@@ -83,7 +83,7 @@ if ($action === 'tpl') {
     $page = Input::getIntVar('page', 1);
     $keyword = Input::getStrVar('keyword');
     $author_id = Input::getStrVar('author_id');
-    $sid = Input::getStrVar('sid');
+    $sid = Input::getIntVar('sid');
 
     $r = $Store_Model->getTemplates($tag, $keyword, $page, $author_id, $sid);
     $templates = $r['templates'];

@@ -21,7 +21,7 @@ if (!$action) {
     $uid = Input::getIntVar('uid');
     $hide = Input::getStrVar('hide');
     $page = Input::getIntVar('page', 1);
-    $perpage_num = Input::getStrVar('perpage_num');
+    $perpage_num = Input::getIntVar('perpage_num');
 
     $addUrl_0 = $uid ? "uid=$uid&" : '';
     $addUrl_1 = $blogId ? "gid=$blogId&" : '';
