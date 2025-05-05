@@ -164,7 +164,7 @@
                     </div>
                     <div class="form-group">
                         <label for="title">标题（用于分类页的 title）</label>
-                        <textarea name="title" id="title" type="text" class="form-control"></textarea>
+                        <input class="form-control" id="title" name="title">
                         <small class="form-text text-muted">支持变量: {{site_title}}, {{site_name}}, {{sort_name}}</small>
                     </div>
                     <div class="form-group">
@@ -173,7 +173,7 @@
                     </div>
                     <div class="form-group">
                         <label for="kw">关键词（用于分类页的 keywords，英文逗号分割）</label>
-                        <textarea name="kw" id="kw" type="text" class="form-control"></textarea>
+                        <input class="form-control" id="kw" name="kw">
                     </div>
                     <div class="form-group">
                         <label for="template">分类模板</label>
