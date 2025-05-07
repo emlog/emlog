@@ -111,7 +111,8 @@ class Cache
 
         if ($cacheData = file_get_contents($cacheFile)) {
             clearstatcache();
-            $this->{$cacheProperty} = unserialize(str_replace("<?php exit;//", '', $cacheData));
+            $prefixLen = 13; // Length of "<?php exit;//"
+            $this->{$cacheProperty} = unserialize(substr($cacheData, $prefixLen));
             return $this->{$cacheProperty};
         }
     }
