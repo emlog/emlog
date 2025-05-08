@@ -176,25 +176,23 @@
                         <input class="form-control" id="kw" name="kw">
                     </div>
                     <div class="form-group">
-                        <label for="template">分类模板</label>
-                        <?php if ($customTemplates):
+                        <label>每页显示文章数量</label>
+                        <input class="form-control" value="" name="page_count" id="page_count" type="number" min="0" />
+                        <small class="form-text text-muted">为0则使用全局设置</small>
+                    </div>
+                    <?php if ($customTemplates): ?>
+                        <div class="form-group">
+                            <label for="template">分类模板</label>
+                            <?php
                             $sortListHtml = '<option value="">默认</option>';
                             foreach ($customTemplates as $v) {
                                 $sortListHtml .= '<option value="' . str_replace('.php', '', $v['filename']) . '">' . ($v['comment']) . '</option>';
                             }
-                        ?>
+                            ?>
                             <select id="template" name="template" class="form-control"><?= $sortListHtml; ?></select>
                             <small class="form-text text-muted">(选择当前模板支持的分类模板)</small>
-                        <?php else: ?>
-                            <input class="form-control" id="template" name="template">
-                            <small class="form-text text-muted">(用于自定义分类页面模板，对应模板目录下xxx.php文件，xxx即为模板名)</small>
-                        <?php endif; ?>
-                    </div>
-                    <div class="form-group">
-                        <label>每页显示文章数量</label>
-                        <input class="form-control" value="<?= $sort_lognum ?>" name="page_count" id="page_count" type="number" min="0" />
-                        <small class="form-text text-muted">为0则使用全局设置</small>
-                    </div>
+                        </div>
+                    <?php endif; ?>
                     <?php doAction('adm_sort_add') ?>
                 </div>
                 <div class="modal-footer border-0">
