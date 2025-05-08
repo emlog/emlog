@@ -24,7 +24,6 @@ $(function () {
         action: tplOptions.uploadUrl, target: 'upload-image', enctype: 'multipart/form-data', method: 'post'
     });
     //插入设置按钮
-    console.log(tplOptions);
     for (var tpl of Object.keys(tplOptions.templates)) {
         var templateCards = document.querySelectorAll('.card[data-app-alias]');
         templateCards.forEach(function(card) {

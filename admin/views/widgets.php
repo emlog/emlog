@@ -400,7 +400,6 @@
             widget_element += "<input type=\"hidden\" name=\"widgets[]\" value=\"" + widget_id + "\" />";
             widget_element += "</div></div>";
             widget_element += "</div>";
-            // console.log("The title %s, id: s%", title, widget_id);
             $(".adm_widget_box").append(widget_element);
             $(this).hide();
             $(this).next(".widget-act-del").show();

@@ -314,8 +314,6 @@
 
     // 显示插件扩展label
     const postBar = $("#post_bar");
-    var a = postBar.children()
-    console.log(a)
     if (postBar.children().length === 0) {
         $("#post_bar_label").hide();
     }
