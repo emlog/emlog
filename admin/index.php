@@ -22,6 +22,16 @@ if (empty($action)) {
     $server_app = $_SERVER['SERVER_SOFTWARE'];
     $DB = Database::getInstance();
     $mysql_ver = $DB->getVersion();
+    // 检测数据库驱动类型
+    $db_driver = '';
+    if ($DB instanceof MySqlii) {
+        $db_driver = 'MySqli';
+    } elseif ($DB instanceof DatabasePDO) {
+        $db_driver = 'PDO';
+    }
+    if ($db_driver) {
+        $mysql_ver .= ' (' . $db_driver . ')';
+    }
     $max_execution_time = ini_get('max_execution_time') ?: '';
     $max_upload_size = ini_get('upload_max_filesize') ?: '';
     $php_ver = PHP_VERSION . ', ' . $max_execution_time . 's,' . $max_upload_size;

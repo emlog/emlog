@@ -118,11 +118,16 @@ class DatabasePDO
     /**
      * 从结果集中取得一行作为关联数组/数字索引数组
      */
-    public function fetch_all($sql, $fetchMode = MYSQLI_ASSOC)
+    public function fetch_all($sql, $fetchMode = PDO::FETCH_ASSOC)
     {
-        $this->result = $this->query($sql);
+        $statement = $this->query($sql);
+
+        if (!$statement instanceof \PDOStatement) {
+            return [];
+        }
+
         $data = [];
-        while ($row = $this->fetch_array($this->result, $fetchMode)) {
+        while ($row = $this->fetch_array($statement, $fetchMode)) {
             $data[] = $row;
         }
         return $data;
