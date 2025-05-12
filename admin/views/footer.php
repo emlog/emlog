@@ -62,6 +62,29 @@
         </div>
     </div>
 </div>
+<!-- Shortcut Modal -->
+<div class="modal fade" id="shortcutModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header border-0">
+                <h5 class="modal-title" id="shortcutModalLabel">快捷入口</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="index.php?action=add_shortcut" method="post">
+                <div class="modal-body" id="shortcutModalBody">
+                    <p class="text-center">正在加载...</p>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-sm btn-success">保存</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
 </div>
 </div>
 <?php doAction('adm_footer') ?>
@@ -210,6 +233,49 @@
                 $sendBtn.prop('disabled', false).text('发送');
                 eventSource.close();
             };
+        });
+
+        // Handle shortcut modal AJAX loading
+        $('#shortcutModal').on('show.bs.modal', function(event) {
+            const modalBody = $('#shortcutModalBody');
+            modalBody.html('<p class="text-center">正在加载...</p>');
+            const currentShortcuts = <?php echo json_encode($shortcut); ?>;
+            $.ajax({
+                url: 'index.php?action=get_all_shortcuts',
+                type: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    if (!response.code && response.data) {
+                        modalBody.empty();
+                        if (!response.data.length) {
+                            modalBody.html('<p class="text-center">没有可用的快捷方式。</p>');
+                            return;
+                        }
+                        response.data.forEach((item, index) => {
+                            const isChecked = currentShortcuts.some(s =>
+                                s.name === item.name && s.url === item.url
+                            );
+                            modalBody.append(
+                                $('<input>', {
+                                    type: 'checkbox',
+                                    name: 'shortcut[]',
+                                    id: 'shortcut-' + index,
+                                    value: item.name + '||' + item.url,
+                                    checked: isChecked
+                                }),
+                                $('<label>', {
+                                    for: 'shortcut-' + index,
+                                    class: 'mr-2',
+                                    text: item.name
+                                })
+                            );
+                        });
+                    } else {
+                        modalBody.html('加载失败: ' + (response.msg || '未知错误'));
+                    }
+                },
+                error: (_, __, error) => modalBody.html('加载失败: ' + error)
+            });
         });
     });
 </script>

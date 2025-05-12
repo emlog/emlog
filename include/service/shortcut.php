@@ -13,8 +13,7 @@ class Shortcut
     public static function getActive()
     {
         $shortcut = Option::get('shortcut');
-        $shortcut = json_decode($shortcut, 1);
-        return $shortcut;
+        return json_decode($shortcut, 1);
     }
 
     public static function getAll($plugins = [])

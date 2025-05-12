@@ -111,32 +111,46 @@
         </ul>
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
-                <nav class="navbar navbar-expand navbar-light topbar mb-4 static-top shadow">
-                    <button id="sidebarToggleTop" class="btn d-md-none rounded-circle mr-3">
-                        <i class="icofont-navigation-menu"></i>
-                    </button>
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link" href=".." target="_blank" role="button">
-                                <?php
-                                $blog_name = Option::get('blogname');
-                                echo empty($blog_name) ? '查看我的站点' : subString($blog_name, 0, 12);
-                                ?>
-                            </a>
-                        </li>
-                        <li class="topbar-divider d-none d-sm-block"></li>
-                        <li class="nav-item mx-1">
-                            <a class="nav-link" href="blogger.php" role="button">
-                                <img class="img-profile rounded-circle"
-                                    src="<?= User::getAvatar($user_cache[UID]['avatar']) ?>">
-                            </a>
-                        </li>
-                        <li class="topbar-divider d-none d-sm-block"></li>
-                        <li class="nav-item mx-1">
-                            <a class="nav-link" href="account.php?action=logout" title="退出" role="button">
-                                <i class="icofont-logout icofont-1x"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
                 <div class="container-fluid" id="main-container">
+                    <nav class="navbar navbar-expand navbar-light topbar mb-4 mt-1 static-top shadow d-flex justify-content-between rounded-em-lg">
+                        <button id="sidebarToggleTop" class="btn d-md-none rounded-circle mr-3">
+                            <i class="icofont-navigation-menu"></i>
+                        </button>
+                        <!-- shortcut bar -->
+                        <div>
+                            <a href="./article.php?action=write" class="mr-2">写文章</a>
+                            <a href="article.php" class="mr-2">文章</a>
+                            <a href="article.php?draft=1" class="mr-2">草稿</a>
+                            <?php foreach ($shortcuts as $item): ?>
+                                <a href="<?= $item['url'] ?>" class="mr-2"><?= $item['name'] ?></a>
+                            <?php endforeach; ?>
+                            <span class="text-gray-300 mr-2">|</span>
+                            <a href="#" class="my-1" data-toggle="modal" data-target="#shortcutModal"><i class="icofont-plus"></i></a>
+                        </div>
+                        <!-- Topbar Navbar -->
+                        <div>
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item dropdown no-arrow mx-1">
+                                    <a class="nav-link" href=".." target="_blank" role="button">
+                                        <?php
+                                        $blog_name = Option::get('blogname');
+                                        echo empty($blog_name) ? '查看我的站点' : subString($blog_name, 0, 12);
+                                        ?>
+                                    </a>
+                                </li>
+                                <li class="topbar-divider d-none d-sm-block"></li>
+                                <li class="nav-item mx-1">
+                                    <a class="nav-link" href="blogger.php" role="button">
+                                        <img class="img-profile rounded-circle"
+                                            src="<?= User::getAvatar($user_cache[UID]['avatar']) ?>">
+                                    </a>
+                                </li>
+                                <li class="topbar-divider d-none d-sm-block"></li>
+                                <li class="nav-item mx-1">
+                                    <a class="nav-link" href="account.php?action=logout" title="退出" role="button">
+                                        <i class="icofont-logout icofont-1x"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>

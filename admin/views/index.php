@@ -19,22 +19,6 @@
 </div>
 <div class="row ml-1 mb-1"><?php doAction('adm_main_top') ?></div>
 <div class="row">
-    <div class="col-lg-12 mb-3">
-        <div class="card shadow mb-3">
-            <div class="card-body">
-                <a href="./article.php?action=write" class="mr-2">写文章</a>
-                <a href="article.php" class="mr-2">文章</a>
-                <a href="article.php?draft=1" class="mr-2">草稿</a>
-                <?php foreach ($shortcut as $item): ?>
-                    <a href="<?= $item['url'] ?>" class="mr-2"><?= $item['name'] ?></a>
-                <?php endforeach; ?>
-                <span class="text-gray-300 mr-2">|</span>
-                <a href="#" class="my-1" data-toggle="modal" data-target="#shortcutModal"><i class="icofont-plus"></i></a>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
     <div class="col-lg-6 mb-3">
         <div class="card shadow mb-3">
             <h6 class="card-header">站点信息</h6>
@@ -159,29 +143,6 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="shortcutModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-            <div class="modal-content border-0 shadow">
-                <div class="modal-header border-0">
-                    <h5 class="modal-title" id="shortcutModalLabel">快捷入口</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="index.php?action=add_shortcut" method="post">
-                    <div class="modal-body" id="shortcutModalBody">
-                        <!-- 快捷入口将通过 AJAX 加载到这里 -->
-                        <p class="text-center">正在加载...</p>
-                    </div>
-                    <div class="modal-footer border-0">
-                        <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">取消</button>
-                        <button type="submit" class="btn btn-sm btn-success">保存</button>
-                    </div>
-                </form>
-
-            </div>
-        </div>
-    </div>
     <script>
         setTimeout(hideActived, 3600);
         const menuPanel = $("#menu_panel").addClass('active');
@@ -191,49 +152,6 @@
             if (result.code === 200) {
                 $("#ckup").append('<span class="badge bg-danger ml-1">!</span>');
             }
-        });
-
-        // Handle shortcut modal AJAX loading
-        $('#shortcutModal').on('show.bs.modal', function(event) {
-            const modalBody = $('#shortcutModalBody');
-            modalBody.html('<p class="text-center">正在加载...</p>');
-            const currentShortcuts = <?php echo json_encode($shortcut); ?>;
-            $.ajax({
-                url: 'index.php?action=get_all_shortcuts',
-                type: 'GET',
-                dataType: 'json',
-                success: function(response) {
-                    if (!response.code && response.data) {
-                        modalBody.empty();
-                        if (!response.data.length) {
-                            modalBody.html('<p class="text-center">没有可用的快捷方式。</p>');
-                            return;
-                        }
-                        response.data.forEach((item, index) => {
-                            const isChecked = currentShortcuts.some(s =>
-                                s.name === item.name && s.url === item.url
-                            );
-                            modalBody.append(
-                                $('<input>', {
-                                    type: 'checkbox',
-                                    name: 'shortcut[]',
-                                    id: 'shortcut-' + index,
-                                    value: item.name + '||' + item.url,
-                                    checked: isChecked
-                                }),
-                                $('<label>', {
-                                    for: 'shortcut-' + index,
-                                    class: 'mr-2',
-                                    text: item.name
-                                })
-                            );
-                        });
-                    } else {
-                        modalBody.html('加载失败: ' + (response.msg || '未知错误'));
-                    }
-                },
-                error: (_, __, error) => modalBody.html('加载失败: ' + error)
-            });
         });
     </script>
 <?php endif ?>

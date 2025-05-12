@@ -12,7 +12,7 @@
     <a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target=" #exampleModal"><i class="icofont-plus"></i> 上传图片/文件</a>
 </div>
 <?php if (User::isAdmin()): ?>
-    <div class="row mb-4 ml-1 justify-content-between">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <div>
             <a href="media.php" class="btn btn-sm btn-primary mr-2 my-1">全部资源</a>
             <?php foreach ($sorts as $key => $val):
