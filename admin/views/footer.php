@@ -239,7 +239,7 @@
         $('#shortcutModal').on('show.bs.modal', function(event) {
             const modalBody = $('#shortcutModalBody');
             modalBody.html('<p class="text-center">正在加载...</p>');
-            const currentShortcuts = <?php echo json_encode($shortcut); ?>;
+            const currentShortcuts = <?php echo json_encode($shortcuts); ?>;
             $.ajax({
                 url: 'index.php?action=get_all_shortcuts',
                 type: 'GET',
