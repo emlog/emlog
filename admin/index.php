@@ -25,7 +25,7 @@ if (empty($action)) {
     // 检测数据库驱动类型
     $db_driver = '';
     if ($DB instanceof MySqlii) {
-        $db_driver = 'MySqli';
+        $db_driver = 'MySQLi ';
     } elseif ($DB instanceof DatabasePDO) {
         $db_driver = 'PDO';
     }
