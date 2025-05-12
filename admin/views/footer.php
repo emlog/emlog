@@ -235,7 +235,17 @@
             };
         });
 
-        // Handle shortcut modal AJAX loading
+        // 快捷入口
+        var $bar = $('#shortcut-bar-container');
+        var $content = $('#shortcut-bar-content');
+        $bar.hover(
+            function() {
+                $content.css('width', '800px'); // 展开宽度可根据实际内容调整
+            },
+            function() {
+                $content.css('width', '0');
+            }
+        );
         $('#shortcutModal').on('show.bs.modal', function(event) {
             const modalBody = $('#shortcutModalBody');
             modalBody.html('<p class="text-center">正在加载...</p>');

@@ -117,15 +117,21 @@
                             <i class="icofont-navigation-menu"></i>
                         </button>
                         <!-- shortcut bar -->
-                        <div>
-                            <a href="./article.php?action=write" class="mr-2">写文章</a>
-                            <a href="article.php" class="mr-2">文章</a>
-                            <a href="article.php?draft=1" class="mr-2">草稿</a>
-                            <?php foreach ($shortcuts as $item): ?>
-                                <a href="<?= $item['url'] ?>" class="mr-2"><?= $item['name'] ?></a>
-                            <?php endforeach; ?>
-                            <span class="text-gray-300 mr-2">|</span>
-                            <a href="#" class="my-1" data-toggle="modal" data-target="#shortcutModal"><i class="icofont-plus"></i></a>
+                        <div id="shortcut-bar-container" class="position-relative d-none d-md-inline-block">
+                            <div id="shortcut-bar-toggle" class="d-inline-block" style="cursor:pointer;">
+                                <i class="icofont-simple-right"></i>
+                            </div>
+                            <div id="shortcut-bar-content" class="d-inline-block position-absolute overflow-hidden text-nowrap"
+                                style="left:20px; top:0; width:0; transition:width 0.3s;">
+                                <a href="#" class="my-1" data-toggle="modal" data-target="#shortcutModal"><i class="icofont-plus"></i></a>
+                                <span class="text-gray-300 mr-2">|</span>
+                                <a href="./article.php?action=write" class="mr-2">写文章</a>
+                                <a href="article.php" class="mr-2">文章</a>
+                                <a href="article.php?draft=1" class="mr-2">草稿</a>
+                                <?php foreach ($shortcuts as $item): ?>
+                                    <a href="<?= $item['url'] ?>" class="mr-2"><?= $item['name'] ?></a>
+                                <?php endforeach; ?>
+                            </div>
                         </div>
                         <!-- Topbar Navbar -->
                         <div>
