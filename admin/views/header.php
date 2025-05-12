@@ -118,11 +118,11 @@
                         </button>
                         <!-- shortcut bar -->
                         <div id="shortcut-bar-container" class="position-relative d-none d-md-inline-block">
-                            <div id="shortcut-bar-toggle" class="d-inline-block" style="cursor:pointer;">
+                            <div id="shortcut-bar-toggle" class="d-inline-block px-2" style="cursor:pointer;">
                                 <i class="icofont-simple-right"></i>
                             </div>
                             <div id="shortcut-bar-content" class="d-inline-block position-absolute overflow-hidden text-nowrap"
-                                style="left:20px; top:0; width:0; transition:width 0.3s;">
+                                style="left:30px; top:0; width:0; transition:width 0.3s;">
                                 <a href="#" class="my-1" data-toggle="modal" data-target="#shortcutModal"><i class="icofont-plus"></i></a>
                                 <span class="text-gray-300 mr-2">|</span>
                                 <a href="./article.php?action=write" class="mr-2">写文章</a>

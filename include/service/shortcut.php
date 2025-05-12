@@ -13,6 +13,9 @@ class Shortcut
     public static function getActive()
     {
         $shortcut = Option::get('shortcut');
+        if (empty($shortcut)) {
+            return [];
+        }
         return json_decode($shortcut, 1);
     }
 
