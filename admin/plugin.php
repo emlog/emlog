@@ -21,9 +21,8 @@ if (empty($action) && empty($plugin)) {
     $plugins = $Plugin_Model->getPlugins($filter);
 
     // Check if the shortcut is valid
-    $shortcut = Option::get('shortcut');
-    $shortcut = json_decode($shortcut, 1);
-    $shortcutAll = Util::getAllShortcuts($plugins);
+    $shortcut = Shortcut::getActive();
+    $shortcutAll = Shortcut::getAll($plugins);
     if ($shortcut) {
         foreach ($shortcut as $k => $v) {
             if (!in_array($v, $shortcutAll)) {

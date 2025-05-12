@@ -48,11 +48,6 @@ if (empty($action)) {
         $php_ver .= ',gd';
     }
 
-    // 快捷入口
-    $shortcutAll = Util::getAllShortcuts();
-    $shortcut = Option::get('shortcut');
-    $shortcut = json_decode($shortcut, 1);
-
     if (User::haveEditPermission()) {
         include View::getAdmView('header');
         require_once(View::getAdmView('index'));
