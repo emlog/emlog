@@ -77,17 +77,8 @@ class DatabasePDO
     }
 
     /**
-     * 关闭数据库连接
-     */
-    function close()
-    {
-        if (!is_null($this->conn)) {
-            $this->conn = null;
-        }
-    }
-
-    /**
      * 发送查询语句
+     * @throws PDOException
      */
     function query($sql, $ignore_err = FALSE)
     {
@@ -95,15 +86,48 @@ class DatabasePDO
             $this->result = $this->conn->query($sql);
             $this->queryCount++;
             if (!$ignore_err && 1046 == $this->geterrno()) {
-                emMsg("连接数据库失败，请填写数据库名");
+                throw new PDOException("连接数据库失败，请填写数据库名");
             }
             if (!$ignore_err && !$this->result) {
-                emMsg("SQL语句执行错误: {$sql}<br />" . $this->geterror());
-            } else {
-                return $this->result;
+                throw new PDOException("SQL语句执行错误: {$sql}<br />" . implode(' ', $this->geterror()));
             }
-        } catch (\PDOException $e) {
-            return $e->getMessage();
+            return $this->result;
+        } catch (PDOException $e) {
+            if ($ignore_err) {
+                return false;
+            }
+            emMsg($e->getMessage());
+        }
+    }
+
+    /**
+     * 取得行的数目
+     */
+    function num_rows($query)
+    {
+        return $query->rowCount();
+    }
+
+    /**
+     * Escapes special characters
+     */
+    function escape_string($sql)
+    {
+        return trim($sql);
+        // return $this->conn->quote($sql);
+    }
+
+    /**
+     * 关闭数据库连接
+     */
+    function close()
+    {
+        if ($this->result instanceof PDOStatement) {
+            $this->result->closeCursor();
+            $this->result = null;
+        }
+        if (!is_null($this->conn)) {
+            $this->conn = null;
         }
     }
 
@@ -120,17 +144,19 @@ class DatabasePDO
      */
     public function fetch_all($sql, $fetchMode = PDO::FETCH_ASSOC)
     {
-        $statement = $this->query($sql);
-
-        if (!$statement instanceof \PDOStatement) {
-            return [];
+        try {
+            $statement = $this->query($sql);
+            if (!$statement instanceof \PDOStatement) {
+                return [];
+            }
+            $data = [];
+            while ($row = $this->fetch_array($statement, $fetchMode)) {
+                $data[] = $row;
+            }
+            return $data;
+        } catch (PDOException $e) {
+            emMsg($e->getMessage());
         }
-
-        $data = [];
-        while ($row = $this->fetch_array($statement, $fetchMode)) {
-            $data[] = $row;
-        }
-        return $data;
     }
 
     /**
@@ -155,15 +181,6 @@ class DatabasePDO
     function fetch_row($query)
     {
         return $query->rowCount();
-    }
-
-    /**
-     * 取得行的数目
-     */
-    function num_rows($query)
-    {
-        $rows = $query->fetch(PDO::FETCH_NUM);
-        return isset($rows[0]) ? $rows[0] : 0;
     }
 
     /**
@@ -214,7 +231,11 @@ class DatabasePDO
      */
     function getVersion()
     {
-        return $this->conn->query('select version()')->fetchColumn();
+        try {
+            return $this->conn->query('select version()')->fetchColumn();
+        } catch (PDOException $e) {
+            emMsg($e->getMessage());
+        }
     }
 
     /**
@@ -223,13 +244,5 @@ class DatabasePDO
     function getQueryCount()
     {
         return $this->queryCount;
-    }
-
-    /**
-     * Escapes special characters
-     */
-    function escape_string($sql)
-    {
-        return trim($sql);
     }
 }
