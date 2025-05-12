@@ -220,4 +220,48 @@ class Order_Model
         $order['sku_name'] = (string)$order['sku_name'];
         return $order;
     }
+
+    /**
+     * 获取当前应用的订单总数
+     * @return int 订单总数
+     */
+    function getAppOrderCount()
+    {
+        $sql = sprintf(
+            "SELECT COUNT(*) as count FROM `%s` WHERE app_name='%s'",
+            $this->table,
+            $this->app_name
+        );
+        $result = $this->db->once_fetch_array($sql);
+        return (int)$result['count'];
+    }
+
+    /**
+     * 获取指定用户的订单总数
+     * @param int $userId 用户ID
+     * @param bool $isPaid 是否只统计已支付订单
+     * @param string $sku_name 商品名称（可选）
+     * @return int 订单总数
+     */
+    function getUserOrderCount($userId, $isPaid = false, $sku_name = '')
+    {
+        $userId = (int)$userId;
+        $where = "WHERE order_uid=$userId AND app_name='$this->app_name'";
+
+        if ($isPaid) {
+            $where .= " AND pay_price > 0";
+        }
+
+        if ($sku_name) {
+            $where .= " AND sku_name='$sku_name'";
+        }
+
+        $sql = sprintf(
+            "SELECT COUNT(*) as count FROM `%s` %s",
+            $this->table,
+            $where
+        );
+        $result = $this->db->once_fetch_array($sql);
+        return (int)$result['count'];
+    }
 }
