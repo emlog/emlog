@@ -49,40 +49,9 @@ if (empty($action)) {
     }
 
     // 快捷入口
-    $Plugin_Model = new Plugin_Model();
-    $plugins = $Plugin_Model->getPlugins('on');
-    $shortcutAll = [
-        ['name' => '模板', 'url' => 'template.php'],
-        ['name' => '插件', 'url' => 'plugin.php'],
-        ['name' => '分类', 'url' => 'sort.php'],
-        ['name' => '标签', 'url' => 'tag.php'],
-        ['name' => '页面', 'url' => 'page.php'],
-        ['name' => '导航', 'url' => 'navbar.php'],
-        ['name' => '边栏', 'url' => 'widgets.php'],
-        ['name' => '链接', 'url' => 'link.php'],
-    ];
-    foreach ($plugins as $val) {
-        if (empty($val) || !$val['Setting'] || in_array($val['Name'], ['小贴士', '模板设置'])) {
-            continue;
-        }
-        $shortcutAll[] = [
-            'name' => $val['Name'],
-            'url'  => './plugin.php?plugin=' . $val['Plugin'],
-        ];
-    }
+    $shortcutAll = Util::getAllShortcuts();
     $shortcut = Option::get('shortcut');
     $shortcut = json_decode($shortcut, 1);
-    if ($shortcut) {
-        foreach ($shortcut as $k => $v) {
-            if (!in_array($v, $shortcutAll)) {
-                unset($shortcut[$k]);
-                Option::updateOption('shortcut', json_encode($shortcut, JSON_UNESCAPED_UNICODE));
-                $CACHE->updateCache('options');
-            }
-        }
-    } else {
-        $shortcut = [];
-    }
 
     if (User::haveEditPermission()) {
         include View::getAdmView('header');
@@ -106,6 +75,11 @@ if (empty($action)) {
     require_once(View::getAdmView('uc_index'));
     include View::getAdmView('uc_footer');
     View::output();
+}
+
+if ($action === 'get_all_shortcuts') {
+    $allShortcus = Util::getAllShortcuts();
+    Output::ok($allShortcus);
 }
 
 if ($action === 'add_shortcut') {

@@ -20,6 +20,20 @@ if (empty($action) && empty($plugin)) {
     $Plugin_Model = new Plugin_Model();
     $plugins = $Plugin_Model->getPlugins($filter);
 
+    // Check if the shortcut is valid
+    $shortcut = Option::get('shortcut');
+    $shortcut = json_decode($shortcut, 1);
+    $shortcutAll = Util::getAllShortcuts($plugins);
+    if ($shortcut) {
+        foreach ($shortcut as $k => $v) {
+            if (!in_array($v, $shortcutAll)) {
+                unset($shortcut[$k]);
+                Option::updateOption('shortcut', json_encode($shortcut, JSON_UNESCAPED_UNICODE));
+                $CACHE->updateCache('options');
+            }
+        }
+    }
+
     include View::getAdmView('header');
     require_once(View::getAdmView('plugin'));
     include View::getAdmView('footer');
