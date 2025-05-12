@@ -169,13 +169,9 @@
                     </button>
                 </div>
                 <form action="index.php?action=add_shortcut" method="post">
-                    <div class="modal-body">
-                        <?php foreach ($shortcutAll as $k => $v):
-                            $checked = in_array($v, $shortcut) ? 'checked' : '';
-                        ?>
-                            <input type="checkbox" name="shortcut[]" id="shortcut-<?= $k ?>" value="<?= $v['name'] ?>||<?= $v['url'] ?>" <?= $checked ?>>
-                            <label class="mr-2" for="shortcut-<?= $k ?>"><?= $v['name'] ?></label>
-                        <?php endforeach; ?>
+                    <div class="modal-body" id="shortcutModalBody">
+                        <!-- 快捷入口将通过 AJAX 加载到这里 -->
+                        <p class="text-center">正在加载...</p>
                     </div>
                     <div class="modal-footer border-0">
                         <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">取消</button>
@@ -195,6 +191,49 @@
             if (result.code === 200) {
                 $("#ckup").append('<span class="badge bg-danger ml-1">!</span>');
             }
+        });
+
+        // Handle shortcut modal AJAX loading
+        $('#shortcutModal').on('show.bs.modal', function(event) {
+            const modalBody = $('#shortcutModalBody');
+            modalBody.html('<p class="text-center">正在加载...</p>');
+            const currentShortcuts = <?php echo json_encode($shortcut); ?>;
+            $.ajax({
+                url: 'index.php?action=get_all_shortcuts',
+                type: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    if (!response.code && response.data) {
+                        modalBody.empty();
+                        if (!response.data.length) {
+                            modalBody.html('<p class="text-center">没有可用的快捷方式。</p>');
+                            return;
+                        }
+                        response.data.forEach((item, index) => {
+                            const isChecked = currentShortcuts.some(s =>
+                                s.name === item.name && s.url === item.url
+                            );
+                            modalBody.append(
+                                $('<input>', {
+                                    type: 'checkbox',
+                                    name: 'shortcut[]',
+                                    id: 'shortcut-' + index,
+                                    value: item.name + '||' + item.url,
+                                    checked: isChecked
+                                }),
+                                $('<label>', {
+                                    for: 'shortcut-' + index,
+                                    class: 'mr-2',
+                                    text: item.name
+                                })
+                            );
+                        });
+                    } else {
+                        modalBody.html('加载失败: ' + (response.msg || '未知错误'));
+                    }
+                },
+                error: (_, __, error) => modalBody.html('加载失败: ' + error)
+            });
         });
     </script>
 <?php endif ?>
