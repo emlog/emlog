@@ -73,7 +73,7 @@ if (empty($action)) {
 }
 
 if ($action === 'get_all_shortcuts') {
-    $allShortcus = Util::getAllShortcuts();
+    $allShortcus = Shortcut::getAll();
     Output::ok($allShortcus);
 }
 
