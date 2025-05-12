@@ -21,13 +21,13 @@ if (empty($action) && empty($plugin)) {
     $plugins = $Plugin_Model->getPlugins($filter);
 
     // Check if the shortcut is valid
-    $shortcut = Shortcut::getActive();
+    // $shortcuts is global variable
     $shortcutAll = Shortcut::getAll($plugins);
-    if ($shortcut) {
-        foreach ($shortcut as $k => $v) {
+    if ($shortcuts) {
+        foreach ($shortcuts as $k => $v) {
             if (!in_array($v, $shortcutAll)) {
-                unset($shortcut[$k]);
-                Option::updateOption('shortcut', json_encode($shortcut, JSON_UNESCAPED_UNICODE));
+                unset($shortcuts[$k]);
+                Option::updateOption('shortcut', json_encode($shortcuts, JSON_UNESCAPED_UNICODE));
                 $CACHE->updateCache('options');
             }
         }
