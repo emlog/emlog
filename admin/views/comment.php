@@ -193,6 +193,7 @@
         setTimeout(hideActived, 3600);
 
         initCheckboxSelectAll('#checkAllItem', '.checkboxContainer');
+        initShortcutBar();
 
         $('#replyModal').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget)

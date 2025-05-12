@@ -590,6 +590,19 @@ function toggleCheckbox(id) {
     localStorage.setItem(id, isChecked);
 }
 
+function initShortcutBar() {
+    var $bar = $('#shortcut-bar-container');
+    var $content = $('#shortcut-bar-content');
+    $bar.hover(
+        function() {
+            $content.css('width', '800px');
+        },
+        function() {
+            $content.css('width', '0');
+        }
+    );
+}
+
 /**
  * 封装复选框全选逻辑
  * @param {string} checkAllSelector 全选按钮选择器

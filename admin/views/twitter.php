@@ -109,6 +109,7 @@
     }
 
     function initPageScripts() {
+        initShortcutBar();
         var cssLink = document.createElement('link');
         cssLink.rel = 'stylesheet';
         cssLink.type = 'text/css';

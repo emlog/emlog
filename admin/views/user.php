@@ -191,6 +191,7 @@
         setTimeout(hideActived, 3600);
         $("#menu_user").addClass('active');
         initCheckboxSelectAll('#checkAllItem', '.checkboxContainer');
+        initShortcutBar();
     }
 
     function selectOrder(obj) {
