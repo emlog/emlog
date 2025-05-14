@@ -158,11 +158,14 @@
 }
 
 .markdown img {
+    max-width: 100%;
+    height: auto;
     display: block;
-    margin: auto;
+    margin: 1.5em auto;
     box-sizing: border-box;
-    border: 0
-}
+    border: 0;
+    border-radius: 4px;
+  }
 
 .markdown hr {
     margin: 7px 0 7px 0
