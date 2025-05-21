@@ -116,6 +116,10 @@
         });
         $(document).on('pjax:success', function() {
             initPageScripts();
+            // 重新绑定侧边栏开关事件
+            $("#sidebarToggleTop").off('click').on('click', function() {
+                window.toggleSidebar();
+            });
         });
         $(document).on('pjax:beforeSend', function() {
             closePageScripts();
