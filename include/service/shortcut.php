@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Service: Util
+ * Service: Shortcut
  *
  * @package EMLOG
  * @link https://www.emlog.net

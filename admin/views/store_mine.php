@@ -37,6 +37,9 @@
                             <div class="card-text d-flex justify-content-between">
                                 <div class="installMsg"></div>
                                 <div>
+                                    <?php if (Plugin::isActive($v['alias'])): ?>
+                                        <a href="plugin.php" class="btn btn-light">已安装</a>
+                                    <?php endif; ?>
                                     <?php if (empty($v['download_url'])): ?>
                                         <a href="<?= $v['buy_url'] ?>" class="btn btn-success btn-sm">请联系作者安装</a>
                                     <?php else: ?>
