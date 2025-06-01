@@ -46,7 +46,7 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_content" aria-expanded="true" aria-controls="menu_content">
                     <i class="icofont-pencil-alt-5"></i><span>文章</span>
                 </a>
-                <div id="menu_content" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="menu_content" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="z-index: 1055;">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" id="menu_write" href="article.php?action=write">写文章</a>
                         <a class="collapse-item" id="menu_log" href="article.php">文章</a>
@@ -75,7 +75,7 @@
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_view" aria-expanded="true" aria-controls="menu_view">
                         <i class="icofont-paint"></i><span>外观</span>
                     </a>
-                    <div id="menu_view" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div id="menu_view" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="z-index: 1055;">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <a class="collapse-item" id="menu_tpl" href="template.php">模板</a>
                             <a class="collapse-item" id="menu_navi" href="navbar.php">导航</a>
