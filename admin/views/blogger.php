@@ -124,12 +124,12 @@
         <div class="modal-content border-0 shadow">
             <div class="modal-header border-0">
                 <h5 class="modal-title" id="exampleModalLabel">修改邮箱</h5>
-                <span id="message" class="small ml-5"></span>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
+                <div id="message"></div>
                 <form action="blogger.php?action=change_email" id="email_setting_form" method="post">
                     <div class="form-group">
                         <label>邮箱</label>
@@ -210,10 +210,10 @@
                     mail: email
                 },
                 success: function(response) {
-                    $message.text('验证码已发送，请查收邮件').css('color', 'green');
+                    $message.text('验证码已发送，请查收邮件').addClass('alert alert-success');
                 },
                 error: function(data) {
-                    $message.text(data.responseJSON.msg).css('color', 'red');
+                    $message.text(data.responseJSON.msg).addClass('alert alert-danger');
                     clearInterval(countdown);
                     $btn.text('发送验证码');
                     $btn.prop('disabled', false);
