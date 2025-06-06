@@ -157,6 +157,7 @@
         $("#menu_category_sys").addClass('active');
         $("#menu_sys").addClass('show');
         $("#menu_setting").addClass('active');
+
         setTimeout(hideActived, 3600);
 
         // 提交表单
@@ -192,6 +193,7 @@
             var $btn = $(this);
             var $message = $('#message');
             $btn.prop('disabled', true);
+            $message.empty().removeClass().show();
             var count = 60;
             var countdown = setInterval(function() {
                 $btn.text('重新发送 (' + count + ')');
@@ -214,6 +216,7 @@
                 },
                 error: function(data) {
                     $message.text(data.responseJSON.msg).addClass('alert alert-danger');
+                    setTimeout(hideActived, 3600);
                     clearInterval(countdown);
                     $btn.text('发送验证码');
                     $btn.prop('disabled', false);

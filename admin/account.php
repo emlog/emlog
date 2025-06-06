@@ -179,7 +179,7 @@ if ($action == 'send_email_code') {
     if ($ret) {
         Output::ok();
     } else {
-        Output::error('发送邮件验证码失败，请联系管理员检查邮件服务设置');
+        Output::error('发送邮件验证码失败，请检查邮件服务设置');
     }
 }
 
