@@ -1271,7 +1271,8 @@ if (!function_exists('getFirstImage')) {
         $imgNode = $xpath->query('//img')->item(0);
 
         if ($imgNode) {
-            return $imgNode->getAttribute('src');
+            $src = $imgNode->getAttribute('src');
+            return trim($src, '\\"'); // 清理路径中的多余字符（引号、反斜杠等）
         }
 
         return null;
