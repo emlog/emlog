@@ -264,15 +264,19 @@ function isZip($fileName)
 }
 
 /**
- * 分页函数
- *
- * @param int $count 条目总数
- * @param int $perlogs 每页显示条数目
+ * 生成分页导航条
+ * 
+ * @param int $count 总记录数
+ * @param int $perlogs 每页显示记录数
  * @param int $page 当前页码
  * @param string $url 页码的地址
- * @return string
+ * @param string $anchor 锚点
+ * @param int $showPages 显示页码的数量，默认为7
+ * @param string $prevText 上一页按钮文字，默认为 &laquo;
+ * @param string $nextText 下一页按钮文字，默认为 &raquo;
+ * @return string 返回分页导航HTML代码
  */
-function pagination($count, $perlogs, $page, $url, $anchor = '')
+function pagination($count, $perlogs, $page, $url, $anchor = '', $showPages = 7, $prevText = '&laquo;', $nextText = '&raquo;')
 {
     $pnums = @ceil($count / $perlogs);
     $re = '';
@@ -286,17 +290,25 @@ function pagination($count, $perlogs, $page, $url, $anchor = '')
     $neighborNum = 1;
     $minKey = 4;
 
+    // 根据 showPages 参数动态调整显示逻辑
+    if ($showPages >= 5) {
+        $minKey = $showPages;
+        $neighborNum = floor(($showPages - 3) / 2); // 减去首页、末页和当前页，剩余页数的一半作为邻居页数
+    }
+
     if ($pnums == 1)
         return $re;
-    if ($page >= 1 && $pnums >= 7) {
+    if ($page >= 1 && $pnums >= $showPages) {
         $frontContent .= " <a href=\"$urlHome$anchor\">1</a> ";
         $frontContent .= " <em> ... </em> ";
         $endContent .= " <em> ... </em> ";
         $endContent .= " <a href=\"$url$pnums$anchor\">$pnums</a> ";
-        if ($pnums >= 12) {
-            $minKey = 7;
-            $neighborNum = 3;
+
+        // 动态调整更大页数时的显示逻辑
+        if ($pnums >= ($showPages * 2)) {
+            $neighborNum = floor($showPages / 2);
         }
+
         if ($page < $minKey) {
             $circle_b = $minKey;
             $frontContent = '';
@@ -310,10 +322,10 @@ function pagination($count, $perlogs, $page, $url, $anchor = '')
             $circle_b = $page + $neighborNum;
         }
         if ($page != 1) {
-            $frontContent = " <a href=\"$url" . ($page - 1) . "$anchor\" title=\"Previous Page\">&laquo;</a> " . $frontContent;
+            $frontContent = " <a href=\"$url" . ($page - 1) . "$anchor\" title=\"Previous Page\">$prevText</a> " . $frontContent;
         }
         if ($page != $pnums) {
-            $endContent .= " <a href=\"$url" . ($page + 1) . "$anchor\" title=\"Next Page\">&raquo;</a> ";
+            $endContent .= " <a href=\"$url" . ($page + 1) . "$anchor\" title=\"Next Page\">$nextText</a> ";
         }
     }
     for ($i = $circle_a; $i <= $circle_b; $i++) {

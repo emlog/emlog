@@ -70,7 +70,7 @@ if (empty($action)) {
         $subPage .= $key != 'page' ? "&$key=$val" : '';
     }
 
-    $pageurl = pagination($count, $page_count, $page, "store.php?{$subPage}&page=");
+    $pageurl = pagination($count, $page_count, $page, "store.php?{$subPage}&page=", '', 5, '上一页', '下一页');
 
     include View::getAdmView('header');
     require_once(View::getAdmView('store'));
