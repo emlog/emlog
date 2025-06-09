@@ -390,3 +390,165 @@ body {
     .custom-control-label {
         cursor: pointer;
     }
+
+/* 
+扩展的8个徽章颜色样式 - 基于Bootstrap4 
+
+<span class="badge badge-orange">橙色</span>
+<span class="badge badge-purple">紫色</span>
+<span class="badge badge-cyan">青色</span>
+<span class="badge badge-pink">粉色</span>
+<span class="badge badge-light-gray">浅灰色</span>
+<span class="badge badge-forest">深绿</span>
+<span class="badge badge-navy">深蓝</span>
+<span class="badge badge-gold">金色</span>
+
+*/
+
+/* 1. 橙色徽章 - 警告/提醒 */
+.badge-orange {
+    color: #fff;
+    background-color: #fd7e14;
+}
+
+.badge-orange[href]:hover,
+.badge-orange[href]:focus {
+    color: #fff;
+    background-color: #e8650e;
+    text-decoration: none;
+}
+
+/* 2. 紫色徽章 - 高级/VIP */
+.badge-purple {
+    color: #fff;
+    background-color: #6f42c1;
+}
+
+.badge-purple[href]:hover,
+.badge-purple[href]:focus {
+    color: #fff;
+    background-color: #59359a;
+    text-decoration: none;
+}
+
+/* 3. 青色徽章 - 信息/通知 */
+.badge-cyan {
+    color: #fff;
+    background-color: #20c997;
+}
+
+.badge-cyan[href]:hover,
+.badge-cyan[href]:focus {
+    color: #fff;
+    background-color: #1aa179;
+    text-decoration: none;
+}
+
+/* 4. 粉色徽章 - 特殊/推荐 */
+.badge-pink {
+    color: #fff;
+    background-color: #e83e8c;
+}
+
+.badge-pink[href]:hover,
+.badge-pink[href]:focus {
+    color: #fff;
+    background-color: #d91a72;
+    text-decoration: none;
+}
+
+/* 5. 浅灰色徽章 - 中性/默认 */
+.badge-light-gray {
+    color: #495057;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+}
+
+.badge-light-gray[href]:hover,
+.badge-light-gray[href]:focus {
+    color: #495057;
+    background-color: #e9ecef;
+    text-decoration: none;
+}
+
+/* 6. 深绿色徽章 - 环保/自然 */
+.badge-forest {
+    color: #fff;
+    background-color: #198754;
+}
+
+.badge-forest[href]:hover,
+.badge-forest[href]:focus {
+    color: #fff;
+    background-color: #146c43;
+    text-decoration: none;
+}
+
+/* 7. 深蓝色徽章 - 稳重/商务 */
+.badge-navy {
+    color: #fff;
+    background-color: #0d47a1;
+}
+
+.badge-navy[href]:hover,
+.badge-navy[href]:focus {
+    color: #fff;
+    background-color: #083570;
+    text-decoration: none;
+}
+
+/* 8. 金色徽章 - 高端/奖励 */
+.badge-gold {
+    color: #212529;
+    background-color: #ffc107;
+}
+
+.badge-gold[href]:hover,
+.badge-gold[href]:focus {
+    color: #212529;
+    background-color: #e0a800;
+    text-decoration: none;
+}
+
+/* 徽章尺寸变体 */
+.badge-lg {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    border-radius: 0.375rem;
+}
+
+.badge-sm {
+    padding: 0.25rem 0.4rem;
+    font-size: 0.75rem;
+    border-radius: 0.2rem;
+}
+
+/* 徽章动画效果 */
+.badge-pulse {
+    animation: badge-pulse 2s infinite;
+}
+
+@keyframes badge-pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* 徽章阴影效果 */
+.badge-shadow {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.badge-shadow:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}

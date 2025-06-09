@@ -148,10 +148,10 @@ $isdraft = $draft ? '&draft=1' : '';
                                         <a href="./article.php?tagid=<?= $tid . $isdraft ?>" class='em-badge small em-badge-tag'><?= htmlspecialchars($t) ?></a>
                                     <?php endforeach; ?>
                                 </td>
-                                <td><a href="comment.php?gid=<?= $value['gid'] ?>" class="badge badge-primary mx-2 px-3"><?= $value['comnum'] ?></a></td>
-                                <td><a href="<?= Url::log($value['gid']) ?>" class="badge badge-success  mx-2 px-3" target="_blank"><?= $value['views'] ?></a></td>
+                                <td><a href="comment.php?gid=<?= $value['gid'] ?>" class="badge badge-primary mx-1 px-2"><?= $value['comnum'] ?></a></td>
+                                <td><a href="<?= Url::log($value['gid']) ?>" class="badge badge-success  mx-1 px-2" target="_blank"><?= $value['views'] ?></a></td>
                                 <td class="small"><a href="article.php?uid=<?= $value['author'] . $isdraft ?>"><?= $author ?></a></td>
-                                <td class="small"><a href="article.php?sid=<?= $value['sortid'] . $isdraft ?>"><?= $sortName ?></a></td>
+                                <td><a href="article.php?sid=<?= $value['sortid'] . $isdraft ?>" class="badge badge-light-gray"><?= $sortName ?></a></td>
                                 <td class="small"><?= $value['date'] ?></td>
                                 <td>
                                     <?php if ($draft): ?>
