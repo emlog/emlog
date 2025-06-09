@@ -290,7 +290,7 @@
                     title: "添加链接",
                     url: "链接地址",
                     urlTitle: "链接标题",
-                    urlEmpty: "错误：请填写链接地址。"
+                    urlEmpty: "请填写链接地址。"
                 },
                 referenceLink: {
                     title: "添加引用链接",
@@ -298,9 +298,9 @@
                     url: "链接地址",
                     urlId: "链接ID",
                     urlTitle: "链接标题",
-                    nameEmpty: "错误：引用链接的名称不能为空。",
-                    idEmpty: "错误：请填写引用链接的ID。",
-                    urlEmpty: "错误：请填写引用链接的URL地址。"
+                    nameEmpty: "引用链接的名称不能为空。",
+                    idEmpty: "请填写引用链接的ID。",
+                    urlEmpty: "请填写引用链接的URL地址。"
                 },
                 image: {
                     title: "添加图片",
@@ -308,37 +308,37 @@
                     link: "图片链接",
                     alt: "图片描述",
                     uploadButton: "本地上传",
-                    imageURLEmpty: "错误：图片地址不能为空。",
-                    uploadFileEmpty: "错误：上传的图片不能为空。",
-                    formatNotAllowed: "错误：只允许上传图片文件，允许上传的图片文件格式有："
+                    imageURLEmpty: "图片地址不能为空。",
+                    uploadFileEmpty: "上传的图片不能为空。",
+                    formatNotAllowed: "只允许上传图片文件，允许上传的图片文件格式有："
                 },
                 video: {
                     title: "添加视频",
                     url: "视频地址(MP4)",
                     uploadButton: "本地上传",
-                    videoURLEmpty: "错误：视频地址不能为空。",
-                    uploadFileEmpty: "错误：上传的视频不能为空。",
-                    formatNotAllowed: "错误：只允许上传视频文件，允许上传的视频文件格式有："
+                    videoURLEmpty: "视频地址不能为空。",
+                    uploadFileEmpty: "上传的视频不能为空。",
+                    formatNotAllowed: "只允许上传视频文件，允许上传的视频文件格式有："
                 },
                 audio: {
                     title: "添加音频",
                     url: "音频地址(如MP3)",
                     uploadButton: "本地上传",
-                    videoURLEmpty: "错误：音频地址不能为空。",
-                    uploadFileEmpty: "错误：上传的音频不能为空。",
-                    formatNotAllowed: "错误：只允许上传音频文件，允许上传的音频文件格式有："
+                    audioURLEmpty: "音频地址不能为空。",
+                    uploadFileEmpty: "上传的音频不能为空。",
+                    formatNotAllowed: "只允许上传音频文件，允许上传的音频文件格式有："
                 },
                 preformattedText: {
                     title: "添加预格式文本或代码块",
-                    emptyAlert: "错误：请填写预格式文本或代码的内容。"
+                    emptyAlert: "请填写预格式文本或代码的内容。"
                 },
                 codeBlock: {
                     title: "添加代码块",
                     selectLabel: "代码语言：",
                     selectDefaultText: "请选择代码语言",
                     otherLanguage: "其他语言",
-                    unselectedLanguageAlert: "错误：请选择代码所属的语言类型。",
-                    codeEmptyAlert: "错误：请填写代码内容。"
+                    unselectedLanguageAlert: "请选择代码所属的语言类型。",
+                    codeEmptyAlert: "请填写代码内容。"
                 },
                 htmlEntities: {
                     title: "HTML 实体字符"
