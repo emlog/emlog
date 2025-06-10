@@ -47,7 +47,8 @@ if (!function_exists('getIp')) {
             $ip = trim($list[0]);
         }
 
-        if (!ip2long($ip)) {
+        // Supports IPv4 and IPv6
+        if (!filter_var($ip, FILTER_VALIDATE_IP)) {
             $ip = '';
         }
 
