@@ -129,17 +129,12 @@
                     <input name="tag" id="tag" class="form-control" value="<?= $tagStr ?>" />
                     <small class="text-muted">也用于页面关键词，英文逗号分隔</small>
                 </div>
-                <?php if (User::haveEditPermission()): ?>
-                    <div class="form-group">
-                        <label>发布时间：</label>
-                        <input type="text" maxlength="200" name="postdate" id="postdate" value="<?= $postDate ?>" class="form-control datepicker" required />
-                        <small class="text-muted">当设置未来时间，文章将在该时间点定时发布</small>
+                <div class="form-group">
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="allow_remark" name="allow_remark" value="y" <?= $is_allow_remark ?>>
+                        <label class="custom-control-label" for="allow_remark">允许评论</label>
                     </div>
-                    <div class="form-group">
-                        <div class="custom-control custom-switch">
-                            <input type="checkbox" class="custom-control-input" id="allow_remark" name="allow_remark" value="y" <?= $is_allow_remark ?>>
-                            <label class="custom-control-label" for="allow_remark">允许评论</label>
-                        </div>
+                    <?php if (User::haveEditPermission()): ?>
                         <div class="custom-control custom-switch">
                             <input type="checkbox" class="custom-control-input" id="top" name="top" value="y" <?= $is_top; ?>>
                             <label class="custom-control-label" for="top">首页置顶</label>
@@ -148,11 +143,17 @@
                             <input type="checkbox" class="custom-control-input" id="sortop" name="sortop" value="y" <?= $is_sortop; ?>>
                             <label class="custom-control-label" for="sortop">分类置顶</label>
                         </div>
+                    <?php endif; ?>
+                </div>
+                <?php if (User::haveEditPermission()): ?>
+                    <div class="form-group">
+                        <label>发布时间：</label>
+                        <input type="text" maxlength="200" name="postdate" id="postdate" value="<?= $postDate ?>" class="form-control datepicker" required />
+                        <small class="text-muted">当设置未来时间，文章将在该时间点定时发布</small>
                     </div>
                     <div><a href="javascript:void (0);" class="show_adv_set" onclick="displayToggle('adv_set');">高级选项<i class="icofont-simple-right"></i></a></div>
                 <?php else: ?>
                     <input type="hidden" name="postdate" id="postdate" value="<?= $postDate ?>" />
-                    <input type="hidden" value="y" name="allow_remark" id="allow_remark" />
                 <?php endif; ?>
                 <div id="adv_set">
                     <?php if (User::haveEditPermission()): ?>
