@@ -488,7 +488,7 @@ function imgPasteExpand(thisEditor) {
                     var image = resp.data.images[0];
                     if (image) {
                         console.log('获取结果成功！')
-                        replaceByNum(`[![](${image.media_icon})](${image.media_url})`, 10);  // 这里的数字 10 对应着’上传中...100%‘是10个字符
+                        replaceByNum(`![](${image.media_icon})`, 10);  // 这里的数字 10 对应着’上传中...100%‘是10个字符
                     } else {
                         console.log('获取结果失败！')
                         infoAlert('获取结果失败！');
