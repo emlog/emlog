@@ -49,7 +49,7 @@
                                 <?php if (Plugin::isActive($v['alias'])): ?>
                                     <a href="plugin.php" class="btn btn-light">正在使用</a>
                                 <?php endif; ?>
-                                <a href="#" class="btn btn-warning installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-cdn-url="<?= urlencode($v['cdn_download_url']) ?>" data-type="<?= $type ?>">立即安装</a>
+                                <a href="#" class="btn btn-warning installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-cdn-url="<?= urlencode($v['cdn_download_url']) ?>" data-type="<?= $type ?>">安装</a>
                             </div>
                         </div>
                     </div>

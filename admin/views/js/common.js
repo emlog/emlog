@@ -641,7 +641,7 @@ $(function () {
 
         let url = './store.php?action=install&type=' + type + '&source=' + down_url;
         $.get(url, function (data) {
-            link.text('免费安装');
+            link.text('安装');
             link.parent().prev(".installMsg").html('<span class="text-danger">' + data + '</span>').removeClass("spinner-border text-primary");
         });
     });
