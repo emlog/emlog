@@ -17,13 +17,21 @@
 <div class="mb-3">
     <div class="col-md-12">
         <p class="alert alert-warning my-3"><a href="https://www.emlog.net/register">铁杆SVIP</a> 用户可以免费安装下面的应用👇</p>
+        <!-- 新增筛选按钮 -->
+        <div class="mb-3">
+            <div class="btn-group btn-group-sm">
+                <button type="button" class="btn btn-outline-primary active" id="filterAll">全部</button>
+                <button type="button" class="btn btn-outline-success" id="filterTemplate">模板</button>
+                <button type="button" class="btn btn-outline-primary" id="filterPlugin">插件</button>
+            </div>
+        </div>
     </div>
     <div class="d-flex flex-wrap app-list">
         <?php foreach ($addons as $k => $v):
             $icon = $v['icon'] ?: "./views/images/theme.png";
             $type = $v['app_type'] === 'template' ? 'tpl' : 'plugin';
         ?>
-            <div class="col-md-6 col-lg-3">
+            <div class="col-md-6 col-lg-3 app-item" data-type="<?= $type ?>">
                 <div class="card mb-4 shadow-sm hover-shadow-lg">
                     <a href="#appModal" class="p-1" data-toggle="modal" data-target="#appModal" data-name="<?= $v['name'] ?>" data-url="<?= $v['app_url'] ?>" data-buy-url="<?= $v['buy_url'] ?>">
                         <img class="bd-placeholder-img card-img-top" alt="cover" width="100%" height="225" src="<?= $icon ?>">
@@ -79,5 +87,26 @@
     $(function() {
         $("#menu_store").addClass('active');
         setTimeout(hideActived, 3600);
+
+        // 筛选功能
+        $('#filterAll').click(function() {
+            $('.app-item').show();
+            $('.btn-group button').removeClass('active');
+            $(this).addClass('active');
+        });
+
+        $('#filterTemplate').click(function() {
+            $('.app-item').hide();
+            $('.app-item[data-type="tpl"]').show();
+            $('.btn-group button').removeClass('active');
+            $(this).addClass('active');
+        });
+
+        $('#filterPlugin').click(function() {
+            $('.app-item').hide();
+            $('.app-item[data-type="plugin"]').show();
+            $('.btn-group button').removeClass('active');
+            $(this).addClass('active');
+        });
     });
 </script>
