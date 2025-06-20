@@ -17,7 +17,6 @@
 <div class="mb-3">
     <div class="col-md-12">
         <p class="alert alert-warning my-3"><a href="https://www.emlog.net/register">铁杆SVIP</a> 用户可以免费安装下面的应用👇</p>
-        <!-- 新增筛选按钮 -->
         <div class="mb-3">
             <div class="btn-group btn-group-sm">
                 <button type="button" class="btn btn-outline-primary active" id="filterAll">全部</button>
