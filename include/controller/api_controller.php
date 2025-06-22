@@ -335,10 +335,14 @@ class Api_Controller
     {
         $id = Input::getIntVar('id', 0);
 
-        $this->checkApiKey();
+        $this->auth();
+        $author_uid = 0;
+        if ($this->curUid) {
+            $author_uid = $this->curUid;
+        }
 
         $sort_cache = $this->Cache->readCache('sort');
-        $r = $this->Log_Model->getDetail($id);
+        $r = $this->Log_Model->getDetail($id, $author_uid);
         $article = '';
         if (empty($r) || $r['type'] !== 'blog' || $r['hide'] !== 'y') {
             Output::error('Draft not found');
@@ -412,6 +416,7 @@ class Api_Controller
         ]);
     }
 
+    // 分类列表
     private function sort_list()
     {
         $sort_cache = $this->Cache->readCache('sort');
@@ -461,6 +466,7 @@ class Api_Controller
         output::ok(['note_id' => $id,]);
     }
 
+    // 笔记列表
     private function note_list()
     {
         $page = Input::getIntVar('page', 1);

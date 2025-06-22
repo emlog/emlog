@@ -135,13 +135,14 @@ class Log_Model
      * @param int $blogId ID of the article to be retrieved.
      * @return array|false An array of article record, or false if not found.
      */
-    public function getDetail($blogId)
+    public function getDetail($blogId, $uid = 0)
     {
         $blogId = (int)$blogId;
         if (empty($blogId)) {
             return false;
         }
-        $sql = "SELECT t1.*, t2.sid, t2.sortname, t2.alias as sort_alias FROM $this->table t1 LEFT JOIN $this->table_sort t2 ON t1.sortid=t2.sid WHERE t1.gid=$blogId";
+        $author = $uid ? "and author=$uid" : '';
+        $sql = "SELECT t1.*, t2.sid, t2.sortname, t2.alias as sort_alias FROM $this->table t1 LEFT JOIN $this->table_sort t2 ON t1.sortid=t2.sid WHERE t1.gid=$blogId $author";
         $res = $this->db->query($sql);
         $row = $this->db->fetch_array($res);
         if ($row) {
