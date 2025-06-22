@@ -173,6 +173,32 @@ class Log_Model
     }
 
     /**
+     * 获取文章列表.
+     *
+     * @param string $author 作者ID
+     * @param string $hide_state 隐藏状态
+     * @param int $page 分页页码
+     * @param string $type 文章类型
+     * @param int $perpage_num 每页数量
+     * @return array 文章列表
+     */
+    public function getList($author = '', $hide_state = '', $page = 1, $type = 'blog', $perpage_num = 20)
+    {
+        $author = $author ? 'and author=' . $author : '';
+        $hide_state = $hide_state ? "and hide='$hide_state'" : '';
+        $start_limit = !empty($page) ? ($page - 1) * $perpage_num : 0;
+        $limit = "LIMIT $start_limit, " . $perpage_num;
+        $sql = "SELECT * FROM $this->table WHERE type='$type' $author $hide_state ORDER BY date DESC $limit";
+        $res = $this->db->query($sql);
+        $logs = [];
+        while ($row = $this->db->fetch_array($res)) {
+            $row['title'] = !empty($row['title']) ? htmlspecialchars($row['title']) : '无标题';
+            $logs[] = $row;
+        }
+        return $logs;
+    }
+
+    /**
      * 查询所有的子文章.
      *
      * @param int $parentID The ID of the parent to filter logs.
