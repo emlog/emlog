@@ -142,14 +142,24 @@
 											head.push(alignSign[align]);
 										}
 
-										row.push(" ");
+										// 改进：为表格添加有意义的默认内容，不使用编号
+										if (r === 0) {
+											// 第一行作为表头
+											row.push("表头");
+										} else if (r === 1) {
+											// 第二行是分隔符，不需要填充row数组
+											// 这里什么都不做
+										} else {
+											// 数据行
+											row.push("数据");
+										}
 									}
 
 									if (r === 1) {
 										table += "| " + head.join(" | ") + " |" + "\n";
+									} else {
+										table += "| " + row.join( (cols === 1) ? "" : " | " ) + " |" + "\n";
 									}
-									
-									table += "| " + row.join( (cols === 1) ? "" : " | " ) + " |" + "\n";
 								}
 							}
 
