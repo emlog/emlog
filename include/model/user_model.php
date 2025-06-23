@@ -71,10 +71,11 @@ class User_Model
         }
 
         $row['username'] = htmlspecialchars($row['username']);
-        $row['nickname'] = htmlspecialchars(empty($row['nickname']) ? $row['username'] : $row['nickname']);
         $row['name_orig'] = $row['nickname'];
+        $row['nickname'] = htmlspecialchars(empty($row['nickname']) ? $row['username'] : $row['nickname']);
         $row['email'] = htmlspecialchars($row['email']);
         $row['photo'] = htmlspecialchars($row['photo']);
+        $row['description_orig'] = $row['description'];
         $row['description'] = htmlspecialchars($row['description']);
         $row['state'] = (int)$row['state'];
         $row['credits'] = (int)$row['credits'];

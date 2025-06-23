@@ -48,7 +48,8 @@ function widget_blogger($title)
     $user = $userModel->getOneUser($uid);
     if ($user) {
         $name = $user['nickname'];
-        $description = $user['description'];
+        //$description = $user['description'];
+        $description = $user['description_orig'];
         $avatar = User::getAvatar($user['photo']);
     }
 ?>

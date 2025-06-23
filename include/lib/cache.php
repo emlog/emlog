@@ -153,6 +153,7 @@ class Cache
                 'name'      => htmlspecialchars($row['nickname']),
                 'mail'      => htmlspecialchars($row['email']),
                 'des'       => htmlClean($row['description']),
+                'des_orig'  => $row['description'],
                 'ischeck'   => htmlspecialchars($row['ischeck']),
                 'role'      => $row['role'],
             ];
