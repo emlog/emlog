@@ -231,9 +231,11 @@ if ($action == 'operate_log') {
             if ($logs) {
                 foreach ($logs as $id) {
                     $Log_Model->checkSwitch($id, 'y');
+                    doAction('approved_log', $id);
                 }
             } else {
                 $Log_Model->checkSwitch($gid, 'y');
+                doAction('approved_log', $gid);
             }
             $CACHE->updateCache();
             emDirect("./article.php?active_ck=1&draft=$draft");
@@ -246,11 +248,13 @@ if ($action == 'operate_log') {
                 $feedback = '';
                 foreach ($logs as $id) {
                     $Log_Model->unCheck($id, $feedback);
+                    doAction('unapproved_log', $id);
                 }
             } else {
                 $gid = Input::postIntVar('gid');
                 $feedback = Input::postStrVar('feedback');
                 $Log_Model->unCheck($gid, $feedback);
+                doAction('unapproved_log', $gid);
             }
             $CACHE->updateCache();
             emDirect("./article.php?active_unck=1&draft=$draft");
