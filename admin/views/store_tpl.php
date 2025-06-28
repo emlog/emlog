@@ -91,7 +91,7 @@
                                 <div class="installMsg"></div>
                                 <div>
                                     <?php if (Template::isActive($v['alias'])): ?>
-                                        <a href="plugin.php" class="btn btn-light">正在使用</a>
+                                        <a href="plugin.php" class="btn btn-light">使用中</a>
                                     <?php endif; ?>
                                     <?php if ($v['price'] > 0): ?>
                                         <?php if ($v['purchased'] === true): ?>
