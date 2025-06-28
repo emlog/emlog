@@ -215,6 +215,10 @@ function getFileSuffix($fileName)
  */
 function getFileUrl($filePath)
 {
+    if (defined('UPLOAD_PATH_RELATIVE') && UPLOAD_PATH_RELATIVE === true) {
+        return $filePath;
+    }
+
     if (stripos($filePath, 'http') === false) {
         return BLOG_URL . substr($filePath, 3);
     }
