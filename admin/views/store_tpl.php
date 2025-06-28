@@ -60,7 +60,7 @@
                         <div class="card-body">
                             <p class="card-text font-weight-bold">
                                 <?php if ($v['top'] === 1): ?>
-                                    <span class="badge badge-success p-1">今日推荐</span>
+                                    <span class="badge badge-pink p-1">今日推荐</span>
                                 <?php endif; ?>
                                 <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="<?= $v['name'] ?>" data-url="<?= $v['app_url'] ?>" data-buy-url="<?= $v['buy_url'] ?>"><?= subString($v['name'], 0, 15) ?></a>
                                 <?php if ($v['svip']): ?>
