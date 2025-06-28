@@ -132,7 +132,7 @@
                 </div>
             <?php endforeach ?>
         </div>
-        <div class="col-md-12 page my-5"><?= $pageurl ?></div>
+        <div class="col-md-12 page my-5"></div>
     <?php else: ?>
         <div class="col-md-12">
             <div class="alert alert-info">暂未找到结果，应用商店进货中，敬请期待：）</div>
@@ -202,6 +202,28 @@
                             const type = app.app_type === 'template' ? 'tpl' : 'plugin';
                             const orderUrl = 'https://www.emlog.net/order/submit/' + type + '/' + app.id;
 
+                            // 构建按钮HTML
+                            let buttonsHtml = '';
+
+                            // 检查使用中状态
+                            if (app.is_active) {
+                                buttonsHtml += '<a href="plugin.php" class="btn btn-light">使用中</a> ';
+                            }
+
+                            // 根据价格和权限构建安装/购买按钮
+                            if (app.price > 0) {
+                                if (app.purchased === true) {
+                                    buttonsHtml += '<a href="store.php?action=mine" class="btn btn-light">已购买</a> ';
+                                    buttonsHtml += `<a href="#" class="btn btn-success installBtn" data-url="${encodeURIComponent(app.download_url)}" data-cdn-url="${encodeURIComponent(app.cdn_download_url)}" data-type="${type}">安装</a>`;
+                                } else if (app.svip && app.user_is_svip) {
+                                    buttonsHtml += `<a href="#" class="btn btn-warning installBtn" data-url="${encodeURIComponent(app.download_url)}" data-cdn-url="${encodeURIComponent(app.cdn_download_url)}" data-type="${type}">安装</a>`;
+                                } else {
+                                    buttonsHtml += `<a href="${orderUrl}" class="btn btn-danger" target="_blank">立即购买</a>`;
+                                }
+                            } else {
+                                buttonsHtml += `<a href="#" class="btn btn-success installBtn" data-url="${encodeURIComponent(app.download_url)}" data-cdn-url="${encodeURIComponent(app.cdn_download_url)}" data-type="${type}">安装</a>`;
+                            }
+
                             html += `
                                 <div class="col-md-6 col-lg-3">
                                     <div class="card mb-4 shadow-sm hover-shadow-lg">
@@ -235,13 +257,7 @@
                                             <div class="card-text d-flex justify-content-between">
                                                 <div class="installMsg"></div>
                                                 <div>
-                                                    ${app.price > 0 ? 
-                                                        (app.purchased === true ? 
-                                                            `<a href="store.php?action=mine" class="btn btn-light">已购买</a> <a href="#" class="btn btn-success installBtn" data-url="${encodeURIComponent(app.download_url)}" data-cdn-url="${encodeURIComponent(app.cdn_download_url)}" data-type="${type}">安装</a>` : 
-                                                            `<a href="${orderUrl}" class="btn btn-danger" target="_blank">立即购买</a>`
-                                                        ) : 
-                                                        `<a href="#" class="btn btn-success installBtn" data-url="${encodeURIComponent(app.download_url)}" data-cdn-url="${encodeURIComponent(app.cdn_download_url)}" data-type="${type}">安装</a>`
-                                                    }
+                                                    ${buttonsHtml}
                                                 </div>
                                             </div>
                                         </div>

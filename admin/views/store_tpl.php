@@ -177,6 +177,28 @@
                         response.data.apps.forEach(function(tpl) {
                             const icon = tpl.icon || './views/images/theme.png';
 
+                            // 构建按钮HTML
+                            let buttonsHtml = '';
+
+                            // 检查使用中状态
+                            if (tpl.is_active) {
+                                buttonsHtml += '<a href="plugin.php" class="btn btn-light">使用中</a> ';
+                            }
+
+                            // 根据价格和权限构建安装/购买按钮
+                            if (tpl.price > 0) {
+                                if (tpl.purchased === true) {
+                                    buttonsHtml += '<a href="store.php?action=mine" class="btn btn-light">已购买</a> ';
+                                    buttonsHtml += `<a href="#" class="btn btn-success installBtn" data-url="${encodeURIComponent(tpl.download_url)}" data-cdn-url="${encodeURIComponent(tpl.cdn_download_url)}" data-type="tpl">安装</a>`;
+                                } else if (tpl.svip && tpl.user_is_svip) {
+                                    buttonsHtml += `<a href="#" class="btn btn-warning installBtn" data-url="${encodeURIComponent(tpl.download_url)}" data-cdn-url="${encodeURIComponent(tpl.cdn_download_url)}" data-type="tpl">安装</a>`;
+                                } else {
+                                    buttonsHtml += `<a href="https://www.emlog.net/order/submit/tpl/${tpl.id}" class="btn btn-danger" target="_blank">立即购买</a>`;
+                                }
+                            } else {
+                                buttonsHtml += `<a href="#" class="btn btn-success installBtn" data-url="${encodeURIComponent(tpl.download_url)}" data-cdn-url="${encodeURIComponent(tpl.cdn_download_url)}" data-type="tpl">安装</a>`;
+                            }
+
                             html += `
                                 <div class="col-md-6 col-lg-3">
                                     <div class="card mb-4 shadow-sm hover-shadow-lg">
@@ -209,13 +231,7 @@
                                             <div class="card-text d-flex justify-content-between">
                                                 <div class="installMsg"></div>
                                                 <div>
-                                                    ${tpl.price > 0 ? 
-                                                        (tpl.purchased === true ? 
-                                                            `<a href="store.php?action=mine" class="btn btn-light">已购买</a> <a href="#" class="btn btn-success installBtn" data-url="${encodeURIComponent(tpl.download_url)}" data-cdn-url="${encodeURIComponent(tpl.cdn_download_url)}" data-type="tpl">安装</a>` : 
-                                                            `<a href="https://www.emlog.net/order/submit/tpl/${tpl.id}" class="btn btn-danger" target="_blank">立即购买</a>`
-                                                        ) : 
-                                                        `<a href="#" class="btn btn-success installBtn" data-url="${encodeURIComponent(tpl.download_url)}" data-cdn-url="${encodeURIComponent(tpl.cdn_download_url)}" data-type="tpl">安装</a>`
-                                                    }
+                                                    ${buttonsHtml}
                                                 </div>
                                             </div>
                                         </div>

@@ -65,13 +65,6 @@ if (empty($action)) {
         $sub_title = '限时优惠';
     }
 
-    $subPage = '';
-    foreach ($_GET as $key => $val) {
-        $subPage .= $key != 'page' ? "&$key=$val" : '';
-    }
-
-    $pageurl = pagination($count, $page_count, $page, "store.php?{$subPage}&page=", '', 5, '上一页', '下一页');
-
     include View::getAdmView('header');
     require_once(View::getAdmView('store'));
     include View::getAdmView('footer');
@@ -103,13 +96,6 @@ if ($action === 'tpl') {
         $sub_title = '付费排行榜';
     }
 
-    $subPage = '';
-    foreach ($_GET as $key => $val) {
-        $subPage .= $key != 'page' ? "&$key=$val" : '';
-    }
-
-    $pageurl = pagination($count, $page_count, $page, "store.php?{$subPage}&page=");
-
     include View::getAdmView('header');
     require_once(View::getAdmView('store_tpl'));
     include View::getAdmView('footer');
@@ -140,12 +126,6 @@ if ($action === 'plu') {
     } elseif ($tag === 'paid_top') {
         $sub_title = '付费排行榜';
     }
-
-    $subPage = '';
-    foreach ($_GET as $key => $val) {
-        $subPage .= $key != 'page' ? "&$key=$val" : '';
-    }
-    $pageurl = pagination($count, $page_count, $page, "store.php?{$subPage}&page=");
 
     include View::getAdmView('header');
     require_once(View::getAdmView('store_plu'));
@@ -232,7 +212,6 @@ if ($action === 'install') {
     }
 }
 
-// 在文件末尾添加AJAX接口处理
 if ($action === 'ajax_load') {
     $type = Input::getStrVar('type', 'all'); // all, tpl, plu
     $tag = Input::getStrVar('tag');
@@ -263,6 +242,17 @@ if ($action === 'ajax_load') {
     $has_more = isset($r['has_more']) ? $r['has_more'] : ($page < $page_count);
     $next_page = $has_more ? $page + 1 : null;
 
+    // 为每个应用添加状态信息
+    foreach ($apps as &$app) {
+        // 检查是否正在使用
+        if ($app['app_type'] === 'template') {
+            $app['is_active'] = Template::isActive($app['alias']);
+        } else {
+            $app['is_active'] = Plugin::isActive($app['alias']);
+        }
+        $app['user_is_svip'] = (Register::getRegType() === 2);
+    }
+
     $response = [
         'code' => 200,
         'data' => [
@@ -275,7 +265,5 @@ if ($action === 'ajax_load') {
         'next_page' => $next_page
     ];
 
-    header('Content-Type: application/json');
-    echo json_encode($response);
-    exit;
+    Output::json($response);
 }
