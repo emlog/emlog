@@ -78,16 +78,19 @@ class Store_Model
                 $data['apps'] = isset($ret['data']['apps']) ? $ret['data']['apps'] : [];
                 $data['count'] = isset($ret['data']['count']) ? $ret['data']['count'] : 0;
                 $data['page_count'] = isset($ret['data']['page_count']) ? $ret['data']['page_count'] : 0;
+                $data['has_more'] = isset($ret['has_more']) ? $ret['has_more'] : false;
                 break;
             case 'tpl':
                 $data['templates'] = isset($ret['data']['templates']) ? $ret['data']['templates'] : [];
                 $data['count'] = isset($ret['data']['count']) ? $ret['data']['count'] : 0;
                 $data['page_count'] = isset($ret['data']['page_count']) ? $ret['data']['page_count'] : 0;
+                $data['has_more'] = isset($ret['has_more']) ? $ret['has_more'] : false;
                 break;
             case 'plu':
                 $data['plugins'] = isset($ret['data']['plugins']) ? $ret['data']['plugins'] : [];
                 $data['count'] = isset($ret['data']['count']) ? $ret['data']['count'] : 0;
                 $data['page_count'] = isset($ret['data']['page_count']) ? $ret['data']['page_count'] : 0;
+                $data['has_more'] = isset($ret['has_more']) ? $ret['has_more'] : false;
                 break;
             case 'svip':
             case 'mine':

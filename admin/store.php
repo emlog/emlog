@@ -260,7 +260,7 @@ if ($action === 'ajax_load') {
 
     $count = $r['count'];
     $page_count = $r['page_count'];
-    $has_more = $page < $page_count;
+    $has_more = isset($r['has_more']) ? $r['has_more'] : ($page < $page_count);
     $next_page = $has_more ? $page + 1 : null;
 
     $response = [
