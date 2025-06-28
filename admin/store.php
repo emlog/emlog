@@ -231,3 +231,51 @@ if ($action === 'install') {
             exit('安装失败，不是有效的安装包');
     }
 }
+
+// 在文件末尾添加AJAX接口处理
+if ($action === 'ajax_load') {
+    $type = Input::getStrVar('type', 'all'); // all, tpl, plu
+    $tag = Input::getStrVar('tag');
+    $page = Input::getIntVar('page', 1);
+    $keyword = Input::getStrVar('keyword');
+    $author_id = Input::getStrVar('author_id');
+    $sid = Input::getIntVar('sid');
+
+    $Store_Model = new Store_Model();
+
+    switch ($type) {
+        case 'tpl':
+            $r = $Store_Model->getTemplates($tag, $keyword, $page, $author_id, $sid);
+            $apps = $r['templates'];
+            break;
+        case 'plu':
+            $r = $Store_Model->getPlugins($tag, $keyword, $page, $author_id, $sid);
+            $apps = $r['plugins'];
+            break;
+        default:
+            $r = $Store_Model->getApps($tag, $keyword, $page, $author_id, $sid);
+            $apps = $r['apps'];
+            break;
+    }
+
+    $count = $r['count'];
+    $page_count = $r['page_count'];
+    $has_more = $page < $page_count;
+    $next_page = $has_more ? $page + 1 : null;
+
+    $response = [
+        'code' => 200,
+        'data' => [
+            'apps' => $apps,
+            'count' => $count,
+            'page_count' => $page_count
+        ],
+        'has_more' => $has_more,
+        'current_page' => $page,
+        'next_page' => $next_page
+    ];
+
+    header('Content-Type: application/json');
+    echo json_encode($response);
+    exit;
+}

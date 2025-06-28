@@ -145,5 +145,110 @@
                 window.location.href = './store.php?action=plu&sid=' + selectedCategory;
             }
         });
+
+        // 滚动加载功能
+        let isLoading = false;
+        let hasMore = <?= $page < $page_count ? 'true' : 'false' ?>;
+        let currentPage = <?= $page ?>;
+
+        function loadMorePlugins() {
+            if (isLoading || !hasMore) return;
+
+            isLoading = true;
+            const nextPage = currentPage + 1;
+
+            $('.page').html('<div class="text-center"><i class="icofont-spinner-alt-3 icofont-spin"></i> 加载中...</div>');
+
+            const urlParams = new URLSearchParams(window.location.search);
+            urlParams.set('action', 'ajax_load');
+            urlParams.set('type', 'plu');
+            urlParams.set('page', nextPage);
+
+            $.ajax({
+                url: './store.php',
+                type: 'GET',
+                data: urlParams.toString(),
+                dataType: 'json',
+                success: function(response) {
+                    if (response.code === 200 && response.data.apps.length > 0) {
+                        let html = '';
+                        response.data.apps.forEach(function(plugin) {
+                            const icon = plugin.icon || './views/images/plugin.png';
+
+                            html += `
+                                <div class="col-md-6 col-lg-3">
+                                    <div class="card mb-4 shadow-sm hover-shadow-lg">
+                                        <a href="#appModal" class="p-1" data-toggle="modal" data-target="#appModal" data-name="${plugin.name}" data-url="${plugin.app_url}" data-buy-url="${plugin.buy_url}">
+                                            <img class="bd-placeholder-img card-img-top" alt="cover" width="100%" height="225" src="${icon}">
+                                        </a>
+                                        <div class="card-body">
+                                            <p class="card-text font-weight-bold">
+                                                ${plugin.top === 1 ? '<span class="badge badge-pink p-1">今日推荐</span>' : ''}
+                                                <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="${plugin.name}" data-url="${plugin.app_url}" data-buy-url="${plugin.buy_url}">${plugin.name}</a>
+                                                ${plugin.svip ? '<a href="https://www.emlog.net/register" class="badge badge-warning p-1" target="_blank">铁杆免费</a>' : ''}
+                                            </p>
+                                            <p class="card-text text-muted">
+                                                售价：
+                                                ${plugin.price > 0 ? 
+                                                    (plugin.promo_price > 0 ? 
+                                                        `<span style="text-decoration:line-through">${plugin.price}<small>元</small></span> <span class="text-danger">${plugin.promo_price}<small>元</small></span>` : 
+                                                        `<span class="text-danger">${plugin.price}<small>元</small></span>`
+                                                    ) : 
+                                                    '<span class="text-success">免费</span>'
+                                                }
+                                                <br>
+                                                <small>
+                                                    开发者：<a href="./store.php?action=plu&author_id=${plugin.author_id}">${plugin.author}</a><br>
+                                                    版本号：${plugin.ver}<br>
+                                                    安装次数：${plugin.downloads}<br>
+                                                    更新时间：${plugin.update_time}<br>
+                                                </small>
+                                            </p>
+                                            <div class="card-text d-flex justify-content-between">
+                                                <div class="installMsg"></div>
+                                                <div>
+                                                    ${plugin.price > 0 ? 
+                                                        (plugin.purchased === true ? 
+                                                            `<a href="store.php?action=mine" class="btn btn-light">已购买</a> <a href="#" class="btn btn-success installBtn" data-url="${encodeURIComponent(plugin.download_url)}" data-cdn-url="${encodeURIComponent(plugin.cdn_download_url)}" data-type="plugin">安装</a>` : 
+                                                            `<a href="https://www.emlog.net/order/submit/plugin/${plugin.id}" class="btn btn-danger" target="_blank">立即购买</a>`
+                                                        ) : 
+                                                        `<a href="#" class="btn btn-success installBtn" data-url="${encodeURIComponent(plugin.download_url)}" data-cdn-url="${encodeURIComponent(plugin.cdn_download_url)}" data-type="plugin">安装</a>`
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+                        });
+
+                        $('.app-list').append(html);
+                        currentPage = response.current_page;
+                        hasMore = response.has_more;
+
+                        if (hasMore) {
+                            $('.page').html('<div class="text-center text-muted">滚动到底部加载更多...</div>');
+                        } else {
+                            $('.page').html('<div class="text-center text-muted">已加载全部内容</div>');
+                        }
+                    } else {
+                        hasMore = false;
+                        $('.page').html('<div class="text-center text-muted">已加载全部内容</div>');
+                    }
+                },
+                error: function() {
+                    $('.page').html('<div class="text-center text-danger">加载失败，请重试</div>');
+                },
+                complete: function() {
+                    isLoading = false;
+                }
+            });
+        }
+
+        $(window).scroll(function() {
+            if ($(window).scrollTop() + $(window).height() >= $(document).height() - 100) {
+                loadMorePlugins();
+            }
+        });
     });
 </script>
