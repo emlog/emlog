@@ -630,15 +630,15 @@ $(function () {
     // 复选框全选
     initCheckboxSelectAll('#checkAllItem', '.checkboxContainer');
 
-    // 应用商店：应用安装
-    $('.installBtn').click(function (e) {
+    // 应用商店：应用安装 - 使用事件委托
+    $(document).on('click', '.installBtn', function (e) {
         e.preventDefault();
         let link = $(this);
         let down_url = link.data('url');
         let type = link.data('type');
         link.text('安装中…');
         link.parent().prev(".installMsg").html("").addClass("spinner-border text-primary");
-
+    
         let url = './store.php?action=install&type=' + type + '&source=' + down_url;
         $.get(url, function (data) {
             link.text('安装');
