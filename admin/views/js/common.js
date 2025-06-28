@@ -642,7 +642,12 @@ $(function () {
         let url = './store.php?action=install&type=' + type + '&source=' + down_url;
         $.get(url, function (data) {
             link.text('安装');
-            link.parent().prev(".installMsg").html('<span class="text-danger">' + data + '</span>').removeClass("spinner-border text-primary");
+            if (data.includes('成功')) {
+                cocoMessage.success(data, 5000);
+            } else {
+                cocoMessage.error(data, 5000);
+            }
+            link.parent().prev(".installMsg").removeClass("spinner-border text-primary");
         });
     });
 
