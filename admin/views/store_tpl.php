@@ -150,7 +150,7 @@
 
         // 滚动加载功能
         let isLoading = false;
-        let hasMore = <?= $page < $page_count ? 'true' : 'false' ?>;
+        let hasMore = <?= $has_more ? 'true' : 'false' ?>;
         let currentPage = <?= $page ?>;
 
         function loadMoreTemplates() {

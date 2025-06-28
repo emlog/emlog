@@ -53,8 +53,7 @@ if (empty($action)) {
 
     $r = $Store_Model->getApps($tag, $keyword, $page, $author_id, $sid);
     $apps = $r['apps'];
-    $count = $r['count'];
-    $page_count = $r['page_count'];
+    $has_more = $r['has_more'];
 
     $sub_title = '全部应用';
     if ($tag === 'free') {
@@ -80,8 +79,7 @@ if ($action === 'tpl') {
 
     $r = $Store_Model->getTemplates($tag, $keyword, $page, $author_id, $sid);
     $templates = $r['templates'];
-    $count = $r['count'];
-    $page_count = $r['page_count'];
+    $has_more = $r['has_more'];
 
     $sub_title = '模板主题';
     if ($tag === 'free') {
@@ -111,8 +109,7 @@ if ($action === 'plu') {
 
     $r = $Store_Model->getPlugins($tag, $keyword, $page, $author_id, $sid);
     $plugins = $r['plugins'];
-    $count = $r['count'];
-    $page_count = $r['page_count'];
+    $has_more = $r['has_more'];
 
     $sub_title = '扩展插件';
     if ($tag === 'free') {
@@ -200,7 +197,7 @@ if ($action === 'install') {
     @unlink($temp_file);
     switch ($ret) {
         case 0:
-            exit('安装成功 <a href="' . $suc_url . '">去启用</a>');
+            exit('🎉🎈应用安装成功了，<a href="' . $suc_url . '">现在去启用</a>');
         case 1:
             exit('安装失败，请检查content下目录是否可写');
         case 2:

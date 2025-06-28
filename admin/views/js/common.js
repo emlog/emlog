@@ -643,9 +643,9 @@ $(function () {
         $.get(url, function (data) {
             link.text('安装');
             if (data.includes('成功')) {
-                cocoMessage.success(data, 5000);
+                cocoMessage.success(data, 8000);
             } else {
-                cocoMessage.error(data, 5000);
+                cocoMessage.error(data, 8000);
             }
             link.parent().prev(".installMsg").removeClass("spinner-border text-primary");
         });
