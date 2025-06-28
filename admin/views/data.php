@@ -40,11 +40,15 @@
         <form action="data.php?action=import" enctype="multipart/form-data" method="post">
             <div class="card-body">
                 <div id="import">
-                    <p class="des">仅可导入相同版本emlog的数据库备份文件，且数据库表前缀需保持一致。<br />当前数据库表前缀：<?= DB_PREFIX ?></p>
+                    <p class="des">仅可导入相同版本emlog的数据库备份文件</p>
                 </div>
-                <div>
-                    <input type="file" id="sqlfile" name="sqlfile" required>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" name="sqlfile" id="sqlfile" required>
+                    <label class="custom-file-label" for="sqlfile">选择备份文件</label>
                 </div>
+                <small class="form-text text-muted mt-2">
+                    请选择SQL文件或备份的ZIP压缩包，数据库表前缀需保持一致，当前数据库表前缀：<?= DB_PREFIX ?>
+                </small>
             </div>
             <div class="card-footer text-right">
                 <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
@@ -70,5 +74,11 @@
         $("#menu_sys").addClass('show');
         $("#menu_data").addClass('active');
         setTimeout(hideActived, 3600);
+
+        // 监听备份文件上传
+        $('#sqlfile').on('change', function() {
+            var fileName = $(this).get(0).files[0] ? $(this).get(0).files[0].name : '';
+            $(this).next('.custom-file-label').text(fileName || '选择备份文件');
+        });
     });
 </script>
