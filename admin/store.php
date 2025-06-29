@@ -53,6 +53,7 @@ if (empty($action)) {
 
     $r = $Store_Model->getApps($tag, $keyword, $page, $author_id, $sid);
     $apps = $r['apps'];
+    $tab_type = 'all';
     $has_more = $r['has_more'];
 
     $sub_title = '全部应用';
@@ -66,6 +67,7 @@ if (empty($action)) {
 
     include View::getAdmView('header');
     require_once(View::getAdmView('store'));
+    require_once(View::getAdmView('store_app_list'));
     include View::getAdmView('footer');
     View::output();
 }
@@ -78,7 +80,8 @@ if ($action === 'tpl') {
     $sid = Input::getIntVar('sid');
 
     $r = $Store_Model->getTemplates($tag, $keyword, $page, $author_id, $sid);
-    $templates = $r['templates'];
+    $apps = $r['templates'];
+    $tab_type = 'tpl';
     $has_more = $r['has_more'];
 
     $sub_title = '模板主题';
@@ -96,6 +99,7 @@ if ($action === 'tpl') {
 
     include View::getAdmView('header');
     require_once(View::getAdmView('store_tpl'));
+    require_once(View::getAdmView('store_app_list'));
     include View::getAdmView('footer');
     View::output();
 }
@@ -108,7 +112,8 @@ if ($action === 'plu') {
     $sid = Input::getIntVar('sid');
 
     $r = $Store_Model->getPlugins($tag, $keyword, $page, $author_id, $sid);
-    $plugins = $r['plugins'];
+    $apps = $r['plugins'];
+    $tab_type = 'plu';
     $has_more = $r['has_more'];
 
     $sub_title = '扩展插件';
@@ -126,6 +131,7 @@ if ($action === 'plu') {
 
     include View::getAdmView('header');
     require_once(View::getAdmView('store_plu'));
+    require_once(View::getAdmView('store_app_list'));
     include View::getAdmView('footer');
     View::output();
 }
