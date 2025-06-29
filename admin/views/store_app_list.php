@@ -73,6 +73,12 @@
             <?php endforeach ?>
         </div>
         <div class="col-md-12 page my-5"></div>
+        <!-- 手动加载更多按钮 -->
+        <div class="col-md-12 text-center mb-4" id="loadMoreContainer" style="display: none;">
+            <button type="button" class="btn btn-primary" id="loadMoreBtn">
+                点击加载更多
+            </button>
+        </div>
     <?php else: ?>
         <div class="col-md-12">
             <div class="alert alert-info">暂未找到结果，应用商店进货中，敬请期待：）</div>
@@ -120,8 +126,8 @@
             isLoading = true;
             const nextPage = currentPage + 1;
 
-            // 显示加载提示
-            $('.page').html('<div class="text-center"><i class="icofont-spinner-alt-3 icofont-spin"></i> 加载中...</div>');
+            // 禁用手动加载按钮
+            $('#loadMoreBtn').prop('disabled', true).html('加载中...');
 
             // 获取当前URL参数
             const urlParams = new URLSearchParams(window.location.search);
@@ -215,17 +221,23 @@
                         hasMore = response.has_more;
 
                         if (hasMore) {
-                            $('.page').html('<div class="text-center text-muted">滚动到底部加载更多...</div>');
+                            // 显示手动加载按钮
+                            $('#loadMoreContainer').show();
+                            $('#loadMoreBtn').prop('disabled', false).html('点击加载更多');
                         } else {
                             $('.page').html('<div class="text-center text-muted">已加载全部内容</div>');
+                            // 隐藏手动加载按钮
+                            $('#loadMoreContainer').hide();
                         }
                     } else {
                         hasMore = false;
                         $('.page').html('<div class="text-center text-muted">已加载全部内容</div>');
+                        $('#loadMoreContainer').hide();
                     }
                 },
                 error: function() {
-                    $('.page').html('<div class="text-center text-danger">加载失败，请重试</div>');
+                    // 重新启用手动加载按钮
+                    $('#loadMoreBtn').prop('disabled', false).html('加载失败，点击重试加载');
                 },
                 complete: function() {
                     isLoading = false;
@@ -233,11 +245,21 @@
             });
         }
 
+        // 手动加载更多按钮点击事件
+        $('#loadMoreBtn').on('click', function() {
+            loadMoreApps();
+        });
+
         // 滚动监听
         $(window).scroll(function() {
             if ($(window).scrollTop() + $(window).height() >= $(document).height() - 100) {
                 loadMoreApps();
             }
         });
+
+        // 初始化时显示手动加载按钮（如果有更多内容）
+        if (hasMore) {
+            $('#loadMoreContainer').show();
+        }
     });
 </script>
