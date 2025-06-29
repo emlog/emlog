@@ -109,22 +109,52 @@
         <div class="row">
             <div class="col-lg-6 mb-3">
                 <div class="card shadow">
-                    <div class="card-header bg-danger text-white">
-                        <h6 class="my-0">您安装的emlog尚未完成正版注册，完成注册可使用全部功能</h6>
+                    <div class="card-header bg-gradient-warning text-danger">
+                        <h6 class="my-0">升级正版注册可使用全部功能</h6>
                     </div>
                     <div class="card-body">
-                        <p>1. 获得在线升级功能，一键升级到最新版本</p>
-                        <p>2. 解锁完整应用商店功能，包括应用在线更新</p>
-                        <p>3. 去除所有未正版注册提示及功能限制</p>
-                        <p>4. 铁杆SVIP免费应用：超过20款付费插件、多款付费主题免费用</p>
+                        <p><span class="badge badge-warning badge-pill">1</span> 获得在线升级功能，一键升级到最新版本</p>
+                        <p><span class="badge badge-warning badge-pill">2</span> 解锁完整应用商店功能，包括应用在线更新</p>
+                        <p><span class="badge badge-warning badge-pill">3</span> 去除所有未正版注册提示及功能限制</p>
+                        <p><span class="badge badge-warning badge-pill">4</span> 铁杆SVIP免费应用：超过20款付费插件、多款付费主题免费用</p>
                         <p>
-                            <a href="auth.php" class="btn btn-primary shadow-lg"> 开始正版注册</a>
-                            <a href="https://emlog.net/register" target="_blank" class="btn ml-3 btn-success shadow-lg">获取注册码-></a>
+                            <a href="auth.php" class="btn btn-danger px-4">
+                                开始正版注册
+                            </a>
+                            <a href="https://emlog.net/register" target="_blank" class="btn btn-outline-success px-4">
+                                <i class="icofont-external-link me-2"></i>
+                                获取注册码
+                            </a>
                         </p>
                     </div>
                 </div>
             </div>
         </div>
+        <style>
+            .bg-gradient-warning {
+                background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%);
+            }
+
+            .registration-prompt {
+                animation: slideInUp 0.6s ease-out;
+            }
+
+            @keyframes slideInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .registration-prompt .card-body {
+                background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            }
+        </style>
     <?php endif ?>
     <div class="modal fade" id="update-modal" tabindex="-1" role="dialog" aria-labelledby="update-modal-label" aria-hidden="true">
         <div class="modal-dialog" role="document">
