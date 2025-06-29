@@ -54,7 +54,7 @@
         </div>
     <?php elseif (!Register::isRegLocal()): ?>
         <div class="col-md-12">
-            <p class="alert alert-warning my-3">您还不是付费注册用户，无法使用应用商店已购功能，<a href="https://www.emlog.net/register">付费支持 &rarr;</a></p>
+            <p class="alert alert-warning my-3">您还不是正版注册用户，无法使用应用商店已购功能，<a href="https://www.emlog.net/register">付费支持 &rarr;</a></p>
         </div>
     <?php else: ?>
         <div class="col-md-12">
