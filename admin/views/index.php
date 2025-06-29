@@ -81,7 +81,8 @@
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <div>
                                 <?php if (!Register::isRegLocal()) : ?>
-                                    <a href="https://www.emlog.net/register" target="_blank"><span class="badge badge-secondary">Emlog <?= Option::EMLOG_VERSION ?> 未注册</span></a>
+                                    <a href="https://www.emlog.net/register" target="_blank"><span class="badge badge-secondary">Emlog <?= Option::EMLOG_VERSION ?></span></a>
+                                    <a href="https://www.emlog.net/register" target="_blank" class="badge badge-secondary">未正版注册</a>
                                 <?php else: ?>
                                     <a href="https://www.emlog.net" target="_blank"><span class="badge badge-success">Emlog <?= ucfirst(Option::EMLOG_VERSION) ?></span></a>
                                     <?php if (Register::getRegType() === 2): ?>
@@ -114,11 +115,11 @@
                     <div class="card-body">
                         <p>1. 获得在线升级功能，一键升级到最新版本</p>
                         <p>2. 解锁完整应用商店功能，包括应用在线更新</p>
-                        <p>3. 去除所有未注册提示及功能限制</p>
+                        <p>3. 去除所有未正版注册提示及功能限制</p>
                         <p>4. 铁杆SVIP免费应用：超过20款付费插件、多款付费主题免费用</p>
                         <p>
-                            <a href="auth.php" class="btn btn-sm btn-primary shadow-lg"> 开始正版注册</a>
-                            <a href="https://emlog.net/register" target="_blank" class="btn btn-sm ml-3 btn-success shadow-lg">获取注册码-></a>
+                            <a href="auth.php" class="btn btn-primary shadow-lg"> 开始正版注册</a>
+                            <a href="https://emlog.net/register" target="_blank" class="btn ml-3 btn-success shadow-lg">获取注册码-></a>
                         </p>
                     </div>
                 </div>
