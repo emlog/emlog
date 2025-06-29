@@ -110,20 +110,20 @@
             <div class="col-lg-6 mb-3">
                 <div class="card shadow">
                     <div class="card-header bg-gradient-warning text-danger">
-                        <h6 class="my-0">升级正版注册可使用全部功能</h6>
+                        <h6 class="my-0 font-weight-bold">升级正版注册可使用全部功能</h6>
                     </div>
                     <div class="card-body">
                         <p><span class="badge badge-warning badge-pill">1</span> 获得在线升级功能，一键升级到最新版本</p>
                         <p><span class="badge badge-warning badge-pill">2</span> 解锁完整应用商店功能，包括应用在线更新</p>
                         <p><span class="badge badge-warning badge-pill">3</span> 去除所有未正版注册提示及功能限制</p>
-                        <p><span class="badge badge-warning badge-pill">4</span> 铁杆SVIP免费应用：超过20款付费插件、多款付费主题免费用</p>
+                        <p><span class="badge badge-warning badge-pill">4</span> 铁杆SVIP免费应用：超过30款付费插件、多款付费主题免费用</p>
                         <p>
-                            <a href="auth.php" class="btn btn-danger px-4">
-                                开始正版注册
-                            </a>
-                            <a href="https://emlog.net/register" target="_blank" class="btn btn-outline-success px-4">
+                            <a href="https://emlog.net/register" target="_blank" class="btn btn-danger px-4">
+                                立即正版注册
                                 <i class="icofont-external-link me-2"></i>
-                                获取注册码
+                            </a>
+                            <a href="auth.php" class="btn btn-outline-success px-4">
+                                输入注册码
                             </a>
                         </p>
                     </div>

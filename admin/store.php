@@ -184,7 +184,7 @@ if ($action === 'install') {
 
     if (!$temp_file) {
         if (false === Register::verifyDownload($source)) {
-            exit('emlog未正版注册，<a href="auth.php">去注册</a>');
+            exit('emlog未正版注册，<a href="https://emlog.net/register" target="_blank">去注册</a>');
         }
         exit('安装失败，下载超时');
     }
