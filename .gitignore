@@ -2,7 +2,7 @@
 .htaccess
 .user.ini
 .php-version
-sitemap.xml
+sitemap*
 Dockerfile
 config.php
 /content/backup/*.sql
