@@ -26,19 +26,19 @@
                     <div class="mt-2" id="field_box">
                         <?php
                         foreach ($fields as $key => $value): ?>
-                            <div class="form-row field_list">
-                                <div class="col-sm-4">
-                                    <input type="text" name="field_keys[]" value="<?= $key ?>" list="customFieldList" id="field_keys" class="form-control" placeholder="字段名称2" maxlength="120" required>
+                            <div class="form-row field_list mb-3">
+                                <div class="col-sm-3 pr-2">
+                                    <input type="text" name="field_keys[]" value="<?= $key ?>" list="customFieldList" id="field_keys" class="form-control" placeholder="字段名称" maxlength="120" required>
                                     <datalist id="customFieldList">
                                         <?php foreach ($customFields as $k => $v): ?>
                                             <option value="<?= $k ?>"><?= $k . '【' . $v['name'] . '】' . $v['description'] ?></option>
                                         <?php endforeach; ?>
                                     </datalist>
                                 </div>
-                                <div class="col-sm-6 mx-sm-3">
-                                    <input type="text" name="field_values[]" value="<?= $value ?>" id="field_values" class="form-control" placeholder="字段值" required>
+                                <div class="col-sm-8 px-2">
+                                    <textarea name="field_values[]" id="field_values" class="form-control auto-resize-textarea" placeholder="字段值" rows="1" style="resize: vertical; min-height: 33px;" required><?= $value ?></textarea>
                                 </div>
-                                <div class="col-auto mt-1 text-align-right">
+                                <div class="col-sm-1 pl-2 d-flex align-items-start justify-content-end">
                                     <button type="button" class="btn btn-sm btn-outline-danger field_del">删除</button>
                                 </div>
                             </div>
@@ -437,8 +437,8 @@
     });
     $(document).on('click', '.field_add', function() {
         var newField = `
-                    <div class="form-row field_list">
-                        <div class="col-sm-4">
+                    <div class="form-row field_list mb-3">
+                        <div class="col-sm-3 pr-2">
                             <input type="text" name="field_keys[]" list="customFieldList" value="" id="field_keys" class="form-control" placeholder="字段名称" maxlength="120" required>
                             <datalist id="customFieldList">
                                 <?php foreach ($customFields as $k => $v): ?>
@@ -446,15 +446,34 @@
                                 <?php endforeach; ?>
                             </datalist>
                         </div>
-                        <div class="col-sm-6 mx-sm-3">
-                            <input type="text" name="field_values[]" value="" id="field_values" class="form-control" placeholder="字段值" required>
+                        <div class="col-sm-8 px-2">
+                            <textarea name="field_values[]" value="" id="field_values" class="form-control auto-resize-textarea" placeholder="字段值" rows="1" style="resize: vertical; min-height: 33px;" required></textarea>
                         </div>
-                        <div class="col-auto mt-1">
+                        <div class="col-sm-1 pl-2 d-flex align-items-start justify-content-end">
                             <button type="button" class="btn btn-sm btn-outline-danger field_del">删除</button>
                         </div>
                     </div>
                 `;
         $('#field_box').append(newField);
+        // 为新添加的textarea绑定自动调整高度功能
+        autoResizeTextarea($('#field_box .auto-resize-textarea').last());
+    });
+
+    // 自动调整textarea高度的函数
+    function autoResizeTextarea(textarea) {
+        textarea.on('input', function() {
+            this.style.height = 'auto';
+            this.style.height = Math.max(33, this.scrollHeight) + 'px';
+        });
+        // 初始化时也调整一次
+        textarea.trigger('input');
+    }
+
+    // 为现有的textarea绑定自动调整高度功能
+    $(function() {
+        $('.auto-resize-textarea').each(function() {
+            autoResizeTextarea($(this));
+        });
     });
 
     // 高级选项展开状态
