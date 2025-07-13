@@ -36,7 +36,7 @@
                                     </datalist>
                                 </div>
                                 <div class="col-sm-8 px-2 my-1">
-                                    <textarea name="field_values[]" class="form-control auto-resize-textarea field-values-textarea" placeholder="字段值" rows="1" style="resize: vertical; min-height: 33px; white-space: nowrap; overflow-x: auto;" required><?= $value ?></textarea>
+                                    <textarea name="field_values[]" class="form-control auto-resize-textarea field-values-textarea" placeholder="字段值" rows="1" style="resize: vertical; min-height: 33px; white-space: pre-wrap; overflow-x: auto;" required><?= $value ?></textarea>
                                 </div>
                                 <div class="col-sm-1 px-2 my-1 d-flex align-items-start justify-content-end">
                                     <button type="button" class="btn btn-sm btn-outline-danger field_del">删除</button>
@@ -447,7 +447,7 @@
                             </datalist>
                         </div>
                         <div class="col-sm-8 px-2 my-1">
-                            <textarea name="field_values[]" value="" class="form-control auto-resize-textarea field-values-textarea" placeholder="字段值" rows="1" style="resize: vertical; min-height: 33px; white-space: nowrap; overflow-x: auto;" required></textarea>
+                            <textarea name="field_values[]" value="" class="form-control auto-resize-textarea field-values-textarea" placeholder="字段值" rows="1" style="resize: vertical; min-height: 33px; white-space: pre-wrap; overflow-x: auto;" required></textarea>
                         </div>
                         <div class="col-sm-1 px-2 my-1 d-flex align-items-start justify-content-end">
                             <button type="button" class="btn btn-sm btn-outline-danger field_del">删除</button>
