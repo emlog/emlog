@@ -626,6 +626,69 @@ function initCheckboxSelectAll(checkAllSelector, containerSelector) {
     });
 }
 
+/**
+ * 自动调整textarea高度的通用方法
+ * @param {jQuery|string} selector - jQuery对象或选择器字符串
+ * @param {Object} options - 配置选项
+ * @param {number} options.minHeight - 最小高度，默认33px
+ * @param {number} options.maxHeight - 最大高度，默认无限制
+ * @param {number} options.padding - 额外的内边距，默认2px
+ */
+function autoResizeTextarea(selector, options = {}) {
+    const defaults = {
+        minHeight: 33,
+        maxHeight: null,
+        padding: 2
+    };
+    
+    const config = Object.assign(defaults, options);
+    
+    function bindResize($textarea) {
+        $textarea.on('input propertychange', function() {
+            const element = this;
+            element.style.height = 'auto';
+            
+            let newHeight = element.scrollHeight + config.padding;
+            
+            // 应用最小高度限制
+            if (newHeight < config.minHeight) {
+                newHeight = config.minHeight;
+            }
+            
+            // 应用最大高度限制
+            if (config.maxHeight && newHeight > config.maxHeight) {
+                newHeight = config.maxHeight;
+                element.style.overflowY = 'auto';
+            } else {
+                element.style.overflowY = 'hidden';
+            }
+            
+            element.style.height = newHeight + 'px';
+        });
+        
+        // 初始化时也调整一次
+        $textarea.trigger('input');
+    }
+    
+    // 处理不同类型的选择器
+    if (typeof selector === 'string') {
+        $(selector).each(function() {
+            bindResize($(this));
+        });
+    } else if (selector instanceof jQuery) {
+        selector.each(function() {
+            bindResize($(this));
+        });
+    }
+}
+
+/**
+ * 初始化页面中所有带有 auto-resize-textarea 类的文本域
+ */
+function initAutoResizeTextareas() {
+    autoResizeTextarea('.auto-resize-textarea');
+}
+
 $(function () {
     // 复选框全选
     initCheckboxSelectAll('#checkAllItem', '.checkboxContainer');
