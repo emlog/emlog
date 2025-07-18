@@ -20,14 +20,21 @@ class Sort_Model
         $this->db = Database::getInstance();
     }
 
-    function getSorts()
+    function getSorts($filterAllowUserPost = false)
     {
         $sorts = [];
         $query = $this->db->query("SELECT * FROM $this->table ORDER BY pid ASC,taxis ASC");
         while ($row = $this->db->fetch_array($query)) {
             $data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM $this->table_blog WHERE sortid=" . $row['sid'] . " AND hide='n' AND checked='y' AND type='blog'");
             $logNum = $data['total'];
+
+            // 为注册用户过滤不可投稿的分类
+            if ($filterAllowUserPost && (!isset($row['allow_user_post']) || $row['allow_user_post'] !== 'y')) {
+                continue;
+            }
+
             $sortData = array(
+                'sid'          => (int)$row['sid'],
                 'lognum'       => $logNum,
                 'sortname'     => htmlspecialchars($row['sortname']),
                 'alias'        => $row['alias'],
@@ -35,7 +42,6 @@ class Sort_Model
                 'kw'           => htmlspecialchars($row['kw']),
                 'title_origin' => $row['title'],
                 'title'        => htmlspecialchars(Sort::formatSortTitle($row['title'], $row['sortname'])),
-                'sid'          => (int)$row['sid'],
                 'taxis'        => (int)$row['taxis'],
                 'pid'          => (int)$row['pid'],
                 'template'     => htmlspecialchars($row['template']),

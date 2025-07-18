@@ -66,8 +66,11 @@
                                         <?= $value['sortname'] ?>
                                     </a>
                                     <a href="<?= Url::sort($value['sid']) ?>" target="_blank" class="text-muted ml-2"><i class="icofont-external-link"></i></a>
+                                    <?php if ($value['allow_user_post'] == 'n'): ?>
+                                        <br><span class="badge small badge-orange">不可投稿</span>
+                                    <?php endif ?>
                                 </td>
-                                <td><?= $value['description'] ?></td>
+                                <td><?= subString($value['description'], 0, 100) ?></td>
                                 <td><?= $value['sid'] ?></td>
                                 <td class="alias"><?= $value['alias'] ?></td>
                                 <td><a href="article.php?sid=<?= $value['sid'] ?>"><?= $value['lognum'] ?></a></td>
@@ -103,10 +106,14 @@
                                             data-pid="<?= $value['pid'] ?>"
                                             data-sortimg="<?= $value['sortimg'] ?>"
                                             data-page_count="<?= $value['page_count'] ?>"
+                                            data-allow_user_post="<?= $value['allow_user_post'] ?>"
                                             data-template="<?= $value['template'] ?>"><?= $value['sortname'] ?></a>
                                         <a href="<?= Url::sort($value['sid']) ?>" target="_blank" class="text-muted ml-2"><i class="icofont-external-link"></i></a>
+                                        <?php if ($value['allow_user_post'] == 'n'): ?>
+                                            <br><span class="badge small badge-orange">不可投稿</span>
+                                        <?php endif ?>
                                     </td>
-                                    <td><?= $value['description'] ?></td>
+                                    <td><?= subString($value['description'], 0, 100) ?></td>
                                     <td><?= $value['sid'] ?></td>
                                     <td class="alias"><?= $value['alias'] ?></td>
                                     <td><a href="article.php?sid=<?= $value['sid'] ?>"><?= $value['lognum'] ?></a></td>
@@ -183,7 +190,7 @@
                     </div>
                     <div class="custom-control custom-switch">
                         <input class="custom-control-input" type="checkbox" name="allow_user_post" id="allow_user_post" value="y">
-                        <label class="custom-control-label" for="allow_user_post">允许注册用户投稿</label>
+                        <label class="custom-control-label" for="allow_user_post">允许注册用户发文投稿</label>
                     </div>
                     <?php if ($customTemplates): ?>
                         <div class="form-group">
