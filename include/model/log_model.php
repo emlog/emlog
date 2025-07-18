@@ -362,7 +362,7 @@ class Log_Model
         if ((int)$pageSize <= 0) {
             return 1;
         }
-        $data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM $this->table WHERE type='$type' AND hide='n' AND (date >= $date OR top = 'y' OR sortop = 'y')");
+        $data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM $this->table WHERE type='$type' AND hide='n' AND date >= $date");
         $count = $data['total'];
         return ceil($count / $pageSize);
     }
