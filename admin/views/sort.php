@@ -61,7 +61,10 @@
                                         data-pid="<?= $value['pid'] ?>"
                                         data-sortimg="<?= $value['sortimg'] ?>"
                                         data-page_count="<?= $value['page_count'] ?>"
-                                        data-template="<?= $value['template'] ?>"><?= $value['sortname'] ?></a>
+                                        data-allow_user_post="<?= $value['allow_user_post'] ?>"
+                                        data-template="<?= $value['template'] ?>">
+                                        <?= $value['sortname'] ?>
+                                    </a>
                                     <a href="<?= Url::sort($value['sid']) ?>" target="_blank" class="text-muted ml-2"><i class="icofont-external-link"></i></a>
                                 </td>
                                 <td><?= $value['description'] ?></td>
@@ -140,9 +143,8 @@
                         <input class="form-control" id="sortname" name="sortname" required>
                     </div>
                     <div class="form-group">
-                        <label for="alias">别名</label>
+                        <label for="alias">别名（英文字母组成，用于seo设置）</label>
                         <input class="form-control" id="alias" name="alias">
-                        <small class="form-text text-muted">英文字母组成，用于seo设置</small>
                     </div>
                     <div class="form-group">
                         <label>父分类</label>
@@ -176,9 +178,12 @@
                         <input class="form-control" id="kw" name="kw">
                     </div>
                     <div class="form-group">
-                        <label>每页显示文章数量</label>
+                        <label>每页显示文章数量（为0使用全局设置）</label>
                         <input class="form-control" value="" name="page_count" id="page_count" type="number" min="0" />
-                        <small class="form-text text-muted">为0则使用全局设置</small>
+                    </div>
+                    <div class="custom-control custom-switch">
+                        <input class="custom-control-input" type="checkbox" name="allow_user_post" id="allow_user_post" value="y">
+                        <label class="custom-control-label" for="allow_user_post">允许注册用户投稿</label>
                     </div>
                     <?php if ($customTemplates): ?>
                         <div class="form-group">
@@ -274,6 +279,7 @@
             var template = button.data('template')
             var sortimg = button.data('sortimg')
             var page_count = button.data('page_count')
+            var allow_user_post = button.data('allow_user_post')
             var modal = $(this)
             modal.find('.modal-body #sortname').val(sortname)
             modal.find('.modal-body #alias').val(alias)
@@ -284,6 +290,7 @@
             modal.find('.modal-body #template').val(template)
             modal.find('.modal-body #sortimg').val(sortimg)
             modal.find('.modal-body #page_count').val(page_count)
+            modal.find('.modal-body #allow_user_post').prop('checked', !sid || allow_user_post === 'y')
             modal.find('.modal-footer #sid').val(sid)
         })
     });

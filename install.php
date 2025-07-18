@@ -612,6 +612,7 @@ CREATE TABLE {$db_prefix}sort (
     template varchar(255) NOT NULL default '' COMMENT '分类模板',
     sortimg varchar(512) NOT NULL default '' COMMENT '分类图像',
     page_count int(11) unsigned NOT NULL default '0' COMMENT '每页文章数量',
+    allow_user_post enum('n','y') NOT NULL default 'y' COMMENT '是否接受注册用户投稿',
     PRIMARY KEY  (sid)
 )" . $table_charset_sql . "
 DROP TABLE IF EXISTS {$db_prefix}user;

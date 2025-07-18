@@ -40,7 +40,8 @@ class Sort_Model
                 'pid'          => (int)$row['pid'],
                 'template'     => htmlspecialchars($row['template']),
                 'sortimg'      => htmlspecialchars($row['sortimg']),
-                'page_count'   => (int)$row['page_count']
+                'page_count'   => (int)$row['page_count'],
+                'allow_user_post'  => $row['allow_user_post']
             );
             if ($sortData['pid'] == 0) {
                 $sortData['children'] = [];
@@ -99,6 +100,8 @@ class Sort_Model
                 'description'  => htmlspecialchars(trim($row['description'])),
                 'template'     => !empty($row['template']) ? htmlspecialchars(trim($row['template'])) : 'log_list',
                 'sortimg'      => htmlspecialchars(trim($row['sortimg'])),
+                'page_count'   => (int)$row['page_count'],
+                'allow_user_post'  => $row['allow_user_post']
             );
         }
         return $sortData;

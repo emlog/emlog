@@ -55,6 +55,7 @@ if ($action == 'save') {
     $title = Input::postStrVar('title');
     $sortimg = Input::postStrVar('sortimg');
     $page_count = Input::postIntVar('page_count');
+    $allow_user_post = Input::postStrVar('allow_user_post') === 'y' ? 'y' : 'n';
 
     if (empty($sortname)) {
         emDirect("./sort.php?error_a=1");
@@ -85,15 +86,16 @@ if ($action == 'save') {
     }
 
     $sort_data = [
-        'sortname'    => $sortname,
-        'pid'         => $pid,
-        'template'    => $template,
-        'description' => $description,
-        'kw'          => $kw,
-        'title'       => $title,
-        'alias'       => $alias,
-        'sortimg'     => $sortimg,
-        'page_count'     => $page_count
+        'sortname'        => $sortname,
+        'pid'             => $pid,
+        'template'        => $template,
+        'description'     => $description,
+        'kw'              => $kw,
+        'title'           => $title,
+        'alias'           => $alias,
+        'sortimg'         => $sortimg,
+        'page_count'      => $page_count,
+        'allow_user_post' => $allow_user_post
     ];
 
     if ($sid) {
