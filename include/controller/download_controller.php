@@ -42,6 +42,8 @@ class Download_Controller
 
             if ($resource_filename === $pathNameWithoutExt) {
                 $needLogin = false;
+            } else {
+                show_404_page();
             }
         }
 
