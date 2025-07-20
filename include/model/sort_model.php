@@ -29,7 +29,7 @@ class Sort_Model
             $logNum = $data['total'];
 
             // 为注册用户过滤不可投稿的分类
-            if ($filterAllowUserPost && (!isset($row['allow_user_post']) || $row['allow_user_post'] !== 'y')) {
+            if ($filterAllowUserPost && (isset($row['allow_user_post']) && $row['allow_user_post'] === 'n')) {
                 continue;
             }
 

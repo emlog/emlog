@@ -32,6 +32,9 @@ class Sort
     static function getUserPostableSorts()
     {
         $Sort_Model = new Sort_Model();
+        if (User::haveEditPermission()) {
+            return $Sort_Model->getSorts();
+        }
         return $Sort_Model->getSorts(true);
     }
 }
