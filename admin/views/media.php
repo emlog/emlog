@@ -192,8 +192,10 @@
                                 <a href="#" class="copy-link" data-toggle="popover" data-url="<?= $media_url ?>">原文件地址</a>
                                 <?php if ($value['alias'] && isZip($value['filename'])):
                                     $media_down_url = BLOG_URL . '?resource_alias=' . $value['alias'];
+                                    $media_down_url_pub = BLOG_URL . '?resource_alias=' . $value['alias'] . '&resource_filename=' . $value['filename_without_ext'];
                                 ?>
-                                    ｜ <a href="#" class="copy-link" data-toggle="popover" data-url="<?= $media_down_url ?>">用户下载地址</a> （下载<?= $value['download_count'] ?>）
+                                    ｜ <a href="#" class="copy-link" data-toggle="popover" data-url="<?= $media_down_url_pub ?>">公开下载地址</a>
+                                    ｜ <a href="#" class="copy-link" data-toggle="popover" data-url="<?= $media_down_url ?>">登录下载地址</a> （下载<?= $value['download_count'] ?>）
                                 <?php endif ?>
                                 <?php if ($thumbnail_url): ?>
                                     ｜ <a href="#" class="copy-link" data-toggle="popover" data-url="<?= $thumbnail_url ?>">缩略图地址</a>

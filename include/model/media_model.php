@@ -93,6 +93,7 @@ class Media_Model
             'alias'          => $row['alias'],
             'attsize'        => changeFileSize($row['filesize']),
             'filename'       => htmlspecialchars($row['filename']),
+            'filename_without_ext' => pathinfo($row['filepath'], PATHINFO_FILENAME),
             'addtime'        => date("Y-m-d H:i:s", $row['addtime']),
             'aid'            => $row['aid'],
             'filepath_thum'  => $row['filepath'],

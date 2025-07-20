@@ -59,8 +59,8 @@ function loadImages() {
                 } else if (image.media_type === 'audio') {
                     insertBtnHtml = '<a href="javascript:insert_media_audio(\'' + image.media_url + '\')" class="btn btn-sm"><i class="icofont-plus"></i> 插入文章</a>';
                 } else if (image.media_type === 'zip') {
-                    insertBtnHtml = '<a href="javascript:insert_media(\'' + image.media_url + '\', \'' + image.media_name + '\')" class="btn btn-sm"><i class="icofont-plus"></i> 公开下载</a>';
-                    insertBtnHtml += '<a href="javascript:insert_media(\'' + image.media_down_url + '\', \'' + image.media_name + '\')" class="btn btn-sm"><i class="icofont-plus"></i> 用户下载</a>';
+                    insertBtnHtml = '<a href="javascript:insert_media(\'' + image.media_down_url_pub + '\', \'' + image.media_name + '\')" class="btn btn-sm"><i class="icofont-plus"></i> 公开下载</a>';
+                    insertBtnHtml += '<a href="javascript:insert_media(\'' + image.media_down_url + '\', \'' + image.media_name + '\')" class="btn btn-sm"><i class="icofont-plus"></i> 登录下载</a>';
                 } else {
                     insertBtnHtml = '<a href="javascript:insert_media(\'' + image.media_url + '\', \'' + image.media_name + '\')" class="btn btn-sm"><i class="icofont-plus"></i> 插入文章</a>';
                 }

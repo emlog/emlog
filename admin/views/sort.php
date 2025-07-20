@@ -190,7 +190,7 @@
                     </div>
                     <div class="custom-control custom-switch">
                         <input class="custom-control-input" type="checkbox" name="allow_user_post" id="allow_user_post" value="y">
-                        <label class="custom-control-label" for="allow_user_post">允许注册用户发文投稿</label>
+                        <label class="custom-control-label" for="allow_user_post">允许注册用户在该分类下发文投稿</label>
                     </div>
                     <?php if ($customTemplates): ?>
                         <div class="form-group">

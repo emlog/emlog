@@ -139,7 +139,7 @@ class Option
             [
                 'model'  => 'Download_Controller',
                 'method' => 'index',
-                'reg_0'  => '|^.*/\?(resource_alias)=(\w+)$|',
+                'reg_0'  => '|^.*/\?(resource_alias)=(\w+)(&(resource_filename)=([^&]+))?.*$|',
             ],
             [
                 'model'  => 'Log_Controller',

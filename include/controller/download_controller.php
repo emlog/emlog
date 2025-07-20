@@ -22,10 +22,9 @@ class Download_Controller
 
     function index()
     {
-        loginAuth::checkLogin();
-
         $this->Media_Model = new Media_Model();
         $resource_alias = Input::getStrVar('resource_alias');
+        $resource_filename = Input::getStrVar('resource_filename');
 
         if (empty($resource_alias) || !preg_match('/^\w{16}$/', $resource_alias)) {
             show_404_page();
@@ -34,6 +33,20 @@ class Download_Controller
         $r = $this->Media_Model->getDetailByAlias($resource_alias);
         if (!$this->isValidResource($r)) {
             show_404_page();
+        }
+
+        $needLogin = true;
+        if (!empty($resource_filename)) {
+            $pathFilename = basename($r['filepath']);
+            $pathNameWithoutExt = pathinfo($pathFilename, PATHINFO_FILENAME);
+
+            if ($resource_filename === $pathNameWithoutExt) {
+                $needLogin = false;
+            }
+        }
+
+        if ($needLogin) {
+            loginAuth::checkLogin();
         }
 
         doAction('download_resource', $r);

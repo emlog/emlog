@@ -74,6 +74,7 @@ if ($action === 'lib') {
         $data['media_path'] = $v['filepath'];
         $data['media_url'] = rmUrlParams(getFileUrl($v['filepath']));
         $data['media_down_url'] = BLOG_URL . '?resource_alias=' . $v['alias'];
+        $data['media_down_url_pub'] = BLOG_URL . '?resource_alias=' . $v['alias'] . '&resource_filename=' . $v['filename_without_ext'];
         $data['media_name'] = subString($v['filename'], 0, 20);
         $data['attsize'] = $v['attsize'];
         $data['media_type'] = '';
