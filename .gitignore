@@ -25,6 +25,8 @@ config.php
 .idea
 .netbeans
 .DS_Store
+.trae
+.cursor
 
 # docker
 db_data/*
