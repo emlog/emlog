@@ -188,12 +188,8 @@
                         <label>每页显示文章数量（为0使用全局设置）</label>
                         <input class="form-control" value="" name="page_count" id="page_count" type="number" min="0" />
                     </div>
-                    <div class="custom-control custom-switch">
-                        <input class="custom-control-input" type="checkbox" name="allow_user_post" id="allow_user_post" value="y">
-                        <label class="custom-control-label" for="allow_user_post">允许注册用户在该分类下发文投稿</label>
-                    </div>
                     <?php if ($customTemplates): ?>
-                        <div class="form-group">
+                        <div class="form-group mt-2">
                             <label for="template">分类模板</label>
                             <?php
                             $sortListHtml = '<option value="">默认</option>';
@@ -202,9 +198,12 @@
                             }
                             ?>
                             <select id="template" name="template" class="form-control"><?= $sortListHtml; ?></select>
-                            <small class="form-text text-muted">(选择当前模板支持的分类模板)</small>
                         </div>
                     <?php endif; ?>
+                    <div class="custom-control custom-switch">
+                        <input class="custom-control-input" type="checkbox" name="allow_user_post" id="allow_user_post" value="y">
+                        <label class="custom-control-label" for="allow_user_post">允许注册用户在该分类下发文投稿</label>
+                    </div>
                     <?php doAction('adm_sort_add') ?>
                 </div>
                 <div class="modal-footer border-0">
