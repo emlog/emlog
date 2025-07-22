@@ -144,7 +144,7 @@ $(function () {
         let _url = $(this).attr('data-url')
         let type_html = ''
         if (_type === 'image') {
-            type_html = '<div class="tpl-block-upload"><span>填写块标题：</span>' +
+            type_html = '<div class="tpl-block-upload"><span>标题：</span>' +
                 '<input class="block-title-input" type="text" name="' + _name + '[title][]" value="">' +
                 '<div class="tpl-image-preview"><img src=""></div><div class="tpl-block-upload-input">' +
                 '<input type="text" name="' + _name + '[content][]" value=""><label>\n' +
@@ -153,9 +153,9 @@ $(function () {
                 '</label>'
             type_html += '</div></div>';
         } else {
-            type_html += '<div>填写块标题：</div>'
+            type_html += '<div>标题：</div>'
             type_html += '<input class="block-title-input" type="text" name="' + _name + '[title][]" value="">'
-            type_html += '<div>填写块内容：</div>'
+            type_html += '<div>内容：</div>'
             if ($(this).parent().parent().hasClass('is-multi')) {
                 type_html += '<textarea rows="5" name="' + _name + '[content][]"></textarea>'
             } else {

@@ -1244,7 +1244,7 @@ class TplOptions
         $tpl = '';
         if (isset($option['pattern']) && trim($option['pattern']) === 'image') {
             $tpl .= '<div class="tpl-block-upload">
-                        <span>填写块标题：</span>
+                        <span>标题：</span>
                         <input class="block-title-input" type="text" name="{title}" value="{tvalue}">
                          <div class="tpl-image-preview">
                             <img src="{value}">
@@ -1258,9 +1258,9 @@ class TplOptions
                          </div>
                      </div>';
         } else {
-            $tpl = '<div>填写块标题：</div>';
+            $tpl = '<div>标题：</div>';
             $tpl .= '<input class="block-title-input" type="text" name="{title}" value="{tvalue}">';
-            $tpl .= '<div>填写块内容：</div>';
+            $tpl .= '<div>内容：</div>';
             if ($this->isMulti($option)) {
                 $tpl .= '<textarea rows="5" name="{name}">{value}</textarea>';
             } else {
