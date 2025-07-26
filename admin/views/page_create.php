@@ -31,6 +31,7 @@
             <div class="shadow-sm p-3 mb-2 bg-white rounded">
                 <div class="form-group">
                     <input name="cover" id="cover" class="form-control" placeholder="封面图URL" value="<?= $cover ?>" />
+                    <small class="text-muted">填写封面图URL、击下方上传或从<a href="#mediaModal" data-toggle="modal" data-target="#mediaModal">资源库选择</a></small>
                     <div class="row mt-3">
                         <div class="col-md-4">
                             <label for="upload_img">
