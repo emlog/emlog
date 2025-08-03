@@ -74,7 +74,7 @@
                 <div class="form-group">
                     <label>封面图：</label>
                     <input name="cover" id="cover" class="form-control" maxlength="2048" placeholder="" value="<?= $cover ?>" />
-                    <small class="text-muted">填写封面图URL、击下方上传或从<a href="#mediaModal" data-toggle="modal" data-target="#mediaModal">资源库选择</a></small>
+                    <small class="text-muted">填写封面图URL、击下方上传或从<a href="#" data-toggle="modal" data-target="#mediaModal">资源库选择</a></small>
                     <div class="row mt-3">
                         <div class="col-md-4">
                             <label for="upload_img">
