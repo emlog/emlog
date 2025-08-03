@@ -142,9 +142,9 @@
                         API Key：<a href="https://bigmodel.cn/usercenter/proj-mgmt/apikeys" target="_blank">生成api key</a><br>
                         Model：glm-4.5、glm-4.5-flash (免费)<br>
                         <hr>
-                        <a href="https://cloud.siliconflow.cn/i/BjRikiAW" target="_blank">硅基流动</a><br>
+                        <a href="https://cloud.siliconflow.cn/" target="_blank">硅基流动</a><br>
                         API URL：https://api.siliconflow.cn/v1/chat/completions<br>
-                        API Key：<a href="https://cloud.siliconflow.cn/i/BjRikiAW" target="_blank">生成api key</a><br>
+                        API Key：<a href="https://cloud.siliconflow.cn/me/account/ak" target="_blank">生成api key</a><br>
                         Model：Qwen/Qwen3-8B (免费)、THUDM/GLM-4-9B-0414 (免费)<br>
                         <hr>
                         <a href="https://tongyi.aliyun.com/" target="_blank">阿里百炼</a><br>
