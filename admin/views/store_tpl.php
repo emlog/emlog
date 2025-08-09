@@ -26,7 +26,7 @@
     </div>
     <div class="d-flex mb-3 mb-sm-0">
         <form action="#" method="get" class="mr-sm-2">
-            <select name="action" id="template-category" class="form-control">
+            <select name="action" id="template-category" class="form-control category">
                 <?php foreach ($template_categories as $k => $v) { ?>
                     <option value="<?= $k; ?>" <?= $sid == $k ? 'selected' : '' ?>><?= $v; ?></option>
                 <?php } ?>

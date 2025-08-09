@@ -110,7 +110,7 @@
         $('.category').on('change', function() {
             var selectedCategory = $(this).val();
             if (selectedCategory) {
-                window.location.href = './store.php?sid=' + selectedCategory;
+                window.location.href = './store.php?action=<?= $action ?>' + '&sid=' + selectedCategory;
             }
         });
 
