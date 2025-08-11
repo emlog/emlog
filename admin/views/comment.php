@@ -28,10 +28,10 @@
     <div class="panel-heading mb-3">
         <ul class="nav nav-pills justify-content-start mb-2 mb-md-0">
             <li class="nav-item">
-                <a class="nav-link <?= $hide == '' ? 'active' : '' ?>" data-pjax="true" href="./comment.php?<?= $addUrl_1 ?>">全部</a>
+                <a class="nav-link <?= $hide == '' ? 'active' : '' ?>" href="./comment.php?<?= $addUrl_1 ?>">全部</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?= $hide == 'y' ? 'active' : '' ?>" data-pjax="true" href="./comment.php?hide=y&<?= $addUrl_1 ?>">待审
+                <a class="nav-link <?= $hide == 'y' ? 'active' : '' ?>" href="./comment.php?hide=y&<?= $addUrl_1 ?>">待审
                     <?php
                     $hidecmnum = User::haveEditPermission() ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
                     if ($hidecmnum > 0)
@@ -66,7 +66,7 @@
                             $cid = $value['cid'];
                             $ip_info = $ip ? "<br />IP：{$ip}" : '';
                             $comment = $value['comment'];
-                            $poster = !empty($value['uid']) ? '<a href="./comment.php?uid=' . $value['uid'] . '" data-pjax="true">' . $value['poster'] . '</a>' : $value['poster'];
+                            $poster = !empty($value['uid']) ? '<a href="./comment.php?uid=' . $value['uid'] . '">' . $value['poster'] . '</a>' : $value['poster'];
                             $title = subString($value['title'], 0, 42);
                             $hide = $value['hide'];
                             $date = $value['date'];
@@ -90,7 +90,7 @@
                                 </td>
                                 <td class="small">
                                     <a href="<?= Url::log($gid) ?>" target="_blank"><?= $title ?></a><br>
-                                    <a href="comment.php?gid=<?= $gid ?>" data-pjax="true" class="badge badge-info">该文所有评论</a>
+                                    <a href="comment.php?gid=<?= $gid ?>" class="badge badge-info">该文所有评论</a>
                                 </td>
                                 <td class="small"><?= $date ?></td>
                                 <td>
@@ -104,7 +104,7 @@
                                         data-hide="<?= $value['hide'] ?>">回复
                                     </a>
                                     <?php if ($value['hide'] === 'y' && User::haveEditPermission()): ?>
-                                        <a class="badge badge-warning" data-pjax="true" href="comment.php?action=pub&id=<?= $cid ?>&token=<?= LoginAuth::genToken() ?>">审核</a>
+                                        <a class="badge badge-warning" href="comment.php?action=pub&id=<?= $cid ?>&token=<?= LoginAuth::genToken() ?>">审核</a>
                                     <?php endif ?>
                                 </td>
                             </tr>
@@ -183,10 +183,6 @@
     $(document).ready(function() {
         initPageScripts();
     });
-
-    function closePageScripts() {
-        $("#menu_cm").removeClass('active');
-    }
 
     function initPageScripts() {
         $("#menu_cm").addClass('active');

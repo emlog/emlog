@@ -109,22 +109,6 @@
             e.preventDefault();
         });
 
-        //pjax
-        $(document).pjax('a[data-pjax]', '#main-container', {
-            fragment: '#main-container',
-            timeout: 5000
-        });
-        $(document).on('pjax:success', function() {
-            initPageScripts();
-            // 重新绑定侧边栏开关事件
-            $("#sidebarToggleTop").off('click').on('click', function() {
-                window.toggleSidebar();
-            });
-        });
-        $(document).on('pjax:beforeSend', function() {
-            closePageScripts();
-        });
-
         // 时间选择控件
         $.timepicker.regional['zh-CN'] = {
             timeOnlyTitle: '选择时间',

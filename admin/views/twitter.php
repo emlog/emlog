@@ -104,10 +104,6 @@
         initPageScripts();
     });
 
-    function closePageScripts() {
-        $("#menu_twitter").removeClass('active');
-    }
-
     function initPageScripts() {
         initShortcutBar();
         var cssLink = document.createElement('link');

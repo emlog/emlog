@@ -75,7 +75,7 @@
                                 </td>
                                 <td style="width: 25px;"><img src="<?= $avatar ?>" height="35" width="35" class="rounded-circle" /></td>
                                 <td>
-                                    <a href="user.php?action=edit&uid=<?= $val['uid'] ?>" data-pjax="true"><?= empty($val['name']) ? $val['login'] : $val['name'] ?></a>
+                                    <a href="user.php?action=edit&uid=<?= $val['uid'] ?>"><?= empty($val['name']) ? $val['login'] : $val['name'] ?></a>
                                     <span class="small"><?= $val['role'] ?></span>
                                     <?php if ($forbid): ?>
                                         <span class="badge badge-warning">已禁用</span>
@@ -182,10 +182,6 @@
     $(document).ready(function() {
         initPageScripts();
     });
-
-    function closePageScripts() {
-        $("#menu_user").removeClass('active');
-    }
 
     function initPageScripts() {
         setTimeout(hideActived, 3600);
