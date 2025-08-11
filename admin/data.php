@@ -26,21 +26,40 @@ if ($action === 'backup') {
     $DB = Database::getInstance();
     $tables = $DB->listTables();
 
-    $bakfname = 'emlog_' . date('Ymd') . '_' . substr(md5(AUTH_KEY . uniqid('', true)), 0, 18);
-    $filename = '';
-    $sqldump = '';
+    $filename = 'emlog_' . Option::EMLOG_VERSION . '_' . date('Ymd_His');
 
-    foreach ($tables as $table) {
-        $sqldump .= exportData($table);
+    // 设置内存限制和执行时间限制
+    @ini_set('memory_limit', '512M');
+    @set_time_limit(300); // 5分钟
+
+    // 创建临时文件来存储备份数据，避免内存溢出
+    $tempFile = tempnam(sys_get_temp_dir(), 'emlog_backup_');
+    $fp = fopen($tempFile, 'w');
+
+    if (!$fp) {
+        emMsg('创建临时备份文件失败，请检查系统临时目录权限');
     }
 
-    $dumpfile = '#version:emlog ' . Option::EMLOG_VERSION . "\n";
-    $dumpfile .= '#date:' . date('Y-m-d H:i') . "\n";
-    $dumpfile .= '#tableprefix:' . DB_PREFIX . "\n";
-    $dumpfile .= $sqldump;
-    $dumpfile .= "\n#the end of backup";
+    // 写入备份文件头信息
+    fwrite($fp, '#version:emlog ' . Option::EMLOG_VERSION . "\n");
+    fwrite($fp, '#date:' . date('Y-m-d H:i') . "\n");
+    fwrite($fp, '#tableprefix:' . DB_PREFIX . "\n");
 
-    $filename = 'emlog_' . Option::EMLOG_VERSION . '_' . date('Ymd_His');
+    // 分批导出每个表的数据
+    foreach ($tables as $table) {
+        exportDataToFile($table, $fp);
+        // 强制释放内存
+        if (function_exists('gc_collect_cycles')) {
+            gc_collect_cycles();
+        }
+    }
+
+    fwrite($fp, "\n#the end of backup");
+    fclose($fp);
+
+    // 读取临时文件内容并压缩
+    $dumpfile = file_get_contents($tempFile);
+    unlink($tempFile);
 
     if (($dumpfile = emZip($filename . '.sql', $dumpfile)) === false) {
         emDirect('./data.php?error_f=1');
@@ -99,39 +118,79 @@ if ($action === 'import') {
 }
 
 /**
- * Backup database structure and all data
+ * 数据库备份函数，使用分页查询和文件写入避免内存溢出
  *
- * @param string $table table name
- * @return string
+ * @param string $table 表名
+ * @param resource $fp 文件句柄
+ * @return void
  */
-function exportData($table)
+function exportDataToFile($table, $fp)
 {
     $DB = Database::getInstance();
-    $sql = "DROP TABLE IF EXISTS $table;\n";
+
+    // 写入删除表语句
+    fwrite($fp, "DROP TABLE IF EXISTS $table;\n");
+
+    // 获取表结构
     $createtable = $DB->query("SHOW CREATE TABLE $table");
     $create = $DB->fetch_row($createtable);
-    $sql .= $create[1] . ";\n\n";
+    fwrite($fp, $create[1] . ";\n\n");
 
-    $rows = $DB->query("SELECT * FROM $table");
-    $numfields = $DB->num_fields($rows);
-    while ($row = $DB->fetch_row($rows)) {
-        $comma = '';
-        $sql .= "INSERT INTO $table VALUES(";
-        for ($i = 0; $i < $numfields; $i++) {
-            $fieldValue = $row[$i];
-            if (is_null($fieldValue)) {
-                // Handle default value of NULL
-                $sql .= $comma . 'NULL';
-            } else {
-                // Escape and add the field value
-                $sql .= $comma . "'" . $DB->escape_string($fieldValue) . "'";
-            }
-            $comma = ',';
-        }
-        $sql .= ");\n";
+    // 获取表的总行数
+    $countResult = $DB->query("SELECT COUNT(*) as total FROM $table");
+    $countRow = $DB->fetch_array($countResult);
+    $totalRows = $countRow['total'];
+
+    // 如果表为空，直接返回
+    if ($totalRows == 0) {
+        fwrite($fp, "\n");
+        return;
     }
-    $sql .= "\n";
-    return $sql;
+
+    // 分页参数
+    $batchSize = 1000; // 每批处理1000条记录
+    $offset = 0;
+
+    // 获取表字段信息
+    $fieldsResult = $DB->query("SHOW COLUMNS FROM $table");
+    $fields = [];
+    while ($field = $DB->fetch_array($fieldsResult)) {
+        $fields[] = $field['Field'];
+    }
+    $fieldsList = '`' . implode('`, `', $fields) . '`';
+
+    // 分批处理数据
+    while ($offset < $totalRows) {
+        $sql = "SELECT $fieldsList FROM $table LIMIT $offset, $batchSize";
+        $rows = $DB->query($sql);
+
+        if (!$rows) {
+            break;
+        }
+
+        // 处理当前批次的数据
+        while ($row = $DB->fetch_array($rows)) {
+            $values = [];
+            foreach ($fields as $field) {
+                $fieldValue = $row[$field];
+                if (is_null($fieldValue)) {
+                    $values[] = 'NULL';
+                } else {
+                    $values[] = "'" . $DB->escape_string($fieldValue) . "'";
+                }
+            }
+            fwrite($fp, "INSERT INTO $table ($fieldsList) VALUES (" . implode(',', $values) . ");\n");
+        }
+
+        $offset += $batchSize;
+
+        // 强制释放内存
+        if (function_exists('gc_collect_cycles')) {
+            gc_collect_cycles();
+        }
+    }
+
+    fwrite($fp, "\n");
 }
 
 function checkSqlFileInfo($sqlfile)
