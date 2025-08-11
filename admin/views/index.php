@@ -110,7 +110,7 @@
             <div class="col-lg-6 mb-3">
                 <div class="card shadow">
                     <div class="card-header bg-gradient-warning text-danger">
-                        <h6 class="my-0 font-weight-bold">升级正版注册可使用全部功能</h6>
+                        <h6 class="my-0 font-weight-bold">完成正版注册可使用全部功能</h6>
                     </div>
                     <div class="card-body">
                         <p><span class="badge badge-warning badge-pill">1</span> 获得在线升级功能，一键升级到最新版本</p>
