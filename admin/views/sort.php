@@ -154,7 +154,7 @@
                         <input class="form-control" id="alias" name="alias">
                     </div>
                     <div class="form-group">
-                        <label>父分类</label>
+                        <label for="pid">父分类</label>
                         <select name="pid" id="pid" class="form-control">
                             <option value="0">无</option>
                             <?php
@@ -177,7 +177,7 @@
                         <small class="form-text text-muted">支持变量: {{site_title}}, {{site_name}}, {{sort_name}}</small>
                     </div>
                     <div class="form-group">
-                        <label for="alias">描述（用于分类页的 description）</label>
+                        <label for="description">描述（用于分类页的 description）</label>
                         <textarea name="description" id="description" type="text" class="form-control"></textarea>
                     </div>
                     <div class="form-group">
@@ -185,7 +185,7 @@
                         <input class="form-control" id="kw" name="kw">
                     </div>
                     <div class="form-group">
-                        <label>每页显示文章数量（为0使用全局设置）</label>
+                        <label for="page_count">每页显示文章数量（为0使用全局设置）</label>
                         <input class="form-control" value="" name="page_count" id="page_count" type="number" min="0" />
                     </div>
                     <?php if ($customTemplates): ?>
