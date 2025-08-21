@@ -33,7 +33,7 @@
             </div>
             <div class="form-group">
                 <label for="description">个人描述</label>
-                <textarea name="description" type="text" class="form-control"><?= $description ?></textarea>
+                <textarea name="description" id="description" type="text" class="form-control"><?= $description ?></textarea>
             </div>
             <div class="form-group">
                 <label for="username">用户名（为空则使用邮箱登录）</label>

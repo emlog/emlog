@@ -4,11 +4,11 @@
     <div class="card-body">
         <form action="navbar.php?action=update" method="post" id="sort_new">
             <div class="form-group">
-                <label for="sortname">导航名称</label>
+                <label for="naviname">导航名称</label>
                 <input class="form-control" id="naviname" value="<?= $naviname ?>" name="naviname">
             </div>
             <div class="form-group">
-                <label for="alias">导航网址</label>
+                <label for="url">导航网址</label>
                 <input class="form-control" id="url" value="<?= $url ?>" name="url" <?= $conf_isdefault ?>>
             </div>
             <div class="form-group">

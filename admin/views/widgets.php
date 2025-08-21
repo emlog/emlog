@@ -315,12 +315,12 @@
                             <form action="widgets.php?action=setwg&wg=custom_text" method="post">
                                 <div class="modal-body">
                                     <div class="form-group">
-                                        <label for="sortname">组件名</label>
+                                        <label for="new_title">组件名</label>
                                         <input class="form-control" id="new_title" name="new_title" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="alias">内容 （支持html）</label>
-                                        <textarea name="new_content" class="form-control" rows="10" required></textarea>
+                                        <label for="new_content">内容 （支持html）</label>
+                                        <textarea name="new_content" id="new_content" class="form-control" rows="10" required></textarea>
                                     </div>
                                 </div>
                                 <div class="modal-footer border-0">
