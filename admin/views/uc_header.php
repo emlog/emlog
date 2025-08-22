@@ -68,13 +68,11 @@
                     <?php doAction('user_menu') ?>
                 </nav>
                 <nav class="my-2 my-md-0 mr-md-3">
-                    <a class="mr-2" href="blogger.php">
-                        <img width="30" height="30" class="img-profile rounded-circle" src="<?= User::getAvatar($user_cache[UID]['avatar']) ?>">
-                    </a>
+                    <a class="mr-2" href="blogger.php">设置</a>
+                    <span class="text-white mx-2">|</span>
                     <a class="p-2" href="<?= BLOG_URL ?>">返回首页</a>
-                    <a class="" href="account.php?action=logout">
-                        <i class="icofont-logout icofont-1x"></i>
-                    </a>
+                    <span class="text-white mx-2">|</span>
+                    <a class="" href="account.php?action=logout">退出</a>
                 </nav>
             </div>
         </div>
