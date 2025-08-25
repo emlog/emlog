@@ -147,7 +147,7 @@ class Order_Model
      * @param string $sku_name 是否只获取某个商品的订单
      * @return array 订单列表
      */
-    function getOrdersByUserId($userId, $page = 1, $perpage = 10, $isPaid = false, $sku_name = '')
+    function getOrdersByUserId($userId, $page = 1, $perpage = 10, $isPaid = false, $sku_name = '', $isRefund = false)
     {
         $userId = (int)$userId;
         $page = (int)$page;
@@ -159,6 +159,11 @@ class Order_Model
         }
         if ($sku_name) {
             $where .= " AND sku_name = '$sku_name'";
+        }
+        if ($isRefund) {
+            $where .= " AND refund_amount > 0";
+        } else {
+            $where .= " AND refund_amount = 0";
         }
         $offset = ($page - 1) * $perpage;
         $sql = sprintf(
