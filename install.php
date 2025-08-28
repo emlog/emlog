@@ -557,6 +557,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES
 ('is_openapi','n'),
 ('apikey','$apikey'),
 ('panel_menu_title',''),
+('admin_media_perpage_num','24'),
 ('admin_article_perpage_num','20'),
 ('admin_user_perpage_num','20'),
 ('admin_comment_perpage_num','20');

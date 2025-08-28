@@ -25,6 +25,7 @@ if (empty($action)) {
     $uid = Input::getIntVar('uid');
     $keyword = Input::getStrVar('keyword');
     $show = Input::getStrVar('show');
+    $perpage_num = Input::getIntVar('perpage_num');
 
     if (!User::haveEditPermission()) {
         $uid = UID;
@@ -39,16 +40,24 @@ if (empty($action)) {
         $show = 'grid';
     }
 
-    $page_count = 24;
+    if ($perpage_num > 0) {
+        $perPage = $perpage_num;
+        Option::updateOption('admin_media_perpage_num', $perpage_num);
+        $CACHE->updateCache('options');
+    } else {
+        $admin_article_perpage_num = Option::get('admin_media_perpage_num');
+        $perPage = $admin_article_perpage_num ? $admin_article_perpage_num : 24;
+    }
+
     $page_url = 'media.php?';
     $page_url .= $sid ? "sid=$sid&" : '';
     $page_url .= $date ? "date=$date&" : '';
     $page_url .= $uid ? "uid=$uid&" : '';
     $page_url .= $keyword ? "keyword=$keyword&" : '';
     $dateTime = $date ? $date . ' 23:59:59' : '';
-    $medias = $Media_Model->getMedias($page, $page_count, $uid, $sid, strtotime($dateTime), $keyword);
+    $medias = $Media_Model->getMedias($page, $perPage, $uid, $sid, strtotime($dateTime), $keyword);
     $count = $Media_Model->getMediaCount($uid, $sid, strtotime($dateTime), $keyword);
-    $page = pagination($count, $page_count, $page, $page_url . 'page=');
+    $page = pagination($count, $perPage, $page, $page_url . 'page=');
 
     $sorts = $MediaSortModel->getSorts();
 
