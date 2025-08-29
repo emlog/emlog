@@ -13,10 +13,20 @@
         <li class="nav-item"><a class="nav-link" href="./blogger.php">个人信息</a></li>
     </ul>
 </div>
+
+<!-- 文本对话模型区域 -->
 <div class="card shadow mb-4 mt-2">
+    <div class="card-header">
+        <h5 class="mb-0">文本对话模型</h5>
+    </div>
     <div class="card-body">
         <div class="row">
-            <?php foreach ($aiModels as $k => $val):
+            <?php
+            // 筛选文本对话模型（没有type字段或type为chat的模型）
+            $chatModels = array_filter($aiModels, function ($model) {
+                return !isset($model['type']) || $model['type'] === 'chat';
+            });
+            foreach ($chatModels as $k => $val):
                 $apiUrl = $val['api_url'];
                 $apiUrlDomain = parse_url($apiUrl, PHP_URL_HOST);
                 $apiKey = subString($val['api_key'], 0, 8, '******');
@@ -33,13 +43,13 @@
                                     <?= $model ?>
                                     <span class="badge badge-success">已启用</span>
                                 <?php else: ?>
-                                    <a href="./setting.php?action=ai_model&ai_model_key=<?= $k ?>"><?= $model ?></a>
+                                    <a href="./setting.php?action=ai_model&ai_model_key=<?= $k ?>&model_type=chat"><?= $model ?></a>
                                 <?php endif; ?>
                             </h4>
                             <div class="my-3">
                                 <span class="badge badge-gray" style="font-size: 1.2em;"><?= $apiUrlDomain ?></span><br>
                             </div>
-                            <a href="#" class="edit-link small text-primary" data-toggle="modal" data-target="#editModelModal" data-model="<?= $val['model'] ?>" data-url="<?= $val['api_url'] ?>" data-api_key="<?= $apiKey ?>" data-model_key="<?= $k ?>" style="position: absolute; bottom: 10px; right: 40px;">编辑</a>
+                            <a href="#" class="edit-link small text-primary" data-toggle="modal" data-target="#editModelModal" data-model="<?= $val['model'] ?>" data-url="<?= $val['api_url'] ?>" data-api_key="<?= $apiKey ?>" data-model_key="<?= $k ?>" data-model_type="chat" style="position: absolute; bottom: 10px; right: 40px;">编辑</a>
                             <a href="javascript: em_confirm('<?= $k ?>', 'ai_model', '<?= LoginAuth::genToken() ?>');" class="delete-link small text-danger" style="position: absolute; bottom: 10px; right: 10px;">删除</a>
                         </div>
                     </div>
@@ -48,8 +58,8 @@
             <div class="col-md-4 mb-3">
                 <div class="card h-100">
                     <div class="card-body d-flex flex-column align-items-center justify-content-center">
-                        <a type="button" class="" data-toggle="modal" data-target="#addModelModal">
-                            + 添加模型
+                        <a type="button" class="" data-toggle="modal" data-target="#addModelModal" data-model-type="chat">
+                            + 添加文本对话模型
                         </a>
                         <p class="text-center small text-muted mt-3">
                             <a href="https://www.emlog.net/docs/ai/ai_emlog" class="text-muted" target="_blank">查看支持模型列表</a>
@@ -57,6 +67,71 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+<!-- 图像生成模型区域 -->
+<div class="card shadow mb-4">
+    <div class="card-header">
+        <h5 class="mb-0">图像生成模型</h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <?php
+            // 筛选图像生成模型（type为image的模型）
+            $imageModels = array_filter($aiModels, function ($model) {
+                return isset($model['type']) && $model['type'] === 'image';
+            });
+            foreach ($imageModels as $k => $val):
+                $apiUrl = $val['api_url'];
+                $apiUrlDomain = parse_url($apiUrl, PHP_URL_HOST);
+                $apiKey = subString($val['api_key'], 0, 8, '******');
+                $model = $val['model'];
+            ?>
+                <div class="col-md-4 mb-3">
+                    <div class="card model-card">
+                        <div class="card-body align-items-center justify-content-center">
+                            <h4 class="card-title model-name">
+                                <?php if ($k == $currentImageModelKey): ?>
+                                    <?= $model ?>
+                                    <span class="badge badge-success">已启用</span>
+                                <?php else: ?>
+                                    <a href="./setting.php?action=ai_model&ai_model_key=<?= $k ?>&model_type=image"><?= $model ?></a>
+                                <?php endif; ?>
+                            </h4>
+                            <div class="my-3">
+                                <span class="badge badge-gray" style="font-size: 1.2em;"><?= $apiUrlDomain ?></span><br>
+                            </div>
+                            <a href="#" class="edit-link small text-primary" data-toggle="modal" data-target="#editModelModal" data-model="<?= $val['model'] ?>" data-url="<?= $val['api_url'] ?>" data-api_key="<?= $apiKey ?>" data-model_key="<?= $k ?>" data-model_type="image" style="position: absolute; bottom: 10px; right: 40px;">编辑</a>
+                            <a href="javascript: em_confirm('<?= $k ?>', 'ai_model', '<?= LoginAuth::genToken() ?>');" class="delete-link small text-danger" style="position: absolute; bottom: 10px; right: 10px;">删除</a>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+            <div class="col-md-4 mb-3">
+                <div class="card h-100">
+                    <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                        <a type="button" class="" data-toggle="modal" data-target="#addModelModal" data-model-type="image">
+                            + 添加图像生成模型
+                        </a>
+                        <p class="text-center small text-muted mt-3">
+                            <a href="https://www.emlog.net/docs/ai/ai_emlog" class="text-muted" target="_blank">查看支持模型列表</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- AI对话区域 -->
+<div class="card shadow mb-4">
+    <div class="card-header">
+        <h5 class="mb-0">应用</h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
             <div class="col-md-4 mb-3">
                 <div class="card h-100">
                     <div class="card-body d-flex flex-column align-items-center justify-content-center">
@@ -72,6 +147,7 @@
         </div>
     </div>
 </div>
+
 <script>
     $(function() {
         $("#menu_category_sys").addClass('active');
@@ -95,13 +171,68 @@
             var url = $(this).data('url');
             var api_key = $(this).data('api_key');
             var model_key = $(this).data('model_key');
+            var model_type = $(this).data('model_type') || 'chat';
             $('#editModelModal #edit_ai_model').val(model);
             $('#editModelModal #edit_ai_api_url').val(url);
             $('#editModelModal #edit_ai_api_key').val(api_key);
             $('#editModelModal #ai_model_key').val(model_key);
+            $('#editModelModal #ai_model_type').val(model_type);
+        });
+
+        // 处理添加模型按钮点击
+        $('[data-model-type]').click(function() {
+            var modelType = $(this).data('model-type');
+            $('#addModelModal #ai_model_type').val(modelType);
+            if (modelType === 'image') {
+                $('#addModelModal .modal-title').text('添加图像生成模型');
+                $('#more-config-details').html(getImageModelExamples());
+            } else {
+                $('#addModelModal .modal-title').text('添加文本对话模型');
+                $('#more-config-details').html(getChatModelExamples());
+            }
         });
     });
+
+    // 获取文本对话模型示例配置
+    function getChatModelExamples() {
+        return `
+            <a href="https://www.deepseek.com/" target="_blank">DeepSeek</a><br>
+            API URL：https://api.deepseek.com/v1/chat/completions<br>
+            API Key：<a href="https://platform.deepseek.com/api_keys" target="_blank">生成api key</a>，格式如：sk-****<br>
+            Model：deepseek-chat、deepseek-reasoner<br>
+            <hr>
+            <a href="https://bigmodel.cn/" target="_blank">智谱AI</a><br>
+            API URL：https://open.bigmodel.cn/api/paas/v4/chat/completions<br>
+            API Key：<a href="https://bigmodel.cn/usercenter/proj-mgmt/apikeys" target="_blank">生成api key</a><br>
+            Model：glm-4.5、glm-4.5-flash (免费)<br>
+            <hr>
+            <a href="https://cloud.siliconflow.cn/" target="_blank">硅基流动</a><br>
+            API URL：https://api.siliconflow.cn/v1/chat/completions<br>
+            API Key：<a href="https://cloud.siliconflow.cn/me/account/ak" target="_blank">生成api key</a><br>
+            Model：Qwen/Qwen3-8B (免费)、THUDM/GLM-4-9B-0414 (免费)<br>
+            <hr>
+            支持 OpenAI 协议的大模型，<a href="https://www.emlog.net/docs/ai/ai_emlog" target="_blank">更多AI模型</a><br>
+        `;
+    }
+
+    // 获取图像生成模型示例配置
+    function getImageModelExamples() {
+        return `
+            <a href="https://cloud.siliconflow.cn/" target="_blank">硅基流动</a><br>
+            API URL：https://api.siliconflow.cn/v1/images/generations<br>
+            API Key：<a href="https://cloud.siliconflow.cn/me/account/ak" target="_blank">生成api key</a><br>
+            Model：Kwai-Kolors/Kolors (免费)<br>
+            <hr>
+            <a href="https://console.volcengine.com/auth/login?redirectURI=%2Fark" target="_blank">豆包</a><br>
+            API URL：https://ark.cn-beijing.volces.com/api/v3/images/generations<br>
+            API Key：<a href="https://console.volcengine.com/auth/login?redirectURI=%2Fark" target="_blank">生成api key</a><br>
+            Model：doubao-seedream-3-0-t2i-250415<br>
+            <hr>
+            支持 OpenAI 协议的图像生成模型，<a href="https://www.emlog.net/docs/ai/ai_emlog" target="_blank">更多AI模型</a><br>
+        `;
+    }
 </script>
+
 <!-- Modal for adding custom model -->
 <div class="modal fade" id="addModelModal" tabindex="-1" role="dialog" aria-labelledby="addModelModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -126,34 +257,14 @@
                     <div class="form-group">
                         <input type="text" class="form-control" name="ai_model" id="ai_model" value="" />
                         <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
+                        <input name="ai_model_type" id="ai_model_type" value="chat" type="hidden" />
                     </div>
                 </div>
                 <div class="modal-footer border-0">
                     <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">取消</button>
                     <button type="submit" class="btn btn-sm btn-success">保存设置</button>
                     <div id="more-config-details" class="alert alert-warning mt-2">
-                        <a href="https://www.deepseek.com/" target="_blank">DeepSeek</a><br>
-                        API URL：https://api.deepseek.com/v1/chat/completions<br>
-                        API Key：<a href="https://platform.deepseek.com/api_keys" target="_blank">生成api key</a>，格式如：sk-****<br>
-                        Model：deepseek-chat、deepseek-reasoner<br>
-                        <hr>
-                        <a href="https://bigmodel.cn/" target="_blank">智谱AI</a><br>
-                        API URL：https://open.bigmodel.cn/api/paas/v4/chat/completions<br>
-                        API Key：<a href="https://bigmodel.cn/usercenter/proj-mgmt/apikeys" target="_blank">生成api key</a><br>
-                        Model：glm-4.5、glm-4.5-flash (免费)<br>
-                        <hr>
-                        <a href="https://cloud.siliconflow.cn/" target="_blank">硅基流动</a><br>
-                        API URL：https://api.siliconflow.cn/v1/chat/completions<br>
-                        API Key：<a href="https://cloud.siliconflow.cn/me/account/ak" target="_blank">生成api key</a><br>
-                        Model：Qwen/Qwen3-8B (免费)、THUDM/GLM-4-9B-0414 (免费)<br>
-                        <hr>
-                        <a href="https://tongyi.aliyun.com/" target="_blank">阿里百炼</a><br>
-                        API URL：https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions
-                        <br>
-                        API Key：<a href="https://bailian.console.aliyun.com/?apiKey=1#/api-key" target="_blank">生成api key</a>，格式如：sk-****<br>
-                        Model：qwen-max、qwen-plus、deepseek-v3 等
-                        <hr>
-                        支持 OpenAI 协议的大模型，<a href="https://www.emlog.net/docs/ai/ai_emlog" target="_blank">更多AI模型</a><br>
+                        <!-- 动态内容将通过JavaScript填充 -->
                     </div>
                 </div>
             </form>
@@ -185,6 +296,7 @@
                     <div class="form-group">
                         <input type="text" class="form-control" name="edit_ai_model" id="edit_ai_model" value="" />
                         <input type="hidden" name="ai_model_key" id="ai_model_key" value="" />
+                        <input type="hidden" name="ai_model_type" id="ai_model_type" value="chat" />
                         <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
                     </div>
                 </div>

@@ -134,17 +134,128 @@ class Ai
         return '大模型处理异常，请稍后再试，错误信息：' . $response;
     }
 
+    /**
+     * 获取当前AI模型信息
+     * @return array|null
+     */
     public static function getCurrentModelInfo()
     {
         $currentModelKey = Option::get('ai_model');
-        if (!$currentModelKey) {
+        if (empty($currentModelKey)) {
             return null;
         }
-        $aiModels = self::models();
-        if (isset($aiModels[$currentModelKey])) {
-            return $aiModels[$currentModelKey];
+
+        $models = self::models();
+        return isset($models[$currentModelKey]) ? $models[$currentModelKey] : null;
+    }
+
+    /**
+     * 获取当前图像生成模型信息
+     * @return array|null
+     */
+    public static function getCurrentImageModelInfo()
+    {
+        $currentModelKey = Option::get('ai_image_model');
+        if (empty($currentModelKey)) {
+            return null;
         }
-        return null;
+
+        $models = self::models();
+        return isset($models[$currentModelKey]) ? $models[$currentModelKey] : null;
+    }
+
+    /**
+     * 获取指定类型的模型列表
+     * @param string $type 模型类型 chat|image
+     * @return array
+     */
+    public static function getModelsByType($type = 'chat')
+    {
+        $allModels = self::models();
+        $filteredModels = array();
+
+        foreach ($allModels as $key => $model) {
+            $modelType = isset($model['type']) ? $model['type'] : 'chat';
+            if ($modelType === $type) {
+                $filteredModels[$key] = $model;
+            }
+        }
+
+        return $filteredModels;
+    }
+
+    /**
+     * 文生图功能
+     * @param string $prompt 图片描述
+     * @param array $options 可选参数
+     * @return array
+     */
+    public static function generateImage($prompt, $options = array())
+    {
+        $modelInfo = self::getCurrentImageModelInfo();
+        if (!$modelInfo) {
+            return array('error' => '未配置图像生成模型');
+        }
+
+        $apiUrl = $modelInfo['api_url'];
+        $apiKey = $modelInfo['api_key'];
+        $model = $modelInfo['model'];
+
+        // 构建请求数据
+        $data = array(
+            'model' => $model,
+            'prompt' => $prompt,
+            'n' => isset($options['n']) ? $options['n'] : 1,
+            'size' => isset($options['size']) ? $options['size'] : '1024x1024',
+            'quality' => isset($options['quality']) ? $options['quality'] : 'standard'
+        );
+
+        // 发送请求
+        $response = self::sendImageRequest($apiUrl, $apiKey, $data);
+        return $response;
+    }
+
+    /**
+     * 发送文生图请求
+     * @param string $apiUrl API地址
+     * @param string $apiKey API密钥
+     * @param array $data 请求数据
+     * @return array
+     */
+    private static function sendImageRequest($apiUrl, $apiKey, $data)
+    {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $apiUrl);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Content-Type: application/json',
+            'Authorization: Bearer ' . $apiKey
+        ));
+        curl_setopt($ch, CURLOPT_TIMEOUT, 60);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+
+        $response = curl_exec($ch);
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $error = curl_error($ch);
+        curl_close($ch);
+
+        if ($error) {
+            return array('error' => 'CURL错误: ' . $error);
+        }
+
+        if ($httpCode !== 200) {
+            return array('error' => 'HTTP错误: ' . $httpCode);
+        }
+
+        $result = json_decode($response, true);
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            return array('error' => 'JSON解析错误');
+        }
+
+        return $result;
     }
 
     public static function model()

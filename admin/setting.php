@@ -420,6 +420,7 @@ if ($action == 'ai') {
     $aiModel = AI::model();
     $aiModels = AI::models();
     $currentModelKey = Option::get('ai_model');
+    $currentImageModelKey = Option::get('ai_image_model');
 
     include View::getAdmView('header');
     require_once(View::getAdmView('setting_ai'));
@@ -433,20 +434,32 @@ if ($action == 'ai_save') {
     $aiApiUrl = Input::postStrVar('ai_api_url');
     $aiApiKey = Input::postStrVar('ai_api_key');
     $aiModel = Input::postStrVar('ai_model');
+    $aiModelType = Input::postStrVar('ai_model_type', 'chat'); // 默认为文本对话模型
 
     $aiModels = AI::models();
-    $key = md5($aiModel . $aiApiUrl);
+    $key = md5($aiModel . $aiApiUrl . $aiModelType);
     $aiModels[$key] = [
         'api_url' => $aiApiUrl,
         'api_key' => $aiApiKey,
         'model' => $aiModel,
+        'type' => $aiModelType,
     ];
 
     Option::updateOption('ai_models', json_encode($aiModels));
 
-    // If there is only one model available, set it as the current model
-    if (count($aiModels) == 1) {
-        Option::updateOption('ai_model', $key);
+    // 根据模型类型设置当前模型
+    if ($aiModelType === 'image') {
+        // 如果是图像生成模型且没有当前图像生成模型，设置为当前图像生成模型
+        $currentImageModel = Option::get('ai_image_model');
+        if (empty($currentImageModel)) {
+            Option::updateOption('ai_image_model', $key);
+        }
+    } else {
+        // 如果是对话模型且没有当前对话模型，设置为当前对话模型
+        $currentChatModel = Option::get('ai_model');
+        if (empty($currentChatModel)) {
+            Option::updateOption('ai_model', $key);
+        }
     }
 
     $CACHE->updateCache('options');
@@ -455,11 +468,18 @@ if ($action == 'ai_save') {
 
 if ($action == 'ai_model') {
     $aiModelKey = Input::getStrVar('ai_model_key');
+    $modelType = Input::getStrVar('model_type', 'chat');
     if (empty($aiModelKey)) {
         emDirect("./setting.php?action=ai");
     }
 
-    Option::updateOption('ai_model', $aiModelKey);
+    // 根据模型类型设置相应的当前模型
+    if ($modelType === 'image') {
+        Option::updateOption('ai_image_model', $aiModelKey);
+    } else {
+        Option::updateOption('ai_model', $aiModelKey);
+    }
+
     $CACHE->updateCache('options');
     emDirect("./setting.php?action=ai");
 }
@@ -486,12 +506,17 @@ if ($action == 'ai_update') {
 
     $aiModelKey = Input::postStrVar('ai_model_key');
     $aiModel = Input::postStrVar('edit_ai_model');
+    $aiModelType = Input::postStrVar('ai_model_type', 'chat');
 
     $aiModels = AI::models();
     if (!isset($aiModels[$aiModelKey])) {
         emDirect("./setting.php?action=ai");
     }
     $aiModels[$aiModelKey]['model'] = $aiModel;
+    // 确保模型类型字段存在
+    if (!isset($aiModels[$aiModelKey]['type'])) {
+        $aiModels[$aiModelKey]['type'] = $aiModelType;
+    }
 
     Option::updateOption('ai_models', json_encode($aiModels));
     $CACHE->updateCache('options');
