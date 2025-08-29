@@ -210,6 +210,11 @@ class Ai
             'quality' => isset($options['quality']) ? $options['quality'] : 'standard'
         );
 
+        // 豆包模型去水印
+        if (strpos($model, 'doubao-seedream') !== false) {
+            $data['watermark'] = false;
+        }
+
         // 发送请求
         $response = self::sendImageRequest($apiUrl, $apiKey, $data);
         return $response;
