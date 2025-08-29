@@ -125,7 +125,7 @@
     </div>
 </div>
 
-<!-- AI对话区域 -->
+<!-- 应用区域 -->
 <div class="card shadow mb-4">
     <div class="card-header">
         <h5 class="mb-0">应用</h5>
@@ -136,11 +136,26 @@
                 <div class="card h-100">
                     <div class="card-body d-flex flex-column align-items-center justify-content-center">
                         <a type="button" class="" data-toggle="modal" data-target="#aiChatModal">
-                            🤖AI对话
+                            💬 对话聊天
                         </a>
-                        <p class="text-center small mt-3">
-                            <a href="store.php?action=plu&keyword=AI" target="_blank" class="text-muted">应用商店更多AI应用</a>
-                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card h-100">
+                    <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                        <a type="button" class="" data-toggle="modal" data-target="#aiImageModal">
+                            🎨 生成图像
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card h-100">
+                    <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                        <a type="button" class="" href="store.php?action=plu&keyword=AI">
+                            更多AI应用
+                        </a>
                     </div>
                 </div>
             </div>
@@ -308,3 +323,140 @@
         </div>
     </div>
 </div>
+
+<!-- AI Image Generation Modal -->
+<div class="modal fade" id="aiImageModal" tabindex="-1" role="dialog" aria-labelledby="aiImageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header border-0">
+                <h5 class="modal-title" id="aiImageModalLabel">🎨 AI 生成图像</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="image-result" style="min-height: 300px; border: 1px solid #ddd; padding: 20px; margin-bottom: 15px; border-radius: 8px; text-align: center; background-color: #f8f9fa;">
+                    <div class="text-muted">
+                        <p>在下方输入提示词，点击生成按钮创建图像</p>
+                    </div>
+                </div>
+                <form id="image-form">
+                    <div class="form-group">
+                        <label for="image-prompt">图像描述提示词：</label>
+                        <textarea class="form-control" id="image-prompt" placeholder="请描述您想要生成的图像，例如：一只可爱的小猫坐在花园里" rows="3"></textarea>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="image-size">图像尺寸：</label>
+                                <select class="form-control" id="image-size">
+                                    <option value="1024x1024">1024x1024 (正方形)</option>
+                                    <option value="1792x1024">1792x1024 (横向)</option>
+                                    <option value="1024x1792">1024x1792 (纵向)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="image-quality">图像质量：</label>
+                                <select class="form-control" id="image-quality">
+                                    <option value="standard">标准</option>
+                                    <option value="hd">高清</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-primary" type="submit" id="generate-btn">
+                            生成图像
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+        // AI Image Generation
+        $('#aiImageModal').on('shown.bs.modal', function() {
+            $('#image-prompt').focus();
+        });
+
+        $('#image-form').submit(function(event) {
+            event.preventDefault();
+            var prompt = $('#image-prompt').val().trim();
+            if (prompt === '') {
+                alert('请输入图像描述提示词');
+                return;
+            }
+
+            var size = $('#image-size').val();
+            var quality = $('#image-quality').val();
+            var $generateBtn = $('#generate-btn');
+            var $imageResult = $('#image-result');
+
+            // 显示生成中状态
+            $generateBtn.prop('disabled', true).html('生成中...');
+            $imageResult.html('<div class="text-center"><p>正在生成图像，请稍候...</p></div>');
+
+            // 发送生成请求
+            $.ajax({
+                url: 'ai.php?action=generate_image',
+                type: 'POST',
+                data: {
+                    prompt: prompt,
+                    size: size,
+                    quality: quality
+                },
+                dataType: 'json',
+                timeout: 60000, // 60秒超时
+                success: function(response) {
+                    $generateBtn.prop('disabled', false).html('生成图像');
+
+                    if (response.code === 0 && response.data) {
+                        // 优先使用本地文件URL，如果没有则使用远程URL
+                        var imageUrl = response.data.file_url || (response.data.data && response.data.data[0] && response.data.data[0].url);
+                        var localPath = response.data.local_path || '';
+
+                        $imageResult.html(
+                            '<div class="text-center">' +
+                            '<img src="' + imageUrl + '" class="img-fluid mb-3" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" alt="生成的图像">' +
+                            '<div class="mt-3">' +
+                            '<div class="btn-group" role="group">' +
+                            '<a href="' + imageUrl + '" target="_blank" class="btn btn-sm btn-outline-primary">查看原图</a>' +
+                            '<a href="media.php" target="_blank" class="btn btn-sm btn-outline-success">资源管理</a>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>'
+                        );
+                    } else {
+                        var errorMsg = response.msg || '生成失败，请检查AI模型配置';
+                        $imageResult.html(
+                            '<div class="text-center text-danger">' +
+                            '<p>生成失败</p>' +
+                            '<p class="small">' + errorMsg + '</p>' +
+                            '</div>'
+                        );
+                    }
+                },
+                error: function(xhr, status, error) {
+                    $generateBtn.prop('disabled', false).html('生成图像');
+                    var errorMsg = '请求失败';
+                    if (status === 'timeout') {
+                        errorMsg = '请求超时，请稍后重试';
+                    } else if (xhr.responseJSON && xhr.responseJSON.msg) {
+                        errorMsg = xhr.responseJSON.msg;
+                    }
+
+                    $imageResult.html(
+                        '<div class="text-center text-danger">' +
+                        '<p>生成失败</p>' +
+                        '<p class="small">' + errorMsg + '</p>' +
+                        '</div>'
+                    );
+                }
+            });
+        });
+    });
+</script>

@@ -19,7 +19,7 @@
     <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
         <div class="modal-content border-0 shadow">
             <div class="modal-header border-0">
-                <h5 class="modal-title" id="aiChatModalLabel">✨AI 对话</h5>
+                <h5 class="modal-title" id="aiChatModalLabel">💬 对话聊天</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
