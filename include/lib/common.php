@@ -562,10 +562,18 @@ function upload($fileName, $tmpFile, $fileSize)
         $file_info['thum_file'] = $thumFile;
     }
 
-    // 完成上传
-    if (@is_uploaded_file($tmpFile) && @!move_uploaded_file($tmpFile, $uploadFullFile)) {
-        @unlink($tmpFile);
-        return '105'; //上传失败。上传目录不可写
+    // 处理HTTP上传的文件
+    if (@is_uploaded_file($tmpFile)) {
+        if (@!move_uploaded_file($tmpFile, $uploadFullFile)) {
+            @unlink($tmpFile);
+            return '105'; //上传失败。上传目录不可写
+        }
+    } else {
+        // 处理非HTTP上传的文件（如AI生成的图像）
+        if (!@copy($tmpFile, $uploadFullFile)) {
+            @unlink($tmpFile);
+            return '105'; //上传失败。上传目录不可写
+        }
     }
 
     // 提取图片宽高
