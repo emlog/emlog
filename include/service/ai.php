@@ -258,6 +258,119 @@ class Ai
         return $result;
     }
 
+    /**
+     * 生成图像并保存到媒体库
+     * @param string $prompt 图像描述提示词
+     * @param array $options 可选参数 (size, quality)
+     * @return array 返回结果包含media_id, file_url, local_path等信息
+     */
+    public static function generateImageAndSave($prompt, $options = array())
+    {
+        // 验证输入参数
+        if (empty($prompt)) {
+            return array('error' => '请输入图像描述提示词');
+        }
+
+        // 设置默认参数
+        $size = isset($options['size']) ? $options['size'] : '1024x1024';
+        $quality = isset($options['quality']) ? $options['quality'] : 'standard';
+
+        // 调用AI图像生成服务
+        $generateOptions = array(
+            'size' => $size,
+            'quality' => $quality,
+            'n' => 1
+        );
+
+        $result = self::generateImage($prompt, $generateOptions);
+
+        // 检查生成结果
+        if (isset($result['error'])) {
+            return array('error' => $result['error']);
+        }
+
+        if (!isset($result['data']) || empty($result['data'])) {
+            return array('error' => '图像生成失败，未返回有效数据');
+        }
+
+        $imageUrl = $result['data'][0]['url'];
+        if (empty($imageUrl)) {
+            return array('error' => '图像生成失败，未获取到图像URL');
+        }
+
+        // 下载图像数据
+        $imageData = file_get_contents($imageUrl);
+        if ($imageData === false) {
+            return array('error' => '下载生成的图像失败');
+        }
+
+        // 生成临时文件来模拟文件上传
+        $extension = 'png';
+        $fileName = substr(md5($imageUrl), 0, 4) . time() . '.' . $extension;
+        $tmpFile = sys_get_temp_dir() . '/' . $fileName;
+
+        // 使用upload2local方法上传图片，先创建临时文件
+        if (file_put_contents($tmpFile, $imageData) === false) {
+            return array('error' => '创建临时文件失败');
+        }
+
+        // 构造模拟的$_FILES数组格式
+        $attach = array(
+            'name' => $fileName,
+            'tmp_name' => $tmpFile,
+            'size' => strlen($imageData),
+            'type' => 'image/png',
+            'error' => 0
+        );
+
+        // 使用upload2local方法处理文件上传
+        $uploadResult = '';
+
+        // 添加上传处理钩子，支持云存储插件
+        addAction('upload_media', 'upload2local');
+        doOnceAction('upload_media', $attach, $uploadResult);
+
+        // 检查upload2local的返回结果格式
+        if (is_array($uploadResult) && isset($uploadResult['success'])) {
+            // upload2local已经返回了正确的格式，无需再次处理
+        } else {
+            // 如果返回格式不正确，设置默认错误信息
+            $uploadResult = array(
+                'success' => 0,
+                'message' => '上传失败',
+                'url' => '',
+                'file_info' => array(),
+            );
+        }
+
+        // 清理临时文件
+        if (file_exists($tmpFile)) {
+            unlink($tmpFile);
+        }
+
+        // 检查上传结果
+        if (empty($uploadResult['success'])) {
+            return array('error' => $uploadResult['message'] ? $uploadResult['message'] : '图像保存失败');
+        }
+
+        // 添加到媒体库
+        $Media_Model = new Media_Model();
+        $mediaId = $Media_Model->addMedia($uploadResult['file_info']);
+
+        if ($mediaId) {
+            // 返回成功结果
+            return array(
+                'success' => true,
+                'media_id' => $mediaId,
+                'file_url' => $uploadResult['url'],
+                'local_path' => $uploadResult['file_info']['file_path'],
+                'message' => '图像生成并保存成功'
+            );
+        } else {
+            return array('error' => '添加到媒体库失败');
+        }
+    }
+
     public static function model()
     {
         $currentModelKey = Option::get('ai_model');
