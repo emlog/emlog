@@ -337,18 +337,18 @@
             <div class="modal-body">
                 <div id="image-result" style="min-height: 300px; border: 1px solid #ddd; padding: 20px; margin-bottom: 15px; border-radius: 8px; text-align: center; background-color: #f8f9fa;">
                     <div class="text-muted">
-                        <p>在下方输入提示词，点击生成按钮创建图像</p>
+                        <p></p>
                     </div>
                 </div>
                 <form id="image-form">
                     <div class="form-group">
                         <label for="image-prompt">图像描述提示词：</label>
-                        <textarea class="form-control" id="image-prompt" placeholder="请描述您想要生成的图像，例如：一只可爱的小猫坐在花园里" rows="3"></textarea>
+                        <textarea class="form-control" id="image-prompt" placeholder="例如：一只可爱的小猫坐在花园里" rows="3"></textarea>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="image-size">图像尺寸：</label>
+                                <label for="image-size">尺寸：</label>
                                 <select class="form-control" id="image-size">
                                     <option value="1024x1024">1024x1024 (正方形)</option>
                                     <option value="1792x1024">1792x1024 (横向)</option>
@@ -358,7 +358,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="image-quality">图像质量：</label>
+                                <label for="image-quality">质量：</label>
                                 <select class="form-control" id="image-quality">
                                     <option value="standard">标准</option>
                                     <option value="hd">高清</option>
