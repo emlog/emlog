@@ -520,7 +520,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES
 ('tpl_sidenum','1'),
 ('comment_code','n'),
 ('comment_needchinese','n'),
-('comment_interval',60),
+('comment_interval',2),
 ('isgravatar','y'),
 ('isthumbnail','n'),
 ('att_maxsize','2048'),
