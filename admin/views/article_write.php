@@ -13,6 +13,9 @@
                     <?php doAction('adm_writelog_bar') ?>
                 </div>
                 <div id="logcontent"><textarea><?= $content ?></textarea></div>
+                <?php if (User::haveEditPermission() && !Register::isRegLocal()): ?>
+                    <div class="small">切换所见即所得编辑器：<a href="http://localhost:8080/admin/store.php?action=plu&sid=20">安装TinyMCE编辑器插件</a></div>
+                <?php endif; ?>
                 <div class="mt-3">
                     摘要（选填）：
                     <textarea id="logexcerpt" name="logexcerpt" class="form-control" rows="5"><?= $excerpt ?></textarea>

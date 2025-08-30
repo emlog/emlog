@@ -106,6 +106,12 @@
                 <div class="text-center d-none d-md-inline">
                     <button class="rounded-circle border-0" id="sidebarToggle"></button>
                 </div>
+                <?php if (!Register::isRegLocal()) : ?>
+                    <div class="sidebar-card">
+                        <p class="text-center mb-2"><strong>EMLOG</strong> - <?= ucfirst(Option::EMLOG_VERSION) ?></p>
+                        <a class="btn btn-success btn-sm" href="https://www.emlog.net/register" target="_blank">升级正版</a>
+                    </div>
+                <?php endif ?>
             <?php endif ?>
         </ul>
         <div id="content-wrapper" class="d-flex flex-column">
