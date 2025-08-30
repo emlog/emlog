@@ -268,7 +268,9 @@
     $("#alias").keyup(function() {
         checkalias();
     });
-    setTimeout("autosave(1)", 60000);
+    <?php if (!defined('ARTICLE_AUTOSAVE_OFF') || ARTICLE_AUTOSAVE_OFF !== true): ?>
+        setTimeout(() => autosave(1), 60000);
+    <?php endif; ?>
     $("#menu_category_content").addClass('active');
     $("#menu_content").addClass('show');
     $("#menu_write").addClass('active');
