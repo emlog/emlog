@@ -139,7 +139,7 @@ if ($action === 'doreply') {
     $content = '@' . addslashes($comment['poster']) . '：' . $reply;
 
     $Comment_Model->replyComment($blogId, $commentId, $content, $hide);
-    notice::sendNewCommentMail($reply, $blogId, $commentId, $comment['comment']);
+    notice::sendNewCommentMail($reply, $blogId, $commentId);
 
     $CACHE->updateCache('comment');
     $CACHE->updateCache('sta');

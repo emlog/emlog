@@ -90,7 +90,7 @@ class Notice
      * @param string $pcomment 父评论内容，原始评论内容
      * @return bool
      */
-    public static function sendNewCommentMail($comment, $gid, $pid = 0, $pcomment = '')
+    public static function sendNewCommentMail($comment, $gid, $pid = 0)
     {
         if (!self::smtpServerReady()) {
             return false;
@@ -107,15 +107,19 @@ class Notice
         }
 
         if ($pid) {
+            $Comment_Model = new Comment_Model();
+            $c = $Comment_Model->getOneComment($pid);
+            $pcomment = isset($c['comment']) ? $c['comment'] : '';
+
             $title = "你的评论收到一条回复";
-            $content = '我的评论内容：' . $pcomment;
-            $content .= '<br>回复内容：' . $comment;
-            $content .= '<br>来自文章：<a href="' . Url::log($article['logid']) . '" target="_blank">' . $article['log_title'] . '</a>';
+            $content = '<b>我的评论：</b>' . $pcomment . '<br><br>';
+            $content .= '<b>收到回复：</b>' . $comment . '<br>';
+            $content .= '<hr>来自文章：<a href="' . Url::log($article['logid']) . '" target="_blank">' . $article['log_title'] . '</a>';
             $mail = self::getCommentAuthorEmail($pid);
         } else {
             $title = "你的文章收到新的评论";
-            $content = "评论内容：" . $comment;
-            $content .= '<br>来自文章：<a href="' . Url::log($article['logid']) . '" target="_blank">' . $article['log_title'] . '</a>';
+            $content = '<b>评论内容：</b>' . $comment . '<br>';
+            $content .= '<hr>来自文章：<a href="' . Url::log($article['logid']) . '" target="_blank">' . $article['log_title'] . '</a>';
             $mail = self::getArticleAuthorEmail($article['author']);
         }
         if (!$mail) {
