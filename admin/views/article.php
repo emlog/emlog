@@ -135,8 +135,9 @@ $isdraft = $draft ? '&draft=1' : '';
                                     <?php if ($value['top'] == 'y'): ?><span class="badge small badge-success">首页置顶</span><?php endif ?>
                                     <?php if ($value['sortop'] == 'y'): ?><span class="badge small badge-info">分类置顶</span><?php endif ?>
                                     <?php if (!$draft && $value['timestamp'] > time()): ?><span class="badge small badge-warning">定时发布</span><?php endif ?>
-                                    <?php if ($value['password']): ?><span class="small">🔒</span><?php endif ?>
-                                    <?php if ($value['link']): ?><span class="small">🔗</span><?php endif ?>
+                                    <?php if ($value['password']): ?><span class="small" title="有密码">🔒</span><?php endif ?>
+                                    <?php if ($value['cover']): ?><span class="small" title="有封面">🎨</span><?php endif ?>
+                                    <?php if ($value['link']): ?><span class="small" title="有跳转链接">🔗</span><?php endif ?>
                                     <?php if (!$draft && $value['checked'] == 'n'): ?>
                                         <span class="badge small badge-secondary">待审核</span>
                                         <?= $value['feedback'] ? '<br><small class="text-secondary">审核反馈：' . $value['feedback'] . '</small>' : '' ?>
