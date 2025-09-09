@@ -10,9 +10,9 @@
 class Article
 {
     /**
-     *  Check if the user has exceeded the daily posting limit
+     * 检查用户是否超过发文限制
      *
-     * @return void
+     * @return bool 如果超过发文限制返回true，否则返回false
      */
     public static function hasReachedDailyPostLimit()
     {
@@ -30,7 +30,9 @@ class Article
     }
 
     /**
-     *  是否禁止用户发文
+     * 检查是否禁止用户发文
+     *
+     * @return bool 如果禁止发文返回true，否则返回false
      */
     public static function hasForbidPost()
     {
