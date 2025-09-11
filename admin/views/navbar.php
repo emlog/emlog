@@ -18,10 +18,10 @@
             <i class="icofont-plus mr-1"></i>自定义导航
         </a>
         <a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#sortNavModal">
-            <i class="icofont-plus mr-1"></i>添加分类
+            <i class="icofont-plus mr-1"></i>添加分类导航
         </a>
         <a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#pageNavModal">
-            <i class="icofont-plus mr-1"></i>添加页面
+            <i class="icofont-plus mr-1"></i>添加页面导航
         </a>
     </div>
 </div>
@@ -155,11 +155,11 @@
                 <form action="navbar.php?action=add" method="post" name="navi" id="navi">
                     <div class="form-group">
                         <label for="naviname">导航名称</label>
-                        <input class="form-control" name="naviname" id="naviname" placeholder="导航名称" required />
+                        <input class="form-control" name="naviname" id="naviname" placeholder="" required />
                     </div>
                     <div class="form-group">
                         <label for="url">导航网址</label>
-                        <textarea maxlength="512" class="form-control" placeholder="导航网址" name="url" id="url" required></textarea>
+                        <textarea maxlength="512" class="form-control" placeholder="https://" name="url" id="url" required></textarea>
                     </div>
                     <div class="form-group form-check">
                         <input type="checkbox" class="form-check-input" value="y" name="newtab" id="newtab">
@@ -194,7 +194,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header border-0">
-                <h5 class="modal-title" id="sortNavModalLabel">添加分类到导航</h5>
+                <h5 class="modal-title" id="sortNavModalLabel">添加分类导航</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -245,7 +245,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header border-0">
-                <h5 class="modal-title" id="pageNavModalLabel">添加页面到导航</h5>
+                <h5 class="modal-title" id="pageNavModalLabel">添加页面导航</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
