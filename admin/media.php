@@ -211,6 +211,50 @@ if ($action === 'update_media_sort') {
     emDirect("./media.php?active_edit=1");
 }
 
+if ($action === 'add_external_resource') {
+    LoginAuth::checkToken();
+    
+    $external_url = Input::postStrVar('external_url');
+    $resource_name = Input::postStrVar('resource_name');
+    $resource_sort = Input::postIntVar('resource_sort');
+    
+    if (empty($external_url)) {
+        emDirect("./media.php?error_a=1");
+    }
+    
+    // 验证URL格式
+    if (!filter_var($external_url, FILTER_VALIDATE_URL)) {
+        emDirect("./media.php?error_url=1");
+    }
+    
+    // 解析URL，去除查询参数后提取文件信息
+    $parsed_url = parse_url($external_url);
+    $url_path = isset($parsed_url['path']) ? $parsed_url['path'] : '';
+    $path_info = pathinfo($url_path);
+    
+    // 如果没有提供资源名称，从URL路径中提取
+    if (empty($resource_name)) {
+        $resource_name = !empty($path_info['basename']) ? $path_info['basename'] : 'external_resource_' . time();
+    }
+    
+    // 根据URL路径的扩展名判断MIME类型（去除查询参数）
+    $file_extension = isset($path_info['extension']) ? strtolower($path_info['extension']) : '';
+    $mime_type = get_mimetype($file_extension);
+    
+    // 构造文件信息数组
+    $file_info = [
+        'file_name' => $resource_name,
+        'size' => 0, // 外部资源无法获取准确大小
+        'file_path' => $external_url, // 直接存储外部URL
+        'mime_type' => $mime_type,
+        'width' => 0,
+        'height' => 0
+    ];
+    
+    $aid = $Media_Model->addMedia($file_info, $resource_sort);
+    emDirect("./media.php?active_add=1");
+}
+
 if ($action === 'del_media_sort') {
     if (!User::isAdmin()) {
         emMsg('权限不足！', './');

@@ -5,11 +5,16 @@
     <div class="alert alert-success">修改成功</div><?php endif ?>
 <?php if (isset($_GET['active_add'])): ?>
     <div class="alert alert-success">添加成功</div><?php endif ?>
+<?php if (isset($_GET['error_url'])): ?>
+    <div class="alert alert-danger">URL格式不正确</div><?php endif ?>
 <?php if (isset($_GET['error_a'])): ?>
     <div class="alert alert-danger">名称不能为空</div><?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h4 mb-0 text-gray-800">资源媒体库</h1>
-    <a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target=" #exampleModal"><i class="icofont-plus"></i> 上传图片/文件</a>
+    <span>
+        <a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#exampleModal"><i class="icofont-plus"></i> 上传图片/文件</a>
+        <a href="#" class="btn btn-sm btn-primary shadow-sm mt-4" data-toggle="modal" data-target="#externalResourceModal"><i class="icofont-link"></i> 添加外部资源</a>
+    </span>
 </div>
 <?php if (User::isAdmin()): ?>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -270,6 +275,47 @@
             <div class="modal-body">
                 <form action="./media.php?action=upload<?= '&sid=' . $sid ?>" class="dropzone" id="up-form"></form>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade bd-example-modal-lg" id="externalResourceModal" tabindex="-1" role="dialog" aria-labelledby="externalResourceModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header border-0">
+                <h5 class="modal-title" id="externalResourceModalLabel">添加外部资源</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="./media.php?action=add_external_resource<?= '&sid=' . $sid ?>" method="post" id="external-resource-form">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="external_url">外部资源链接</label>
+                        <input type="url" class="form-control" id="external_url" name="external_url" placeholder="" required>
+                        <small class="form-text text-muted">支持图片、视频、音频等外部资源链接URL</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="resource_name">资源名称</label>
+                        <input type="text" class="form-control" id="resource_name" name="resource_name" placeholder="">
+                        <small class="form-text text-muted">可不填，系统会自动从URL中提取文件名</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="resource_sort">资源分类</label>
+                        <select class="form-control" id="resource_sort" name="resource_sort">
+                            <option value="0">未分类</option>
+                            <?php foreach ($sorts as $sort): ?>
+                                <option value="<?= $sort['id'] ?>" <?= $sort['id'] == $sid ? 'selected' : '' ?>><?= $sort['sortname'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <input name="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
+                    <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-sm btn-primary">添加资源</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

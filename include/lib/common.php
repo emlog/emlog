@@ -196,6 +196,8 @@ function changeFileSize($fileSize)
         $fileSize = round($fileSize / 1048576, 2) . ' MB';
     } elseif ($fileSize >= 1024) {
         $fileSize = round($fileSize / 1024, 2) . ' KB';
+    } elseif ($fileSize == 0) {
+        $fileSize = 'N/A';
     } else {
         $fileSize .= ' bytes';
     }
