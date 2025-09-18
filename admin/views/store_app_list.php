@@ -50,8 +50,10 @@
                             <div class="card-text d-flex justify-content-between">
                                 <div class="installMsg"></div>
                                 <div>
-                                    <?php if (Plugin::isActive($v['alias']) || Template::isActive($v['alias'])): ?>
+                                    <?php if (Plugin::isActive($v['alias'])): ?>
                                         <a href="plugin.php" class="btn btn-light">使用中</a>
+                                    <?php elseif (Template::isActive($v['alias'])): ?>
+                                        <a href="template.php" class="btn btn-light">使用中</a>
                                     <?php endif; ?>
                                     <?php if ($v['price'] > 0): ?>
                                         <?php if ($v['purchased'] === true): ?>

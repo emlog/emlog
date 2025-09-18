@@ -53,8 +53,10 @@
                         <div class="card-text d-flex justify-content-between">
                             <div class="installMsg"></div>
                             <div>
-                                <?php if (Plugin::isActive($v['alias']) || Template::isActive($v['alias'])): ?>
+                                <?php if (Plugin::isActive($v['alias'])): ?>
                                     <a href="plugin.php" class="btn btn-light">使用中</a>
+                                <?php elseif (Template::isActive($v['alias'])): ?>
+                                    <a href="template.php" class="btn btn-light">使用中</a>
                                 <?php endif; ?>
                                 <a href="#" class="btn btn-warning installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-cdn-url="<?= urlencode($v['cdn_download_url']) ?>" data-type="<?= $type ?>">安装</a>
                             </div>
