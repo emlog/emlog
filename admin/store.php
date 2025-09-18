@@ -180,7 +180,8 @@ if ($action === 'install') {
         exit('安装失败');
     }
 
-    $temp_file = emFetchFile('https://www.emlog.net/' . $source);
+    $store_url = base64_decode('aHR0cHM6Ly9zdG9yZS5lbWxvZy5uZXQv');
+    $temp_file = emFetchFile($store_url . $source);
 
     if (!$temp_file) {
         if (false === Register::verifyDownload($source)) {
