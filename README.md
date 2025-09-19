@@ -29,9 +29,7 @@ https://www.emlog.net
 
 * PHP5.6、PHP7、PHP8，推荐7.4及以上
 * MySQL5.6及以上，或者 MariaDB 10.3及以上
-* 服务器环境推荐：Linux + nginx
-* 服务器推荐：云服务器，如: [阿里云ECS](https://www.aliyun.com/daily-act/ecs/activity_selection?userCode=n4ts9qpa)，[雨云 - KVM](https://www.rainyun.com/MzI2NDkz_)
-* 服务器管理面板软件推荐：[宝塔面板](https://www.bt.cn/u/N0UABa) （宝塔支持[一键部署emlog](install_bt.md)，非常方便）
+* 服务器环境推荐：Linux + Nginx
 * 浏览器推荐：Chrome、Edge
 
 ## 通用安装
@@ -42,10 +40,11 @@ https://www.emlog.net
 
 ## 其他安装
 
-- [宝塔面板一键部署](/install/install_bt.md)
-- [1Panel 部署](/install/install_1panel.md)
-- [docker 部署](/install/install_docker.md)
-- [软路由 iStoreOS 系统部署](https://www.bilibili.com/video/BV1mHpjeGEDu)
+- [宝塔面板一键部署](https://www.emlog.net/docs/install/install_bt)
+- [1Panel 部署](https://www.emlog.net/docs/install/install_1panel)
+- [docker 部署](https://www.emlog.net/docs/install/install_docker)
+- [iStoreOS](https://www.emlog.net/docs/install/install_istore)
+- [飞牛 fnOS](https://www.emlog.net/docs/install/install_fnos)
 
 ## docker快速部署
 
