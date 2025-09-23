@@ -46,7 +46,7 @@ if ($action == 'active') {
     if ($Plugin_Model->activePlugin($plugin)) {
         $CACHE->updateCache('options');
         header('Content-Type: application/json; charset=UTF-8');
-        die(json_encode(['code' => 0, 'msg' => '插件开启成功，建议手动刷新一次页面'], JSON_UNESCAPED_UNICODE));
+        Output::ok('插件开启成功');
     } else {
         Output::error('插件开启失败');
     }
@@ -65,7 +65,7 @@ if ($action == 'inactive') {
     $CACHE->updateCache('options');
 
     header('Content-Type: application/json; charset=UTF-8');
-    die(json_encode(['code' => 0, 'msg' => '插件关闭成功，建议手动刷新一次页面'], JSON_UNESCAPED_UNICODE));
+    Output::ok('插件关闭成功');
 }
 
 // Load plug-in configuration page

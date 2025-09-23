@@ -257,11 +257,11 @@
             success: function(response) {
                 if (response.code === 0) {
                     // 操作成功，显示API返回的消息
-                    cocoMessage.success(response.msg);
+                    cocoMessage.success(response.data);
                 } else {
                     // 操作失败，恢复开关状态并显示API返回的错误消息
                     switchElement.checked = !originalState;
-                    cocoMessage.error(response.msg, 4000);
+                    cocoMessage.error(response.data, 4000);
                 }
             },
             error: function(xhr) {
