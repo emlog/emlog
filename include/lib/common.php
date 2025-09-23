@@ -222,7 +222,10 @@ function getFileUrl($filePath)
     }
 
     if (stripos($filePath, 'http') === false) {
-        return BLOG_URL . substr($filePath, 3);
+        if (strpos($filePath, '../') === 0) {
+            $filePath = substr($filePath, 3);
+        }
+        return BLOG_URL . $filePath;
     }
     return $filePath;
 }
