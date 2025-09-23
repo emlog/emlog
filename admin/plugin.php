@@ -42,23 +42,30 @@ if (empty($action) && empty($plugin)) {
 if ($action == 'active') {
     LoginAuth::checkToken();
     $Plugin_Model = new Plugin_Model();
+
     if ($Plugin_Model->activePlugin($plugin)) {
         $CACHE->updateCache('options');
-        emDirect("./plugin.php?active=1&filter=$filter");
+        header('Content-Type: application/json; charset=UTF-8');
+        die(json_encode(['code' => 0, 'msg' => '插件开启成功，建议手动刷新一次页面'], JSON_UNESCAPED_UNICODE));
     } else {
-        emDirect("./plugin.php?active_error=1&filter=$filter");
+        Output::error('插件开启失败');
     }
 }
 
 if ($action == 'inactive') {
     LoginAuth::checkToken();
+
     if (strpos($plugin, 'tpl_options') !== false) {
-        emDirect("./plugin.php?error_sys=1&filter=$filter");
+        Output::error('系统依赖插件，请勿关闭');
+        return;
     }
+
     $Plugin_Model = new Plugin_Model();
     $Plugin_Model->inactivePlugin($plugin);
     $CACHE->updateCache('options');
-    emDirect("./plugin.php?inactive=1&filter=$filter");
+
+    header('Content-Type: application/json; charset=UTF-8');
+    die(json_encode(['code' => 0, 'msg' => '插件关闭成功，建议手动刷新一次页面'], JSON_UNESCAPED_UNICODE));
 }
 
 // Load plug-in configuration page

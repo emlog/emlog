@@ -224,11 +224,62 @@
 
     function toggleSwitch(plugin, id, token) {
         var switchElement = document.getElementById(id);
-        if (switchElement.checked) {
-            window.location.href = './plugin.php?action=active&plugin=' + plugin + '&token=' + token + '<?= '&filter=' . $filter ?>';
-        } else {
-            window.location.href = './plugin.php?action=inactive&plugin=' + plugin + '&token=' + token + '<?= '&filter=' . $filter ?>';
-        }
+        var action = switchElement.checked ? 'active' : 'inactive';
+        var filter = '<?= $filter ?>';
+
+        togglePluginAjax(plugin, action, token, id, filter);
+    }
+
+    /**
+     * Ajax方式切换插件开关状态
+     * @param {string} plugin 插件别名
+     * @param {string} action 操作类型 (active/inactive)
+     * @param {string} token 安全令牌
+     * @param {string} switchId 开关元素ID
+     * @param {string} filter 过滤参数
+     */
+    function togglePluginAjax(plugin, action, token, switchId, filter) {
+        const switchElement = document.getElementById(switchId);
+        const originalState = switchElement.checked;
+
+        // 禁用开关防止重复操作
+        switchElement.disabled = true;
+
+        $.ajax({
+            type: "GET",
+            url: "./plugin.php",
+            data: {
+                action: action,
+                plugin: plugin,
+                token: token,
+                filter: filter
+            },
+            success: function(response) {
+                if (response.code === 0) {
+                    // 操作成功，显示API返回的消息
+                    cocoMessage.success(response.msg);
+                } else {
+                    // 操作失败，恢复开关状态并显示API返回的错误消息
+                    switchElement.checked = !originalState;
+                    cocoMessage.error(response.msg, 4000);
+                }
+            },
+            error: function(xhr) {
+                // 请求失败，恢复开关状态并显示API返回的错误消息
+                switchElement.checked = !originalState;
+                try {
+                    const errorResponse = JSON.parse(xhr.responseText);
+                    cocoMessage.error(errorResponse.msg, 4000);
+                } catch (e) {
+                    // 解析失败时显示HTTP状态信息
+                    cocoMessage.error(`HTTP ${xhr.status}`, 4000);
+                }
+            },
+            complete: function() {
+                // 重新启用开关
+                switchElement.disabled = false;
+            }
+        });
     }
 
     function updatePlugin(pluginAlias, $updateLink) {
