@@ -72,6 +72,16 @@ if ($action == 'inactive') {
 if (empty($action) && $plugin) {
     require_once "../content/plugins/$plugin/{$plugin}_setting.php";
     include View::getAdmView('header');
+    // 在插件配置页面顶部增加面包屑导航：插件 -> 插件名称
+    $pluginModel = new Plugin_Model();
+    $pluginData = $pluginModel->getPluginData($plugin . '/' . $plugin . '.php');
+    $pluginName = isset($pluginData['Name']) && $pluginData['Name'] ? $pluginData['Name'] : $plugin;
+    echo '<nav class="mb-3">';
+    echo '<ol class="breadcrumb bg-white px-2 py-2 mb-2">';
+    echo '<li class="breadcrumb-item"><a href="./plugin.php">插件</a></li>';
+    echo '<li class="breadcrumb-item active" aria-current="page">' . htmlspecialchars($pluginName) . '</li>';
+    echo '</ol>';
+    echo '</nav>';
     plugin_setting_view();
     include View::getAdmView('footer');
 }
