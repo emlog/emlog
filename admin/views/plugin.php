@@ -231,14 +231,6 @@
         togglePluginAjax(plugin, action, token, id, filter);
     }
 
-    /**
-     * Ajax方式切换插件开关状态
-     * @param {string} plugin 插件别名
-     * @param {string} action 操作类型 (active/inactive)
-     * @param {string} token 安全令牌
-     * @param {string} switchId 开关元素ID
-     * @param {string} filter 过滤参数
-     */
     function togglePluginAjax(plugin, action, token, switchId, filter) {
         const switchElement = document.getElementById(switchId);
         const originalState = switchElement.checked;
@@ -257,30 +249,42 @@
             },
             success: function(response) {
                 if (response.code === 0) {
-                    // 操作成功，显示API返回的消息
                     cocoMessage.success(response.data);
+                    updatePluginSettingLink(switchId, action);
                 } else {
-                    // 操作失败，恢复开关状态并显示API返回的错误消息
                     switchElement.checked = !originalState;
                     cocoMessage.error(response.data, 4000);
                 }
             },
             error: function(xhr) {
-                // 请求失败，恢复开关状态并显示API返回的错误消息
                 switchElement.checked = !originalState;
                 try {
                     const errorResponse = JSON.parse(xhr.responseText);
                     cocoMessage.error(errorResponse.msg, 4000);
                 } catch (e) {
-                    // 解析失败时显示HTTP状态信息
                     cocoMessage.error(`HTTP ${xhr.status}`, 4000);
                 }
             },
             complete: function() {
-                // 重新启用开关
                 switchElement.disabled = false;
             }
         });
+    }
+
+    function updatePluginSettingLink(switchId, action) {
+        var $tr = $('#' + switchId).closest('tr');
+        var settingUrl = $tr.data('plugin-setting-url') || '';
+        var $nameP = $tr.find('p.mb-0.m-2:not(.small)').first();
+
+        if (action === 'active' && settingUrl) {
+            var titleText = $nameP.find('a').length ? $nameP.find('a').text().trim() : $nameP.text().trim();
+            $nameP.html('<a href="' + settingUrl + '" title="点击设置插件">' + titleText + '</a>');
+        } else if (action === 'inactive') {
+            var $link = $nameP.find('a');
+            if ($link.length) {
+                $nameP.text($link.text());
+            }
+        }
     }
 
     function updatePlugin(pluginAlias, $updateLink) {
