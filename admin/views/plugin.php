@@ -66,17 +66,22 @@
                     if ($plugins):
                         $i = 0;
                         foreach ($plugins as $val):
+                            $i++;
                             $plug_state = '';
                             $plug_action = 'active';
+                            $plugin_name = $val['Name'];
+                            $plugin_setting_url = "";
+                            $alias = $val['alias'];
                             if ($val['active']) {
                                 $plug_state = 'checked';
                                 $plug_action = 'inactive';
                             }
-                            $i++;
                             if (TRUE === $val['Setting']) {
-                                $val['Name'] = "<a href=\"./plugin.php?plugin={$val['Plugin']}\" title=\"点击设置插件\">{$val['Name']}</a>";
+                                $plugin_setting_url = "./plugin.php?plugin={$val['Plugin']}";
                             }
-                            $alias = $val['alias'];
+                            if (!empty($plugin_setting_url) && $val['active']) {
+                                $plugin_name = "<a href=\"{$plugin_setting_url}\" title=\"点击设置插件\">{$plugin_name}</a>";
+                            }
                     ?>
                             <tr data-plugin-alias="<?= $val['Plugin'] ?>" data-plugin-version="<?= $val['Version'] ?>">
                                 <td>
@@ -86,7 +91,7 @@
                                         </div>
                                         <div class="flex-grow-1 ms-3">
                                             <div class="align-items-center mb-3">
-                                                <p class="mb-0 m-2"><?= $val['Name'] ?></p>
+                                                <p class="mb-0 m-2" data-plugin-setting-url="<?= $plugin_setting_url ?>"><?= $plugin_name ?></p>
                                                 <p class="mb-0 m-2 small"><?= $val['Description'] ?> <?php if (strpos($val['Url'], 'https://www.emlog.net') === 0): ?><a href="<?= $val['Url'] ?>" target="_blank">更多信息&raquo;</a><?php endif ?></p>
                                             </div>
                                         </div>
@@ -120,11 +125,7 @@
                                     </div>
                                 </td>
                             </tr>
-                        <?php endforeach;
-                    else: ?>
-                        <tr>
-                            <td colspan="6">未找到插件</td>
-                        </tr>
+                        <?php endforeach; ?>
                     <?php endif ?>
                 </tbody>
             </table>

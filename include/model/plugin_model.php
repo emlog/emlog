@@ -184,10 +184,9 @@ class Plugin_Model
         preg_match("/Author:(.*)/i", $pluginData, $author_name);
         preg_match("/Author URL:(.*)/i", $pluginData, $author_url);
 
-        $active_plugins = Option::get('active_plugins');
         $ret = explode('/', $pluginFile);
         $plugin = $ret[0];
-        $have_setting = file_exists($pluginPath . $plugin . '/' . $plugin . '_setting.php') && in_array($pluginFile, $active_plugins);
+        $have_setting = file_exists($pluginPath . $plugin . '/' . $plugin . '_setting.php');
 
         $plugin_name = isset($plugin_name[1]) ? strip_tags(trim($plugin_name[1])) : '';
         $version = isset($version[1]) ? strip_tags(trim($version[1])) : '';
