@@ -5,7 +5,7 @@ Version: 4.2.6
 Plugin URL: https://www.emlog.net/docs/dev/template
 Description: 为模板增加丰富的设置功能，详见官网文档-模板开发。
 Author: emlog
-Author URL: https://www.emlog.net/author/index/577
+Author URL: https://www.emlog.net/profiles/cf75dc06
 */
 
 defined('EMLOG_ROOT') || exit('access denied!');

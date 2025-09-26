@@ -5,7 +5,7 @@ Version: 3.0
 Plugin URL:
 Description: 在后台首页展示一句使用小提示，也可作为插件开发的demo。
 Author: emlog
-Author URL: https://www.emlog.net/author/index/577
+Author URL: https://www.emlog.net/profiles/cf75dc06
 */
 
 defined('EMLOG_ROOT') || exit('access denied!');
