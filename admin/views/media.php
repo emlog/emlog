@@ -300,15 +300,17 @@
                         <input type="text" class="form-control" id="resource_name" name="resource_name" placeholder="">
                         <small class="form-text text-muted">可不填，系统会自动从URL中提取文件名</small>
                     </div>
-                    <div class="form-group">
-                        <label for="resource_sort">资源分类</label>
-                        <select class="form-control" id="resource_sort" name="resource_sort">
-                            <option value="0">未分类</option>
-                            <?php foreach ($sorts as $sort): ?>
-                                <option value="<?= $sort['id'] ?>" <?= $sort['id'] == $sid ? 'selected' : '' ?>><?= $sort['sortname'] ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
+                    <?php if (User::isAdmin()): ?>
+                        <div class="form-group">
+                            <label for="resource_sort">资源分类</label>
+                            <select class="form-control" id="resource_sort" name="resource_sort">
+                                <option value="0">未分类</option>
+                                <?php foreach ($sorts as $sort): ?>
+                                    <option value="<?= $sort['id'] ?>" <?= $sort['id'] == $sid ? 'selected' : '' ?>><?= $sort['sortname'] ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    <?php endif; ?>
                 </div>
                 <div class="modal-footer border-0">
                     <input name="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
