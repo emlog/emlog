@@ -71,6 +71,9 @@
                                     <td>
                                         <input type="hidden" name="navi[]" value="<?= $value['id'] ?>" />
                                         <a href="navbar.php?action=mod&amp;navid=<?= $value['id'] ?>"><?= $value['naviname'] ?></a>
+                                        <?php if ($value['hide'] == 'y'): ?>
+                                            <span class="badge badge-secondary ml-2">已隐藏</span>
+                                        <?php endif ?>
                                     </td>
                                     <td><?= $value['type_name'] ?></td>
                                     <td>
@@ -82,10 +85,10 @@
                                     <td>
                                         <?php if ($value['hide'] == 'n'): ?>
                                             <a href="navbar.php?action=hide&amp;id=<?= $value['id'] ?>"
-                                                class="badge badge-primary">显示</a>
+                                                class="badge badge-warning">隐藏</a>
                                         <?php else: ?>
                                             <a href="navbar.php?action=show&amp;id=<?= $value['id'] ?>"
-                                                class="badge badge-warning">隐藏</a>
+                                                class="badge badge-primary">显示</a>
                                         <?php endif ?>
                                         <?php if ($value['isdefault'] == 'n'): ?>
                                             <a href="javascript: em_confirm(<?= $value['id'] ?>, 'navi', '<?= LoginAuth::genToken() ?>');"
@@ -102,6 +105,9 @@
                                                 <input type="hidden" name="navi[]" value="<?= $val['id'] ?>" />
                                                 ----
                                                 <a href="navbar.php?action=mod&amp;navid=<?= $val['id'] ?>"><?= $val['naviname'] ?></a>
+                                                <?php if ($val['hide'] == 'y'): ?>
+                                                    <span class="badge badge-secondary ml-2">已隐藏</span>
+                                                <?php endif ?>
                                             </td>
                                             <td><?= $value['type_name'] ?></td>
                                             <td>
@@ -112,10 +118,10 @@
                                             <td>
                                                 <?php if ($val['hide'] == 'n'): ?>
                                                     <a href="navbar.php?action=hide&amp;id=<?= $val['id'] ?>"
-                                                        class="badge badge-primary">显示</a>
+                                                        class="badge badge-warning">隐藏</a>
                                                 <?php else: ?>
                                                     <a href="navbar.php?action=show&amp;id=<?= $val['id'] ?>"
-                                                        class="badge badge-warning">隐藏</a>
+                                                        class="badge badge-primary">显示</a>
                                                 <?php endif ?>
                                                 <?php if ($val['isdefault'] == 'n'): ?>
                                                     <a href="javascript: em_confirm(<?= $val['id'] ?>, 'navi', '<?= LoginAuth::genToken() ?>');"
