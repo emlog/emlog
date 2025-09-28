@@ -85,10 +85,10 @@
                                     <td>
                                         <?php if ($value['hide'] == 'n'): ?>
                                             <a href="navbar.php?action=hide&amp;id=<?= $value['id'] ?>"
-                                                class="badge badge-warning">隐藏</a>
+                                                class="badge badge-primary">隐藏</a>
                                         <?php else: ?>
                                             <a href="navbar.php?action=show&amp;id=<?= $value['id'] ?>"
-                                                class="badge badge-primary">显示</a>
+                                                class="badge badge-cyan">显示</a>
                                         <?php endif ?>
                                         <?php if ($value['isdefault'] == 'n'): ?>
                                             <a href="javascript: em_confirm(<?= $value['id'] ?>, 'navi', '<?= LoginAuth::genToken() ?>');"
@@ -118,10 +118,10 @@
                                             <td>
                                                 <?php if ($val['hide'] == 'n'): ?>
                                                     <a href="navbar.php?action=hide&amp;id=<?= $val['id'] ?>"
-                                                        class="badge badge-warning">隐藏</a>
+                                                        class="badge badge-primary">隐藏</a>
                                                 <?php else: ?>
                                                     <a href="navbar.php?action=show&amp;id=<?= $val['id'] ?>"
-                                                        class="badge badge-primary">显示</a>
+                                                        class="badge badge-cyan">显示</a>
                                                 <?php endif ?>
                                                 <?php if ($val['isdefault'] == 'n'): ?>
                                                     <a href="javascript: em_confirm(<?= $val['id'] ?>, 'navi', '<?= LoginAuth::genToken() ?>');"
