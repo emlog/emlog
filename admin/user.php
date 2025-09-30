@@ -97,6 +97,7 @@ if ($action == 'edit') {
     $description = $data['description'];
     $username = $data['username'];
     $email = $data['email'];
+    $credits = (int)$data['credits'];
 
     $ex1 = $ex2 = $ex3 = '';
     if (user::isVisitor($role)) {
@@ -122,8 +123,13 @@ if ($action == 'update') {
     $description = Input::postStrVar('description');
     $role = Input::postStrVar('role', User::ROLE_WRITER);
     $uid = Input::postIntVar('uid');
+    $credits = Input::postIntVar('credits', 0, 0);
 
     LoginAuth::checkToken();
+
+    if ($credits < 0) {
+        $credits = 0;
+    }
 
     //创始人账户不能被他人编辑
     if (!User::isFounder() && $uid === 1) {
@@ -157,6 +163,7 @@ if ($action == 'update') {
         'email'       => $email,
         'description' => $description,
         'role'        => $role,
+        'credits'     => $credits,
     ];
 
     if (!empty($password)) {

@@ -47,15 +47,19 @@
                 <label for="password2">再次输入新密码</label>
                 <input type="password" class="form-control" name="password2" id="password2">
             </div>
-            <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden"/>
-            <input type="hidden" value="<?= $uid ?>" name="uid"/>
-            <input type="submit" value="保存" class="btn btn-sm btn-success"/>
-            <input type="button" value="取消" class="btn btn-sm btn-secondary" onclick="window.location='user.php';"/>
+            <div class="form-group">
+                <label for="credits">积分</label>
+                <input class="form-control" value="<?= $credits ?>" name="credits" id="credits" type="number" min="0" step="1" required>
+            </div>
+            <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
+            <input type="hidden" value="<?= $uid ?>" name="uid" />
+            <input type="submit" value="保存" class="btn btn-sm btn-success" />
+            <input type="button" value="取消" class="btn btn-sm btn-secondary" onclick="window.location='user.php';" />
         </form>
     </div>
 </div>
 <script>
-    $(function () {
+    $(function() {
         setTimeout(hideActived, 3600);
         $("#menu_user").addClass('active');
     });
