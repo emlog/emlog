@@ -127,7 +127,7 @@ if ($action == 'update') {
 
     LoginAuth::checkToken();
 
-    if ($credits < 0) {
+    if ($credits < 0 || $credits > 999999999) {
         $credits = 0;
     }
 

@@ -49,7 +49,7 @@
             </div>
             <div class="form-group">
                 <label for="credits">积分</label>
-                <input class="form-control" value="<?= $credits ?>" name="credits" id="credits" type="number" min="0" step="1" required>
+                <input class="form-control" value="<?= $credits ?>" name="credits" id="credits" type="number" min="0" step="1" max="999999999" required>
             </div>
             <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
             <input type="hidden" value="<?= $uid ?>" name="uid" />
