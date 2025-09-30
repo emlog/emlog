@@ -473,40 +473,96 @@ body {
         vertical-align: middle;
     }
 
-    /* 小屏幕的导航变成下拉框 */
+    /* 小屏幕的导航变成侧边栏 */
     .blog-header-nav {
         display: none;
         z-index: 999;
-        position: absolute;
-        width: calc(100% - 4px);
-        background: var(--bodyBground);
-        top: 72px;
-        left: 0
+        position: fixed;
+        width: 280px;
+        height: 100vh;
+        background: var(--conBgcolor);
+        top: 0;
+        left: -280px;
+        transition: left 0.3s ease-in-out;
+        box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+        overflow-y: auto;
+        padding-top: 20px;
+        border-right: 1px solid var(--borderColor);
+    }
+
+    /* 黑暗模式下的菜单阴影优化 */
+    [data-theme="dark"] .blog-header-nav {
+        box-shadow: 2px 0 12px rgba(0, 0, 0, 0.4);
+    }
+
+    /* 菜单显示状态 */
+    .blog-header-nav.show {
+        display: block;
+        left: 0;
+    }
+
+    /* 遮罩层 */
+    .nav-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 998;
+        backdrop-filter: blur(2px);
+    }
+
+    /* 黑暗模式下的遮罩层优化 */
+    [data-theme="dark"] .nav-overlay {
+        background: rgba(0, 0, 0, 0.7);
+    }
+
+    .nav-overlay.show {
+        display: block;
     }
 
     /* 小屏幕上头部的列表样式 */
     .nav-list {
         margin-top: 0px;
-        margin-bottom: 10px
+        margin-bottom: 5px;
+        padding-left: 15px;
     }
 
     .list-menu {
-        line-height: 28px;
-        width: 90%
+        line-height: 32px;
+        width: 100%;
+    }
+
+    .list-menu .nav-link {
+        display: block;
+        padding: 8px 15px;
+        color: var(--fontColor);
+        text-decoration: none;
+        transition: background-color 0.2s;
+    }
+
+    .list-menu .nav-link:hover {
+        background-color: var(--bodyBground);
+    }
+
+[data-theme="dark"] .list-menu .nav-link:hover {
+        background-color: rgba(255, 255, 255, 0.1);
     }
 }
 
 /* 大屏幕下的下拉框样式，这里设置的透明度为0（opacity: 0.0;）。但小屏状态下
  * 没有隐藏，所以下面会在小屏部分，即767px及以下的部分对这个属性覆盖。 */
 .dropdown-menus {
-    background: white;
+    background: var(--conBgcolor);
     opacity: 0.0;
     z-index: 4;
     list-style: none;
     margin-left: -26px;
     position: absolute;
     padding-left: 0px;
-    border: 1px solid var(--borderColor);
+    border: none;
     border-radius: 4px;
     top: -3000px;
     margin-bottom: -34px;
@@ -531,11 +587,10 @@ body {
         margin-left: 0px;
         position: unset;
         padding-left: 30px;
-        border: 0px solid var(--borderColor);
+        border: none;
         width: auto;
         top: 0px;
         margin-bottom: 0px;
-        box-shadow: 0 0 0 0 white;
         font-size: smaller
     }
 }

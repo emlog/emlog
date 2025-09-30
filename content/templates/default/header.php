@@ -1,7 +1,7 @@
 <?php
 /*
 Template Name:默认模板
-Version:1.2.1
+Version:1.2.2
 Template Url:https://www.emlog.net/template/detail/1167
 Description:EMLOG的系统默认模板
 Author:emlog
@@ -10,7 +10,7 @@ Author Url:https://www.emlog.net/profiles/cf75dc06
 
 defined('EMLOG_ROOT') || exit('access denied!');
 require_once View::getView('module');
-$v = '1720327727';
+$v = '1.2.2';
 if (!function_exists('_g')) {
     emMsg('请开启【模板设置】插件, <a href="/admin/plugin.php">去开启</a>');
 }

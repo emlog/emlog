@@ -42,18 +42,34 @@ var myBlog = {
     },
 
     /**
-     * 手机点击展开导航按钮
+     * 手机点击展开导航按钮 - 侧边栏滑出效果
      */
     navToggle: function ($t) {
-        var time, effect, $navbar, $nav_c, nav_height
-        time = 'fast'
-        effect = 'easeInOut'
-        $navbar = $("#navbarResponsive")
-        $nav_c = $(".blog-header-c")
-        nav_height = ($nav_c.height() === 74) ? $navbar.height() + 74 : 74
-
-        $nav_c.animate({height: nav_height + 'px'}, time, effect)
-        $navbar.slideToggle(time, effect)
+        var $navbar = $("#navbarResponsive");
+        var $overlay = $(".nav-overlay");
+        
+        // 如果遮罩层不存在，创建它
+        if ($overlay.length === 0) {
+            $overlay = $('<div class="nav-overlay"></div>');
+            $('body').append($overlay);
+        }
+        
+        // 切换菜单显示状态
+        if ($navbar.hasClass('show')) {
+            // 隐藏菜单
+            $navbar.removeClass('show');
+            $overlay.removeClass('show');
+        } else {
+            // 显示菜单
+            $navbar.addClass('show');
+            $overlay.addClass('show');
+        }
+        
+        // 点击遮罩层关闭菜单
+        $overlay.off('click').on('click', function() {
+            $navbar.removeClass('show');
+            $overlay.removeClass('show');
+        });
     },
     /**
      * 定位大屏状态下的导航下拉框位置
