@@ -16,6 +16,11 @@
     <div class="card-body">
         <form action="user.php?action=update" method="post">
             <div class="form-group">
+                <p><img src="<?= User::getAvatar($avatar) ?>" height="65" width="65" class="rounded-circle" /> </p>
+                <label for="avatar">头像</label>
+                <input class="form-control" value="<?= $avatar ?>" name="avatar" id="avatar" placeholder="请输入头像URL">
+            </div>
+            <div class="form-group">
                 <label for="nickname">昵称</label>
                 <input class="form-control" value="<?= $nickname ?>" name="nickname" id="nickname" maxlength="20" required>
             </div>

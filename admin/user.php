@@ -92,6 +92,7 @@ if ($action == 'edit') {
 
     $data = $User_Model->getOneUser($uid);
 
+    $avatar = isset($data['photo']) ? $data['photo'] : '';
     $nickname = $data['nickname'];
     $role = $data['role'];
     $description = $data['description'];
@@ -124,6 +125,7 @@ if ($action == 'update') {
     $role = Input::postStrVar('role', User::ROLE_WRITER);
     $uid = Input::postIntVar('uid');
     $credits = Input::postIntVar('credits', 0, 0);
+    $avatar = Input::postStrVar('avatar');
 
     LoginAuth::checkToken();
 
@@ -164,6 +166,7 @@ if ($action == 'update') {
         'description' => $description,
         'role'        => $role,
         'credits'     => $credits,
+        'photo'       => $avatar,
     ];
 
     if (!empty($password)) {
