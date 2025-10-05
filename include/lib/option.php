@@ -187,7 +187,6 @@ class Option
                 'png',
                 'webp',
                 'avif',
-                'svg',
                 'txt',
                 'pdf',
                 'docx',
