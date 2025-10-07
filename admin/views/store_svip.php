@@ -55,7 +55,7 @@
                             <div class="installMsg"></div>
                             <div>
                                 <!-- 收藏按钮 -->
-                                <button type="button" class="btn btn-sm <?= $v['is_favorited'] ? 'btn-warning' : 'btn-outline-warning' ?> favoriteBtn mr-1"
+                                <button type="button" class="btn <?= $v['is_favorited'] ? 'btn-warning' : 'btn-outline-warning' ?> favoriteBtn mr-1"
                                     data-app-id="<?= $v['id'] ?>"
                                     data-app-type="<?= $v['app_type'] ?>"
                                     data-favorited="<?= $v['is_favorited'] ? '1' : '0' ?>">
@@ -170,18 +170,11 @@
                             $btn.removeClass('btn-warning').addClass('btn-outline-warning');
                             $btn.html('<i class="icofont-heart"></i> 收藏');
                         }
-
-                        // 显示成功提示
-                        showTip(newFavorited ? '收藏成功' : '取消收藏成功', 'success');
                     } else {
-                        // 显示错误信息
-                        showTip(response.msg || '操作失败', 'error');
                         $btn.html(originalText);
                     }
                 },
                 error: function(xhr, status, error) {
-                    console.error('收藏操作失败:', error);
-                    showTip('网络错误，请稍后重试', 'error');
                     $btn.html(originalText);
                 },
                 complete: function() {

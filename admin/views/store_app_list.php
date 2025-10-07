@@ -51,7 +51,7 @@
                                 <div class="installMsg"></div>
                                 <div>
                                     <!-- 收藏按钮 -->
-                                    <button type="button" class="btn btn-sm <?= $v['is_favorited'] ? 'btn-warning' : 'btn-outline-warning' ?> favoriteBtn mr-1"
+                                    <button type="button" class="btn <?= $v['is_favorited'] ? 'btn-warning' : 'btn-outline-warning' ?> favoriteBtn mr-1"
                                         data-app-id="<?= $v['id'] ?>"
                                         data-app-type="<?= $v['app_type'] ?>"
                                         data-favorited="<?= $v['is_favorited'] ? '1' : '0' ?>">
@@ -289,7 +289,6 @@
 
             // 验证必要参数
             if (!appId || !appType) {
-                showTip('参数错误，请刷新页面重试', 'error');
                 return;
             }
 
@@ -323,20 +322,16 @@
                             $btn.html('<i class="icofont-heart"></i> 收藏');
                         }
 
-                        // 显示成功提示
-                        showTip(newFavorited ? '收藏成功' : '取消收藏成功', 'success');
+                        // 确保按钮重新启用
+                        $btn.prop('disabled', false);
                     } else {
                         // 显示错误信息
-                        showTip(response.msg || '操作失败', 'error');
                         $btn.html(originalText);
+                        $btn.prop('disabled', false);
                     }
                 },
                 error: function(xhr, status, error) {
-                    console.error('收藏操作失败:', error);
-                    showTip('网络错误，请稍后重试', 'error');
                     $btn.html(originalText);
-                },
-                complete: function() {
                     $btn.prop('disabled', false);
                 }
             });

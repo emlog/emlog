@@ -122,7 +122,6 @@
 
             // 验证必要参数
             if (!appId || !appType) {
-                showTip('参数错误，请刷新页面重试', 'error');
                 return;
             }
 
@@ -142,9 +141,12 @@
                 },
                 dataType: 'json',
                 success: function(response) {
-                    if (response.code === 200) {
+                    if (response.code === 0 || response.code === 200) {
                         // 取消收藏成功后，从页面移除该应用卡片
                         if (isFavorited) {
+                            // 显示成功提示
+                            layer.msg('取消收藏成功', {icon: 1, time: 2000});
+                            
                             $btn.closest('.col-md-6').fadeOut(300, function() {
                                 $(this).remove();
                                 // 检查是否还有应用，如果没有则显示提示信息
@@ -152,22 +154,22 @@
                                     $('.app-list').html('<div class="col-md-12"><p class="alert alert-warning my-3">还没有收藏任何应用。</p></div>');
                                 }
                             });
-                            showTip('取消收藏成功', 'success');
                         } else {
                             // 如果是添加收藏（理论上在收藏页面不会发生）
                             $btn.removeClass('btn-outline-warning').addClass('btn-warning');
                             $btn.html('<i class="icofont-heart"></i> 已收藏');
-                            showTip('收藏成功', 'success');
+                            layer.msg('收藏成功', {icon: 1, time: 2000});
                         }
                     } else {
                         // 显示错误信息
-                        showTip(response.msg || '操作失败', 'error');
+                        const errorMsg = response.msg || '操作失败，请重试';
+                        layer.msg(errorMsg, {icon: 2, time: 3000});
                         $btn.html(originalText);
                     }
                 },
                 error: function(xhr, status, error) {
-                    console.error('收藏操作失败:', error);
-                    showTip('网络错误，请稍后重试', 'error');
+                    // 显示网络错误提示
+                    layer.msg('网络请求失败，请检查网络连接', {icon: 2, time: 3000});
                     $btn.html(originalText);
                 },
                 complete: function() {
