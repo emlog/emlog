@@ -285,50 +285,34 @@ if ($action === 'ajax_load') {
     Output::json($response);
 }
 
-/**
- * 添加收藏
- */
 if ($action === 'add_favorite') {
     $app_type = Input::postStrVar('app_type'); // plugin 或 template
     $app_id = Input::postIntVar('app_id');
 
-    // 参数验证
     if (empty($app_type) || empty($app_id)) {
         Output::json(['code' => 400, 'msg' => '参数错误']);
-        exit;
     }
 
     if (!in_array($app_type, ['plugin', 'template'])) {
         Output::json(['code' => 400, 'msg' => '应用类型错误']);
-        exit;
     }
 
-    // 调用模型方法添加收藏
     $result = $Store_Model->addFavorite($app_type, $app_id);
-
     Output::json($result);
 }
 
-/**
- * 取消收藏
- */
 if ($action === 'remove_favorite') {
     $app_type = Input::postStrVar('app_type'); // plugin 或 template
     $app_id = Input::postIntVar('app_id');
 
-    // 参数验证
     if (empty($app_type) || empty($app_id)) {
         Output::json(['code' => 400, 'msg' => '参数错误']);
-        exit;
     }
 
     if (!in_array($app_type, ['plugin', 'template'])) {
         Output::json(['code' => 400, 'msg' => '应用类型错误']);
-        exit;
     }
 
-    // 调用模型方法取消收藏
     $result = $Store_Model->removeFavorite($app_type, $app_id);
-
     Output::json($result);
 }
