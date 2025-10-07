@@ -156,9 +156,6 @@ if ($action === 'svip') {
     View::output();
 }
 
-/**
- * 我的收藏页面处理
- */
 if ($action === 'favorite') {
     $page = Input::getIntVar('page', 1);
     $r = $Store_Model->getFavorites($page);
@@ -171,11 +168,6 @@ if ($action === 'favorite') {
     require_once(View::getAdmView('store_favorite'));
     include View::getAdmView('footer');
     View::output();
-}
-
-if ($action === 'top') {
-    $addons = $Store_Model->getTopAddon();
-    output::ok($addons);
 }
 
 if ($action === 'error') {

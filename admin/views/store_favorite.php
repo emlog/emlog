@@ -20,6 +20,8 @@
         <div class="d-flex flex-wrap app-list">
             <?php foreach ($apps as $k => $v):
                 $icon = $v['icon'] ?: "./views/images/theme.png";
+                $type = $v['app_type'] === 'template' ? 'tpl' : 'plugin';
+                $order_url = 'https://www.emlog.net/order/submit/' . $type . '/' . $v['id']
             ?>
                 <div class="col-md-6 col-lg-3">
                     <div class="card mb-4 shadow-sm hover-shadow-lg">
@@ -38,13 +40,22 @@
                             <div class="card-text d-flex justify-content-between">
                                 <div class="installMsg"></div>
                                 <div>
-                                    <?php if (Plugin::isActive($v['alias']) || Template::isActive($v['alias'])): ?>
+                                    <?php if (Plugin::isActive($v['alias'])): ?>
                                         <a href="plugin.php" class="btn btn-light">使用中</a>
+                                    <?php elseif (Template::isActive($v['alias'])): ?>
+                                        <a href="template.php" class="btn btn-light">使用中</a>
                                     <?php endif; ?>
-                                    <?php if (empty($v['download_url'])): ?>
-                                        <a href="<?= $v['buy_url'] ?>" class="btn btn-success btn-sm">请联系作者安装</a>
+                                    <?php if ($v['price'] > 0): ?>
+                                        <?php if ($v['purchased'] === true): ?>
+                                            <a href="store.php?action=mine" class="btn btn-light">已购买</a>
+                                            <a href="#" class="btn btn-success installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-cdn-url="<?= urlencode($v['cdn_download_url']) ?>" data-type="<?= $type ?>">安装</a>
+                                        <?php elseif ($v['svip'] && Register::getRegType() === 2): ?>
+                                            <a href="#" class="btn btn-warning installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-cdn-url="<?= urlencode($v['cdn_download_url']) ?>" data-type="<?= $type ?>">安装</a>
+                                        <?php else: ?>
+                                            <a href="<?= $order_url ?>" class="btn btn-danger" target="_blank">立即购买</a>
+                                        <?php endif ?>
                                     <?php else: ?>
-                                        <a href="#" class="btn btn-success installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-cdn-url="<?= urlencode($v['cdn_download_url']) ?>" data-type="<?= $v['type'] ?>">安装</a>
+                                        <a href="#" class="btn btn-success installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-cdn-url="<?= urlencode($v['cdn_download_url']) ?>" data-type="<?= $type ?>">安装</a>
                                     <?php endif ?>
                                 </div>
                             </div>

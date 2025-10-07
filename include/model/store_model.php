@@ -34,11 +34,6 @@ class Store_Model
         return $this->reqEmStore('svip');
     }
 
-    public function getTopAddon()
-    {
-        return $this->reqEmStore('top');
-    }
-
     public function getFavorites($page = 1)
     {
         return $this->reqEmStore('favorite', '', '', $page);
