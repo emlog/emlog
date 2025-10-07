@@ -12,6 +12,7 @@
         <li class="nav-item"><a class="nav-link" href="./store.php?action=plu">扩展插件</a></li>
         <li class="nav-item"><a class="nav-link" href="./store.php?action=svip">铁杆免费</a></li>
         <li class="nav-item"><a class="nav-link" href="./store.php?action=mine">我的已购</a></li>
+        <li class="nav-item"><a class="nav-link" href="./store.php?action=favorite">我的收藏</a></li>
     </ul>
 </div>
 

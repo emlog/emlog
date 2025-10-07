@@ -156,6 +156,23 @@ if ($action === 'svip') {
     View::output();
 }
 
+/**
+ * 我的收藏页面处理
+ */
+if ($action === 'favorite') {
+    $page = Input::getIntVar('page', 1);
+    $r = $Store_Model->getFavorites($page);
+    $apps = isset($r['favorites']) ? $r['favorites'] : [];
+    $tab_type = 'favorite';
+    $has_more = isset($r['has_more']) ? $r['has_more'] : false;
+    $sub_title = '我的收藏';
+
+    include View::getAdmView('header');
+    require_once(View::getAdmView('store_favorite'));
+    include View::getAdmView('footer');
+    View::output();
+}
+
 if ($action === 'top') {
     $addons = $Store_Model->getTopAddon();
     output::ok($addons);
@@ -234,6 +251,10 @@ if ($action === 'ajax_load') {
         case 'plu':
             $r = $Store_Model->getPlugins($tag, $keyword, $page, $author_id, $sid);
             $apps = $r['plugins'];
+            break;
+        case 'favorite':
+            $r = $Store_Model->getFavorites($page);
+            $apps = isset($r['favorites']) ? $r['favorites'] : [];
             break;
         default:
             $r = $Store_Model->getApps($tag, $keyword, $page, $author_id, $sid);

@@ -39,6 +39,11 @@ class Store_Model
         return $this->reqEmStore('top');
     }
 
+    public function getFavorites($page = 1)
+    {
+        return $this->reqEmStore('favorite', '', '', $page);
+    }
+
     public function reqEmStore($type, $tag = '', $keyword = '', $page = 1, $author_id = 0, $sid = 0)
     {
         $emcurl = new EmCurl();
@@ -88,6 +93,12 @@ class Store_Model
                 break;
             case 'plu':
                 $data['plugins'] = isset($ret['data']['plugins']) ? $ret['data']['plugins'] : [];
+                $data['count'] = isset($ret['data']['count']) ? $ret['data']['count'] : 0;
+                $data['page_count'] = isset($ret['data']['page_count']) ? $ret['data']['page_count'] : 0;
+                $data['has_more'] = isset($ret['has_more']) ? $ret['has_more'] : false;
+                break;
+            case 'favorite':
+                $data['favorites'] = isset($ret['data']['favorites']) ? $ret['data']['favorites'] : [];
                 $data['count'] = isset($ret['data']['count']) ? $ret['data']['count'] : 0;
                 $data['page_count'] = isset($ret['data']['page_count']) ? $ret['data']['page_count'] : 0;
                 $data['has_more'] = isset($ret['has_more']) ? $ret['has_more'] : false;

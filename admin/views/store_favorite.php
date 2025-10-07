@@ -11,14 +11,14 @@
         <li class="nav-item"><a class="nav-link" href="./store.php?action=tpl">模板主题</a></li>
         <li class="nav-item"><a class="nav-link" href="./store.php?action=plu">扩展插件</a></li>
         <li class="nav-item"><a class="nav-link" href="./store.php?action=svip">铁杆免费</a></li>
-        <li class="nav-item"><a class="nav-link active" href="./store.php?action=mine">我的已购</a></li>
-        <li class="nav-item"><a class="nav-link" href="./store.php?action=favorite">我的收藏</a></li>
+        <li class="nav-item"><a class="nav-link" href="./store.php?action=mine">我的已购</a></li>
+        <li class="nav-item"><a class="nav-link active" href="./store.php?action=favorite">我的收藏</a></li>
     </ul>
 </div>
 <div class="mb-3">
-    <?php if (!empty($addons)): ?>
+    <?php if (!empty($apps)): ?>
         <div class="d-flex flex-wrap app-list">
-            <?php foreach ($addons as $k => $v):
+            <?php foreach ($apps as $k => $v):
                 $icon = $v['icon'] ?: "./views/images/theme.png";
             ?>
                 <div class="col-md-6 col-lg-3">
@@ -55,11 +55,11 @@
         </div>
     <?php elseif (!Register::isRegLocal()): ?>
         <div class="col-md-12">
-            <p class="alert alert-warning my-3">您还不是正版注册用户，无法使用应用商店已购功能，<a href="https://www.emlog.net/register">付费支持 &rarr;</a></p>
+            <p class="alert alert-warning my-3">您还不是正版注册用户，无法使用应用商店收藏功能，<a href="https://www.emlog.net/register">付费支持 &rarr;</a></p>
         </div>
     <?php else: ?>
         <div class="col-md-12">
-            <p class="alert alert-warning my-3">还没有购买任何应用。</p>
+            <p class="alert alert-warning my-3">还没有收藏任何应用。</p>
         </div>
     <?php endif; ?>
 </div>
