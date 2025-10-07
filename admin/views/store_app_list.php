@@ -315,6 +315,7 @@
                         if (newFavorited) {
                             $btn.removeClass('btn-outline-warning').addClass('btn-warning');
                             $btn.html('已收藏');
+                            cocoMessage.success('收藏成功');
                         } else {
                             $btn.removeClass('btn-warning').addClass('btn-outline-warning');
                             $btn.html('收藏');
@@ -326,6 +327,7 @@
                         // 显示错误信息
                         $btn.html(originalText);
                         $btn.prop('disabled', false);
+                        cocoMessage.error(response.msg);
                     }
                 },
                 error: function(xhr, status, error) {

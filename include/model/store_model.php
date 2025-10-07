@@ -39,12 +39,6 @@ class Store_Model
         return $this->reqEmStore('favorite', '', '', $page);
     }
 
-    /**
-     * 添加收藏
-     * @param string $app_type 应用类型 (plugin/template)
-     * @param int $app_id 应用ID
-     * @return array 返回结果
-     */
     public function addFavorite($app_type, $app_id)
     {
         $emcurl = new EmCurl();
@@ -70,22 +64,9 @@ class Store_Model
             return ['code' => 500, 'msg' => '响应数据解析失败'];
         }
 
-        if ($ret['code'] === MSGCODE_EMKEY_INVALID) {
-            Option::updateOption('emkey', '');
-            $CACHE = Cache::getInstance();
-            $CACHE->updateCache('options');
-            return ['code' => 401, 'msg' => 'emkey无效，请重新授权'];
-        }
-
         return $ret;
     }
 
-    /**
-     * 取消收藏
-     * @param string $app_type 应用类型 (plugin/template)
-     * @param int $app_id 应用ID
-     * @return array 返回结果
-     */
     public function removeFavorite($app_type, $app_id)
     {
         $emcurl = new EmCurl();
@@ -109,13 +90,6 @@ class Store_Model
 
         if (empty($ret)) {
             return ['code' => 500, 'msg' => '响应数据解析失败'];
-        }
-
-        if ($ret['code'] === MSGCODE_EMKEY_INVALID) {
-            Option::updateOption('emkey', '');
-            $CACHE = Cache::getInstance();
-            $CACHE->updateCache('options');
-            return ['code' => 401, 'msg' => 'emkey无效，请重新授权'];
         }
 
         return $ret;
