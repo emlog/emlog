@@ -45,7 +45,6 @@
                                         data-app-id="<?= $v['id'] ?>"
                                         data-app-type="<?= $v['app_type'] ?>"
                                         data-favorited="1">
-                                        <i class="icofont-heart"></i>
                                         取消收藏
                                     </button>
 
@@ -149,7 +148,7 @@
                             });
                         } else {
                             $btn.removeClass('btn-outline-warning').addClass('btn-warning');
-                            $btn.html('<i class="icofont-heart"></i> 已收藏');
+                            $btn.html('已收藏');
                         }
                     } else {
                         $btn.html(originalText);

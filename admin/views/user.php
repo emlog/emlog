@@ -111,7 +111,7 @@
                 <button class="btn btn-success btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">操作</button>
                 <div class="dropdown-menu">
                     <a href="javascript:useract('forbid');" class="dropdown-item text-warning">禁用</a>
-                    <a href="javascript:useract('unforbid');" class="dropdown-item    ">解禁</a>
+                    <a href="javascript:useract('unforbid');" class="dropdown-item">解禁</a>
                 </div>
             </div>
         </div>

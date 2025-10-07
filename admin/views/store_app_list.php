@@ -55,7 +55,6 @@
                                         data-app-id="<?= $v['id'] ?>"
                                         data-app-type="<?= $v['app_type'] ?>"
                                         data-favorited="<?= $v['is_favorited'] ? '1' : '0' ?>">
-                                        <i class="icofont-heart"></i>
                                         <?= $v['is_favorited'] ? '已收藏' : '收藏' ?>
                                     </button>
 
@@ -166,11 +165,10 @@
                             // 收藏按钮
                             const favoriteClass = app.is_favorited ? 'btn-warning' : 'btn-outline-warning';
                             const favoriteText = app.is_favorited ? '已收藏' : '收藏';
-                            buttonsHtml += `<button type="button" class="btn btn-sm ${favoriteClass} favoriteBtn mr-1" 
+                            buttonsHtml += `<button type="button" class="btn ${favoriteClass} favoriteBtn mr-1" 
                                                     data-app-id="${app.id}" 
                                                     data-app-type="${app.app_type}" 
                                                     data-favorited="${app.is_favorited ? '1' : '0'}">
-                                                <i class="icofont-heart"></i>
                                                 ${favoriteText}
                                             </button> `;
 
@@ -316,10 +314,10 @@
                         // 更新按钮样式和文本
                         if (newFavorited) {
                             $btn.removeClass('btn-outline-warning').addClass('btn-warning');
-                            $btn.html('<i class="icofont-heart"></i> 已收藏');
+                            $btn.html('已收藏');
                         } else {
                             $btn.removeClass('btn-warning').addClass('btn-outline-warning');
-                            $btn.html('<i class="icofont-heart"></i> 收藏');
+                            $btn.html('收藏');
                         }
 
                         // 确保按钮重新启用
