@@ -41,7 +41,7 @@
                                 <div class="installMsg"></div>
                                 <div>
                                     <!-- 取消收藏按钮 -->
-                                    <button type="button" class="btn btn-sm btn-warning favoriteBtn mr-1"
+                                    <button type="button" class="btn btn-warning favoriteBtn mr-1"
                                         data-app-id="<?= $v['id'] ?>"
                                         data-app-type="<?= $v['app_type'] ?>"
                                         data-favorited="1">
@@ -129,11 +129,9 @@
             const originalText = $btn.html();
             $btn.html('<i class="icofont-spinner icofont-spin"></i> 处理中...');
 
-            // 调用收藏/取消收藏API
-            const action = isFavorited ? 'remove_favorite' : 'add_favorite';
-
+            // 取消收藏
             $.ajax({
-                url: './store.php?action=' + action,
+                url: './store.php?action=remove_favorite',
                 type: 'POST',
                 data: {
                     app_id: appId,
@@ -141,35 +139,23 @@
                 },
                 dataType: 'json',
                 success: function(response) {
-                    if (response.code === 0 || response.code === 200) {
-                        // 取消收藏成功后，从页面移除该应用卡片
+                    if (response.code === 0) {
                         if (isFavorited) {
-                            // 显示成功提示
-                            layer.msg('取消收藏成功', {icon: 1, time: 2000});
-                            
                             $btn.closest('.col-md-6').fadeOut(300, function() {
                                 $(this).remove();
-                                // 检查是否还有应用，如果没有则显示提示信息
                                 if ($('.app-list .col-md-6').length === 0) {
                                     $('.app-list').html('<div class="col-md-12"><p class="alert alert-warning my-3">还没有收藏任何应用。</p></div>');
                                 }
                             });
                         } else {
-                            // 如果是添加收藏（理论上在收藏页面不会发生）
                             $btn.removeClass('btn-outline-warning').addClass('btn-warning');
                             $btn.html('<i class="icofont-heart"></i> 已收藏');
-                            layer.msg('收藏成功', {icon: 1, time: 2000});
                         }
                     } else {
-                        // 显示错误信息
-                        const errorMsg = response.msg || '操作失败，请重试';
-                        layer.msg(errorMsg, {icon: 2, time: 3000});
                         $btn.html(originalText);
                     }
                 },
                 error: function(xhr, status, error) {
-                    // 显示网络错误提示
-                    layer.msg('网络请求失败，请检查网络连接', {icon: 2, time: 3000});
                     $btn.html(originalText);
                 },
                 complete: function() {
