@@ -40,6 +40,15 @@
                             <div class="card-text d-flex justify-content-between">
                                 <div class="installMsg"></div>
                                 <div>
+                                    <!-- 取消收藏按钮 -->
+                                    <button type="button" class="btn btn-sm btn-warning favoriteBtn mr-1"
+                                        data-app-id="<?= $v['id'] ?>"
+                                        data-app-type="<?= $v['app_type'] ?>"
+                                        data-favorited="1">
+                                        <i class="icofont-heart"></i>
+                                        取消收藏
+                                    </button>
+
                                     <?php if (Plugin::isActive($v['alias'])): ?>
                                         <a href="plugin.php" class="btn btn-light">使用中</a>
                                     <?php elseif (Template::isActive($v['alias'])): ?>
@@ -95,5 +104,76 @@
     $(function() {
         $("#menu_store").addClass('active');
         setTimeout(hideActived, 3600);
+
+        // 收藏按钮点击事件处理（取消收藏）
+        $(document).on('click', '.favoriteBtn', function() {
+            const $btn = $(this);
+            const appId = $btn.data('app-id');
+            const appType = $btn.data('app-type');
+
+            // 更严格的数据类型检查，确保正确判断收藏状态
+            const favoritedValue = $btn.data('favorited');
+            const isFavorited = favoritedValue === '1' || favoritedValue === 1 || favoritedValue === true;
+
+            // 防止重复点击
+            if ($btn.prop('disabled')) {
+                return;
+            }
+
+            // 验证必要参数
+            if (!appId || !appType) {
+                showTip('参数错误，请刷新页面重试', 'error');
+                return;
+            }
+
+            $btn.prop('disabled', true);
+            const originalText = $btn.html();
+            $btn.html('<i class="icofont-spinner icofont-spin"></i> 处理中...');
+
+            // 调用收藏/取消收藏API
+            const action = isFavorited ? 'remove_favorite' : 'add_favorite';
+
+            $.ajax({
+                url: './store.php?action=' + action,
+                type: 'POST',
+                data: {
+                    app_id: appId,
+                    app_type: appType
+                },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.code === 200) {
+                        // 取消收藏成功后，从页面移除该应用卡片
+                        if (isFavorited) {
+                            $btn.closest('.col-md-6').fadeOut(300, function() {
+                                $(this).remove();
+                                // 检查是否还有应用，如果没有则显示提示信息
+                                if ($('.app-list .col-md-6').length === 0) {
+                                    $('.app-list').html('<div class="col-md-12"><p class="alert alert-warning my-3">还没有收藏任何应用。</p></div>');
+                                }
+                            });
+                            showTip('取消收藏成功', 'success');
+                        } else {
+                            // 如果是添加收藏（理论上在收藏页面不会发生）
+                            $btn.removeClass('btn-outline-warning').addClass('btn-warning');
+                            $btn.html('<i class="icofont-heart"></i> 已收藏');
+                            showTip('收藏成功', 'success');
+                        }
+                    } else {
+                        // 显示错误信息
+                        showTip(response.msg || '操作失败', 'error');
+                        $btn.html(originalText);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('收藏操作失败:', error);
+                    showTip('网络错误，请稍后重试', 'error');
+                    $btn.html(originalText);
+                },
+                complete: function() {
+                    $btn.prop('disabled', false);
+                }
+            });
+        });
     });
 </script>
