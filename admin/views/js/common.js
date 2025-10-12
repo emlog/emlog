@@ -367,7 +367,7 @@ function pageSave() {
             const h = d.getHours();
             const m = d.getMinutes();
             const tm = (h < 10 ? "0" + h : h) + ":" + (m < 10 ? "0" + m : m);
-            $("#save_info").html("保存于：" + tm + " <a href=\"../?page=" + pageid + "\" target=\"_blank\">预览</a>");
+            $("#save_info").html("保存于：" + tm + " <a href=\"../?post=" + pageid + "\" target=\"_blank\">预览</a>");
             $("#" + nodeid).val(pageid);
             $("#savedf").attr("disabled", false).val(btname);
         } else {

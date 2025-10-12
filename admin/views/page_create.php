@@ -23,7 +23,7 @@
                 <input type="hidden" name="ishide" id="ishide" value="<?= $hide ?>" />
                 <input type="hidden" name="pageid" id="pageid" value="<?= $pageId ?>" />
                 <?php if ($pageId < 0): ?>
-                    <input type="submit" value="发布页面" onclick="return checkform();" class="btn btn-success btn-sm" />
+                    <input type="submit" name="pubPost" id="pubPost" value="发布页面" onclick="return checkform();" class="btn btn-success btn-sm" />
                     <input type="button" name="savedf" id="savedf" value="保存" onclick="pageSave();" class="btn btn-primary btn-sm" />
                 <?php else: ?>
                     <input type="submit" value="保存并返回" onclick="return checkform();" class="btn btn-success btn-sm" />

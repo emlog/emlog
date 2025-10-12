@@ -114,7 +114,8 @@ if ($action == 'save' || $action == 'autosave') {
     $content = Input::postStrVar('pagecontent');
     $alias = Input::postStrVar('alias');
     $pageId = Input::postIntVar('pageid', -1);
-    $ishide = Input::postStrVar('ishide') === '' ? 'n' : Input::postStrVar('ishide');
+    $ishide = Input::postStrVar('ishide', 'y');
+    $pubPost = Input::postStrVar('pubPost'); // 是否直接发布文章，而非保存草稿
     $template = Input::postStrVar('template') != 'page' ? Input::postStrVar('template') : '';
     $allow_remark = Input::postStrVar('allow_remark', 'n');
     $home_page = Input::postStrVar('home_page', 'n');
@@ -126,6 +127,10 @@ if ($action == 'save' || $action == 'autosave') {
     if (!empty($alias)) {
         $logalias_cache = $CACHE->readCache('logalias');
         $alias = $emPage->checkAlias($alias, $logalias_cache, $pageId);
+    }
+
+    if ($pubPost) {
+        $ishide = 'n';
     }
 
     $logData = array(
