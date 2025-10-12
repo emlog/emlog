@@ -308,7 +308,7 @@ function autosave(act) {
 
     const $savedf = $("#savedf");
     const btname = $savedf.val();
-    $savedf.val("正在保存中...").attr("disabled", "disabled");
+    $savedf.val("保存中...").attr("disabled", "disabled");
     $('title').text('[保存中] ' + titleText);
     $.post(url, $("#addlog").serialize(), function (data) {
         data = $.trim(data);
@@ -338,6 +338,43 @@ function autosave(act) {
     if (act == 1) {
         setTimeout("autosave(1)", timeout);
     }
+}
+
+function pageSave() {
+    const nodeid = "pageid";
+    const url = "page.php?action=autosave";
+    const alias = $.trim($("#alias").val());
+    let ishide = $.trim($("#ishide").val());
+    if (ishide === "") {
+        $("#ishide").val("y")
+    }
+
+    if (alias != '' && 0 != isalias(alias)) {
+        $("#msg").show().html("链接别名错误，自动保存失败");
+        return;
+    }
+
+    const $savedf = $("#savedf");
+    const btname = $savedf.val();
+    $savedf.val("保存中...").attr("disabled", "disabled");
+    $.post(url, $("#addlog").serialize(), function (data) {
+        data = $.trim(data);
+        var isresponse = /.*autosave\_gid\:\d+\_.*/;
+        if (isresponse.test(data)) {
+            const getvar = data.match(/_gid:([\d]+)_/);
+            const pageid = getvar[1];
+            const d = new Date();
+            const h = d.getHours();
+            const m = d.getMinutes();
+            const tm = (h < 10 ? "0" + h : h) + ":" + (m < 10 ? "0" + m : m);
+            $("#save_info").html("保存于：" + tm + " <a href=\"../?page=" + pageid + "\" target=\"_blank\">预览</a>");
+            $("#" + nodeid).val(pageid);
+            $("#savedf").attr("disabled", false).val(btname);
+        } else {
+            $("#savedf").attr("disabled", false).val(btname);
+            $("#save_info").html("保存失败").addClass("alert-danger");
+        }
+    });
 }
 
 // “页面”的 editor.md 编辑器 Ctrl + S 快捷键的自动保存动作

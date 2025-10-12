@@ -1,6 +1,6 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
 <form action="page.php?action=save" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
-    <h1 class="h4 mb-4 text-gray-800"><?= $containertitle ?></h1>
+    <h1 class="h4 mb-4 text-gray-800"><?= $containertitle ?><span id="save_info"></span></h1>
     <div class="row">
         <div class="col-xl-9">
             <div id="post" class="form-group">
@@ -21,11 +21,13 @@
         <div class="col-xl-3">
             <div id="post_button">
                 <input type="hidden" name="ishide" id="ishide" value="<?= $hide ?>" />
-                <input type="hidden" name="pageid" value="<?= $pageId ?>" />
+                <input type="hidden" name="pageid" id="pageid" value="<?= $pageId ?>" />
                 <?php if ($pageId < 0): ?>
                     <input type="submit" value="发布页面" onclick="return checkform();" class="btn btn-success btn-sm" />
+                    <input type="button" name="savedf" id="savedf" value="保存" onclick="pageSave();" class="btn btn-primary btn-sm" />
                 <?php else: ?>
                     <input type="submit" value="保存并返回" onclick="return checkform();" class="btn btn-success btn-sm" />
+                    <input type="button" name="savedf" id="savedf" value="保存" onclick="pageSave();" class="btn btn-primary btn-sm" />
                 <?php endif ?>
             </div>
             <div class="shadow-sm p-3 mb-2 bg-white rounded">
@@ -63,9 +65,6 @@
                     ?>
                         <select id="template" name="template" class="form-control"><?= $sortListHtml; ?></select>
                         <small class="form-text text-muted">选择当前模板支持的页面模板，可不选</small>
-                    <?php else: ?>
-                        <input class="form-control" id="template" name="template" value="<?= $template ?>">
-                        <small class="form-text text-muted">用于自定义页面模板，对应模板目录下xxx.php文件，xxx即为模板名，可不填</small>
                     <?php endif; ?>
                 </div>
                 <div class="form-group">

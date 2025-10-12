@@ -106,7 +106,7 @@ if ($action == 'mod') {
     View::output();
 }
 
-if ($action == 'save') {
+if ($action == 'save' || $action == 'autosave') {
     $emPage = new Log_Model();
     $Navi_Model = new Navi_Model();
 

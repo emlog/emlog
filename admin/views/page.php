@@ -50,12 +50,7 @@
                         </tr>
                     </thead>
                     <tbody class="checkboxContainer">
-                        <?php foreach ($pages as $key => $value):
-                            $isHide = '';
-                            if ($value['hide'] == 'y') {
-                                $isHide = '<span class="text-danger ml-2"> - 草稿</span>';
-                            }
-                        ?>
+                        <?php foreach ($pages as $key => $value): ?>
                             <tr>
                                 <td style="width: 19px;">
                                     <input type="checkbox" name="page[]" value="<?= $value['gid'] ?>" class="ids" />
@@ -63,18 +58,23 @@
                                 <td>
                                     <a href="page.php?action=mod&id=<?= $value['gid'] ?>"><?= $value['title'] ?></a>
                                     <a href="<?= Url::log($value['gid']) ?>" target="_blank" class="text-muted ml-2"><i class="icofont-external-link"></i></a>
-                                    <?= $isHide ?>
+                                    <?php if ($value['hide'] == 'y'): ?>
+                                        <span class="badge small badge-secondary">草稿</span>
+                                    <?php endif; ?>
+                                    <?php if ($value['gid'] == Option::get('home_page_id')): ?>
+                                        <span class="badge small badge-danger">首页</span>
+                                    <?php endif; ?>
                                     <?php if ($value['gid'] == Option::get('home_page_id')): ?>
                                         <br>
-                                        <span class="text-secondary">
-                                            <span class="badge small badge-danger">首页</span> 已设为首页，原默认首页：<a href="<?= BLOG_URL ?>posts" target="_blank"><?= BLOG_URL ?>posts</a>
+                                        <span class="text-secondary small">
+                                            已设为首页，原默认首页：<a href="<?= BLOG_URL ?>posts" target="_blank"><?= BLOG_URL ?>posts</a>
                                         </span>
                                     <?php endif; ?>
                                     <br>
                                     <span class="small"> ID:<?= $value['gid'] ?></span>
                                     <?php if ($value['alias']): ?> <span class="small">(<?= $value['alias'] ?>)</span><?php endif ?>
-                                    <?php if ($value['allow_remark'] === 'y'): ?> <span class="small">💬</span><?php endif ?>
-                                    <?php if ($value['link']): ?><span class="small">🔗</span><?php endif ?>
+                                    <?php if ($value['allow_remark'] === 'y'): ?> <span class="small" title="允许评论">💬</span><?php endif ?>
+                                    <?php if ($value['link']): ?><span class="small" title="跳转链接">🔗</span><?php endif ?>
                                 </td>
                                 <td>
                                     <a href="comment.php?gid=<?= $value['gid'] ?>" class="badge badge-primary mx-1 px-2"><?= $value['comnum'] ?></a>
