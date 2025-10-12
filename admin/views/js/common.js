@@ -320,7 +320,7 @@ function autosave(act) {
             const h = d.getHours();
             const m = d.getMinutes();
             const tm = (h < 10 ? "0" + h : h) + ":" + (m < 10 ? "0" + m : m);
-            $("#save_info").html("保存于：" + tm + " <a href=\"../?post=" + logid + "\" target=\"_blank\">预览文章</a>");
+            $("#save_info").html("保存于：" + tm + " <a href=\"../?post=" + logid + "\" target=\"_blank\">预览</a>");
             $('title').text('[保存成功] ' + titleText);
             setTimeout(function () {
                 $('title').text(titleText);
