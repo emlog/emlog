@@ -378,6 +378,10 @@ function pageSave() {
             $("#save_info").html("保存于：" + tm + " <a href=\"../?post=" + pageid + "\" target=\"_blank\">预览</a>");
             $("#" + nodeid).val(pageid);
             $("#savedf").attr("disabled", false).val(btname);
+            // 保存成功后更新pageText，避免页面离开时的错误提示
+            if (typeof pageText !== 'undefined') {
+                pageText = $("textarea").text();
+            }
         } else {
             $("#savedf").attr("disabled", false).val(btname);
             $("#save_info").html("保存失败").addClass("alert-danger");
