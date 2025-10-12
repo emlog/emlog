@@ -340,7 +340,15 @@ function autosave(act) {
     }
 }
 
+// “页面”的 editor.md 编辑器 Ctrl + S 快捷键的自动保存动作
+const pagetitle = $('title').text();
+
 function pageSave() {
+    document.addEventListener('keydown', function (e) {  // 阻止自动保存产生的浏览器默认动作
+        if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
+            e.preventDefault();
+        }
+    });
     const nodeid = "pageid";
     const url = "page.php?action=autosave";
     const alias = $.trim($("#alias").val());
@@ -374,31 +382,6 @@ function pageSave() {
             $("#savedf").attr("disabled", false).val(btname);
             $("#save_info").html("保存失败").addClass("alert-danger");
         }
-    });
-}
-
-// “页面”的 editor.md 编辑器 Ctrl + S 快捷键的自动保存动作
-const pagetitle = $('title').text();
-
-function pagesave() {
-    document.addEventListener('keydown', function (e) {  // 阻止自动保存产生的浏览器默认动作
-        if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
-            e.preventDefault();
-        }
-    });
-    let url = "page.php?action=save";
-    if ($("[name='pageid']").attr("value") < 0) return infoAlert("请先发布页面！");
-    if (!$("[name='pagecontent']").html()) return infoAlert("页面内容不能为空！");
-    $('title').text('[保存中...] ' + pagetitle);
-    $.post(url, $("#addlog").serialize(), function (data) {
-        $('title').text('[保存成功] ' + pagetitle);
-        setTimeout(function () {
-            $('title').text(pagetitle);
-        }, 2000);
-        pageText = $("textarea").text();
-    }).fail(function () {
-        $('title').text('[保存失败] ' + pagetitle);
-        infoAlert("保存失败！")
     });
 }
 
