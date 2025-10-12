@@ -253,7 +253,7 @@ function checkform() {
     if (0 == isalias(a)) {
         return true;
     } else {
-        infoAlert("链接别名错误");
+        cocoMessage.error("链接别名格式错误", 4000)
         $("#alias").focus();
         return false;
     }
@@ -288,7 +288,7 @@ function autosave(act) {
     }
 
     if (alias != '' && 0 != isalias(alias)) {
-        $("#msg").show().html("链接别名错误，自动保存失败");
+        cocoMessage.error("链接别名格式错误，保存失败", 4000)
         if (act == 0) {
             setTimeout("autosave(1)", timeout);
         }
@@ -358,7 +358,7 @@ function pageSave() {
     }
 
     if (alias != '' && 0 != isalias(alias)) {
-        $("#msg").show().html("链接别名错误，自动保存失败");
+        cocoMessage.error("链接别名格式错误，保存失败", 4000)
         return;
     }
 
