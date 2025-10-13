@@ -210,6 +210,7 @@ if ($action == 'seo') {
 
     $isalias = $isalias == 'y' ? 'checked="checked"' : '';
     $isalias_html = $isalias_html == 'y' ? 'checked="checked"' : '';
+    $is_sample_url = $is_sample_url == 'y' ? 'checked="checked"' : '';
 
     include View::getAdmView('header');
     require_once(View::getAdmView('setting_seo'));
@@ -223,6 +224,7 @@ if ($action == 'seo_save') {
     $permalink = Input::postStrVar('permalink', '0');
     $isalias = Input::postStrVar('isalias', 'n');
     $isalias_html = Input::postStrVar('isalias_html', 'n');
+    $is_sample_url = Input::postStrVar('is_sample_url', 'n');
 
     $getData = [
         'site_title'       => Input::postStrVar('site_title', ''),
@@ -232,6 +234,7 @@ if ($action == 'seo_save') {
         'isalias'          => Input::postStrVar('isalias', 'n'),
         'isalias_html'     => Input::postStrVar('isalias_html', 'n'),
         'log_title_style'  => Input::postStrVar('log_title_style', '0'),
+        'is_sample_url'    => Input::postStrVar('is_sample_url', 'n'),
     ];
 
     if ($permalink != '0' || $isalias == 'y') {

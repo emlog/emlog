@@ -536,6 +536,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES
 ('isurlrewrite','0'),
 ('isalias','n'),
 ('isalias_html','n'),
+('is_sample_url','n'),
 ('timezone','Asia/Shanghai'),
 ('active_plugins','$def_plugin'),
 ('widget_title','$widget_title'),

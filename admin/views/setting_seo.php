@@ -67,11 +67,13 @@
                 <input class="custom-control-input" type="checkbox" value="y" name="isalias_html" id="isalias_html" <?= $isalias_html ?> />
                 <label class="custom-control-label" for="isalias_html">启用链接别名html后缀：<span class="permalink_url"><?= BLOG_URL ?>abc.html</span></label>
             </div>
-
+            <div class="custom-control custom-switch">
+                <input class="custom-control-input" type="checkbox" value="y" name="is_sample_url" id="is_sample_url" <?= $is_sample_url ?> />
+                <label class="custom-control-label" for="is_sample_url">启用简洁文章链接（去掉文件格式和目录格式中的 post 字符）</label>
+            </div>
             <div class="alert alert-warning mt-3">
                 如果修改后文章无法访问，可能是服务器不支持URL重写（伪静态），请修改回默认格式并关闭文章连接别名。<br>
             </div>
-
             <div class="alert alert-primary">
                 <p>
                     Nginx服务器请配置如下伪静态规则：<br><br>
@@ -83,7 +85,6 @@
                     }
                 </p>
             </div>
-
             <h4 class="mt-4">页头信息</h4>
             <div class="form-group">
                 <label>站点浏览器标题(title)</label>
@@ -105,7 +106,6 @@
                     <option value="2" <?= $opt2 ?>>文章标题 - 站点浏览器标题</option>
                 </select>
             </div>
-
             <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
             <input type="submit" value="保存设置" class="btn btn-sm btn-success" />
         </form>

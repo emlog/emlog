@@ -1,17 +1,21 @@
 <?php
+
 /**
  * URL
  * @package EMLOG
  * @link https://www.emlog.net
  */
 
-class Url {
+class Url
+{
 
     /**
      * Get article links
      */
-    static function log($blogId) {
+    static function log($blogId)
+    {
         $urlMode = Option::get('isurlrewrite');
+        $is_sample_url = Option::get('is_sample_url');
         $logUrl = '';
 
         //开启文章别名
@@ -38,16 +42,22 @@ class Url {
         }
 
         switch ($urlMode) {
-            case '0'://默认：动态
+            case '0': //默认：动态
                 $logUrl = BLOG_URL . '?post=' . $blogId;
                 break;
-            case '1'://静态
+            case '1': //静态
                 $logUrl = BLOG_URL . 'post-' . $blogId . '.html';
+                if ($is_sample_url === 'y') {
+                    $logUrl = BLOG_URL . $blogId . '.html';
+                }
                 break;
-            case '2'://目录
+            case '2': //目录
                 $logUrl = BLOG_URL . 'post/' . $blogId;
+                if ($is_sample_url === 'y') {
+                    $logUrl = BLOG_URL . $blogId;
+                }
                 break;
-            case '3'://分类
+            case '3': //分类
                 $Log_Model = new Log_Model();
                 $logInfo = $Log_Model->getDetail($blogId);
                 $sortName = isset($logInfo['sortname']) ? $logInfo['sortname'] : '';
@@ -65,7 +75,8 @@ class Url {
         return $logUrl;
     }
 
-    static function record($record, $page = null) {
+    static function record($record, $page = null)
+    {
         switch (Option::get('isurlrewrite')) {
             case '0':
                 $recordUrl = BLOG_URL . '?record=' . $record;
@@ -83,7 +94,8 @@ class Url {
         return $recordUrl;
     }
 
-    static function sort($sortId, $page = null) {
+    static function sort($sortId, $page = null)
+    {
         $CACHE = Cache::getInstance();
         $sort_cache = $CACHE->readCache('sort');
         $sortInfo = isset($sort_cache[$sortId]) ? $sort_cache[$sortId] : [];
@@ -118,7 +130,8 @@ class Url {
         return $sortUrl;
     }
 
-    static function author($authorId, $page = null) {
+    static function author($authorId, $page = null)
+    {
         switch (Option::get('isurlrewrite')) {
             case '0':
                 $authorUrl = BLOG_URL . '?author=' . $authorId;
@@ -136,7 +149,8 @@ class Url {
         return $authorUrl;
     }
 
-    static function tag($tag, $page = null) {
+    static function tag($tag, $page = null)
+    {
         switch (Option::get('isurlrewrite')) {
             case '0':
                 $tagUrl = BLOG_URL . '?tag=' . $tag;
@@ -154,7 +168,8 @@ class Url {
         return $tagUrl;
     }
 
-    static function logPage() {
+    static function logPage()
+    {
         $posts = Option::get('home_page_id') > 0 ? 'posts/' : '';
         switch (Option::get('isurlrewrite')) {
             case '0':
@@ -167,7 +182,8 @@ class Url {
         return $logPageUrl;
     }
 
-    static function comment($blogId, $pageId, $cid) {
+    static function comment($blogId, $pageId, $cid)
+    {
         $commentUrl = Url::log($blogId);
         if ($pageId > 1) {
             if (Option::get('isurlrewrite') == 0 && strpos($commentUrl, '=') !== false) {
@@ -184,7 +200,8 @@ class Url {
     /**
      * 获取导航链接
      */
-    static function navi($type, $typeId, $url) {
+    static function navi($type, $typeId, $url)
+    {
         switch ($type) {
             case Navi_Model::navitype_custom:
             case Navi_Model::navitype_home:
@@ -203,5 +220,4 @@ class Url {
         }
         return $url;
     }
-
 }
