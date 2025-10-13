@@ -655,7 +655,7 @@ CREATE TABLE {$db_prefix}storage (
     `plugin` varchar(32) NOT NULL COMMENT '插件名',
     `name` varchar(32) NOT NULL COMMENT '对象名',
     `type` varchar(8) NOT NULL COMMENT '对象数据类型',
-    `value` text NOT NULL COMMENT '对象值',
+    `value` longtext NOT NULL COMMENT '对象值',
     `createdate` int(11) NOT NULL COMMENT '创建时间',
     `lastupdate` int(11) NOT NULL COMMENT '更新时间',
     PRIMARY KEY (`sid`),
