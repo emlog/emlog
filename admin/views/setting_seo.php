@@ -72,7 +72,7 @@
                 <label class="custom-control-label" for="is_sample_url">启用简洁文章链接（去掉文件格式和目录格式中的 post 字符）</label>
             </div>
             <div class="alert alert-warning mt-3">
-                如果修改后文章无法访问，可能是服务器不支持URL重写（伪静态），请修改回默认格式并关闭文章连接别名。<br>
+                如修改后文章无法访问，请尝试开启服务器URL重写（伪静态），或者改回默认格式并关闭文章连接别名。<br>
             </div>
             <div class="alert alert-primary">
                 <p>
@@ -84,6 +84,7 @@
                     &nbsp;&nbsp;&nbsp;&nbsp;}<br>
                     }
                 </p>
+                更多伪静态规则请参考文档：<a href="https://www.emlog.net/docs/faq" target="_blank">常见问题</a>
             </div>
             <h4 class="mt-4">页头信息</h4>
             <div class="form-group">
