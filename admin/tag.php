@@ -30,6 +30,35 @@ if (empty($action)) {
     View::output();
 }
 
+if ($action == 'add_tag') {
+    $tagName = Input::postStrVar('tagname');
+    $title = Input::postStrVar('title');
+    $kw = Input::postStrVar('kw');
+    $description = Input::postStrVar('description');
+
+    LoginAuth::checkToken();
+    if (empty($tagName)) {
+        emDirect("tag.php?error_a=1");
+    }
+
+    // 检查标签是否已存在
+    $existingTagId = $Tag_Model->getIdFromName($tagName);
+    if ($existingTagId) {
+        emDirect("tag.php?error_exist=1");
+    }
+
+    // 创建新标签
+    $tagId = $Tag_Model->createTag($tagName);
+    
+    // 更新标签的详细信息
+    if ($tagId) {
+        $Tag_Model->updateTagName($tagId, $tagName, $kw, $title, $description);
+    }
+    
+    $CACHE->updateCache('tags');
+    emDirect("./tag.php?active_add=1");
+}
+
 if ($action == 'update_tag') {
     $tagName = Input::postStrVar('tagname');
     $title = Input::postStrVar('title');

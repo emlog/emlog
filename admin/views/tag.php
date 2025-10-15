@@ -1,20 +1,29 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
+<?php if (isset($_GET['active_add'])): ?>
+    <div class="alert alert-success">添加标签成功</div><?php endif ?>
 <?php if (isset($_GET['active_edit'])): ?>
     <div class="alert alert-success">修改标签成功</div><?php endif ?>
 <?php if (isset($_GET['error_a'])): ?>
     <div class="alert alert-danger">请选择标签</div><?php endif ?>
+<?php if (isset($_GET['error_exist'])): ?>
+    <div class="alert alert-danger">标签已存在</div><?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h4 mb-0 text-gray-800">文章标签</h1>
-    <form action="tag.php" method="get">
-        <div class="form-inline search-inputs-nowrap">
-            <input type="text" name="keyword" value="<?= $keyword ?>" class="form-control m-1 small" placeholder="搜索标签名...">
-            <div class="input-group-append">
-                <button class="btn btn-sm btn-success" type="submit">
-                    <i class="icofont-search-2"></i>
-                </button>
+    <div class="d-flex align-items-center">
+        <form action="tag.php" method="get" class="mr-2">
+            <div class="form-inline search-inputs-nowrap">
+                <input type="text" name="keyword" value="<?= $keyword ?>" class="form-control m-1 small" placeholder="搜索标签名...">
+                <div class="input-group-append">
+                    <button class="btn btn-sm btn-success" type="submit">
+                        <i class="icofont-search-2"></i>
+                    </button>
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
+        <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#addModal">
+            <i class="icofont-plus"></i> 添加标签
+        </button>
+    </div>
 </div>
 <div class="card shadow mb-4">
     <form action="tag.php?action=operate_tag" method="post" name="form_tag" id="form_tag">
@@ -55,6 +64,47 @@
 <div class="page"><?= $pageurl ?></div>
 <div class="text-center small">有 <?= $tags_count ?> 个标签</div>
 
+<!-- 添加标签模态窗口 -->
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header border-0">
+                <h5 class="modal-title" id="addModalLabel">添加标签</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post" action="tag.php?action=add_tag">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="add_tagname">标签名</label>
+                        <input type="text" class="form-control" id="add_tagname" name="tagname" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="add_title">标签页标题</label>
+                        <input type="text" class="form-control" id="add_title" name="title">
+                        <small class="form-text text-muted">支持变量: {{site_title}}, {{site_name}}, {{tag_name}}</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="add_kw">标签页关键词（英文逗号分割）</label>
+                        <input type="text" class="form-control" id="add_kw" name="kw">
+                    </div>
+                    <div class="form-group">
+                        <label for="add_description">标签页描述</label>
+                        <textarea name="description" id="add_description" type="text" class="form-control"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <input type="hidden" name="token" value="<?= LoginAuth::genToken() ?>" />
+                    <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-sm btn-success">添加</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- 编辑标签模态窗口 -->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content border-0 shadow">
