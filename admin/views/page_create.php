@@ -55,19 +55,6 @@
                     <small class="text-muted">填写后不展示页面内容，直接跳转该地址</small>
                 </div>
                 <div class="form-group">
-                    <label>页面模板：</label>
-                    <?php if ($customTemplates):
-                        $sortListHtml = '<option value="">默认</option>';
-                        foreach ($customTemplates as $v) {
-                            $select = $v['filename'] == $template ? 'selected="selected"' : '';
-                            $sortListHtml .= '<option value="' . str_replace('.php', '', $v['filename']) . '" ' . $select . '>' . ($v['comment']) . '</option>';
-                        }
-                    ?>
-                        <select id="template" name="template" class="form-control"><?= $sortListHtml; ?></select>
-                        <small class="form-text text-muted">选择当前模板支持的页面模板，可不选</small>
-                    <?php endif; ?>
-                </div>
-                <div class="form-group">
                     <div class="custom-control custom-switch">
                         <input type="checkbox" class="custom-control-input" id="allow_remark" name="allow_remark" value="y" <?= $is_allow_remark ?>>
                         <label class="custom-control-label" for="allow_remark">允许评论</label>
@@ -77,6 +64,20 @@
                         <label class="custom-control-label" for="home_page">设为首页</label>
                     </div>
                 </div>
+                <?php if ($customTemplates): ?>
+                    <div class="form-group">
+                        <label>页面模板：</label>
+                        <?php
+                        $sortListHtml = '<option value="">默认</option>';
+                        foreach ($customTemplates as $v) {
+                            $select = $v['filename'] == $template ? 'selected="selected"' : '';
+                            $sortListHtml .= '<option value="' . str_replace('.php', '', $v['filename']) . '" ' . $select . '>' . ($v['comment']) . '</option>';
+                        }
+                        ?>
+                        <select id="template" name="template" class="form-control"><?= $sortListHtml; ?></select>
+                        <small class="form-text text-muted">选择当前模板支持的页面模板，可不选</small>
+                    </div>
+                <?php endif; ?>
                 <div id="page_side_ext">
                     <?php doAction('adm_write_page_side') ?>
                 </div>
