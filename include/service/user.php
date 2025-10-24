@@ -110,7 +110,7 @@ class User
             session_start();
         }
         $session_code = isset($_SESSION['mail_code']) ? $_SESSION['mail_code'] : '';
-        unset($_SESSION['code']);
+        unset($_SESSION['mail_code']);
         if (!$mail_code || $mail_code !== $session_code) {
             return false;
         }
