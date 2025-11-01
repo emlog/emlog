@@ -16,6 +16,7 @@ config.php
 !/content/plugins/tips
 !/content/plugins/tpl_options
 !/content/templates/default
+!/content/templates/xirong
 
 # IDE
 .project
