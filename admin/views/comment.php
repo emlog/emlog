@@ -66,6 +66,7 @@
                             $cid = $value['cid'];
                             $ip_info = $ip ? "<br />IP：{$ip}" : '';
                             $comment = $value['comment'];
+                            $comment_text = $value['comment_text'];
                             $poster = !empty($value['uid']) ? '<a href="./comment.php?uid=' . $value['uid'] . '">' . $value['poster'] . '</a>' : $value['poster'];
                             $title = subString($value['title'], 0, 42);
                             $hide = $value['hide'];
@@ -100,7 +101,7 @@
                                     <?php endif ?>
                                     <a href="#" data-toggle="modal" class="badge badge-success" data-target="#replyModal"
                                         data-cid="<?= $cid ?>"
-                                        data-comment="<?= $comment ?>"
+                                        data-comment="<?= $comment_text ?>"
                                         data-hide="<?= $value['hide'] ?>">回复
                                     </a>
                                     <?php if ($value['hide'] === 'y' && User::haveEditPermission()): ?>
