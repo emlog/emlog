@@ -38,7 +38,6 @@ class Comment_Model
             $row['poster'] = htmlspecialchars($row['poster']);
             $row['mail'] = htmlspecialchars($row['mail']);
             $row['url'] = htmlspecialchars($row['url']);
-            // 先进行HTML清理，然后应用UBB解析
             $row['content'] = parseUBB(htmlClean($row['comment']));
             $row['content_text'] = htmlClean($row['comment']);
             $row['date'] = smartDate($row['date']);
@@ -102,7 +101,6 @@ class Comment_Model
                 'poster' => htmlspecialchars($row['poster']),
                 'avatar' => $this->getAvatar($row['uid'], $row['mail'], $row['avatar']),
                 'url' => htmlspecialchars($row['url']),
-                // 先进行HTML清理，然后应用UBB解析
                 'content' => parseUBB(htmlClean($row['comment'])),
                 'content_text' => htmlClean($row['comment']),
                 'date' => smartDate($row['date']),
@@ -173,7 +171,6 @@ class Comment_Model
             return false;
         }
         $comment = $this->db->fetch_array($res);
-        // 先进行HTML清理，然后应用UBB解析
         $comment['comment_text'] = htmlClean($comment['comment']);
         $comment['comment'] = $nl2br ? parseUBB(htmlClean(trim($comment['comment']))) : parseUBB(htmlClean(trim($comment['comment']), FALSE));
         $comment['poster'] = htmlspecialchars($comment['poster']);
