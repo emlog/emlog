@@ -63,6 +63,10 @@ if (empty($action)) {
         $sub_title = '付费应用';
     } elseif ($tag === 'promo') {
         $sub_title = '限时优惠';
+    } elseif ($tag === 'download_top') {
+        $sub_title = '下载排行';
+    } elseif ($tag === 'favorite_top') {
+        $sub_title = '收藏排行';
     }
 
     include View::getAdmView('header');
@@ -91,10 +95,10 @@ if ($action === 'tpl') {
         $sub_title = '付费模板';
     } elseif ($tag === 'promo') {
         $sub_title = '限时优惠';
-    } elseif ($tag === 'free_top') {
-        $sub_title = '免费排行榜';
     } elseif ($tag === 'paid_top') {
-        $sub_title = '付费排行榜';
+        $sub_title = '购买排行';
+    } elseif ($tag === 'download_top') {
+        $sub_title = '下载排行';
     }
 
     include View::getAdmView('header');
@@ -123,10 +127,10 @@ if ($action === 'plu') {
         $sub_title = '付费插件';
     } elseif ($tag === 'promo') {
         $sub_title = '限时优惠';
-    } elseif ($tag === 'free_top') {
-        $sub_title = '免费排行榜';
     } elseif ($tag === 'paid_top') {
-        $sub_title = '付费排行榜';
+        $sub_title = '购买排行';
+    } elseif ($tag === 'download_top') {
+        $sub_title = '下载排行';
     }
 
     include View::getAdmView('header');

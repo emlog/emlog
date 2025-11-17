@@ -17,7 +17,7 @@
 </div>
 <div class="d-flex flex-column flex-sm-row justify-content-between mb-4 ml-1">
     <div class="mb-3 mb-sm-0">
-        <a href="./store.php?action=plu" class="badge badge-primary m-1 p-2">全部</a>
+        <a href="./store.php?action=plu" class="badge badge-primary m-1 p-2">最近更新</a>
         <a href="./store.php?action=plu&tag=free" class="badge badge-success m-1 p-2">免费</a>
         <a href="./store.php?action=plu&tag=paid" class="badge badge-warning m-1 p-2">付费</a>
         <a href="./store.php?action=plu&tag=promo" class="badge badge-danger m-1 p-2">优惠</a>
