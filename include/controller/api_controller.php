@@ -212,8 +212,12 @@ class Api_Controller
         $order = Input::getStrVar('order');
 
         $sub = '';
+
+        // 分类筛选：支持父分类查询，父分类包含其子分类文章
         if ($sort_id) {
-            $sub .= ' and sortid = ' . $sort_id;
+            $sort_cache_for_filter = $this->Cache->readCache('sort');
+            $ids = Sort::getFilterSegmentBySortId($sort_cache_for_filter, $sort_id);
+            $sub .= ' and sortid in (' . implode(',', $ids) . ')';
         }
         if ($keyword) {
             $sub .= " and title like '%{$keyword}%'";
@@ -239,8 +243,7 @@ class Api_Controller
         }
 
         $r = $this->Log_Model->getLogsForHome($sub . $sub2, $page, $count);
-        $sta_cache = $this->Cache->readCache('sta');
-        $lognum = $sta_cache['lognum'];
+        $lognum = $this->Log_Model->getLogNum('n', $sub);
         $total_pages = $lognum > 0 ? ceil($lognum / $count) : 1;
         $has_more = $page < $total_pages;
 
