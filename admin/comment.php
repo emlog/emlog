@@ -78,6 +78,7 @@ if ($action === 'pub') {
     $id = Input::getIntVar('id');
 
     $Comment_Model->showComment($id);
+    doAction('pub_comment', $id);
     $CACHE->updateCache(array('sta', 'comment'));
     emDirect("./comment.php?active_show=1");
 }
