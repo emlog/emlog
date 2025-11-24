@@ -27,6 +27,7 @@ config.php
 .DS_Store
 .trae
 .cursor
+.agent
 
 # docker
 db_data/*
