@@ -134,7 +134,7 @@
 </style>
 
 <script>
-    // check for upgrade
+    // 检查更新
     $(function() {
         setTimeout(hideActived, 3600);
         $("#menu_category_view").addClass('active');
@@ -146,6 +146,60 @@
             var fileName = $(this).get(0).files[0] ? $(this).get(0).files[0].name : '';
             $(this).next('.custom-file-label').text(fileName || '选择模板安装包');
         });
+
+        // 自动打开设置界面
+        <?php if (isset($auto_open_setting) && $auto_open_setting == 1): ?>
+            setTimeout(function() {
+                // 获取当前启用的模板
+                var currentTemplate = '<?= isset($nonce_template) ? $nonce_template : "" ?>';
+                if (currentTemplate && typeof tplOptions !== 'undefined') {
+                    // 模拟点击设置按钮的行为
+                    $('.container-fluid .row').fadeToggle();
+                    $.ajax({
+                        url: tplOptions.baseUrl,
+                        data: {
+                            template: currentTemplate
+                        },
+                        cache: false,
+                        beforeSend: function() {
+                            // 显示加载状态 - 使用 main.js 中的 loading 函数
+                            if (typeof window.loading === 'function') {
+                                window.loading();
+                            }
+                            if (typeof window.editorMap !== 'undefined') {
+                                window.editorMap = {};
+                            }
+                        },
+                        success: function(data) {
+                            // 显示设置界面
+                            var optionArea = $('.tpl-options-area');
+                            if (optionArea.length === 0) {
+                                // 创建选项区域，使用与 main.js 相同的类名
+                                var areaClass = tplOptions.prefix + 'area';
+                                optionArea = $('<div/>').insertAfter($('#content').find('.container-fluid .row')).addClass(areaClass).slideUp();
+                            }
+                            optionArea.html(data).show();
+                            $('.tpl').hide();
+
+                            // 初始化相关功能
+                            setTimeout(function() {
+                                if (typeof window.initOptionSort === 'function') {
+                                    window.initOptionSort();
+                                }
+                                if (typeof window.initRichText === 'function') {
+                                    window.initRichText();
+                                }
+                                setTimeout(function() {
+                                    if (typeof window.loading === 'function') {
+                                        window.loading(false);
+                                    }
+                                }, 0);
+                            }, 1000);
+                        }
+                    });
+                }
+            }, 1000); // 延迟1秒执行，确保页面完全加载
+        <?php endif; ?>
 
         var templateList = [];
         $('.app-list .card').each(function() {

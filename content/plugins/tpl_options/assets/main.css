@@ -113,7 +113,6 @@ span.tpl-options-setting:hover {
     background: #4e73df
 }
 
-.
 .tpl-options-btns {
     margin-left: 10px;
     width: 70px
@@ -277,6 +276,10 @@ span.tpl-options-setting:hover {
         margin-left: -30px;
         margin-top: -30px;
     }
+}
+
+.tpl-loading {
+    display: none;
 }
 
 .tpl-activebox {

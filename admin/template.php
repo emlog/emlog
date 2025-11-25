@@ -21,6 +21,8 @@ if ($action === '') {
 
     $templates = $Template_Model->getTemplates();
 
+    $auto_open_setting = Input::getIntVar('setting', 0); // 直接进入当前模板设置界面
+
     include View::getAdmView('header');
     require_once View::getAdmView('template');
     include View::getAdmView('footer');

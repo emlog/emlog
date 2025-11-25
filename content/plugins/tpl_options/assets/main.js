@@ -4,7 +4,7 @@ $(function () {
     var body = $('body');
     var iframe = $('<iframe name="upload-image" src="about:blank" style="display:none"/>').appendTo(body);
     var optionArea = $('<div/>').insertAfter($('#content').find('.container-fluid .row')).addClass(attr('area')).slideUp();
-    var loadingDom = $('<div />').appendTo(body);
+    var loadingDom = $('<div class="tpl-loading" />').appendTo(body);
     var message = $('<span />').appendTo($('#wrapper'));
     var tplBox = $('.tpl');
     var timer, input, targetInput, target, templateInput, template;
@@ -301,11 +301,14 @@ $(function () {
             enable = true;
         }
         if (enable) {
-            loadingDom.addClass('loading');
+            loadingDom.addClass('loading').show();
         } else {
-            loadingDom.removeClass('loading');
+            loadingDom.removeClass('loading').hide();
         }
     }
+    
+    // 将loading函数暴露到全局作用域
+    window.loading = loading;
 
     function showMsg(code, msg) {
         message.text(msg).show();
