@@ -77,8 +77,8 @@
                     <div id="menu_view" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="z-index: 1055;">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <div class="d-flex align-items-center justify-content-between">
-                                <a class="collapse-item flex-grow-1" id="menu_tpl" href="template.php">模板</a>
-                                <a class="collapse-item text-secondary" id="menu_tpl_setting" href="template.php?setting=1" title="模板设置"><i class="icofont-options"></i></a>
+                                <a class="collapse-item flex-grow-1 mr-0" id="menu_tpl" href="template.php">模板</a>
+                                <a class="collapse-item text-secondary ml-0" id="menu_tpl_setting" href="template.php?setting=1" title="模板设置"><i class="icofont-options"></i></a>
                             </div>
                             <a class="collapse-item" id="menu_navi" href="navbar.php">导航</a>
                             <a class="collapse-item" id="menu_widget" href="widgets.php">边栏</a>
