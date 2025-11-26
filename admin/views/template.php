@@ -171,6 +171,31 @@
                             }
                         },
                         success: function(data) {
+                            // 检查是否有错误信息
+                            var isError = false;
+                            var errorMsg = '';
+                            if (typeof data === 'object' && data.code === 1) {
+                                isError = true;
+                                errorMsg = data.msg;
+                            } else if (typeof data === 'string') {
+                                try {
+                                    var jsonData = JSON.parse(data);
+                                    if (jsonData && jsonData.code === 1) {
+                                        isError = true;
+                                        errorMsg = jsonData.msg;
+                                    }
+                                } catch (e) {}
+                            }
+
+                            if (isError) {
+                                cocoMessage.error(errorMsg, 4000);
+                                $('.container-fluid .row').fadeIn();
+                                if (typeof window.loading === 'function') {
+                                    window.loading(false);
+                                }
+                                return;
+                            }
+
                             // 显示设置界面
                             var optionArea = $('.tpl-options-area');
                             if (optionArea.length === 0) {
@@ -195,6 +220,13 @@
                                     }
                                 }, 0);
                             }, 1000);
+                        },
+                        error: function() {
+                            cocoMessage.error('加载设置页面失败', 4000);
+                            $('.container-fluid .row').fadeIn();
+                            if (typeof window.loading === 'function') {
+                                window.loading(false);
+                            }
                         }
                     });
                 }

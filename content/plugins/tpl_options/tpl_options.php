@@ -562,7 +562,7 @@ class TplOptions
             if ($options === false) {
                 $this->jsonReturn(array(
                     'code' => 1,
-                    'msg'  => '该模板不支持本插件设置',
+                    'msg'  => '当前主题不支持设置',
                 ));
             }
             $this->_currentTemplate = $template;
