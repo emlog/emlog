@@ -408,5 +408,11 @@
         //拖动
         $("#sortable").sortable();
         $("#sortable").disableSelection();
+
+        // 为所有侧边栏设置表单添加ajax提交
+        $('form[action^="widgets.php?action=setwg"]').submit(function(event) {
+            event.preventDefault();
+            submitForm($(this));
+        });
     });
 </script>
