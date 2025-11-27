@@ -8,15 +8,12 @@
             <div class="col-lg-6" id="adm_widget_list">
                 <div class="accordion" id="accordionExample">
                     <div class="card" id="blogger">
-                        <div class="card-header">
-                            <h2 class="mb-0">
-                                <button class="btn btn-link widget-title" type="button" data-toggle="collapse" data-target="#bloggerForm" aria-expanded="true"
-                                    aria-controls="blogger">
-                                    个人资料
-                                </button>
-                                <li class="widget-act-add"></li>
-                                <li class="widget-act-del"></li>
-                            </h2>
+                        <div class="card-header" id="headingBlogger" data-toggle="collapse" data-target="#bloggerForm" aria-expanded="true" aria-controls="bloggerForm" style="cursor:pointer">
+                            <h6 class="mb-0 d-flex align-items-center">
+                                <span class="widget-title mr-auto">个人资料</span>
+                                <span class="widget-act-add"></span>
+                                <span class="widget-act-del"></span>
+                            </h6>
                         </div>
                         <div id="bloggerForm" class="collapse show" data-parent="#accordionExample">
                             <div class="card-body">
@@ -30,14 +27,12 @@
                         </div>
                     </div>
                     <div class="card" id="calendar">
-                        <div class="card-header">
-                            <h2 class="mb-0">
-                                <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#calendarForm" aria-expanded="false"
-                                    aria-controls="collapseTwo">日历
-                                </button>
-                                <li class="widget-act-add"></li>
-                                <li class="widget-act-del"></li>
-                            </h2>
+                        <div class="card-header" id="headingCalendar" data-toggle="collapse" data-target="#calendarForm" aria-expanded="false" aria-controls="calendarForm" style="cursor:pointer">
+                            <h6 class="mb-0 d-flex align-items-center">
+                                <span class="widget-title mr-auto">日历</span>
+                                <span class="widget-act-add"></span>
+                                <span class="widget-act-del"></span>
+                            </h6>
                         </div>
                         <div id="calendarForm" class="collapse" data-parent="#accordionExample">
                             <div class="card-body">
@@ -52,14 +47,12 @@
                     </div>
 
                     <div class="card" id="twitter">
-                        <div class="card-header">
-                            <h2 class="mb-0">
-                                <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#twitterForm" aria-expanded="false"
-                                    aria-controls="collapseThree">微语
-                                </button>
-                                <li class="widget-act-add"></li>
-                                <li class="widget-act-del"></li>
-                            </h2>
+                        <div class="card-header" id="headingTwitter" data-toggle="collapse" data-target="#twitterForm" aria-expanded="false" aria-controls="twitterForm" style="cursor:pointer">
+                            <h6 class="mb-0 d-flex align-items-center">
+                                <span class="widget-title mr-auto">微语</span>
+                                <span class="widget-act-add"></span>
+                                <span class="widget-act-del"></span>
+                            </h6>
                         </div>
                         <div id="twitterForm" class="collapse" data-parent="#accordionExample">
                             <div class="card-body">
@@ -79,14 +72,12 @@
                     </div>
 
                     <div class="card" id="tag">
-                        <div class="card-header">
-                            <h2 class="mb-0">
-                                <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#tagForm" aria-expanded="false"
-                                    aria-controls="collapseThree">标签
-                                </button>
-                                <li class="widget-act-add"></li>
-                                <li class="widget-act-del"></li>
-                            </h2>
+                        <div class="card-header" id="headingTag" data-toggle="collapse" data-target="#tagForm" aria-expanded="false" aria-controls="tagForm" style="cursor:pointer">
+                            <h6 class="mb-0 d-flex align-items-center">
+                                <span class="widget-title mr-auto">标签</span>
+                                <span class="widget-act-add"></span>
+                                <span class="widget-act-del"></span>
+                            </h6>
                         </div>
                         <div id="tagForm" class="collapse" data-parent="#accordionExample">
                             <div class="card-body">
@@ -100,14 +91,12 @@
                         </div>
                     </div>
                     <div class="card" id="sort">
-                        <div class="card-header">
-                            <h2 class="mb-0">
-                                <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#sortForm" aria-expanded="false"
-                                    aria-controls="collapseThree">分类
-                                </button>
-                                <li class="widget-act-add"></li>
-                                <li class="widget-act-del"></li>
-                            </h2>
+                        <div class="card-header" id="headingSort" data-toggle="collapse" data-target="#sortForm" aria-expanded="false" aria-controls="sortForm" style="cursor:pointer">
+                            <h6 class="mb-0 d-flex align-items-center">
+                                <span class="widget-title mr-auto">分类</span>
+                                <span class="widget-act-add"></span>
+                                <span class="widget-act-del"></span>
+                            </h6>
                         </div>
                         <div id="sortForm" class="collapse" data-parent="#accordionExample">
                             <div class="card-body">
@@ -121,14 +110,12 @@
                         </div>
                     </div>
                     <div class="card" id="archive">
-                        <div class="card-header">
-                            <h2 class="mb-0">
-                                <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#archiveForm" aria-expanded="false"
-                                    aria-controls="collapseThree">存档
-                                </button>
-                                <li class="widget-act-add"></li>
-                                <li class="widget-act-del"></li>
-                            </h2>
+                        <div class="card-header" id="headingArchive" data-toggle="collapse" data-target="#archiveForm" aria-expanded="false" aria-controls="archiveForm" style="cursor:pointer">
+                            <h6 class="mb-0 d-flex align-items-center">
+                                <span class="widget-title mr-auto">存档</span>
+                                <span class="widget-act-add"></span>
+                                <span class="widget-act-del"></span>
+                            </h6>
                         </div>
                         <div id="archiveForm" class="collapse" data-parent="#accordionExample">
                             <div class="card-body">
@@ -142,14 +129,12 @@
                         </div>
                     </div>
                     <div class="card" id="newcomm">
-                        <div class="card-header">
-                            <h2 class="mb-0">
-                                <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#newcommFrom" aria-expanded="false"
-                                    aria-controls="collapseThree">最新评论
-                                </button>
-                                <li class="widget-act-add"></li>
-                                <li class="widget-act-del"></li>
-                            </h2>
+                        <div class="card-header" id="headingNewcomm" data-toggle="collapse" data-target="#newcommFrom" aria-expanded="false" aria-controls="newcommFrom" style="cursor:pointer">
+                            <h6 class="mb-0 d-flex align-items-center">
+                                <span class="widget-title mr-auto">最新评论</span>
+                                <span class="widget-act-add"></span>
+                                <span class="widget-act-del"></span>
+                            </h6>
                         </div>
                         <div id="newcommFrom" class="collapse" data-parent="#accordionExample">
                             <div class="card-body">
@@ -172,14 +157,12 @@
                         </div>
                     </div>
                     <div class="card" id="newlog">
-                        <div class="card-header">
-                            <h2 class="mb-0">
-                                <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#newlogForm" aria-expanded="false"
-                                    aria-controls="collapseThree">最新文章
-                                </button>
-                                <li class="widget-act-add"></li>
-                                <li class="widget-act-del"></li>
-                            </h2>
+                        <div class="card-header" id="headingNewlog" data-toggle="collapse" data-target="#newlogForm" aria-expanded="false" aria-controls="newlogForm" style="cursor:pointer">
+                            <h6 class="mb-0 d-flex align-items-center">
+                                <span class="widget-title mr-auto">最新文章</span>
+                                <span class="widget-act-add"></span>
+                                <span class="widget-act-del"></span>
+                            </h6>
                         </div>
                         <div id="newlogForm" class="collapse" data-parent="#accordionExample">
                             <div class="card-body">
@@ -198,14 +181,12 @@
                         </div>
                     </div>
                     <div class="card" id="hotlog">
-                        <div class="card-header">
-                            <h2 class="mb-0">
-                                <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#hotlogForm" aria-expanded="false"
-                                    aria-controls="collapseThree">热门文章
-                                </button>
-                                <li class="widget-act-add"></li>
-                                <li class="widget-act-del"></li>
-                            </h2>
+                        <div class="card-header" id="headingHotlog" data-toggle="collapse" data-target="#hotlogForm" aria-expanded="false" aria-controls="hotlogForm" style="cursor:pointer">
+                            <h6 class="mb-0 d-flex align-items-center">
+                                <span class="widget-title mr-auto">热门文章</span>
+                                <span class="widget-act-add"></span>
+                                <span class="widget-act-del"></span>
+                            </h6>
                         </div>
                         <div id="hotlogForm" class="collapse" data-parent="#accordionExample">
                             <div class="card-body">
@@ -224,14 +205,12 @@
                         </div>
                     </div>
                     <div class="card" id="link">
-                        <div class="card-header">
-                            <h2 class="mb-0">
-                                <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#linkForm" aria-expanded="false"
-                                    aria-controls="collapseThree">链接
-                                </button>
-                                <li class="widget-act-add"></li>
-                                <li class="widget-act-del"></li>
-                            </h2>
+                        <div class="card-header" id="headingLink" data-toggle="collapse" data-target="#linkForm" aria-expanded="false" aria-controls="linkForm" style="cursor:pointer">
+                            <h6 class="mb-0 d-flex align-items-center">
+                                <span class="widget-title mr-auto">链接</span>
+                                <span class="widget-act-add"></span>
+                                <span class="widget-act-del"></span>
+                            </h6>
                         </div>
                         <div id="linkForm" class="collapse" data-parent="#accordionExample">
                             <div class="card-body">
@@ -245,14 +224,12 @@
                         </div>
                     </div>
                     <div class="card" id="search">
-                        <div class="card-header">
-                            <h2 class="mb-0">
-                                <button class="btn btn-link collapsed widget-title" type="button" data-toggle="collapse" data-target="#searchForm" aria-expanded="false"
-                                    aria-controls="collapseThree">搜索
-                                </button>
-                                <li class="widget-act-add"></li>
-                                <li class="widget-act-del"></li>
-                            </h2>
+                        <div class="card-header" id="headingSearch" data-toggle="collapse" data-target="#searchForm" aria-expanded="false" aria-controls="searchForm" style="cursor:pointer">
+                            <h6 class="mb-0 d-flex align-items-center">
+                                <span class="widget-title mr-auto">搜索</span>
+                                <span class="widget-act-add"></span>
+                                <span class="widget-act-del"></span>
+                            </h6>
                         </div>
                         <div id="searchForm" class="collapse" data-parent="#accordionExample">
                             <div class="card-body">
@@ -271,14 +248,12 @@
                         $custom_wg_title = empty($val['title']) ? '未命名组件(' . $matches[1] . ')' : $val['title'];
                     ?>
                         <div class="card" id="<?= $key ?>">
-                            <div class="card-header">
-                                <h2 class="mb-0">
-                                    <button class="btn btn-link widget-title" type="button" data-toggle="collapse" data-target="#<?= $key ?>Form" aria-expanded="true"
-                                        aria-controls="collapseOne"><?= $custom_wg_title ?>
-                                    </button>
-                                    <li class="widget-act-add"></li>
-                                    <li class="widget-act-del"></li>
-                                </h2>
+                            <div class="card-header" id="heading<?= $key ?>" data-toggle="collapse" data-target="#<?= $key ?>Form" aria-expanded="true" aria-controls="<?= $key ?>Form" style="cursor:pointer">
+                                <h6 class="mb-0 d-flex align-items-center">
+                                    <span class="widget-title mr-auto"><?= $custom_wg_title ?></span>
+                                    <span class="widget-act-add"></span>
+                                    <span class="widget-act-del"></span>
+                                </h6>
                             </div>
                             <div id="<?= $key ?>Form" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                                 <div class="card-body">
@@ -373,6 +348,15 @@
     </div>
 </div>
 
+<style>
+    #adm_widget_list .card-header[data-toggle="collapse"]::after {
+        display: none;
+    }
+
+    #adm_widget_list .card-header[data-toggle="collapse"] {
+        padding-right: 1.25rem;
+    }
+</style>
 <script>
     $(function() {
         setTimeout(hideActived, 3600);
@@ -391,7 +375,8 @@
         });
 
         //添加组件
-        $("#adm_widget_list .widget-act-add").click(function() {
+        $("#adm_widget_list .widget-act-add").click(function(e) {
+            e.stopPropagation();
             var title = $(this).prevAll(".widget-title").html();
             var widget_id = $(this).parent().parent().parent().attr("id");
             var widget_element = "<div class=\"card m-1\" id=\"em_" + widget_id + "\">";
@@ -405,7 +390,8 @@
             $(this).next(".widget-act-del").show();
         });
         //删除组件
-        $("#adm_widget_list .widget-act-del").click(function() {
+        $("#adm_widget_list .widget-act-del").click(function(e) {
+            e.stopPropagation();
             var widget_id = $(this).parent().parent().parent().attr("id");
             $(".adm_widget_box #em_" + widget_id).remove();
             $(this).hide();
