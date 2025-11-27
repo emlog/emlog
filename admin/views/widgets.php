@@ -199,6 +199,13 @@
                                         <label>显示热门文章数</label>
                                         <input class="form-control" maxlength="5" size="10" value="<?= Option::get('index_hotlognum') ?>" name="index_hotlognum" />
                                     </div>
+                                    <div class="form-group">
+                                        <label>热门类型</label>
+                                        <select name="index_hotlog_sort" class="form-control">
+                                            <option value="views" <?= Option::get('index_hotlog_sort') === 'views' ? 'selected' : '' ?>>阅读最多</option>
+                                            <option value="comments" <?= Option::get('index_hotlog_sort') === 'comments' ? 'selected' : '' ?>>评论最多</option>
+                                        </select>
+                                    </div>
                                     <input type="submit" name="" value="保存" class="btn btn-success btn-sm" />
                                 </form>
                             </div>

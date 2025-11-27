@@ -71,7 +71,9 @@ if ($action === 'setwg') {
             break;
         case 'hotlog':
             $index_hotlognum = Input::postIntVar('index_hotlognum', 5);
+            $index_hotlog_sort = Input::postStrVar('index_hotlog_sort', 'views');
             Option::updateOption('index_hotlognum', $index_hotlognum);
+            Option::updateOption('index_hotlog_sort', $index_hotlog_sort);
             break;
         case 'custom_text':
             $custom_widget = Option::get('custom_widget');

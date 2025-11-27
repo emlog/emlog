@@ -486,7 +486,17 @@ class Log_Model
         $now = time();
         $num = (int)$num;
         $date_state = "and date<=$now";
-        $sql = "SELECT * FROM $this->table WHERE hide='n' and checked='y' and type='blog' $date_state ORDER BY views DESC, comnum DESC LIMIT 0, $num";
+
+        $sort = Option::get('index_hotlog_sort');
+
+        // 根据排序方式选择不同的ORDER BY子句
+        if ($sort === 'comments') {
+            $order_by = "ORDER BY comnum DESC, views DESC";
+        } else {
+            $order_by = "ORDER BY views DESC, comnum DESC";
+        }
+
+        $sql = "SELECT * FROM $this->table WHERE hide='n' and checked='y' and type='blog' $date_state $order_by LIMIT 0, $num";
         $res = $this->db->query($sql);
         $logs = [];
         while ($row = $this->db->fetch_array($res)) {
