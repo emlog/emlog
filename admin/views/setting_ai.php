@@ -278,10 +278,8 @@
                 <div class="modal-footer border-0">
                     <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">取消</button>
                     <button type="submit" class="btn btn-sm btn-success">保存设置</button>
-                    <div id="more-config-details" class="alert alert-warning mt-2">
-                        <!-- 动态内容将通过JavaScript填充 -->
-                    </div>
                 </div>
+                <div id="more-config-details" class="alert alert-warning m-2"></div>
             </form>
         </div>
     </div>
