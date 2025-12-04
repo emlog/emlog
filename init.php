@@ -51,11 +51,11 @@ const PLUGIN_PATH = EMLOG_ROOT . '/content/plugins/';
 //站点URL
 define('DYNAMIC_BLOGURL', Option::get('blogurl'));
 //当前模板的URL
-define('TEMPLATE_URL', TPLS_URL . Option::get('nonce_templet') . '/');
+define('TEMPLATE_URL', TPLS_URL . Template::getCurrentTemplate() . '/');
 //后台模板的绝对路径
 define('ADMIN_TEMPLATE_PATH', EMLOG_ROOT . '/admin/views/');
 //前台模板的绝对路径
-define('TEMPLATE_PATH', TPLS_PATH . Option::get('nonce_templet') . '/');
+define('TEMPLATE_PATH', TPLS_PATH . Template::getCurrentTemplate() . '/');
 
 const MSGCODE_EMKEY_INVALID = 1001;
 const MSGCODE_NO_UPUPDATE = 1002;

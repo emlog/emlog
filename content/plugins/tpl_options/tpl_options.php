@@ -234,7 +234,7 @@ class TplOptions
     public function getTemplateOptions($template = null)
     {
         if ($template === null) {
-            $template = Option::get('nonce_templet');
+            $template = Template::getCurrentTemplate();
         }
         if (isset($this->_templateOptions[$template])) {
             return $this->_templateOptions[$template];
