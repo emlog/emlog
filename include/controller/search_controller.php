@@ -28,6 +28,7 @@ class Search_Controller
         if ($sid) {
             $sqlSegment .= " AND sortid=$sid";
         }
+        doAction('search_log_list', $keyword);
         $orderBy = ' ORDER BY date DESC';
         $lognum = $Log_Model->getLogNum('n', $sqlSegment);
         $total_pages = ceil($lognum / $index_lognum);

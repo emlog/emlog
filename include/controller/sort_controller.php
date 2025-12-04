@@ -69,6 +69,7 @@ class Sort_Controller
             $sortids = array_merge(array($sortid), $sortChildren);
             $sqlSegment = "and sortid in (" . implode(',', $sortids) . ")";
         }
+        doAction('sort_log_list', $sortid);
         $orderBy = " order by sortop desc, date desc";
         $lognum = $Log_Model->getLogNum('n', $sqlSegment);
         $total_pages = ceil($lognum / $index_lognum);
