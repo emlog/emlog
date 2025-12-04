@@ -59,6 +59,7 @@
                         <?php elseif ($value['author']): ?>
                             <span class="badge badge-light">作者：<?= $value['author'] ?></span>
                         <?php endif ?>
+                        <span class="badge badge-light">ID：<?= $value['tplfile'] ?></span>
                     </div>
                     <p class="card-text text-muted small mb-3">
                         <?= $value['tpldes'] ?>
