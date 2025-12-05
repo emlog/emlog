@@ -170,7 +170,7 @@ if ($action === 'check_update') {
         'apps'  => json_encode($plugins),
     ];
     $emcurl->setPost($post_data);
-    $emcurl->request('https://store.emlog.net/plugin/upgrade');
+    $emcurl->request(base64_decode('aHR0cHM6Ly9zdG9yZS5lbWxvZy5uZXQvcGx1Z2luL3VwZ3JhZGU=')); // plugin/upgrade
     $retStatus = $emcurl->getHttpStatus();
     if ($retStatus !== MSGCODE_SUCCESS) {
         Output::error('请求更新失败，可能是网络问题');
