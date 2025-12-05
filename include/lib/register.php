@@ -46,7 +46,7 @@ class Register
 
         $emcurl = new EmCurl();
         $emcurl->setPost(['emkey' => $emkey]);
-        $emcurl->request(base64_decode('aHR0cHM6Ly9zdG9yZS5lbWxvZy5uZXQvcHJvYXV0aC9yZWdpc3Rlcg==')); // proauth/register
+        $emcurl->request('https://store.emlog.net/proauth/register');
         if ($emcurl->getHttpStatus() !== 200) {
             return false;
         }
@@ -70,7 +70,7 @@ class Register
 
         $emcurl = new EmCurl();
         $emcurl->setPost(['emkey' => $emkey]);
-        $emcurl->request(base64_decode('aHR0cHM6Ly9zdG9yZS5lbWxvZy5uZXQvcHJvYXV0aC92ZXJpZnk=')); // proauth/verify
+        $emcurl->request('https://store.emlog.net/proauth/verify');
         if ($emcurl->getHttpStatus() !== 200) {
             return false;
         }
@@ -89,7 +89,7 @@ class Register
         $emkey = Option::get('emkey');
         $emcurl = new EmCurl();
         $emcurl->setPost(['emkey' => $emkey]);
-        $emcurl->request(base64_decode('aHR0cHM6Ly9zdG9yZS5lbWxvZy5uZXQv') . $source . '/1');
+        $emcurl->request('https://store.emlog.net/' . $source . '/1');
         if ($emcurl->getHttpStatus() === 403) {
             self::clean();
             return false;
