@@ -180,7 +180,7 @@ class DatabasePDO
      */
     function fetch_row($query)
     {
-        return $query->rowCount();
+        return $query->fetch(PDO::FETCH_NUM);
     }
 
     /**
@@ -244,5 +244,18 @@ class DatabasePDO
     function getQueryCount()
     {
         return $this->queryCount;
+    }
+
+    /**
+     * 获取数据库所有表名
+     */
+    public function listTables()
+    {
+        $rs = $this->query(sprintf("SHOW TABLES FROM `%s`", DB_NAME));
+        $tables = [];
+        while ($row = $this->fetch_row($rs)) {
+            $tables[] = isset($row[0]) ? $row[0] : '';
+        }
+        return $tables;
     }
 }
