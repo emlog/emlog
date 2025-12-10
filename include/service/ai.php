@@ -57,7 +57,7 @@ class Ai
             'model' => $model,
             'stream' => true,
             'temperature' => 1,
-            'max_tokens' => 2048
+            'max_tokens' => 4096
         ]);
 
         $headers = [
@@ -103,7 +103,7 @@ class Ai
         $post_data = json_encode([
             'messages' => $messages,
             'model' => $model,
-            'max_tokens' => 2048,
+            'max_tokens' => 4096,
             'response_format' => ['type' => 'text'],
             'stream' => false,
             'temperature' => 1,
