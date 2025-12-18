@@ -13,13 +13,13 @@ class Plugin_Controller
     {
         $plugin = isset($params[1]) && $params[1] == 'plugin' ? addslashes($params[2]) : '';
         if (!preg_match("/^[\w\-]+$/", $plugin)) {
-            return;
+            show_404_page();
         }
         if (Plugin::isActive($plugin) === false) {
-            return;
+            show_404_page();
         }
         if (!file_exists(EMLOG_ROOT . "/content/plugins/{$plugin}/{$plugin}_show.php")) {
-            return;
+            show_404_page();
         }
         include_once("./content/plugins/{$plugin}/{$plugin}_show.php");
     }
