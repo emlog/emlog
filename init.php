@@ -13,6 +13,7 @@ const EMLOG_ROOT = __DIR__;
 
 require_once EMLOG_ROOT . '/config.php';
 require_once EMLOG_ROOT . '/include/lib/common.php';
+require_once EMLOG_ROOT . '/include/lib/emlang.php';
 
 spl_autoload_register("emAutoload");
 
