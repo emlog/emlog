@@ -278,7 +278,7 @@
 
         if (action === 'active' && settingUrl) {
             var titleText = $nameP.find('a').length ? $nameP.find('a').text().trim() : $nameP.text().trim();
-            $nameP.html('<a href="' + settingUrl + '" title="点击设置插件">' + titleText + '</a>');
+            $nameP.html('<a href="' + settingUrl + '">' + titleText + '</a>');
         } else if (action === 'inactive') {
             var $link = $nameP.find('a');
             if ($link.length) {
