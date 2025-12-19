@@ -6,6 +6,11 @@ return [
     'captcha' => '验证码',
     'submit' => '提交',
     'back_to_home' => '返回首页',
+    'delete' => '删除',
+    'save' => '保存',
+    'cancel' => '取消',
+    'publish' => '发布',
+    'edit' => '编辑',
 
     // Login / Register
     'login' => '登 录',
@@ -38,4 +43,34 @@ return [
     'email_code_error' => '邮件验证码错误',
     'email_code_send_failed' => '邮件验证码发送失败，请检查邮件通知设置',
     'captcha_error' => '验证码错误',
+
+    // Admin Menu
+    'dashboard' => '控制台',
+    'article' => '文章',
+    'write_article' => '写文章',
+    'draft' => '草稿',
+    'category' => '分类',
+    'tag' => '标签',
+    'comment' => '评论',
+    'twitter' => '微语',
+    'media' => '资源',
+    'user' => '用户',
+    'appearance' => '外观',
+    'template' => '模板',
+    'template_setting' => '模板设置',
+    'navbar' => '导航',
+    'widget' => '边栏',
+    'page' => '页面',
+    'link' => '链接',
+    'plugin' => '插件',
+    'system' => '系统',
+    'data' => '数据',
+    'setting' => '设置',
+    'store' => '应用商店',
+
+    // Admin Header
+    'admin_center' => '管理中心',
+    'upgrade_license' => '升级正版',
+    'view_site' => '查看我的站点',
+    'logout' => '退出',
 ];

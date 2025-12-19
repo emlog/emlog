@@ -277,7 +277,7 @@
                 </div>
                 <div class="modal-footer border-0">
                     <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">取消</button>
-                    <button type="submit" class="btn btn-sm btn-success">保存设置</button>
+                    <button type="submit" class="btn btn-sm btn-success">保存</button>
                 </div>
                 <div id="more-config-details" class="alert alert-warning m-2"></div>
             </form>
@@ -315,7 +315,7 @@
                 </div>
                 <div class="modal-footer border-0">
                     <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">取消</button>
-                    <button type="submit" class="btn btn-sm btn-success">保存设置</button>
+                    <button type="submit" class="btn btn-sm btn-success">保存</button>
                 </div>
             </form>
         </div>

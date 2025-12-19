@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name=renderer content=webkit>
-    <title>管理中心 - <?= Option::get('blogname') ?></title>
+    <title><?= __('admin_center') ?> - <?= Option::get('blogname') ?></title>
     <link rel="shortcut icon" href="./views/images/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="./views/css/style.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>">
     <link rel="stylesheet" type="text/css" href="./editor.md/css/editormd.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>">
@@ -38,71 +38,71 @@
             </li>
             <hr class="sidebar-divider my-0">
             <li class="nav-item" id="menu_panel">
-                <a class="nav-link" href="./"><i class="icofont-dashboard icofont-1x"></i><span>控制台</span></a>
+                <a class="nav-link" href="./"><i class="icofont-dashboard icofont-1x"></i><span><?= __('dashboard') ?></span></a>
             </li>
             <hr class="sidebar-divider my-0">
             <li class="nav-item" id="menu_category_content">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_content" aria-expanded="true" aria-controls="menu_content">
-                    <i class="icofont-pencil-alt-5"></i><span>文章</span>
+                    <i class="icofont-pencil-alt-5"></i><span><?= __('article') ?></span>
                 </a>
                 <div id="menu_content" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="z-index: 1055;">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" id="menu_write" href="article.php?action=write">写文章</a>
-                        <a class="collapse-item" id="menu_log" href="article.php">文章</a>
-                        <a class="collapse-item" id="menu_draft" href="article.php?draft=1">草稿</a>
+                        <a class="collapse-item" id="menu_write" href="article.php?action=write"><?= __('write_article') ?></a>
+                        <a class="collapse-item" id="menu_log" href="article.php"><?= __('article') ?></a>
+                        <a class="collapse-item" id="menu_draft" href="article.php?draft=1"><?= __('draft') ?></a>
                         <?php if (User::isAdmin()): ?>
-                            <a class="collapse-item" id="menu_sort" href="sort.php">分类</a>
-                            <a class="collapse-item" id="menu_tag" href="tag.php">标签</a>
+                            <a class="collapse-item" id="menu_sort" href="sort.php"><?= __('category') ?></a>
+                            <a class="collapse-item" id="menu_tag" href="tag.php"><?= __('tag') ?></a>
                         <?php endif ?>
                     </div>
                 </div>
             </li>
             <li class="nav-item" id="menu_cm">
-                <a class="nav-link" href="comment.php"><i class="icofont-comment"></i><span>评论</span></a>
+                <a class="nav-link" href="comment.php"><i class="icofont-comment"></i><span><?= __('comment') ?></span></a>
             </li>
             <li class="nav-item" id="menu_twitter">
-                <a class="nav-link" href="twitter.php"><i class="icofont-penalty-card"></i><span>微语</span></a>
+                <a class="nav-link" href="twitter.php"><i class="icofont-penalty-card"></i><span><?= __('twitter') ?></span></a>
             </li>
             <li class="nav-item" id="menu_media">
-                <a class="nav-link" href="media.php"><i class="icofont-image"></i><span>资源</span></a>
+                <a class="nav-link" href="media.php"><i class="icofont-image"></i><span><?= __('media') ?></span></a>
             </li>
             <?php if (User::isAdmin()): ?>
                 <li class="nav-item" id="menu_user">
-                    <a class="nav-link" href="user.php"><i class="icofont-user"></i><span>用户</span></a>
+                    <a class="nav-link" href="user.php"><i class="icofont-user"></i><span><?= __('user') ?></span></a>
                 </li>
                 <li class="nav-item" id="menu_category_view">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_view" aria-expanded="true" aria-controls="menu_view">
-                        <i class="icofont-paint"></i><span>外观</span>
+                        <i class="icofont-paint"></i><span><?= __('appearance') ?></span>
                     </a>
                     <div id="menu_view" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="z-index: 1055;">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <div class="d-flex align-items-center justify-content-between">
-                                <a class="collapse-item flex-grow-1 mr-0" id="menu_tpl" href="template.php">模板</a>
-                                <a class="collapse-item text-secondary ml-0" id="menu_tpl_setting" href="template.php?setting=1" title="模板设置"><i class="icofont-options"></i></a>
+                                <a class="collapse-item flex-grow-1 mr-0" id="menu_tpl" href="template.php"><?= __('template') ?></a>
+                                <a class="collapse-item text-secondary ml-0" id="menu_tpl_setting" href="template.php?setting=1" title="<?= __('template_setting') ?>"><i class="icofont-options"></i></a>
                             </div>
-                            <a class="collapse-item" id="menu_navi" href="navbar.php">导航</a>
-                            <a class="collapse-item" id="menu_widget" href="widgets.php">边栏</a>
-                            <a class="collapse-item" id="menu_page" href="page.php">页面</a>
-                            <a class="collapse-item" id="menu_link" href="link.php">链接</a>
+                            <a class="collapse-item" id="menu_navi" href="navbar.php"><?= __('navbar') ?></a>
+                            <a class="collapse-item" id="menu_widget" href="widgets.php"><?= __('widget') ?></a>
+                            <a class="collapse-item" id="menu_page" href="page.php"><?= __('page') ?></a>
+                            <a class="collapse-item" id="menu_link" href="link.php"><?= __('link') ?></a>
                         </div>
                     </div>
                 </li>
                 <li class="nav-item" id="menu_category_ext">
-                    <a class="nav-link" href="plugin.php"><i class="icofont-plugin"></i><span>插件</span></a>
+                    <a class="nav-link" href="plugin.php"><i class="icofont-plugin"></i><span><?= __('plugin') ?></span></a>
                 </li>
                 <li class="nav-item" id="menu_category_sys">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_sys" aria-expanded="true" aria-controls="menu_sys">
-                        <i class="icofont-options"></i><span>系统</span>
+                        <i class="icofont-options"></i><span><?= __('system') ?></span>
                     </a>
                     <div id="menu_sys" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" id="menu_data" href="data.php">数据</a>
-                            <a class="collapse-item" id="menu_setting" href="setting.php">设置</a>
+                            <a class="collapse-item" id="menu_data" href="data.php"><?= __('data') ?></a>
+                            <a class="collapse-item" id="menu_setting" href="setting.php"><?= __('setting') ?></a>
                         </div>
                     </div>
                 </li>
                 <li class="nav-item" id="menu_store">
-                    <a class="nav-link" href="store.php"><i class="icofont-shopping-cart"></i><span>应用商店</span></a>
+                    <a class="nav-link" href="store.php"><i class="icofont-shopping-cart"></i><span><?= __('store') ?></span></a>
                 </li>
                 <hr class="sidebar-divider d-none d-md-block">
                 <?php doAction('adm_menu') ?>
@@ -112,7 +112,7 @@
                 <?php if (!Register::isRegLocal()) : ?>
                     <div class="sidebar-card">
                         <p class="text-center mb-2"><strong>EMLOG</strong> - <?= ucfirst(Option::EMLOG_VERSION) ?></p>
-                        <a class="btn btn-success btn-sm" href="https://www.emlog.net/register" target="_blank">升级正版</a>
+                        <a class="btn btn-success btn-sm" href="https://www.emlog.net/register" target="_blank"><?= __('upgrade_license') ?></a>
                     </div>
                 <?php endif ?>
             <?php endif ?>
@@ -133,9 +133,9 @@
                                 style="left:30px; top:0; width:0; transition:width 0.3s;">
                                 <a href="#" class="my-1" data-toggle="modal" data-target="#shortcutModal"><i class="icofont-plus"></i></a>
                                 <span class="text-gray-300 mr-2">|</span>
-                                <a href="./article.php?action=write" class="mr-2">写文章</a>
-                                <a href="article.php" class="mr-2">文章</a>
-                                <a href="article.php?draft=1" class="mr-2">草稿</a>
+                                <a href="./article.php?action=write" class="mr-2"><?= __('write_article') ?></a>
+                                <a href="article.php" class="mr-2"><?= __('article') ?></a>
+                                <a href="article.php?draft=1" class="mr-2"><?= __('draft') ?></a>
                                 <?php foreach ($shortcuts as $item): ?>
                                     <a href="<?= $item['url'] ?>" class="mr-2"><?= $item['name'] ?></a>
                                 <?php endforeach; ?>
@@ -148,7 +148,7 @@
                                     <a class="nav-link" href=".." target="_blank" role="button">
                                         <?php
                                         $blog_name = Option::get('blogname');
-                                        echo empty($blog_name) ? '查看我的站点' : subString($blog_name, 0, 12);
+                                        echo empty($blog_name) ? __('view_site') : subString($blog_name, 0, 12);
                                         ?>
                                     </a>
                                 </li>
@@ -161,7 +161,7 @@
                                 </li>
                                 <li class="topbar-divider d-none d-sm-block"></li>
                                 <li class="nav-item mx-1">
-                                    <a class="nav-link" href="account.php?action=logout" title="退出" role="button">
+                                    <a class="nav-link" href="account.php?action=logout" title="<?= __('logout') ?>" role="button">
                                         <i class="icofont-logout icofont-1x"></i>
                                     </a>
                                 </li>

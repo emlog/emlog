@@ -123,7 +123,7 @@
             </div>
             <hr>
             <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
-            <input type="submit" value="保存设置" class="btn btn-sm btn-success" />
+            <input type="submit" value="保存" class="btn btn-sm btn-success" />
         </form>
     </div>
 </div>

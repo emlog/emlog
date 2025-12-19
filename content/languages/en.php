@@ -6,6 +6,11 @@ return [
     'captcha' => 'Verification Code',
     'submit' => 'Submit',
     'back_to_home' => 'Back to Home',
+    'delete' => 'Delete',
+    'save' => 'Save',
+    'cancel' => 'Cancel',
+    'publish' => 'Publish',
+    'edit' => 'Edit',
 
     // Login / Register
     'login' => 'Login',
@@ -38,4 +43,34 @@ return [
     'email_code_error' => 'Email verification code error',
     'email_code_send_failed' => 'Failed to send verification code, please check email settings',
     'captcha_error' => 'Verification code error',
+
+    // Admin Menu
+    'dashboard' => 'Dashboard',
+    'article' => 'Articles',
+    'write_article' => 'Write Article',
+    'draft' => 'Drafts',
+    'category' => 'Categories',
+    'tag' => 'Tags',
+    'comment' => 'Comments',
+    'twitter' => 'Microblog',
+    'media' => 'Media',
+    'user' => 'Users',
+    'appearance' => 'Appearance',
+    'template' => 'Themes',
+    'template_setting' => 'Theme Settings',
+    'navbar' => 'Navigation',
+    'widget' => 'Widgets',
+    'page' => 'Pages',
+    'link' => 'Links',
+    'plugin' => 'Plugins',
+    'system' => 'System',
+    'data' => 'Data',
+    'setting' => 'Settings',
+    'store' => 'Store',
+
+    // Admin Header
+    'admin_center' => 'Admin Center',
+    'upgrade_license' => 'Upgrade License',
+    'view_site' => 'View Site',
+    'logout' => 'Logout',
 ];
