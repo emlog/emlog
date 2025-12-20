@@ -1,37 +1,37 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
 <?php if (isset($_GET['active_show'])): ?>
-    <div class="alert alert-success">审核成功</div><?php endif ?>
+    <div class="alert alert-success"><?= _lang('comment_audit_success') ?></div><?php endif ?>
 <?php if (isset($_GET['active_hide'])): ?>
-    <div class="alert alert-success">隐藏成功</div><?php endif ?>
+    <div class="alert alert-success"><?= _lang('hide_success') ?></div><?php endif ?>
 <?php if (isset($_GET['active_top'])): ?>
-    <div class="alert alert-success">置顶成功</div><?php endif ?>
+    <div class="alert alert-success"><?= _lang('top_success') ?></div><?php endif ?>
 <?php if (isset($_GET['active_untop'])): ?>
-    <div class="alert alert-success">取消置顶成功</div><?php endif ?>
+    <div class="alert alert-success"><?= _lang('top_cancel_success') ?></div><?php endif ?>
 <?php if (isset($_GET['active_edit'])): ?>
-    <div class="alert alert-success">修改成功</div><?php endif ?>
+    <div class="alert alert-success"><?= _lang('edit_success') ?></div><?php endif ?>
 <?php if (isset($_GET['active_rep'])): ?>
-    <div class="alert alert-success">回复成功</div><?php endif ?>
+    <div class="alert alert-success"><?= _lang('reply_success') ?></div><?php endif ?>
 <?php if (isset($_GET['error_a'])): ?>
-    <div class="alert alert-danger">请选择要执行操作的评论</div><?php endif ?>
+    <div class="alert alert-danger"><?= _lang('select_operate_comment') ?></div><?php endif ?>
 <?php if (isset($_GET['error_b'])): ?>
-    <div class="alert alert-danger">请选择要执行的操作</div><?php endif ?>
+    <div class="alert alert-danger"><?= _lang('select_operation') ?></div><?php endif ?>
 <?php if (isset($_GET['error_c'])): ?>
-    <div class="alert alert-danger">回复内容不能为空</div><?php endif ?>
+    <div class="alert alert-danger"><?= _lang('reply_empty_error') ?></div><?php endif ?>
 <?php if (isset($_GET['error_d'])): ?>
-    <div class="alert alert-danger">内容过长</div><?php endif ?>
+    <div class="alert alert-danger"><?= _lang('content_too_long') ?></div><?php endif ?>
 <?php if (isset($_GET['error_e'])): ?>
-    <div class="alert alert-danger">评论内容不能为空</div><?php endif ?>
+    <div class="alert alert-danger"><?= _lang('comment_empty_error') ?></div><?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h4 mb-0 text-gray-800">评论</h1>
+    <h1 class="h4 mb-0 text-gray-800"><?= _lang('comment') ?></h1>
 </div>
 <?php if ($hideCommNum > 0) : ?>
     <div class="panel-heading mb-3">
         <ul class="nav nav-pills justify-content-start mb-2 mb-md-0">
             <li class="nav-item">
-                <a class="nav-link <?= $hide == '' ? 'active' : '' ?>" href="./comment.php?<?= $addUrl_1 ?>">全部</a>
+                <a class="nav-link <?= $hide == '' ? 'active' : '' ?>" href="./comment.php?<?= $addUrl_1 ?>"><?= _lang('all') ?></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?= $hide == 'y' ? 'active' : '' ?>" href="./comment.php?hide=y&<?= $addUrl_1 ?>">待审
+                <a class="nav-link <?= $hide == 'y' ? 'active' : '' ?>" href="./comment.php?hide=y&<?= $addUrl_1 ?>"><?= _lang('pending_audit') ?>
                     <?php
                     $hidecmnum = User::haveEditPermission() ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
                     if ($hidecmnum > 0)
@@ -50,16 +50,16 @@
                     <thead>
                         <tr>
                             <th><input type="checkbox" id="checkAllItem" /></th>
-                            <th>内容</th>
-                            <th>评论人</th>
-                            <th>来自文章</th>
-                            <th>发布时间</th>
-                            <th>操作</th>
+                            <th><?= _lang('content') ?></th>
+                            <th><?= _lang('commentator') ?></th>
+                            <th><?= _lang('from_article') ?></th>
+                            <th><?= _lang('post_time') ?></th>
+                            <th><?= _lang('operation') ?></th>
                         </tr>
                     </thead>
                     <tbody class="checkboxContainer">
                         <?php foreach ($comment as $key => $value):
-                            $ishide = $value['hide'] == 'y' ? '<span class="text-danger">待审</span>' : '';
+                            $ishide = $value['hide'] == 'y' ? '<span class="text-danger">' . _lang('pending_audit') . '</span>' : '';
                             $mail = $value['mail'] ? " <br />email: {$value['mail']}" : '';
                             $ip = $value['ip'];
                             $gid = $value['gid'];
@@ -79,7 +79,7 @@
                                 <td>
                                     <?= $comment ?>
                                     <?= $ishide ?>
-                                    <?php if ($top == 'y'): ?><span class="text-success">置顶</span><?php endif ?>
+                                    <?php if ($top == 'y'): ?><span class="text-success"><?= _lang('top') ?></span><?php endif ?>
                                 </td>
                                 <td class="small">
                                     <?= $poster ?>
@@ -91,21 +91,21 @@
                                 </td>
                                 <td class="small">
                                     <a href="<?= Url::log($gid) ?>" target="_blank"><?= $title ?></a><br>
-                                    <a href="comment.php?gid=<?= $gid ?>" class="badge badge-info">该文所有评论</a>
+                                    <a href="comment.php?gid=<?= $gid ?>" class="badge badge-info"><?= _lang('this_article_comments') ?></a>
                                 </td>
                                 <td class="small"><?= $date ?></td>
                                 <td>
                                     <?php if (User::haveEditPermission()): ?>
-                                        <a href="javascript: em_confirm('<?= $ip ?>', 'commentbyip', '<?= LoginAuth::genToken() ?>');" class="badge badge-pill badge-danger">按IP删</a>
-                                        <a href="javascript: em_confirm(<?= $cid ?>, 'comment', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger">删除</a>
+                                        <a href="javascript: em_confirm('<?= $ip ?>', 'commentbyip', '<?= LoginAuth::genToken() ?>');" class="badge badge-pill badge-danger"><?= _lang('delete_by_ip') ?></a>
+                                        <a href="javascript: em_confirm(<?= $cid ?>, 'comment', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger"><?= _lang('delete') ?></a>
                                     <?php endif ?>
                                     <a href="#" data-toggle="modal" class="badge badge-success" data-target="#replyModal"
                                         data-cid="<?= $cid ?>"
                                         data-comment="<?= $comment_text ?>"
-                                        data-hide="<?= $value['hide'] ?>">回复
+                                        data-hide="<?= $value['hide'] ?>"><?= _lang('reply') ?>
                                     </a>
                                     <?php if ($value['hide'] === 'y' && User::haveEditPermission()): ?>
-                                        <a class="badge badge-warning" href="comment.php?action=pub&id=<?= $cid ?>&token=<?= LoginAuth::genToken() ?>">审核</a>
+                                        <a class="badge badge-warning" href="comment.php?action=pub&id=<?= $cid ?>&token=<?= LoginAuth::genToken() ?>"><?= _lang('audit') ?></a>
                                     <?php endif ?>
                                 </td>
                             </tr>
@@ -115,15 +115,15 @@
             </div>
             <div class="list_footer">
                 <div class="btn-group">
-                    <button class="btn btn-success btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">操作</button>
+                    <button class="btn btn-success btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"><?= _lang('operation') ?></button>
                     <div class="dropdown-menu">
                         <?php if (User::haveEditPermission()): ?>
-                            <a href="javascript:commentact('top');" class="dropdown-item">置顶</a>
-                            <a href="javascript:commentact('untop');" class="dropdown-item">取消置顶</a>
-                            <a href="javascript:commentact('hide');" class="dropdown-item text-primary">隐藏</a>
-                            <a href="javascript:commentact('pub');" class="dropdown-item text-primary">审核</a>
+                            <a href="javascript:commentact('top');" class="dropdown-item"><?= _lang('top') ?></a>
+                            <a href="javascript:commentact('untop');" class="dropdown-item"><?= _lang('cancel_top') ?></a>
+                            <a href="javascript:commentact('hide');" class="dropdown-item text-primary"><?= _lang('hide') ?></a>
+                            <a href="javascript:commentact('pub');" class="dropdown-item text-primary"><?= _lang('audit') ?></a>
                         <?php endif; ?>
-                        <a href="javascript:commentact('del');" class="dropdown-item text-danger">删除</a>
+                        <a href="javascript:commentact('del');" class="dropdown-item text-danger"><?= _lang('delete') ?></a>
                     </div>
                 </div>
                 <input name="operate" id="operate" value="" type="hidden" />
@@ -133,7 +133,7 @@
     <div class="page"><?= $pageurl ?></div>
     <div class="d-flex justify-content-center mb-4 small">
         <div class="form-inline">
-            <label for="perpage_num" class="mr-2">有 <?= $cmnum ?> 条评论，每页显示</label>
+            <label for="perpage_num" class="mr-2"><?= _lang('total') ?> <?= $cmnum ?> <?= _lang('comment') ?>, <?= _lang('per_page') ?></label>
             <select name="perpage_num" id="perpage_num" class="form-control form-control-sm" onChange="changePerPage(this);">
                 <option value="10" <?= ($perPage == 10) ? 'selected' : '' ?>>10</option>
                 <option value="20" <?= ($perPage == 20) ? 'selected' : '' ?>>20</option>
@@ -156,7 +156,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content border-0 shadow">
             <div class="modal-header border-0">
-                <h5 class="modal-title" id="replyModalLabel">回复评论</h5>
+                <h5 class="modal-title" id="replyModalLabel"><?= _lang('reply_comment') ?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -172,8 +172,8 @@
                     <p><a href="javascript:void(0);" class="" id="ai_button_reply">✨</a></p>
                 </div>
                 <div class="modal-footer border-0">
-                    <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">取消</button>
-                    <button type="submit" class="btn btn-sm btn-success">回复</button>
+                    <button type="button" class="btn btn-sm btn-light" data-dismiss="modal"><?= _lang('cancel') ?></button>
+                    <button type="submit" class="btn btn-sm btn-success"><?= _lang('reply') ?></button>
                 </div>
             </form>
         </div>
@@ -214,7 +214,7 @@
             var comment = $('.comment-replay-content').html();
 
             // 禁用按钮，显示加载状态
-            $button.prop('disabled', true).text('AI生成中...');
+            $button.prop('disabled', true).text('<?= _lang('ai_generating') ?>');
 
             $.ajax({
                 url: 'ai.php?action=genReply',
@@ -227,11 +227,11 @@
                     if (response.code === 0) {
                         $reply.val(response.data);
                     } else {
-                        alert(response.msg || 'AI 生成失败');
+                        alert(response.msg || '<?= _lang('ai_generate_failed') ?>');
                     }
                 },
                 error: function(xhr) {
-                    alert('AI 请求失败，请稍后再试');
+                    alert('<?= _lang('ai_request_failed') ?>');
                 },
                 complete: function() {
                     // 恢复按钮状态
@@ -243,12 +243,12 @@
 
     function commentact(act) {
         if (getChecked('ids') === false) {
-            infoAlert('请选择要操作的评论');
+            infoAlert('<?= _lang('select_operate_comment') ?>');
             return;
         }
 
         if (act === 'del') {
-            delAlert2('', '删除所选评论？', function() {
+            delAlert2('', '<?= _lang('delete_selected_comments') ?>', function() {
                 $("#operate").val(act);
                 $("#form_com").submit();
             })

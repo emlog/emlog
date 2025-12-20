@@ -36,7 +36,7 @@ return [
     'views' => 'Views',
     'audit' => 'Audit',
     'reject' => 'Reject',
-    'nickname' => 'Nickname',
+    'unit_article' => ' ',
 
     // Login / Register
     'login' => 'Login',
@@ -321,9 +321,27 @@ return [
     'has_cover' => 'Has Cover',
     'has_link' => 'Has Link',
     'reject_article' => 'Reject Article',
-    'unit_article' => ' ',
     'input_author_id' => 'Please enter the target author ID:',
     'select_move_article' => 'Please select articles to move',
     'select_move_sort' => 'Please select a category to move to',
     'delete_draft_confirm' => 'Delete selected drafts?',
+
+    // Comment Management
+    'hide_success' => 'Hide success',
+    'reply_success' => 'Reply success',
+    'edit_success' => 'Edit success',
+    'select_operate_comment' => 'Please select comment to operate',
+    'reply_empty_error' => 'Reply content cannot be empty',
+    'content_too_long' => 'Content too long',
+    'comment_empty_error' => 'Comment content cannot be empty',
+    'commentator' => 'Commentator',
+    'from_article' => 'From Article',
+    'post_time' => 'Post Time',
+    'delete_by_ip' => 'Delete by IP',
+    'this_article_comments' => 'Comments of this article',
+    'delete_selected_comments' => 'Delete selected comments?',
+    'reply_comment' => 'Reply Comment',
+    'ai_generating' => 'AI Generating...',
+    'ai_generate_failed' => 'AI Generation Failed',
+    'comment_audit_success' => 'Audit success',
 ];
