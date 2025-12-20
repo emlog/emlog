@@ -27,6 +27,9 @@ return [
     'none' => '无',
     'default' => '默认',
     'nickname' => '昵称',
+    'cover' => '封面',
+    'total' => '共',
+    'per_page' => '每页显示',
 
     // Login / Register
     'login' => '登 录',

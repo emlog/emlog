@@ -27,6 +27,9 @@ return [
     'none' => 'None',
     'default' => 'Default',
     'nickname' => 'Nickname',
+    'cover' => 'Cover',
+    'total' => 'Total',
+    'per_page' => 'Per page',
 
     // Login / Register
     'login' => 'Login',
