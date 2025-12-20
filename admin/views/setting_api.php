@@ -1,18 +1,18 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
 <?php if (isset($_GET['ok_reset'])): ?>
-    <div class="alert alert-success">接口秘钥重置成功</div><?php endif ?>
+    <div class="alert alert-success"><?php _lang('api_key_reset_success'); ?></div><?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h4 mb-0 text-gray-800">设置</h1>
+    <h1 class="h4 mb-0 text-gray-800"><?php _lang('setting'); ?></h1>
 </div>
 <div class="panel-heading">
     <ul class="nav nav-pills">
-        <li class="nav-item"><a class="nav-link" href="./setting.php">基础设置</a></li>
-        <li class="nav-item"><a class="nav-link" href="./setting.php?action=user">用户设置</a></li>
-        <li class="nav-item"><a class="nav-link" href="./setting.php?action=mail">邮件通知</a></li>
-        <li class="nav-item"><a class="nav-link" href="./setting.php?action=seo">SEO设置</a></li>
-        <li class="nav-item"><a class="nav-link active" href="./setting.php?action=api">API</a></li>
-        <li class="nav-item"><a class="nav-link" href="./setting.php?action=ai">✨AI</a></li>
-        <li class="nav-item"><a class="nav-link" href="./blogger.php">个人信息</a></li>
+        <li class="nav-item"><a class="nav-link" href="./setting.php"><?php _lang('setting_basic'); ?></a></li>
+        <li class="nav-item"><a class="nav-link" href="./setting.php?action=user"><?php _lang('setting_user'); ?></a></li>
+        <li class="nav-item"><a class="nav-link" href="./setting.php?action=mail"><?php _lang('setting_mail'); ?></a></li>
+        <li class="nav-item"><a class="nav-link" href="./setting.php?action=seo"><?php _lang('setting_seo'); ?></a></li>
+        <li class="nav-item"><a class="nav-link active" href="./setting.php?action=api"><?php _lang('setting_api'); ?></a></li>
+        <li class="nav-item"><a class="nav-link" href="./setting.php?action=ai"><?php _lang('setting_ai'); ?></a></li>
+        <li class="nav-item"><a class="nav-link" href="./blogger.php"><?php _lang('setting_profile'); ?></a></li>
     </ul>
 </div>
 <div class="card shadow mb-4 mt-2">
@@ -20,16 +20,16 @@
         <form action="setting.php?action=api_save" method="post" name="setting_api_form" id="setting_api_form">
             <div class="custom-control custom-switch">
                 <input class="custom-control-input" type="checkbox" value="y" name="is_openapi" id="is_openapi" <?= $conf_is_openapi ?> />
-                <label class="custom-control-label" for="is_openapi">开启API</label>
+                <label class="custom-control-label" for="is_openapi"><?php _lang('enable_api'); ?></label>
             </div>
             <div class="input-group mt-3">
                 <div class="input-group-prepend">
-                    <span class="input-group-text">API秘钥</span>
+                    <span class="input-group-text"><?php _lang('api_key'); ?></span>
                 </div>
                 <input type="text" class="form-control" disabled value="<?= $apikey ?>">
                 <div class="input-group-append">
                     <button class="btn btn-outline-success" type="button" onclick="window.location.href='setting.php?action=api_reset&token=<?= LoginAuth::genToken() ?>'">
-                        重置API秘钥
+                        <?php _lang('reset_api_key'); ?>
                     </button>
                 </div>
             </div>
@@ -38,14 +38,14 @@
             </div>
         </form>
         <div class="alert alert-warning">
-            <b>API接口列表：</b><br><br>
-            1. 文章发布 (可用于对接内容发布软件，文章发布接口URL：<?= BLOG_URL ?>?rest-api=article_post)<br>
-            2. 分类列表<br>
-            3. 微语发布<br>
-            4. 微语列表<br>
-            5. 资源文件上传<br>
+            <b><?php _lang('api_list'); ?>：</b><br><br>
+            <?php _lang('api_article_post'); ?><?= BLOG_URL ?>?rest-api=article_post)<br>
+            <?php _lang('api_category_list'); ?><br>
+            <?php _lang('api_twitter_post'); ?><br>
+            <?php _lang('api_twitter_list'); ?><br>
+            <?php _lang('api_media_upload'); ?><br>
             ……<br><br>
-            详见接口文档：<a href="https://www.emlog.net/docs/api" target="_blank">API接口文档→</a>
+            <?php _lang('api_doc_link'); ?>：<a href="https://www.emlog.net/docs/api" target="_blank"><?php _lang('api_doc'); ?>→</a>
         </div>
     </div>
 </div>

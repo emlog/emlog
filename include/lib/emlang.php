@@ -3,6 +3,7 @@
 /**
  * Language support
  * @package EMLOG
+ * @link https://www.emlog.net
  */
 
 class EmLang

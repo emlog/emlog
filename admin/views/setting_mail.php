@@ -1,104 +1,100 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h4 mb-0 text-gray-800">设置</h1>
+    <h1 class="h4 mb-0 text-gray-800"><?php _lang('setting'); ?></h1>
 </div>
 <div class="panel-heading">
     <ul class="nav nav-pills">
-        <li class="nav-item"><a class="nav-link" href="./setting.php">基础设置</a></li>
-        <li class="nav-item"><a class="nav-link" href="./setting.php?action=user">用户设置</a></li>
-        <li class="nav-item"><a class="nav-link active" href="./setting.php?action=mail">邮件通知</a></li>
-        <li class="nav-item"><a class="nav-link" href="./setting.php?action=seo">SEO设置</a></li>
-        <li class="nav-item"><a class="nav-link" href="./setting.php?action=api">API</a></li>
-        <li class="nav-item"><a class="nav-link" href="./setting.php?action=ai">✨AI</a></li>
-        <li class="nav-item"><a class="nav-link" href="./blogger.php">个人信息</a></li>
+        <li class="nav-item"><a class="nav-link" href="./setting.php"><?php _lang('setting_basic'); ?></a></li>
+        <li class="nav-item"><a class="nav-link" href="./setting.php?action=user"><?php _lang('setting_user'); ?></a></li>
+        <li class="nav-item"><a class="nav-link active" href="./setting.php?action=mail"><?php _lang('setting_mail'); ?></a></li>
+        <li class="nav-item"><a class="nav-link" href="./setting.php?action=seo"><?php _lang('setting_seo'); ?></a></li>
+        <li class="nav-item"><a class="nav-link" href="./setting.php?action=api"><?php _lang('setting_api'); ?></a></li>
+        <li class="nav-item"><a class="nav-link" href="./setting.php?action=ai"><?php _lang('setting_ai'); ?></a></li>
+        <li class="nav-item"><a class="nav-link" href="./blogger.php"><?php _lang('setting_profile'); ?></a></li>
     </ul>
 </div>
 <div class="card shadow mb-4 mt-2">
     <div class="card-body">
         <form action="setting.php?action=mail_save" method="post" name="mail_setting_form" id="mail_setting_form">
-            <h4>邮件服务</h4>
+            <h4><?php _lang('mail_service'); ?></h4>
             <div class="form-group">
-                <label>发送人邮箱</label>
+                <label><?php _lang('mail_sender'); ?></label>
                 <input type="email" class="form-control" value="<?= $smtp_mail ?>" name="smtp_mail">
             </div>
             <div class="form-group">
-                <label>SMTP密码</label>
+                <label><?php _lang('smtp_password'); ?></label>
                 <input type="password" name="smtp_pw" cols="" rows="3" class="form-control" value="<?= $smtp_pw ?>" autocomplete="new-password">
             </div>
             <div class="form-group">
-                <label>发送人名称（选填，建议填写站点名称）</label>
+                <label><?php _lang('mail_sender_name'); ?></label>
                 <input type="from_name" class="form-control" value="<?= $smtp_from_name ?>" name="smtp_from_name">
             </div>
             <div class="form-group">
-                <label>SMTP服务器</label>
+                <label><?php _lang('smtp_server'); ?></label>
                 <input class="form-control" value="<?= $smtp_server ?>" name="smtp_server">
             </div>
             <div class="form-group">
-                <label>端口 (465：SSL协议，如QQ\网易邮箱；587：STARTTLS协议，如Outlook邮箱)</label>
+                <label><?php _lang('smtp_port_desc'); ?></label>
                 <input class="form-control" value="<?= $smtp_port ?>" name="smtp_port">
             </div>
             <div class="form-group">
-                <input type="button" value="发送测试" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#testMail" />
+                <input type="button" value="<?php _lang('send_test'); ?>" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#testMail" />
             </div>
             <div class="alert alert-warning">
-                <b>以QQ邮箱配置为例</b><br>
-                发送人邮箱：你的QQ邮箱<br>
-                SMTP密码：见QQ邮箱顶部设置-> 账户 -> 开启IMAP/SMTP服务 -> 生成授权码（即为SMTP密码）<br>
-                发送人名称：你的姓名或者站点名称<br>
-                SMTP服务器：smtp.qq.com<br>
-                端口：465<br>
+                <b><?php _lang('mail_config_example'); ?></b><br>
+                <?php _lang('mail_example_content'); ?>
             </div>
             <!-- 设置接收邮箱的模态框 -->
             <div class="modal fade" id="testMail">
                 <div class="modal-dialog modal-sm">
                     <div class="modal-content border-0 shadow">
                         <div class="modal-header border-0">
-                            <h4 class="modal-title">发送测试</h4>
+                            <h4 class="modal-title"><?php _lang('send_test'); ?></h4>
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
                         <div class="modal-body">
                             <div class="form-group">
-                                <input class="form-control" type="email" name="testTo" placeholder="输入接收邮箱">
+                                <input class="form-control" type="email" name="testTo" placeholder="<?php _lang('input_receiver_email'); ?>">
                             </div>
                         </div>
                         <div class="modal-footer border-0">
                             <div id="testMailMsg"></div>
-                            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">关闭</button>
-                            <button type="button" class="btn btn-success btn-sm" id="testSendBtn">发送</button>
+                            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal"><?php _lang('close'); ?></button>
+                            <button type="button" class="btn btn-success btn-sm" id="testSendBtn"><?php _lang('send'); ?></button>
                         </div>
                     </div>
                 </div>
             </div>
-            <h4>邮件模板</h4>
+            <h4><?php _lang('mail_template'); ?></h4>
             <div class="my-3">
-                <div class="mb-3" id="mail_template_box">选择模板：<a href="javascript:useDefaultTemplate();">简约</a>
-                    <a href="javascript:useDeepBlueTemplate();">深蓝</a>
-                    <a href="javascript:useGreenVibrantTemplate();">草绿</a>
+                <div class="mb-3" id="mail_template_box"><?php _lang('select_template'); ?>：<a href="javascript:useDefaultTemplate();"><?php _lang('template_simple'); ?></a>
+                    <a href="javascript:useDeepBlueTemplate();"><?php _lang('template_deep_blue'); ?></a>
+                    <a href="javascript:useGreenVibrantTemplate();"><?php _lang('template_green'); ?></a>
                     <span id="mail_template_box_ext"></span>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <textarea id="mail_template" name="mail_template" rows="10" class="form-control" placeholder="邮件模板(支持html)，不使用模板请留空。"><?= $mail_template ?></textarea>
+                        <textarea id="mail_template" name="mail_template" rows="10" class="form-control" placeholder="<?php _lang('mail_template_placeholder'); ?>"><?= $mail_template ?></textarea>
                     </div>
                     <div class="col-md-6">
                         <iframe id="mail_review_frame"></iframe>
                     </div>
                 </div>
-                <div class="mb-3 mt-1 small" id="mail_template_box">模板变量：{{mail_content}} 邮件内容，{{mail_site_title}} 站点标题</div>
+                <div class="mb-3 mt-1 small" id="mail_template_box"><?php _lang('mail_template_vars'); ?></div>
             </div>
-            <h4>邮件通知</h4>
+            <h4><?php _lang('setting_mail'); ?></h4>
             <div class="custom-control custom-switch">
                 <input class="custom-control-input" type="checkbox" value="y" name="mail_notice_comment" id="mail_notice_comment" <?= $conf_mail_notice_comment ?> />
-                <label class="custom-control-label" for="mail_notice_comment">评论通知（评论通知文章作者，回复评论通知评论人）</label>
+                <label class="custom-control-label" for="mail_notice_comment"><?php _lang('mail_notice_comment'); ?></label>
             </div>
             <div class="custom-control custom-switch">
                 <input class="custom-control-input" type="checkbox" value="y" name="mail_notice_post" id="mail_notice_post" <?= $conf_mail_notice_post ?>>
-                <label class="custom-control-label" for="mail_notice_post">文章投稿通知（仅发送到创始人邮箱）</label>
+                <label class="custom-control-label" for="mail_notice_post"><?php _lang('mail_notice_post'); ?></label>
             </div>
             <div class="form-group">
                 <hr>
                 <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
-                <input type="submit" value="保存" class="btn btn-sm btn-success" />
+                <input type="submit" value="<?php _lang('save'); ?>" class="btn btn-sm btn-success" />
             </div>
         </form>
     </div>
