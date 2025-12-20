@@ -42,7 +42,7 @@ return [
     'top' => '置顶',
 
     // Login / Register
-    'login' => '登 录',
+    'login' => '登录',
     'username_email' => '用户名\邮箱',
     'remember_me' => '记住我',
     'user_pass_error' => '用户或密码错误',
@@ -134,9 +134,8 @@ return [
     'older_first' => '旧的靠前',
     'comment_interval' => '发表评论间隔（秒）',
     'article_setting' => '文章设置',
-    'article_per_page' => '每页显示文章数量',
-    'rss_output' => 'RSS输出',
-    'rss_output_num' => '篇',
+    'article_per_page' => '首页每页显示文章数量',
+    'rss_output' => 'RSS输出数量',
     'rss_output_fulltext' => '全文',
     'rss_output_abstract' => '摘要',
     'rss_feed_url' => 'RSS订阅地址 (用于RSS阅读器订阅站点内容)',

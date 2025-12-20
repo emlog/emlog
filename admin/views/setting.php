@@ -91,7 +91,7 @@
                 <input class="form-control mx-sm-3" style="width:80px;" value="<?= $index_lognum ?>" name="index_lognum" type="number" min="1" />
             </div>
             <div class="form-group form-inline">
-                <?php _lang('rss_output'); ?> <input maxlength="5" style="width:80px;" value="<?= $rss_output_num ?>" type="number" min="0" class="form-control" name="rss_output_num" /> <?php _lang('rss_output_num'); ?>（0为关闭），且输出
+                <?php _lang('rss_output'); ?> <input maxlength="5" style="width:80px;" value="<?= $rss_output_num ?>" type="number" min="0" class="form-control" name="rss_output_num" />（0为关闭），且输出
                 <select name="rss_output_fulltext" class="form-control">
                     <option value="y" <?= $ex1 ?>><?php _lang('rss_output_fulltext'); ?></option>
                     <option value="n" <?= $ex2 ?>><?php _lang('rss_output_abstract'); ?></option>
