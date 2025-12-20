@@ -30,6 +30,13 @@ return [
     'cover' => 'Cover',
     'total' => 'Total',
     'per_page' => 'Per page',
+    'title' => 'Title',
+    'author' => 'Author',
+    'time' => 'Time',
+    'views' => 'Views',
+    'audit' => 'Audit',
+    'reject' => 'Reject',
+    'nickname' => 'Nickname',
 
     // Login / Register
     'login' => 'Login',
@@ -248,7 +255,6 @@ return [
     'size_portrait' => 'Portrait',
 
     // Blogger
-    'nickname' => 'Nickname',
     'username_tip' => 'If username is not set, please use email to login',
     'personal_description' => 'Personal Description',
     'change_password' => 'Change Password',
@@ -301,8 +307,6 @@ return [
     'scheduled_post' => 'Scheduled',
     'pending_audit' => 'Pending Audit',
     'audit_feedback' => 'Audit Feedback',
-    'audit' => 'Audit',
-    'reject' => 'Reject',
     'cancel_top' => 'Cancel Top',
     'change_author' => 'Change Author',
     'put_to_draft' => 'Move to Draft',
@@ -313,10 +317,6 @@ return [
     'delete_confirm_title' => 'Are you sure you want to delete selected articles?',
     'delete_confirm_content' => 'Completely delete cannot be recovered',
     'completely_delete' => 'Completely Delete',
-    'title' => 'Title',
-    'author' => 'Author',
-    'time' => 'Time',
-    'views' => 'Views',
     'has_password' => 'Has Password',
     'has_cover' => 'Has Cover',
     'has_link' => 'Has Link',

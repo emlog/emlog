@@ -30,6 +30,13 @@ return [
     'cover' => '封面',
     'total' => '共',
     'per_page' => '每页显示',
+    'title' => '标题',
+    'author' => '作者',
+    'time' => '时间',
+    'views' => '浏览',
+    'audit' => '审核',
+    'reject' => '驳回',
+    'nickname' => '昵称',
 
     // Login / Register
     'login' => '登 录',
@@ -248,7 +255,6 @@ return [
     'size_portrait' => '纵向',
 
     // Blogger
-    'nickname' => '昵称',
     'username_tip' => '未设置用户名时，请使用邮箱登录',
     'personal_description' => '个人描述',
     'change_password' => '修改密码',
@@ -301,8 +307,6 @@ return [
     'scheduled_post' => '定时发布',
     'pending_audit' => '待审核',
     'audit_feedback' => '审核反馈',
-    'audit' => '审核',
-    'reject' => '驳回',
     'cancel_top' => '取消置顶',
     'change_author' => '更改作者',
     'put_to_draft' => '放入草稿箱',
@@ -313,10 +317,6 @@ return [
     'delete_confirm_title' => '确定要删除所选文章吗',
     'delete_confirm_content' => '彻底删除将无法恢复',
     'completely_delete' => '彻底删除',
-    'title' => '标题',
-    'author' => '作者',
-    'time' => '时间',
-    'views' => '浏览',
     'has_password' => '有密码',
     'has_cover' => '有封面',
     'has_link' => '有跳转链接',
