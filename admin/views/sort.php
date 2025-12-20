@@ -1,19 +1,19 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
 <?php if (isset($_GET['active_save'])): ?>
-    <div class="alert alert-success">保存成功</div><?php endif ?>
+    <div class="alert alert-success"><?= __('save_success') ?></div><?php endif ?>
 <?php if (isset($_GET['error_a'])): ?>
-    <div class="alert alert-danger">分类名称不能为空</div><?php endif ?>
+    <div class="alert alert-danger"><?= __('sort_name_required') ?></div><?php endif ?>
 <?php if (isset($_GET['error_c'])): ?>
-    <div class="alert alert-danger">别名格式错误</div><?php endif ?>
+    <div class="alert alert-danger"><?= __('alias_format_error') ?></div><?php endif ?>
 <?php if (isset($_GET['error_d'])): ?>
-    <div class="alert alert-danger">别名不能重复</div><?php endif ?>
+    <div class="alert alert-danger"><?= __('alias_exists_error') ?></div><?php endif ?>
 <?php if (isset($_GET['error_e'])): ?>
-    <div class="alert alert-danger">别名不得包含系统保留关键字</div><?php endif ?>
+    <div class="alert alert-danger"><?= __('alias_reserved_error') ?></div><?php endif ?>
 <?php if (isset($_GET['error_f'])): ?>
-    <div class="alert alert-danger">不能设置自身为父分类</div><?php endif ?>
+    <div class="alert alert-danger"><?= __('sort_self_parent_error') ?></div><?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h4 mb-0 text-gray-800">文章分类</h1>
-    <a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#sortModal"><i class="icofont-plus"></i> 添加分类</a>
+    <h1 class="h4 mb-0 text-gray-800"><?= __('category') ?></h1>
+    <a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#sortModal"><i class="icofont-plus"></i> <?= __('add_category') ?></a>
 </div>
 <form method="post" id="sort_form" action="sort.php?action=taxis">
     <div class="card shadow mb-4">
@@ -22,13 +22,13 @@
                 <table class="table table-bordered table-striped table-hover" id="dataTable">
                     <thead>
                         <tr>
-                            <th>图像</th>
-                            <th>名称</th>
-                            <th>描述</th>
-                            <th>分类ID</th>
-                            <th>别名</th>
-                            <th>文章</th>
-                            <th>操作</th>
+                            <th><?= __('image') ?></th>
+                            <th><?= __('name') ?></th>
+                            <th><?= __('description') ?></th>
+                            <th><?= __('sort_id') ?></th>
+                            <th><?= __('alias') ?></th>
+                            <th><?= __('article') ?></th>
+                            <th><?= __('operation') ?></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -67,7 +67,7 @@
                                     </a>
                                     <a href="<?= Url::sort($value['sid']) ?>" target="_blank" class="text-muted ml-2"><i class="icofont-external-link"></i></a>
                                     <?php if ($value['allow_user_post'] == 'n'): ?>
-                                        <br><span class="badge small badge-orange">不可投稿</span>
+                                        <br><span class="badge small badge-orange"><?= __('no_contribute') ?></span>
                                     <?php endif ?>
                                 </td>
                                 <td><?= subString($value['description'], 0, 100) ?></td>
@@ -75,7 +75,7 @@
                                 <td class="alias"><?= $value['alias'] ?></td>
                                 <td><a href="article.php?sid=<?= $value['sid'] ?>"><?= $value['lognum'] ?></a></td>
                                 <td>
-                                    <a href="javascript: em_confirm(<?= $value['sid'] ?>, 'sort', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger">删除</a>
+                                    <a href="javascript: em_confirm(<?= $value['sid'] ?>, 'sort', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger"><?= __('delete') ?></a>
                                 </td>
                             </tr>
                             <?php
@@ -110,7 +110,7 @@
                                             data-template="<?= $value['template'] ?>"><?= $value['sortname'] ?></a>
                                         <a href="<?= Url::sort($value['sid']) ?>" target="_blank" class="text-muted ml-2"><i class="icofont-external-link"></i></a>
                                         <?php if ($value['allow_user_post'] == 'n'): ?>
-                                            <br><span class="badge small badge-orange">不可投稿</span>
+                                            <br><span class="badge small badge-orange"><?= __('no_contribute') ?></span>
                                         <?php endif ?>
                                     </td>
                                     <td><?= subString($value['description'], 0, 100) ?></td>
@@ -118,7 +118,7 @@
                                     <td class="alias"><?= $value['alias'] ?></td>
                                     <td><a href="article.php?sid=<?= $value['sid'] ?>"><?= $value['lognum'] ?></a></td>
                                     <td>
-                                        <a href="javascript: em_confirm(<?= $value['sid'] ?>, 'sort', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger">删除</a>
+                                        <a href="javascript: em_confirm(<?= $value['sid'] ?>, 'sort', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger"><?= __('delete') ?></a>
                                     </td>
                                 </tr>
                             <?php endforeach ?>
@@ -129,7 +129,7 @@
         </div>
     </div>
     <div class="list_footer">
-        <input type="submit" value="保存拖动排序" class="btn btn-sm btn-success" />
+        <input type="submit" value="<?= __('save_sort') ?>" class="btn btn-sm btn-success" />
     </div>
 </form>
 
@@ -137,7 +137,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content border-0 shadow">
             <div class="modal-header border-0">
-                <h5 class="modal-title" id="exampleModalLabel">文章分类</h5>
+                <h5 class="modal-title" id="exampleModalLabel"><?= __('category') ?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -146,17 +146,17 @@
             <form action="sort.php?action=save" method="post" id="sort_new">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="sortname">分类名 <span class="text-danger">*</span></label>
+                        <label for="sortname"><?= __('sort_name') ?> <span class="text-danger">*</span></label>
                         <input class="form-control" id="sortname" name="sortname" required>
                     </div>
                     <div class="form-group">
-                        <label for="alias">别名（英文字母组成，用于seo设置）</label>
+                        <label for="alias"><?= __('alias_desc') ?></label>
                         <input class="form-control" id="alias" name="alias">
                     </div>
                     <div class="form-group">
-                        <label for="pid">父分类</label>
+                        <label for="pid"><?= __('parent_sort') ?></label>
                         <select name="pid" id="pid" class="form-control">
-                            <option value="0">无</option>
+                            <option value="0"><?= __('none') ?></option>
                             <?php
                             foreach ($sorts as $key => $value):
                                 if ($value['pid'] != 0) {
@@ -168,31 +168,31 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="sortimg">分类图像</label>
+                        <label for="sortimg"><?= __('sort_image') ?></label>
                         <input class="form-control" id="sortimg" name="sortimg" type="url" placeholder="https://">
                     </div>
                     <div class="form-group">
-                        <label for="title">标题（用于分类页的 title）</label>
+                        <label for="title"><?= __('sort_title_desc') ?></label>
                         <input class="form-control" id="title" name="title">
-                        <small class="form-text text-muted">支持变量: {{site_title}}, {{site_name}}, {{sort_name}}</small>
+                        <small class="form-text text-muted"><?= __('support_variable') ?>: {{site_title}}, {{site_name}}, {{sort_name}}</small>
                     </div>
                     <div class="form-group">
-                        <label for="description">描述（用于分类页的 description）</label>
+                        <label for="description"><?= __('sort_desc_desc') ?></label>
                         <textarea name="description" id="description" type="text" class="form-control"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="kw">关键词（用于分类页的 keywords，英文逗号分割）</label>
+                        <label for="kw"><?= __('sort_kw_desc') ?></label>
                         <input class="form-control" id="kw" name="kw">
                     </div>
                     <div class="form-group">
-                        <label for="page_count">每页显示文章数量（为0使用全局设置）</label>
+                        <label for="page_count"><?= __('sort_per_page_desc') ?></label>
                         <input class="form-control" value="" name="page_count" id="page_count" type="number" min="0" />
                     </div>
                     <?php if ($customTemplates): ?>
                         <div class="form-group mt-2">
-                            <label for="template">分类模板</label>
+                            <label for="template"><?= __('sort_template') ?></label>
                             <?php
-                            $sortListHtml = '<option value="">默认</option>';
+                            $sortListHtml = '<option value="">' . __('default') . '</option>';
                             foreach ($customTemplates as $v) {
                                 $sortListHtml .= '<option value="' . str_replace('.php', '', $v['filename']) . '">' . ($v['comment']) . '</option>';
                             }
@@ -202,7 +202,7 @@
                     <?php endif; ?>
                     <div class="custom-control custom-switch">
                         <input class="custom-control-input" type="checkbox" name="allow_user_post" id="allow_user_post" value="y">
-                        <label class="custom-control-label" for="allow_user_post">允许注册用户在该分类下发文投稿</label>
+                        <label class="custom-control-label" for="allow_user_post"><?= __('allow_contribute') ?></label>
                     </div>
                     <?php doAction('adm_sort_add') ?>
                 </div>
@@ -210,8 +210,8 @@
                     <input type="hidden" value="" name="sid" id="sid" />
                     <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
                     <span id="alias_msg_hook"></span>
-                    <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">取消</button>
-                    <button type="submit" id="save_btn" class="btn btn-sm btn-success">保存</button>
+                    <button type="button" class="btn btn-sm btn-light" data-dismiss="modal"><?= __('cancel') ?></button>
+                    <button type="submit" id="save_btn" class="btn btn-sm btn-success"><?= __('save') ?></button>
                 </div>
             </form>
         </div>
@@ -237,9 +237,9 @@
         const aliasMsgHook = $("#alias_msg_hook");
 
         const errorMessages = {
-            1: '别名错误，应由字母、数字、下划线、短横线组成',
-            2: '别名错误，不能为纯数字',
-            3: '别名错误，与系统链接冲突'
+            1: '<?= __('alias_char_error') ?>',
+            2: '<?= __('alias_number_error') ?>',
+            3: '<?= __('alias_system_error') ?>'
         };
 
         const result = issortalias(alias);
