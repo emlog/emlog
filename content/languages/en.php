@@ -37,6 +37,10 @@ return [
     'audit' => 'Audit',
     'reject' => 'Reject',
     'unit_article' => ' ',
+    'all' => 'All',
+    'select_all' => 'Select All',
+    'content' => 'Content',
+    'top' => 'Top',
 
     // Sort
     'sort_name_required' => 'Category name cannot be empty',
@@ -367,4 +371,21 @@ return [
     'ai_generating' => 'AI Generating...',
     'ai_generate_failed' => 'AI Generation Failed',
     'comment_audit_success' => 'Audit success',
+
+    // Tag
+    'tag_management' => 'Tags',
+    'add_tag' => 'Add Tag',
+    'edit_tag' => 'Edit Tag',
+    'tag_name' => 'Tag Name',
+    'tag_title' => 'Tag Page Title',
+    'tag_keywords' => 'Tag Page Keywords (Comma separated)',
+    'tag_description' => 'Tag Page Description',
+    'search_tag_placeholder' => 'Search tags...',
+    'no_tags' => 'No tags yet, you can add tags when writing articles',
+    'select_tag' => 'Please select a tag',
+    'tag_exists' => 'Tag already exists',
+    'add_tag_success' => 'Tag added successfully',
+    'edit_tag_success' => 'Tag updated successfully',
+    'tag_count' => '%s tags in total',
+    'confirm_delete_tag' => 'Delete selected tags?',
 ];

@@ -1,18 +1,18 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
 <?php if (isset($_GET['active_add'])): ?>
-    <div class="alert alert-success">添加标签成功</div><?php endif ?>
+    <div class="alert alert-success"><?= _lang('add_tag_success') ?></div><?php endif ?>
 <?php if (isset($_GET['active_edit'])): ?>
-    <div class="alert alert-success">修改标签成功</div><?php endif ?>
+    <div class="alert alert-success"><?= _lang('edit_tag_success') ?></div><?php endif ?>
 <?php if (isset($_GET['error_a'])): ?>
-    <div class="alert alert-danger">请选择标签</div><?php endif ?>
+    <div class="alert alert-danger"><?= _lang('select_tag') ?></div><?php endif ?>
 <?php if (isset($_GET['error_exist'])): ?>
-    <div class="alert alert-danger">标签已存在</div><?php endif ?>
+    <div class="alert alert-danger"><?= _lang('tag_exists') ?></div><?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h4 mb-0 text-gray-800">文章标签</h1>
+    <h1 class="h4 mb-0 text-gray-800"><?= _lang('tag_management') ?></h1>
     <div class="d-flex align-items-center">
         <form action="tag.php" method="get" class="mr-2">
             <div class="form-inline search-inputs-nowrap">
-                <input type="text" name="keyword" value="<?= $keyword ?>" class="form-control m-1 small" placeholder="搜索标签名...">
+                <input type="text" name="keyword" value="<?= $keyword ?>" class="form-control m-1 small" placeholder="<?= __('search_tag_placeholder') ?>">
                 <div class="input-group-append">
                     <button class="btn btn-sm btn-success" type="submit">
                         <i class="icofont-search-2"></i>
@@ -21,7 +21,7 @@
             </div>
         </form>
         <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#addModal">
-            <i class="icofont-plus"></i> 添加标签
+            <i class="icofont-plus"></i> <?= _lang('add_tag') ?>
         </button>
     </div>
 </div>
@@ -38,12 +38,12 @@
                                 data-tagname="<?= $v['tagname'] ?>" data-kw="<?= $v['kw'] ?>" data-title="<?= $v['title'] ?>" data-desc="<?= $v['description'] ?>"><?= $v['tagname'] ?></a>
                         </h5>
                         <a href="<?= Url::tag($v['tagname']) ?>" target="_blank" class="text-muted ml-2"><i class="icofont-external-link"></i></a>
-                        <span class="<?= $count_style ?>">（<a href="./article.php?tagid=<?= $v['tid'] ?>" target="_blank"><?= $count ?>篇文章</a>）</span>
+                        <span class="<?= $count_style ?>">（<a href="./article.php?tagid=<?= $v['tid'] ?>" target="_blank"><?= $count ?><?= _lang('unit_article') ?><?= _lang('article') ?></a>）</span>
                         <input type="checkbox" name="tids[]" value="<?= $v['tid'] ?>" class="tids align-top" />
                     </div>
                 <?php endforeach ?>
             <?php else: ?>
-                <p class="m-3">还没有标签，写文章时可以打标签</p>
+                <p class="m-3"><?= _lang('no_tags') ?></p>
             <?php endif ?>
         </div>
         <div class="form-row align-items-center mx-4 mb-4">
@@ -52,24 +52,24 @@
             <div class="col-auto my-1">
                 <div class="custom-control custom-checkbox mr-sm-2">
                     <input type="checkbox" class="custom-control-input" id="checkAllItem">
-                    <label class="custom-control-label" for="checkAllItem">全选</label>
+                    <label class="custom-control-label" for="checkAllItem"><?= _lang('select_all') ?></label>
                 </div>
             </div>
             <div class="col-auto my-1 form-inline">
-                <a href="javascript:tagact('del');" class="btn btn-sm btn-outline-danger">删除</a>
+                <a href="javascript:tagact('del');" class="btn btn-sm btn-outline-danger"><?= _lang('delete') ?></a>
             </div>
         </div>
     </form>
 </div>
 <div class="page"><?= $pageurl ?></div>
-<div class="text-center small">有 <?= $tags_count ?> 个标签</div>
+<div class="text-center small"><?php printf(__('tag_count'), $tags_count); ?></div>
 
 <!-- 添加标签模态窗口 -->
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content border-0 shadow">
             <div class="modal-header border-0">
-                <h5 class="modal-title" id="addModalLabel">添加标签</h5>
+                <h5 class="modal-title" id="addModalLabel"><?= _lang('add_tag') ?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -77,27 +77,27 @@
             <form method="post" action="tag.php?action=add_tag">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="add_tagname">标签名</label>
+                        <label for="add_tagname"><?= _lang('tag_name') ?></label>
                         <input type="text" class="form-control" id="add_tagname" name="tagname" required>
                     </div>
                     <div class="form-group">
-                        <label for="add_title">标签页标题</label>
+                        <label for="add_title"><?= _lang('tag_title') ?></label>
                         <input type="text" class="form-control" id="add_title" name="title">
-                        <small class="form-text text-muted">支持变量: {{site_title}}, {{site_name}}, {{tag_name}}</small>
+                        <small class="form-text text-muted"><?= _lang('support_variable') ?>: {{site_title}}, {{site_name}}, {{tag_name}}</small>
                     </div>
                     <div class="form-group">
-                        <label for="add_kw">标签页关键词（英文逗号分割）</label>
+                        <label for="add_kw"><?= _lang('tag_keywords') ?></label>
                         <input type="text" class="form-control" id="add_kw" name="kw">
                     </div>
                     <div class="form-group">
-                        <label for="add_description">标签页描述</label>
+                        <label for="add_description"><?= _lang('tag_description') ?></label>
                         <textarea name="description" id="add_description" type="text" class="form-control"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer border-0">
                     <input type="hidden" name="token" value="<?= LoginAuth::genToken() ?>" />
-                    <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">取消</button>
-                    <button type="submit" class="btn btn-sm btn-success">添加</button>
+                    <button type="button" class="btn btn-sm btn-light" data-dismiss="modal"><?= _lang('cancel') ?></button>
+                    <button type="submit" class="btn btn-sm btn-success"><?= _lang('add_tag') ?></button>
                 </div>
             </form>
         </div>
@@ -109,7 +109,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content border-0 shadow">
             <div class="modal-header border-0">
-                <h5 class="modal-title" id="exampleModalLabel">修改标签</h5>
+                <h5 class="modal-title" id="exampleModalLabel"><?= _lang('edit_tag') ?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -117,28 +117,28 @@
             <form method="post" action="tag.php?action=update_tag">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="tagname">标签名</label>
+                        <label for="tagname"><?= _lang('tag_name') ?></label>
                         <input type="text" class="form-control" id="tagname" name="tagname" required>
                     </div>
                     <div class="form-group">
-                        <label for="title">标签页标题</label>
+                        <label for="title"><?= _lang('tag_title') ?></label>
                         <input type="text" class="form-control" id="title" name="title">
-                        <small class="form-text text-muted">支持变量: {{site_title}}, {{site_name}}, {{tag_name}}</small>
+                        <small class="form-text text-muted"><?= _lang('support_variable') ?>: {{site_title}}, {{site_name}}, {{tag_name}}</small>
                     </div>
                     <div class="form-group">
-                        <label for="kw">标签页关键词（英文逗号分割）</label>
+                        <label for="kw"><?= _lang('tag_keywords') ?></label>
                         <input type="text" class="form-control" id="kw" name="kw">
                     </div>
                     <div class="form-group">
-                        <label for="description">标签页描述</label>
+                        <label for="description"><?= _lang('tag_description') ?></label>
                         <textarea name="description" id="description" type="text" class="form-control"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer border-0">
                     <input type="hidden" value="" id="tid" name="tid" />
-                    <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">取消</button>
-                    <button type="submit" class="btn btn-sm btn-success">保存</button>
-                    <a class="btn btn-sm btn-outline-danger" href="javascript:deltags();">删除</a>
+                    <button type="button" class="btn btn-sm btn-light" data-dismiss="modal"><?= _lang('cancel') ?></button>
+                    <button type="submit" class="btn btn-sm btn-success"><?= _lang('save') ?></button>
+                    <a class="btn btn-sm btn-outline-danger" href="javascript:deltags();"><?= _lang('delete') ?></a>
                 </div>
             </form>
         </div>
@@ -170,12 +170,12 @@
 
     function tagact(act) {
         if (getChecked('tids') === false) {
-            infoAlert('请选择要删除的标签');
+            infoAlert('<?= __('select_tag') ?>');
             return;
         }
 
         if (act === 'del') {
-            delAlert2('', '删除所选标签？', function() {
+            delAlert2('', '<?= __('confirm_delete_tag') ?>', function() {
                 $("#operate").val(act);
                 $("#form_tag").submit();
             })
@@ -187,7 +187,7 @@
 
     function deltags() {
         var tid = $('#tid').val()
-        delAlert2('', '删除所选标签？', function() {
+        delAlert2('', '<?= __('confirm_delete_tag') ?>', function() {
             window.open("./tag.php?action=del_tag&token=<?= LoginAuth::genToken() ?>&tid=" + tid, "_self");
         })
     }

@@ -38,6 +38,7 @@ return [
     'audit' => '审核',
     'reject' => '驳回',
     'all' => '全部',
+    'select_all' => '全选',
     'content' => '内容',
     'top' => '置顶',
 
@@ -370,4 +371,21 @@ return [
     'ai_generating' => 'AI生成中...',
     'ai_generate_failed' => 'AI 生成失败',
     'comment_audit_success' => '审核成功',
+
+    // Tag
+    'tag_management' => '文章标签',
+    'add_tag' => '添加标签',
+    'edit_tag' => '修改标签',
+    'tag_name' => '标签名',
+    'tag_title' => '标签页标题',
+    'tag_keywords' => '标签页关键词（英文逗号分割）',
+    'tag_description' => '标签页描述',
+    'search_tag_placeholder' => '搜索标签名...',
+    'no_tags' => '还没有标签，写文章时可以打标签',
+    'select_tag' => '请选择标签',
+    'tag_exists' => '标签已存在',
+    'add_tag_success' => '添加标签成功',
+    'edit_tag_success' => '修改标签成功',
+    'tag_count' => '有 %s 个标签',
+    'confirm_delete_tag' => '删除所选标签？',
 ];
