@@ -104,7 +104,7 @@ return [
     'setting_basic' => 'Basic Settings',
     'setting_user' => 'User Settings',
     'setting_mail' => 'Email Notification',
-    'setting_seo' => 'SEO Settings',
+    'setting_seo' => 'SEO',
     'setting_api' => 'API',
     'setting_ai' => '✨AI',
     'setting_profile' => 'Profile',

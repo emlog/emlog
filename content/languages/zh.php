@@ -107,7 +107,7 @@ return [
     'setting_basic' => '基础设置',
     'setting_user' => '用户设置',
     'setting_mail' => '邮件通知',
-    'setting_seo' => 'SEO设置',
+    'setting_seo' => 'SEO',
     'setting_api' => 'API',
     'setting_ai' => '✨AI',
     'setting_profile' => '个人信息',
