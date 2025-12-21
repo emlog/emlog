@@ -1,19 +1,19 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
 <?php if (isset($_GET['active_save'])): ?>
-    <div class="alert alert-success"><?= __('save_success') ?></div><?php endif ?>
+    <div class="alert alert-success"><?= _lang('save_success') ?></div><?php endif ?>
 <?php if (isset($_GET['error_a'])): ?>
-    <div class="alert alert-danger"><?= __('sort_name_required') ?></div><?php endif ?>
+    <div class="alert alert-danger"><?= _lang('sort_name_required') ?></div><?php endif ?>
 <?php if (isset($_GET['error_c'])): ?>
-    <div class="alert alert-danger"><?= __('alias_format_error') ?></div><?php endif ?>
+    <div class="alert alert-danger"><?= _lang('alias_format_error') ?></div><?php endif ?>
 <?php if (isset($_GET['error_d'])): ?>
-    <div class="alert alert-danger"><?= __('alias_exists_error') ?></div><?php endif ?>
+    <div class="alert alert-danger"><?= _lang('alias_exists_error') ?></div><?php endif ?>
 <?php if (isset($_GET['error_e'])): ?>
-    <div class="alert alert-danger"><?= __('alias_reserved_error') ?></div><?php endif ?>
+    <div class="alert alert-danger"><?= _lang('alias_reserved_error') ?></div><?php endif ?>
 <?php if (isset($_GET['error_f'])): ?>
-    <div class="alert alert-danger"><?= __('sort_self_parent_error') ?></div><?php endif ?>
+    <div class="alert alert-danger"><?= _lang('sort_self_parent_error') ?></div><?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h4 mb-0 text-gray-800"><?= __('category') ?></h1>
-    <a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#sortModal"><i class="icofont-plus"></i> <?= __('add_category') ?></a>
+    <h1 class="h4 mb-0 text-gray-800"><?= _lang('category') ?></h1>
+    <a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#sortModal"><i class="icofont-plus"></i> <?= _lang('add_category') ?></a>
 </div>
 <form method="post" id="sort_form" action="sort.php?action=taxis">
     <div class="card shadow mb-4">
@@ -22,13 +22,13 @@
                 <table class="table table-bordered table-striped table-hover" id="dataTable">
                     <thead>
                         <tr>
-                            <th><?= __('image') ?></th>
-                            <th><?= __('name') ?></th>
-                            <th><?= __('description') ?></th>
-                            <th><?= __('sort_id') ?></th>
-                            <th><?= __('alias') ?></th>
-                            <th><?= __('article') ?></th>
-                            <th><?= __('operation') ?></th>
+                            <th><?= _lang('image') ?></th>
+                            <th><?= _lang('name') ?></th>
+                            <th><?= _lang('description') ?></th>
+                            <th><?= _lang('sort_id') ?></th>
+                            <th><?= _lang('alias') ?></th>
+                            <th><?= _lang('article') ?></th>
+                            <th><?= _lang('operation') ?></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -67,7 +67,7 @@
                                     </a>
                                     <a href="<?= Url::sort($value['sid']) ?>" target="_blank" class="text-muted ml-2"><i class="icofont-external-link"></i></a>
                                     <?php if ($value['allow_user_post'] == 'n'): ?>
-                                        <br><span class="badge small badge-orange"><?= __('no_contribute') ?></span>
+                                        <br><span class="badge small badge-orange"><?= _lang('no_contribute') ?></span>
                                     <?php endif ?>
                                 </td>
                                 <td><?= subString($value['description'], 0, 100) ?></td>
@@ -75,7 +75,7 @@
                                 <td class="alias"><?= $value['alias'] ?></td>
                                 <td><a href="article.php?sid=<?= $value['sid'] ?>"><?= $value['lognum'] ?></a></td>
                                 <td>
-                                    <a href="javascript: em_confirm(<?= $value['sid'] ?>, 'sort', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger"><?= __('delete') ?></a>
+                                    <a href="javascript: em_confirm(<?= $value['sid'] ?>, 'sort', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger"><?= _lang('delete') ?></a>
                                 </td>
                             </tr>
                             <?php
@@ -110,7 +110,7 @@
                                             data-template="<?= $value['template'] ?>"><?= $value['sortname'] ?></a>
                                         <a href="<?= Url::sort($value['sid']) ?>" target="_blank" class="text-muted ml-2"><i class="icofont-external-link"></i></a>
                                         <?php if ($value['allow_user_post'] == 'n'): ?>
-                                            <br><span class="badge small badge-orange"><?= __('no_contribute') ?></span>
+                                            <br><span class="badge small badge-orange"><?= _lang('no_contribute') ?></span>
                                         <?php endif ?>
                                     </td>
                                     <td><?= subString($value['description'], 0, 100) ?></td>
@@ -118,7 +118,7 @@
                                     <td class="alias"><?= $value['alias'] ?></td>
                                     <td><a href="article.php?sid=<?= $value['sid'] ?>"><?= $value['lognum'] ?></a></td>
                                     <td>
-                                        <a href="javascript: em_confirm(<?= $value['sid'] ?>, 'sort', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger"><?= __('delete') ?></a>
+                                        <a href="javascript: em_confirm(<?= $value['sid'] ?>, 'sort', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger"><?= _lang('delete') ?></a>
                                     </td>
                                 </tr>
                             <?php endforeach ?>
@@ -129,7 +129,7 @@
         </div>
     </div>
     <div class="list_footer">
-        <input type="submit" value="<?= __('save_sort') ?>" class="btn btn-sm btn-success" />
+        <input type="submit" value="<?= _lang('save_sort') ?>" class="btn btn-sm btn-success" />
     </div>
 </form>
 
@@ -137,7 +137,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content border-0 shadow">
             <div class="modal-header border-0">
-                <h5 class="modal-title" id="exampleModalLabel"><?= __('category') ?></h5>
+                <h5 class="modal-title" id="exampleModalLabel"><?= _lang('category') ?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -146,17 +146,17 @@
             <form action="sort.php?action=save" method="post" id="sort_new">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="sortname"><?= __('sort_name') ?> <span class="text-danger">*</span></label>
+                        <label for="sortname"><?= _lang('sort_name') ?> <span class="text-danger">*</span></label>
                         <input class="form-control" id="sortname" name="sortname" required>
                     </div>
                     <div class="form-group">
-                        <label for="alias"><?= __('alias_desc') ?></label>
+                        <label for="alias"><?= _lang('alias_desc') ?></label>
                         <input class="form-control" id="alias" name="alias">
                     </div>
                     <div class="form-group">
-                        <label for="pid"><?= __('parent_sort') ?></label>
+                        <label for="pid"><?= _lang('parent_sort') ?></label>
                         <select name="pid" id="pid" class="form-control">
-                            <option value="0"><?= __('none') ?></option>
+                            <option value="0"><?= _lang('none') ?></option>
                             <?php
                             foreach ($sorts as $key => $value):
                                 if ($value['pid'] != 0) {
@@ -168,31 +168,31 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="sortimg"><?= __('sort_image') ?></label>
+                        <label for="sortimg"><?= _lang('sort_image') ?></label>
                         <input class="form-control" id="sortimg" name="sortimg" type="url" placeholder="https://">
                     </div>
                     <div class="form-group">
-                        <label for="title"><?= __('sort_title_desc') ?></label>
+                        <label for="title"><?= _lang('sort_title_desc') ?></label>
                         <input class="form-control" id="title" name="title">
-                        <small class="form-text text-muted"><?= __('support_variable') ?>: {{site_title}}, {{site_name}}, {{sort_name}}</small>
+                        <small class="form-text text-muted"><?= _lang('support_variable') ?>: {{site_title}}, {{site_name}}, {{sort_name}}</small>
                     </div>
                     <div class="form-group">
-                        <label for="description"><?= __('sort_desc_desc') ?></label>
+                        <label for="description"><?= _lang('sort_desc_desc') ?></label>
                         <textarea name="description" id="description" type="text" class="form-control"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="kw"><?= __('sort_kw_desc') ?></label>
+                        <label for="kw"><?= _lang('sort_kw_desc') ?></label>
                         <input class="form-control" id="kw" name="kw">
                     </div>
                     <div class="form-group">
-                        <label for="page_count"><?= __('sort_per_page_desc') ?></label>
+                        <label for="page_count"><?= _lang('sort_per_page_desc') ?></label>
                         <input class="form-control" value="" name="page_count" id="page_count" type="number" min="0" />
                     </div>
                     <?php if ($customTemplates): ?>
                         <div class="form-group mt-2">
-                            <label for="template"><?= __('sort_template') ?></label>
+                            <label for="template"><?= _lang('sort_template') ?></label>
                             <?php
-                            $sortListHtml = '<option value="">' . __('default') . '</option>';
+                            $sortListHtml = '<option value="">' . _lang('default') . '</option>';
                             foreach ($customTemplates as $v) {
                                 $sortListHtml .= '<option value="' . str_replace('.php', '', $v['filename']) . '">' . ($v['comment']) . '</option>';
                             }
@@ -202,7 +202,7 @@
                     <?php endif; ?>
                     <div class="custom-control custom-switch">
                         <input class="custom-control-input" type="checkbox" name="allow_user_post" id="allow_user_post" value="y">
-                        <label class="custom-control-label" for="allow_user_post"><?= __('allow_contribute') ?></label>
+                        <label class="custom-control-label" for="allow_user_post"><?= _lang('allow_contribute') ?></label>
                     </div>
                     <?php doAction('adm_sort_add') ?>
                 </div>
@@ -210,8 +210,8 @@
                     <input type="hidden" value="" name="sid" id="sid" />
                     <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
                     <span id="alias_msg_hook"></span>
-                    <button type="button" class="btn btn-sm btn-light" data-dismiss="modal"><?= __('cancel') ?></button>
-                    <button type="submit" id="save_btn" class="btn btn-sm btn-success"><?= __('save') ?></button>
+                    <button type="button" class="btn btn-sm btn-light" data-dismiss="modal"><?= _lang('cancel') ?></button>
+                    <button type="submit" id="save_btn" class="btn btn-sm btn-success"><?= _lang('save') ?></button>
                 </div>
             </form>
         </div>
@@ -237,9 +237,9 @@
         const aliasMsgHook = $("#alias_msg_hook");
 
         const errorMessages = {
-            1: '<?= __('alias_char_error') ?>',
-            2: '<?= __('alias_number_error') ?>',
-            3: '<?= __('alias_system_error') ?>'
+            1: '<?= _lang('alias_char_error') ?>',
+            2: '<?= _lang('alias_number_error') ?>',
+            3: '<?= _lang('alias_system_error') ?>'
         };
 
         const result = issortalias(alias);

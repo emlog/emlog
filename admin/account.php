@@ -28,7 +28,7 @@ if ($action == 'signin') {
     $login_code = Option::get('login_code') === 'y';
     $is_signup = Option::get('is_signup') === 'y';
 
-    $page_title = __('login');
+    $page_title = _lang('login');
     require_once View::getAdmView('user_head');
     require_once View::getAdmView('signin');
     View::output();
@@ -48,7 +48,7 @@ if ($action == 'dosignin') {
 
     if (!User::checkLoginCode($login_code)) {
         if ($resp === 'json') {
-            Output::error(__('captcha_error'));
+            Output::error(_lang('captcha_error'));
         }
         emDirect('./account.php?action=signin&err_ckcode=1');
     }
@@ -69,14 +69,14 @@ if ($action == 'dosignin') {
         case LoginAuth::LOGIN_ERROR_PASSWD:
             doAction('login_fail');
             if ($resp === 'json') {
-                Output::error(__('user_pass_error'));
+                Output::error(_lang('user_pass_error'));
             }
             emDirect("./account.php?action=signin&err_login=1");
             break;
         case LoginAuth::LOGIN_ERROR_FORBID:
             doAction('login_fail');
             if ($resp === 'json') {
-                Output::error(__('account_forbidden'));
+                Output::error(_lang('account_forbidden'));
             }
             emDirect("./account.php?action=signin&err_forbid=1");
             break;
@@ -91,10 +91,10 @@ if ($action == 'signup') {
     $error_msg = '';
 
     if (Option::get('is_signup') !== 'y') {
-        emMsg(__('system_closed_register'));
+        emMsg(_lang('system_closed_register'));
     }
 
-    $page_title = __('register_account');
+    $page_title = _lang('register_account');
     include View::getAdmView('user_head');
     require_once View::getAdmView('signup');
     View::output();
@@ -117,37 +117,37 @@ if ($action == 'dosignup') {
 
     if (!checkMail($mail)) {
         if ($resp === 'json') {
-            Output::error(__('email_format_error'));
+            Output::error(_lang('email_format_error'));
         }
         emDirect('./account.php?action=signup&error_login=1');
     }
     if (!User::checkLoginCode($login_code)) {
         if ($resp === 'json') {
-            Output::error(__('captcha_error'));
+            Output::error(_lang('captcha_error'));
         }
         emDirect('./account.php?action=signup&err_ckcode=1');
     }
     if (Option::get('email_code') === 'y' && !User::checkMailCode($mail_code)) {
         if ($resp === 'json') {
-            Output::error(__('email_code_error'));
+            Output::error(_lang('email_code_error'));
         }
         emDirect('./account.php?action=signup&err_mail_code=1');
     }
     if ($User_Model->isMailExist($mail)) {
         if ($resp === 'json') {
-            Output::error(__('email_exist_error'));
+            Output::error(_lang('email_exist_error'));
         }
         emDirect('./account.php?action=signup&error_exist=1');
     }
     if (strlen($passwd) < 6) {
         if ($resp === 'json') {
-            Output::error(__('password_min_length'));
+            Output::error(_lang('password_min_length'));
         }
         emDirect('./account.php?action=signup&error_pwd_len=1');
     }
     if ($passwd !== $repasswd) {
         if ($resp === 'json') {
-            Output::error(__('password_inconsistent'));
+            Output::error(_lang('password_inconsistent'));
         }
         emDirect('./account.php?action=signup&error_pwd2=1');
     }
@@ -170,7 +170,7 @@ if ($action == 'send_email_code') {
     $mail = Input::postStrVar('mail');
 
     if (!checkMail($mail)) {
-        Output::error(__('email_format_error'));
+        Output::error(_lang('email_format_error'));
     }
 
     doAction('send_email_code', $mail);
@@ -179,7 +179,7 @@ if ($action == 'send_email_code') {
     if ($ret) {
         Output::ok();
     } else {
-        Output::error(__('email_code_send_failed'));
+        Output::error(_lang('email_code_send_failed'));
     }
 }
 
@@ -191,7 +191,7 @@ if ($action == 'reset') {
     $login_code = Option::get('login_code') === 'y';
     $error_msg = '';
 
-    $page_title = __('reset_password');
+    $page_title = _lang('reset_password');
     include View::getAdmView('user_head');
     require_once View::getAdmView('reset');
     View::output();
@@ -206,13 +206,13 @@ if ($action == 'doreset') {
 
     if (!User::checkLoginCode($login_code)) {
         if ($resp === 'json') {
-            Output::error(__('captcha_error'));
+            Output::error(_lang('captcha_error'));
         }
         emDirect('./account.php?action=reset&err_ckcode=1');
     }
     if (!$mail || !$User_Model->isMailExist($mail)) {
         if ($resp === 'json') {
-            Output::error(__('reg_email_error'));
+            Output::error(_lang('reg_email_error'));
         }
         emDirect('./account.php?action=reset&error_mail=1');
     }
@@ -225,7 +225,7 @@ if ($action == 'doreset') {
         emDirect("./account.php?action=reset2&succ_mail=1");
     } else {
         if ($resp === 'json') {
-            Output::error(__('email_code_send_failed'));
+            Output::error(_lang('email_code_send_failed'));
         }
         emDirect("./account.php?action=reset&error_sendmail=1");
     }
@@ -239,7 +239,7 @@ if ($action == 'reset2') {
     $login_code = Option::get('login_code') === 'y';
     $error_msg = '';
 
-    $page_title = __('reset_password');
+    $page_title = _lang('reset_password');
     include View::getAdmView('user_head');
     require_once View::getAdmView('reset2');
     View::output();
@@ -253,19 +253,19 @@ if ($action == 'doreset2') {
 
     if (strlen($passwd) < 6) {
         if ($resp === 'json') {
-            Output::error(__('password_min_length'));
+            Output::error(_lang('password_min_length'));
         }
         emDirect('./account.php?action=reset2&error_pwd_len=1');
     }
     if ($passwd !== $repasswd) {
         if ($resp === 'json') {
-            Output::error(__('password_inconsistent'));
+            Output::error(_lang('password_inconsistent'));
         }
         emDirect('./account.php?action=reset2&error_pwd2=1');
     }
     if (!$mail_code || !User::checkMailCode($mail_code)) {
         if ($resp === 'json') {
-            Output::error(__('email_code_error'));
+            Output::error(_lang('email_code_error'));
         }
         emDirect('./account.php?action=reset2&err_mail_code=1');
     }

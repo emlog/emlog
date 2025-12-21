@@ -12,7 +12,7 @@
     <div class="d-flex align-items-center">
         <form action="tag.php" method="get" class="mr-2">
             <div class="form-inline search-inputs-nowrap">
-                <input type="text" name="keyword" value="<?= $keyword ?>" class="form-control m-1 small" placeholder="<?= __('search_tag_placeholder') ?>">
+                <input type="text" name="keyword" value="<?= $keyword ?>" class="form-control m-1 small" placeholder="<?= _lang('search_tag_placeholder') ?>">
                 <div class="input-group-append">
                     <button class="btn btn-sm btn-success" type="submit">
                         <i class="icofont-search-2"></i>
@@ -62,7 +62,7 @@
     </form>
 </div>
 <div class="page"><?= $pageurl ?></div>
-<div class="text-center small"><?php printf(__('tag_count'), $tags_count); ?></div>
+<div class="text-center small"><?= _lang('total') ?>:<?= $tags_count ?></div>
 
 <!-- 添加标签模态窗口 -->
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
@@ -170,24 +170,24 @@
 
     function tagact(act) {
         if (getChecked('tids') === false) {
-            infoAlert('<?= __('select_tag') ?>');
+            infoAlert('<?= _lang('select_tag') ?>');
             return;
         }
 
         if (act === 'del') {
-            delAlert2('', '<?= __('confirm_delete_tag') ?>', function() {
+            delAlert2('', '<?= _lang('confirm_delete_tag') ?>', function() {
                 $("#operate").val(act);
                 $("#form_tag").submit();
             })
             return;
         }
         $("#operate").val(act);
-        $("#form_media").submit();
+        $("#form_tag").submit();
     }
 
     function deltags() {
         var tid = $('#tid').val()
-        delAlert2('', '<?= __('confirm_delete_tag') ?>', function() {
+        delAlert2('', '<?= _lang('confirm_delete_tag') ?>', function() {
             window.open("./tag.php?action=del_tag&token=<?= LoginAuth::genToken() ?>&tid=" + tid, "_self");
         })
     }

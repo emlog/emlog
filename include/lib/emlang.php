@@ -65,11 +65,3 @@ function _lang($key)
 {
     echo EmLang::getInstance()->get($key);
 }
-
-/**
- * Return translated string
- */
-function __($key)
-{
-    return EmLang::getInstance()->get($key);
-}
