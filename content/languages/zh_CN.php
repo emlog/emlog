@@ -533,6 +533,23 @@ return [
     'register_now' => '立即正版注册',
     'input_license' => '输入注册码',
 
+    // Template
+    'tpl_change_success' => '模板更换成功',
+    'tpl_install_success' => '模板安装成功',
+    'tpl_update_success' => '模板更新成功',
+    'tpl_delete_error_permission' => '删除失败，请检查模板文件权限',
+    'tpl_current_damaged' => '当前使用的模板(%s)已被删除或损坏，请选择其他模板。',
+    'tpl_only_zip_support' => '只支持zip压缩格式的模板包',
+    'tpl_upload_dir_permission' => '上传失败，模板目录(content/templates)不可写',
+    'tpl_select_zip' => '请选择一个zip格式的模板安装包',
+    'tpl_install_error_standard' => '安装失败，模板安装包不符合标准',
+    'tpl_theme' => '模板主题',
+    'tpl_install' => '安装模板',
+    'tpl_select_package' => '选择模板安装包',
+    'tpl_upload_zip_tip' => '请上传zip格式的模板安装包',
+    'tpl_load_setting_error' => '加载设置页面失败',
+    'tpl_use' => '启用',
+
     // Plugin
     'plugin_install_success' => '插件安装成功，请开启使用',
     'plugin_update_success' => '插件更新成功',

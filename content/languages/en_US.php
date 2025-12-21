@@ -177,7 +177,7 @@ return [
     'system' => 'System',
     'data' => 'Data',
     'setting' => 'Settings',
-    'store' => 'Store',
+    'store' => 'App Store',
 
     // Admin Header
     'admin_center' => 'Admin Center',
@@ -532,6 +532,23 @@ return [
     'register_feature_4' => 'SVIP free apps: 30+ paid plugins/themes for free',
     'register_now' => 'Register Now',
     'input_license' => 'Input License',
+
+    // Template
+    'tpl_change_success' => 'Template changed successfully',
+    'tpl_install_success' => 'Template installed successfully',
+    'tpl_update_success' => 'Template updated successfully',
+    'tpl_delete_error_permission' => 'Delete failed, please check template file permissions',
+    'tpl_current_damaged' => 'Current template (%s) is deleted or damaged, please select another template.',
+    'tpl_only_zip_support' => 'Only zip compression format template packages are supported',
+    'tpl_upload_dir_permission' => 'Upload failed, template directory (content/templates) is not writable',
+    'tpl_select_zip' => 'Please select a zip format template installation package',
+    'tpl_install_error_standard' => 'Installation failed, template package does not meet standards',
+    'tpl_theme' => 'Template Theme',
+    'tpl_install' => 'Install Template',
+    'tpl_select_package' => 'Select Template Package',
+    'tpl_upload_zip_tip' => 'Please upload a zip format template installation package',
+    'tpl_load_setting_error' => 'Failed to load setting page',
+    'tpl_use' => 'Enable',
 
     // Plugin
     'plugin_install_success' => 'Plugin installed successfully, please activate it.',
