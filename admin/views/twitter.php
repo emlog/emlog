@@ -44,7 +44,7 @@
                 </div>
                 <div class="card-footer bg-white border-0 mt-3 p-3">
                     <p class="text-muted small card-text d-flex justify-content-between">
-                        <?= $val['date'] ?> | by <?= $author ?> <?= $private ? '｜ ' . EmLang::getInstance()->get('private') : '' ?>
+                        <?= $val['date'] ?> | by <?= $author ?> <?= $private ? '｜ ' . _lang('private') : '' ?>
                         <span>
                             <a href="#" class="text-muted" data-toggle="modal" data-target="#editModal" data-id="<?= $val['id'] ?>" data-t="<?= htmlspecialchars($val['t_raw']) ?>"><?= _lang('edit') ?></a>
                             <a href="javascript: em_confirm(<?= $tid ?>, 'tw', '<?= LoginAuth::genToken() ?>');" class="care"><?= _lang('delete') ?></a>
@@ -56,7 +56,7 @@
     <?php endforeach ?>
 </div>
 <div class="page"><?= $pageurl ?> </div>
-<div class="text-center small"><?= sprintf(EmLang::getInstance()->get('twitter_count'), $twnum) ?></div>
+<div class="text-center small"><?= sprintf(_lang('twitter_count'), $twnum) ?></div>
 
 <!--编辑微语-->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog">
