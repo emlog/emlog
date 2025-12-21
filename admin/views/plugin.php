@@ -1,50 +1,50 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
 <?php if (isset($_GET['activate_install'])): ?>
-    <div class="alert alert-success">插件安装成功，请开启使用</div><?php endif ?>
+    <div class="alert alert-success"><?= _lang('plugin_install_success') ?></div><?php endif ?>
 <?php if (isset($_GET['activate_upgrade'])): ?>
-    <div class="alert alert-success">插件更新成功</div><?php endif ?>
+    <div class="alert alert-success"><?= _lang('plugin_update_success') ?></div><?php endif ?>
 <?php if (isset($_GET['active_error'])): ?>
-    <div class="alert alert-danger">插件开启失败</div><?php endif ?>
+    <div class="alert alert-danger"><?= _lang('plugin_enable_failed') ?></div><?php endif ?>
 <?php if (isset($_GET['error_a'])): ?>
-    <div class="alert alert-danger">删除失败，请检查插件文件权限</div><?php endif ?>
+    <div class="alert alert-danger"><?= _lang('plugin_delete_failed_permission') ?></div><?php endif ?>
 <?php if (isset($_GET['error_b'])): ?>
-    <div class="alert alert-danger">上传失败，插件目录(content/plugins)不可写</div><?php endif ?>
+    <div class="alert alert-danger"><?= _lang('plugin_upload_failed_permission') ?></div><?php endif ?>
 <?php if (isset($_GET['error_c'])): ?>
-    <div class="alert alert-danger">服务器PHP不支持zip模块</div><?php endif ?>
+    <div class="alert alert-danger"><?= _lang('php_zip_not_support') ?></div><?php endif ?>
 <?php if (isset($_GET['error_d'])): ?>
-    <div class="alert alert-danger">请选择一个zip插件安装包</div><?php endif ?>
+    <div class="alert alert-danger"><?= _lang('select_zip_plugin') ?></div><?php endif ?>
 <?php if (isset($_GET['error_e'])): ?>
-    <div class="alert alert-danger">安装失败，插件安装包不符合标准</div><?php endif ?>
+    <div class="alert alert-danger"><?= _lang('plugin_install_failed_invalid') ?></div><?php endif ?>
 <?php if (isset($_GET['error_f'])): ?>
-    <div class="alert alert-danger">只支持zip压缩格式的插件包</div><?php endif ?>
+    <div class="alert alert-danger"><?= _lang('plugin_only_zip') ?></div><?php endif ?>
 <?php if (isset($_GET['error_g'])): ?>
-    <div class="alert alert-danger">上传安装包大小超出PHP限制</div><?php endif ?>
+    <div class="alert alert-danger"><?= _lang('upload_size_exceeded') ?></div><?php endif ?>
 <?php if (isset($_GET['error_i'])): ?>
-    <div class="alert alert-danger">您的emlog未完成正版注册</div><?php endif ?>
+    <div class="alert alert-danger"><?= _lang('emlog_not_registered') ?></div><?php endif ?>
 <?php if (isset($_GET['error_sys'])): ?>
-    <div class="alert alert-danger">系统依赖插件，请勿删除和关闭</div><?php endif ?>
+    <div class="alert alert-danger"><?= _lang('system_plugin_warning') ?></div><?php endif ?>
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h4 mb-0 text-gray-800">插件扩展</h1>
+    <h1 class="h4 mb-0 text-gray-800"><?= _lang('plugin_extension') ?></h1>
     <div>
-        <a href="store.php?action=plu" class="btn btn-sm btn-warning shadow-sm mt-4"><i class="icofont-shopping-cart"></i> 应用商店</a>
-        <a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> 安装插件</a>
+        <a href="store.php?action=plu" class="btn btn-sm btn-warning shadow-sm mt-4"><i class="icofont-shopping-cart"></i> <?= _lang('store') ?></a>
+        <a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> <?= _lang('install_plugin') ?></a>
     </div>
 </div>
 <div class="panel-heading d-flex flex-column flex-md-row justify-content-between mb-3">
     <ul class="nav nav-pills justify-content-start mb-2 mb-md-0">
         <li class="nav-item">
-            <a class="nav-link <?= $filter == '' ? 'active' : '' ?>" href="./plugin.php">全部</a>
+            <a class="nav-link <?= $filter == '' ? 'active' : '' ?>" href="./plugin.php"><?= _lang('all') ?></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link <?= $filter == 'on' ? 'active' : '' ?>" href="./plugin.php?filter=on">已开启</a>
+            <a class="nav-link <?= $filter == 'on' ? 'active' : '' ?>" href="./plugin.php?filter=on"><?= _lang('active') ?></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link <?= $filter == 'off' ? 'active' : '' ?>" href="./plugin.php?filter=off">未开启</a>
+            <a class="nav-link <?= $filter == 'off' ? 'active' : '' ?>" href="./plugin.php?filter=off"><?= _lang('inactive') ?></a>
         </li>
     </ul>
     <div class="w-md-auto">
-        <input type="text" id="pluginSearch" class="form-control" placeholder="搜索插件...">
+        <input type="text" id="pluginSearch" class="form-control" placeholder="<?= _lang('search_plugin_placeholder') ?>">
     </div>
 </div>
 <div class="card shadow mb-4">
@@ -54,11 +54,11 @@
             <table class="table table-striped table-hover dataTable no-footer">
                 <thead>
                     <tr>
-                        <th>插件名</th>
-                        <th>开关</th>
-                        <th>作者</th>
-                        <th>版本</th>
-                        <th>操作</th>
+                        <th><?= _lang('plugin_name') ?></th>
+                        <th><?= _lang('status') ?></th>
+                        <th><?= _lang('author') ?></th>
+                        <th><?= _lang('version') ?></th>
+                        <th><?= _lang('operation') ?></th>
                     </tr>
                 </thead>
                 <tbody id="pluginTable">
@@ -80,7 +80,7 @@
                                 $plugin_setting_url = "./plugin.php?plugin={$val['Plugin']}";
                             }
                             if (!empty($plugin_setting_url) && $val['active']) {
-                                $plugin_name = "<a href=\"{$plugin_setting_url}\" title=\"点击设置插件\">{$plugin_name}</a>";
+                                $plugin_name = "<a href=\"{$plugin_setting_url}\">{$plugin_name}</a>";
                             }
                     ?>
                             <tr data-plugin-alias="<?= $val['Plugin'] ?>" data-plugin-version="<?= $val['Version'] ?>" data-plugin-setting-url="<?= $plugin_setting_url ?>">
@@ -92,7 +92,7 @@
                                         <div class="flex-grow-1 ms-3">
                                             <div class="align-items-center mb-3">
                                                 <p class="mb-0 m-2"><?= $plugin_name ?></p>
-                                                <p class="mb-0 m-2 small"><?= $val['Description'] ?> <?php if (strpos($val['Url'], 'https://www.emlog.net') === 0): ?><a href="<?= $val['Url'] ?>" target="_blank">更多信息&raquo;</a><?php endif ?></p>
+                                                <p class="mb-0 m-2 small"><?= $val['Description'] ?> <?php if (strpos($val['Url'], 'https://www.emlog.net') === 0): ?><a href="<?= $val['Url'] ?>" target="_blank"><?= _lang('more_info') ?>&raquo;</a><?php endif ?></p>
                                             </div>
                                         </div>
                                     </div>
@@ -106,9 +106,9 @@
                                     <div class="mt-3">
                                         <?php if ($val['Author'] != ''): ?>
                                             <?php if (strpos($val['AuthorUrl'], 'https://www.emlog.net') === 0): ?>
-                                                <a href="<?= $val['AuthorUrl'] ?>" target="_blank"><?= $val['Author'] ?></a>
+                                                <a href="<?= $val['AuthorUrl'] ?>" target="_blank"><?= _lang('author') ?>: <?= $val['Author'] ?></a>
                                             <?php else: ?>
-                                                <?= $val['Author'] ?>
+                                                <?= _lang('author') ?>: <?= $val['Author'] ?>
                                             <?php endif ?>
                                         <?php endif ?>
                                     </div>
@@ -120,7 +120,7 @@
                                 </td>
                                 <td>
                                     <div class="mt-3">
-                                        <a href="javascript: em_confirm('<?= $alias ?>', 'plu', '<?= LoginAuth::genToken() ?>');" class="btn btn-outline-danger btn-sm">删除</a>
+                                        <a href="javascript: em_confirm('<?= $alias ?>', 'plu', '<?= LoginAuth::genToken() ?>');" class="btn btn-outline-danger btn-sm"><?= _lang('delete') ?></a>
                                         <span class="update-btn"></span>
                                     </div>
                                 </td>
@@ -137,7 +137,7 @@
     <div class="modal-dialog">
         <div class="modal-content border-0 shadow">
             <div class="modal-header border-0">
-                <h5 class="modal-title">安装插件</h5>
+                <h5 class="modal-title"><?= _lang('install_plugin') ?></h5>
                 <button type="button" class="close" data-dismiss="modal">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -146,16 +146,16 @@
                 <div class="modal-body px-4">
                     <div class="custom-file">
                         <input type="file" class="custom-file-input" name="pluzip" id="pluzip">
-                        <label class="custom-file-label" for="pluzip">选择插件安装包</label>
+                        <label class="custom-file-label" for="pluzip"><?= _lang('select_plugin_package') ?></label>
                         <input name="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
                     </div>
                     <small class="form-text text-muted mt-2">
-                        请上传zip格式的插件安装包
+                        <?= _lang('upload_zip_plugin_tips') ?>
                     </small>
                 </div>
                 <div class="modal-footer border-0">
-                    <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">取消</button>
-                    <button type="submit" class="btn btn-sm btn-success">上传安装</button>
+                    <button type="button" class="btn btn-sm btn-light" data-dismiss="modal"><?= _lang('cancel') ?></button>
+                    <button type="submit" class="btn btn-sm btn-success"><?= _lang('upload_install') ?></button>
                 </div>
             </form>
         </div>
@@ -171,7 +171,7 @@
         // 监听模板文件上传
         $('#pluzip').on('change', function() {
             var fileName = $(this).get(0).files[0] ? $(this).get(0).files[0].name : '';
-            $(this).next('.custom-file-label').text(fileName || '选择插件安装包');
+            $(this).next('.custom-file-label').text(fileName || '<?= _lang('select_plugin_package') ?>');
         });
 
         var pluginList = [];
@@ -196,21 +196,21 @@
                     $.each(pluginsToUpdate, function(index, item) {
                         var $tr = $('table tbody tr[data-plugin-alias="' + item.name + '"]');
                         var $updateBtn = $tr.find('.update-btn');
-                        var $updateLink = $('<a>').addClass('btn btn-success btn-sm').text('更新').attr("href", "javascript:void(0);");
+                        var $updateLink = $('<a>').addClass('btn btn-success btn-sm').text('<?= _lang('update') ?>').attr("href", "javascript:void(0);");
                         $updateLink.on('click', function() {
                             updatePlugin(item.name, $updateLink);
                         });
                         $updateBtn.append($updateLink);
                     });
                 } else {
-                    $('#upMsg').html('插件更新检查无法正常进行,错误码:' + response.code).addClass('alert alert-warning');
+                    $('#upMsg').html('<?= _lang('plugin_update_check_failed') ?>' + response.code).addClass('alert alert-warning');
                 }
             },
             error: function(xhr) {
                 var responseText = xhr.responseText;
                 var responseObject = JSON.parse(responseText);
                 var msgValue = responseObject.msg;
-                $('#upMsg').html('插件更新检查异常： ' + msgValue).addClass('alert alert-warning');
+                $('#upMsg').html('<?= _lang('plugin_update_check_error') ?>' + msgValue).addClass('alert alert-warning');
             }
         });
 
@@ -288,7 +288,7 @@
     }
 
     function updatePlugin(pluginAlias, $updateLink) {
-        $updateLink.text('正在更新...').prop('disabled', true);
+        $updateLink.text('<?= _lang('updating') ?>').prop('disabled', true);
         $.ajax({
             url: './plugin.php?action=upgrade',
             type: 'GET',
@@ -300,13 +300,13 @@
                 if (response.code === 0) {
                     location.href = 'plugin.php?activate_upgrade=1';
                 } else {
-                    $updateLink.text('更新').prop('disabled', false);
+                    $updateLink.text('<?= _lang('update') ?>').prop('disabled', false);
                     cocoMessage.error(response.msg, 4000);
                 }
             },
             error: function(xhr) {
-                $updateLink.text('更新').prop('disabled', false);
-                cocoMessage.error('更新请求失败，请稍后重试', 4000)
+                $updateLink.text('<?= _lang('update') ?>').prop('disabled', false);
+                cocoMessage.error('<?= _lang('update_request_failed') ?>', 4000)
             }
         });
     }
