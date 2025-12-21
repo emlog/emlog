@@ -2,8 +2,6 @@
 
 /**
  * Language: English (US)
- *
- * @package EMLOG
  */
 return [
     // Common
@@ -66,6 +64,7 @@ return [
     'view' => 'View',
     'address' => 'Address',
     'custom' => 'Custom',
+    'search' => 'Search',
 
     // Twitter
     'twitter_note' => 'Microblog Note',
@@ -477,6 +476,29 @@ return [
     'error_del_founder' => 'Cannot delete founder',
     'error_edit_founder' => 'Cannot edit founder info',
     'add_user' => 'Add User',
+
+    // Widgets
+    'widget_sidebar' => 'Sidebar',
+    'widget_blogger' => 'Profile',
+    'widget_calendar' => 'Calendar',
+    'widget_archive' => 'Archive',
+    'widget_new_comm' => 'Latest Comments',
+    'widget_new_comm_num' => 'Latest Comments Count',
+    'widget_comment_excerpt' => 'Comment Excerpt Length',
+    'widget_new_log' => 'Latest Articles',
+    'widget_new_log_num' => 'Latest Articles Count',
+    'widget_hot_log' => 'Hot Articles',
+    'widget_hot_log_num' => 'Hot Articles Count',
+    'widget_hot_type' => 'Hot Type',
+    'widget_unnamed' => 'Unnamed Widget',
+    'widget_add' => 'Add Widget',
+    'widget_custom' => 'Custom Widget',
+    'widget_display_count' => 'Display Count',
+    'widget_content_html_tip' => 'Content (HTML supported)',
+    'widget_added' => 'Added Widgets',
+    'reset_widget' => 'Reset Widgets',
+
+    // User Management
     'order_date' => 'Recent Registered',
     'order_update' => 'Recent Active',
     'order_admin' => 'Admin First',

@@ -2,8 +2,6 @@
 
 /**
  * Language: 中文（简体）
- *
- * @package EMLOG
  */
 return [
     // Common
@@ -66,6 +64,7 @@ return [
     'view' => '查看',
     'address' => '地址',
     'custom' => '自定',
+    'search' => '搜索',
 
     // Twitter
     'twitter_note' => '微语笔记',
@@ -477,6 +476,29 @@ return [
     'error_del_founder' => '不能删除创始人',
     'error_edit_founder' => '不能修改创始人信息',
     'add_user' => '添加用户',
+
+    // Widgets
+    'widget_sidebar' => '侧边栏',
+    'widget_blogger' => '个人资料',
+    'widget_calendar' => '日历',
+    'widget_archive' => '存档',
+    'widget_new_comm' => '最新评论',
+    'widget_new_comm_num' => '最新评论数',
+    'widget_comment_excerpt' => '新近评论截取字节数',
+    'widget_new_log' => '最新文章',
+    'widget_new_log_num' => '显示最新文章数',
+    'widget_hot_log' => '热门文章',
+    'widget_hot_log_num' => '显示热门文章数',
+    'widget_hot_type' => '热门类型',
+    'widget_unnamed' => '未命名组件',
+    'widget_add' => '添加组件',
+    'widget_custom' => '自定义组件',
+    'widget_display_count' => '展示数量',
+    'widget_content_html_tip' => '内容 （支持html）',
+    'widget_added' => '已添加的组件',
+    'reset_widget' => '重置组件',
+
+    // User Management
     'order_date' => '最近注册',
     'order_update' => '最近活跃',
     'order_admin' => '管理优先',
