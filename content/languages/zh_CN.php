@@ -7,6 +7,8 @@
  */
 return [
     // Common
+    'content_required' => '内容不能为空',
+    'private' => '私密',
     'email' => '邮箱',
     'password' => '密码',
     'captcha' => '验证码',
@@ -60,6 +62,14 @@ return [
     'forbid' => '禁用',
     'unforbid' => '解禁',
     'edit_success' => '修改成功',
+
+    // Twitter
+    'twitter_note' => '微语笔记',
+    'twitter_description' => '捕捉稍纵即逝的想法，记录生活中的点点滴滴',
+    'twitter_post_forbidden' => '抱歉，系统限制用户发布微语笔记',
+    'edit_twitter' => '编辑微语',
+    'preview_twitter' => '预览微语',
+    'twitter_count' => '有 %s 条微语',
 
     // Media
     'media_lib' => '资源媒体库',

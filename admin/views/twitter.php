@@ -1,26 +1,26 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
 <?php if (isset($_GET['active_t'])): ?>
-    <div class="alert alert-success">发布成功</div><?php endif ?>
+    <div class="alert alert-success"><?= _lang('publish_success') ?></div><?php endif ?>
 <?php if (isset($_GET['active_set'])): ?>
-    <div class="alert alert-success">保存成功</div><?php endif ?>
+    <div class="alert alert-success"><?= _lang('save_success') ?></div><?php endif ?>
 <?php if (isset($_GET['error_a'])): ?>
-    <div class="alert alert-danger">内容不能为空</div><?php endif ?>
+    <div class="alert alert-danger"><?= _lang('content_required') ?></div><?php endif ?>
 <?php if (isset($_GET['error_forbid'])): ?>
-    <div class="alert alert-danger">抱歉，系统限制用户发布微语笔记</div><?php endif ?>
-<h1 class="h4 mb-2 text-gray-800">微语笔记</h1>
-<p class="mb-4">捕捉稍纵即逝的想法，记录生活中的点点滴滴</p>
+    <div class="alert alert-danger"><?= _lang('twitter_post_forbidden') ?></div><?php endif ?>
+<h1 class="h4 mb-2 text-gray-800"><?= _lang('twitter_note') ?></h1>
+<p class="mb-4"><?= _lang('twitter_description') ?></p>
 <form method="post" action="twitter.php?action=post">
     <div class="form-group">
         <div id="t"><textarea></textarea></div>
     </div>
     <div class="form-row align-items-center">
         <div class="col-auto">
-            <button type="submit" class="btn btn-success btn-sm mb-2">发布</button>
+            <button type="submit" class="btn btn-success btn-sm mb-2"><?= _lang('publish') ?></button>
         </div>
         <div class="col-auto">
             <div class="custom-control custom-switch mb-2">
                 <input class="custom-control-input" type="checkbox" value="y" name="private" id="private">
-                <label class="custom-control-label" for="private">私密</label>
+                <label class="custom-control-label" for="private"><?= _lang('private') ?></label>
             </div>
         </div>
     </div>
@@ -44,10 +44,10 @@
                 </div>
                 <div class="card-footer bg-white border-0 mt-3 p-3">
                     <p class="text-muted small card-text d-flex justify-content-between">
-                        <?= $val['date'] ?> | by <?= $author ?> <?= $private ? '｜ 私密' : '' ?>
+                        <?= $val['date'] ?> | by <?= $author ?> <?= $private ? '｜ ' . EmLang::getInstance()->get('private') : '' ?>
                         <span>
-                            <a href="#" class="text-muted" data-toggle="modal" data-target="#editModal" data-id="<?= $val['id'] ?>" data-t="<?= htmlspecialchars($val['t_raw']) ?>">编辑</a>
-                            <a href="javascript: em_confirm(<?= $tid ?>, 'tw', '<?= LoginAuth::genToken() ?>');" class="care">删除</a>
+                            <a href="#" class="text-muted" data-toggle="modal" data-target="#editModal" data-id="<?= $val['id'] ?>" data-t="<?= htmlspecialchars($val['t_raw']) ?>"><?= _lang('edit') ?></a>
+                            <a href="javascript: em_confirm(<?= $tid ?>, 'tw', '<?= LoginAuth::genToken() ?>');" class="care"><?= _lang('delete') ?></a>
                         </span>
                     </p>
                 </div>
@@ -56,14 +56,14 @@
     <?php endforeach ?>
 </div>
 <div class="page"><?= $pageurl ?> </div>
-<div class="text-center small">有 <?= $twnum ?> 条微语</div>
+<div class="text-center small"><?= sprintf(EmLang::getInstance()->get('twitter_count'), $twnum) ?></div>
 
 <!--编辑微语-->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content border-0 shadow">
             <div class="modal-header border-0">
-                <h5 class="modal-title" id="exampleModalLabel">编辑微语</h5>
+                <h5 class="modal-title" id="exampleModalLabel"><?= _lang('edit_twitter') ?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -76,8 +76,8 @@
                 </div>
                 <div class="modal-footer border-0">
                     <input type="hidden" value="" name="id" id="id" />
-                    <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">取消</button>
-                    <button type="submit" class="btn btn-sm btn-success">保存</button>
+                    <button type="button" class="btn btn-sm btn-light" data-dismiss="modal"><?= _lang('cancel') ?></button>
+                    <button type="submit" class="btn btn-sm btn-success"><?= _lang('save') ?></button>
                 </div>
             </form>
         </div>

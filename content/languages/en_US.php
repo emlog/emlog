@@ -7,6 +7,8 @@
  */
 return [
     // Common
+    'content_required' => 'Content cannot be empty',
+    'private' => 'Private',
     'email' => 'Email',
     'password' => 'Password',
     'captcha' => 'Verification Code',
@@ -60,6 +62,14 @@ return [
     'forbid' => 'Ban',
     'unforbid' => 'Unban',
     'edit_success' => 'Updated successfully',
+
+    // Twitter
+    'twitter_note' => 'Microblog Note',
+    'twitter_description' => 'Capture fleeting thoughts, record the bits and pieces of life',
+    'twitter_post_forbidden' => 'Sorry, the system restricts users from posting microblogs',
+    'edit_twitter' => 'Edit Microblog',
+    'preview_twitter' => 'Preview Microblog',
+    'twitter_count' => '%s microblogs',
 
     // Media
     'media_lib' => 'Media Library',
