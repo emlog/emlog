@@ -478,6 +478,11 @@ return [
     'error_edit_founder' => 'Cannot edit founder info',
     'add_user' => 'Add User',
 
+    // Link
+    'link_required' => 'Name and URL cannot be empty',
+    'add_link' => 'Add Link',
+    'icon_url' => 'Icon URL',
+
     // Widgets
     'widget_sidebar' => 'Sidebar',
     'widget_blogger' => 'Profile',

@@ -478,6 +478,11 @@ return [
     'error_edit_founder' => '不能修改创始人信息',
     'add_user' => '添加用户',
 
+    // Link
+    'link_required' => '名称和地址不能为空',
+    'add_link' => '添加链接',
+    'icon_url' => '图标URL',
+
     // Widgets
     'widget_sidebar' => '侧边栏',
     'widget_blogger' => '个人资料',
