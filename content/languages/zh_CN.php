@@ -50,6 +50,7 @@ return [
     'content' => '内容',
     'top' => '置顶',
     'add_success' => '添加成功',
+    'edit_success' => '修改成功',
     'name_required' => '名称不能为空',
     'download' => '下载',
     'file_size' => '文件大小',
@@ -61,7 +62,10 @@ return [
     'update' => '更新',
     'forbid' => '禁用',
     'unforbid' => '解禁',
-    'edit_success' => '修改成功',
+    'type' => '类型',
+    'view' => '查看',
+    'address' => '地址',
+    'custom' => '自定',
 
     // Twitter
     'twitter_note' => '微语笔记',
@@ -122,6 +126,26 @@ return [
     'alias_char_error' => '别名错误，应由字母、数字、下划线、短横线组成',
     'alias_number_error' => '别名错误，不能为纯数字',
     'alias_system_error' => '别名错误，与系统链接冲突',
+
+    // Navbar
+    'navi_error_a' => '导航名称和地址不能为空',
+    'navi_error_c' => '默认导航不能删除',
+    'navi_error_d' => '请选择要添加的分类',
+    'navi_error_e' => '请选择要添加的页面',
+    'custom_navi' => '自定义导航',
+    'add_category_navi' => '添加分类导航',
+    'add_page_navi' => '添加页面导航',
+    'add_custom_navi' => '添加自定义导航',
+    'navi_name' => '导航名称',
+    'navi_url' => '导航网址',
+    'open_new_tab' => '新窗口打开',
+    'parent_navi' => '父导航',
+    'no_navi_yet' => '还没有添加导航',
+    'new_category' => '新建分类',
+    'no_category_yet' => '还没有分类',
+    'new_page' => '新建页面',
+    'no_page_yet' => '还没有页面',
+    'edit_navi' => '修改导航',
 
     // Login / Register
     'login' => '登录',

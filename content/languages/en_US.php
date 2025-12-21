@@ -50,6 +50,7 @@ return [
     'content' => 'Content',
     'top' => 'Top',
     'add_success' => 'Add Success',
+    'edit_success' => 'Updated successfully',
     'name_required' => 'Name cannot be empty',
     'download' => 'Download',
     'file_size' => 'Size',
@@ -61,7 +62,10 @@ return [
     'update' => 'Update',
     'forbid' => 'Ban',
     'unforbid' => 'Unban',
-    'edit_success' => 'Updated successfully',
+    'type' => 'Type',
+    'view' => 'View',
+    'address' => 'Address',
+    'custom' => 'Custom',
 
     // Twitter
     'twitter_note' => 'Microblog Note',
@@ -122,6 +126,26 @@ return [
     'alias_char_error' => 'Alias error: must consist of letters, numbers, underscores, and hyphens',
     'alias_number_error' => 'Alias error: cannot be pure numbers',
     'alias_system_error' => 'Alias error: conflict with system links',
+
+    // Navbar
+    'navi_error_a' => 'Navigation name and URL cannot be empty',
+    'navi_error_c' => 'Default navigation cannot be deleted',
+    'navi_error_d' => 'Please select categories to add',
+    'navi_error_e' => 'Please select pages to add',
+    'custom_navi' => 'Custom Navigation',
+    'add_category_navi' => 'Add Category Navigation',
+    'add_page_navi' => 'Add Page Navigation',
+    'add_custom_navi' => 'Add Custom Navigation',
+    'navi_name' => 'Navigation Name',
+    'navi_url' => 'Navigation URL',
+    'open_new_tab' => 'Open in new tab',
+    'parent_navi' => 'Parent Navigation',
+    'no_navi_yet' => 'No navigation added yet',
+    'new_category' => 'New Category',
+    'no_category_yet' => 'No categories yet',
+    'new_page' => 'New Page',
+    'no_page_yet' => 'No pages yet',
+    'edit_navi' => 'Edit Navigation',
 
     // Login / Register
     'login' => 'Login',
