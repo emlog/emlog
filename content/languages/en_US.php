@@ -56,6 +56,7 @@ return [
     'image_size' => 'Image Size',
     'rename' => 'Rename',
     'move_to' => 'Move to',
+    'update' => 'Update',
 
     // Media
     'media_lib' => 'Media Library',
@@ -431,4 +432,25 @@ return [
     'edit_tag_success' => 'Tag updated successfully',
     'tag_count' => '%s tags in total',
     'confirm_delete_tag' => 'Delete selected tags?',
+
+    // Dashboard
+    'pending_articles' => 'Pending Articles',
+    'pending_comments' => 'Pending Comments',
+    'software_info' => 'Software Info',
+    'database' => 'Database',
+    'web_service' => 'Web Service',
+    'os' => 'OS',
+    'system_timezone' => 'Timezone',
+    'unregistered' => 'Unregistered',
+    'hardcore_svip' => 'Hardcore SVIP',
+    'friend_vip' => 'Friendship VIP',
+    'registered' => 'Registered',
+    'check_update' => 'Check Update',
+    'register_full_feature' => 'Register to use all features',
+    'register_feature_1' => 'One-click upgrade to the latest version',
+    'register_feature_2' => 'Unlock full app store including online updates',
+    'register_feature_3' => 'Remove all unregistered prompts and restrictions',
+    'register_feature_4' => 'SVIP free apps: 30+ paid plugins/themes for free',
+    'register_now' => 'Register Now',
+    'input_license' => 'Input License',
 ];

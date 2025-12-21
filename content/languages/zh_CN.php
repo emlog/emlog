@@ -56,6 +56,7 @@ return [
     'image_size' => '图片尺寸',
     'rename' => '改名',
     'move_to' => '移动到',
+    'update' => '更新',
 
     // Media
     'media_lib' => '资源媒体库',
@@ -431,4 +432,25 @@ return [
     'edit_tag_success' => '修改标签成功',
     'tag_count' => '有 %s 个标签',
     'confirm_delete_tag' => '删除所选标签？',
+
+    // Dashboard
+    'pending_articles' => '待审文章',
+    'pending_comments' => '待审评论',
+    'software_info' => '软件信息',
+    'database' => '数据库',
+    'web_service' => 'Web服务',
+    'os' => '操作系统',
+    'system_timezone' => '系统时区',
+    'unregistered' => '未正版注册',
+    'hardcore_svip' => '铁杆SVIP',
+    'friend_vip' => '友情VIP',
+    'registered' => '已注册',
+    'check_update' => '检查更新',
+    'register_full_feature' => '完成正版注册可使用全部功能',
+    'register_feature_1' => '获得在线升级功能，一键升级到最新版本',
+    'register_feature_2' => '解锁完整应用商店功能，包括应用在线更新',
+    'register_feature_3' => '去除所有未正版注册提示及功能限制',
+    'register_feature_4' => '铁杆SVIP免费应用：超过30款付费插件、多款付费主题免费用',
+    'register_now' => '立即正版注册',
+    'input_license' => '输入注册码',
 ];
