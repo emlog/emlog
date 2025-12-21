@@ -282,7 +282,7 @@ if ($action === 'write') {
     extract($blogData);
 
     $isdraft = false;
-    $containerTitle = User::haveEditPermission() ? '写文章' : '发布' . Option::get('posts_name');
+    $containerTitle = User::haveEditPermission() ? _langStr('write_article') : _langStr('publish') . Option::get('posts_name');
     $orig_date = '';
     $sorts = Sort::getUserPostableSorts();
 

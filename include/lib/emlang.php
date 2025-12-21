@@ -65,3 +65,8 @@ function _lang($key)
 {
     echo EmLang::getInstance()->get($key);
 }
+
+function _langStr($key)
+{
+    return EmLang::getInstance()->get($key);
+}
