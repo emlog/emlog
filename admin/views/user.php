@@ -1,25 +1,25 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
 <?php if (isset($_GET['active_unfb'])): ?>
-    <div class="alert alert-success">解禁成功</div><?php endif ?>
+    <div class="alert alert-success"><?= _lang('active_unforbid') ?></div><?php endif ?>
 <?php if (isset($_GET['active_update'])): ?>
-    <div class="alert alert-success">修改成功</div><?php endif ?>
+    <div class="alert alert-success"><?= _lang('edit_success') ?></div><?php endif ?>
 <?php if (isset($_GET['active_add'])): ?>
-    <div class="alert alert-success">添加用户成功</div><?php endif ?>
+    <div class="alert alert-success"><?= _lang('active_add_user') ?></div><?php endif ?>
 <?php if (isset($_GET['error_email'])): ?>
-    <div class="alert alert-danger">邮箱不能为空</div><?php endif ?>
+    <div class="alert alert-danger"><?= _lang('error_email_empty') ?></div><?php endif ?>
 <?php if (isset($_GET['error_exist_email'])): ?>
-    <div class="alert alert-danger">该邮箱已被占用</div><?php endif ?>
+    <div class="alert alert-danger"><?= _lang('error_exist_email') ?></div><?php endif ?>
 <?php if (isset($_GET['error_pwd_len'])): ?>
-    <div class="alert alert-danger">密码长度不得小于6位</div><?php endif ?>
+    <div class="alert alert-danger"><?= _lang('password_min_length') ?></div><?php endif ?>
 <?php if (isset($_GET['error_pwd2'])): ?>
-    <div class="alert alert-danger">两次输入密码不一致</div><?php endif ?>
+    <div class="alert alert-danger"><?= _lang('password_inconsistent') ?></div><?php endif ?>
 <?php if (isset($_GET['error_del_a'])): ?>
-    <div class="alert alert-danger">不能删除创始人</div><?php endif ?>
+    <div class="alert alert-danger"><?= _lang('error_del_founder') ?></div><?php endif ?>
 <?php if (isset($_GET['error_del_b'])): ?>
-    <div class="alert alert-danger">不能修改创始人信息</div><?php endif ?>
+    <div class="alert alert-danger"><?= _lang('error_edit_founder') ?></div><?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h4 mb-0 text-gray-800">用户</h1>
-    <a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#exampleModal"><i class="icofont-plus"></i> 添加用户</a>
+    <h1 class="h4 mb-0 text-gray-800"><?= _lang('user') ?></h1>
+    <a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#exampleModal"><i class="icofont-plus"></i> <?= _lang('add_user') ?></a>
 </div>
 <div class="card shadow mb-4">
     <div class="card-header py-3">
@@ -27,16 +27,16 @@
             <div class="form-inline">
                 <div id="f_t_order" class="mx-1">
                     <select name="order" id="order" onChange="selectOrder(this);" class="form-control">
-                        <option value="date" <?= (empty($order)) ? 'selected' : '' ?>>最近注册</option>
-                        <option value="update" <?= ($order === 'update') ? 'selected' : '' ?>>最近活跃</option>
-                        <option value="admin" <?= ($order === 'admin') ? 'selected' : '' ?>>管理优先</option>
-                        <option value="forbid" <?= ($order === 'forbid') ? 'selected' : '' ?>>禁用优先</option>
+                        <option value="date" <?= (empty($order)) ? 'selected' : '' ?>><?= _lang('order_date') ?></option>
+                        <option value="update" <?= ($order === 'update') ? 'selected' : '' ?>><?= _lang('order_update') ?></option>
+                        <option value="admin" <?= ($order === 'admin') ? 'selected' : '' ?>><?= _lang('order_admin') ?></option>
+                        <option value="forbid" <?= ($order === 'forbid') ? 'selected' : '' ?>><?= _lang('order_forbid') ?></option>
                     </select>
                 </div>
             </div>
             <form action="user.php" method="get">
                 <div class="form-inline search-inputs-nowrap">
-                    <input type="text" name="keyword" value="<?= $keyword ?>" class="form-control m-1 small" placeholder="输入邮箱或用户昵称搜索...">
+                    <input type="text" name="keyword" value="<?= $keyword ?>" class="form-control m-1 small" placeholder="<?= _lang('search_user_placeholder') ?>">
                     <div class="input-group-append">
                         <button class="btn btn-sm btn-success" type="submit">
                             <i class="icofont-search-2"></i>
@@ -53,13 +53,13 @@
                     <thead>
                         <tr>
                             <th><input type="checkbox" id="checkAllItem" /></th>
-                            <th>头像</th>
-                            <th>昵称</th>
-                            <th>邮箱</th>
-                            <th>登录IP</th>
-                            <th>活跃时间</th>
-                            <th>创建时间</th>
-                            <th>操作</th>
+                            <th><?= _lang('avatar') ?></th>
+                            <th><?= _lang('nickname') ?></th>
+                            <th><?= _lang('email') ?></th>
+                            <th><?= _lang('login_ip') ?></th>
+                            <th><?= _lang('active_time') ?></th>
+                            <th><?= _lang('create_time') ?></th>
+                            <th><?= _lang('operation') ?></th>
                         </tr>
                     </thead>
                     <tbody class="checkboxContainer">
@@ -78,12 +78,12 @@
                                     <a href="user.php?action=edit&uid=<?= $val['uid'] ?>"><?= empty($val['name']) ? $val['login'] : $val['name'] ?></a>
                                     <span class="small"><?= $val['role'] ?></span>
                                     <?php if ($forbid): ?>
-                                        <span class="badge badge-warning">已禁用</span>
+                                        <span class="badge badge-warning"><?= _lang('forbidden') ?></span>
                                     <?php endif ?>
                                     <br />
                                     <span class="small mr-2"> ID:<?= $val['uid'] ?></span>
-                                    <span class="small mr-2">文章:<a href="article.php?uid=<?= $val['uid'] ?>"><?= $user_log_num ?></a></span>
-                                    <span class="small"> 积分:<?= $val['credits'] ?></span>
+                                    <span class="small mr-2"><?= _lang('article') ?>:<a href="article.php?uid=<?= $val['uid'] ?>"><?= $user_log_num ?></a></span>
+                                    <span class="small"> <?= _lang('credits') ?>:<?= $val['credits'] ?></span>
                                 </td>
                                 <td><?= $val['email'] ?></td>
                                 <td><?= $val['ip'] ?></td>
@@ -91,11 +91,11 @@
                                 <td><?= $val['create_time'] ?></td>
                                 <td>
                                     <?php if (UID != $val['uid']): ?>
-                                        <a href="javascript: em_confirm(<?= $val['uid'] ?>, 'del_user', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger">删除</a>
+                                        <a href="javascript: em_confirm(<?= $val['uid'] ?>, 'del_user', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger"><?= _lang('delete') ?></a>
                                         <?php if ($forbid): ?>
-                                            <a href="user.php?action=unforbid&uid=<?= $val['uid'] ?>&token=<?= LoginAuth::genToken() ?>" class="badge badge-success">解禁</a>
+                                            <a href="user.php?action=unforbid&uid=<?= $val['uid'] ?>&token=<?= LoginAuth::genToken() ?>" class="badge badge-success"><?= _lang('unforbid') ?></a>
                                         <?php else: ?>
-                                            <a href="javascript: em_confirm(<?= $val['uid'] ?>, 'forbid_user', '<?= LoginAuth::genToken() ?>');" class="badge badge-warning">禁用</a>
+                                            <a href="javascript: em_confirm(<?= $val['uid'] ?>, 'forbid_user', '<?= LoginAuth::genToken() ?>');" class="badge badge-warning"><?= _lang('forbid') ?></a>
                                         <?php endif ?>
                                     <?php endif ?>
                                 </td>
@@ -108,10 +108,10 @@
         </form>
         <div class="form-inline">
             <div class="btn-group">
-                <button class="btn btn-success btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">操作</button>
+                <button class="btn btn-success btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"><?= _lang('operation') ?></button>
                 <div class="dropdown-menu">
-                    <a href="javascript:useract('forbid');" class="dropdown-item text-warning">禁用</a>
-                    <a href="javascript:useract('unforbid');" class="dropdown-item">解禁</a>
+                    <a href="javascript:useract('forbid');" class="dropdown-item text-warning"><?= _lang('forbid') ?></a>
+                    <a href="javascript:useract('unforbid');" class="dropdown-item"><?= _lang('unforbid') ?></a>
                 </div>
             </div>
         </div>
@@ -120,7 +120,7 @@
 <div class="page"><?= $pageurl ?></div>
 <div class="d-flex justify-content-center mb-4 small">
     <form action="user.php" method="get" class="form-inline">
-        <label for="perpage_num" class="mr-2">有 <?= $userCount ?> 个用户，每页显示</label>
+        <label for="perpage_num" class="mr-2"><?= sprintf(EmLang::getInstance()->get('user_count_per_page'), $userCount) ?></label>
         <select name="perpage_num" id="perpage_num" class="form-control form-control-sm" onChange="this.form.submit();">
             <option value="10" <?= ($perPage == 10) ? 'selected' : '' ?>>10</option>
             <option value="20" <?= ($perPage == 20) ? 'selected' : '' ?>>20</option>
@@ -135,7 +135,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content border-0 shadow">
             <div class="modal-header border-0">
-                <h5 class="modal-title" id="exampleModalLabel">添加用户</h5>
+                <h5 class="modal-title" id="exampleModalLabel"><?= _lang('add_user') ?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -143,35 +143,35 @@
             <form action="user.php?action=new" method="post" autocomplete="off">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="role">用户组</label>
+                        <label for="role"><?= _lang('user_group') ?></label>
                         <select name="role" id="role" class="form-control">
-                            <option value="writer">注册用户</option>
-                            <option value="editor">内容编辑</option>
-                            <option value="admin">管理员</option>
+                            <option value="writer"><?= _lang('role_writer') ?></option>
+                            <option value="editor"><?= _lang('role_editor') ?></option>
+                            <option value="admin"><?= _lang('role_admin') ?></option>
                         </select>
                     </div>
                     <div class="alert alert-warning">
-                        注册用户：可以发文投稿、管理自己的文章、图文资源<br>
-                        内容编辑：负责全站文章、资源、评论等内容的管理<br>
-                        管理员：拥有站点全部管理权限，可以管理用户、进行系统设置等<br>
+                        <?= _lang('user_group_intro_1') ?><br>
+                        <?= _lang('user_group_intro_2') ?><br>
+                        <?= _lang('user_group_intro_3') ?><br>
                     </div>
                     <div class="form-group">
-                        <label for="email">登录邮箱</label>
+                        <label for="email"><?= _lang('login_email') ?></label>
                         <input type="email" name="email" id="email" class="form-control" value="<?= $email ?>" required>
                     </div>
                     <div class="form-group">
-                        <label for="password">密码 (不少于6位)</label>
+                        <label for="password"><?= _lang('password_min_6') ?></label>
                         <input class="form-control" id="password" minlength="6" name="password" autocomplete="new-password" type="password" required>
                     </div>
                     <div class="form-group">
-                        <label for="password2">再次输入密码</label>
+                        <label for="password2"><?= _lang('password_repeat') ?></label>
                         <input class="form-control" id="password2" minlength="6" name="password2" type="password" required>
                     </div>
                 </div>
                 <div class="modal-footer border-0">
                     <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
-                    <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">取消</button>
-                    <button type="submit" class="btn btn-sm btn-success">保存</button>
+                    <button type="button" class="btn btn-sm btn-light" data-dismiss="modal"><?= _lang('cancel') ?></button>
+                    <button type="submit" class="btn btn-sm btn-success"><?= _lang('save') ?></button>
                     <span id="alias_msg_hook"></span>
                 </div>
             </form>
@@ -196,25 +196,25 @@
 
     function useract(act) {
         if (getChecked('ids') === false) {
-            infoAlert('请选择用户');
+            infoAlert('<?= _lang('select_user') ?>');
             return;
         }
 
         if (act === 'forbid') {
-            delAlert2('', '封禁所选用户？', function() {
+            delAlert2('', '<?= _lang('confirm_forbid_user') ?>', function() {
                     $("#operate").val("forbid");
                     $("#form_user").submit();
                 },
-                '封禁')
+                '<?= _lang('forbid') ?>')
             return;
         }
 
         if (act === 'unforbid') {
-            delAlert2('', '解禁所选用户？', function() {
+            delAlert2('', '<?= _lang('confirm_unforbid_user') ?>', function() {
                     $("#operate").val("unforbid");
                     $("#form_user").submit();
                 },
-                '解禁')
+                '<?= _lang('unforbid') ?>')
             return;
         }
 
