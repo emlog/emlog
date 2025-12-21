@@ -236,7 +236,7 @@ $isdraft = $draft ? '&draft=1' : '';
 <div class="page"><?= $pageurl ?> </div>
 <div class="d-flex justify-content-center mb-4 small">
     <div class="form-inline">
-        <label for="perpage_num" class="mr-2"><?= _lang('total') ?> <?= $logNum ?> <?= _lang('unit_article') ?><?= $draft ? _lang('draft') : _lang('article') ?>，<?= _lang('per_page') ?></label>
+        <label for="perpage_num" class="mr-2"><?= _lang('total') ?> <?= $logNum ?> <?= _lang('unit_article') ?><?= $draft ? _lang('draft') : _lang('article') ?><?= _lang('comma') ?><?= _lang('per_page') ?></label>
         <select name="perpage_num" id="perpage_num" class="form-control form-control-sm" onChange="changePerPage(this);">
             <option value="10" <?= ($perPage == 10) ? 'selected' : '' ?>>10</option>
             <option value="20" <?= ($perPage == 20) ? 'selected' : '' ?>>20</option>

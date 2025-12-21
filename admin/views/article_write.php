@@ -6,32 +6,32 @@
         <div class="col-xl-9">
             <div id="post" class="form-group">
                 <div>
-                    <input type="text" name="title" id="title" value="<?= $title ?>" class="form-control" maxlength="512" placeholder="标题" autofocus required />
+                    <input type="text" name="title" id="title" value="<?= $title ?>" class="form-control" maxlength="512" placeholder="<?php _lang('title') ?>" autofocus required />
                 </div>
                 <div class="small my-3">
-                    <a href="#mediaModal" data-toggle="modal" data-target="#mediaModal"><i class="icofont-plus"></i>资源媒体库</a>
+                    <a href="#mediaModal" data-toggle="modal" data-target="#mediaModal"><i class="icofont-plus"></i><?php _lang('media_lib') ?></a>
                     <?php doAction('adm_writelog_bar') ?>
                 </div>
                 <div id="logcontent"><textarea><?= $content ?></textarea></div>
                 <?php if (User::haveEditPermission() && !Register::isRegLocal()): ?>
-                    <div class="small">切换所见即所得编辑器：<a href="http://localhost:8080/admin/store.php?action=plu&sid=20">安装TinyMCE编辑器插件</a></div>
+                    <div class="small"><?php _lang('switch_to_rich_editor') ?><a href="http://localhost:8080/admin/store.php?action=plu&sid=20"><?php _lang('install_tinymce_plugin') ?></a></div>
                 <?php endif; ?>
                 <div class="mt-3">
-                    摘要（选填）：
+                    <?php _lang('excerpt_optional') ?>
                     <textarea id="logexcerpt" name="logexcerpt" class="form-control" rows="5"><?= $excerpt ?></textarea>
                     <div class="custom-control custom-switch mt-1">
                         <input type="checkbox" class="custom-control-input" id="auto_excerpt" name="auto_excerpt" value="y" onclick="toggleCheckbox('auto_excerpt')">
-                        <label class="custom-control-label" for="auto_excerpt">自动截取摘要</label>
+                        <label class="custom-control-label" for="auto_excerpt"><?php _lang('auto_excerpt') ?></label>
                     </div>
                 </div>
                 <div class="mt-3">
-                    <a href="javascript:void (0);" class="field_add small"><i class="icofont-plus"></i>添加字段</a>
+                    <a href="javascript:void (0);" class="field_add small"><i class="icofont-plus"></i><?php _lang('add_field') ?></a>
                     <div class="mt-2" id="field_box">
                         <?php
                         foreach ($fields as $key => $value): ?>
                             <div class="form-row field_list mb-3">
                                 <div class="col-sm-3 px-2 my-1">
-                                    <input type="text" name="field_keys[]" value="<?= $key ?>" list="customFieldList" class="form-control field-keys-input" placeholder="字段名称" maxlength="120" required>
+                                    <input type="text" name="field_keys[]" value="<?= $key ?>" list="customFieldList" class="form-control field-keys-input" placeholder="<?php _lang('field_name') ?>" maxlength="120" required>
                                     <datalist id="customFieldList">
                                         <?php foreach ($customFields as $k => $v): ?>
                                             <option value="<?= $k ?>"><?= $k . '【' . $v['name'] . '】' . $v['description'] ?></option>
@@ -39,17 +39,17 @@
                                     </datalist>
                                 </div>
                                 <div class="col-sm-8 px-2 my-1">
-                                    <textarea name="field_values[]" class="form-control auto-resize-textarea field-values-textarea" placeholder="字段值" rows="1" style="resize: vertical; min-height: 33px; white-space: pre-wrap; overflow-x: auto;" required><?= $value ?></textarea>
+                                    <textarea name="field_values[]" class="form-control auto-resize-textarea field-values-textarea" placeholder="<?php _lang('field_value') ?>" rows="1" style="resize: vertical; min-height: 33px; white-space: pre-wrap; overflow-x: auto;" required><?= $value ?></textarea>
                                 </div>
                                 <div class="col-sm-1 px-2 my-1 d-flex align-items-start justify-content-end">
-                                    <button type="button" class="btn btn-sm btn-outline-danger field_del">删除</button>
+                                    <button type="button" class="btn btn-sm btn-outline-danger field_del"><?php _lang('delete') ?></button>
                                 </div>
                             </div>
                         <?php endforeach ?>
                     </div>
                 </div>
                 <div class="mt-3">
-                    <label id="post_bar_label">插件扩展：</label>
+                    <label id="post_bar_label"><?php _lang('plugin_extensions') ?></label>
                     <div id="post_bar">
                         <?php doAction('adm_writelog_head') ?>
                     </div>
@@ -63,25 +63,25 @@
                 <input type="hidden" name="gid" id="gid" value="<?= $logid ?>" />
                 <input type="hidden" name="author" id="author" value="<?= $author ?>" />
                 <?php if ($logid < 0): ?>
-                    <input type="submit" name="pubPost" id="pubPost" value="立即发布" onclick="return checkform();" class="btn btn-success btn-sm" />
-                    <input type="button" name="savedf" id="savedf" value="保存草稿" onclick="autosave(2);" class="btn btn-primary btn-sm" />
+                    <input type="submit" name="pubPost" id="pubPost" value="<?php _lang('publish_now') ?>" onclick="return checkform();" class="btn btn-success btn-sm" />
+                    <input type="button" name="savedf" id="savedf" value="<?php _lang('save_draft') ?>" onclick="autosave(2);" class="btn btn-primary btn-sm" />
                 <?php else: ?>
-                    <input type="submit" value="保存并返回" onclick="return checkform();" class="btn btn-success btn-sm" />
-                    <input type="button" name="savedf" id="savedf" value="保存" onclick="autosave(2);" class="btn btn-primary btn-sm" />
+                    <input type="submit" value="<?php _lang('save_and_return') ?>" onclick="return checkform();" class="btn btn-success btn-sm" />
+                    <input type="button" name="savedf" id="savedf" value="<?php _lang('save') ?>" onclick="autosave(2);" class="btn btn-primary btn-sm" />
                     <?php if ($isdraft) : ?>
-                        <input type="submit" name="pubPost" id="pubPost" value="发布" onclick="return checkform();" class="btn btn-success btn-sm" />
+                        <input type="submit" name="pubPost" id="pubPost" value="<?php _lang('publish') ?>" onclick="return checkform();" class="btn btn-success btn-sm" />
                     <?php endif ?>
                 <?php endif ?>
             </div>
             <div class="shadow-sm p-3 bg-white rounded" id="post_side">
                 <div class="form-group">
-                    <label>封面图：</label>
+                    <label><?php _lang('cover') ?>：</label>
                     <input name="cover" id="cover" class="form-control" maxlength="2048" placeholder="" value="<?= $cover ?>" />
-                    <small class="text-muted">填写封面图URL、击下方上传或从<a href="#" data-toggle="modal" data-target="#mediaModal">资源库选择</a></small>
+                    <small class="text-muted"><?php _lang('cover_tip_1') ?><a href="#" data-toggle="modal" data-target="#mediaModal"><?php _lang('select_from_media_lib') ?></a></small>
                     <div class="row mt-3">
                         <div class="col-md-4">
                             <label for="upload_img">
-                                <img src="<?= $cover ?: './views/images/cover.svg' ?>" width="200" id="cover_image" class="rounded" alt="封面图片" />
+                                <img src="<?= $cover ?: './views/images/cover.svg' ?>" width="200" id="cover_image" class="rounded" alt="<?php _lang('cover_image') ?>" />
                                 <input type="file" name="upload_img" class="image" id="upload_img" style="display:none" />
                                 <button type="button" id="cover_rm" class="btn-sm btn btn-link" <?php if (!$cover): ?>style="display:none" <?php endif ?>>x</button>
                             </label>
@@ -89,13 +89,13 @@
                     </div>
                     <div class="custom-control custom-switch mt-1">
                         <input type="checkbox" class="custom-control-input" id="auto_cover" name="auto_cover" value="y" onclick="toggleCheckbox('auto_cover')">
-                        <label class="custom-control-label" for="auto_cover">自动获取文中图片作为封面</label>
+                        <label class="custom-control-label" for="auto_cover"><?php _lang('auto_cover_from_content') ?></label>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>分类：</label>
+                    <label><?php _lang('category') ?>：</label>
                     <select name="sort" id="sort" class="form-control">
-                        <option value="-1">选择分类...</option>
+                        <option value="-1"><?php _lang('select_category') ?></option>
                         <?php
                         foreach ($sorts as $key => $value):
                             if ($value['pid'] != 0) {
@@ -118,9 +118,9 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>标签：</label>
+                    <label><?php _lang('tag') ?>：</label>
                     <?php if ($tags): ?>
-                        <span class="small"> <a href="javascript:doToggle('tags', 1);">近期使用的+</a></span>
+                        <span class="small"> <a href="javascript:doToggle('tags', 1);"><?php _lang('recently_used_tags') ?></a></span>
                         <div id="tags" class="mb-2" style="display: none">
                             <?php
                             foreach ($tags as $val) {
@@ -130,55 +130,55 @@
                         </div>
                     <?php endif; ?>
                     <input name="tag" id="tag" class="form-control" value="<?= $tagStr ?>" />
-                    <small class="text-muted">也用于页面关键词，英文逗号分隔</small>
+                    <small class="text-muted"><?php _lang('tag_tip_keywords') ?></small>
                 </div>
                 <div class="form-group">
                     <div class="custom-control custom-switch">
                         <input type="checkbox" class="custom-control-input" id="allow_remark" name="allow_remark" value="y" <?= $is_allow_remark ?>>
-                        <label class="custom-control-label" for="allow_remark">允许评论</label>
+                        <label class="custom-control-label" for="allow_remark"><?php _lang('allow_comment') ?></label>
                     </div>
                     <?php if (User::haveEditPermission()): ?>
                         <div class="custom-control custom-switch">
                             <input type="checkbox" class="custom-control-input" id="top" name="top" value="y" <?= $is_top; ?>>
-                            <label class="custom-control-label" for="top">首页置顶</label>
+                            <label class="custom-control-label" for="top"><?php _lang('home_top') ?></label>
                         </div>
                         <div class="custom-control custom-switch">
                             <input type="checkbox" class="custom-control-input" id="sortop" name="sortop" value="y" <?= $is_sortop; ?>>
-                            <label class="custom-control-label" for="sortop">分类置顶</label>
+                            <label class="custom-control-label" for="sortop"><?php _lang('sort_top') ?></label>
                         </div>
                     <?php endif; ?>
                 </div>
                 <?php if (User::haveEditPermission()): ?>
                     <div class="form-group">
-                        <label>发布时间：</label>
+                        <label><?php _lang('post_time') ?>：</label>
                         <input type="text" maxlength="200" name="postdate" id="postdate" value="<?= $postDate ?>" class="form-control datepicker" required />
-                        <small class="text-muted">当设置未来时间，文章将在该时间点定时发布</small>
+                        <small class="text-muted"><?php _lang('future_post_tip') ?></small>
                     </div>
-                    <div><a href="javascript:void (0);" class="show_adv_set" onclick="displayToggle('adv_set');">高级选项<i class="icofont-simple-right"></i></a></div>
+                    <div><a href="javascript:void (0);" class="show_adv_set" onclick="displayToggle('adv_set');"><?php _lang('advanced_options') ?><i class="icofont-simple-right"></i></a></div>
                 <?php else: ?>
                     <input type="hidden" name="postdate" id="postdate" value="<?= $postDate ?>" />
                 <?php endif; ?>
                 <div id="adv_set">
                     <?php if (User::haveEditPermission()): ?>
                         <div class="form-group">
-                            <label>链接别名：</label>
+                            <label><?php _lang('link_alias') ?></label>
                             <input name="alias" id="alias" class="form-control" value="<?= $alias ?>" />
-                            <small class="text-muted">英文字母、数字组成，用于<a href="./setting.php?action=seo">seo设置</a></small>
+                            <small class="text-muted"><?php _lang('alias_tip_start') ?><a href="./setting.php?action=seo"><?php _lang('setting_seo') ?></a></small>
                         </div>
                         <div class="form-group">
-                            <label>跳转链接：</label>
+                            <label><?php _lang('redirect_url') ?></label>
                             <input name="link" id="link" type="url" class="form-control" maxlength="2048" value="<?= $link ?>" placeholder="https://" />
-                            <small class="text-muted">填写后不展示文章内容直接跳转该地址</small>
+                            <small class="text-muted"><?php _lang('redirect_url_tip') ?></small>
                         </div>
                         <div class="form-group">
-                            <label>访问密码：</label>
+                            <label><?php _lang('access_password') ?></label>
                             <input type="text" name="password" id="password" class="form-control" value="<?= $password ?>" />
                         </div>
                         <?php if ($customTemplates): ?>
                             <div class="form-group">
-                                <label>文章模板：</label>
+                                <label><?php _lang('article_template') ?></label>
                                 <?php
-                                $sortListHtml = '<option value="">默认</option>';
+                                $sortListHtml = '<option value="">' . EmLang::getInstance()->get('default') . '</option>';
                                 foreach ($customTemplates as $v) {
                                     $select = $v['filename'] == $template ? 'selected="selected"' : '';
                                     $sortListHtml .= '<option value="' . str_replace('.php', '', $v['filename']) . '" ' . $select . '>' . ($v['comment']) . '</option>';
@@ -201,18 +201,18 @@
     <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
         <div class="modal-content border-0 shadow">
             <div class="modal-header border-0">
-                <h5 class="modal-title" id="exampleModalLabel">资源媒体库</h5>
+                <h5 class="modal-title" id="exampleModalLabel"><?php _lang('media_lib') ?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="d-flex justify-content-between">
-                    <div><a href="#" id="mediaAdd" class="btn btn-sm btn-success shadow-sm mb-3">上传图片/文件</a></div>
+                    <div><a href="#" id="mediaAdd" class="btn btn-sm btn-success shadow-sm mb-3"><?php _lang('upload_file') ?></a></div>
                     <div>
                         <?php if (User::haveEditPermission() && $mediaSorts): ?>
                             <select class="form-control" id="media-sort-select">
-                                <option value="">选择资源分类…</option>
+                                <option value=""><?php _lang('select_media_category') ?></option>
                                 <?php foreach ($mediaSorts as $v): ?>
                                     <option value="<?= $v['id'] ?>"><?= $v['sortname'] ?></option>
                                 <?php endforeach ?>
@@ -223,7 +223,7 @@
                 <form action="media.php?action=operate_media" method="post" name="form_media" id="form_media">
                     <div class="row" id="image-list"></div>
                     <div class="text-center">
-                        <button type="button" class="btn btn-success btn-sm mt-2" id="load-more">加载更多…</button>
+                        <button type="button" class="btn btn-success btn-sm mt-2" id="load-more"><?php _lang('load_more') ?></button>
                     </div>
                 </form>
             </div>
@@ -235,7 +235,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content border-0 shadow">
             <div class="modal-header border-0">
-                <h5 class="modal-title">上传封面</h5>
+                <h5 class="modal-title"><?php _lang('upload_cover') ?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -250,11 +250,11 @@
                 </div>
             </div>
             <div class="modal-footer justify-content-between">
-                <div>按住 Shift 等比例调整裁剪区域</div>
+                <div><?php _lang('crop_tip') ?></div>
                 <div>
-                    <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">取消</button>
-                    <button type="button" id="crop" class="btn btn-sm btn-success">保存</button>
-                    <button type="button" id="use_original_image" class="btn btn-sm btn-primary">使用原图</button>
+                    <button type="button" class="btn btn-sm btn-light" data-dismiss="modal"><?php _lang('cancel') ?></button>
+                    <button type="button" id="crop" class="btn btn-sm btn-success"><?php _lang('save') ?></button>
+                    <button type="button" id="use_original_image" class="btn btn-sm btn-primary"><?php _lang('use_original_image') ?></button>
                 </div>
             </div>
         </div>
@@ -299,7 +299,7 @@
             imageUploadURL: "media.php?action=upload&editor=1",
             videoUpload: false, //开启视频上传
             syncScrolling: "single",
-            placeholder: "使用 Markdown 开始你的创作吧...",
+            placeholder: "<?php _lang('markdown_placeholder') ?>",
             onfullscreen: function() {
                 this.watch();
             },
@@ -326,7 +326,7 @@
             };
             if (files && files.length > 0) {
                 if (!files[0].type.startsWith('image')) {
-                    alert('只能上传图片');
+                    alert('<?php _lang('only_image_allowed') ?>');
                     return;
                 }
                 reader = new FileReader();
@@ -370,7 +370,7 @@
                     if (data && typeof data === "object") {
                         alert(data.msg);
                     } else {
-                        alert("上传封面出错了");
+                        alert("<?php _lang('upload_cover_error') ?>");
                     }
                 }
             });
@@ -418,8 +418,8 @@
     window.onbeforeunload = function(e) {
         if ($("textarea[name=logcontent]").text() == articleTextRecord) return
         e = e || window.event;
-        if (e) e.returnValue = '离开页面提示';
-        return '离开页面提示';
+        if (e) e.returnValue = '<?php _lang('leave_page_prompt') ?>';
+        return '<?php _lang('leave_page_prompt') ?>';
     }
 
     // 文章编辑界面全局快捷键 Ctrl（Cmd）+ S 保存内容
@@ -444,7 +444,7 @@
         var newField = `
                     <div class="form-row field_list mb-3">
                         <div class="col-sm-3 px-2 my-1">
-                            <input type="text" name="field_keys[]" list="customFieldList" value="" class="form-control field-keys-input" placeholder="字段名称" maxlength="120" required>
+                            <input type="text" name="field_keys[]" list="customFieldList" value="" class="form-control field-keys-input" placeholder="<?php _lang('field_name') ?>" maxlength="120" required>
                             <datalist id="customFieldList">
                                 <?php foreach ($customFields as $k => $v): ?>
                                     <option value="<?= $k ?>"><?= $k . '【' . $v['name'] . '】' . $v['description'] ?></option>
@@ -452,10 +452,10 @@
                             </datalist>
                         </div>
                         <div class="col-sm-8 px-2 my-1">
-                            <textarea name="field_values[]" value="" class="form-control auto-resize-textarea field-values-textarea" placeholder="字段值" rows="1" style="resize: vertical; min-height: 33px; white-space: pre-wrap; overflow-x: auto;" required></textarea>
+                            <textarea name="field_values[]" value="" class="form-control auto-resize-textarea field-values-textarea" placeholder="<?php _lang('field_value') ?>" rows="1" style="resize: vertical; min-height: 33px; white-space: pre-wrap; overflow-x: auto;" required></textarea>
                         </div>
                         <div class="col-sm-1 px-2 my-1 d-flex align-items-start justify-content-end">
-                            <button type="button" class="btn btn-sm btn-outline-danger field_del">删除</button>
+                            <button type="button" class="btn btn-sm btn-outline-danger field_del"><?php _lang('delete') ?></button>
                         </div>
                     </div>
                 `;
