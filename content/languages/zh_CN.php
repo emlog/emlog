@@ -1,4 +1,10 @@
 <?php
+
+/**
+ * Language: 中文（简体）
+ *
+ * @package EMLOG
+ */
 return [
     // Common
     'email' => '邮箱',

@@ -9,7 +9,7 @@
 class EmLang
 {
     private static $_instance = null;
-    private $_currentLanguage = 'en';
+    private $_currentLanguage = 'zh_CN';
     private $_langData = [];
 
     private function __construct()
@@ -27,8 +27,8 @@ class EmLang
 
     private function init()
     {
-        // Default to Chinese (zh) if not configured
-        $lang = 'zh';
+        // Default to Chinese (zh_CN) if not configured
+        $lang = 'zh_CN';
         if (defined('EMLOG_LANG')) {
             $lang = EMLOG_LANG;
         }
@@ -42,6 +42,8 @@ class EmLang
         $langFile = EMLOG_ROOT . '/content/languages/' . $this->_currentLanguage . '.php';
         if (file_exists($langFile)) {
             $this->_langData = include $langFile;
+        } else {
+            $this->_langData = include EMLOG_ROOT . '/content/languages/zh_CN.php';
         }
     }
 

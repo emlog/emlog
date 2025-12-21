@@ -1,4 +1,10 @@
 <?php
+
+/**
+ * Language: English (US)
+ *
+ * @package EMLOG
+ */
 return [
     // Common
     'email' => 'Email',
