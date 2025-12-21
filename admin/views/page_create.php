@@ -5,15 +5,15 @@
         <div class="col-xl-9">
             <div id="post" class="form-group">
                 <div>
-                    <input type="text" name="title" id="title" value="<?= $title ?>" class="form-control" placeholder="页面标题" />
+                    <input type="text" name="title" id="title" value="<?= $title ?>" class="form-control" placeholder="<?= _lang('page_title') ?>" />
                 </div>
                 <div class="small my-3">
-                    <a href="#mediaModal" data-toggle="modal" data-target="#mediaModal"><i class="icofont-plus"></i>资源媒体库</a>
+                    <a href="#mediaModal" data-toggle="modal" data-target="#mediaModal"><i class="icofont-plus"></i><?= _lang('media_lib') ?></a>
                     <?php doAction('adm_writelog_bar') ?>
                 </div>
                 <div id="pagecontent"><textarea><?= $content ?></textarea></div>
                 <div class="mt-3">
-                    <label id="post_bar_label">插件扩展：</label>
+                    <label id="post_bar_label"><?= _lang('plugin_extensions') ?></label>
                     <div id="post_bar"><?php doAction('adm_writelog_head') ?></div>
                 </div>
             </div>
@@ -23,21 +23,21 @@
                 <input type="hidden" name="ishide" id="ishide" value="<?= $hide ?>" />
                 <input type="hidden" name="pageid" id="pageid" value="<?= $pageId ?>" />
                 <?php if ($pageId < 0): ?>
-                    <input type="submit" name="pubPost" id="pubPost" value="发布页面" onclick="return checkform();" class="btn btn-success btn-sm" />
-                    <input type="button" name="savedf" id="savedf" value="保存" onclick="pageSave();" class="btn btn-primary btn-sm" />
+                    <input type="submit" name="pubPost" id="pubPost" value="<?= _lang('publish_page') ?>" onclick="return checkform();" class="btn btn-success btn-sm" />
+                    <input type="button" name="savedf" id="savedf" value="<?= _lang('save') ?>" onclick="pageSave();" class="btn btn-primary btn-sm" />
                 <?php else: ?>
-                    <input type="submit" value="保存并返回" onclick="return checkform();" class="btn btn-success btn-sm" />
-                    <input type="button" name="savedf" id="savedf" value="保存" onclick="pageSave();" class="btn btn-primary btn-sm" />
+                    <input type="submit" value="<?= _lang('save_return') ?>" onclick="return checkform();" class="btn btn-success btn-sm" />
+                    <input type="button" name="savedf" id="savedf" value="<?= _lang('save') ?>" onclick="pageSave();" class="btn btn-primary btn-sm" />
                 <?php endif ?>
             </div>
             <div class="shadow-sm p-3 mb-2 bg-white rounded">
                 <div class="form-group">
-                    <input name="cover" id="cover" class="form-control" placeholder="封面图URL" value="<?= $cover ?>" />
-                    <small class="text-muted">填写封面图URL、击下方上传或从<a href="#mediaModal" data-toggle="modal" data-target="#mediaModal">资源库选择</a></small>
+                    <input name="cover" id="cover" class="form-control" placeholder="<?= _lang('cover_url') ?>" value="<?= $cover ?>" />
+                    <small class="text-muted"><?= _lang('cover_tip') ?><a href="#mediaModal" data-toggle="modal" data-target="#mediaModal"><?= _lang('select_from_media') ?></a></small>
                     <div class="row mt-3">
                         <div class="col-md-4">
                             <label for="upload_img">
-                                <img src="<?= $cover ?: './views/images/cover.svg' ?>" width="200" id="cover_image" class="rounded" alt="封面图片" />
+                                <img src="<?= $cover ?: './views/images/cover.svg' ?>" width="200" id="cover_image" class="rounded" alt="<?= _lang('cover') ?>" />
                                 <input type="file" name="upload_img" class="image" id="upload_img" style="display:none" />
                                 <button type="button" id="cover_rm" class="btn-sm btn btn-link" <?php if (!$cover): ?>style="display:none" <?php endif ?>>x</button>
                             </label>
@@ -45,37 +45,37 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>链接别名：</label>
+                    <label><?= _lang('alias') ?>：</label>
                     <input name="alias" id="alias" class="form-control" value="<?= $alias ?>" />
-                    <small class="text-muted">英文字母、数字组成，用于<a href="./setting.php?action=seo">seo设置</a></small>
+                    <small class="text-muted"><?= _lang('page_alias_tip') ?><a href="./setting.php?action=seo"><?= _lang('seo_setting') ?></a></small>
                 </div>
                 <div class="form-group">
-                    <label>跳转链接：</label>
+                    <label><?= _lang('jump_link') ?>：</label>
                     <input name="link" id="link" type="url" class="form-control" value="<?= $link ?>" placeholder="https://" />
-                    <small class="text-muted">填写后不展示页面内容，直接跳转该地址</small>
+                    <small class="text-muted"><?= _lang('link_tip') ?></small>
                 </div>
                 <div class="form-group">
                     <div class="custom-control custom-switch">
                         <input type="checkbox" class="custom-control-input" id="allow_remark" name="allow_remark" value="y" <?= $is_allow_remark ?>>
-                        <label class="custom-control-label" for="allow_remark">允许评论</label>
+                        <label class="custom-control-label" for="allow_remark"><?= _lang('allow_comment') ?></label>
                     </div>
                     <div class="custom-control custom-switch">
                         <input type="checkbox" class="custom-control-input" id="home_page" name="home_page" value="y" <?= $is_home_page ?>>
-                        <label class="custom-control-label" for="home_page">设为首页</label>
+                        <label class="custom-control-label" for="home_page"><?= _lang('set_home_page') ?></label>
                     </div>
                 </div>
                 <?php if ($customTemplates): ?>
                     <div class="form-group">
-                        <label>页面模板：</label>
+                        <label><?= _lang('page_template') ?></label>
                         <?php
-                        $sortListHtml = '<option value="">默认</option>';
+                        $sortListHtml = '<option value="">' . _lang('default') . '</option>';
                         foreach ($customTemplates as $v) {
                             $select = $v['filename'] == $template ? 'selected="selected"' : '';
                             $sortListHtml .= '<option value="' . str_replace('.php', '', $v['filename']) . '" ' . $select . '>' . ($v['comment']) . '</option>';
                         }
                         ?>
                         <select id="template" name="template" class="form-control"><?= $sortListHtml; ?></select>
-                        <small class="form-text text-muted">选择当前模板支持的页面模板，可不选</small>
+                        <small class="form-text text-muted"><?= _lang('template_tip') ?></small>
                     </div>
                 <?php endif; ?>
                 <div id="page_side_ext">
@@ -90,18 +90,18 @@
     <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
         <div class="modal-content border-0 shadow">
             <div class="modal-header border-0">
-                <h5 class="modal-title" id="exampleModalLabel">资源媒体库</h5>
+                <h5 class="modal-title" id="exampleModalLabel"><?= _lang('media_lib') ?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="d-flex justify-content-between">
-                    <div><a href="#" id="mediaAdd" class="btn btn-sm btn-success shadow-sm mb-3">上传图片/文件</a></div>
+                    <div><a href="#" id="mediaAdd" class="btn btn-sm btn-success shadow-sm mb-3"><?= _lang('upload_file') ?></a></div>
                     <div>
                         <?php if (User::haveEditPermission() && $mediaSorts): ?>
                             <select class="form-control" id="media-sort-select">
-                                <option value="">选择资源分类…</option>
+                                <option value=""><?= _lang('select_media_sort') ?></option>
                                 <?php foreach ($mediaSorts as $v): ?>
                                     <option value="<?= $v['id'] ?>"><?= $v['sortname'] ?></option>
                                 <?php endforeach ?>
@@ -112,7 +112,7 @@
                 <form action="media.php?action=operate_media" method="post" name="form_media" id="form_media">
                     <div class="row" id="image-list"></div>
                     <div class="text-center">
-                        <button type="button" class="btn btn-success btn-sm mt-2" id="load-more">加载更多…</button>
+                        <button type="button" class="btn btn-success btn-sm mt-2" id="load-more"><?= _lang('load_more') ?></button>
                     </div>
                 </form>
             </div>
@@ -124,7 +124,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content border-0 shadow">
             <div class="modal-header border-0">
-                <h5 class="modal-title">上传封面</h5>
+                <h5 class="modal-title"><?= _lang('upload_cover') ?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -139,11 +139,11 @@
                 </div>
             </div>
             <div class="modal-footer justify-content-between">
-                <div>按住 Shift 等比例调整裁剪区域</div>
+                <div><?= _lang('crop_tip') ?></div>
                 <div>
-                    <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">取消</button>
-                    <button type="button" id="crop" class="btn btn-sm btn-success">保存</button>
-                    <button type="button" id="use_original_image" class="btn btn-sm btn-google">使用原图</button>
+                    <button type="button" class="btn btn-sm btn-light" data-dismiss="modal"><?= _lang('cancel') ?></button>
+                    <button type="button" id="crop" class="btn btn-sm btn-success"><?= _lang('save') ?></button>
+                    <button type="button" id="use_original_image" class="btn btn-sm btn-google"><?= _lang('use_original_image') ?></button>
                 </div>
             </div>
         </div>
@@ -228,7 +228,7 @@
             };
             if (files && files.length > 0) {
                 if (!files[0].type.startsWith('image')) {
-                    alert('只能上传图片');
+                    alert('<?= _lang('only_image_allowed') ?>');
                     return;
                 }
                 reader = new FileReader();
@@ -272,7 +272,7 @@
                     if (data && typeof data === "object") {
                         alert(data.msg);
                     } else {
-                        alert("上传封面出错了");
+                        alert("<?= _lang('upload_cover_error') ?>");
                     }
                 }
             });

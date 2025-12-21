@@ -1,14 +1,14 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
 <?php if (isset($_GET['active_hide_n'])): ?>
-    <div class="alert alert-success">发布页面成功</div><?php endif ?>
+    <div class="alert alert-success"><?= _lang('page_publish_success') ?></div><?php endif ?>
 <?php if (isset($_GET['active_hide_y'])): ?>
-    <div class="alert alert-success">转为草稿成功</div><?php endif ?>
+    <div class="alert alert-success"><?= _lang('page_draft_success') ?></div><?php endif ?>
 <?php if (isset($_GET['active_pubpage'])): ?>
-    <div class="alert alert-success">页面保存成功</div><?php endif ?>
+    <div class="alert alert-success"><?= _lang('page_save_success') ?></div><?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h4 mb-0 text-gray-800">页面</h1>
+    <h1 class="h4 mb-0 text-gray-800"><?= _lang('page') ?></h1>
     <a href="page.php?action=new" class="btn btn-sm btn-success shadow-sm mt-4"><i class="icofont-plus"></i>
-        新建页面</a>
+        <?= _lang('new_page') ?></a>
 </div>
 <div class="card shadow mb-4">
     <div class="card-header py-3">
@@ -16,15 +16,15 @@
             <div class="form-inline">
                 <div id="f_t_order" class="mx-1">
                     <select name="order" id="order" onChange="selectOrder(this);" class="form-control">
-                        <option value="date" <?= (empty($order)) ? 'selected' : '' ?>>最新发布</option>
-                        <option value="comm" <?= ($order === 'comm') ? 'selected' : '' ?>>评论最多</option>
-                        <option value="view" <?= ($order === 'view') ? 'selected' : '' ?>>浏览最多</option>
+                        <option value="date" <?= (empty($order)) ? 'selected' : '' ?>><?= _lang('latest_post') ?></option>
+                        <option value="comm" <?= ($order === 'comm') ? 'selected' : '' ?>><?= _lang('comment_most') ?></option>
+                        <option value="view" <?= ($order === 'view') ? 'selected' : '' ?>><?= _lang('view_most') ?></option>
                     </select>
                 </div>
             </div>
             <form action="page.php" method="get">
                 <div class="form-inline search-inputs-nowrap">
-                    <input type="text" name="keyword" class="form-control m-1 small" placeholder="搜索标题..." aria-label="Search" aria-describedby="basic-addon2">
+                    <input type="text" name="keyword" class="form-control m-1 small" placeholder="<?= _lang('search_title') ?>" aria-label="Search" aria-describedby="basic-addon2">
                     <div class="input-group-append">
                         <button class="btn btn-sm btn-success" type="submit">
                             <i class="icofont-search-2"></i>
@@ -41,12 +41,12 @@
                     <thead>
                         <tr>
                             <th><input type="checkbox" id="checkAllItem" /></th>
-                            <th>标题</th>
-                            <th>评论</th>
-                            <th>浏览</th>
-                            <th>别名</th>
-                            <th>模板</th>
-                            <th>时间</th>
+                            <th><?= _lang('title') ?></th>
+                            <th><?= _lang('comment') ?></th>
+                            <th><?= _lang('views') ?></th>
+                            <th><?= _lang('alias') ?></th>
+                            <th><?= _lang('template') ?></th>
+                            <th><?= _lang('time') ?></th>
                         </tr>
                     </thead>
                     <tbody class="checkboxContainer">
@@ -59,22 +59,22 @@
                                     <a href="page.php?action=mod&id=<?= $value['gid'] ?>"><?= $value['title'] ?></a>
                                     <a href="<?= Url::log($value['gid']) ?>" target="_blank" class="text-muted ml-2"><i class="icofont-external-link"></i></a>
                                     <?php if ($value['hide'] == 'y'): ?>
-                                        <span class="badge small badge-secondary">草稿</span>
+                                        <span class="badge small badge-secondary"><?= _lang('draft') ?></span>
                                     <?php endif; ?>
                                     <?php if ($value['gid'] == Option::get('home_page_id')): ?>
-                                        <span class="badge small badge-danger">首页</span>
+                                        <span class="badge small badge-danger"><?= _lang('home') ?></span>
                                     <?php endif; ?>
                                     <?php if ($value['gid'] == Option::get('home_page_id')): ?>
                                         <br>
                                         <span class="text-secondary small">
-                                            已设为首页，原默认首页：<a href="<?= BLOG_URL ?>posts" target="_blank"><?= BLOG_URL ?>posts</a>
+                                            <?= _lang('set_home_page_tip') ?><a href="<?= BLOG_URL ?>posts" target="_blank"><?= BLOG_URL ?>posts</a>
                                         </span>
                                     <?php endif; ?>
                                     <br>
                                     <span class="small"> ID:<?= $value['gid'] ?></span>
                                     <?php if ($value['alias']): ?> <span class="small">(<?= $value['alias'] ?>)</span><?php endif ?>
-                                    <?php if ($value['allow_remark'] === 'y'): ?> <span class="small" title="允许评论">💬</span><?php endif ?>
-                                    <?php if ($value['link']): ?><span class="small" title="跳转链接">🔗</span><?php endif ?>
+                                    <?php if ($value['allow_remark'] === 'y'): ?> <span class="small" title="<?= _lang('enable_comment') ?>">💬</span><?php endif ?>
+                                    <?php if ($value['link']): ?><span class="small" title="<?= _lang('jump_link') ?>">🔗</span><?php endif ?>
                                 </td>
                                 <td>
                                     <a href="comment.php?gid=<?= $value['gid'] ?>" class="badge badge-primary mx-1 px-2"><?= $value['comnum'] ?></a>
@@ -92,11 +92,11 @@
             </div>
             <div class="list_footer">
                 <div class="btn-group">
-                    <button class="btn btn-success btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">操作</button>
+                    <button class="btn btn-success btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"><?= _lang('operation') ?></button>
                     <div class="dropdown-menu">
-                        <a href="javascript:pageact('hide');" class="dropdown-item">转为草稿</a>
-                        <a href="javascript:pageact('pub');" class="dropdown-item">发布</a>
-                        <a href="javascript:pageact('del');" class="dropdown-item text-danger">删除</a>
+                        <a href="javascript:pageact('hide');" class="dropdown-item"><?= _lang('to_draft') ?></a>
+                        <a href="javascript:pageact('pub');" class="dropdown-item"><?= _lang('publish') ?></a>
+                        <a href="javascript:pageact('del');" class="dropdown-item text-danger"><?= _lang('delete') ?></a>
                     </div>
                 </div>
                 <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
@@ -106,7 +106,7 @@
     </div>
 </div>
 <div class="page"><?= $pageurl ?></div>
-<div class="text-center small">有 <?= $pageNum ?> 个页面</div>
+<div class="text-center small"><?php printf(EmLang::getInstance()->get('page_count'), $pageNum); ?></div>
 <script>
     $(function() {
         setTimeout(hideActived, 3600);
@@ -117,11 +117,11 @@
 
     function pageact(act) {
         if (getChecked('ids') === false) {
-            infoAlert('请选择要操作的页面');
+            infoAlert('<?= _lang('select_operate_page') ?>');
             return;
         }
         if (act === 'del') {
-            delAlert2('', '删除所选页面？', function() {
+            delAlert2('', '<?= _lang('delete_page_confirm') ?>', function() {
                 $("#operate").val(act);
                 $("#form_page").submit();
             })
