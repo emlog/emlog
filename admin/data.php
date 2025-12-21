@@ -37,7 +37,7 @@ if ($action === 'backup') {
     $fp = fopen($tempFile, 'w');
 
     if (!$fp) {
-        emMsg('创建临时备份文件失败，请检查系统临时目录权限');
+        emMsg(_lang('backup_temp_file_error'));
     }
 
     // 写入备份文件头信息
@@ -83,12 +83,12 @@ if ($action === 'import') {
     LoginAuth::checkToken();
     $sqlfile = isset($_FILES['sqlfile']) ? $_FILES['sqlfile'] : '';
     if (!$sqlfile) {
-        emMsg('非法提交的信息');
+        emMsg(_lang('illegal_info'));
     }
     if ($sqlfile['error'] == 1) {
-        emMsg('文件大小超过系统' . ini_get('upload_max_filesize') . '限制');
+        emMsg(_lang('file_size_exceeds_limit') . ini_get('upload_max_filesize'));
     } elseif ($sqlfile['error'] > 1) {
-        emMsg('上传文件失败,错误码：' . $sqlfile['error']);
+        emMsg(_lang('upload_error_code') . $sqlfile['error']);
     }
     if (getFileSuffix($sqlfile['name']) == 'zip') {
         $ret = emUnZip($sqlfile['tmp_name'], dirname($sqlfile['tmp_name']), 'backup');
@@ -106,10 +106,10 @@ if ($action === 'import') {
         }
         $sqlfile['tmp_name'] = dirname($sqlfile['tmp_name']) . '/' . str_replace('.zip', '.sql', $sqlfile['name']);
         if (!file_exists($sqlfile['tmp_name'])) {
-            emMsg('只能导入emlog备份的压缩包，且不能修改压缩包文件名！');
+            emMsg(_lang('import_zip_only'));
         }
     } elseif (getFileSuffix($sqlfile['name']) != 'sql') {
-        emMsg('只能导入emlog备份的SQL文件');
+        emMsg(_lang('import_sql_only'));
     }
     checkSqlFileInfo($sqlfile['tmp_name']);
     importData($sqlfile['tmp_name']);
@@ -197,7 +197,7 @@ function checkSqlFileInfo($sqlfile)
 {
     $fp = @fopen($sqlfile, 'r');
     if (!$fp) {
-        emMsg('读取备份文件失败，检查文件权限');
+        emMsg(_lang('read_backup_error'));
     }
     $dumpinfo = [];
     $line = 0;
@@ -239,100 +239,100 @@ function importData($filename)
 {
     $DB = Database::getInstance();
     $setchar = $DB->getVersion() > '5.5' ? "ALTER DATABASE `" . DB_NAME . "` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;" : '';
-    
+
     // 设置内存和时间限制，参考导出函数的设置
     @ini_set('memory_limit', '256M');
     @set_time_limit(0);
-    
+
     // 打开文件进行逐行读取
     $fp = @fopen($filename, 'r');
     if (!$fp) {
-        emMsg('无法打开备份文件进行读取');
+        emMsg(_lang('open_backup_error'));
     }
-    
+
     // 处理BOM头
     $firstLine = fgets($fp, 4096);
     if ($firstLine && checkBOM($firstLine)) {
         $firstLine = substr($firstLine, 3);
     }
-    
+
     // 执行字符集设置
     if ($setchar) {
         $DB->query($setchar);
     }
-    
+
     $query = '';
     $lineCount = 0;
-    
+
     // 处理第一行（如果有的话）
-     if ($firstLine) {
-         $firstLine = trim($firstLine);
-         if ($firstLine && $firstLine[0] !== '#') {
-             $query .= $firstLine;
-             if (preg_match("/\;$/i", $firstLine)) {
-                 if (preg_match("/^CREATE/i", $query)) {
-                     $query = preg_replace("/\DEFAULT CHARSET=([a-z0-9]+)/is", '', $query);
-                 }
-                 $result = $DB->query($query);
-                 if (!$result && $DB->geterrno() != 0) {
-                     error_log("SQL执行失败 (第一行): " . $DB->geterror() . " SQL: " . substr($query, 0, 100));
-                 }
-                 $query = '';
-             }
-         }
-         $lineCount++;
-     }
-    
+    if ($firstLine) {
+        $firstLine = trim($firstLine);
+        if ($firstLine && $firstLine[0] !== '#') {
+            $query .= $firstLine;
+            if (preg_match("/\;$/i", $firstLine)) {
+                if (preg_match("/^CREATE/i", $query)) {
+                    $query = preg_replace("/\DEFAULT CHARSET=([a-z0-9]+)/is", '', $query);
+                }
+                $result = $DB->query($query);
+                if (!$result && $DB->geterrno() != 0) {
+                    error_log("SQL执行失败 (第一行): " . $DB->geterror() . " SQL: " . substr($query, 0, 100));
+                }
+                $query = '';
+            }
+        }
+        $lineCount++;
+    }
+
     // 逐行读取并处理SQL语句
     while (!feof($fp)) {
         $line = fgets($fp, 4096);
         if ($line === false) {
             break;
         }
-        
+
         $line = trim($line);
         if (!$line || $line[0] === '#') {
             continue;
         }
-        
+
         $query .= $line;
-        
+
         // 检查是否为完整的SQL语句
-         if (preg_match("/\;$/i", $line)) {
-             if (preg_match("/^CREATE/i", $query)) {
-                 $query = preg_replace("/\DEFAULT CHARSET=([a-z0-9]+)/is", '', $query);
-             }
-             
-             // 执行SQL语句，添加错误处理
-             $result = $DB->query($query);
-             if (!$result && $DB->geterrno() != 0) {
-                 // 记录错误但继续执行，避免因个别语句失败导致整个导入中断
-                 error_log("SQL执行失败 (行 $lineCount): " . $DB->geterror() . " SQL: " . substr($query, 0, 100));
-             }
-             $query = '';
-             
-             $lineCount++;
-             
-             // 每处理1000行强制释放内存
-             if ($lineCount % 1000 == 0 && function_exists('gc_collect_cycles')) {
-                 gc_collect_cycles();
-             }
-         }
+        if (preg_match("/\;$/i", $line)) {
+            if (preg_match("/^CREATE/i", $query)) {
+                $query = preg_replace("/\DEFAULT CHARSET=([a-z0-9]+)/is", '', $query);
+            }
+
+            // 执行SQL语句，添加错误处理
+            $result = $DB->query($query);
+            if (!$result && $DB->geterrno() != 0) {
+                // 记录错误但继续执行，避免因个别语句失败导致整个导入中断
+                error_log("SQL执行失败 (行 $lineCount): " . $DB->geterror() . " SQL: " . substr($query, 0, 100));
+            }
+            $query = '';
+
+            $lineCount++;
+
+            // 每处理1000行强制释放内存
+            if ($lineCount % 1000 == 0 && function_exists('gc_collect_cycles')) {
+                gc_collect_cycles();
+            }
+        }
     }
-    
+
     // 处理最后可能未完成的查询
-     if (!empty(trim($query))) {
-         if (preg_match("/^CREATE/i", $query)) {
-             $query = preg_replace("/\DEFAULT CHARSET=([a-z0-9]+)/is", '', $query);
-         }
-         $result = $DB->query($query);
-         if (!$result && $DB->geterrno() != 0) {
-             error_log("SQL执行失败 (最后查询): " . $DB->geterror() . " SQL: " . substr($query, 0, 100));
-         }
-     }
-    
+    if (!empty(trim($query))) {
+        if (preg_match("/^CREATE/i", $query)) {
+            $query = preg_replace("/\DEFAULT CHARSET=([a-z0-9]+)/is", '', $query);
+        }
+        $result = $DB->query($query);
+        if (!$result && $DB->geterrno() != 0) {
+            error_log("SQL执行失败 (最后查询): " . $DB->geterror() . " SQL: " . substr($query, 0, 100));
+        }
+    }
+
     fclose($fp);
-    
+
     // 最终内存清理
     if (function_exists('gc_collect_cycles')) {
         gc_collect_cycles();
