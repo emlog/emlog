@@ -1,7 +1,7 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
 <?php if (isset($_GET['activated'])): ?>
-    <div class="alert alert-success"><?php _lang('save_success'); ?></div><?php endif ?>
-<h1 class="h4 mb-4 text-gray-800"><?php _lang('widget_sidebar'); ?></h1>
+    <div class="alert alert-success"><?= _lang('save_success'); ?></div><?php endif ?>
+<h1 class="h4 mb-4 text-gray-800"><?= _lang('widget_sidebar'); ?></h1>
 <div class="card shadow mb-4 mt-2">
     <div class="card-body">
         <div class="row">
@@ -10,7 +10,7 @@
                     <div class="card" id="blogger">
                         <div class="card-header" id="headingBlogger" data-toggle="collapse" data-target="#bloggerForm" aria-expanded="true" aria-controls="bloggerForm" style="cursor:pointer">
                             <h6 class="mb-0 d-flex align-items-center">
-                                <span class="widget-title mr-auto"><?php _lang('widget_blogger'); ?></span>
+                                <span class="widget-title mr-auto"><?= _lang('widget_blogger'); ?></span>
                                 <span class="widget-act-add"></span>
                                 <span class="widget-act-del"></span>
                             </h6>
@@ -20,7 +20,7 @@
                                 <form action="widgets.php?action=setwg&wg=blogger" method="post" class="form-inline">
                                     <li>
                                         <input type="text" name="title" class="form-control" value="<?= $customWgTitle['blogger'] ?>" />
-                                        <input type="submit" name="" value="<?php _lang('save'); ?>" class="btn btn-success btn-sm" />
+                                        <input type="submit" name="" value="<?= _lang('save'); ?>" class="btn btn-success btn-sm" />
                                     </li>
                                 </form>
                             </div>
@@ -29,7 +29,7 @@
                     <div class="card" id="calendar">
                         <div class="card-header" id="headingCalendar" data-toggle="collapse" data-target="#calendarForm" aria-expanded="false" aria-controls="calendarForm" style="cursor:pointer">
                             <h6 class="mb-0 d-flex align-items-center">
-                                <span class="widget-title mr-auto"><?php _lang('widget_calendar'); ?></span>
+                                <span class="widget-title mr-auto"><?= _lang('widget_calendar'); ?></span>
                                 <span class="widget-act-add"></span>
                                 <span class="widget-act-del"></span>
                             </h6>
@@ -39,7 +39,7 @@
                                 <form action="widgets.php?action=setwg&wg=calendar" method="post" class="form-inline">
                                     <li>
                                         <input type="text" name="title" class="form-control" value="<?= $customWgTitle['calendar'] ?>" />
-                                        <input type="submit" name="" value="<?php _lang('save'); ?>" class="btn btn-success btn-sm" />
+                                        <input type="submit" name="" value="<?= _lang('save'); ?>" class="btn btn-success btn-sm" />
                                     </li>
                                 </form>
                             </div>
@@ -49,7 +49,7 @@
                     <div class="card" id="twitter">
                         <div class="card-header" id="headingTwitter" data-toggle="collapse" data-target="#twitterForm" aria-expanded="false" aria-controls="twitterForm" style="cursor:pointer">
                             <h6 class="mb-0 d-flex align-items-center">
-                                <span class="widget-title mr-auto"><?php _lang('twitter'); ?></span>
+                                <span class="widget-title mr-auto"><?= _lang('twitter'); ?></span>
                                 <span class="widget-act-add"></span>
                                 <span class="widget-act-del"></span>
                             </h6>
@@ -58,14 +58,14 @@
                             <div class="card-body">
                                 <form action="widgets.php?action=setwg&wg=twitter" method="post">
                                     <div class="form-group">
-                                        <label><?php _lang('title'); ?></label>
+                                        <label><?= _lang('title'); ?></label>
                                         <input type="text" name="title" class="form-control" value="<?= $customWgTitle['twitter']; ?>" />
                                     </div>
                                     <div class="form-group">
-                                        <label><?php _lang('widget_display_count'); ?></label>
+                                        <label><?= _lang('widget_display_count'); ?></label>
                                         <input maxlength="5" size="10" class="form-control" type="number" min="1" required value="<?= Option::get('index_newtwnum'); ?>" name="index_newtwnum" />
                                     </div>
-                                    <input type="submit" name="" value="<?php _lang('save'); ?>" class="btn btn-success btn-sm" />
+                                    <input type="submit" name="" value="<?= _lang('save'); ?>" class="btn btn-success btn-sm" />
                                 </form>
                             </div>
                         </div>
@@ -74,7 +74,7 @@
                     <div class="card" id="tag">
                         <div class="card-header" id="headingTag" data-toggle="collapse" data-target="#tagForm" aria-expanded="false" aria-controls="tagForm" style="cursor:pointer">
                             <h6 class="mb-0 d-flex align-items-center">
-                                <span class="widget-title mr-auto"><?php _lang('tag'); ?></span>
+                                <span class="widget-title mr-auto"><?= _lang('tag'); ?></span>
                                 <span class="widget-act-add"></span>
                                 <span class="widget-act-del"></span>
                             </h6>
@@ -84,7 +84,7 @@
                                 <form action="widgets.php?action=setwg&wg=tag" method="post" class="form-inline">
                                     <li>
                                         <input type="text" name="title" class="form-control" value="<?= $customWgTitle['tag'] ?>" />
-                                        <input type="submit" name="" value="<?php _lang('save'); ?>" class="btn btn-success btn-sm" />
+                                        <input type="submit" name="" value="<?= _lang('save'); ?>" class="btn btn-success btn-sm" />
                                     </li>
                                 </form>
                             </div>
@@ -93,7 +93,7 @@
                     <div class="card" id="sort">
                         <div class="card-header" id="headingSort" data-toggle="collapse" data-target="#sortForm" aria-expanded="false" aria-controls="sortForm" style="cursor:pointer">
                             <h6 class="mb-0 d-flex align-items-center">
-                                <span class="widget-title mr-auto"><?php _lang('category'); ?></span>
+                                <span class="widget-title mr-auto"><?= _lang('category'); ?></span>
                                 <span class="widget-act-add"></span>
                                 <span class="widget-act-del"></span>
                             </h6>
@@ -103,7 +103,7 @@
                                 <form action="widgets.php?action=setwg&wg=sort" method="post" class="form-inline">
                                     <li>
                                         <input type="text" name="title" class="form-control" value="<?= $customWgTitle['sort'] ?>" />
-                                        <input type="submit" name="" value="<?php _lang('save'); ?>" class="btn btn-success btn-sm" />
+                                        <input type="submit" name="" value="<?= _lang('save'); ?>" class="btn btn-success btn-sm" />
                                     </li>
                                 </form>
                             </div>
@@ -112,7 +112,7 @@
                     <div class="card" id="archive">
                         <div class="card-header" id="headingArchive" data-toggle="collapse" data-target="#archiveForm" aria-expanded="false" aria-controls="archiveForm" style="cursor:pointer">
                             <h6 class="mb-0 d-flex align-items-center">
-                                <span class="widget-title mr-auto"><?php _lang('widget_archive'); ?></span>
+                                <span class="widget-title mr-auto"><?= _lang('widget_archive'); ?></span>
                                 <span class="widget-act-add"></span>
                                 <span class="widget-act-del"></span>
                             </h6>
@@ -122,7 +122,7 @@
                                 <form action="widgets.php?action=setwg&wg=archive" method="post" class="form-inline">
                                     <li>
                                         <input type="text" name="title" class="form-control" value="<?= $customWgTitle['archive'] ?>" />
-                                        <input type="submit" name="" value="<?php _lang('save'); ?>" class="btn btn-success btn-sm" />
+                                        <input type="submit" name="" value="<?= _lang('save'); ?>" class="btn btn-success btn-sm" />
                                     </li>
                                 </form>
                             </div>
@@ -131,7 +131,7 @@
                     <div class="card" id="newcomm">
                         <div class="card-header" id="headingNewcomm" data-toggle="collapse" data-target="#newcommFrom" aria-expanded="false" aria-controls="newcommFrom" style="cursor:pointer">
                             <h6 class="mb-0 d-flex align-items-center">
-                                <span class="widget-title mr-auto"><?php _lang('widget_new_comm'); ?></span>
+                                <span class="widget-title mr-auto"><?= _lang('widget_new_comm'); ?></span>
                                 <span class="widget-act-add"></span>
                                 <span class="widget-act-del"></span>
                             </h6>
@@ -140,18 +140,18 @@
                             <div class="card-body">
                                 <form action="widgets.php?action=setwg&wg=newcomm" method="post">
                                     <div class="form-group">
-                                        <label><?php _lang('title'); ?></label>
+                                        <label><?= _lang('title'); ?></label>
                                         <input type="text" name="title" class="form-control" value="<?= $customWgTitle['newcomm'] ?>" />
                                     </div>
                                     <div class="form-group">
-                                        <label><?php _lang('widget_new_comm_num'); ?></label>
+                                        <label><?= _lang('widget_new_comm_num'); ?></label>
                                         <input class="form-control" maxlength="5" size="10" value="<?= Option::get('index_comnum') ?>" name="index_comnum" />
                                     </div>
                                     <div class="form-group">
-                                        <label><?php _lang('widget_comment_excerpt'); ?></label>
+                                        <label><?= _lang('widget_comment_excerpt'); ?></label>
                                         <input class="form-control" maxlength="5" size="10" value="<?= Option::get('comment_subnum') ?>" name="comment_subnum" />
                                     </div>
-                                    <input type="submit" name="" value="<?php _lang('save'); ?>" class="btn btn-success btn-sm" />
+                                    <input type="submit" name="" value="<?= _lang('save'); ?>" class="btn btn-success btn-sm" />
                                 </form>
                             </div>
                         </div>
@@ -159,7 +159,7 @@
                     <div class="card" id="newlog">
                         <div class="card-header" id="headingNewlog" data-toggle="collapse" data-target="#newlogForm" aria-expanded="false" aria-controls="newlogForm" style="cursor:pointer">
                             <h6 class="mb-0 d-flex align-items-center">
-                                <span class="widget-title mr-auto"><?php _lang('widget_new_log'); ?></span>
+                                <span class="widget-title mr-auto"><?= _lang('widget_new_log'); ?></span>
                                 <span class="widget-act-add"></span>
                                 <span class="widget-act-del"></span>
                             </h6>
@@ -168,14 +168,14 @@
                             <div class="card-body">
                                 <form action="widgets.php?action=setwg&wg=newlog" method="post">
                                     <div class="form-group">
-                                        <label><?php _lang('title'); ?></label>
+                                        <label><?= _lang('title'); ?></label>
                                         <input type="text" name="title" class="form-control" value="<?= $customWgTitle['newlog'] ?>" />
                                     </div>
                                     <div class="form-group">
-                                        <label><?php _lang('widget_new_log_num'); ?></label>
+                                        <label><?= _lang('widget_new_log_num'); ?></label>
                                         <input class="form-control" maxlength="5" size="10" value="<?= Option::get('index_newlognum') ?>" name="index_newlog" />
                                     </div>
-                                    <input type="submit" name="" value="<?php _lang('save'); ?>" class="btn btn-success btn-sm" />
+                                    <input type="submit" name="" value="<?= _lang('save'); ?>" class="btn btn-success btn-sm" />
                                 </form>
                             </div>
                         </div>
@@ -183,7 +183,7 @@
                     <div class="card" id="hotlog">
                         <div class="card-header" id="headingHotlog" data-toggle="collapse" data-target="#hotlogForm" aria-expanded="false" aria-controls="hotlogForm" style="cursor:pointer">
                             <h6 class="mb-0 d-flex align-items-center">
-                                <span class="widget-title mr-auto"><?php _lang('widget_hot_log'); ?></span>
+                                <span class="widget-title mr-auto"><?= _lang('widget_hot_log'); ?></span>
                                 <span class="widget-act-add"></span>
                                 <span class="widget-act-del"></span>
                             </h6>
@@ -192,21 +192,21 @@
                             <div class="card-body">
                                 <form action="widgets.php?action=setwg&wg=hotlog" method="post">
                                     <div class="form-group">
-                                        <label><?php _lang('title'); ?></label>
+                                        <label><?= _lang('title'); ?></label>
                                         <input type="text" name="title" class="form-control" value="<?= $customWgTitle['hotlog'] ?>" />
                                     </div>
                                     <div class="form-group">
-                                        <label><?php _lang('widget_hot_log_num'); ?></label>
+                                        <label><?= _lang('widget_hot_log_num'); ?></label>
                                         <input class="form-control" maxlength="5" size="10" value="<?= Option::get('index_hotlognum') ?>" name="index_hotlognum" />
                                     </div>
                                     <div class="form-group">
-                                        <label><?php _lang('widget_hot_type'); ?></label>
+                                        <label><?= _lang('widget_hot_type'); ?></label>
                                         <select name="index_hotlog_sort" class="form-control">
-                                            <option value="views" <?= Option::get('index_hotlog_sort') === 'views' ? 'selected' : '' ?>><?php _lang('view_most'); ?></option>
-                                            <option value="comments" <?= Option::get('index_hotlog_sort') === 'comments' ? 'selected' : '' ?>><?php _lang('comment_most'); ?></option>
+                                            <option value="views" <?= Option::get('index_hotlog_sort') === 'views' ? 'selected' : '' ?>><?= _lang('view_most'); ?></option>
+                                            <option value="comments" <?= Option::get('index_hotlog_sort') === 'comments' ? 'selected' : '' ?>><?= _lang('comment_most'); ?></option>
                                         </select>
                                     </div>
-                                    <input type="submit" name="" value="<?php _lang('save'); ?>" class="btn btn-success btn-sm" />
+                                    <input type="submit" name="" value="<?= _lang('save'); ?>" class="btn btn-success btn-sm" />
                                 </form>
                             </div>
                         </div>
@@ -214,7 +214,7 @@
                     <div class="card" id="link">
                         <div class="card-header" id="headingLink" data-toggle="collapse" data-target="#linkForm" aria-expanded="false" aria-controls="linkForm" style="cursor:pointer">
                             <h6 class="mb-0 d-flex align-items-center">
-                                <span class="widget-title mr-auto"><?php _lang('link'); ?></span>
+                                <span class="widget-title mr-auto"><?= _lang('link'); ?></span>
                                 <span class="widget-act-add"></span>
                                 <span class="widget-act-del"></span>
                             </h6>
@@ -224,7 +224,7 @@
                                 <form action="widgets.php?action=setwg&wg=link" method="post" class="form-inline">
                                     <li>
                                         <input type="text" name="title" class="form-control" value="<?= $customWgTitle['link'] ?>" />
-                                        <input type="submit" name="" value="<?php _lang('save'); ?>" class="btn btn-success btn-sm" />
+                                        <input type="submit" name="" value="<?= _lang('save'); ?>" class="btn btn-success btn-sm" />
                                     </li>
                                 </form>
                             </div>
@@ -233,7 +233,7 @@
                     <div class="card" id="search">
                         <div class="card-header" id="headingSearch" data-toggle="collapse" data-target="#searchForm" aria-expanded="false" aria-controls="searchForm" style="cursor:pointer">
                             <h6 class="mb-0 d-flex align-items-center">
-                                <span class="widget-title mr-auto"><?php _lang('search'); ?></span>
+                                <span class="widget-title mr-auto"><?= _lang('search'); ?></span>
                                 <span class="widget-act-add"></span>
                                 <span class="widget-act-del"></span>
                             </h6>
@@ -243,7 +243,7 @@
                                 <form action="widgets.php?action=setwg&wg=search" method="post" class="form-inline">
                                     <li>
                                         <input type="text" name="title" value="<?= $customWgTitle['search'] ?>" class="form-control" />
-                                        <input type="submit" name="" value="<?php _lang('save'); ?>" class="btn btn-success btn-sm" />
+                                        <input type="submit" name="" value="<?= _lang('save'); ?>" class="btn btn-success btn-sm" />
                                     </li>
                                 </form>
                             </div>
@@ -271,8 +271,8 @@
                                         </li>
                                         <li><textarea class="form-control" name="content" style="overflow:auto; height:260px;"><?= $val['content'] ?></textarea><br /></li>
                                         <li>
-                                            <input type="submit" class="btn btn-sm btn-success" name="" value="<?php _lang('save'); ?>" />
-                                            <a class="btn btn-sm btn-danger" href="widgets.php?action=setwg&wg=custom_text&rmwg=<?= $key ?>"><?php _lang('delete'); ?></a>
+                                            <input type="submit" class="btn btn-sm btn-success" name="" value="<?= _lang('save'); ?>" />
+                                            <a class="btn btn-sm btn-danger" href="widgets.php?action=setwg&wg=custom_text&rmwg=<?= $key ?>"><?= _lang('delete'); ?></a>
                                         </li>
                                     </form>
                                 </div>
@@ -281,7 +281,7 @@
                     <?php endforeach ?>
                 </div>
                 <div class="my-3">
-                    <a href="#" class="btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> <?php _lang('widget_add'); ?></a>
+                    <a href="#" class="btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> <?= _lang('widget_add'); ?></a>
                 </div>
 
                 <!--添加自定义组件-->
@@ -289,7 +289,7 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content border-0 shadow">
                             <div class="modal-header border-0">
-                                <h5 class="modal-title" id="exampleModalLabel"><?php _lang('widget_add'); ?></h5>
+                                <h5 class="modal-title" id="exampleModalLabel"><?= _lang('widget_add'); ?></h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -297,17 +297,17 @@
                             <form action="widgets.php?action=setwg&wg=custom_text" method="post">
                                 <div class="modal-body">
                                     <div class="form-group">
-                                        <label for="new_title"><?php _lang('name'); ?></label>
+                                        <label for="new_title"><?= _lang('name'); ?></label>
                                         <input class="form-control" id="new_title" name="new_title" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="new_content"><?php _lang('widget_content_html_tip'); ?></label>
+                                        <label for="new_content"><?= _lang('widget_content_html_tip'); ?></label>
                                         <textarea name="new_content" id="new_content" class="form-control" rows="10" required></textarea>
                                     </div>
                                 </div>
                                 <div class="modal-footer border-0">
-                                    <button type="button" class="btn btn-sm btn-light" data-dismiss="modal"><?php _lang('cancel'); ?></button>
-                                    <button type="submit" class="btn btn-sm btn-success"><?php _lang('save'); ?></button>
+                                    <button type="button" class="btn btn-sm btn-light" data-dismiss="modal"><?= _lang('cancel'); ?></button>
+                                    <button type="submit" class="btn btn-sm btn-success"><?= _lang('save'); ?></button>
                                     <span id="alias_msg_hook"></span>
                                 </div>
                             </form>
@@ -317,7 +317,7 @@
             </div>
 
             <div class="col-lg-6">
-                <h1 class="h4 mb-4 text-gray-800"><?php _lang('widget_added'); ?></h1>
+                <h1 class="h4 mb-4 text-gray-800"><?= _lang('widget_added'); ?></h1>
                 <form action="widgets.php?action=compages" method="post">
                     <div id="sortable" class="adm_widget_box">
                         <?php
@@ -346,8 +346,8 @@
                         <?php endforeach ?>
                     </div>
                     <div class="my-3">
-                        <input type="submit" value="<?php _lang('save_sort'); ?>" class="btn btn-sm btn-success" />
-                        <a href="javascript:em_confirm(0, 'reset_widget', '<?= LoginAuth::genToken() ?>');" class="btn btn-sm btn-warning"><?php _lang('reset_widget'); ?></a>
+                        <input type="submit" value="<?= _lang('save_sort'); ?>" class="btn btn-sm btn-success" />
+                        <a href="javascript:em_confirm(0, 'reset_widget', '<?= LoginAuth::genToken() ?>');" class="btn btn-sm btn-warning"><?= _lang('reset_widget'); ?></a>
                     </div>
                 </form>
             </div>

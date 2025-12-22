@@ -282,7 +282,7 @@ if ($action === 'write') {
     extract($blogData);
 
     $isdraft = false;
-    $containerTitle = User::haveEditPermission() ? _langStr('write_article') : _langStr('publish') . Option::get('posts_name');
+    $containerTitle = User::haveEditPermission() ? _lang('write_article') : _lang('publish') . Option::get('posts_name');
     $orig_date = '';
     $sorts = Sort::getUserPostableSorts();
 

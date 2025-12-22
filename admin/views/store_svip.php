@@ -136,13 +136,13 @@
 
             // 验证必要参数
             if (!appId || !appType) {
-                showTip('<?= _langStr("store_param_error") ?>', 'error');
+                showTip('<?= _lang("store_param_error") ?>', 'error');
                 return;
             }
 
             $btn.prop('disabled', true);
             const originalText = $btn.html();
-            $btn.html('<i class="icofont-spinner icofont-spin"></i> <?= _langStr("store_loading") ?>');
+            $btn.html('<i class="icofont-spinner icofont-spin"></i> <?= _lang("store_loading") ?>');
 
             // 调用收藏/取消收藏API
             const action = isFavorited ? 'remove_favorite' : 'add_favorite';
@@ -164,10 +164,10 @@
                         // 更新按钮样式和文本
                         if (newFavorited) {
                             $btn.removeClass('btn-outline-warning').addClass('btn-warning');
-                            $btn.html('<?= _langStr("store_collected") ?>');
+                            $btn.html('<?= _lang("store_collected") ?>');
                         } else {
                             $btn.removeClass('btn-warning').addClass('btn-outline-warning');
-                            $btn.html('<?= _langStr("store_collect") ?>');
+                            $btn.html('<?= _lang("store_collect") ?>');
                         }
                     } else {
                         $btn.html(originalText);

@@ -1,6 +1,6 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
 <?php if (isset($_GET['add_shortcut_suc'])): ?>
-    <div class="alert alert-success"><?php _lang('save_success') ?></div>
+    <div class="alert alert-success"><?= _lang('save_success') ?></div>
 <?php endif ?>
 <div class="d-flex align-items-center mb-3">
     <div class="flex-shrink-0">
@@ -21,31 +21,31 @@
 <div class="row">
     <div class="col-lg-6 mb-3">
         <div class="card shadow mb-3">
-            <h6 class="card-header"><?php _lang('site_info') ?></h6>
+            <h6 class="card-header"><?= _lang('site_info') ?></h6>
             <div class="card-body">
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <a href="./article.php?checked=n"><?php _lang('pending_articles') ?></a>
+                        <a href="./article.php?checked=n"><?= _lang('pending_articles') ?></a>
                         <a href="./article.php?checked=n"><span class="badge badge-pink badge-pill"><?= $sta_cache['checknum'] ?></span></a>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <a href="./comment.php?hide=y"><?php _lang('pending_comments') ?></a>
+                        <a href="./comment.php?hide=y"><?= _lang('pending_comments') ?></a>
                         <a href="./comment.php?hide=y"><span class="badge badge-warning badge-pill"><?= $sta_cache['hidecomnum'] ?></span></a>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <a href="./user.php"><?php _lang('user') ?></a>
+                        <a href="./user.php"><?= _lang('user') ?></a>
                         <a href="./user.php"><span class="badge badge-cyan badge-pill"><?= count($user_cache) ?></span></a>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <a href="./article.php"><?php _lang('article') ?></a>
+                        <a href="./article.php"><?= _lang('article') ?></a>
                         <a href="./article.php"><span class="badge badge-primary badge-pill"><?= $sta_cache['lognum'] ?></span></a>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <a href="./twitter.php?all=y"><?php _lang('twitter') ?></a>
+                        <a href="./twitter.php?all=y"><?= _lang('twitter') ?></a>
                         <a href="./twitter.php?all=y"><span class="badge badge-primary badge-pill"><?= $sta_cache['note_num'] ?></span></a>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <a href="./comment.php"><?php _lang('comment') ?></a>
+                        <a href="./comment.php"><?= _lang('comment') ?></a>
                         <a href="./comment.php"><span class="badge badge-primary badge-pill"><?= $sta_cache['comnum_all'] ?></span></a>
                     </li>
                 </ul>
@@ -55,7 +55,7 @@
     <?php if (User::isAdmin()): ?>
         <div class="col-lg-6 mb-3">
             <div class="card shadow mb-3">
-                <h6 class="card-header"><?php _lang('software_info') ?></h6>
+                <h6 class="card-header"><?= _lang('software_info') ?></h6>
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -63,39 +63,39 @@
                             <span class="small"><?= $php_ver ?></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <?php _lang('database') ?>
+                            <?= _lang('database') ?>
                             <span class="small">MySQL <?= $mysql_ver ?></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <?php _lang('web_service') ?>
+                            <?= _lang('web_service') ?>
                             <span class="small"><?= $server_app ?></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <?php _lang('os') ?>
+                            <?= _lang('os') ?>
                             <span class="small"><?= $os ?></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <?php _lang('system_timezone') ?>
+                            <?= _lang('system_timezone') ?>
                             <span class="small"><?= Option::get('timezone') ?></span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <div>
                                 <?php if (!Register::isRegLocal()) : ?>
                                     <a href="https://www.emlog.net/register" target="_blank"><span class="badge badge-secondary">Emlog <?= Option::EMLOG_VERSION ?></span></a>
-                                    <a href="https://www.emlog.net/register" target="_blank" class="badge badge-secondary"><?php _lang('unregistered') ?></a>
+                                    <a href="https://www.emlog.net/register" target="_blank" class="badge badge-secondary"><?= _lang('unregistered') ?></a>
                                 <?php else: ?>
                                     <a href="https://www.emlog.net" target="_blank"><span class="badge badge-success">Emlog <?= ucfirst(Option::EMLOG_VERSION) ?></span></a>
                                     <?php if (Register::getRegType() === 2): ?>
-                                        <a href="https://www.emlog.net/register" target="_blank" class="badge badge-warning"><?php _lang('hardcore_svip') ?></a>
+                                        <a href="https://www.emlog.net/register" target="_blank" class="badge badge-warning"><?= _lang('hardcore_svip') ?></a>
                                     <?php elseif (Register::getRegType() === 1): ?>
-                                        <a href="https://www.emlog.net/register" target="_blank" class="badge badge-success"><?php _lang('friend_vip') ?></a>
+                                        <a href="https://www.emlog.net/register" target="_blank" class="badge badge-success"><?= _lang('friend_vip') ?></a>
                                     <?php else: ?>
-                                        <a href="https://www.emlog.net/register" target="_blank" class="badge badge-success"><?php _lang('registered') ?></a>
+                                        <a href="https://www.emlog.net/register" target="_blank" class="badge badge-success"><?= _lang('registered') ?></a>
                                     <?php endif ?>
                                 <?php endif; ?>
                             </div>
                             <div>
-                                <a id="ckup" href="javascript:checkUpdate();" class="badge badge-success d-flex align-items-center"><span><?php _lang('update') ?></span></a>
+                                <a id="ckup" href="javascript:checkUpdate();" class="badge badge-success d-flex align-items-center"><span><?= _lang('update') ?></span></a>
                             </div>
                         </li>
                     </ul>
@@ -110,20 +110,20 @@
             <div class="col-lg-6 mb-3">
                 <div class="card shadow">
                     <div class="card-header bg-gradient-warning text-danger">
-                        <h6 class="my-0 font-weight-bold"><?php _lang('register_full_feature') ?></h6>
+                        <h6 class="my-0 font-weight-bold"><?= _lang('register_full_feature') ?></h6>
                     </div>
                     <div class="card-body">
-                        <p><span class="badge badge-warning badge-pill">1</span> <?php _lang('register_feature_1') ?></p>
-                        <p><span class="badge badge-warning badge-pill">2</span> <?php _lang('register_feature_2') ?></p>
-                        <p><span class="badge badge-warning badge-pill">3</span> <?php _lang('register_feature_3') ?></p>
-                        <p><span class="badge badge-warning badge-pill">4</span> <?php _lang('register_feature_4') ?></p>
+                        <p><span class="badge badge-warning badge-pill">1</span> <?= _lang('register_feature_1') ?></p>
+                        <p><span class="badge badge-warning badge-pill">2</span> <?= _lang('register_feature_2') ?></p>
+                        <p><span class="badge badge-warning badge-pill">3</span> <?= _lang('register_feature_3') ?></p>
+                        <p><span class="badge badge-warning badge-pill">4</span> <?= _lang('register_feature_4') ?></p>
                         <p>
                             <a href="https://emlog.net/register" target="_blank" class="btn btn-danger px-4">
-                                <?php _lang('register_now') ?>
+                                <?= _lang('register_now') ?>
                                 <i class="icofont-external-link me-2"></i>
                             </a>
                             <a href="auth.php" class="btn btn-outline-success px-4">
-                                <?php _lang('input_license') ?>
+                                <?= _lang('input_license') ?>
                             </a>
                         </p>
                     </div>
@@ -160,7 +160,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content border-0 shadow">
                 <div class="modal-header border-0">
-                    <h5 class="modal-title" id="update-modal-label"><?php _lang('check_update') ?></h5>
+                    <h5 class="modal-title" id="update-modal-label"><?= _lang('check_update') ?></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

@@ -50,7 +50,7 @@
         </form>
         <form action="./store.php" method="get" class="form-inline ml-2 mr-3">
             <div class="input-group">
-                <input type="text" name="keyword" value="<?= $keyword ?>" class="form-control small" placeholder="<?= _langStr('store_search') ?>">
+                <input type="text" name="keyword" value="<?= $keyword ?>" class="form-control small" placeholder="<?= _lang('store_search') ?>">
                 <div class="input-group-append">
                     <button class="btn btn-sm btn-success" type="submit">
                         <i class="icofont-search-2"></i>

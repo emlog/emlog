@@ -1,100 +1,100 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h4 mb-0 text-gray-800"><?php _lang('setting'); ?></h1>
+    <h1 class="h4 mb-0 text-gray-800"><?= _lang('setting'); ?></h1>
 </div>
 <div class="panel-heading">
     <ul class="nav nav-pills">
-        <li class="nav-item"><a class="nav-link" href="./setting.php"><?php _lang('setting_basic'); ?></a></li>
-        <li class="nav-item"><a class="nav-link" href="./setting.php?action=user"><?php _lang('setting_user'); ?></a></li>
-        <li class="nav-item"><a class="nav-link active" href="./setting.php?action=mail"><?php _lang('setting_mail'); ?></a></li>
-        <li class="nav-item"><a class="nav-link" href="./setting.php?action=seo"><?php _lang('setting_seo'); ?></a></li>
-        <li class="nav-item"><a class="nav-link" href="./setting.php?action=api"><?php _lang('setting_api'); ?></a></li>
-        <li class="nav-item"><a class="nav-link" href="./setting.php?action=ai"><?php _lang('setting_ai'); ?></a></li>
-        <li class="nav-item"><a class="nav-link" href="./blogger.php"><?php _lang('setting_profile'); ?></a></li>
+        <li class="nav-item"><a class="nav-link" href="./setting.php"><?= _lang('setting_basic'); ?></a></li>
+        <li class="nav-item"><a class="nav-link" href="./setting.php?action=user"><?= _lang('setting_user'); ?></a></li>
+        <li class="nav-item"><a class="nav-link active" href="./setting.php?action=mail"><?= _lang('setting_mail'); ?></a></li>
+        <li class="nav-item"><a class="nav-link" href="./setting.php?action=seo"><?= _lang('setting_seo'); ?></a></li>
+        <li class="nav-item"><a class="nav-link" href="./setting.php?action=api"><?= _lang('setting_api'); ?></a></li>
+        <li class="nav-item"><a class="nav-link" href="./setting.php?action=ai"><?= _lang('setting_ai'); ?></a></li>
+        <li class="nav-item"><a class="nav-link" href="./blogger.php"><?= _lang('setting_profile'); ?></a></li>
     </ul>
 </div>
 <div class="card shadow mb-4 mt-2">
     <div class="card-body">
         <form action="setting.php?action=mail_save" method="post" name="mail_setting_form" id="mail_setting_form">
-            <h4><?php _lang('mail_service'); ?></h4>
+            <h4><?= _lang('mail_service'); ?></h4>
             <div class="form-group">
-                <label><?php _lang('mail_sender'); ?></label>
+                <label><?= _lang('mail_sender'); ?></label>
                 <input type="email" class="form-control" value="<?= $smtp_mail ?>" name="smtp_mail">
             </div>
             <div class="form-group">
-                <label><?php _lang('smtp_password'); ?></label>
+                <label><?= _lang('smtp_password'); ?></label>
                 <input type="password" name="smtp_pw" cols="" rows="3" class="form-control" value="<?= $smtp_pw ?>" autocomplete="new-password">
             </div>
             <div class="form-group">
-                <label><?php _lang('mail_sender_name'); ?></label>
+                <label><?= _lang('mail_sender_name'); ?></label>
                 <input type="from_name" class="form-control" value="<?= $smtp_from_name ?>" name="smtp_from_name">
             </div>
             <div class="form-group">
-                <label><?php _lang('smtp_server'); ?></label>
+                <label><?= _lang('smtp_server'); ?></label>
                 <input class="form-control" value="<?= $smtp_server ?>" name="smtp_server">
             </div>
             <div class="form-group">
-                <label><?php _lang('smtp_port_desc'); ?></label>
+                <label><?= _lang('smtp_port_desc'); ?></label>
                 <input class="form-control" value="<?= $smtp_port ?>" name="smtp_port">
             </div>
             <div class="form-group">
-                <input type="button" value="<?php _lang('send_test'); ?>" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#testMail" />
+                <input type="button" value="<?= _lang('send_test'); ?>" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#testMail" />
             </div>
             <div class="alert alert-warning">
-                <b><?php _lang('mail_config_example'); ?></b><br>
-                <?php _lang('mail_example_content'); ?>
+                <b><?= _lang('mail_config_example'); ?></b><br>
+                <?= _lang('mail_example_content'); ?>
             </div>
             <!-- 设置接收邮箱的模态框 -->
             <div class="modal fade" id="testMail">
                 <div class="modal-dialog modal-sm">
                     <div class="modal-content border-0 shadow">
                         <div class="modal-header border-0">
-                            <h4 class="modal-title"><?php _lang('send_test'); ?></h4>
+                            <h4 class="modal-title"><?= _lang('send_test'); ?></h4>
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
                         <div class="modal-body">
                             <div class="form-group">
-                                <input class="form-control" type="email" name="testTo" placeholder="<?php _lang('input_receiver_email'); ?>">
+                                <input class="form-control" type="email" name="testTo" placeholder="<?= _lang('input_receiver_email'); ?>">
                             </div>
                         </div>
                         <div class="modal-footer border-0">
                             <div id="testMailMsg"></div>
-                            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal"><?php _lang('close'); ?></button>
-                            <button type="button" class="btn btn-success btn-sm" id="testSendBtn"><?php _lang('send'); ?></button>
+                            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal"><?= _lang('close'); ?></button>
+                            <button type="button" class="btn btn-success btn-sm" id="testSendBtn"><?= _lang('send'); ?></button>
                         </div>
                     </div>
                 </div>
             </div>
-            <h4><?php _lang('mail_template'); ?></h4>
+            <h4><?= _lang('mail_template'); ?></h4>
             <div class="my-3">
-                <div class="mb-3" id="mail_template_box"><?php _lang('select_template'); ?>：<a href="javascript:useDefaultTemplate();"><?php _lang('template_simple'); ?></a>
-                    <a href="javascript:useDeepBlueTemplate();"><?php _lang('template_deep_blue'); ?></a>
-                    <a href="javascript:useGreenVibrantTemplate();"><?php _lang('template_green'); ?></a>
+                <div class="mb-3" id="mail_template_box"><?= _lang('select_template'); ?>：<a href="javascript:useDefaultTemplate();"><?= _lang('template_simple'); ?></a>
+                    <a href="javascript:useDeepBlueTemplate();"><?= _lang('template_deep_blue'); ?></a>
+                    <a href="javascript:useGreenVibrantTemplate();"><?= _lang('template_green'); ?></a>
                     <span id="mail_template_box_ext"></span>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <textarea id="mail_template" name="mail_template" rows="10" class="form-control" placeholder="<?php _lang('mail_template_placeholder'); ?>"><?= $mail_template ?></textarea>
+                        <textarea id="mail_template" name="mail_template" rows="10" class="form-control" placeholder="<?= _lang('mail_template_placeholder'); ?>"><?= $mail_template ?></textarea>
                     </div>
                     <div class="col-md-6">
                         <iframe id="mail_review_frame"></iframe>
                     </div>
                 </div>
-                <div class="mb-3 mt-1 small" id="mail_template_box"><?php _lang('mail_template_vars'); ?></div>
+                <div class="mb-3 mt-1 small" id="mail_template_box"><?= _lang('mail_template_vars'); ?></div>
             </div>
-            <h4><?php _lang('setting_mail'); ?></h4>
+            <h4><?= _lang('setting_mail'); ?></h4>
             <div class="custom-control custom-switch">
                 <input class="custom-control-input" type="checkbox" value="y" name="mail_notice_comment" id="mail_notice_comment" <?= $conf_mail_notice_comment ?> />
-                <label class="custom-control-label" for="mail_notice_comment"><?php _lang('mail_notice_comment'); ?></label>
+                <label class="custom-control-label" for="mail_notice_comment"><?= _lang('mail_notice_comment'); ?></label>
             </div>
             <div class="custom-control custom-switch">
                 <input class="custom-control-input" type="checkbox" value="y" name="mail_notice_post" id="mail_notice_post" <?= $conf_mail_notice_post ?>>
-                <label class="custom-control-label" for="mail_notice_post"><?php _lang('mail_notice_post'); ?></label>
+                <label class="custom-control-label" for="mail_notice_post"><?= _lang('mail_notice_post'); ?></label>
             </div>
             <div class="form-group">
                 <hr>
                 <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
-                <input type="submit" value="<?php _lang('save'); ?>" class="btn btn-sm btn-success" />
+                <input type="submit" value="<?= _lang('save'); ?>" class="btn btn-sm btn-success" />
             </div>
         </form>
     </div>

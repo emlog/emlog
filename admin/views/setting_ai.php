@@ -1,23 +1,23 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h4 mb-0 text-gray-800"><?php _lang('setting'); ?></h1>
+    <h1 class="h4 mb-0 text-gray-800"><?= _lang('setting'); ?></h1>
 </div>
 <div class="panel-heading">
     <ul class="nav nav-pills">
-        <li class="nav-item"><a class="nav-link" href="./setting.php"><?php _lang('setting_basic'); ?></a></li>
-        <li class="nav-item"><a class="nav-link" href="./setting.php?action=user"><?php _lang('setting_user'); ?></a></li>
-        <li class="nav-item"><a class="nav-link" href="./setting.php?action=mail"><?php _lang('setting_mail'); ?></a></li>
-        <li class="nav-item"><a class="nav-link" href="./setting.php?action=seo"><?php _lang('setting_seo'); ?></a></li>
-        <li class="nav-item"><a class="nav-link" href="./setting.php?action=api"><?php _lang('setting_api'); ?></a></li>
-        <li class="nav-item"><a class="nav-link active" href="./setting.php?action=ai"><?php _lang('setting_ai'); ?></a></li>
-        <li class="nav-item"><a class="nav-link" href="./blogger.php"><?php _lang('setting_profile'); ?></a></li>
+        <li class="nav-item"><a class="nav-link" href="./setting.php"><?= _lang('setting_basic'); ?></a></li>
+        <li class="nav-item"><a class="nav-link" href="./setting.php?action=user"><?= _lang('setting_user'); ?></a></li>
+        <li class="nav-item"><a class="nav-link" href="./setting.php?action=mail"><?= _lang('setting_mail'); ?></a></li>
+        <li class="nav-item"><a class="nav-link" href="./setting.php?action=seo"><?= _lang('setting_seo'); ?></a></li>
+        <li class="nav-item"><a class="nav-link" href="./setting.php?action=api"><?= _lang('setting_api'); ?></a></li>
+        <li class="nav-item"><a class="nav-link active" href="./setting.php?action=ai"><?= _lang('setting_ai'); ?></a></li>
+        <li class="nav-item"><a class="nav-link" href="./blogger.php"><?= _lang('setting_profile'); ?></a></li>
     </ul>
 </div>
 
 <!-- 文本对话模型区域 -->
 <div class="card shadow mb-4 mt-2">
     <div class="card-header">
-        <h5 class="mb-0"><?php _lang('ai_chat_model'); ?></h5>
+        <h5 class="mb-0"><?= _lang('ai_chat_model'); ?></h5>
     </div>
     <div class="card-body">
         <div class="row">
@@ -41,7 +41,7 @@
                             <h4 class="card-title model-name">
                                 <?php if ($k == $currentModelKey): ?>
                                     <?= $model ?>
-                                    <span class="badge badge-success"><?php _lang('enabled'); ?></span>
+                                    <span class="badge badge-success"><?= _lang('enabled'); ?></span>
                                 <?php else: ?>
                                     <a href="./setting.php?action=ai_model&ai_model_key=<?= $k ?>&model_type=chat"><?= $model ?></a>
                                 <?php endif; ?>
@@ -49,8 +49,8 @@
                             <div class="my-3">
                                 <span class="badge badge-gray" style="font-size: 1.2em;"><?= $apiUrlDomain ?></span><br>
                             </div>
-                            <a href="#" class="edit-link small text-primary" data-toggle="modal" data-target="#editModelModal" data-model="<?= $val['model'] ?>" data-url="<?= $val['api_url'] ?>" data-api_key="<?= $apiKey ?>" data-model_key="<?= $k ?>" data-model_type="chat" style="position: absolute; bottom: 10px; right: 40px;"><?php _lang('edit'); ?></a>
-                            <a href="javascript: em_confirm('<?= $k ?>', 'ai_model', '<?= LoginAuth::genToken() ?>');" class="delete-link small text-danger" style="position: absolute; bottom: 10px; right: 10px;"><?php _lang('delete'); ?></a>
+                            <a href="#" class="edit-link small text-primary" data-toggle="modal" data-target="#editModelModal" data-model="<?= $val['model'] ?>" data-url="<?= $val['api_url'] ?>" data-api_key="<?= $apiKey ?>" data-model_key="<?= $k ?>" data-model_type="chat" style="position: absolute; bottom: 10px; right: 40px;"><?= _lang('edit'); ?></a>
+                            <a href="javascript: em_confirm('<?= $k ?>', 'ai_model', '<?= LoginAuth::genToken() ?>');" class="delete-link small text-danger" style="position: absolute; bottom: 10px; right: 10px;"><?= _lang('delete'); ?></a>
                         </div>
                     </div>
                 </div>
@@ -59,10 +59,10 @@
                 <div class="card h-100">
                     <div class="card-body d-flex flex-column align-items-center justify-content-center">
                         <a type="button" class="" data-toggle="modal" data-target="#addModelModal" data-model-type="chat">
-                            + <?php _lang('add_chat_model'); ?>
+                            + <?= _lang('add_chat_model'); ?>
                         </a>
                         <p class="text-center small text-muted mt-3">
-                            <a href="https://www.emlog.net/docs/ai/ai_emlog" class="text-muted" target="_blank"><?php _lang('view_supported_models'); ?></a>
+                            <a href="https://www.emlog.net/docs/ai/ai_emlog" class="text-muted" target="_blank"><?= _lang('view_supported_models'); ?></a>
                         </p>
                     </div>
                 </div>
@@ -74,7 +74,7 @@
 <!-- 图像生成模型区域 -->
 <div class="card shadow mb-4">
     <div class="card-header">
-        <h5 class="mb-0"><?php _lang('ai_image_model'); ?></h5>
+        <h5 class="mb-0"><?= _lang('ai_image_model'); ?></h5>
     </div>
     <div class="card-body">
         <div class="row">
@@ -95,7 +95,7 @@
                             <h4 class="card-title model-name">
                                 <?php if ($k == $currentImageModelKey): ?>
                                     <?= $model ?>
-                                    <span class="badge badge-success"><?php _lang('enabled'); ?></span>
+                                    <span class="badge badge-success"><?= _lang('enabled'); ?></span>
                                 <?php else: ?>
                                     <a href="./setting.php?action=ai_model&ai_model_key=<?= $k ?>&model_type=image"><?= $model ?></a>
                                 <?php endif; ?>
@@ -103,8 +103,8 @@
                             <div class="my-3">
                                 <span class="badge badge-gray" style="font-size: 1.2em;"><?= $apiUrlDomain ?></span><br>
                             </div>
-                            <a href="#" class="edit-link small text-primary" data-toggle="modal" data-target="#editModelModal" data-model="<?= $val['model'] ?>" data-url="<?= $val['api_url'] ?>" data-api_key="<?= $apiKey ?>" data-model_key="<?= $k ?>" data-model_type="image" style="position: absolute; bottom: 10px; right: 40px;"><?php _lang('edit'); ?></a>
-                            <a href="javascript: em_confirm('<?= $k ?>', 'ai_model', '<?= LoginAuth::genToken() ?>');" class="delete-link small text-danger" style="position: absolute; bottom: 10px; right: 10px;"><?php _lang('delete'); ?></a>
+                            <a href="#" class="edit-link small text-primary" data-toggle="modal" data-target="#editModelModal" data-model="<?= $val['model'] ?>" data-url="<?= $val['api_url'] ?>" data-api_key="<?= $apiKey ?>" data-model_key="<?= $k ?>" data-model_type="image" style="position: absolute; bottom: 10px; right: 40px;"><?= _lang('edit'); ?></a>
+                            <a href="javascript: em_confirm('<?= $k ?>', 'ai_model', '<?= LoginAuth::genToken() ?>');" class="delete-link small text-danger" style="position: absolute; bottom: 10px; right: 10px;"><?= _lang('delete'); ?></a>
                         </div>
                     </div>
                 </div>
@@ -113,10 +113,10 @@
                 <div class="card h-100">
                     <div class="card-body d-flex flex-column align-items-center justify-content-center">
                         <a type="button" class="" data-toggle="modal" data-target="#addModelModal" data-model-type="image">
-                            + <?php _lang('add_image_model'); ?>
+                            + <?= _lang('add_image_model'); ?>
                         </a>
                         <p class="text-center small text-muted mt-3">
-                            <a href="https://www.emlog.net/docs/ai/ai_emlog" class="text-muted" target="_blank"><?php _lang('view_supported_models'); ?></a>
+                            <a href="https://www.emlog.net/docs/ai/ai_emlog" class="text-muted" target="_blank"><?= _lang('view_supported_models'); ?></a>
                         </p>
                     </div>
                 </div>
@@ -128,7 +128,7 @@
 <!-- 应用区域 -->
 <div class="card shadow mb-4">
     <div class="card-header">
-        <h5 class="mb-0"><?php _lang('ai_app'); ?></h5>
+        <h5 class="mb-0"><?= _lang('ai_app'); ?></h5>
     </div>
     <div class="card-body">
         <div class="row">
@@ -136,7 +136,7 @@
                 <div class="card h-100">
                     <div class="card-body d-flex flex-column align-items-center justify-content-center">
                         <a type="button" class="" data-toggle="modal" data-target="#aiChatModal">
-                            💬 <?php _lang('chat_talk'); ?>
+                            💬 <?= _lang('chat_talk'); ?>
                         </a>
                     </div>
                 </div>
@@ -145,7 +145,7 @@
                 <div class="card h-100">
                     <div class="card-body d-flex flex-column align-items-center justify-content-center">
                         <a type="button" class="" data-toggle="modal" data-target="#aiImageModal">
-                            🎨 <?php _lang('generate_image'); ?>
+                            🎨 <?= _lang('generate_image'); ?>
                         </a>
                     </div>
                 </div>
@@ -154,7 +154,7 @@
                 <div class="card h-100">
                     <div class="card-body d-flex flex-column align-items-center justify-content-center">
                         <a type="button" class="" href="store.php?action=plu&keyword=AI">
-                            <?php _lang('more_ai_apps'); ?>
+                            <?= _lang('more_ai_apps'); ?>
                         </a>
                     </div>
                 </div>
@@ -199,10 +199,10 @@
             var modelType = $(this).data('model-type');
             $('#addModelModal #ai_model_type').val(modelType);
             if (modelType === 'image') {
-                $('#addModelModal .modal-title').text('<?php _lang('add_image_model'); ?>');
+                $('#addModelModal .modal-title').text('<?= _lang('add_image_model'); ?>');
                 $('#more-config-details').html(getImageModelExamples());
             } else {
-                $('#addModelModal .modal-title').text('<?php _lang('add_chat_model'); ?>');
+                $('#addModelModal .modal-title').text('<?= _lang('add_chat_model'); ?>');
                 $('#more-config-details').html(getChatModelExamples());
             }
         });
@@ -213,20 +213,20 @@
         return `
             <a href="https://www.deepseek.com/" target="_blank">DeepSeek</a><br>
             API URL：https://api.deepseek.com/v1/chat/completions<br>
-            API Key：<a href="https://platform.deepseek.com/api_keys" target="_blank"><?php _lang('generate_api_key'); ?></a>，格式如：sk-****<br>
+            API Key：<a href="https://platform.deepseek.com/api_keys" target="_blank"><?= _lang('generate_api_key'); ?></a>，格式如：sk-****<br>
             Model：deepseek-chat<br>
             <hr>
             <a href="https://bigmodel.cn/" target="_blank">智谱AI</a><br>
             API URL：https://open.bigmodel.cn/api/paas/v4/chat/completions<br>
-            API Key：<a href="https://bigmodel.cn/usercenter/proj-mgmt/apikeys" target="_blank"><?php _lang('generate_api_key'); ?></a><br>
+            API Key：<a href="https://bigmodel.cn/usercenter/proj-mgmt/apikeys" target="_blank"><?= _lang('generate_api_key'); ?></a><br>
             Model：glm-4.6、glm-4.5、glm-4.5-flash<br>
             <hr>
             <a href="https://cloud.siliconflow.cn/" target="_blank">硅基流动</a><br>
             API URL：https://api.siliconflow.cn/v1/chat/completions<br>
-            API Key：<a href="https://cloud.siliconflow.cn/me/account/ak" target="_blank"><?php _lang('generate_api_key'); ?></a><br>
+            API Key：<a href="https://cloud.siliconflow.cn/me/account/ak" target="_blank"><?= _lang('generate_api_key'); ?></a><br>
             Model：Qwen/Qwen3-8B、THUDM/GLM-4-9B-0414<br>
             <hr>
-            <?php _lang('support_openai_model'); ?>，<a href="https://www.emlog.net/docs/ai/ai_emlog" target="_blank"><?php _lang('more_ai_models'); ?></a><br>
+            <?= _lang('support_openai_model'); ?>，<a href="https://www.emlog.net/docs/ai/ai_emlog" target="_blank"><?= _lang('more_ai_models'); ?></a><br>
         `;
     }
 
@@ -235,15 +235,15 @@
         return `
             <a href="https://cloud.siliconflow.cn/" target="_blank">硅基流动</a><br>
             API URL：https://api.siliconflow.cn/v1/images/generations<br>
-            API Key：<a href="https://cloud.siliconflow.cn/me/account/ak" target="_blank"><?php _lang('generate_api_key'); ?></a><br>
+            API Key：<a href="https://cloud.siliconflow.cn/me/account/ak" target="_blank"><?= _lang('generate_api_key'); ?></a><br>
             Model：Kwai-Kolors/Kolors<br>
             <hr>
             <a href="https://console.volcengine.com/auth/login?redirectURI=%2Fark" target="_blank">豆包</a><br>
             API URL：https://ark.cn-beijing.volces.com/api/v3/images/generations<br>
-            API Key：<a href="https://console.volcengine.com/auth/login?redirectURI=%2Fark" target="_blank"><?php _lang('generate_api_key'); ?></a><br>
+            API Key：<a href="https://console.volcengine.com/auth/login?redirectURI=%2Fark" target="_blank"><?= _lang('generate_api_key'); ?></a><br>
             Model：doubao-seedream-3-0-t2i-250415<br>
             <hr>
-            <?php _lang('support_openai_image_model'); ?>，<a href="https://www.emlog.net/docs/ai/ai_emlog" target="_blank"><?php _lang('more_ai_models'); ?></a><br>
+            <?= _lang('support_openai_image_model'); ?>，<a href="https://www.emlog.net/docs/ai/ai_emlog" target="_blank"><?= _lang('more_ai_models'); ?></a><br>
         `;
     }
 </script>
@@ -253,7 +253,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content border-0 shadow">
             <div class="modal-header border-0">
-                <h5 class="modal-title" id="addModelModalLabel"><?php _lang('add_ai_model'); ?></h5>
+                <h5 class="modal-title" id="addModelModalLabel"><?= _lang('add_ai_model'); ?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -276,8 +276,8 @@
                     </div>
                 </div>
                 <div class="modal-footer border-0">
-                    <button type="button" class="btn btn-sm btn-light" data-dismiss="modal"><?php _lang('cancel'); ?></button>
-                    <button type="submit" class="btn btn-sm btn-success"><?php _lang('save'); ?></button>
+                    <button type="button" class="btn btn-sm btn-light" data-dismiss="modal"><?= _lang('cancel'); ?></button>
+                    <button type="submit" class="btn btn-sm btn-success"><?= _lang('save'); ?></button>
                 </div>
                 <div id="more-config-details" class="alert alert-warning m-2"></div>
             </form>
@@ -290,7 +290,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content border-0 shadow">
             <div class="modal-header border-0">
-                <h5 class="modal-title" id="editModelModalLabel"><?php _lang('edit_ai_model'); ?></h5>
+                <h5 class="modal-title" id="editModelModalLabel"><?= _lang('edit_ai_model'); ?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -314,8 +314,8 @@
                     </div>
                 </div>
                 <div class="modal-footer border-0">
-                    <button type="button" class="btn btn-sm btn-light" data-dismiss="modal"><?php _lang('cancel'); ?></button>
-                    <button type="submit" class="btn btn-sm btn-success"><?php _lang('save'); ?></button>
+                    <button type="button" class="btn btn-sm btn-light" data-dismiss="modal"><?= _lang('cancel'); ?></button>
+                    <button type="submit" class="btn btn-sm btn-success"><?= _lang('save'); ?></button>
                 </div>
             </form>
         </div>
@@ -327,7 +327,7 @@
     <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
         <div class="modal-content border-0 shadow">
             <div class="modal-header border-0">
-                <h5 class="modal-title" id="aiImageModalLabel">🎨 <?php _lang('ai_generate_image'); ?></h5>
+                <h5 class="modal-title" id="aiImageModalLabel">🎨 <?= _lang('ai_generate_image'); ?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -340,33 +340,33 @@
                 </div>
                 <form id="image-form">
                     <div class="form-group">
-                        <label for="image-prompt"><?php _lang('image_prompt'); ?>：</label>
-                        <textarea class="form-control" id="image-prompt" placeholder="<?php _lang('image_prompt_placeholder'); ?>" rows="3"></textarea>
+                        <label for="image-prompt"><?= _lang('image_prompt'); ?>：</label>
+                        <textarea class="form-control" id="image-prompt" placeholder="<?= _lang('image_prompt_placeholder'); ?>" rows="3"></textarea>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="image-size"><?php _lang('size'); ?>：</label>
+                                <label for="image-size"><?= _lang('size'); ?>：</label>
                                 <select class="form-control" id="image-size">
-                                    <option value="1024x1024">1024x1024 (<?php _lang('size_square'); ?>)</option>
-                                    <option value="1792x1024">1792x1024 (<?php _lang('size_landscape'); ?>)</option>
-                                    <option value="1024x1792">1024x1792 (<?php _lang('size_portrait'); ?>)</option>
+                                    <option value="1024x1024">1024x1024 (<?= _lang('size_square'); ?>)</option>
+                                    <option value="1792x1024">1792x1024 (<?= _lang('size_landscape'); ?>)</option>
+                                    <option value="1024x1792">1024x1792 (<?= _lang('size_portrait'); ?>)</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="image-quality"><?php _lang('quality'); ?>：</label>
+                                <label for="image-quality"><?= _lang('quality'); ?>：</label>
                                 <select class="form-control" id="image-quality">
-                                    <option value="standard"><?php _lang('standard'); ?></option>
-                                    <option value="hd"><?php _lang('hd'); ?></option>
+                                    <option value="standard"><?= _lang('standard'); ?></option>
+                                    <option value="hd"><?= _lang('hd'); ?></option>
                                 </select>
                             </div>
                         </div>
                     </div>
                     <div class="text-center">
                         <button class="btn btn-primary" type="submit" id="generate-btn">
-                            <?php _lang('generate_image_btn'); ?>
+                            <?= _lang('generate_image_btn'); ?>
                         </button>
                     </div>
                 </form>
@@ -385,7 +385,7 @@
             event.preventDefault();
             var prompt = $('#image-prompt').val().trim();
             if (prompt === '') {
-                alert('<?php _lang('enter_image_prompt'); ?>');
+                alert('<?= _lang('enter_image_prompt'); ?>');
                 return;
             }
 

@@ -35,7 +35,7 @@
         <form action="./store.php" method="get" class="form-inline ml-2 mr-3">
             <div class="input-group">
                 <input type="hidden" name="action" value="plu">
-                <input type="text" name="keyword" value="<?= $keyword ?>" class="form-control small" placeholder="<?= _langStr('store_search_plugin') ?>">
+                <input type="text" name="keyword" value="<?= $keyword ?>" class="form-control small" placeholder="<?= _lang('store_search_plugin') ?>">
                 <div class="input-group-append">
                     <button class="btn btn-sm btn-success" type="submit">
                         <i class="icofont-search-2"></i>

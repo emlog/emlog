@@ -55,7 +55,7 @@
                                         data-app-id="<?= $v['id'] ?>"
                                         data-app-type="<?= $v['app_type'] ?>"
                                         data-favorited="<?= $v['is_favorited'] ? '1' : '0' ?>">
-                                        <?= $v['is_favorited'] ? _langStr('store_collected') : _langStr('store_collect') ?>
+                                        <?= $v['is_favorited'] ? _lang('store_collected') : _lang('store_collect') ?>
                                     </button>
 
                                     <?php if (Plugin::isActive($v['alias'])): ?>
@@ -137,7 +137,7 @@
             const nextPage = currentPage + 1;
 
             // 禁用手动加载按钮
-            $('#loadMoreBtn').prop('disabled', true).html('<?= _langStr("store_loading") ?>');
+            $('#loadMoreBtn').prop('disabled', true).html('<?= _lang("store_loading") ?>');
 
             // 获取当前URL参数
             const urlParams = new URLSearchParams(window.location.search);
@@ -164,7 +164,7 @@
 
                             // 收藏按钮
                             const favoriteClass = app.is_favorited ? 'btn-warning' : 'btn-outline-warning';
-                            const favoriteText = app.is_favorited ? '<?= _langStr("store_collected") ?>' : '<?= _langStr("store_collect") ?>';
+                            const favoriteText = app.is_favorited ? '<?= _lang("store_collected") ?>' : '<?= _lang("store_collect") ?>';
                             buttonsHtml += `<button type="button" class="btn ${favoriteClass} favoriteBtn mr-1" 
                                                     data-app-id="${app.id}" 
                                                     data-app-type="${app.app_type}" 
@@ -174,21 +174,21 @@
 
                             // 检查使用中状态
                             if (app.is_active) {
-                                buttonsHtml += '<a href="plugin.php" class="btn btn-light"><?= _langStr("store_using") ?></a> ';
+                                buttonsHtml += '<a href="plugin.php" class="btn btn-light"><?= _lang("store_using") ?></a> ';
                             }
 
                             // 根据价格和权限构建安装/购买按钮
                             if (app.price > 0) {
                                 if (app.purchased === true) {
-                                    buttonsHtml += '<a href="store.php?action=mine" class="btn btn-light"><?= _langStr("store_purchased_status") ?></a> ';
-                                    buttonsHtml += `<a href="#" class="btn btn-success installBtn" data-url="${encodeURIComponent(app.download_url)}" data-cdn-url="${encodeURIComponent(app.cdn_download_url)}" data-type="${type}"><?= _langStr("store_install") ?></a>`;
+                                    buttonsHtml += '<a href="store.php?action=mine" class="btn btn-light"><?= _lang("store_purchased_status") ?></a> ';
+                                    buttonsHtml += `<a href="#" class="btn btn-success installBtn" data-url="${encodeURIComponent(app.download_url)}" data-cdn-url="${encodeURIComponent(app.cdn_download_url)}" data-type="${type}"><?= _lang("store_install") ?></a>`;
                                 } else if (app.svip && app.user_is_svip) {
-                                    buttonsHtml += `<a href="#" class="btn btn-warning installBtn" data-url="${encodeURIComponent(app.download_url)}" data-cdn-url="${encodeURIComponent(app.cdn_download_url)}" data-type="${type}"><?= _langStr("store_install") ?></a>`;
+                                    buttonsHtml += `<a href="#" class="btn btn-warning installBtn" data-url="${encodeURIComponent(app.download_url)}" data-cdn-url="${encodeURIComponent(app.cdn_download_url)}" data-type="${type}"><?= _lang("store_install") ?></a>`;
                                 } else {
-                                    buttonsHtml += `<a href="${orderUrl}" class="btn btn-danger" target="_blank"><?= _langStr("store_buy_now") ?></a>`;
+                                    buttonsHtml += `<a href="${orderUrl}" class="btn btn-danger" target="_blank"><?= _lang("store_buy_now") ?></a>`;
                                 }
                             } else {
-                                buttonsHtml += `<a href="#" class="btn btn-success installBtn" data-url="${encodeURIComponent(app.download_url)}" data-cdn-url="${encodeURIComponent(app.cdn_download_url)}" data-type="${type}"><?= _langStr("store_install") ?></a>`;
+                                buttonsHtml += `<a href="#" class="btn btn-success installBtn" data-url="${encodeURIComponent(app.download_url)}" data-cdn-url="${encodeURIComponent(app.cdn_download_url)}" data-type="${type}"><?= _lang("store_install") ?></a>`;
                             }
 
                             html += `
@@ -199,26 +199,26 @@
                                         </a>
                                         <div class="card-body">
                                             <p class="card-text font-weight-bold">
-                                                ${app.top === 1 ? '<span class="badge badge-pink p-1"><?= _langStr("store_recommend_daily") ?></span>' : ''}
+                                                ${app.top === 1 ? '<span class="badge badge-pink p-1"><?= _lang("store_recommend_daily") ?></span>' : ''}
                                                 <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="${app.name}" data-url="${app.app_url}" data-buy-url="${app.buy_url}">${app.name.substring(0, 15)}</a>
-                                                ${type === 'tpl' ? '<span class="badge badge-success p-1"><?= _langStr("store_tpl_tag") ?></span>' : '<span class="badge badge-primary p-1"><?= _langStr("store_plu_tag") ?></span>'}
-                                                ${app.svip ? '<a href="https://www.emlog.net/register" class="badge badge-warning p-1" target="_blank"><?= _langStr("store_svip_badge") ?></a>' : ''}
+                                                ${type === 'tpl' ? '<span class="badge badge-success p-1"><?= _lang("store_tpl_tag") ?></span>' : '<span class="badge badge-primary p-1"><?= _lang("store_plu_tag") ?></span>'}
+                                                ${app.svip ? '<a href="https://www.emlog.net/register" class="badge badge-warning p-1" target="_blank"><?= _lang("store_svip_badge") ?></a>' : ''}
                                             </p>
                                             <p class="card-text text-muted">
-                                                <?= _langStr("store_price") ?>
+                                                <?= _lang("store_price") ?>
                                                 ${app.price > 0 ? 
                                                     (app.promo_price > 0 ? 
-                                                        `<span style="text-decoration:line-through">${app.price}<small><?= _langStr("store_currency_unit") ?></small></span> <span class="text-danger">${app.promo_price}<small><?= _langStr("store_currency_unit") ?></small></span>` : 
-                                                        `<span class="text-danger">${app.price}<small><?= _langStr("store_currency_unit") ?></small></span>`
+                                                        `<span style="text-decoration:line-through">${app.price}<small><?= _lang("store_currency_unit") ?></small></span> <span class="text-danger">${app.promo_price}<small><?= _lang("store_currency_unit") ?></small></span>` : 
+                                                        `<span class="text-danger">${app.price}<small><?= _lang("store_currency_unit") ?></small></span>`
                                                     ) : 
-                                                    '<span class="text-success"><?= _langStr("store_free") ?></span>'
+                                                    '<span class="text-success"><?= _lang("store_free") ?></span>'
                                                 }
                                                 <br>
                                                 <small>
-                                                    <?= _langStr("store_developer") ?><a href="./store.php?author_id=${app.author_id}">${app.author}</a><br>
-                                                    <?= _langStr("store_version") ?>${app.ver}<br>
-                                                    <?= _langStr("store_install_count") ?>${app.downloads}<br>
-                                                    <?= _langStr("store_update_time") ?>${app.update_time}<br>
+                                                    <?= _lang("store_developer") ?><a href="./store.php?author_id=${app.author_id}">${app.author}</a><br>
+                                                    <?= _lang("store_version") ?>${app.ver}<br>
+                                                    <?= _lang("store_install_count") ?>${app.downloads}<br>
+                                                    <?= _lang("store_update_time") ?>${app.update_time}<br>
                                                 </small>
                                             </p>
                                             <div class="card-text d-flex justify-content-between">
@@ -243,21 +243,21 @@
                         if (hasMore) {
                             // 显示手动加载按钮
                             $('#loadMoreContainer').show();
-                            $('#loadMoreBtn').prop('disabled', false).html('<?= _langStr("store_load_more") ?>');
+                            $('#loadMoreBtn').prop('disabled', false).html('<?= _lang("store_load_more") ?>');
                         } else {
-                            $('.page').html('<div class="text-center text-muted"><?= _langStr("store_loaded_all") ?></div>');
+                            $('.page').html('<div class="text-center text-muted"><?= _lang("store_loaded_all") ?></div>');
                             // 隐藏手动加载按钮
                             $('#loadMoreContainer').hide();
                         }
                     } else {
                         hasMore = false;
-                        $('.page').html('<div class="text-center text-muted"><?= _langStr("store_loaded_all") ?></div>');
+                        $('.page').html('<div class="text-center text-muted"><?= _lang("store_loaded_all") ?></div>');
                         $('#loadMoreContainer').hide();
                     }
                 },
                 error: function() {
                     // 重新启用手动加载按钮
-                    $('#loadMoreBtn').prop('disabled', false).html('<?= _langStr("store_load_failed") ?>');
+                    $('#loadMoreBtn').prop('disabled', false).html('<?= _lang("store_load_failed") ?>');
                 },
                 complete: function() {
                     isLoading = false;
@@ -292,7 +292,7 @@
 
             $btn.prop('disabled', true);
             const originalText = $btn.html();
-            $btn.html('<i class="icofont-spinner icofont-spin"></i> <?= _langStr("store_processing") ?>');
+            $btn.html('<i class="icofont-spinner icofont-spin"></i> <?= _lang("store_processing") ?>');
 
             // 调用收藏/取消收藏API
             const action = isFavorited ? 'remove_favorite' : 'add_favorite';
@@ -314,11 +314,11 @@
                         // 更新按钮样式和文本
                         if (newFavorited) {
                             $btn.removeClass('btn-outline-warning').addClass('btn-warning');
-                            $btn.html('<?= _langStr("store_collected") ?>');
-                            cocoMessage.success('<?= _langStr("store_collect_success") ?>');
+                            $btn.html('<?= _lang("store_collected") ?>');
+                            cocoMessage.success('<?= _lang("store_collect_success") ?>');
                         } else {
                             $btn.removeClass('btn-warning').addClass('btn-outline-warning');
-                            $btn.html('<?= _langStr("store_collect") ?>');
+                            $btn.html('<?= _lang("store_collect") ?>');
                         }
 
                         // 确保按钮重新启用

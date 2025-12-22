@@ -16,32 +16,32 @@ require_once 'globals.php';
 $Store_Model = new Store_Model();
 
 $template_categories = [
-    0  => _langStr('store_cat_tpl_search'),
-    8  => _langStr('store_cat_blog'),
-    7  => _langStr('store_cat_download'),
-    9  => _langStr('store_cat_community'),
-    17 => _langStr('store_cat_navi'),
-    19 => _langStr('store_cat_corp'),
-    21 => _langStr('store_cat_docs'),
-    10 => _langStr('store_cat_general'),
+    0  => _lang('store_cat_tpl_search'),
+    8  => _lang('store_cat_blog'),
+    7  => _lang('store_cat_download'),
+    9  => _lang('store_cat_community'),
+    17 => _lang('store_cat_navi'),
+    19 => _lang('store_cat_corp'),
+    21 => _lang('store_cat_docs'),
+    10 => _lang('store_cat_general'),
 ];
 
 $plugin_categories = [
-    0  => _langStr('store_cat_plu_search'),
-    20 => _langStr('store_cat_editor'),
-    2  => _langStr('store_cat_seo'),
-    1  => _langStr('store_cat_download'),
-    18 => _langStr('store_cat_wechat'),
-    3  => _langStr('store_cat_media'),
-    4  => _langStr('store_cat_decoration'),
-    11 => _langStr('store_cat_interaction'),
-    12 => _langStr('store_cat_content'),
-    13 => _langStr('store_cat_mobile'),
-    14 => _langStr('store_cat_develop'),
-    15 => _langStr('store_cat_create'),
-    16 => _langStr('store_cat_collect'),
-    5  => _langStr('store_cat_storage'),
-    6  => _langStr('store_cat_extend')
+    0  => _lang('store_cat_plu_search'),
+    20 => _lang('store_cat_editor'),
+    2  => _lang('store_cat_seo'),
+    1  => _lang('store_cat_download'),
+    18 => _lang('store_cat_wechat'),
+    3  => _lang('store_cat_media'),
+    4  => _lang('store_cat_decoration'),
+    11 => _lang('store_cat_interaction'),
+    12 => _lang('store_cat_content'),
+    13 => _lang('store_cat_mobile'),
+    14 => _lang('store_cat_develop'),
+    15 => _lang('store_cat_create'),
+    16 => _lang('store_cat_collect'),
+    5  => _lang('store_cat_storage'),
+    6  => _lang('store_cat_extend')
 ];
 
 if (empty($action)) {
@@ -56,17 +56,17 @@ if (empty($action)) {
     $tab_type = 'all';
     $has_more = $r['has_more'];
 
-    $sub_title = _langStr('store_title_all');
+    $sub_title = _lang('store_title_all');
     if ($tag === 'free') {
-        $sub_title = _langStr('store_title_free');
+        $sub_title = _lang('store_title_free');
     } elseif ($tag === 'paid') {
-        $sub_title = _langStr('store_title_paid');
+        $sub_title = _lang('store_title_paid');
     } elseif ($tag === 'promo') {
-        $sub_title = _langStr('store_title_promo');
+        $sub_title = _lang('store_title_promo');
     } elseif ($tag === 'download_top') {
-        $sub_title = _langStr('store_title_download_top');
+        $sub_title = _lang('store_title_download_top');
     } elseif ($tag === 'favorite_top') {
-        $sub_title = _langStr('store_title_favorite_top');
+        $sub_title = _lang('store_title_favorite_top');
     }
 
     include View::getAdmView('header');
@@ -88,17 +88,17 @@ if ($action === 'tpl') {
     $tab_type = 'tpl';
     $has_more = $r['has_more'];
 
-    $sub_title = _langStr('store_title_tpl');
+    $sub_title = _lang('store_title_tpl');
     if ($tag === 'free') {
-        $sub_title = _langStr('store_title_tpl_free');
+        $sub_title = _lang('store_title_tpl_free');
     } elseif ($tag === 'paid') {
-        $sub_title = _langStr('store_title_tpl_paid');
+        $sub_title = _lang('store_title_tpl_paid');
     } elseif ($tag === 'promo') {
-        $sub_title = _langStr('store_title_promo');
+        $sub_title = _lang('store_title_promo');
     } elseif ($tag === 'paid_top') {
-        $sub_title = _langStr('store_title_buy_top');
+        $sub_title = _lang('store_title_buy_top');
     } elseif ($tag === 'download_top') {
-        $sub_title = _langStr('store_title_download_top');
+        $sub_title = _lang('store_title_download_top');
     }
 
     include View::getAdmView('header');
@@ -120,17 +120,17 @@ if ($action === 'plu') {
     $tab_type = 'plu';
     $has_more = $r['has_more'];
 
-    $sub_title = _langStr('store_title_plu');
+    $sub_title = _lang('store_title_plu');
     if ($tag === 'free') {
-        $sub_title = _langStr('store_title_plu_free');
+        $sub_title = _lang('store_title_plu_free');
     } elseif ($tag === 'paid') {
-        $sub_title = _langStr('store_title_plu_paid');
+        $sub_title = _lang('store_title_plu_paid');
     } elseif ($tag === 'promo') {
-        $sub_title = _langStr('store_title_promo');
+        $sub_title = _lang('store_title_promo');
     } elseif ($tag === 'paid_top') {
-        $sub_title = _langStr('store_title_buy_top');
+        $sub_title = _lang('store_title_buy_top');
     } elseif ($tag === 'download_top') {
-        $sub_title = _langStr('store_title_download_top');
+        $sub_title = _lang('store_title_download_top');
     }
 
     include View::getAdmView('header');
@@ -142,7 +142,7 @@ if ($action === 'plu') {
 
 if ($action === 'mine') {
     $addons = $Store_Model->getMyAddon();
-    $sub_title = _langStr('store_title_mine');
+    $sub_title = _lang('store_title_mine');
 
     include View::getAdmView('header');
     require_once(View::getAdmView('store_mine'));
@@ -152,7 +152,7 @@ if ($action === 'mine') {
 
 if ($action === 'svip') {
     $addons = $Store_Model->getSvipAddon();
-    $sub_title = _langStr('store_title_svip');
+    $sub_title = _lang('store_title_svip');
 
     include View::getAdmView('header');
     require_once(View::getAdmView('store_svip'));
@@ -166,7 +166,7 @@ if ($action === 'favorite') {
     $apps = isset($r['favorites']) ? $r['favorites'] : [];
     $tab_type = 'favorite';
     $has_more = isset($r['has_more']) ? $r['has_more'] : false;
-    $sub_title = _langStr('store_title_favorite');
+    $sub_title = _lang('store_title_favorite');
 
     include View::getAdmView('header');
     require_once(View::getAdmView('store_favorite'));
@@ -190,7 +190,7 @@ if ($action === 'install') {
     $source_type = Input::getStrVar('type', '');
 
     if (empty($source)) {
-        exit(_langStr('store_install_failed'));
+        exit(_lang('store_install_failed'));
     }
 
     $store_url = base64_decode('aHR0cHM6Ly9zdG9yZS5lbWxvZy5uZXQv');
@@ -198,9 +198,9 @@ if ($action === 'install') {
 
     if (!$temp_file) {
         if (false === Register::verifyDownload($source)) {
-            exit(_langStr('store_register_error'));
+            exit(_lang('store_register_error'));
         }
-        exit(_langStr('store_install_timeout'));
+        exit(_lang('store_install_timeout'));
     }
 
     if ($source_type == 'tpl') {
@@ -217,15 +217,15 @@ if ($action === 'install') {
     @unlink($temp_file);
     switch ($ret) {
         case 0:
-            exit(sprintf(_langStr('store_install_success_link'), $suc_url));
+            exit(sprintf(_lang('store_install_success_link'), $suc_url));
         case 1:
-            exit(_langStr('store_install_failed_permission'));
+            exit(_lang('store_install_failed_permission'));
         case 2:
-            exit(_langStr('store_install_failed_download'));
+            exit(_lang('store_install_failed_download'));
         case 3:
-            exit(_langStr('store_install_failed_zip'));
+            exit(_lang('store_install_failed_zip'));
         default:
-            exit(_langStr('store_install_failed_invalid'));
+            exit(_lang('store_install_failed_invalid'));
     }
 }
 
@@ -294,11 +294,11 @@ if ($action === 'add_favorite') {
     $app_id = Input::postIntVar('app_id');
 
     if (empty($app_type) || empty($app_id)) {
-        Output::json(['code' => 400, 'msg' => _langStr('store_param_error')]);
+        Output::json(['code' => 400, 'msg' => _lang('store_param_error')]);
     }
 
     if (!in_array($app_type, ['plugin', 'template'])) {
-        Output::json(['code' => 400, 'msg' => _langStr('store_type_error')]);
+        Output::json(['code' => 400, 'msg' => _lang('store_type_error')]);
     }
 
     $result = $Store_Model->addFavorite($app_type, $app_id);
@@ -310,11 +310,11 @@ if ($action === 'remove_favorite') {
     $app_id = Input::postIntVar('app_id');
 
     if (empty($app_type) || empty($app_id)) {
-        Output::json(['code' => 400, 'msg' => _langStr('store_param_error')]);
+        Output::json(['code' => 400, 'msg' => _lang('store_param_error')]);
     }
 
     if (!in_array($app_type, ['plugin', 'template'])) {
-        Output::json(['code' => 400, 'msg' => _langStr('store_type_error')]);
+        Output::json(['code' => 400, 'msg' => _lang('store_type_error')]);
     }
 
     $result = $Store_Model->removeFavorite($app_type, $app_id);

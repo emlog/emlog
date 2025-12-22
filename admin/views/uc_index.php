@@ -11,7 +11,7 @@
         <div class="flex-grow-1 ms-3">
             <div class="align-items-center mb-2">
                 <p class="mb-0 m-2"><a class="mr-2" href="blogger.php"><?= $user_cache[UID]['name'] ?></a></p>
-                <p class="mb-0 m-2 small"><?php _lang('registered_user') ?></p>
+                <p class="mb-0 m-2 small"><?= _lang('registered_user') ?></p>
             </div>
         </div>
     </div>
@@ -19,7 +19,7 @@
     <?php if (!Article::hasForbidPost()): ?>
         <a class="btn btn-success px-4 py-3" href="./article.php?action=write">
             <div class="d-inline-block bi bi-download me-2"></div>
-            <i class="icofont-plus"></i><?= _langStr('post_new') . Option::get("posts_name") ?>
+            <i class="icofont-plus"></i><?= _lang('post_new') . Option::get("posts_name") ?>
         </a>
     <?php endif; ?>
 </div>
@@ -47,7 +47,7 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col">
-                        <div class="small font-weight-bold text-info text-uppercase mb-1"><?php _lang('received_comments') ?></div>
+                        <div class="small font-weight-bold text-info text-uppercase mb-1"><?= _lang('received_comments') ?></div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="./comment.php"><?= $comment_amount ?></a></div>
                     </div>
                     <div class="col-auto">
@@ -62,7 +62,7 @@
     <?php if (!Article::hasForbidPost()): ?>
         <div class="col-lg-6 mb-4">
             <div class="card shadow mb-4">
-                <h6 class="card-header"><?= _langStr('recent_published') . Option::get("posts_name") ?></h6>
+                <h6 class="card-header"><?= _lang('recent_published') . Option::get("posts_name") ?></h6>
                 <div class="card-body admin_index_list">
                     <ul class="list-group list-group-flush">
                         <?php
@@ -77,7 +77,7 @@
                             endforeach;
                         else:
                             ?>
-                            <p class="m-2"><?php _lang('empty_list') ?></p>
+                            <p class="m-2"><?= _lang('empty_list') ?></p>
                         <?php endif; ?>
                     </ul>
                 </div>
@@ -86,7 +86,7 @@
     <?php endif; ?>
     <div class="col-lg-<?= Article::hasForbidPost() ? '12' : '6' ?> mb-4">
         <div class="card shadow mb-4">
-            <h6 class="card-header"><?php _lang('recent_received_comments') ?></h6>
+            <h6 class="card-header"><?= _lang('recent_received_comments') ?></h6>
             <div class="card-body admin_index_list">
                 <ul class="list-group list-group-flush">
                     <?php
@@ -96,7 +96,7 @@
                         <?php endforeach;
                     else:
                         ?>
-                        <p class="m-2"><?php _lang('empty_list') ?></p>
+                        <p class="m-2"><?= _lang('empty_list') ?></p>
                     <?php endif; ?>
                 </ul>
             </div>
