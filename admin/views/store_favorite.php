@@ -1,18 +1,18 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
 <?php if (isset($_GET['error'])): ?>
-    <div class="alert alert-danger">商店暂不可用，可能是网络问题</div><?php endif ?>
+    <div class="alert alert-danger"><?= _lang('store_unavailable') ?></div><?php endif ?>
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h4 mb-0 text-gray-800">应用商店 - <?= $sub_title ?></h1>
+    <h1 class="h4 mb-0 text-gray-800"><?= _lang('store_title') ?> - <?= $sub_title ?></h1>
 </div>
 <div class="row mb-4 ml-1">
     <ul class="nav nav-pills">
-        <li class="nav-item"><a class="nav-link" href="./store.php">全部应用</a></li>
-        <li class="nav-item"><a class="nav-link" href="./store.php?action=tpl">模板主题</a></li>
-        <li class="nav-item"><a class="nav-link" href="./store.php?action=plu">扩展插件</a></li>
-        <li class="nav-item"><a class="nav-link" href="./store.php?action=svip">铁杆免费</a></li>
-        <li class="nav-item"><a class="nav-link" href="./store.php?action=mine">我的已购</a></li>
-        <li class="nav-item"><a class="nav-link active" href="./store.php?action=favorite">我的收藏</a></li>
+        <li class="nav-item"><a class="nav-link" href="./store.php"><?= _lang('store_all') ?></a></li>
+        <li class="nav-item"><a class="nav-link" href="./store.php?action=tpl"><?= _lang('store_template') ?></a></li>
+        <li class="nav-item"><a class="nav-link" href="./store.php?action=plu"><?= _lang('store_plugin') ?></a></li>
+        <li class="nav-item"><a class="nav-link" href="./store.php?action=svip"><?= _lang('store_free_vip') ?></a></li>
+        <li class="nav-item"><a class="nav-link" href="./store.php?action=mine"><?= _lang('store_purchased') ?></a></li>
+        <li class="nav-item"><a class="nav-link active" href="./store.php?action=favorite"><?= _lang('store_favorite') ?></a></li>
     </ul>
 </div>
 <div class="mb-3">
@@ -33,9 +33,9 @@
                                 <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="<?= $v['name'] ?>" data-url="<?= $v['app_url'] ?>" data-buy-url="<?= $v['buy_url'] ?>"><?= $v['name'] ?></a>
                             </p>
                             <p class="card-text text-muted small">
-                                开发者：<?= $v['author'] ?><br>
-                                版本号：<?= $v['ver'] ?><br>
-                                更新时间：<?= $v['update_time'] ?><br>
+                                <?= _lang('store_developer') ?><?= $v['author'] ?><br>
+                                <?= _lang('store_version') ?><?= $v['ver'] ?><br>
+                                <?= _lang('store_update_time') ?><?= $v['update_time'] ?><br>
                             </p>
                             <div class="card-text d-flex justify-content-between">
                                 <div class="installMsg"></div>
@@ -45,25 +45,25 @@
                                         data-app-id="<?= $v['id'] ?>"
                                         data-app-type="<?= $v['app_type'] ?>"
                                         data-favorited="1">
-                                        取消收藏
+                                        <?= _lang('store_cancel_collect') ?>
                                     </button>
 
                                     <?php if (Plugin::isActive($v['alias'])): ?>
-                                        <a href="plugin.php" class="btn btn-light">使用中</a>
+                                        <a href="plugin.php" class="btn btn-light"><?= _lang('store_using') ?></a>
                                     <?php elseif (Template::isActive($v['alias'])): ?>
-                                        <a href="template.php" class="btn btn-light">使用中</a>
+                                        <a href="template.php" class="btn btn-light"><?= _lang('store_using') ?></a>
                                     <?php endif; ?>
                                     <?php if ($v['price'] > 0): ?>
                                         <?php if ($v['purchased'] === true): ?>
-                                            <a href="store.php?action=mine" class="btn btn-light">已购买</a>
-                                            <a href="#" class="btn btn-success installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-cdn-url="<?= urlencode($v['cdn_download_url']) ?>" data-type="<?= $type ?>">安装</a>
+                                            <a href="store.php?action=mine" class="btn btn-light"><?= _lang('store_purchased_status') ?></a>
+                                            <a href="#" class="btn btn-success installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-cdn-url="<?= urlencode($v['cdn_download_url']) ?>" data-type="<?= $type ?>"><?= _lang('store_install') ?></a>
                                         <?php elseif ($v['svip'] && Register::getRegType() === 2): ?>
-                                            <a href="#" class="btn btn-warning installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-cdn-url="<?= urlencode($v['cdn_download_url']) ?>" data-type="<?= $type ?>">安装</a>
+                                            <a href="#" class="btn btn-warning installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-cdn-url="<?= urlencode($v['cdn_download_url']) ?>" data-type="<?= $type ?>"><?= _lang('store_install') ?></a>
                                         <?php else: ?>
-                                            <a href="<?= $order_url ?>" class="btn btn-danger" target="_blank">立即购买</a>
+                                            <a href="<?= $order_url ?>" class="btn btn-danger" target="_blank"><?= _lang('store_buy_now') ?></a>
                                         <?php endif ?>
                                     <?php else: ?>
-                                        <a href="#" class="btn btn-success installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-cdn-url="<?= urlencode($v['cdn_download_url']) ?>" data-type="<?= $type ?>">安装</a>
+                                        <a href="#" class="btn btn-success installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-cdn-url="<?= urlencode($v['cdn_download_url']) ?>" data-type="<?= $type ?>"><?= _lang('store_install') ?></a>
                                     <?php endif ?>
                                 </div>
                             </div>

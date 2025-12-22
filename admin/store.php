@@ -16,32 +16,32 @@ require_once 'globals.php';
 $Store_Model = new Store_Model();
 
 $template_categories = [
-    0  => '按模板分类查找',
-    8  => '博客自媒体',
-    7  => '资源下载',
-    9  => '社区论坛',
-    17 => '网址导航',
-    19 => '企业展示',
-    21 => '文档知识库',
-    10 => '通用主题',
+    0  => _langStr('store_cat_tpl_search'),
+    8  => _langStr('store_cat_blog'),
+    7  => _langStr('store_cat_download'),
+    9  => _langStr('store_cat_community'),
+    17 => _langStr('store_cat_navi'),
+    19 => _langStr('store_cat_corp'),
+    21 => _langStr('store_cat_docs'),
+    10 => _langStr('store_cat_general'),
 ];
 
 $plugin_categories = [
-    0  => '按插件分类查找',
-    20 => '编辑器',
-    2  => 'SEO优化',
-    1  => '资源下载',
-    18 => '微信生态',
-    3  => '多媒体',
-    4  => '装饰特效',
-    11 => '用户互动',
-    12 => '内容运营',
-    13 => '移动端（小程序）',
-    14 => '编程开发',
-    15 => '内容创作',
-    16 => '数据采集',
-    5  => '文件存储',
-    6  => '功能扩展'
+    0  => _langStr('store_cat_plu_search'),
+    20 => _langStr('store_cat_editor'),
+    2  => _langStr('store_cat_seo'),
+    1  => _langStr('store_cat_download'),
+    18 => _langStr('store_cat_wechat'),
+    3  => _langStr('store_cat_media'),
+    4  => _langStr('store_cat_decoration'),
+    11 => _langStr('store_cat_interaction'),
+    12 => _langStr('store_cat_content'),
+    13 => _langStr('store_cat_mobile'),
+    14 => _langStr('store_cat_develop'),
+    15 => _langStr('store_cat_create'),
+    16 => _langStr('store_cat_collect'),
+    5  => _langStr('store_cat_storage'),
+    6  => _langStr('store_cat_extend')
 ];
 
 if (empty($action)) {
@@ -56,17 +56,17 @@ if (empty($action)) {
     $tab_type = 'all';
     $has_more = $r['has_more'];
 
-    $sub_title = '全部应用';
+    $sub_title = _langStr('store_title_all');
     if ($tag === 'free') {
-        $sub_title = '免费应用';
+        $sub_title = _langStr('store_title_free');
     } elseif ($tag === 'paid') {
-        $sub_title = '付费应用';
+        $sub_title = _langStr('store_title_paid');
     } elseif ($tag === 'promo') {
-        $sub_title = '限时优惠';
+        $sub_title = _langStr('store_title_promo');
     } elseif ($tag === 'download_top') {
-        $sub_title = '下载排行';
+        $sub_title = _langStr('store_title_download_top');
     } elseif ($tag === 'favorite_top') {
-        $sub_title = '收藏排行';
+        $sub_title = _langStr('store_title_favorite_top');
     }
 
     include View::getAdmView('header');
@@ -88,17 +88,17 @@ if ($action === 'tpl') {
     $tab_type = 'tpl';
     $has_more = $r['has_more'];
 
-    $sub_title = '模板主题';
+    $sub_title = _langStr('store_title_tpl');
     if ($tag === 'free') {
-        $sub_title = '免费模板';
+        $sub_title = _langStr('store_title_tpl_free');
     } elseif ($tag === 'paid') {
-        $sub_title = '付费模板';
+        $sub_title = _langStr('store_title_tpl_paid');
     } elseif ($tag === 'promo') {
-        $sub_title = '限时优惠';
+        $sub_title = _langStr('store_title_promo');
     } elseif ($tag === 'paid_top') {
-        $sub_title = '购买排行';
+        $sub_title = _langStr('store_title_buy_top');
     } elseif ($tag === 'download_top') {
-        $sub_title = '下载排行';
+        $sub_title = _langStr('store_title_download_top');
     }
 
     include View::getAdmView('header');
@@ -120,17 +120,17 @@ if ($action === 'plu') {
     $tab_type = 'plu';
     $has_more = $r['has_more'];
 
-    $sub_title = '扩展插件';
+    $sub_title = _langStr('store_title_plu');
     if ($tag === 'free') {
-        $sub_title = '免费插件';
+        $sub_title = _langStr('store_title_plu_free');
     } elseif ($tag === 'paid') {
-        $sub_title = '付费插件';
+        $sub_title = _langStr('store_title_plu_paid');
     } elseif ($tag === 'promo') {
-        $sub_title = '限时优惠';
+        $sub_title = _langStr('store_title_promo');
     } elseif ($tag === 'paid_top') {
-        $sub_title = '购买排行';
+        $sub_title = _langStr('store_title_buy_top');
     } elseif ($tag === 'download_top') {
-        $sub_title = '下载排行';
+        $sub_title = _langStr('store_title_download_top');
     }
 
     include View::getAdmView('header');
@@ -142,7 +142,7 @@ if ($action === 'plu') {
 
 if ($action === 'mine') {
     $addons = $Store_Model->getMyAddon();
-    $sub_title = '我的已购';
+    $sub_title = _langStr('store_title_mine');
 
     include View::getAdmView('header');
     require_once(View::getAdmView('store_mine'));
@@ -152,7 +152,7 @@ if ($action === 'mine') {
 
 if ($action === 'svip') {
     $addons = $Store_Model->getSvipAddon();
-    $sub_title = '铁杆免费';
+    $sub_title = _langStr('store_title_svip');
 
     include View::getAdmView('header');
     require_once(View::getAdmView('store_svip'));
@@ -166,7 +166,7 @@ if ($action === 'favorite') {
     $apps = isset($r['favorites']) ? $r['favorites'] : [];
     $tab_type = 'favorite';
     $has_more = isset($r['has_more']) ? $r['has_more'] : false;
-    $sub_title = '我的收藏';
+    $sub_title = _langStr('store_title_favorite');
 
     include View::getAdmView('header');
     require_once(View::getAdmView('store_favorite'));
@@ -190,7 +190,7 @@ if ($action === 'install') {
     $source_type = Input::getStrVar('type', '');
 
     if (empty($source)) {
-        exit('安装失败');
+        exit(_langStr('store_install_failed'));
     }
 
     $store_url = base64_decode('aHR0cHM6Ly9zdG9yZS5lbWxvZy5uZXQv');
@@ -198,9 +198,9 @@ if ($action === 'install') {
 
     if (!$temp_file) {
         if (false === Register::verifyDownload($source)) {
-            exit('emlog未正版注册，<a href="https://emlog.net/register" target="_blank">去注册</a>');
+            exit(_langStr('store_register_error'));
         }
-        exit('安装失败，下载超时');
+        exit(_langStr('store_install_timeout'));
     }
 
     if ($source_type == 'tpl') {
@@ -217,15 +217,15 @@ if ($action === 'install') {
     @unlink($temp_file);
     switch ($ret) {
         case 0:
-            exit('🎉🎈应用安装成功了，<a href="' . $suc_url . '">现在去启用</a>');
+            exit(sprintf(_langStr('store_install_success_link'), $suc_url));
         case 1:
-            exit('安装失败，请检查content下目录是否可写');
+            exit(_langStr('store_install_failed_permission'));
         case 2:
-            exit('安装失败，安装包下载异常');
+            exit(_langStr('store_install_failed_download'));
         case 3:
-            exit('安装失败，请安装php的Zip扩展');
+            exit(_langStr('store_install_failed_zip'));
         default:
-            exit('安装失败，不是有效的安装包');
+            exit(_langStr('store_install_failed_invalid'));
     }
 }
 
@@ -294,11 +294,11 @@ if ($action === 'add_favorite') {
     $app_id = Input::postIntVar('app_id');
 
     if (empty($app_type) || empty($app_id)) {
-        Output::json(['code' => 400, 'msg' => '参数错误']);
+        Output::json(['code' => 400, 'msg' => _langStr('store_param_error')]);
     }
 
     if (!in_array($app_type, ['plugin', 'template'])) {
-        Output::json(['code' => 400, 'msg' => '应用类型错误']);
+        Output::json(['code' => 400, 'msg' => _langStr('store_type_error')]);
     }
 
     $result = $Store_Model->addFavorite($app_type, $app_id);
@@ -310,11 +310,11 @@ if ($action === 'remove_favorite') {
     $app_id = Input::postIntVar('app_id');
 
     if (empty($app_type) || empty($app_id)) {
-        Output::json(['code' => 400, 'msg' => '参数错误']);
+        Output::json(['code' => 400, 'msg' => _langStr('store_param_error')]);
     }
 
     if (!in_array($app_type, ['plugin', 'template'])) {
-        Output::json(['code' => 400, 'msg' => '应用类型错误']);
+        Output::json(['code' => 400, 'msg' => _langStr('store_type_error')]);
     }
 
     $result = $Store_Model->removeFavorite($app_type, $app_id);

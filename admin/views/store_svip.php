@@ -1,28 +1,28 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
 <?php if (isset($_GET['error'])): ?>
-    <div class="alert alert-danger">商店暂不可用，可能是网络问题</div><?php endif ?>
+    <div class="alert alert-danger"><?= _lang('store_unavailable') ?></div><?php endif ?>
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h4 mb-0 text-gray-800">应用商店 - <?= $sub_title ?></h1>
+    <h1 class="h4 mb-0 text-gray-800"><?= _lang('store_title') ?> - <?= $sub_title ?></h1>
 </div>
 <div class="row mb-4 ml-1">
     <ul class="nav nav-pills">
-        <li class="nav-item"><a class="nav-link" href="./store.php">全部应用</a></li>
-        <li class="nav-item"><a class="nav-link" href="./store.php?action=tpl">模板主题</a></li>
-        <li class="nav-item"><a class="nav-link" href="./store.php?action=plu">扩展插件</a></li>
-        <li class="nav-item"><a class="nav-link active" href="./store.php?action=svip">铁杆免费</a></li>
-        <li class="nav-item"><a class="nav-link" href="./store.php?action=mine">我的已购</a></li>
-        <li class="nav-item"><a class="nav-link" href="./store.php?action=favorite">我的收藏</a></li>
+        <li class="nav-item"><a class="nav-link" href="./store.php"><?= _lang('store_all') ?></a></li>
+        <li class="nav-item"><a class="nav-link" href="./store.php?action=tpl"><?= _lang('store_template') ?></a></li>
+        <li class="nav-item"><a class="nav-link" href="./store.php?action=plu"><?= _lang('store_plugin') ?></a></li>
+        <li class="nav-item"><a class="nav-link active" href="./store.php?action=svip"><?= _lang('store_free_vip') ?></a></li>
+        <li class="nav-item"><a class="nav-link" href="./store.php?action=mine"><?= _lang('store_purchased') ?></a></li>
+        <li class="nav-item"><a class="nav-link" href="./store.php?action=favorite"><?= _lang('store_favorite') ?></a></li>
     </ul>
 </div>
 <div class="mb-3">
     <div class="col-md-12">
-        <p class="alert alert-warning my-3"><a href="https://www.emlog.net/register">铁杆SVIP</a> 用户可以免费安装下面的应用👇</p>
+        <p class="alert alert-warning my-3"><?= _lang('store_svip_desc') ?></p>
         <div class="mb-3">
             <div class="btn-group btn-group-sm">
-                <button type="button" class="btn btn-outline-primary active" id="filterAll">全部</button>
-                <button type="button" class="btn btn-outline-success" id="filterTemplate">模板</button>
-                <button type="button" class="btn btn-outline-primary" id="filterPlugin">插件</button>
+                <button type="button" class="btn btn-outline-primary active" id="filterAll"><?= _lang('store_filter_all') ?></button>
+                <button type="button" class="btn btn-outline-success" id="filterTemplate"><?= _lang('store_filter_tpl') ?></button>
+                <button type="button" class="btn btn-outline-primary" id="filterPlugin"><?= _lang('store_filter_plu') ?></button>
             </div>
         </div>
     </div>
@@ -40,16 +40,16 @@
                         <p class="card-text font-weight-bold">
                             <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="<?= $v['name'] ?>" data-url="<?= $v['app_url'] ?>" data-buy-url="<?= $v['buy_url'] ?>"><?= $v['name'] ?></a>
                             <?php if ($type === 'tpl'): ?>
-                                <span class="badge badge-success p-1">模板</span>
+                                <span class="badge badge-success p-1"><?= _lang('store_tpl_tag') ?></span>
                             <?php else: ?>
-                                <span class="badge badge-primary p-1">插件</span>
+                                <span class="badge badge-primary p-1"><?= _lang('store_plu_tag') ?></span>
                             <?php endif; ?>
                         </p>
                         <p class="card-text text-muted small">
-                            开发者：<a href="./store.php?author_id=<?= $v['author_id'] ?>"><?= $v['author'] ?></a><br>
-                            版本号：<?= $v['ver'] ?><br>
-                            安装次数：<?= $v['downloads'] ?><br>
-                            更新时间：<?= $v['update_time'] ?><br>
+                            <?= _lang('store_developer') ?><a href="./store.php?author_id=<?= $v['author_id'] ?>"><?= $v['author'] ?></a><br>
+                            <?= _lang('store_version') ?><?= $v['ver'] ?><br>
+                            <?= _lang('store_install_count') ?><?= $v['downloads'] ?><br>
+                            <?= _lang('store_update_time') ?><?= $v['update_time'] ?><br>
                         </p>
                         <div class="card-text d-flex justify-content-between">
                             <div class="installMsg"></div>
@@ -59,15 +59,15 @@
                                     data-app-id="<?= $v['id'] ?>"
                                     data-app-type="<?= $v['app_type'] ?>"
                                     data-favorited="<?= $v['is_favorited'] ? '1' : '0' ?>">
-                                    <?= $v['is_favorited'] ? '已收藏' : '收藏' ?>
+                                    <?= $v['is_favorited'] ? _lang('store_collected') : _lang('store_collect') ?>
                                 </button>
 
                                 <?php if (Plugin::isActive($v['alias'])): ?>
-                                    <a href="plugin.php" class="btn btn-light">使用中</a>
+                                    <a href="plugin.php" class="btn btn-light"><?= _lang('store_using') ?></a>
                                 <?php elseif (Template::isActive($v['alias'])): ?>
-                                    <a href="template.php" class="btn btn-light">使用中</a>
+                                    <a href="template.php" class="btn btn-light"><?= _lang('store_using') ?></a>
                                 <?php endif; ?>
-                                <a href="#" class="btn btn-warning installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-cdn-url="<?= urlencode($v['cdn_download_url']) ?>" data-type="<?= $type ?>">安装</a>
+                                <a href="#" class="btn btn-warning installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-cdn-url="<?= urlencode($v['cdn_download_url']) ?>" data-type="<?= $type ?>"><?= _lang('store_install') ?></a>
                             </div>
                         </div>
                     </div>
@@ -136,13 +136,13 @@
 
             // 验证必要参数
             if (!appId || !appType) {
-                showTip('参数错误，请刷新页面重试', 'error');
+                showTip('<?= _langStr("store_param_error") ?>', 'error');
                 return;
             }
 
             $btn.prop('disabled', true);
             const originalText = $btn.html();
-            $btn.html('<i class="icofont-spinner icofont-spin"></i> 处理中...');
+            $btn.html('<i class="icofont-spinner icofont-spin"></i> <?= _langStr("store_loading") ?>');
 
             // 调用收藏/取消收藏API
             const action = isFavorited ? 'remove_favorite' : 'add_favorite';
@@ -164,10 +164,10 @@
                         // 更新按钮样式和文本
                         if (newFavorited) {
                             $btn.removeClass('btn-outline-warning').addClass('btn-warning');
-                            $btn.html('已收藏');
+                            $btn.html('<?= _langStr("store_collected") ?>');
                         } else {
                             $btn.removeClass('btn-warning').addClass('btn-outline-warning');
-                            $btn.html('收藏');
+                            $btn.html('<?= _langStr("store_collect") ?>');
                         }
                     } else {
                         $btn.html(originalText);
