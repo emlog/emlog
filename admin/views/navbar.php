@@ -51,17 +51,17 @@
                                     case Navi_Model::navitype_home:
                                     case Navi_Model::navitype_t:
                                     case Navi_Model::navitype_admin:
-                                        $value['type_name'] = EmLang::getInstance()->get('system');
+                                        $value['type_name'] = _lang('system');
                                         $value['url'] = '/' . $value['url'];
                                         break;
                                     case Navi_Model::navitype_sort:
-                                        $value['type_name'] = '<span class="text-primary">' . EmLang::getInstance()->get('category') . '</span>';
+                                        $value['type_name'] = '<span class="text-primary">' . _lang('category') . '</span>';
                                         break;
                                     case Navi_Model::navitype_page:
-                                        $value['type_name'] = '<span class="text-success">' . EmLang::getInstance()->get('page') . '</span>';
+                                        $value['type_name'] = '<span class="text-success">' . _lang('page') . '</span>';
                                         break;
                                     case Navi_Model::navitype_custom:
-                                        $value['type_name'] = '<span class="text-danger">' . EmLang::getInstance()->get('custom') . '</span>';
+                                        $value['type_name'] = '<span class="text-danger">' . _lang('custom') . '</span>';
                                         break;
                                 }
                                 doAction('adm_navi_display');

@@ -178,7 +178,7 @@
                             <div class="form-group">
                                 <label><?= _lang('article_template') ?></label>
                                 <?php
-                                $sortListHtml = '<option value="">' . EmLang::getInstance()->get('default') . '</option>';
+                                $sortListHtml = '<option value="">' . _lang('default') . '</option>';
                                 foreach ($customTemplates as $v) {
                                     $select = $v['filename'] == $template ? 'selected="selected"' : '';
                                     $sortListHtml .= '<option value="' . str_replace('.php', '', $v['filename']) . '" ' . $select . '>' . ($v['comment']) . '</option>';

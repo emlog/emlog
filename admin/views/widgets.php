@@ -252,7 +252,7 @@
                     <?php
                     foreach ($custom_widget as $key => $val):
                         preg_match("/^custom_wg_(\d+)/", $key, $matches);
-                        $custom_wg_title = empty($val['title']) ? EmLang::getInstance()->get('widget_unnamed') . '(' . $matches[1] . ')' : $val['title'];
+                        $custom_wg_title = empty($val['title']) ? _lang('widget_unnamed') . '(' . $matches[1] . ')' : $val['title'];
                     ?>
                         <div class="card" id="<?= $key ?>">
                             <div class="card-header" id="heading<?= $key ?>" data-toggle="collapse" data-target="#<?= $key ?>Form" aria-expanded="true" aria-controls="<?= $key ?>Form" style="cursor:pointer">
@@ -326,7 +326,7 @@
                             $title = ($flg && isset($custom_widget[$widget]['title'])) ? $custom_widget[$widget]['title'] : ''; //获取自定义组件标题
                             if ($flg && empty($title)) {
                                 preg_match("/^custom_wg_(\d+)/", $widget, $matches);
-                                $title = EmLang::getInstance()->get('widget_unnamed') . '(' . $matches[1] . ')';
+                                $title = _lang('widget_unnamed') . '(' . $matches[1] . ')';
                             }
                         ?>
                             <div class="card m-1 active_widget" style="cursor: move" id="em_<?= $widget ?>">
