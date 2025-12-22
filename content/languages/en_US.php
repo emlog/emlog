@@ -510,7 +510,6 @@ return [
     'tag_exists' => 'Tag already exists',
     'add_tag_success' => 'Tag added successfully',
     'edit_tag_success' => 'Tag updated successfully',
-    'tag_count' => '%s tags in total',
     'confirm_delete_tag' => 'Delete selected tags?',
 
     // User
@@ -792,6 +791,7 @@ return [
     'updating' => 'Updating...',
     'active' => 'Active',
     'inactive' => 'Inactive',
+
     // Data
     'backup_success' => 'Data backup successful',
     'import_success' => 'Backup import successful',

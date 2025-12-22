@@ -190,6 +190,7 @@
             lineNumbers: false,
             sequenceDiagram: false,
             syncScrolling: "single",
+            placeholder: "<?= _lang('markdown_placeholder') ?>",
             onload: function() {
                 hooks.doAction("page_loaded", this);
             }

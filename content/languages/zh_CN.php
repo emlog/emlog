@@ -510,7 +510,6 @@ return [
     'tag_exists' => '标签已存在',
     'add_tag_success' => '添加标签成功',
     'edit_tag_success' => '修改标签成功',
-    'tag_count' => '有 %s 个标签',
     'confirm_delete_tag' => '删除所选标签？',
 
     // User
@@ -792,6 +791,7 @@ return [
     'updating' => '正在更新...',
     'active' => '已开启',
     'inactive' => '未开启',
+
     // Data
     'backup_success' => '数据备份成功',
     'import_success' => '备份导入成功',

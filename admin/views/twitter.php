@@ -133,6 +133,7 @@
                 imageFormats: ["jpg", "jpeg", "gif", "png"],
                 imageUploadURL: "media.php?action=upload&editor=1",
                 syncScrolling: "single",
+                placeholder: "<?= _lang('markdown_placeholder') ?>",
             });
             Editor.setToolbarAutoFixed(false);
         });
