@@ -98,6 +98,47 @@ return [
     'add_resource' => '添加资源',
     'url_format_error' => 'URL格式不正确',
     'add_media_category' => '添加资源分类',
+
+    // Auth
+    'reg_official' => '正版注册',
+    'reg_failed_msg' => '注册失败了，可能是注册码不正确，或服务器无法访问官网 emlog.net',
+    'input_reg_code' => '请输入注册码',
+    'submit_reg' => '提交注册',
+    'get_reg_code' => '获取注册码',
+    'reg_success_msg' => '🎉 恭喜，成功完成注册 🎉',
+
+    // AI
+    'ai_chat' => '对话聊天',
+    'input_message' => '输入消息...',
+    'send' => '发送',
+    'sending' => '发送中...',
+    'model_label' => 'Model：',
+    'no_ai_model' => '未配置AI模型',
+    'shift_enter_tip' => '按 Shift + Enter 换行',
+    'connect_error' => '连接出错，可能是模型配置或者网络问题',
+
+    // Shortcut
+    'shortcut' => '快捷入口',
+    'no_shortcuts' => '没有可用的快捷方式。',
+    'load_failed' => '加载失败: ',
+    'unknown_error' => '未知错误',
+    'loading' => '正在加载...',
+
+    // DatePicker
+    'select_time' => '选择时间',
+    'hour' => '时',
+    'minute' => '分',
+    'second' => '秒',
+    'millisecond' => '毫秒',
+    'microsecond' => '微秒',
+    'timezone' => '时区',
+    'current_time' => '现在时间',
+    'prev_month' => '上个月',
+    'next_month' => '下个月',
+    'week' => '周',
+    'year' => '年',
+    'day_names_min' => ["日", "一", "二", "三", "四", "五", "六"],
+    'month_names_short' => ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
     'category_name' => '分类名称',
     'edit_media_category' => '修改资源分类',
     'edit_media' => '编辑资源',

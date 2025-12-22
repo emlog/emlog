@@ -19,7 +19,7 @@
     <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
         <div class="modal-content border-0 shadow">
             <div class="modal-header border-0">
-                <h5 class="modal-title" id="aiChatModalLabel">💬 对话聊天</h5>
+                <h5 class="modal-title" id="aiChatModalLabel">💬 <?= _lang('ai_chat') ?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -30,12 +30,12 @@
                 </div>
                 <form id="chat-form">
                     <div class="input-group">
-                        <textarea class="form-control" id="chat-input" placeholder="输入消息..." rows="1" style="resize: none; overflow: hidden;"></textarea>
+                        <textarea class="form-control" id="chat-input" placeholder="<?= _lang('input_message') ?>" rows="1" style="resize: none; overflow: hidden;"></textarea>
                         <div class="input-group-append">
-                            <button class="btn btn-primary" type="submit" id="send-btn">发送</button>
+                            <button class="btn btn-primary" type="submit" id="send-btn"><?= _lang('send') ?></button>
                         </div>
                     </div>
-                    <div class="text-muted text-xs mt-2">Model：<?= AI::model() ? AI::model() : '未配置AI模型' ?>，按 Shift + Enter 换行</div>
+                    <div class="text-muted text-xs mt-2"><?= _lang('model_label') ?><?= AI::model() ? AI::model() : _lang('no_ai_model') ?>，<?= _lang('shift_enter_tip') ?></div>
                 </form>
                 <script>
                     $(document).ready(function() {
@@ -67,18 +67,18 @@
     <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
         <div class="modal-content border-0 shadow">
             <div class="modal-header border-0">
-                <h5 class="modal-title" id="shortcutModalLabel">快捷入口</h5>
+                <h5 class="modal-title" id="shortcutModalLabel"><?= _lang('shortcut') ?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <form action="index.php?action=add_shortcut" method="post">
                 <div class="modal-body" id="shortcutModalBody">
-                    <p class="text-center">正在加载...</p>
+                    <p class="text-center"><?= _lang('loading') ?></p>
                 </div>
                 <div class="modal-footer border-0">
-                    <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">取消</button>
-                    <button type="submit" class="btn btn-sm btn-success">保存</button>
+                    <button type="button" class="btn btn-sm btn-light" data-dismiss="modal"><?= _lang('cancel') ?></button>
+                    <button type="submit" class="btn btn-sm btn-success"><?= _lang('save') ?></button>
                 </div>
             </form>
 
@@ -111,30 +111,30 @@
 
         // 时间选择控件
         $.timepicker.regional['zh-CN'] = {
-            timeOnlyTitle: '选择时间',
-            timeText: '时间',
-            hourText: '时',
-            minuteText: '分',
-            secondText: '秒',
-            millisecText: '毫秒',
-            microsecText: '微秒',
-            timezoneText: '时区',
-            currentText: '现在时间',
-            closeText: '关闭',
+            timeOnlyTitle: '<?= _lang('select_time') ?>',
+            timeText: '<?= _lang('time') ?>',
+            hourText: '<?= _lang('hour') ?>',
+            minuteText: '<?= _lang('minute') ?>',
+            secondText: '<?= _lang('second') ?>',
+            millisecText: '<?= _lang('millisecond') ?>',
+            microsecText: '<?= _lang('microsecond') ?>',
+            timezoneText: '<?= _lang('timezone') ?>',
+            currentText: '<?= _lang('current_time') ?>',
+            closeText: '<?= _lang('close') ?>',
             timeFormat: 'HH:mm',
             timeSuffix: '',
             amNames: ['AM', 'A'],
             pmNames: ['PM', 'P'],
             isRTL: false,
-            prevText: '上个月',
-            nextText: '下个月',
+            prevText: '<?= _lang('prev_month') ?>',
+            nextText: '<?= _lang('next_month') ?>',
             showMonthAfterYear: true,
-            weekHeader: '周',
-            yearSuffix: '年',
+            weekHeader: '<?= _lang('week') ?>',
+            yearSuffix: '<?= _lang('year') ?>',
         };
         $.timepicker.setDefaults($.timepicker.regional['zh-CN']);
-        let dayNamesMin = ["日", "一", "二", "三", "四", "五", "六"];
-        let monthNamesShort = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
+        let dayNamesMin = <?= json_encode(_lang('day_names_min')) ?>;
+        let monthNamesShort = <?= json_encode(_lang('month_names_short')) ?>;
         const screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
         let _left = screenWidth < 1200 ? 0 : 50;
         $(".datepicker").length && $(".datepicker").datetimepicker({
@@ -181,7 +181,7 @@
             $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
 
             var $sendBtn = $('#send-btn');
-            $sendBtn.prop('disabled', true).text('发送中...');
+            $sendBtn.prop('disabled', true).text('<?= _lang('sending') ?>');
 
             // 初始化 EventSource 进行流式通信
             var eventSource = new EventSource('ai.php?action=chat_stream&message=' + encodeURIComponent(message));
@@ -190,7 +190,7 @@
 
             eventSource.onmessage = function(event) {
                 if (event.data === '[DONE]') {
-                    $sendBtn.prop('disabled', false).text('发送');
+                    $sendBtn.prop('disabled', false).text('<?= _lang('send') ?>');
                     eventSource.close();
                 } else {
                     try {
@@ -216,9 +216,9 @@
             eventSource.onerror = function() {
                 var $typing = $aiMessage.find('.ai-typing');
                 var currentContent = $typing.html();
-                $typing.html(currentContent + "连接出错，可能是模型配置或者网络问题");
+                $typing.html(currentContent + "<?= _lang('connect_error') ?>");
                 $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
-                $sendBtn.prop('disabled', false).text('发送');
+                $sendBtn.prop('disabled', false).text('<?= _lang('send') ?>');
                 eventSource.close();
             };
         });
@@ -227,7 +227,7 @@
         initShortcutBar();
         $('#shortcutModal').on('show.bs.modal', function(event) {
             const modalBody = $('#shortcutModalBody');
-            modalBody.html('<p class="text-center">正在加载...</p>');
+            modalBody.html('<p class="text-center"><?= _lang('loading') ?></p>');
             const currentShortcuts = <?php echo json_encode($shortcuts); ?>;
             $.ajax({
                 url: 'index.php?action=get_all_shortcuts',
@@ -237,7 +237,7 @@
                     if (!response.code && response.data) {
                         modalBody.empty();
                         if (!response.data.length) {
-                            modalBody.html('<p class="text-center">没有可用的快捷方式。</p>');
+                            modalBody.html('<p class="text-center"><?= _lang('no_shortcuts') ?></p>');
                             return;
                         }
                         response.data.forEach((item, index) => {
@@ -260,10 +260,10 @@
                             );
                         });
                     } else {
-                        modalBody.html('加载失败: ' + (response.msg || '未知错误'));
+                        modalBody.html('<?= _lang('load_failed') ?>' + (response.msg || '<?= _lang('unknown_error') ?>'));
                     }
                 },
-                error: (_, __, error) => modalBody.html('加载失败: ' + error)
+                error: (_, __, error) => modalBody.html('<?= _lang('load_failed') ?>' + error)
             });
         });
     });

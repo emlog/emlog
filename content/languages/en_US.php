@@ -98,6 +98,47 @@ return [
     'add_resource' => 'Add Resource',
     'url_format_error' => 'Invalid URL format',
     'add_media_category' => 'Add Media Category',
+
+    // Auth
+    'reg_official' => 'Official Registration',
+    'reg_failed_msg' => 'Registration failed. The registration code may be incorrect, or the server cannot access emlog.net',
+    'input_reg_code' => 'Enter registration code',
+    'submit_reg' => 'Submit Registration',
+    'get_reg_code' => 'Get Registration Code',
+    'reg_success_msg' => '🎉 Congratulations, registration completed successfully 🎉',
+
+    // AI
+    'ai_chat' => 'AI Chat',
+    'input_message' => 'Type a message...',
+    'send' => 'Send',
+    'sending' => 'Sending...',
+    'model_label' => 'Model: ',
+    'no_ai_model' => 'AI model not configured',
+    'shift_enter_tip' => 'Press Shift + Enter for new line',
+    'connect_error' => 'Connection error, possibly model configuration or network issue',
+
+    // Shortcut
+    'shortcut' => 'Shortcuts',
+    'no_shortcuts' => 'No available shortcuts.',
+    'load_failed' => 'Load failed: ',
+    'unknown_error' => 'Unknown error',
+    'loading' => 'Loading...',
+
+    // DatePicker
+    'select_time' => 'Select Time',
+    'hour' => 'Hour',
+    'minute' => 'Minute',
+    'second' => 'Second',
+    'millisecond' => 'Millisecond',
+    'microsecond' => 'Microsecond',
+    'timezone' => 'Timezone',
+    'current_time' => 'Now',
+    'prev_month' => 'Prev Month',
+    'next_month' => 'Next Month',
+    'week' => 'Wk',
+    'year' => 'Year',
+    'day_names_min' => ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+    'month_names_short' => ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
     'category_name' => 'Category Name',
     'edit_media_category' => 'Edit Media Category',
     'edit_media' => 'Edit Media',
