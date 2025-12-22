@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name=renderer content=webkit>
-    <title>个人中心 - <?= Option::get('blogname') ?></title>
+    <title><?php echo _langStr('uc_center') . ' - ' . Option::get('blogname') ?></title>
     <link rel="stylesheet" type="text/css" href="./views/css/style.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>">
     <link rel="stylesheet" type="text/css" href="./editor.md/css/editormd.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>">
     <link rel="stylesheet" type="text/css" href="./views/css/bootstrap-sbadmin-4.5.3.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>">
@@ -57,22 +57,22 @@
             <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom shadow-sm mt-5" id="uc-top-bar">
                 <h4 class="my-0 mr-md-5 font-weight-normal"><a href="./"><?= subString(Option::get('blogname'), 0, 12) ?></a></h4>
                 <nav class="my-2 my-md-0 mr-md-auto">
-                    <a class="p-2" href="./">个人中心</a>
+                    <a class="p-2" href="./"><?php _lang('uc_center') ?></a>
                     <?php if (!Article::hasForbidPost()): ?>
                         <a class="p-2" href="article.php"><?= Option::get("posts_name") ?></a>
                         <?php if (Option::get('forbid_user_upload') !== 'y') : ?>
-                            <a class="p-2" href="media.php">媒体库</a>
+                            <a class="p-2" href="media.php"><?php _lang('media_lib') ?></a>
                         <?php endif ?>
                     <?php endif ?>
-                    <a class="p-2" href="comment.php">评论</a>
+                    <a class="p-2" href="comment.php"><?php _lang('comment') ?></a>
                     <?php doAction('user_menu') ?>
                 </nav>
                 <nav class="my-2 my-md-0 mr-md-3">
-                    <a class="mr-2" href="blogger.php">设置</a>
+                    <a class="mr-2" href="blogger.php"><?php _lang('setting') ?></a>
                     <span class="text-white mx-2">|</span>
-                    <a class="p-2" href="<?= BLOG_URL ?>">返回首页</a>
+                    <a class="p-2" href="<?= BLOG_URL ?>"><?php _lang('back_to_home') ?></a>
                     <span class="text-white mx-2">|</span>
-                    <a class="" href="account.php?action=logout">退出</a>
+                    <a class="" href="account.php?action=logout"><?php _lang('logout') ?></a>
                 </nav>
             </div>
         </div>

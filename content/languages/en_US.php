@@ -5,6 +5,9 @@
  */
 return [
     // Common
+    'role_admin' => 'Administrator',
+    'credits' => 'Credits',
+    'avatar' => 'Avatar',
     'content_required' => 'Content cannot be empty',
     'private' => 'Private',
     'email' => 'Email',
@@ -689,4 +692,20 @@ return [
     'upload_cover' => 'Upload Cover',
     'crop_tip' => 'Hold Shift to maintain aspect ratio',
     'upload_cover_error' => 'Error uploading cover',
+
+    // User Center
+    'uc_center' => 'User Center',
+    'registered_user' => 'Registered User',
+    'received_comments' => 'Received Comments',
+    'recent_published' => 'Recently Published',
+    'recent_received_comments' => 'Recently Received Comments',
+    'empty_list' => 'It is empty here.',
+    'edit_user_info' => 'Edit User Info',
+    'input_avatar_url' => 'Please input avatar URL',
+    'username_login_tip' => 'Username (Leave empty to login with email)',
+    'new_password_tip' => 'New Password (Leave empty if not changing)',
+    'nickname_required' => 'Nickname cannot be empty',
+    'email_username_empty' => 'Email and Username cannot both be empty',
+    'username_exists' => 'Username already exists',
+    'role_editor' => 'Editor',
 ];

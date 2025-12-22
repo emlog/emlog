@@ -1,65 +1,65 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
 <?php if (isset($_GET['error_nickname'])): ?>
-    <div class="alert alert-danger">昵称不能为空</div><?php endif ?>
+    <div class="alert alert-danger"><?php _lang('nickname_required') ?></div><?php endif ?>
 <?php if (isset($_GET['error_email'])): ?>
-    <div class="alert alert-danger">邮箱和用户名不能都为空</div><?php endif ?>
+    <div class="alert alert-danger"><?php _lang('email_username_empty') ?></div><?php endif ?>
 <?php if (isset($_GET['error_exist'])): ?>
-    <div class="alert alert-danger">用户名已被占用</div><?php endif ?>
+    <div class="alert alert-danger"><?php _lang('username_exists') ?></div><?php endif ?>
 <?php if (isset($_GET['error_exist_email'])): ?>
-    <div class="alert alert-danger">邮箱已被占用</div><?php endif ?>
+    <div class="alert alert-danger"><?php _lang('error_exist_email') ?></div><?php endif ?>
 <?php if (isset($_GET['error_pwd_len'])): ?>
-    <div class="alert alert-danger">密码长度不得小于6位</div><?php endif ?>
+    <div class="alert alert-danger"><?php _lang('password_min_length') ?></div><?php endif ?>
 <?php if (isset($_GET['error_pwd2'])): ?>
-    <div class="alert alert-danger">两次输入密码不一致</div><?php endif ?>
-<h1 class="h4 mb-4 text-gray-800">编辑用户信息</h1>
+    <div class="alert alert-danger"><?php _lang('password_inconsistent') ?></div><?php endif ?>
+<h1 class="h4 mb-4 text-gray-800"><?php _lang('edit_user_info') ?></h1>
 <div class="card shadow mb-4 mt-4">
     <div class="card-body">
         <form action="user.php?action=update" method="post">
             <div class="form-group">
                 <p><img src="<?= User::getAvatar($avatar) ?>" height="65" width="65" class="rounded-circle" /> </p>
-                <label for="avatar">头像</label>
-                <input class="form-control" value="<?= $avatar ?>" name="avatar" id="avatar" placeholder="请输入头像URL">
+                <label for="avatar"><?php _lang('avatar') ?></label>
+                <input class="form-control" value="<?= $avatar ?>" name="avatar" id="avatar" placeholder="<?php _lang('input_avatar_url') ?>">
             </div>
             <div class="form-group">
-                <label for="nickname">昵称</label>
+                <label for="nickname"><?php _lang('nickname') ?></label>
                 <input class="form-control" value="<?= $nickname ?>" name="nickname" id="nickname" maxlength="20" required>
             </div>
             <div class="form-group">
-                <label for="email">邮箱</label>
+                <label for="email"><?php _lang('email') ?></label>
                 <input type="email" class="form-control" value="<?= $email ?>" name="email" id="email">
             </div>
             <div class="form-group">
-                <label for="role">用户组</label>
+                <label for="role"><?php _lang('user_group') ?></label>
                 <select name="role" id="role" class="form-control">
-                    <option value="writer" <?= $ex1 ?>>注册用户</option>
-                    <option value="editor" <?= $ex2 ?>>内容编辑</option>
-                    <option value="admin" <?= $ex3 ?>>管理员</option>
+                    <option value="writer" <?= $ex1 ?>><?php _lang('registered_user') ?></option>
+                    <option value="editor" <?= $ex2 ?>><?php _lang('role_editor') ?></option>
+                    <option value="admin" <?= $ex3 ?>><?php _lang('role_admin') ?></option>
                 </select>
             </div>
             <div class="form-group">
-                <label for="description">个人描述</label>
+                <label for="description"><?php _lang('personal_description') ?></label>
                 <textarea name="description" id="description" type="text" class="form-control"><?= $description ?></textarea>
             </div>
             <div class="form-group">
-                <label for="username">用户名（为空则使用邮箱登录）</label>
+                <label for="username"><?php _lang('username_login_tip') ?></label>
                 <input class="form-control" value="<?= $username ?>" name="username" id="username">
             </div>
             <div class="form-group">
-                <label for="password">新密码(不修改请留空)</label>
+                <label for="password"><?php _lang('new_password_tip') ?></label>
                 <input type="password" class="form-control" autocomplete="new-password" name="password" id="password">
             </div>
             <div class="form-group">
-                <label for="password2">再次输入新密码</label>
+                <label for="password2"><?php _lang('repeat_new_password') ?></label>
                 <input type="password" class="form-control" name="password2" id="password2">
             </div>
             <div class="form-group">
-                <label for="credits">积分</label>
+                <label for="credits"><?php _lang('credits') ?></label>
                 <input class="form-control" value="<?= $credits ?>" name="credits" id="credits" type="number" min="0" step="1" max="999999999" required>
             </div>
             <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
             <input type="hidden" value="<?= $uid ?>" name="uid" />
-            <input type="submit" value="保存" class="btn btn-sm btn-success" />
-            <input type="button" value="取消" class="btn btn-sm btn-secondary" onclick="window.location='user.php';" />
+            <input type="submit" value="<?php _lang('save') ?>" class="btn btn-sm btn-success" />
+            <input type="button" value="<?php _lang('cancel') ?>" class="btn btn-sm btn-secondary" onclick="window.location='user.php';" />
         </form>
     </div>
 </div>

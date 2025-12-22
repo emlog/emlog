@@ -5,6 +5,9 @@
  */
 return [
     // Common
+    'role_admin' => '管理员',
+    'credits' => '积分',
+    'avatar' => '头像',
     'content_required' => '内容不能为空',
     'private' => '私密',
     'email' => '邮箱',
@@ -689,4 +692,20 @@ return [
     'upload_cover' => '上传封面',
     'crop_tip' => '按住 Shift 等比例调整裁剪区域',
     'upload_cover_error' => '上传封面出错了',
+
+    // User Center
+    'uc_center' => '个人中心',
+    'registered_user' => '注册用户',
+    'received_comments' => '收到评论',
+    'recent_published' => '最近发布的',
+    'recent_received_comments' => '最近收到的评论',
+    'empty_list' => '这里是空的。',
+    'edit_user_info' => '编辑用户信息',
+    'input_avatar_url' => '请输入头像URL',
+    'username_login_tip' => '用户名（为空则使用邮箱登录）',
+    'new_password_tip' => '新密码(不修改请留空)',
+    'nickname_required' => '昵称不能为空',
+    'email_username_empty' => '邮箱和用户名不能都为空',
+    'username_exists' => '用户名已被占用',
+    'role_editor' => '内容编辑',
 ];
