@@ -62,7 +62,7 @@
     </form>
 </div>
 <div class="page"><?= $pageurl ?></div>
-<div class="text-center small"><?= _lang('total') ?>:<?= $tags_count ?></div>
+<div class="text-center small"><?= _lang('total') ?> <?= $tags_count ?></div>
 
 <!-- 添加标签模态窗口 -->
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">

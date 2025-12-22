@@ -56,7 +56,7 @@
     <?php endforeach ?>
 </div>
 <div class="page"><?= $pageurl ?> </div>
-<div class="text-center small"><?= sprintf(_lang('twitter_count'), $twnum) ?></div>
+<div class="text-center small"><?= _lang('total') ?> <?= $twnum ?></div>
 
 <!--编辑微语-->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog">

@@ -120,7 +120,7 @@
 <div class="page"><?= $pageurl ?></div>
 <div class="d-flex justify-content-center mb-4 small">
     <form action="user.php" method="get" class="form-inline">
-        <label for="perpage_num" class="mr-2"><?= sprintf(_lang('user_count_per_page'), $userCount) ?></label>
+        <label for="perpage_num" class="mr-2"><?= _lang('total') ?> <?= $userCount ?>, <?= _lang('per_page') ?></label>
         <select name="perpage_num" id="perpage_num" class="form-control form-control-sm" onChange="this.form.submit();">
             <option value="10" <?= ($perPage == 10) ? 'selected' : '' ?>>10</option>
             <option value="20" <?= ($perPage == 20) ? 'selected' : '' ?>>20</option>

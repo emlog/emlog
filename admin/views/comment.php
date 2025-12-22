@@ -133,7 +133,7 @@
     <div class="page"><?= $pageurl ?></div>
     <div class="d-flex justify-content-center mb-4 small">
         <div class="form-inline">
-            <label for="perpage_num" class="mr-2"><?= _lang('total') ?> <?= $cmnum ?> <?= _lang('comment') ?>, <?= _lang('per_page') ?></label>
+            <label for="perpage_num" class="mr-2"><?= _lang('total') ?> <?= $cmnum ?>, <?= _lang('per_page') ?></label>
             <select name="perpage_num" id="perpage_num" class="form-control form-control-sm" onChange="changePerPage(this);">
                 <option value="10" <?= ($perPage == 10) ? 'selected' : '' ?>>10</option>
                 <option value="20" <?= ($perPage == 20) ? 'selected' : '' ?>>20</option>

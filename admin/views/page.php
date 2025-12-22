@@ -106,7 +106,7 @@
     </div>
 </div>
 <div class="page"><?= $pageurl ?></div>
-<div class="text-center small"><?php printf(EmLang::getInstance()->get('page_count'), $pageNum); ?></div>
+<div class="text-center small"><?= _lang('total') ?> <?= $pageNum ?></div>
 <script>
     $(function() {
         setTimeout(hideActived, 3600);

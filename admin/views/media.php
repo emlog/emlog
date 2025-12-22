@@ -244,7 +244,7 @@
 <div class="page"><?= $page ?> </div>
 <div class="d-flex justify-content-center mb-4 small">
     <div class="form-inline">
-        <label for="perpage_num" class="mr-2"><?= _lang('total') ?>：<?= $count ?>, <?= _lang('per_page') ?></label>
+        <label for="perpage_num" class="mr-2"><?= _lang('total') ?> <?= $count ?>, <?= _lang('per_page') ?></label>
         <select name="perpage_num" id="perpage_num" class="form-control form-control-sm" onChange="changePerPage(this);">
             <option value="12" <?= ($perPage == 12) ? 'selected' : '' ?>>12</option>
             <option value="24" <?= ($perPage == 24) ? 'selected' : '' ?>>24</option>
