@@ -40,33 +40,54 @@ services:
   #    networks:
   #      - emlog_network
 
-  php:
-    image: emlog/emlog:pro-php8.1
-    container_name: php
+  frankenphp:
+    image: emlog/frankenphp-php8.3
+    container_name: frankenphp
+    restart: always
+    ports:
+      - "8080:80"
     volumes:
-      - ./:/app/emlog
-    working_dir: /app/emlog
-    networks:
-      - emlog_network
+      - ./:/app
+      - ./Caddyfile:/etc/frankenphp/Caddyfile
     environment:
+      SERVER_NAME: :80
       EMLOG_ENV: develop
       EMLOG_DB_HOST: db
       EMLOG_DB_USER: emlog
       EMLOG_DB_NAME: emlog
       EMLOG_DB_PASSWORD: emlog
-
-  nginx:
-    image: nginx:alpine
-    container_name: nginx
-    volumes:
-      - ./:/app/emlog
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf
-    ports:
-      - "8080:8080"
     networks:
       - emlog_network
     depends_on:
-      - php
+      - db
+
+#  php:
+#    image: emlog/emlog:pro-php8.1
+#    container_name: php
+#    volumes:
+#      - ./:/app/emlog
+#    working_dir: /app/emlog
+#    networks:
+#      - emlog_network
+#    environment:
+#      EMLOG_ENV: develop
+#      EMLOG_DB_HOST: db
+#      EMLOG_DB_USER: emlog
+#      EMLOG_DB_NAME: emlog
+#      EMLOG_DB_PASSWORD: emlog
+#
+#  nginx:
+#    image: nginx:alpine
+#    container_name: nginx
+#    volumes:
+#      - ./:/app/emlog
+#      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+#    ports:
+#      - "8080:8080"
+#    networks:
+#      - emlog_network
+#    depends_on:
+#      - php
 
   # redis:
   #   image: redis

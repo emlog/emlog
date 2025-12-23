@@ -1,0 +1,18 @@
+{
+	frankenphp
+	order php_server before file_server
+}
+
+:80 {
+	# Set this path to your site's directory.
+	root * /app
+
+	# Enable the static file server.
+	file_server
+
+	# Enable PHP-FPM (FrankenPHP)
+	php_server
+
+    # emlog rewrite rule
+	try_files {path} {path}/ /index.php?{query}
+}
