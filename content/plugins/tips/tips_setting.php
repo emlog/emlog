@@ -12,16 +12,16 @@ function plugin_setting_view() {
         <div class="alert alert-success">hello world !</div>
     <?php endif; ?>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h4 mb-0 text-gray-800">小贴士</h1>
+        <h1 class="h4 mb-0 text-gray-800"><?= _langPlu('tips_name', 'tips') ?></h1>
     </div>
     <div class="card shadow mb-4 mt-2">
         <div class="card-body">
             <form method="post" id="tips_form" action="./plugin.php?plugin=tips&action=setting">
                 <div class="form-group">
-                    <p>这是世界上第一个emlog插件，它会在你的管理页面送上一句温馨的小提示，样式如下。</p>
+                    <p><?= _langPlu('tips_intro', 'tips') ?></p>
                     <?php tips_init(); ?>
                     <hr>
-                    <p>另外该插件也是一个demo，可以在这个插件基础上修改，开发出你自己的插件。</p>
+                    <p><?= _langPlu('tips_demo', 'tips') ?></p>
                 </div>
                 <div class="form-inline">
                     <input name="hello" class="form-control" style="width: 200px;" value="<?= $hello ?>">
