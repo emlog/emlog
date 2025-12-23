@@ -681,6 +681,8 @@ return [
     'role_writer' => '注册用户',
     'role_editor' => '内容编辑',
     'role_admin' => '管理员',
+    'role_founder' => '创始人',
+    'role_visitor' => '游客',
     'login_email' => '登录邮箱',
     'password_min_6' => '密码 (不少于6位)',
     'password_repeat' => '再次输入密码',

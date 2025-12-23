@@ -76,16 +76,16 @@ class User
         $role_name = '';
         switch ($role) {
             case self::ROLE_ADMIN:
-                $role_name = $uid == 1 ? '创始人' : '管理员';
+                $role_name = $uid == 1 ? _lang('role_founder') : _lang('role_admin');
                 break;
             case self::ROLE_EDITOR:
-                $role_name = '内容编辑';
+                $role_name = _lang('role_editor');
                 break;
             case self::ROLE_WRITER:
-                $role_name = '注册用户';
+                $role_name = _lang('role_writer');
                 break;
             case self::ROLE_VISITOR:
-                $role_name = '游客';
+                $role_name = _lang('role_visitor');
                 break;
         }
         return $role_name;

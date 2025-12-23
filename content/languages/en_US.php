@@ -681,6 +681,8 @@ return [
     'role_writer' => 'Writer',
     'role_editor' => 'Editor',
     'role_admin' => 'Admin',
+    'role_founder' => 'Founder',
+    'role_visitor' => 'Visitor',
     'login_email' => 'Login Email',
     'password_min_6' => 'Password (min 6 chars)',
     'password_repeat' => 'Repeat Password',
