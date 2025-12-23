@@ -1,0 +1,28 @@
+<?php
+return [
+    'published_on' => 'Published on',
+    'views' => 'Views: ',
+    'articles' => ' Articles',
+    'search' => 'Search',
+    'no_content' => 'Sorry, there is no content yet.',
+    'page_not_found_title' => 'Error - Page Not Found',
+    'home' => 'Home',
+    'enter_password_title' => 'Please enter the article access password',
+    'submit' => 'Submit',
+    'back_to_home' => 'Back to Home',
+    'template_plugin_tip' => 'Please enable the [Template Settings] plugin, <a href="/admin/plugin.php">Enable it</a>',
+    // options.php
+    'tpl_options_navi_name' => 'Define Settings Tab Name',
+    'tpl_head' => 'Header Settings',
+    'tpl_home' => 'Home Settings',
+    'tpl_options_desc' => '<p>Hello, this is the default template settings interface. Please click the left menu to enter the settings.</p>',
+    'logo_type_name' => 'LOGO Display Mode',
+    'text' => 'Text',
+    'image' => 'Image',
+    'logo_img_name' => 'Upload LOGO',
+    'logo_img_desc' => 'Upload LOGO image, recommended size 180x60 pixels, height not exceeding 60 pixels',
+    'favicon_name' => 'Browser Icon (favicon)',
+    'favicon_desc' => 'Upload browser icon, recommended size 48x48 PNG or JPG image',
+    'slideshow_name' => 'Home Slideshow',
+    'slideshow_desc' => 'One per line, recommended image height 260 pixels, format: Image URL | Image Title | Link URL',
+];

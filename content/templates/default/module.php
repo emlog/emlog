@@ -274,7 +274,7 @@ function widget_search($title)
         <div class="unstyle-li" style="text-align: center;">
             <form name="keyform" method="get" action="<?= BLOG_URL ?>index.php">
                 <input name="keyword" class="search form-control" autocomplete="off" aria-label="Search" type="search" />
-                <input type="submit" value="搜索">
+                <input type="submit" value="<?= _langTpl('search') ?>">
             </form>
         </div>
     </div>

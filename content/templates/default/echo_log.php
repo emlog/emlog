@@ -9,9 +9,9 @@ defined('EMLOG_ROOT') || exit('access denied!');
     <span class="back-top mh" onclick="history.go(-1);">&laquo;</span>
     <h1 class="log-title"><?php topflg($top) ?><?= $log_title ?></h1>
     <p class="date">
-        <?php blog_author($author) ?> 发布于
+        <?php blog_author($author) ?> <?= _langTpl('published_on') ?>
         <time class="m-r-5"><?= date('Y-n-j H:i', $date) ?></time>
-        <span class="m-r-5">阅读：<?= $views ?></span>
+        <span class="m-r-5"><?= _langTpl('views') ?><?= $views ?></span>
         <span class="m-r-5"><?php blog_sort($sortid) ?></span>
         <?php editflg($logid, $author) ?>
     </p>

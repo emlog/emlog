@@ -114,7 +114,7 @@ defined('EMLOG_ROOT') || exit('access denied!');
                 endforeach;
             else:
                 ?>
-                <p>抱歉，暂时还没有内容。</p>
+                <p><?= _langTpl('no_content') ?></p>
             <?php endif ?>
             <div class="pagination bottom-5">
                 <?= $page_url ?>

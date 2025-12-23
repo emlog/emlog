@@ -45,9 +45,9 @@ defined('EMLOG_ROOT') || exit('access denied!');
 <body>
     <div class="main">
         <p>404 Not Found ！</p>
-        <p><a href="<?= BLOG_URL ?>">首页</a></p>
+        <p><a href="<?= BLOG_URL ?>"><?= _langTpl('home') ?></a></p>
     </div>
-    <script src="<?= TEMPLATE_URL ?>js/jquery.min.3.5.1.js?v=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
+    <script src="<?= TEMPLATE_URL ?>js/jquery.min.3.5.1.js?v=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>>
     <script src="<?= TEMPLATE_URL ?>js/common_tpl.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
 </body>
 

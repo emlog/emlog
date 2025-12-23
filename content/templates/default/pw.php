@@ -74,12 +74,12 @@ defined('EMLOG_ROOT') || exit('access denied!');
 
 <body>
     <form action="" method="post">
-        <h1>请输入文章访问密码</h1>
+        <h1><?= _langTpl('enter_password_title') ?></h1>
         <div style="display: flex;">
             <input type="password" id="logpwd" name="logpwd" required autofocus>
-            <button type="submit">提交</button>
+            <button type="submit"><?= _langTpl('submit') ?></button>
         </div>
-        <a href="<?= BLOG_URL ?>">&larr;返回首页</a>
+        <a href="<?= BLOG_URL ?>">&larr;<?= _langTpl('back_to_home') ?></a>
     </form>
 </body>
 

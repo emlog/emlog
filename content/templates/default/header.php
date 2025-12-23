@@ -12,12 +12,12 @@ defined('EMLOG_ROOT') || exit('access denied!');
 require_once View::getView('module');
 $v = '1.2.2';
 if (!function_exists('_g')) {
-    emMsg('请开启【模板设置】插件, <a href="/admin/plugin.php">去开启</a>');
+    emMsg(_langTpl('template_plugin_tip'));
 }
 
 ?>
 <!doctype html>
-<html lang="zh-cn" data-theme="light">
+<html lang="<?= strtolower(str_replace('_', '-', EmLang::getInstance()->currentLang())) ?>" data-theme="light">
 
 <head>
     <meta charset="utf-8">

@@ -1,0 +1,28 @@
+<?php
+return [
+    'published_on' => '发布于',
+    'views' => '阅读：',
+    'articles' => '篇文章',
+    'search' => '搜索',
+    'no_content' => '抱歉，暂时还没有内容。',
+    'page_not_found_title' => '错误提示-页面未找到',
+    'home' => '首页',
+    'enter_password_title' => '请输入文章访问密码',
+    'submit' => '提交',
+    'back_to_home' => '返回首页',
+    'template_plugin_tip' => '请开启【模板设置】插件, <a href="/admin/plugin.php">去开启</a>',
+    // options.php
+    'tpl_options_navi_name' => '定义设置项标签页名称',
+    'tpl_head' => '头部设置',
+    'tpl_home' => '首页设置',
+    'tpl_options_desc' => '<p>你好，这是默认模板的设置界面，请点击左侧菜单进入设置项。</p>',
+    'logo_type_name' => 'LOGO显示模式',
+    'text' => '文字',
+    'image' => '图片',
+    'logo_img_name' => 'LOGO上传',
+    'logo_img_desc' => '上传LOGO图片，推荐尺寸 180x60像素，高度不超60像素',
+    'favicon_name' => '浏览器图标（favicon）',
+    'favicon_desc' => '上传浏览器图标，推荐尺寸48×48的PNG或JPG图片',
+    'slideshow_name' => '首页轮播图',
+    'slideshow_desc' => '每行一个，图片高度推荐260像素，格式：图片地址 | 图片标题 | 跳转地址',
+];
