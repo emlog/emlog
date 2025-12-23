@@ -52,6 +52,11 @@ class EmLang
         return isset($this->_langData[$key]) ? $this->_langData[$key] : $key;
     }
 
+    public function getAll()
+    {
+        return $this->_langData;
+    }
+
     public function currentLang()
     {
         return $this->_currentLanguage;

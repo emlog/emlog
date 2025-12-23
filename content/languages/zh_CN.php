@@ -484,6 +484,8 @@ return [
     'select_operate_comment' => '请选择要操作的评论',
     'reply_empty_error' => '回复内容不能为空',
     'content_too_long' => '内容过长',
+
+    // JS Common - Moved to zh_CN_js.php
     'comment_empty_error' => '评论内容不能为空',
     'commentator' => '评论人',
     'from_article' => '来自文章',

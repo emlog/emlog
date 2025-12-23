@@ -484,6 +484,9 @@ return [
     'select_operate_comment' => 'Please select comment to operate',
     'reply_empty_error' => 'Reply content cannot be empty',
     'content_too_long' => 'Content too long',
+
+    // JS Common - Moved to en_US_js.php
+
     'comment_empty_error' => 'Comment content cannot be empty',
     'commentator' => 'Commentator',
     'from_article' => 'From Article',

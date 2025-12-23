@@ -19,87 +19,87 @@ function em_confirm(id, property, token) {
     switch (property) {
         case 'article':
             url = 'article.php?action=del&gid=' + id;
-            text = '删除这篇文章？';
+            text = emlog_lang.delete_article;
             delArticle(msg, text, url, token)
             break;
         case 'draft':
             url = 'article.php?action=del&draft=1&gid=' + id;
-            text = '删除这篇草稿？';
-            delAlert(msg, text, url, token, '删除', property)
+            text = emlog_lang.delete_draft;
+            delAlert(msg, text, url, token, emlog_lang.delete, property)
             break;
         case 'tw':
             url = 'twitter.php?action=del&id=' + id;
-            text = '删除这条微语？';
+            text = emlog_lang.delete_twitter;
             delAlert(msg, text, url, token)
             break;
         case 'comment':
             url = 'comment.php?action=del&id=' + id;
-            text = '删除这条评论？';
+            text = emlog_lang.delete_comment;
             delAlert(msg, text, url, token)
             break;
         case 'commentbyip':
             url = 'comment.php?action=delbyip&ip=' + id;
-            text = '删除来自该IP的所有评论？';
+            text = emlog_lang.delete_comment_by_ip;
             delAlert(msg, text, url, token)
             break;
         case 'link':
             url = 'link.php?action=del&linkid=' + id;
-            text = '删除该链接？';
+            text = emlog_lang.delete_link;
             delAlert(msg, text, url, token)
             break;
         case 'navi':
             url = 'navbar.php?action=del&id=' + id;
-            text = '删除该导航？';
+            text = emlog_lang.delete_navi;
             delAlert(msg, text, url, token)
             break;
         case 'media':
             url = 'media.php?action=delete&aid=' + id;
-            text = '删除该文件？';
+            text = emlog_lang.delete_media;
             delAlert(msg, text, url, token)
             break;
         case 'avatar':
             url = 'blogger.php?action=delicon';
-            text = '删除头像？';
+            text = emlog_lang.delete_avatar;
             delAlert(msg, text, url, token)
             break;
         case 'sort':
             url = 'sort.php?action=del&sid=' + id;
-            text = '删除该分类？';
+            text = emlog_lang.delete_sort;
             delAlert(msg, text, url, token)
             break;
         case 'del_user':
             url = 'user.php?action=del&uid=' + id;
-            text = '删除该用户？';
+            text = emlog_lang.delete_user;
             delAlert(msg, text, url, token)
             break;
         case 'forbid_user':
             url = 'user.php?action=forbid&uid=' + id;
-            text = '禁用该用户？';
-            delAlert(msg, text, url, token, '禁用')
+            text = emlog_lang.forbid_user;
+            delAlert(msg, text, url, token, emlog_lang.forbid)
             break;
         case 'tpl':
             url = 'template.php?action=del&tpl=' + id;
-            text = '删除该模板？';
+            text = emlog_lang.delete_tpl;
             delAlert(msg, text, url, token)
             break;
         case 'reset_widget':
             url = 'widgets.php?action=reset';
-            text = '重置组件？重置会丢失自定义的组件';
-            delAlert(msg, text, url, token, '重置')
+            text = emlog_lang.reset_widget;
+            delAlert(msg, text, url, token, emlog_lang.reset)
             break;
         case 'plu':
             url = 'plugin.php?action=del&plugin=' + id;
-            text = '删除该插件？';
+            text = emlog_lang.delete_plugin;
             delAlert(msg, text, url, token)
             break;
         case 'media_sort':
             url = 'media.php?action=del_media_sort&id=' + id;
-            text = '删除该资源分类？不会删除分类下资源文件';
+            text = emlog_lang.delete_media_sort;
             delAlert(msg, text, url, token)
             break;
         case 'ai_model':
             url = 'setting.php?action=delete_model&ai_model_key=' + id;
-            text = '删除该模型？';
+            text = emlog_lang.delete_ai_model;
             delAlert(msg, text, url, token)
             break;
     }
@@ -113,17 +113,19 @@ function infoAlert(msg) {
     });
 }
 
-function delAlert(msg, text, url, token, btnText = '删除') {
+function delAlert(msg, text, url, token, btnText) {
+    btnText = btnText || emlog_lang.delete;
     // icon: 0 default, 1 ok, 2 err, 3 ask
-    layer.confirm(text, {icon: 3, title: msg, skin: 'class-layer-danger', btn: [btnText, '取消']}, function (index) {
+    layer.confirm(text, {icon: 3, title: msg, skin: 'class-layer-danger', btn: [btnText, emlog_lang.cancel]}, function (index) {
         localStorage.setItem('alert_action_success', btnText);
         window.location = url + '&token=' + token;
         layer.close(index);
     });
 }
 
-function delAlert2(msg, text, actionClosure, btnText = '删除') {
-    layer.confirm(text, {icon: 3, title: msg, skin: 'class-layer-danger', btn: [btnText, '取消']}, function (index) {
+function delAlert2(msg, text, actionClosure, btnText) {
+    btnText = btnText || emlog_lang.delete;
+    layer.confirm(text, {icon: 3, title: msg, skin: 'class-layer-danger', btn: [btnText, emlog_lang.cancel]}, function (index) {
         actionClosure(); // 执行闭包
         localStorage.setItem('alert_action_success', btnText);
         layer.close(index);
@@ -132,7 +134,7 @@ function delAlert2(msg, text, actionClosure, btnText = '删除') {
 
 function changeAuthorAlert() {
     layer.prompt({
-        title: '输入新的作者ID',
+        title: emlog_lang.input_new_author_id,
         formType: 0 // 单行输入框
     }, function(value, index) {
         $('#author').val(value); // 将输入的作者ID设置到隐藏的输入框中
@@ -145,12 +147,12 @@ function delArticle(msg, text, url, token) {
     layer.confirm(text, {
         title: msg,
         icon: 3,
-        btn: ['放入草稿', '<span class="text-danger">彻底删除</span>', '取消']
+        btn: [emlog_lang.put_to_draft, '<span class="text-danger">' + emlog_lang.completely_delete + '</span>', emlog_lang.cancel]
     }, function (index) {
         window.location = url + '&token=' + token;
         layer.close(index);
     }, function (index) {
-        localStorage.setItem('alert_action_success', '删除');
+        localStorage.setItem('alert_action_success', emlog_lang.delete);
         window.location = url + '&rm=1&token=' + token;
         layer.close(index);
     }, function (index) {
@@ -164,7 +166,7 @@ function submitForm(formId, successMsg) {
         url: $(formId).attr('action'),
         data: $(formId).serialize(),
         success: function () {
-            cocoMessage.success(successMsg || '保存成功')
+            cocoMessage.success(successMsg || emlog_lang.save_success)
         },
         error: function (xhr) {
             const errorMsg = JSON.parse(xhr.responseText).msg;
@@ -253,7 +255,7 @@ function checkform() {
     if (0 == isalias(a)) {
         return true;
     } else {
-        cocoMessage.error("链接别名格式错误", 4000)
+        cocoMessage.error(emlog_lang.alias_format_error, 4000)
         $("#alias").focus();
         return false;
     }
@@ -262,13 +264,13 @@ function checkform() {
 function checkalias() {
     var a = $.trim($("#alias").val());
     if (1 == isalias(a)) {
-        $("#alias_msg_hook").html('<span id="input_error">别名错误，应由字母、数字、下划线、短横线组成</span>');
+        $("#alias_msg_hook").html('<span id="input_error">' + emlog_lang.alias_char_error + '</span>');
     } else if (2 == isalias(a)) {
-        $("#alias_msg_hook").html('<span id="input_error">别名错误，不能为纯数字</span>');
+        $("#alias_msg_hook").html('<span id="input_error">' + emlog_lang.alias_number_error + '</span>');
     } else if (3 == isalias(a)) {
-        $("#alias_msg_hook").html('<span id="input_error">别名错误，不能为\'post\'或\'post-数字\'</span>');
+        $("#alias_msg_hook").html('<span id="input_error">' + emlog_lang.alias_reserved_error + '</span>');
     } else if (4 == isalias(a)) {
-        $("#alias_msg_hook").html('<span id="input_error">别名错误，与系统链接冲突</span>');
+        $("#alias_msg_hook").html('<span id="input_error">' + emlog_lang.alias_conflict_error + '</span>');
     } else {
         $("#alias_msg_hook").html('');
         $("#msg").html('');
@@ -288,7 +290,7 @@ function autosave(act) {
     }
 
     if (alias != '' && 0 != isalias(alias)) {
-        cocoMessage.error("链接别名格式错误，保存失败", 4000)
+        cocoMessage.error(emlog_lang.alias_save_error, 4000)
         if (act == 0) {
             setTimeout("autosave(1)", timeout);
         }
@@ -308,8 +310,8 @@ function autosave(act) {
 
     const $savedf = $("#savedf");
     const btname = $savedf.val();
-    $savedf.val("保存中...").attr("disabled", "disabled");
-    $('title').text('[保存中] ' + titleText);
+    $savedf.val(emlog_lang.saving).attr("disabled", "disabled");
+    $('title').text('[' + emlog_lang.saving + '] ' + titleText);
     $.post(url, $("#addlog").serialize(), function (data) {
         data = $.trim(data);
         var isresponse = /.*autosave\_gid\:\d+\_.*/;
@@ -320,8 +322,8 @@ function autosave(act) {
             const h = d.getHours();
             const m = d.getMinutes();
             const tm = (h < 10 ? "0" + h : h) + ":" + (m < 10 ? "0" + m : m);
-            $("#save_info").html("保存于：" + tm + " <a href=\"../?post=" + logid + "\" target=\"_blank\">预览</a>");
-            $('title').text('[保存成功] ' + titleText);
+            $("#save_info").html(emlog_lang.saved_at + tm + " <a href=\"../?post=" + logid + "\" target=\"_blank\">" + emlog_lang.preview + "</a>");
+            $('title').text('[' + emlog_lang.save_success + '] ' + titleText);
             setTimeout(function () {
                 $('title').text(titleText);
             }, 2000);
@@ -331,8 +333,8 @@ function autosave(act) {
             $("#savedf").attr("disabled", false).val(btname);
         } else {
             $("#savedf").attr("disabled", false).val(btname);
-            $("#save_info").html("保存失败，可能文章不可编辑或达到每日发文限额").addClass("alert-danger");
-            $('title').text('[保存失败] ' + titleText);
+            $("#save_info").html(emlog_lang.save_failed_reason).addClass("alert-danger");
+            $('title').text('[' + emlog_lang.save_failed + '] ' + titleText);
         }
     });
     if (act == 1) {
@@ -358,13 +360,13 @@ function pageSave() {
     }
 
     if (alias != '' && 0 != isalias(alias)) {
-        cocoMessage.error("链接别名格式错误，保存失败", 4000)
+        cocoMessage.error(emlog_lang.alias_save_error, 4000)
         return;
     }
 
     const $savedf = $("#savedf");
     const btname = $savedf.val();
-    $savedf.val("保存中...").attr("disabled", "disabled");
+    $savedf.val(emlog_lang.saving).attr("disabled", "disabled");
     $.post(url, $("#addlog").serialize(), function (data) {
         data = $.trim(data);
         var isresponse = /.*autosave\_gid\:\d+\_.*/;
@@ -375,7 +377,7 @@ function pageSave() {
             const h = d.getHours();
             const m = d.getMinutes();
             const tm = (h < 10 ? "0" + h : h) + ":" + (m < 10 ? "0" + m : m);
-            $("#save_info").html("保存于：" + tm + " <a href=\"../?post=" + pageid + "\" target=\"_blank\">预览</a>");
+            $("#save_info").html(emlog_lang.saved_at + tm + " <a href=\"../?post=" + pageid + "\" target=\"_blank\">" + emlog_lang.preview + "</a>");
             $("#" + nodeid).val(pageid);
             $("#savedf").attr("disabled", false).val(btname);
             // 保存成功后更新pageText，避免页面离开时的错误提示
@@ -384,7 +386,7 @@ function pageSave() {
             }
         } else {
             $("#savedf").attr("disabled", false).val(btname);
-            $("#save_info").html("保存失败").addClass("alert-danger");
+            $("#save_info").html(emlog_lang.save_failed).addClass("alert-danger");
         }
     });
 }
@@ -487,14 +489,14 @@ function imgPasteExpand(thisEditor) {
         var imgName = "粘贴上传" + new Date().getTime() + "." + img.name.split(".").pop();
 
         formData.append('file', img, imgName);
-        thisEditor.insertValue("上传中...");
+        thisEditor.insertValue(emlog_lang.uploading);
         $.ajax({
             url: postUrl, type: 'post', data: formData, processData: false, contentType: false, xhr: function () {
                 var xhr = $.ajaxSettings.xhr();
                 if (xhr.upload) {
                     thisEditor.insertValue("....");
                     xhr.upload.addEventListener('progress', function (e) {  // 用以显示上传进度
-                        console.log('进度(byte)：' + e.loaded + ' / ' + e.total);
+                        console.log(emlog_lang.upload_progress + e.loaded + ' / ' + e.total);
                         let percent = Math.floor(e.loaded / e.total * 100);
                         if (percent < 10) {
                             replaceByNum('..' + percent + '%', 4);
@@ -507,20 +509,20 @@ function imgPasteExpand(thisEditor) {
                 }
                 return xhr;
             }, success: function (result) {
-                console.log('上传成功！正在获取结果...');
+                console.log(emlog_lang.upload_success_get_result);
                 $.get(emMediaPhpUrl, function (resp) {
                     var image = resp.data.images[0];
                     if (image) {
-                        console.log('获取结果成功！')
+                        console.log(emlog_lang.get_result_success)
                         replaceByNum(`![](${image.media_icon})`, 10);  // 这里的数字 10 对应着’上传中...100%‘是10个字符
                     } else {
-                        console.log('获取结果失败！')
-                        infoAlert('获取结果失败！');
+                        console.log(emlog_lang.get_result_failed)
+                        infoAlert(emlog_lang.get_result_failed);
                     }
                 })
             }, error: function (result) {
-                infoAlert('上传失败,图片类型错误或网络错误');
-                replaceByNum('上传失败,图片类型错误或网络错误', 6);
+                infoAlert(emlog_lang.upload_img_error);
+                replaceByNum(emlog_lang.upload_img_error, 6);
             }
         })
     }
@@ -550,20 +552,20 @@ function checkUpdate() {
 
     $.get("./upgrade.php?action=check_update", function (result) {
         if (result.code === 1001) {
-            rep_msg = "您的emlog未完成正版注册，<a href=\"https://emlog.net/register\" target=\"_blank\">去注册</a>";
+            rep_msg = emlog_lang.update_register_msg;
         } else if (result.code === 1002) {
-            rep_msg = "已经是最新版本";
+            rep_msg = emlog_lang.latest_version;
         } else if (result.code === 200) {
-            rep_msg = `有可用的新版本：<span class="text-danger">${result.data.version}</span> <br><br>`;
-            rep_changes = "<b>更新内容</b>:<br>" + result.data.changes;
+            rep_msg = emlog_lang.new_version_available + `<span class="text-danger">${result.data.version}</span> <br><br>`;
+            rep_changes = "<b>" + emlog_lang.update_content + "</b>:<br>" + result.data.changes;
 
             // 检查 cdn_sql 和 cdn_file 是否为空
             let sqlFile = result.data.cdn_sql || result.data.sql;
             let fileFile = result.data.cdn_file || result.data.file;
 
-            rep_btn = `<hr><a href="javascript:doUp('${fileFile}','${sqlFile}');" id="upbtn" class="btn btn-success btn-sm">现在更新</a>`;
+            rep_btn = `<hr><a href="javascript:doUp('${fileFile}','${sqlFile}');" id="upbtn" class="btn btn-success btn-sm">${emlog_lang.update_now}</a>`;
         } else {
-            rep_msg = "检查失败，可能是网络问题";
+            rep_msg = emlog_lang.check_update_failed;
         }
 
         updateModalLoading.removeClass();
@@ -581,23 +583,23 @@ function doUp(source, upSQL) {
     const upbtn = $("#upbtn");
 
     updateModalLoading.addClass("spinner-border text-primary");
-    updateModalMsg.html("更新中... 请耐心等待");
+    updateModalMsg.html(emlog_lang.uploading_wait);
     updateModalChanges.html("");
 
     $.get(`./upgrade.php?action=update&source=${source}&upsql=${upSQL}`, function (data) {
         upmsg.removeClass();
         if (data.includes("succ")) {
-            upbtn.text('刷新页面');
+            upbtn.text(emlog_lang.refresh_page);
             upbtn.attr('href', './');
-            updateModalMsg.html('🎉恭喜，更新成功了🎉，<a href="./">刷新页面</a> 开始体验新版本');
+            updateModalMsg.html(emlog_lang.update_success_html);
         } else if (data.includes("error_down")) {
-            updateModalMsg.html('下载更新失败，可能是服务器网络问题');
+            updateModalMsg.html(emlog_lang.download_error);
         } else if (data.includes("error_zip")) {
-            updateModalMsg.html('解压更新失败，可能是你的服务器空间不支持zip模块');
+            updateModalMsg.html(emlog_lang.unzip_error);
         } else if (data.includes("error_dir")) {
-            updateModalMsg.html('更新失败，目录不可写');
+            updateModalMsg.html(emlog_lang.dir_error);
         } else {
-            updateModalMsg.html('更新失败');
+            updateModalMsg.html(emlog_lang.update_error);
         }
 
         updateModalLoading.removeClass();
