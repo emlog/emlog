@@ -106,9 +106,9 @@
                                     <div class="mt-3">
                                         <?php if ($val['Author'] != ''): ?>
                                             <?php if (strpos($val['AuthorUrl'], 'https://www.emlog.net') === 0): ?>
-                                                <a href="<?= $val['AuthorUrl'] ?>" target="_blank"><?= _lang('author') ?>: <?= $val['Author'] ?></a>
+                                                <a href="<?= $val['AuthorUrl'] ?>" target="_blank"><?= $val['Author'] ?></a>
                                             <?php else: ?>
-                                                <?= _lang('author') ?>: <?= $val['Author'] ?>
+                                                <?= $val['Author'] ?>
                                             <?php endif ?>
                                         <?php endif ?>
                                     </div>
