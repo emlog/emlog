@@ -34,4 +34,12 @@ return [
     'install_warning_manual_delete' => '警告：请手动删除根目录下安装文件：install.php',
     'install_visit_home' => '访问首页',
     'install_login_admin' => '登录后台',
+    'demo_post_title' => '欢迎使用emlog',
+    'demo_post_content' => '这是系统生成的演示文章。编辑或者删除它，然后开始您的创作吧！',
+    'demo_comment_content' => '这是系统生成的演示评论',
+    'blog_info' => '使用emlog搭建的站点',
+    'emlog_official_homepage' => 'emlog官方主页',
+    'home' => '首页',
+    'login' => '登录',
+    'admin_nickname' => '管理员',
 ];

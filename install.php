@@ -434,7 +434,7 @@ CREATE TABLE {$db_prefix}blog (
     KEY top (top,date),
     KEY date (date)
 )" . $table_charset_sql . "
-INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,author,views,comnum,attnum,top,sortop,hide,allow_remark,password) VALUES (1, '欢迎使用emlog', '" . time() . "', '这是系统生成的演示文章。编辑或者删除它，然后开始您的创作吧！', '', 1, 0, 1, 0, 'n', 'n', 'n', 'y', '');
+INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,author,views,comnum,attnum,top,sortop,hide,allow_remark,password) VALUES (1, '" . _langInstall('demo_post_title') . "', '" . time() . "', '" . _langInstall('demo_post_content') . "', '', 1, 0, 1, 0, 'n', 'n', 'n', 'y', '');
 DROP TABLE IF EXISTS {$db_prefix}attachment;
 CREATE TABLE {$db_prefix}attachment (
     aid int(11) unsigned NOT NULL auto_increment COMMENT '资源文件表',
@@ -483,7 +483,7 @@ CREATE TABLE {$db_prefix}comment (
     KEY date (date),
     KEY hide (hide)
 )" . $table_charset_sql . "
-INSERT INTO {$db_prefix}comment (gid, date, poster, comment) VALUES (1, '" . time() . "', 'emlog', '这是系统生成的演示评论');
+INSERT INTO {$db_prefix}comment (gid, date, poster, comment) VALUES (1, '" . time() . "', 'emlog', '" . _langInstall('demo_comment_content') . "');
 DROP TABLE IF EXISTS {$db_prefix}like;
 CREATE TABLE {$db_prefix}like (
     id int(11) unsigned NOT NULL auto_increment COMMENT '点赞表',
@@ -508,7 +508,7 @@ CREATE TABLE {$db_prefix}options (
 )" . $table_charset_sql . "
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES 
 ('blogname','EMLOG'),
-('bloginfo','使用emlog搭建的站点'),
+('bloginfo','" . _langInstall('blog_info') . "'),
 ('site_title',''),
 ('site_description',''),
 ('site_key','emlog'),
@@ -582,7 +582,7 @@ CREATE TABLE {$db_prefix}link (
     taxis int(11) unsigned NOT NULL default '0' COMMENT '排序序号',
     PRIMARY KEY  (id)
 )" . $table_charset_sql . "
-INSERT INTO {$db_prefix}link (id, sitename, siteurl, icon, description, taxis) VALUES (1, 'EMLOG', 'https://www.emlog.net', '', 'emlog官方主页', 0);
+INSERT INTO {$db_prefix}link (id, sitename, siteurl, icon, description, taxis) VALUES (1, 'EMLOG', 'https://www.emlog.net', '', '" . _langInstall('emlog_official_homepage') . "', 0);
 DROP TABLE IF EXISTS {$db_prefix}navi;
 CREATE TABLE {$db_prefix}navi (
     id int(11) unsigned NOT NULL auto_increment COMMENT '导航表',
@@ -597,8 +597,8 @@ CREATE TABLE {$db_prefix}navi (
     type_id int(11) unsigned NOT NULL default '0' COMMENT '导航类型对应ID',
     PRIMARY KEY  (id)
 )" . $table_charset_sql . "
-INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault, type) VALUES (1, '首页', '', 1, 'y', 1);
-INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault, type) VALUES (3, '登录', 'admin', 3, 'y', 3);
+INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault, type) VALUES (1, '" . _langInstall('home') . "', '', 1, 'y', 1);
+INSERT INTO {$db_prefix}navi (id, naviname, url, taxis, isdefault, type) VALUES (3, '" . _langInstall('login') . "', 'admin', 3, 'y', 3);
 DROP TABLE IF EXISTS {$db_prefix}tag;
 CREATE TABLE {$db_prefix}tag (
     tid int(11) unsigned NOT NULL auto_increment COMMENT '标签表',

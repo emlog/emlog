@@ -56,7 +56,7 @@ function widget_blogger($title)
     <div class="widget shadow-theme">
         <div class="unstyle-li bloggerinfo">
             <div>
-                <a href="./admin/blogger.php"><img class='bloggerinfo-img' src="<?= $avatar ?>" alt="blogger" /></a>
+                <a href="<?= Url::author($uid) ?>"><img class='bloggerinfo-img' src="<?= $avatar ?>" alt="blogger" /></a>
             </div>
             <div class='bloginfo-name'><b><?= $name ?></b></div>
             <div class='bloginfo-descript'><?= $description ?></div>
@@ -96,7 +96,7 @@ function widget_tag($title)
         <div class="unstyle-li tag-container">
             <?php foreach ($tag_cache as $value): ?>
                 <span style="font-size:<?= $value['fontsize'] ?>pt; line-height:30px;">
-                    <a href="<?= Url::tag($value['tagurl']) ?>" title="<?= $value['usenum'] ?> 篇文章" class='tags-side'><?= $value['tagname'] ?></a></span>
+                    <a href="<?= Url::tag($value['tagurl']) ?>" title="<?= $value['usenum'] . _langTpl('articles') ?>" class='tags-side'><?= $value['tagname'] ?></a></span>
             <?php endforeach ?>
         </div>
     </div>
@@ -333,8 +333,8 @@ function blog_navi()
                 }
                 if ($value['url'] == 'admin' && (!User::isVisitor())):
             ?>
-                    <li class="list-item list-menu"><a href="<?= BLOG_URL ?>admin/" class="nav-link">管理</a></li>
-                    <li class="list-item list-menu"><a href="<?= BLOG_URL ?>admin/account.php?action=logout" class="nav-link">退出</a></li>
+                    <li class="list-item list-menu"><a href="<?= BLOG_URL ?>admin/" class="nav-link"><?= _langTpl('management') ?></a></li>
+                    <li class="list-item list-menu"><a href="<?= BLOG_URL ?>admin/account.php?action=logout" class="nav-link"><?= _langTpl('logout') ?></a></li>
                 <?php
                     continue;
                 endif;
@@ -376,8 +376,8 @@ function blog_navi()
  */
 function topflg($top, $sortop = 'n', $sortid = null)
 {
-    $ishome_flg = '<span class="log-topflg" >置顶</span>';
-    $issort_flg = '<span class="log-topflg" >分类置顶</span>';
+    $ishome_flg = '<span class="log-topflg" >' . _langTpl('top_flag') . '</span>';
+    $issort_flg = '<span class="log-topflg" >' . _langTpl('sort_top_flag') . '</span>';
     if (blog_tool_ishome()) {
         echo $top == 'y' ? $ishome_flg : '';
     } elseif ($sortid) {
@@ -439,7 +439,7 @@ function blog_tag($blogid)
     if (!empty($tag_names)) {
         $tag = '';
         foreach ($tag_names as $value) {
-            $tag .= "    <a href=\"" . Url::tag(rawurlencode($value)) . "\" class='tags' title='标签' >" . htmlspecialchars($value) . '</a>';
+            $tag .= "    <a href=\"" . Url::tag(rawurlencode($value)) . "\" class='tags' title='" . _langTpl('tag') . "' >" . htmlspecialchars($value) . '</a>';
         }
         echo $tag;
     }
@@ -467,10 +467,10 @@ function neighbor_log($neighborLog)
 {
     extract($neighborLog) ?>
     <?php if ($prevLog): ?>
-        <span class="prev-log"><a href="<?= Url::log($prevLog['gid']) ?>" title="上一篇：<?= $prevLog['title'] ?>"><span class="iconfont icon-prev"></span></a></span>
+        <span class="prev-log"><a href="<?= Url::log($prevLog['gid']) ?>" title="<?= _langTpl('prev_log') . $prevLog['title'] ?>"><span class="iconfont icon-prev"></span></a></span>
     <?php endif ?>
     <?php if ($nextLog): ?>
-        <span class="next-log"><a href="<?= Url::log($nextLog['gid']) ?>" title="下一篇：<?= $nextLog['title'] ?>"><span class="iconfont icon-next"></span></a></span>
+        <span class="next-log"><a href="<?= Url::log($nextLog['gid']) ?>" title="<?= _langTpl('next_log') . $nextLog['title'] ?>"><span class="iconfont icon-next"></span></a></span>
     <?php endif ?>
 <?php } ?>
 <?php
@@ -481,7 +481,7 @@ function blog_comments($comments, $comnum)
 {
     extract($comments);
     if ($commentStacks): ?>
-        <div class="comment-header"><b>收到<?= $comnum ?>条评论</b></div>
+        <div class="comment-header"><b><?= sprintf(_langTpl('received_comments'), $comnum) ?></b></div>
     <?php endif ?>
     <?php
     foreach ($commentStacks as $cid):
@@ -527,7 +527,7 @@ function blog_comments_children($comments, $children)
                 <div class="comment-content"><?= $comment['content'] ?></div>
                 <?php if ($comment['level'] < 4): ?>
                     <div class="comment-reply">
-                        <span class="com-reply comment-replay-btn">回复</span>
+                        <span class="com-reply comment-replay-btn"><?= _langTpl('reply') ?></span>
                     </div>
                 <?php endif ?>
             </div>
@@ -547,7 +547,7 @@ function blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allo
             <div class="comment-post" id="comment-post">
                 <form class="commentform" method="post" name="commentform" action="<?= BLOG_URL ?>index.php?action=addcom" id="commentform">
                     <input type="hidden" name="gid" value="<?= $logid ?>" />
-                    <textarea class="form-control log_comment" name="comment" id="comment" rows="10" tabindex="4" placeholder="撰写评论" required></textarea>
+                    <textarea class="form-control log_comment" name="comment" id="comment" rows="10" tabindex="4" placeholder="<?= _langTpl('comment_placeholder') ?>" required></textarea>
                     <?php if (User::isVisitor() && $isLoginComment === 'n'): ?>
                         <div class="comment-info" id="comment-info">
                             <input class="form-control com_control comment-name" id="info_n" autocomplete="off" type="text" name="comname" maxlength="49"
@@ -563,7 +563,7 @@ function blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allo
                             请先 <a href="./admin/index.php">登录</a> 再评论
                         <?php else: ?>
                             <input class="btn" <?php if ($verifyCode != "") { ?> type="button" data-toggle="modal" data-target="#myModal" <?php } else { ?> type="submit" <?php } ?>
-                                id="comment_submit" value="发布评论" tabindex="6" />
+                                id="comment_submit" value="<?= _langTpl('submit_comment') ?>" tabindex="6" />
                         <?php endif; ?>
                     </span>
                     <?php if ($verifyCode != "") { ?>
