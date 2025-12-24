@@ -9,11 +9,14 @@
 const EMLOG_ROOT = __DIR__;
 
 require_once EMLOG_ROOT . '/include/lib/common.php';
+require_once EMLOG_ROOT . '/include/lib/emlang.php';
 header('Content-Type: text/html; charset=UTF-8');
 spl_autoload_register("emAutoload");
 
+EmLang::getInstance()->loadInstallLang('en_US');
+
 if (PHP_VERSION < '5.6') {
-    emMsg('PHP版本太低，推荐使用PHP7.4及以上版本');
+    emMsg(_langInstall('php_version_error'));
 }
 
 $act = Input::getStrVar('action');
@@ -32,7 +35,7 @@ $env_db_password = getenv('EMLOG_DB_PASSWORD');
 if (!$act) {
 ?>
     <!doctype html>
-    <html lang="zh-cn">
+    <html lang="<?= $lang ?>">
 
     <head>
         <meta charset="utf-8">
@@ -217,59 +220,59 @@ if (!$act) {
                     </div>
                 <?php else: ?>
                     <div class="b mb20">
-                        <p class="install-title">MySQL数据库设置</p>
+                        <p class="install-title"><?= _langInstall('mysql_settings') ?></p>
                         <div class="input-group mb10">
-                            <label class="input-group-text">数据库地址</label>
+                            <label class="input-group-text"><?= _langInstall('db_host') ?></label>
                             <input name="hostname" type="text" class="form-control" value="localhost" required>
                         </div>
                         <div class="mb10">
-                            <label class="form-label care">通常为 localhost 或者指定端口 localhost:3306</label>
+                            <label class="form-label care"><?= _langInstall('db_host_info') ?></label>
                         </div>
                         <div class="input-group mb10">
-                            <span class="input-group-text">数据库用户名</span>
+                            <span class="input-group-text"><?= _langInstall('db_user') ?></span>
                             <input name="dbuser" type="text" class="form-control" value="" required>
                         </div>
                         <div class="input-group mb10">
-                            <span class="input-group-text">数据库密码</span>
+                            <span class="input-group-text"><?= _langInstall('db_password') ?></span>
                             <input name="dbpasswd" type="password" class="form-control" value="">
                         </div>
                         <div class="input-group mb10">
-                            <span class="input-group-text">数据库名</span>
+                            <span class="input-group-text"><?= _langInstall('db_name') ?></span>
                             <input name="dbname" type="text" class="form-control" value="" required>
                         </div>
                         <div class="mb10">
-                            <label class="form-label care">程序不会自动创建数据库，请提前创建一个空数据库或使用已有数据库</label>
+                            <label class="form-label care"><?= _langInstall('db_name_info') ?></label>
                         </div>
                         <div class="input-group mb10">
-                            <span class="input-group-text">数据库表前缀</span>
+                            <span class="input-group-text"><?= _langInstall('db_prefix') ?></span>
                             <input name="dbprefix" type="text" class="form-control" value="emlog_">
                         </div>
                         <div class="mb10">
-                            <label class="form-label care">通常默认即可，不必修改。由英文字母、数字、下划线组成，且必须以下划线结束</label>
+                            <label class="form-label care"><?= _langInstall('db_prefix_info') ?></label>
                         </div>
                     </div>
                 <?php endif; ?>
                 <div class="c">
-                    <p class="install-title">管理员设置</p>
+                    <p class="install-title"><?= _langInstall('admin_settings') ?></p>
                     <div class="input-group mb10">
-                        <span class="input-group-text">登录名</span>
+                        <span class="input-group-text"><?= _langInstall('admin_username') ?></span>
                         <input name="username" type="text" class="form-control" required>
                     </div>
                     <div class="input-group mb10">
-                        <span class="input-group-text">密码</span>
-                        <input name="password" type="password" class="form-control" placeholder="不小于6位" required>
+                        <span class="input-group-text"><?= _langInstall('admin_password') ?></span>
+                        <input name="password" type="password" class="form-control" placeholder="<?= _langInstall('admin_password_info') ?>" required>
                     </div>
                     <div class="input-group mb10">
-                        <span class="input-group-text">重复密码</span>
+                        <span class="input-group-text"><?= _langInstall('admin_repassword') ?></span>
                         <input name="repassword" type="password" class="form-control" required>
                     </div>
                     <div class="input-group mb10">
-                        <span class="input-group-text">邮箱</span>
+                        <span class="input-group-text"><?= _langInstall('email') ?></span>
                         <input name="email" type="text" class="form-control">
                     </div>
                 </div>
                 <div class="next_btn">
-                    <button type="submit" class="btn">开始安装</button>
+                    <button type="submit" class="btn"><?= _langInstall('start_install') ?></button>
                 </div>
             </div>
         </form>
@@ -291,15 +294,15 @@ if ($act == 'install' || $act == 'reinstall') {
     $email = Input::postStrVar('email');
 
     if ($db_prefix === '') {
-        emMsg('数据库表前缀不能为空!');
+        emMsg(_langInstall('db_prefix_empty'));
     } elseif (!preg_match("/^[\w_]+_$/", $db_prefix)) {
-        emMsg('数据库表前缀格式错误!');
+        emMsg(_langInstall('db_prefix_error'));
     } elseif (!$username || !$password) {
-        emMsg('登录名和密码不能为空!');
+        emMsg(_langInstall('username_password_empty'));
     } elseif (strlen($password) < 6) {
-        emMsg('登录密码不得小于6位');
+        emMsg(_langInstall('password_short'));
     } elseif ($password != $repassword) {
-        emMsg('两次输入的密码不一致');
+        emMsg(_langInstall('password_match_error'));
     }
 
     define('DB_HOST', $db_host);
@@ -312,6 +315,9 @@ if ($act == 'install' || $act == 'reinstall') {
     $CACHE = Cache::getInstance();
 
     if ($act != 'reinstall' && $DB->num_rows($DB->query("SHOW TABLES LIKE '{$db_prefix}blog'")) == 1) {
+        $warning_msg = _langInstall('installed_warning');
+        $continue_msg = _langInstall('continue');
+        $back_msg = _langInstall('back');
         echo <<<EOT
 <html>
 <head>
@@ -335,10 +341,10 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
     <input name="repassword" type="hidden" class="input" value="$repassword">
     <input name="email" type="hidden" class="input" value="$email">
 <p>
-你的emlog看起来已经安装过了。继续安装将会覆盖原有数据，确定要继续吗？
-<input type="submit" value="继续&raquo;">
+{$warning_msg}
+<input type="submit" value="{$continue_msg} &raquo;">
 </p>
-<p><a href="javascript:history.back(-1);">&laquo;点击返回</a></p>
+<p><a href="javascript:history.back(-1);">&laquo;{$back_msg}</a></p>
 </div>
 </form>
 </body>
@@ -348,10 +354,10 @@ EOT;
     }
 
     if (!is_writable('config.php')) {
-        emMsg('配置文件(config.php)不可写，请调整文件读写权限。');
+        emMsg(_langInstall('config_not_writable'));
     }
     if (!is_writable(EMLOG_ROOT . '/content/cache')) {
-        emMsg('缓存目录（content/cache）不可写。请检查目录读写权限。');
+        emMsg(_langInstall('cache_not_writable'));
     }
 
     $PHPASS = new PasswordHash(8, true);
@@ -373,7 +379,7 @@ EOT;
         . "const AUTH_COOKIE_NAME = 'EM_AUTHCOOKIE_" . sha1(getRandStr(32, false) . md5(getIp()) . getUA() . microtime()) . "';";
 
     if (!file_put_contents('config.php', $config)) {
-        emMsg('配置文件(config.php)不可写，请调整文件读写权限。');
+        emMsg(_langInstall('config_not_writable'));
     }
 
     $password = $PHPASS->HashPassword($password);

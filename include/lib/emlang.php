@@ -14,6 +14,7 @@ class EmLang
     private        $_langJsData         = [];
     private        $_langTemplateData = [];
     private        $_langPluginData   = [];
+    private        $_langInstallData   = [];
 
     private function __construct()
     {
@@ -42,35 +43,44 @@ class EmLang
 
     private function loadLangFile()
     {
-        $langFile = EMLOG_ROOT . '/content/languages/' . $this->_currentLanguage . '/' . $this->_currentLanguage . '.php';
+        $langFile = EMLOG_ROOT . '/content/languages/' . $this->_currentLanguage . '/main.php';
         if (file_exists($langFile)) {
             $this->_langData = include $langFile;
         } else {
-            $this->_langData = include EMLOG_ROOT . '/content/languages/zh_CN/zh_CN.php';
+            $this->_langData = include EMLOG_ROOT . '/content/languages/zh_CN/main.php';
         }
-        $langFile = EMLOG_ROOT . '/content/languages/' . $this->_currentLanguage . '/' . $this->_currentLanguage . '_js.php';
+        $langFile = EMLOG_ROOT . '/content/languages/' . $this->_currentLanguage . '/main_js.php';
         if (file_exists($langFile)) {
             $this->_langJsData = include $langFile;
         } else {
-            $this->_langJsData = include EMLOG_ROOT . '/content/languages/zh_CN/zh_CN_js.php';
+            $this->_langJsData = include EMLOG_ROOT . '/content/languages/zh_CN/main_js.php';
         }
     }
 
-    public function loadTemplateLangFile()
+    public function loadTemplateLang()
     {
-        $langFile = TEMPLATE_PATH . '/languages/' . $this->_currentLanguage . '/' . $this->_currentLanguage . '.php';
+        $langFile = TEMPLATE_PATH . '/languages/' . $this->_currentLanguage . '/main.php';
         if (file_exists($langFile)) {
             $this->_langTemplateData = include $langFile;
         }
     }
 
-    public function loadPluginLangFile($pluginName = '')
+    public function loadPluginLang($pluginName = '')
     {
         if (!empty($pluginName)) {
-            $langFile = PLUGIN_PATH . $pluginName . '/languages/' . $this->_currentLanguage . '/' . $this->_currentLanguage . '.php';
+            $langFile = PLUGIN_PATH . $pluginName . '/languages/' . $this->_currentLanguage . '/main.php';
             if (file_exists($langFile)) {
                 $this->_langPluginData = include $langFile;
             }
+        }
+    }
+
+    public function loadInstallLang($lang = 'zh_CN')
+    {
+        $this->_currentLanguage = $lang;
+        $langFile = EMLOG_ROOT . '/content/languages/' . $this->_currentLanguage . '/install.php';
+        if (file_exists($langFile)) {
+            $this->_langInstallData = include $langFile;
         }
     }
 
@@ -81,14 +91,19 @@ class EmLang
 
     public function getTpl($key)
     {
-        $this->loadTemplateLangFile();
+        $this->loadTemplateLang();
         return isset($this->_langTemplateData[$key]) ? $this->_langTemplateData[$key] : $key;
     }
 
     public function getPlu($key, $pluginName = '')
     {
-        $this->loadPluginLangFile($pluginName);
+        $this->loadPluginLang($pluginName);
         return isset($this->_langPluginData[$key]) ? $this->_langPluginData[$key] : $key;
+    }
+
+    public function getInstall($key)
+    {
+        return isset($this->_langInstallData[$key]) ? $this->_langInstallData[$key] : $key;
     }
 
     public function currentLang()
@@ -115,4 +130,9 @@ function _langTpl($key)
 function _langPlu($key, $pluginName = '')
 {
     return EmLang::getInstance()->getPlu($key, $pluginName);
+}
+
+function _langInstall($key)
+{
+    return EmLang::getInstance()->getInstall($key);
 }
