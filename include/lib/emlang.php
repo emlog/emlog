@@ -11,6 +11,7 @@ class EmLang
     private static $_instance         = null;
     private        $_currentLanguage  = 'zh_CN';
     private        $_langData         = [];
+    private        $_langJsData         = [];
     private        $_langTemplateData = [];
     private        $_langPluginData   = [];
 
@@ -46,6 +47,12 @@ class EmLang
             $this->_langData = include $langFile;
         } else {
             $this->_langData = include EMLOG_ROOT . '/content/languages/zh_CN/zh_CN.php';
+        }
+        $langFile = EMLOG_ROOT . '/content/languages/' . $this->_currentLanguage . '/' . $this->_currentLanguage . '_js.php';
+        if (file_exists($langFile)) {
+            $this->_langJsData = include $langFile;
+        } else {
+            $this->_langJsData = include EMLOG_ROOT . '/content/languages/zh_CN/zh_CN_js.php';
         }
     }
 
@@ -87,6 +94,11 @@ class EmLang
     public function currentLang()
     {
         return $this->_currentLanguage;
+    }
+
+    public function getJsLang()
+    {
+        return $this->_langJsData;
     }
 }
 

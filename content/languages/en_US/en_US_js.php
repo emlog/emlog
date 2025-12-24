@@ -1,8 +1,15 @@
 <?php
+
 /**
  * Language: English (US) - JS Part
  */
 return [
+    // Common
+    'delete' => 'Delete',
+    'confirm' => 'Confirm',
+    'cancel' => 'Cancel',
+
+    // Delete Confirm
     'delete_article' => 'Delete this article?',
     'delete_draft' => 'Delete this draft?',
     'delete_twitter' => 'Delete this microblog?',

@@ -4,6 +4,12 @@
  * Language: 中文（简体） - JS 部分
  */
 return [
+    // Common
+    'delete' => '删除',
+    'confirm' => '确认',
+    'cancel' => '取消',
+
+    // Delete Confirm
     'delete_article' => '删除这篇文章？',
     'delete_draft' => '删除这篇草稿？',
     'delete_twitter' => '删除这条微语？',
