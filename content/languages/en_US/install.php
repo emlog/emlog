@@ -27,4 +27,11 @@ return [
     'back' => 'Back',
     'config_not_writable' => 'Config file (config.php) is not writable, please check permissions.',
     'cache_not_writable' => 'Cache directory (content/cache) is not writable. Please check permissions.',
+    'install_success' => 'Installation Successful🎉',
+    'install_success_username' => 'Username',
+    'install_success_password' => 'Password',
+    'install_success_password_info' => 'The password you just set',
+    'install_warning_manual_delete' => 'Warning: Please manually delete the installation file in the root directory: install.php',
+    'install_visit_home' => 'Visit Home',
+    'install_login_admin' => 'Login Admin',
 ];

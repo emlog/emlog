@@ -27,4 +27,11 @@ return [
     'back' => '点击返回',
     'config_not_writable' => '配置文件(config.php)不可写，请调整文件读写权限。',
     'cache_not_writable' => '缓存目录（content/cache）不可写。请检查目录读写权限。',
+    'install_success' => '安装成功了🎉',
+    'install_success_username' => '用户名',
+    'install_success_password' => '密 码',
+    'install_success_password_info' => '刚才设定的密码',
+    'install_warning_manual_delete' => '警告：请手动删除根目录下安装文件：install.php',
+    'install_visit_home' => '访问首页',
+    'install_login_admin' => '登录后台',
 ];

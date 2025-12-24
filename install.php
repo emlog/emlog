@@ -13,7 +13,8 @@ require_once EMLOG_ROOT . '/include/lib/emlang.php';
 header('Content-Type: text/html; charset=UTF-8');
 spl_autoload_register("emAutoload");
 
-EmLang::getInstance()->loadInstallLang('en_US');
+$lang = 'en_US';
+EmLang::getInstance()->loadInstallLang($lang);
 
 if (PHP_VERSION < '5.6') {
     emMsg(_langInstall('php_version_error'));
@@ -113,7 +114,7 @@ if (!$act) {
                 background-color: #fff;
                 border: 1px solid #dee2e6;
                 border-radius: 0.375rem 0 0 0.375rem;
-                width: 80px;
+                width: 120px;
             }
 
             .form-control {
@@ -376,7 +377,9 @@ EOT;
         . "\n//Auth key\n"
         . "const AUTH_KEY = '" . $PHPASS->HashPassword(getRandStr(32) . md5(getIp()) . getUA() . microtime()) . "';"
         . "\n//Cookie name\n"
-        . "const AUTH_COOKIE_NAME = 'EM_AUTHCOOKIE_" . sha1(getRandStr(32, false) . md5(getIp()) . getUA() . microtime()) . "';";
+        . "const AUTH_COOKIE_NAME = 'EM_AUTHCOOKIE_" . sha1(getRandStr(32, false) . md5(getIp()) . getUA() . microtime()) . "';"
+        . "\n//Language\n"
+        . "const EMLOG_LANG = '$lang';";
 
     if (!file_put_contents('config.php', $config)) {
         emMsg(_langInstall('config_not_writable'));
@@ -718,13 +721,13 @@ CREATE TABLE {$db_prefix}blog_fields (
     $CACHE->updateCache();
     $result = '';
     $result .= "
-        <p style=\"font-size:24px; border-bottom:1px solid #E6E6E6; padding:10px 0px;\">安装成功了🎉</p>
-        <p><b>用户名</b>：{$username}</p>
-        <p><b>密 码</b>：刚才设定的密码</p>";
+        <p style=\"font-size:24px; border-bottom:1px solid #E6E6E6; padding:10px 0px;\">" . _langInstall('install_success') . "</p>
+        <p><b>" . _langInstall('install_success_username') . "</b>：{$username}</p>
+        <p><b>" . _langInstall('install_success_password') . "</b>：" . _langInstall('install_success_password_info') . "</p>";
     if ($env_emlog_env === 'develop' || ($env_emlog_env !== 'develop' && !@unlink('./install.php'))) {
-        $result .= '<p style="color:#ff0000;margin:10px 20px;">警告：请手动删除根目录下安装文件：install.php</p> ';
+        $result .= '<p style="color:#ff0000;margin:10px 20px;">' . _langInstall('install_warning_manual_delete') . '</p> ';
     }
-    $result .= "<p style=\"text-align:right;\"><a href=\"./\">访问首页</a> | <a href=\"./admin/\">登录后台</a></p>";
+    $result .= "<p style=\"text-align:right;\"><a href=\"./\">" . _langInstall('install_visit_home') . "</a> | <a href=\"./admin/\">" . _langInstall('install_login_admin') . "</a></p>";
     emMsg($result, 'none');
 }
 ?>
