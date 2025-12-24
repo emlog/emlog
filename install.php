@@ -13,7 +13,7 @@ require_once EMLOG_ROOT . '/include/lib/emlang.php';
 header('Content-Type: text/html; charset=UTF-8');
 spl_autoload_register("emAutoload");
 
-$lang = 'en_US';
+$lang = 'zh_CN';
 EmLang::getInstance()->loadInstallLang($lang);
 
 if (PHP_VERSION < '5.6') {
