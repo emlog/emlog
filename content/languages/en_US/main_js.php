@@ -72,4 +72,13 @@ return [
     'upload_img_error' => 'Upload failed, image type error or network error',
     'upload_success_get_result' => 'Upload success! Fetching result...',
     'new_version_available' => 'New version available: ',
+
+    // Media
+    'insert_to_article' => 'Insert to Article',
+    'set_as_cover' => 'Set as Cover',
+    'public_download' => 'Public Download',
+    'login_download' => 'Login Download',
+    'file_size' => 'File Size: ',
+    'upload_media' => 'Upload Media',
+    'confirm_delete_media' => 'Are you sure to delete this media?',
 ];

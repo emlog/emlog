@@ -23,9 +23,9 @@ function insert_cover(imgsrc) {
 }
 
 function delete_media(id) {
-    layer.confirm('确定要删除该资源吗？', {
+    layer.confirm(emlog_lang.confirm_delete_media, {
         icon: 3,
-        btn: ['删除', '取消']
+        btn: [emlog_lang.delete, emlog_lang.cancel]
     }, function (index) {
         $.post('./media.php?action=delete_async', {aid: id}, function () {
             $('#image-list').html('');
@@ -52,24 +52,24 @@ function loadImages() {
             $.each(resp.data.images, function (i, image) {
                 let insertBtnHtml = '';
                 if (image.media_type === 'image') {
-                    insertBtnHtml = '<a href="javascript:insert_media_img(\'' + image.media_icon + '\')" class="btn btn-sm"><i class="icofont-plus"></i> 插入文章</a>' +
-                        '<a href="javascript:insert_cover(\'' + image.media_icon + '\')" class="btn btn-sm"><i class="icofont-image"></i> 设为封面</a>';
+                    insertBtnHtml = '<a href="javascript:insert_media_img(\'' + image.media_icon + '\')" class="btn btn-sm"><i class="icofont-plus"></i> ' + emlog_lang.insert_to_article + '</a>' +
+                        '<a href="javascript:insert_cover(\'' + image.media_icon + '\')" class="btn btn-sm"><i class="icofont-image"></i> ' + emlog_lang.set_as_cover + '</a>';
                 } else if (image.media_type === 'video') {
-                    insertBtnHtml = '<a href="javascript:insert_media_video(\'' + image.media_url + '\')" class="btn btn-sm"><i class="icofont-plus"></i> 插入文章</a>';
+                    insertBtnHtml = '<a href="javascript:insert_media_video(\'' + image.media_url + '\')" class="btn btn-sm"><i class="icofont-plus"></i> ' + emlog_lang.insert_to_article + '</a>';
                 } else if (image.media_type === 'audio') {
-                    insertBtnHtml = '<a href="javascript:insert_media_audio(\'' + image.media_url + '\')" class="btn btn-sm"><i class="icofont-plus"></i> 插入文章</a>';
+                    insertBtnHtml = '<a href="javascript:insert_media_audio(\'' + image.media_url + '\')" class="btn btn-sm"><i class="icofont-plus"></i> ' + emlog_lang.insert_to_article + '</a>';
                 } else if (image.media_type === 'zip') {
-                    insertBtnHtml = '<a href="javascript:insert_media(\'' + image.media_down_url_pub + '\', \'' + image.media_name + '\')" class="btn btn-sm"><i class="icofont-plus"></i> 公开下载</a>';
-                    insertBtnHtml += '<a href="javascript:insert_media(\'' + image.media_down_url + '\', \'' + image.media_name + '\')" class="btn btn-sm"><i class="icofont-plus"></i> 登录下载</a>';
+                    insertBtnHtml = '<a href="javascript:insert_media(\'' + image.media_down_url_pub + '\', \'' + image.media_name + '\')" class="btn btn-sm"><i class="icofont-plus"></i> ' + emlog_lang.public_download + '</a>';
+                    insertBtnHtml += '<a href="javascript:insert_media(\'' + image.media_down_url + '\', \'' + image.media_name + '\')" class="btn btn-sm"><i class="icofont-plus"></i> ' + emlog_lang.login_download + '</a>';
                 } else {
-                    insertBtnHtml = '<a href="javascript:insert_media(\'' + image.media_url + '\', \'' + image.media_name + '\')" class="btn btn-sm"><i class="icofont-plus"></i> 插入文章</a>';
+                    insertBtnHtml = '<a href="javascript:insert_media(\'' + image.media_url + '\', \'' + image.media_name + '\')" class="btn btn-sm"><i class="icofont-plus"></i> ' + emlog_lang.insert_to_article + '</a>';
                 }
                 insertBtnHtml += '<a href="javascript:delete_media(\'' + image.media_id + '\')" class="btn btn-sm text-danger"><i class="icofont-trash"></i></a>';
                 var cardHtml = '<div class="col-md-4">' +
                     '<div class="card mb-2 shadow-sm">' +
                     '<a href="' + image.media_url + '" target="_blank"><img class="card-img-top" src="' + image.media_icon + '"/></a>' +
                     '<div class="card-body">' +
-                    '<div class="card-text text-muted small">' + image.media_name + '<br>文件大小：' + image.attsize + '</div>' +
+                    '<div class="card-text text-muted small">' + image.media_name + '<br>' + emlog_lang.file_size + image.attsize + '</div>' +
                     '<p class="card-text d-flex mt-2 justify-content-between">' + insertBtnHtml + '</p>' +
                     '</div></div></div>';
                 $('#image-list').append(cardHtml);
@@ -116,7 +116,7 @@ var myDropzone = new Dropzone("#mediaAdd", {
     previewsContainer: ".dropzone-previews",
     sending: function (file, xhr, formData) {
         formData.append("filesize", file.size);
-        $('#mediaAdd').html("上传中……");
+        $('#mediaAdd').html(emlog_lang.uploading);
     },
     init: function () {
         this.on("error", function (file, response) {
@@ -128,7 +128,7 @@ var myDropzone = new Dropzone("#mediaAdd", {
             $('#image-list').empty();
             loadImages();
             $('#load-more').show();
-            $('#mediaAdd').html("上传图片/文件");
+            $('#mediaAdd').html(emlog_lang.upload_media);
         });
     }
 });

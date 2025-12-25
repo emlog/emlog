@@ -72,4 +72,13 @@ return [
     'upload_img_error' => '上传失败,图片类型错误或网络错误',
     'upload_success_get_result' => '上传成功！正在获取结果...',
     'new_version_available' => '有可用的新版本：',
+
+    // Media
+    'insert_to_article' => '插入文章',
+    'set_as_cover' => '设为封面',
+    'public_download' => '公开下载',
+    'login_download' => '登录下载',
+    'file_size' => '文件大小：',
+    'upload_media' => '上传图片/文件',
+    'confirm_delete_media' => '确定要删除该资源吗？',
 ];
