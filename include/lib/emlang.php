@@ -8,8 +8,9 @@
 
 class EmLang
 {
+    const DEFAULT_LANGUAGE            = 'zh_CN';
     private static $_instance         = null;
-    private        $_currentLanguage  = 'zh_CN';
+    private        $_currentLanguage  = self::DEFAULT_LANGUAGE;
     private        $_langData         = [];
     private        $_langJsData         = [];
     private        $_langTemplateData = [];
@@ -47,13 +48,13 @@ class EmLang
         if (file_exists($langFile)) {
             $this->_langData = include $langFile;
         } else {
-            $this->_langData = include EMLOG_ROOT . '/content/languages/zh_CN/main.php';
+            $this->_langData = include EMLOG_ROOT . '/content/languages/' . self::DEFAULT_LANGUAGE . '/main.php';
         }
         $langFile = EMLOG_ROOT . '/content/languages/' . $this->_currentLanguage . '/main_js.php';
         if (file_exists($langFile)) {
             $this->_langJsData = include $langFile;
         } else {
-            $this->_langJsData = include EMLOG_ROOT . '/content/languages/zh_CN/main_js.php';
+            $this->_langJsData = include EMLOG_ROOT . '/content/languages/' . self::DEFAULT_LANGUAGE . '/main_js.php';
         }
     }
 
@@ -62,6 +63,11 @@ class EmLang
         $langFile = TEMPLATE_PATH . '/languages/' . $this->_currentLanguage . '/main.php';
         if (file_exists($langFile)) {
             $this->_langTemplateData = include $langFile;
+        } else {
+            $langFile = TEMPLATE_PATH . '/languages/' . self::DEFAULT_LANGUAGE . '/main.php';
+            if (file_exists($langFile)) {
+                $this->_langTemplateData = include $langFile;
+            }
         }
     }
 
@@ -71,16 +77,26 @@ class EmLang
             $langFile = PLUGIN_PATH . $pluginName . '/languages/' . $this->_currentLanguage . '/main.php';
             if (file_exists($langFile)) {
                 $this->_langPluginData = include $langFile;
+            } else {
+                $langFile = PLUGIN_PATH . $pluginName . '/languages/' . self::DEFAULT_LANGUAGE . '/main.php';
+                if (file_exists($langFile)) {
+                    $this->_langPluginData = include $langFile;
+                }
             }
         }
     }
 
-    public function loadInstallLang($lang = 'zh_CN')
+    public function loadInstallLang($lang = self::DEFAULT_LANGUAGE)
     {
         $this->_currentLanguage = $lang;
         $langFile = EMLOG_ROOT . '/content/languages/' . $this->_currentLanguage . '/install.php';
         if (file_exists($langFile)) {
             $this->_langInstallData = include $langFile;
+        } else {
+            $langFile = EMLOG_ROOT . '/content/languages/' . self::DEFAULT_LANGUAGE . '/install.php';
+            if (file_exists($langFile)) {
+                $this->_langInstallData = include $langFile;
+            }
         }
     }
 

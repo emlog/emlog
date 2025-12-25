@@ -6,22 +6,22 @@
 <?php if (isset($_GET['error_a'])): ?>
     <div class="alert alert-danger"><?= _lang('navi_error_a') ?></div><?php endif ?>
 <?php if (isset($_GET['error_c'])): ?>
-    <div class="alert alert-danger">默认导航不能删除</div><?php endif ?>
+    <div class="alert alert-danger"><?= _lang('navi_error_c') ?></div><?php endif ?>
 <?php if (isset($_GET['error_d'])): ?>
-    <div class="alert alert-danger">请选择要添加的分类</div><?php endif ?>
+    <div class="alert alert-danger"><?= _lang('navi_error_d') ?></div><?php endif ?>
 <?php if (isset($_GET['error_e'])): ?>
     <div class="alert alert-danger"><?= _lang('navi_error_e') ?></div><?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h4 mb-0 text-gray-800"><?= _lang('navbar') ?></h1>
     <div class="mt-4">
         <a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#customNavModal">
-            <i class="icofont-plus mr-1"></i>自定义导航
+            <i class="icofont-plus mr-1"></i><?= _lang('custom_navi') ?>
         </a>
         <a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#sortNavModal">
             <i class="icofont-plus mr-1"></i><?= _lang('add_category_navi') ?>
         </a>
         <a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#pageNavModal">
-            <i class="icofont-plus mr-1"></i>添加页面导航
+            <i class="icofont-plus mr-1"></i><?= _lang('add_page_navi') ?>
         </a>
     </div>
 </div>
@@ -134,7 +134,7 @@
                             <?php endforeach;
                         else: ?>
                             <tr>
-                                <td colspan="5">还没有添加导航</td>
+                                <td colspan="5"><?= _lang('no_navi_yet') ?></td>
                             </tr>
                         <?php endif ?>
                     </tbody>
@@ -237,7 +237,7 @@
                         </div>
                     <?php else: ?>
                         <div>
-                            <?= _lang('no_category_yet') ?>，<a href="sort.php"><?= _lang('new_category') ?></a>
+                            <?= _lang('no_category_yet') ?>, <a href="sort.php"><?= _lang('new_category') ?></a>
                         </div>
                     <?php endif ?>
                 </form>
