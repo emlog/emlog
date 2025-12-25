@@ -12,7 +12,7 @@
     <script src="./views/js/jquery.min.3.5.1.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
     <script src="./views/js/bootstrap.bundle.min.4.6.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
     <script>
-        var emlog_lang = <?php
+        var _langJS = <?php
                             $jsLang = include EMLOG_ROOT . '/content/languages/' . EmLang::getInstance()->currentLang() . '_js.php';
                             // Add common keys
                             $jsLang['delete'] = _lang('delete');

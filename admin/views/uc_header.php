@@ -23,7 +23,7 @@
     <script src="./views/js/js.cookie-2.2.1.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
     <script src="./views/js/cropper.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
     <script>
-        var emlog_lang = <?php
+        var _langJS = <?php
                             $jsLang = include EMLOG_ROOT . '/content/languages/' . EmLang::getInstance()->currentLang() . '_js.php';
                             // Add common keys
                             $jsLang['delete'] = _lang('delete');

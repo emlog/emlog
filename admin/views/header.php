@@ -24,7 +24,7 @@
     <script src="./views/js/js.cookie-2.2.1.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
     <script src="./views/js/cropper.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
     <script>
-        var emlog_lang = <?= json_encode(EmLang::getInstance()->getJsLang()); ?>;
+        var _langJS = <?= json_encode(EmLang::getInstance()->getJsLang()); ?>;
     </script>
     <script src="./views/js/common.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
     <script src="./views/components/layer/layer.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
