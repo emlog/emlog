@@ -106,6 +106,7 @@ return [
     'submit_reg' => 'Submit Registration',
     'get_reg_code' => 'Get Registration Code',
     'reg_success_msg' => '🎉 Congratulations, registration completed successfully 🎉',
+    'un_licensed' => 'Unlicensed Version ',
 
     // AI
     'ai_chat' => 'AI Chat',

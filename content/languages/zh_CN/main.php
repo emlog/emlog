@@ -106,6 +106,7 @@ return [
     'submit_reg' => '提交注册',
     'get_reg_code' => '获取注册码',
     'reg_success_msg' => '🎉 恭喜，成功完成注册 🎉',
+    'un_licensed' => '&#x672A;&#x6B63;&#x7248;&#x6CE8;&#x518C;&#x7684;&#x7248;&#x672C; ',
 
     // AI
     'ai_chat' => '对话聊天',
