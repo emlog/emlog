@@ -497,8 +497,6 @@ return [
     'select_operate_comment' => 'Please select comment to operate',
     'reply_empty_error' => 'Reply content cannot be empty',
     'content_too_long' => 'Content too long',
-
-    // JS Common - Moved to en_US_js.php
     'comment_empty_error' => 'Comment cannot be empty',
     'commentator' => 'Commentator',
     'from_article' => 'From Article',
@@ -507,6 +505,7 @@ return [
     'this_article_comments' => 'Comments on this article',
     'delete_selected_comments' => 'Delete selected comments?',
     'reply_comment' => 'Reply Comment',
+    'reply' => 'Reply',
     'ai_generating' => 'AI Generating...',
     'ai_generate_failed' => 'AI Generation Failed',
     'comment_audit_success' => 'Approved successfully',
