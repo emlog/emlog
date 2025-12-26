@@ -33,7 +33,7 @@ class EmLang
     private function init()
     {
         // Default to Chinese (zh_CN) if not configured
-        $lang = 'zh_CN';
+        $lang = self::DEFAULT_LANGUAGE;
         if (defined('EMLOG_LANG')) {
             $lang = EMLOG_LANG;
         }
