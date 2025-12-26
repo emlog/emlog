@@ -64,9 +64,9 @@
                         <label class="custom-control-label" for="home_page"><?= _lang('set_home_page') ?></label>
                     </div>
                 </div>
-                <?php if ($customTemplates): ?>
-                    <div class="form-group">
-                        <label><?= _lang('page_template') ?></label>
+                <div class="form-group">
+                    <label><?= _lang('page_template') ?></label>
+                    <?php if ($customTemplates): ?>
                         <?php
                         $sortListHtml = '<option value="">' . _lang('default') . '</option>';
                         foreach ($customTemplates as $v) {
@@ -76,8 +76,11 @@
                         ?>
                         <select id="template" name="template" class="form-control"><?= $sortListHtml; ?></select>
                         <small class="form-text text-muted"><?= _lang('template_tip') ?></small>
-                    </div>
-                <?php endif; ?>
+                    <?php else: ?>
+                        <input class="form-control" id="template" name="template" value="<?= $template ?>">
+                        <small class="form-text text-muted">用于自定义页面模板，对应模板目录下xxx.php文件，xxx即为模板名，可不填</small>
+                    <?php endif; ?>
+                </div>
                 <div id="page_side_ext">
                     <?php doAction('adm_write_page_side') ?>
                 </div>
