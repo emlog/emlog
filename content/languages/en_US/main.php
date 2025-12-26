@@ -486,7 +486,6 @@ return [
     'content_too_long' => 'Content too long',
 
     // JS Common - Moved to en_US_js.php
-
     'comment_empty_error' => 'Comment cannot be empty',
     'commentator' => 'Commentator',
     'from_article' => 'From Article',
@@ -523,21 +522,6 @@ return [
     'error_del_founder' => 'Cannot delete founder',
     'error_edit_founder' => 'Cannot edit founder info',
     'add_user' => 'Add User',
-
-    // Link
-    'link_required' => 'Name and URL cannot be empty',
-    'add_link' => 'Add Link',
-    'icon_url' => 'Icon URL',
-
-    // Widgets
-    'widget_sidebar' => 'Sidebar',
-    'widget_blogger' => 'Profile',
-    'widget_calendar' => 'Calendar',
-    'widget_archive' => 'Archive',
-    'widget_new_comm' => 'Latest Comments',
-    'widget_new_comm_num' => 'Number of Latest Comments',
-    'widget_comment_excerpt' => 'Comment Excerpt Length',
-    'widget_new_log' => 'Latest Articles',
 
     // Store
     'store_unavailable' => 'Store unavailable. Please check your network connection.',
@@ -656,10 +640,30 @@ return [
     'store_no_favorite' => 'No favorites yet.',
     'store_mine_need_auth' => 'You must be registered to view purchased items. <a href="https://www.emlog.net/register">Support Us &rarr;</a>',
     'store_no_purchased' => 'No purchased apps yet.',
+
+    // Link
+    'link_required' => 'Name and URL cannot be empty',
+    'add_link' => 'Add Link',
+    'icon_url' => 'Icon URL',
+
+    // Widgets
+    'widget_sidebar' => 'Sidebar',
+    'widget_blogger' => 'Profile',
+    'widget_calendar' => 'Calendar',
+    'widget_tag' => 'Tags',
+    'widget_twitter' => 'Microblog',
+    'widget_sort' => 'Category',
+    'widget_archive' => 'Archive',
+    'widget_new_comm' => 'Latest Comments',
+    'widget_new_comm_num' => 'Number of Latest Comments',
+    'widget_comment_excerpt' => 'Comment Excerpt Length',
+    'widget_new_log' => 'Latest Articles',
     'widget_new_log_num' => 'Latest Articles Count',
     'widget_hot_log' => 'Popular Articles',
     'widget_hot_log_num' => 'Popular Articles Count',
     'widget_hot_type' => 'Ranking Method',
+    'widget_link' => 'Links',
+    'widget_search' => 'Search',
     'widget_unnamed' => 'Unnamed Widget',
     'widget_add' => 'Add Widget',
     'widget_custom' => 'Custom Widget',

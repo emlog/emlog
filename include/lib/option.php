@@ -215,18 +215,18 @@ class Option
     static function getWidgetTitle()
     {
         return [
-            'blogger'     => '个人资料',
-            'calendar'    => '日历',
-            'tag'         => '标签',
-            'twitter'     => '微语',
-            'sort'        => '分类',
-            'archive'     => '存档',
-            'newcomm'     => '最新评论',
-            'newlog'      => '最新文章',
-            'hotlog'      => '热门文章',
-            'link'        => '链接',
-            'search'      => '搜索',
-            'custom_text' => '自定义组件'
+            'blogger'     => _lang('widget_blogger'),
+            'calendar'    => _lang('widget_calendar'),
+            'tag'         => _lang('widget_tag'),
+            'twitter'     => _lang('widget_twitter'),
+            'sort'        => _lang('widget_sort'),
+            'archive'     => _lang('widget_archive'),
+            'newcomm'     => _lang('widget_new_comm'),
+            'newlog'      => _lang('widget_new_log'),
+            'hotlog'      => _lang('widget_hot_log'),
+            'link'        => _lang('widget_link'),
+            'search'      => _lang('widget_search'),
+            'custom_text' => _lang('widget_custom')
         ];
     }
 
