@@ -50,7 +50,7 @@ class Store_Model
         ];
 
         $emcurl->setPost($post_data);
-        $emcurl->request(base64_decode('aHR0cHM6Ly93d3cuZW1sb2cubmV0L3N0b3JlL2Zhdm9yaXRlc0FkZA==')); //store/favoritesAdd
+        $emcurl->request('https://www.emlog.net/store/favoritesAdd');
 
         $retStatus = $emcurl->getHttpStatus();
         if ($retStatus !== MSGCODE_SUCCESS) {
@@ -78,7 +78,7 @@ class Store_Model
         ];
 
         $emcurl->setPost($post_data);
-        $emcurl->request(base64_decode('aHR0cHM6Ly93d3cuZW1sb2cubmV0L3N0b3JlL2Zhdm9yaXRlc1JlbW92ZQ==')); //store/favioresRemove
+        $emcurl->request('https://www.emlog.net/store/favoritesRemove');
 
         $retStatus = $emcurl->getHttpStatus();
         if ($retStatus !== MSGCODE_SUCCESS) {
@@ -110,7 +110,7 @@ class Store_Model
             'sid'       => $sid
         ];
         $emcurl->setPost($post_data);
-        $emcurl->request(base64_decode('aHR0cHM6Ly9zdG9yZS5lbWxvZy5uZXQvc3RvcmUvcHJv')); //store/pro
+        $emcurl->request('https://store.emlog.net/store/pro');
 
         $retStatus = $emcurl->getHttpStatus();
         if ($retStatus !== MSGCODE_SUCCESS) {

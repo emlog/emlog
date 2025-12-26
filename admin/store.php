@@ -193,7 +193,7 @@ if ($action === 'install') {
         exit(_lang('store_install_failed'));
     }
 
-    $store_url = base64_decode('aHR0cHM6Ly9zdG9yZS5lbWxvZy5uZXQv');
+    $store_url = 'https://store.emlog.net/';
     $temp_file = emFetchFile($store_url . $source);
 
     if (!$temp_file) {
