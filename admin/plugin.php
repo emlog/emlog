@@ -46,9 +46,9 @@ if ($action == 'active') {
     if ($Plugin_Model->activePlugin($plugin)) {
         $CACHE->updateCache('options');
         header('Content-Type: application/json; charset=UTF-8');
-        Output::ok('插件开启成功');
+        Output::ok(_lang('plugin_active_success'));
     } else {
-        Output::error('插件开启失败');
+        Output::error(_lang('plugin_enable_failed'));
     }
 }
 
@@ -56,7 +56,7 @@ if ($action == 'inactive') {
     LoginAuth::checkToken();
 
     if (strpos($plugin, 'tpl_options') !== false) {
-        Output::error('系统依赖插件，请勿关闭');
+        Output::error(_lang('system_plugin_disable_error'));
         return;
     }
 
@@ -65,7 +65,7 @@ if ($action == 'inactive') {
     $CACHE->updateCache('options');
 
     header('Content-Type: application/json; charset=UTF-8');
-    Output::ok('插件关闭成功');
+    Output::ok(_lang('plugin_inactive_success'));
 }
 
 // Load plug-in configuration page
@@ -173,15 +173,15 @@ if ($action === 'check_update') {
     $emcurl->request('https://store.emlog.net/plugin/upgrade');
     $retStatus = $emcurl->getHttpStatus();
     if ($retStatus !== MSGCODE_SUCCESS) {
-        Output::error('请求更新失败，可能是网络问题');
+        Output::error(_lang('plugin_update_network_error'));
     }
     $response = $emcurl->getRespone();
     $ret = json_decode($response, 1);
     if (empty($ret)) {
-        Output::error('请求更新失败，可能是网络问题');
+        Output::error(_lang('plugin_update_network_error'));
     }
     if ($ret['code'] === MSGCODE_EMKEY_INVALID) {
-        Output::error('您的emlog未完成正版注册，<a href="https://emlog.net/register" target="_blank">去注册</a>');
+        Output::error(_lang('plugin_register_error_link'));
     }
 
     Output::ok($ret['data']);
@@ -191,12 +191,12 @@ if ($action === 'upgrade') {
     $alias = Input::getStrVar('alias');
 
     if (!Register::isRegLocal()) {
-        Output::error('您的emlog尚未正版注册', 200);
+        Output::error(_lang('emlog_not_registered'), 200);
     }
 
     $temp_file = emFetchFile('https://www.emlog.net/plugin/down/' . $alias);
     if (!$temp_file) {
-        Output::error('无法下载更新包，可能是服务器网络问题', 200);
+        Output::error(_lang('plugin_download_error'), 200);
     }
     $unzip_path = '../content/plugins/';
     $ret = emUnZip($temp_file, $unzip_path, 'plugin');
@@ -209,10 +209,10 @@ if ($action === 'upgrade') {
             break;
         case 1:
         case 2:
-            Output::error('更新失败，插件目录(content/plugins)不可写', 200);
+            Output::error(_lang('plugin_update_failed_permission'), 200);
             break;
         case 3:
         default:
-            Output::error('更新失败，更新包异常', 200);
+            Output::error(_lang('plugin_update_package_error'), 200);
     }
 }

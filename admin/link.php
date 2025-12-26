@@ -27,7 +27,7 @@ if ($action == 'link_taxis') {
     $link = Input::postStrArray('link', []);
 
     if (empty($link)) {
-        Output::error('没有可排序的链接');
+        Output::error(_lang('no_sortable_link'));
     }
 
     foreach ($link as $key => $value) {

@@ -32,7 +32,7 @@ if ($action == 'taxis') {
     $navi = Input::postStrArray('navi', []);
 
     if (empty($navi)) {
-        Output::error('没有可排序的导航');
+        Output::error(_lang('no_sortable_navi'));
     }
 
     foreach ($navi as $key => $value) {

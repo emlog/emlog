@@ -31,7 +31,7 @@ if ($action == 'taxis') {
     $sort = Input::postStrArray('sort', []);
 
     if (empty($sort)) {
-        Output::error('没有可排序的分类');
+        Output::error(_lang('no_sortable_sort'));
     }
 
     foreach ($sort as $key => $value) {

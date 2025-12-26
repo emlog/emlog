@@ -147,8 +147,9 @@ return [
     'confirm_delete_media' => 'Delete selected resources?',
     'select_move_media' => 'Please select resources to move',
 
-    // Category (Sort)
+    // Sort
     'sort_name_required' => 'Category name cannot be empty',
+    'no_sortable_sort' => 'No sortable categories',
     'alias_format_error' => 'Alias format error',
     'alias_exists_error' => 'Alias cannot be repeated',
     'alias_reserved_error' => 'Alias cannot contain system reserved keywords',
@@ -176,6 +177,7 @@ return [
     'navi_error_c' => 'Default navigation cannot be deleted',
     'navi_error_d' => 'Please select categories to add',
     'navi_error_e' => 'Please select pages to add',
+    'no_sortable_navi' => 'No sortable navigation',
     'custom_navi' => 'Custom Navigation',
     'add_category_navi' => 'Add Category Navigation',
     'add_page_navi' => 'Add Page Navigation',
@@ -255,6 +257,9 @@ return [
 
     // Setting
     'setting_basic' => 'Basic Settings',
+    'comment_captcha_gd_error' => 'Failed to enable comment captcha, PHP GD library not supported',
+    'login_captcha_gd_error' => 'Failed to enable captcha, PHP GD library not supported',
+    'htaccess_write_error' => 'Save failed: .htaccess in root directory is not writable',
     'setting_user' => 'User Settings',
     'setting_mail' => 'Email Settings',
     'setting_seo' => 'SEO',
@@ -427,6 +432,13 @@ return [
     'strong' => 'Strong',
     'change_success_relogin' => 'Password changed successfully, please relogin',
     'email_change_success' => 'Email changed successfully',
+    'nickname_required' => 'Nickname cannot be empty',
+    'nickname_exists' => 'Nickname is already taken',
+    'username_exists' => 'Username is already taken',
+    'password_too_short' => 'Password must be at least 6 characters',
+    'password_mismatch' => 'Passwords do not match',
+    'email_invalid' => 'Please enter a valid email address',
+    'email_exists' => 'Email is already taken',
 
     // Article Management
     'top_success' => 'Pinned successfully',
@@ -645,6 +657,7 @@ return [
     'link_required' => 'Name and URL cannot be empty',
     'add_link' => 'Add Link',
     'icon_url' => 'Icon URL',
+    'no_sortable_link' => 'No sortable links',
 
     // Widgets
     'widget_sidebar' => 'Sidebar',
@@ -758,6 +771,10 @@ return [
     'tpl_change_success' => 'Theme changed successfully',
     'tpl_install_success' => 'Theme installed successfully',
     'tpl_update_success' => 'Theme updated successfully',
+    'template_update_network_error' => 'Update request failed, possible network issue',
+    'template_download_error' => 'Unable to download update package, possible server network issue',
+    'template_update_failed_permission' => 'Update failed, directory (content/templates) not writable',
+    'template_update_package_error' => 'Update failed, abnormal update package',
     'tpl_delete_error_permission' => 'Delete failed, please check theme file permissions',
     'tpl_current_damaged' => 'Current theme (%s) is missing or damaged. Please select another theme.',
     'tpl_only_zip_support' => 'Only .zip theme packages are supported',
@@ -773,16 +790,21 @@ return [
 
     // Plugin
     'plugin_install_success' => 'Plugin installed successfully. Please activate it.',
+    'plugin_active_success' => 'Plugin activated successfully',
+    'plugin_inactive_success' => 'Plugin deactivated successfully',
     'plugin_update_success' => 'Plugin updated successfully.',
     'plugin_enable_failed' => 'Plugin activation failed.',
+    'system_plugin_disable_error' => 'System required plugin, do not disable',
     'plugin_delete_failed_permission' => 'Deletion failed, please check plugin file permissions.',
     'plugin_upload_failed_permission' => 'Upload failed, plugin directory (content/plugins) is not writable.',
+    'plugin_update_failed_permission' => 'Update failed, plugin directory (content/plugins) not writable',
     'php_zip_not_support' => 'Server PHP does not support zip module.',
     'select_zip_plugin' => 'Please select a zip plugin package.',
     'plugin_install_failed_invalid' => 'Installation failed, plugin package is invalid.',
     'plugin_only_zip' => 'Only zip format plugin packages are supported.',
     'upload_size_exceeded' => 'Upload package size exceeds PHP limit.',
     'emlog_not_registered' => 'Your emlog is not registered.',
+    'plugin_register_error_link' => 'Your emlog is not registered, <a href="https://emlog.net/register" target="_blank">register now</a>',
     'system_plugin_warning' => 'System dependency plugin, please do not delete or disable.',
     'plugin_extension' => 'Plugin Extension',
     'install_plugin' => 'Install Plugin',
@@ -797,6 +819,9 @@ return [
     'plugin_update_check_failed' => 'Plugin update check failed, error code:',
     'plugin_update_check_error' => 'Plugin update check error: ',
     'update_request_failed' => 'Update request failed, please try again later',
+    'plugin_update_network_error' => 'Update request failed, possible network issue',
+    'plugin_download_error' => 'Unable to download update package, possible server network issue',
+    'plugin_update_package_error' => 'Update failed, abnormal update package',
     'updating' => 'Updating...',
     'active' => 'Active',
     'inactive' => 'Inactive',
@@ -872,6 +897,21 @@ return [
     'new_password_tip' => 'New Password (Leave empty if not changing)',
     'nickname_required' => 'Nickname cannot be empty',
     'email_username_empty' => 'Email and Username cannot both be empty',
+
+    // Log Controller
+    'login_to_comment' => 'Please login to comment',
+    'article_not_found' => 'Article not found',
+    'comment_not_allowed' => 'Comments are disabled for this article',
+    'comment_too_fast' => 'You are commenting too fast',
+    'nickname_too_long' => 'Nickname is too long',
+    'comment_content_too_long' => 'Comment content is too long',
+    'abnormal_request' => 'Abnormal request',
+    'comment_success_audit' => 'Comment successful, please wait for admin approval',
+    'comment_not_found' => 'Comment not found',
+    'already_liked' => 'You have already liked this',
+    'operate_too_fast' => 'Operation too fast',
+    'cancel_failed' => 'Cancel failed',
+    'fill_nickname' => 'Please enter your nickname',
     'username_exists' => 'Username already exists',
     'role_editor' => 'Editor',
 

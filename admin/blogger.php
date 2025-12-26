@@ -35,11 +35,11 @@ if ($action == 'update') {
     $username = Input::postStrVar('username');
 
     if (empty($nickname)) {
-        Output::error('昵称不能为空');
+        Output::error(_lang('nickname_required'));
     } elseif ($User_Model->isNicknameExist($nickname, UID)) {
-        Output::error('昵称已被占用');
+        Output::error(_lang('nickname_exists'));
     } elseif ($User_Model->isUserExist($username, UID)) {
-        Output::error('登录名已被占用');
+        Output::error(_lang('username_exists'));
     }
 
     $d = [
@@ -60,9 +60,9 @@ if ($action === 'change_password') {
     $new_passwd2 = Input::postStrVar('new_passwd2');
 
     if (strlen($new_passwd) < 6) {
-        Output::error('密码不得小于6位');
+        Output::error(_lang('password_too_short'));
     } elseif ($new_passwd !== $new_passwd2) {
-        Output::error('两次密码不一致');
+        Output::error(_lang('password_mismatch'));
     }
 
     $PHPASS = new PasswordHash(8, true);
@@ -81,13 +81,13 @@ if ($action === 'change_email') {
     $mail_code = Input::postStrVar('mail_code');
 
     if (!checkMail($email)) {
-        Output::error('请正确填写邮箱');
+        Output::error(_lang('email_invalid'));
     } elseif ($User_Model->isMailExist($email, UID)) {
-        Output::error('邮箱已被占用');
+        Output::error(_lang('email_exists'));
     }
 
     if (!User::checkMailCode($mail_code)) {
-        Output::error('验证码错误');
+        Output::error(_lang('captcha_error'));
     }
 
     $d = [

@@ -116,15 +116,15 @@ if ($action === 'check_update') {
     $emcurl->request('https://store.emlog.net/template/upgrade');
     $retStatus = $emcurl->getHttpStatus();
     if ($retStatus !== MSGCODE_SUCCESS) {
-        Output::error('请求更新失败，可能是网络问题');
+        Output::error(_lang('template_update_network_error'));
     }
     $response = $emcurl->getRespone();
     $ret = json_decode($response, 1);
     if (empty($ret)) {
-        Output::error('请求更新失败，可能是网络问题');
+        Output::error(_lang('template_update_network_error'));
     }
     if ($ret['code'] === MSGCODE_EMKEY_INVALID) {
-        Output::error('您的emlog未完成正版注册');
+        Output::error(_lang('emlog_not_registered'));
     }
 
     Output::ok($ret['data']);
@@ -134,12 +134,12 @@ if ($action === 'upgrade') {
     $alias = Input::getStrVar('alias');
 
     if (!Register::isRegLocal()) {
-        Output::error('您的emlog尚未正版注册', 200);
+        Output::error(_lang('emlog_not_registered'), 200);
     }
 
     $temp_file = emFetchFile('https://www.emlog.net/template/down/' . $alias);
     if (!$temp_file) {
-        Output::error('无法下载更新包，可能是服务器网络问题', 200);
+        Output::error(_lang('template_download_error'), 200);
     }
     $unzip_path = '../content/templates/';
     $ret = emUnZip($temp_file, $unzip_path, 'tpl');
@@ -151,10 +151,10 @@ if ($action === 'upgrade') {
             break;
         case 1:
         case 2:
-            Output::error('更新失败，目录(content/templates)不可写', 200);
+            Output::error(_lang('template_update_failed_permission'), 200);
             break;
         case 3:
         default:
-            Output::error('更新失败，更新包异常', 200);
+            Output::error(_lang('template_update_package_error'), 200);
     }
 }

@@ -141,7 +141,8 @@ if (empty($action)) {
         'America/Anchorage' => _lang('tz_America_Anchorage'),
         'Pacific/Honolulu' => _lang('tz_Pacific_Honolulu'),
         'Etc/GMT+11' => _lang('tz_Etc_GMT_minus_11'),
-        'Etc/GMT+12' => _lang('tz_Etc_GMT_minus_12'),    ];
+        'Etc/GMT+12' => _lang('tz_Etc_GMT_minus_12'),
+    ];
 
     include View::getAdmView('header');
     require_once(View::getAdmView('setting'));
@@ -178,7 +179,7 @@ if ($action == 'save') {
     ];
 
     if ($getData['comment_code'] == 'y' && !checkGDSupport()) {
-        Output::error('开启评论验证码失败，服务器PHP不支持GD图形库');
+        Output::error(_lang('comment_captcha_gd_error'));
     }
 
     if ($getData['blogurl'] && substr($getData['blogurl'], -1) != '/') {
@@ -246,7 +247,7 @@ if ($action == 'seo_save') {
                        RewriteRule . ' . $t['path'] . 'index.php [L]
                     </IfModule>';
         if (!file_put_contents(EMLOG_ROOT . '/.htaccess', $rw_rule)) {
-            Output::error('保存失败：根目录下的.htaccess不可写');
+            Output::error(_lang('htaccess_write_error'));
         }
     }
 
@@ -377,7 +378,7 @@ if ($action == 'user_save') {
     ];
 
     if ($data['login_code'] == 'y' && !checkGDSupport()) {
-        Output::error('开启图形验证码失败，服务器PHP不支持GD图形库');
+        Output::error(_lang('login_captcha_gd_error'));
     }
 
     foreach ($data as $key => $val) {

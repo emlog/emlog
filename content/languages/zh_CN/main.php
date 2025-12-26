@@ -149,6 +149,7 @@ return [
 
     // Sort
     'sort_name_required' => '分类名称不能为空',
+    'no_sortable_sort' => '没有可排序的分类',
     'alias_format_error' => '别名格式错误',
     'alias_exists_error' => '别名不能重复',
     'alias_reserved_error' => '别名不得包含系统保留关键字',
@@ -176,6 +177,7 @@ return [
     'navi_error_c' => '默认导航不能删除',
     'navi_error_d' => '请选择要添加的分类',
     'navi_error_e' => '请选择要添加的页面',
+    'no_sortable_navi' => '没有可排序的导航',
     'custom_navi' => '自定义导航',
     'add_category_navi' => '添加分类导航',
     'add_page_navi' => '添加页面导航',
@@ -255,6 +257,9 @@ return [
 
     // Setting
     'setting_basic' => '基础设置',
+    'comment_captcha_gd_error' => '开启评论验证码失败，服务器PHP不支持GD图形库',
+    'login_captcha_gd_error' => '开启图形验证码失败，服务器PHP不支持GD图形库',
+    'htaccess_write_error' => '保存失败：根目录下的.htaccess不可写',
     'setting_user' => '用户设置',
     'setting_mail' => '邮件通知',
     'setting_seo' => 'SEO',
@@ -427,6 +432,13 @@ return [
     'strong' => '强',
     'change_success_relogin' => '密码修改成功, 请退出重新登录',
     'email_change_success' => '邮箱修改成功',
+    'nickname_required' => '昵称不能为空',
+    'nickname_exists' => '昵称已被占用',
+    'username_exists' => '登录名已被占用',
+    'password_too_short' => '密码不得小于6位',
+    'password_mismatch' => '两次密码不一致',
+    'email_invalid' => '请正确填写邮箱',
+    'email_exists' => '邮箱已被占用',
 
     // Article Management
     'top_success' => '置顶成功',
@@ -645,6 +657,7 @@ return [
     'link_required' => '名称和地址不能为空',
     'add_link' => '添加链接',
     'icon_url' => '图标URL',
+    'no_sortable_link' => '没有可排序的链接',
 
     // Widgets
     'widget_sidebar' => '侧边栏',
@@ -758,6 +771,10 @@ return [
     'tpl_change_success' => '模板更换成功',
     'tpl_install_success' => '模板安装成功',
     'tpl_update_success' => '模板更新成功',
+    'template_update_network_error' => '请求更新失败，可能是网络问题',
+    'template_download_error' => '无法下载更新包，可能是服务器网络问题',
+    'template_update_failed_permission' => '更新失败，目录(content/templates)不可写',
+    'template_update_package_error' => '更新失败，更新包异常',
     'tpl_delete_error_permission' => '删除失败，请检查模板文件权限',
     'tpl_current_damaged' => '当前使用的模板(%s)已被删除或损坏，请选择其他模板。',
     'tpl_only_zip_support' => '只支持zip压缩格式的模板包',
@@ -773,16 +790,21 @@ return [
 
     // Plugin
     'plugin_install_success' => '插件安装成功，请开启使用',
+    'plugin_active_success' => '插件开启成功',
+    'plugin_inactive_success' => '插件关闭成功',
     'plugin_update_success' => '插件更新成功',
     'plugin_enable_failed' => '插件开启失败',
+    'system_plugin_disable_error' => '系统依赖插件，请勿关闭',
     'plugin_delete_failed_permission' => '删除失败，请检查插件文件权限',
     'plugin_upload_failed_permission' => '上传失败，插件目录(content/plugins)不可写',
+    'plugin_update_failed_permission' => '更新失败，插件目录(content/plugins)不可写',
     'php_zip_not_support' => '服务器PHP不支持zip模块',
     'select_zip_plugin' => '请选择一个zip插件安装包',
     'plugin_install_failed_invalid' => '安装失败，插件安装包不符合标准',
     'plugin_only_zip' => '只支持zip压缩格式的插件包',
     'upload_size_exceeded' => '上传安装包大小超出PHP限制',
     'emlog_not_registered' => '您的emlog未完成正版注册',
+    'plugin_register_error_link' => '您的emlog未完成正版注册，<a href="https://emlog.net/register" target="_blank">去注册</a>',
     'system_plugin_warning' => '系统依赖插件，请勿删除和关闭',
     'plugin_extension' => '插件扩展',
     'install_plugin' => '安装插件',
@@ -797,6 +819,9 @@ return [
     'plugin_update_check_failed' => '插件更新检查无法正常进行,错误码:',
     'plugin_update_check_error' => '插件更新检查异常： ',
     'update_request_failed' => '更新请求失败，请稍后重试',
+    'plugin_update_network_error' => '请求更新失败，可能是网络问题',
+    'plugin_download_error' => '无法下载更新包，可能是服务器网络问题',
+    'plugin_update_package_error' => '更新失败，更新包异常',
     'updating' => '正在更新...',
     'active' => '已开启',
     'inactive' => '未开启',
@@ -872,6 +897,21 @@ return [
     'new_password_tip' => '新密码(不修改请留空)',
     'nickname_required' => '昵称不能为空',
     'email_username_empty' => '邮箱和用户名不能都为空',
+
+    // Log Controller
+    'login_to_comment' => '请先完成登录，再发布评论',
+    'article_not_found' => '文章不存在',
+    'comment_not_allowed' => '该文章未开启评论',
+    'comment_too_fast' => '评论发布太频繁',
+    'nickname_too_long' => '昵称太长了',
+    'comment_content_too_long' => '评论内容过长',
+    'abnormal_request' => '非正常请求',
+    'comment_success_audit' => '评论成功，请等待管理员审核',
+    'comment_not_found' => '评论不存在',
+    'already_liked' => '已经赞过了',
+    'operate_too_fast' => '操作太频繁',
+    'cancel_failed' => '取消失败',
+    'fill_nickname' => '请填写昵称',
     'username_exists' => '用户名已被占用',
     'role_editor' => '内容编辑',
 
