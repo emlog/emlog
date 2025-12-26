@@ -3,7 +3,7 @@
     <div class="alert alert-danger"><?= _lang('store_unavailable') ?></div><?php endif ?>
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h4 mb-0 text-gray-800"><?= _lang('store_title') ?> - <?= $sub_title ?></h1>
+    <h1 class="h4 mb-0 text-gray-800"><?= _lang('store') ?> - <?= $sub_title ?></h1>
 </div>
 <div class="row mb-4 ml-1">
     <ul class="nav nav-pills">
