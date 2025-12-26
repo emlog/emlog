@@ -50,7 +50,7 @@ class Store_Model
         ];
 
         $emcurl->setPost($post_data);
-        $emcurl->request('https://www.emlog.net/store/favoritesAdd');
+        $emcurl->request('https://store.emlog.net/store/favoritesAdd');
 
         $retStatus = $emcurl->getHttpStatus();
         if ($retStatus !== MSGCODE_SUCCESS) {
@@ -78,7 +78,7 @@ class Store_Model
         ];
 
         $emcurl->setPost($post_data);
-        $emcurl->request('https://www.emlog.net/store/favoritesRemove');
+        $emcurl->request('https://store.emlog.net/store/favoritesRemove');
 
         $retStatus = $emcurl->getHttpStatus();
         if ($retStatus !== MSGCODE_SUCCESS) {
