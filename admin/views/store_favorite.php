@@ -74,11 +74,11 @@
         </div>
     <?php elseif (!Register::isRegLocal()): ?>
         <div class="col-md-12">
-            <p class="alert alert-warning my-3">您还不是正版注册用户，无法使用应用商店收藏功能，<a href="https://www.emlog.net/register">付费支持 &rarr;</a></p>
+            <p class="alert alert-warning my-3"><?= _lang('store_favorite_need_auth') ?></p>
         </div>
     <?php else: ?>
         <div class="col-md-12">
-            <p class="alert alert-warning my-3">还没有收藏任何应用。</p>
+            <p class="alert alert-warning my-3"><?= _lang('store_no_purchased') ?></p>
         </div>
     <?php endif; ?>
 </div>
