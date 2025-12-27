@@ -6,6 +6,10 @@
 <p align="center">Lightweight Open Source CMS</p>
 
 <p align="center">
+  English ｜ <a href="README.md">中文</a>
+</p>
+
+<p align="center">
 <a href="https://github.com/emlog/emlog/releases"><img alt="GitHub release" src="https://img.shields.io/github/release/emlog/emlog.svg?style=flat-square&include_prereleases" /></a>
 <a href="https://github.com/emlog/emlog/commits"><img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/emlog/emlog.svg?style=flat-square" /></a>
 

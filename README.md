@@ -6,6 +6,10 @@
 <p align="center">轻量开源建站系统</p>
 
 <p align="center">
+  <a href="README_EN.md">English</a> ｜ 中文
+</p>
+
+<p align="center">
 <a href="https://github.com/emlog/emlog/releases"><img alt="GitHub release" src="https://img.shields.io/github/release/emlog/emlog.svg?style=flat-square&include_prereleases" /></a>
 <a href="https://github.com/emlog/emlog/commits"><img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/emlog/emlog.svg?style=flat-square" /></a>
 
