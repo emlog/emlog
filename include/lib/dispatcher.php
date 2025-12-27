@@ -3,7 +3,7 @@
 /**
  * router
  * @package EMLOG
- * @link https://www.emlog.net
+ * 
  */
 
 class Dispatcher

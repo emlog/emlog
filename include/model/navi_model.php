@@ -3,7 +3,7 @@
 /**
  * navi model
  * @package EMLOG
- * @link https://www.emlog.net
+ * 
  */
 
 class Navi_Model

@@ -3,7 +3,7 @@
 /**
  * user model
  * @package EMLOG
- * @link https://www.emlog.net
+ * 
  */
 
 class User_Model

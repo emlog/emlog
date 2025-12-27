@@ -4,7 +4,7 @@
  * Service: Article
  *
  * @package EMLOG
- * @link https://www.emlog.net
+ * 
  */
 
 class Article

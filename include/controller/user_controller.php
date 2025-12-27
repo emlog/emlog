@@ -4,7 +4,7 @@
  * user center
  *
  * @package EMLOG
- * @link https://www.emlog.net
+ * 
  */
 
 class User_Controller

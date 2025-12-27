@@ -4,7 +4,7 @@
  * search
  *
  * @package EMLOG
- * @link https://www.emlog.net
+ * 
  */
 
 class Search_Controller

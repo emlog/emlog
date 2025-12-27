@@ -4,7 +4,7 @@
  * Service: AI
  *
  * @package EMLOG
- * @link https://www.emlog.net
+ * 
  */
 
 class Ai

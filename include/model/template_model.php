@@ -3,7 +3,7 @@
 /**
  * Template model
  * @package EMLOG
- * @link https://www.emlog.net
+ * 
  */
 
 class Template_Model

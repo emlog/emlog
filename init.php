@@ -3,7 +3,7 @@
 /**
  * init.
  * @package EMLOG
- * @link https://www.emlog.net
+ * 
  */
 
 ob_start();

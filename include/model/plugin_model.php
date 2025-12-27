@@ -3,7 +3,7 @@
 /**
  * plugin model
  * @package EMLOG
- * @link https://www.emlog.net
+ * 
  */
 
 class Plugin_Model

@@ -3,7 +3,7 @@
 /**
  * store model
  * @package EMLOG
- * @link https://www.emlog.net
+ * 
  */
 
 class Store_Model

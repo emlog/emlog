@@ -4,7 +4,7 @@
  * Service: Plugin
  *
  * @package EMLOG
- * @link https://www.emlog.net
+ * 
  */
 
 class Plugin

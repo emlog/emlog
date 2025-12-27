@@ -4,7 +4,7 @@
  * Database operation routing
  *
  * @package EMLOG
- * @link https://www.emlog.net
+ * 
  */
 
 class Database

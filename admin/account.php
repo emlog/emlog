@@ -3,7 +3,7 @@
 /**
  * account administration
  * @package EMLOG
- * @link https://www.emlog.net
+ * 
  */
 
 /**

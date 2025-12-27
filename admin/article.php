@@ -4,7 +4,7 @@
  * The article management
  *
  * @package EMLOG
- * @link https://www.emlog.net
+ * 
  */
 
 /**

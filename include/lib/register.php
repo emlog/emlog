@@ -3,7 +3,7 @@
 /**
  * register check
  * @package EMLOG
- * @link https://www.emlog.net
+ * 
  */
 
 class Register

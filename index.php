@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package EMLOG
  * @link https://www.emlog.net

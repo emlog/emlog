@@ -3,7 +3,7 @@
 /**
  * Configuration item
  * @package EMLOG
- * @link https://www.emlog.net
+ * 
  */
 
 class Option

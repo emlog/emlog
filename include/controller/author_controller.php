@@ -1,13 +1,16 @@
 <?php
+
 /**
  * author's articles
  *
  * @package EMLOG
- * @link https://www.emlog.net
+ * 
  */
 
-class Author_Controller {
-    function display($params) {
+class Author_Controller
+{
+    function display($params)
+    {
         $Log_Model = new Log_Model();
         $User_Model = new User_Model();
 

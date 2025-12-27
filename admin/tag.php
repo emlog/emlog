@@ -3,7 +3,7 @@
 /**
  * tags
  * @package EMLOG
- * @link https://www.emlog.net
+ * 
  */
 
 /**
@@ -49,12 +49,12 @@ if ($action == 'add_tag') {
 
     // 创建新标签
     $tagId = $Tag_Model->createTag($tagName);
-    
+
     // 更新标签的详细信息
     if ($tagId) {
         $Tag_Model->updateTagName($tagId, $tagName, $kw, $title, $description);
     }
-    
+
     $CACHE->updateCache('tags');
     emDirect("./tag.php?active_add=1");
 }

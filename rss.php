@@ -1,8 +1,9 @@
 <?php
+
 /**
  * RSS
  * @package EMLOG
- * @link https://www.emlog.net
+ * 
  */
 
 require_once './init.php';
@@ -18,7 +19,7 @@ xmlns:atom="http://www.w3.org/2005/Atom"
 >
 <channel>
 <title><![CDATA[' . Option::get('blogname') . ']]></title> 
-<atom:link href="'.Option::get('blogurl').'rss.php" rel="self" type="application/rss+xml" />
+<atom:link href="' . Option::get('blogurl') . 'rss.php" rel="self" type="application/rss+xml" />
 <description><![CDATA[' . Option::get('bloginfo') . ']]></description>
 <link>' . BLOG_URL . '</link>
 <language>zh-cn</language>

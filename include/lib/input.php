@@ -3,7 +3,7 @@
 /**
  * Input class
  * @package EMLOG
- * @link https://www.emlog.net
+ * 
  */
 
 class Input

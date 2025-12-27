@@ -3,7 +3,7 @@
 /**
  * Captcha
  * @package EMLOG
- * @link https://www.emlog.net
+ * 
  */
 
 require_once './common.php';

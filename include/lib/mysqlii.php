@@ -1,12 +1,14 @@
 <?php
+
 /**
  * MySQLi Database Class
  *
  * @package EMLOG
- * @link https://www.emlog.net
+ * 
  */
 
-class MySqlii {
+class MySqlii
+{
 
     /**
      * @var int
@@ -28,7 +30,8 @@ class MySqlii {
      */
     private static $instance;
 
-    private function __construct() {
+    private function __construct()
+    {
         if (!class_exists('mysqli')) {
             emMsg('服务器PHP不支持mysqli函数');
         }
@@ -50,7 +53,7 @@ class MySqlii {
                 case 2006:
                     emMsg("连接MySQL数据库失败，数据库地址错误或者数据库服务器不可用");
                     break;
-                default :
+                default:
                     emMsg("连接MySQL数据库失败，请检查数据库信息。错误信息：" . $this->conn->connect_error);
                     break;
             }
@@ -59,7 +62,8 @@ class MySqlii {
         $this->conn->set_charset('utf8mb4');
     }
 
-    public static function getInstance() {
+    public static function getInstance()
+    {
         if (self::$instance === null) {
             self::$instance = new MySqlii();
         }
@@ -67,11 +71,13 @@ class MySqlii {
         return self::$instance;
     }
 
-    public function close() {
+    public function close()
+    {
         return $this->conn->close();
     }
 
-    public function query($sql, $ignore_err = FALSE) {
+    public function query($sql, $ignore_err = FALSE)
+    {
         $this->result = $this->conn->query($sql);
         $this->queryCount++;
         if (!$ignore_err && 1046 == $this->getErrNo()) {
@@ -87,11 +93,13 @@ class MySqlii {
         }
     }
 
-    public function fetch_array(mysqli_result $query, $type = MYSQLI_ASSOC) {
+    public function fetch_array(mysqli_result $query, $type = MYSQLI_ASSOC)
+    {
         return $query->fetch_array($type);
     }
 
-    public function fetch_all($sql, $fetchMode = MYSQLI_ASSOC) {
+    public function fetch_all($sql, $fetchMode = MYSQLI_ASSOC)
+    {
         $this->result = $this->query($sql);
         $data = [];
         while ($row = $this->fetch_array($this->result, $fetchMode)) {
@@ -100,64 +108,76 @@ class MySqlii {
         return $data;
     }
 
-    public function once_fetch_array($sql) {
+    public function once_fetch_array($sql)
+    {
         $this->result = $this->query($sql);
         return $this->fetch_array($this->result);
     }
 
-    public function fetch_row(mysqli_result $query) {
+    public function fetch_row(mysqli_result $query)
+    {
         return $query->fetch_row();
     }
 
-    public function num_rows(mysqli_result $query) {
+    public function num_rows(mysqli_result $query)
+    {
         return $query->num_rows;
     }
 
-    public function num_fields(mysqli_result $query) {
+    public function num_fields(mysqli_result $query)
+    {
         return $query->field_count;
     }
 
-    public function insert_id() {
+    public function insert_id()
+    {
         return $this->conn->insert_id;
     }
 
     /**
      * Get mysql error
      */
-    public function getError() {
+    public function getError()
+    {
         return $this->conn->error;
     }
 
     /**
      * Get mysql error code
      */
-    public function getErrNo() {
+    public function getErrNo()
+    {
         return $this->conn->errno;
     }
 
     /**
      * Get number of affected rows in previous MySQL operation
      */
-    public function affected_rows() {
+    public function affected_rows()
+    {
         return $this->conn->affected_rows;
     }
 
-    public function getVersion() {
+    public function getVersion()
+    {
         return $this->conn->server_info;
     }
 
-    public function getQueryCount() {
+    public function getQueryCount()
+    {
         return $this->queryCount;
     }
 
     /**
      *  Escapes special characters
      */
-    public function escape_string($sql) {
+    public function escape_string($sql)
+    {
         return $this->conn->real_escape_string($sql);
     }
 
-    public function listTables() {
+    public function listTables()
+    {
         $rs = $this->query(sprintf("SHOW TABLES FROM `%s`", DB_NAME));
         $tables = [];
         while ($row = $this->fetch_row($rs)) {
@@ -165,5 +185,4 @@ class MySqlii {
         }
         return $tables;
     }
-
 }

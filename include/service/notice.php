@@ -4,7 +4,7 @@
  * Service: Notice
  *
  * @package EMLOG
- * @link https://www.emlog.net
+ * 
  */
 
 class Notice

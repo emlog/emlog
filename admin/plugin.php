@@ -3,7 +3,7 @@
 /**
  * plugin management
  * @package EMLOG
- * @link https://www.emlog.net
+ * 
  */
 
 /**

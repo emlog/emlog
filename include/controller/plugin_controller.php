@@ -4,7 +4,7 @@
  * loading plug-in page
  *
  * @package EMLOG
- * @link https://www.emlog.net
+ * 
  */
 
 class Plugin_Controller

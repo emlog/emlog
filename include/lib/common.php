@@ -3,7 +3,7 @@
 /**
  * Common function library
  * @package EMLOG
- * @link https://www.emlog.net
+ * 
  */
 
 function emAutoload($class)

@@ -1,13 +1,16 @@
 <?php
+
 /**
  * Article archiving
  *
  * @package EMLOG
- * @link https://www.emlog.net
+ * 
  */
 
-class Record_Controller {
-    function display($params) {
+class Record_Controller
+{
+    function display($params)
+    {
         $Log_Model = new Log_Model();
         $options_cache = Option::getAll();
         extract($options_cache);
@@ -15,7 +18,7 @@ class Record_Controller {
         $page = isset($params[4]) && $params[4] == 'page' ? abs((int)$params[5]) : 1;
         $record = isset($params[1]) && $params[1] == 'record' ? (int)$params[2] : '';
 
-        $GLOBALS['record'] = $record;//for sidebar calendar
+        $GLOBALS['record'] = $record; //for sidebar calendar
 
         $pageurl = '';
 

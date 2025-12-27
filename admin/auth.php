@@ -1,8 +1,9 @@
 <?php
+
 /**
  * register emlog
  * @package EMLOG
- * @link https://www.emlog.net
+ * 
  */
 
 /**

@@ -4,7 +4,7 @@
  * homepage & article detail
  *
  * @package EMLOG
- * @link https://www.emlog.net
+ * 
  */
 
 class Log_Controller

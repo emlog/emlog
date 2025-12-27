@@ -3,7 +3,7 @@
 /**
  * article save and update
  * @package EMLOG
- * @link https://www.emlog.net
+ * 
  */
 
 require_once 'globals.php';

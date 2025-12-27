@@ -3,7 +3,7 @@
 /**
  * page
  * @package EMLOG
- * @link https://www.emlog.net
+ * 
  */
 
 /**

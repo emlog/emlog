@@ -3,7 +3,7 @@
 /**
  * tags model
  * @package EMLOG
- * @link https://www.emlog.net
+ * 
  */
 
 class Tag_Model

@@ -4,7 +4,7 @@
  * Cache
  *
  * @package EMLOG
- * @link https://www.emlog.net
+ * 
  */
 
 class Cache

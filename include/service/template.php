@@ -4,7 +4,7 @@
  * Service: Template
  *
  * @package EMLOG
- * @link https://www.emlog.net
+ * 
  */
 
 class Template

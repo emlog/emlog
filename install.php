@@ -3,7 +3,7 @@
 /**
  * install
  * @package EMLOG
- * @link https://www.emlog.net
+ * 
  */
 
 const EMLOG_ROOT = __DIR__;

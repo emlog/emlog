@@ -4,7 +4,7 @@
  * PDO Database Connection
  *
  * @package EMLOG
- * @link https://www.emlog.net
+ * 
  */
 
 class DatabasePDO

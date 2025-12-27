@@ -3,7 +3,7 @@
 /**
  * Order model
  * @package EMLOG
- * @link https://www.emlog.net
+ * 
  */
 
 class Order_Model

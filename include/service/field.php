@@ -1,14 +1,17 @@
 <?php
+
 /**
  * Service: Field
  *
  * @package EMLOG
- * @link https://www.emlog.net
+ * 
  */
 
-class Field {
+class Field
+{
 
-    static public function getFields($gid) {
+    static public function getFields($gid)
+    {
         $log_field_model = new Log_Field_Model();
         $rows = $log_field_model->getFields($gid);
         if (empty($rows)) {
@@ -21,7 +24,8 @@ class Field {
         return $fields;
     }
 
-    static public function updateField($gid, $field_keys, $field_values) {
+    static public function updateField($gid, $field_keys, $field_values)
+    {
         $log_field_model = new Log_Field_Model();
         $log_field_model->deleteField($gid);
 

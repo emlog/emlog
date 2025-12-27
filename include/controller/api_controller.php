@@ -4,7 +4,7 @@
  * Rest API controller
  *
  * @package EMLOG
- * @link https://www.emlog.net
+ * 
  */
 
 class Api_Controller
