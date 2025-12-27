@@ -719,7 +719,7 @@ $(function () {
     // 复选框全选
     initCheckboxSelectAll('#checkAllItem', '.checkboxContainer');
 
-    // 应用商店：应用安装 - 使用事件委托
+    // 应用商店：应用安装
     $(document).on('click', '.installBtn', function (e) {
         e.preventDefault();
         let link = $(this);
@@ -731,13 +731,13 @@ $(function () {
         let url = './store.php?action=install&type=' + type + '&source=' + down_url;
         $.get(url, function (data) {
             link.text('安装');
-            if (data.includes('成功')) {
-                cocoMessage.success(data, 8000);
+            if (data.code === 0) {
+                cocoMessage.success(data.msg, 8000);
             } else {
-                cocoMessage.error(data, 8000);
+                cocoMessage.error(data.msg, 8000);
             }
             link.parent().prev(".installMsg").removeClass("spinner-border text-primary");
-        });
+        }, 'json');
     });
 
     // 应用商店：查看应用信息

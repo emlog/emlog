@@ -190,7 +190,7 @@ if ($action === 'install') {
     $source_type = Input::getStrVar('type', '');
 
     if (empty($source)) {
-        exit(_lang('store_install_failed'));
+        Output::json(['code' => 400, 'msg' => _lang('store_install_failed')]);
     }
 
     $store_url = 'https://store.emlog.net/';
@@ -198,9 +198,9 @@ if ($action === 'install') {
 
     if (!$temp_file) {
         if (false === Register::verifyDownload($source)) {
-            exit(_lang('store_register_error'));
+            Output::json(['code' => 401, 'msg' => _lang('store_register_error')]);
         }
-        exit(_lang('store_install_timeout'));
+        Output::json(['code' => 402, 'msg' => _lang('store_install_timeout')]);
     }
 
     if ($source_type == 'tpl') {
@@ -217,15 +217,20 @@ if ($action === 'install') {
     @unlink($temp_file);
     switch ($ret) {
         case 0:
-            exit(sprintf(_lang('store_install_success_link'), $suc_url));
+            Output::json(['code' => 0, 'msg' => sprintf(_lang('store_install_success_link'), $suc_url)]);
+            break;
         case 1:
-            exit(_lang('store_install_failed_permission'));
+            Output::json(['code' => 101, 'msg' => _lang('store_install_failed_permission')]);
+            break;
         case 2:
-            exit(_lang('store_install_failed_download'));
+            Output::json(['code' => 102, 'msg' => _lang('store_install_failed_download')]);
+            break;
         case 3:
-            exit(_lang('store_install_failed_zip'));
+            Output::json(['code' => 103, 'msg' => _lang('store_install_failed_zip')]);
+            break;
         default:
-            exit(_lang('store_install_failed_invalid'));
+            Output::json(['code' => 104, 'msg' => _lang('store_install_failed_invalid')]);
+            break;
     }
 }
 
