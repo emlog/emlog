@@ -1,6 +1,5 @@
 <?php
 /*
- * Author: Vaimibao-曦颜XY
  * Description: 模板设置插件AJAX处理。
 */
 
@@ -26,7 +25,7 @@ if ($action === 'tpl_upload') {
     $abs_file_path = '';
     $abs_file_path = strstr($file_path, 'content/uploadfile/');
     if ($abs_file_path === false) {
-        echo '{"code":"error","data":"文件上传出错"}';
+        echo '{"code":"error","data":"' . _langPlu('upload_error', 'tpl_options') . '"}';
         exit;
     }
     $abs_file_path = BLOG_URL . $abs_file_path;

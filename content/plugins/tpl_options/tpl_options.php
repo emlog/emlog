@@ -111,49 +111,49 @@ class TplOptions
         //初始化模板设置类型
         $this->_types = array(
             'radio'    => array(
-                'name'       => '单选按钮',
+                'name'       => _langPlu('radio', 'tpl_options'),
                 'allowMulti' => false,
             ),
             'color'    => array(
-                'name'       => '颜色控件',
+                'name'       => _langPlu('color', 'tpl_options'),
                 'allowMulti' => false,
             ),
             'checkon'  => array(
-                'name'       => '开关',
+                'name'       => _langPlu('switch', 'tpl_options'),
                 'allowMulti' => false,
             ),
             'checkbox' => array(
-                'name'       => '复选按钮',
+                'name'       => _langPlu('checkbox', 'tpl_options'),
                 'allowMulti' => true,
             ),
             'text'     => array(
-                'name'       => '文本',
+                'name'       => _langPlu('text', 'tpl_options'),
                 'allowMulti' => true,
                 'allowRich'  => true,
             ),
             'image'    => array(
-                'name'       => '图片',
+                'name'       => _langPlu('image', 'tpl_options'),
                 'allowMulti' => false,
             ),
             'page'     => array(
-                'name'       => '页面',
+                'name'       => _langPlu('page', 'tpl_options'),
                 'allowMulti' => true,
             ),
             'sort'     => array(
-                'name'        => '分类',
+                'name'        => _langPlu('category', 'tpl_options'),
                 'allowMulti'  => true,
                 'allowDepend' => true,
             ),
             'tag'      => array(
-                'name'       => '标签',
+                'name'       => _langPlu('tag', 'tpl_options'),
                 'allowMulti' => true,
             ),
             'select'   => array(
-                'name'       => '选择',
+                'name'       => _langPlu('select', 'tpl_options'),
                 'allowMulti' => true,
             ),
             'block'    => array(
-                'name'       => '组合块',
+                'name'       => _langPlu('block', 'tpl_options'),
                 'allowMulti' => true,
             ),
         );
@@ -192,6 +192,15 @@ class TplOptions
             'uploadUrl' => $this->url(array(
                 "do" => "upload"
             )),
+            'lang'      => array(
+                'setting' => _langPlu('js_setting', 'tpl_options'),
+                'title' => _langPlu('js_title', 'tpl_options'),
+                'upload' => _langPlu('js_upload', 'tpl_options'),
+                'content' => _langPlu('js_content', 'tpl_options'),
+                'upload_failed' => _langPlu('js_upload_failed', 'tpl_options'),
+                'confirm_delete' => _langPlu('js_confirm_delete', 'tpl_options'),
+                'network_error' => _langPlu('js_network_error', 'tpl_options'),
+            ),
         );
         echo sprintf('<script>var tplOptions = %s;</script>', json_encode($data));
     }
@@ -328,7 +337,7 @@ class TplOptions
         if ($unsorted) {
             array_unshift($sorts, array(
                 'sid'      => -1,
-                'sortname' => '未分类',
+                'sortname' => _langPlu('uncategorized', 'tpl_options'),
                 'lognum'   => 0,
                 'children' => array(),
             ));
@@ -555,14 +564,14 @@ class TplOptions
             if (!is_dir(TPLS_PATH . $template)) {
                 $this->jsonReturn(array(
                     'code' => 1,
-                    'msg'  => '该模板不存在',
+                    'msg'  => _langPlu('tpl_not_exist', 'tpl_options'),
                 ));
             }
             $options = $this->getTemplateDefinedOptions($template);
             if ($options === false) {
                 $this->jsonReturn(array(
                     'code' => 1,
-                    'msg'  => '当前主题不支持设置',
+                    'msg'  => _langPlu('tpl_no_support', 'tpl_options'),
                 ));
             }
             $this->_currentTemplate = $template;
@@ -611,7 +620,7 @@ class TplOptions
                 $data = array(
                     'template' => $template,
                     'code'     => $result ? 0 : 1,
-                    'msg'      => '保存模板设置' . ($result ? '成功' : '失败'),
+                    'msg'      => ($result ? _langPlu('save_success', 'tpl_options') : _langPlu('save_failed', 'tpl_options')),
                 );
                 $this->jsonReturn($data);
             }
@@ -684,26 +693,26 @@ class TplOptions
         );
         if ($file['error'] == 1) {
             $result['code'] = 100;
-            $result['msg'] = '文件大小超过系统限制';
+            $result['msg'] = _langPlu('file_size_limit', 'tpl_options');
             return $result;
         }
 
         if ($file['error'] > 1) {
             $result['code'] = 101;
-            $result['msg'] = '上传文件失败';
+            $result['msg'] = _langPlu('upload_failed', 'tpl_options');
             return $result;
         }
         $extension = getFileSuffix($file['name']);
         if (!in_array($extension, $this->_imageTypes)) {
             $result['code'] = 102;
-            $result['msg'] = '错误的文件类型';
+            $result['msg'] = _langPlu('file_type_error', 'tpl_options');
             return $result;
         }
-        $maxSize = defined(UPLOAD_MAX_SIZE) ? UPLOAD_MAX_SIZE : 2097152;
+        $maxSize = defined('UPLOAD_MAX_SIZE') ? constant('UPLOAD_MAX_SIZE') : 2097152;
 
         if ($file['size'] > $maxSize) {
             $result['code'] = 103;
-            $result['msg'] = '文件大小超出系统限制';
+            $result['msg'] = _langPlu('file_size_limit', 'tpl_options');
             return $result;
         }
         $uploadPath = Option::UPLOADFILE_PATH . self::ID . "/$template/";
@@ -726,14 +735,14 @@ class TplOptions
             $ret = @mkdir($uploadPath, 0777, true);
             if ($ret === false) {
                 $result['code'] = 104;
-                $result['msg'] = '创建文件上传目录失败';
+                $result['msg'] = _langPlu('create_dir_failed', 'tpl_options');
                 return $result;
             }
         }
         if (@is_uploaded_file($file['tmp_name'])) {
             if (@!move_uploaded_file($file['tmp_name'], $attachpath)) {
                 $result['code'] = 105;
-                $result['msg'] = '上传失败。文件上传目录(content/uploadfile)不可写';
+                $result['msg'] = _langPlu('dir_not_writable', 'tpl_options');
                 return $result;
             }
             @chmod($attachpath, 0777);
@@ -775,8 +784,8 @@ class TplOptions
                 case 'radio':
                     if (!isset($option['values']) || !is_array($option['values'])) {
                         $option['values'] = array(
-                            0 => '否',
-                            1 => '是',
+                            0 => _langPlu('no', 'tpl_options'),
+                            1 => _langPlu('yes', 'tpl_options'),
                         );
                     }
                     $default = $this->arrayGet(array_keys($option['values']), 0);
@@ -995,15 +1004,15 @@ class TplOptions
             case 'select':
                 $type = '';
                 if ($option['pattern'] == 'post') {
-                    $type = '文章';
+                    $type = _langPlu('post', 'tpl_options');
                     $data = $this->getPosts();
                 }
                 if ($option['pattern'] == 'cate') {
-                    $type = '分类';
+                    $type = _langPlu('category', 'tpl_options');
                     $data = $this->getSorts(false, true);
                 }
                 if ($option['pattern'] == 'page') {
-                    $type = '页面';
+                    $type = _langPlu('page', 'tpl_options');
                     $data = $this->getPages();
                 }
 
@@ -1018,11 +1027,11 @@ class TplOptions
                     ));
                 }
                 echo '<li class="search-field ">';
-                echo sprintf('<input class="chosen-search-input" data-opt="%s" data-s-name="%s" data-url="%s" type="text" autocomplete="off" placeholder="输入%s标题关键词以搜索%s">', $option['pattern'], $option['id'], BLOG_URL, $type, $type);
+                echo sprintf('<input class="chosen-search-input" data-opt="%s" data-s-name="%s" data-url="%s" type="text" autocomplete="off" placeholder="%s">', $option['pattern'], $option['id'], BLOG_URL, sprintf(_langPlu('search_placeholder', 'tpl_options'), $type, $type));
                 echo '</li>';
                 echo '</ul>';
                 echo '<div class="chosen-drop">';
-                echo sprintf('<ul class="chosen-results"><li class="no-results">请输入%s标题</li></ul>', $type);
+                echo sprintf('<ul class="chosen-results"><li class="no-results">%s</li></ul>', sprintf(_langPlu('input_placeholder', 'tpl_options'), $type));
                 echo '</div>';
                 echo '</div>';
                 break;
@@ -1057,7 +1066,7 @@ class TplOptions
                     }
                 }
 
-                echo sprintf('<a class="badge badge-success tpl-add-block" data-b-name="%s" data-type="%s" data-url="%s"><i class="ri-add-line"></i> 添加</a>', $option['id'], $this_data_type, BLOG_URL);
+                echo sprintf('<a class="badge badge-success tpl-add-block" data-b-name="%s" data-type="%s" data-url="%s"><i class="ri-add-line"></i> %s</a>', $option['id'], $this_data_type, BLOG_URL, _langPlu('add', 'tpl_options'));
                 echo '</div>';
                 echo '<script>
                           $(".tpl-sortable-block").sortable({
@@ -1186,7 +1195,7 @@ class TplOptions
                 $limit_html = 'oninput="if(value<' . $min . ')value=' . $min . '"';
             }
             $tpl = '<div class="tpl-number-input-item">
-                        <input type="number" class="tpl-number-input" placeholder="填入数字" name="{name}" value="{value}" ' . $limit_html . '>
+                        <input type="number" class="tpl-number-input" placeholder="' . _langPlu('enter_number', 'tpl_options') . '" name="{name}" value="{value}" ' . $limit_html . '>
                         ' . $unit_html . '
                     </div>';
         }
@@ -1227,7 +1236,7 @@ class TplOptions
                     <div class="tpl-block-upload-input">
                         <input type="text" name="{name}" value="{value}">
                         <label>
-                            <a class="btn btn-primary"><i class="icofont-plus"></i>上传</a>
+                            <a class="btn btn-primary"><i class="icofont-plus"></i>' . _langPlu('js_upload', 'tpl_options') . '</a>
                             <input class="d-none tpl-image" type="file" name="image" data-url="' . BLOG_URL . '" accept="image/svg+xml,image/webp,image/avif,image/jpeg,image/jpg,image/png,image/gif">
                         </label>
                     </div>
@@ -1244,7 +1253,7 @@ class TplOptions
         $tpl = '';
         if (isset($option['pattern']) && trim($option['pattern']) === 'image') {
             $tpl .= '<div class="tpl-block-upload">
-                        <span>标题：</span>
+                        <span>' . _langPlu('js_title', 'tpl_options') . '</span>
                         <input class="block-title-input" type="text" name="{title}" value="{tvalue}">
                          <div class="tpl-image-preview">
                             <img src="{value}">
@@ -1252,15 +1261,15 @@ class TplOptions
                          <div class="tpl-block-upload-input">
                              <input type="text" name="{name}" value="{value}">
                              <label>
-                                <a class="btn btn-primary"><i class="icofont-plus"></i>上传</a>
+                                <a class="btn btn-primary"><i class="icofont-plus"></i>' . _langPlu('js_upload', 'tpl_options') . '</a>
                                 <input class="d-none tpl-image" type="file" name="image" data-url="' . BLOG_URL . '" accept="image/svg+xml,image/webp,image/avif,image/jpeg,image/jpg,image/png,image/gif">
                              </label>
                          </div>
                      </div>';
         } else {
-            $tpl = '<div>标题：</div>';
+            $tpl = '<div>' . _langPlu('js_title', 'tpl_options') . '</div>';
             $tpl .= '<input class="block-title-input" type="text" name="{title}" value="{tvalue}">';
-            $tpl .= '<div>内容：</div>';
+            $tpl .= '<div>' . _langPlu('js_content', 'tpl_options') . '</div>';
             if ($this->isMulti($option)) {
                 $tpl .= '<textarea rows="5" name="{name}">{value}</textarea>';
             } else {

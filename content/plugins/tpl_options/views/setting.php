@@ -14,9 +14,9 @@ $is_has_menu = array_key_exists('TplOptionsNavi', $tplget);
                 </div>
                 <div class="vtpl-header-right">
                     <div class="vtpl-buttons">
-                        <input type="submit" class="button vtpl-back-primary tpl-options-close" value="返回">
+                        <input type="submit" class="button vtpl-back-primary tpl-options-close" value="<?= _langPlu('back', 'tpl_options'); ?>">
                         <?php if ($is_has_menu): ?>
-                            <input type="submit" class="button vtpl-menu none" value="菜单">
+                            <input type="submit" class="button vtpl-menu none" value="<?= _langPlu('menu', 'tpl_options'); ?>">
                         <?php endif; ?>
                     </div>
                 </div>
@@ -33,7 +33,7 @@ $is_has_menu = array_key_exists('TplOptionsNavi', $tplget);
         <div class="vtpl-wrapper vtpl-option-main">
             <div class="vtpl-nav vtpl-nav-options tpl-nav-options">
                 <ul>
-                    <li onClick="TplShow('tpl-system')" class="active">设置说明</li>
+                    <li onClick="TplShow('tpl-system')" class="active"><?= _langPlu('setting_desc', 'tpl_options'); ?></li>
                     <?php
                     foreach ($tplnavi as $key => $v):
                         $icom_html = '';

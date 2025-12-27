@@ -30,7 +30,7 @@ $(function () {
             if (card.getAttribute('data-app-alias') === tpl) {
                 var settingBtnContainer = card.querySelector('.setting-btn');
                 if (settingBtnContainer) {
-                    $('<a class="btn btn-outline-primary btn-sm"><i class="icofont-options"></i> 设置</a>')
+                    $('<a class="btn btn-outline-primary btn-sm"><i class="icofont-options"></i>' + tplOptions.lang.setting + '</a>')
                         .appendTo(settingBtnContainer)
                         .addClass(attr('setting'))
                         .data('template', tpl);
@@ -144,18 +144,18 @@ $(function () {
         let _url = $(this).attr('data-url')
         let type_html = ''
         if (_type === 'image') {
-            type_html = '<div class="tpl-block-upload"><span>标题：</span>' +
+            type_html = '<div class="tpl-block-upload"><span>' + tplOptions.lang.title + '</span>' +
                 '<input class="block-title-input" type="text" name="' + _name + '[title][]" value="">' +
                 '<div class="tpl-image-preview"><img src=""></div><div class="tpl-block-upload-input">' +
                 '<input type="text" name="' + _name + '[content][]" value=""><label>\n' +
-                '<a class="btn btn-primary"><i class="icofont-plus"></i>上传</a>\n' +
+                '<a class="btn btn-primary"><i class="icofont-plus"></i>' + tplOptions.lang.upload + '</a>\n' +
                 '<input class="d-none tpl-image" type="file" name="image" data-url="' + _url + '" accept="image/svg+xml,image/webp,image/avif,image/jpeg,image/jpg,image/png,image/gif">\n' +
                 '</label>'
             type_html += '</div></div>';
         } else {
-            type_html += '<div>标题：</div>'
+            type_html += '<div>' + tplOptions.lang.title + '</div>'
             type_html += '<input class="block-title-input" type="text" name="' + _name + '[title][]" value="">'
-            type_html += '<div>内容：</div>'
+            type_html += '<div>' + tplOptions.lang.content + '</div>'
             if ($(this).parent().parent().hasClass('is-multi')) {
                 type_html += '<textarea rows="5" name="' + _name + '[content][]"></textarea>'
             } else {
@@ -248,7 +248,7 @@ $(function () {
                 }
                 cocoMessage.success(data.msg, 2500);
             }, error: function () {
-                cocoMessage.error('网络异常', 2500);
+                cocoMessage.error(tplOptions.lang.network_error, 2500);
             }, complete: function () {
                 // loading(false);
             }
@@ -280,7 +280,7 @@ $(function () {
             $('[name="' + target + '"]').val(path).trigger('change');
             $('[data-name="' + target + '"]').attr('href', src).find('img').attr('src', src);
         } else {
-            alert('上传失败：' + msg)
+            alert(tplOptions.lang.upload_failed + msg)
         }
         trueInput.val('');
         target = '';
