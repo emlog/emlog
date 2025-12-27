@@ -26,17 +26,17 @@ class Shortcut
             $plugins = $Plugin_Model->getPlugins();
         }
         $shortcutAll = [
-            ['name' => '模板', 'url' => 'template.php'],
-            ['name' => '插件', 'url' => 'plugin.php'],
-            ['name' => '分类', 'url' => 'sort.php'],
-            ['name' => '标签', 'url' => 'tag.php'],
-            ['name' => '页面', 'url' => 'page.php'],
-            ['name' => '导航', 'url' => 'navbar.php'],
-            ['name' => '边栏', 'url' => 'widgets.php'],
-            ['name' => '链接', 'url' => 'link.php'],
+            ['name' => _lang('template'), 'url' => 'template.php'],
+            ['name' => _lang('plugin'), 'url' => 'plugin.php'],
+            ['name' => _lang('category'), 'url' => 'sort.php'],
+            ['name' => _lang('tag'), 'url' => 'tag.php'],
+            ['name' => _lang('page'), 'url' => 'page.php'],
+            ['name' => _lang('navbar'), 'url' => 'navbar.php'],
+            ['name' => _lang('widget'), 'url' => 'widgets.php'],
+            ['name' => _lang('link'), 'url' => 'link.php'],
         ];
         foreach ($plugins as $val) {
-            if (empty($val) || $val['active'] === 'off' || !$val['Setting'] || in_array($val['Name'], ['小贴士', '模板设置'])) {
+            if (empty($val) || $val['active'] === 'off' || !$val['Setting'] || in_array($val['Plugin'], ['tips', 'tpl_options'])) {
                 continue;
             }
             $shortcutAll[] = [
