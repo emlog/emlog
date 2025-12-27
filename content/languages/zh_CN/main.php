@@ -172,6 +172,7 @@ return [
     'alias_char_error' => '别名错误，应由字母、数字、下划线、短横线组成',
     'alias_number_error' => '别名错误，不能为纯数字',
     'alias_system_error' => '别名错误，与系统链接冲突',
+    'sort_template_desc' => '用于自定义分类页面模板，对应模板目录下 xxx.php 文件，xxx 即为模板名，可不填',
 
     // Navbar
     'navi_error_a' => '导航名称和地址不能为空',

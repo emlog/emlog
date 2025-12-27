@@ -78,7 +78,7 @@
                         <small class="form-text text-muted"><?= _lang('template_tip') ?></small>
                     <?php else: ?>
                         <input class="form-control" id="template" name="template" value="<?= $template ?>">
-                        <small class="form-text text-muted">用于自定义页面模板，对应模板目录下xxx.php文件，xxx即为模板名，可不填</small>
+                        <small class="form-text text-muted"><?= _lang('sort_template_desc') ?></small>
                     <?php endif; ?>
                 </div>
                 <div id="page_side_ext">

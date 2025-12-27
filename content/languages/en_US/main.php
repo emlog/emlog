@@ -883,6 +883,7 @@ return [
     'upload_cover' => 'Upload Cover',
     'crop_tip' => 'Hold Shift to maintain aspect ratio',
     'upload_cover_error' => 'Error uploading cover',
+    'sort_template_desc' => 'Used to customize category page template, corresponding to xxx.php file in template directory, xxx is the template name, optional',
 
     // User Center
     'uc_center' => 'Profile',

@@ -188,9 +188,9 @@
                         <label for="page_count"><?= _lang('sort_per_page_desc') ?></label>
                         <input class="form-control" value="" name="page_count" id="page_count" type="number" min="0" />
                     </div>
-                    <?php if ($customTemplates): ?>
-                        <div class="form-group mt-2">
-                            <label for="template"><?= _lang('sort_template') ?></label>
+                    <div class="form-group mt-2">
+                        <label for="template"><?= _lang('sort_template') ?></label>
+                        <?php if ($customTemplates): ?>
                             <?php
                             $sortListHtml = '<option value="">' . _lang('default') . '</option>';
                             foreach ($customTemplates as $v) {
@@ -198,8 +198,11 @@
                             }
                             ?>
                             <select id="template" name="template" class="form-control"><?= $sortListHtml; ?></select>
-                        </div>
-                    <?php endif; ?>
+                        <?php else: ?>
+                            <input class="form-control" id="template" name="template">
+                            <small class="form-text text-muted"><?= _lang('sort_template_desc') ?></small>
+                        <?php endif; ?>
+                    </div>
                     <div class="custom-control custom-switch">
                         <input class="custom-control-input" type="checkbox" name="allow_user_post" id="allow_user_post" value="y">
                         <label class="custom-control-label" for="allow_user_post"><?= _lang('allow_contribute') ?></label>
