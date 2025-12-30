@@ -49,7 +49,7 @@ return [
     'get_result_success' => '获取结果成功！',
     'get_result_failed' => '获取结果失败！',
     'upload_failed' => '上传失败,图片类型错误或网络错误',
-    'update_register_msg' => '您的emlog未完成正版注册，<a href="https://emlog.net/register" target="_blank">去注册</a>',
+    'update_register_msg' => '您的emlog未完成正版注册，<a href="https://www.emlog.net/register" target="_blank">去注册</a>',
     'update_latest_msg' => '已经是最新版本',
     'update_new_msg' => '有可用的新版本：',
     'update_content' => '更新内容',

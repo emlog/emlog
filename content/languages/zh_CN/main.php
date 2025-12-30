@@ -637,7 +637,7 @@ return [
 
     // Store Errors & Messages
     'store_install_failed' => '安装失败',
-    'store_register_error' => 'emlog未正版注册，<a href="https://emlog.net/register" target="_blank">去注册</a>',
+    'store_register_error' => 'emlog未正版注册，<a href="https://www.emlog.net/register" target="_blank">去注册</a>',
     'store_install_timeout' => '安装失败，下载超时',
     'store_install_success_link' => '🎉🎈应用安装成功了，<a href="%s">现在去启用</a>',
     'store_install_failed_permission' => '安装失败，请检查content下目录是否可写',
@@ -805,7 +805,7 @@ return [
     'plugin_only_zip' => '只支持zip压缩格式的插件包',
     'upload_size_exceeded' => '上传安装包大小超出PHP限制',
     'emlog_not_registered' => '您的emlog未完成正版注册',
-    'plugin_register_error_link' => '您的emlog未完成正版注册，<a href="https://emlog.net/register" target="_blank">去注册</a>',
+    'plugin_register_error_link' => '您的emlog未完成正版注册，<a href="https://www.emlog.net/register" target="_blank">去注册</a>',
     'system_plugin_warning' => '系统依赖插件，请勿删除和关闭',
     'plugin_extension' => '插件扩展',
     'install_plugin' => '安装插件',

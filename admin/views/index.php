@@ -118,7 +118,7 @@
                         <p><span class="badge badge-warning badge-pill">3</span> <?= _lang('register_feature_3') ?></p>
                         <p><span class="badge badge-warning badge-pill">4</span> <?= _lang('register_feature_4') ?></p>
                         <p>
-                            <a href="https://emlog.net/register" target="_blank" class="btn btn-danger px-4">
+                            <a href="https://www.emlog.net/register" target="_blank" class="btn btn-danger px-4">
                                 <?= _lang('register_now') ?>
                                 <i class="icofont-external-link me-2"></i>
                             </a>

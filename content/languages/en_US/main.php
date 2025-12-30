@@ -636,7 +636,7 @@ return [
 
     // Store Errors & Messages
     'store_install_failed' => 'Installation Failed',
-    'store_register_error' => 'emlog not registered. <a href="https://emlog.net/register" target="_blank">Register Now</a>',
+    'store_register_error' => 'emlog not registered. <a href="https://www.emlog.net/register" target="_blank">Register Now</a>',
     'store_install_timeout' => 'Installation Failed: Download Timeout',
     'store_install_success_link' => '🎉🎈App installed successfully. <a href="%s">Enable Now</a>',
     'store_install_failed_permission' => 'Installation failed: Check content directory permissions',
@@ -804,7 +804,7 @@ return [
     'plugin_only_zip' => 'Only zip format plugin packages are supported.',
     'upload_size_exceeded' => 'Upload package size exceeds PHP limit.',
     'emlog_not_registered' => 'Your emlog is not registered.',
-    'plugin_register_error_link' => 'Your emlog is not registered, <a href="https://emlog.net/register" target="_blank">register now</a>',
+    'plugin_register_error_link' => 'Your emlog is not registered, <a href="https://www.emlog.net/register" target="_blank">register now</a>',
     'system_plugin_warning' => 'System dependency plugin, please do not delete or disable.',
     'plugin_extension' => 'Plugin Extension',
     'install_plugin' => 'Install Plugin',
