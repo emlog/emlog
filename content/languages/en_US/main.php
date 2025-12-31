@@ -102,10 +102,10 @@ return [
 
     // Auth
     'reg_official' => 'Registration',
-    'reg_failed_msg' => 'Registration failed. The registration code may be incorrect, or the server cannot access emlog.net',
-    'input_reg_code' => 'Registration Code',
+    'reg_failed_msg' => 'Registration failed. The License Key may be incorrect, or the server cannot access emlog.net',
+    'input_reg_code' => 'License Key',
     'submit_reg' => 'Submit Registration',
-    'get_reg_code' => 'Get Registration Code',
+    'get_reg_code' => 'Get License Key',
     'reg_success_msg' => '🎉 Congratulations, registration completed successfully 🎉',
     'un_licensed' => 'Unlicensed Version ',
 
@@ -765,7 +765,7 @@ return [
     'register_feature_3' => 'Remove all unregistered prompts and restrictions',
     'register_feature_4' => 'Donor benefits: 30+ paid plugins/themes for free',
     'register_now' => 'Register Now',
-    'input_license' => 'Input License',
+    'input_license' => 'Input License Key',
 
     // Template
     'tpl_change_success' => 'Theme changed successfully',
