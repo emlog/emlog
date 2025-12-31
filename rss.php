@@ -23,7 +23,7 @@ xmlns:atom="http://www.w3.org/2005/Atom"
 <description><![CDATA[' . Option::get('bloginfo') . ']]></description>
 <link>' . BLOG_URL . '</link>
 <language>zh-cn</language>
-<generator>www.emlog.net</generator>';
+<generator>emlog</generator>';
 if (!empty($articles)) {
     foreach ($articles as $value) {
         $link = Url::log($value['id']);

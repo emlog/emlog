@@ -277,7 +277,7 @@ if (!$act) {
                 </div>
             </div>
         </form>
-        <div class="footer">Powered by <a href="http://www.emlog.net">emlog</a></div>
+        <div class="footer">Powered by <a href="https://www.emlog.net">emlog</a></div>
     </body>
 
     </html>
