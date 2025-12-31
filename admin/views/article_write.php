@@ -14,7 +14,7 @@
                 </div>
                 <div id="logcontent"><textarea><?= $content ?></textarea></div>
                 <?php if (User::haveEditPermission() && !Register::isRegLocal()): ?>
-                    <div class="small"><?= _lang('switch_to_rich_editor') ?><a href="http://localhost:8080/admin/store.php?action=plu&sid=20"><?= _lang('install_tinymce_plugin') ?></a></div>
+                    <div class="small"><?= _lang('switch_to_rich_editor') ?><a href="store.php?action=plu&sid=20"><?= _lang('install_tinymce_plugin') ?></a></div>
                 <?php endif; ?>
                 <div class="mt-3">
                     <?= _lang('excerpt_optional') ?>
