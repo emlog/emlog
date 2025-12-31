@@ -1,4 +1,8 @@
 <?php
+
+/**
+ * Language: English（US） - Installer
+ */
 return [
     'php_version_error' => 'PHP version is too old. PHP 7.4 or higher is recommended',
     'mysql_settings' => 'MySQL Settings',

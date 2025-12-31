@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Language: English (US) - JS Part
+ * Language: English (US) - JS
  */
 return [
     // Common

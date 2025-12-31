@@ -1,4 +1,8 @@
 <?php
+
+/**
+ * Language: 中文（简体） - 安装
+ */
 return [
     'php_version_error' => 'PHP版本太低，推荐使用PHP7.4及以上版本',
     'mysql_settings' => 'MySQL数据库设置',

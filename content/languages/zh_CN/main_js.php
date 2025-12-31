@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Language: 中文（简体） - JS 部分
+ * Language: 中文（简体） - JS
  */
 return [
     // Common
