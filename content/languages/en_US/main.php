@@ -69,6 +69,7 @@ return [
     'address' => 'Address',
     'custom' => 'Custom',
     'search' => 'Search',
+    'copy_success' => 'Copied',
 
     // Microblog
     'twitter_note' => 'Microblog',
@@ -143,7 +144,6 @@ return [
     'category_name' => 'Category Name',
     'edit_media_category' => 'Edit Media Category',
     'edit_media' => 'Edit Media',
-    'copy_success' => 'Address copied',
     'select_delete_media' => 'Please select resources to delete',
     'confirm_delete_media' => 'Delete selected resources?',
     'select_move_media' => 'Please select resources to move',

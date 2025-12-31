@@ -69,6 +69,7 @@ return [
     'address' => '地址',
     'custom' => '自定',
     'search' => '搜索',
+    'copy_success' => '已复制',
 
     // Twitter
     'twitter_note' => '微语笔记',
@@ -143,7 +144,6 @@ return [
     'category_name' => '分类名称',
     'edit_media_category' => '修改资源分类',
     'edit_media' => '编辑资源',
-    'copy_success' => '地址已复制',
     'select_delete_media' => '请选择要删除的资源',
     'confirm_delete_media' => '删除所选资源文件？',
     'select_move_media' => '请选择要移动的资源',
