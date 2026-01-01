@@ -11,7 +11,7 @@
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" id="emkey" name="emkey" placeholder="<?= _lang('input_reg_code') ?>" minlength="32" maxlength="32" required>
                     <div class="input-group-append">
-                        <button class="btn btn-success" type="submit" id="button-addon2"><?= _lang('submit_reg') ?></button>
+                        <button class="btn btn-success" type="submit" id="button-addon2"><?= _lang('submit') ?></button>
                     </div>
                 </div>
                 <div class="form-group mt-2">
