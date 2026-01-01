@@ -455,7 +455,7 @@ return [
     'daily_limit' => 'Daily post limit exceeded',
     'draft_box' => 'Drafts',
     'write_new_article' => 'Write New Article',
-    'post_new' => 'Post new',
+    'post_new' => 'Post new ',
     'view_by_sort' => 'View by category',
     'uncategorized' => 'Uncategorized',
     'latest_post' => 'Latest',
