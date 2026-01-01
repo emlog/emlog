@@ -17,7 +17,7 @@
                                 <?php if ($v['top'] === 1): ?>
                                     <span class="badge badge-pink p-1"><?= _lang('store_recommend_daily') ?></span>
                                 <?php endif; ?>
-                                <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="<?= $v['name'] ?>" data-url="<?= $v['app_url'] ?>" data-buy-url="<?= $v['buy_url'] ?>"><?= subString($v['name'], 0, 15) ?></a>
+                                <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="<?= $v['name'] ?>" data-url="<?= $v['app_url'] ?>" data-buy-url="<?= $v['buy_url'] ?>" class="h5"><?= subString($v['name'], 0, 15) ?></a>
                                 <?php if ($type === 'tpl'): ?>
                                     <span class="badge badge-success p-1"><?= _lang('store_tpl_tag') ?></span>
                                 <?php else: ?>
@@ -200,7 +200,7 @@
                                         <div class="card-body">
                                             <p class="card-text font-weight-bold">
                                                 ${app.top === 1 ? '<span class="badge badge-pink p-1"><?= _lang("store_recommend_daily") ?></span>' : ''}
-                                                <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="${app.name}" data-url="${app.app_url}" data-buy-url="${app.buy_url}">${app.name.substring(0, 15)}</a>
+                                                <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="${app.name}" data-url="${app.app_url}" data-buy-url="${app.buy_url}" class="h5">${app.name.substring(0, 15)}</a>
                                                 ${type === 'tpl' ? '<span class="badge badge-success p-1"><?= _lang("store_tpl_tag") ?></span>' : '<span class="badge badge-primary p-1"><?= _lang("store_plu_tag") ?></span>'}
                                                 ${app.svip ? '<a href="https://www.emlog.net/register" class="badge badge-warning p-1" target="_blank"><?= _lang("store_svip_badge") ?></a>' : ''}
                                             </p>

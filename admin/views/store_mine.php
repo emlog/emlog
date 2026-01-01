@@ -28,7 +28,7 @@
                         </a>
                         <div class="card-body">
                             <p class="card-text font-weight-bold">
-                                <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="<?= $v['name'] ?>" data-url="<?= $v['app_url'] ?>" data-buy-url="<?= $v['buy_url'] ?>"><?= $v['name'] ?></a>
+                                <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="<?= $v['name'] ?>" data-url="<?= $v['app_url'] ?>" data-buy-url="<?= $v['buy_url'] ?>" class="h5"><?= $v['name'] ?></a>
                             </p>
                             <p class="card-text text-muted small">
                                 <?= _lang('store_developer') ?><?= $v['author'] ?><br>

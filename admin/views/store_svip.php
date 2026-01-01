@@ -38,7 +38,7 @@
                     </a>
                     <div class="card-body">
                         <p class="card-text font-weight-bold">
-                            <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="<?= $v['name'] ?>" data-url="<?= $v['app_url'] ?>" data-buy-url="<?= $v['buy_url'] ?>"><?= $v['name'] ?></a>
+                            <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="<?= $v['name'] ?>" data-url="<?= $v['app_url'] ?>" data-buy-url="<?= $v['buy_url'] ?>" class="h5"><?= $v['name'] ?></a>
                             <?php if ($type === 'tpl'): ?>
                                 <span class="badge badge-success p-1"><?= _lang('store_tpl_tag') ?></span>
                             <?php else: ?>
