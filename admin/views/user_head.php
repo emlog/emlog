@@ -11,15 +11,9 @@
     <link rel="stylesheet" type="text/css" href="./views/css/bootstrap-sbadmin-4.5.3.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>">
     <script src="./views/js/jquery.min.3.5.1.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
     <script src="./views/js/bootstrap.bundle.min.4.6.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
+
     <script>
-        var _langJS = <?php
-                            $jsLang = include EMLOG_ROOT . '/content/languages/' . EmLang::getInstance()->currentLang() . '_js.php';
-                            // Add common keys
-                            $jsLang['delete'] = _lang('delete');
-                            $jsLang['cancel'] = _lang('cancel');
-                            $jsLang['confirm'] = _lang('confirm');
-                            echo json_encode($jsLang);
-                            ?>;
+        var _langJS = <?= json_encode(EmLang::getInstance()->getJsLang()); ?>;
     </script>
     <script src="./views/js/common.js?v=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
     <?php doAction('login_head') ?>
