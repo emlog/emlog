@@ -1,6 +1,6 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
 <!doctype html>
-<html lang="zh-cn">
+<html lang="<?= _currentHtmlLang() ?>">
 
 <head>
     <meta charset="utf-8">

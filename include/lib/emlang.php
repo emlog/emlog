@@ -152,3 +152,12 @@ function _langInstall($key)
 {
     return EmLang::getInstance()->getInstall($key);
 }
+
+function _currentLang()
+{
+    return EmLang::getInstance()->currentLang();
+}
+function _currentHtmlLang()
+{
+    return str_replace('_', '-', EmLang::getInstance()->currentLang());
+}

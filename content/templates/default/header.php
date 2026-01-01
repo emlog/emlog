@@ -17,7 +17,7 @@ if (!function_exists('_g')) {
 
 ?>
 <!doctype html>
-<html lang="<?= strtolower(str_replace('_', '-', EmLang::getInstance()->currentLang())) ?>" data-theme="light">
+<html lang="<?= _currentHtmlLang() ?>" data-theme="light">
 
 <head>
     <meta charset="utf-8">
