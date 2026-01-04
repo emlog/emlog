@@ -101,12 +101,12 @@ return [
     'add_media_category' => 'Add Media Category',
 
     // Auth
-    'reg_official' => 'Registration',
-    'reg_failed_msg' => 'Registration failed. The License Key may be incorrect, or the server cannot access emlog.net',
+    'reg_official' => 'Upgrade to Premium',
+    'reg_failed_msg' => 'Failed. The License Key may be incorrect, or the server cannot access the internet.',
     'input_reg_code' => 'License Key',
     'get_reg_code' => 'Get License Key',
-    'reg_success_msg' => '🎉 Congratulations, registration completed successfully 🎉',
-    'un_licensed' => 'Unlicensed Version ',
+    'reg_success_msg' => '🎉 Congratulations, Upgrade successfully 🎉',
+    'un_licensed' => 'Unlicensed',
 
     // AI
     'ai_chat' => 'AI Chat',
@@ -251,7 +251,7 @@ return [
 
     // Admin Header
     'admin_center' => 'Admin Center',
-    'upgrade_license' => 'Upgrade License',
+    'upgrade_license' => 'Upgrade Premium',
     'view_site' => 'View Site',
     'logout' => 'Logout',
 
@@ -539,7 +539,7 @@ return [
     'store_all' => 'All Apps',
     'store_template' => 'Themes',
     'store_plugin' => 'Plugins',
-    'store_free_vip' => 'Free for Donors',
+    'store_free_vip' => 'Free for Premium',
     'store_purchased' => 'Purchased',
     'store_favorite' => 'Favorites',
     'store_recent' => 'Recent',
@@ -558,7 +558,7 @@ return [
     'store_recommend_daily' => 'Daily Recommend',
     'store_tpl_tag' => 'Theme',
     'store_plu_tag' => 'Plugin',
-    'store_svip_badge' => 'Free for Donors',
+    'store_svip_badge' => 'Free for Premium',
     'store_price' => 'Price: ',
     'store_currency_unit' => '',
     'store_developer' => 'Developer: ',
@@ -577,7 +577,7 @@ return [
     'store_paid_top' => '🏆 Top Paid',
     'store_search_plugin' => 'Search plugins...',
     'store_search_template' => 'Search themes...',
-    'store_svip_desc' => 'Donors can install the following apps for free 👇',
+    'store_svip_desc' => 'Premium users can install the following apps for free 👇',
     'store_filter_all' => 'All',
     'store_filter_tpl' => 'Themes',
     'store_filter_plu' => 'Plugins',
@@ -630,12 +630,12 @@ return [
     'store_title_plu_free' => 'Free Plugins',
     'store_title_plu_paid' => 'Paid Plugins',
     'store_title_mine' => 'My Purchases',
-    'store_title_svip' => 'Donor Free',
+    'store_title_svip' => 'Premium Free',
     'store_title_favorite' => 'My Favorites',
 
     // Store Errors & Messages
     'store_install_failed' => 'Installation Failed',
-    'store_register_error' => 'emlog not registered. <a href="https://www.emlog.net/register" target="_blank">Register Now</a>',
+    'store_register_error' => 'please upgrade to a premium version. <a href="https://www.emlog.net/register" target="_blank">upgrade</a>',
     'store_install_timeout' => 'Installation Failed: Download Timeout',
     'store_install_success_link' => '🎉🎈App installed successfully. <a href="%s">Enable Now</a>',
     'store_install_failed_permission' => 'Installation failed: Check content directory permissions',
@@ -647,9 +647,9 @@ return [
     'store_load_failed' => 'Load failed, click to retry',
     'store_collect_success' => 'Added to favorites',
     'store_param_error' => 'Parameter error, please refresh and try again',
-    'store_favorite_need_auth' => 'You must be registered to use the favorite function. <a href="https://www.emlog.net/register">Support Us &rarr;</a>',
+    'store_favorite_need_auth' => 'This feature is currently unavailable. Please upgrade to a premium version. <a href="https://www.emlog.net/register">upgrade</a>',
     'store_no_favorite' => 'No favorites yet.',
-    'store_mine_need_auth' => 'You must be registered to view purchased items. <a href="https://www.emlog.net/register">Support Us &rarr;</a>',
+    'store_mine_need_auth' => 'This feature is currently unavailable. Please upgrade to a premium version. <a href="https://www.emlog.net/register">upgrade</a>',
     'store_no_purchased' => 'No purchased apps yet.',
 
     // Link
@@ -754,16 +754,16 @@ return [
     'os' => 'OS',
     'system_timezone' => 'Timezone',
     'unregistered' => 'Unregistered',
-    'hardcore_svip' => 'Donor',
-    'friend_vip' => 'Donor',
+    'hardcore_svip' => 'Premium',
+    'friend_vip' => 'Premium-',
     'registered' => 'Registered',
     'check_update' => 'Check Update',
-    'register_full_feature' => 'Register to use all features',
+    'register_full_feature' => 'Upgrade to Premium',
     'register_feature_1' => 'One-click upgrade to the latest version',
     'register_feature_2' => 'Unlock full app store including online updates',
     'register_feature_3' => 'Remove all unregistered prompts and restrictions',
     'register_feature_4' => 'Free use of some themes and plugins',
-    'register_now' => 'Register Now',
+    'register_now' => 'Upgrade Now',
     'input_license' => 'Input License Key',
 
     // Template
@@ -802,8 +802,8 @@ return [
     'plugin_install_failed_invalid' => 'Installation failed, plugin package is invalid.',
     'plugin_only_zip' => 'Only zip format plugin packages are supported.',
     'upload_size_exceeded' => 'Upload package size exceeds PHP limit.',
-    'emlog_not_registered' => 'Your emlog is not registered.',
-    'plugin_register_error_link' => 'Your emlog is not registered, <a href="https://www.emlog.net/register" target="_blank">register now</a>',
+    'emlog_not_registered' => 'Your emlog is not licensed.',
+    'plugin_register_error_link' => 'Your emlog is not licensed, <a href="https://www.emlog.net/register" target="_blank">upgrade premium</a>',
     'system_plugin_warning' => 'System dependency plugin, please do not delete or disable.',
     'plugin_extension' => 'Plugin Extension',
     'install_plugin' => 'Install Plugin',

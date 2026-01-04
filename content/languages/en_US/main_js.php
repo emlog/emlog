@@ -49,7 +49,7 @@ return [
     'get_result_success' => 'Result retrieved successfully!',
     'get_result_failed' => 'Failed to retrieve result!',
     'upload_failed' => 'Upload failed. Invalid image type or network error',
-    'update_register_msg' => 'Your emlog is not registered, <a href="https://www.emlog.net/register" target="_blank">Register</a>',
+    'update_register_msg' => 'Your emlog is not licensed, <a href="https://www.emlog.net/register" target="_blank">Upgrade Premium</a>',
     'update_latest_msg' => 'You are using the latest version',
     'update_new_msg' => 'New version available: ',
     'update_content' => 'Update Details',
