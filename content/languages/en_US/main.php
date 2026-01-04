@@ -106,7 +106,7 @@ return [
     'input_reg_code' => 'License Key',
     'get_reg_code' => 'Get License Key',
     'reg_success_msg' => '🎉 Congratulations, Upgrade successfully 🎉',
-    'un_licensed' => 'Unlicensed',
+    'un_licensed' => '',
 
     // AI
     'ai_chat' => 'AI Chat',
