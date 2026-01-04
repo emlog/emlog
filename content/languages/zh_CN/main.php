@@ -328,7 +328,7 @@ return [
     'smtp_password' => 'SMTP密码',
     'mail_sender_name' => '发送人名称（选填，建议填写站点名称）',
     'smtp_server' => 'SMTP服务器',
-    'smtp_port_desc' => '端口 (465：SSL协议，如QQ\网易邮箱；587：STARTTLS协议，如Outlook邮箱)',
+    'smtp_port_desc' => '端口 (465,如QQ\网易邮箱；587，如Outlook邮箱)',
     'send_test' => '发送测试',
     'mail_config_example' => '以QQ邮箱配置为例',
     'mail_example_content' => '发送人邮箱：你的QQ邮箱<br>SMTP密码：见QQ邮箱顶部设置-> 账户 -> 开启IMAP/SMTP服务 -> 生成授权码（即为SMTP密码）<br>发送人名称：你的姓名或者站点名称<br>SMTP服务器：smtp.qq.com<br>端口：465',

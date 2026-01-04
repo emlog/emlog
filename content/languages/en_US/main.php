@@ -327,7 +327,7 @@ return [
     'smtp_password' => 'SMTP Password',
     'mail_sender_name' => 'Sender Name (Optional)',
     'smtp_server' => 'SMTP Server',
-    'smtp_port_desc' => 'Port (465: SSL, 587: STARTTLS)',
+    'smtp_port_desc' => 'Port: 465 for SSL, 587 for STARTTLS',
     'send_test' => 'Send Test',
     'mail_config_example' => 'Example (QQ Mail)',
     'mail_example_content' => 'Sender: Your QQ Email<br>SMTP Password: Authorization code from QQ Mail settings<br>Sender Name: Your Name<br>SMTP Server: smtp.qq.com<br>Port: 465',
