@@ -83,7 +83,7 @@
                                 $plugin_name = "<a href=\"{$plugin_setting_url}\">{$plugin_name}</a>";
                             }
                     ?>
-                            <tr data-plugin-alias="<?= $val['Plugin'] ?>" data-plugin-version="<?= $val['Version'] ?>" data-plugin-setting-url="<?= $plugin_setting_url ?>">
+                            <tr data-plugin-alias="<?= $val['Plugin'] ?>" data-plugin-version="<?= $val['Version'] ?>" data-plugin-setting-url="<?= $plugin_setting_url ?>" data-plugin-show-url="<?= $val['ShowUrl'] ?>" data-plugin-name="<?= htmlspecialchars($val['Name']) ?>">
                                 <td>
                                     <div class="d-flex align-items-center">
                                         <div class="flex-shrink-0">
@@ -93,7 +93,7 @@
                                             <div class="align-items-center mb-3">
                                                 <p class="mb-0 m-2">
                                                     <?= $plugin_name ?>
-                                                    <?php if (!empty($val['ShowUrl'])): ?>
+                                                    <?php if (!empty($val['ShowUrl']) && $val['active']): ?>
                                                         ｜ <a href="<?= $val['ShowUrl'] ?>" target="_blank"><i class="icofont-link icofont-1x"></i></a>
                                                     <?php endif ?>
                                                 </p>
@@ -279,16 +279,24 @@
     function updatePluginSettingLink(switchId, action) {
         var $tr = $('#' + switchId).closest('tr');
         var settingUrl = $tr.data('plugin-setting-url') || '';
+        var showUrl = $tr.data('plugin-show-url') || '';
+        var pluginName = $tr.data('plugin-name') || '';
         var $nameP = $tr.find('p.mb-0.m-2:not(.small)').first();
 
-        if (action === 'active' && settingUrl) {
-            var titleText = $nameP.find('a').length ? $nameP.find('a').text().trim() : $nameP.text().trim();
-            $nameP.html('<a href="' + settingUrl + '">' + titleText + '</a>');
-        } else if (action === 'inactive') {
-            var $link = $nameP.find('a');
-            if ($link.length) {
-                $nameP.text($link.text());
+        $nameP.empty();
+        if (action === 'active') {
+            if (settingUrl) {
+                $('<a>').attr('href', settingUrl).text(pluginName).appendTo($nameP);
+            } else {
+                $nameP.text(pluginName);
             }
+
+            if (showUrl) {
+                $nameP.append(' ｜ ');
+                $('<a>').attr('href', showUrl).attr('target', '_blank').html('<i class="icofont-link icofont-1x"></i>').appendTo($nameP);
+            }
+        } else {
+            $nameP.text(pluginName);
         }
     }
 
