@@ -91,7 +91,12 @@
                                         </div>
                                         <div class="flex-grow-1 ms-3">
                                             <div class="align-items-center mb-3">
-                                                <p class="mb-0 m-2"><?= $plugin_name ?></p>
+                                                <p class="mb-0 m-2">
+                                                    <?= $plugin_name ?>
+                                                    <?php if (!empty($val['ShowUrl'])): ?>
+                                                        ｜ <a href="<?= $val['ShowUrl'] ?>" target="_blank"><i class="icofont-link icofont-1x"></i></a>
+                                                    <?php endif ?>
+                                                </p>
                                                 <p class="mb-0 m-2 small"><?= $val['Description'] ?> <?php if (strpos($val['Url'], 'https://www.emlog.net') === 0): ?><a href="<?= $val['Url'] ?>" target="_blank"><?= _lang('more_info') ?>&raquo;</a><?php endif ?></p>
                                             </div>
                                         </div>

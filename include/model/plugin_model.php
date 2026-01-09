@@ -187,6 +187,7 @@ class Plugin_Model
         $ret = explode('/', $pluginFile);
         $plugin = $ret[0];
         $have_setting = file_exists($pluginPath . $plugin . '/' . $plugin . '_setting.php');
+        $have_show = file_exists($pluginPath . $plugin . '/' . $plugin . '_show.php');
 
         $plugin_name = isset($plugin_name[1]) ? strip_tags(trim($plugin_name[1])) : '';
         $version = isset($version[1]) ? strip_tags(trim($version[1])) : '';
@@ -204,6 +205,7 @@ class Plugin_Model
             'AuthorUrl'   => $author_url,
             'Setting'     => $have_setting,
             'Plugin'      => $plugin,
+            'ShowUrl'    => $have_show ? BLOG_URL . '?plugin=' . $plugin : '',
         ];
     }
 }

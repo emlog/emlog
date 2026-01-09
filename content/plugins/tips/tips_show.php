@@ -6,5 +6,7 @@ defined('EMLOG_ROOT') || exit('access denied!');
  * 前台显示地址为：https://yourdomain/?plugin=tips
  */
 
+header('X-Robots-Tag: noindex');
 ?>
-<!--some html code here-->
+
+Just a demo plugin show page.
