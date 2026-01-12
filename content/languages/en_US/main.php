@@ -46,7 +46,6 @@ return [
     'views' => 'Views',
     'audit' => 'Review',
     'reject' => 'Reject',
-    'unit_article' => ' ',
     'all' => 'All',
     'select_all' => 'Select All',
     'content' => 'Content',
@@ -171,6 +170,7 @@ return [
     'alias_char_error' => 'Alias error: must consist of letters, numbers, underscores, and hyphens',
     'alias_number_error' => 'Alias error: cannot be pure numbers',
     'alias_system_error' => 'Alias error: conflict with system links',
+    'sort_template_desc' => 'Used to customize category page template, corresponding to xxx.php file in template directory, xxx is the template name, optional',
 
     // Navbar
     'navi_error_a' => 'Navigation name and URL are required',
@@ -883,7 +883,6 @@ return [
     'upload_cover' => 'Upload Cover',
     'crop_tip' => 'Hold Shift to maintain aspect ratio',
     'upload_cover_error' => 'Error uploading cover',
-    'sort_template_desc' => 'Used to customize category page template, corresponding to xxx.php file in template directory, xxx is the template name, optional',
 
     // User Center
     'uc_center' => 'Profile',

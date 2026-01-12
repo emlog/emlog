@@ -38,7 +38,7 @@
                                 data-tagname="<?= $v['tagname'] ?>" data-kw="<?= $v['kw'] ?>" data-title="<?= $v['title'] ?>" data-desc="<?= $v['description'] ?>"><?= $v['tagname'] ?></a>
                         </h5>
                         <a href="<?= Url::tag($v['tagname']) ?>" target="_blank" class="text-muted ml-2"><i class="icofont-external-link"></i></a>
-                        <span class="<?= $count_style ?>">（<a href="./article.php?tagid=<?= $v['tid'] ?>" target="_blank"><?= $count ?><?= _lang('unit_article') ?><?= _lang('article') ?></a>）</span>
+                        <span class="<?= $count_style ?>">（<a href="./article.php?tagid=<?= $v['tid'] ?>" target="_blank"><?= _lang('article') ?>: <?= $count ?></a>）</span>
                         <input type="checkbox" name="tids[]" value="<?= $v['tid'] ?>" class="tids align-top" />
                     </div>
                 <?php endforeach ?>

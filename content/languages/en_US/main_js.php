@@ -6,6 +6,7 @@
 return [
     // Common
     'delete' => 'Delete',
+    'close' => 'Close',
     'confirm' => 'Confirm',
     'cancel' => 'Cancel',
 
@@ -25,6 +26,7 @@ return [
     'delete_tpl' => 'Delete this template?',
     'reset_widget' => 'Reset widgets? Custom widgets will be lost.',
     'delete_plugin' => 'Delete this plugin?',
+    'close_all_plugins_confirm' => 'Disable all plugins?',
     'delete_media_sort' => 'Delete this resource category? Resource files will not be deleted.',
     'delete_ai_model' => 'Delete this model?',
     'input_new_author_id' => 'Enter new author ID',

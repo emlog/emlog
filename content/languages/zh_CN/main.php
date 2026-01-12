@@ -44,7 +44,6 @@ return [
     'author' => '作者',
     'time' => '时间',
     'views' => '浏览',
-    'unit_article' => '篇',
     'audit' => '审核',
     'reject' => '驳回',
     'all' => '全部',
