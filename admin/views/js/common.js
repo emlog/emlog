@@ -776,7 +776,7 @@ $(function () {
     // 删除提示
     const alert_action_success = localStorage.getItem('alert_action_success')
     if (localStorage.getItem('alert_action_success')) {
-        cocoMessage.success(alert_action_success + '成功');
+        cocoMessage.success(alert_action_success + _langJS.success);
         localStorage.removeItem('alert_action_success');
     }
 })
