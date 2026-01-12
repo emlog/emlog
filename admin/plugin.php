@@ -73,7 +73,7 @@ if ($action == 'inactive_all') {
     $active_plugins = serialize(['tpl_options/tpl_options.php']);
     Option::updateOption('active_plugins', $active_plugins);
     $CACHE->updateCache('options');
-    emDirect("./plugin.php?inactive_all_success=1");
+    emDirect("./plugin.php");
 }
 
 // Load plug-in configuration page
