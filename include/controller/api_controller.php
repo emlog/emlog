@@ -554,6 +554,11 @@ class Api_Controller
             Output::error('Upload error');
         }
 
+        $uploadCheckResult = Media::checkUpload($attach);
+        if ($uploadCheckResult !== true) {
+            Output::error($uploadCheckResult);
+        }
+
         $ret = '';
         addAction('upload_media', 'upload2local');
         doOnceAction('upload_media', $attach, $ret);
