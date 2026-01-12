@@ -825,6 +825,7 @@ return [
     'updating' => '正在更新...',
     'active' => '已开启',
     'inactive' => '未开启',
+    'close_all_plugins' => '关闭所有插件',
 
     // Data
     'backup_success' => '数据备份成功',

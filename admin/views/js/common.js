@@ -92,6 +92,11 @@ function em_confirm(id, property, token) {
             text = _langJS.delete_plugin;
             delAlert(msg, text, url, token)
             break;
+        case 'inactive_all_plugins':
+            url = 'plugin.php?action=inactive_all';
+            text = _langJS.close_all_plugins_confirm;
+            delAlert(msg, text, url, token, _langJS.close)
+            break;
         case 'media_sort':
             url = 'media.php?action=del_media_sort&id=' + id;
             text = _langJS.delete_media_sort;

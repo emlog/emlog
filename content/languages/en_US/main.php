@@ -824,6 +824,7 @@ return [
     'updating' => 'Updating...',
     'active' => 'Active',
     'inactive' => 'Inactive',
+    'close_all_plugins' => 'Close all plugins',
 
     // Data
     'backup_success' => 'Data backup successful',

@@ -68,6 +68,14 @@ if ($action == 'inactive') {
     Output::ok(_lang('plugin_inactive_success'));
 }
 
+if ($action == 'inactive_all') {
+    LoginAuth::checkToken();
+    $active_plugins = serialize(['tpl_options/tpl_options.php']);
+    Option::updateOption('active_plugins', $active_plugins);
+    $CACHE->updateCache('options');
+    emDirect("./plugin.php?inactive_all_success=1");
+}
+
 // Load plug-in configuration page
 if (empty($action) && $plugin) {
     require_once "../content/plugins/$plugin/{$plugin}_setting.php";

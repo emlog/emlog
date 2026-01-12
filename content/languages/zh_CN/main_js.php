@@ -6,6 +6,7 @@
 return [
     // Common
     'delete' => '删除',
+    'close' => '关闭',
     'confirm' => '确认',
     'cancel' => '取消',
 
@@ -25,6 +26,7 @@ return [
     'delete_tpl' => '删除该模板？',
     'reset_widget' => '重置组件？重置会丢失自定义的组件',
     'delete_plugin' => '删除该插件？',
+    'close_all_plugins_confirm' => '确认关闭所有插件吗？',
     'delete_media_sort' => '删除该资源分类？不会删除分类下资源文件',
     'delete_ai_model' => '删除该模型？',
     'input_new_author_id' => '输入新的作者ID',
