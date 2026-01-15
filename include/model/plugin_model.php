@@ -205,7 +205,7 @@ class Plugin_Model
             'AuthorUrl'   => $author_url,
             'Setting'     => $have_setting,
             'Plugin'      => $plugin,
-            'ShowUrl'    => $have_show ? BLOG_URL . '?plugin=' . $plugin : '',
+            'ShowUrl'    => $have_show ? Url::plugin($plugin) : '',
         ];
     }
 }

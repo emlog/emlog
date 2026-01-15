@@ -220,4 +220,17 @@ class Url
         }
         return $url;
     }
+
+    static function plugin($plugin)
+    {
+        switch (Option::get('isurlrewrite')) {
+            case '0':
+                $pluginUrl = BLOG_URL . '?plugin=' . $plugin;
+                break;
+            default:
+                $pluginUrl = BLOG_URL . 'plugin/' . $plugin;
+                break;
+        }
+        return $pluginUrl;
+    }
 }
