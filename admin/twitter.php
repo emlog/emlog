@@ -50,6 +50,7 @@ if ($action == 'post') {
         'private' => $private,
         'author'  => UID,
         'date'    => time(),
+        'ip'      => getIp(),
     ];
 
     $id = $Twitter_Model->addTwitter($data);
