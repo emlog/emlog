@@ -655,9 +655,25 @@ CREATE TABLE {$db_prefix}twitter (
     author int(11) NOT NULL default '1' COMMENT '作者UID',
     date bigint(20) NOT NULL COMMENT '创建时间',
     replynum int(11) unsigned NOT NULL default '0' COMMENT '回复数量',
+    like_count int(11) unsigned NOT NULL default '0' COMMENT '点赞量',
     private enum('n','y') NOT NULL default 'n' COMMENT '是否私密',
+    ip varchar(128) NOT NULL default '' COMMENT 'ip',
     PRIMARY KEY (id),
     KEY author (author)
+)" . $table_charset_sql . "
+DROP TABLE IF EXISTS {$db_prefix}reply;
+CREATE TABLE {$db_prefix}reply (
+  id int(10) unsigned NOT NULL auto_increment,
+  uid int(11) NOT NULL default '0' COMMENT '发布人UID',
+  tid int(10) unsigned NOT NULL default '0' COMMENT '微语ID',
+  date bigint(20) NOT NULL COMMENT '回复时间',
+  name varchar(20) NOT NULL default '' COMMENT '回复人昵称',
+  content text NOT NULL COMMENT '回复内容',
+  hide enum('n','y') NOT NULL default 'n' COMMENT '是否隐藏',
+  islike enum('n','y') NOT NULL default 'n' COMMENT '是否是点赞',
+  ip varchar(128) NOT NULL default '' COMMENT 'ip',
+  PRIMARY KEY  (id),
+  KEY gid (tid)
 )" . $table_charset_sql . "
 DROP TABLE IF EXISTS {$db_prefix}storage;
 CREATE TABLE {$db_prefix}storage (
