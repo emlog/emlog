@@ -436,6 +436,7 @@ class Api_Controller
         output::ok(['sorts' => $data,]);
     }
 
+    // 发布笔记
     private function note_post()
     {
         $t = Input::postStrVar('t');
@@ -461,6 +462,7 @@ class Api_Controller
             'author'  => $author_uid,
             'private' => $private,
             'date'    => time(),
+            'ip'      => getIp(),
         ];
 
         $id = $this->Twitter_Model->addTwitter($data);
@@ -495,6 +497,7 @@ class Api_Controller
                 'author_id'   => (int)$value['author'],
                 'author_name' => $author['nickname'],
                 'author_avatar' => $author['avatar'],
+                'ip'            => $value['ip'],
             ];
         }
         output::ok(['notes' => $notes,]);
