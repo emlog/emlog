@@ -23,19 +23,19 @@
             </div>
             <div class="form-group">
                 <label><?= _lang('smtp_password'); ?></label>
-                <input type="password" name="smtp_pw" cols="" rows="3" class="form-control" value="<?= $smtp_pw ?>" autocomplete="new-password">
+                <input type="password" name="smtp_pw" class="form-control" value="<?= $smtp_pw ?>" autocomplete="new-password">
             </div>
             <div class="form-group">
                 <label><?= _lang('mail_sender_name'); ?></label>
-                <input type="from_name" class="form-control" value="<?= $smtp_from_name ?>" name="smtp_from_name">
+                <input type="text" class="form-control" value="<?= $smtp_from_name ?>" name="smtp_from_name">
             </div>
             <div class="form-group">
                 <label><?= _lang('smtp_server'); ?></label>
-                <input class="form-control" value="<?= $smtp_server ?>" name="smtp_server">
+                <input type="text" class="form-control" value="<?= $smtp_server ?>" name="smtp_server">
             </div>
             <div class="form-group">
                 <label><?= _lang('smtp_port_desc'); ?></label>
-                <input class="form-control" value="<?= $smtp_port ?>" name="smtp_port">
+                <input type="number" class="form-control" value="<?= $smtp_port ?>" name="smtp_port">
             </div>
             <div class="form-group">
                 <input type="button" value="<?= _lang('send_test'); ?>" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#testMail" />
@@ -80,7 +80,7 @@
                         <iframe id="mail_review_frame"></iframe>
                     </div>
                 </div>
-                <div class="mb-3 mt-1 small" id="mail_template_box"><?= _lang('mail_template_vars'); ?></div>
+                <div class="mb-3 mt-1 small" id="mail_template_vars"><?= _lang('mail_template_vars'); ?></div>
             </div>
             <h4><?= _lang('setting_mail'); ?></h4>
             <div class="custom-control custom-switch">
@@ -219,7 +219,7 @@
 
         // test sendmail
         $("#testSendBtn").click(function() {
-            $("#testMailMsg").html("<small class='text-secondary'>发送中...<small>");
+            $("#testMailMsg").html("<small class='text-secondary'>发送中...</small>");
             $.post("setting.php?action=mail_test", $("#mail_setting_form").serialize(), function(data) {
                 if (data === '') {
                     $("#testMailMsg").html("<small class='text-success'>发送成功</small>");
