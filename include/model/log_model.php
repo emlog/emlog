@@ -13,7 +13,6 @@ class Log_Model
     private $db;
     private $Parsedown;
     private $table;
-    private $table_user;
     private $table_sort;
     private $table_comment;
 
@@ -21,7 +20,6 @@ class Log_Model
     {
         $this->db = Database::getInstance();
         $this->table = DB_PREFIX . 'blog';
-        $this->table_user = DB_PREFIX . 'user';
         $this->table_sort = DB_PREFIX . 'sort';
         $this->table_comment = DB_PREFIX . 'comment';
         $this->Parsedown = new Parsedown();
@@ -315,38 +313,6 @@ class Log_Model
             $logs[] = $row;
         }
         return $logs;
-    }
-
-    /**
-     * get rss article list
-     */
-    public function getLogsForRss($perPageNum = 10)
-    {
-        if ($perPageNum <= 0) {
-            return [];
-        }
-        $now = time();
-        $date_state = "and date<=$now";
-        $sql = "SELECT *, t1.password as pwd FROM $this->table t1 LEFT JOIN $this->table_user t2 ON t1.author=t2.uid WHERE t1.hide='n' and t1.checked='y' and t1.type='blog' $date_state ORDER BY t1.date DESC limit 0," . $perPageNum;
-        $result = $this->db->query($sql);
-        $d = [];
-        while ($re = $this->db->fetch_array($result)) {
-            $re['id'] = $re['gid'];
-            $re['title'] = htmlspecialchars($re['title']);
-            $re['content'] = $this->Parsedown->text($re['content']);
-            if (!empty($re['pwd'])) {
-                $re['content'] = '<p>[该文章已设置加密]</p>';
-            } elseif (Option::get('rss_output_fulltext') == 'n') {
-                if (!empty($re['excerpt'])) {
-                    $re['content'] = $re['excerpt'];
-                } else {
-                    $re['content'] = extractHtmlData($re['content'], 330);
-                }
-                $re['content'] .= ' <a href="' . Url::log($re['id']) . '">阅读全文&gt;&gt;</a>';
-            }
-            $d[] = $re;
-        }
-        return $d;
     }
 
     /**
