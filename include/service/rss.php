@@ -42,7 +42,6 @@ class Rss
                 $content .= ' <a href="' . Url::log($id) . '">阅读全文&gt;&gt;</a>';
             }
             $content = self::cleanXmlContent($content);
-            $content = str_replace(']]>', ']]&gt;', $content);
 
             $link = Url::log($id);
             $pubdate = date('r', $value['date']);
@@ -96,6 +95,7 @@ END;
     {
         $string = preg_replace('/[\x00-\x08\x0b\x0c\x0e-\x1f]/', '', $string);
         $string = iconv('UTF-8', 'UTF-8//IGNORE', $string);
+        $string = str_replace(']]>', ']]&gt;', $string);
         return $string;
     }
 }
