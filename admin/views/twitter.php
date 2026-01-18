@@ -118,7 +118,7 @@
                 height: 260,
                 toolbarIcons: function() {
                     return ["bold", "del", "italic", "quote", "|", "h1", "h2", "h3", "|", "list-ul", "list-ol", "|",
-                        "link", "image", "|", "preview"
+                        "link", "image", "audio", "video", "|", "preview"
                     ];
                 },
                 path: "editor.md/lib/",
@@ -132,6 +132,7 @@
                 imageUpload: true,
                 imageFormats: ["jpg", "jpeg", "gif", "png"],
                 imageUploadURL: "media.php?action=upload&editor=1",
+                videoUpload: false,
                 syncScrolling: "single",
                 placeholder: "<?= _lang('markdown_placeholder') ?>",
             });

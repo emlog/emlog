@@ -297,7 +297,7 @@
             imageUpload: true,
             imageFormats: ["jpg", "jpeg", "gif", "png"],
             imageUploadURL: "media.php?action=upload&editor=1",
-            videoUpload: false, //开启视频上传
+            videoUpload: false,
             syncScrolling: "single",
             placeholder: "<?= _lang('markdown_placeholder') ?>",
             onfullscreen: function() {
