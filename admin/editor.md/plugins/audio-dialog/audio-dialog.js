@@ -36,7 +36,7 @@
                 dialog = this.createDialog({
                     title: audioLang.title,
                     width: (settings.audioUpload) ? 465 : 380,
-                    height: 254,
+                    height: 200,
                     name: dialogName,
                     content: dialogContent,
                     mask: settings.dialogShowMask,

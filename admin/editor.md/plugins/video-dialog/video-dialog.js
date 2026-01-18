@@ -43,7 +43,7 @@
                 dialog = this.createDialog({
                     title: videoLang.title,
                     width: (settings.videoUpload) ? 465 : 380,
-                    height: 254,
+                    height: 200,
                     name: dialogName,
                     content: dialogContent,
                     mask: settings.dialogShowMask,

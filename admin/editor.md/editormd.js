@@ -314,7 +314,7 @@
                 },
                 video: {
                     title: "添加视频",
-                    url: "视频地址(MP4)",
+                    url: "视频地址(如MP4)",
                     uploadButton: "本地上传",
                     videoURLEmpty: "视频地址不能为空。",
                     uploadFileEmpty: "上传的视频不能为空。",
