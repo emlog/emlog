@@ -659,7 +659,6 @@ return [
     'no_sortable_link' => '没有可排序的链接',
 
     // Widgets
-    'widget_sidebar' => '侧边栏',
     'widget_blogger' => '个人资料',
     'widget_calendar' => '日历',
     'widget_tag' => '标签',

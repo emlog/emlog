@@ -659,7 +659,6 @@ return [
     'no_sortable_link' => 'No sortable links',
 
     // Widgets
-    'widget_sidebar' => 'Sidebar',
     'widget_blogger' => 'Profile',
     'widget_calendar' => 'Calendar',
     'widget_tag' => 'Tags',
