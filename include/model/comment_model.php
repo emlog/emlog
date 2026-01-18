@@ -173,6 +173,7 @@ class Comment_Model
         $comment = $this->db->fetch_array($res);
         $comment['comment_text'] = htmlClean($comment['comment']);
         $comment['comment'] = $nl2br ? parseUBB(htmlClean(trim($comment['comment']))) : parseUBB(htmlClean(trim($comment['comment']), FALSE));
+        $comment['poster_raw'] = $comment['poster'];
         $comment['poster'] = htmlspecialchars($comment['poster']);
         $comment['date'] = date("Y-m-d H:i", $comment['date']);
         return $comment;
@@ -345,9 +346,8 @@ class Comment_Model
 
         if ($pid > 0) {
             $comment = $this->getOneComment($pid);
-            $content = '@' . addslashes($comment['poster']) . '：' . $content;
+            $content = '@' . addslashes($comment['poster_raw']) . '：' . $content;
         }
-
         $hide = Option::get('ischkcomment') == 'y' && !User::haveEditPermission() ? 'y' : 'n';
 
         $sql = "INSERT INTO $this->table (uid,date,poster,gid,comment,mail,url,avatar,hide,ip,agent,pid)
