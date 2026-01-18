@@ -12,7 +12,7 @@ class Rss
     /**
      * Generate RSS
      */
-    public function generate()
+    public static function generate()
     {
         $Log_Model = new Log_Model();
         $User_Model = new User_Model();
@@ -25,10 +25,10 @@ class Rss
         $items = '';
         foreach ($articles as $value) {
             $id = $value['gid'];
-            $title = $this->cleanXmlContent($value['title']);
+            $title = self::cleanXmlContent($value['title']);
 
             $userInfo = $User_Model->getOneUser($value['author']);
-            $nickname = isset($userInfo['nickname']) ? htmlspecialchars($this->cleanXmlContent($userInfo['nickname'])) : '';
+            $nickname = isset($userInfo['nickname']) ? htmlspecialchars(self::cleanXmlContent($userInfo['nickname'])) : '';
 
             $content = $Parsedown->text($value['content']);
             if (!empty($value['password'])) {
@@ -41,7 +41,7 @@ class Rss
                 }
                 $content .= ' <a href="' . Url::log($id) . '">阅读全文&gt;&gt;</a>';
             }
-            $content = $this->cleanXmlContent($content);
+            $content = self::cleanXmlContent($content);
             $content = str_replace(']]>', ']]&gt;', $content);
 
             $link = Url::log($id);
@@ -92,7 +92,7 @@ END;
      * @param string $string
      * @return string
      */
-    private function cleanXmlContent($string)
+    private static function cleanXmlContent($string)
     {
         $string = preg_replace('/[\x00-\x08\x0b\x0c\x0e-\x1f]/', '', $string);
         $string = iconv('UTF-8', 'UTF-8//IGNORE', $string);
