@@ -240,7 +240,7 @@ return [
     'template' => 'Themes',
     'template_setting' => 'Theme Settings',
     'navbar' => 'Navigation',
-    'widget' => 'Widgets',
+    'widget' => 'Sidebar',
     'page' => 'Pages',
     'link' => 'Links',
     'plugin' => 'Plugins',
