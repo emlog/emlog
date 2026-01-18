@@ -27,7 +27,7 @@ xmlns:atom="http://www.w3.org/2005/Atom"
 if (!empty($articles)) {
     foreach ($articles as $value) {
         $link = Url::log($value['id']);
-        $abstract = str_replace('[break]', '', $value['content']);
+        $abstract = $value['content'];
         $pubdate = date('r', $value['date']);
         $author = $value['nickname'];
         doAction('rss_display');
