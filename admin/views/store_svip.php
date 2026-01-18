@@ -39,6 +39,7 @@
                     <div class="card-body">
                         <p class="card-text font-weight-bold">
                             <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="<?= $v['name'] ?>" data-url="<?= $v['app_url'] ?>" data-buy-url="<?= $v['buy_url'] ?>" class="h5"><?= $v['name'] ?></a>
+                            <span class="badge badge-light p-1"><?= $v['ver'] ?></span>
                             <?php if ($type === 'tpl'): ?>
                                 <span class="badge badge-success p-1"><?= _lang('store_tpl_tag') ?></span>
                             <?php else: ?>
@@ -47,9 +48,8 @@
                         </p>
                         <p class="card-text text-muted small">
                             <?= _lang('store_developer') ?><a href="./store.php?author_id=<?= $v['author_id'] ?>"><?= $v['author'] ?></a><br>
-                            <?= _lang('store_version') ?><?= $v['ver'] ?><br>
                             <?= _lang('store_install_count') ?><?= $v['downloads'] ?><br>
-                            <?= _lang('store_update_time') ?><?= $v['update_time'] ?><br>
+                            <?= _lang('store_update_time') ?><?= $v['time_ago'] ?><br>
                         </p>
                         <div class="card-text d-flex justify-content-between">
                             <div class="installMsg"></div>
