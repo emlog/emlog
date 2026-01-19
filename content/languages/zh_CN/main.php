@@ -510,7 +510,7 @@ return [
     'comment_audit_success' => '审核成功',
 
     // Tag
-    'tag_management' => '文章标签',
+    'tag_management' => '标签',
     'add_tag' => '添加标签',
     'edit_tag' => '修改标签',
     'tag_name' => '标签名',
