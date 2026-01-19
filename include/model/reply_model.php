@@ -2,6 +2,7 @@
 
 /**
  * reply model
+ * 微语评论点赞模型
  *
  * @package EMLOG
  * 
@@ -11,13 +12,11 @@ class Reply_Model
 {
 
     private $db;
-    private $parsedown;
     private $table;
 
     function __construct()
     {
         $this->db = Database::getInstance();
-        $this->parsedown = new Parsedown();
         $this->table = DB_PREFIX . 'reply';
     }
 
@@ -88,13 +87,10 @@ class Reply_Model
      * @param string $hide 'n' (visible), 'y' (hidden), or 'all'
      * @return array
      */
-    function getReplies($tid, $page = 1, $hide = 'n')
+    function getReplies($tid, $page = 1, $perpage = 10, $hide = 'n')
     {
         $tid = intval($tid);
-        $perpage = 10;
-        if (class_exists('Option')) {
-            $perpage = Option::get('comment_pnum');
-        }
+        $perpage = intval($perpage);
 
         $start = ($page - 1) * $perpage;
 
@@ -104,13 +100,13 @@ class Reply_Model
         } elseif ($hide === 'y') {
             $andHide = "AND hide = 'y'";
         }
-        // if 'all', no condition on hide
 
         $sql = "SELECT * FROM {$this->table} WHERE tid = $tid AND islike = 'n' $andHide ORDER BY date DESC LIMIT $start, $perpage";
         $ret = $this->db->query($sql);
         $comments = array();
         while ($row = $this->db->fetch_array($ret)) {
-            $row['content'] = $this->parsedown->text($row['content']);
+            $row['content'] = htmlClean($row['content']);
+            $row['name'] = htmlspecialchars($row['name']);
             $comments[] = $row;
         }
         return $comments;
