@@ -663,7 +663,7 @@ CREATE TABLE {$db_prefix}twitter (
 )" . $table_charset_sql . "
 DROP TABLE IF EXISTS {$db_prefix}reply;
 CREATE TABLE {$db_prefix}reply (
-  id int(10) unsigned NOT NULL auto_increment,
+  id int(10) unsigned NOT NULL auto_increment COMMENT '微语评论点赞表',
   uid int(11) NOT NULL default '0' COMMENT '发布人UID',
   tid int(10) unsigned NOT NULL default '0' COMMENT '微语ID',
   date bigint(20) NOT NULL COMMENT '回复时间',
