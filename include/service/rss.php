@@ -15,23 +15,21 @@ class Rss
     public static function generate()
     {
         $Log_Model = new Log_Model();
-        $User_Model = new User_Model();
         $num = Option::get('rss_output_num');
-        $articles = $Log_Model->getList('', 'n', 1, 'blog', $num);
+        $articles = $Log_Model->getLogsForRss($num);
 
         $Parsedown = new Parsedown();
         $Parsedown->setBreaksEnabled(true);
 
         $items = '';
         foreach ($articles as $value) {
-            $id = $value['gid'];
-            $title = self::cleanXmlContent($value['title']);
+            $id = $value['id'];
+            $title = self::cleanXmlContent(htmlspecialchars($value['title']));
 
-            $userInfo = $User_Model->getOneUser($value['author']);
-            $nickname = isset($userInfo['nickname']) ? htmlspecialchars(self::cleanXmlContent($userInfo['nickname'])) : '';
+            $nickname = isset($value['nickname']) ? htmlspecialchars(self::cleanXmlContent($value['nickname'])) : '';
 
             $content = $Parsedown->text($value['content']);
-            if (!empty($value['password'])) {
+            if (!empty($value['pwd'])) {
                 $content = '<p>[该文章已设置加密]</p>';
             } elseif (Option::get('rss_output_fulltext') == 'n') {
                 if (!empty($value['excerpt'])) {
