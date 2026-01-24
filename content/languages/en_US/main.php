@@ -100,12 +100,12 @@ return [
     'add_media_category' => 'Add Media Category',
 
     // Auth
-    'reg_official' => 'Upgrade to Premium',
-    'reg_failed_msg' => 'Failed. The License Key may be incorrect, or the server cannot access the internet.',
-    'input_reg_code' => 'License Key',
-    'get_reg_code' => 'Get License Key',
-    'reg_success_msg' => '🎉 Congratulations, Upgrade successfully 🎉',
-    'un_licensed' => '',
+    'reg_official' => 'Register Now',
+    'reg_failed_msg' => 'Failed. The Registration Key may be incorrect, or the server cannot access the internet.',
+    'input_reg_code' => 'Registration Key',
+    'get_reg_code' => 'Get Registration Key',
+    'reg_success_msg' => '🎉 Congratulations, Registration successfully 🎉',
+    'un_licensed' => 'UnRegistered',
 
     // AI
     'ai_chat' => 'AI Chat',
@@ -251,7 +251,7 @@ return [
 
     // Admin Header
     'admin_center' => 'Admin Center',
-    'upgrade_license' => 'Upgrade Premium',
+    'upgrade_license' => 'Register Now',
     'view_site' => 'View Site',
     'logout' => 'Logout',
 
@@ -635,7 +635,7 @@ return [
 
     // Store Errors & Messages
     'store_install_failed' => 'Installation Failed',
-    'store_register_error' => 'please upgrade to a premium version. <a href="https://www.emlog.net/register" target="_blank">upgrade</a>',
+    'store_register_error' => 'please Register Now. <a href="https://www.emlog.net/register" target="_blank">Register Now</a>',
     'store_install_timeout' => 'Installation Failed: Download Timeout',
     'store_install_success_link' => '🎉🎈App installed successfully. <a href="%s">Enable Now</a>',
     'store_install_failed_permission' => 'Installation failed: Check content directory permissions',
@@ -647,9 +647,9 @@ return [
     'store_load_failed' => 'Load failed, click to retry',
     'store_collect_success' => 'Added to favorites',
     'store_param_error' => 'Parameter error, please refresh and try again',
-    'store_favorite_need_auth' => 'This feature is currently unavailable. Please upgrade to a premium version. <a href="https://www.emlog.net/register">upgrade</a>',
+    'store_favorite_need_auth' => 'This feature is currently unavailable. Please Register Now. <a href="https://www.emlog.net/register">Register Now</a>',
     'store_no_favorite' => 'No favorites yet.',
-    'store_mine_need_auth' => 'This feature is currently unavailable. Please upgrade to a premium version. <a href="https://www.emlog.net/register">upgrade</a>',
+    'store_mine_need_auth' => 'This feature is currently unavailable. Please Register Now. <a href="https://www.emlog.net/register">Register Now</a>',
     'store_no_purchased' => 'No purchased apps yet.',
 
     // Link
@@ -757,13 +757,13 @@ return [
     'friend_vip' => 'Premium-',
     'registered' => 'Registered',
     'check_update' => 'Check Update',
-    'register_full_feature' => 'Upgrade to Premium',
+    'register_full_feature' => 'Register Now',
     'register_feature_1' => 'One-click upgrade to the latest version',
     'register_feature_2' => 'Unlock full app store including online updates',
     'register_feature_3' => 'Remove all unregistered prompts and restrictions',
     'register_feature_4' => 'Free use of some themes and plugins',
-    'register_now' => 'Upgrade Now',
-    'input_license' => 'Input License Key',
+    'register_now' => 'Register Now',
+    'input_license' => 'Input Registration Key',
 
     // Template
     'tpl_change_success' => 'Theme changed successfully',
@@ -801,8 +801,8 @@ return [
     'plugin_install_failed_invalid' => 'Installation failed, plugin package is invalid.',
     'plugin_only_zip' => 'Only zip format plugin packages are supported.',
     'upload_size_exceeded' => 'Upload package size exceeds PHP limit.',
-    'emlog_not_registered' => 'Your emlog is not licensed.',
-    'plugin_register_error_link' => 'Your emlog is not licensed, <a href="https://www.emlog.net/register" target="_blank">upgrade premium</a>',
+    'emlog_not_registered' => 'Your emlog is not Registered.',
+    'plugin_register_error_link' => 'Your emlog is not Registered, <a href="https://www.emlog.net/register" target="_blank">Register Now</a>',
     'system_plugin_warning' => 'System dependency plugin, please do not delete or disable.',
     'plugin_extension' => 'Plugin Extension',
     'install_plugin' => 'Install Plugin',
