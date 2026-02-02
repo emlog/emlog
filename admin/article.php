@@ -19,7 +19,6 @@ $Tag_Model = new Tag_Model();
 $Sort_Model = new Sort_Model();
 $User_Model = new User_Model();
 $Media_Model = new Media_Model();
-$MediaSort_Model = new MediaSort_Model();
 $Template_Model = new Template_Model();
 
 if (empty($action)) {
@@ -292,7 +291,6 @@ if ($action === 'write') {
     $is_sortop = '';
     $is_allow_remark = 'checked="checked"';
     $postDate = date('Y-m-d H:i:s');
-    $mediaSorts = $MediaSort_Model->getSorts();
     $customTemplates = $Template_Model->getCustomTemplates('log');
     $customFields = $Template_Model->getCustomFields();
     $fields = [];
@@ -328,8 +326,6 @@ if ($action === 'edit') {
     $tagStr = implode(',', $tags);
     //old tag
     $tags = $Tag_Model->getTags();
-
-    $mediaSorts = $MediaSort_Model->getSorts();
 
     // fields
     $fields = Field::getFields($logid);

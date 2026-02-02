@@ -170,6 +170,7 @@
                     <div class="form-group">
                         <label for="sortimg"><?= _lang('sort_image') ?></label>
                         <input class="form-control" id="sortimg" name="sortimg" type="url" placeholder="https://">
+                        <small class="form-text text-muted"><a href="#" data-toggle="modal" data-target="#mediaModal" data-mode="category"><?= _lang('select_from_media_lib') ?></a></small>
                     </div>
                     <div class="form-group">
                         <label for="title"><?= _lang('sort_title_desc') ?></label>
@@ -220,6 +221,8 @@
         </div>
     </div>
 </div>
+
+<?php include View::getAdmView('media_lib'); ?>
 
 <script>
     function issortalias(a) {

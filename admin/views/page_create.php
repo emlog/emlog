@@ -33,7 +33,7 @@
             <div class="shadow-sm p-3 mb-2 bg-white rounded">
                 <div class="form-group">
                     <input name="cover" id="cover" class="form-control" placeholder="<?= _lang('cover_url') ?>" value="<?= $cover ?>" />
-                    <small class="text-muted"><?= _lang('cover_tip') ?><a href="#mediaModal" data-toggle="modal" data-target="#mediaModal"><?= _lang('select_from_media') ?></a></small>
+                    <small class="text-muted"><?= _lang('cover_tip') ?><a href="#mediaModal" data-toggle="modal" data-mode="cover" data-target="#mediaModal"><?= _lang('select_from_media') ?></a></small>
                     <div class="row mt-3">
                         <div class="col-md-4">
                             <label for="upload_img">
@@ -88,40 +88,6 @@
         </div>
     </div>
 </form>
-<!--资源库-->
-<div class="modal fade" id="mediaModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-        <div class="modal-content border-0 shadow">
-            <div class="modal-header border-0">
-                <h5 class="modal-title" id="exampleModalLabel"><?= _lang('media_lib') ?></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="d-flex justify-content-between">
-                    <div><a href="#" id="mediaAdd" class="btn btn-sm btn-success shadow-sm mb-3"><?= _lang('upload_file') ?></a></div>
-                    <div>
-                        <?php if (User::haveEditPermission() && $mediaSorts): ?>
-                            <select class="form-control" id="media-sort-select">
-                                <option value=""><?= _lang('select_media_sort') ?></option>
-                                <?php foreach ($mediaSorts as $v): ?>
-                                    <option value="<?= $v['id'] ?>"><?= $v['sortname'] ?></option>
-                                <?php endforeach ?>
-                            </select>
-                        <?php endif ?>
-                    </div>
-                </div>
-                <form action="media.php?action=operate_media" method="post" name="form_media" id="form_media">
-                    <div class="row" id="image-list"></div>
-                    <div class="text-center">
-                        <button type="button" class="btn btn-success btn-sm mt-2" id="load-more"><?= _lang('load_more') ?></button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
 <!-- 封面图裁剪 -->
 <div class="modal fade" id="modal" tabindex="-2" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" data-backdrop="static">
     <div class="modal-dialog modal-lg" role="document">
@@ -152,9 +118,7 @@
         </div>
     </div>
 </div>
-<div class="dropzone-previews" style="display: none;"></div>
-<script src="./views/js/dropzone.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
-<script src="./views/js/media-lib.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
+<?php include View::getAdmView('media_lib'); ?>
 <script src="./editor.md/editormd.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
 <script>
     $("#menu_category_view").addClass('active');

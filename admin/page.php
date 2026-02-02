@@ -67,9 +67,6 @@ if ($action == 'new') {
     );
     extract($pageData);
 
-    $MediaSort_Model = new MediaSort_Model();
-    $mediaSorts = $MediaSort_Model->getSorts();
-
     $Template_Model = new Template_Model();
     $customTemplates = $Template_Model->getCustomTemplates('page');
 
@@ -89,13 +86,6 @@ if ($action == 'mod') {
     $pageId = Input::getIntVar('id');
     $pageData = $emPage->getOneLogForAdmin($pageId);
     extract($pageData);
-
-    //media
-    $Media_Model = new Media_Model();
-    $medias = $Media_Model->getMedias();
-
-    $MediaSort_Model = new MediaSort_Model();
-    $mediaSorts = $MediaSort_Model->getSorts();
 
     $is_allow_remark = $allow_remark == 'y' ? 'checked="checked"' : '';
     $is_home_page = Option::get('home_page_id') == $pageId ? 'checked="checked"' : '';

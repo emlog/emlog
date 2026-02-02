@@ -1,10 +1,10 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
 <?php if (isset($_GET['active_hide_n'])): ?>
-    <div class="alert alert-success"><?= _lang('page_publish_success') ?></div><?php endif ?>
+    <div class="alert alert-success"><?= _lang('publish_success') ?></div><?php endif ?>
 <?php if (isset($_GET['active_hide_y'])): ?>
     <div class="alert alert-success"><?= _lang('page_draft_success') ?></div><?php endif ?>
 <?php if (isset($_GET['active_pubpage'])): ?>
-    <div class="alert alert-success"><?= _lang('page_save_success') ?></div><?php endif ?>
+    <div class="alert alert-success"><?= _lang('save_success') ?></div><?php endif ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h4 mb-0 text-gray-800"><?= _lang('page') ?></h1>
     <a href="page.php?action=new" class="btn btn-sm btn-success shadow-sm mt-4"><i class="icofont-plus"></i>
