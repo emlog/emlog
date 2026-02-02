@@ -69,6 +69,7 @@ return [
     'custom' => '自定',
     'search' => '搜索',
     'copy_success' => '已复制',
+    'load_more' => '加载更多',
 
     // Twitter
     'twitter_note' => '微语笔记',
@@ -740,7 +741,6 @@ return [
     'access_password' => '访问密码：',
     'article_template' => '文章模板：',
     'select_media_category' => '选择资源分类…',
-    'load_more' => '加载更多…',
     'upload_cover' => '上传封面',
     'upload_cover_error' => '上传封面出错了',
     'leave_page_prompt' => '离开页面提示',
@@ -878,7 +878,6 @@ return [
     'page_alias_tip' => '英文字母、数字组成，用于',
     'allow_comment' => '允许评论',
     'select_media_sort' => '选择资源分类…',
-    'load_more' => '加载更多…',
     'upload_cover' => '上传封面',
     'crop_tip' => '按住 Shift 等比例调整裁剪区域',
     'upload_cover_error' => '上传封面出错了',

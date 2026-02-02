@@ -69,6 +69,7 @@ return [
     'custom' => 'Custom',
     'search' => 'Search',
     'copy_success' => 'Copied',
+    'load_more' => 'Load More',
 
     // Microblog
     'twitter_note' => 'Microblog',
@@ -740,7 +741,6 @@ return [
     'access_password' => 'Access Password:',
     'article_template' => 'Article Template:',
     'select_media_category' => 'Select Media Category...',
-    'load_more' => 'Load More...',
     'upload_cover' => 'Upload Cover',
     'upload_cover_error' => 'Error uploading cover',
     'leave_page_prompt' => 'You have unsaved changes',
@@ -878,7 +878,6 @@ return [
     'page_alias_tip' => 'Alphanumeric, used for ',
     'allow_comment' => 'Allow Comments',
     'select_media_sort' => 'Select Media Category...',
-    'load_more' => 'Load more...',
     'upload_cover' => 'Upload Cover',
     'crop_tip' => 'Hold Shift to maintain aspect ratio',
     'upload_cover_error' => 'Error uploading cover',
