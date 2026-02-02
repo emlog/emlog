@@ -81,13 +81,13 @@ var MediaLib = {
             var insertBtnHtml = self.getButtonsHtml(image);
             
             // Delete button is always present
-            insertBtnHtml += '<a href="javascript:delete_media(\'' + image.media_id + '\')" class="btn btn-sm text-danger"><i class="icofont-trash"></i></a>';
+            insertBtnHtml += '<a href="javascript:delete_media(\'' + image.media_id + '\')" class="small text-danger"><i class="icofont-trash"></i></a>';
 
             var cardHtml = '<div class="col-md-4">' +
                 '<div class="card mb-2 shadow-sm">' +
                 '<a href="' + image.media_url + '" target="_blank"><img class="card-img-top" src="' + image.media_icon + '"/></a>' +
                 '<div class="card-body">' +
-                '<div class="card-text text-muted small">' + image.media_name + '<br>' + _langJS.file_size + image.attsize + '</div>' +
+                '<div class="card-text text-muted small">' + image.media_name + '</div>' +
                 '<p class="card-text d-flex mt-2 justify-content-between">' + insertBtnHtml + '</p>' +
                 '</div></div></div>';
             $('#image-list').append(cardHtml);
@@ -102,38 +102,38 @@ var MediaLib = {
         // Custom buttons passed via options
         if (this.options.buttons && this.options.buttons.length > 0) {
             $.each(this.options.buttons, function(idx, btn) {
-                html += '<a href="javascript:void(0)" class="btn btn-sm media-lib-custom-btn" data-id="' + image.media_id + '" data-btn-index="' + idx + '"><i class="' + (btn.icon || 'icofont-plus') + '"></i> ' + (btn.text || 'Action') + '</a>';
+                html += '<a href="javascript:void(0)" class="mr-2 small text-muted media-lib-custom-btn" data-id="' + image.media_id + '" data-btn-index="' + idx + '"><i class="' + (btn.icon || 'icofont-plus') + '"></i> ' + (btn.text || 'Action') + '</a>';
             });
-            return html;
+            return '<span>' + html + '</span>';
         }
 
         // Default logic based on mode
         if (mode === 'cover') {
             if (image.media_type === 'image') {
-                html = '<a href="javascript:insert_cover(\'' + image.media_icon + '\')" class="btn btn-sm"><i class="icofont-image"></i> ' + _langJS.set_as_cover + '</a>';
+                html = '<a href="javascript:insert_cover(\'' + image.media_icon + '\')" class="mr-2 small text-muted"><i class="icofont-image"></i> ' + _langJS.set_as_cover + '</a>';
             }
         } else if (mode === 'category') {
              if (image.media_type === 'image') {
                 var btnText = (typeof _langJS.set_as_sort_image !== 'undefined') ? _langJS.set_as_sort_image : _langJS.set_as_category_image;
                 // Using global function insert_sort_img which must be defined in the page
-                html = '<a href="javascript:insert_sort_img(\'' + image.media_icon + '\')" class="btn btn-sm"><i class="icofont-image"></i> ' + btnText + '</a>';
+                html = '<a href="javascript:insert_sort_img(\'' + image.media_icon + '\')" class="mr-2 small text-muted"><i class="icofont-image"></i> ' + btnText + '</a>';
              }
         } else { // 'article' or default
             if (image.media_type === 'image') {
-                html = '<a href="javascript:insert_media_img(\'' + image.media_icon + '\')" class="btn btn-sm"><i class="icofont-plus"></i> ' + _langJS.insert_to_article + '</a>' +
-                    '<a href="javascript:insert_cover(\'' + image.media_icon + '\')" class="btn btn-sm"><i class="icofont-image"></i> ' + _langJS.set_as_cover + '</a>';
+                html = '<a href="javascript:insert_media_img(\'' + image.media_icon + '\')" class="mr-2 small text-muted"><i class="icofont-plus"></i> ' + _langJS.insert_to_article + '</a>' +
+                    '<a href="javascript:insert_cover(\'' + image.media_icon + '\')" class="mr-2 small text-muted"><i class="icofont-image"></i> ' + _langJS.set_as_cover + '</a>';
             } else if (image.media_type === 'video') {
-                html = '<a href="javascript:insert_media_video(\'' + image.media_url + '\')" class="btn btn-sm"><i class="icofont-plus"></i> ' + _langJS.insert_to_article + '</a>';
+                html = '<a href="javascript:insert_media_video(\'' + image.media_url + '\')" class="mr-2 small text-muted"><i class="icofont-plus"></i> ' + _langJS.insert_to_article + '</a>';
             } else if (image.media_type === 'audio') {
-                html = '<a href="javascript:insert_media_audio(\'' + image.media_url + '\')" class="btn btn-sm"><i class="icofont-plus"></i> ' + _langJS.insert_to_article + '</a>';
+                html = '<a href="javascript:insert_media_audio(\'' + image.media_url + '\')" class="mr-2 small text-muted"><i class="icofont-plus"></i> ' + _langJS.insert_to_article + '</a>';
             } else if (image.media_type === 'zip') {
-                html = '<a href="javascript:insert_media(\'' + image.media_down_url_pub + '\', \'' + image.media_name + '\')" class="btn btn-sm"><i class="icofont-plus"></i> ' + _langJS.public_download + '</a>';
-                html += '<a href="javascript:insert_media(\'' + image.media_down_url + '\', \'' + image.media_name + '\')" class="btn btn-sm"><i class="icofont-plus"></i> ' + _langJS.login_download + '</a>';
+                html = '<a href="javascript:insert_media(\'' + image.media_down_url_pub + '\', \'' + image.media_name + '\')" class="mr-2 small text-muted"><i class="icofont-plus"></i> ' + _langJS.public_download + '</a>';
+                html += '<a href="javascript:insert_media(\'' + image.media_down_url + '\', \'' + image.media_name + '\')" class="mr-2 small text-muted"><i class="icofont-plus"></i> ' + _langJS.login_download + '</a>';
             } else {
-                html = '<a href="javascript:insert_media(\'' + image.media_url + '\', \'' + image.media_name + '\')" class="btn btn-sm"><i class="icofont-plus"></i> ' + _langJS.insert_to_article + '</a>';
+                html = '<a href="javascript:insert_media(\'' + image.media_url + '\', \'' + image.media_name + '\')" class="mr-2 small text-muted"><i class="icofont-plus"></i> ' + _langJS.insert_to_article + '</a>';
             }
         }
-        return html;
+        return '<span>' + html + '</span>';
     }
 };
 
