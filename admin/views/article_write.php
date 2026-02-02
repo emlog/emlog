@@ -76,8 +76,13 @@
             <div class="shadow-sm p-3 bg-white rounded" id="post_side">
                 <div class="form-group">
                     <label><?= _lang('cover') ?>：</label>
-                    <input name="cover" id="cover" class="form-control" maxlength="2048" placeholder="" value="<?= $cover ?>" />
-                    <small class="text-muted"><?= _lang('cover_tip_1') ?><a href="#" data-toggle="modal" data-target="#mediaModal" data-mode="cover"><?= _lang('select_from_media_lib') ?></a></small>
+                    <div class="input-group">
+                        <input name="cover" id="cover" class="form-control" maxlength="2048" placeholder="" value="<?= $cover ?>" />
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target="#mediaModal" data-mode="cover"><?= _lang('select') ?></button>
+                        </div>
+                    </div>
+                    <small class="text-muted"><?= _lang('cover_tip') ?></small>
                     <div class="row mt-3">
                         <div class="col-md-4">
                             <label for="upload_img">

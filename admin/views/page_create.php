@@ -32,8 +32,13 @@
             </div>
             <div class="shadow-sm p-3 mb-2 bg-white rounded">
                 <div class="form-group">
-                    <input name="cover" id="cover" class="form-control" placeholder="<?= _lang('cover_url') ?>" value="<?= $cover ?>" />
-                    <small class="text-muted"><?= _lang('cover_tip') ?><a href="#mediaModal" data-toggle="modal" data-mode="cover" data-target="#mediaModal"><?= _lang('select_from_media') ?></a></small>
+                    <div class="input-group">
+                        <input name="cover" id="cover" class="form-control" placeholder="<?= _lang('cover_url') ?>" value="<?= $cover ?>" />
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target="#mediaModal" data-mode="cover"><?= _lang('select') ?></button>
+                        </div>
+                    </div>
+                    <small class="text-muted"><?= _lang('cover_tip') ?></small>
                     <div class="row mt-3">
                         <div class="col-md-4">
                             <label for="upload_img">

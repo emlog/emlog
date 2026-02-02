@@ -71,6 +71,7 @@ return [
     'search' => 'Search',
     'copy_success' => 'Copied',
     'load_more' => 'Load More',
+    'select' => 'Select',
 
     // Microblog
     'twitter_note' => 'Microblog',
@@ -717,7 +718,6 @@ return [
     'publish_now' => 'Publish Now',
     'save_draft' => 'Save Draft',
     'save_and_return' => 'Save & Return',
-    'cover_tip_1' => 'Enter cover URL, click below to upload or ',
     'select_from_media_lib' => 'Select from Media Library',
     'cover_image' => 'Cover Image',
     'auto_cover_from_content' => 'Automatically use first image as cover',
@@ -866,7 +866,7 @@ return [
     'page_template' => 'Page Template:',
     'template_tip' => 'Select page template supported by current theme, optional',
     'save_return' => 'Save and Return',
-    'cover_tip' => 'Enter cover URL, upload below or select from ',
+    'cover_tip' => 'Enter cover URL',
     'select_from_media' => 'Media Library',
     'page_alias_tip' => 'Alphanumeric, used for ',
     'select_media_sort' => 'Select Media Category...',

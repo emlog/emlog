@@ -71,6 +71,7 @@ return [
     'search' => '搜索',
     'copy_success' => '已复制',
     'load_more' => '加载更多',
+    'select' => '选择',
 
     // Twitter
     'twitter_note' => '微语笔记',
@@ -717,7 +718,7 @@ return [
     'publish_now' => '立即发布',
     'save_draft' => '保存草稿',
     'save_and_return' => '保存并返回',
-    'cover_tip_1' => '填写封面图URL、点击下方上传或从',
+    'cover_tip' => '填写封面图URL、点击下方上传',
     'select_from_media_lib' => '资源库选择',
     'cover_image' => '封面图片',
     'auto_cover_from_content' => '自动获取文中图片作为封面',
@@ -866,7 +867,6 @@ return [
     'page_template' => '页面模板：',
     'template_tip' => '选择当前模板支持的页面模板，可不选',
     'save_return' => '保存并返回',
-    'cover_tip' => '填写封面图URL、点击下方上传或从',
     'select_from_media' => '资源库选择',
     'page_alias_tip' => '英文字母、数字组成，用于',
     'select_media_sort' => '选择资源分类…',
