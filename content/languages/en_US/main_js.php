@@ -85,4 +85,5 @@ return [
     'upload_media' => 'Upload Media',
     'confirm_delete_media' => 'Are you sure you want to delete this media?',
     'load_more' => 'Load More',
+    'set_as_category_image' => 'Set as Category Image',
 ];

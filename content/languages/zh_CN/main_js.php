@@ -85,4 +85,5 @@ return [
     'upload_media' => '上传图片/文件',
     'confirm_delete_media' => '确定要删除该资源吗？',
     'load_more' => '加载更多',
+    'set_as_category_image' => '设为分类图像',
 ];

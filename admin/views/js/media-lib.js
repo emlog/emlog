@@ -114,7 +114,7 @@ var MediaLib = {
             }
         } else if (mode === 'category') {
              if (image.media_type === 'image') {
-                var btnText = (typeof _langJS.set_as_sort_image !== 'undefined') ? _langJS.set_as_sort_image : '设为分类图像';
+                var btnText = (typeof _langJS.set_as_sort_image !== 'undefined') ? _langJS.set_as_sort_image : _langJS.set_as_category_image;
                 // Using global function insert_sort_img which must be defined in the page
                 html = '<a href="javascript:insert_sort_img(\'' + image.media_icon + '\')" class="btn btn-sm"><i class="icofont-image"></i> ' + btnText + '</a>';
              }
