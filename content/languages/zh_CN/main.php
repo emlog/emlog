@@ -275,7 +275,6 @@ return [
     'site_url' => '站点地址',
     'detect_site_url' => '自动检测站点地址',
     'detect_site_url_desc' => '自动检测站点地址 (如开启后首页样式丢失，请关闭并手动填写站点地址)',
-    'timezone' => '你所在时区',
     'icp_number' => 'ICP备案号',
     'footer_info' => '首页底部信息(支持HTML)',
     'comment_setting' => '评论设置',
@@ -333,7 +332,6 @@ return [
     'mail_config_example' => '以QQ邮箱配置为例',
     'mail_example_content' => '发送人邮箱：你的QQ邮箱<br>SMTP密码：见QQ邮箱顶部设置-> 账户 -> 开启IMAP/SMTP服务 -> 生成授权码（即为SMTP密码）<br>发送人名称：你的姓名或者站点名称<br>SMTP服务器：smtp.qq.com<br>端口：465',
     'input_receiver_email' => '输入接收邮箱',
-    'send' => '发送',
     'mail_template' => '邮件模板',
     'select_template' => '选择模板',
     'template_simple' => '简约',
@@ -343,7 +341,6 @@ return [
     'mail_template_vars' => '模板变量：{{mail_content}} 邮件内容，{{mail_site_title}} 站点标题',
     'mail_notice_comment' => '评论通知（评论通知文章作者，回复评论通知评论人）',
     'mail_notice_post' => '文章投稿通知（仅发送到创始人邮箱）',
-    'sending' => '发送中...',
     'send_success' => '发送成功',
 
     // Setting - SEO
@@ -435,7 +432,7 @@ return [
     'email_change_success' => '邮箱修改成功',
     'nickname_required' => '昵称不能为空',
     'nickname_exists' => '昵称已被占用',
-    'username_exists' => '登录名已被占用',
+    'username_exists' => '用户名已被占用',
     'password_too_short' => '密码不得小于6位',
     'password_mismatch' => '两次密码不一致',
     'email_invalid' => '请正确填写邮箱',
@@ -690,16 +687,13 @@ return [
     'order_admin' => '管理优先',
     'order_forbid' => '禁用优先',
     'search_user_placeholder' => '输入邮箱或用户昵称搜索...',
-    'avatar' => '头像',
     'login_ip' => '登录IP',
     'active_time' => '活跃时间',
     'create_time' => '创建时间',
     'forbidden' => '已禁用',
-    'credits' => '积分',
     'user_count_per_page' => '有 %s 个用户，每页显示',
     'role_writer' => '注册用户',
     'role_editor' => '内容编辑',
-    'role_admin' => '管理员',
     'role_founder' => '创始人',
     'role_visitor' => '游客',
     'login_email' => '登录邮箱',
@@ -876,11 +870,7 @@ return [
     'cover_tip' => '填写封面图URL、点击下方上传或从',
     'select_from_media' => '资源库选择',
     'page_alias_tip' => '英文字母、数字组成，用于',
-    'allow_comment' => '允许评论',
     'select_media_sort' => '选择资源分类…',
-    'upload_cover' => '上传封面',
-    'crop_tip' => '按住 Shift 等比例调整裁剪区域',
-    'upload_cover_error' => '上传封面出错了',
 
     // User Center
     'uc_center' => '个人中心',
@@ -893,7 +883,6 @@ return [
     'input_avatar_url' => '请输入头像URL',
     'username_login_tip' => '用户名（为空则使用邮箱登录）',
     'new_password_tip' => '新密码(不修改请留空)',
-    'nickname_required' => '昵称不能为空',
     'email_username_empty' => '邮箱和用户名不能都为空',
 
     // Log Controller
@@ -910,8 +899,6 @@ return [
     'operate_too_fast' => '操作太频繁',
     'cancel_failed' => '取消失败',
     'fill_nickname' => '请填写昵称',
-    'username_exists' => '用户名已被占用',
-    'role_editor' => '内容编辑',
 
     // Timezone
     'tz_Etc_GMT' => '(UTC)协调世界时',

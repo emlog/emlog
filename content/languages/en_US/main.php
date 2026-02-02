@@ -275,7 +275,6 @@ return [
     'site_url' => 'Site URL',
     'detect_site_url' => 'Auto Detect Site URL',
     'detect_site_url_desc' => 'Auto detect site URL (If homepage style is lost after enabling, please disable and manually fill in site URL)',
-    'timezone' => 'Timezone',
     'icp_number' => 'ICP Number',
     'footer_info' => 'Footer Info (HTML supported)',
     'comment_setting' => 'Comment Settings',
@@ -333,7 +332,6 @@ return [
     'mail_config_example' => 'Example (QQ Mail)',
     'mail_example_content' => 'Sender: Your QQ Email<br>SMTP Password: Authorization code from QQ Mail settings<br>Sender Name: Your Name<br>SMTP Server: smtp.qq.com<br>Port: 465',
     'input_receiver_email' => 'Recipient Email',
-    'send' => 'Send',
     'mail_template' => 'Mail Template',
     'select_template' => 'Select Template',
     'template_simple' => 'Simple',
@@ -343,7 +341,6 @@ return [
     'mail_template_vars' => 'Variables: {{mail_content}} Content, {{mail_site_title}} Site Title',
     'mail_notice_comment' => 'Comment Notification',
     'mail_notice_post' => 'Post Notification (To Admin)',
-    'sending' => 'Sending...',
     'send_success' => 'Sent Successfully',
 
     // Setting - SEO
@@ -690,16 +687,13 @@ return [
     'order_admin' => 'Admin First',
     'order_forbid' => 'Banned First',
     'search_user_placeholder' => 'Search by email or nickname...',
-    'avatar' => 'Avatar',
     'login_ip' => 'Login IP',
     'active_time' => 'Last Active',
     'create_time' => 'Joined',
     'forbidden' => 'Banned',
-    'credits' => 'Credits',
     'user_count_per_page' => '%s users per page',
     'role_writer' => 'Writer',
     'role_editor' => 'Editor',
-    'role_admin' => 'Admin',
     'role_founder' => 'Founder',
     'role_visitor' => 'Visitor',
     'login_email' => 'Login Email',
@@ -876,11 +870,7 @@ return [
     'cover_tip' => 'Enter cover URL, upload below or select from ',
     'select_from_media' => 'Media Library',
     'page_alias_tip' => 'Alphanumeric, used for ',
-    'allow_comment' => 'Allow Comments',
     'select_media_sort' => 'Select Media Category...',
-    'upload_cover' => 'Upload Cover',
-    'crop_tip' => 'Hold Shift to maintain aspect ratio',
-    'upload_cover_error' => 'Error uploading cover',
 
     // User Center
     'uc_center' => 'Profile',
@@ -893,7 +883,6 @@ return [
     'input_avatar_url' => 'Please input avatar URL',
     'username_login_tip' => 'Username (Leave empty to login with email)',
     'new_password_tip' => 'New Password (Leave empty if not changing)',
-    'nickname_required' => 'Nickname cannot be empty',
     'email_username_empty' => 'Email and Username cannot both be empty',
 
     // Log Controller
@@ -910,8 +899,6 @@ return [
     'operate_too_fast' => 'Operation too fast',
     'cancel_failed' => 'Cancel failed',
     'fill_nickname' => 'Please enter your nickname',
-    'username_exists' => 'Username already exists',
-    'role_editor' => 'Editor',
 
     // Timezone
     'tz_Etc_GMT' => '(UTC) GMT',
