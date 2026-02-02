@@ -584,7 +584,6 @@ return [
     'store_filter_paid' => 'Paid',
     'store_filter_promo' => 'Promo',
     'store_filter_download_top' => '🔥 Top Downloads',
-    'store_load_more' => 'Load More',
     'store_loading' => 'Loading...',
     'store_processing' => 'Processing...',
     'store_no_result' => 'No results found. The app store is being updated, please stay tuned :)',

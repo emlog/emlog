@@ -84,4 +84,5 @@ return [
     'file_size' => '文件大小：',
     'upload_media' => '上传图片/文件',
     'confirm_delete_media' => '确定要删除该资源吗？',
+    'load_more' => '加载更多',
 ];

@@ -584,7 +584,6 @@ return [
     'store_filter_paid' => '付费',
     'store_filter_promo' => '优惠',
     'store_filter_download_top' => '🔥 下载排行',
-    'store_load_more' => '点击加载更多',
     'store_loading' => '加载中...',
     'store_processing' => '处理中...',
     'store_no_result' => '暂未找到结果，应用商店进货中，敬请期待：）',

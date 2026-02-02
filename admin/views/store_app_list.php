@@ -86,7 +86,7 @@
         <!-- 手动加载更多按钮 -->
         <div class="col-md-12 text-center mb-4" id="loadMoreContainer" style="display: none;">
             <button type="button" class="btn btn-primary" id="loadMoreBtn">
-                <?= _lang('store_load_more') ?>
+                <?= _lang('load_more') ?>
             </button>
         </div>
     <?php else: ?>
@@ -243,7 +243,7 @@
                         if (hasMore) {
                             // 显示手动加载按钮
                             $('#loadMoreContainer').show();
-                            $('#loadMoreBtn').prop('disabled', false).html('<?= _lang("store_load_more") ?>');
+                            $('#loadMoreBtn').prop('disabled', false).html('<?= _lang("load_more") ?>');
                         } else {
                             $('.page').html('<div class="text-center text-muted"><?= _lang("store_loaded_all") ?></div>');
                             // 隐藏手动加载按钮
