@@ -172,7 +172,7 @@
                         <div class="input-group">
                             <input class="form-control" id="sortimg" name="sortimg" type="url" placeholder="https://">
                             <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target="#mediaModal" data-mode="category"><?= _lang('select_from_media_lib') ?></button>
+                                <button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target="#mediaModal" data-mode="category"><?= _lang('select') ?></button>
                             </div>
                         </div>
                     </div>

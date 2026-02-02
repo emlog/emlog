@@ -718,7 +718,6 @@ return [
     'publish_now' => 'Publish Now',
     'save_draft' => 'Save Draft',
     'save_and_return' => 'Save & Return',
-    'select_from_media_lib' => 'Select from Media Library',
     'cover_image' => 'Cover Image',
     'auto_cover_from_content' => 'Automatically use first image as cover',
     'select_category' => 'Select Category...',

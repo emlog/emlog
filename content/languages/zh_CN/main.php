@@ -719,7 +719,6 @@ return [
     'save_draft' => '保存草稿',
     'save_and_return' => '保存并返回',
     'cover_tip' => '填写封面图URL、点击下方上传',
-    'select_from_media_lib' => '资源库选择',
     'cover_image' => '封面图片',
     'auto_cover_from_content' => '自动获取文中图片作为封面',
     'select_category' => '选择分类...',
