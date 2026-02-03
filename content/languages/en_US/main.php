@@ -61,6 +61,7 @@ return [
     'image_size' => 'Image Size',
     'rename' => 'Rename',
     'move_to' => 'Move to',
+    'move' => 'Move',
     'update' => 'Update',
     'forbid' => 'Ban',
     'unforbid' => 'Unban',

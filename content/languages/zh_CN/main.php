@@ -61,6 +61,7 @@ return [
     'image_size' => '图片尺寸',
     'rename' => '改名',
     'move_to' => '移动到',
+    'move' => '移动',
     'update' => '更新',
     'forbid' => '禁用',
     'unforbid' => '解禁',

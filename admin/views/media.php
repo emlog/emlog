@@ -142,6 +142,7 @@
                                 <td><?= $value['addtime'] ?></td>
                                 <td>
                                     <a href="#" data-toggle="modal" data-target="#editMediaModal" data-id="<?= $value['aid'] ?>" data-filename="<?= $media_name ?>" class="badge badge-success"><?= _lang('rename') ?></a>
+                                    <a href="#" data-toggle="modal" data-target="#moveMediaModal" data-id="<?= $value['aid'] ?>" data-sortid="<?= $value['sortid'] ?>" class="badge badge-primary"><?= _lang('move') ?></a>
                                     <a href="javascript: em_confirm(<?= $value['aid'] ?>, 'media', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger"><?= _lang('delete') ?></a>
                                 </td>
                             </tr>
@@ -207,7 +208,10 @@
                                 <?php endif ?>
                             </p>
                             <p class="card-text d-flex justify-content-between">
-                                <a href="javascript: em_confirm(<?= $value['aid'] ?>, 'media', '<?= LoginAuth::genToken() ?>');" class="text-danger small"><?= _lang('delete') ?></a>
+                                <span>
+                                    <a href="javascript: em_confirm(<?= $value['aid'] ?>, 'media', '<?= LoginAuth::genToken() ?>');" class="text-danger small mr-2"><?= _lang('delete') ?></a>
+                                    <a href="#" data-toggle="modal" data-target="#moveMediaModal" data-id="<?= $value['aid'] ?>" data-sortid="<?= $value['sortid'] ?>" class="text-primary small"><?= _lang('move') ?></a>
+                                </span>
                                 <input type="checkbox" name="aids[]" value="<?= $value['aid'] ?>" class="aids" />
                             </p>
                         </div>
@@ -398,6 +402,38 @@
     </div>
 </div>
 
+<div class="modal fade" id="moveMediaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header border-0">
+                <h5 class="modal-title" id="exampleModalLabel"><?= _lang('move_to_sort') ?></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post" action="media.php?action=operate_media">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <select name="sort" id="sort" class="form-control">
+                            <option value="0"><?= _lang('uncategorized') ?></option>
+                            <?php foreach ($sorts as $key => $value): ?>
+                                <option value="<?= $value['id'] ?>"><?= $value['sortname'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <input type="hidden" name="operate" value="move" />
+                    <input type="hidden" name="token" value="<?= LoginAuth::genToken() ?>" />
+                    <input type="hidden" name="aids[]" id="move_aid" value="" />
+                    <button type="button" class="btn btn-sm btn-light" data-dismiss="modal"><?= _lang('cancel') ?></button>
+                    <button type="submit" class="btn btn-sm btn-success"><?= _lang('save') ?></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <script src="./views/js/dropzone.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
 <link rel="stylesheet" type="text/css" href="./views/components/highslide/highslide.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>" />
 <script src="./views/components/highslide/highslide.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
@@ -435,6 +471,15 @@
             var modal = $(this)
             modal.find('.modal-body input').val(filename)
             modal.find('.modal-footer input').val(id)
+        })
+
+        $('#moveMediaModal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            var id = button.data('id')
+            var sortid = button.data('sortid')
+            var modal = $(this)
+            modal.find('#move_aid').val(id)
+            modal.find('#sort').val(sortid)
         })
 
         if (window.outerWidth > 767) {
