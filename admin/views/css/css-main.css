@@ -616,12 +616,10 @@ input[type="checkbox"]:hover, select:hover {
     }
 
     .sd-hidden {
-        width: 0 !important;
+        display: none !important;
     }
 
     #content-wrapper {
-        /* 使移动端页面的高度始终大于菜单栏高度，小于屏幕高度，以防止露出菜单栏  */
-        min-height: 800px;
         height: 100vh;
         position: absolute;
     }
