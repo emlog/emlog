@@ -413,13 +413,15 @@
             </div>
             <form method="post" action="media.php?action=operate_media">
                 <div class="modal-body">
-                    <div class="form-group">
-                        <select name="sort" id="sort" class="form-control">
-                            <option value="0"><?= _lang('uncategorized') ?></option>
-                            <?php foreach ($sorts as $key => $value): ?>
-                                <option value="<?= $value['id'] ?>"><?= $value['sortname'] ?></option>
-                            <?php endforeach; ?>
-                        </select>
+                    <div class="d-flex flex-wrap" style="max-height: 400px; overflow-y: auto;">
+                        <label class="btn btn-outline-success btn-sm m-1 rounded">
+                            <input type="radio" name="sort" value="0" autocomplete="off" hidden> <?= _lang('uncategorized') ?>
+                        </label>
+                        <?php foreach ($sorts as $key => $value): ?>
+                            <label class="btn btn-outline-success btn-sm m-1 rounded">
+                                <input type="radio" name="sort" value="<?= $value['id'] ?>" autocomplete="off" hidden> <?= $value['sortname'] ?>
+                            </label>
+                        <?php endforeach; ?>
                     </div>
                 </div>
                 <div class="modal-footer border-0">
@@ -479,8 +481,19 @@
             var sortid = button.data('sortid')
             var modal = $(this)
             modal.find('#move_aid').val(id)
-            modal.find('#sort').val(sortid)
+
+            // Initial selection state
+            modal.find('.btn').removeClass('active');
+            var $radio = modal.find('input[name="sort"][value="' + sortid + '"]');
+            $radio.prop('checked', true);
+            $radio.closest('.btn').addClass('active');
         })
+
+        // Update active style on click
+        $('#moveMediaModal').on('change', 'input[name="sort"]', function() {
+            $('#moveMediaModal .btn').removeClass('active');
+            $(this).closest('.btn').addClass('active');
+        });
 
         if (window.outerWidth > 767) {
             hs.graphicsDir = './views/components/highslide/graphics/';
