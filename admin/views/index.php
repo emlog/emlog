@@ -270,7 +270,6 @@
             $(".ext-column").sortable({
                 connectWith: ".ext-column",
                 items: '> div',
-                handle: '.card-header',
                 cursor: 'move',
                 placeholder: "ui-state-highlight mb-4",
                 forcePlaceholderSize: true,
