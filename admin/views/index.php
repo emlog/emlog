@@ -187,7 +187,107 @@
     </script>
 <?php endif ?>
 <?php if (User::isAdmin()): ?>
-    <div class="row">
+    <div class="row" id="ext-content-box">
         <?php doAction('adm_main_content') ?>
     </div>
+    <script>
+        $(document).ready(function() {
+            var $box = $("#ext-content-box");
+
+            $box.children().each(function(index) {
+                if (!$(this).attr('id')) {
+                    $(this).attr('id', 'ext-item-' + index);
+                }
+            });
+
+            if ($box.find('.ext-column').length === 0) {
+                $box.append('<div class="col-lg-6 ext-column" id="ext-col-left"></div>');
+                $box.append('<div class="col-lg-6 ext-column" id="ext-col-right"></div>');
+            }
+            var $leftCol = $("#ext-col-left");
+            var $rightCol = $("#ext-col-right");
+
+            function cleanItem($item) {
+                $item.removeClass(function(index, className) {
+                    return (className.match(/(^|\s)col-\S+/g) || []).join(' ');
+                });
+                $item.addClass('mb-4');
+                return $item;
+            }
+
+            var savedData = localStorage.getItem('ext_content_box_layout');
+            var itemsMap = {};
+
+            $box.children().not('.ext-column').each(function() {
+                itemsMap[this.id] = $(this);
+            });
+
+            if (savedData) {
+                try {
+                    var layout = JSON.parse(savedData);
+                    if (layout.left && layout.right) {
+                        $.each(layout.left, function(i, id) {
+                            if (itemsMap[id]) {
+                                $leftCol.append(cleanItem(itemsMap[id]));
+                                delete itemsMap[id];
+                            }
+                        });
+                        $.each(layout.right, function(i, id) {
+                            if (itemsMap[id]) {
+                                $rightCol.append(cleanItem(itemsMap[id]));
+                                delete itemsMap[id];
+                            }
+                        });
+                    } else if (Array.isArray(layout)) {
+                        $.each(layout, function(i, id) {
+                            if (itemsMap[id]) {
+                                var target = (i % 2 === 0) ? $leftCol : $rightCol;
+                                target.append(cleanItem(itemsMap[id]));
+                                delete itemsMap[id];
+                            }
+                        });
+                    }
+                } catch (e) {
+                    console.error(e);
+                }
+            }
+
+            var leftCount = $leftCol.children().length;
+            var rightCount = $rightCol.children().length;
+
+            $.each(itemsMap, function(id, $elem) {
+                var target;
+                if (leftCount <= rightCount) {
+                    target = $leftCol;
+                    leftCount++;
+                } else {
+                    target = $rightCol;
+                    rightCount++;
+                }
+                target.append(cleanItem($elem));
+            });
+
+            $(".ext-column").sortable({
+                connectWith: ".ext-column",
+                items: '> div',
+                handle: '.card-header',
+                cursor: 'move',
+                placeholder: "ui-state-highlight mb-4",
+                forcePlaceholderSize: true,
+                opacity: 0.6,
+                update: function(event, ui) {
+                    var layout = {
+                        left: $leftCol.sortable("toArray"),
+                        right: $rightCol.sortable("toArray")
+                    };
+                    localStorage.setItem('ext_content_box_layout', JSON.stringify(layout));
+                }
+            }).disableSelection();
+
+            $("<style>")
+                .prop("type", "text/css")
+                .html(".ui-state-highlight { height: 100px; background-color: #f8f9fa; border: 1px dashed #ccc; }")
+                .appendTo("head");
+        });
+    </script>
 <?php endif; ?>
