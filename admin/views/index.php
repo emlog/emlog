@@ -267,21 +267,24 @@
                 target.append(cleanItem($elem));
             });
 
-            $(".ext-column").sortable({
-                connectWith: ".ext-column",
-                items: '> div',
-                cursor: 'move',
-                placeholder: "ui-state-highlight mb-4",
-                forcePlaceholderSize: true,
-                opacity: 0.6,
-                update: function(event, ui) {
-                    var layout = {
-                        left: $leftCol.sortable("toArray"),
-                        right: $rightCol.sortable("toArray")
-                    };
-                    localStorage.setItem('ext_content_box_layout', JSON.stringify(layout));
-                }
-            }).disableSelection();
+            // 仅在非移动端（宽度大于768px）启用拖拽
+            if ($(window).width() > 768) {
+                $(".ext-column").sortable({
+                    connectWith: ".ext-column",
+                    items: '> div',
+                    cursor: 'move',
+                    placeholder: "ui-state-highlight mb-4",
+                    forcePlaceholderSize: true,
+                    opacity: 0.6,
+                    update: function(event, ui) {
+                        var layout = {
+                            left: $leftCol.sortable("toArray"),
+                            right: $rightCol.sortable("toArray")
+                        };
+                        localStorage.setItem('ext_content_box_layout', JSON.stringify(layout));
+                    }
+                }).disableSelection();
+            }
 
             $("<style>")
                 .prop("type", "text/css")
