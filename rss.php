@@ -8,6 +8,4 @@
 
 require_once './init.php';
 
-header('Content-type: application/xml');
-
 Rss::generate();

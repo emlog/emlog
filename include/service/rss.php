@@ -81,6 +81,10 @@ xmlns:atom="http://www.w3.org/2005/Atom"
 </channel>
 </rss>
 END;
+        if (ob_get_length()) {
+            ob_clean();
+        }
+        header('Content-Type: application/xml; charset=utf-8');
         echo $rss;
     }
 
