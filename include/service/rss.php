@@ -37,7 +37,7 @@ class Rss
                 } else {
                     $content = extractHtmlData($content, 330);
                 }
-                $content .= ' <a href="' . Url::log($id) . '">阅读全文&gt;&gt;</a>';
+                $content .= ' <a href="' . Url::log($id) . '">阅读全文</a>';
             }
             $content = self::cleanXmlContent($content);
 
