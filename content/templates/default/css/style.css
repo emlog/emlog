@@ -1098,10 +1098,8 @@ body {
 }
 
 .comment-info {
-    text-overflow: ellipsis;
     overflow: hidden;
     margin-top: -8px;
-    white-space: nowrap
 }
 
 /* 边栏处的最新评论信息margin-top应该是0 */

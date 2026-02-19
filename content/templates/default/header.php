@@ -1,7 +1,7 @@
 <?php
 /*
 Template Name: 默认模板
-Version: 1.2.2
+Version: 1.2.3
 Template Url: https://www.emlog.net/template/detail/1167
 Description: 系统默认模板
 Author: emlog
@@ -10,7 +10,7 @@ Author Url: https://www.emlog.net/profiles/cf75dc06
 
 defined('EMLOG_ROOT') || exit('access denied!');
 require_once View::getView('module');
-$v = '1.2.2';
+$v = '1.2.3';
 if (!function_exists('_g')) {
     emMsg(_langTpl('template_plugin_tip'));
 }
