@@ -109,7 +109,7 @@
         <div class="row">
             <div class="col-lg-6 mb-3">
                 <div class="card shadow">
-                    <div class="card-header bg-gradient-warning text-danger">
+                    <div class="card-header text-danger">
                         <h6 class="my-0 font-weight-bold"><?= _lang('register_full_feature') ?></h6>
                     </div>
                     <div class="card-body">

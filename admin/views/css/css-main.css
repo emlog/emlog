@@ -869,3 +869,294 @@ input[type="checkbox"]:hover, select:hover {
     padding: 0.5rem;
     margin-bottom: 0.5rem;
 }
+
+:root {
+    --em-radius-sm: 0.35rem;
+    --em-radius-base: 0.6rem;    /* Increased from 0.25rem */
+    --em-radius-lg: 0.85rem;     /* Increased from 0.3rem */
+    --em-radius-xl: 1rem;
+    
+    --em-shadow-sm: 0 0.125rem 0.25rem rgba(58, 59, 69, 0.075);
+    --em-shadow: 0 0.5rem 1rem rgba(58, 59, 69, 0.1);
+    --em-shadow-lg: 0 1rem 3rem rgba(58, 59, 69, 0.15);
+    
+    --em-input-bg: #fdfdfd;
+    --em-input-border: #eaecf4;
+    --em-input-focus-border: #bac8f3;
+    
+    --em-primary: #4e73df;
+}
+
+.rounded-em-lg {
+    border-radius: var(--em-radius-lg) !important;
+}
+
+.shadow {
+    box-shadow: var(--em-shadow) !important;
+}
+
+.shadow-sm {
+    box-shadow: var(--em-shadow-sm) !important;
+}
+
+.card {
+    border: none;
+    border-radius: var(--em-radius-lg);
+    box-shadow: var(--em-shadow-sm);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-bottom: 1.5rem;
+}
+
+.card:hover {
+    box-shadow: var(--em-shadow);
+    transform: translateY(-2px);
+}
+
+.card-header {
+    background-color: transparent;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    padding: 1rem 1.25rem;
+    font-weight: 600;
+}
+
+.card-footer {
+    background-color: transparent;
+    border-top: none;
+    padding: 1rem 1.25rem;
+}
+
+/* Fix nested cards visibility (e.g. cards inside cards) */
+.card .card {
+    box-shadow: none !important;
+    border: 1px solid #eaecf4 !important;
+    background-color: #f8f9fc;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+/* Ensure card images match the new border radius */
+.card-img-top {
+    border-top-left-radius: var(--em-radius-lg);
+    border-top-right-radius: var(--em-radius-lg);
+}
+
+/* --- Inputs & Forms --- */
+.form-control, .custom-select {
+    border-radius: var(--em-radius-base);
+    border: 1px solid var(--em-input-border);
+    background-color: var(--em-input-bg);
+    padding: 0.5rem 1rem;
+    height: auto;
+    min-height: calc(1.5em + 1rem + 2px);
+    font-size: 0.9rem;
+    transition: all 0.2s ease-in-out;
+}
+
+.form-control:focus, .custom-select:focus {
+    background-color: #fff;
+    border-color: var(--em-input-focus-border);
+    box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.15);
+}
+
+/* Override SB Admin 2 pill styles for consistency */
+.form-control-user {
+    border-radius: var(--em-radius-base) !important;
+}
+
+textarea.form-control {
+    min-height: auto;
+}
+
+/* --- Buttons --- */
+.btn {
+    border-radius: var(--em-radius-base);
+    padding: 0.45rem 1rem;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    box-shadow: none;
+    transition: all 0.2s;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--em-shadow-sm);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn-user {
+    border-radius: var(--em-radius-base) !important;
+}
+
+.btn-sm {
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--em-radius-sm);
+}
+
+.btn-circle {
+    border-radius: 50% !important;
+    padding: 0 !important;
+}
+
+/* --- Navigation & Sidebar --- */
+.sidebar {
+    border-radius: var(--em-radius-lg);
+    box-shadow: var(--em-shadow);
+}
+
+/* Fix mobile sidebar height */
+@media (max-width: 768px) {
+    .sidebar {
+        margin: 0 !important;
+        border-radius: 0 !important;
+        min-height: 100vh;
+    }
+}
+
+.topbar.navbar {
+    border-radius: var(--em-radius-lg);
+    box-shadow: var(--em-shadow-sm) !important;
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(10px);
+}
+
+/* --- Modals & Overlays --- */
+.modal-content {
+    border: none;
+    border-radius: var(--em-radius-xl);
+    box-shadow: var(--em-shadow-lg);
+}
+
+.modal-header {
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    padding: 1.25rem 1.5rem;
+}
+
+.modal-footer {
+    border-top: 1px solid rgba(0,0,0,0.05);
+    padding: 1rem 1.5rem;
+}
+
+/* --- Dropdowns --- */
+.dropdown-menu {
+    border: none;
+    border-radius: var(--em-radius-lg);
+    box-shadow: var(--em-shadow);
+    padding: 0.5rem 0;
+    margin-top: 0.5rem;
+    animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.dropdown-item {
+    padding: 0.5rem 1.25rem;
+    transition: background-color 0.15s;
+}
+
+.dropdown-item:hover {
+    background-color: #f8f9fc;
+}
+
+/* --- Tables --- */
+.table {
+    color: #5a5c69;
+    margin-bottom: 0;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.table th, .table td {
+    padding: 1rem;
+    vertical-align: middle;
+    border-top: 1px solid #eaecf4;
+}
+
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 1px solid #eaecf4;
+    background-color: #f8f9fc;
+    color: #5a5c69;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    border-top: none;
+    white-space: nowrap;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(78, 115, 223, 0.05);
+    transition: background-color 0.2s;
+}
+
+.table-bordered {
+    border: 1px solid #eaecf4;
+}
+
+.table-bordered th, .table-bordered td {
+    border: 1px solid #eaecf4;
+}
+
+.table-responsive {
+    border-radius: var(--em-radius-base);
+    border: 1px solid #eaecf4;
+    margin-bottom: 1.5rem;
+}
+
+.table-responsive .table-bordered {
+    border: none;
+}
+
+/* --- Accordion / Widget Cards --- */
+/* Fix accordion card radius and spacing */
+.accordion .card {
+    margin-bottom: 0.75rem;
+    border-radius: var(--em-radius-base) !important;
+    overflow: hidden;
+    border: 1px solid #eaecf4 !important;
+    box-shadow: none !important; 
+}
+
+.accordion .card-header {
+    border-radius: calc(var(--em-radius-base) - 1px) !important;
+    border-bottom: none;
+}
+
+/* Override Bootstrap's accordion flattening */
+.accordion .card:not(:first-of-type):not(:last-of-type) {
+    border-radius: var(--em-radius-base) !important;
+}
+
+.accordion .card:first-of-type {
+    border-bottom-right-radius: var(--em-radius-base) !important;
+    border-bottom-left-radius: var(--em-radius-base) !important;
+}
+
+.accordion .card:last-of-type {
+    border-top-left-radius: var(--em-radius-base) !important;
+    border-top-right-radius: var(--em-radius-base) !important;
+}
+
+.card-footer {
+    background-color: transparent !important;
+}
+
+.card {
+    overflow: hidden; 
+}
+
+/* Ensure card header radius matches card radius */
+.card-header:first-child {
+    border-radius: calc(var(--em-radius-lg) - 1px) calc(var(--em-radius-lg) - 1px) 0 0;
+}

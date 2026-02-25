@@ -42,7 +42,7 @@
                     <?php endif ?>
                     <div class="markdown t mt-2"><?= $t ?></div>
                 </div>
-                <div class="card-footer bg-white border-0 mt-3 p-3">
+                <div class="card-footer border-0 mt-3 p-3">
                     <p class="text-muted small card-text d-flex justify-content-between">
                         <?= $val['date'] ?> | by <?= $author ?> <?= $private ? '｜ ' . _lang('private') : '' ?>
                         <span>
