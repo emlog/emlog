@@ -1041,30 +1041,6 @@ textarea.form-control {
     padding: 1rem 1.5rem;
 }
 
-/* --- Dropdowns --- */
-.dropdown-menu {
-    border: none;
-    border-radius: var(--em-radius-lg);
-    box-shadow: var(--em-shadow);
-    padding: 0.5rem 0;
-    margin-top: 0.5rem;
-    animation: fadeIn 0.2s ease-out;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.dropdown-item {
-    padding: 0.5rem 1.25rem;
-    transition: background-color 0.15s;
-}
-
-.dropdown-item:hover {
-    background-color: #f8f9fc;
-}
-
 /* --- Tables --- */
 .table {
     color: #5a5c69;
@@ -1152,9 +1128,7 @@ textarea.form-control {
     background-color: transparent !important;
 }
 
-.card {
-    overflow: hidden; 
-}
+
 
 /* Ensure card header radius matches card radius */
 .card-header:first-child {
