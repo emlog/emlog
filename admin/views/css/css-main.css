@@ -1045,24 +1045,23 @@ textarea.form-control {
 .table {
     color: #5a5c69;
     margin-bottom: 0;
-    border-collapse: separate;
+    border-collapse: collapse;
     border-spacing: 0;
 }
 
 .table th, .table td {
     padding: 1rem;
     vertical-align: middle;
+    border: 1px solid #eaecf4;
 }
 
 .table thead th {
     vertical-align: bottom;
-    border-bottom: 1px solid #eaecf4;
     background-color: #f8f9fc;
     color: #5a5c69;
     font-weight: 600;
     text-transform: uppercase;
     font-size: 0.8rem;
-    border-top: none;
     white-space: nowrap;
 }
 
