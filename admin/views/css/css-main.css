@@ -1052,7 +1052,6 @@ textarea.form-control {
 .table th, .table td {
     padding: 1rem;
     vertical-align: middle;
-    border-top: 1px solid #eaecf4;
 }
 
 .table thead th {
@@ -1074,14 +1073,6 @@ textarea.form-control {
 .table-hover tbody tr:hover {
     background-color: rgba(78, 115, 223, 0.05);
     transition: background-color 0.2s;
-}
-
-.table-bordered {
-    border: 1px solid #eaecf4;
-}
-
-.table-bordered th, .table-bordered td {
-    border: 1px solid #eaecf4;
 }
 
 .table-responsive {
@@ -1127,8 +1118,6 @@ textarea.form-control {
 .card-footer {
     background-color: transparent !important;
 }
-
-
 
 /* Ensure card header radius matches card radius */
 .card-header:first-child {
