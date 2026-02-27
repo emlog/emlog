@@ -49,8 +49,8 @@
 </div>
 <div class="card shadow mb-4">
     <div class="card-body">
+        <div class="my-3" id="upMsg"></div>
         <div class="table-responsive">
-            <div class="my-3" id="upMsg"></div>
             <table class="table table-striped table-hover dataTable no-footer">
                 <thead>
                     <tr>
