@@ -2114,6 +2114,14 @@ img.zoom-img {
 
 .mySlides {
     display: none;
+    border-radius: var(--marRadius);
+    overflow: hidden;
+}
+
+.mySlides img {
+    border-radius: var(--marRadius);
+    display: block;
+    object-fit: cover;
 }
 
 .slideshow-prev,
