@@ -118,6 +118,16 @@ var MediaLib = {
                 // Using global function insert_sort_img which must be defined in the page
                 html = '<a href="javascript:insert_sort_img(\'' + image.media_icon + '\')" class="mr-2 small text-muted"><i class="icofont-image"></i> ' + btnText + '</a>';
              }
+        } else if (mode === 'twitter') {
+             if (image.media_type === 'image') {
+                html = '<a href="javascript:insert_media_img(\'' + image.media_icon + '\')" class="mr-2 small text-muted"><i class="icofont-plus"></i> ' + (typeof _langJS.insert_to_note !== 'undefined' ? _langJS.insert_to_note : '插入笔记') + '</a>';
+             } else if (image.media_type === 'video') {
+                html = '<a href="javascript:insert_media_video(\'' + image.media_url + '\')" class="mr-2 small text-muted"><i class="icofont-plus"></i> ' + (typeof _langJS.insert_to_note !== 'undefined' ? _langJS.insert_to_note : '插入笔记') + '</a>';
+             } else if (image.media_type === 'audio') {
+                html = '<a href="javascript:insert_media_audio(\'' + image.media_url + '\')" class="mr-2 small text-muted"><i class="icofont-plus"></i> ' + (typeof _langJS.insert_to_note !== 'undefined' ? _langJS.insert_to_note : '插入笔记') + '</a>';
+             } else {
+                html = '<a href="javascript:insert_media(\'' + image.media_url + '\', \'' + image.media_name + '\')" class="mr-2 small text-muted"><i class="icofont-plus"></i> ' + (typeof _langJS.insert_to_note !== 'undefined' ? _langJS.insert_to_note : '插入笔记') + '</a>';
+             }
         } else { // 'article' or default
             if (image.media_type === 'image') {
                 html = '<a href="javascript:insert_media_img(\'' + image.media_icon + '\')" class="mr-2 small text-muted"><i class="icofont-plus"></i> ' + _langJS.insert_to_article + '</a>' +

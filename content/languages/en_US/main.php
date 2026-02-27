@@ -76,7 +76,6 @@ return [
 
     // Microblog
     'twitter_note' => 'Microblog',
-    'twitter_description' => 'Capture fleeting thoughts, record the bits and pieces of life',
     'twitter_post_forbidden' => 'Sorry, you are restricted from posting microblogs',
     'edit_twitter' => 'Edit Microblog',
     'preview_twitter' => 'Preview Microblog',

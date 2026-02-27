@@ -76,7 +76,6 @@ return [
 
     // Twitter
     'twitter_note' => '微语笔记',
-    'twitter_description' => '捕捉稍纵即逝的想法，记录生活中的点点滴滴',
     'twitter_post_forbidden' => '抱歉，系统限制用户发布微语笔记',
     'edit_twitter' => '编辑微语',
     'preview_twitter' => '预览微语',

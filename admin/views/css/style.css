@@ -542,3 +542,12 @@ body {
 .badge-shadow:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
+
+.private-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 1;
+    font-size: 12px;
+    font-weight: normal;
+}

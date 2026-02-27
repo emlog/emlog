@@ -7,10 +7,12 @@
     <div class="alert alert-danger"><?= _lang('content_required') ?></div><?php endif ?>
 <?php if (isset($_GET['error_forbid'])): ?>
     <div class="alert alert-danger"><?= _lang('twitter_post_forbidden') ?></div><?php endif ?>
-<h1 class="h4 mb-2 text-gray-800"><?= _lang('twitter_note') ?></h1>
-<p class="mb-4"><?= _lang('twitter_description') ?></p>
+<h1 class="h4 mb-2 text-gray-800 mb-4"><?= _lang('twitter_note') ?></h1>
 <form method="post" action="twitter.php?action=post">
     <div class="form-group">
+        <div class="small my-2">
+            <a href="#mediaModal" data-toggle="modal" data-target="#mediaModal" data-mode="twitter"><i class="icofont-plus"></i><?= _lang('media_lib') ?></a>
+        </div>
         <div id="t"><textarea></textarea></div>
     </div>
     <div class="form-row align-items-center">
@@ -25,7 +27,7 @@
         </div>
     </div>
 </form>
-<div class="row mt-5">
+<div class="card-columns mt-5">
     <?php
     foreach ($tws as $val):
         $tid = (int)$val['id'];
@@ -34,27 +36,31 @@
         $t_img = $val['t_img'];
         $t = subString(strip_tags($val['t']), 0, 300) . '...';
     ?>
-        <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card hover-shadow-lg <?= $private ? 'border-danger' : '' ?>">
-                <div class="card-body pointer-cursor" data-toggle="modal" data-target="#tModal" data-t="<?= htmlspecialchars($val['t']) ?>">
-                    <?php if (!empty($t_img)): ?>
-                        <img class="bd-placeholder-img card-img-top" alt="cover" width="100%" height="225" src="<?= $t_img ?>">
-                    <?php endif ?>
-                    <div class="markdown t mt-2"><?= $t ?></div>
-                </div>
-                <div class="card-footer border-0 mt-3 p-3">
-                    <p class="text-muted small card-text d-flex justify-content-between">
-                        <?= $val['date'] ?> | by <?= $author ?> <?= $private ? '｜ ' . _lang('private') : '' ?>
-                        <span>
-                            <a href="#" class="text-muted" data-toggle="modal" data-target="#editModal" data-id="<?= $val['id'] ?>" data-t="<?= htmlspecialchars($val['t_raw']) ?>"><?= _lang('edit') ?></a>
-                            <a href="javascript: em_confirm(<?= $tid ?>, 'tw', '<?= LoginAuth::genToken() ?>');" class="care"><?= _lang('delete') ?></a>
-                        </span>
-                    </p>
-                </div>
+        <div class="card hover-shadow-lg mb-4 <?= $private ? 'border-danger private-card' : '' ?>">
+            <?php if ($private): ?>
+                <span class="private-badge badge badge-danger" title="<?= _lang('private') ?>">
+                    <?= _lang('private') ?> <i class="icofont-lock"></i>
+                </span>
+            <?php endif; ?>
+            <div class="card-body pointer-cursor" data-toggle="modal" data-target="#tModal" data-t="<?= htmlspecialchars($val['t']) ?>">
+                <?php if (!empty($t_img)): ?>
+                    <img class="bd-placeholder-img card-img-top" alt="cover" width="100%" src="<?= $t_img ?>">
+                <?php endif ?>
+                <div class="markdown t mt-2"><?= $t ?></div>
+            </div>
+            <div class="card-footer border-0 mt-3 p-3">
+                <p class="text-muted small card-text d-flex justify-content-between">
+                    <span><?= $val['date'] ?> | by <?= $author ?></span>
+                    <span>
+                        <a href="#" class="text-muted" data-toggle="modal" data-target="#editModal" data-id="<?= $val['id'] ?>" data-t="<?= htmlspecialchars($val['t_raw']) ?>"><?= _lang('edit') ?></a>
+                        <a href="javascript: em_confirm(<?= $tid ?>, 'tw', '<?= LoginAuth::genToken() ?>');" class="care"><?= _lang('delete') ?></a>
+                    </span>
+                </p>
             </div>
         </div>
     <?php endforeach ?>
 </div>
+<?php include View::getAdmView('media_lib'); ?>
 <div class="page"><?= $pageurl ?> </div>
 <div class="text-center small"><?= _lang('total') ?> <?= $twnum ?></div>
 
@@ -100,6 +106,7 @@
     </div>
 </div>
 <script>
+    var Editor;
     $(document).ready(function() {
         initPageScripts();
     });
