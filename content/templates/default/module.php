@@ -556,32 +556,21 @@ function blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allo
                             <input class="form-control com_control comment-mail" id="info_m" autocomplete="off" type="email" name="commail" maxlength="128"
                                 value="<?= $ckmail ?>" size="22"
                                 tabindex="2" placeholder="邮箱" />
+                            <?php if ($verifyCode != ""): ?>
+                                <div class="captcha-container">
+                                    <input type="hidden" id="blog_url" value="<?= BLOG_URL ?>" />
+                                    <?= $verifyCode ?>
+                                </div>
+                            <?php endif; ?>
                         </div>
                     <?php endif ?>
                     <span class="com_submit_p">
                         <?php if (User::isVisitor() && $isLoginComment === 'y'): ?>
                             请先 <a href="./admin/index.php">登录</a> 再评论
                         <?php else: ?>
-                            <input class="btn" <?php if ($verifyCode != "") { ?> type="button" data-toggle="modal" data-target="#myModal" <?php } else { ?> type="submit" <?php } ?>
-                                id="comment_submit" value="<?= _langTpl('submit_comment') ?>" tabindex="6" />
+                            <input class="btn" type="submit" id="comment_submit" value="<?= _langTpl('submit_comment') ?>" tabindex="6" />
                         <?php endif; ?>
                     </span>
-                    <?php if ($verifyCode != "") { ?>
-                        <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content" style="display: table-cell;">
-                                    <input type="hidden" id="blog_url" value="<?= BLOG_URL ?>" />
-                                    <div class="modal-header" style="border-bottom: 0;">输入验证码</div>
-                                    <?= $verifyCode ?>
-                                    <div class="modal-footer" style="border-top: 0;">
-                                        <button type="button" class="btn" id="close-modal" data-dismiss="modal">关闭</button>
-                                        <button type="submit" class="btn" id="comment_submit2">提交</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="lock-screen"></div>
-                        </div>
-                    <?php } ?>
                     <input type="hidden" name="pid" id="comment-pid" value="0" tabindex="1" />
                 </form>
             </div>

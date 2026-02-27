@@ -106,7 +106,7 @@ class Log_Controller
 
         //comments
         $Comment_Model = new Comment_Model();
-        $verifyCode = ISLOGIN == false && $comment_code == 'y' ? "<img src=\"" . BLOG_URL . "include/lib/checkcode.php\" id=\"captcha\" class=\"captcha\" /><input name=\"imgcode\" type=\"text\" class=\"captcha_input\" size=\"5\" tabindex=\"5\" />" : '';
+        $verifyCode = ISLOGIN == false && $comment_code == 'y' ? "<img src=\"" . BLOG_URL . "include/lib/checkcode.php\" id=\"captcha\" class=\"captcha\" /><input name=\"imgcode\" type=\"text\" class=\"captcha_input\" size=\"5\" tabindex=\"5\" placeholder=\"" . _lang('captcha') . "*\" required />" : '';
         $ckname = isset($_COOKIE['commentposter']) ? htmlspecialchars(stripslashes($_COOKIE['commentposter'])) : '';
         $ckmail = isset($_COOKIE['postermail']) ? htmlspecialchars($_COOKIE['postermail']) : '';
         $ckurl = isset($_COOKIE['posterurl']) ? htmlspecialchars($_COOKIE['posterurl']) : '';
