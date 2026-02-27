@@ -115,7 +115,7 @@
                 <?php if (!Register::isRegLocal()) : ?>
                     <div class="sidebar-card">
                         <p class="text-center mb-2"><strong>EMLOG</strong> - <?= ucfirst(Option::EMLOG_VERSION) ?></p>
-                        <a class="btn btn-success btn-sm" href="https://www.emlog.net/register" target="_blank"><?= _lang('upgrade_license') ?></a>
+                        <a class="btn btn-danger btn-sm" href="https://www.emlog.net/register" target="_blank"><?= _lang('upgrade_license') ?></a>
                     </div>
                 <?php endif ?>
             <?php endif ?>
