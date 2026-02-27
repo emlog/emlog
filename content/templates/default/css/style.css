@@ -2,49 +2,49 @@
  * 模板样式表
  */
 :root {
-    --marRadius: 5px;
+    --marRadius: 10px;
     --conBgcolor: #ffffff; /* 导航、卡片、内容的背景颜色 */
-    --bodyBground: #f5f5f6; /* 页面背景颜色 */
-    --fontColor: #5a5c69; /* 普通文本的颜色 */
-    --aColor: #333333; /* a 标签的颜色 */
-    --aHoverColor: #f6607d; /* a 标签 hover 状态的颜色 */
-    --lightColor: #757575; /* 比较浅一点的文本颜色 */
+    --bodyBground: #f0f4f8; /* 页面背景颜色 - 清爽浅蓝灰 */
+    --fontColor: #4a5568; /* 普通文本的颜色 - 深蓝灰 */
+    --aColor: #2d3748; /* a 标签的颜色 */
+    --aHoverColor: #3498db; /* a 标签 hover 状态的颜色 - 亮蓝 */
+    --lightColor: #718096; /* 比较浅一点的文本颜色 */
 
     /* 表单和按钮的常规样式 */
     --inputBgColor: #ffffff;
-    --inputBorderColor: #cccccc;
-    --inputTextColor: #333333;
-    --buttonBgColor: #cccccc;
+    --inputBorderColor: #e2e8f0;
+    --inputTextColor: #2d3748;
+    --buttonBgColor: #3498db; /* 按钮背景 - 亮蓝 */
     --buttonTextColor: #ffffff;
-    --buttonBorderColor: #cccccc;
+    --buttonBorderColor: #3498db;
     --selectBgColor: #ffffff;
-    --selectBorderColor: #cccccc;
-    --selectTextColor: #333333;
-    --dividerColor: #e0e0e0;
-    --borderColor: #00000019;
+    --selectBorderColor: #e2e8f0;
+    --selectTextColor: #2d3748;
+    --dividerColor: #e2e8f0;
+    --borderColor: rgba(0, 0, 0, 0.06);
 }
 
 /* 黑夜模式 */
 [data-theme="dark"] {
-    --conBgcolor: #2e2e2e; /* 导航、卡片、内容的背景颜色 */
-    --bodyBground: #121212; /* 页面背景颜色 */
-    --fontColor: #ffffff; /* 普通文本的颜色 */
-    --aColor: #cfcfcf; /* a 标签的颜色 */
-    --aHoverColor: #f6607d; /* a 标签 hover 状态的颜色 */
-    --lightColor: #757575; /* 比较浅一点的文本颜色 */
+    --conBgcolor: #1a202c; /* 深蓝灰卡片背景 */
+    --bodyBground: #171923; /* 深蓝灰页面背景 */
+    --fontColor: #e2e8f0; /* 浅灰文本 */
+    --aColor: #cbd5e0; /* 链接颜色 */
+    --aHoverColor: #63b3ed; /* 浅蓝 Hover */
+    --lightColor: #a0aec0; /* 辅助文本 */
 
     /* 表单和按钮的黑夜模式样式 */
-    --inputBgColor: #3a3a3a;
-    --inputBorderColor: #5a5a5a;
-    --inputTextColor: #cfcfcf;
-    --buttonBgColor: #444444;
+    --inputBgColor: #2d3748;
+    --inputBorderColor: #4a5568;
+    --inputTextColor: #e2e8f0;
+    --buttonBgColor: #3182ce; /* 蓝色按钮 */
     --buttonTextColor: #ffffff;
-    --buttonBorderColor: #5a5a5a;
-    --selectBgColor: #3a3a3a;
-    --selectBorderColor: #5a5a5a;
-    --selectTextColor: #cfcfcf;
-    --dividerColor: #444444;
-    --borderColor: #848797;
+    --buttonBorderColor: #3182ce;
+    --selectBgColor: #2d3748;
+    --selectBorderColor: #4a5568;
+    --selectTextColor: #e2e8f0;
+    --dividerColor: #2d3748;
+    --borderColor: rgba(255, 255, 255, 0.1);
 }
 
 body {
@@ -83,11 +83,18 @@ input, textarea {
     background-color: var(--inputBgColor);
     border: 1px solid var(--inputBorderColor);
     color: var(--inputTextColor);
-    padding: 10px;
+    padding: 12px 16px;
     border-radius: var(--marRadius);
     font-size: 16px;
     width: 100%;
     box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+}
+
+input:focus, textarea:focus {
+    border-color: var(--buttonBgColor);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
 }
 
 /* 按钮样式 */
@@ -95,16 +102,24 @@ button {
     background-color: var(--buttonBgColor);
     color: var(--buttonTextColor);
     border: 1px solid var(--buttonBorderColor);
-    padding: 10px 20px;
-    border-radius: var(--marRadius);
+    padding: 10px 24px;
+    border-radius: 30px;
     cursor: pointer;
     font-size: 16px;
-    transition: background-color 0.2s, border-color 0.2s;
+    font-weight: 500;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 6px rgba(52, 152, 219, 0.25);
 }
 
 button:hover {
-    background-color: darken(var(--buttonBgColor), 10%);
-    border-color: darken(var(--buttonBorderColor), 10%);
+    filter: brightness(0.9);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(52, 152, 219, 0.35);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(52, 152, 219, 0.25);
 }
 
 /* 下拉选择框样式 */
@@ -112,11 +127,18 @@ select {
     background-color: var(--selectBgColor);
     border: 1px solid var(--selectBorderColor);
     color: var(--selectTextColor);
-    padding: 10px;
+    padding: 12px 16px;
     border-radius: var(--marRadius);
     font-size: 16px;
     width: 100%;
     box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+select:focus {
+    border-color: var(--buttonBgColor);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
 }
 
 /* 分割线样式 */
@@ -644,16 +666,19 @@ body {
     cursor: pointer;
     color: var(--buttonTextColor);
     background-color: var(--buttonBgColor);
-    padding: 10px 15px;
+    padding: 10px 20px;
     font-weight: 600;
-    border-radius: var(--marRadius);
+    border-radius: 30px;
     margin: 10px 0;
     border: none;
-    transition: background-color 0.3s;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 6px rgba(52, 152, 219, 0.25);
 }
 
 .btn:hover {
-    color: #50525e
+    filter: brightness(0.9);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(52, 152, 219, 0.35);
 }
 
 .modal-header {
@@ -713,10 +738,15 @@ body {
    文章列出页的文章摘要卡片和边栏组件卡片的阴影和鼠标浮动后的阴影
 ---------------------------------------------------*/
 .shadow-theme {
-    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.02);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.02);
     border-radius: var(--marRadius);
     background-color: var(--conBgcolor);
-    transition: box-shadow 0.4s
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.shadow-theme:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
 }
 
 /* 日历样式
@@ -769,8 +799,8 @@ body {
 }
 
 .day {
-    color: #212529;
-    background: #eaeaea;
+    color: #2b6cb0;
+    background: #ebf8ff;
     border-radius: var(--marRadius);
 }
 
@@ -800,12 +830,12 @@ body {
 }
 
 [data-theme="dark"] .calendar td a:hover {
-    color: #f6607d;
+    color: var(--aHoverColor);
 }
 
 [data-theme="dark"] .day {
-    color: #cfcfcf;
-    background: #3a3a3a;
+    color: #e2e8f0;
+    background: #2d3748;
     border-radius: var(--marRadius);
 }
 
@@ -815,6 +845,20 @@ body {
 
 [data-theme="dark"] .week {
     color: #a8a8a8;
+}
+
+[data-theme="dark"] .loglist-sort {
+    background-color: rgba(66, 153, 225, 0.15);
+    color: #63b3ed;
+}
+
+[data-theme="dark"] .loglist-sort a {
+    color: #63b3ed;
+}
+
+[data-theme="dark"] .log-topflg {
+    background-color: rgba(252, 129, 129, 0.15);
+    color: #fc8181;
 }
 
 
@@ -827,7 +871,8 @@ body {
 
 .side-bar .widget {
     margin-bottom: 24px;
-    padding: 20px
+    padding: 20px;
+    overflow: hidden;
 }
 
 /* 边栏组件的标题 */
@@ -861,16 +906,21 @@ body {
 }
 
 .pagination a {
-    color: var(--aColor);
+    color: var(--buttonTextColor);
     padding: 5.5px 10px 6px 10px;
     background: var(--buttonBgColor);
     margin: 0 5px;
     line-height: 3;
-    border-radius: 8px
+    border-radius: 8px;
+    transition: all 0.3s;
+    box-shadow: 0 4px 6px rgba(52, 152, 219, 0.25);
 }
 
 .pagination a:hover {
-    text-decoration: none
+    text-decoration: none;
+    filter: brightness(0.9);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(52, 152, 219, 0.35);
 }
 
 #pagenavi {
@@ -1002,16 +1052,21 @@ body {
     margin: 10px 0px;
     float: right;
     margin-right: 1px;
-    border-radius: 8px;
-    border: 1px solid var(--borderColor);
+    border-radius: 20px;
+    border: 1px solid var(--buttonBgColor);
     padding: 7px 10px;
-    justify-content: center
+    justify-content: center;
+    background-color: var(--buttonBgColor);
+    color: var(--buttonTextColor);
+    transition: all 0.3s;
+    box-shadow: 0 4px 6px rgba(52, 152, 219, 0.25);
 }
 
 .comment-post #comment_submit:hover {
     cursor: pointer;
-    color: var(--inputTextColor);
-    background-color: var(--buttonBgColor);
+    filter: brightness(0.9);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(52, 152, 219, 0.35);
 }
 
 .comment-post .input {
@@ -1121,14 +1176,21 @@ body {
 }
 
 .unstyle-li input[type="submit"] {
-    background-color: var(--inputBorderColor);
+    background-color: var(--buttonBgColor);
     color: var(--buttonTextColor);
-    margin-left: -25px;
-    height: 39px;
-    width: 55px;
+    float: left;
+    margin-left: -1px;
+    height: 40px;
+    width: 25%;
     border: 0;
-    border-radius: 0 3px 3px 0;
-    padding: 0
+    border-radius: 0 20px 20px 0;
+    padding: 0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.unstyle-li input[type="submit"]:hover {
+    filter: brightness(0.9);
 }
 
 /*文章条目中的部分样式
@@ -1144,13 +1206,16 @@ body {
     display: inline-block;
     position: relative;
     height: 26px;
-    padding: 3px 4.5px;
+    padding: 3px 10px;
     bottom: 3.5px;
-    font-size: 14px;
+    font-size: 13px;
     margin-left: 8px;
     cursor: default;
-    background-color: antiquewhite;
-    border-radius: 3px;
+    background-color: rgba(245, 101, 101, 0.1);
+    color: #c53030;
+    border-radius: 13px;
+    line-height: 1.5;
+    font-weight: 600;
 }
 
 /* 文章内容页样式
@@ -1253,22 +1318,21 @@ body {
 .loglist-cover {
     width: 100%;
     height: 205px;
-    border-radius: var(--marRadius) 10px 0 0
+    border-radius: var(--marRadius) var(--marRadius) 0 0;
+    overflow: hidden;
+    position: relative;
 }
 
 .loglist-cover img {
-    position: absolute;
-    opacity: 0.8;
-    border-radius: var(--marRadius) 10px 0 0;
+    width: 100% !important;
+    height: 100%;
+    object-fit: cover;
     transition: all 0.4s;
-    clip: rect(50px, 730px, 250px, 0px);
-    margin-top: -50px
+    display: block;
 }
 
 .loglist-cover img:hover {
-    opacity: 0.7;
-    transform: scale(1.01);
-    clip: rect(50px, 730px, 250px, 0px)
+    transform: scale(1.05);
 }
 
 /* 文章分类 */
@@ -1277,36 +1341,31 @@ body {
     display: inline-block;
     position: relative;
     height: 26px;
-    padding: 3px 4.5px;
+    padding: 3px 10px;
     bottom: 3.5px;
-    font-size: 14px;
+    font-size: 13px;
     margin-left: 8px;
     cursor: default;
-    background-color: Lavender;
-    border-radius: 3px;
+    background-color: rgba(52, 152, 219, 0.1);
+    color: var(--buttonBgColor);
+    border-radius: 13px;
+    line-height: 1.5;
+    font-weight: 500;
+}
+
+.loglist-sort a {
+    color: var(--buttonBgColor);
 }
 
 @media (max-width: 415px) {
     .loglist-cover {
         height: 160px;
-        overflow: hidden
-    }
-
-    .loglist-cover img {
-        position: unset;
-        width: 730px;
     }
 }
 
 @media (max-width: 375px) {
     .loglist-cover {
         height: 140px;
-        overflow: hidden
-    }
-
-    .loglist-cover img {
-        position: unset;
-        width: 730px;
     }
 }
 
@@ -1367,17 +1426,25 @@ body {
 
 /* 搜索栏 */
 .search {
-    width: 80%;
+    width: 75%;
     box-shadow: none;
     float: left;
     font-size: 1rem;
-    padding: 0.4rem 0.75rem;
+    padding: 8px 16px;
+    height: 40px;
     line-height: 1.5;
-    color: #495057;
-    border: 1px solid var(--borderColor);
-    /* 兼容 Safari ，Safari默认input会有1px的上下外边距 */
+    color: var(--inputTextColor);
+    border: 1px solid var(--inputBorderColor);
     margin-block: 0;
-    border-radius: 0.25rem
+    border-radius: 20px 0 0 20px;
+    outline: none;
+    transition: all 0.3s;
+}
+
+.search:focus {
+    border-color: var(--buttonBgColor);
+    z-index: 2;
+    position: relative;
 }
 
 /* 文章阅读和文章条目的标签 */
