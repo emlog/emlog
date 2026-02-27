@@ -16,6 +16,7 @@ var myBlog = {
      */
     init: function () {
         this.tocAnalyse()  // toc目录生成
+        this.backToTop()   // 返回顶部功能初始化
         if ($("#comment-info").length === 0) {  // 大屏幕登录状态，评论框下两角变圆角
             $(".commentform #comment").css("height", "140px")
                 .css('border-radius', '10px')
@@ -341,6 +342,27 @@ var myBlog = {
 
         $(".toc-con").toggle()
         $(".log-con").css("margin-left", logLeftMar + 'px')
+    },
+    /**
+     * 返回顶部逻辑
+     */
+    backToTop: function () {
+        var $backToTop = $("#back-to-top");
+        
+        // 滚动监听
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 100) {
+                $backToTop.fadeIn();
+            } else {
+                $backToTop.fadeOut();
+            }
+        });
+
+        // 点击事件
+        $backToTop.click(function () {
+            $('body,html').animate({scrollTop: 0}, 500);
+            return false;
+        });
     }
 
 }

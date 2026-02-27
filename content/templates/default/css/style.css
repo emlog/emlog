@@ -2187,3 +2187,64 @@ img.zoom-img {
         opacity: 1;
     }
 }
+
+/* 右侧悬浮工具栏 */
+.side-toolbar {
+    position: fixed;
+    right: 20px;
+    bottom: 80px;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.side-btn {
+    width: 40px;
+    height: 40px;
+    background-color: var(--conBgcolor);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s;
+    color: var(--fontColor);
+}
+
+.side-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    background-color: var(--buttonBgColor);
+    color: var(--buttonTextColor);
+}
+
+.side-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* 黑暗模式下的样式调整 */
+[data-theme="dark"] .side-btn {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .side-btn:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* 主题图标切换逻辑 */
+.icon-sun {
+    display: none;
+}
+.icon-moon {
+    display: block;
+}
+
+[data-theme="dark"] .icon-sun {
+    display: block;
+}
+[data-theme="dark"] .icon-moon {
+    display: none;
+}
