@@ -36,11 +36,6 @@
     <?php foreach ($templates as $key => $value): ?>
         <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100 border-0 shadow-sm hover-shadow-lg" data-app-alias="<?= $value['tplfile'] ?>" data-app-version="<?= $value['version'] ?>">
-                <div class="card-header border-0 py-3 <?php if ($nonce_template == $value['tplfile']) {
-                                                            echo "bg-success text-white";
-                                                        } ?>">
-                    <h5 class="card-title mb-0 font-weight-bold"><?= $value['tplname'] ?></h5>
-                </div>
                 <div class="card-body p-0">
                     <a href="template.php?action=use&tpl=<?= $value['tplfile'] ?>&token=<?= LoginAuth::genToken() ?>" class="template-preview">
                         <img class="card-img-top" src="<?= $value['preview'] ?>" alt="<?= $value['tplname'] ?>">
@@ -48,9 +43,11 @@
                 </div>
                 <div class="card-footer bg-white border-0 p-4">
                     <div class="mb-3">
-                        <?php if ($nonce_template == $value['tplfile']): ?>
-                            <span class="badge badge-success mr-2"><?= _lang('enabled') ?></span>
-                        <?php endif; ?>
+                        <h5 class="card-title mb-2 font-weight-bold"><?= $value['tplname'] ?>
+                            <?php if ($nonce_template == $value['tplfile']): ?>
+                                <span class="badge badge-success mr-2"><?= _lang('enabled') ?></span>
+                            <?php endif; ?>
+                        </h5>
                         <?php if ($value['version']): ?>
                             <span class="badge badge-light mr-2"><?= _lang('version') ?>：<?= $value['version'] ?></span>
                         <?php endif ?>
@@ -118,21 +115,6 @@
         </div>
     </div>
 </div>
-
-<style>
-    .template-preview {
-        display: block;
-        overflow: hidden;
-    }
-
-    .template-preview img {
-        transition: transform 0.3s ease;
-    }
-
-    .template-preview:hover img {
-        transform: scale(1.05);
-    }
-</style>
 
 <script>
     // 检查更新
