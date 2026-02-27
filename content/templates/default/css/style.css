@@ -2248,3 +2248,13 @@ img.zoom-img {
 [data-theme="dark"] .icon-moon {
     display: none;
 }
+
+/* 修复放大图片被遮挡的问题 */
+.zoom-fix-container {
+    overflow: visible !important;
+}
+
+.zoom-fix-card {
+    z-index: 1000 !important;
+    position: relative; /* 确保 z-index 生效 */
+}

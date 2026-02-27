@@ -23,7 +23,7 @@ ZoomService.prototype._zoom = function (e) {
   if (e.metaKey || e.ctrlKey) {
   return window.open((e.target.getAttribute('data-original') || e.target.src), '_blank')
 }
-if (target.width >= ($(window).width() - Zoom.OFFSET)) return
+
   this._activeZoomClose(true)
   this._activeZoom = new Zoom(target)
   this._activeZoom.zoomImage()
@@ -117,6 +117,11 @@ Zoom.prototype.zoomImage = function () {
 Zoom.prototype._zoomOriginal = function () {
   this._targetImageWrap = document.createElement('div')
   this._targetImageWrap.className = 'zoom-img-wrap'
+  
+  /* Fix: 处理父容器 overflow 和 z-index 问题 */
+  $(this._targetImage).closest('.loglist-cover').addClass('zoom-fix-container');
+  $(this._targetImage).closest('.shadow-theme').addClass('zoom-fix-card');
+
   this._targetImage.parentNode.insertBefore(this._targetImageWrap, this._targetImage)
   this._targetImageWrap.appendChild(this._targetImage)
   $(this._targetImage)
@@ -149,10 +154,10 @@ Zoom.prototype._calculateZoom = function (img) {
 
  /* 修改：比原尺寸大，不需缩小展示，与原尺寸一样，变为原来的1.2倍 */
  if (this._imgScaleFactor < 1) {
-     this._imgScaleFactor = 1
- } else if (this._imgScaleFactor = 1) {
-     this._imgScaleFactor = 1.2
- }
+    this._imgScaleFactor = 1
+  } else if (this._imgScaleFactor == 1) {
+    this._imgScaleFactor = 1.2
+  }
 }
 Zoom.prototype._triggerAnimation = function () {
  this._targetImage.offsetWidth
@@ -220,6 +225,10 @@ if (!$.support.transition) {
 }
 Zoom.prototype.dispose = function () {
 if (this._targetImageWrap && this._targetImageWrap.parentNode) {
+  /* Fix: 移除父容器 overflow 和 z-index 问题修复类 */
+  $(this._targetImage).closest('.loglist-cover').removeClass('zoom-fix-container');
+  $(this._targetImage).closest('.shadow-theme').removeClass('zoom-fix-card');
+  
   $(this._targetImage)
   .removeClass('zoom-img cover-unclip')
   .attr('data-action', 'zoom')
