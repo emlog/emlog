@@ -16,8 +16,11 @@
 
 <!-- 文本对话模型区域 -->
 <div class="card shadow mb-4 mt-2">
-    <div class="card-header">
+    <div class="card-header d-flex align-items-center justify-content-between">
         <h5 class="mb-0"><?= _lang('ai_chat_model'); ?></h5>
+        <a href="javascript:;" class="btn btn-sm btn-success" data-toggle="modal" data-target="#addModelModal" data-model-type="chat">
+            <i class="icofont-plus"></i> <?= _lang('add_chat_model'); ?>
+        </a>
     </div>
     <div class="card-body">
         <div class="row">
@@ -49,32 +52,24 @@
                             <div class="my-3">
                                 <span class="badge badge-gray" style="font-size: 1.2em;"><?= $apiUrlDomain ?></span><br>
                             </div>
-                            <a href="#" class="edit-link small text-primary" data-toggle="modal" data-target="#editModelModal" data-model="<?= $val['model'] ?>" data-url="<?= $val['api_url'] ?>" data-api_key="<?= $apiKey ?>" data-model_key="<?= $k ?>" data-model_type="chat" style="position: absolute; bottom: 10px; right: 40px;"><?= _lang('edit'); ?></a>
-                            <a href="javascript: em_confirm('<?= $k ?>', 'ai_model', '<?= LoginAuth::genToken() ?>');" class="delete-link small text-danger" style="position: absolute; bottom: 10px; right: 10px;"><?= _lang('delete'); ?></a>
+                            <a href="#" class="edit-link small text-primary" data-toggle="modal" data-target="#editModelModal" data-model="<?= $val['model'] ?>" data-url="<?= $val['api_url'] ?>" data-api_key="<?= $apiKey ?>" data-model_key="<?= $k ?>" data-model_type="chat"><?= _lang('edit'); ?></a>
+                            <a href="javascript: em_confirm('<?= $k ?>', 'ai_model', '<?= LoginAuth::genToken() ?>');" class="delete-link small text-danger"><?= _lang('delete'); ?></a>
                         </div>
                     </div>
                 </div>
             <?php endforeach; ?>
-            <div class="col-md-4 mb-3">
-                <div class="card h-100">
-                    <div class="card-body d-flex flex-column align-items-center justify-content-center">
-                        <a type="button" class="" data-toggle="modal" data-target="#addModelModal" data-model-type="chat">
-                            + <?= _lang('add_chat_model'); ?>
-                        </a>
-                        <p class="text-center small text-muted mt-3">
-                            <a href="https://www.emlog.net/docs/ai/ai_emlog" class="text-muted" target="_blank"><?= _lang('view_supported_models'); ?></a>
-                        </p>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </div>
 </div>
 
 <!-- 图像生成模型区域 -->
 <div class="card shadow mb-4">
-    <div class="card-header">
+    <div class="card-header d-flex align-items-center justify-content-between">
         <h5 class="mb-0"><?= _lang('ai_image_model'); ?></h5>
+        <a href="javascript:;" class="btn btn-sm btn-success" data-toggle="modal" data-target="#addModelModal" data-model-type="image">
+            <i class="icofont-plus"></i> <?= _lang('add_image_model'); ?>
+        </a>
     </div>
     <div class="card-body">
         <div class="row">
@@ -103,24 +98,13 @@
                             <div class="my-3">
                                 <span class="badge badge-gray" style="font-size: 1.2em;"><?= $apiUrlDomain ?></span><br>
                             </div>
-                            <a href="#" class="edit-link small text-primary" data-toggle="modal" data-target="#editModelModal" data-model="<?= $val['model'] ?>" data-url="<?= $val['api_url'] ?>" data-api_key="<?= $apiKey ?>" data-model_key="<?= $k ?>" data-model_type="image" style="position: absolute; bottom: 10px; right: 40px;"><?= _lang('edit'); ?></a>
-                            <a href="javascript: em_confirm('<?= $k ?>', 'ai_model', '<?= LoginAuth::genToken() ?>');" class="delete-link small text-danger" style="position: absolute; bottom: 10px; right: 10px;"><?= _lang('delete'); ?></a>
+                            <a href="#" class="edit-link small text-primary" data-toggle="modal" data-target="#editModelModal" data-model="<?= $val['model'] ?>" data-url="<?= $val['api_url'] ?>" data-api_key="<?= $apiKey ?>" data-model_key="<?= $k ?>" data-model_type="image"><?= _lang('edit'); ?></a>
+                            <a href="javascript: em_confirm('<?= $k ?>', 'ai_model', '<?= LoginAuth::genToken() ?>');" class="delete-link small text-danger"><?= _lang('delete'); ?></a>
                         </div>
                     </div>
                 </div>
             <?php endforeach; ?>
-            <div class="col-md-4 mb-3">
-                <div class="card h-100">
-                    <div class="card-body d-flex flex-column align-items-center justify-content-center">
-                        <a type="button" class="" data-toggle="modal" data-target="#addModelModal" data-model-type="image">
-                            + <?= _lang('add_image_model'); ?>
-                        </a>
-                        <p class="text-center small text-muted mt-3">
-                            <a href="https://www.emlog.net/docs/ai/ai_emlog" class="text-muted" target="_blank"><?= _lang('view_supported_models'); ?></a>
-                        </p>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </div>
 </div>
