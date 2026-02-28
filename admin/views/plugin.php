@@ -34,13 +34,13 @@
 <div class="panel-heading d-flex flex-column flex-md-row justify-content-between mb-3">
     <ul class="nav nav-pills justify-content-start mb-2 mb-md-0">
         <li class="nav-item">
-            <a class="nav-link <?= $filter == '' ? 'active' : '' ?>" href="./plugin.php"><?= _lang('all') ?></a>
+            <a class="nav-link active" href="javascript:void(0);" onclick="pluginFilter('all', this);"><?= _lang('all') ?></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link <?= $filter == 'on' ? 'active' : '' ?>" href="./plugin.php?filter=on"><?= _lang('active') ?></a>
+            <a class="nav-link" href="javascript:void(0);" onclick="pluginFilter('active', this);"><?= _lang('active') ?></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link <?= $filter == 'off' ? 'active' : '' ?>" href="./plugin.php?filter=off"><?= _lang('inactive') ?></a>
+            <a class="nav-link" href="javascript:void(0);" onclick="pluginFilter('inactive', this);"><?= _lang('inactive') ?></a>
         </li>
     </ul>
     <div class="w-md-auto">
@@ -83,7 +83,7 @@
                                 $plugin_name = "<a href=\"{$plugin_setting_url}\">{$plugin_name}</a>";
                             }
                     ?>
-                            <tr data-plugin-alias="<?= $val['Plugin'] ?>" data-plugin-version="<?= $val['Version'] ?>" data-plugin-setting-url="<?= $plugin_setting_url ?>" data-plugin-show-url="<?= $val['ShowUrl'] ?>" data-plugin-name="<?= htmlspecialchars($val['Name']) ?>">
+                            <tr data-active="<?= $val['active'] ?>" data-plugin-alias="<?= $val['Plugin'] ?>" data-plugin-version="<?= $val['Version'] ?>" data-plugin-setting-url="<?= $plugin_setting_url ?>" data-plugin-show-url="<?= $val['ShowUrl'] ?>" data-plugin-name="<?= htmlspecialchars($val['Name']) ?>">
                                 <td>
                                     <div class="d-flex align-items-center">
                                         <div class="flex-shrink-0">
@@ -231,7 +231,7 @@
     function toggleSwitch(plugin, id, token) {
         var switchElement = document.getElementById(id);
         var action = switchElement.checked ? 'active' : 'inactive';
-        var filter = '<?= $filter ?>';
+        var filter = '';
 
         togglePluginAjax(plugin, action, token, id, filter);
     }
@@ -278,6 +278,7 @@
 
     function updatePluginSettingLink(switchId, action) {
         var $tr = $('#' + switchId).closest('tr');
+        $tr.data('active', action === 'active' ? 1 : 0);
         var settingUrl = $tr.data('plugin-setting-url') || '';
         var showUrl = $tr.data('plugin-show-url') || '';
         var pluginName = $tr.data('plugin-name') || '';
@@ -320,6 +321,23 @@
             error: function(xhr) {
                 $updateLink.text('<?= _lang('update') ?>').prop('disabled', false);
                 cocoMessage.error('<?= _lang('update_request_failed') ?>', 4000)
+            }
+        });
+    }
+    function pluginFilter(filter, element) {
+        $('.nav-pills .nav-link').removeClass('active');
+        $(element).addClass('active');
+
+        $('#pluginTable tr').each(function() {
+            var isActive = $(this).data('active');
+            if (filter === 'all') {
+                $(this).show();
+            } else if (filter === 'active') {
+                if (isActive == 1) $(this).show();
+                else $(this).hide();
+            } else if (filter === 'inactive') {
+                if (isActive == 0) $(this).show();
+                else $(this).hide();
             }
         });
     }

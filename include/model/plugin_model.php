@@ -95,7 +95,7 @@ class Plugin_Model
         }
     }
 
-    function getPlugins($filter = '')
+    function getPlugins()
     {
         global $emPlugins;
         if (isset($emPlugins)) {
@@ -143,12 +143,6 @@ class Plugin_Model
         $active_plugins = Option::get('active_plugins');
         foreach ($pluginFiles as $plugin) {
             $active = in_array($plugin['file'], $active_plugins) ? 1 : 0;
-            if ($filter == 'on' && !$active) {
-                continue;
-            }
-            if ($filter == 'off' && $active) {
-                continue;
-            }
             $pluginData = $this->getPluginData($plugin['file']);
             if (empty($pluginData['Name'])) {
                 continue;

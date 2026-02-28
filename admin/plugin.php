@@ -14,11 +14,10 @@
 require_once 'globals.php';
 
 $plugin = Input::getStrVar("plugin");
-$filter = Input::getStrVar('filter'); // on or off
 
 if (empty($action) && empty($plugin)) {
     $Plugin_Model = new Plugin_Model();
-    $plugins = $Plugin_Model->getPlugins($filter);
+    $plugins = $Plugin_Model->getPlugins();
 
     // Check if the shortcut is valid
     // $shortcuts is global variable
@@ -121,13 +120,13 @@ if ($action == 'del') {
     $Plugin_Model->rmCallback($plugin);
     $path = preg_replace("/^([\w-]+)\/[\w-]+\.php$/i", "$1", $plugin);
     if ($path === 'tpl_options') {
-        emDirect("./plugin.php?error_sys=1&filter=$filter");
+        emDirect("./plugin.php?error_sys=1");
     }
     if ($path && true === emDeleteFile('../content/plugins/' . $path)) {
         $CACHE->updateCache('options');
-        emDirect("./plugin.php?activate_del=1&filter=$filter");
+        emDirect("./plugin.php?activate_del=1");
     } else {
-        emDirect("./plugin.php?error_a=1&filter=$filter");
+        emDirect("./plugin.php?error_a=1");
     }
 }
 
