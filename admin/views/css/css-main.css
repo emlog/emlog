@@ -1122,3 +1122,10 @@ textarea.form-control {
 .card-header:first-child {
     border-radius: calc(var(--em-radius-lg) - 1px) calc(var(--em-radius-lg) - 1px) 0 0;
 }
+
+/* 仅在非移动端启用扩展模块标题的拖拽手势 */
+@media (min-width: 768px) {
+    .ext-column .card-header {
+        cursor: move;
+    }
+}
