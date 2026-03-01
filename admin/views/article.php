@@ -235,9 +235,9 @@ $isdraft = $draft ? '&draft=1' : '';
 </div>
 <div class="page"><?= $pageurl ?> </div>
 <div class="d-flex justify-content-center mb-4 small">
-    <div class="form-inline">
+    <div class="form-inline d-flex flex-wrap justify-content-center align-items-center">
         <label for="perpage_num" class="mr-2"><?= _lang('total') ?> <?= $logNum ?>, <?= _lang('per_page') ?></label>
-        <select name="perpage_num" id="perpage_num" class="form-control form-control-sm" onChange="changePerPage(this);">
+        <select name="perpage_num" id="perpage_num" class="form-control form-control-sm w-auto" onChange="changePerPage(this);">
             <option value="10" <?= ($perPage == 10) ? 'selected' : '' ?>>10</option>
             <option value="20" <?= ($perPage == 20) ? 'selected' : '' ?>>20</option>
             <option value="50" <?= ($perPage == 50) ? 'selected' : '' ?>>50</option>

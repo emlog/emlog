@@ -62,7 +62,7 @@
 </div>
 <?php include View::getAdmView('media_lib'); ?>
 <div class="page"><?= $pageurl ?> </div>
-<div class="text-center small"><?= _lang('total') ?> <?= $twnum ?></div>
+<div class="text-center small mb-3"><?= _lang('total') ?> <?= $twnum ?></div>
 
 <!--编辑微语-->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog">

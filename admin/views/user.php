@@ -119,9 +119,9 @@
 </div>
 <div class="page"><?= $pageurl ?></div>
 <div class="d-flex justify-content-center mb-4 small">
-    <form action="user.php" method="get" class="form-inline">
+    <form action="user.php" method="get" class="form-inline d-flex flex-wrap justify-content-center align-items-center">
         <label for="perpage_num" class="mr-2"><?= _lang('total') ?> <?= $userCount ?>, <?= _lang('per_page') ?></label>
-        <select name="perpage_num" id="perpage_num" class="form-control form-control-sm" onChange="this.form.submit();">
+        <select name="perpage_num" id="perpage_num" class="form-control form-control-sm w-auto" onChange="this.form.submit();">
             <option value="10" <?= ($perPage == 10) ? 'selected' : '' ?>>10</option>
             <option value="20" <?= ($perPage == 20) ? 'selected' : '' ?>>20</option>
             <option value="50" <?= ($perPage == 50) ? 'selected' : '' ?>>50</option>

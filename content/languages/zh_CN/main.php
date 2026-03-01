@@ -39,7 +39,7 @@ return [
     'nickname' => '昵称',
     'cover' => '封面',
     'total' => '共',
-    'per_page' => '每页显示',
+    'per_page' => '每页',
     'title' => '标题',
     'author' => '作者',
     'time' => '时间',
