@@ -284,36 +284,6 @@
                     <a href="#" class="btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> <?= _lang('widget_add'); ?></a>
                 </div>
 
-                <!--添加自定义组件-->
-                <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content border-0 shadow">
-                            <div class="modal-header border-0">
-                                <h5 class="modal-title" id="exampleModalLabel"><?= _lang('widget_add'); ?></h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <form action="widgets.php?action=setwg&wg=custom_text" method="post">
-                                <div class="modal-body">
-                                    <div class="form-group">
-                                        <label for="new_title"><?= _lang('name'); ?></label>
-                                        <input class="form-control" id="new_title" name="new_title" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="new_content"><?= _lang('widget_content_html_tip'); ?></label>
-                                        <textarea name="new_content" id="new_content" class="form-control" rows="10" required></textarea>
-                                    </div>
-                                </div>
-                                <div class="modal-footer border-0">
-                                    <button type="button" class="btn btn-sm btn-light" data-dismiss="modal"><?= _lang('cancel'); ?></button>
-                                    <button type="submit" class="btn btn-sm btn-success"><?= _lang('save'); ?></button>
-                                    <span id="alias_msg_hook"></span>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <div class="col-lg-6">
@@ -351,6 +321,37 @@
                     </div>
                 </form>
             </div>
+        </div>
+    </div>
+</div>
+
+<!--添加自定义组件-->
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header border-0">
+                <h5 class="modal-title" id="exampleModalLabel"><?= _lang('widget_add'); ?></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="widgets.php?action=setwg&wg=custom_text" method="post">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="new_title"><?= _lang('name'); ?></label>
+                        <input class="form-control" id="new_title" name="new_title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="new_content"><?= _lang('widget_content_html_tip'); ?></label>
+                        <textarea name="new_content" id="new_content" class="form-control" rows="10" required></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-sm btn-light" data-dismiss="modal"><?= _lang('cancel'); ?></button>
+                    <button type="submit" class="btn btn-sm btn-success"><?= _lang('save'); ?></button>
+                    <span id="alias_msg_hook"></span>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -412,7 +413,15 @@
         // 为所有侧边栏设置表单添加ajax提交
         $('form[action^="widgets.php?action=setwg"]').submit(function(event) {
             event.preventDefault();
-            submitForm($(this));
+            var form = $(this);
+            submitForm(form);
+            // 如果是添加自定义组件的表单，提交成功后关闭模态框
+            if (form.closest('#addModal').length > 0) {
+                $('#addModal').modal('hide');
+                setTimeout(function() {
+                    window.location.reload();
+                }, 1000);
+            }
         });
     });
 </script>
