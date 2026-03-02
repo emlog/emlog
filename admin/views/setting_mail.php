@@ -44,27 +44,6 @@
                 <b><?= _lang('mail_config_example'); ?></b><br>
                 <?= _lang('mail_example_content'); ?>
             </div>
-            <!-- 设置接收邮箱的模态框 -->
-            <div class="modal fade" id="testMail">
-                <div class="modal-dialog modal-sm">
-                    <div class="modal-content border-0 shadow">
-                        <div class="modal-header border-0">
-                            <h4 class="modal-title"><?= _lang('send_test'); ?></h4>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <input class="form-control" type="email" name="testTo" placeholder="<?= _lang('input_receiver_email'); ?>">
-                            </div>
-                        </div>
-                        <div class="modal-footer border-0">
-                            <div id="testMailMsg"></div>
-                            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal"><?= _lang('close'); ?></button>
-                            <button type="button" class="btn btn-success btn-sm" id="testSendBtn"><?= _lang('send'); ?></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <h4><?= _lang('mail_template'); ?></h4>
             <div class="my-3">
                 <div class="mb-3" id="mail_template_box"><?= _lang('select_template'); ?>：<a href="javascript:useDefaultTemplate();"><?= _lang('template_simple'); ?></a>
@@ -97,6 +76,27 @@
                 <input type="submit" value="<?= _lang('save'); ?>" class="btn btn-sm btn-success" />
             </div>
         </form>
+    </div>
+</div>
+<!-- 设置接收邮箱的模态框 -->
+<div class="modal fade" id="testMail">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header border-0">
+                <h4 class="modal-title"><?= _lang('send_test'); ?></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <input class="form-control" type="email" name="testTo" placeholder="<?= _lang('input_receiver_email'); ?>">
+                </div>
+            </div>
+            <div class="modal-footer border-0">
+                <div id="testMailMsg"></div>
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal"><?= _lang('close'); ?></button>
+                <button type="button" class="btn btn-success btn-sm" id="testSendBtn"><?= _lang('send'); ?></button>
+            </div>
+        </div>
     </div>
 </div>
 <script>
@@ -220,7 +220,9 @@
         // test sendmail
         $("#testSendBtn").click(function() {
             $("#testMailMsg").html("<small class='text-secondary'>发送中...</small>");
-            $.post("setting.php?action=mail_test", $("#mail_setting_form").serialize(), function(data) {
+            var formData = $("#mail_setting_form").serialize();
+            var testTo = $("input[name='testTo']").val();
+            $.post("setting.php?action=mail_test", formData + "&testTo=" + testTo, function(data) {
                 if (data === '') {
                     $("#testMailMsg").html("<small class='text-success'>发送成功</small>");
                 } else {
