@@ -110,7 +110,7 @@
                 <hr class="sidebar-divider d-none d-md-block">
                 <?php doAction('adm_menu') ?>
                 <div class="text-center d-none d-md-inline">
-                    <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                    <button class="rounded-circle border-0" id="sidebarToggle" type="button"></button>
                 </div>
                 <?php if (!Register::isRegLocal()) : ?>
                     <div class="sidebar-card">
@@ -124,7 +124,7 @@
             <div id="content">
                 <div class="container-fluid" id="main-container">
                     <nav class="navbar navbar-expand navbar-light topbar mb-4 mt-1 static-top shadow d-flex justify-content-between rounded-em-lg">
-                        <button id="sidebarToggleTop" class="btn d-md-none rounded-circle mr-3">
+                        <button id="sidebarToggleTop" class="btn d-md-none rounded-circle mr-3" type="button">
                             <i class="icofont-navigation-menu"></i>
                         </button>
                         <!-- shortcut bar -->
