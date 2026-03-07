@@ -1024,6 +1024,16 @@ textarea.form-control {
     backdrop-filter: blur(10px);
 }
 
+/* Fix mobile sidebar toggle button icon alignment */
+@media (max-width: 767px) {
+    #sidebarToggleTop {
+        padding: 0 !important;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
 /* --- Modals & Overlays --- */
 .modal-content {
     border: none;
