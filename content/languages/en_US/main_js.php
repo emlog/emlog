@@ -10,6 +10,7 @@ return [
     'confirm' => 'Confirm',
     'cancel' => 'Cancel',
     'success' => ' successfully',
+    'select' => 'Select',
 
     // Delete Confirm
     'delete_article' => 'Delete this article?',

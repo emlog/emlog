@@ -100,7 +100,12 @@
                     </div>
                     <div class="form-group">
                         <label for="icon"><?= _lang('icon_url'); ?></label>
-                        <input class="form-control" id="icon" name="icon" type="url">
+                        <div class="input-group">
+                            <input class="form-control" id="icon" name="icon" type="url" placeholder="https://">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target="#mediaModal" data-mode="link"><?= _lang('select') ?></button>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="description"><?= _lang('description'); ?></label>
@@ -118,7 +123,14 @@
     </div>
 </div>
 
+<?php include View::getAdmView('media_lib'); ?>
+
 <script>
+    function insert_link_icon(url) {
+        $('#icon').val(url);
+        $('#mediaModal').modal('hide');
+    }
+
     $(function() {
         $("#menu_category_view").addClass('active');
         $("#menu_view").addClass('show');
@@ -145,6 +157,13 @@
         $("#link_form").submit(function(event) {
             event.preventDefault();
             submitForm("#link_form");
+        });
+
+        // 修复多层模态窗口关闭导致的滚动失效问题
+        $('#mediaModal').on('hidden.bs.modal', function() {
+            if ($('#linkModel').hasClass('show')) {
+                $('body').addClass('modal-open');
+            }
         });
 
         // 拖动排序

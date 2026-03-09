@@ -114,11 +114,17 @@ var MediaLib = {
             }
         } else if (mode === 'category') {
              if (image.media_type === 'image') {
-                var btnText = (typeof _langJS.set_as_sort_image !== 'undefined') ? _langJS.set_as_sort_image : _langJS.set_as_category_image;
+                var btnText = _langJS.set_as_category_image;
                 // Using global function insert_sort_img which must be defined in the page
                 html = '<a href="javascript:insert_sort_img(\'' + image.media_icon + '\')" class="mr-2 small text-muted"><i class="icofont-image"></i> ' + btnText + '</a>';
              }
-        } else if (mode === 'twitter') {
+        } else if (mode === 'link') {
+             if (image.media_type === 'image') {
+                var btnText = _langJS.select;
+                html = '<a href="javascript:insert_media_img(\'' + image.media_icon + '\')" class="mr-2 small text-muted"><i class="icofont-plus"></i> ' + btnText + '</a>';
+             }
+        }
+        else if (mode === 'twitter') {
              if (image.media_type === 'image') {
                 html = '<a href="javascript:insert_media_img(\'' + image.media_icon + '\')" class="mr-2 small text-muted"><i class="icofont-plus"></i> ' + (typeof _langJS.insert_to_note !== 'undefined' ? _langJS.insert_to_note : '插入笔记') + '</a>';
              } else if (image.media_type === 'video') {

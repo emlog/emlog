@@ -10,6 +10,7 @@ return [
     'confirm' => '确认',
     'cancel' => '取消',
     'success' => '成功',
+    'select' => '选择',
 
     // Delete Confirm
     'delete_article' => '删除这篇文章？',
