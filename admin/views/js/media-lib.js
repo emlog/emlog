@@ -118,7 +118,7 @@ var MediaLib = {
         } else if (mode === 'link') {
              if (image.media_type === 'image') {
                 var btnText = _langJS.select;
-                html = '<a href="javascript:insert_media_img(\'' + image.media_icon + '\')" class="mr-2 small text-muted"><i class="icofont-plus"></i> ' + btnText + '</a>';
+                html = '<a href="javascript:insert_link_img(\'' + image.media_icon + '\')" class="mr-2 small text-muted"><i class="icofont-plus"></i> ' + btnText + '</a>';
              }
         }
         else if (mode === 'twitter') {
@@ -175,6 +175,11 @@ function insert_cover(imgsrc) {
 
 function insert_sort_img(url) {
     $('#sortimg').val(url);
+    $('#mediaModal').modal('hide');
+}
+
+function insert_link_img(url) {
+    $('#icon').val(url);
     $('#mediaModal').modal('hide');
 }
 
