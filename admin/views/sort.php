@@ -133,6 +133,12 @@
     </div>
 </form>
 
+<style>
+    #sortModal .modal-body {
+        max-height: 78vh;
+        overflow-y: auto;
+    }
+</style>
 <div class="modal fade" id="sortModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content border-0 shadow">
@@ -281,6 +287,13 @@
 
         // 初始化拖动排序
         $('#dataTable tbody').sortable().disableSelection();
+
+        // 修复多层模态窗口关闭导致的滚动失效问题
+        $('#mediaModal').on('hidden.bs.modal', function() {
+            if ($('#sortModal').hasClass('show')) {
+                $('body').addClass('modal-open');
+            }
+        });
 
         // 分类编辑
         $('#sortModal').on('show.bs.modal', function(event) {
