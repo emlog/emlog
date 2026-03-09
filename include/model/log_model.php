@@ -325,9 +325,11 @@ class Log_Model
             $cookiePassword = isset($_COOKIE['em_logpwd_' . $row['gid']]) ? addslashes(trim($_COOKIE['em_logpwd_' . $row['gid']])) : '';
             if (!empty($row['password']) && $cookiePassword != $row['password']) {
                 $row['excerpt'] = '<p>[该文章已加密，请点击标题输入密码访问]</p>';
+                $row['log_description'] = $row['excerpt'];
+            } else {
+                $log_text = empty($row['excerpt']) ? $row['content'] : $row['excerpt'];
+                $row['log_description'] = preg_replace("/\[.*?\]/", '', $this->Parsedown->text($log_text)); // 过滤短代码 [xxxx]
             }
-
-            $row['log_description'] = $this->Parsedown->text(empty($row['excerpt']) ? $row['content'] : $row['excerpt']);
             $row['attachment'] = '';
             $row['tag'] = '';
             $row['tbcount'] = 0;
