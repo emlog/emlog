@@ -80,9 +80,6 @@ var MediaLib = {
             self.images[image.media_id] = image; // Cache image
             var insertBtnHtml = self.getButtonsHtml(image);
             
-            // Delete button is always present
-            insertBtnHtml += '<a href="javascript:delete_media(\'' + image.media_id + '\')" class="small text-danger"><i class="icofont-trash"></i></a>';
-
             var cardHtml = '<div class="col-md-4">' +
                 '<div class="card mb-2 shadow-sm">' +
                 '<a href="' + image.media_url + '" target="_blank"><img class="card-img-top" src="' + image.media_icon + '"/></a>' +
@@ -179,21 +176,6 @@ function insert_cover(imgsrc) {
 function insert_sort_img(url) {
     $('#sortimg').val(url);
     $('#mediaModal').modal('hide');
-}
-
-function delete_media(id) {
-    layer.confirm(_langJS.confirm_delete_media, {
-        icon: 3,
-        btn: [_langJS.delete, _langJS.cancel]
-    }, function (index) {
-        $.post('./media.php?action=delete_async', {aid: id}, function () {
-            // Reload using MediaLib
-            MediaLib.page = 1;
-            $('#image-list').html('');
-            MediaLib.load();
-        });
-        layer.close(index);
-    });
 }
 
 $('#mediaModal').on('show.bs.modal', function (event) {
