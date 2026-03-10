@@ -143,12 +143,6 @@ if ($action === 'delete') {
     emDirect("media.php");
 }
 
-if ($action === 'delete_async') {
-    $aid = Input::postIntVar('aid');
-    $Media_Model->deleteMedia($aid);
-    output::ok();
-}
-
 if ($action === 'operate_media') {
     $operate = Input::postStrVar('operate');
     $sort = Input::postIntVar('sort');
