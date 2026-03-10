@@ -27,6 +27,7 @@
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h4 mb-0 text-gray-800"><?= _lang('plugin') ?></h1>
     <div>
+        <a href="store.php?action=plu" class="btn btn-primary btn-sm shadow-sm mt-4 mr-2"><i class="icofont-shopping-cart mr-1"></i><?= _lang('store') ?></a>
         <a href="javascript:em_confirm('', 'inactive_all_plugins', '<?= LoginAuth::genToken() ?>');" class="btn btn-sm btn-danger shadow-sm mt-4"><i class="icofont-close-circled"></i> <?= _lang('close_all_plugins') ?></a>
         <a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#addModal"><i class="icofont-plus"></i> <?= _lang('install_plugin') ?></a>
     </div>
@@ -324,6 +325,7 @@
             }
         });
     }
+
     function pluginFilter(filter, element) {
         $('.nav-pills .nav-link').removeClass('active');
         $(element).addClass('active');

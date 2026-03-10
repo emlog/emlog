@@ -27,7 +27,7 @@
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h4 mb-0 text-gray-800"><?= _lang('tpl_theme') ?></h1>
     <div class="mt-4">
-        <a href="store.php" class="btn btn-primary btn-sm shadow-sm mr-2"><i class="icofont-shopping-cart mr-1"></i><?= _lang('store') ?></a>
+        <a href="store.php?action=tpl" class="btn btn-primary btn-sm shadow-sm mr-2"><i class="icofont-shopping-cart mr-1"></i><?= _lang('store') ?></a>
         <a href="#" class="btn btn-success btn-sm shadow-sm" data-toggle="modal" data-target="#addModal"><i class="icofont-plus mr-1"></i><?= _lang('tpl_install') ?></a>
     </div>
 </div>
