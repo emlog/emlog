@@ -86,69 +86,71 @@
     <?php if ($show === 'list'): ?>
         <!-- 列表模式 -->
         <div class="card shadow mb-4">
-            <div class="card-body table-responsive">
-                <table class="table table-bordered table-striped table-hover dataTable no-footer">
-                    <thead>
-                        <tr>
-                            <th><input type="checkbox" id="checkAllItem" /></th>
-                            <th><?= _lang('media_name') ?></th>
-                            <th><?= _lang('file_size') ?></th>
-                            <th><?= _lang('creator') ?></th>
-                            <th><?= _lang('time') ?></th>
-                            <th><?= _lang('operation') ?></th>
-                        </tr>
-                    </thead>
-                    <tbody class="checkboxContainer">
-                        <?php foreach ($medias as $key => $value):
-                            $media_url = getFileUrl($value['filepath']);
-                            $sort_name = $value['sortname'];
-                            $media_name = $value['filename'];
-                            $author = $user_cache[$value['author']]['name'];
-                            if (isImage($value['mimetype'])) {
-                                $media_icon = '🖼️';
-                                $img_viewer = 'class="highslide" onclick="return hs.expand(this)"';
-                            } elseif (isZip($value['filename'])) {
-                                $media_icon = "📦";
-                                $img_viewer = '';
-                            } elseif (isVideo($value['mimetype'])) {
-                                $media_icon = "🎬";
-                                $img_viewer = '';
-                            } elseif (isAudio($value['filename'])) {
-                                $media_icon = "🎧";
-                                $img_viewer = '';
-                            } else {
-                                $media_icon = "";
-                                $img_viewer = '';
-                            }
-                        ?>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-hover dataTable no-footer">
+                        <thead>
                             <tr>
-                                <td style="width: 20px;"><input type="checkbox" name="aids[]" value="<?= $value['aid'] ?>" class="aids" /></td>
-                                <td>
-                                    <?= $media_icon ?>
-                                    <a href="<?= $media_url ?>" <?= $img_viewer ?> target="_blank"><?= $media_name ?></a> <span class="badge badge-success"><?= $sort_name ?></span>
-                                    <br><span class="small"><?= _lang('source_file') ?>：<a href="#" class="copy-link text-muted" data-toggle="popover" data-url="<?= $media_url ?>"><?= $media_url ?></a></span>
-                                    <?php if ($value['width'] && $value['height']): ?>
-                                        <br><span class="small"><?= _lang('image_size') ?>：<?= $value['width'] ?>x<?= $value['height'] ?></span>
-                                    <?php endif ?>
-                                </td>
-                                <td><?= $value['attsize'] ?></td>
-                                <td>
-                                    <?php if (User::haveEditPermission()): ?>
-                                        <a href="./media.php?uid=<?= $value['author'] ?>"><?= $author ?> </a>
-                                    <?php else: ?>
-                                        <?= $author ?>
-                                    <?php endif; ?>
-                                </td>
-                                <td><?= $value['addtime'] ?></td>
-                                <td>
-                                    <a href="#" data-toggle="modal" data-target="#editMediaModal" data-id="<?= $value['aid'] ?>" data-filename="<?= $media_name ?>" class="badge badge-success"><?= _lang('rename') ?></a>
-                                    <a href="#" data-toggle="modal" data-target="#moveMediaModal" data-id="<?= $value['aid'] ?>" data-sortid="<?= $value['sortid'] ?>" class="badge badge-primary"><?= _lang('move') ?></a>
-                                    <a href="javascript: em_confirm(<?= $value['aid'] ?>, 'media', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger"><?= _lang('delete') ?></a>
-                                </td>
+                                <th><input type="checkbox" id="checkAllItem" /></th>
+                                <th><?= _lang('media_name') ?></th>
+                                <th><?= _lang('file_size') ?></th>
+                                <th><?= _lang('creator') ?></th>
+                                <th><?= _lang('time') ?></th>
+                                <th><?= _lang('operation') ?></th>
                             </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody class="checkboxContainer">
+                            <?php foreach ($medias as $key => $value):
+                                $media_url = getFileUrl($value['filepath']);
+                                $sort_name = $value['sortname'];
+                                $media_name = $value['filename'];
+                                $author = $user_cache[$value['author']]['name'];
+                                if (isImage($value['mimetype'])) {
+                                    $media_icon = '🖼️';
+                                    $img_viewer = 'class="highslide" onclick="return hs.expand(this)"';
+                                } elseif (isZip($value['filename'])) {
+                                    $media_icon = "📦";
+                                    $img_viewer = '';
+                                } elseif (isVideo($value['mimetype'])) {
+                                    $media_icon = "🎬";
+                                    $img_viewer = '';
+                                } elseif (isAudio($value['filename'])) {
+                                    $media_icon = "🎧";
+                                    $img_viewer = '';
+                                } else {
+                                    $media_icon = "";
+                                    $img_viewer = '';
+                                }
+                            ?>
+                                <tr>
+                                    <td style="width: 20px;"><input type="checkbox" name="aids[]" value="<?= $value['aid'] ?>" class="aids" /></td>
+                                    <td>
+                                        <?= $media_icon ?>
+                                        <a href="<?= $media_url ?>" <?= $img_viewer ?> target="_blank"><?= $media_name ?></a> <span class="badge badge-success"><?= $sort_name ?></span>
+                                        <br><span class="small"><?= _lang('source_file') ?>：<a href="#" class="copy-link text-muted" data-toggle="popover" data-url="<?= $media_url ?>"><?= $media_url ?></a></span>
+                                        <?php if ($value['width'] && $value['height']): ?>
+                                            <br><span class="small"><?= _lang('image_size') ?>：<?= $value['width'] ?>x<?= $value['height'] ?></span>
+                                        <?php endif ?>
+                                    </td>
+                                    <td><?= $value['attsize'] ?></td>
+                                    <td>
+                                        <?php if (User::haveEditPermission()): ?>
+                                            <a href="./media.php?uid=<?= $value['author'] ?>"><?= $author ?> </a>
+                                        <?php else: ?>
+                                            <?= $author ?>
+                                        <?php endif; ?>
+                                    </td>
+                                    <td><?= $value['addtime'] ?></td>
+                                    <td>
+                                        <a href="#" data-toggle="modal" data-target="#editMediaModal" data-id="<?= $value['aid'] ?>" data-filename="<?= $media_name ?>" class="badge badge-success"><?= _lang('rename') ?></a>
+                                        <a href="#" data-toggle="modal" data-target="#moveMediaModal" data-id="<?= $value['aid'] ?>" data-sortid="<?= $value['sortid'] ?>" class="badge badge-primary"><?= _lang('move') ?></a>
+                                        <a href="javascript: em_confirm(<?= $value['aid'] ?>, 'media', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger"><?= _lang('delete') ?></a>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     <?php else: ?>
