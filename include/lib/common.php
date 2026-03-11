@@ -536,7 +536,7 @@ function upload($fileName, $tmpFile, $fileSize)
     $extension = getFileSuffix($fileName);
     $file_info = [];
     $file_info['file_name'] = $fileName;
-    $file_info['mime_type'] = get_mimetype($extension);
+    $file_info['mime_type'] = get_mimetype($extension, $tmpFile);
     $file_info['size'] = $fileSize;
     $file_info['width'] = 0;
     $file_info['height'] = 0;
@@ -1076,10 +1076,31 @@ if (!function_exists('hash_hmac')) {
 }
 
 /**
- * 根据文件后缀获取其mine类型
+ * 根据文件后缀获取其MIME类型，并尝试获取文件真实类型
+ * @param string $extension 文件后缀
+ * @param string $filePath 文件路径（可选），如果提供则尝试读取真实MIME类型
  */
-function get_mimetype($extension)
+function get_mimetype($extension, $filePath = '')
 {
+    // 优先尝试获取真实 MIME 类型
+    if ($filePath && file_exists($filePath)) {
+        if (function_exists('finfo_open')) {
+            $finfo = finfo_open(FILEINFO_MIME_TYPE);
+            if ($finfo) {
+                $real_mime = finfo_file($finfo, $filePath);
+                finfo_close($finfo);
+                if ($real_mime) {
+                    return $real_mime;
+                }
+            }
+        } elseif (function_exists('mime_content_type')) {
+            $real_mime = mime_content_type($filePath);
+            if ($real_mime) {
+                return $real_mime;
+            }
+        }
+    }
+
     $ct['txt'] = 'text/plain';
     $ct['asc'] = 'text/plain';
     $ct['css'] = 'text/css';
@@ -1218,7 +1239,8 @@ function uploadCropImg()
 {
     $attach = isset($_FILES['image']) ? $_FILES['image'] : '';
 
-    $uploadCheckResult = Media::checkUpload($attach);
+    // 检查上传文件，并增加对是否为有效图片的校验
+    $uploadCheckResult = Media::checkUpload($attach, 'image');
     if ($uploadCheckResult !== true) {
         Output::error($uploadCheckResult);
     }
@@ -1228,6 +1250,7 @@ function uploadCropImg()
     if (empty($ret['success'])) {
         Output::error($ret['message']);
     }
+
     return $ret;
 }
 

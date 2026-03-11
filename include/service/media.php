@@ -10,7 +10,7 @@
 class Media
 {
 
-    static function checkUpload($attach)
+    static function checkUpload($attach, $type = null)
     {
         if (!$attach) {
             return '上传失败，未收到文件信息，可更换浏览器重试';
@@ -37,6 +37,19 @@ class Media
         if ($fileSize > $maxSize) {
             return '文件太大了，系统限制上传：' . changeFileSize($maxSize);
         }
+
+        // 检查是否为有效图片
+        if ($type == 'image' && !empty($attach['tmp_name'])) {
+            $mimeType = get_mimetype($extension, $attach['tmp_name']);
+            if (strpos($mimeType, 'image/') !== 0) {
+                return '上传失败，仅支持图片文件';
+            }
+            $imageInfo = @getimagesize($attach['tmp_name']);
+            if ($imageInfo === false) {
+                return '上传失败，不支持的图片类型';
+            }
+        }
+
         return true;
     }
 
