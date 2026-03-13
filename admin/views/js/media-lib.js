@@ -133,7 +133,8 @@ var MediaLib = {
              }
         } else { // 'article' or default
             if (image.media_type === 'image') {
-                html = '<a href="javascript:insert_media_img(\'' + image.media_icon + '\')" class="mr-2 small text-muted"><i class="icofont-plus"></i> ' + _langJS.insert_to_article + '</a>';
+                html = '<a href="javascript:insert_media_img(\'' + image.media_icon + '\')" class="mr-2 small text-muted"><i class="icofont-plus"></i> ' + _langJS.insert_to_article + '</a>' +
+                    '<a href="javascript:insert_cover(\'' + image.media_icon + '\')" class="mr-2 small text-muted"><i class="icofont-image"></i> ' + _langJS.set_as_cover + '</a>';
             } else if (image.media_type === 'video') {
                 html = '<a href="javascript:insert_media_video(\'' + image.media_url + '\')" class="mr-2 small text-muted"><i class="icofont-plus"></i> ' + _langJS.insert_to_article + '</a>';
             } else if (image.media_type === 'audio') {
