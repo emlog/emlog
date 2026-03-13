@@ -22,15 +22,18 @@
                 <input class="custom-control-input" type="checkbox" value="y" name="is_openapi" id="is_openapi" <?= $conf_is_openapi ?> />
                 <label class="custom-control-label" for="is_openapi"><?= _lang('enable_api'); ?></label>
             </div>
-            <div class="input-group mt-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"><?= _lang('api_key'); ?></span>
-                </div>
-                <input type="text" class="form-control" disabled value="<?= $apikey ?>">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-success" type="button" onclick="window.location.href='setting.php?action=api_reset&token=<?= LoginAuth::genToken() ?>'">
-                        <?= _lang('reset_api_key'); ?>
-                    </button>
+            <div class="form-group mt-4">
+                <label class="font-weight-bold"><?= _lang('api_key'); ?></label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="apikey" value="<?= $apikey ?>" readonly style="font-family: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace; letter-spacing: 1px;">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" id="copy_apikey">
+                            <i class="icofont-ui-copy"></i>
+                        </button>
+                        <button class="btn btn-outline-danger" type="button" onclick="window.location.href='setting.php?action=api_reset&token=<?= LoginAuth::genToken() ?>'">
+                            <i class="icofont-refresh"></i> <?= _lang('reset_api_key'); ?>
+                        </button>
+                    </div>
                 </div>
             </div>
             <div class="form-group mt-3">
@@ -55,8 +58,16 @@
         $("#menu_sys").addClass('show');
         $("#menu_setting").addClass('active');
         setTimeout(hideActived, 3600);
+        $('[data-toggle="tooltip"]').tooltip();
     });
     $('#setting_api_form').change(function() {
         submitForm('#setting_api_form');
+    });
+    $('#copy_apikey').click(function() {
+        var copyText = document.getElementById("apikey");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); /* For mobile devices */
+        document.execCommand("copy");
+        cocoMessage.success('<?= _lang('copy_success'); ?>', 2000);
     });
 </script>
