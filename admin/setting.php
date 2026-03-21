@@ -260,6 +260,7 @@ if ($action == 'seo_save') {
 
 if ($action == 'mail') {
     $options_cache = $CACHE->readCache('options');
+    $smtp_user = isset($options_cache['smtp_user']) ? $options_cache['smtp_user'] : '';
     $smtp_mail = isset($options_cache['smtp_mail']) ? $options_cache['smtp_mail'] : '';
     $smtp_pw = isset($options_cache['smtp_pw']) ? $options_cache['smtp_pw'] : '';
     $smtp_from_name = isset($options_cache['smtp_from_name']) ? $options_cache['smtp_from_name'] : '';
@@ -280,8 +281,11 @@ if ($action == 'mail') {
 
 if ($action == 'mail_save') {
     LoginAuth::checkToken();
+    $smtpUser = Input::postStrVar('smtp_user');
+    $smtpMail = Input::postStrVar('smtp_mail');
     $data = [
-        'smtp_mail'           => Input::postStrVar('smtp_mail'),
+        'smtp_user'           => $smtpUser ?: $smtpMail,
+        'smtp_mail'           => $smtpMail,
         'smtp_pw'             => Input::postStrVar('smtp_pw'),
         'smtp_from_name'      => Input::postStrVar('smtp_from_name'),
         'smtp_server'         => Input::postStrVar('smtp_server'),
@@ -300,7 +304,16 @@ if ($action == 'mail_save') {
 }
 
 if ($action == 'mail_test') {
+    // 临时记录致命错误，便于排查
+    register_shutdown_function(function () {
+        $lastError = error_get_last();
+        if (!empty($lastError)) {
+            error_log('mail_test shutdown error: ' . json_encode($lastError, JSON_UNESCAPED_UNICODE));
+        }
+    });
+
     $data = [
+        'smtp_user'      => Input::postStrVar('smtp_user'),
         'smtp_mail'      => Input::postStrVar('smtp_mail'),
         'smtp_pw'        => Input::postStrVar('smtp_pw'),
         'smtp_from_name' => Input::postStrVar('smtp_from_name'),
@@ -309,30 +322,93 @@ if ($action == 'mail_test') {
         'testTo'         => Input::postStrVar('testTo'),
     ];
 
+    // 校验测试收件邮箱
     if (!checkMail($data['testTo'])) {
-        exit("<small class='text-info'>请正确填写邮箱</small>");
+        exit("<small class='text-info'>请正确填写收件邮箱</small>");
     }
 
-    $mail = new PHPMailer(true);
-    $mail->IsSMTP();
-    $mail->CharSet = 'UTF-8';
-    $mail->SMTPAuth = true;
-    $mail->SMTPSecure = $data['smtp_port'] == '587' ? 'STARTTLS' : 'ssl';
-    $mail->Port = $data['smtp_port'];
-    $mail->Host = $data['smtp_server'];
-    $mail->Username = $data['smtp_mail'];
-    $mail->Password = $data['smtp_pw'];
-    $mail->From = $data['smtp_mail'];
-    $mail->FromName = $data['smtp_from_name'];
-    $mail->AddAddress($data['testTo']);
-    $mail->Subject = '测试邮件';
-    $mail->isHTML();
-    $mail->Body = Notice::getMailTemplate('这是一封测试邮件');
+    // 校验发件邮箱
+    if (!checkMail($data['smtp_mail'])) {
+        exit("<small class='text-info'>请正确填写发件人邮箱</small>");
+    }
+
+    // 如果没填 smtp_user，则回退到 smtp_mail
+    $smtpUser = !empty($data['smtp_user']) ? $data['smtp_user'] : $data['smtp_mail'];
 
     try {
-        return $mail->Send();
-    } catch (Exception $exc) {
-        exit("<small class='text-danger'>发送失败</small>");
+        $mail = new PHPMailer(true);
+
+        // 基础 SMTP 设置
+        $mail->isSMTP();
+        $mail->CharSet = 'UTF-8';
+        $mail->SMTPAuth = true;
+        $mail->Host = $data['smtp_server'];
+        $mail->Port = (int)$data['smtp_port'];
+        $mail->Username = $smtpUser;
+        $mail->Password = $data['smtp_pw'];
+
+        // 避免长时间卡死
+        $mail->Timeout = 10;
+
+        // 根据端口决定加密方式
+        $port = (int)$mail->Port;
+
+        if (in_array($port, [587, 2587], true)) {
+            // STARTTLS
+            $mail->SMTPSecure = 'tls';
+            if (property_exists($mail, 'SMTPAutoTLS')) {
+                $mail->SMTPAutoTLS = true;
+            }
+        } elseif (in_array($port, [465, 2465], true)) {
+            // SMTPS
+            $mail->SMTPSecure = 'ssl';
+            if (property_exists($mail, 'SMTPAutoTLS')) {
+                $mail->SMTPAutoTLS = false;
+            }
+        } else {
+            // 其他端口维持兼容行为
+            $mail->SMTPSecure = '';
+            if (property_exists($mail, 'SMTPAutoTLS')) {
+                $mail->SMTPAutoTLS = true;
+            }
+        }
+
+        // 调试日志写入 PHP 错误日志
+        $mail->SMTPDebug = 2;
+        $mail->Debugoutput = function ($str, $level) {
+            error_log("PHPMailer[$level] " . $str);
+        };
+
+        // 发件人与收件人
+        $mail->setFrom(
+            $data['smtp_mail'],
+            !empty($data['smtp_from_name']) ? $data['smtp_from_name'] : $data['smtp_mail']
+        );
+        $mail->addAddress($data['testTo']);
+
+        // 邮件内容
+        $mail->Subject = '测试邮件';
+        $mail->isHTML(true);
+        $mail->Body = Notice::getMailTemplate('这是一封测试邮件');
+
+        // 发送
+        $mail->send();
+
+        exit("<small class='text-success'>发送成功</small>");
+    } catch (Throwable $e) {
+        $errorMsg = '';
+
+        if (isset($mail) && !empty($mail->ErrorInfo)) {
+            $errorMsg = $mail->ErrorInfo;
+        }
+
+        if ($errorMsg === '') {
+            $errorMsg = $e->getMessage();
+        }
+
+        error_log('mail_test error: ' . $errorMsg);
+
+        exit("<small class='text-danger'>发送失败：" . htmlspecialchars($errorMsg, ENT_QUOTES, 'UTF-8') . "</small>");
     }
 }
 
