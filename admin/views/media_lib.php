@@ -38,5 +38,6 @@ $mediaSorts = $MediaSort_Model->getSorts();
     </div>
 </div>
 <div class="dropzone-previews" style="display: none;"></div>
+<input type="hidden" id="media_lib_token" value="<?= LoginAuth::genToken() ?>">
 <script src="./views/js/dropzone.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
 <script src="./views/js/media-lib.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>

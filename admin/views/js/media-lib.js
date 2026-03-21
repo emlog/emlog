@@ -85,7 +85,7 @@ var MediaLib = {
                 '<a href="' + image.media_url + '" target="_blank"><img class="card-img-top" src="' + image.media_icon + '"/></a>' +
                 '<div class="card-body">' +
                 '<div class="card-text text-muted small">' + image.media_name + '</div>' +
-                '<p class="card-text d-flex mt-2 justify-content-between">' + insertBtnHtml + '</p>' +
+                '<div class="card-text mt-2 mb-0 d-flex w-100 align-items-center">' + insertBtnHtml + '</div>' +
                 '</div></div></div>';
             $('#image-list').append(cardHtml);
         });
@@ -101,7 +101,7 @@ var MediaLib = {
             $.each(this.options.buttons, function(idx, btn) {
                 html += '<a href="javascript:void(0)" class="mr-2 small text-muted media-lib-custom-btn" data-id="' + image.media_id + '" data-btn-index="' + idx + '"><i class="' + (btn.icon || 'icofont-plus') + '"></i> ' + (btn.text || 'Action') + '</a>';
             });
-            return '<span>' + html + '</span>';
+            return '<div class="d-flex w-100 align-items-center"><span>' + html + '</span></div>';
         }
 
         // Default logic based on mode
@@ -145,8 +145,12 @@ var MediaLib = {
             } else {
                 html = '<a href="javascript:insert_media(\'' + image.media_url + '\', \'' + image.media_name + '\')" class="mr-2 small text-muted"><i class="icofont-plus"></i> ' + _langJS.insert_to_article + '</a>';
             }
+            
+            html = '<div class="d-flex align-items-center">' + html + '</div>';
+            html += '<div class="ml-auto"><a href="javascript:delete_media_lib(' + image.media_id + ')" class="small text-muted" title="' + (typeof _langJS !== 'undefined' && _langJS.delete ? _langJS.delete : '删除') + '"><i class="icofont-trash"></i></a></div>';
+            return '<div class="d-flex w-100 align-items-center">' + html + '</div>';
         }
-        return '<span>' + html + '</span>';
+        return '<div class="d-flex w-100 align-items-center"><span>' + html + '</span></div>';
     }
 };
 
@@ -181,6 +185,34 @@ function insert_sort_img(url) {
 function insert_link_img(url) {
     $('#icon').val(url);
     $('#mediaModal').modal('hide');
+}
+
+function delete_media_lib(id) {
+    var token = $('#media_lib_token').val() || $('#token').val() || '';
+    if (!token) {
+        alert('缺少token参数');
+        return;
+    }
+    var text = (typeof _langJS !== 'undefined' && _langJS.delete_media) ? _langJS.delete_media : '确认删除？';
+    var btnText = (typeof _langJS !== 'undefined' && _langJS.delete) ? _langJS.delete : '删除';
+
+    var doDelete = function() {
+        $.ajax({
+            url: 'media.php?action=delete&aid=' + id + '&token=' + token,
+            type: 'GET',
+            success: function() {
+                MediaLib.page = 1;
+                $('#image-list').empty();
+                MediaLib.load();
+            }
+        });
+    };
+
+    if (typeof delAlert2 === 'function') {
+        delAlert2('', text, doDelete, btnText);
+    } else if (confirm(text)) {
+        doDelete();
+    }
 }
 
 $('#mediaModal').on('show.bs.modal', function (event) {
@@ -255,6 +287,10 @@ var myDropzone = new Dropzone("#mediaAdd", {
         $('#mediaAdd').html(_langJS.uploading);
     },
     init: function () {
+        this.on("totaluploadprogress", function (progress) {
+            var progressStr = progress.toFixed(0) + '%';
+            $('#mediaAdd').html(_langJS.uploading + ' ' + progressStr);
+        });
         this.on("error", function (file, response) {
             alert(response);
         });
