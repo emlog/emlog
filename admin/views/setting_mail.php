@@ -22,6 +22,11 @@
                 <input type="email" class="form-control" value="<?= $smtp_mail ?>" name="smtp_mail">
             </div>
             <div class="form-group">
+                <label><?= _lang('smtp_user'); ?></label>
+                <input type="text" class="form-control" value="<?= isset($smtp_user) ? htmlspecialchars($smtp_user, ENT_QUOTES, 'UTF-8') : '' ?>" name="smtp_user" autocomplete="username" placeholder="<?= _lang('smtp_user_placeholder'); ?>">
+                <small class="form-text text-muted"> <?= _lang('smtp_user_desc'); ?> </small>
+            </div>
+            <div class="form-group">
                 <label><?= _lang('smtp_password'); ?></label>
                 <input type="password" name="smtp_pw" class="form-control" value="<?= $smtp_pw ?>" autocomplete="new-password">
             </div>
@@ -220,16 +225,23 @@
         // test sendmail
         $("#testSendBtn").click(function() {
             $("#testMailMsg").html("<small class='text-secondary'>发送中...</small>");
+
             var formData = $("#mail_setting_form").serialize();
             var testTo = $("input[name='testTo']").val();
-            $.post("setting.php?action=mail_test", formData + "&testTo=" + testTo, function(data) {
-                if (data === '') {
-                    $("#testMailMsg").html("<small class='text-success'>发送成功</small>");
-                } else {
-                    $("#testMailMsg").html(data);
-                }
 
-            });
-        })
+            $.post("setting.php?action=mail_test", formData + "&testTo=" + encodeURIComponent(testTo))
+                .done(function(data) {
+                    $("#testMailMsg").html(data || "<small class='text-success'>发送成功</small>");
+                })
+                .fail(function(xhr) {
+                    // 页面上只显示简短信息
+                    $("#testMailMsg").html(
+                        "<small class='text-danger'>请求失败：HTTP " + xhr.status + "，请检查 PHP 日志</small>"
+                    );
+
+                    // 完整响应放到控制台，避免把整页 HTML 塞进弹窗
+                    console.error("mail_test failed:", xhr.responseText);
+                });
+        });
     });
 </script>
