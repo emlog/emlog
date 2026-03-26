@@ -174,8 +174,10 @@
             event.preventDefault();
             var message = $('#chat-input').val().trim();
             if (message === '') return;
+            function formatChunk(text) {
+                return $('<div>').text(text).html().replace(/\n/g, '<br>');
+            }
 
-            // 显示用户消息
             $('#chat-box').append('<div style="background-color:#69b4ff; color:#FFFFFF; border-radius: 10px; padding: 10px; margin: 5px 0;"><b>😄：</b> ' + $('<div>').text(message).html() + '</div>');
             $('#chat-input').val('');
             $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
@@ -183,9 +185,18 @@
             var $sendBtn = $('#send-btn');
             $sendBtn.prop('disabled', true).text('<?= _lang('sending') ?>');
 
-            // 初始化 EventSource 进行流式通信
             var eventSource = new EventSource('ai.php?action=chat_stream&message=' + encodeURIComponent(message));
-            var $aiMessage = $('<div style="background-color: #f1f1f1; border-radius: 10px; padding: 10px; margin: 5px 0;"><b>🤖：</b> <span class="ai-typing"></span></div>');
+            var $aiMessage = $(
+                '<div class="ai-chat-message">' +
+                '<div><b>🤖：</b></div>' +
+                '<div class="ai-thought-wrap d-none">' +
+                '<div class="ai-thought-content"></div>' +
+                '</div>' +
+                '<div class="ai-answer-wrap">' +
+                '<div class="ai-answer-content"></div>' +
+                '</div>' +
+                '</div>'
+            );
             $('#chat-box').append($aiMessage);
 
             eventSource.onmessage = function(event) {
@@ -195,15 +206,21 @@
                 } else {
                     try {
                         var data = JSON.parse(event.data);
-                        if (data.choices && data.choices[0].delta && (data.choices[0].delta.content || data.choices[0].delta.reasoning_content)) {
-                            var chunk = data.choices[0].delta.content;
-                            var rchunk = data.choices[0].delta.reasoning_content;
-                            var $typing = $aiMessage.find('.ai-typing');
-                            var currentContent = $typing.html();
+                        var choice = data.choices && data.choices[0] ? data.choices[0] : {};
+                        var delta = choice.delta || {};
+                        var messageData = choice.message || {};
+                        var chunk = delta.content || messageData.content || '';
+                        var rchunk = delta.reasoning_content || delta.reasoning || messageData.reasoning_content || messageData.reasoning || '';
+                        if (chunk || rchunk) {
+                            if (rchunk) {
+                                var $thoughtWrap = $aiMessage.find('.ai-thought-wrap');
+                                var $thoughtContent = $aiMessage.find('.ai-thought-content');
+                                $thoughtWrap.removeClass('d-none');
+                                $thoughtContent.html($thoughtContent.html() + formatChunk(rchunk));
+                            }
                             if (chunk) {
-                                $typing.html(currentContent + $('<div>').text(chunk).html().replace(/\n/g, '<br>'));
-                            } else if (rchunk) {
-                                $typing.html(currentContent + $('<div>').text(rchunk).html().replace(/\n/g, '<br>'));
+                                var $answerContent = $aiMessage.find('.ai-answer-content');
+                                $answerContent.html($answerContent.html() + formatChunk(chunk));
                             }
                             $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
                         }
@@ -214,9 +231,8 @@
             };
 
             eventSource.onerror = function() {
-                var $typing = $aiMessage.find('.ai-typing');
-                var currentContent = $typing.html();
-                $typing.html(currentContent + "<?= _lang('connect_error') ?>");
+                var $answerContent = $aiMessage.find('.ai-answer-content');
+                $answerContent.html($answerContent.html() + "<?= _lang('connect_error') ?>");
                 $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
                 $sendBtn.prop('disabled', false).text('<?= _lang('send') ?>');
                 eventSource.close();
