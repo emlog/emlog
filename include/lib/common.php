@@ -1359,10 +1359,10 @@ function parseUBB($content)
         '/\[b\](.*?)\[\/b\]/is' => '<b>$1</b>',
         // 颜色 [color=red]text[/color]
         '/\[color=([#\w]+)\](.*?)\[\/color\]/is' => '<span style="color:$1">$2</span>',
-        // 链接 [url]http://example.com[/url]
-        '/\[url\](.*?)\[\/url\]/is' => '<a href="$1" target="_blank" rel="nofollow">$1</a>',
-        // 图片 [img]url[/img]
-        '/\[img\](.*?)\[\/img\]/is' => '<img src="$1" alt="UBB图片" style="max-width:100%;height:auto;" />',
+        // 链接 [url]http://example.com[/url]，仅允许 http/https
+        '/\[url\]((?:https?:\/\/)[^\s<>"\']+)\[\/url\]/is' => '<a href="$1" target="_blank" rel="nofollow noopener noreferrer">$1</a>',
+        // 图片 [img]url[/img]，仅允许 http/https
+        '/\[img\]((?:https?:\/\/)[^\s<>"\']+)\[\/img\]/is' => '<img src="$1" alt="UBB图片" style="max-width:100%;height:auto;" />',
     );
 
     foreach ($ubbPatterns as $pattern => $replacement) {
