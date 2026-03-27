@@ -56,7 +56,7 @@ var MediaLib = {
                     self.render(resp.data.images);
                 } else if (self.page === 1) {
                     // Empty state
-                    var noImgText = (typeof _langJS.no_images !== 'undefined') ? _langJS.no_images : '暂无图片';
+                    var noImgText = _langJS.nothing;
                     $('#image-list').html('<div class="col-12 text-center text-muted p-5">' + noImgText + '</div>');
                 }
                 

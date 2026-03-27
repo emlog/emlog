@@ -87,4 +87,5 @@ return [
     'confirm_delete_media' => 'Are you sure you want to delete this media?',
     'load_more' => 'Load More',
     'set_as_category_image' => 'Set as Category Image',
+    'nothing' => 'No items found',
 ];
