@@ -591,7 +591,10 @@ function doUp(source, upSQL) {
     updateModalMsg.html(_langJS.uploading_wait);
     updateModalChanges.html("");
 
-    $.get(`./upgrade.php?action=update&source=${source}&upsql=${upSQL}`, function (data) {
+    $.post("./upgrade.php?action=update", {
+        source: source,
+        upsql: upSQL
+    }, function (data) {
         upmsg.removeClass();
         if (data.includes("succ")) {
             upbtn.text(_langJS.refresh_page);

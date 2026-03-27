@@ -36,10 +36,14 @@ if ($action === 'check_update') {
 }
 
 if ($action === 'update' && User::isAdmin()) {
-    $source = Input::getStrVar('source', '');
-    $upsql = Input::getStrVar('upsql', '');
+    $source = Input::postStrVar('source', '');
+    $upsql = Input::postStrVar('upsql', '');
 
     if (empty($source) || empty($upsql)) {
+        exit('error');
+    }
+
+    if (!isAllowedUpgradeHost($source) || !isAllowedUpgradeHost($upsql)) {
         exit('error');
     }
 
@@ -92,4 +96,14 @@ if ($action === 'update' && User::isAdmin()) {
     @unlink($temp_zip_file);
 
     exit('succ');
+}
+
+function isAllowedUpgradeHost($url)
+{
+    if (!filter_var($url, FILTER_VALIDATE_URL)) {
+        return false;
+    }
+    $host = strtolower((string)parse_url($url, PHP_URL_HOST));
+    $allowedHosts = array('www.emlog.net', 'store.emlog.net');
+    return in_array($host, $allowedHosts, true);
 }
