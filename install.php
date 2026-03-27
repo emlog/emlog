@@ -746,4 +746,3 @@ CREATE TABLE {$db_prefix}blog_fields (
     $result .= "<p style=\"text-align:right;\"><a href=\"./\">" . _langInstall('install_visit_home') . "</a> | <a href=\"./admin/\">" . _langInstall('install_login_admin') . "</a></p>";
     emMsg($result, 'none');
 }
-?>

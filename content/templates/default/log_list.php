@@ -124,4 +124,4 @@ defined('EMLOG_ROOT') || exit('access denied!');
     </div>
 </main>
 
-<?php include View::getView('footer') ?>
+<?php include View::getView('footer');

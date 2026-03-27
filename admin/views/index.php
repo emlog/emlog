@@ -291,5 +291,5 @@
                 .html(".ui-state-highlight { height: 100px; background-color: #f8f9fa; border: 1px dashed #ccc; }")
                 .appendTo("head");
         });
-    </script>
-<?php endif; ?>
+</script>
+<?php endif;

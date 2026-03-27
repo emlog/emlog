@@ -582,14 +582,17 @@ function blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allo
  */
 function blog_tool_ishome()
 {
-    if (BLOG_URL . trim(Dispatcher::setPath(), '/') == BLOG_URL) {
+    $path = Dispatcher::setPath();
+    $pathOnly = parse_url($path, PHP_URL_PATH);
+    if ($pathOnly === false || $pathOnly === null) {
+        $pathOnly = $path;
+    }
+    if (BLOG_URL . trim($pathOnly, '/') == BLOG_URL) {
         return true;
     } else {
         return FALSE;
     }
 }
-?>
-<?php
 function getEmUserAvatar($uid, $mail)
 {
     $avatar = '';
@@ -602,4 +605,3 @@ function getEmUserAvatar($uid, $mail)
     }
     return $avatar ?: BLOG_URL . "admin/views/images/avatar.svg";
 }
-?>

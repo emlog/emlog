@@ -22,4 +22,3 @@ defined('EMLOG_ROOT') || exit('access denied!');
 </article>
 <?php
 include View::getView('footer');
-?>
