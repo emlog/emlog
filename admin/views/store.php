@@ -28,6 +28,7 @@
         <a href="./store.php?sid=2" class="badge badge-light text-primary p-2 small"><?= _lang('setting_seo') ?></a>
         <a href="./store.php?sid=8" class="badge badge-light text-primary p-2 small"><?= _lang('store_blog') ?></a>
         <a href="./store.php?sid=21" class="badge badge-light text-primary p-2 small"><?= _lang('store_docs') ?></a>
+        <a href="./store.php?sid=9" class="badge badge-light text-primary p-2 small"><?= _lang('store_bbs') ?></a>
         <a href="./store.php?sid=17" class="badge badge-light text-primary p-2 small"><?= _lang('store_navi') ?></a>
         <a href="./store.php?sid=1" class="badge badge-light text-primary p-2 small"><?= _lang('store_resource') ?></a>
         <a href="./store.php?sid=12" class="badge badge-light text-primary p-2 small"><?= _lang('store_content') ?></a>

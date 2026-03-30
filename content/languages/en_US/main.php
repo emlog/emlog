@@ -550,6 +550,7 @@ return [
     'store_search' => 'Search apps...',
     'store_blog' => 'Blog',
     'store_docs' => 'Docs',
+    'store_bbs' => 'Forum',
     'store_navi' => 'Navigation',
     'store_resource' => 'Resources',
     'store_content' => 'Content',

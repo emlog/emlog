@@ -23,6 +23,9 @@
         <a href="./store.php?action=plu&tag=promo" class="badge badge-danger m-1 p-2"><?= _lang('store_filter_promo') ?></a>
         <a href="./store.php?action=plu&tag=download_top" class="badge badge-light text-primary p-2 small"><?= _lang('store_filter_download_top') ?></a>
         <a href="./store.php?action=plu&tag=paid_top" class="badge badge-light text-primary p-2 small"><?= _lang('store_paid_top') ?></a>
+        <a href="./store.php?action=plu&sid=2" class="badge badge-light text-primary p-2 small"><?= _lang('setting_seo') ?></a>
+        <a href="./store.php?action=plu&sid=11" class="badge badge-light text-primary p-2 small"><?= _lang('store_interaction') ?></a>
+        <a href="./store.php?action=plu&sid=12" class="badge badge-light text-primary p-2 small"><?= _lang('store_content') ?></a>
     </div>
     <div class="d-flex mb-3 mb-sm-0">
         <form action="#" method="get" class="mr-sm-2">
