@@ -50,6 +50,7 @@ return [
     'select_all' => '全选',
     'content' => '内容',
     'top' => '置顶',
+    'article_deleted' => '文章已删除',
     'add_success' => '添加成功',
     'edit_success' => '修改成功',
     'publish_success' => '发布成功',

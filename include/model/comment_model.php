@@ -142,8 +142,12 @@ class Comment_Model
             $condition = "LIMIT $startId, " . $per_page_num;
         }
 
-        $andQuery .= !User::haveEditPermission() ? ' and b.author=' . UID : '';
-        $sql = "SELECT *,a.hide,a.date,a.top FROM $this->table as a, $this->table_blog as b where $andQuery and a.gid=b.gid $orderBy $condition";
+        if (User::haveEditPermission()) {
+            $sql = "SELECT a.*, b.title FROM $this->table as a LEFT JOIN $this->table_blog as b ON a.gid=b.gid where $andQuery $orderBy $condition";
+        } else {
+            $andQuery .= ' and b.author=' . UID;
+            $sql = "SELECT a.*, b.title FROM $this->table as a INNER JOIN $this->table_blog as b ON a.gid=b.gid where $andQuery $orderBy $condition";
+        }
 
         $ret = $this->db->query($sql);
         $comments = [];

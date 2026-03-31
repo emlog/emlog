@@ -68,7 +68,7 @@
                             $comment = $value['comment'];
                             $comment_text = $value['comment_text'];
                             $poster = !empty($value['uid']) ? '<a href="./comment.php?uid=' . $value['uid'] . '">' . $value['poster'] . '</a>' : $value['poster'];
-                            $title = subString($value['title'], 0, 42);
+                            $title = !isset($value['title']) ? '<span class="text-danger">[' . _lang('article_deleted') . ']</span>' : subString($value['title'], 0, 42);
                             $hide = $value['hide'];
                             $date = $value['date'];
                             $top = $value['top'];
@@ -90,7 +90,11 @@
                                     <?php endif ?>
                                 </td>
                                 <td class="small">
-                                    <a href="<?= Url::log($gid) ?>" target="_blank"><?= $title ?></a><br>
+                                    <?php if (!isset($value['title'])): ?>
+                                        <?= $title ?><br>
+                                    <?php else: ?>
+                                        <a href="<?= Url::log($gid) ?>" target="_blank"><?= $title ?></a><br>
+                                    <?php endif; ?>
                                     <a href="comment.php?gid=<?= $gid ?>" class="badge badge-info"><?= _lang('this_article_comments') ?></a>
                                 </td>
                                 <td class="small"><?= $date ?></td>

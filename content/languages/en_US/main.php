@@ -50,6 +50,7 @@ return [
     'select_all' => 'Select All',
     'content' => 'Content',
     'top' => 'Pin',
+    'article_deleted' => 'Article Deleted',
     'add_success' => 'Added successfully',
     'edit_success' => 'Updated successfully',
     'publish_success' => 'Published successfully',
