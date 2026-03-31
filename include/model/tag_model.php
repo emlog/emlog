@@ -70,6 +70,7 @@ class Tag_Model
 
     function addTag($tagStr, $blogId)
     {
+        $blogId = (int)$blogId;
         $tagStr = trim($tagStr);
         $tagStr = str_replace('，', ',', $tagStr);
 
@@ -110,6 +111,7 @@ class Tag_Model
 
     function updateTag($tagStr, $blogId)
     {
+        $blogId = (int)$blogId;
         $tagStr = trim($tagStr);
         $tagStr = str_replace('，', ',', $tagStr);
 
@@ -165,12 +167,18 @@ class Tag_Model
 
     function updateTagName($tagId, $tagName, $kw, $title, $description)
     {
-        $sql = "UPDATE $this->table SET tagname='$tagName', kw='$kw', title='$title', description='$description' WHERE tid=$tagId";
+        $tagId = (int)$tagId;
+        $tagName = $this->db->escape_string($tagName);
+        $kw = $this->db->escape_string($kw);
+        $title = $this->db->escape_string($title);
+        $description = $this->db->escape_string($description);
+        $sql = "UPDATE `$this->table` SET tagname='$tagName', kw='$kw', title='$title', description='$description' WHERE tid=$tagId";
         $this->db->query($sql);
     }
 
     function deleteTag($tagId)
     {
+        $tagId = (int)$tagId;
         // 要删除一个标签，需要先检查哪些文章有引用这个标签，并把这个标签从那些引用中删除
         $linked_blogs = $this->getBlogIdsFromTagId($tagId);
 
@@ -188,6 +196,7 @@ class Tag_Model
      */
     function getIdFromName($tagName)
     {
+        $tagName = $this->db->escape_string($tagName);
         $sql = "SELECT `tid` FROM `$this->table` WHERE `tagname` = '" . $tagName . "'";
         $query = $this->db->query($sql);
 
@@ -206,6 +215,7 @@ class Tag_Model
      */
     function getDetailByName($tagName)
     {
+        $tagName = $this->db->escape_string($tagName);
         $sql = "SELECT * FROM `$this->table` WHERE `tagname` = '" . $tagName . "'";
         $query = $this->db->query($sql);
         $result = [];
@@ -347,6 +357,7 @@ class Tag_Model
             return $this->getAllTagIds();
         }
 
+        $blogId = (int)$blogId;
         $tags = [];
 
         $sql = "SELECT `tags` FROM `$this->table_blog` WHERE `gid` = " . $blogId;
@@ -418,6 +429,7 @@ class Tag_Model
      */
     function getBlogIdsFromTagId($tagId)
     {
+        $tagId = (int)$tagId;
         $blogs = [];
 
         $sql = "SELECT `gid` FROM `$this->table` WHERE `tid` = " . $tagId;
@@ -441,6 +453,7 @@ class Tag_Model
      */
     function removeBlogIdFromTag($tagId, $blogId)
     {
+        $tagId = (int)$tagId;
         $blogs = $this->getBlogIdsFromTagId($tagId);
 
         if (empty($blogs)) {
@@ -470,6 +483,7 @@ class Tag_Model
      */
     function removeTagIdFromBlog($blogId, $tagId)
     {
+        $blogId = (int)$blogId;
         $tags = $this->getTagIdsFromBlogId($blogId);
 
         if (empty($tags)) {
@@ -499,6 +513,7 @@ class Tag_Model
      */
     function addBlogIntoTag($tagId, $blogId)
     {
+        $tagId = (int)$tagId;
         $exist_blogs = $this->getBlogIdsFromTagId($tagId);
 
         if (!in_array($blogId, $exist_blogs)) {
