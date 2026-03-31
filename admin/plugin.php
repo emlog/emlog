@@ -77,6 +77,10 @@ if ($action == 'inactive_all') {
 
 // Load plug-in configuration page
 if (empty($action) && $plugin) {
+    if (!checkPlugin($plugin)) {
+        return;
+    }
+
     require_once "../content/plugins/$plugin/{$plugin}_setting.php";
     include View::getAdmView('header');
     // 在插件配置页面顶部增加面包屑导航：插件 -> 插件名称
@@ -95,6 +99,9 @@ if (empty($action) && $plugin) {
 
 // Save plug-in settings
 if ($action == 'setting') {
+    if (!checkPlugin($plugin)) {
+        return;
+    }
     if (!empty($_POST)) {
         require_once "../content/plugins/$plugin/{$plugin}_setting.php";
         if (false === plugin_setting()) {
@@ -109,6 +116,9 @@ if ($action == 'setting') {
 
 // Save plug-in settings (new version)
 if ($action == 'save_setting') {
+    if (!checkPlugin($plugin)) {
+        return;
+    }
     require_once "../content/plugins/$plugin/{$plugin}_setting.php";
     plugin_setting();
 }

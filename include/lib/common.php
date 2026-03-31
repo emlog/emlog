@@ -118,10 +118,19 @@ function realUrl()
 
 /**
  * 检查插件
+ * @param string $plugin 格式: plugin_name/plugin_file.php 或 plugin_name
  */
 function checkPlugin($plugin)
 {
-    if (is_string($plugin) && preg_match("/^[\w\-\/]+\.php$/", $plugin) && file_exists(EMLOG_ROOT . '/content/plugins/' . $plugin)) {
+    if (!is_string($plugin)) {
+        return false;
+    }
+
+    if (strpos($plugin, '/') === false && strpos($plugin, '.php') === false) {
+        $plugin = $plugin . '/' . $plugin . '.php';
+    }
+
+    if (preg_match("/^[\w\-\/]+\.php$/", $plugin) && file_exists(EMLOG_ROOT . '/content/plugins/' . $plugin)) {
         return true;
     }
 
