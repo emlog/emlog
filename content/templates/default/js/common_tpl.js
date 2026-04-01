@@ -468,6 +468,27 @@ var authModal = {
             this.$alert.removeClass("success")
         }
     },
+    getErrorMessage: function (xhr) {
+        var fallback = this.$modal.data("msg-error")
+        if (!xhr) {
+            return fallback
+        }
+        if (xhr.responseJSON && xhr.responseJSON.msg) {
+            return xhr.responseJSON.msg
+        }
+        if (xhr.responseText) {
+            try {
+                var parsed = JSON.parse(xhr.responseText)
+                if (parsed && parsed.msg) {
+                    return parsed.msg
+                }
+            } catch (e) {
+                return xhr.responseText
+            }
+            return xhr.responseText
+        }
+        return fallback
+    },
     submitSignIn: function () {
         var self = this
         var payload = this.$signinForm.serializeArray()
@@ -481,7 +502,7 @@ var authModal = {
                 window.location.reload()
             },
             error: function (xhr) {
-                self.showAlert(xhr.responseText || self.$modal.data("msg-error"))
+                self.showAlert(self.getErrorMessage(xhr))
                 self.refreshAllCaptcha()
                 self.toggleSubmit(self.$signinForm, false)
             }
@@ -504,7 +525,7 @@ var authModal = {
                 }, 900)
             },
             error: function (xhr) {
-                self.showAlert(xhr.responseText || self.$modal.data("msg-error"))
+                self.showAlert(self.getErrorMessage(xhr))
                 self.refreshAllCaptcha()
                 self.toggleSubmit(self.$signupForm, false)
             }
@@ -524,7 +545,7 @@ var authModal = {
                 self.toggleSubmit(self.$resetForm, false)
             },
             error: function (xhr) {
-                self.showAlert(xhr.responseText || self.$modal.data("msg-error"))
+                self.showAlert(self.getErrorMessage(xhr))
                 self.refreshAllCaptcha()
                 self.toggleSubmit(self.$resetForm, false)
             }
@@ -558,7 +579,7 @@ var authModal = {
                 }, 1000)
             },
             error: function (xhr) {
-                self.showAlert(xhr.responseText || self.$modal.data("msg-error"))
+                self.showAlert(self.getErrorMessage(xhr))
                 $btn.text(defaultText).prop("disabled", false)
             }
         })
