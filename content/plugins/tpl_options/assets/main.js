@@ -3,11 +3,16 @@ $(function () {
     var tplOptions = window.tplOptions;
     var body = $('body');
     var iframe = $('<iframe name="upload-image" src="about:blank" style="display:none"/>').appendTo(body);
-    var optionArea = $('<div/>').insertAfter($('#content').find('.container-fluid .row')).addClass(attr('area')).slideUp();
+    var optionArea = $('<div/>').addClass(attr('area')).hide();
+    mountOptionArea();
     var loadingDom = $('<div class="tpl-loading" />').appendTo(body);
     var message = $('<span />').appendTo($('#wrapper'));
     var tplBox = $('.tpl');
     var timer, input, targetInput, target, templateInput, template;
+    var optionCache = {};
+    var preloadState = {};
+    var requestXhr = null;
+    var loadingTimer = null;
     var trueInput = $('<input type="file" name="image">').css({
         position: 'absolute', margin: 0, visibility: 'hidden'
     }).on('change', function () {
@@ -33,29 +38,109 @@ $(function () {
                     $('<a class="btn btn-outline-primary btn-sm"><i class="icofont-options"></i>' + tplOptions.lang.setting + '</a>')
                         .appendTo(settingBtnContainer)
                         .addClass(attr('setting'))
-                        .data('template', tpl);
+                        .attr('data-template', tpl);
                 }
             }
         });
     }
+    var firstSettingBtn = $('.' + attr('setting')).first();
+    if (firstSettingBtn.length) {
+        preloadTemplate(firstSettingBtn.data('template'));
+    }
+
+    // 拦截侧边栏菜单点击，实现无刷新切换
+    $(document).on('click', 'a[href="template.php?setting=1"]', function(e) {
+        if (window.location.pathname.endsWith('template.php')) {
+            e.preventDefault();
+            var activeSettingBtn = getCurrentTemplateSettingBtn();
+            if (activeSettingBtn.length && !optionArea.is(':visible')) {
+                activeSettingBtn.trigger('click');
+            } else if (optionArea.is(':visible') && window.location.search.indexOf('setting=1') === -1) {
+                window.history.pushState({}, '', 'template.php?setting=1');
+            } else if (!activeSettingBtn.length && !isCurrentTemplateSupported()) {
+                cocoMessage.error(tplOptions.lang.not_support, 2500);
+            }
+        }
+    });
+
+    $(document).on('click', 'a[href="template.php"]', function(e) {
+        if (window.location.pathname.endsWith('template.php') && optionArea.is(':visible')) {
+            e.preventDefault();
+            $('.tpl-options-close').trigger('click');
+        }
+    });
+
+    // 监听浏览器后退/前进按钮
+    window.addEventListener('popstate', function(e) {
+        var params = new URLSearchParams(window.location.search);
+        if (params.get('setting') === '1') {
+            if (!optionArea.is(':visible')) {
+                var activeSettingBtn = getCurrentTemplateSettingBtn();
+                if (activeSettingBtn.length) {
+                    activeSettingBtn.trigger('click');
+                } else if (!isCurrentTemplateSupported()) {
+                    cocoMessage.error(tplOptions.lang.not_support, 2500);
+                }
+            }
+        } else {
+            if (optionArea.is(':visible')) {
+                // 模拟点击关闭，但不触发 pushState
+                document.getElementsByClassName("container-fluid")[0].children[0].style.cssText = 'display:flex !important';
+                showTemplateList();
+                optionArea.slideUp(500), tplBox.show();
+            }
+        }
+    });
+
     //绑定事件
     body.on('click', '.' + attr('setting'), function () {
-        $('.container-fluid .row').fadeToggle();
-        $.ajax({
+        var selectedTemplate = $(this).data('template') || $(this).attr('data-template') || tplOptions.currentTemplate;
+        if (!selectedTemplate) {
+            cocoMessage.error(tplOptions.lang.not_support, 2500);
+            showTemplateList();
+            return;
+        }
+        // 更新URL状态
+        if (window.location.search.indexOf('setting=1') === -1) {
+            window.history.pushState({}, '', 'template.php?setting=1');
+        }
+        if (optionCache[selectedTemplate] && isOptionMarkup(optionCache[selectedTemplate])) {
+            hideTemplateList();
+            renderOptionArea(optionCache[selectedTemplate]);
+            return;
+        }
+        delete optionCache[selectedTemplate];
+        if (requestXhr && requestXhr.readyState !== 4) {
+            requestXhr.abort();
+        }
+        requestXhr = $.ajax({
             url: tplOptions.baseUrl, data: {
-                template: $(this).data('template')
+                template: selectedTemplate
             }, cache: false, beforeSend: function () {
-                loading();
+                showLoadingWithDelay();
                 editorMap = {};
             }, success: function (data) {
-                optionArea.html(data).show(), tplBox.hide();
-                window.setTimeout(function () {
-                    initOptionSort();
-                    initRichText();
-                    setTimeout(function () {
-                        loading(false);
-                    }, 0);
-                }, 1000);
+                if (isErrorResponse(data)) {
+                    cocoMessage.error(readErrorMessage(data), 2500);
+                    showTemplateList();
+                    return;
+                }
+                if (!isOptionMarkup(data)) {
+                    cocoMessage.error(tplOptions.lang.network_error, 2500);
+                    showTemplateList();
+                    return;
+                }
+                optionCache[selectedTemplate] = data;
+                hideTemplateList();
+                renderOptionArea(data);
+            }, error: function (xhr, status) {
+                if (status !== 'abort') {
+                    cocoMessage.error(tplOptions.lang.network_error, 2500);
+                    showTemplateList();
+                }
+            }, complete: function () {
+                hideLoading();
+                requestXhr = null;
             }
         });
     }).on('click', '.tpl-options-menu ul li,.tpl-nav-options ul li', function () {
@@ -64,8 +149,12 @@ $(function () {
         $(this).addClass('active');
     }).on('click', '.tpl-options-close', function () {
         document.getElementsByClassName("container-fluid")[0].children[0].style.cssText = 'display:flex !important';
-        $('.container-fluid .row').fadeToggle();
+        showTemplateList();
         optionArea.slideUp(500), tplBox.show();
+        // 更新URL状态
+        if (window.location.search.indexOf('setting=1') !== -1) {
+            window.history.pushState({}, '', 'template.php');
+        }
     }).on('click', '.tpl-options-menu li', function () {
         //$('html,body').animate({scrollTop:$('#'+$(this).attr('data-id')).offset().top-80}, 500);
     }).on('click', '.vtpl-menu,.vtpl-nav.show ul li,.fixed-body', function () {
@@ -257,6 +346,11 @@ $(function () {
     }).on('change', '.tpl-options-form input:not(.chosen-search-input,.tpl-image), .tpl-options-form textarea', function () {
         $('form.tpl-options-form').trigger('submit');
     });
+
+    if (+tplOptions.autoOpenSetting === 1) {
+        tryAutoOpenCurrentSetting(60);
+    }
+
     //定义方法
     var initRichText = (function () {
         var num = 0;
@@ -305,6 +399,140 @@ $(function () {
         } else {
             loadingDom.removeClass('loading').hide();
         }
+    }
+
+    function showLoadingWithDelay() {
+        hideLoading();
+        loadingTimer = window.setTimeout(function () {
+            loading(true);
+        }, 120);
+    }
+
+    function hideLoading() {
+        if (loadingTimer) {
+            window.clearTimeout(loadingTimer);
+            loadingTimer = null;
+        }
+        loading(false);
+    }
+
+    function renderOptionArea(data) {
+        mountOptionArea();
+        optionArea.html(data).show();
+        tplBox.hide();
+        initOptionSort();
+        initRichText();
+    }
+
+    function mountOptionArea() {
+        if (optionArea.parent().length) {
+            return;
+        }
+        var listRow = $('.container-fluid .row.app-list').first();
+        if (listRow.length) {
+            optionArea.insertAfter(listRow);
+            return;
+        }
+        var anyRow = $('#content').find('.container-fluid .row').first();
+        if (anyRow.length) {
+            optionArea.insertAfter(anyRow);
+            return;
+        }
+        var contentContainer = $('#content').find('.container-fluid').first();
+        if (contentContainer.length) {
+            optionArea.appendTo(contentContainer);
+        } else {
+            optionArea.appendTo(body);
+        }
+    }
+
+    function hideTemplateList() {
+        $('.container-fluid .row.app-list').fadeOut(120);
+    }
+
+    function showTemplateList() {
+        $('.container-fluid .row.app-list').fadeIn(120);
+    }
+
+    function isOptionMarkup(data) {
+        return String(data).indexOf('tpl-options-form') !== -1;
+    }
+
+    function parseErrorData(data) {
+        if (typeof data === 'object' && data && data.code === 1) {
+            return data;
+        }
+        if (typeof data !== 'string') {
+            return null;
+        }
+        var trimData = $.trim(data);
+        if (trimData.indexOf('{') !== 0) {
+            return null;
+        }
+        try {
+            var parsed = JSON.parse(trimData);
+            if (parsed && parsed.code === 1) {
+                return parsed;
+            }
+        } catch (e) {}
+        return null;
+    }
+
+    function isErrorResponse(data) {
+        return !!parseErrorData(data);
+    }
+
+    function readErrorMessage(data) {
+        var parsed = parseErrorData(data);
+        return parsed && parsed.msg ? parsed.msg : tplOptions.lang.network_error;
+    }
+
+    function preloadTemplate(templateName) {
+        if (!templateName || preloadState[templateName]) {
+            return;
+        }
+        preloadState[templateName] = true;
+        $.ajax({
+            url: tplOptions.baseUrl,
+            data: {template: templateName},
+            cache: false,
+            success: function (data) {
+                if (!isErrorResponse(data) && isOptionMarkup(data)) {
+                    optionCache[templateName] = data;
+                }
+            }
+        });
+    }
+
+    function getCurrentTemplateSettingBtn() {
+        if (!tplOptions.currentTemplate) {
+            return $();
+        }
+        return $('.' + attr('setting') + '[data-template="' + tplOptions.currentTemplate + '"]');
+    }
+
+    function isCurrentTemplateSupported() {
+        if (!tplOptions.currentTemplate || !tplOptions.templates) {
+            return false;
+        }
+        return Object.prototype.hasOwnProperty.call(tplOptions.templates, tplOptions.currentTemplate);
+    }
+
+    function tryAutoOpenCurrentSetting(retry) {
+        var activeSettingBtn = getCurrentTemplateSettingBtn();
+        if (activeSettingBtn.length) {
+            activeSettingBtn.trigger('click');
+            return;
+        }
+        if (retry <= 0) {
+            if (!isCurrentTemplateSupported()) {
+                cocoMessage.error(tplOptions.lang.not_support, 2500);
+            }
+            return;
+        }
+        window.setTimeout(function () {
+            tryAutoOpenCurrentSetting(retry - 1);
+        }, 80);
     }
     
     // 将loading函数暴露到全局作用域

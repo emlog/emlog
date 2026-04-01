@@ -19,7 +19,7 @@ class TplOptions
     //插件标识
     const ID = 'tpl_options';
     const NAME = '模板设置';
-    const VERSION = '4.2.5';
+    const VERSION = '4.2.6';
 
     //数据表前缀
     private $_prefix = 'tpl_options_';
@@ -188,6 +188,8 @@ class TplOptions
         $data = array(
             'templates' => $templates,
             'prefix'    => str_replace('_', '-', $this->_prefix),
+            'currentTemplate' => Option::get('nonce_templet'),
+            'autoOpenSetting' => Input::getIntVar('setting', 0),
             'baseUrl'   => $this->url(),
             'uploadUrl' => $this->url(array(
                 "do" => "upload"
@@ -200,6 +202,7 @@ class TplOptions
                 'upload_failed' => _langPlu('js_upload_failed', 'tpl_options'),
                 'confirm_delete' => _langPlu('js_confirm_delete', 'tpl_options'),
                 'network_error' => _langPlu('js_network_error', 'tpl_options'),
+                'not_support' => _langPlu('tpl_no_support', 'tpl_options'),
             ),
         );
         echo sprintf('<script>var tplOptions = %s;</script>', json_encode($data));
