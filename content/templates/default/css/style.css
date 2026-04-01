@@ -14,9 +14,9 @@
     --inputBgColor: #ffffff;
     --inputBorderColor: #e2e8f0;
     --inputTextColor: #2d3748;
-    --buttonBgColor: #3498db; /* 按钮背景 - 亮蓝 */
+    --buttonBgColor: #59b8f8; /* 按钮背景 - 亮蓝 */
     --buttonTextColor: #ffffff;
-    --buttonBorderColor: #3498db;
+    --buttonBorderColor: #59b8f8;
     --selectBgColor: #ffffff;
     --selectBorderColor: #e2e8f0;
     --selectTextColor: #2d3748;
@@ -37,9 +37,9 @@
     --inputBgColor: #2d3748;
     --inputBorderColor: #4a5568;
     --inputTextColor: #e2e8f0;
-    --buttonBgColor: #3182ce; /* 蓝色按钮 */
+    --buttonBgColor: #4fb3f7; /* 蓝色按钮 */
     --buttonTextColor: #ffffff;
-    --buttonBorderColor: #3182ce;
+    --buttonBorderColor: #4fb3f7;
     --selectBgColor: #2d3748;
     --selectBorderColor: #4a5568;
     --selectTextColor: #e2e8f0;
@@ -406,6 +406,7 @@ body {
 .blog-header-c {
     height: 71.63px;
     display: flex;
+    align-items: center;
     justify-content: space-between /* 导航栏为主轴方向两端对齐，即大标题与导航两部分，一个向左靠齐，一个向右靠齐 */
 }
 
@@ -426,11 +427,90 @@ body {
 /* 导航链接的上下内边距（padding-block）要大，可使光标离开字符后一段距离依然能唤起子导航标签
  * 另外li标签的列表项标记为空 （list-style: none） */
 .nav-link {
-    padding: 1rem 0.5rem 1rem 0.5rem
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0.7rem 0.8rem;
+    border-radius: 8px;
+    transition: background-color 0.2s ease, color 0.2s ease
+}
+
+.nav-link:focus-visible {
+    outline: 2px solid var(--buttonBgColor);
+    outline-offset: 2px;
 }
 
 .list-menu {
     list-style: none
+}
+
+.user-menu {
+    position: relative;
+}
+
+.user-menu::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 100%;
+    height: 10px;
+}
+
+.user-menu-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.45rem;
+}
+
+.user-menu-trigger:hover {
+    background: rgba(52, 152, 219, 0.08);
+}
+
+.header-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--borderColor);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.user-menu:hover .header-avatar,
+.user-menu:focus-within .header-avatar {
+    border-color: var(--buttonBgColor);
+    transform: scale(1.03);
+}
+
+.user-dropdown-menus {
+    min-width: 120px;
+    margin-left: 0;
+    left: auto;
+    right: 0;
+    padding: 6px;
+}
+
+.nav-link-login {
+    color: var(--buttonTextColor);
+    background-color: var(--buttonBgColor);
+    border: 1px solid var(--buttonBorderColor);
+    min-height: 32px;
+    padding: 0.22rem 0.62rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(89, 184, 248, 0.14);
+}
+
+.nav-link-login:hover {
+    color: var(--buttonTextColor);
+    background-color: var(--buttonBgColor);
+    filter: brightness(0.95);
+}
+
+.nav-link-login:focus-visible {
+    outline-color: var(--buttonTextColor);
+    box-shadow: 0 0 0 3px rgba(89, 184, 248, 0.22);
 }
 
 /* 导航列表的响应式配置
@@ -441,8 +521,14 @@ body {
 @media (min-width: 768px) {
     .nav-list {
         display: flex;
+        align-items: center;
+        gap: 2px;
         padding-block: 4.5px;
         text-align: center
+    }
+
+    .nav-list > .list-menu {
+        position: relative;
     }
 
     /* 大屏幕列表样式 */
@@ -572,27 +658,63 @@ body {
 [data-theme="dark"] .list-menu .nav-link:hover {
         background-color: rgba(255, 255, 255, 0.1);
     }
+
+    .user-menu-trigger {
+        justify-content: flex-start;
+    }
+
+    .header-avatar {
+        width: 32px;
+        height: 32px;
+    }
+
+    .user-dropdown-menus {
+        right: auto;
+        width: 100%;
+        padding-left: 15px;
+    }
+
+    .nav-link-login {
+        justify-content: center;
+        min-height: 30px;
+        padding: 0.2rem 0.56rem;
+    }
 }
 
 /* 大屏幕下的下拉框样式，这里设置的透明度为0（opacity: 0.0;）。但小屏状态下
  * 没有隐藏，所以下面会在小屏部分，即767px及以下的部分对这个属性覆盖。 */
 .dropdown-menus {
     background: var(--conBgcolor);
-    opacity: 0.0;
-    z-index: 4;
+    opacity: 0;
+    z-index: 30;
     list-style: none;
     margin-left: -26px;
     position: absolute;
-    padding-left: 0px;
-    border: none;
-    border-radius: 4px;
-    top: -3000px;
-    margin-bottom: -34px;
-    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.02)
+    padding-left: 0;
+    border: 1px solid var(--borderColor);
+    border-radius: 10px;
+    top: 100%;
+    margin-bottom: 0;
+    pointer-events: none;
+    transform: translateY(6px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+[data-theme="dark"] .dropdown-menus {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.45);
 }
 
 .dropdown-menus .list-menu {
-    padding: 6px
+    padding: 0
+}
+
+.dropdown-menus .list-menu .nav-link {
+    width: 100%;
+    justify-content: flex-start;
+    border-radius: 8px;
+    min-height: 40px;
+    padding: 0.5rem 0.75rem;
 }
 
 /* 顶部菜单栏的小屏属性，“小屏”定义在767px及以下。当然这个也包含小屏的下拉框样式。 */
@@ -620,8 +742,15 @@ body {
 /* 下拉框的样式 */
 .list-menu:hover .dropdown-menus {
     opacity: 0.95;
-    top: 56px;
-    transition: opacity 0.2s
+    pointer-events: auto;
+    transform: translateY(0);
+    transition: opacity 0.2s ease, transform 0.2s ease
+}
+
+.list-menu:focus-within .dropdown-menus {
+    opacity: 0.95;
+    pointer-events: auto;
+    transform: translateY(0);
 }
 
 /* 列出文章（或文章条目）页
