@@ -338,6 +338,12 @@ function blog_navi()
                 <?php
                     continue;
                 endif;
+                if ($value['url'] == 'admin' && User::isVisitor()):
+                ?>
+                    <li class="list-item list-menu"><a href="javascript:void(0);" class="nav-link" data-auth-open="signin"><?= _lang('login') ?></a></li>
+                <?php
+                    continue;
+                endif;
                 $newtab = $value['newtab'] == 'y' ? 'target="_blank"' : '';
                 $value['url'] = $value['isdefault'] == 'y' ? BLOG_URL . $value['url'] : trim($value['url'], '/');
                 $current_tab = BLOG_URL . trim(Dispatcher::setPath(), '/') == $value['url'] ? 'active' : '';
@@ -565,7 +571,7 @@ function blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allo
                     <?php endif ?>
                     <span class="com_submit_p">
                         <?php if (User::isVisitor() && $isLoginComment === 'y'): ?>
-                            请先 <a href="./admin/index.php">登录</a> 再评论
+                            请先 <a href="javascript:void(0);" data-auth-open="signin">登录</a> 再评论
                         <?php else: ?>
                             <input class="btn" type="submit" id="comment_submit" value="<?= _langTpl('submit_comment') ?>" tabindex="6" />
                         <?php endif; ?>

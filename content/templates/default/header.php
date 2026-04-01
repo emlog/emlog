@@ -1,7 +1,7 @@
 <?php
 /*
 Template Name: 默认模板
-Version: 1.2.3
+Version: 1.2.4
 Template Url: https://www.emlog.net/template/detail/1167
 Description: 系统默认模板
 Author: emlog
@@ -10,7 +10,7 @@ Author Url: https://www.emlog.net/profiles/cf75dc06
 
 defined('EMLOG_ROOT') || exit('access denied!');
 require_once View::getView('module');
-$v = '1.2.3';
+$v = '1.2.4';
 if (!function_exists('_g')) {
     emMsg(_langTpl('template_plugin_tip'));
 }
@@ -45,6 +45,15 @@ if (!function_exists('_g')) {
         if (savedTheme) {
             document.documentElement.setAttribute('data-theme', savedTheme);
         }
+    </script>
+    <script>
+        window.emAuthConfig = {
+            accountBase: "<?= BLOG_URL ?>admin/account.php",
+            adminPathCode: "<?= defined('ADMIN_PATH_CODE') ? rawurlencode((string)constant('ADMIN_PATH_CODE')) : '' ?>",
+            loginCode: <?= Option::get('login_code') === 'y' ? 'true' : 'false' ?>,
+            emailCode: <?= Option::get('email_code') === 'y' ? 'true' : 'false' ?>,
+            canSignup: <?= Option::get('is_signup') === 'y' ? 'true' : 'false' ?>
+        };
     </script>
 </head>
 

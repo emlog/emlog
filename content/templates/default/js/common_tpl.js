@@ -367,11 +367,224 @@ var myBlog = {
 
 }
 
+var authModal = {
+    init: function () {
+        this.$modal = $("#auth-modal")
+        this.$mask = $("#auth-modal-mask")
+        if (!this.$modal.length || !this.$mask.length) {
+            return
+        }
+        this.$title = $("#auth-modal-title")
+        this.$subtitle = $("#auth-modal-subtitle")
+        this.$alert = $("#auth-modal-alert")
+        this.$panels = this.$modal.find("[data-auth-panel]")
+        this.$signinForm = $("#auth-signin-form")
+        this.$signupForm = $("#auth-signup-form")
+        this.$resetForm = $("#auth-reset-form")
+        this.$sendMailBtn = $("#auth-send-mail-code")
+        this.bindEvents()
+    },
+    bindEvents: function () {
+        var self = this
+        $(document).on("click", "[data-auth-open]", function (e) {
+            e.preventDefault()
+            var panel = $(this).attr("data-auth-open") || "signin"
+            self.open(panel)
+        })
+        $("#auth-modal-close, #auth-modal-mask").on("click", function () {
+            self.close()
+        })
+        $(document).on("keydown", function (e) {
+            if (e.key === "Escape" && self.$modal.is(":visible")) {
+                self.close()
+            }
+        })
+        this.$modal.on("click", "[data-auth-captcha]", function () {
+            self.refreshCaptcha($(this))
+        })
+        this.$signinForm.on("submit", function (e) {
+            e.preventDefault()
+            self.submitSignIn()
+        })
+        this.$signupForm.on("submit", function (e) {
+            e.preventDefault()
+            self.submitSignUp()
+        })
+        this.$resetForm.on("submit", function (e) {
+            e.preventDefault()
+            self.submitReset()
+        })
+        this.$sendMailBtn.on("click", function () {
+            self.sendMailCode()
+        })
+    },
+    open: function (panel) {
+        this.switchPanel(panel)
+        this.clearAlert()
+        this.$mask.fadeIn(120)
+        this.$modal.fadeIn(150).attr("aria-hidden", "false")
+        $("body,html").addClass("scroll-fix")
+    },
+    close: function () {
+        this.$modal.fadeOut(120).attr("aria-hidden", "true")
+        this.$mask.fadeOut(100)
+        $("body,html").removeClass("scroll-fix")
+        this.clearAlert()
+    },
+    switchPanel: function (panel) {
+        var $target = this.$panels.filter('[data-auth-panel="' + panel + '"]')
+        if (!$target.length) {
+            $target = this.$panels.filter('[data-auth-panel="signin"]')
+        }
+        this.$panels.hide()
+        $target.show()
+        this.$title.text($target.attr("data-title") || "")
+        this.$subtitle.text($target.attr("data-subtitle") || "")
+    },
+    refreshCaptcha: function ($img) {
+        var src = $img.attr("src") || ""
+        if (src.indexOf("?") > -1) {
+            src = src.split("?")[0]
+        }
+        $img.attr("src", src + "?_t=" + Date.now())
+    },
+    accountUrl: function (action, withS) {
+        var cfg = window.emAuthConfig || {}
+        var base = cfg.accountBase || "/admin/account.php"
+        var url = base + "?action=" + action
+        if (withS && cfg.adminPathCode) {
+            url += "&s=" + cfg.adminPathCode
+        }
+        return url
+    },
+    clearAlert: function () {
+        this.$alert.removeClass("show success").text("")
+    },
+    showAlert: function (message, success) {
+        this.$alert.text(message || "").addClass("show")
+        if (success) {
+            this.$alert.addClass("success")
+        } else {
+            this.$alert.removeClass("success")
+        }
+    },
+    submitSignIn: function () {
+        var self = this
+        var payload = this.$signinForm.serializeArray()
+        payload.push({name: "resp", value: "json"})
+        this.toggleSubmit(this.$signinForm, true)
+        $.ajax({
+            type: "POST",
+            url: this.accountUrl("dosignin", true),
+            data: $.param(payload),
+            success: function () {
+                window.location.reload()
+            },
+            error: function (xhr) {
+                self.showAlert(xhr.responseText || self.$modal.data("msg-error"))
+                self.refreshAllCaptcha()
+                self.toggleSubmit(self.$signinForm, false)
+            }
+        })
+    },
+    submitSignUp: function () {
+        var self = this
+        var payload = this.$signupForm.serializeArray()
+        payload.push({name: "resp", value: "json"})
+        this.toggleSubmit(this.$signupForm, true)
+        $.ajax({
+            type: "POST",
+            url: this.accountUrl("dosignup"),
+            data: $.param(payload),
+            success: function () {
+                self.showAlert(self.$modal.data("msg-signup-success"), true)
+                self.toggleSubmit(self.$signupForm, false)
+                setTimeout(function () {
+                    self.switchPanel("signin")
+                }, 900)
+            },
+            error: function (xhr) {
+                self.showAlert(xhr.responseText || self.$modal.data("msg-error"))
+                self.refreshAllCaptcha()
+                self.toggleSubmit(self.$signupForm, false)
+            }
+        })
+    },
+    submitReset: function () {
+        var self = this
+        var payload = this.$resetForm.serializeArray()
+        payload.push({name: "resp", value: "json"})
+        this.toggleSubmit(this.$resetForm, true)
+        $.ajax({
+            type: "POST",
+            url: this.accountUrl("doreset"),
+            data: $.param(payload),
+            success: function () {
+                self.showAlert(self.$modal.data("msg-reset-success"), true)
+                self.toggleSubmit(self.$resetForm, false)
+            },
+            error: function (xhr) {
+                self.showAlert(xhr.responseText || self.$modal.data("msg-error"))
+                self.refreshAllCaptcha()
+                self.toggleSubmit(self.$resetForm, false)
+            }
+        })
+    },
+    sendMailCode: function () {
+        var self = this
+        var $mail = this.$signupForm.find('input[name="mail"]')
+        var mail = $.trim($mail.val())
+        if (!mail) {
+            $mail.focus()
+            return
+        }
+        var $btn = this.$sendMailBtn
+        var defaultText = $btn.text()
+        $btn.prop("disabled", true)
+        $.ajax({
+            type: "POST",
+            url: this.accountUrl("send_email_code"),
+            data: {mail: mail},
+            success: function () {
+                var seconds = 60
+                var timer = setInterval(function () {
+                    seconds--
+                    if (seconds <= 0) {
+                        clearInterval(timer)
+                        $btn.text(defaultText).prop("disabled", false)
+                    } else {
+                        $btn.text(seconds + "s")
+                    }
+                }, 1000)
+            },
+            error: function (xhr) {
+                self.showAlert(xhr.responseText || self.$modal.data("msg-error"))
+                $btn.text(defaultText).prop("disabled", false)
+            }
+        })
+    },
+    refreshAllCaptcha: function () {
+        this.$modal.find("[data-auth-captcha]").each(function () {
+            var $img = $(this)
+            var src = $img.attr("src") || ""
+            if (src.indexOf("?") > -1) {
+                src = src.split("?")[0]
+            }
+            $img.attr("src", src + "?_t=" + Date.now())
+        })
+    },
+    toggleSubmit: function ($form, loading) {
+        var $btn = $form.find(".auth-submit")
+        $btn.prop("disabled", loading)
+    }
+}
+
 /**
  * 事件监听
  */
 $(document).ready(function () {
     myBlog.init()
+    authModal.init()
 
     $(".com-reply").click(function () {
         myBlog.toggleCommentInput($(this))
