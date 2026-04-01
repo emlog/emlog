@@ -6,13 +6,15 @@ var MediaLib = {
     options: {
         mode: 'article', // article, cover, category, custom
         buttons: [], // Custom buttons configuration
+        mediaType: '',
         onLoad: null,
     },
 
     init: function (options) {
         this.options = $.extend({}, {
             mode: 'article',
-            buttons: []
+            buttons: [],
+            mediaType: ''
         }, options);
 
         this.page = 1;
@@ -98,6 +100,9 @@ var MediaLib = {
 
         // Custom buttons passed via options
         if (this.options.buttons && this.options.buttons.length > 0) {
+            if (this.options.mediaType && image.media_type !== this.options.mediaType) {
+                return '<div class="d-flex w-100 align-items-center"><span></span></div>';
+            }
             $.each(this.options.buttons, function(idx, btn) {
                 html += '<a href="javascript:void(0)" class="mr-2 small text-muted media-lib-custom-btn" data-id="' + image.media_id + '" data-btn-index="' + idx + '"><i class="' + (btn.icon || 'icofont-plus') + '"></i> ' + (btn.text || 'Action') + '</a>';
             });
@@ -241,9 +246,11 @@ $('#mediaModal').on('show.bs.modal', function (event) {
     // Example: data-btn-text="Use This" data-callback="myFunc"
     var btnText = button.data('btn-text');
     var callbackName = button.data('callback');
+    var mediaType = button.data('media-type') || '';
     
     if (btnText && callbackName) {
         initOptions.mode = 'custom';
+        initOptions.mediaType = mediaType;
         initOptions.buttons = [{
             text: btnText,
             icon: button.data('btn-icon') || 'icofont-check',

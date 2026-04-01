@@ -8,7 +8,7 @@ $(function () {
     var loadingDom = $('<div class="tpl-loading" />').appendTo(body);
     var message = $('<span />').appendTo($('#wrapper'));
     var tplBox = $('.tpl');
-    var timer, input, targetInput, target, templateInput, template;
+    var timer, input, targetInput, target, templateInput, template, mediaTargetWrap = null;
     var optionCache = {};
     var preloadState = {};
     var requestXhr = null;
@@ -236,8 +236,9 @@ $(function () {
             type_html = '<div class="tpl-block-upload"><span>' + tplOptions.lang.title + '</span>' +
                 '<input class="block-title-input" type="text" name="' + _name + '[title][]" value="">' +
                 '<div class="tpl-image-preview"><img src=""></div><div class="tpl-block-upload-input">' +
-                '<input type="text" name="' + _name + '[content][]" value=""><label>\n' +
-                '<a class="btn btn-primary"><i class="icofont-plus"></i>' + tplOptions.lang.upload + '</a>\n' +
+                '<input type="text" name="' + _name + '[content][]" value="">' +
+                '<a class="btn btn-outline-primary tpl-select-media" href="#mediaModal" data-toggle="modal" data-target="#mediaModal" data-mode="custom" data-media-type="image" data-btn-text="' + tplOptions.lang.choose_media + '" data-callback="tplOptionsUseMediaImage">' + tplOptions.lang.choose_media + '</a><label>\n' +
+                '<a class="btn btn-primary">' + tplOptions.lang.upload + '</a>\n' +
                 '<input class="d-none tpl-image" type="file" name="image" data-url="' + _url + '" accept="image/svg+xml,image/webp,image/avif,image/jpeg,image/jpg,image/png,image/gif">\n' +
                 '</label>'
             type_html += '</div></div>';
@@ -300,6 +301,8 @@ $(function () {
 
         });
 
+    }).on('click', '.tpl-select-media', function () {
+        mediaTargetWrap = $(this).closest('.tpl-block-upload-input');
     }).on('click', '.tpl-block-remove', function () {
         if (confirm('真的要删除吗？')) {
             $(this).parent().parent().remove()
@@ -379,6 +382,18 @@ $(function () {
         trueInput.val('');
         target = '';
         loading(false);
+    };
+    window.tplOptionsUseMediaImage = function (url) {
+        if (!mediaTargetWrap || !mediaTargetWrap.length) {
+            return;
+        }
+        var targetInput = mediaTargetWrap.find('input[type="text"]').first();
+        var targetImg = mediaTargetWrap.prev('.tpl-image-preview').find('img');
+        targetInput.val(url);
+        targetImg.attr('src', url + '?' + new Date().getTime());
+        $('#mediaModal').modal('hide');
+        $('form.tpl-options-form').trigger('submit');
+        mediaTargetWrap = null;
     };
 
     function initOptionSort() {

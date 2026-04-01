@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: 模板设置
-Version: 4.2.6
+Version: 4.2.11
 Plugin URL: https://www.emlog.net/docs/dev/template
 Description: 为模板增加丰富的设置功能，详见官网文档-模板开发。
 Author: emlog
@@ -19,7 +19,7 @@ class TplOptions
     //插件标识
     const ID = 'tpl_options';
     const NAME = '模板设置';
-    const VERSION = '4.2.6';
+    const VERSION = '4.2.11';
 
     //数据表前缀
     private $_prefix = 'tpl_options_';
@@ -175,6 +175,9 @@ class TplOptions
                 TplOptions::getInstance()->hookAdminMainTopData();
                 TplOptions::getInstance()->hookAdminHead();
             });
+            addAction('adm_footer', function () {
+                TplOptions::getInstance()->hookAdminFooter();
+            });
         }
     }
 
@@ -198,6 +201,7 @@ class TplOptions
                 'setting' => _langPlu('js_setting', 'tpl_options'),
                 'title' => _langPlu('js_title', 'tpl_options'),
                 'upload' => _langPlu('js_upload', 'tpl_options'),
+                'choose_media' => _langPlu('select', 'tpl_options'),
                 'content' => _langPlu('js_content', 'tpl_options'),
                 'upload_failed' => _langPlu('js_upload_failed', 'tpl_options'),
                 'confirm_delete' => _langPlu('js_confirm_delete', 'tpl_options'),
@@ -216,6 +220,15 @@ class TplOptions
     {
         echo sprintf('<link rel="stylesheet" href="%s">', $this->_assets . 'main.css?ver=' . urlencode(self::VERSION . Option::EMLOG_VERSION_TIMESTAMP));
         echo sprintf('<script src="%s"></script>', $this->_assets . 'main.js?ver=' . urlencode(self::VERSION . Option::EMLOG_VERSION_TIMESTAMP));
+    }
+
+    /**
+     * 底部输出资源媒体库弹窗
+     * @return void
+     */
+    public function hookAdminFooter()
+    {
+        include View::getAdmView('media_lib');
     }
 
     /**
@@ -1238,8 +1251,9 @@ class TplOptions
                     </div>
                     <div class="tpl-block-upload-input">
                         <input type="text" name="{name}" value="{value}">
+                        <a class="btn btn-outline-primary tpl-select-media" href="#mediaModal" data-toggle="modal" data-target="#mediaModal" data-mode="custom" data-media-type="image" data-btn-text="' . _langPlu('select', 'tpl_options') . '" data-callback="tplOptionsUseMediaImage">' . _langPlu('select', 'tpl_options') . '</a>
                         <label>
-                            <a class="btn btn-primary"><i class="icofont-plus"></i>' . _langPlu('js_upload', 'tpl_options') . '</a>
+                            <a class="btn btn-primary">' . _langPlu('js_upload', 'tpl_options') . '</a>
                             <input class="d-none tpl-image" type="file" name="image" data-url="' . BLOG_URL . '" accept="image/svg+xml,image/webp,image/avif,image/jpeg,image/jpg,image/png,image/gif">
                         </label>
                     </div>
@@ -1263,8 +1277,9 @@ class TplOptions
                          </div>
                          <div class="tpl-block-upload-input">
                              <input type="text" name="{name}" value="{value}">
+                             <a class="btn btn-outline-primary tpl-select-media" href="#mediaModal" data-toggle="modal" data-target="#mediaModal" data-mode="custom" data-media-type="image" data-btn-text="' . _langPlu('select', 'tpl_options') . '" data-callback="tplOptionsUseMediaImage">' . _langPlu('select', 'tpl_options') . '</a>
                              <label>
-                                <a class="btn btn-primary"><i class="icofont-plus"></i>' . _langPlu('js_upload', 'tpl_options') . '</a>
+                                <a class="btn btn-primary">' . _langPlu('js_upload', 'tpl_options') . '</a>
                                 <input class="d-none tpl-image" type="file" name="image" data-url="' . BLOG_URL . '" accept="image/svg+xml,image/webp,image/avif,image/jpeg,image/jpg,image/png,image/gif">
                              </label>
                          </div>
