@@ -341,6 +341,7 @@ function blog_navi()
                     <li class="list-item list-menu user-menu">
                         <a href="<?= BLOG_URL ?>admin/" class="nav-link user-menu-trigger" title="<?= $userNickname ?>" aria-label="<?= $userNickname ?>" aria-haspopup="true">
                             <img src="<?= $userAvatar ?>" alt="<?= $userNickname ?>" class="header-avatar">
+                            <span class="user-menu-label"><?= _langTpl('management') ?></span>
                         </a>
                         <ul class="dropdown-menus user-dropdown-menus">
                             <li class="list-item list-menu"><a href="<?= BLOG_URL ?>admin/" class="nav-link"><?= _langTpl('management') ?></a></li>

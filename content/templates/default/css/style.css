@@ -465,6 +465,13 @@ body {
     padding: 0.45rem;
 }
 
+.user-menu-label {
+    display: none;
+    line-height: 1;
+    font-size: 15px;
+    font-weight: 500;
+}
+
 .user-menu-trigger:hover {
     background: rgba(52, 152, 219, 0.08);
 }
@@ -645,9 +652,12 @@ body {
 
     .list-menu .nav-link {
         display: block;
-        padding: 8px 15px;
+        min-height: 44px;
+        padding: 10px 15px;
         color: var(--fontColor);
         text-decoration: none;
+        border-radius: 8px;
+        line-height: 1.5;
         transition: background-color 0.2s;
     }
 
@@ -661,17 +671,26 @@ body {
 
     .user-menu-trigger {
         justify-content: flex-start;
+        gap: 10px;
+        width: 100%;
+        padding: 10px 15px;
     }
 
     .header-avatar {
-        width: 32px;
-        height: 32px;
+        display: none;
+    }
+
+    .user-menu-label {
+        display: inline-flex;
+        align-items: center;
+        color: var(--fontColor);
     }
 
     .user-dropdown-menus {
         right: auto;
         width: 100%;
-        padding-left: 15px;
+        padding-left: 0;
+        padding-right: 0;
     }
 
     .nav-link-login {
@@ -721,21 +740,32 @@ body {
 @media all and (max-width: 767px) {
     .nav-list {
         text-align: left !important;
-        padding-left: 10%;
-        letter-spacing: 3px;
-        line-height: 17px
+        padding-left: 15px;
+        padding-right: 15px;
+        letter-spacing: normal;
+        line-height: 1.5;
     }
 
     .dropdown-menus {
         opacity: 1;
-        margin-left: 0px;
+        margin-left: 0;
         position: unset;
-        padding-left: 30px;
+        padding-left: 0;
         border: none;
-        width: auto;
-        top: 0px;
-        margin-bottom: 0px;
-        font-size: smaller
+        width: 100%;
+        top: 0;
+        margin-bottom: 0;
+        background: transparent;
+        box-shadow: none;
+        transform: none;
+        pointer-events: auto;
+    }
+
+    .dropdown-menus .list-menu .nav-link {
+        min-height: 44px;
+        padding: 10px 15px 10px 26px;
+        font-size: inherit;
+        line-height: 1.5;
     }
 }
 
@@ -2583,13 +2613,22 @@ img.zoom-img {
 @media (max-width: 577px) {
     .auth-modal {
         align-items: flex-end;
-        padding: 12px;
+        padding: 10px 10px calc(env(safe-area-inset-bottom, 0px) + 10px);
     }
 
     .auth-modal-card {
         max-width: none;
-        border-radius: 14px 14px 10px 10px;
-        padding: 18px;
+        max-height: min(86vh, 640px);
+        border-radius: 16px 16px 12px 12px;
+        padding: 18px 16px 16px;
+        overflow-y: auto;
+    }
+
+    .auth-modal-close {
+        top: 8px;
+        right: 8px;
+        width: 40px;
+        height: 40px;
     }
 
     .auth-captcha-row {
