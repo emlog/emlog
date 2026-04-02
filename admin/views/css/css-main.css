@@ -652,6 +652,33 @@ input[type="checkbox"]:hover, select:hover {
 }
 
 /* 图片裁剪 */
+.avatar-upload-label {
+    position: relative;
+    display: inline-block;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.avatar-hover-tip {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.45);
+    color: #fff;
+    font-size: 13px;
+    opacity: 0;
+    transition: opacity .2s ease;
+}
+
+.avatar-upload-label:hover .avatar-hover-tip {
+    opacity: 1;
+}
+
 #avatar_image {
     display: block;
     max-width: 100%;

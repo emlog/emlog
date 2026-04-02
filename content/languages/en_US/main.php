@@ -425,6 +425,7 @@ return [
     'resend' => 'Resend',
     'verification_code_sent' => 'Verification code sent, please check email',
     'only_image_allowed' => 'Only images allowed',
+    'click_to_change_avatar' => 'Click to change avatar',
     'upload_avatar_error' => 'Upload avatar error',
     'ai_request_failed' => 'AI request failed. Please try again later',
     'password_strength' => 'Password Strength',

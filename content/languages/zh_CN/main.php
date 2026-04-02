@@ -425,6 +425,7 @@ return [
     'resend' => '重新发送',
     'verification_code_sent' => '验证码已发送，请查收邮件',
     'only_image_allowed' => '只能上传图片',
+    'click_to_change_avatar' => '点击修改头像',
     'upload_avatar_error' => '上传头像出错了',
     'ai_request_failed' => 'AI 请求失败，请稍后再试',
     'password_strength' => '密码强度',

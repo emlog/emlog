@@ -20,8 +20,9 @@
 <div class="card shadow mb-4 mt-2">
     <div class="card-body">
         <div class="row m-5">
-            <label for="upload_image">
+            <label for="upload_image" class="avatar-upload-label">
                 <img src="<?= $icon ?>" width="120" height="120" id="avatar_image" class="rounded-circle" />
+                <span class="avatar-hover-tip"><?= _lang('click_to_change_avatar'); ?></span>
                 <input type="file" name="image" class="image" id="upload_image" style="display:none" />
             </label>
         </div>
