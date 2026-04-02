@@ -77,6 +77,9 @@ defined('EMLOG_ROOT') || exit('access denied!');
                 <?php endif; ?>
                 <a href="javascript:void(0);" data-auth-open="reset"><?= _lang('reset_password') ?></a>
             </div>
+            <div class="auth-login-ext" id="auth-login-ext">
+                <?php doAction('login_ext') ?>
+            </div>
         </div>
         <?php if (Option::get('is_signup') === 'y'): ?>
             <div class="auth-modal-panel" data-auth-panel="signup" data-title="<?= _lang('register_account') ?>" data-subtitle="<?= _lang('register_account') ?>" style="display: none;">
@@ -107,6 +110,9 @@ defined('EMLOG_ROOT') || exit('access denied!');
                 <div class="auth-modal-switch">
                     <a href="javascript:void(0);" data-auth-open="signin"><?= _lang('login') ?></a>
                     <a href="javascript:void(0);" data-auth-open="reset"><?= _lang('reset_password') ?></a>
+                </div>
+                <div class="auth-login-ext" id="auth-login-ext">
+                    <?php doAction('signup_ext') ?>
                 </div>
             </div>
         <?php endif; ?>

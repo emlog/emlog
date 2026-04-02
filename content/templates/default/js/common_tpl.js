@@ -394,6 +394,11 @@ var authModal = {
         $("#auth-modal-close, #auth-modal-mask").on("click", function () {
             self.close()
         })
+        this.$modal.on("click", function (e) {
+            if (e.target === this) {
+                self.close()
+            }
+        })
         $(document).on("keydown", function (e) {
             if (e.key === "Escape" && self.$modal.is(":visible")) {
                 self.close()

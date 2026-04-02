@@ -2529,6 +2529,27 @@ img.zoom-img {
     margin: 4px 0 0;
 }
 
+.auth-login-ext {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.auth-login-ext a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+.auth-login-ext img {
+    display: block;
+    max-height: 28px;
+}
+
 .auth-submit:disabled,
 .auth-inline-btn:disabled {
     opacity: 0.6;
@@ -2586,5 +2607,9 @@ img.zoom-img {
 
     .auth-inline-btn {
         width: 100%;
+    }
+
+    .auth-login-ext img {
+        max-height: 24px;
     }
 }
