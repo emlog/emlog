@@ -47,6 +47,9 @@ if (empty($action)) {
     if (extension_loaded('gd')) {
         $php_ver .= ',gd';
     }
+    if (extension_loaded('mbstring')) {
+        $php_ver .= ',mbstr';
+    }
 
     if (User::haveEditPermission()) {
         include View::getAdmView('header');
