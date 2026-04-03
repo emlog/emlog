@@ -261,74 +261,208 @@ function importData($filename)
         $DB->query($setchar);
     }
 
-    $query = '';
-    $lineCount = 0;
+    $statement = '';
+    $statementCount = 0;
+    $delimiter = ';';
+    $inSingleQuote = false;
+    $inDoubleQuote = false;
+    $inBacktick = false;
+    $inLineComment = false;
+    $inBlockComment = false;
+    $escapeNext = false;
 
-    // 处理第一行（如果有的话）
-    if ($firstLine) {
-        $firstLine = trim($firstLine);
-        if ($firstLine && $firstLine[0] !== '#') {
-            $query .= $firstLine;
-            if (preg_match("/\;$/i", $firstLine)) {
-                if (preg_match("/^CREATE/i", $query)) {
-                    $query = preg_replace("/\DEFAULT CHARSET=([a-z0-9]+)/is", '', $query);
-                }
-                $result = $DB->query($query);
-                if (!$result && $DB->geterrno() != 0) {
-                    error_log("SQL执行失败 (第一行): " . $DB->geterror() . " SQL: " . substr($query, 0, 100));
-                }
-                $query = '';
-            }
+    $executeStatement = function ($sql) use ($DB, &$statementCount) {
+        $sql = trim($sql);
+        if ($sql === '') {
+            return;
         }
-        $lineCount++;
+        if (preg_match('/^CREATE/i', $sql)) {
+            $sql = preg_replace('/\sDEFAULT CHARSET=([a-z0-9_]+)/is', '', $sql);
+        }
+        $result = $DB->query($sql);
+        if (!$result && $DB->geterrno() != 0) {
+            error_log("SQL执行失败 (语句 {$statementCount}): " . $DB->geterror() . " SQL: " . substr($sql, 0, 200));
+        }
+        $statementCount++;
+        if ($statementCount % 1000 == 0 && function_exists('gc_collect_cycles')) {
+            gc_collect_cycles();
+        }
+    };
+
+    $processLine = function ($line) use (
+        &$statement,
+        &$delimiter,
+        &$inSingleQuote,
+        &$inDoubleQuote,
+        &$inBacktick,
+        &$inLineComment,
+        &$inBlockComment,
+        &$escapeNext,
+        $executeStatement
+    ) {
+        if (
+            trim($statement) === '' &&
+            !$inSingleQuote &&
+            !$inDoubleQuote &&
+            !$inBacktick &&
+            !$inLineComment &&
+            !$inBlockComment &&
+            preg_match('/^\s*DELIMITER\s+(.+)\s*$/i', $line, $matches)
+        ) {
+            $delimiter = trim($matches[1]);
+            if ($delimiter === '') {
+                $delimiter = ';';
+            }
+            $statement = ''; // reset just in case
+            return;
+        }
+
+        $delimiterLength = strlen($delimiter);
+        $lineLength = strlen($line);
+
+        for ($i = 0; $i < $lineLength; $i++) {
+            $char = $line[$i];
+            $nextChar = ($i + 1 < $lineLength) ? $line[$i + 1] : '';
+            $thirdChar = ($i + 2 < $lineLength) ? $line[$i + 2] : '';
+
+            if ($inLineComment) {
+                if ($char === "\n" || $char === "\r") {
+                    $inLineComment = false;
+                    $statement .= $char; // preserve newline for spacing
+                }
+                continue;
+            }
+
+            if ($inBlockComment) {
+                $statement .= $char;
+                if ($char === '*' && $nextChar === '/') {
+                    $inBlockComment = false;
+                    $statement .= $nextChar;
+                    $i++;
+                }
+                continue;
+            }
+
+            if ($inSingleQuote) {
+                $statement .= $char;
+                if ($escapeNext) {
+                    $escapeNext = false;
+                    continue;
+                }
+                if ($char === '\\') {
+                    $escapeNext = true;
+                    continue;
+                }
+                if ($char === '\'') {
+                    if ($nextChar === '\'') {
+                        $statement .= $nextChar;
+                        $i++;
+                        continue;
+                    }
+                    $inSingleQuote = false;
+                }
+                continue;
+            }
+
+            if ($inDoubleQuote) {
+                $statement .= $char;
+                if ($escapeNext) {
+                    $escapeNext = false;
+                    continue;
+                }
+                if ($char === '\\') {
+                    $escapeNext = true;
+                    continue;
+                }
+                if ($char === '"') {
+                    if ($nextChar === '"') {
+                        $statement .= $nextChar;
+                        $i++;
+                        continue;
+                    }
+                    $inDoubleQuote = false;
+                }
+                continue;
+            }
+
+            if ($inBacktick) {
+                $statement .= $char;
+                if ($char === '`') {
+                    if ($nextChar === '`') {
+                        $statement .= $nextChar;
+                        $i++;
+                    } else {
+                        $inBacktick = false;
+                    }
+                }
+                continue;
+            }
+
+            if ($char === '#') {
+                $inLineComment = true;
+                continue;
+            }
+
+            if ($char === '-' && $nextChar === '-' && ($thirdChar === '' || ctype_space($thirdChar))) {
+                $inLineComment = true;
+                $i++;
+                continue;
+            }
+
+            if ($char === '/' && $nextChar === '*') {
+                $inBlockComment = true;
+                $statement .= $char . $nextChar;
+                $i++;
+                continue;
+            }
+
+            if ($char === '\'') {
+                $inSingleQuote = true;
+                $statement .= $char;
+                continue;
+            }
+
+            if ($char === '"') {
+                $inDoubleQuote = true;
+                $statement .= $char;
+                continue;
+            }
+
+            if ($char === '`') {
+                $inBacktick = true;
+                $statement .= $char;
+                continue;
+            }
+
+            if (
+                $delimiterLength > 0 &&
+                $delimiterLength <= ($lineLength - $i) &&
+                substr($line, $i, $delimiterLength) === $delimiter
+            ) {
+                $executeStatement($statement);
+                $statement = '';
+                $i += $delimiterLength - 1;
+                continue;
+            }
+
+            $statement .= $char;
+        }
+    };
+
+    if ($firstLine !== false) {
+        $processLine($firstLine);
     }
 
-    // 逐行读取并处理SQL语句
     while (!feof($fp)) {
         $line = fgets($fp, 4096);
         if ($line === false) {
             break;
         }
-
-        $line = trim($line);
-        if (!$line || $line[0] === '#') {
-            continue;
-        }
-
-        $query .= $line;
-
-        // 检查是否为完整的SQL语句
-        if (preg_match("/\;$/i", $line)) {
-            if (preg_match("/^CREATE/i", $query)) {
-                $query = preg_replace("/\DEFAULT CHARSET=([a-z0-9]+)/is", '', $query);
-            }
-
-            // 执行SQL语句，添加错误处理
-            $result = $DB->query($query);
-            if (!$result && $DB->geterrno() != 0) {
-                // 记录错误但继续执行，避免因个别语句失败导致整个导入中断
-                error_log("SQL执行失败 (行 $lineCount): " . $DB->geterror() . " SQL: " . substr($query, 0, 100));
-            }
-            $query = '';
-
-            $lineCount++;
-
-            // 每处理1000行强制释放内存
-            if ($lineCount % 1000 == 0 && function_exists('gc_collect_cycles')) {
-                gc_collect_cycles();
-            }
-        }
+        $processLine($line);
     }
 
-    // 处理最后可能未完成的查询
-    if (!empty(trim($query))) {
-        if (preg_match("/^CREATE/i", $query)) {
-            $query = preg_replace("/\DEFAULT CHARSET=([a-z0-9]+)/is", '', $query);
-        }
-        $result = $DB->query($query);
-        if (!$result && $DB->geterrno() != 0) {
-            error_log("SQL执行失败 (最后查询): " . $DB->geterror() . " SQL: " . substr($query, 0, 100));
-        }
+    if (trim($statement) !== '') {
+        $executeStatement($statement);
     }
 
     fclose($fp);
