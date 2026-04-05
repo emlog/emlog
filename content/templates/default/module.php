@@ -588,6 +588,7 @@ function blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allo
                         <?php else: ?>
                             <input class="btn" type="submit" id="comment_submit" value="<?= _langTpl('submit_comment') ?>" tabindex="6" />
                         <?php endif; ?>
+                        <input class="btn cancel-reply" type="button" id="cancel-reply" value="取消" tabindex="5" />
                     </span>
                     <input type="hidden" name="pid" id="comment-pid" value="0" tabindex="1" />
                 </form>

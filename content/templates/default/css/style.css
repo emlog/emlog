@@ -1272,6 +1272,27 @@ body {
     box-shadow: 0 4px 6px rgba(52, 152, 219, 0.25);
 }
 
+.comment-post #cancel-reply {
+    display: none;
+    width: 84px;
+    height: 35px;
+    text-align: center;
+    font-size: 14px;
+    margin: 10px 8px 10px 0;
+    float: right;
+    border-radius: 20px;
+    border: 1px solid var(--borderColor);
+    padding: 7px 10px;
+    background-color: transparent;
+    color: var(--fontColor);
+    transition: all 0.3s;
+}
+
+.comment-post #cancel-reply:hover {
+    cursor: pointer;
+    filter: brightness(0.95);
+}
+
 .comment-post #comment_submit:hover {
     cursor: pointer;
     filter: brightness(0.9);

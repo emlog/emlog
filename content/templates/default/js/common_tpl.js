@@ -23,23 +23,47 @@ var myBlog = {
         }
         $("#commentform").attr("onsubmit", "return myBlog.comSubmitTip()")  // 评论提交在表单验证未通过的情况下是不能提交的
     },
+    replyBtn: null,
     /**
      * 回复
      */
     toggleCommentInput: function ($t) {
-        var $ele, getpid, $com_board;
-        $ele = $t.parent().parent();
-        getpid = $ele.parent().attr("id");
-        $com_board = $("#comment-post");
+        var $ele, getpid, $com_board, currentPid
+        $ele = $t.parent().parent()
+        getpid = $ele.parent().attr("id")
+        $com_board = $("#comment-post")
+        currentPid = $("#comment-pid").attr("value") || "0"
 
-        if ($("#comment-pid").attr("value") === "0") {
-            $ele.append($com_board);
-            $("#comment-pid").attr("value", getpid);
-            $("#comments").toggleClass("com-bottom");
+        if (currentPid === "0") {
+            $ele.append($com_board)
+            $("#comment-pid").attr("value", getpid)
+            $("#comments").addClass("com-bottom")
+            this.replyBtn = $t
+            $t.hide()
+            $("#cancel-reply").show()
+        } else if (currentPid === getpid) {
+            this.cancelReply()
         } else {
-            $("#comment-pid").attr("value", "0");
-            $("#comments").append($("#comment-post")).toggleClass("com-bottom");
+            this.restoreReplyBtn()
+            $ele.append($com_board)
+            $("#comment-pid").attr("value", getpid)
+            $("#comments").addClass("com-bottom")
+            this.replyBtn = $t
+            $t.hide()
+            $("#cancel-reply").show()
         }
+    },
+    restoreReplyBtn: function () {
+        if (this.replyBtn && this.replyBtn.length) {
+            this.replyBtn.show()
+        }
+        this.replyBtn = null
+    },
+    cancelReply: function () {
+        $("#comment-pid").attr("value", "0")
+        $("#comments").append($("#comment-post")).removeClass("com-bottom")
+        $("#cancel-reply").hide()
+        this.restoreReplyBtn()
     },
 
     /**
@@ -614,6 +638,10 @@ $(document).ready(function () {
 
     $(".com-reply").click(function () {
         myBlog.toggleCommentInput($(this))
+    })
+
+    $("#cancel-reply").click(function () {
+        myBlog.cancelReply()
     })
 
     $(".blog-header-toggle").click(function () {
