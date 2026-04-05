@@ -1782,9 +1782,62 @@ body {
 }
 
 .log-title {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 1.75rem
+    text-align: left;
+    margin: 0;
+    font-size: 1.75rem;
+    line-height: 1.25;
+    overflow-wrap: anywhere
+}
+
+.log-header {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 16px
+}
+
+.log-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px 14px;
+    margin: 0;
+    color: var(--lightColor);
+    font-size: 14px;
+    line-height: 1.6
+}
+
+.log-meta-left, .log-meta-right {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 14px
+}
+
+.log-meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap
+}
+
+.log-meta a {
+    color: inherit
+}
+
+.log-meta .iconfont {
+    font-size: 14px
+}
+
+@media (max-width: 480px) {
+    .log-title {
+        font-size: 1.55rem
+    }
+
+    .log-meta-item {
+        white-space: normal
+    }
 }
 
 .page-title {
