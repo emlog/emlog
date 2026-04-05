@@ -173,10 +173,10 @@ var myBlog = {
      *
      * 启用 toc 目录方式: 在文章最开头写上'[toc]'或者'<!--[toc]-->',最好是单独一行
      */
-    tocFlag: /\[toc\]/gi,  // 判断toc是否声明的正则表达式
+    tocFlag: /<!--\s*\[toc\]\s*-->|\[toc\]/i,  // 判断 toc 是否声明（兼容 [toc] 与 <!--[toc]-->）
     tocArray: new Array(),  // 储存toc的数组
     tocSetArray: function () {  // 设置toc的数组内填数据
-        var $titles = $("#emlogEchoLog h1,h2,h3,h4,h5,h6:eq(0)")
+        var $titles = $("#emlogEchoLog h1, #emlogEchoLog h2, #emlogEchoLog h3, #emlogEchoLog h4, #emlogEchoLog h5, #emlogEchoLog h6")
 
         for (var i = 0; i < $titles.length; i++) {  // 将标签数据依次存入数组
             let $tit = $("#emlogEchoLog [toc-date='title']:eq(" + i + ")")
@@ -193,15 +193,16 @@ var myBlog = {
      * toc 分析（toc 效果程序的入口）
      */
     tocAnalyse: function () {
-        var tocFlag = document.querySelector("#emlogEchoLog p")
-
         if ($("#emlogEchoLog").length === 0) return  // 不在阅读页面  退出
-        if (!this.tocFlag.test($('#emlogEchoLog').html().substring(0, 30))) return  // 未声明 toc 标签，退出
-        tocFlag.innerHTML = tocFlag.innerHTML.replace(this.tocFlag, "")  // 去除 toc 声明
+        var $echoLog = $("#emlogEchoLog")
+        var logHtml = $echoLog.html() || ""
+
+        if (!this.tocFlag.test(logHtml)) return  // 未声明 toc 标签，退出
+        $echoLog.html(logHtml.replace(this.tocFlag, ""))  // 去除 toc 声明
 
         var $logCon = $(".log-con")
         var logConMar = parseInt($logCon.css("margin-left"))
-        var $titles = $("#emlogEchoLog h1,h2,h3,h4,h5,h6:eq(0)")
+        var $titles = $("#emlogEchoLog h1, #emlogEchoLog h2, #emlogEchoLog h3, #emlogEchoLog h4, #emlogEchoLog h5, #emlogEchoLog h6")
 
         if ($titles.length > 0) {
             if (window.outerWidth > 1275 || window.outerWidth === 0) {
