@@ -485,10 +485,20 @@ function neighbor_log($neighborLog)
 {
     extract($neighborLog) ?>
     <?php if ($prevLog): ?>
-        <span class="prev-log"><a href="<?= Url::log($prevLog['gid']) ?>" title="<?= _langTpl('prev_log') . $prevLog['title'] ?>"><span class="iconfont icon-prev"></span></a></span>
+        <span class="prev-log">
+            <a class="neighbor-link" href="<?= Url::log($prevLog['gid']) ?>" title="<?= _langTpl('prev_log') . $prevLog['title'] ?>">
+                <span class="neighbor-dir"><span class="iconfont icon-prev"></span><?= _langTpl('prev_log') ?></span>
+                <span class="neighbor-title"><?= htmlspecialchars((string)$prevLog['title']) ?></span>
+            </a>
+        </span>
     <?php endif ?>
     <?php if ($nextLog): ?>
-        <span class="next-log"><a href="<?= Url::log($nextLog['gid']) ?>" title="<?= _langTpl('next_log') . $nextLog['title'] ?>"><span class="iconfont icon-next"></span></a></span>
+        <span class="next-log">
+            <a class="neighbor-link" href="<?= Url::log($nextLog['gid']) ?>" title="<?= _langTpl('next_log') . $nextLog['title'] ?>">
+                <span class="neighbor-dir"><?= _langTpl('next_log') ?><span class="iconfont icon-next"></span></span>
+                <span class="neighbor-title"><?= htmlspecialchars((string)$nextLog['title']) ?></span>
+            </a>
+        </span>
     <?php endif ?>
 <?php } ?>
 <?php

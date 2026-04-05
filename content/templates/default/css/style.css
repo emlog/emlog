@@ -1847,26 +1847,71 @@ body {
 
 /* 相邻文章按钮的样式 */
 .neighbor-log {
-    overflow: hidden;
+    display: flex;
+    gap: 12px;
     margin-block: 20px
 }
 
 .prev-log {
-    margin: 3px 0;
-    float: left;
-    padding: 4px 8px 4px 8px;
-    font-size: small;
-    border: 1px solid var(--borderColor);
-    border-radius: 0.5rem
+    flex: 1;
+    min-width: 0
 }
 
 .next-log {
-    margin: 3px 0;
-    float: right;
-    padding: 4px 8px 4px 8px;
-    font-size: small;
+    flex: 1;
+    min-width: 0
+}
+
+.neighbor-link {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 10px 12px;
     border: 1px solid var(--borderColor);
-    border-radius: 0.5rem;
+    border-radius: 0.75rem;
+    transition: background-color 0.2s, border-color 0.2s
+}
+
+.neighbor-link:hover {
+    background-color: rgba(89, 184, 248, 0.08);
+    border-color: rgba(89, 184, 248, 0.28)
+}
+
+.neighbor-dir {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--lightColor);
+    line-height: 1.2
+}
+
+.neighbor-title {
+    font-size: 14px;
+    line-height: 1.4;
+    color: var(--fontColor);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+.next-log .neighbor-dir {
+    justify-content: flex-end
+}
+
+.next-log .neighbor-title {
+    text-align: right
+}
+
+@media (max-width: 600px) {
+    .neighbor-log {
+        flex-direction: column
+    }
+
+    .neighbor-title {
+        white-space: normal;
+        overflow-wrap: anywhere
+    }
 }
 
 .comment-info a {
