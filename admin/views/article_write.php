@@ -29,7 +29,7 @@
                     <div class="mt-2" id="field_box">
                         <?php
                         foreach ($fields as $key => $value): ?>
-                            <div class="form-row field_list mb-3">
+                            <div class="form-row field_list mb-3 border rounded bg-white mx-0 py-2">
                                 <div class="col-sm-3 px-2 my-1">
                                     <input type="text" name="field_keys[]" value="<?= $key ?>" list="customFieldList" class="form-control field-keys-input" placeholder="<?= _lang('field_name') ?>" maxlength="120" required>
                                     <datalist id="customFieldList">
@@ -412,7 +412,7 @@
     });
     $(document).on('click', '.field_add', function() {
         var newField = `
-                    <div class="form-row field_list mb-3">
+                    <div class="form-row field_list mb-3 border rounded bg-white mx-0 py-2">
                         <div class="col-sm-3 px-2 my-1">
                             <input type="text" name="field_keys[]" list="customFieldList" value="" class="form-control field-keys-input" placeholder="<?= _lang('field_name') ?>" maxlength="120" required>
                             <datalist id="customFieldList">
