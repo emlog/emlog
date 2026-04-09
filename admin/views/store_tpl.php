@@ -24,11 +24,12 @@
         <a href="./store.php?action=tpl&tag=promo" class="badge badge-danger m-1 p-2"><?= _lang('store_filter_promo') ?></a>
         <a href="./store.php?action=tpl&tag=download_top" class="badge badge-light text-primary p-2 small"><?= _lang('store_filter_download_top') ?></a>
         <a href="./store.php?action=tpl&tag=paid_top" class="badge badge-light text-primary p-2 small"><?= _lang('store_paid_top') ?></a>
-        <a href="./store.php?action=tpl&sid=8" class="badge badge-light text-primary p-2 small"><?= _lang('store_blog') ?></a>
-        <a href="./store.php?action=tpl&sid=21" class="badge badge-light text-primary p-2 small"><?= _lang('store_docs') ?></a>
-        <a href="./store.php?action=tpl&sid=9" class="badge badge-light text-primary p-2 small"><?= _lang('store_bbs') ?></a>
-        <a href="./store.php?action=tpl&sid=17" class="badge badge-light text-primary p-2 small"><?= _lang('store_navi') ?></a>
+        <a href="./store.php?action=tpl&sid=8" class="badge badge-light text-primary p-2 small"><?= _lang('store_cat_blog') ?></a>
+        <a href="./store.php?action=tpl&sid=21" class="badge badge-light text-primary p-2 small"><?= _lang('store_cat_docs') ?></a>
+        <a href="./store.php?action=tpl&sid=9" class="badge badge-light text-primary p-2 small"><?= _lang('store_cat_community') ?></a>
+        <a href="./store.php?action=tpl&sid=17" class="badge badge-light text-primary p-2 small"><?= _lang('store_cat_navi') ?></a>
         <a href="./store.php?action=tpl&sid=7" class="badge badge-light text-primary p-2 small"><?= _lang('store_resource') ?></a>
+        <a href="./store.php?action=tpl&sid=19" class="badge badge-light text-primary p-2 small"><?= _lang('store_cat_corp') ?></a>
     </div>
     <div class="d-flex mb-3 mb-sm-0">
         <form action="#" method="get" class="mr-sm-2">
