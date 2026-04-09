@@ -231,25 +231,27 @@ $(function () {
         let _name = $(this).attr('data-b-name')
         let _type = $(this).attr('data-type')
         let _url = $(this).attr('data-url')
+        let titlePlaceholder = $(this).attr('data-title-ph') || tplOptions.lang.title
+        let contentPlaceholder = $(this).attr('data-content-ph') || tplOptions.lang.content
+        let titlePlaceholderEscaped = $('<div/>').text(titlePlaceholder).html()
+        let contentPlaceholderEscaped = $('<div/>').text(contentPlaceholder).html()
         let type_html = ''
         if (_type === 'image') {
-            type_html = '<div class="tpl-block-upload"><span>' + tplOptions.lang.title + '</span>' +
-                '<input class="block-title-input" type="text" name="' + _name + '[title][]" value="">' +
+            type_html = '<div class="tpl-block-upload">' +
+                '<input class="block-title-input" type="text" name="' + _name + '[title][]" value="" placeholder="' + titlePlaceholderEscaped + '">' +
                 '<div class="tpl-image-preview"><img src=""></div><div class="tpl-block-upload-input">' +
-                '<input type="text" name="' + _name + '[content][]" value="">' +
+                '<input type="text" name="' + _name + '[content][]" value="" placeholder="' + contentPlaceholderEscaped + '">' +
                 '<a class="btn btn-outline-primary tpl-select-media" href="#mediaModal" data-toggle="modal" data-target="#mediaModal" data-mode="custom" data-media-type="image" data-btn-text="' + tplOptions.lang.choose_media + '" data-callback="tplOptionsUseMediaImage">' + tplOptions.lang.choose_media + '</a><label>\n' +
                 '<a class="btn btn-primary">' + tplOptions.lang.upload + '</a>\n' +
                 '<input class="d-none tpl-image" type="file" name="image" data-url="' + _url + '" accept="image/svg+xml,image/webp,image/avif,image/jpeg,image/jpg,image/png,image/gif">\n' +
                 '</label>'
             type_html += '</div></div>';
         } else {
-            type_html += '<div>' + tplOptions.lang.title + '</div>'
-            type_html += '<input class="block-title-input" type="text" name="' + _name + '[title][]" value="">'
-            type_html += '<div>' + tplOptions.lang.content + '</div>'
+            type_html += '<input class="block-title-input" type="text" name="' + _name + '[title][]" value="" placeholder="' + titlePlaceholderEscaped + '">'
             if ($(this).parent().parent().hasClass('is-multi')) {
-                type_html += '<textarea rows="5" name="' + _name + '[content][]"></textarea>'
+                type_html += '<textarea rows="5" name="' + _name + '[content][]" placeholder="' + contentPlaceholderEscaped + '"></textarea>'
             } else {
-                type_html += '<input type="text" name="' + _name + '[content][]" value="">'
+                type_html += '<input type="text" name="' + _name + '[content][]" value="" placeholder="' + contentPlaceholderEscaped + '">'
             }
         }
         $(this).before('<div class="tpl-block-item">\n' +

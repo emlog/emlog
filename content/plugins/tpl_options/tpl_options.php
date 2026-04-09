@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: 模板设置
-Version: 4.2.11
+Version: 4.2.12
 Plugin URL: https://www.emlog.net/docs/dev/template
 Description: 为模板增加丰富的设置功能，详见官网文档-模板开发。
 Author: emlog
@@ -19,7 +19,7 @@ class TplOptions
     //插件标识
     const ID = 'tpl_options';
     const NAME = '模板设置';
-    const VERSION = '4.2.11';
+    const VERSION = '4.2.12';
 
     //数据表前缀
     private $_prefix = 'tpl_options_';
@@ -792,7 +792,8 @@ class TplOptions
         if (isset($option['default']) && !in_array($option['type'], array(
             'page',
             'sort',
-            'tag'
+            'tag',
+            'block'
         ))) {
             $default = $option['default'];
         } else {
@@ -838,6 +839,7 @@ class TplOptions
                         break;
                     }
                 case 'tag':
+                case 'block':
                     $default = array();
                     break;
 
@@ -1053,6 +1055,8 @@ class TplOptions
                 break;
             case 'block':
                 $this_data_type = isset($option['pattern']) && $option['pattern'] === 'image' ? 'image' : 'text';
+                $titlePlaceholder = $this->encode($this->getBlockPlaceholder($option, 'title'));
+                $contentPlaceholder = $this->encode($this->getBlockPlaceholder($option, 'content'));
                 echo sprintf('<input type="hidden" name="%s" value="">', $option['id']);
                 echo '<div class="tpl-sortable-block">';
 
@@ -1072,17 +1076,19 @@ class TplOptions
                         echo sprintf('<h4 class="tpl-block-title"><span class="tpl-block-title-icon icofont-rounded-right"></span><item class="block-title-text">%s</item></h4>', $block_title);
                         echo '<div class="tpl-block-content d-none">';
                         echo strtr($tpl, array(
-                            '{title}'  => $option['id'] . '[title][]',
-                            '{tvalue}' => $block_title,
-                            '{name}'   => $option['id'] . '[content][]',
-                            '{value}'  => $this->encode($data['content'][$i]),
+                            '{title}'               => $option['id'] . '[title][]',
+                            '{tvalue}'              => $block_title,
+                            '{name}'                => $option['id'] . '[content][]',
+                            '{value}'               => $this->encode($data['content'][$i]),
+                            '{title_placeholder}'   => $titlePlaceholder,
+                            '{content_placeholder}' => $contentPlaceholder,
                         ));
                         echo '</div>';
                         echo '</div>';
                     }
                 }
 
-                echo sprintf('<a class="badge badge-success tpl-add-block" data-b-name="%s" data-type="%s" data-url="%s"><i class="ri-add-line"></i> %s</a>', $option['id'], $this_data_type, BLOG_URL, _langPlu('add', 'tpl_options'));
+                echo sprintf('<a class="badge badge-success tpl-add-block" data-b-name="%s" data-type="%s" data-url="%s" data-title-ph="%s" data-content-ph="%s"><i class="ri-add-line"></i> %s</a>', $option['id'], $this_data_type, BLOG_URL, $titlePlaceholder, $contentPlaceholder, _langPlu('add', 'tpl_options'));
                 echo '</div>';
                 echo '<script>
                           $(".tpl-sortable-block").sortable({
@@ -1270,13 +1276,12 @@ class TplOptions
         $tpl = '';
         if (isset($option['pattern']) && trim($option['pattern']) === 'image') {
             $tpl .= '<div class="tpl-block-upload">
-                        <span>' . _langPlu('js_title', 'tpl_options') . '</span>
-                        <input class="block-title-input" type="text" name="{title}" value="{tvalue}">
+                        <input class="block-title-input" type="text" name="{title}" value="{tvalue}" placeholder="{title_placeholder}">
                          <div class="tpl-image-preview">
                             <img src="{value}">
                          </div>
                          <div class="tpl-block-upload-input">
-                             <input type="text" name="{name}" value="{value}">
+                             <input type="text" name="{name}" value="{value}" placeholder="{content_placeholder}">
                              <a class="btn btn-outline-primary tpl-select-media" href="#mediaModal" data-toggle="modal" data-target="#mediaModal" data-mode="custom" data-media-type="image" data-btn-text="' . _langPlu('select', 'tpl_options') . '" data-callback="tplOptionsUseMediaImage">' . _langPlu('select', 'tpl_options') . '</a>
                              <label>
                                 <a class="btn btn-primary">' . _langPlu('js_upload', 'tpl_options') . '</a>
@@ -1285,17 +1290,37 @@ class TplOptions
                          </div>
                      </div>';
         } else {
-            $tpl = '<div>' . _langPlu('js_title', 'tpl_options') . '</div>';
-            $tpl .= '<input class="block-title-input" type="text" name="{title}" value="{tvalue}">';
-            $tpl .= '<div>' . _langPlu('js_content', 'tpl_options') . '</div>';
+            $tpl .= '<input class="block-title-input" type="text" name="{title}" value="{tvalue}" placeholder="{title_placeholder}">';
             if ($this->isMulti($option)) {
-                $tpl .= '<textarea rows="5" name="{name}">{value}</textarea>';
+                $tpl .= '<textarea rows="5" name="{name}" placeholder="{content_placeholder}">{value}</textarea>';
             } else {
-                $tpl .= '<input type="text" name="{name}" value="{value}">';
+                $tpl .= '<input type="text" name="{name}" value="{value}" placeholder="{content_placeholder}">';
             }
         }
         $option['depend'] = 'block';
         $this->renderByTpl($option, $tpl, false);
+    }
+
+    /**
+     * 获取 block 类型输入框占位文本
+     * @param array $option
+     * @param string $field title|content
+     * @return string
+     */
+    private function getBlockPlaceholder($option, $field)
+    {
+        $default = $field === 'title' ? _langPlu('js_title', 'tpl_options') : _langPlu('js_content', 'tpl_options');
+        if (isset($option['placeholder']) && is_array($option['placeholder'])) {
+            $value = $this->arrayGet($option['placeholder'], $field, '');
+            if (is_string($value) && trim($value) !== '') {
+                return trim($value);
+            }
+        }
+        $legacyKey = $field . '_placeholder';
+        if (isset($option[$legacyKey]) && is_string($option[$legacyKey]) && trim($option[$legacyKey]) !== '') {
+            return trim($option[$legacyKey]);
+        }
+        return $default;
     }
 
     /**

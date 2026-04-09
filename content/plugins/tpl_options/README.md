@@ -119,6 +119,10 @@ $options = [
         'type'         => 'block',
         'name'         => '拖动多内容块',
         'new'          =>  'NEW',
+        'placeholder'  => [
+            'title'   => '请输入标题',
+            'content' => '请输入内容',
+        ],
         'description'  => ''
     ],
     'index-image_list' => [
@@ -171,7 +175,7 @@ $options = [
 
 ### 设置项说明
 
-- 对于所有类型，default属性用于指定默认值，当没有指定default时，使用values里第一个值，若都没有指定，则会使用奇怪的默认值。
+- 对于除block外的类型，default属性用于指定默认值，当没有指定default时，使用values里第一个值，若都没有指定，则会使用奇怪的默认值。
 - 对于radio和chexkbox类型，values属性用来设置各个按钮的值和显示名称。
 - 除sort外，均可以指定depend为sort，表示该选项可以根据不同的分类设置不同的值，当指定depend为sort时，可选unsorted属性，为true时，表示包括未分类，为false不包括，默认为true。
 - 除tag外，均可以指定depend为tag，表示该选项可以根据不同的标签设置不同的值，例如给标签添加图标
@@ -185,6 +189,7 @@ $options = [
 - 对于类型**select**，pattern属性是**必填项**，可以填入：(1). post  (2).cate  (3).page。分别依次对应文章、分类、页面。此功能模块在数据非常庞大时可能查询缓慢。使用内置函数获取的数组内容为设置类型的ID，例如获取到一组文章gid。
 - (可选) 上述**所有类型**均支持 *new* 属性，即会在设置项名称后显示提醒徽标，效果可见默认模板。该属性值随意填写，如：NEW、新等。若为空或不填写将不显示。
 - 对于类型**block**，可选设置pattern属性，若不设置pattern属性默认内容为文本，可设置multi属性为true，表示多行文本。pattern属性设置为image可以使用多图片内容块。
+- 对于类型**block**，支持通过 `placeholder` 配置输入框占位文字。
 
 ### 为设置菜单增加图标
 
@@ -232,4 +237,3 @@ addAction('adm_head', 'optionIconFont');
 ```php
 _getBlock('image-block', 'content')
 ```
-
