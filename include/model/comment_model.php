@@ -312,6 +312,7 @@ class Comment_Model
             case 'showcom':
                 foreach ($comments as $val) {
                     $this->showComment($val);
+                    doAction('pub_comment', $val);
                 }
                 break;
             case 'top':
