@@ -333,7 +333,7 @@ return [
     'smtp_port_desc' => '端口 (465，如QQ\网易邮箱；587，如Outlook邮箱)',
     'send_test' => '发送测试',
     'mail_config_example' => '以QQ邮箱配置为例',
-    'mail_example_content' => '发送人邮箱：你的QQ邮箱<br>SMTP密码：见QQ邮箱顶部设置-> 账户 -> 开启IMAP/SMTP服务 -> 生成授权码（即为SMTP密码）<br>发送人名称：你的姓名或者站点名称<br>SMTP服务器：smtp.qq.com<br>端口：465',
+    'mail_example_content' => '发送人邮箱：你的QQ邮箱<br>SMTP密码：见QQ邮箱顶部右侧设置-> 账号与安全 -> 安全设置 -> 开启服务 -> 生成授权码（即为SMTP密码）<br>发送人名称：你的姓名或者站点名称<br>SMTP服务器：smtp.qq.com<br>端口：465',
     'input_receiver_email' => '输入接收邮箱',
     'mail_template' => '邮件模板',
     'select_template' => '选择模板',
