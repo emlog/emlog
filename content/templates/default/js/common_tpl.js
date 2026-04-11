@@ -406,6 +406,10 @@ var authModal = {
         this.$signinForm = $("#auth-signin-form")
         this.$signupForm = $("#auth-signup-form")
         this.$resetForm = $("#auth-reset-form")
+        this.$resetPanel = this.$panels.filter('[data-auth-panel="reset"]')
+        this.$resetSubmit = this.$resetForm.find(".auth-submit")
+        this.$resetStepOne = this.$resetForm.find(".auth-reset-step-1")
+        this.$resetStepTwo = this.$resetForm.find(".auth-reset-step-2")
         this.$sendMailBtn = $("#auth-send-mail-code")
         this.bindEvents()
     },
@@ -470,6 +474,46 @@ var authModal = {
         $target.show()
         this.$title.text($target.attr("data-title") || "")
         this.$subtitle.text($target.attr("data-subtitle") || "")
+        if ($target.is(this.$resetPanel)) {
+            this.resetResetFlow()
+        }
+    },
+    /**
+     * 重置找回密码流程为第一步（输入注册邮箱）。
+     */
+    resetResetFlow: function () {
+        if (!this.$resetForm.length) {
+            return
+        }
+        this.$resetForm[0].reset()
+        this.setResetStep(1)
+        this.refreshAllCaptcha()
+    },
+    /**
+     * 根据步骤切换找回密码表单字段与按钮文案。
+     */
+    setResetStep: function (step) {
+        var isStepTwo = Number(step) === 2
+        this.$resetForm.attr("data-step", isStepTwo ? "2" : "1")
+        this.$resetStepOne.toggle(!isStepTwo)
+        this.$resetStepTwo.toggle(isStepTwo)
+        this.$resetStepOne.find("input").prop("disabled", isStepTwo)
+        this.$resetStepTwo.find("input").prop("disabled", !isStepTwo)
+        if (this.$resetSubmit.length) {
+            var btnText = isStepTwo ? this.$resetSubmit.data("step2-text") : this.$resetSubmit.data("step1-text")
+            this.$resetSubmit.text(btnText || "")
+        }
+        if (this.$subtitle && this.$subtitle.length) {
+            var subtitle = isStepTwo ? this.$resetPanel.attr("data-subtitle-step2") : (this.$resetPanel.attr("data-subtitle-step1") || this.$resetPanel.attr("data-subtitle"))
+            this.$subtitle.text(subtitle || "")
+        }
+    },
+    /**
+     * 进入找回密码第二步（验证码 + 新密码）。
+     */
+    enterResetStepTwo: function () {
+        this.setResetStep(2)
+        this.clearAlert()
     },
     refreshCaptcha: function ($img) {
         var src = $img.attr("src") || ""
@@ -523,6 +567,7 @@ var authModal = {
         var self = this
         var payload = this.$signinForm.serializeArray()
         payload.push({name: "resp", value: "json"})
+        this.clearAlert()
         this.toggleSubmit(this.$signinForm, true)
         $.ajax({
             type: "POST",
@@ -542,6 +587,7 @@ var authModal = {
         var self = this
         var payload = this.$signupForm.serializeArray()
         payload.push({name: "resp", value: "json"})
+        this.clearAlert()
         this.toggleSubmit(this.$signupForm, true)
         $.ajax({
             type: "POST",
@@ -562,21 +608,59 @@ var authModal = {
         })
     },
     submitReset: function () {
+        if ((this.$resetForm.attr("data-step") || "1") === "2") {
+            this.submitResetStepTwo()
+            return
+        }
+        this.submitResetStepOne()
+    },
+    /**
+     * 找回密码第一步：提交注册邮箱并发送邮件验证码。
+     */
+    submitResetStepOne: function () {
         var self = this
         var payload = this.$resetForm.serializeArray()
         payload.push({name: "resp", value: "json"})
+        this.clearAlert()
         this.toggleSubmit(this.$resetForm, true)
         $.ajax({
             type: "POST",
             url: this.accountUrl("doreset"),
             data: $.param(payload),
             success: function () {
-                self.showAlert(self.$modal.data("msg-reset-success"), true)
+                self.enterResetStepTwo()
+                self.showAlert(self.$modal.data("msg-email-code-sent"), true)
                 self.toggleSubmit(self.$resetForm, false)
             },
             error: function (xhr) {
                 self.showAlert(self.getErrorMessage(xhr))
                 self.refreshAllCaptcha()
+                self.toggleSubmit(self.$resetForm, false)
+            }
+        })
+    },
+    /**
+     * 找回密码第二步：提交邮件验证码与新密码完成重置。
+     */
+    submitResetStepTwo: function () {
+        var self = this
+        var payload = this.$resetForm.serializeArray()
+        payload.push({name: "resp", value: "json"})
+        this.clearAlert()
+        this.toggleSubmit(this.$resetForm, true)
+        $.ajax({
+            type: "POST",
+            url: this.accountUrl("doreset2"),
+            data: $.param(payload),
+            success: function () {
+                self.showAlert(self.$modal.data("msg-reset-success"), true)
+                self.toggleSubmit(self.$resetForm, false)
+                setTimeout(function () {
+                    self.switchPanel("signin")
+                }, 900)
+            },
+            error: function (xhr) {
+                self.showAlert(self.getErrorMessage(xhr))
                 self.toggleSubmit(self.$resetForm, false)
             }
         })
@@ -591,12 +675,14 @@ var authModal = {
         }
         var $btn = this.$sendMailBtn
         var defaultText = $btn.text()
+        this.clearAlert()
         $btn.prop("disabled", true)
         $.ajax({
             type: "POST",
             url: this.accountUrl("send_email_code"),
             data: {mail: mail},
             success: function () {
+                self.showAlert(self.$modal.data("msg-email-code-sent"), true)
                 var seconds = 60
                 var timer = setInterval(function () {
                     seconds--

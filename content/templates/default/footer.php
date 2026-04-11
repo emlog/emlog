@@ -41,7 +41,7 @@ defined('EMLOG_ROOT') || exit('access denied!');
     </div>
 </div>
 <div class="auth-modal-mask" id="auth-modal-mask" style="display: none;"></div>
-<div class="auth-modal" id="auth-modal" style="display: none;" aria-hidden="true" data-msg-signup-success="<?= _lang('register_success_login') ?>" data-msg-reset-success="<?= _lang('reset_pwd_verify_email') ?>" data-msg-error="操作失败，请稍后重试">
+<div class="auth-modal" id="auth-modal" style="display: none;" aria-hidden="true" data-msg-signup-success="<?= _lang('register_success_login') ?>" data-msg-reset-success="<?= _lang('reset_success_login') ?>" data-msg-email-code-sent="<?= _lang('email_code_sent') ?>" data-msg-error="操作失败，请稍后重试">
     <div class="auth-modal-card" role="dialog" aria-modal="true" aria-labelledby="auth-modal-title">
         <button type="button" class="auth-modal-close" id="auth-modal-close" aria-label="<?= _lang('close') ?>">×</button>
         <div class="auth-modal-head">
@@ -116,18 +116,31 @@ defined('EMLOG_ROOT') || exit('access denied!');
                 </div>
             </div>
         <?php endif; ?>
-        <div class="auth-modal-panel" data-auth-panel="reset" data-title="<?= _lang('reset_password') ?>" data-subtitle="<?= _lang('reset_pwd_verify_email') ?>" style="display: none;">
+        <div class="auth-modal-panel" data-auth-panel="reset" data-title="<?= _lang('reset_password') ?>" data-subtitle="<?= _lang('reset_pwd_verify_email') ?>" data-subtitle-step2="<?= _lang('email_code_sent') ?>" style="display: none;">
             <form id="auth-reset-form" action="<?= BLOG_URL ?>admin/account.php?action=doreset" method="post">
-                <div class="auth-form-row">
-                    <input type="email" name="mail" placeholder="<?= _lang('email') ?>" autocomplete="email" required />
-                </div>
-                <?php if (Option::get('login_code') === 'y'): ?>
-                    <div class="auth-form-row auth-captcha-row">
-                        <input type="text" name="login_code" placeholder="<?= _lang('captcha') ?>" autocomplete="off" required />
-                        <img src="<?= BLOG_URL ?>include/lib/checkcode.php" data-auth-captcha="reset" alt="<?= _lang('captcha') ?>" />
+                <div class="auth-reset-step auth-reset-step-1">
+                    <div class="auth-form-row">
+                        <input type="email" name="mail" placeholder="<?= _lang('email') ?>" autocomplete="email" required />
                     </div>
-                <?php endif; ?>
-                <button type="submit" class="btn auth-submit"><?= _lang('submit') ?></button>
+                    <?php if (Option::get('login_code') === 'y'): ?>
+                        <div class="auth-form-row auth-captcha-row">
+                            <input type="text" name="login_code" placeholder="<?= _lang('captcha') ?>" autocomplete="off" required />
+                            <img src="<?= BLOG_URL ?>include/lib/checkcode.php" data-auth-captcha="reset" alt="<?= _lang('captcha') ?>" />
+                        </div>
+                    <?php endif; ?>
+                </div>
+                <div class="auth-reset-step auth-reset-step-2" style="display: none;">
+                    <div class="auth-form-row">
+                        <input type="text" name="mail_code" placeholder="<?= _lang('email_code') ?>" required />
+                    </div>
+                    <div class="auth-form-row">
+                        <input type="password" name="passwd" minlength="6" placeholder="<?= _lang('new_password') ?>" autocomplete="new-password" required />
+                    </div>
+                    <div class="auth-form-row">
+                        <input type="password" name="repasswd" minlength="6" placeholder="<?= _lang('confirm_password') ?>" autocomplete="new-password" required />
+                    </div>
+                </div>
+                <button type="submit" class="btn auth-submit" data-step1-text="<?= _lang('send_email_code') ?>" data-step2-text="<?= _lang('submit') ?>"><?= _lang('send_email_code') ?></button>
             </form>
             <div class="auth-modal-switch">
                 <a href="javascript:void(0);" data-auth-open="signin"><?= _lang('login') ?></a>
