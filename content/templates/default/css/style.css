@@ -21,6 +21,7 @@
     --selectBorderColor: #e2e8f0;
     --selectTextColor: #2d3748;
     --dividerColor: #e2e8f0;
+    --dropdownDividerColor: rgba(15, 23, 42, 0.08);
     --borderColor: rgba(0, 0, 0, 0.06);
 }
 
@@ -44,6 +45,7 @@
     --selectBorderColor: #4a5568;
     --selectTextColor: #e2e8f0;
     --dividerColor: #2d3748;
+    --dropdownDividerColor: rgba(148, 163, 184, 0.28);
     --borderColor: rgba(255, 255, 255, 0.1);
 }
 
@@ -540,7 +542,7 @@ body {
 
     /* 大屏幕列表样式 */
     .list-menu .list-menu {
-        border-bottom: 1px solid #f1f1f1;
+        border-bottom: 1px solid var(--dropdownDividerColor);
     }
 
     .list-menu:last-child {
