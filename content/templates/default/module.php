@@ -364,7 +364,7 @@ function blog_navi()
                 <?php if (!empty($value['children']) || !empty($value['childnavi'])) : ?>
                     <li class="list-item list-menu">
                         <?php if (!empty($value['children'])): ?>
-                            <a class="nav-link has-down" id="nav_link" href="<?= $value['url'] ?>" <?= $newtab ?> <?= $current_aria ?>><?= $value['naviname'] ?></a>
+                            <a class="nav-link has-down" id="nav_link" href="<?= $value['url'] ?>" aria-haspopup="true" <?= $newtab ?> <?= $current_aria ?>><?= $value['naviname'] ?></a>
                             <ul class="dropdown-menus">
                                 <?php foreach ($value['children'] as $row) {
                                     echo '<li class="list-item list-menu"><a class="nav-link" href="' . Url::sort($row['sid']) . '">' . $row['sortname'] . '</a></li>';
@@ -372,7 +372,7 @@ function blog_navi()
                             </ul>
                         <?php endif ?>
                         <?php if (!empty($value['childnavi'])) : ?>
-                            <a class='nav-link has-down' id="nav_link" href="<?= $value['url'] ?>" <?= $newtab ?> <?= $current_aria ?>><?= $value['naviname'] ?></a>
+                            <a class='nav-link has-down' id="nav_link" href="<?= $value['url'] ?>" aria-haspopup="true" <?= $newtab ?> <?= $current_aria ?>><?= $value['naviname'] ?></a>
                             <ul class="dropdown-menus">
                                 <?php foreach ($value['childnavi'] as $row) {
                                     $newtab = $row['newtab'] == 'y' ? 'target="_blank"' : '';

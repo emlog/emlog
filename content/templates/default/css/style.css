@@ -443,6 +443,28 @@ body {
     outline-offset: 2px;
 }
 
+.nav-link.has-down {
+    gap: 0.38rem;
+}
+
+/* 下拉菜单指示：给带子菜单的导航项添加箭头提示 */
+.nav-link.has-down::after {
+    content: '';
+    width: 0.42rem;
+    height: 0.42rem;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: translateY(-1px) rotate(45deg);
+    opacity: 0.72;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.list-menu:hover > .nav-link.has-down::after,
+.list-menu:focus-within > .nav-link.has-down::after {
+    transform: translateY(1px) rotate(225deg);
+    opacity: 1;
+}
+
 .list-menu {
     list-style: none
 }
@@ -661,6 +683,11 @@ body {
         border-radius: 8px;
         line-height: 1.5;
         transition: background-color 0.2s;
+    }
+
+    .list-menu .nav-link.has-down {
+        display: flex;
+        justify-content: space-between;
     }
 
     .list-menu .nav-link:hover {
