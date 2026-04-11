@@ -617,11 +617,19 @@ function blog_tool_ishome()
     if ($pathOnly === false || $pathOnly === null) {
         $pathOnly = $path;
     }
-    if (BLOG_URL . trim($pathOnly, '/') == BLOG_URL) {
-        return true;
-    } else {
-        return FALSE;
+    if (BLOG_URL . trim($pathOnly, '/') != BLOG_URL) {
+        return false;
     }
+
+    $query = parse_url($path, PHP_URL_QUERY);
+    if (empty($query)) {
+        return true;
+    }
+
+    parse_str($query, $queryParams);
+    unset($queryParams['theme']);
+
+    return empty($queryParams);
 }
 function getEmUserAvatar($uid, $mail)
 {

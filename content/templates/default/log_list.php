@@ -10,7 +10,7 @@ defined('EMLOG_ROOT') || exit('access denied!');
         <div class="column-big">
             <?php
             $slidesStr = _em('slideShow');
-            if (!empty($slidesStr)) : ?>
+            if (!empty($slidesStr) && blog_tool_ishome()) : ?>
                 <div class="slideshow-container">
                     <?php
                     $slides = explode(PHP_EOL, $slidesStr);
