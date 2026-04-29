@@ -295,7 +295,7 @@ function widget_archive($title)
         <div class="widget-title m">
             <h3><?= $title ?></h3>
         </div>
-        <select id="archive" class="archive">
+        <select id="archive" class="archive" aria-label="archive">
             <?php foreach ($record_cache as $value): ?>
                 <option value="<?= Url::record($value['date']) ?>"><?= $value['record'] ?>&nbsp;(<?= $value['lognum'] ?>)</option>
             <?php endforeach ?>
