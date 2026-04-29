@@ -237,7 +237,8 @@ if ($action == 'operate_user') {
 
     if ($operate == 'forbid') {
         foreach ($user_ids as $id) {
-            if ($id == 1) {
+            // 不能禁用创始人，也不能禁用当前登录用户自己
+            if ($id == 1 || $id == UID) {
                 continue;
             }
             $User_Model->forbidUser($id);
