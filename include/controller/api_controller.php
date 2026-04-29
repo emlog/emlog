@@ -205,6 +205,7 @@ class Api_Controller
         $page = Input::getIntVar('page', 1);
         $count = Input::getIntVar('count', Option::get('index_lognum'));
         $sort_id = Input::getIntVar('sort_id', 0);
+        $uid = Input::getIntVar('uid', 0);
         $keyword = Input::getStrVar('keyword');
         $keyword = htmlspecialchars($keyword);
         $keyword = str_replace(['%', '_'], ['\%', '\_'], $keyword);
@@ -221,6 +222,10 @@ class Api_Controller
         }
         if ($keyword) {
             $sub .= " and title like '%{$keyword}%'";
+        }
+        // 作者筛选：支持通过 uid 查询指定用户的文章列表
+        if ($uid > 0) {
+            $sub .= " and author = {$uid}";
         }
         if ($tag) {
             $blogIdStr = $this->Tag_Model->getTagByName($tag);
