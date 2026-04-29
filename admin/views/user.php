@@ -68,6 +68,7 @@
                             $userInfo = User::getUserByUid($val['uid']);
                             $avatar = User::getAvatar(isset($userInfo['photo']) ? $userInfo['photo'] : '');
                             $forbid = $val['state'] == 1;
+                            $isFounder = User::isFounder($val['role_raw'], $val['uid']);
                             $user_log_num = isset($sta_cache[$val['uid']]['lognum']) ? $sta_cache[$val['uid']]['lognum'] : 0;
                         ?>
                             <tr>
@@ -91,7 +92,7 @@
                                 <td><?= $val['update_time'] ?></td>
                                 <td><?= $val['create_time'] ?></td>
                                 <td>
-                                    <?php if (UID != $val['uid']): ?>
+                                    <?php if (UID != $val['uid'] && !$isFounder): ?>
                                         <a href="javascript: em_confirm(<?= $val['uid'] ?>, 'del_user', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger"><?= _lang('delete') ?></a>
                                         <?php if ($forbid): ?>
                                             <a href="user.php?action=unforbid&uid=<?= $val['uid'] ?>&token=<?= LoginAuth::genToken() ?>" class="badge badge-success"><?= _lang('unforbid') ?></a>
