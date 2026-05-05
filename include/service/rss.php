@@ -76,7 +76,6 @@ xmlns:atom="http://www.w3.org/2005/Atom"
 <description><![CDATA[{$blogInfo}]]></description>
 <link>{$blogLink}</link>
 <language>zh-cn</language>
-<generator>emlog</generator>
 {$items}
 </channel>
 </rss>

@@ -176,10 +176,10 @@ var myBlog = {
     tocFlag: /<!--\s*\[toc\]\s*-->|\[toc\]/i,  // 判断 toc 是否声明（兼容 [toc] 与 <!--[toc]-->）
     tocArray: new Array(),  // 储存toc的数组
     tocSetArray: function () {  // 设置toc的数组内填数据
-        var $titles = $("#emlogEchoLog h1, #emlogEchoLog h2, #emlogEchoLog h3, #emlogEchoLog h4, #emlogEchoLog h5, #emlogEchoLog h6")
+        var $titles = $("#articleContent h1, #articleContent h2, #articleContent h3, #articleContent h4, #articleContent h5, #articleContent h6")
 
         for (var i = 0; i < $titles.length; i++) {  // 将标签数据依次存入数组
-            let $tit = $("#emlogEchoLog [toc-date='title']:eq(" + i + ")")
+            let $tit = $("#articleContent [toc-date='title']:eq(" + i + ")")
             myBlog.tocArray[i] = new Array()
 
             myBlog.tocArray[i]['type'] = $tit.prop('tagName').substring(1)
@@ -193,8 +193,8 @@ var myBlog = {
      * toc 分析（toc 效果程序的入口）
      */
     tocAnalyse: function () {
-        if ($("#emlogEchoLog").length === 0) return  // 不在阅读页面  退出
-        var $echoLog = $("#emlogEchoLog")
+        if ($("#articleContent").length === 0) return  // 不在阅读页面  退出
+        var $echoLog = $("#articleContent")
         var logHtml = $echoLog.html() || ""
 
         if (!this.tocFlag.test(logHtml)) return  // 未声明 toc 标签，退出
@@ -202,7 +202,7 @@ var myBlog = {
 
         var $logCon = $(".log-con")
         var logConMar = parseInt($logCon.css("margin-left"))
-        var $titles = $("#emlogEchoLog h1, #emlogEchoLog h2, #emlogEchoLog h3, #emlogEchoLog h4, #emlogEchoLog h5, #emlogEchoLog h6")
+        var $titles = $("#articleContent h1, #articleContent h2, #articleContent h3, #articleContent h4, #articleContent h5, #articleContent h6")
 
         if ($titles.length > 0) {
             if (window.outerWidth > 1275 || window.outerWidth === 0) {

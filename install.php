@@ -509,7 +509,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES
 ('bloginfo',''),
 ('site_title',''),
 ('site_description',''),
-('site_key','emlog'),
+('site_key',''),
 ('log_title_style','0'),
 ('blogurl','" . BLOG_URL . "'),
 ('icp',''),

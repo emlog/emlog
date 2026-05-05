@@ -10,7 +10,7 @@ defined('EMLOG_ROOT') || exit('access denied!');
         <h1 class="log-title"><?php topflg($top) ?><?= $log_title ?></h1>
     </header>
     <hr class="bottom-5" />
-    <div class="markdown" id="emlogEchoLog"><?= $log_content ?></div>
+    <div class="markdown" id="articleContent"><?= $log_content ?></div>
 
     <?php doAction('log_related', $logData) ?>
 
