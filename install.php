@@ -87,9 +87,9 @@ if (!$act) {
                 margin: 0 0;
             }
 
-            .title {
+            h1 {
                 text-align: center;
-                font-size: 14px;
+                font-size: 24px;
             }
 
             .input-group {
@@ -202,7 +202,7 @@ if (!$act) {
         <form name="form1" method="post" action="install.php?action=install">
             <div class="main">
                 <p class="logo"></p>
-                <p class="title mb20">emlog <?= Option::EMLOG_VERSION ?></p>
+                <h1 class="mb20">emlog <?= Option::EMLOG_VERSION ?></h1>
                 <?php if ($env_db_user): ?>
                     <div class="b">
                         <input name="hostname" type="hidden" value="<?= $env_db_host ?>">
@@ -277,7 +277,6 @@ if (!$act) {
                 </div>
             </div>
         </form>
-        <div class="footer">Powered by <a href="https://www.emlog.net">emlog</a></div>
     </body>
 
     </html>
@@ -483,7 +482,6 @@ CREATE TABLE {$db_prefix}comment (
     KEY date (date),
     KEY hide (hide)
 )" . $table_charset_sql . "
-INSERT INTO {$db_prefix}comment (gid, date, poster, comment) VALUES (1, '" . time() . "', 'emlog', '" . _langInstall('demo_comment_content') . "');
 DROP TABLE IF EXISTS {$db_prefix}like;
 CREATE TABLE {$db_prefix}like (
     id int(11) unsigned NOT NULL auto_increment COMMENT '点赞表',
@@ -507,15 +505,15 @@ CREATE TABLE {$db_prefix}options (
     UNIQUE KEY `option_name_uindex` (`option_name`)
 )" . $table_charset_sql . "
 INSERT INTO {$db_prefix}options (option_name, option_value) VALUES 
-('blogname','EMLOG'),
-('bloginfo','" . _langInstall('blog_info') . "'),
+('blogname','Hello World'),
+('bloginfo',''),
 ('site_title',''),
 ('site_description',''),
 ('site_key','emlog'),
 ('log_title_style','0'),
 ('blogurl','" . BLOG_URL . "'),
 ('icp',''),
-('footer_info','powered by <a href=\"https://www.emlog.net\">emlog</a>'),
+('footer_info','@ Hello World'),
 ('rss_output_num','10'),
 ('rss_output_fulltext','y'),
 ('index_lognum','10'),
@@ -582,7 +580,6 @@ CREATE TABLE {$db_prefix}link (
     taxis int(11) unsigned NOT NULL default '0' COMMENT '排序序号',
     PRIMARY KEY  (id)
 )" . $table_charset_sql . "
-INSERT INTO {$db_prefix}link (id, sitename, siteurl, icon, description, taxis) VALUES (1, 'EMLOG', 'https://www.emlog.net', '', '" . _langInstall('emlog_official_homepage') . "', 0);
 DROP TABLE IF EXISTS {$db_prefix}navi;
 CREATE TABLE {$db_prefix}navi (
     id int(11) unsigned NOT NULL auto_increment COMMENT '导航表',
@@ -646,7 +643,7 @@ CREATE TABLE {$db_prefix}user (
     KEY username (username),
     KEY email (email)         
 )" . $table_charset_sql . "
-INSERT INTO {$db_prefix}user (uid, username, email, password, nickname, role, create_time, update_time) VALUES (1,'$username','$email','$password', 'emer','admin', " . time() . ", " . time() . ");
+INSERT INTO {$db_prefix}user (uid, username, email, password, nickname, role, create_time, update_time) VALUES (1,'$username','$email','$password', 'blogger','admin', " . time() . ", " . time() . ");
 DROP TABLE IF EXISTS {$db_prefix}twitter;
 CREATE TABLE {$db_prefix}twitter (
     id INT NOT NULL AUTO_INCREMENT COMMENT '微语笔记表',
