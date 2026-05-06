@@ -26,7 +26,7 @@ return [
     'username_password_empty' => '登录名和密码不能为空!',
     'password_short' => '登录密码不得小于6位',
     'password_match_error' => '两次输入的密码不一致',
-    'installed_warning' => '你的emlog看起来已经安装过了。继续安装将会覆盖原有数据，确定要继续吗？',
+    'installed_warning' => '数据库表已存在。继续安装将会覆盖原有数据，确定要继续吗？',
     'continue' => '继续',
     'back' => '点击返回',
     'config_not_writable' => '配置文件(config.php)不可写，请调整文件读写权限。',

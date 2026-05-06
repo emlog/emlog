@@ -26,7 +26,7 @@ return [
     'username_password_empty' => 'Username and password cannot be empty!',
     'password_short' => 'Password must be at least 6 characters',
     'password_match_error' => 'Passwords do not match',
-    'installed_warning' => 'It looks like emlog is already installed. Continuing will overwrite existing data. Are you sure?',
+    'installed_warning' => 'Database tables already exist. Continuing will overwrite existing data. Are you sure?',
     'continue' => 'Continue',
     'back' => 'Back',
     'config_not_writable' => 'Config file (config.php) is not writable. Please check permissions.',

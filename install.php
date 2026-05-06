@@ -92,6 +92,19 @@ if (!$act) {
                 font-size: 24px;
             }
 
+            .install-brand {
+                margin-bottom: 6px;
+                line-height: 1.2;
+            }
+
+            .install-version {
+                margin: 0 0 20px;
+                text-align: center;
+                font-size: 14px;
+                line-height: 1.2;
+                color: #aeb8c4;
+            }
+
             .input-group {
                 position: relative;
                 display: flex;
@@ -147,18 +160,20 @@ if (!$act) {
                 cursor: pointer;
                 color: #008cff;
                 letter-spacing: .5px;
-                padding-right: 3rem !important;
-                padding-left: 3rem !important;
-                display: inline-block;
-                font-size: 1rem;
-                font-weight: 400;
-                line-height: 1.5;
+                padding: 10px 30px;
+                min-width: 140px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 1.4;
                 text-align: center;
                 text-decoration: none;
                 vertical-align: middle;
                 user-select: none;
                 border: 1px solid #008cff;
-                border-radius: 5px;
+                border-radius: 6px;
                 background-color: transparent;
                 transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
             }
@@ -202,7 +217,8 @@ if (!$act) {
         <form name="form1" method="post" action="install.php?action=install">
             <div class="main">
                 <p class="logo"></p>
-                <h1 class="mb20">emlog <?= Option::EMLOG_VERSION ?></h1>
+                <h1 class="install-brand">emlog</h1>
+                <p class="install-version"><?= Option::EMLOG_VERSION ?></p>
                 <?php if ($env_db_user): ?>
                     <div class="b">
                         <input name="hostname" type="hidden" value="<?= $env_db_host ?>">
@@ -324,9 +340,77 @@ if ($act == 'install' || $act == 'reinstall') {
 <meta charset="utf-8">
 <title>emlog</title>
 <style>
-body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:150%;}
-.main {background-color:#FFFFFF;font-size: 12px;color: #666666;width:750px;margin:10px auto;padding:10px;list-style:none;border:#DFDFDF 1px solid;}
-.main p {line-height: 18px;margin: 5px 20px;}
+body {
+    margin: 0;
+    background-color: #f5f7fb;
+    font-family: Arial, sans-serif;
+    color: #4f5d75;
+}
+.main {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 720px;
+    margin: 48px auto;
+    padding: 36px 40px;
+    background-color: #ffffff;
+    border: 1px solid #e5eaf1;
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(30, 52, 84, 0.06);
+}
+.warning-card {
+    padding: 16px 18px;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    text-align: center;
+}
+.warning-title {
+    margin: 0;
+    font-size: 18px;
+    line-height: 1.4;
+    color: #c0392b;
+}
+.actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 22px;
+}
+.btn {
+    display: inline-block;
+    padding: 9px 18px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    line-height: 1.4;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+.btn-danger {
+    color: #fff;
+    background-color: #e74c3c;
+    border-color: #e74c3c;
+}
+.btn-danger:hover {
+    background-color: #d84333;
+    border-color: #d84333;
+}
+.btn-secondary {
+    color: #64748b;
+    background-color: #fff;
+    border-color: #d6deea;
+}
+.btn-secondary:hover {
+    color: #334155;
+    border-color: #b9c6da;
+}
+@media (max-width: 768px) {
+    .main {
+        margin: 20px 12px;
+        padding: 24px 18px;
+    }
+}
 </style>
 </head><body>
 <form name="form1" method="post" action="install.php?action=reinstall">
@@ -340,11 +424,13 @@ body {background-color:#F7F7F7;font-family: Arial;font-size: 12px;line-height:15
     <input name="password" type="hidden" class="input" value="$password">
     <input name="repassword" type="hidden" class="input" value="$repassword">
     <input name="email" type="hidden" class="input" value="$email">
-<p>
-{$warning_msg}
-<input type="submit" value="{$continue_msg} &raquo;">
-</p>
-<p><a href="javascript:history.back(-1);">&laquo;{$back_msg}</a></p>
+<div class="warning-card">
+    <h2 class="warning-title">{$warning_msg}</h2>
+</div>
+<div class="actions">
+    <button type="submit" class="btn btn-danger">{$continue_msg} &raquo;</button>
+    <a href="javascript:history.back(-1);" class="btn btn-secondary">&laquo; {$back_msg}</a>
+</div>
 </div>
 </form>
 </body>
@@ -513,7 +599,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES
 ('log_title_style','0'),
 ('blogurl','" . BLOG_URL . "'),
 ('icp',''),
-('footer_info','@ Hello World'),
+('footer_info','Hello World'),
 ('rss_output_num','10'),
 ('rss_output_fulltext','y'),
 ('index_lognum','10'),
