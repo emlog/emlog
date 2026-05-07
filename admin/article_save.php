@@ -92,7 +92,8 @@ $logData = [
 
 // 每日发文限制
 if (Article::hasReachedDailyPostLimit()) {
-    emDirect("./article.php?error_post_per_day=1");
+    Util::addFlashMessage('article_flash_messages', 'error_post_per_day');
+    emDirect("./article.php");
 }
 
 doMultiAction('pre_save_log', $logData, $logData);
@@ -118,7 +119,8 @@ if ($action === 'autosave') {
 
 // 保存草稿
 if ($ishide === 'y') {
-    emDirect("./article.php?draft=1&active_savedraft=1");
+    Util::addFlashMessage('article_flash_messages', 'active_savedraft');
+    emDirect("./article.php?draft=1");
 }
 
 // 文章（草稿）公开发布
@@ -126,9 +128,11 @@ if ($pubPost) {
     if (!User::haveEditPermission()) {
         notice::sendNewPostMail($title, $blogid);
     }
-    emDirect("./article.php?active_post=1");
+    Util::addFlashMessage('article_flash_messages', 'active_post');
+    emDirect("./article.php");
 }
 
 // 编辑文章（保存并返回）
 $page = $Log_Model->getPageOffset($postDate);
-emDirect("./article.php?active_savelog=1&page=" . $page);
+Util::addFlashMessage('article_flash_messages', 'active_savelog');
+emDirect("./article.php?page=" . $page);

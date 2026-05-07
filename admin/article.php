@@ -113,7 +113,7 @@ if ($action == 'del') {
         }
     } else {
         $Log_Model->hideSwitch($gid, 'y');
-        $redirectUrl .= "?active_hide=1";
+        Util::addFlashMessage('article_flash_messages', 'active_hide');
     }
     $CACHE->updateCache();
     emDirect($redirectUrl);
@@ -140,7 +140,7 @@ if ($action === 'pub') {
     }
 
     $CACHE->updateCache();
-    emDirect("./article.php?draft=1&active_post=1&draft=1");
+    Util::redirectWithFlash('./article.php', array('draft' => 1), 'article_flash_messages', 'active_post');
 }
 
 if ($action == 'operate_log') {
@@ -154,10 +154,10 @@ if ($action == 'operate_log') {
     LoginAuth::checkToken();
 
     if (!$operate) {
-        emDirect("./article.php?draft=$draft&error_b=1");
+        Util::redirectWithFlash('./article.php', array('draft' => $draft), 'article_flash_messages', 'error_b');
     }
     if (empty($logs) && empty($gid)) {
-        emDirect("./article.php?draft=$draft&error_a=1");
+        Util::redirectWithFlash('./article.php', array('draft' => $draft), 'article_flash_messages', 'error_a');
     }
 
     switch ($operate) {
@@ -174,26 +174,26 @@ if ($action == 'operate_log') {
             foreach ($logs as $val) {
                 $Log_Model->updateLog(array('top' => 'y'), $val);
             }
-            emDirect("./article.php?active_up=1&draft=$draft");
+            Util::redirectWithFlash('./article.php', array('draft' => $draft), 'article_flash_messages', 'active_up');
             break;
         case 'sortop':
             foreach ($logs as $val) {
                 $Log_Model->updateLog(array('sortop' => 'y'), $val);
             }
-            emDirect("./article.php?active_up=1&draft=$draft");
+            Util::redirectWithFlash('./article.php', array('draft' => $draft), 'article_flash_messages', 'active_up');
             break;
         case 'notop':
             foreach ($logs as $val) {
                 $Log_Model->updateLog(array('top' => 'n', 'sortop' => 'n'), $val);
             }
-            emDirect("./article.php?active_down=1&draft=$draft");
+            Util::redirectWithFlash('./article.php', array('draft' => $draft), 'article_flash_messages', 'active_down');
             break;
         case 'hide':
             foreach ($logs as $val) {
                 $Log_Model->hideSwitch($val, 'y');
             }
             $CACHE->updateCache();
-            emDirect("./article.php?active_hide=1&draft=$draft");
+            Util::redirectWithFlash('./article.php', array('draft' => $draft), 'article_flash_messages', 'active_hide');
             break;
         case 'pub':
             foreach ($logs as $val) {
@@ -203,7 +203,7 @@ if ($action == 'operate_log') {
                 }
             }
             $CACHE->updateCache();
-            emDirect("./article.php?draft=1&active_post=1&draft=$draft");
+            Util::redirectWithFlash('./article.php', array('draft' => 1), 'article_flash_messages', 'active_post');
             break;
         case 'move':
             foreach ($logs as $val) {
@@ -211,7 +211,7 @@ if ($action == 'operate_log') {
                 $Log_Model->updateLog(array('sortid' => $sort), $val);
             }
             $CACHE->updateCache(array('sort', 'logsort'));
-            emDirect("./article.php?active_move=1&draft=$draft");
+            Util::redirectWithFlash('./article.php', array('draft' => $draft), 'article_flash_messages', 'active_move');
             break;
         case 'change_author':
             if (!User::haveEditPermission()) {
@@ -221,7 +221,7 @@ if ($action == 'operate_log') {
                 $Log_Model->updateLog(array('author' => $author), $val);
             }
             $CACHE->updateCache('sta');
-            emDirect("./article.php?active_change_author=1&draft=$draft");
+            Util::redirectWithFlash('./article.php', array('draft' => $draft), 'article_flash_messages', 'active_change_author');
             break;
         case 'check':
             if (!User::haveEditPermission()) {
@@ -237,7 +237,7 @@ if ($action == 'operate_log') {
                 doAction('approved_log', $gid);
             }
             $CACHE->updateCache();
-            emDirect("./article.php?active_ck=1&draft=$draft");
+            Util::redirectWithFlash('./article.php', array('draft' => $draft), 'article_flash_messages', 'active_ck');
             break;
         case 'uncheck':
             if (!User::haveEditPermission()) {
@@ -256,7 +256,7 @@ if ($action == 'operate_log') {
                 doAction('rejected_log', $gid, $feedback);
             }
             $CACHE->updateCache();
-            emDirect("./article.php?active_unck=1&draft=$draft");
+            Util::redirectWithFlash('./article.php', array('draft' => $draft), 'article_flash_messages', 'active_unck');
             break;
     }
 }
