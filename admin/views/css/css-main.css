@@ -1166,3 +1166,11 @@ textarea.form-control {
         cursor: move;
     }
 }
+
+/* 应用商店：超宽屏每行 5 列 */
+@media (min-width: 1921px) {
+    .app-list .store-app-col {
+        flex: 0 0 20%;
+        max-width: 20%;
+    }
+}
