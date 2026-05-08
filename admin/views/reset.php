@@ -11,12 +11,7 @@
                                     <h1 class="h4 text-gray-900 mb-4"><?= _lang('reset_pwd_verify_email'); ?></h1>
                                 </div>
                                 <form method="post" class="user" action="./account.php?action=doreset">
-                                    <?php if (isset($_GET['error_mail'])): ?>
-                                        <div class="alert alert-danger"><?= _lang('reg_email_error'); ?></div><?php endif ?>
-                                    <?php if (isset($_GET['error_sendmail'])): ?>
-                                        <div class="alert alert-danger"><?= _lang('email_code_send_failed'); ?></div><?php endif ?>
-                                    <?php if (isset($_GET['err_ckcode'])): ?>
-                                        <div class="alert alert-danger"><?= _lang('captcha_error'); ?></div><?php endif ?>
+                                    <?= FlashMsg::renderResetAlerts(); ?>
                                     <div class="form-group">
                                         <input type="email" class="form-control form-control-user" id="mail" name="mail" aria-describedby="emailHelp" placeholder="<?= _lang('email'); ?>"
                                             required

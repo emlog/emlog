@@ -58,20 +58,20 @@ if ($action == 'save') {
     $allow_user_post = Input::postStrVar('allow_user_post') === 'y' ? 'y' : 'n';
 
     if (empty($sortname)) {
-        emDirect("./sort.php?error_a=1");
+        FlashMsg::redirectAdmin('sort', 'error_a');
     }
 
     if ($sid && $sid == $pid) {
-        emDirect("./sort.php?error_f=1");
+        FlashMsg::redirectAdmin('sort', 'error_f');
     }
 
     if (!empty($alias)) {
         if (!preg_match("|^[\w-]+$|", $alias)) {
-            emDirect("./sort.php?error_c=1");
+            FlashMsg::redirectAdmin('sort', 'error_c');
         } elseif (preg_match("|^[0-9]+$|", $alias)) {
-            emDirect("./sort.php?error_c=1");
+            FlashMsg::redirectAdmin('sort', 'error_c');
         } elseif (in_array($alias, array('post', 'record', 'sort', 'tag', 'author', 'page', 'posts'))) {
-            emDirect("./sort.php?error_e=1");
+            FlashMsg::redirectAdmin('sort', 'error_e');
         } else {
             $sort_cache = $CACHE->readCache('sort');
             if ($sid) {
@@ -79,7 +79,7 @@ if ($action == 'save') {
             }
             foreach ($sort_cache as $key => $value) {
                 if ($alias == $value['alias']) {
-                    emDirect("./sort.php?error_d=1");
+                    FlashMsg::redirectAdmin('sort', 'error_d');
                 }
             }
         }
@@ -107,7 +107,7 @@ if ($action == 'save') {
     doAction('save_sort', $sid, $sort_data);
 
     $CACHE->updateCache(['sort', 'logsort', 'navi']);
-    emDirect("./sort.php?active_save=1");
+    FlashMsg::redirectAdmin('sort', 'active_save');
 }
 
 if ($action == 'del') {

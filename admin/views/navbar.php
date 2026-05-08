@@ -1,16 +1,5 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
-<?php if (isset($_GET['active_edit'])): ?>
-    <div class="alert alert-success"><?= _lang('edit_success') ?></div><?php endif ?>
-<?php if (isset($_GET['active_add'])): ?>
-    <div class="alert alert-success"><?= _lang('add_success') ?></div><?php endif ?>
-<?php if (isset($_GET['error_a'])): ?>
-    <div class="alert alert-danger"><?= _lang('navi_error_a') ?></div><?php endif ?>
-<?php if (isset($_GET['error_c'])): ?>
-    <div class="alert alert-danger"><?= _lang('navi_error_c') ?></div><?php endif ?>
-<?php if (isset($_GET['error_d'])): ?>
-    <div class="alert alert-danger"><?= _lang('navi_error_d') ?></div><?php endif ?>
-<?php if (isset($_GET['error_e'])): ?>
-    <div class="alert alert-danger"><?= _lang('navi_error_e') ?></div><?php endif ?>
+<?= FlashMsg::renderNavbarAlerts(); ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h4 mb-0 text-gray-800"><?= _lang('navbar') ?></h1>
     <div class="mt-4">

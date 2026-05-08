@@ -1,12 +1,5 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
-<?php if (isset($_GET['active_t'])): ?>
-    <div class="alert alert-success"><?= _lang('publish_success') ?></div><?php endif ?>
-<?php if (isset($_GET['active_set'])): ?>
-    <div class="alert alert-success"><?= _lang('save_success') ?></div><?php endif ?>
-<?php if (isset($_GET['error_a'])): ?>
-    <div class="alert alert-danger"><?= _lang('content_required') ?></div><?php endif ?>
-<?php if (isset($_GET['error_forbid'])): ?>
-    <div class="alert alert-danger"><?= _lang('twitter_post_forbidden') ?></div><?php endif ?>
+<?= FlashMsg::renderTwitterAlerts(); ?>
 <h1 class="h4 mb-2 text-gray-800 mb-4"><?= _lang('twitter_note') ?></h1>
 <form method="post" action="twitter.php?action=post">
     <div class="form-group">

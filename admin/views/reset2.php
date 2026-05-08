@@ -11,10 +11,7 @@
                                     <h1 class="h4 text-gray-900 mb-4"><?= _lang('reset_pwd_reset'); ?></h1>
                                 </div>
                                 <form method="post" class="user" action="./account.php?action=doreset2">
-                                    <?php if (isset($_GET['succ_mail'])): ?>
-                                        <div class="alert alert-success"><?= _lang('email_code_sent'); ?></div><?php endif ?>
-                                    <?php if (isset($_GET['err_mail_code'])): ?>
-                                        <div class="alert alert-danger"><?= _lang('email_code_error'); ?></div><?php endif ?>
+                                    <?= FlashMsg::renderReset2Alerts(); ?>
                                     <div class="form-group">
                                         <input type="text" class="form-control form-control-user" id="mail_code" name="mail_code" placeholder="<?= _lang('email_code'); ?>" required>
                                     </div>

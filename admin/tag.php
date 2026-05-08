@@ -38,13 +38,13 @@ if ($action == 'add_tag') {
 
     LoginAuth::checkToken();
     if (empty($tagName)) {
-        emDirect("tag.php?error_a=1");
+        FlashMsg::redirectAdmin('tag', 'error_a');
     }
 
     // 检查标签是否已存在
     $existingTagId = $Tag_Model->getIdFromName($tagName);
     if ($existingTagId) {
-        emDirect("tag.php?error_exist=1");
+        FlashMsg::redirectAdmin('tag', 'error_exist');
     }
 
     // 创建新标签
@@ -56,7 +56,7 @@ if ($action == 'add_tag') {
     }
 
     $CACHE->updateCache('tags');
-    emDirect("./tag.php?active_add=1");
+    FlashMsg::redirectAdmin('tag', 'active_add');
 }
 
 if ($action == 'update_tag') {
@@ -67,12 +67,12 @@ if ($action == 'update_tag') {
     $tagId = Input::postIntVar('tid');
 
     if (empty($tagName)) {
-        emDirect("tag.php?error_a=1");
+        FlashMsg::redirectAdmin('tag', 'error_a');
     }
 
     $Tag_Model->updateTagName($tagId, $tagName, $kw, $title, $description);
     $CACHE->updateCache('tags');
-    emDirect("./tag.php?active_edit=1");
+    FlashMsg::redirectAdmin('tag', 'active_edit');
 }
 
 if ($action == 'del_tag') {
@@ -80,7 +80,7 @@ if ($action == 'del_tag') {
 
     LoginAuth::checkToken();
     if (!$tid) {
-        emDirect("./tag.php?error_a=1");
+        FlashMsg::redirectAdmin('tag', 'error_a');
     }
     $Tag_Model->deleteTag($tid);
     $CACHE->updateCache('tags');

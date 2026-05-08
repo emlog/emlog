@@ -1,6 +1,5 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
-<?php if (isset($_GET['error'])): ?>
-    <div class="alert alert-danger"><?= _lang('store_unavailable') ?></div><?php endif ?>
+<?= FlashMsg::renderStoreAlerts(); ?>
 
 <div class="d-sm-flex align-items-center mb-4">
     <h1 class="h4 mb-0 text-gray-800"><?= _lang('store') ?> - <?= $sub_title ?></h1>

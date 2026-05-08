@@ -114,18 +114,18 @@ class Store_Model
 
         $retStatus = $emcurl->getHttpStatus();
         if ($retStatus !== MSGCODE_SUCCESS) {
-            emDirect("./store.php?action=error&error=1");
+            FlashMsg::redirectAdmin('store', 'error', array('action' => 'error'), 'store_flash_messages');
         }
         $response = $emcurl->getRespone();
         $ret = json_decode($response, 1);
         if (empty($ret)) {
-            emDirect("./store.php?action=error&error=1");
+            FlashMsg::redirectAdmin('store', 'error', array('action' => 'error'), 'store_flash_messages');
         }
         if ($ret['code'] === MSGCODE_EMKEY_INVALID) {
             Option::updateOption('emkey', '');
             $CACHE = Cache::getInstance();
             $CACHE->updateCache('options');
-            emDirect("./auth.php?error_store=1");
+            FlashMsg::redirectAdmin('auth', 'error_store');
         }
 
         $data = [];

@@ -93,6 +93,10 @@ if (empty($action) && $plugin) {
     echo '<li class="breadcrumb-item active" aria-current="page">' . htmlspecialchars($pluginName) . '</li>';
     echo '</ol>';
     echo '</nav>';
+    echo FlashMsg::renderAlertsByMap('plugin_setting_flash_messages', array(
+        'setting' => array('type' => 'success', 'text' => _lang('save_success')),
+        'error' => array('type' => 'danger', 'text' => _lang('plugin_enable_failed')),
+    ));
     plugin_setting_view();
     include View::getAdmView('footer');
 }
@@ -105,12 +109,12 @@ if ($action == 'setting') {
     if (!empty($_POST)) {
         require_once "../content/plugins/$plugin/{$plugin}_setting.php";
         if (false === plugin_setting()) {
-            emDirect("./plugin.php?plugin={$plugin}&error=1");
+            FlashMsg::redirectAdmin('plugin', 'error', array('plugin' => $plugin), 'plugin_setting_flash_messages');
         } else {
-            emDirect("./plugin.php?plugin={$plugin}&setting=1");
+            FlashMsg::redirectAdmin('plugin', 'setting', array('plugin' => $plugin), 'plugin_setting_flash_messages');
         }
     } else {
-        emDirect("./plugin.php?plugin={$plugin}&error=1");
+        FlashMsg::redirectAdmin('plugin', 'error', array('plugin' => $plugin), 'plugin_setting_flash_messages');
     }
 }
 
@@ -130,13 +134,13 @@ if ($action == 'del') {
     $Plugin_Model->rmCallback($plugin);
     $path = preg_replace("/^([\w-]+)\/[\w-]+\.php$/i", "$1", $plugin);
     if ($path === 'tpl_options') {
-        emDirect("./plugin.php?error_sys=1");
+        FlashMsg::redirectAdmin('plugin', 'error_sys');
     }
     if ($path && true === emDeleteFile('../content/plugins/' . $path)) {
         $CACHE->updateCache('options');
-        emDirect("./plugin.php?activate_del=1");
+        FlashMsg::redirectAdmin('plugin');
     } else {
-        emDirect("./plugin.php?error_a=1");
+        FlashMsg::redirectAdmin('plugin', 'error_a');
     }
 }
 
@@ -148,34 +152,38 @@ if ($action == 'upload_zip') {
     $zipfile = isset($_FILES['pluzip']) ? $_FILES['pluzip'] : '';
 
     if ($zipfile['error'] == 4) {
-        emDirect("./plugin.php?error_d=1");
+        FlashMsg::redirectAdmin('plugin', 'error_d');
     }
     if ($zipfile['error'] == 1) {
-        emDirect("./plugin.php?error_g=1");
+        FlashMsg::redirectAdmin('plugin', 'error_g');
     }
     if (!$zipfile || $zipfile['error'] >= 1 || empty($zipfile['tmp_name'])) {
         emMsg('插件上传失败， 错误码：' . $zipfile['error']);
     }
     if (getFileSuffix($zipfile['name']) != 'zip') {
-        emDirect("./plugin.php?error_f=1");
+        FlashMsg::redirectAdmin('plugin', 'error_f');
     }
 
     $ret = emUnZip($zipfile['tmp_name'], '../content/plugins/', 'plugin');
     switch ($ret) {
         case 0:
-            emDirect("./plugin.php?activate_install=1");
+            FlashMsg::redirectAdmin('plugin', 'activate_install');
             break;
         case -1:
-            emDirect("./plugin.php?error_e=1");
+            FlashMsg::redirectAdmin('plugin', 'error_e');
             break;
         case 1:
         case 2:
-            emDirect("./plugin.php?error_b=1");
+            FlashMsg::redirectAdmin('plugin', 'error_b');
             break;
         case 3:
-            emDirect("./plugin.php?error_c=1");
+            FlashMsg::redirectAdmin('plugin', 'error_c');
             break;
     }
+}
+
+if ($action === 'upgrade_done') {
+    FlashMsg::redirectAdmin('plugin', 'activate_upgrade');
 }
 
 if ($action === 'check_update') {

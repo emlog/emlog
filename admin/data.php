@@ -62,7 +62,7 @@ if ($action === 'backup') {
     unlink($tempFile);
 
     if (($dumpfile = emZip($filename . '.sql', $dumpfile)) === false) {
-        emDirect('./data.php?error_f=1');
+        FlashMsg::redirectAdmin('data', 'error_f');
     }
 
     // Clear output buffer to prevent any accidental output
@@ -94,14 +94,14 @@ if ($action === 'import') {
         $ret = emUnZip($sqlfile['tmp_name'], dirname($sqlfile['tmp_name']), 'backup');
         switch ($ret) {
             case -3:
-                emDirect('./data.php?error_e=1');
+                FlashMsg::redirectAdmin('data', 'error_e');
                 break;
             case 1:
             case 2:
-                emDirect('./data.php?error_d=1');
+                FlashMsg::redirectAdmin('data', 'error_d');
                 break;
             case 3:
-                emDirect('./data.php?error_c=1');
+                FlashMsg::redirectAdmin('data', 'error_c');
                 break;
         }
         $sqlfile['tmp_name'] = dirname($sqlfile['tmp_name']) . '/' . str_replace('.zip', '.sql', $sqlfile['name']);
@@ -114,7 +114,7 @@ if ($action === 'import') {
     checkSqlFileInfo($sqlfile['tmp_name']);
     importData($sqlfile['tmp_name']);
     $CACHE->updateCache();
-    emDirect('./data.php?active_import=1');
+    FlashMsg::redirectAdmin('data', 'active_import');
 }
 
 /**
@@ -487,5 +487,5 @@ function checkBOM($contents)
 if ($action == 'Cache') {
     Register::isRegServer();
     $CACHE->updateCache();
-    emDirect('./data.php?active_mc=1');
+    FlashMsg::redirectAdmin('data', 'active_mc');
 }

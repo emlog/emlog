@@ -164,7 +164,8 @@ if ($action === 'operate_media') {
             foreach ($aids as $id) {
                 $Media_Model->updateMedia(['sortid' => $sort], $id);
             }
-            emDirect($baseUrl . ($sid !== '' ? '&' : '?') . 'active_mov=1');
+            $params = $sid !== '' ? array('sid' => $sid) : array();
+            FlashMsg::redirectAdmin('media', 'active_mov', $params);
             break;
     }
 }
@@ -176,11 +177,13 @@ if ($action === 'update_media') {
     $baseUrl = './media.php' . ($sid !== '' ? '?sid=' . rawurlencode($sid) : '');
 
     if (empty($filename)) {
-        emDirect($baseUrl . ($sid !== '' ? '&' : '?') . 'error_a=1');
+        $params = $sid !== '' ? array('sid' => $sid) : array();
+        FlashMsg::redirectAdmin('media', 'error_a', $params);
     }
 
     $Media_Model->updateMedia(["filename" => $filename], $id);
-    emDirect($baseUrl . ($sid !== '' ? '&' : '?') . 'active_edit=1');
+    $params = $sid !== '' ? array('sid' => $sid) : array();
+    FlashMsg::redirectAdmin('media', 'active_edit', $params);
 }
 
 if ($action === 'add_media_sort') {
@@ -189,11 +192,11 @@ if ($action === 'add_media_sort') {
     }
     $sortname = Input::postStrVar('sortname');
     if (empty($sortname)) {
-        emDirect("./media.php?error_a=1");
+        FlashMsg::redirectAdmin('media', 'error_a');
     }
 
     $MediaSortModel->addSort($sortname);
-    emDirect("./media.php?active_add=1");
+    FlashMsg::redirectAdmin('media', 'active_add');
 }
 
 if ($action === 'update_media_sort') {
@@ -204,11 +207,11 @@ if ($action === 'update_media_sort') {
     $id = Input::postIntVar('id');
 
     if (empty($sortname)) {
-        emDirect("./media.php?error_a=1");
+        FlashMsg::redirectAdmin('media', 'error_a');
     }
 
     $MediaSortModel->updateSort(["sortname" => $sortname], $id);
-    emDirect("./media.php?active_edit=1");
+    FlashMsg::redirectAdmin('media', 'active_edit');
 }
 
 if ($action === 'add_external_resource') {
@@ -219,11 +222,11 @@ if ($action === 'add_external_resource') {
     $resource_sort = Input::postIntVar('resource_sort');
 
     if (empty($external_url)) {
-        emDirect("./media.php?error_a=1");
+        FlashMsg::redirectAdmin('media', 'error_a');
     }
 
     if (!filter_var($external_url, FILTER_VALIDATE_URL)) {
-        emDirect("./media.php?error_url=1");
+        FlashMsg::redirectAdmin('media', 'error_url');
     }
 
     $parsed_url = parse_url($external_url);
@@ -247,7 +250,7 @@ if ($action === 'add_external_resource') {
     ];
 
     $aid = $Media_Model->addMedia($file_info, $resource_sort);
-    emDirect("./media.php?active_add=1");
+    FlashMsg::redirectAdmin('media', 'active_add');
 }
 
 if ($action === 'del_media_sort') {

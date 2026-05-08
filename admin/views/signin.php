@@ -9,16 +9,7 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4"><?= _lang('login'); ?></h1>
                             </div>
-                            <?php if (isset($_GET['succ_reg'])): ?>
-                                <div class="alert alert-success"><?= _lang('register_success_login'); ?></div><?php endif ?>
-                            <?php if (isset($_GET['succ_reset'])): ?>
-                                <div class="alert alert-success"><?= _lang('reset_success_login'); ?></div><?php endif ?>
-                            <?php if (isset($_GET['err_ckcode'])): ?>
-                                <div class="alert alert-danger"><?= _lang('captcha_error'); ?></div><?php endif ?>
-                            <?php if (isset($_GET['err_login'])): ?>
-                                <div class="alert alert-danger"><?= _lang('user_pass_error'); ?></div><?php endif ?>
-                            <?php if (isset($_GET['err_forbid'])): ?>
-                                <div class="alert alert-danger"><?= _lang('account_forbidden'); ?></div><?php endif ?>
+                            <?= FlashMsg::renderSigninAlerts(); ?>
                             <form method="post" class="user" action="./account.php?action=dosignin&s=<?= $admin_path_code ?>">
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" id="user" name="user" aria-describedby="emailHelp" placeholder="<?= _lang('username_email'); ?>"

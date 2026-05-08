@@ -24,13 +24,13 @@ if ($action === 'auth') {
     $emkey = Input::postStrVar('emkey');
 
     if (empty($emkey)) {
-        emDirect("./auth.php?error_b=1");
+        FlashMsg::redirectAdmin('auth', 'error_b');
     }
 
     $r = Register::doReg($emkey);
 
     if ($r === false) {
-        emDirect("./auth.php?error_b=1");
+        FlashMsg::redirectAdmin('auth', 'error_b');
     }
 
     if (isset($r['type'])) {

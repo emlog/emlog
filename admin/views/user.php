@@ -1,22 +1,5 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
-<?php if (isset($_GET['active_unfb'])): ?>
-    <div class="alert alert-success"><?= _lang('active_unforbid') ?></div><?php endif ?>
-<?php if (isset($_GET['active_update'])): ?>
-    <div class="alert alert-success"><?= _lang('edit_success') ?></div><?php endif ?>
-<?php if (isset($_GET['active_add'])): ?>
-    <div class="alert alert-success"><?= _lang('active_add_user') ?></div><?php endif ?>
-<?php if (isset($_GET['error_email'])): ?>
-    <div class="alert alert-danger"><?= _lang('error_email_empty') ?></div><?php endif ?>
-<?php if (isset($_GET['error_exist_email'])): ?>
-    <div class="alert alert-danger"><?= _lang('error_exist_email') ?></div><?php endif ?>
-<?php if (isset($_GET['error_pwd_len'])): ?>
-    <div class="alert alert-danger"><?= _lang('password_min_length') ?></div><?php endif ?>
-<?php if (isset($_GET['error_pwd2'])): ?>
-    <div class="alert alert-danger"><?= _lang('password_inconsistent') ?></div><?php endif ?>
-<?php if (isset($_GET['error_del_a'])): ?>
-    <div class="alert alert-danger"><?= _lang('error_del_founder') ?></div><?php endif ?>
-<?php if (isset($_GET['error_del_b'])): ?>
-    <div class="alert alert-danger"><?= _lang('error_edit_founder') ?></div><?php endif ?>
+<?= FlashMsg::renderUserAlerts(); ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h4 mb-0 text-gray-800"><?= _lang('user') ?></h1>
     <a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#exampleModal"><i class="icofont-plus"></i> <?= _lang('add_user') ?></a>

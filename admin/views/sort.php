@@ -1,16 +1,5 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
-<?php if (isset($_GET['active_save'])): ?>
-    <div class="alert alert-success"><?= _lang('save_success') ?></div><?php endif ?>
-<?php if (isset($_GET['error_a'])): ?>
-    <div class="alert alert-danger"><?= _lang('sort_name_required') ?></div><?php endif ?>
-<?php if (isset($_GET['error_c'])): ?>
-    <div class="alert alert-danger"><?= _lang('alias_format_error') ?></div><?php endif ?>
-<?php if (isset($_GET['error_d'])): ?>
-    <div class="alert alert-danger"><?= _lang('alias_exists_error') ?></div><?php endif ?>
-<?php if (isset($_GET['error_e'])): ?>
-    <div class="alert alert-danger"><?= _lang('alias_reserved_error') ?></div><?php endif ?>
-<?php if (isset($_GET['error_f'])): ?>
-    <div class="alert alert-danger"><?= _lang('sort_self_parent_error') ?></div><?php endif ?>
+<?= FlashMsg::renderSortAlerts(); ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h4 mb-0 text-gray-800"><?= _lang('category') ?></h1>
     <a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#sortModal"><i class="icofont-plus"></i> <?= _lang('add_category') ?></a>

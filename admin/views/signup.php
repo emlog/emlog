@@ -10,18 +10,7 @@
                                 <h1 class="h4 text-gray-900 mb-4"><?= _lang('register_account'); ?></h1>
                             </div>
                             <div class="alert alert-danger" style="display: none;" id="send-btn-resp"></div>
-                            <?php if (isset($_GET['err_ckcode'])): ?>
-                                <div class="alert alert-danger"><?= _lang('captcha_error'); ?></div><?php endif ?>
-                            <?php if (isset($_GET['err_mail_code'])): ?>
-                                <div class="alert alert-danger"><?= _lang('email_code_error'); ?></div><?php endif ?>
-                            <?php if (isset($_GET['error_login'])): ?>
-                                <div class="alert alert-danger"><?= _lang('email_format_error'); ?></div><?php endif ?>
-                            <?php if (isset($_GET['error_exist'])): ?>
-                                <div class="alert alert-danger"><?= _lang('email_exist_error'); ?></div><?php endif ?>
-                            <?php if (isset($_GET['error_pwd_len'])): ?>
-                                <div class="alert alert-danger"><?= _lang('password_min_length'); ?></div><?php endif ?>
-                            <?php if (isset($_GET['error_pwd2'])): ?>
-                                <div class="alert alert-danger"><?= _lang('password_inconsistent'); ?></div><?php endif ?>
+                            <?= FlashMsg::renderSignupAlerts(); ?>
                             <form method="post" class="user" action="./account.php?action=dosignup">
                                 <div class="form-group">
                                     <input type="email" class="form-control form-control-user" id="mail" name="mail" aria-describedby="emailHelp" placeholder="<?= _lang('email'); ?>" required

@@ -1,16 +1,5 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
-<?php if (isset($_GET['error_nickname'])): ?>
-    <div class="alert alert-danger"><?= _lang('nickname_required') ?></div><?php endif ?>
-<?php if (isset($_GET['error_email'])): ?>
-    <div class="alert alert-danger"><?= _lang('email_username_empty') ?></div><?php endif ?>
-<?php if (isset($_GET['error_exist'])): ?>
-    <div class="alert alert-danger"><?= _lang('username_exists') ?></div><?php endif ?>
-<?php if (isset($_GET['error_exist_email'])): ?>
-    <div class="alert alert-danger"><?= _lang('error_exist_email') ?></div><?php endif ?>
-<?php if (isset($_GET['error_pwd_len'])): ?>
-    <div class="alert alert-danger"><?= _lang('password_min_length') ?></div><?php endif ?>
-<?php if (isset($_GET['error_pwd2'])): ?>
-    <div class="alert alert-danger"><?= _lang('password_inconsistent') ?></div><?php endif ?>
+<?= FlashMsg::renderUserEditAlerts(); ?>
 <h1 class="h4 mb-4 text-gray-800"><?= _lang('edit_user_info') ?></h1>
 <div class="card shadow mb-4 mt-4">
     <div class="card-body">

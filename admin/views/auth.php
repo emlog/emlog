@@ -1,6 +1,5 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
-<?php if (isset($_GET['error_b'])): ?>
-    <div class="alert alert-danger"><?= _lang('reg_failed_msg') ?></div><?php endif ?>
+<?= FlashMsg::renderAuthAlerts(); ?>
 <div class="d-sm-flex align-items-center mb-4">
     <h1 class="h4 mb-0 text-gray-800"><?= _lang('reg_official') ?></h1>
 </div>

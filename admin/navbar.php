@@ -52,12 +52,12 @@ if ($action == 'add') {
     $newtab = Input::postStrVar('newtab', 'n');
 
     if ($naviname == '' || $url == '') {
-        emDirect("./navbar.php?error_a=1");
+        FlashMsg::redirectAdmin('navbar', 'error_a');
     }
 
     $Navi_Model->addNavi($naviname, $url, $taxis, $pid, $newtab);
     $CACHE->updateCache('navi');
-    emDirect("./navbar.php?active_add=1");
+    FlashMsg::redirectAdmin('navbar', 'active_add');
 }
 
 if ($action == 'add_sort') {
@@ -66,7 +66,7 @@ if ($action == 'add_sort') {
     $sorts = $CACHE->readCache('sort');
 
     if (empty($sort_ids)) {
-        emDirect("./navbar.php?error_d=1");
+        FlashMsg::redirectAdmin('navbar', 'error_d');
     }
 
     foreach ($sort_ids as $val) {
@@ -75,14 +75,14 @@ if ($action == 'add_sort') {
     }
 
     $CACHE->updateCache('navi');
-    emDirect("./navbar.php?active_add=1");
+    FlashMsg::redirectAdmin('navbar', 'active_add');
 }
 
 if ($action == 'add_page') {
     $pages = Input::postStrArray('pages', []);
 
     if (empty($pages)) {
-        emDirect("./navbar.php?error_e=1");
+        FlashMsg::redirectAdmin('navbar', 'error_e');
     }
 
     foreach ($pages as $id => $title) {
@@ -92,7 +92,7 @@ if ($action == 'add_page') {
     }
 
     $CACHE->updateCache('navi');
-    emDirect('./navbar.php?active_add=1');
+    FlashMsg::redirectAdmin('navbar', 'active_add');
 }
 
 if ($action == 'mod') {
@@ -137,7 +137,7 @@ if ($action == 'update') {
     $Navi_Model->updateNavi($navi_data, $naviId);
 
     $CACHE->updateCache('navi');
-    emDirect("./navbar.php?active_edit=1");
+    FlashMsg::redirectAdmin('navbar', 'active_edit');
 }
 
 if ($action == 'del') {

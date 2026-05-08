@@ -1,22 +1,5 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
-<?php if (isset($_GET['active_backup'])): ?>
-    <div class="alert alert-success"><?= _lang('backup_success'); ?></div><?php endif ?>
-<?php if (isset($_GET['active_import'])): ?>
-    <div class="alert alert-success"><?= _lang('import_success'); ?></div><?php endif ?>
-<?php if (isset($_GET['error_a'])): ?>
-    <div class="alert alert-danger"><?= _lang('select_backup_to_delete'); ?></div><?php endif ?>
-<?php if (isset($_GET['error_b'])): ?>
-    <div class="alert alert-danger"><?= _lang('backup_filename_error'); ?></div><?php endif ?>
-<?php if (isset($_GET['error_c'])): ?>
-    <div class="alert alert-danger"><?= _lang('zip_not_support_import'); ?></div><?php endif ?>
-<?php if (isset($_GET['error_d'])): ?>
-    <div class="alert alert-danger"><?= _lang('upload_backup_error'); ?></div><?php endif ?>
-<?php if (isset($_GET['error_e'])): ?>
-    <div class="alert alert-danger"><?= _lang('invalid_backup_file'); ?></div><?php endif ?>
-<?php if (isset($_GET['error_f'])): ?>
-    <div class="alert alert-danger"><?= _lang('zip_not_support_export'); ?></div><?php endif ?>
-<?php if (isset($_GET['active_mc'])): ?>
-    <div class="alert alert-success"><?= _lang('cache_update_success'); ?></div><?php endif ?>
+<?= FlashMsg::renderDataAlerts(); ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h4 mb-0 text-gray-800"><?= _lang('data'); ?></h1>
 </div>

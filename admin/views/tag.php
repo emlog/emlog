@@ -1,12 +1,5 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
-<?php if (isset($_GET['active_add'])): ?>
-    <div class="alert alert-success"><?= _lang('add_tag_success') ?></div><?php endif ?>
-<?php if (isset($_GET['active_edit'])): ?>
-    <div class="alert alert-success"><?= _lang('edit_tag_success') ?></div><?php endif ?>
-<?php if (isset($_GET['error_a'])): ?>
-    <div class="alert alert-danger"><?= _lang('select_tag') ?></div><?php endif ?>
-<?php if (isset($_GET['error_exist'])): ?>
-    <div class="alert alert-danger"><?= _lang('tag_exists') ?></div><?php endif ?>
+<?= FlashMsg::renderTagAlerts(); ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h4 mb-0 text-gray-800"><?= _lang('tag_management') ?></h1>
     <div class="d-flex align-items-center">

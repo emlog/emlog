@@ -1,6 +1,5 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
-<?php if (isset($_GET['activated'])): ?>
-    <div class="alert alert-success"><?= _lang('save_success'); ?></div><?php endif ?>
+<?= FlashMsg::renderWidgetsAlerts(); ?>
 <h1 class="h4 mb-4 text-gray-800"><?= _lang('widget'); ?></h1>
 <div class="card shadow mb-4 mt-2">
     <div class="card-body">

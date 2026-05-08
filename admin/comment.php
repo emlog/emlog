@@ -80,7 +80,7 @@ if ($action === 'pub') {
     $Comment_Model->showComment($id);
     doAction('pub_comment', $id);
     $CACHE->updateCache(array('sta', 'comment'));
-    emDirect("./comment.php?active_show=1");
+    FlashMsg::redirectAdmin('comment', 'active_show');
 }
 
 if ($action === 'batch_operation') {
@@ -88,7 +88,7 @@ if ($action === 'batch_operation') {
     $comments = Input::postIntArray('com', []);
 
     if (empty($comments)) {
-        emDirect("./comment.php?error_a=1");
+        FlashMsg::redirectAdmin('comment', 'error_a');
     }
 
     switch ($operate) {
@@ -100,23 +100,23 @@ if ($action === 'batch_operation') {
         case 'hide':
             $Comment_Model->batchComment('hidecom', $comments);
             $CACHE->updateCache(array('sta', 'comment'));
-            emDirect("./comment.php?active_hide=1");
+            FlashMsg::redirectAdmin('comment', 'active_hide');
             break;
         case 'pub':
             $Comment_Model->batchComment('showcom', $comments);
             $CACHE->updateCache(array('sta', 'comment'));
-            emDirect("./comment.php?active_show=1");
+            FlashMsg::redirectAdmin('comment', 'active_show');
             break;
         case 'top':
             $Comment_Model->batchComment('top', $comments);
-            emDirect("./comment.php?active_top=1");
+            FlashMsg::redirectAdmin('comment', 'active_top');
             break;
         case 'untop':
             $Comment_Model->batchComment('untop', $comments);
-            emDirect("./comment.php?active_untop=1");
+            FlashMsg::redirectAdmin('comment', 'active_untop');
             break;
         default:
-            emDirect("./comment.php?error_b=1");
+            FlashMsg::redirectAdmin('comment', 'error_b');
     }
 }
 
@@ -126,7 +126,7 @@ if ($action === 'doreply') {
     $hide = Input::postStrVar('hide', 'n');
 
     if (empty($reply)) {
-        emDirect("./comment.php?error_c=1");
+        FlashMsg::redirectAdmin('comment', 'error_c');
     }
 
     //回复一条待审核的评论，视为要将其公开（包括回复内容）
@@ -145,5 +145,5 @@ if ($action === 'doreply') {
     $CACHE->updateCache('comment');
     $CACHE->updateCache('sta');
     doAction('comment_reply', $commentId, $reply);
-    emDirect("./comment.php?active_rep=1");
+    FlashMsg::redirectAdmin('comment', 'active_rep');
 }

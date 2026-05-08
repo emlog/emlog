@@ -37,7 +37,7 @@ if ($action === 'use') {
     $CACHE->updateCache('options');
     $Template_Model->initCallback($tplName);
 
-    emDirect("./template.php?activated=1");
+    FlashMsg::redirectAdmin('template', 'activated');
 }
 
 if ($action === 'del') {
@@ -53,9 +53,9 @@ if ($action === 'del') {
 
     $path = preg_replace("/^([\w-]+)$/i", "$1", $tplName);
     if ($path && true === emDeleteFile(TPLS_PATH . $path)) {
-        emDirect("./template.php?activate_del=1#tpllib");
+        FlashMsg::redirectAdmin('template', '', array(), '', 'tpllib');
     } else {
-        emDirect("./template.php?error_f=1#tpllib");
+        FlashMsg::redirectAdmin('template', 'error_f', array(), '', 'tpllib');
     }
 }
 
@@ -74,34 +74,38 @@ if ($action === 'upload_zip') {
     $zipfile = isset($_FILES['tplzip']) ? $_FILES['tplzip'] : '';
 
     if ($zipfile['error'] == 4) {
-        emDirect("./template.php?error_d=1");
+        FlashMsg::redirectAdmin('template', 'error_d');
     }
     if ($zipfile['error'] == 1) {
-        emDirect("./template.php?error_f=1");
+        FlashMsg::redirectAdmin('template', 'error_g');
     }
     if (!$zipfile || $zipfile['error'] > 0 || empty($zipfile['tmp_name'])) {
         emMsg('模板上传失败， 错误码：' . $zipfile['error']);
     }
     if (getFileSuffix($zipfile['name']) != 'zip') {
-        emDirect("./template.php?error_a=1");
+        FlashMsg::redirectAdmin('template', 'error_a');
     }
 
     $ret = emUnZip($zipfile['tmp_name'], '../content/templates/', 'tpl');
     switch ($ret) {
         case 0:
-            emDirect("./template.php?activate_install=1");
+            FlashMsg::redirectAdmin('template', 'activate_install');
             break;
         case -2:
-            emDirect("./template.php?error_e=1");
+            FlashMsg::redirectAdmin('template', 'error_e');
             break;
         case 1:
         case 2:
-            emDirect("./template.php?error_b=1");
+            FlashMsg::redirectAdmin('template', 'error_b');
             break;
         case 3:
-            emDirect("./template.php?error_c=1");
+            FlashMsg::redirectAdmin('template', 'error_c');
             break;
     }
+}
+
+if ($action === 'upgrade_done') {
+    FlashMsg::redirectAdmin('template', 'activate_upgrade');
 }
 
 if ($action === 'check_update') {

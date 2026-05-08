@@ -416,7 +416,7 @@ if ($action == 'api_reset') {
 
     Option::updateOption('apikey', $apikey);
     $CACHE->updateCache('options');
-    header('Location: ./setting.php?action=api&ok_reset=1');
+    FlashMsg::redirectAdmin('setting', 'ok_reset', array('action' => 'api'), 'setting_api_flash_messages');
 }
 
 if ($action == 'ai') {

@@ -1,28 +1,7 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
-<?php if (isset($_GET['activated'])): ?>
-    <div class="alert alert-success"><?= _lang('tpl_change_success') ?></div><?php endif ?>
-<?php if (isset($_GET['activate_install'])): ?>
-    <div class="alert alert-success"><?= _lang('tpl_install_success') ?></div><?php endif ?>
-<?php if (isset($_GET['activate_upgrade'])): ?>
-    <div class="alert alert-success"><?= _lang('tpl_update_success') ?></div><?php endif ?>
-<?php if (isset($_GET['error_f'])): ?>
-    <div class="alert alert-danger"><?= _lang('tpl_delete_error_permission') ?></div><?php endif ?>
+<?= FlashMsg::renderTemplateAlerts(); ?>
 <?php if (!$nonce_template_data): ?>
     <div class="alert alert-danger"><?= sprintf(_lang('tpl_current_damaged'), (string)$nonce_template) ?></div><?php endif ?>
-<?php if (isset($_GET['error_a'])): ?>
-    <div class="alert alert-danger"><?= _lang('tpl_only_zip_support') ?></div><?php endif ?>
-<?php if (isset($_GET['error_b'])): ?>
-    <div class="alert alert-danger"><?= _lang('tpl_upload_dir_permission') ?></div><?php endif ?>
-<?php if (isset($_GET['error_d'])): ?>
-    <div class="alert alert-danger"><?= _lang('tpl_select_zip') ?></div><?php endif ?>
-<?php if (isset($_GET['error_e'])): ?>
-    <div class="alert alert-danger"><?= _lang('tpl_install_error_standard') ?></div><?php endif ?>
-<?php if (isset($_GET['error_f'])): ?>
-    <div class="alert alert-danger"><?= _lang('upload_size_exceeded') ?></div><?php endif ?>
-<?php if (isset($_GET['error_c'])): ?>
-    <div class="alert alert-danger"><?= _lang('php_zip_not_support') ?></div><?php endif ?>
-<?php if (isset($_GET['error_i'])): ?>
-    <div class="alert alert-danger"><?= _lang('emlog_not_registered') ?></div><?php endif ?>
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h4 mb-0 text-gray-800"><?= _lang('tpl_theme') ?></h1>
@@ -179,7 +158,7 @@
             },
             success: function(response) {
                 if (response.code === 0) {
-                    location.href = 'template.php?activate_upgrade=1';
+                    location.href = 'template.php?action=upgrade_done';
                 } else {
                     $updateLink.text('<?= _lang('update') ?>').prop('disabled', false);
                     cocoMessage.error(response.msg, 4000);

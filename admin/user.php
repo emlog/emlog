@@ -67,16 +67,16 @@ if ($action == 'new') {
     }
 
     if ($email == '') {
-        emDirect('./user.php?error_email=1');
+        FlashMsg::redirectAdmin('user', 'error_email');
     }
     if ($User_Model->isMailExist($email)) {
-        emDirect("./user.php?error_exist_email=1");
+        FlashMsg::redirectAdmin('user', 'error_exist_email');
     }
     if (strlen($password) < 6) {
-        emDirect('./user.php?error_pwd_len=1');
+        FlashMsg::redirectAdmin('user', 'error_pwd_len');
     }
     if ($password != $password2) {
-        emDirect('./user.php?error_pwd2=1');
+        FlashMsg::redirectAdmin('user', 'error_pwd2');
     }
 
     $PHPASS = new PasswordHash(8, true);
@@ -84,7 +84,7 @@ if ($action == 'new') {
 
     $User_Model->addUser('', $email, $password, $role);
     $CACHE->updateCache(array('sta', 'user'));
-    emDirect('./user.php?active_add=1');
+    FlashMsg::redirectAdmin('user', 'active_add');
 }
 
 if ($action == 'edit') {
@@ -135,28 +135,28 @@ if ($action == 'update') {
 
     //创始人账户不能被他人编辑
     if (!User::isFounder() && $uid === 1) {
-        emDirect('./user.php?error_del_b=1');
+        FlashMsg::redirectAdmin('user', 'error_del_b');
     }
     if ($uid === 1) {
         $role = User::ROLE_ADMIN;
     }
     if (empty($nickname)) {
-        emDirect("./user.php?action=edit&uid={$uid}&error_nickname=1");
+        FlashMsg::redirectAdmin('user', 'error_nickname', array('action' => 'edit', 'uid' => $uid), 'user_edit_flash_messages');
     }
     if (empty($email) && empty($username)) {
-        emDirect("./user.php?action=edit&uid={$uid}&error_email=1");
+        FlashMsg::redirectAdmin('user', 'error_email', array('action' => 'edit', 'uid' => $uid), 'user_edit_flash_messages');
     }
     if ($User_Model->isMailExist($email, $uid)) {
-        emDirect("./user.php?action=edit&uid={$uid}&error_exist_email=1");
+        FlashMsg::redirectAdmin('user', 'error_exist_email', array('action' => 'edit', 'uid' => $uid), 'user_edit_flash_messages');
     }
     if ($User_Model->isUserExist($username, $uid)) {
-        emDirect("./user.php?action=edit&uid={$uid}&error_exist=1");
+        FlashMsg::redirectAdmin('user', 'error_exist', array('action' => 'edit', 'uid' => $uid), 'user_edit_flash_messages');
     }
     if (strlen($password) > 0 && strlen($password) < 6) {
-        emDirect("./user.php?action=edit&uid={$uid}&error_pwd_len=1");
+        FlashMsg::redirectAdmin('user', 'error_pwd_len', array('action' => 'edit', 'uid' => $uid), 'user_edit_flash_messages');
     }
     if ($password != $password2) {
-        emDirect("./user.php?action=edit&uid={$uid}&error_pwd2=1");
+        FlashMsg::redirectAdmin('user', 'error_pwd2', array('action' => 'edit', 'uid' => $uid), 'user_edit_flash_messages');
     }
 
     $userData = [
@@ -177,7 +177,7 @@ if ($action == 'update') {
 
     $User_Model->updateUser($userData, $uid);
     $CACHE->updateCache('user');
-    emDirect('./user.php?active_update=1');
+    FlashMsg::redirectAdmin('user', 'active_update');
 }
 
 if ($action == 'del') {
@@ -190,7 +190,7 @@ if ($action == 'del') {
 
     //创始人账户不能被删除
     if ($uid == 1) {
-        emDirect('./user.php?error_del_a=1');
+        FlashMsg::redirectAdmin('user', 'error_del_a');
     }
 
     $User_Model->deleteUser($uid);
@@ -221,7 +221,7 @@ if ($action == 'unforbid') {
     $uid = Input::getIntVar('uid');
 
     $User_Model->unforbidUser($uid);
-    emDirect('./user.php?active_unfb=1');
+    FlashMsg::redirectAdmin('user', 'active_unfb');
 }
 
 if ($action == 'operate_user') {

@@ -1,26 +1,5 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
-<?php if (isset($_GET['active_show'])): ?>
-    <div class="alert alert-success"><?= _lang('comment_audit_success') ?></div><?php endif ?>
-<?php if (isset($_GET['active_hide'])): ?>
-    <div class="alert alert-success"><?= _lang('hide_success') ?></div><?php endif ?>
-<?php if (isset($_GET['active_top'])): ?>
-    <div class="alert alert-success"><?= _lang('top_success') ?></div><?php endif ?>
-<?php if (isset($_GET['active_untop'])): ?>
-    <div class="alert alert-success"><?= _lang('top_cancel_success') ?></div><?php endif ?>
-<?php if (isset($_GET['active_edit'])): ?>
-    <div class="alert alert-success"><?= _lang('edit_success') ?></div><?php endif ?>
-<?php if (isset($_GET['active_rep'])): ?>
-    <div class="alert alert-success"><?= _lang('reply_success') ?></div><?php endif ?>
-<?php if (isset($_GET['error_a'])): ?>
-    <div class="alert alert-danger"><?= _lang('select_operate_comment') ?></div><?php endif ?>
-<?php if (isset($_GET['error_b'])): ?>
-    <div class="alert alert-danger"><?= _lang('select_operation') ?></div><?php endif ?>
-<?php if (isset($_GET['error_c'])): ?>
-    <div class="alert alert-danger"><?= _lang('reply_empty_error') ?></div><?php endif ?>
-<?php if (isset($_GET['error_d'])): ?>
-    <div class="alert alert-danger"><?= _lang('content_too_long') ?></div><?php endif ?>
-<?php if (isset($_GET['error_e'])): ?>
-    <div class="alert alert-danger"><?= _lang('comment_empty_error') ?></div><?php endif ?>
+<?= FlashMsg::renderCommentAlerts(); ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h4 mb-0 text-gray-800"><?= _lang('comment') ?></h1>
 </div>

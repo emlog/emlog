@@ -140,10 +140,12 @@ if ($action == 'save' || $action == 'autosave') {
     $directUrl = '';
     if ($pageId > 0) {
         $emPage->updateLog($logData, $pageId);
-        $directUrl = './page.php?active_pubpage=1';
+        $directUrl = './page.php';
+        $flashMessageKey = 'active_pubpage';
     } else {
         $pageId = $emPage->addlog($logData);
-        $directUrl = './page.php?active_hide_n=1';
+        $directUrl = './page.php';
+        $flashMessageKey = 'active_hide_n';
     }
 
     if ($home_page === 'y') {
@@ -161,7 +163,7 @@ if ($action == 'save' || $action == 'autosave') {
             echo "autosave_gid:{$pageId}_df:0_";
             break;
         case 'save':
-            emDirect($directUrl);
+            FlashMsg::redirectWithFlash($directUrl, array(), 'page_flash_messages', $flashMessageKey);
             break;
     }
 }
@@ -194,7 +196,7 @@ if ($action == 'operate_page') {
                 $emPage->hideSwitch($value, $ishide);
             }
             $CACHE->updateCache(array('options', 'sta', 'comment'));
-            emDirect("./page.php?active_hide_" . $ishide . "=1");
+            FlashMsg::redirectAdmin('page', 'active_hide_' . $ishide);
             break;
     }
 }

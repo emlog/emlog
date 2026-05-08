@@ -50,7 +50,7 @@ if ($action == 'dosignin') {
         if ($resp === 'json') {
             Output::error(_lang('captcha_error'));
         }
-        emDirect('./account.php?action=signin&err_ckcode=1');
+        FlashMsg::redirectAccount('signin', 'err_ckcode', array('s' => $admin_path_code));
     }
 
     $uid = LoginAuth::checkUser($username, $password);
@@ -71,14 +71,14 @@ if ($action == 'dosignin') {
             if ($resp === 'json') {
                 Output::error(_lang('user_pass_error'));
             }
-            emDirect("./account.php?action=signin&err_login=1");
+            FlashMsg::redirectAccount('signin', 'err_login', array('s' => $admin_path_code));
             break;
         case LoginAuth::LOGIN_ERROR_FORBID:
             doAction('login_fail');
             if ($resp === 'json') {
                 Output::error(_lang('account_forbidden'));
             }
-            emDirect("./account.php?action=signin&err_forbid=1");
+            FlashMsg::redirectAccount('signin', 'err_forbid', array('s' => $admin_path_code));
             break;
     }
 }
@@ -119,37 +119,37 @@ if ($action == 'dosignup') {
         if ($resp === 'json') {
             Output::error(_lang('email_format_error'));
         }
-        emDirect('./account.php?action=signup&error_login=1');
+        FlashMsg::redirectAccount('signup', 'error_login');
     }
     if (!User::checkLoginCode($login_code)) {
         if ($resp === 'json') {
             Output::error(_lang('captcha_error'));
         }
-        emDirect('./account.php?action=signup&err_ckcode=1');
+        FlashMsg::redirectAccount('signup', 'err_ckcode');
     }
     if (Option::get('email_code') === 'y' && !User::checkMailCode($mail_code)) {
         if ($resp === 'json') {
             Output::error(_lang('email_code_error'));
         }
-        emDirect('./account.php?action=signup&err_mail_code=1');
+        FlashMsg::redirectAccount('signup', 'err_mail_code');
     }
     if ($User_Model->isMailExist($mail)) {
         if ($resp === 'json') {
             Output::error(_lang('email_exist_error'));
         }
-        emDirect('./account.php?action=signup&error_exist=1');
+        FlashMsg::redirectAccount('signup', 'error_exist');
     }
     if (strlen($passwd) < 6) {
         if ($resp === 'json') {
             Output::error(_lang('password_min_length'));
         }
-        emDirect('./account.php?action=signup&error_pwd_len=1');
+        FlashMsg::redirectAccount('signup', 'error_pwd_len');
     }
     if ($passwd !== $repasswd) {
         if ($resp === 'json') {
             Output::error(_lang('password_inconsistent'));
         }
-        emDirect('./account.php?action=signup&error_pwd2=1');
+        FlashMsg::redirectAccount('signup', 'error_pwd2');
     }
 
     $PHPASS = new PasswordHash(8, true);
@@ -163,7 +163,7 @@ if ($action == 'dosignup') {
     if ($resp === 'json') {
         Output::ok();
     }
-    emDirect("./account.php?action=signin&succ_reg=1");
+    FlashMsg::redirectAccount('signin', 'succ_reg', array('s' => $admin_path_code));
 }
 
 if ($action == 'send_email_code') {
@@ -208,13 +208,13 @@ if ($action == 'doreset') {
         if ($resp === 'json') {
             Output::error(_lang('captcha_error'));
         }
-        emDirect('./account.php?action=reset&err_ckcode=1');
+        FlashMsg::redirectAccount('reset', 'err_ckcode');
     }
     if (!$mail || !$User_Model->isMailExist($mail)) {
         if ($resp === 'json') {
             Output::error(_lang('reg_email_error'));
         }
-        emDirect('./account.php?action=reset&error_mail=1');
+        FlashMsg::redirectAccount('reset', 'error_mail');
     }
 
     $ret = Notice::sendResetMailCode($mail);
@@ -222,12 +222,12 @@ if ($action == 'doreset') {
         if ($resp === 'json') {
             Output::ok();
         }
-        emDirect("./account.php?action=reset2&succ_mail=1");
+        FlashMsg::redirectAccount('reset2', 'succ_mail');
     } else {
         if ($resp === 'json') {
             Output::error(_lang('email_code_send_failed'));
         }
-        emDirect("./account.php?action=reset&error_sendmail=1");
+        FlashMsg::redirectAccount('reset', 'error_sendmail');
     }
 }
 
@@ -255,19 +255,19 @@ if ($action == 'doreset2') {
         if ($resp === 'json') {
             Output::error(_lang('password_min_length'));
         }
-        emDirect('./account.php?action=reset2&error_pwd_len=1');
+        FlashMsg::redirectAccount('reset2', 'error_pwd_len');
     }
     if ($passwd !== $repasswd) {
         if ($resp === 'json') {
             Output::error(_lang('password_inconsistent'));
         }
-        emDirect('./account.php?action=reset2&error_pwd2=1');
+        FlashMsg::redirectAccount('reset2', 'error_pwd2');
     }
     if (!$mail_code || !User::checkMailCode($mail_code)) {
         if ($resp === 'json') {
             Output::error(_lang('email_code_error'));
         }
-        emDirect('./account.php?action=reset2&err_mail_code=1');
+        FlashMsg::redirectAccount('reset2', 'err_mail_code');
     }
 
     $PHPASS = new PasswordHash(8, true);
@@ -280,7 +280,7 @@ if ($action == 'doreset2') {
     if ($resp === 'json') {
         Output::ok();
     }
-    emDirect("./account.php?action=signin&succ_reset=1");
+    FlashMsg::redirectAccount('signin', 'succ_reset', array('s' => $admin_path_code));
 }
 
 if ($action == 'logout') {

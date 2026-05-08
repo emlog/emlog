@@ -296,7 +296,7 @@ if ($action === 'write') {
     $fields = [];
 
     if (!Register::isRegLocal() && $sta_cache['lognum'] > 50) {
-        emDirect("auth.php?error_article=1");
+        FlashMsg::redirectAdmin('auth', 'error_article');
     }
 
     include View::getAdmView(User::haveEditPermission() ? 'header' : 'uc_header');

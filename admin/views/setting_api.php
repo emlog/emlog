@@ -1,6 +1,5 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
-<?php if (isset($_GET['ok_reset'])): ?>
-    <div class="alert alert-success"><?= _lang('api_key_reset_success'); ?></div><?php endif ?>
+<?= FlashMsg::renderSettingApiAlerts(); ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h4 mb-0 text-gray-800"><?= _lang('setting'); ?></h1>
 </div>
