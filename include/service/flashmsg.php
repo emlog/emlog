@@ -9,6 +9,28 @@
 class FlashMsg
 {
     /**
+     * 确保 Session 已启动，供 Flash 消息读写使用。
+     *
+     * @return bool
+     */
+    private static function ensureSessionStarted()
+    {
+        if (function_exists('session_status')) {
+            if (session_status() === PHP_SESSION_ACTIVE) {
+                return true;
+            }
+        } elseif (session_id() !== '') {
+            return true;
+        }
+
+        if (headers_sent()) {
+            return false;
+        }
+
+        return session_start();
+    }
+
+    /**
      * 构建带查询参数的 URL。
      *
      * @param string $path URL 路径
@@ -34,6 +56,9 @@ class FlashMsg
         if (empty($sessionKey) || empty($messageKey)) {
             return;
         }
+        if (!self::ensureSessionStarted()) {
+            return;
+        }
         if (empty($_SESSION[$sessionKey]) || !is_array($_SESSION[$sessionKey])) {
             $_SESSION[$sessionKey] = array();
         }
@@ -50,6 +75,9 @@ class FlashMsg
      */
     public static function consumeFlashMessages($sessionKey)
     {
+        if (!self::ensureSessionStarted()) {
+            return array();
+        }
         $messages = isset($_SESSION[$sessionKey]) && is_array($_SESSION[$sessionKey]) ? $_SESSION[$sessionKey] : array();
         unset($_SESSION[$sessionKey]);
         return $messages;
