@@ -1,29 +1,8 @@
 <?php
 defined('EMLOG_ROOT') || exit('access denied!');
 $isdraft = $draft ? '&draft=1' : '';
-$articleFlashMessages = Util::consumeFlashMessages('article_flash_messages');
-$articleAlertMap = array(
-    'active_up' => array('type' => 'success', 'text' => _lang('top_success')),
-    'active_down' => array('type' => 'success', 'text' => _lang('top_cancel_success')),
-    'error_a' => array('type' => 'danger', 'text' => _lang('select_article')),
-    'error_b' => array('type' => 'danger', 'text' => _lang('select_operation')),
-    'active_post' => array('type' => 'success', 'text' => _lang('publish_success')),
-    'active_move' => array('type' => 'success', 'text' => _lang('move_success')),
-    'active_change_author' => array('type' => 'success', 'text' => _lang('change_author_success')),
-    'active_hide' => array('type' => 'success', 'text' => _lang('to_draft_success')),
-    'active_savedraft' => array('type' => 'success', 'text' => _lang('draft_save_success')),
-    'active_savelog' => array('type' => 'success', 'text' => _lang('save_success')),
-    'active_ck' => array('type' => 'success', 'text' => _lang('audit_success')),
-    'active_unck' => array('type' => 'success', 'text' => _lang('audit_uncheck_success')),
-    'error_post_per_day' => array('type' => 'danger', 'text' => _lang('daily_limit')),
-);
 ?>
-<?php foreach ($articleFlashMessages as $messageKey): ?>
-    <?php if (!isset($articleAlertMap[$messageKey])) {
-        continue;
-    } ?>
-    <div class="alert alert-<?= $articleAlertMap[$messageKey]['type'] ?>"><?= $articleAlertMap[$messageKey]['text'] ?></div>
-<?php endforeach; ?>
+<?= FlashMsg::renderArticleAlerts(); ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <?php if (User::haveEditPermission()): ?>
         <h1 class="h4 mb-0 text-gray-800"><?= $draft ? _lang('draft_box') : _lang('article') ?></h1>

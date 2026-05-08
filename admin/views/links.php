@@ -1,8 +1,5 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
-<?php if (isset($_GET['active_save'])): ?>
-    <div class="alert alert-success"><?= _lang('save_success'); ?></div><?php endif ?>
-<?php if (isset($_GET['error_a'])): ?>
-    <div class="alert alert-danger"><?= _lang('link_required'); ?></div><?php endif ?>
+<?= FlashMsg::renderLinkAlerts(); ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h4 mb-0 text-gray-800"><?= _lang('link'); ?></h1>
     <a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#linkModel"><i class="icofont-plus"></i> <?= _lang('add_link'); ?></a>

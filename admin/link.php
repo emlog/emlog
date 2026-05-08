@@ -47,7 +47,7 @@ if ($action == 'save') {
     $linkId = Input::postIntVar('linkid');
 
     if ($siteName == '' || $siteUrl == '') {
-        emDirect("./link.php?error_a=1");
+        FlashMsg::redirectWithFlash('./link.php', array(), 'link_flash_messages', 'error_a');
     }
 
     if (!preg_match("/^http|ftp.+$/i", $siteUrl)) {
@@ -68,7 +68,7 @@ if ($action == 'save') {
     }
 
     $CACHE->updateCache('link');
-    emDirect("./link.php?active_save=1");
+    FlashMsg::redirectWithFlash('./link.php', array(), 'link_flash_messages', 'active_save');
 }
 
 if ($action == 'del') {
@@ -77,7 +77,7 @@ if ($action == 'del') {
 
     $Link_Model->deleteLink($linkId);
     $CACHE->updateCache('link');
-    emDirect("./link.php");
+    FlashMsg::redirectWithFlash('./link.php', array(), 'link_flash_messages', 'active_del');
 }
 
 if ($action == 'hide') {
@@ -86,7 +86,7 @@ if ($action == 'hide') {
     $Link_Model->updateLink(['hide' => 'y'], $linkId);
 
     $CACHE->updateCache('link');
-    emDirect('./link.php');
+    FlashMsg::redirectWithFlash('./link.php', array(), 'link_flash_messages', 'active_hide');
 }
 
 if ($action == 'show') {
@@ -95,5 +95,5 @@ if ($action == 'show') {
     $Link_Model->updateLink(['hide' => 'n'], $linkId);
 
     $CACHE->updateCache('link');
-    emDirect('./link.php');
+    FlashMsg::redirectWithFlash('./link.php', array(), 'link_flash_messages', 'active_show');
 }
