@@ -374,7 +374,7 @@ return [
     'reset_api_key' => '重置API秘钥',
     'api_key_reset_success' => '接口秘钥重置成功',
     'api_list' => 'API接口列表',
-    'api_article_post' => '1. 文章发布 (可用于对接内容发布软件，文章发布接口URL：',
+    'api_article_post' => '1. 文章发布，可用于对接内容发布软件，文章发布接口URL：',
     'api_category_list' => '2. 分类列表',
     'api_twitter_post' => '3. 微语发布',
     'api_twitter_list' => '4. 微语列表',

@@ -374,7 +374,7 @@ return [
     'reset_api_key' => 'Reset API Key',
     'api_key_reset_success' => 'API Key reset successfully.',
     'api_list' => 'API List',
-    'api_article_post' => '1. Article Post',
+    'api_article_post' => '1. Article Post， API URL：',
     'api_category_list' => '2. Category List',
     'api_twitter_post' => '3. Microblog Post',
     'api_twitter_list' => '4. Microblog List',

@@ -41,7 +41,7 @@
         </form>
         <div class="alert alert-warning">
             <b><?= _lang('api_list'); ?>：</b><br><br>
-            <?= _lang('api_article_post'); ?><?= BLOG_URL ?>?rest-api=article_post)<br>
+            <?= _lang('api_article_post'); ?><?= BLOG_URL ?>?rest-api=article_post<br>
             <?= _lang('api_category_list'); ?><br>
             <?= _lang('api_twitter_post'); ?><br>
             <?= _lang('api_twitter_list'); ?><br>
