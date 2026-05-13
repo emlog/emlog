@@ -571,6 +571,7 @@ return [
     'store_collected' => '已收藏',
     'store_cancel_collect' => '取消收藏',
     'store_using' => '使用中',
+    'store_installed' => '已安装',
     'store_purchased_status' => '已购买',
     'store_install' => '安装',
     'store_buy_now' => '立即购买',

@@ -37,8 +37,10 @@
                             <div class="card-text d-flex justify-content-between">
                                 <div class="installMsg"></div>
                                 <div>
-                                    <?php if (Plugin::isActive($v['alias']) || Template::isActive($v['alias'])): ?>
-                                        <a href="plugin.php" class="btn btn-light"><?= _lang('store_using') ?></a>
+                                    <?php if ($v['app_type'] === 'template' && Template::isInstalled($v['alias'])): ?>
+                                        <a href="template.php" class="btn btn-light"><?= _lang('store_installed') ?></a>
+                                    <?php elseif ($v['app_type'] !== 'template' && Plugin::isInstalled($v['alias'])): ?>
+                                        <a href="plugin.php" class="btn btn-light"><?= _lang('store_installed') ?></a>
                                     <?php endif; ?>
                                     <?php if (empty($v['download_url'])): ?>
                                         <a href="<?= $v['buy_url'] ?>" class="btn btn-success btn-sm"><?= _lang('store_contact_author') ?></a>

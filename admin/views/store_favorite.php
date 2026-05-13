@@ -47,10 +47,10 @@
                                         <?= _lang('store_cancel_collect') ?>
                                     </button>
 
-                                    <?php if (Plugin::isActive($v['alias'])): ?>
-                                        <a href="plugin.php" class="btn btn-light"><?= _lang('store_using') ?></a>
-                                    <?php elseif (Template::isActive($v['alias'])): ?>
-                                        <a href="template.php" class="btn btn-light"><?= _lang('store_using') ?></a>
+                                    <?php if ($v['app_type'] === 'template' && Template::isInstalled($v['alias'])): ?>
+                                        <a href="template.php" class="btn btn-light"><?= _lang('store_installed') ?></a>
+                                    <?php elseif ($v['app_type'] !== 'template' && Plugin::isInstalled($v['alias'])): ?>
+                                        <a href="plugin.php" class="btn btn-light"><?= _lang('store_installed') ?></a>
                                     <?php endif; ?>
                                     <?php if ($v['price'] > 0): ?>
                                         <?php if ($v['purchased'] === true): ?>

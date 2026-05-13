@@ -571,6 +571,7 @@ return [
     'store_collected' => 'Favorited',
     'store_cancel_collect' => 'Unfavorite',
     'store_using' => 'Active',
+    'store_installed' => 'Installed',
     'store_purchased_status' => 'Purchased',
     'store_install' => 'Install',
     'store_buy_now' => 'Buy Now',

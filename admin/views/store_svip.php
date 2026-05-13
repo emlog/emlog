@@ -61,10 +61,10 @@
                                     <?= $v['is_favorited'] ? _lang('store_collected') : _lang('store_collect') ?>
                                 </button>
 
-                                <?php if (Plugin::isActive($v['alias'])): ?>
-                                    <a href="plugin.php" class="btn btn-light"><?= _lang('store_using') ?></a>
-                                <?php elseif (Template::isActive($v['alias'])): ?>
-                                    <a href="template.php" class="btn btn-light"><?= _lang('store_using') ?></a>
+                                <?php if ($v['app_type'] === 'template' && Template::isInstalled($v['alias'])): ?>
+                                    <a href="template.php" class="btn btn-light"><?= _lang('store_installed') ?></a>
+                                <?php elseif ($v['app_type'] !== 'template' && Plugin::isInstalled($v['alias'])): ?>
+                                    <a href="plugin.php" class="btn btn-light"><?= _lang('store_installed') ?></a>
                                 <?php endif; ?>
                                 <a href="#" class="btn btn-warning installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-cdn-url="<?= urlencode($v['cdn_download_url']) ?>" data-type="<?= $type ?>"><?= _lang('store_install') ?></a>
                             </div>

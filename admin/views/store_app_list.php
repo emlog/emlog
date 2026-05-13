@@ -58,10 +58,10 @@
                                         <?= $v['is_favorited'] ? _lang('store_collected') : _lang('store_collect') ?>
                                     </button>
 
-                                    <?php if (Plugin::isActive($v['alias'])): ?>
-                                        <a href="plugin.php" class="btn btn-light"><?= _lang('store_using') ?></a>
-                                    <?php elseif (Template::isActive($v['alias'])): ?>
-                                        <a href="template.php" class="btn btn-light"><?= _lang('store_using') ?></a>
+                                    <?php if ($v['app_type'] === 'template' && Template::isInstalled($v['alias'])): ?>
+                                        <a href="template.php" class="btn btn-light"><?= _lang('store_installed') ?></a>
+                                    <?php elseif ($v['app_type'] !== 'template' && Plugin::isInstalled($v['alias'])): ?>
+                                        <a href="plugin.php" class="btn btn-light"><?= _lang('store_installed') ?></a>
                                     <?php endif; ?>
                                     <?php if ($v['price'] > 0): ?>
                                         <?php if ($v['purchased'] === true): ?>
@@ -172,9 +172,10 @@
                                                 ${favoriteText}
                                             </button> `;
 
-                            // 检查使用中状态
-                            if (app.is_active) {
-                                buttonsHtml += '<a href="plugin.php" class="btn btn-light"><?= _lang("store_using") ?></a> ';
+                            // 检查已安装状态
+                            if (app.is_installed) {
+                                const manageUrl = type === 'tpl' ? 'template.php' : 'plugin.php';
+                                buttonsHtml += `<a href="${manageUrl}" class="btn btn-light"><?= _lang("store_installed") ?></a> `;
                             }
 
                             // 根据价格和权限构建安装/购买按钮

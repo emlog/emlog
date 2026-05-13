@@ -270,11 +270,11 @@ if ($action === 'ajax_load') {
 
     // 为每个应用添加状态信息
     foreach ($apps as &$app) {
-        // 检查是否正在使用
+        // 检查是否已安装
         if ($app['app_type'] === 'template') {
-            $app['is_active'] = Template::isActive($app['alias']);
+            $app['is_installed'] = Template::isInstalled($app['alias']);
         } else {
-            $app['is_active'] = Plugin::isActive($app['alias']);
+            $app['is_installed'] = Plugin::isInstalled($app['alias']);
         }
         $app['user_is_svip'] = (Register::getRegType() === 2);
     }

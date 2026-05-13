@@ -9,7 +9,12 @@
 
 class Template
 {
-
+    /**
+     * 判断主题是否已启用
+     *
+     * @param string $template_alias 主题别名
+     * @return bool
+     */
     public static function isActive($template_alias)
     {
         $nonce_template = Option::get('nonce_templet');
@@ -22,6 +27,26 @@ class Template
         return false;
     }
 
+    /**
+     * 判断主题是否已安装
+     *
+     * @param string $template_alias 主题别名
+     * @return bool
+     */
+    public static function isInstalled($template_alias)
+    {
+        if (empty($template_alias) || !preg_match('/^[\w\-]+$/', $template_alias)) {
+            return false;
+        }
+
+        return is_dir(EMLOG_ROOT . '/content/templates/' . $template_alias);
+    }
+
+    /**
+     * 获取当前使用的主题
+     *
+     * @return string
+     */
     public static function getCurrentTemplate()
     {
         if (!defined('SWITCH_TEMPLATE') || SWITCH_TEMPLATE !== true) {
