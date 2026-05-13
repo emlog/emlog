@@ -406,6 +406,57 @@
         $("#post_bar_label").hide();
     }
 
+    var customFieldsData = <?= json_encode($customFields, JSON_UNESCAPED_UNICODE) ?: '{}' ?>;
+
+    /**
+     * 根据自定义字段的配置，动态更新对应的值输入框控件（文本域或下拉选择框）
+     * @param {jQuery} row 当前字段所在的 DOM 行元素
+     */
+    function updateFieldValueInput(row) {
+        var keyInput = row.find('.field-keys-input');
+        var valContainer = row.find('.col-sm-8');
+        var key = keyInput.val();
+
+        var currentVal = '';
+        var existingInput = valContainer.find('[name="field_values[]"]');
+        if (existingInput.length) {
+            currentVal = existingInput.val();
+        }
+
+        if (customFieldsData[key] && customFieldsData[key].values) {
+            var select = $('<select name="field_values[]" class="form-control field-values-select" required></select>');
+            var values = customFieldsData[key].values;
+            for (var k in values) {
+                var option = $('<option></option>').attr('value', k).text(values[k]);
+                if (k == currentVal || (k == customFieldsData[key].default && currentVal === '')) {
+                    option.prop('selected', true);
+                }
+                select.append(option);
+            }
+            // 只有当当前不是 select，或者 select 的内容需要更新时才替换
+            if (!existingInput.is('select') || valContainer.data('current-key') !== key) {
+                valContainer.empty().append(select);
+                valContainer.data('current-key', key);
+            } else {
+                // 如果已经是同一个 key 的 select，只需更新选中值（用户切换后又切回来的情况）
+                existingInput.val(currentVal);
+            }
+        } else {
+            if (!existingInput.is('textarea')) {
+                var textarea = $('<textarea name="field_values[]" class="form-control auto-resize-textarea field-values-textarea" rows="1" style="resize: vertical; min-height: 33px; white-space: pre-wrap; overflow-x: auto;" required></textarea>');
+                textarea.attr('placeholder', "<?= _lang('field_value') ?>");
+                textarea.val(currentVal);
+                valContainer.empty().append(textarea);
+                autoResizeTextarea(textarea);
+                valContainer.data('current-key', '');
+            }
+        }
+    }
+
+    $(document).on('input change', '.field-keys-input', function() {
+        updateFieldValueInput($(this).closest('.field_list'));
+    });
+
     // 自定义字段
     $(document).on('click', '.field_del', function() {
         $(this).closest('.field_list').remove();
@@ -436,6 +487,10 @@
 
     // 为现有的textarea绑定自动调整高度功能
     initAutoResizeTextareas();
+    // 初始化现有字段的输入框类型
+    $('.field_list').each(function() {
+        updateFieldValueInput($(this));
+    });
     // 高级选项展开状态
     initDisplayState('adv_set');
     // 自动截取摘要状态
