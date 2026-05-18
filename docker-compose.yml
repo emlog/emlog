@@ -1,6 +1,6 @@
 services:
   db:
-    image: mysql:latest
+    image: mysql:8.0
     container_name: mysql
     command:
       - --character-set-server=utf8mb4
