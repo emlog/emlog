@@ -4136,9 +4136,9 @@ li.L9 {
   /* Firefox 4.0~16.0 */
   transition: background-color 500ms ease-out;
   /* IE >9, FF >15, Opera >12.0 */
+}
 .editormd-preview-container .editormd-toc-menu > .markdown-toc > ul > li a:hover, .editormd-html-preview .editormd-toc-menu > .markdown-toc > ul > li a:hover {
-  background-color: #59b8f8;
-  color: #fff;
+  background-color: #f6f6f6;
 }
 .editormd-preview-container .editormd-toc-menu > .markdown-toc li, .editormd-html-preview .editormd-toc-menu > .markdown-toc li {
   position: relative;
@@ -4206,9 +4206,9 @@ li.L9 {
   /* Firefox 4.0~16.0 */
   transition: background-color 500ms ease-out;
   /* IE >9, FF >15, Opera >12.0 */
+}
 .editormd-preview-container .editormd-toc-menu .toc-menu-btn:hover, .editormd-html-preview .editormd-toc-menu .toc-menu-btn:hover {
-  background-color: #59b8f8;
-  color: #fff;
+  background-color: #f6f6f6;
 }
 .editormd-preview-container .editormd-toc-menu .toc-menu-btn .fa, .editormd-html-preview .editormd-toc-menu .toc-menu-btn .fa {
   float: right;
