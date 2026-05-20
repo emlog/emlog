@@ -739,7 +739,7 @@ input[type="checkbox"]:hover, select:hover {
 
 /* editormd fullscreen mode style */
 .editormd-fullscreen {
-    z-index: 2;
+    z-index: 1035;
 }
 
 /* switch */
