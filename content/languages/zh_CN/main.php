@@ -758,7 +758,7 @@ return [
     'register_feature_1' => '获得在线升级功能，一键升级到最新版本',
     'register_feature_2' => '解锁完整应用商店功能，包括应用在线更新',
     'register_feature_3' => '去除所有未正版注册提示及功能限制',
-    'register_feature_4' => '铁杆SVIP免费应用：超过30款付费插件、多款付费主题免费用',
+    'register_feature_4' => '铁杆SVIP免费应用：超过50款付费插件、多款付费主题免费用',
     'register_now' => '立即正版注册',
     'input_license' => '输入注册码',
 
