@@ -39,10 +39,12 @@
                                         <span class="text-success font-weight-bold"><?= _lang('store_free') ?></span>
                                     <?php endif; ?>
                                     <?php if (!empty($v['svip'])): ?>
-                                        <span class="badge badge-warning p-1 ml-1" style="font-size: 78%; font-weight: normal;"><?= _lang('store_svip_badge') ?></span>
+                                        <?php // 铁杆免费 徽章，支持点击跳转至官网注册页 ?>
+                                        <a href="https://www.emlog.net/register" target="_blank" class="badge badge-warning p-1 ml-1" style="font-size: 78%; font-weight: normal;"><?= _lang('store_svip_badge') ?></a>
                                     <?php endif; ?>
                                     <?php if (!empty($v['svip_off'])): ?>
-                                        <span class="badge badge-warning p-1 ml-1" style="font-size: 78%; font-weight: normal;"><?= _lang('store_svip_price') ?><?= $v['svip_price'] ?><?= _lang('store_currency_unit') ?></span>
+                                        <?php // 铁杆优惠价 徽章，支持点击跳转至官网注册页 ?>
+                                        <a href="https://www.emlog.net/register" target="_blank" class="badge badge-warning p-1 ml-1" style="font-size: 78%; font-weight: normal;"><?= _lang('store_svip_price') ?><?= $v['svip_price'] ?><?= _lang('store_currency_unit') ?></a>
                                     <?php endif; ?>
                                 </span>
                                 <small class="d-block mt-1">
@@ -219,8 +221,10 @@
                                                         ) : 
                                                         '<span class="text-success"><?= _lang("store_free") ?></span>'
                                                     }
-                                                     ${app.svip ? `<span class="badge badge-warning p-1 ml-1" style="font-size: 78%; font-weight: normal;"><?= _lang("store_svip_badge") ?></span>` : ''}
-                                                     ${(app.svip_off && app.svip_off != 0) ? `<span class="badge badge-warning p-1 ml-1" style="font-size: 78%; font-weight: normal;"><?= _lang("store_svip_price") ?>${app.svip_price}<?= _lang("store_currency_unit") ?></span>` : ''}
+                                                     // 铁杆免费 徽章，支持点击跳转至官网注册页
+                                                     ${app.svip ? `<a href="https://www.emlog.net/register" target="_blank" class="badge badge-warning p-1 ml-1" style="font-size: 78%; font-weight: normal;"><?= _lang("store_svip_badge") ?></a>` : ''}
+                                                     // 铁杆优惠价 徽章，支持点击跳转至官网注册页
+                                                     ${(app.svip_off && app.svip_off != 0) ? `<a href="https://www.emlog.net/register" target="_blank" class="badge badge-warning p-1 ml-1" style="font-size: 78%; font-weight: normal;"><?= _lang("store_svip_price") ?>${app.svip_price}<?= _lang("store_currency_unit") ?></a>` : ''}
                                                  </span>
                                                 <small class="d-block mt-1">
                                                     <?= _lang("store_developer") ?><a href="./store.php?author_id=${app.author_id}">${app.author}</a><br>
