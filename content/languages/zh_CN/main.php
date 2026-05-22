@@ -561,6 +561,7 @@ return [
     'store_tpl_tag' => '模板',
     'store_plu_tag' => '插件',
     'store_svip_badge' => '铁杆免费',
+    'store_svip_price' => '铁杆优惠价：',
     'store_price' => '售价：',
     'store_currency_unit' => '元',
     'store_developer' => '开发者：',

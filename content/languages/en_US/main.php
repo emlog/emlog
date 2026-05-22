@@ -561,6 +561,7 @@ return [
     'store_tpl_tag' => 'Theme',
     'store_plu_tag' => 'Plugin',
     'store_svip_badge' => 'Free for Premium',
+    'store_svip_price' => 'Premium Discount Price',
     'store_price' => 'Price: ',
     'store_currency_unit' => '',
     'store_developer' => 'Developer: ',

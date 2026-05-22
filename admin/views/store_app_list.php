@@ -24,24 +24,28 @@
                                 <?php else: ?>
                                     <span class="badge badge-primary p-1"><?= _lang('store_plu_tag') ?></span>
                                 <?php endif; ?>
-                                <?php if ($v['svip']): ?>
-                                    <a href="https://www.emlog.net/register" class="badge badge-warning p-1" target="_blank"><?= _lang('store_svip_badge') ?></a>
-                                <?php endif; ?>
                             </p>
                             <p class="card-text text-muted">
-                                <?= _lang('store_price') ?>
-                                <?php if ($v['price'] > 0): ?>
-                                    <?php if ($v['promo_price'] > 0): ?>
-                                        <span style="text-decoration:line-through"><?= $v['price'] ?><small><?= _lang('store_currency_unit') ?></small></span>
-                                        <span class="text-danger"><?= $v['promo_price'] ?><small><?= _lang('store_currency_unit') ?></small></span>
+                                <span class="d-flex flex-wrap align-items-center" style="gap: 4px;">
+                                    <span><?= _lang('store_price') ?></span>
+                                    <?php if ($v['price'] > 0): ?>
+                                        <?php if ($v['promo_price'] > 0): ?>
+                                            <span style="text-decoration:line-through"><?= $v['price'] ?><small><?= _lang('store_currency_unit') ?></small></span>
+                                            <span class="text-danger font-weight-bold"><?= $v['promo_price'] ?><small><?= _lang('store_currency_unit') ?></small></span>
+                                        <?php else: ?>
+                                            <span class="text-danger font-weight-bold"><?= $v['price'] ?><small><?= _lang('store_currency_unit') ?></small></span>
+                                        <?php endif; ?>
                                     <?php else: ?>
-                                        <span class="text-danger"><?= $v['price'] ?><small><?= _lang('store_currency_unit') ?></small></span>
+                                        <span class="text-success font-weight-bold"><?= _lang('store_free') ?></span>
                                     <?php endif; ?>
-                                <?php else: ?>
-                                    <span class="text-success"><?= _lang('store_free') ?></span>
-                                <?php endif; ?>
-                                <br>
-                                <small>
+                                    <?php if (!empty($v['svip'])): ?>
+                                        <span class="badge badge-warning p-1 ml-1" style="font-size: 78%; font-weight: normal;"><?= _lang('store_svip_badge') ?></span>
+                                    <?php endif; ?>
+                                    <?php if (!empty($v['svip_off'])): ?>
+                                        <span class="badge badge-warning p-1 ml-1" style="font-size: 78%; font-weight: normal;"><?= _lang('store_svip_price') ?><?= $v['svip_price'] ?><?= _lang('store_currency_unit') ?></span>
+                                    <?php endif; ?>
+                                </span>
+                                <small class="d-block mt-1">
                                     <?= _lang('store_developer') ?><a href="./store.php?author_id=<?= $v['author_id'] ?>"><?= $v['author'] ?></a><br>
                                     <?= _lang('store_install_count') ?><?= $v['downloads'] ?><br>
                                     <?= _lang('store_update_time') ?><?= $v['time_ago'] ?><br>
@@ -67,7 +71,7 @@
                                         <?php if ($v['purchased'] === true): ?>
                                             <a href="store.php?action=mine" class="btn btn-light"><?= _lang('store_purchased_status') ?></a>
                                             <a href="#" class="btn btn-success installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-cdn-url="<?= urlencode($v['cdn_download_url']) ?>" data-type="<?= $type ?>"><?= _lang('store_install') ?></a>
-                                        <?php elseif ($v['svip'] && Register::getRegType() === 2): ?>
+                                        <?php elseif (!empty($v['svip']) && Register::getRegType() === 2): ?>
                                             <a href="#" class="btn btn-warning installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-cdn-url="<?= urlencode($v['cdn_download_url']) ?>" data-type="<?= $type ?>"><?= _lang('store_install') ?></a>
                                         <?php else: ?>
                                             <a href="<?= $order_url ?>" class="btn btn-danger" target="_blank"><?= _lang('store_buy_now') ?></a>
@@ -204,19 +208,21 @@
                                                 <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="${app.name}" data-url="${app.app_url}" data-buy-url="${app.buy_url}" class="h5">${app.name.substring(0, 15)}</a>
                                                 <span class="badge badge-light p-1">${app.ver}</span>
                                                 ${type === 'tpl' ? '<span class="badge badge-success p-1"><?= _lang("store_tpl_tag") ?></span>' : '<span class="badge badge-primary p-1"><?= _lang("store_plu_tag") ?></span>'}
-                                                ${app.svip ? '<a href="https://www.emlog.net/register" class="badge badge-warning p-1" target="_blank"><?= _lang("store_svip_badge") ?></a>' : ''}
                                             </p>
                                             <p class="card-text text-muted">
-                                                <?= _lang("store_price") ?>
-                                                ${app.price > 0 ? 
-                                                    (app.promo_price > 0 ? 
-                                                        `<span style="text-decoration:line-through">${app.price}<small><?= _lang("store_currency_unit") ?></small></span> <span class="text-danger">${app.promo_price}<small><?= _lang("store_currency_unit") ?></small></span>` : 
-                                                        `<span class="text-danger">${app.price}<small><?= _lang("store_currency_unit") ?></small></span>`
-                                                    ) : 
-                                                    '<span class="text-success"><?= _lang("store_free") ?></span>'
-                                                }
-                                                <br>
-                                                <small>
+                                                <span class="d-flex flex-wrap align-items-center" style="gap: 4px;">
+                                                    <span><?= _lang("store_price") ?></span>
+                                                    ${app.price > 0 ? 
+                                                        (app.promo_price > 0 ? 
+                                                            `<span style="text-decoration:line-through">${app.price}<small><?= _lang("store_currency_unit") ?></small></span> <span class="text-danger">${app.promo_price}<small><?= _lang("store_currency_unit") ?></small></span>` : 
+                                                            `<span class="text-danger">${app.price}<small><?= _lang("store_currency_unit") ?></small></span>`
+                                                        ) : 
+                                                        '<span class="text-success"><?= _lang("store_free") ?></span>'
+                                                    }
+                                                     ${app.svip ? `<span class="badge badge-warning p-1 ml-1" style="font-size: 78%; font-weight: normal;"><?= _lang("store_svip_badge") ?></span>` : ''}
+                                                     ${(app.svip_off && app.svip_off != 0) ? `<span class="badge badge-warning p-1 ml-1" style="font-size: 78%; font-weight: normal;"><?= _lang("store_svip_price") ?>${app.svip_price}<?= _lang("store_currency_unit") ?></span>` : ''}
+                                                 </span>
+                                                <small class="d-block mt-1">
                                                     <?= _lang("store_developer") ?><a href="./store.php?author_id=${app.author_id}">${app.author}</a><br>
                                                     <?= _lang("store_install_count") ?>${app.downloads}<br>
                                                     <?= _lang("store_update_time") ?>${app.time_ago}<br>
