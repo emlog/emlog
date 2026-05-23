@@ -33,184 +33,216 @@ $env_db_name = getenv('EMLOG_DB_NAME');
 $env_db_user = getenv('EMLOG_DB_USER');
 $env_db_password = getenv('EMLOG_DB_PASSWORD');
 
+/**
+ * 输出安装程序的公共 HTML 头部信息
+ *
+ * @param string $title 页面标题
+ * @return void
+ */
+function render_install_head($title = 'emlog')
+{
+    global $lang;
+    echo <<<EOT
+<!doctype html>
+<html lang="{$lang}">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="applicable-device" content="pc,mobile">
+    <title>{$title}</title>
+    <style>
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 1.4;
+            text-decoration: none;
+            transition: all 0.15s ease-in-out;
+            border: 1px solid transparent;
+            user-select: none;
+            box-sizing: border-box;
+        }
+        .btn-primary {
+            color: #ffffff;
+            background-color: #008cff;
+            border-color: #008cff;
+        }
+        .btn-primary:hover {
+            background-color: #0076d6;
+            border-color: #0076d6;
+        }
+        .btn-secondary {
+            color: #475569;
+            background-color: #ffffff;
+            border-color: #cbd5e1;
+        }
+        .btn-secondary:hover {
+            background-color: #f8fafc;
+            color: #1e293b;
+            border-color: #94a3b8;
+        }
+        .btn-danger {
+            color: #ffffff;
+            background-color: #e74c3c;
+            border-color: #e74c3c;
+        }
+        .btn-danger:hover {
+            background-color: #d84333;
+            border-color: #d84333;
+        }
+    </style>
+
+EOT;
+}
+
 if (!$act) {
+    render_install_head('emlog');
 ?>
-    <!doctype html>
-    <html lang="<?= $lang ?>">
+    <style>
+        body {
+            background-color: #F7F7F7;
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            line-height: 150%;
+        }
 
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <meta name="renderer" content="webkit">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-        <meta name="applicable-device" content="pc,mobile">
-        <title>emlog</title>
-        <style>
-            body {
-                background-color: #F7F7F7;
-                font-family: Arial, sans-serif;
-                font-size: 12px;
-                line-height: 150%;
-            }
+        hr {
+            margin: 1rem 0;
+            color: inherit;
+            border: 0;
+            border-top: 1px solid;
+            opacity: .25;
+        }
 
-            hr {
-                margin: 1rem 0;
-                color: inherit;
-                border: 0;
-                border-top: 1px solid;
-                opacity: .25;
-            }
+        .mb10 {
+            margin-bottom: 10px;
+        }
 
-            .mb10 {
-                margin-bottom: 10px;
-            }
+        .mb20 {
+            margin-bottom: 20px;
+        }
 
-            .mb20 {
-                margin-bottom: 20px;
-            }
+        .main {
+            background-color: #FFFFFF;
+            font-size: 12px;
+            color: #666666;
+            width: 750px;
+            margin: 30px auto;
+            padding: 50px;
+            list-style: none;
+            border: #DFDFDF 1px solid;
+            border-radius: 4px;
+        }
 
+        .logo {
+            background: url(admin/views/images/logo.png) no-repeat center;
+            padding: 50px 0 50px 0;
+            margin: 0 0;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 24px;
+        }
+
+        .install-brand {
+            margin-bottom: 6px;
+            line-height: 1.2;
+        }
+
+        .install-version {
+            margin: 0 0 20px;
+            text-align: center;
+            font-size: 14px;
+            line-height: 1.2;
+            color: #aeb8c4;
+        }
+
+        .input-group {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: stretch;
+            width: 100%;
+            margin-top: 30px;
+        }
+
+        .input-group-text {
+            display: flex;
+            align-items: center;
+            padding: 0.375rem 0.75rem;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #5e5e5e;
+            text-align: center;
+            white-space: nowrap;
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+            border-radius: 0.375rem 0 0 0.375rem;
+            width: 120px;
+        }
+
+        .form-control {
+            display: block;
+            padding: 0.375rem 0.75rem;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #5e5e5e;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #dee2e6;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            position: relative;
+            flex: 1 1 auto;
+            width: 1%;
+            min-width: 0;
+            border-radius: 0 0.375rem 0.375rem 0;
+            margin-left: calc(1px * -1);
+            transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+        }
+
+        .form-label {
+            margin-bottom: 0.5rem;
+        }
+
+        .care {
+            color: rgb(128, 128, 128);
+        }
+
+        .install-title {
+            margin-top: 50px;
+            margin-bottom: 0;
+            font-size: 18px;
+            font-weight: normal;
+        }
+
+        .next_btn {
+            margin: 50px 0 10px 0;
+            text-align: center;
+        }
+
+        .footer {
+            margin: 20px 0 30px 0;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
             .main {
-                background-color: #FFFFFF;
-                font-size: 12px;
-                color: #666666;
-                width: 750px;
-                margin: 30px auto;
-                padding: 50px;
-                list-style: none;
-                border: #DFDFDF 1px solid;
-                border-radius: 4px;
+                width: unset;
             }
-
-            .logo {
-                background: url(admin/views/images/logo.png) no-repeat center;
-                padding: 50px 0 50px 0;
-                margin: 0 0;
-            }
-
-            h1 {
-                text-align: center;
-                font-size: 24px;
-            }
-
-            .install-brand {
-                margin-bottom: 6px;
-                line-height: 1.2;
-            }
-
-            .install-version {
-                margin: 0 0 20px;
-                text-align: center;
-                font-size: 14px;
-                line-height: 1.2;
-                color: #aeb8c4;
-            }
-
-            .input-group {
-                position: relative;
-                display: flex;
-                flex-wrap: wrap;
-                align-items: stretch;
-                width: 100%;
-                margin-top: 30px;
-            }
-
-            .input-group-text {
-                display: flex;
-                align-items: center;
-                padding: 0.375rem 0.75rem;
-                font-size: 14px;
-                font-weight: 400;
-                line-height: 1.5;
-                color: #5e5e5e;
-                text-align: center;
-                white-space: nowrap;
-                background-color: #fff;
-                border: 1px solid #dee2e6;
-                border-radius: 0.375rem 0 0 0.375rem;
-                width: 120px;
-            }
-
-            .form-control {
-                display: block;
-                padding: 0.375rem 0.75rem;
-                font-size: 14px;
-                font-weight: 400;
-                line-height: 1.5;
-                color: #5e5e5e;
-                background-color: #fff;
-                background-clip: padding-box;
-                border: 1px solid #dee2e6;
-                -webkit-appearance: none;
-                -moz-appearance: none;
-                appearance: none;
-                position: relative;
-                flex: 1 1 auto;
-                width: 1%;
-                min-width: 0;
-                border-radius: 0 0.375rem 0.375rem 0;
-                margin-left: calc(1px * -1);
-                transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-            }
-
-            .form-label {
-                margin-bottom: 0.5rem;
-            }
-
-            .btn {
-                cursor: pointer;
-                color: #008cff;
-                letter-spacing: .5px;
-                padding: 10px 30px;
-                min-width: 140px;
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 14px;
-                font-weight: 500;
-                line-height: 1.4;
-                text-align: center;
-                text-decoration: none;
-                vertical-align: middle;
-                user-select: none;
-                border: 1px solid #008cff;
-                border-radius: 6px;
-                background-color: transparent;
-                transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-            }
-
-            .btn:hover {
-                color: #fff;
-                background-color: #008cff;
-                border-color: #008cff;
-            }
-
-            .care {
-                color: rgb(128, 128, 128);
-            }
-
-            .install-title {
-                margin-top: 50px;
-                margin-bottom: 0;
-                font-size: 18px;
-                font-weight: normal;
-            }
-
-            .next_btn {
-                margin: 50px 0 10px 0;
-                text-align: center;
-            }
-
-            .footer {
-                margin: 20px 0 30px 0;
-                text-align: center;
-            }
-
-            @media (max-width: 768px) {
-                .main {
-                    width: unset;
-                }
-            }
-        </style>
+        }
+    </style>
     </head>
 
     <body>
@@ -289,7 +321,7 @@ if (!$act) {
                     </div>
                 </div>
                 <div class="next_btn">
-                    <button type="submit" class="btn"><?= _langInstall('start_install') ?></button>
+                    <button type="submit" class="btn btn-primary"><?= _langInstall('start_install') ?></button>
                 </div>
             </div>
         </form>
@@ -334,11 +366,8 @@ if ($act == 'install' || $act == 'reinstall') {
         $warning_msg = _langInstall('installed_warning');
         $continue_msg = _langInstall('continue');
         $back_msg = _langInstall('back');
+        render_install_head('emlog');
         echo <<<EOT
-<html>
-<head>
-<meta charset="utf-8">
-<title>emlog</title>
 <style>
 body {
     margin: 0;
@@ -377,34 +406,7 @@ body {
     gap: 12px;
     margin-top: 22px;
 }
-.btn {
-    display: inline-block;
-    padding: 9px 18px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-size: 14px;
-    line-height: 1.4;
-    border: 1px solid transparent;
-    cursor: pointer;
-}
-.btn-danger {
-    color: #fff;
-    background-color: #e74c3c;
-    border-color: #e74c3c;
-}
-.btn-danger:hover {
-    background-color: #d84333;
-    border-color: #d84333;
-}
-.btn-secondary {
-    color: #64748b;
-    background-color: #fff;
-    border-color: #d6deea;
-}
-.btn-secondary:hover {
-    color: #334155;
-    border-color: #b9c6da;
-}
+
 @media (max-width: 768px) {
     .main {
         margin: 20px 12px;
@@ -819,14 +821,177 @@ CREATE TABLE {$db_prefix}blog_fields (
         }
     }
     $CACHE->updateCache();
-    $result = '';
-    $result .= "
-        <p style=\"font-size:24px; border-bottom:1px solid #E6E6E6; padding:10px 0px;\">" . _langInstall('install_success') . "</p>
-        <p><b>" . _langInstall('install_success_username') . "</b>：{$username}</p>
-        <p><b>" . _langInstall('install_success_password') . "</b>：" . _langInstall('install_success_password_info') . "</p>";
-    if ($env_emlog_env === 'develop' || ($env_emlog_env !== 'develop' && !@unlink('./install.php'))) {
-        $result .= '<p style="color:#ff0000;margin:10px 20px;">' . _langInstall('install_warning_manual_delete') . '</p> ';
+
+    /**
+     * 渲染安装成功页面
+     * 包含精致的成功卡片、SVG 状态图标、账户密码展示信息盒，以及登录后台与访问首页的按钮。
+     */
+    $show_warning = ($env_emlog_env === 'develop' || ($env_emlog_env !== 'develop' && !@unlink('./install.php')));
+
+    $title_success = _langInstall('install_success');
+    $label_username = _langInstall('install_success_username');
+    $label_password = _langInstall('install_success_password');
+    $info_password = _langInstall('install_success_password_info');
+    $warning_delete = _langInstall('install_warning_manual_delete');
+    $btn_home = _langInstall('install_visit_home');
+    $btn_admin = _langInstall('install_login_admin');
+    render_install_head("emlog - {$title_success}");
+    echo <<<EOT
+    <style>
+        body {
+            margin: 0;
+            background-color: #f5f7fb;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: #334155;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .success-card {
+            box-sizing: border-box;
+            width: 100%;
+            max-width: 550px;
+            min-height: 340px;
+            margin: 20px;
+            padding: 36px 40px;
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.04), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .success-icon {
+            width: 52px;
+            height: 52px;
+            background-color: #ecfdf5;
+            color: #10b981;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+        }
+        .success-icon svg {
+            width: 30px;
+            height: 30px;
+        }
+        h2 {
+            margin: 0 0 20px 0;
+            font-size: 22px;
+            font-weight: 600;
+            color: #0f172a;
+        }
+        .info-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            background-color: #f8fafc;
+            border: 1px solid #f1f5f9;
+            border-radius: 8px;
+            padding: 12px 20px;
+            margin-bottom: 20px;
+        }
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            align-items: center;
+        }
+        .info-label {
+            font-size: 12px;
+            color: #64748b;
+        }
+        .info-value {
+            font-size: 14px;
+            color: #0f172a;
+            font-weight: 500;
+        }
+        .info-divider {
+            width: 1px;
+            height: 20px;
+            background-color: #e2e8f0;
+        }
+        .warning-box {
+            background-color: #fffbeb;
+            border: 1px solid #fde68a;
+            color: #b45309;
+            font-size: 12px;
+            border-radius: 6px;
+            padding: 10px 12px;
+            margin-bottom: 16px;
+            text-align: center;
+            line-height: 1.4;
+        }
+        .actions {
+            display: flex;
+            gap: 12px;
+        }
+        .btn {
+            flex: 1;
+        }
+        @media (max-width: 576px) {
+            .success-card {
+                max-width: 100%;
+                min-height: unset;
+                padding: 32px 24px;
+            }
+            .info-box {
+                flex-direction: column;
+                gap: 12px;
+                align-items: stretch;
+                text-align: left;
+            }
+            .info-item {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            .info-divider {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="success-card">
+        <div>
+            <div class="success-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+            </div>
+            <h2>{$title_success}</h2>            
+            <div class="info-box">
+                <div class="info-item">
+                    <span class="info-label">{$label_username}</span>
+                    <span class="info-value">{$username}</span>
+                </div>
+                <div class="info-divider"></div>
+                <div class="info-item">
+                    <span class="info-label">{$label_password}</span>
+                    <span class="info-value">{$info_password}</span>
+                </div>
+            </div>
+        </div>
+EOT;
+    if ($show_warning) {
+        echo <<<EOT
+        <div class="warning-box">
+            <strong>安全提示：</strong>{$warning_delete}
+        </div>
+EOT;
     }
-    $result .= "<p style=\"text-align:right;\"><a href=\"./\">" . _langInstall('install_visit_home') . "</a> | <a href=\"./admin/\">" . _langInstall('install_login_admin') . "</a></p>";
-    emMsg($result, 'none');
+    echo <<<EOT
+        <div class="actions">
+            <a href="./" class="btn btn-secondary">{$btn_home}</a>
+            <a href="./admin/" class="btn btn-primary">{$btn_admin}</a>
+        </div>
+    </div>
+</body>
+</html>
+EOT;
+    exit;
 }
