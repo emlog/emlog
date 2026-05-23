@@ -23,7 +23,7 @@
                                     <div class="form-group form-inline">
                                         <input type="text" name="login_code" class="form-control form-control-user" style="width:180px;" id="login_code" placeholder="<?= _lang('captcha'); ?>"
                                             required>
-                                        <img src="../include/lib/checkcode.php" id="checkcode" class="mx-2">
+                                        <img src="../include/lib/checkcode.php" id="checkcode">
                                     </div>
                                 <?php endif ?>
                                 <div class="form-group">

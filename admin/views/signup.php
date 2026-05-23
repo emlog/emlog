@@ -35,10 +35,10 @@
                                     <div class="form-group form-inline">
                                         <input type="text" name="login_code" class="form-control form-control-user" style="width: 180px;" id="login_code" placeholder="<?= _lang('captcha'); ?>"
                                             required>
-                                        <img src="../include/lib/checkcode.php" id="checkcode" class="mx-2">
+                                        <img src="../include/lib/checkcode.php" id="checkcode">
                                     </div>
                                 <?php endif ?>
-                                <button class="btn btn-success btn-user btn-block" type="submit"><?= _lang('register'); ?></button>
+                                <button class=" btn btn-success btn-user btn-block" type="submit"><?= _lang('register'); ?></button>
                                 <hr>
                                 <div class="text-center"><a href="./"><?= _lang('login'); ?></a></div>
                                 <div class="text-center"><?php doAction('signup_ext') ?></div>
@@ -78,6 +78,10 @@
                 data: {
                     mail: email
                 },
+                /**
+                 * 发送邮件验证码成功的回调函数
+                 * @param {Object} response 接口返回数据
+                 */
                 success: function(response) {
                     // 发送邮件成功后，启动倒计时
                     let seconds = 60;
@@ -93,9 +97,28 @@
                         }
                     }, 1000);
                 },
+                /**
+                 * 发送邮件验证码失败的回调函数，解析并展示错误信息
+                 * @param {Object} xhr XMLHttpRequest对象
+                 * @param {string} status 状态描述
+                 * @param {string} error 错误对象
+                 */
                 error: function(xhr, status, error) {
                     console.error('Request failed:', error);
-                    sendBtnResp.html(xhr.responseText);
+                    let errMsg = xhr.responseText;
+                    if (xhr.responseJSON && xhr.responseJSON.msg) {
+                        errMsg = xhr.responseJSON.msg;
+                    } else if (xhr.responseText) {
+                        try {
+                            const res = JSON.parse(xhr.responseText);
+                            if (res && res.msg) {
+                                errMsg = res.msg;
+                            }
+                        } catch (e) {
+                            // 保持原始文本
+                        }
+                    }
+                    sendBtnResp.html(errMsg);
                     sendBtnResp.show();
                     sendBtn.html(sendEmailCodeText);
                     sendBtn.prop('disabled', false);

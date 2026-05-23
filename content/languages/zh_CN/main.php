@@ -223,7 +223,7 @@ return [
 
     // Verification Code
     'email_code' => '邮件验证码',
-    'send_email_code' => '发送邮件验证码',
+    'send_email_code' => '发送验证码',
     'email_code_sent' => '邮件验证码已发送到你的邮箱，请查收后填写',
     'email_code_error' => '邮件验证码错误',
     'email_code_send_failed' => '邮件验证码发送失败，请检查邮件通知设置',
