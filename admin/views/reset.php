@@ -18,9 +18,9 @@
                                             autofocus>
                                     </div>
                                     <?php if ($login_code): ?>
-                                        <div class="form-group form-inline">
-                                            <input type="text" name="login_code" class="form-control form-control-user" id="login_code" placeholder="<?= _lang('captcha'); ?>" required>
-                                            <img src="../include/lib/checkcode.php" id="checkcode" class="mx-2">
+                                        <div class="form-group em-reset-captcha-group">
+                                            <input type="text" name="login_code" class="form-control form-control-user em-reset-captcha-input" id="login_code" placeholder="<?= _lang('captcha'); ?>" required>
+                                            <img src="../include/lib/checkcode.php" id="checkcode" class="em-reset-captcha-image" alt="<?= _lang('captcha'); ?>">
                                         </div>
                                     <?php endif ?>
                                     <button class="btn btn-success btn-user btn-block" type="submit"><?= _lang('submit'); ?></button>
@@ -37,9 +37,6 @@
         </div>
     </div>
 </div>
-</body>
-
-</html>
 <script>
     $(function() {
         setTimeout(hideActived, 6000);
@@ -49,3 +46,6 @@
         });
     });
 </script>
+</body>
+
+</html>

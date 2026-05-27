@@ -16,6 +16,67 @@
         var _langJS = <?= json_encode(EmLang::getInstance()->getJsLang()); ?>;
     </script>
     <script src="./views/js/common.js?v=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
+    <style>
+        /* 认证页内联组合控件统一样式 */
+        .em-login-captcha-group,
+        .em-signup-inline-group,
+        .em-reset-captcha-group {
+            display: flex;
+            align-items: center;
+            flex-wrap: nowrap;
+            gap: 0.75rem;
+        }
+
+        .em-login-captcha-input,
+        .em-signup-inline-input,
+        .em-reset-captcha-input {
+            flex: 1 1 auto;
+            width: auto !important;
+            min-width: 0;
+        }
+
+        .em-signup-inline-button,
+        .em-login-captcha-image,
+        .em-signup-inline-image,
+        .em-reset-captcha-image {
+            flex: 0 0 auto;
+        }
+
+        .em-signup-inline-button {
+            white-space: nowrap;
+            margin: 0;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        .em-login-captcha-image,
+        .em-signup-inline-image,
+        .em-reset-captcha-image {
+            display: block;
+            max-width: 110px;
+            height: auto;
+            cursor: pointer;
+        }
+
+        @media (max-width: 576px) {
+            .em-login-captcha-group,
+            .em-signup-inline-group,
+            .em-reset-captcha-group {
+                gap: 0.5rem;
+            }
+
+            .em-signup-inline-button {
+                padding-left: 0.875rem;
+                padding-right: 0.875rem;
+            }
+
+            .em-login-captcha-image,
+            .em-signup-inline-image,
+            .em-reset-captcha-image {
+                max-width: 96px;
+            }
+        }
+    </style>
     <?php doAction('login_head') ?>
 </head>
 

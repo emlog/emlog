@@ -20,10 +20,10 @@
                                     <input type="password" class="form-control form-control-user" id="pw" name="pw" placeholder="<?= _lang('password'); ?>" required>
                                 </div>
                                 <?php if ($login_code): ?>
-                                    <div class="form-group form-inline">
-                                        <input type="text" name="login_code" class="form-control form-control-user" style="width:180px;" id="login_code" placeholder="<?= _lang('captcha'); ?>"
+                                    <div class="form-group em-login-captcha-group">
+                                        <input type="text" name="login_code" class="form-control form-control-user em-login-captcha-input" id="login_code" placeholder="<?= _lang('captcha'); ?>"
                                             required>
-                                        <img src="../include/lib/checkcode.php" id="checkcode">
+                                        <img src="../include/lib/checkcode.php" id="checkcode" class="em-login-captcha-image" alt="<?= _lang('captcha'); ?>">
                                     </div>
                                 <?php endif ?>
                                 <div class="form-group">
@@ -50,9 +50,6 @@
         </div>
     </div>
 </div>
-</body>
-
-</html>
 <script>
     $(function() {
         setTimeout(hideActived, 6000);
@@ -62,3 +59,6 @@
         });
     });
 </script>
+</body>
+
+</html>

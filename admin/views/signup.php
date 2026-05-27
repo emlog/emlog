@@ -25,17 +25,17 @@
                                         required>
                                 </div>
                                 <?php if ($email_code): ?>
-                                    <div class="form-group form-inline">
-                                        <input type="text" name="mail_code" class="form-control form-control-user" style="width: 180px;" id="mail_code" placeholder="<?= _lang('email_code'); ?>"
+                                    <div class="form-group em-signup-inline-group">
+                                        <input type="text" name="mail_code" class="form-control form-control-user em-signup-inline-input" id="mail_code" placeholder="<?= _lang('email_code'); ?>"
                                             required>
-                                        <button class="btn btn-success btn-user mx-2" type="button" id="send-btn"><?= _lang('send_email_code'); ?></button>
+                                        <button class="btn btn-success btn-user em-signup-inline-button" type="button" id="send-btn"><?= _lang('send_email_code'); ?></button>
                                     </div>
                                 <?php endif ?>
                                 <?php if ($login_code): ?>
-                                    <div class="form-group form-inline">
-                                        <input type="text" name="login_code" class="form-control form-control-user" style="width: 180px;" id="login_code" placeholder="<?= _lang('captcha'); ?>"
+                                    <div class="form-group em-signup-inline-group">
+                                        <input type="text" name="login_code" class="form-control form-control-user em-signup-inline-input" id="login_code" placeholder="<?= _lang('captcha'); ?>"
                                             required>
-                                        <img src="../include/lib/checkcode.php" id="checkcode">
+                                        <img src="../include/lib/checkcode.php" id="checkcode" class="em-signup-inline-image" alt="<?= _lang('captcha'); ?>">
                                     </div>
                                 <?php endif ?>
                                 <button class=" btn btn-success btn-user btn-block" type="submit"><?= _lang('register'); ?></button>
@@ -53,9 +53,6 @@
     </div>
 </div>
 </div>
-</body>
-
-</html>
 <script>
     // send mail code
     $(function() {
@@ -127,3 +124,6 @@
         });
     });
 </script>
+</body>
+
+</html>
