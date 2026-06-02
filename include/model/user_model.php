@@ -84,11 +84,15 @@ class User_Model
         return $row;
     }
 
+    /**
+     * 根据用户名或邮箱获取用户信息
+     */
     public function getUserDataByLogin($account)
     {
         if (empty($account)) {
             return false;
         }
+        $account = $this->db->escape_string($account);
         $ret = $this->db->once_fetch_array("SELECT * FROM " . DB_PREFIX . "user WHERE username = '$account'");
         if (!$ret) {
             $ret = $this->db->once_fetch_array("SELECT * FROM " . DB_PREFIX . "user WHERE email = '$account'");
