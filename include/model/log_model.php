@@ -276,6 +276,7 @@ class Log_Model
             'views'        => (int)$row['views'],
             'comnum'       => (int)$row['comnum'],
             'like_count'   => (int)$row['like_count'],
+            'dislike_count' => (int)$row['dislike_count'],
             'top'          => $row['top'],
             'sortop'       => $row['sortop'],
             'hide'         => $row['hide'],
