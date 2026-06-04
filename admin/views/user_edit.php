@@ -5,9 +5,16 @@
     <div class="card-body">
         <form action="user.php?action=update" method="post">
             <div class="form-group">
-                <p><img src="<?= User::getAvatar($avatar) ?>" height="65" width="65" class="rounded-circle" /> </p>
+                <p>
+                    <img src="<?= User::getAvatar($avatar) ?>" height="65" width="65" id="avatar_img" class="rounded-circle" />
+                </p>
                 <label for="avatar"><?= _lang('avatar') ?></label>
-                <input class="form-control" value="<?= $avatar ?>" name="avatar" id="avatar" placeholder="<?= _lang('input_avatar_url') ?>">
+                <div class="input-group">
+                    <input class="form-control" value="<?= $avatar ?>" name="avatar" id="avatar" placeholder="<?= _lang('input_avatar_url') ?>">
+                    <div class="input-group-append" id="del_avatar_btn_container" style="<?= empty($avatar) ? 'display: none;' : '' ?>">
+                        <button type="button" class="btn btn-outline-danger" id="del_avatar_btn" onclick="deleteAvatar(<?= $uid ?>)"><?= _lang('delete_avatar_btn') ?></button>
+                    </div>
+                </div>
             </div>
             <div class="form-group">
                 <label for="nickname"><?= _lang('nickname') ?></label>
@@ -57,4 +64,32 @@
         setTimeout(hideActived, 3600);
         $("#menu_user").addClass('active');
     });
+
+    /**
+     * AJAX 删除用户头像的方法
+     * @param {number} uid 用户ID
+     */
+    function deleteAvatar(uid) {
+        layer.confirm(_langJS.delete_avatar, {
+            icon: 3,
+            title: '',
+            btn: [_langJS.confirm, _langJS.cancel]
+        }, function (index) {
+            layer.close(index);
+            var token = $("#token").val();
+            $.post('user.php?action=del_avatar', {
+                uid: uid,
+                token: token
+            }, function (res) {
+                if (res.code === 0) {
+                    cocoMessage.success('<?= _lang('avatar_deleted_success') ?>');
+                    $('#avatar_img').attr('src', '<?= User::getAvatar("") ?>');
+                    $('#avatar').val('');
+                    $('#del_avatar_btn_container').hide();
+                } else {
+                    cocoMessage.error(res.msg || '<?= _lang('avatar_deleted_failed') ?>', 4000);
+                }
+            }, 'json');
+        });
+    }
 </script>

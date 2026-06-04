@@ -224,6 +224,47 @@ if ($action == 'unforbid') {
     FlashMsg::redirectAdmin('user', 'active_unfb');
 }
 
+/**
+ * 删除用户头像的 action 动作
+ * 如果是本地图片文件，直接删除物理文件；如果是外部头像，直接清空数据库字段。
+ */
+if ($action == 'del_avatar') {
+    LoginAuth::checkToken();
+    $uid = Input::postIntVar('uid');
+
+    // 创始人账户不能被他人编辑（比如删除头像）
+    if (!User::isFounder() && $uid === 1) {
+        Output::error('无权编辑创始人账户');
+    }
+
+    $user = $User_Model->getOneUser($uid);
+    if ($user) {
+        $photo = $user['photo'];
+        if (!empty($photo)) {
+            // 如果是本地图片文件（非合规的 URL 资源），则删除文件
+            if (!filter_var($photo, FILTER_VALIDATE_URL)) {
+                $filePath = '';
+                if (strpos($photo, '../') === 0) {
+                    $filePath = EMLOG_ROOT . '/' . substr($photo, 3);
+                } else {
+                    $filePath = EMLOG_ROOT . '/' . ltrim($photo, '/');
+                }
+
+                if (file_exists($filePath) && is_file($filePath)) {
+                    @unlink($filePath);
+                }
+            }
+
+            // 更新用户头像字段为空
+            $User_Model->updateUser(['photo' => ''], $uid);
+            $CACHE->updateCache('user');
+        }
+        Output::ok();
+    } else {
+        Output::error('用户不存在');
+    }
+}
+
 if ($action == 'operate_user') {
     $operate = Input::requestStrVar('operate');
     $user_ids = Input::postIntArray('user_ids');
