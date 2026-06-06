@@ -17,6 +17,10 @@ class Log_Controller
             $this->addLike();
         } elseif ($action == 'unlike') {
             $this->unLike();
+        } elseif ($action == 'dislike') {
+            $this->dislike();
+        } elseif ($action == 'undislike') {
+            $this->unDislike();
         } elseif ($action == 'addcom') {
             $this->addComment();
         } elseif ($action == 'likecom') {
@@ -236,6 +240,11 @@ class Log_Controller
         Output::ok();
     }
 
+    /**
+     * 点赞操作
+     *
+     * @return void
+     */
     function addLike()
     {
         $name = Input::postStrVar('name');
@@ -281,6 +290,11 @@ class Log_Controller
         Output::ok(['id' => $id]);
     }
 
+    /**
+     * 取消点赞操作
+     *
+     * @return void
+     */
     function unLike()
     {
         $uid = 0;
@@ -294,6 +308,82 @@ class Log_Controller
         $blogId = Input::postIntVar('gid');
         $Like_Model = new Like_Model();
         $r = $Like_Model->unLike($uid, $blogId);
+
+        if ($r === false) {
+            Output::error(_lang('cancel_failed'));
+        }
+
+        Output::ok();
+    }
+
+    /**
+     * 点踩操作
+     *
+     * @return void
+     */
+    function dislike()
+    {
+        $name = Input::postStrVar('name');
+        $avatar = Input::postStrVar('avatar');
+        $blogId = Input::postIntVar('gid', -1);
+        $ua = getUA();
+        $ip = getIp();
+        $uid = 0;
+
+        if (ISLOGIN === true) {
+            $User_Model = new User_Model();
+            $user_info = $User_Model->getOneUser(UID);
+            $name = addslashes($user_info['name_orig']);
+            $uid = UID;
+        }
+
+        doAction('dislike_post');
+
+        $Like_Model = new Like_Model();
+        $Log_Model = new Log_Model();
+
+        $log = $Log_Model->getDetail($blogId);
+        $err = '';
+
+        if ($blogId <= 0 || empty($log)) {
+            $err = _lang('article_not_found');
+        } elseif ($Like_Model->isDisliked($blogId, $uid, $ip) === true) {
+            $err = _lang('already_disliked');
+        } elseif (!User::haveEditPermission() && $Like_Model->isTooFast() === true) {
+            $err = _lang('operate_too_fast');
+        } elseif (strlen($name) > 100) {
+            $err = _lang('nickname_too_long');
+        } elseif (empty($ip) || empty($ua) || preg_match('/bot|crawler|spider|robot|crawling/i', $ua)) {
+            $err = _lang('abnormal_request');
+        }
+
+        if ($err) {
+            Output::error($err);
+        }
+        $r = $Like_Model->addDislike($uid, $name, $avatar, $blogId, $ip, $ua);
+        $id = isset($r['id']) ? $r['id'] : 0;
+
+        Output::ok(['id' => $id]);
+    }
+
+    /**
+     * 取消点踩操作
+     *
+     * @return void
+     */
+    function unDislike()
+    {
+        $uid = 0;
+
+        if (ISLOGIN === true) {
+            $User_Model = new User_Model();
+            $user_info = $User_Model->getOneUser(UID);
+            $uid = UID;
+        }
+
+        $blogId = Input::postIntVar('gid');
+        $Like_Model = new Like_Model();
+        $r = $Like_Model->unDislike($uid, $blogId);
 
         if ($r === false) {
             Output::error(_lang('cancel_failed'));

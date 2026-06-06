@@ -902,6 +902,7 @@ return [
     'comment_success_audit' => '评论成功，请等待管理员审核',
     'comment_not_found' => '评论不存在',
     'already_liked' => '已经赞过了',
+    'already_disliked' => '已经踩过了',
     'operate_too_fast' => '操作太频繁',
     'cancel_failed' => '取消失败',
     'fill_nickname' => '请填写昵称',

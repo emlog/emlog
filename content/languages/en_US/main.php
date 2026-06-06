@@ -902,6 +902,7 @@ return [
     'comment_success_audit' => 'Comment successful, please wait for admin approval',
     'comment_not_found' => 'Comment not found',
     'already_liked' => 'You have already liked this',
+    'already_disliked' => 'You have already disliked this',
     'operate_too_fast' => 'Operation too fast',
     'cancel_failed' => 'Cancel failed',
     'fill_nickname' => 'Please enter your nickname',
