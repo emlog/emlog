@@ -290,7 +290,52 @@ $isdraft = $draft ? '&draft=1' : '';
         </div>
     </div>
 </div>
+<!--更改作者-->
+<div class="modal" id="changeAuthorModel" tabindex="-1" role="dialog" aria-labelledby="changeAuthorModelLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header border-0">
+                <h5 class="modal-title" id="changeAuthorModelLabel"><?= _lang('change_author') ?></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <input type="text" id="authorSearchInput" class="form-control" autocomplete="off" placeholder="输入昵称、ID或拼音首字母缩写" style="transition: none !important;">
+                    <div id="authorSearchResults" class="list-group mt-2" style="max-height: 220px; overflow-y: auto; display: none; border: 1px solid #dee2e6; border-radius: 4px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); z-index: 1050; position: relative;">
+                    </div>
+                </div>
+                <div class="form-group mb-0">
+                    <input type="hidden" id="selectedAuthorId" value="">
+                </div>
+            </div>
+            <div class="modal-footer border-0">
+                <button type="button" class="btn btn-sm btn-light" data-dismiss="modal"><?= _lang('cancel') ?></button>
+                <button type="button" class="btn btn-sm btn-success" id="confirmChangeAuthorBtn" disabled><?= _lang('save') ?></button>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
+    /**
+     * 覆盖全局的更改作者提示函数，用于弹出更改作者模态框
+     * 
+     * @returns {void}
+     */
+    window.changeAuthorAlert = function() {
+        if (getChecked('ids') === false) {
+            infoAlert('<?= _lang('select_operate_article') ?>');
+            return;
+        }
+        $('#authorSearchInput').val('').removeClass('is-valid');
+        $('#authorSearchResults').empty().hide();
+        $('#selectedAuthorName').text('未选择 / None').removeClass('text-success').addClass('text-muted');
+        $('#selectedAuthorId').val('');
+        $('#confirmChangeAuthorBtn').prop('disabled', true);
+        $('#changeAuthorModel').modal('show');
+    };
+
     function logact(act) {
         if (getChecked('ids') === false) {
             infoAlert('<?= _lang('select_operate_article') ?>');
@@ -377,5 +422,95 @@ $isdraft = $draft ? '&draft=1' : '';
             modal.find('.modal-body #tag').val(tag)
             modal.find('.modal-body #gid').val(gid)
         })
+
+        /**
+         * 监听更改作者模态框完全展示后的事件，自动让输入框获得焦点
+         * 
+         * @returns {void}
+         */
+        $('#changeAuthorModel').on('shown.bs.modal', function() {
+            $('#authorSearchInput').focus();
+        });
+
+        // 搜索作者防抖
+        var searchTimer = null;
+
+        /**
+         * 监听作者搜索输入框的输入事件，并执行防抖异步搜索
+         * 
+         * @returns {void}
+         */
+        $('#authorSearchInput').on('input', function() {
+            $(this).removeClass('is-valid');
+            var term = $.trim($(this).val());
+            clearTimeout(searchTimer);
+
+            if (term === '') {
+                $('#authorSearchResults').empty().hide();
+                return;
+            }
+
+            searchTimer = setTimeout(function() {
+                $.ajax({
+                    url: 'article.php?action=search_author',
+                    type: 'GET',
+                    data: {
+                        term: term
+                    },
+                    dataType: 'json',
+                    success: function(res) {
+                        var $results = $('#authorSearchResults');
+                        $results.empty();
+                        if (res && res.code === 200 && res.data && res.data.length > 0) {
+                            $.each(res.data, function(idx, item) {
+                                var itemHtml = '<div class="list-group-item list-group-item-action py-2 px-3 search-author-item" style="cursor: pointer;" data-id="' + item.uid + '" data-name="' + item.nickname + '" onclick="window.selectAuthor(this)">';
+                                itemHtml += '<strong>' + item.nickname + '</strong>';
+                                itemHtml += ' <span class="badge badge-light float-right">ID: ' + item.uid + '</span>';
+                                itemHtml += '</div>';
+                                $results.append(itemHtml);
+                            });
+                            $results.show();
+                        } else {
+                            $results.append('<div class="list-group-item text-muted text-center py-2">没有找到相关作者</div>').show();
+                        }
+                    },
+                    error: function() {
+                        cocoMessage.error('搜索作者失败，请稍后重试');
+                    }
+                });
+            }, 300);
+        });
+
+        /**
+         * 选中搜索出来的作者（绑定在列表项的 onclick 事件上）
+         * 
+         * @param {HTMLElement} ele - 点击的作者列表项元素
+         * @returns {void}
+         */
+        window.selectAuthor = function(ele) {
+            var $item = $(ele);
+            var uid = $item.attr('data-id');
+            var name = $item.attr('data-name');
+
+            $('#authorSearchInput').val(name).addClass('is-valid');
+            $('#selectedAuthorName').text(name + ' (ID: ' + uid + ')').removeClass('text-muted').addClass('text-success');
+            $('#selectedAuthorId').val(uid);
+            $('#confirmChangeAuthorBtn').prop('disabled', false);
+            $('#authorSearchResults').hide();
+        };
+
+        /**
+         * 绑定确定更改作者按钮的点击事件，提交隐藏表单
+         * 
+         * @returns {void}
+         */
+        $('#confirmChangeAuthorBtn').on('click', function() {
+            var uid = $('#selectedAuthorId').val();
+            if (uid) {
+                $('#author').val(uid);
+                changeAuthor();
+                $('#changeAuthorModel').modal('hide');
+            }
+        });
     });
 </script>

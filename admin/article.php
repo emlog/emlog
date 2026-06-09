@@ -97,6 +97,108 @@ if (empty($action)) {
     View::output();
 }
 
+/**
+ * 处理作者实时搜索的 AJAX 请求
+ * 
+ * 根据输入的关键字进行模糊匹配查询（支持用户ID、用户名或昵称），返回匹配的用户列表，用于文章更改作者时的下拉选择
+ * 
+ * @return void
+ */
+if ($action == 'search_author') {
+    if (!User::haveEditPermission()) {
+        header('Content-Type: application/json');
+        echo json_encode(['code' => 403, 'msg' => 'Permission denied']);
+        exit;
+    }
+    
+    $term = trim(Input::getStrVar('term'));
+    $termLower = strtolower($term);
+    
+    $db = Database::getInstance();
+    $res = $db->query("SELECT uid, nickname, username FROM " . DB_PREFIX . "user ORDER BY uid DESC");
+    $matchedUsers = [];
+    
+    while ($row = $db->fetch_array($res)) {
+        $uid = (int)$row['uid'];
+        $nickname = $row['nickname'] ?: $row['username'];
+        $username = $row['username'];
+        
+        $isMatch = false;
+        if (empty($termLower)) {
+            $isMatch = true;
+        } else {
+            if (is_numeric($termLower) && $uid === (int)$termLower) {
+                $isMatch = true;
+            } else {
+                $nicknameLower = strtolower($nickname);
+                $usernameLower = strtolower($username);
+                
+                $initials = '';
+                $len = mb_strlen($nickname, 'UTF-8');
+                for ($i = 0; $i < $len; $i++) {
+                    $char = mb_substr($nickname, $i, 1, 'UTF-8');
+                    $charGbk = iconv('UTF-8', 'GBK//IGNORE', $char);
+                    if (!empty($charGbk)) {
+                        $firstByte = ord($charGbk[0]);
+                        if ($firstByte >= 176 && $firstByte <= 247) {
+                            $num = $firstByte * 256 + ord($charGbk[1]) - 65536;
+                            if ($num >= -20319 && $num <= -20284) $initials .= 'a';
+                            elseif ($num >= -20283 && $num <= -19776) $initials .= 'b';
+                            elseif ($num >= -19775 && $num <= -19219) $initials .= 'c';
+                            elseif ($num >= -19218 && $num <= -18711) $initials .= 'd';
+                            elseif ($num >= -18710 && $num <= -18527) $initials .= 'e';
+                            elseif ($num >= -18526 && $num <= -18240) $initials .= 'f';
+                            elseif ($num >= -18239 && $num <= -17923) $initials .= 'g';
+                            elseif ($num >= -17922 && $num <= -17418) $initials .= 'h';
+                            elseif ($num >= -17417 && $num <= -16475) $initials .= 'j';
+                            elseif ($num >= -16474 && $num <= -16213) $initials .= 'k';
+                            elseif ($num >= -16212 && $num <= -15641) $initials .= 'l';
+                            elseif ($num >= -15640 && $num <= -15166) $initials .= 'm';
+                            elseif ($num >= -15165 && $num <= -14923) $initials .= 'n';
+                            elseif ($num >= -14922 && $num <= -14915) $initials .= 'o';
+                            elseif ($num >= -14914 && $num <= -14631) $initials .= 'p';
+                            elseif ($num >= -14630 && $num <= -14150) $initials .= 'q';
+                            elseif ($num >= -14149 && $num <= -14091) $initials .= 'r';
+                            elseif ($num >= -14090 && $num <= -13319) $initials .= 's';
+                            elseif ($num >= -13318 && $num <= -12839) $initials .= 't';
+                            elseif ($num >= -12838 && $num <= -12557) $initials .= 'w';
+                            elseif ($num >= -12556 && $num <= -11848) $initials .= 'x';
+                            elseif ($num >= -11847 && $num <= -11056) $initials .= 'y';
+                            elseif ($num >= -11055 && $num <= -10247) $initials .= 'z';
+                        } else {
+                            $c = $charGbk[0];
+                            if (preg_match('/^[a-zA-Z0-9]$/', $c)) {
+                                $initials .= strtolower($c);
+                            }
+                        }
+                    }
+                }
+                
+                if (stripos($nicknameLower, $termLower) !== false || 
+                    stripos($usernameLower, $termLower) !== false || 
+                    stripos($initials, $termLower) !== false) {
+                    $isMatch = true;
+                }
+            }
+        }
+        
+        if ($isMatch) {
+            $matchedUsers[] = [
+                'uid' => $uid,
+                'nickname' => htmlspecialchars($nickname),
+                'username' => htmlspecialchars($username),
+            ];
+            if (count($matchedUsers) >= 20) {
+                break;
+            }
+        }
+    }
+    
+    header('Content-Type: application/json');
+    echo json_encode(['code' => 200, 'data' => $matchedUsers]);
+    exit;
+}
+
 if ($action == 'del') {
     $draft = Input::getIntVar('draft');
     $gid = Input::getIntVar('gid');
