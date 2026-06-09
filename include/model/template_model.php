@@ -9,6 +9,11 @@
 class Template_Model
 {
 
+    /**
+     * 获取系统所有可用模板信息
+     *
+     * @return array
+     */
     function getTemplates()
     {
         $nonce_template = Option::get('nonce_templet');
@@ -17,6 +22,12 @@ class Template_Model
         $handle = @opendir(TPLS_PATH) or die('emlog template path error!');
         $i = 1;
         while ($file = @readdir($handle)) {
+            if ($file == '.' || $file == '..') {
+                continue;
+            }
+            if (!is_dir(TPLS_PATH . $file)) {
+                continue;
+            }
             if (!file_exists(TPLS_PATH . $file . '/header.php')) {
                 continue;
             }

@@ -1412,6 +1412,9 @@ class TplOptions
             if ($file == '.' || $file == '..') {
                 continue;
             }
+            if (!is_dir(TPLS_PATH . $file)) {
+                continue;
+            }
             if (@file_exists($headerFile = TPLS_PATH . $file . '/header.php')) {
                 if ($this->getTemplateDefinedOptions($file) === false) {
                     continue;
