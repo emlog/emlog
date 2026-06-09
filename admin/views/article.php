@@ -330,7 +330,6 @@ $isdraft = $draft ? '&draft=1' : '';
         }
         $('#authorSearchInput').val('').removeClass('is-valid');
         $('#authorSearchResults').empty().hide();
-        $('#selectedAuthorName').text('未选择 / None').removeClass('text-success').addClass('text-muted');
         $('#selectedAuthorId').val('');
         $('#confirmChangeAuthorBtn').prop('disabled', true);
         $('#changeAuthorModel').modal('show');
@@ -493,7 +492,6 @@ $isdraft = $draft ? '&draft=1' : '';
             var name = $item.attr('data-name');
 
             $('#authorSearchInput').val(name).addClass('is-valid');
-            $('#selectedAuthorName').text(name + ' (ID: ' + uid + ')').removeClass('text-muted').addClass('text-success');
             $('#selectedAuthorId').val(uid);
             $('#confirmChangeAuthorBtn').prop('disabled', false);
             $('#authorSearchResults').hide();
