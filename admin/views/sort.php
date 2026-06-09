@@ -11,8 +11,8 @@
                 <table class="table table-bordered table-striped table-hover" id="dataTable">
                     <thead>
                         <tr>
-                            <th><?= _lang('image') ?></th>
                             <th><?= _lang('name') ?></th>
+                            <th><?= _lang('image') ?></th>
                             <th><?= _lang('description') ?></th>
                             <th><?= _lang('sort_id') ?></th>
                             <th><?= _lang('alias') ?></th>
@@ -27,19 +27,18 @@
                                 continue;
                             }
                         ?>
-                            <tr style="cursor: move">
-                                <td>
-                                    <div class="flex-shrink-0">
-                                        <?php if ($value['sortimg']): ?>
-                                            <img src="<?= $value['sortimg'] ?>" height="55" class="rounded" />
-                                        <?php else: ?>
-                                            <img src="<?= './views/images/null.png' ?>" height="55" class="rounded" />
-                                        <?php endif; ?>
-                                    </div>
-                                </td>
+                            <tr class="parent-sort" data-sid="<?= $value['sid'] ?>">
                                 <td class="sortname">
                                     <input type="hidden" value="<?= $value['sid'] ?>" class="sort_id" />
                                     <input type="hidden" name="sort[]" value="<?= $value['sid'] ?>" />
+                                    <span class="drag-handle text-muted mr-2" style="cursor: move;" title="拖动排序"><i class="icofont-navigation-menu"></i></span>
+                                    <?php if (!empty($value['children'])): ?>
+                                        <span class="fold-btn text-muted mr-1" style="cursor: pointer;" data-sid="<?= $value['sid'] ?>">
+                                            <i class="icofont-simple-down"></i>
+                                        </span>
+                                    <?php else: ?>
+                                        <span class="fold-btn-placeholder mr-1" style="display: inline-block; width: 12px;"></span>
+                                    <?php endif; ?>
                                     <a href="#" data-toggle="modal" data-target="#sortModal"
                                         data-sid="<?= $value['sid'] ?>"
                                         data-sortname="<?= $value['sortname'] ?>"
@@ -59,6 +58,15 @@
                                         <br><span class="badge small badge-orange"><?= _lang('no_contribute') ?></span>
                                     <?php endif ?>
                                 </td>
+                                <td>
+                                    <div class="flex-shrink-0">
+                                        <?php if ($value['sortimg']): ?>
+                                            <img src="<?= $value['sortimg'] ?>" height="55" class="rounded" />
+                                        <?php else: ?>
+                                            <img src="<?= './views/images/null.png' ?>" height="55" class="rounded" />
+                                        <?php endif; ?>
+                                    </div>
+                                </td>
                                 <td><?= subString($value['description'], 0, 100) ?></td>
                                 <td><?= $value['sid'] ?></td>
                                 <td class="alias"><?= $value['alias'] ?></td>
@@ -69,23 +77,19 @@
                             </tr>
                             <?php
                             $children = $value['children'];
+                            $total_children = count($children);
+                            $child_index = 0;
                             foreach ($children as $key):
                                 $value = $sorts[$key];
+                                $child_index++;
+                                $is_last_child = ($child_index === $total_children);
                             ?>
-                                <tr>
-                                    <td>
-                                        <div class="flex-shrink-0">
-                                            <?php if ($value['sortimg']): ?>
-                                                <img src="<?= $value['sortimg'] ?>" height="55" class="rounded" />
-                                            <?php else: ?>
-                                                <img src="<?= './views/images/null.png' ?>" height="55" class="rounded" />
-                                            <?php endif; ?>
-                                        </div>
-                                    </td>
+                                <tr class="child-sort <?= $is_last_child ? 'last-child' : '' ?>" data-pid="<?= $value['pid'] ?>">
                                     <td class="sortname">
                                         <input type="hidden" value="<?= $value['sid'] ?>" class="sort_id" />
                                         <input type="hidden" name="sort[]" value="<?= $value['sid'] ?>" />
-                                        ---- <a href="#" data-toggle="modal" data-target="#sortModal"
+                                        <span class="drag-handle text-muted mr-2" style="cursor: move;" title="拖动排序"><i class="icofont-navigation-menu"></i></span>
+                                        <a href="#" data-toggle="modal" data-target="#sortModal"
                                             data-sid="<?= $value['sid'] ?>"
                                             data-sortname="<?= $value['sortname'] ?>"
                                             data-alias="<?= $value['alias'] ?>"
@@ -101,6 +105,15 @@
                                         <?php if ($value['allow_user_post'] == 'n'): ?>
                                             <br><span class="badge small badge-orange"><?= _lang('no_contribute') ?></span>
                                         <?php endif ?>
+                                    </td>
+                                    <td>
+                                        <div class="flex-shrink-0">
+                                            <?php if ($value['sortimg']): ?>
+                                                <img src="<?= $value['sortimg'] ?>" height="55" class="rounded" />
+                                            <?php else: ?>
+                                                <img src="<?= './views/images/null.png' ?>" height="55" class="rounded" />
+                                            <?php endif; ?>
+                                        </div>
                                     </td>
                                     <td><?= subString($value['description'], 0, 100) ?></td>
                                     <td><?= $value['sid'] ?></td>
@@ -126,6 +139,68 @@
     #sortModal .modal-body {
         max-height: 78vh;
         overflow-y: auto;
+    }
+
+    .sortname {
+        white-space: nowrap;
+    }
+
+    /* 树形层级连线样式 */
+    .parent-sort td.sortname a {
+        font-weight: 600;
+        color: #1e293b;
+    }
+
+    .child-sort {
+        background-color: #fafbfc;
+    }
+
+    .child-sort td.sortname {
+        position: relative;
+        padding-left: 2.6rem !important;
+    }
+
+    .child-sort td.sortname::after {
+        content: '';
+        position: absolute;
+        left: 1.3rem;
+        top: 0;
+        bottom: 0;
+        border-left: 2px solid #cbd5e1;
+    }
+
+    .child-sort.last-child td.sortname::after {
+        bottom: 50%;
+    }
+
+    .child-sort td.sortname::before {
+        content: '';
+        position: absolute;
+        left: 1.3rem;
+        top: 0;
+        height: 50%;
+        width: 14px;
+        border-bottom: 2px solid #cbd5e1;
+    }
+
+    .child-sort td.sortname a {
+        font-weight: 500;
+        color: #475569;
+    }
+
+    .fold-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 20px;
+        height: 20px;
+        border-radius: 4px;
+        transition: all 0.15s ease;
+    }
+
+    .fold-btn:hover {
+        background-color: #e2e8f0;
+        color: #0f172a !important;
     }
 </style>
 <div class="modal fade" id="sortModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -274,8 +349,100 @@
         $("#menu_content").addClass('show');
         $("#menu_sort").addClass('active');
 
-        // 初始化拖动排序
-        $('#dataTable tbody').sortable().disableSelection();
+        // 拖拽主分类时连带子分类一起移动，子分类也支持在列表内上下排序
+        $('#dataTable tbody').sortable({
+            items: '> tr.parent-sort, > tr.child-sort',
+            handle: '.drag-handle',
+            /**
+             * 拖拽开始回调函数
+             */
+            start: function(e, ui) {
+                if (ui.item.hasClass('parent-sort')) {
+                    var sid = ui.item.data('sid');
+                    $('.child-sort[data-pid="' + sid + '"]').hide();
+                }
+            },
+            /**
+             * 拖拽结束后，处理主分类连带移动，以及子分类出界智能弹回纠偏，保持父子级物理顺序
+             */
+            stop: function(e, ui) {
+                if (ui.item.hasClass('parent-sort')) {
+                    var sid = ui.item.data('sid');
+                    var children = $('.child-sort[data-pid="' + sid + '"]');
+                    ui.item.after(children);
+                    // 仅在主分类未折叠的情况下显示子分类
+                    if (ui.item.attr('data-folded') !== 'true') {
+                        children.show();
+                    }
+                } else if (ui.item.hasClass('child-sort')) {
+                    var pid = ui.item.data('pid');
+                    // 寻找拖拽放置后，其上方的第一个主分类
+                    var currentParent = ui.item.prevAll('.parent-sort').first();
+                    var currentParentSid = currentParent.data('sid');
+
+                    if (currentParentSid !== pid) {
+                        // 如果移出了原本父分类的地盘，执行智能吸附纠偏
+                        var realParent = $('.parent-sort[data-sid="' + pid + '"]');
+                        if (ui.item.index() < realParent.index()) {
+                            // 往上拖出界，移回父分类正下方首位
+                            realParent.after(ui.item);
+                        } else {
+                            // 往下拖出界，移回父分类子列表末尾
+                            var siblings = $('.child-sort[data-pid="' + pid + '"]').not(ui.item);
+                            if (siblings.length > 0) {
+                                siblings.last().after(ui.item);
+                            } else {
+                                realParent.after(ui.item);
+                            }
+                        }
+                    }
+                }
+            }
+        }).disableSelection();
+
+        /**
+         * 主分类折叠/展开点击事件
+         * 作用：点击分类前方的三角/方向箭头，折叠或展开属于该主分类的子分类，并将状态持久化到 localStorage 中
+         */
+        $('#dataTable').on('click', '.fold-btn', function() {
+            var btn = $(this);
+            var sid = btn.data('sid');
+            var parentRow = btn.closest('.parent-sort');
+            var children = $('.child-sort[data-pid="' + sid + '"]');
+            var icon = btn.find('i');
+
+            if (icon.hasClass('icofont-simple-down')) {
+                // 折叠
+                children.hide();
+                icon.removeClass('icofont-simple-down').addClass('icofont-simple-right');
+                parentRow.attr('data-folded', 'true');
+                localStorage.setItem('em_sort_folded_' + sid, 'true');
+            } else {
+                // 展开
+                children.show();
+                icon.removeClass('icofont-simple-right').addClass('icofont-simple-down');
+                parentRow.removeAttr('data-folded');
+                localStorage.removeItem('em_sort_folded_' + sid);
+            }
+        });
+
+        /**
+         * 初始化分类的折叠状态
+         * 作用：读取 localStorage 中保存的折叠记录，对需要折叠的分类进行收起初始化
+         */
+        $('.fold-btn').each(function() {
+            var btn = $(this);
+            var sid = btn.data('sid');
+            var parentRow = btn.closest('.parent-sort');
+            var children = $('.child-sort[data-pid="' + sid + '"]');
+            var icon = btn.find('i');
+
+            if (localStorage.getItem('em_sort_folded_' + sid) === 'true') {
+                children.hide();
+                icon.removeClass('icofont-simple-down').addClass('icofont-simple-right');
+                parentRow.attr('data-folded', 'true');
+            }
+        });
 
         // 修复多层模态窗口关闭导致的滚动失效问题
         $('#mediaModal').on('hidden.bs.modal', function() {
