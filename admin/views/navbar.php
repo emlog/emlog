@@ -56,9 +56,17 @@
                                 doAction('adm_navi_display');
 
                         ?>
-                                <tr style="cursor: move">
-                                    <td>
+                                <tr class="tree-parent" data-id="<?= $value['id'] ?>">
+                                    <td class="tree-name">
                                         <input type="hidden" name="navi[]" value="<?= $value['id'] ?>" />
+                                        <span class="drag-handle text-muted mr-2" style="cursor: move;" title="拖动排序"><i class="icofont-navigation-menu"></i></span>
+                                        <?php if (!empty($value['childnavi'])): ?>
+                                            <span class="fold-btn text-muted mr-1" style="cursor: pointer;" data-id="<?= $value['id'] ?>">
+                                                <i class="icofont-simple-down"></i>
+                                            </span>
+                                        <?php else: ?>
+                                            <span class="fold-btn-placeholder mr-1" style="display: inline-block; width: 12px;"></span>
+                                        <?php endif; ?>
                                         <a href="navbar.php?action=mod&amp;navid=<?= $value['id'] ?>"><?= $value['naviname'] ?></a>
                                         <?php if ($value['hide'] == 'y'): ?>
                                             <span class="badge badge-secondary ml-2"><?= _lang('hidden') ?></span>
@@ -87,12 +95,16 @@
                                 </tr>
                                 <?php
                                 if (!empty($value['childnavi'])):
+                                    $total_childnavi = count($value['childnavi']);
+                                    $child_index = 0;
                                     foreach ($value['childnavi'] as $val):
+                                        $child_index++;
+                                        $is_last_child = ($child_index === $total_childnavi);
                                 ?>
-                                        <tr>
-                                            <td>
+                                        <tr class="tree-child <?= $is_last_child ? 'last-child' : '' ?>" data-pid="<?= $val['pid'] ?>">
+                                            <td class="tree-name">
                                                 <input type="hidden" name="navi[]" value="<?= $val['id'] ?>" />
-                                                ----
+                                                <span class="drag-handle text-muted mr-2" style="cursor: move;" title="拖动排序"><i class="icofont-navigation-menu"></i></span>
                                                 <a href="navbar.php?action=mod&amp;navid=<?= $val['id'] ?>"><?= $val['naviname'] ?></a>
                                                 <?php if ($val['hide'] == 'y'): ?>
                                                     <span class="badge badge-secondary ml-2"><?= _lang('hidden') ?></span>
@@ -273,6 +285,9 @@
 </div>
 
 <script>
+    /**
+     * 初始化导航页面事件和拖动排序功能
+     */
     $(function() {
         setTimeout(hideActived, 3600);
         $("#menu_category_view").addClass('active');
@@ -285,7 +300,10 @@
             submitForm("#navi_form");
         });
 
-        // 拖动排序
-        $('#dataTable tbody').sortable().disableSelection();
+        // 初始化树形拖拽排序与折叠
+        initTreeSortable({
+            hasHierarchy: true,
+            storagePrefix: 'em_navi_folded_'
+        });
     });
 </script>

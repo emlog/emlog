@@ -21,9 +21,10 @@
                         foreach ($links as $key => $value):
                             doAction('adm_link_display');
                         ?>
-                            <tr style="cursor: move">
+                            <tr>
                                 <td>
                                     <div class="d-flex align-items-center">
+                                        <span class="drag-handle text-muted mr-2" style="cursor: move;" title="拖动排序"><i class="icofont-navigation-menu"></i></span>
                                         <div class="flex-shrink-0">
                                             <?php if ($value['icon']): ?>
                                                 <img src="<?= $value['icon'] ?>" height="35" width="35" class="rounded" />
@@ -163,7 +164,9 @@
             }
         });
 
-        // 拖动排序
-        $('#dataTable tbody').sortable().disableSelection();
+        // 初始化树形拖拽排序与折叠
+        initTreeSortable({
+            hasHierarchy: false
+        });
     });
 </script>

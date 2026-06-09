@@ -791,3 +791,120 @@ $(function () {
         localStorage.removeItem('alert_action_success');
     }
 })
+
+/**
+ * 初始化树形拖拽排序与折叠功能
+ * @param {Object} options 配置参数
+ * @param {string} options.tableSelector 表格选择器，如 '#dataTable'
+ * @param {boolean} options.hasHierarchy 是否有父子层级关系
+ * @param {string} options.storagePrefix 存储折叠状态的 localStorage 前缀，如有层级则必填
+ */
+function initTreeSortable(options) {
+    const defaults = {
+        tableSelector: '#dataTable',
+        hasHierarchy: false,
+        storagePrefix: 'em_folded_'
+    };
+    const config = Object.assign(defaults, options);
+    const $tbody = $(config.tableSelector).find('tbody');
+
+    if (config.hasHierarchy) {
+        // 拖拽主项时连带子项一起移动，子项也支持在列表内上下排序
+        $tbody.sortable({
+            items: '> tr.tree-parent, > tr.tree-child',
+            handle: '.drag-handle',
+            /**
+             * 拖拽开始回调函数
+             */
+            start: function(e, ui) {
+                if (ui.item.hasClass('tree-parent')) {
+                    var id = ui.item.data('id');
+                    $tbody.find('.tree-child[data-pid="' + id + '"]').hide();
+                }
+            },
+            /**
+             * 拖拽结束后，处理主项连带移动，以及子项出界智能弹回纠偏，保持父子级物理顺序
+             */
+            stop: function(e, ui) {
+                if (ui.item.hasClass('tree-parent')) {
+                    var id = ui.item.data('id');
+                    var children = $tbody.find('.tree-child[data-pid="' + id + '"]');
+                    ui.item.after(children);
+                    // 仅在主项未折叠的情况下显示子项
+                    if (ui.item.attr('data-folded') !== 'true') {
+                        children.show();
+                    }
+                } else if (ui.item.hasClass('tree-child')) {
+                    var pid = ui.item.data('pid');
+                    // 寻找拖拽放置后，其上方的第一个主项
+                    var currentParent = ui.item.prevAll('.tree-parent').first();
+                    var currentParentId = currentParent.data('id');
+
+                    if (currentParentId !== pid) {
+                        // 如果移出了原本父项的地盘，执行智能吸附纠偏
+                        var realParent = $tbody.find('.tree-parent[data-id="' + pid + '"]');
+                        if (ui.item.index() < realParent.index()) {
+                            // 往上拖出界，移回父项正下方首位
+                            realParent.after(ui.item);
+                        } else {
+                            // 往下拖出界，移回父项子列表末尾
+                            var siblings = $tbody.find('.tree-child[data-pid="' + pid + '"]').not(ui.item);
+                            if (siblings.length > 0) {
+                                siblings.last().after(ui.item);
+                            } else {
+                                realParent.after(ui.item);
+                            }
+                        }
+                    }
+                }
+            }
+        }).disableSelection();
+
+        /**
+         * 主项折叠/展开点击事件
+         */
+        $(config.tableSelector).on('click', '.fold-btn', function() {
+            var btn = $(this);
+            var id = btn.data('id');
+            var parentRow = btn.closest('.tree-parent');
+            var children = $tbody.find('.tree-child[data-pid="' + id + '"]');
+            var icon = btn.find('i');
+
+            if (icon.hasClass('icofont-simple-down')) {
+                // 折叠
+                children.hide();
+                icon.removeClass('icofont-simple-down').addClass('icofont-simple-right');
+                parentRow.attr('data-folded', 'true');
+                localStorage.setItem(config.storagePrefix + id, 'true');
+            } else {
+                // 展开
+                children.show();
+                icon.removeClass('icofont-simple-right').addClass('icofont-simple-down');
+                parentRow.removeAttr('data-folded');
+                localStorage.removeItem(config.storagePrefix + id);
+            }
+        });
+
+        /**
+         * 初始化各项的折叠状态
+         */
+        $(config.tableSelector).find('.fold-btn').each(function() {
+            var btn = $(this);
+            var id = btn.data('id');
+            var parentRow = btn.closest('.tree-parent');
+            var children = $tbody.find('.tree-child[data-pid="' + id + '"]');
+            var icon = btn.find('i');
+
+            if (localStorage.getItem(config.storagePrefix + id) === 'true') {
+                children.hide();
+                icon.removeClass('icofont-simple-down').addClass('icofont-simple-right');
+                parentRow.attr('data-folded', 'true');
+            }
+        });
+    } else {
+        // 没有父子层级，仅执行常规的一级拖动排序
+        $tbody.sortable({
+            handle: '.drag-handle'
+        }).disableSelection();
+    }
+}

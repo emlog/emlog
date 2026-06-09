@@ -583,3 +583,65 @@ body {
     font-size: 12px;
     font-weight: normal;
 }
+
+/* 树形列表拖拽与层级连线样式 */
+.tree-name {
+    white-space: nowrap;
+}
+
+.tree-parent td.tree-name a {
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.tree-child {
+    background-color: #fafbfc;
+}
+
+.tree-child td.tree-name {
+    position: relative;
+    padding-left: 2.6rem !important;
+}
+
+.tree-child td.tree-name::after {
+    content: '';
+    position: absolute;
+    left: 1.3rem;
+    top: 0;
+    bottom: 0;
+    border-left: 2px solid #cbd5e1;
+}
+
+.tree-child.last-child td.tree-name::after {
+    bottom: 50%;
+}
+
+.tree-child td.tree-name::before {
+    content: '';
+    position: absolute;
+    left: 1.3rem;
+    top: 0;
+    height: 50%;
+    width: 14px;
+    border-bottom: 2px solid #cbd5e1;
+}
+
+.tree-child td.tree-name a {
+    font-weight: 500;
+    color: #475569;
+}
+
+.fold-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    transition: all 0.15s ease;
+}
+
+.fold-btn:hover {
+    background-color: #e2e8f0;
+    color: #0f172a !important;
+}
