@@ -64,7 +64,7 @@ if (empty($action)) {
             $orderBy .= 'comnum DESC';
             break;
         case 'top':
-            $orderBy .= 'top DESC, sortop DESC';
+            $orderBy .= 'top DESC, sortop DESC, date DESC';
             break;
         default:
             $orderBy .= 'date DESC';
