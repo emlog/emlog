@@ -231,6 +231,16 @@ return [
     'email_code_error' => 'Invalid email verification code',
     'email_code_send_failed' => 'Failed to send verification code. Please check email settings.',
     'captcha_error' => 'Verification code error',
+    'notice_reg_mail_code_title' => 'Registration Email Verification Code',
+    'notice_verify_mail_code_title' => 'Email Verification Code',
+    'notice_reset_mail_code_title' => 'Password Reset Email Verification Code',
+    'notice_new_post_mail_title' => 'Your site has received a new article submission',
+    'notice_comment_reply_mail_title' => 'Your comment has received a reply',
+    'notice_new_comment_mail_title' => 'Your article has received a new comment',
+    'notice_my_comment_label' => 'My Comment',
+    'notice_reply_received_label' => 'Reply Received',
+    'mail_test_verify_tip' => 'This is a verification email for testing your mail service configuration.',
+    'mail_test_security_tip' => 'The verification code is valid for 5 minutes. Please do not share it with others.',
 
     // Admin Menu
     'dashboard' => 'Dashboard',

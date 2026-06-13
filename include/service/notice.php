@@ -10,7 +10,12 @@
 class Notice
 {
 
-    // 发送用户注册邮件验证码，部分主题依赖该函数
+    /**
+     * 发送用户注册邮件验证码，部分主题依赖该函数。
+     *
+     * @param string $mail 邮箱地址
+     * @return bool
+     */
     public static function sendRegMailCode($mail)
     {
         if (!self::smtpServerReady()) {
@@ -23,12 +28,17 @@ class Notice
         $_SESSION['mail_code'] = $randCode;
         $_SESSION['mail'] = $mail;
 
-        $title = "用户注册邮件验证码";
-        $content = sprintf('<div id="email_code">邮件验证码：<b style="color: orange;">%s</b></div>', $randCode);
+        $title = _lang('notice_reg_mail_code_title');
+        $content = self::buildMailCodeContent($randCode);
         return self::sendMail($mail, $title, $content);
     }
 
-    // 通用的发送验证码方法
+    /**
+     * 发送通用邮件验证码。
+     *
+     * @param string $mail 邮箱地址
+     * @return bool
+     */
     public static function sendVerifyMailCode($mail)
     {
         if (!self::smtpServerReady()) {
@@ -41,11 +51,17 @@ class Notice
         $_SESSION['mail_code'] = $randCode;
         $_SESSION['mail'] = $mail;
 
-        $title = "邮件验证码";
-        $content = sprintf('<div id="email_code">邮件验证码：<b style="color: orange;">%s</b></div>', $randCode);
+        $title = _lang('notice_verify_mail_code_title');
+        $content = self::buildMailCodeContent($randCode);
         return self::sendMail($mail, $title, $content);
     }
 
+    /**
+     * 发送找回密码邮件验证码。
+     *
+     * @param string $mail 邮箱地址
+     * @return bool
+     */
     public static function sendResetMailCode($mail)
     {
         if (!self::smtpServerReady()) {
@@ -58,11 +74,18 @@ class Notice
         $_SESSION['mail_code'] = $randCode;
         $_SESSION['mail'] = $mail;
 
-        $title = "找回密码邮件验证码";
-        $content = sprintf('<div id="email_code">邮件验证码：<span>%s</span></div>', $randCode);
+        $title = _lang('notice_reset_mail_code_title');
+        $content = self::buildMailCodeContent($randCode);
         return self::sendMail($mail, $title, $content);
     }
 
+    /**
+     * 发送新投稿通知邮件。
+     *
+     * @param string $postTitle 文章标题
+     * @param int $gid 文章ID
+     * @return bool
+     */
     public static function sendNewPostMail($postTitle, $gid)
     {
         if (!self::smtpServerReady()) {
@@ -75,9 +98,9 @@ class Notice
         if (!$mail) {
             return false;
         }
-        $title = "你的站点收到新的文章投稿";
+        $title = _lang('notice_new_post_mail_title');
         $url = Url::log($gid);
-        $content = sprintf('文章标题：<a href="%s">%s</a>', $url, $postTitle);
+        $content = sprintf('%s：<a href="%s">%s</a>', _lang('title'), $url, $postTitle);
         return self::sendMail($mail, $title, $content);
     }
 
@@ -111,15 +134,15 @@ class Notice
             $c = $Comment_Model->getOneComment($pid);
             $pcomment = isset($c['comment']) ? $c['comment'] : '';
 
-            $title = "你的评论收到一条回复";
-            $content = '<b>我的评论：</b>' . $pcomment . '<br><br>';
-            $content .= '<b>收到回复：</b>' . $comment . '<br>';
-            $content .= '<hr>来自文章：<a href="' . Url::log($article['logid']) . '" target="_blank">' . $article['log_title'] . '</a>';
+            $title = _lang('notice_comment_reply_mail_title');
+            $content = '<b>' . _lang('notice_my_comment_label') . '：</b>' . $pcomment . '<br><br>';
+            $content .= '<b>' . _lang('notice_reply_received_label') . '：</b>' . $comment . '<br>';
+            $content .= '<hr>' . _lang('from_article') . '：<a href="' . Url::log($article['logid']) . '" target="_blank">' . $article['log_title'] . '</a>';
             $mail = self::getCommentAuthorEmail($pid);
         } else {
-            $title = "你的文章收到新的评论";
-            $content = '<b>评论内容：</b>' . $comment . '<br>';
-            $content .= '<hr>来自文章：<a href="' . Url::log($article['logid']) . '" target="_blank">' . $article['log_title'] . '</a>';
+            $title = _lang('notice_new_comment_mail_title');
+            $content = '<b>' . _lang('comment') . '：</b>' . $comment . '<br>';
+            $content .= '<hr>' . _lang('from_article') . '：<a href="' . Url::log($article['logid']) . '" target="_blank">' . $article['log_title'] . '</a>';
             $mail = self::getArticleAuthorEmail($article['author']);
         }
         if (!$mail) {
@@ -199,6 +222,18 @@ class Notice
             return false;
         }
         return true;
+    }
+
+    /**
+     * 构建验证码邮件内容。
+     *
+     * @param string $randCode 验证码
+     * @return string
+     */
+    private static function buildMailCodeContent($randCode)
+    {
+        $codeHtml = sprintf('<b style="color: orange;">%s</b>', $randCode);
+        return sprintf('<div id="email_code">%s：%s</div>', _lang('email_code'), $codeHtml);
     }
 
     private static function getArticleInfo($gid)

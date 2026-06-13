@@ -313,6 +313,16 @@ if ($action == 'mail_test') {
         exit("<small class='text-info'>请正确填写邮箱</small>");
     }
 
+    $verifyCode = getRandStr(6, false, true);
+    $mailSubject = sprintf('%s - %s', Option::get('blogname'), _lang('notice_verify_mail_code_title'));
+    $mailContent = sprintf(
+        '<div id="email_code">%s：<b style="color: orange;">%s</b></div><div style="margin-top:12px;">%s</div><div style="margin-top:8px;color:#666;font-size:12px;">%s</div>',
+        _lang('email_code'),
+        $verifyCode,
+        _lang('mail_test_verify_tip'),
+        _lang('mail_test_security_tip')
+    );
+
     $mail = new PHPMailer(true);
     $mail->IsSMTP();
     $mail->CharSet = 'UTF-8';
@@ -325,9 +335,9 @@ if ($action == 'mail_test') {
     $mail->From = $data['smtp_mail'];
     $mail->FromName = $data['smtp_from_name'];
     $mail->AddAddress($data['testTo']);
-    $mail->Subject = '测试邮件';
+    $mail->Subject = $mailSubject;
     $mail->isHTML();
-    $mail->Body = Notice::getMailTemplate('这是一封测试邮件');
+    $mail->Body = Notice::getMailTemplate($mailContent);
 
     try {
         return $mail->Send();

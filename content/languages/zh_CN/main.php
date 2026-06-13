@@ -231,6 +231,16 @@ return [
     'email_code_error' => '邮件验证码错误',
     'email_code_send_failed' => '邮件验证码发送失败，请检查邮件通知设置',
     'captcha_error' => '验证码错误',
+    'notice_reg_mail_code_title' => '用户注册邮件验证码',
+    'notice_verify_mail_code_title' => '邮件验证码',
+    'notice_reset_mail_code_title' => '找回密码邮件验证码',
+    'notice_new_post_mail_title' => '你的站点收到新的文章投稿',
+    'notice_comment_reply_mail_title' => '你的评论收到一条回复',
+    'notice_new_comment_mail_title' => '你的文章收到新的评论',
+    'notice_my_comment_label' => '我的评论',
+    'notice_reply_received_label' => '收到回复',
+    'mail_test_verify_tip' => '这是一封邮件服务测试验证码邮件，用于验证站点邮件通知配置是否正常。',
+    'mail_test_security_tip' => '验证码 5 分钟内有效，请勿泄露给他人。',
 
     // Admin Menu
     'dashboard' => '控制台',
