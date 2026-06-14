@@ -66,6 +66,9 @@ if (empty($action)) {
         case 'like':
             $orderBy .= 'like_count DESC';
             break;
+        case 'dislike':
+            $orderBy .= 'dislike_count DESC';
+            break;
         case 'top':
             $orderBy .= 'top DESC, sortop DESC, date DESC';
             break;
