@@ -476,6 +476,8 @@ return [
     'top_priority' => 'Pinned',
     'comment_most' => 'Most commented',
     'view_most' => 'Most viewed',
+    'like_most' => 'Most liked',
+    'like' => 'Likes',
     'search_title' => 'Search title...',
     'unknown_sort' => 'Unknown category',
     'unknown_author' => 'Unknown author',

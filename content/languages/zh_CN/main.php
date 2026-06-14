@@ -476,6 +476,8 @@ return [
     'top_priority' => '置顶优先',
     'comment_most' => '评论最多',
     'view_most' => '浏览最多',
+    'like_most' => '点赞最多',
+    'like' => '点赞',
     'search_title' => '搜索标题...',
     'unknown_sort' => '未知分类',
     'unknown_author' => '未知作者',

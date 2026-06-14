@@ -56,6 +56,7 @@ $isdraft = $draft ? '&draft=1' : '';
                         <option value="top" <?= ($order === 'top') ? 'selected' : '' ?>><?= _lang('top_priority') ?></option>
                         <option value="comm" <?= ($order === 'comm') ? 'selected' : '' ?>><?= _lang('comment_most') ?></option>
                         <option value="view" <?= ($order === 'view') ? 'selected' : '' ?>><?= _lang('view_most') ?></option>
+                        <option value="like" <?= ($order === 'like') ? 'selected' : '' ?>><?= _lang('like_most') ?></option>
                     </select>
                 </div>
             </div>
@@ -83,6 +84,7 @@ $isdraft = $draft ? '&draft=1' : '';
                             <th><?= _lang('title') ?></th>
                             <th><?= _lang('comment') ?></th>
                             <th><?= _lang('views') ?></th>
+                            <th><?= _lang('like') ?></th>
                             <th><?= _lang('author') ?></th>
                             <th><?= _lang('category') ?></th>
                             <th><?= _lang('time') ?></th>
@@ -127,6 +129,7 @@ $isdraft = $draft ? '&draft=1' : '';
                                 </td>
                                 <td><a href="comment.php?gid=<?= $value['gid'] ?>" class="badge badge-primary mx-1 px-2"><?= $value['comnum'] ?></a></td>
                                 <td><a href="<?= Url::log($value['gid']) ?>" class="badge badge-success  mx-1 px-2" target="_blank"><?= $value['views'] ?></a></td>
+                                <td><span class="badge badge-info mx-1 px-2"><?= $value['like_count'] ?></span></td>
                                 <td class="small"><a href="article.php?uid=<?= $value['author'] . $isdraft ?>"><?= $author ?></a></td>
                                 <td><a href="article.php?sid=<?= $value['sortid'] . $isdraft ?>" class="badge badge-light-gray"><?= $sortName ?></a></td>
                                 <td class="small"><?= $value['date'] ?></td>
