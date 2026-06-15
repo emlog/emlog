@@ -58,6 +58,7 @@ $isdraft = $draft ? '&draft=1' : '';
                         <option value="view" <?= ($order === 'view') ? 'selected' : '' ?>><?= _lang('view_most') ?></option>
                         <option value="like" <?= ($order === 'like') ? 'selected' : '' ?>><?= _lang('like_most') ?></option>
                         <option value="dislike" <?= ($order === 'dislike') ? 'selected' : '' ?>><?= _lang('dislike_most') ?></option>
+                        <option value="collect" <?= ($order === 'collect') ? 'selected' : '' ?>><?= _lang('collect_most') ?></option>
                     </select>
                 </div>
             </div>
@@ -85,7 +86,7 @@ $isdraft = $draft ? '&draft=1' : '';
                             <th><?= _lang('title') ?></th>
                             <th><?= _lang('comment') ?></th>
                             <th><?= _lang('views') ?></th>
-                            <th><?= _lang('like_dislike') ?></th>
+                            <th><?= _lang('like_dislike_collect') ?></th>
                             <th><?= _lang('author') ?></th>
                             <th><?= _lang('category') ?></th>
                             <th><?= _lang('time') ?></th>
@@ -131,7 +132,7 @@ $isdraft = $draft ? '&draft=1' : '';
                                 <td><a href="comment.php?gid=<?= $value['gid'] ?>" class="badge badge-primary mx-1 px-2"><?= $value['comnum'] ?></a></td>
                                 <td><a href="<?= Url::log($value['gid']) ?>" class="badge badge-success  mx-1 px-2" target="_blank"><?= $value['views'] ?></a></td>
                                 <td>
-                                    <span class="badge badge-info mx-1 px-2" title="<?= _lang('like_dislike') ?>"><?= $value['like_count'] ?> / <?= $value['dislike_count'] ?></span>
+                                    <span class="badge badge-info mx-1 px-2" title="<?= _lang('like_dislike_collect') ?>"><?= $value['like_count'] ?> / <?= $value['dislike_count'] ?> / <?= isset($value['collect_count']) ? $value['collect_count'] : 0 ?></span>
                                 </td>
                                 <td class="small"><a href="article.php?uid=<?= $value['author'] . $isdraft ?>"><?= $author ?></a></td>
                                 <td><a href="article.php?sid=<?= $value['sortid'] . $isdraft ?>" class="badge badge-light-gray"><?= $sortName ?></a></td>

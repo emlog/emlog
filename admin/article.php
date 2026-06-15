@@ -69,6 +69,9 @@ if (empty($action)) {
         case 'dislike':
             $orderBy .= 'dislike_count DESC';
             break;
+        case 'collect':
+            $orderBy .= 'collect_count DESC';
+            break;
         case 'top':
             $orderBy .= 'top DESC, sortop DESC, date DESC';
             break;

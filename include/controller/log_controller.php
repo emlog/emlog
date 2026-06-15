@@ -21,6 +21,10 @@ class Log_Controller
             $this->dislike();
         } elseif ($action == 'undislike') {
             $this->unDislike();
+        } elseif ($action == 'collect') {
+            $this->collect();
+        } elseif ($action == 'uncollect') {
+            $this->unCollect();
         } elseif ($action == 'addcom') {
             $this->addComment();
         } elseif ($action == 'likecom') {
@@ -384,6 +388,90 @@ class Log_Controller
         $blogId = Input::postIntVar('gid');
         $Like_Model = new Like_Model();
         $r = $Like_Model->unDislike($uid, $blogId);
+
+        if ($r === false) {
+            Output::error(_lang('cancel_failed'));
+        }
+
+        Output::ok();
+    }
+
+    /**
+     * 收藏操作
+     *
+     * @return void
+     */
+    function collect()
+    {
+        if (ISLOGIN !== true) {
+            Output::error(_lang('please_login'));
+        }
+
+        $name = Input::postStrVar('name');
+        $avatar = Input::postStrVar('avatar');
+        $blogId = Input::postIntVar('gid', -1);
+        $ua = getUA();
+        $ip = getIp();
+        $uid = 0;
+
+        if (ISLOGIN === true) {
+            $User_Model = new User_Model();
+            $user_info = $User_Model->getOneUser(UID);
+            $name = addslashes($user_info['name_orig']);
+            $uid = UID;
+        }
+
+        doAction('collect_post');
+
+        $Like_Model = new Like_Model();
+        $Log_Model = new Log_Model();
+
+        $log = $Log_Model->getDetail($blogId);
+        $err = '';
+
+        if ($blogId <= 0 || empty($log)) {
+            $err = _lang('article_not_found');
+        } elseif ($Like_Model->isCollected($blogId, $uid, $ip) === true) {
+            $err = _lang('already_collected');
+        } elseif (!User::haveEditPermission() && $Like_Model->isTooFast() === true) {
+            $err = _lang('operate_too_fast');
+        } elseif (strlen($name) > 100) {
+            $err = _lang('nickname_too_long');
+        } elseif (empty($ip) || empty($ua) || preg_match('/bot|crawler|spider|robot|crawling/i', $ua)) {
+            $err = _lang('abnormal_request');
+        }
+
+        if ($err) {
+            Output::error($err);
+        }
+        $r = $Like_Model->addCollect($uid, $name, $avatar, $blogId, $ip, $ua);
+        $id = isset($r['id']) ? $r['id'] : 0;
+
+        Output::ok(['id' => $id]);
+    }
+
+    /**
+     * 取消收藏操作
+     *
+     * @return void
+     */
+    function unCollect()
+    {
+        if (ISLOGIN !== true) {
+            Output::error(_lang('please_login'));
+        }
+
+        $uid = 0;
+
+        if (ISLOGIN === true) {
+            $User_Model = new User_Model();
+            $user_info = $User_Model->getOneUser(UID);
+            $uid = UID;
+        }
+
+        $blogId = Input::postIntVar('gid');
+        $Like_Model = new Like_Model();
+        $r = $Like_Model->unCollect($uid, $blogId);
 
         if ($r === false) {
             Output::error(_lang('cancel_failed'));

@@ -480,7 +480,9 @@ return [
     'like' => '点赞',
     'dislike' => '点踩',
     'dislike_most' => '点踩最多',
-    'like_dislike' => '赞/踩',
+    'collect' => '收藏',
+    'collect_most' => '收藏最多',
+    'like_dislike_collect' => '赞/踩/收藏',
     'search_title' => '搜索标题...',
     'unknown_sort' => '未知分类',
     'unknown_author' => '未知作者',
@@ -908,6 +910,7 @@ return [
 
     // Log Controller
     'login_to_comment' => '请先完成登录，再发布评论',
+    'please_login' => '请先登录',
     'article_not_found' => '文章不存在',
     'comment_not_allowed' => '该文章未开启评论',
     'comment_too_fast' => '评论发布太频繁',
@@ -918,6 +921,7 @@ return [
     'comment_not_found' => '评论不存在',
     'already_liked' => '已经赞过了',
     'already_disliked' => '已经踩过了',
+    'already_collected' => '已经收藏过了',
     'operate_too_fast' => '操作太频繁',
     'cancel_failed' => '取消失败',
     'fill_nickname' => '请填写昵称',

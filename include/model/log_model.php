@@ -277,6 +277,7 @@ class Log_Model
             'comnum'       => (int)$row['comnum'],
             'like_count'   => (int)$row['like_count'],
             'dislike_count' => (int)$row['dislike_count'],
+            'collect_count' => isset($row['collect_count']) ? (int)$row['collect_count'] : 0,
             'top'          => $row['top'],
             'sortop'       => $row['sortop'],
             'hide'         => $row['hide'],

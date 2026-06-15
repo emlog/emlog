@@ -273,6 +273,7 @@ class Api_Controller
                 'comnum'      => (int)$value['comnum'],
                 'like_count'  => (int)$value['like_count'],
                 'dislike_count' => (int)$value['dislike_count'],
+                'collect_count' => (int)$value['collect_count'],
                 'top'         => $value['top'],
                 'sortop'      => $value['sortop'],
                 'tags'        => $this->getTags((int)$value['gid']),
@@ -328,6 +329,7 @@ class Api_Controller
             'comnum'        => (int)$r['comnum'],
             'like_count'    => (int)$r['like_count'],
             'dislike_count' => (int)$r['dislike_count'],
+            'collect_count' => (int)$r['collect_count'],
             'top'           => $r['top'],
             'sortop'        => $r['sortop'],
             'tags'          => $this->getTags($id),
@@ -376,6 +378,7 @@ class Api_Controller
             'comnum'        => (int)$r['comnum'],
             'like_count'    => (int)$r['like_count'],
             'dislike_count' => (int)$r['dislike_count'],
+            'collect_count' => (int)$r['collect_count'],
             'top'           => $r['top'],
             'sortop'        => $r['sortop'],
             'tags'          => $this->getTags($id),
@@ -415,6 +418,7 @@ class Api_Controller
                 'comnum'      => (int)$value['comnum'],
                 'like_count'  => (int)$value['like_count'],
                 'dislike_count' => (int)$value['dislike_count'],
+                'collect_count' => (int)$value['collect_count'],
                 'top'         => $value['top'],
                 'sortop'      => $value['sortop'],
                 'tags'        => $this->getTags((int)$value['gid']),
@@ -651,6 +655,131 @@ class Api_Controller
         }
 
         output::ok(['likes' => $likes]);
+    }
+
+    /**
+     * 收藏文章
+     *
+     * @return void
+     */
+    private function collect()
+    {
+        $blogId = Input::postIntVar('id', -1);
+
+        $this->checkAuthCookie();
+
+        if (empty($blogId) || $blogId <= 0) {
+            Output::error('parameter error');
+        }
+
+        $log = $this->Log_Model->getDetail($blogId);
+        if (empty($log)) {
+            Output::error('article not found');
+        }
+
+        if ($this->Like_Model->isCollected($blogId, $this->curUid) === true) {
+            Output::error('already collected');
+        }
+
+        $user_info = $this->User_Model->getOneUser($this->curUid);
+        $name = addslashes($user_info['name_orig']);
+        $avatar = getFileUrl($user_info['photo']);
+        $ua = getUA();
+        $ip = getIp();
+
+        $r = $this->Like_Model->addCollect($this->curUid, $name, $avatar, $blogId, $ip, $ua);
+        if ($r === false) {
+            Output::error('collect failed');
+        }
+
+        Output::ok(['id' => (int)$r['id']]);
+    }
+
+    /**
+     * 取消收藏文章
+     *
+     * @return void
+     */
+    private function uncollect()
+    {
+        $blogId = Input::postIntVar('id', -1);
+
+        $this->checkAuthCookie();
+
+        if (empty($blogId) || $blogId <= 0) {
+            Output::error('parameter error');
+        }
+
+        $r = $this->Like_Model->unCollect($this->curUid, $blogId);
+        if ($r === false) {
+            Output::error('uncollect failed');
+        }
+
+        Output::ok();
+    }
+
+    /**
+     * 获取收藏了文章的用户列表
+     *
+     * @return void
+     */
+    private function collect_list()
+    {
+        $id = Input::getIntVar('id');
+
+        if (empty($id)) {
+            Output::error('parameter error');
+        }
+
+        $r = $this->Like_Model->getList($id, Like_Model::VOTE_TYPE_COLLECT);
+
+        $collects = [];
+        foreach ($r as $value) {
+            $collects[] = [
+                'id'          => (int)$value['id'],
+                'gid'         => (int)$value['gid'],
+                'uid'         => (int)$value['uid'],
+                'date'        => $value['date'],
+                'avatar'      => $value['avatar'],
+                'poster'      => $value['poster'],
+            ];
+        }
+
+        Output::ok(['collects' => $collects]);
+    }
+
+    /**
+     * 获取当前用户收藏的文章列表
+     *
+     * @return void
+     */
+    private function my_collect_list()
+    {
+        $this->checkAuthCookie();
+        $page = Input::getIntVar('page', 1);
+        $count = Input::getIntVar('count', 20);
+
+        $r = $this->Like_Model->getMyCollected($this->curUid, $page, $count);
+
+        $articles = [];
+        $sort_cache = $this->Cache->readCache('sort');
+        foreach ($r as $value) {
+            $author = $this->getAuthor($value['author']);
+            $articles[] = [
+                'id'          => (int)$value['gid'],
+                'title'       => $value['title'],
+                'cover'       => $value['cover'] ? getFileUrl($value['cover']) : '',
+                'date'        => date('Y-m-d H:i:s', $value['date']),
+                'author_id'   => (int)$value['author'],
+                'author_name' => $author['nickname'],
+                'author_avatar' => $author['avatar'],
+                'sort_id'     => (int)$value['sortid'],
+                'sort_name'   => isset($sort_cache[$value['sortid']]['sortname']) ? $sort_cache[$value['sortid']]['sortname'] : '',
+                'collect_date' => smartDate($value['like_date']),
+            ];
+        }
+
+        Output::ok(['articles' => $articles]);
     }
 
     private function getTags($id)

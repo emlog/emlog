@@ -10,6 +10,7 @@ class Like_Model
 {
     const VOTE_TYPE_LIKE = 'like';
     const VOTE_TYPE_DISLIKE = 'dislike';
+    const VOTE_TYPE_COLLECT = 'collect';
 
     private $db;
     private $table;
@@ -85,6 +86,45 @@ class Like_Model
     function addDislike($uid, $name, $avatar, $blogId, $ip, $ua)
     {
         return $this->addVote($uid, $name, $avatar, $blogId, $ip, $ua, self::VOTE_TYPE_DISLIKE);
+    }
+
+    /**
+     * 收藏
+     *
+     * @param int $uid 用户ID
+     * @param string $name 昵称
+     * @param string $avatar 头像
+     * @param int $blogId 文章ID
+     * @param string $ip IP地址
+     * @param string $ua User-Agent
+     * @return array|false
+     */
+    function addCollect($uid, $name, $avatar, $blogId, $ip, $ua)
+    {
+        $uid = (int)$uid;
+        $blogId = (int)$blogId;
+        $timestamp = time();
+        $type = self::VOTE_TYPE_COLLECT;
+        $counterField = $this->getCounterField($type);
+        $name = $this->db->escape_string($name);
+        $avatar = $this->db->escape_string($avatar);
+        $ip = $this->db->escape_string($ip);
+        $ua = $this->db->escape_string($ua);
+
+        if ($this->isVoted($blogId, $uid, $ip, $type) === true) {
+            return false;
+        }
+
+        $sql = "INSERT INTO $this->table (uid,date,poster,gid,vote_type,avatar,ip,agent)
+            VALUES ($uid,'$timestamp','$name','$blogId','$type','$avatar','$ip','$ua')";
+        $this->db->query($sql);
+        $id = $this->db->insert_id();
+        $this->db->query("UPDATE {$this->table_blog} SET {$counterField} = {$counterField} + 1 WHERE gid='$blogId'");
+
+        $CACHE = Cache::getInstance();
+        $CACHE->updateCache(array('sta'));
+        doAction('collect_saved', $blogId, $id);
+        return ['id' => $id];
     }
 
     /**
@@ -165,6 +205,19 @@ class Like_Model
     }
 
     /**
+     * 取消收藏
+     *
+     * @param int $uid 用户ID
+     * @param int $blogId 文章ID
+     * @param string $ip IP地址
+     * @return bool
+     */
+    function unCollect($uid, $blogId, $ip = '')
+    {
+        return $this->unVote($uid, $blogId, self::VOTE_TYPE_COLLECT, $ip);
+    }
+
+    /**
      * 取消指定类型的投票。
      *
      * @param int $uid 用户ID
@@ -190,7 +243,7 @@ class Like_Model
         $this->db->query($sql);
         $CACHE = Cache::getInstance();
         $CACHE->updateCache(array('sta'));
-        doAction($type === self::VOTE_TYPE_DISLIKE ? 'undislike_saved' : 'unlike_saved', $blogId, $uid);
+        doAction($type === self::VOTE_TYPE_DISLIKE ? 'undislike_saved' : ($type === self::VOTE_TYPE_COLLECT ? 'uncollect_saved' : 'unlike_saved'), $blogId, $uid);
         return true;
     }
 
@@ -235,6 +288,19 @@ class Like_Model
     function isDisliked($blogId, $uid = 0, $ip = '')
     {
         return $this->isVoted($blogId, $uid, $ip, self::VOTE_TYPE_DISLIKE);
+    }
+
+    /**
+     * 判断是否已收藏。
+     *
+     * @param int $blogId 文章ID
+     * @param int $uid 用户ID
+     * @param string $ip IP地址
+     * @return bool
+     */
+    function isCollected($blogId, $uid = 0, $ip = '')
+    {
+        return $this->isVoted($blogId, $uid, $ip, self::VOTE_TYPE_COLLECT);
     }
 
     /**
@@ -302,6 +368,19 @@ class Like_Model
     function getMyDisliked($uid, $page = 1, $perpage = 20)
     {
         return $this->getMyVoted($uid, $page, $perpage, self::VOTE_TYPE_DISLIKE);
+    }
+
+    /**
+     * 获取我收藏的文章列表。
+     *
+     * @param int $uid 用户ID
+     * @param int $page 页码
+     * @param int $perpage 每页数量
+     * @return array
+     */
+    function getMyCollected($uid, $page = 1, $perpage = 20)
+    {
+        return $this->getMyVoted($uid, $page, $perpage, self::VOTE_TYPE_COLLECT);
     }
 
     /**
@@ -386,7 +465,13 @@ class Like_Model
      */
     private function normalizeVoteType($type)
     {
-        return $type === self::VOTE_TYPE_DISLIKE ? self::VOTE_TYPE_DISLIKE : self::VOTE_TYPE_LIKE;
+        if ($type === self::VOTE_TYPE_DISLIKE) {
+            return self::VOTE_TYPE_DISLIKE;
+        }
+        if ($type === self::VOTE_TYPE_COLLECT) {
+            return self::VOTE_TYPE_COLLECT;
+        }
+        return self::VOTE_TYPE_LIKE;
     }
 
     /**
@@ -408,6 +493,12 @@ class Like_Model
      */
     private function getCounterField($type)
     {
-        return $type === self::VOTE_TYPE_DISLIKE ? 'dislike_count' : 'like_count';
+        if ($type === self::VOTE_TYPE_DISLIKE) {
+            return 'dislike_count';
+        }
+        if ($type === self::VOTE_TYPE_COLLECT) {
+            return 'collect_count';
+        }
+        return 'like_count';
     }
 }

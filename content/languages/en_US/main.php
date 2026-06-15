@@ -480,7 +480,9 @@ return [
     'like' => 'Likes',
     'dislike' => 'Dislikes',
     'dislike_most' => 'Most disliked',
-    'like_dislike' => 'Likes/Dislikes',
+    'collect' => 'Collects',
+    'collect_most' => 'Most collected',
+    'like_dislike_collect' => 'Likes/Dislikes/Collects',
     'search_title' => 'Search title...',
     'unknown_sort' => 'Unknown category',
     'unknown_author' => 'Unknown author',
@@ -908,6 +910,7 @@ return [
 
     // Log Controller
     'login_to_comment' => 'Please login to comment',
+    'please_login' => 'Please login first',
     'article_not_found' => 'Article not found',
     'comment_not_allowed' => 'Comments are disabled for this article',
     'comment_too_fast' => 'You are commenting too fast',
@@ -918,6 +921,7 @@ return [
     'comment_not_found' => 'Comment not found',
     'already_liked' => 'You have already liked this',
     'already_disliked' => 'You have already disliked this',
+    'already_collected' => 'You have already collected this',
     'operate_too_fast' => 'Operation too fast',
     'cancel_failed' => 'Cancel failed',
     'fill_nickname' => 'Please enter your nickname',

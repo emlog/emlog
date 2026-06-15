@@ -502,6 +502,7 @@ CREATE TABLE {$db_prefix}blog (
     comnum int(11) unsigned NOT NULL default '0' COMMENT '评论数量',
     like_count int(11) unsigned NOT NULL default '0' COMMENT '点赞量',
     dislike_count int(11) unsigned NOT NULL default '0' COMMENT '点踩量',
+    collect_count int(11) unsigned NOT NULL default '0' COMMENT '收藏量',
     attnum int(11) unsigned NOT NULL default '0' COMMENT '附件数量（已废弃）',
     top enum('n','y') NOT NULL default 'n' COMMENT '置顶',
     sortop enum('n','y') NOT NULL default 'n' COMMENT '分类置顶',
@@ -575,7 +576,7 @@ DROP TABLE IF EXISTS {$db_prefix}like;
 CREATE TABLE {$db_prefix}like (
     id int(11) unsigned NOT NULL auto_increment COMMENT '点赞表',
     gid int(11) unsigned NOT NULL default '0' COMMENT '文章ID',
-    vote_type enum('like','dislike') NOT NULL default 'like' COMMENT '投票类型',
+    vote_type enum('like','dislike','collect') NOT NULL default 'like' COMMENT '投票类型',
     poster varchar(20) NOT NULL default '' COMMENT '昵称',
     avatar varchar(512) NOT NULL default '' COMMENT '头像URL',
     uid int(11) NOT NULL default '0',
