@@ -163,6 +163,31 @@ class Plugin_Model
     }
 
 
+    /**
+     * 检查插件 show.php 文件是否包含 HTML 页面内容
+     *
+     * @param string $filePath 文件路径
+     * @return bool
+     */
+    private function checkShowFileHasPageContent($filePath)
+    {
+        if (!file_exists($filePath)) {
+            return false;
+        }
+        $content = @file_get_contents($filePath);
+        if ($content === false) {
+            return false;
+        }
+        // 匹配常见的 HTML 页面标签开头，如 html, body, head, div, p, table, header, footer 等
+        return (bool)preg_match('/<(html|body|head|div|p|table|header|footer)/i', $content);
+    }
+
+    /**
+     * 获取插件详细信息
+     *
+     * @param string $pluginFile 插件主文件路径
+     * @return array
+     */
     function getPluginData($pluginFile)
     {
         $pluginPath = EMLOG_ROOT . '/content/plugins/';
@@ -181,7 +206,7 @@ class Plugin_Model
         $ret = explode('/', $pluginFile);
         $plugin = $ret[0];
         $have_setting = file_exists($pluginPath . $plugin . '/' . $plugin . '_setting.php');
-        $have_show = file_exists($pluginPath . $plugin . '/' . $plugin . '_show.php');
+        $have_show = $this->checkShowFileHasPageContent($pluginPath . $plugin . '/' . $plugin . '_show.php');
 
         $plugin_name = isset($plugin_name[1]) ? strip_tags(trim($plugin_name[1])) : '';
         $version = isset($version[1]) ? strip_tags(trim($version[1])) : '';
