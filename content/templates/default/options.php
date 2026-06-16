@@ -10,13 +10,12 @@ defined('EMLOG_ROOT') || exit('access denied!');
 
 $options = [
     'TplOptionsNavi' => [
-        'type'        => 'radio',
         'name'        => _langTpl('tpl_options_navi_name'),
         'values'      => [
             'tpl-head' => _langTpl('tpl_head'),
             'tpl-home' => _langTpl('tpl_home'),
         ],
-        'description' => _langTpl('tpl_options_desc')
+        'description' => '' // 设置说明（可选）
     ],
     'logotype'       => [
         'labels'  => 'tpl-head',

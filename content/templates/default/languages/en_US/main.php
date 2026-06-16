@@ -16,7 +16,6 @@ return [
     'tpl_options_navi_name' => 'Define Settings Tab Name',
     'tpl_head' => 'Header Settings',
     'tpl_home' => 'Home Settings',
-    'tpl_options_desc' => '<p>Hello, this is the default template settings interface. Please click the left menu to enter the settings.</p>',
     'logo_type_name' => 'LOGO Display Mode',
     'text' => 'Text',
     'image' => 'Image',

@@ -16,7 +16,6 @@ return [
     'tpl_options_navi_name' => '定义设置项标签页名称',
     'tpl_head' => '头部设置',
     'tpl_home' => '首页设置',
-    'tpl_options_desc' => '<p>你好，这是默认模板的设置界面，请点击左侧菜单进入设置项。</p>',
     'logo_type_name' => 'LOGO显示模式',
     'text' => '文字',
     'image' => '图片',
