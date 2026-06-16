@@ -719,36 +719,6 @@ class Api_Controller
     }
 
     /**
-     * 获取收藏了文章的用户列表
-     *
-     * @return void
-     */
-    private function collect_list()
-    {
-        $id = Input::getIntVar('id');
-
-        if (empty($id)) {
-            Output::error('parameter error');
-        }
-
-        $r = $this->Like_Model->getList($id, Like_Model::VOTE_TYPE_COLLECT);
-
-        $collects = [];
-        foreach ($r as $value) {
-            $collects[] = [
-                'id'          => (int)$value['id'],
-                'gid'         => (int)$value['gid'],
-                'uid'         => (int)$value['uid'],
-                'date'        => $value['date'],
-                'avatar'      => $value['avatar'],
-                'poster'      => $value['poster'],
-            ];
-        }
-
-        Output::ok(['collects' => $collects]);
-    }
-
-    /**
      * 获取当前用户收藏的文章列表
      *
      * @return void
