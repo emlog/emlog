@@ -52,7 +52,7 @@
                             $avatar = User::getAvatar(isset($userInfo['photo']) ? $userInfo['photo'] : '');
                             $forbid = $val['state'] == 1;
                             $isFounder = User::isFounder($val['role_raw'], $val['uid']);
-                            $user_log_num = isset($sta_cache[$val['uid']]['lognum']) ? $sta_cache[$val['uid']]['lognum'] : 0;
+                            $user_log_num = User::getLogNumOfUser($val['uid']);
                         ?>
                             <tr>
                                 <td style="width: 19px;">

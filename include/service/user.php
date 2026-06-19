@@ -213,4 +213,26 @@ class User
             $_SESSION['last_activity'] = $currentTime;
         }
     }
+
+    /**
+     * 获取指定用户（作者）发表的文章数量
+     *
+     * @param int $uid 用户UID
+     * @return int 文章数量
+     */
+    static function getLogNumOfUser($uid)
+    {
+        $uid = (int)$uid;
+        if ($uid <= 0) {
+            return 0;
+        }
+
+        $staCache = Cache::getInstance()->readCache('sta');
+        if (isset($staCache[$uid]['lognum'])) {
+            return (int)$staCache[$uid]['lognum'];
+        }
+
+        $logModel = new Log_Model();
+        return $logModel->getLogNum('n', "and author=$uid");
+    }
 }
