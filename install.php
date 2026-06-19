@@ -584,9 +584,9 @@ CREATE TABLE {$db_prefix}like (
     agent varchar(512) NOT NULL default '',
     date bigint(20) NOT NULL,
     PRIMARY KEY  (id),
-    KEY gid (gid),
-    KEY gid_vote_type (gid,vote_type),
-    KEY date (date)
+    KEY gid_vote_date (gid, vote_type, date),
+    KEY uid_vote_date (uid, vote_type, date),
+    KEY ip_date (ip, date)
 )" . $table_charset_sql . "
 DROP TABLE IF EXISTS {$db_prefix}options;
 CREATE TABLE {$db_prefix}options (
