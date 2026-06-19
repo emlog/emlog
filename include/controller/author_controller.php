@@ -34,7 +34,7 @@ class Author_Controller
 
         $sqlSegment = "and author=$author order by date desc";
         $sta_cache = $CACHE->readCache('sta');
-        $lognum = $sta_cache[$author]['lognum'];
+        $lognum = isset($sta_cache[$author]['lognum']) ? $sta_cache[$author]['lognum'] : $Log_Model->getLogNum('n', "and author=$author");
 
         $total_pages = ceil($lognum / $index_lognum);
         if ($page > $total_pages) {
