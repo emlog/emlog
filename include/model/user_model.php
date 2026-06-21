@@ -20,6 +20,16 @@ class User_Model
         $this->table_blog = DB_PREFIX . 'blog';
     }
 
+    /**
+     * 获取用户列表
+     *
+     * @param string $email 邮箱
+     * @param string $nickname 昵称
+     * @param string $order 排序规则
+     * @param int $page 页码
+     * @param int $perpage_num 每页数量
+     * @return array 用户列表数组
+     */
     public function getUsers($email = '', $nickname = '', $order = '', $page = 1, $perpage_num = 20)
     {
         $condition = $limit = '';
@@ -53,7 +63,7 @@ class User_Model
             $row['login'] = htmlspecialchars($row['username']);
             $row['email'] = htmlspecialchars($row['email']);
             $row['description'] = htmlspecialchars($row['description']);
-            $row['create_time'] = smartDate($row['create_time']);
+            $row['create_time'] = date("Y-m-d H:i", $row['create_time']);
             $row['update_time'] = smartDate($row['update_time']);
             $row['role_raw'] = $row['role'];
             $row['role'] = User::getRoleName($row['role'], (int)$row['uid']);

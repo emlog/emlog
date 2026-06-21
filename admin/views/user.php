@@ -73,7 +73,7 @@
                                 <td><?= $val['email'] ?></td>
                                 <td><?= $val['ip'] ?></td>
                                 <td><?= $val['update_time'] ?></td>
-                                <td><?= $val['create_time'] ?></td>
+                                <td class="small"><?= $val['create_time'] ?></td>
                                 <td>
                                     <?php if (UID != $val['uid'] && !$isFounder): ?>
                                         <a href="javascript: em_confirm(<?= $val['uid'] ?>, 'del_user', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger"><?= _lang('delete') ?></a>
