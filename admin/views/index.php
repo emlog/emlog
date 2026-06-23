@@ -2,21 +2,6 @@
 <?php if (isset($_GET['add_shortcut_suc'])): ?>
     <div class="alert alert-success"><?= _lang('save_success') ?></div>
 <?php endif ?>
-<div class="d-flex align-items-center mb-3">
-    <div class="flex-shrink-0">
-        <a class="mr-2" href="blogger.php">
-            <img src="<?= User::getAvatar(isset($currentUser['photo']) ? $currentUser['photo'] : '') ?>"
-                alt="avatar" class="img-fluid rounded-circle border border-mute border-3"
-                style="width: 56px; height: 56px;">
-        </a>
-    </div>
-    <div class="flex-grow-1 ms-3">
-        <div class="align-items-center mb-3">
-            <p class="mb-0 m-2"><a class="mr-2" href="blogger.php"><?= isset($currentUser['nickname']) ? $currentUser['nickname'] : '' ?></a></p>
-            <p class="mb-0 m-2 small"><?= $role_name ?></p>
-        </div>
-    </div>
-</div>
 <div class="row ml-1 mb-1"><?php doAction('adm_main_top') ?></div>
 <div class="row">
     <div class="col-lg-6 mb-3">

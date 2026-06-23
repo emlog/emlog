@@ -632,17 +632,13 @@ function toggleCheckbox(id) {
     localStorage.setItem(id, isChecked);
 }
 
+/**
+ * 初始化快捷入口工具栏
+ * 
+ * @return void
+ */
 function initShortcutBar() {
-    var $bar = $('#shortcut-bar-container');
-    var $content = $('#shortcut-bar-content');
-    $bar.hover(
-        function() {
-            $content.css('width', '800px');
-        },
-        function() {
-            $content.css('width', '0');
-        }
-    );
+    // 快捷入口已常态化显示，无需 hover 控制逻辑
 }
 
 /**

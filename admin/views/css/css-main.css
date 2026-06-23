@@ -1174,3 +1174,14 @@ textarea.form-control {
         max-width: 20%;
     }
 }
+
+/* 顶部通栏快捷入口链接样式 */
+.shortcut-link {
+    color: rgba(0, 0, 0, 0.5) !important;
+    text-decoration: none;
+    transition: color 0.15s ease-in-out;
+    font-size: 0.85rem;
+}
+.shortcut-link:hover {
+    color: rgba(0, 0, 0, 0.7) !important;
+}

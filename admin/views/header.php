@@ -124,24 +124,33 @@
             <div id="content">
                 <div class="container-fluid" id="main-container">
                     <nav class="navbar navbar-expand navbar-light topbar mb-4 mt-1 static-top shadow d-flex justify-content-between rounded-em-lg">
-                        <button id="sidebarToggleTop" class="btn d-md-none rounded-circle mr-3" type="button">
-                            <i class="icofont-navigation-menu"></i>
-                        </button>
-                        <!-- shortcut bar -->
-                        <div id="shortcut-bar-container" class="position-relative d-none d-md-inline-block">
-                            <div id="shortcut-bar-toggle" class="d-inline-block px-2" style="cursor:pointer;">
-                                <i class="icofont-simple-right text-gray-400"></i>
+                        <div class="d-flex align-items-center">
+                            <button id="sidebarToggleTop" class="btn d-md-none rounded-circle mr-3" type="button">
+                                <i class="icofont-navigation-menu"></i>
+                            </button>
+                            <!-- User Info (Avatar, Nickname) -->
+                            <div class="d-flex align-items-center mr-2">
+                                <a class="mr-2" href="blogger.php">
+                                    <img src="<?= User::getAvatar(isset($currentUser['photo']) ? $currentUser['photo'] : '') ?>"
+                                        alt="avatar" class="rounded-circle border border-mute"
+                                        style="width: 26px; height: 26px; object-fit: cover;">
+                                </a>
+                                <a href="blogger.php" class="text-gray-800 small" style="text-decoration: none;"><?= isset($currentUser['nickname']) ? htmlspecialchars($currentUser['nickname']) : '' ?></a>
                             </div>
-                            <div id="shortcut-bar-content" class="d-inline-block position-absolute overflow-hidden text-nowrap"
-                                style="left:30px; top:0; width:0; transition:width 0.3s;">
-                                <a href="#" class="my-1" data-toggle="modal" data-target="#shortcutModal"><i class="icofont-plus"></i></a>
-                                <span class="text-gray-300 mr-2">|</span>
-                                <a href="./article.php?action=write" class="mr-2"><?= _lang('write_article') ?></a>
-                                <a href="article.php" class="mr-2"><?= _lang('article') ?></a>
-                                <a href="article.php?draft=1" class="mr-2"><?= _lang('draft') ?></a>
-                                <?php foreach ($shortcuts as $item): ?>
-                                    <a href="<?= htmlspecialchars($item['url'], ENT_QUOTES, 'UTF-8') ?>" class="mr-2"><?= htmlspecialchars($item['name']) ?></a>
-                                <?php endforeach; ?>
+                            
+                            <div class="topbar-divider d-none d-sm-block"></div>
+                            
+                            <!-- shortcut bar -->
+                            <div id="shortcut-bar-container" class="d-none d-md-inline-block align-middle ml-2">
+                                <div id="shortcut-bar-content" class="d-inline-block text-nowrap">
+                                    <a href="./article.php?action=write" class="mr-2 shortcut-link"><?= _lang('write_article') ?></a>
+                                    <a href="article.php" class="mr-2 shortcut-link"><?= _lang('article') ?></a>
+                                    <a href="article.php?draft=1" class="mr-2 shortcut-link"><?= _lang('draft') ?></a>
+                                    <?php foreach ($shortcuts as $item): ?>
+                                        <a href="<?= htmlspecialchars($item['url'], ENT_QUOTES, 'UTF-8') ?>" class="mr-2 shortcut-link"><?= htmlspecialchars($item['name']) ?></a>
+                                    <?php endforeach; ?>
+                                    <a href="#" class="mr-2 shortcut-link" data-toggle="modal" data-target="#shortcutModal" title="<?= _lang('add_shortcut') ?>"><i class="icofont-plus"></i></a>
+                                </div>
                             </div>
                         </div>
                         <!-- Topbar Navbar -->
@@ -153,13 +162,6 @@
                                         $blog_name = Option::get('blogname');
                                         echo empty($blog_name) ? _lang('view_site') : subString($blog_name, 0, 12);
                                         ?>
-                                    </a>
-                                </li>
-                                <li class="topbar-divider d-none d-sm-block"></li>
-                                <li class="nav-item mx-1">
-                                    <a class="nav-link" href="blogger.php" role="button">
-                                        <img class="img-profile rounded-circle"
-                                            src="<?= User::getAvatar(isset($currentUser['photo']) ? $currentUser['photo'] : '') ?>">
                                     </a>
                                 </li>
                                 <li class="topbar-divider d-none d-sm-block"></li>
