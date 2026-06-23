@@ -143,9 +143,6 @@
                             <!-- shortcut bar -->
                             <div id="shortcut-bar-container" class="d-none d-md-inline-block align-middle ml-2">
                                 <div id="shortcut-bar-content" class="d-inline-block text-nowrap">
-                                    <a href="./article.php?action=write" class="mr-2 shortcut-link"><?= _lang('write_article') ?></a>
-                                    <a href="article.php" class="mr-2 shortcut-link"><?= _lang('article') ?></a>
-                                    <a href="article.php?draft=1" class="mr-2 shortcut-link"><?= _lang('draft') ?></a>
                                     <?php foreach ($shortcuts as $item): ?>
                                         <a href="<?= htmlspecialchars($item['url'], ENT_QUOTES, 'UTF-8') ?>" class="mr-2 shortcut-link"><?= htmlspecialchars($item['name']) ?></a>
                                     <?php endforeach; ?>

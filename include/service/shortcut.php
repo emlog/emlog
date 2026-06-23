@@ -10,15 +10,30 @@
 class Shortcut
 {
 
+    /**
+     * 获取当前处于激活状态的快捷入口
+     * 
+     * @return array 包含快捷入口名'name'和对应链接'url'的关联数组
+     */
     public static function getActive()
     {
         $shortcut = Option::get('shortcut');
-        if (empty($shortcut)) {
-            return [];
+        if ($shortcut === null || $shortcut === '') {
+            return [
+                ['name' => _lang('write_article'), 'url' => 'article.php?action=write'],
+                ['name' => _lang('article'), 'url' => 'article.php'],
+                ['name' => _lang('draft'), 'url' => 'article.php?draft=1'],
+            ];
         }
-        return json_decode($shortcut, 1);
+        return json_decode($shortcut, 1) ?: [];
     }
 
+    /**
+     * 获取所有可配置的快捷入口候选列表
+     *
+     * @param array $plugins 插件列表缓存，如果为空则内部自动查询
+     * @return array 包含所有可选快捷入口的关联数组
+     */
     public static function getAll($plugins = [])
     {
         if (empty($plugins)) {
@@ -26,6 +41,9 @@ class Shortcut
             $plugins = $Plugin_Model->getPlugins();
         }
         $shortcutAll = [
+            ['name' => _lang('write_article'), 'url' => 'article.php?action=write'],
+            ['name' => _lang('article'), 'url' => 'article.php'],
+            ['name' => _lang('draft'), 'url' => 'article.php?draft=1'],
             ['name' => _lang('template'), 'url' => 'template.php'],
             ['name' => _lang('plugin'), 'url' => 'plugin.php'],
             ['name' => _lang('category'), 'url' => 'sort.php'],
