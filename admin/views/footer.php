@@ -267,20 +267,23 @@
                             const isChecked = currentShortcuts.some(s =>
                                 s.name === item.name && s.url === item.url
                             );
-                            modalBody.append(
-                                $('<input>', {
-                                    type: 'checkbox',
-                                    name: 'shortcut[]',
-                                    id: 'shortcut-' + index,
-                                    value: item.name + '||' + item.url,
-                                    checked: isChecked
-                                }),
-                                $('<label>', {
-                                    for: 'shortcut-' + index,
-                                    class: 'mr-2',
-                                    text: item.name
-                                })
-                            );
+                            var $div = $('<div class="custom-control custom-checkbox custom-control-inline mb-2 mr-3"></div>');
+                            var $checkbox = $('<input>', {
+                                type: 'checkbox',
+                                name: 'shortcut[]',
+                                id: 'shortcut-' + index,
+                                value: item.name + '||' + item.url,
+                                checked: isChecked,
+                                class: 'custom-control-input'
+                            });
+                            var $label = $('<label>', {
+                                for: 'shortcut-' + index,
+                                class: 'custom-control-label',
+                                style: 'cursor: pointer;',
+                                text: item.name
+                            });
+                            $div.append($checkbox, $label);
+                            modalBody.append($div);
                         });
                     } else {
                         modalBody.html('<?= _lang('load_failed') ?>' + (response.msg || '<?= _lang('unknown_error') ?>'));
