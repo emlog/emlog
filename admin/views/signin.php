@@ -10,7 +10,7 @@
                                 <h1 class="h4 text-gray-900 mb-4"><?= _lang('login'); ?></h1>
                             </div>
                             <?= FlashMsg::renderSigninAlerts(); ?>
-                            <form method="post" class="user" action="./account.php?action=dosignin&s=<?= $admin_path_code ?>">
+                            <form method="post" class="user" action="./account.php?action=dosignin&s=<?= htmlspecialchars($admin_path_code, ENT_QUOTES, 'UTF-8') ?>">
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" id="user" name="user" aria-describedby="emailHelp" placeholder="<?= _lang('username_email'); ?>"
                                         required

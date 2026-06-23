@@ -96,7 +96,7 @@ if (empty($action)) {
 
     $subPage = '';
     foreach ($_GET as $key => $val) {
-        $subPage .= $key != 'page' ? "&$key=$val" : '';
+        $subPage .= $key != 'page' ? '&' . urlencode($key) . '=' . urlencode($val) : '';
     }
     $pageurl = pagination($logNum, $perPage, $page, "article.php?{$subPage}&page=");
 

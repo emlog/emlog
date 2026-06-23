@@ -47,7 +47,7 @@
                             $comment = $value['comment'];
                             $comment_text = $value['comment_text'];
                             $poster = !empty($value['uid']) ? '<a href="./comment.php?uid=' . $value['uid'] . '">' . $value['poster'] . '</a>' : $value['poster'];
-                            $title = !isset($value['title']) ? '<span class="text-danger">[' . _lang('article_deleted') . ']</span>' : subString($value['title'], 0, 42);
+                            $title = !isset($value['title']) ? '<span class="text-danger">[' . _lang('article_deleted') . ']</span>' : htmlspecialchars(subString($value['title'], 0, 42), ENT_QUOTES, 'UTF-8');
                             $hide = $value['hide'];
                             $date = $value['date'];
                             $top = $value['top'];

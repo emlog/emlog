@@ -140,7 +140,7 @@
                                 <a href="article.php" class="mr-2"><?= _lang('article') ?></a>
                                 <a href="article.php?draft=1" class="mr-2"><?= _lang('draft') ?></a>
                                 <?php foreach ($shortcuts as $item): ?>
-                                    <a href="<?= $item['url'] ?>" class="mr-2"><?= $item['name'] ?></a>
+                                    <a href="<?= htmlspecialchars($item['url'], ENT_QUOTES, 'UTF-8') ?>" class="mr-2"><?= htmlspecialchars($item['name']) ?></a>
                                 <?php endforeach; ?>
                             </div>
                         </div>

@@ -43,7 +43,7 @@ if (empty($action)) {
     $subPage = '';
     foreach ($_GET as $key => $val) {
         if (in_array($key, ['keyword', 'order', 'perpage_num'])) {
-            $subPage .= "&$key=$val";
+            $subPage .= '&' . urlencode($key) . '=' . urlencode($val);
         }
     }
     $pageurl = pagination($userCount, $perPage, $page, "user.php?{$subPage}&page=");
