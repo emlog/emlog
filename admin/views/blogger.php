@@ -255,6 +255,7 @@
         }).on('hidden.bs.modal', function() {
             cropper.destroy();
             cropper = null;
+            $('#upload_image').val('');
         });
 
         $('#crop').click(function() {

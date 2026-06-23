@@ -314,6 +314,7 @@
         }).on('hidden.bs.modal', function() {
             cropper.destroy();
             cropper = null;
+            $('#upload_img').val('');
         });
 
         // 上传图片
