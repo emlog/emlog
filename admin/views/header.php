@@ -135,7 +135,7 @@
                                         alt="avatar" class="rounded-circle border border-mute"
                                         style="width: 26px; height: 26px; object-fit: cover;">
                                 </a>
-                                <a href="blogger.php" class="text-gray-800 small" style="text-decoration: none;"><?= isset($currentUser['nickname']) ? htmlspecialchars($currentUser['nickname']) : '' ?></a>
+                                <a href="blogger.php" class="text-gray-800 small d-none d-sm-inline" style="text-decoration: none;" title="<?= isset($currentUser['nickname']) ? htmlspecialchars($currentUser['nickname']) : '' ?>"><?= isset($currentUser['nickname']) ? htmlspecialchars(subString($currentUser['nickname'], 0, 8)) : '' ?></a>
                             </div>
                             
                             <div class="topbar-divider d-none d-sm-block"></div>
