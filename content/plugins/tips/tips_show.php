@@ -1,10 +1,12 @@
 <?php
-defined('EMLOG_ROOT') || exit('access denied!');
-
 /*
  * 插件前台展示页面
  * 前台显示地址为：https://yourdomain/?plugin=tips
+ * 
+ * 是否在插件列表展示插件的前台页面入口链接 on/off
+ * showPageLink:off
  */
+defined('EMLOG_ROOT') || exit('access denied!');
 
 header('X-Robots-Tag: noindex');
 ?>

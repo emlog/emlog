@@ -164,7 +164,7 @@ class Plugin_Model
 
 
     /**
-     * 检查插件 show.php 文件是否包含 HTML 页面内容
+     * 检查插件 show.php 文件是否包含 HTML 页面内容，或是否包含特定的前台页面标识注释
      *
      * @param string $filePath 文件路径
      * @return bool
@@ -178,7 +178,10 @@ class Plugin_Model
         if ($content === false) {
             return false;
         }
-        // 匹配常见的 HTML 页面标签开头，如 html, body, head, div, p, table, header, footer 等
+        $header = substr($content, 0, 1024);
+        if (preg_match('/showPageLink\s*:\s*(on|off)/i', $header, $matches)) {
+            return strtolower($matches[1]) === 'on';
+        }
         return (bool)preg_match('/<(html|body|head|div|p|table|header|footer)/i', $content);
     }
 
