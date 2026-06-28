@@ -10,6 +10,8 @@
     </div>
 </footer>
 <!-- AI Chat Modal -->
+<link rel="stylesheet" href="./views/css/markdown.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>">
+<script src="./editor.md/lib/marked.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
 <div class="modal fade" id="aiChatModal" tabindex="-1" role="dialog" aria-labelledby="aiChatModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
         <div class="modal-content border-0 shadow">
@@ -190,6 +192,22 @@
             return formatChunk(cleanText);
         }
 
+        function getCleanMarkdown(text) {
+            // 过滤掉 <tool_call ...>...</tool_call> 标签及其内容
+            var cleanText = text.replace(/<tool_call\s+name="[^"]*">[\s\S]*?<\/tool_call>/g, '');
+            cleanText = cleanText.replace(/<tool_call\s+name="[^"]*">[\s\S]*$/g, '');
+            cleanText = cleanText.replace(/<tool_call\s*$/g, '');
+            return cleanText;
+        }
+
+        function renderMarkdown(text) {
+            var cleanMd = getCleanMarkdown(text);
+            if (typeof marked === 'function') {
+                return marked(cleanMd);
+            }
+            return formatChunk(cleanMd);
+        }
+
         var isHistoryLoaded = false;
 
         function loadChatHistory() {
@@ -201,12 +219,12 @@
                         if (item.role === 'user') {
                             $('#chat-box').append('<div style="background-color:#69b4ff; color:#FFFFFF; border-radius: 10px; padding: 10px; margin: 5px 0;"><b>😄：</b> ' + $('<div>').text(item.content).html() + '</div>');
                         } else if (item.role === 'assistant') {
-                            var cleanHtml = getCleanHtml(item.content);
+                            var cleanHtml = renderMarkdown(item.content);
                             $('#chat-box').append(
                                 '<div class="ai-chat-message">' +
                                 '<div><b>🤖：</b></div>' +
                                 '<div class="ai-answer-wrap">' +
-                                '<div class="ai-answer-content">' + cleanHtml + '</div>' +
+                                '<div class="ai-answer-content markdown">' + cleanHtml + '</div>' +
                                 '</div>' +
                                 '</div>'
                             );
@@ -258,7 +276,7 @@
                 '<div class="ai-thought-content"></div>' +
                 '</div>' +
                 '<div class="ai-answer-wrap">' +
-                '<div class="ai-answer-content"></div>' +
+                '<div class="ai-answer-content markdown"></div>' +
                 '</div>' +
                 '</div>'
             );
@@ -301,7 +319,7 @@
                             }
                             if (chunk) {
                                 rawAnswer += chunk;
-                                $answerContent.html(getCleanHtml(rawAnswer));
+                                $answerContent.html(renderMarkdown(rawAnswer));
                             }
                             $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
                         }
