@@ -625,10 +625,20 @@ class Ai
             );
         }
 
-        // 5. 执行 SQL 语句
-        $ret = $db->query($clean_sql);
+        // 自动将 NOW() 替换为 UNIX_TIMESTAMP() 容错，以适配 emlog 的整型时间戳字段
+        $clean_sql = preg_replace('/\bNOW\(\)/i', 'UNIX_TIMESTAMP()', $clean_sql);
+
+        // 5. 执行 SQL 语句，使用 @ 抑制可能抛出的 Warning 警告并设置第二个参数为 true 忽略直接报错退出
+        $ret = @$db->query($clean_sql, true);
         if (!$ret) {
-            throw new Exception("SQL执行失败");
+            $errorInfo = $db->geterror();
+            $errorMsg = 'SQL执行失败';
+            if (is_array($errorInfo)) {
+                $errorMsg = isset($errorInfo[2]) ? $errorInfo[2] : (isset($errorInfo[0]) ? $errorInfo[0] : 'SQL执行失败');
+            } elseif (is_string($errorInfo) && !empty($errorInfo)) {
+                $errorMsg = $errorInfo;
+            }
+            throw new Exception("SQL执行错误: " . $errorMsg);
         }
 
         // 6. 执行成功后，如果是写操作，则强制刷新系统全部缓存与文章缓存

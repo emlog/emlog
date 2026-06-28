@@ -62,7 +62,7 @@ if ($action == 'chat_stream') {
 - 工具名称: query_database
 - 说明: 编写 SQL 语句对数据库中的任何表进行操作。你拥有对所有数据库表的完全操作权限。只读查询操作（如 SELECT, SHOW, DESCRIBE）会直接执行并输出；凡是涉及到数据或表结构变更的操作（如 INSERT, UPDATE, DELETE, TRUNCATE, ALTER 等写操作）均需要用户二次输入“确定操作”进行确认，执行成功后会自动刷新缓存。
 - 核心表结构及常用表说明：
-  - `emlog_blog` (文章/页面表): `gid` (ID), `title` (标题), `content` (内容), `views` (点击数), `comnum` (评论数), `hide` (是否草稿 'y'/'n'), `type` (类型 'blog'/'page')
+  - `emlog_blog` (文章/页面表): `gid` (ID), `title` (标题), `content` (内容), `views` (点击数), `comnum` (评论数), `hide` (是否草稿 'y'/'n'), `type` (类型 'blog'/'page'), `author` (作者ID，通常为 1), `date` (发布时间戳，请使用 UNIX_TIMESTAMP()), `excerpt` (摘要，如设为空字符串 ''), `alias` (别名，如设为空字符串 '')
   - `emlog_comment` (评论表): `cid` (评论ID), `gid` (文章ID), `poster` (评论人), `comment` (评论内容), `hide` (是否审核 'y'/'n')
   - `emlog_options` (配置表): `option_name` (配置项名), `option_value` (配置项值)
   - `emlog_user` (用户表): `uid` (用户ID), `username` (账号), `nickname` (昵称), `role` (角色 admin/member/writer)
