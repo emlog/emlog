@@ -35,8 +35,11 @@
                             <button class="btn btn-primary" type="submit" id="send-btn"><?= _lang('send') ?></button>
                         </div>
                     </div>
-                    <div class="mt-2">
+                    <div class="mt-2 d-flex flex-wrap" style="gap: 5px;">
                         <button type="button" class="btn btn-xs btn-outline-info" id="btn-em-help" style="font-size: 11px; padding: 2px 6px;"><i class="icofont-search-document"></i> @em-help 询问emlog问题</button>
+                        <button type="button" class="btn btn-xs btn-outline-secondary btn-chat-example" data-text="请给出最近最受欢迎的3篇文章" style="font-size: 11px; padding: 2px 6px;">📈 最近热门文章</button>
+                        <button type="button" class="btn btn-xs btn-outline-secondary btn-chat-example" data-text="请修改站点标题为：xxxxxx" style="font-size: 11px; padding: 2px 6px;">🔧 修改站点标题</button>
+                        <button type="button" class="btn btn-xs btn-outline-secondary btn-chat-example" data-text="写一条微语，内容是：xxxxxx" style="font-size: 11px; padding: 2px 6px;">💬 写一条微语</button>
                     </div>
                     <div class="text-muted text-xs mt-1"><?= _lang('model_label') ?><?= AI::model() ? AI::model() : _lang('no_ai_model') ?>，<?= _lang('shift_enter_tip') ?></div>
                 </form>
@@ -66,6 +69,14 @@
                             if (!val.startsWith('@em-help ')) {
                                 $input.val('@em-help ' + val);
                             }
+                            $input.focus();
+                            $input.trigger('input');
+                        });
+
+                        $('.btn-chat-example').click(function() {
+                            var text = $(this).data('text');
+                            var $input = $('#chat-input');
+                            $input.val(text);
                             $input.focus();
                             $input.trigger('input');
                         });
