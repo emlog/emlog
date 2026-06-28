@@ -33,7 +33,10 @@
                             <button class="btn btn-primary" type="submit" id="send-btn"><?= _lang('send') ?></button>
                         </div>
                     </div>
-                    <div class="text-muted text-xs mt-2"><?= _lang('model_label') ?><?= AI::model() ? AI::model() : _lang('no_ai_model') ?>，<?= _lang('shift_enter_tip') ?></div>
+                    <div class="mt-2">
+                        <button type="button" class="btn btn-xs btn-outline-info" id="btn-em-help" style="font-size: 11px; padding: 2px 6px;"><i class="icofont-search-document"></i> @em-help 询问emlog问题</button>
+                    </div>
+                    <div class="text-muted text-xs mt-1"><?= _lang('model_label') ?><?= AI::model() ? AI::model() : _lang('no_ai_model') ?>，<?= _lang('shift_enter_tip') ?></div>
                 </form>
                 <script>
                     $(document).ready(function() {
@@ -53,6 +56,16 @@
                         $('#chat-form').submit(function() {
                             $('#chat-input').css('height', 'auto');
                             $('#send-btn').css('height', 'auto');
+                        });
+
+                        $('#btn-em-help').click(function() {
+                            var $input = $('#chat-input');
+                            var val = $input.val();
+                            if (!val.startsWith('@em-help ')) {
+                                $input.val('@em-help ' + val);
+                            }
+                            $input.focus();
+                            $input.trigger('input');
                         });
                     });
                 </script>

@@ -18,6 +18,23 @@ class Ai
      */
     public static function chat($prompt, $system_prompt = '你是一个有用的助手', $useHistory = false)
     {
+        $orig_prompt = $prompt;
+        $isEmHelp = false;
+        $searchQuery = '';
+        if (preg_match('/^\s*@em-help\s+(.*)$/is', $prompt, $m)) {
+            $isEmHelp = true;
+            $searchQuery = trim($m[1]);
+        }
+
+        if ($isEmHelp) {
+            if (empty($searchQuery)) {
+                return '请输入您要询问的 emlog 使用问题。例如：`@em-help 挂载点`';
+            }
+            $searchResults = self::searchEmlog($searchQuery);
+            $system_prompt = "你是一个专业的 Emlog 博客系统解答专家。以下是关于用户问题“" . $searchQuery . "”从 Emlog 官网 FAQ（https://www.emlog.net/docs/faq）及互联网搜索到的相关参考资料：\n\n" . $searchResults . "\n\n请结合上述参考资料以及你自身的知识，专业、详细地回答用户的问题。如果参考资料中有具体的步骤或代码，请尽量提供给用户。请使用中文回答，并保持语气友好、专业。";
+            $prompt = $searchQuery;
+        }
+
         $messages = [];
         if (!empty($system_prompt)) {
             $messages[] = [
@@ -51,7 +68,7 @@ class Ai
         if ($useHistory && !empty($assistant_response) && strpos($assistant_response, '大模型处理异常') !== 0 && strpos($assistant_response, 'AI 模型未配置') !== 0) {
             $history[] = [
                 'role' => 'user',
-                'content' => $prompt
+                'content' => $orig_prompt
             ];
             $history[] = [
                 'role' => 'assistant',
@@ -75,6 +92,25 @@ class Ai
      */
     public static function chatStream($prompt, $system_prompt = '你是一个有用的助手', $useHistory = false)
     {
+        $orig_prompt = $prompt;
+        $isEmHelp = false;
+        $searchQuery = '';
+        if (preg_match('/^\s*@em-help\s+(.*)$/is', $prompt, $m)) {
+            $isEmHelp = true;
+            $searchQuery = trim($m[1]);
+        }
+
+        if ($isEmHelp) {
+            if (empty($searchQuery)) {
+                echo "data: " . json_encode(["choices" => [["delta" => ["content" => "请输入您要询问的 emlog 使用问题。例如：`@em-help 挂载点`"]]]]) . "\n\n";
+                echo "data: [DONE]\n\n";
+                return '';
+            }
+            $searchResults = self::searchEmlog($searchQuery);
+            $system_prompt = "你是一个专业的 Emlog 博客系统解答专家。以下是关于用户问题“" . $searchQuery . "”从 Emlog 官网 FAQ（https://www.emlog.net/docs/faq）及互联网搜索到的相关参考资料：\n\n" . $searchResults . "\n\n请结合上述参考资料以及你自身的知识，专业、详细地回答用户的问题。如果参考资料中有具体的步骤或代码，请尽量提供给用户。请使用中文回答，并保持语气友好、专业。";
+            $prompt = $searchQuery;
+        }
+
         $messages = [];
         if (!empty($system_prompt)) {
             $messages[] = [
@@ -107,7 +143,7 @@ class Ai
         if ($useHistory && !empty($assistant_response)) {
             $history[] = [
                 'role' => 'user',
-                'content' => $prompt
+                'content' => $orig_prompt
             ];
             $history[] = [
                 'role' => 'assistant',
@@ -611,5 +647,210 @@ class Ai
         }
 
         return $results;
+    }
+
+    /**
+     * 计算模糊重合得分
+     * @param string $query 用户提问
+     * @param string $text 目标对比文本
+     * @return float 匹配相似度 (0 到 1 之间)
+     */
+    private static function getFuzzyScore($query, $text)
+    {
+        $queryClean = preg_replace('/[^\p{L}\p{N}]/u', '', mb_strtolower($query));
+        $textClean = preg_replace('/[^\p{L}\p{N}]/u', '', mb_strtolower($text));
+        if (empty($queryClean) || empty($textClean)) {
+            return 0;
+        }
+
+        $queryChars = [];
+        $len = mb_strlen($queryClean);
+        for ($i = 0; $i < $len; $i++) {
+            $queryChars[] = mb_substr($queryClean, $i, 1);
+        }
+        $queryChars = array_unique($queryChars);
+
+        $hit = 0;
+        foreach ($queryChars as $char) {
+            if (mb_strpos($textClean, $char) !== false) {
+                $hit++;
+            }
+        }
+
+        return $hit / count($queryChars);
+    }
+
+    /**
+     * Emlog 问题搜索与聚合 (优先匹配 FAQ 文档)
+     * @param string $query 查询词
+     * @return string 格式化的搜索结果上下文
+     */
+    public static function searchEmlog($query)
+    {
+        $faqContext = "";
+
+        // 1. 优先抓取并解析官方 FAQ 页面
+        $faqHtml = self::fetchSearchHtml('https://www.emlog.net/docs/faq');
+        if (!empty($faqHtml)) {
+            $parts = preg_split('/<(h[23])\b[^>]*>/i', $faqHtml);
+            $faqItems = [];
+
+            for ($i = 1; $i < count($parts); $i++) {
+                $part = $parts[$i];
+                $headingEnd = strpos($part, '</h');
+                if ($headingEnd === false) {
+                    continue;
+                }
+
+                $heading = trim(strip_tags(substr($part, 0, $headingEnd)));
+                // 清理 VitePress 锚点字符或特殊空白符
+                $heading = preg_replace('/[#\x{200B}-\x{200D}]/u', '', $heading);
+                $heading = trim($heading);
+
+                $body = substr($part, $headingEnd);
+                $bodyText = trim(strip_tags($body));
+                $bodyText = preg_replace('/\s+/', ' ', $bodyText);
+                $bodyText = mb_strimwidth($bodyText, 0, 500, '...');
+
+                if (!empty($heading) && !empty($bodyText)) {
+                    $score = self::getFuzzyScore($query, $heading);
+                    if ($score >= 0.4) {
+                        $faqItems[] = [
+                            'question' => $heading,
+                            'answer' => $bodyText,
+                            'score' => $score
+                        ];
+                    }
+                }
+            }
+
+            if (!empty($faqItems)) {
+                // 按照匹配得分从高到低排序
+                usort($faqItems, function($a, $b) {
+                    return $b['score'] <=> $a['score'];
+                });
+
+                // 最多保留前 3 个最相关的 FAQ
+                $topFaqs = array_slice($faqItems, 0, 3);
+                $faqIndex = 1;
+                foreach ($topFaqs as $faq) {
+                    $faqContext .= "[官方 FAQ 匹配 - $faqIndex]\n";
+                    $faqContext .= "标题 (问题): " . $faq['question'] . "\n";
+                    $faqContext .= "链接 (参考): https://www.emlog.net/docs/faq#" . urlencode($faq['question']) . "\n";
+                    $faqContext .= "解答内容: " . $faq['answer'] . "\n\n";
+                    $faqIndex++;
+                }
+            }
+        }
+
+        // 2. 发起原来的 Bing 互联网检索作为补充
+        $results = [];
+        $q1 = "emlog.net " . $query;
+        $q2 = "emlog " . $query;
+
+        $queries = [$q1, $q2];
+        foreach ($queries as $q) {
+            $html = self::fetchSearchHtml('https://cn.bing.com/search?q=' . urlencode($q));
+            if (empty($html)) {
+                continue;
+            }
+
+            preg_match_all('/<li[^>]+class="[^"]*b_algo[^"]*"[^>]*>(.*?)<\/li>/is', $html, $blocks);
+            if (empty($blocks[0])) {
+                continue;
+            }
+
+            foreach ($blocks[0] as $block) {
+                $url = '';
+                $title = '';
+                $snippet = '';
+
+                if (preg_match('/<h2[^>]*>\s*<a[^>]+href="([^"]+)"[^>]*>(.*?)<\/a>\s*<\/h2>/is', $block, $m)) {
+                    $url = $m[1];
+                    $title = trim(html_entity_decode(strip_tags($m[2])));
+                }
+
+                if (empty($url) || empty($title)) {
+                    continue;
+                }
+
+                // 链接去重
+                if (isset($results[$url])) {
+                    continue;
+                }
+
+                if (preg_match('/<p[^>]*>(.*?)<\/p>/is', $block, $m)) {
+                    $snippet = trim(html_entity_decode(strip_tags($m[1])));
+                } else {
+                    $snippet_html = preg_replace('/<h2[^>]*>.*?<\/h2>/is', '', $block);
+                    $snippet = trim(html_entity_decode(strip_tags($snippet_html)));
+                    $snippet = mb_strimwidth($snippet, 0, 300, '...');
+                }
+                $snippet = preg_replace('/\s+/', ' ', $snippet);
+
+                $results[$url] = [
+                    'title' => $title,
+                    'snippet' => $snippet
+                ];
+
+                // 达到数量限制时提前退出
+                if (count($results) >= 6) {
+                    break 2;
+                }
+            }
+        }
+
+        // 3. 将 FAQ 匹配与 Bing 搜索结果整合
+        $webContext = "";
+        if (!empty($results)) {
+            $index = 1;
+            foreach ($results as $url => $item) {
+                $webContext .= "[互联网搜索结果 - $index]\n";
+                $webContext .= "标题: " . $item['title'] . "\n";
+                $webContext .= "链接: " . $url . "\n";
+                $webContext .= "摘要: " . $item['snippet'] . "\n\n";
+                $index++;
+            }
+        }
+
+        $finalContext = "";
+        if (!empty($faqContext)) {
+            $finalContext .= "=== 优先参考：Emlog 官方 FAQ ===\n" . $faqContext;
+        }
+        if (!empty($webContext)) {
+            $finalContext .= "=== 补充参考：全网搜索结果 ===\n" . $webContext;
+        }
+
+        if (empty($finalContext)) {
+            return "暂未搜索到相关的互联网参考资料。";
+        }
+
+        return $finalContext;
+    }
+
+    /**
+     * 发起搜索网页抓取请求
+     * @param string $url 搜索URL
+     * @return string HTML内容
+     */
+    private static function fetchSearchHtml($url)
+    {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 8);
+        curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+
+        $html = curl_exec($ch);
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+
+        if ($httpCode !== 200) {
+            return '';
+        }
+        return $html;
     }
 }
