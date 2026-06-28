@@ -115,7 +115,7 @@ return [
     'un_licensed' => '&#x672A;&#x6B63;&#x7248;&#x6CE8;&#x518C;&#x7684;&#x7248;&#x672C; ',
 
     // AI
-    'ai_chat' => '对话聊天',
+    'ai_chat' => 'AI助手',
     'input_message' => '输入消息...',
     'send' => '发送',
     'sending' => '发送中...',
@@ -403,7 +403,7 @@ return [
     'ai_image_model' => '图像生成模型',
     'add_image_model' => '添加图像生成模型',
     'ai_app' => 'AI 应用',
-    'chat_talk' => '对话聊天',
+    'chat_talk' => 'AI助手',
     'generate_image' => '生成图像',
     'more_ai_apps' => '更多AI应用',
     'add_ai_model' => '添加AI模型',

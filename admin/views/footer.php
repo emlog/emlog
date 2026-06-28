@@ -1,11 +1,6 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
 </div>
 </div>
-<?php if (AI::model()): ?>
-    <a class="ai-chat-button" href="#" data-toggle="modal" data-target="#aiChatModal">
-        <span>✨</span>
-    </a>
-<?php endif; ?>
 <a class="scroll-to-top" href="#page-top">
     <i class="icofont-rounded-up"></i>
 </a>
@@ -20,7 +15,10 @@
         <div class="modal-content border-0 shadow">
             <div class="modal-header border-0">
                 <h5 class="modal-title" id="aiChatModalLabel">💬 <?= _lang('ai_chat') ?></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="btn btn-xs btn-outline-danger ml-auto mr-3" id="clear-chat-btn" title="清空对话历史">
+                    <i class="icofont-trash"></i> 清空历史
+                </button>
+                <button type="button" class="close ml-0" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -166,17 +164,71 @@
         })
 
         // AI Chat
+        function formatChunk(text) {
+            return $('<div>').text(text).html().replace(/\n/g, '<br>');
+        }
+
+        function getCleanHtml(text) {
+            // 过滤掉 <tool_call ...>...</tool_call> 标签及其内容
+            var cleanText = text.replace(/<tool_call\s+name="[^"]*">[\s\S]*?<\/tool_call>/g, '');
+            // 过滤掉可能还没闭合的首半截 <tool_call ...
+            cleanText = cleanText.replace(/<tool_call\s+name="[^"]*">[\s\S]*$/g, '');
+            cleanText = cleanText.replace(/<tool_call\s*$/g, '');
+            return formatChunk(cleanText);
+        }
+
+        var isHistoryLoaded = false;
+
+        function loadChatHistory() {
+            $('#chat-box').html('<div class="text-center text-muted my-3"><i class="icofont-spinner rotate"></i> 正在加载历史记录...</div>');
+            $.getJSON('ai.php?action=get_history', function(res) {
+                $('#chat-box').empty();
+                if (res.data && res.data.length > 0) {
+                    res.data.forEach(function(item) {
+                        if (item.role === 'user') {
+                            $('#chat-box').append('<div style="background-color:#69b4ff; color:#FFFFFF; border-radius: 10px; padding: 10px; margin: 5px 0;"><b>😄：</b> ' + $('<div>').text(item.content).html() + '</div>');
+                        } else if (item.role === 'assistant') {
+                            var cleanHtml = getCleanHtml(item.content);
+                            $('#chat-box').append(
+                                '<div class="ai-chat-message">' +
+                                '<div><b>🤖：</b></div>' +
+                                '<div class="ai-answer-wrap">' +
+                                '<div class="ai-answer-content">' + cleanHtml + '</div>' +
+                                '</div>' +
+                                '</div>'
+                            );
+                        }
+                    });
+                    $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
+                } else {
+                    $('#chat-box').append('<div class="text-center text-muted my-3">暂无对话记录，开始聊聊吧！</div>');
+                }
+                isHistoryLoaded = true;
+            }).fail(function() {
+                $('#chat-box').html('<div class="text-center text-danger my-3">加载历史记录失败</div>');
+            });
+        }
+
         $('#aiChatModal').on('shown.bs.modal', function() {
             $('#chat-input').focus();
+            if (!isHistoryLoaded) {
+                loadChatHistory();
+            }
+        });
+
+        $('#clear-chat-btn').click(function() {
+            if (confirm('确定要清空所有 AI 对话历史记录吗？')) {
+                $.post('ai.php?action=clear_history', function() {
+                    $('#chat-box').html('<div class="text-center text-muted my-3">对话历史已清空</div>');
+                    isHistoryLoaded = true;
+                });
+            }
         });
 
         $('#chat-form').submit(function(event) {
             event.preventDefault();
             var message = $('#chat-input').val().trim();
             if (message === '') return;
-            function formatChunk(text) {
-                return $('<div>').text(text).html().replace(/\n/g, '<br>');
-            }
 
             $('#chat-box').append('<div style="background-color:#69b4ff; color:#FFFFFF; border-radius: 10px; padding: 10px; margin: 5px 0;"><b>😄：</b> ' + $('<div>').text(message).html() + '</div>');
             $('#chat-input').val('');
@@ -202,6 +254,7 @@
             var $thoughtContent = $aiMessage.find('.ai-thought-content');
             var $answerContent = $aiMessage.find('.ai-answer-content');
             var hasReasoning = false;
+            var rawAnswer = '';
 
             eventSource.onmessage = function(event) {
                 if (event.data === '[DONE]') {
@@ -210,6 +263,15 @@
                     }
                     $sendBtn.prop('disabled', false).text('<?= _lang('send') ?>');
                     eventSource.close();
+
+                    // 对话输出完毕后，尝试提取 tool_call
+                    var toolCallRegex = /<tool_call\s+name="([^"]+)">([\s\S]*?)<\/tool_call>/g;
+                    var match;
+                    while ((match = toolCallRegex.exec(rawAnswer)) !== null) {
+                        var toolName = match[1];
+                        var paramsStr = match[2].trim();
+                        executeToolCall(toolName, paramsStr, $aiMessage);
+                    }
                 } else {
                     try {
                         var data = JSON.parse(event.data);
@@ -225,7 +287,8 @@
                                 $thoughtContent.html($thoughtContent.html() + formatChunk(rchunk));
                             }
                             if (chunk) {
-                                $answerContent.html($answerContent.html() + formatChunk(chunk));
+                                rawAnswer += chunk;
+                                $answerContent.html(getCleanHtml(rawAnswer));
                             }
                             $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
                         }
@@ -245,6 +308,141 @@
                 eventSource.close();
             };
         });
+
+        // 执行 AI 工具请求与卡片渲染
+        function executeToolCall(name, paramsJson, $aiMessage) {
+            var toolNamesMap = {
+                'query_database': '查询/操作数据库'
+            };
+            var friendlyName = toolNamesMap[name] || name;
+
+            var sql = '';
+            try {
+                var paramsObj = JSON.parse(paramsJson);
+                sql = paramsObj.sql || '';
+            } catch (e) {}
+
+            var isWriteOp = !/^\s*(select|show|desc|describe|explain)\b/i.test(sql);
+
+            var $card = $(
+                '<div class="card mt-2 shadow-sm border-left-primary">' +
+                '<div class="card-body py-2 px-3">' +
+                '<div class="d-flex align-items-center justify-content-between">' +
+                '<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">' +
+                '<i class="icofont-tools-bag mr-1"></i> AI 博客助手操作' +
+                '</div>' +
+                '<span class="badge badge-info status-badge">' +
+                (isWriteOp ? '<i class="icofont-warning-alt"></i> 等待确认' : '<i class="icofont-spinner-alt-3 rotate"></i> 正在执行...') +
+                '</span>' +
+                '</div>' +
+                '<div class="text-sm text-gray-800 action-details">' +
+                (isWriteOp ? '检测到敏感的数据或表结构变更操作。' : '正在为您：' + friendlyName + '...') +
+                '</div>' +
+                '</div>' +
+                '</div>'
+            );
+            $aiMessage.find('.ai-answer-wrap').append($card);
+            $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
+
+            if (isWriteOp) {
+                // 显示确认界面
+                var confirmHtml =
+                    '<div class="confirm-wrap mt-2 p-2 bg-light border rounded">' +
+                    '<div class="text-xs text-muted mb-1">该操作将修改数据库：<code>' + $('<div>').text(sql).html() + '</code></div>' +
+                    '<div class="text-xs font-weight-bold text-danger mb-2">敏感操作警告！确认是否执行该操作？</div>' +
+                    '<button class="btn btn-xs btn-danger run-confirm-btn mr-2">确认执行</button>' +
+                    '<button class="btn btn-xs btn-light cancel-confirm-btn">取消</button>' +
+                    '</div>';
+                $card.find('.action-details').append(confirmHtml);
+                $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
+
+                // 取消按钮
+                $card.find('.cancel-confirm-btn').on('click', function() {
+                    $card.removeClass('border-left-primary').addClass('border-left-secondary');
+                    $card.find('.status-badge').removeClass('badge-info').addClass('badge-secondary').html('<i class="icofont-close-circled"></i> 已取消');
+                    $card.find('.action-details').html('<span class="text-muted">操作已取消。</span>');
+                });
+
+                // 确认执行按钮
+                $card.find('.run-confirm-btn').on('click', function() {
+                    $card.find('.confirm-wrap').remove();
+                    $card.find('.status-badge').removeClass('badge-info').addClass('badge-info').html('<i class="icofont-spinner-alt-3 rotate"></i> 正在执行...');
+                    $card.find('.action-details').html('正在为您执行敏感操作，请稍候...');
+                    sendAjaxRequest('confirm');
+                });
+            } else {
+                // 非写操作直接发送
+                sendAjaxRequest('');
+            }
+
+            function sendAjaxRequest(confirmCode) {
+                $.ajax({
+                    url: 'ai.php?action=execute_tool',
+                    type: 'POST',
+                    data: {
+                        name: name,
+                        params: paramsJson,
+                        confirm_code: confirmCode
+                    },
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.code === 0) {
+                            $card.removeClass('border-left-primary').addClass('border-left-success');
+                            $card.find('.status-badge').removeClass('badge-info').addClass('badge-success').html('<i class="icofont-check-circled"></i> 执行成功');
+
+                            var data = response.data || {};
+                            var detailHtml = '';
+                            if (name === 'query_database') {
+                                var list = data.results || [];
+                                if (list.length === 0) {
+                                    detailHtml = '操作成功，没有返回任何数据（这在执行 DELETE/UPDATE 时是正常的）。';
+                                } else {
+                                    detailHtml = '<div class="table-responsive"><table class="table table-bordered table-sm text-xs mb-0"><thead><tr>';
+                                    var keys = Object.keys(list[0]);
+                                    var filteredKeys = keys.filter(function(k) {
+                                        return isNaN(k);
+                                    });
+                                    filteredKeys.forEach(function(key) {
+                                        detailHtml += '<th>' + $('<div>').text(key).html() + '</th>';
+                                    });
+                                    detailHtml += '</tr></thead><tbody>';
+                                    list.forEach(function(row) {
+                                        detailHtml += '<tr>';
+                                        filteredKeys.forEach(function(key) {
+                                            var val = row[key];
+                                            if (key === 'date') {
+                                                val = new Date(parseInt(val) * 1000).toLocaleString();
+                                            }
+                                            detailHtml += '<td>' + $('<div>').text(val).html() + '</td>';
+                                        });
+                                        detailHtml += '</tr>';
+                                    });
+                                    detailHtml += '</tbody></table></div>';
+                                }
+                            } else if (data.message) {
+                                detailHtml = data.message;
+                            } else {
+                                detailHtml = '操作执行完毕。';
+                            }
+                            $card.find('.action-details').html(detailHtml);
+                        } else {
+                            showError(response.msg || '执行失败');
+                        }
+                        $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
+                    },
+                    error: function(xhr, status, error) {
+                        showError('网络连接异常：' + error);
+                        $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
+                    }
+                });
+            }
+
+            function showError(errorMsg) {
+                $card.removeClass('border-left-primary').addClass('border-left-danger');
+                $card.find('.status-badge').removeClass('badge-info').addClass('badge-danger').html('<i class="icofont-close-circled"></i> 执行失败');
+                $card.find('.action-details').html('<span class="text-danger">' + errorMsg + '</span>');
+            }
+        }
 
         // Initialize shortcut bar hover effect
         initShortcutBar();

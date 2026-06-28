@@ -9,43 +9,130 @@
 
 class Ai
 {
-    public static function chat($prompt, $system_prompt = '你是一个有用的助手')
+    /**
+     * AI 对话函数
+     * @param string $prompt 用户提问
+     * @param string $system_prompt 系统提示词
+     * @param bool $useHistory 是否使用历史对话记录作为上下文（最近10条）
+     * @return string AI回复内容
+     */
+    public static function chat($prompt, $system_prompt = '你是一个有用的助手', $useHistory = false)
     {
-        $messages = [
-            [
+        $messages = [];
+        if (!empty($system_prompt)) {
+            $messages[] = [
                 "content" => $system_prompt,
                 "role" => "system"
-            ],
-            [
-                "content" => $prompt,
-                "role" => "user"
-            ]
+            ];
+        }
+
+        $history = [];
+        if ($useHistory) {
+            if (session_status() === PHP_SESSION_NONE) {
+                session_start();
+            }
+            $history = isset($_SESSION['ai_chat_history']) && is_array($_SESSION['ai_chat_history']) ? $_SESSION['ai_chat_history'] : [];
+            foreach ($history as $msg) {
+                $messages[] = [
+                    "role" => $msg['role'],
+                    "content" => $msg['content']
+                ];
+            }
+        }
+
+        $messages[] = [
+            "content" => $prompt,
+            "role" => "user"
         ];
+
         $response = self::send($messages);
-        return self::formatResponse($response);
+        $assistant_response = self::formatResponse($response);
+
+        if ($useHistory && !empty($assistant_response) && strpos($assistant_response, '大模型处理异常') !== 0 && strpos($assistant_response, 'AI 模型未配置') !== 0) {
+            $history[] = [
+                'role' => 'user',
+                'content' => $prompt
+            ];
+            $history[] = [
+                'role' => 'assistant',
+                'content' => $assistant_response
+            ];
+            if (count($history) > 10) {
+                $history = array_slice($history, -10);
+            }
+            $_SESSION['ai_chat_history'] = $history;
+        }
+
+        return $assistant_response;
     }
 
-    public static function chatStream($prompt, $system_prompt = '你是一个有用的助手')
+    /**
+     * AI 流式对话函数
+     * @param string $prompt 用户提问
+     * @param string $system_prompt 系统提示词
+     * @param bool $useHistory 是否使用历史对话记录作为上下文（最近10条）
+     * @return string AI回复完整内容
+     */
+    public static function chatStream($prompt, $system_prompt = '你是一个有用的助手', $useHistory = false)
     {
-        $messages = [
-            [
+        $messages = [];
+        if (!empty($system_prompt)) {
+            $messages[] = [
                 "content" => $system_prompt,
                 "role" => "system"
-            ],
-            [
-                "content" => $prompt,
-                "role" => "user"
-            ]
+            ];
+        }
+
+        $history = [];
+        if ($useHistory) {
+            if (session_status() === PHP_SESSION_NONE) {
+                session_start();
+            }
+            $history = isset($_SESSION['ai_chat_history']) && is_array($_SESSION['ai_chat_history']) ? $_SESSION['ai_chat_history'] : [];
+            foreach ($history as $msg) {
+                $messages[] = [
+                    "role" => $msg['role'],
+                    "content" => $msg['content']
+                ];
+            }
+        }
+
+        $messages[] = [
+            "content" => $prompt,
+            "role" => "user"
         ];
-        return self::sendStream($messages);
+
+        $assistant_response = self::sendStream($messages);
+
+        if ($useHistory && !empty($assistant_response)) {
+            $history[] = [
+                'role' => 'user',
+                'content' => $prompt
+            ];
+            $history[] = [
+                'role' => 'assistant',
+                'content' => $assistant_response
+            ];
+            if (count($history) > 10) {
+                $history = array_slice($history, -10);
+            }
+            $_SESSION['ai_chat_history'] = $history;
+        }
+
+        return $assistant_response;
     }
 
+    /**
+     * 发送流式对话请求并输出，同时返回拼装后的完整回复
+     * @param array $messages 对话消息列表
+     * @return string 完整回复文本
+     */
     public static function sendStream($messages)
     {
         $modelInfo = self::getCurrentModelInfo();
         if (empty($modelInfo) || !isset($modelInfo['api_url'])) {
             echo "data: " . json_encode(["error" => "AI Model not configured"]) . "\n\n";
-            return;
+            return '';
         }
 
         $apiUrl = $modelInfo['api_url'];
@@ -65,6 +152,8 @@ class Ai
             'Authorization: Bearer ' . $apiKey
         ];
 
+        $full_response = '';
+
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $apiUrl);
         curl_setopt($ch, CURLOPT_POST, true);
@@ -74,10 +163,35 @@ class Ai
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, false);
-        curl_setopt($ch, CURLOPT_WRITEFUNCTION, function ($curl, $data) {
+        curl_setopt($ch, CURLOPT_WRITEFUNCTION, function ($curl, $data) use (&$full_response) {
             echo $data;
             ob_flush();
             flush();
+
+            // 解析大模型返回的数据片段并拼装
+            $lines = explode("\n", $data);
+            foreach ($lines as $line) {
+                $line = trim($line);
+                if (strpos($line, 'data:') === 0) {
+                    $jsonStr = trim(substr($line, 5));
+                    if ($jsonStr === '[DONE]') {
+                        continue;
+                    }
+                    $json = json_decode($jsonStr, true);
+                    if (is_array($json)) {
+                        $chunk = '';
+                        if (isset($json['choices'][0]['delta']['content'])) {
+                            $chunk = $json['choices'][0]['delta']['content'];
+                        } elseif (isset($json['choices'][0]['message']['content'])) {
+                            $chunk = $json['choices'][0]['message']['content'];
+                        }
+                        if ($chunk !== '') {
+                            $full_response .= $chunk;
+                        }
+                    }
+                }
+            }
+
             return strlen($data);
         });
 
@@ -87,6 +201,8 @@ class Ai
         }
 
         curl_close($ch);
+
+        return $full_response;
     }
 
     public static function send($messages, $stream = false)
@@ -400,5 +516,100 @@ class Ai
             return $aiModels;
         }
         return [];
+    }
+
+    /**
+     * AI 通用 SQL 执行与缓存自动刷新方法
+     * 
+     * 自动对传入的 SQL 语句进行安全校验。除只读查询（SELECT/SHOW/DESCRIBE 等）外，
+     * 所有敏感的数据或表结构变更操作（写操作）均统一强制要求匹配确认码（确认操作），并且在执行成功后自动刷新系统全部缓存。
+     * 自动将 SQL 中的系统表名补全为带有真实表前缀的格式。
+     *
+     * @param string $sql 待执行的 SQL 语句
+     * @param string $confirm_code 敏感写操作时所必需的二次确认文字
+     * @return array 返回查询结果数组（仅 SELECT/SHOW 等只读查询时有数据返回，写操作返回空数组）
+     * @throws Exception 当 SQL 校验未通过、执行出错或写操作确认码不匹配时抛出异常
+     */
+    public static function queryDatabase($sql, $confirm_code = '')
+    {
+        $db = Database::getInstance();
+        $clean_sql = trim($sql);
+
+        // 1. 提取首单词，判定是否为只读操作
+        $first_word = '';
+        if (preg_match('/^\s*([a-zA-Z]+)\b/', $clean_sql, $m)) {
+            $first_word = strtoupper($m[1]);
+        }
+
+        $readonly_commands = ['SELECT', 'SHOW', 'DESC', 'DESCRIBE', 'EXPLAIN'];
+        $is_write_op = !in_array($first_word, $readonly_commands);
+
+        // 2. 禁止多语句执行分号（防堆叠注入）
+        if (strpos($clean_sql, ';') !== false) {
+            $clean_sql_no_end = rtrim($clean_sql, ';');
+            if (strpos($clean_sql_no_end, ';') !== false) {
+                throw new Exception("权限限制：禁止多语句执行");
+            }
+        }
+
+        // 3. 二次确认码安全防线：针对敏感的数据/表变更（写操作）进行确认验证
+        if ($is_write_op) {
+            if (trim($confirm_code) !== 'confirm') {
+                throw new Exception("敏感操作拦截：执行敏感操作需要确认");
+            }
+        }
+
+        // 4. 自动补全系统表前缀
+        // 提取 Emlog 所有核心系统表
+        $system_tables = [
+            'blog',
+            'comment',
+            'options',
+            'sort',
+            'tag',
+            'navi',
+            'attachment',
+            'link',
+            'user',
+            'reply',
+            'twitter',
+            'like',
+            'log_field',
+            'media',
+            'mediasort',
+            'order'
+        ];
+
+        foreach ($system_tables as $tbl) {
+            // 匹配常用 SQL 关键字（FROM, JOIN, UPDATE, INTO, TABLE 等）后面跟着的不带前缀的表名，自动添加真实前缀
+            $clean_sql = preg_replace(
+                '/\b(from|join|update|into|truncate(?:\s+table)?|table)\s+`?' . preg_quote($tbl, '/') . '`?\b/i',
+                '$1 `' . DB_PREFIX . $tbl . '`',
+                $clean_sql
+            );
+        }
+
+        // 5. 执行 SQL 语句
+        $ret = $db->query($clean_sql);
+        if (!$ret) {
+            throw new Exception("SQL执行失败");
+        }
+
+        // 6. 执行成功后，如果是写操作，则强制刷新系统全部缓存与文章缓存
+        if ($is_write_op) {
+            $CACHE = Cache::getInstance();
+            $CACHE->updateCache();        // 更新系统全局核心缓存
+            $CACHE->updateArticleCache(); // 刷新文章与页面相关的关联缓存
+        }
+
+        // 7. 处理返回数据
+        $results = [];
+        if (!$is_write_op) {
+            while ($row = $db->fetch_array($ret)) {
+                $results[] = $row;
+            }
+        }
+
+        return $results;
     }
 }

@@ -1,6 +1,3 @@
-/*
-editor.md编辑器的样式配置
- */
 * {
     padding: 0;
     margin: 0;
@@ -110,6 +107,7 @@ body {
     cursor: pointer;
 }
 
+/* 编辑器、微语及应用商店样式 */
 .editormd {
     z-index: 0;
 }
@@ -151,7 +149,7 @@ body {
     margin: 0 auto;
 }
 
-/*时间选择器*/
+/* 时间日期选择器 */
 #ui-datepicker-div {
     box-shadow: 0 0 rgb(0 0 0 / 0), 0 0 rgb(0 0 0 / 0), 0 2px 12px -2px rgb(0 0 0 / .12), 0 3px 6px -3px rgb(0 0 0 / .1);
     background: #f8f9fc;
@@ -342,6 +340,7 @@ body {
     border-radius: 5px;
 }
 
+/* 返回顶部与浮动控制按钮 */
 .scroll-to-top,
     .ai-chat-button {
         position: fixed;
@@ -383,6 +382,7 @@ body {
         font-weight: 800;
     }
 
+/* AI 助手对话气泡与内容布局 */
 .ai-chat-message {
     background-color: #f1f1f1;
     border-radius: 10px;
@@ -415,6 +415,7 @@ body {
     word-break: break-word;
 }
 
+/* 表单复选框及 Bootstrap 徽章变体 */
     .custom-control-input {
         cursor: pointer;
     }
@@ -584,7 +585,7 @@ body {
     font-weight: normal;
 }
 
-/* 树形列表拖拽与层级连线样式 */
+/* 树形分类列表层级与连线布局 */
 .tree-name {
     white-space: nowrap;
 }
@@ -644,4 +645,37 @@ body {
 .fold-btn:hover {
     background-color: #e2e8f0;
     color: #0f172a !important;
+}
+
+/* AI 聊天旋转动画及模态窗口尺寸微调 */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.rotate {
+    display: inline-block;
+    animation: spin 1s linear infinite;
+}
+
+.btn-xs {
+    padding: 0.125rem 0.25rem;
+    font-size: 0.75rem;
+    line-height: 1.5;
+    border-radius: 0.15rem;
+}
+
+/* 增加 AI 模态窗口的高度与宽度 */
+#aiChatModal .modal-dialog {
+    max-width: 95vw !important;
+    width: 1200px !important;
+}
+
+#chat-box {
+    height: 65vh !important;
 }
