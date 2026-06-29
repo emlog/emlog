@@ -18,7 +18,7 @@
             <div class="modal-header border-0">
                 <h5 class="modal-title" id="aiChatModalLabel">💬 <?= _lang('ai_chat') ?></h5>
                 <button type="button" class="btn btn-xs btn-outline-danger ml-auto mr-3" id="clear-chat-btn" title="清空对话历史">
-                    <i class="icofont-trash"></i> 清空历史
+                    清空历史
                 </button>
                 <button type="button" class="close ml-0" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -36,10 +36,7 @@
                         </div>
                     </div>
                     <div class="mt-2 d-flex flex-wrap" style="gap: 5px;">
-                        <button type="button" class="btn btn-xs btn-outline-info" id="btn-em-help" style="font-size: 11px; padding: 2px 6px;"><i class="icofont-search-document"></i> @em-help 询问emlog问题</button>
-                        <button type="button" class="btn btn-xs btn-outline-secondary btn-chat-example" data-text="请给出最近最受欢迎的3篇文章" style="font-size: 11px; padding: 2px 6px;">📈 最近热门文章</button>
-                        <button type="button" class="btn btn-xs btn-outline-secondary btn-chat-example" data-text="请修改站点标题为：xxxxxx" style="font-size: 11px; padding: 2px 6px;">🔧 修改站点标题</button>
-                        <button type="button" class="btn btn-xs btn-outline-secondary btn-chat-example" data-text="写一条微语，内容是：xxxxxx" style="font-size: 11px; padding: 2px 6px;">💬 写一条微语</button>
+                        <button type="button" class="btn btn-xs btn-outline-info" id="btn-em-help" style="font-size: 11px; padding: 2px 6px;"><i class="icofont-search-document"></i> @em-help 询问emlog使用问题</button>
                     </div>
                     <div class="text-muted text-xs mt-1"><?= _lang('model_label') ?><?= AI::model() ? AI::model() : _lang('no_ai_model') ?>，<?= _lang('shift_enter_tip') ?></div>
                 </form>
@@ -74,6 +71,14 @@
                         });
 
                         $('.btn-chat-example').click(function() {
+                            var text = $(this).data('text');
+                            var $input = $('#chat-input');
+                            $input.val(text);
+                            $input.focus();
+                            $input.trigger('input');
+                        });
+
+                        $(document).on('click', '.chat-example-suggest', function() {
                             var text = $(this).data('text');
                             var $input = $('#chat-input');
                             $input.val(text);
@@ -221,6 +226,17 @@
 
         var isHistoryLoaded = false;
 
+        var emptyChatHtml = '<div class="p-3 text-muted" id="empty-chat-guide">' +
+            '<p class="font-weight-bold mb-3"><i class="icofont-info-circle mr-1"></i> 你可以这样对我说：</p>' +
+            '<ul class="list-unstyled pl-0" style="line-height: 1.8;">' +
+            '<li class="mb-2 chat-example-suggest" data-text="帮我查询最近最受欢迎的5篇文章" style="cursor: pointer;"><i class="icofont-double-right text-primary mr-1"></i> “帮我查询最近最受欢迎的5篇文章”</li>' +
+            '<li class="mb-2 chat-example-suggest" data-text="把站点名称改为：我的技术博客" style="cursor: pointer;"><i class="icofont-double-right text-primary mr-1"></i> “把博客名称改为：我的技术博客”</li>' +
+            '<li class="mb-2 chat-example-suggest" data-text="删除最近收到的一条评论" style="cursor: pointer;"><i class="icofont-double-right text-primary mr-1"></i> “删除最近收到的一条评论”</li>' +
+            '<li class="mb-2 chat-example-suggest" data-text="添加一个新的分类：生活随笔" style="cursor: pointer;"><i class="icofont-double-right text-primary mr-1"></i> “添加一个新的分类：生活随笔”</li>' +
+            '<li class="mb-2 chat-example-suggest" data-text="写一篇关于宇宙起源的文章，并作为文章发布" style="cursor: pointer;"><i class="icofont-double-right text-primary mr-1"></i> “写一篇关于宇宙起源的文章，并作为文章发布”</li>' +
+            '</ul>' +
+            '</div>';
+
         function loadChatHistory() {
             $('#chat-box').html('<div class="text-center text-muted my-3"><i class="icofont-spinner rotate"></i> 正在加载历史记录...</div>');
             $.getJSON('ai.php?action=get_history', function(res) {
@@ -243,7 +259,7 @@
                     });
                     $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
                 } else {
-                    $('#chat-box').append('<div class="text-center text-muted my-3">暂无对话记录，开始聊聊吧！</div>');
+                    $('#chat-box').append(emptyChatHtml);
                 }
                 isHistoryLoaded = true;
             }).fail(function() {
@@ -259,18 +275,18 @@
         });
 
         $('#clear-chat-btn').click(function() {
-            if (confirm('确定要清空所有 AI 对话历史记录吗？')) {
-                $.post('ai.php?action=clear_history', function() {
-                    $('#chat-box').html('<div class="text-center text-muted my-3">对话历史已清空</div>');
-                    isHistoryLoaded = true;
-                });
-            }
+            $.post('ai.php?action=clear_history', function() {
+                $('#chat-box').html(emptyChatHtml);
+                isHistoryLoaded = true;
+            });
         });
 
         $('#chat-form').submit(function(event) {
             event.preventDefault();
             var message = $('#chat-input').val().trim();
             if (message === '') return;
+
+            $('#empty-chat-guide').remove();
 
             $('#chat-box').append('<div style="background-color:#69b4ff; color:#FFFFFF; border-radius: 10px; padding: 10px; margin: 5px 0;"><b>😄：</b> ' + $('<div>').text(message).html() + '</div>');
             $('#chat-input').val('');
@@ -417,6 +433,11 @@
                 sendAjaxRequest('');
             }
 
+            /**
+             * 向后台发送执行 AI 工具的 AJAX 请求
+             * 
+             * @param {string} confirmCode 确认码
+             */
             function sendAjaxRequest(confirmCode) {
                 $.ajax({
                     url: 'ai.php?action=execute_tool',
@@ -472,8 +493,20 @@
                         }
                         $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
                     },
+                    /**
+                     * AJAX 请求失败的回调函数，若服务端返回带有错误信息的 JSON，则解析出并友好地显示 msg 报错信息。
+                     */
                     error: function(xhr, status, error) {
-                        showError('网络连接异常：' + error);
+                        var errorMsg = '网络连接异常：' + error;
+                        try {
+                            var response = JSON.parse(xhr.responseText);
+                            if (response && response.msg) {
+                                errorMsg = response.msg;
+                            }
+                        } catch (e) {
+                            // 解析失败，保留原有的网络异常信息
+                        }
+                        showError(errorMsg);
                         $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
                     }
                 });

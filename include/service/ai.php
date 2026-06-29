@@ -625,6 +625,173 @@ class Ai
             );
         }
 
+        // 自动查询数据表字段信息并补全缺失的必填无默认值字段，防止 strict 模式下 INSERT 报错
+        if (strtoupper($first_word) === 'INSERT') {
+            $tableName = '';
+            if (preg_match('/insert\s+into\s+`?(\w+)`?/i', $clean_sql, $matches)) {
+                $tableName = $matches[1];
+            }
+
+            if (!empty($tableName) && preg_match('/^\w+$/', $tableName)) {
+                try {
+                    $cols_query = @$db->query("SHOW COLUMNS FROM `{$tableName}`", true);
+                    if ($cols_query) {
+                        $fields_info = [];
+                        while ($row = $db->fetch_array($cols_query)) {
+                            $fields_info[$row['Field']] = [
+                                'Null' => $row['Null'],
+                                'Default' => $row['Default'],
+                                'Type' => $row['Type'],
+                                'Extra' => $row['Extra']
+                            ];
+                        }
+
+                        // 筛选出不允许为 NULL 且无默认值且非自增的字段
+                        $required_fields = [];
+                        foreach ($fields_info as $fieldName => $info) {
+                            $is_nullable = (strtoupper($info['Null']) === 'YES');
+                            $has_default = ($info['Default'] !== null);
+                            $is_auto_increment = (strpos(strtolower($info['Extra']), 'auto_increment') !== false);
+                            
+                            if (!$is_nullable && !$has_default && !$is_auto_increment) {
+                                $type = strtolower($info['Type']);
+                                if (strpos($type, 'int') !== false || strpos($type, 'decimal') !== false || strpos($type, 'float') !== false || strpos($type, 'double') !== false) {
+                                    $default_value = 0;
+                                } elseif (strpos($type, 'date') !== false || strpos($type, 'time') !== false) {
+                                    if (strpos($type, 'datetime') !== false || strpos($type, 'timestamp') !== false) {
+                                        $default_value = '1970-01-01 00:00:00';
+                                    } else {
+                                        $default_value = '1970-01-01';
+                                    }
+                                } else {
+                                    $default_value = '';
+                                }
+                                $required_fields[$fieldName] = $default_value;
+                            }
+                        }
+
+                        if (!empty($required_fields)) {
+                            $missing_fields = [];
+                            // 格式 A：INSERT INTO table (col1, col2) VALUES (val1, val2)
+                            if (preg_match('/insert\s+into\s+`?\w+`?\s*\(([^)]+)\)\s*values\s*(.+)/is', $clean_sql, $insert_matches)) {
+                                $cols_str = $insert_matches[1];
+                                $vals_part = trim($insert_matches[2]);
+                                
+                                $existing_cols = array_map(function($c) {
+                                    return trim($c, " \t\n\r\0\x0B`'");
+                                }, explode(',', $cols_str));
+                                
+                                foreach ($required_fields as $f => $def) {
+                                    if (!in_array($f, $existing_cols)) {
+                                        $missing_fields[$f] = $def;
+                                    }
+                                }
+                                
+                                if (!empty($missing_fields)) {
+                                    $append_cols = [];
+                                    $append_vals = [];
+                                    foreach ($missing_fields as $f => $def) {
+                                        $append_cols[] = "`{$f}`";
+                                        if (is_int($def) || is_float($def)) {
+                                            $append_vals[] = $def;
+                                        } else {
+                                            $append_vals[] = "'" . addslashes($def) . "'";
+                                        }
+                                    }
+                                    
+                                    $new_cols_str = $cols_str . ", " . implode(', ', $append_cols);
+                                    
+                                    // 鲁棒解析并追加值，支持包含括号的字符串
+                                    $new_vals_part = '';
+                                    $len = strlen($vals_part);
+                                    $in_string = false;
+                                    $string_char = '';
+                                    $bracket_depth = 0;
+                                    $current_group = '';
+                                    
+                                    for ($i = 0; $i < $len; $i++) {
+                                        $char = $vals_part[$i];
+                                        if (($char === "'" || $char === '"') && ($i === 0 || $vals_part[$i - 1] !== '\\')) {
+                                            if ($in_string && $string_char === $char) {
+                                                $in_string = false;
+                                            } elseif (!$in_string) {
+                                                $in_string = true;
+                                                $string_char = $char;
+                                            }
+                                        }
+                                        
+                                        if (!$in_string) {
+                                            if ($char === '(') {
+                                                $bracket_depth++;
+                                                if ($bracket_depth === 1) {
+                                                    $new_vals_part .= $char;
+                                                    $current_group = '';
+                                                    continue;
+                                                }
+                                            } elseif ($char === ')') {
+                                                $bracket_depth--;
+                                                if ($bracket_depth === 0) {
+                                                    $new_vals_part .= $current_group . ", " . implode(', ', $append_vals) . $char;
+                                                    continue;
+                                                }
+                                            }
+                                        }
+                                        
+                                        if ($bracket_depth > 0) {
+                                            $current_group .= $char;
+                                        } else {
+                                            $new_vals_part .= $char;
+                                        }
+                                    }
+                                    
+                                    $cols_pos = strpos($clean_sql, $cols_str);
+                                    if ($cols_pos !== false) {
+                                        $sql_replaced_cols = substr_replace($clean_sql, $new_cols_str, $cols_pos, strlen($cols_str));
+                                        $vals_pos = strpos($sql_replaced_cols, $vals_part, $cols_pos + strlen($new_cols_str));
+                                        if ($vals_pos !== false) {
+                                            $clean_sql = substr_replace($sql_replaced_cols, $new_vals_part, $vals_pos, strlen($vals_part));
+                                        } else {
+                                            $clean_sql = $sql_replaced_cols;
+                                        }
+                                    }
+                                }
+                            }
+                            // 格式 B：INSERT INTO table SET col1=val1, col2=val2
+                            elseif (preg_match('/insert\s+into\s+`?\w+`?\s+set\s+(.+)/is', $clean_sql, $insert_matches)) {
+                                $set_str = $insert_matches[1];
+                                preg_match_all('/`?(\w+)`?\s*=/i', $set_str, $set_cols_matches);
+                                $existing_cols = isset($set_cols_matches[1]) ? $set_cols_matches[1] : [];
+                                
+                                foreach ($required_fields as $f => $def) {
+                                    if (!in_array($f, $existing_cols)) {
+                                        $missing_fields[$f] = $def;
+                                    }
+                                }
+                                
+                                if (!empty($missing_fields)) {
+                                    $append_sets = [];
+                                    foreach ($missing_fields as $f => $def) {
+                                        if (is_int($def) || is_float($def)) {
+                                            $append_sets[] = "`{$f}`={$def}";
+                                        } else {
+                                            $append_sets[] = "`{$f}`='" . addslashes($def) . "'";
+                                        }
+                                    }
+                                    $new_set_str = $set_str . ", " . implode(', ', $append_sets);
+                                    $set_pos = strpos($clean_sql, $set_str);
+                                    if ($set_pos !== false) {
+                                        $clean_sql = substr_replace($clean_sql, $new_set_str, $set_pos, strlen($set_str));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } catch (Exception $e) {
+                    // 容错处理：获取字段结构失败时，直接使用原始 SQL 执行
+                }
+            }
+        }
+
         // 自动将 NOW() 替换为 UNIX_TIMESTAMP() 容错，以适配 emlog 的整型时间戳字段
         $clean_sql = preg_replace('/\bNOW\(\)/i', 'UNIX_TIMESTAMP()', $clean_sql);
 
