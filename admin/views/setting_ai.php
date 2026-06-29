@@ -120,7 +120,7 @@
                 <div class="card h-100">
                     <div class="card-body d-flex flex-column align-items-center justify-content-center">
                         <a type="button" class="" data-toggle="modal" data-target="#aiChatModal">
-                            💬 <?= _lang('chat_talk'); ?>
+                            <?= _lang('chat_talk'); ?>
                         </a>
                     </div>
                 </div>
@@ -129,7 +129,7 @@
                 <div class="card h-100">
                     <div class="card-body d-flex flex-column align-items-center justify-content-center">
                         <a type="button" class="" data-toggle="modal" data-target="#aiImageModal">
-                            🎨 <?= _lang('generate_image'); ?>
+                            <?= _lang('generate_image'); ?>
                         </a>
                     </div>
                 </div>

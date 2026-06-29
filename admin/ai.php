@@ -61,7 +61,7 @@ if ($action == 'chat_stream') {
 
 1. 执行数据库查询、插入、修改或删除操作
 - 工具名称: query_database
-- 说明: 编写 SQL 语句对数据库中的任何表进行操作。你拥有对所有数据库表的完全操作权限。只读查询操作（如 SELECT, SHOW, DESCRIBE）会直接执行并输出；凡是涉及到数据或表结构变更的操作（如 INSERT, UPDATE, DELETE, TRUNCATE, ALTER 等写操作）均需要用户二次输入“确定操作”进行确认，执行成功后会自动刷新缓存。
+- 说明: 编写 SQL 语句对数据库中的任何表进行操作。
 - 核心表结构及常用表说明：
   - `emlog_blog` (文章/页面表): `gid` (文章ID), `title` (标题), `date` (时间戳), `content` (内容), `excerpt` (摘要), `cover` (封面图), `alias` (别名), `author` (作者UID，通常为 1), `sortid` (分类ID，默认为 -1), `type` (文章OR页面: 'blog'/'page'), `views` (点击数), `comnum` (评论数), `like_count` (点赞数), `dislike_count` (点踩数), `collect_count` (收藏数), `top` (置顶 'n'/'y'), `sortop` (分类置顶 'n'/'y'), `hide` (草稿/隐藏 'n'/'y'), `checked` (已审核 'n'/'y'), `allow_remark` (允许评论 'n'/'y'), `password` (密码), `template` (模板), `tags` (标签), `link` (外部链接), `parent_id` (父级文章ID)
   - `emlog_comment` (评论表): `cid` (评论ID), `gid` (对应文章ID), `pid` (父评论ID), `top` (置顶 'n'/'y'), `poster` (昵称), `avatar` (头像URL), `uid` (发布人UID，游客为 0), `comment` (内容), `mail` (邮箱), `url` (主页网址), `ip` (IP), `agent` (UserAgent), `hide` (是否审核/隐藏 'n'/'y'), `like_count` (点赞数), `date` (发布时间戳)

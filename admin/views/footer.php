@@ -16,7 +16,7 @@
     <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
         <div class="modal-content border-0 shadow">
             <div class="modal-header border-0">
-                <h5 class="modal-title" id="aiChatModalLabel">💬 <?= _lang('ai_chat') ?></h5>
+                <h5 class="modal-title" id="aiChatModalLabel"><?= _lang('ai_chat') ?></h5>
                 <button type="button" class="btn btn-xs btn-outline-danger ml-auto mr-3" id="clear-chat-btn" title="<?= _lang('clear_history_title') ?>">
                     <?= _lang('clear_history') ?>
                 </button>
@@ -259,12 +259,11 @@
                 if (res.data && res.data.length > 0) {
                     res.data.forEach(function(item) {
                         if (item.role === 'user') {
-                            $('#chat-box').append('<div style="background-color:#69b4ff; color:#FFFFFF; border-radius: 10px; padding: 10px; margin: 5px 0;"><b>😄：</b> ' + $('<div>').text(item.content).html() + '</div>');
+                            $('#chat-box').append('<div style="background-color:#69b4ff; color:#FFFFFF; border-radius: 10px; padding: 10px; margin: 5px 0;"> ' + $('<div>').text(item.content).html() + '</div>');
                         } else if (item.role === 'assistant') {
                             var cleanHtml = renderMarkdown(item.content);
                             $('#chat-box').append(
                                 '<div class="ai-chat-message">' +
-                                '<div><b>🤖：</b></div>' +
                                 '<div class="ai-answer-wrap">' +
                                 '<div class="ai-answer-content markdown">' + cleanHtml + '</div>' +
                                 '</div>' +
@@ -296,15 +295,23 @@
             });
         });
 
-        $('#chat-form').submit(function(event) {
-            event.preventDefault();
-            var message = $('#chat-input').val().trim();
-            if (message === '') return;
-
+        /**
+         * 向 AI 助手发送消息并进行流式接收和卡片渲染
+         * 
+         * @param {string} message 消息文本内容
+         * @param {boolean} isSystemFeedback 是否为系统回传的工具执行结果反馈
+         */
+        function sendAiMessage(message, isSystemFeedback) {
             $('#empty-chat-guide').remove();
 
-            $('#chat-box').append('<div style="background-color:#69b4ff; color:#FFFFFF; border-radius: 10px; padding: 10px; margin: 5px 0;"><b>😄：</b> ' + $('<div>').text(message).html() + '</div>');
-            $('#chat-input').val('');
+            if (!isSystemFeedback) {
+                // 用户发送的真实消息
+                $('#chat-box').append('<div style="background-color:#69b4ff; color:#FFFFFF; border-radius: 10px; padding: 10px; margin: 5px 0;"> ' + $('<div>').text(message).html() + '</div>');
+                $('#chat-input').val('');
+            } else {
+                // 系统自动回传的工具执行结果提示
+                $('#chat-box').append('<div class="text-center text-muted my-2 text-xs"><i class="icofont-exchange"></i> [系统提示] 工具执行结果已自动反馈给 AI 助手</div>');
+            }
             $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
 
             var $sendBtn = $('#send-btn');
@@ -313,7 +320,6 @@
             var eventSource = new EventSource('ai.php?action=chat_stream&message=' + encodeURIComponent(message));
             var $aiMessage = $(
                 '<div class="ai-chat-message">' +
-                '<div><b>🤖：</b></div>' +
                 '<div class="ai-thought-wrap d-none">' +
                 '<div class="ai-thought-content"></div>' +
                 '</div>' +
@@ -411,6 +417,13 @@
                 $sendBtn.prop('disabled', false).text('<?= _lang('send') ?>');
                 eventSource.close();
             };
+        }
+
+        $('#chat-form').submit(function(event) {
+            event.preventDefault();
+            var message = $('#chat-input').val().trim();
+            if (message === '') return;
+            sendAiMessage(message, false);
         });
 
         // 执行 AI 工具请求与卡片渲染
@@ -502,6 +515,7 @@
                     },
                     dataType: 'json',
                     success: function(response) {
+                        var resultsTextForAi = '';
                         if (response.code === 0) {
                             $card.removeClass('border-left-primary').addClass('border-left-success');
                             $card.find('.status-badge').removeClass('badge-info').addClass('badge-success').html('<i class="icofont-check-circled"></i> <?= _lang('ai_tool_success') ?>');
@@ -512,6 +526,7 @@
                                 var list = data.results || [];
                                 if (list.length === 0) {
                                     detailHtml = '<?= _lang('ai_tool_no_data') ?>';
+                                    resultsTextForAi = '[工具执行结果] 成功，没有返回任何数据（这在执行 DELETE/UPDATE 等写操作时是正常的）。';
                                 } else {
                                     detailHtml = '<div class="table-responsive"><table class="table table-bordered table-sm text-xs mb-0"><thead><tr>';
                                     var keys = Object.keys(list[0]);
@@ -534,17 +549,29 @@
                                         detailHtml += '</tr>';
                                     });
                                     detailHtml += '</tbody></table></div>';
+
+                                    resultsTextForAi = '[工具执行结果] 成功，查询到的数据如下：\n' + JSON.stringify(list);
                                 }
                             } else if (data.message) {
                                 detailHtml = data.message;
+                                resultsTextForAi = '[工具执行结果] 成功：' + data.message;
                             } else {
                                 detailHtml = '<?= _lang('ai_tool_complete') ?>';
+                                resultsTextForAi = '[工具执行结果] 成功：操作执行完毕。';
                             }
                             $card.find('.action-details').html(detailHtml);
                         } else {
-                            showError(response.msg || '<?= _lang('ai_tool_failed') ?>');
+                            var errorMsg = response.msg || '<?= _lang('ai_tool_failed') ?>';
+                            showError(errorMsg);
                         }
                         $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
+
+                        // 仅当执行成功，且为只读操作（中间信息）时，才自动回传结果给 AI 触发下一步动作
+                        if (response.code === 0 && !isWriteOp && resultsTextForAi) {
+                            setTimeout(function() {
+                                sendAiMessage(resultsTextForAi, true);
+                            }, 1500);
+                        }
                     },
                     /**
                      * AJAX 请求失败的回调函数，若服务端返回带有错误信息的 JSON，则解析出并显示 msg 报错信息。
