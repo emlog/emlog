@@ -15,16 +15,16 @@
 <div class="modal fade" id="aiChatModal" tabindex="-1" role="dialog" aria-labelledby="aiChatModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
         <div class="modal-content border-0 shadow">
-            <div class="modal-header border-0">
+            <div class="modal-header border-0 pb-2">
                 <h5 class="modal-title" id="aiChatModalLabel"><?= _lang('ai_chat') ?></h5>
-                <button type="button" class="btn btn-xs btn-outline-danger ml-auto mr-3" id="clear-chat-btn" title="<?= _lang('clear_history_title') ?>">
+                <button type="button" class="btn btn-xs btn-outline-danger ml-auto mr-3" id="clear-chat-btn" title="<?= _lang('clear_history_title') ?>" style="font-size: 11px; padding: 1px 5px;">
                     <?= _lang('clear_history') ?>
                 </button>
                 <button type="button" class="close ml-0" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body pt-0">
                 <div id="chat-box" style="height: 500px; overflow-y: scroll; border: 1px solid #ddd; padding: 10px; margin-bottom: 10px; border-radius: 8px;">
                     <!-- Chat messages will appear here -->
                 </div>
