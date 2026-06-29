@@ -17,8 +17,8 @@
         <div class="modal-content border-0 shadow">
             <div class="modal-header border-0">
                 <h5 class="modal-title" id="aiChatModalLabel">💬 <?= _lang('ai_chat') ?></h5>
-                <button type="button" class="btn btn-xs btn-outline-danger ml-auto mr-3" id="clear-chat-btn" title="清空对话历史">
-                    清空历史
+                <button type="button" class="btn btn-xs btn-outline-danger ml-auto mr-3" id="clear-chat-btn" title="<?= _lang('clear_history_title') ?>">
+                    <?= _lang('clear_history') ?>
                 </button>
                 <button type="button" class="close ml-0" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -36,10 +36,10 @@
                         </div>
                     </div>
                     <div class="mt-2 d-flex flex-wrap" style="gap: 5px;">
-                        <button type="button" class="btn btn-xs btn-outline-info" id="btn-em-help" style="font-size: 11px; padding: 2px 6px;"><i class="icofont-search-document"></i> @em-help 询问emlog使用问题</button>
+                        <button type="button" class="btn btn-xs btn-outline-info" id="btn-em-help" style="font-size: 11px; padding: 2px 6px;"><i class="icofont-search-document"></i> @em-help <?= _lang('ai_em_help_btn') ?></button>
                     </div>
                     <div class="text-muted text-xs mt-1">
-                        <?= _lang('model_label') ?><?php if (AI::model()): ?><?= AI::model() ?><?php else: ?><?= _lang('no_ai_model') ?> <a href="./setting.php?action=ai" class="text-primary font-weight-bold ml-1">点击快速去设置</a><?php endif; ?>，<?= _lang('shift_enter_tip') ?>
+                        <?= _lang('model_label') ?><?php if (AI::model()): ?><?= AI::model() ?><?php else: ?><?= _lang('no_ai_model') ?> <a href="./setting.php?action=ai" class="text-primary font-weight-bold ml-1"><?= _lang('click_to_setting') ?></a><?php endif; ?>，<?= _lang('shift_enter_tip') ?>
                     </div>
                 </form>
                 <script>
@@ -229,18 +229,21 @@
         var isHistoryLoaded = false;
 
         var emptyChatHtml = '<div class="p-3 text-muted" id="empty-chat-guide">' +
-            '<p class="font-weight-bold mb-3"><i class="icofont-info-circle mr-1"></i> 你可以这样对我说：</p>' +
+            '<p class="font-weight-bold mb-3"><i class="icofont-info-circle mr-1"></i> <?= _lang('ai_chat_guide') ?></p>' +
             '<ul class="list-unstyled pl-0" style="line-height: 1.8;">' +
-            '<li class="mb-2 chat-example-suggest" data-text="帮我查询最近最受欢迎的5篇文章" style="cursor: pointer;"><i class="icofont-double-right text-primary mr-1"></i> “帮我查询最近最受欢迎的5篇文章”</li>' +
-            '<li class="mb-2 chat-example-suggest" data-text="把站点名称改为：我的技术博客" style="cursor: pointer;"><i class="icofont-double-right text-primary mr-1"></i> “把博客名称改为：我的技术博客”</li>' +
-            '<li class="mb-2 chat-example-suggest" data-text="删除最近收到的一条评论" style="cursor: pointer;"><i class="icofont-double-right text-primary mr-1"></i> “删除最近收到的一条评论”</li>' +
-            '<li class="mb-2 chat-example-suggest" data-text="添加一个新的分类：生活随笔" style="cursor: pointer;"><i class="icofont-double-right text-primary mr-1"></i> “添加一个新的分类：生活随笔”</li>' +
-            '<li class="mb-2 chat-example-suggest" data-text="写一篇关于宇宙起源的文章，并作为文章发布" style="cursor: pointer;"><i class="icofont-double-right text-primary mr-1"></i> “写一篇关于宇宙起源的文章，并作为文章发布”</li>' +
+            '<li class="mb-2 chat-example-suggest" data-text="<?= _lang('ai_suggest_query_posts') ?>" style="cursor: pointer;"><i class="icofont-double-right text-primary mr-1"></i> “<?= _lang('ai_suggest_query_posts') ?>”</li>' +
+            '<li class="mb-2 chat-example-suggest" data-text="<?= _lang('ai_suggest_change_name') ?>" style="cursor: pointer;"><i class="icofont-double-right text-primary mr-1"></i> “<?= _lang('ai_suggest_change_name') ?>”</li>' +
+            '<li class="mb-2 chat-example-suggest" data-text="<?= _lang('ai_suggest_delete_comment') ?>" style="cursor: pointer;"><i class="icofont-double-right text-primary mr-1"></i> “<?= _lang('ai_suggest_delete_comment') ?>”</li>' +
+            '<li class="mb-2 chat-example-suggest" data-text="<?= _lang('ai_suggest_add_category') ?>" style="cursor: pointer;"><i class="icofont-double-right text-primary mr-1"></i> “<?= _lang('ai_suggest_add_category') ?>”</li>' +
+            '<li class="mb-2 chat-example-suggest" data-text="<?= _lang('ai_suggest_write_article') ?>" style="cursor: pointer;"><i class="icofont-double-right text-primary mr-1"></i> “<?= _lang('ai_suggest_write_article') ?>”</li>' +
             '</ul>' +
             '</div>';
 
+        /**
+         * 加载AI助手聊天历史记录
+         */
         function loadChatHistory() {
-            $('#chat-box').html('<div class="text-center text-muted my-3"><i class="icofont-spinner rotate"></i> 正在加载历史记录...</div>');
+            $('#chat-box').html('<div class="text-center text-muted my-3"><i class="icofont-spinner rotate"></i> <?= _lang('loading_history') ?></div>');
             $.getJSON('ai.php?action=get_history', function(res) {
                 $('#chat-box').empty();
                 if (res.data && res.data.length > 0) {
@@ -265,7 +268,7 @@
                 }
                 isHistoryLoaded = true;
             }).fail(function() {
-                $('#chat-box').html('<div class="text-center text-danger my-3">加载历史记录失败</div>');
+                $('#chat-box').html('<div class="text-center text-danger my-3"><?= _lang('load_history_failed') ?></div>');
             });
         }
 
@@ -370,9 +373,16 @@
         });
 
         // 执行 AI 工具请求与卡片渲染
+        /**
+         * 执行 AI 工具请求与卡片渲染
+         * 
+         * @param {string} name 工具名称
+         * @param {string} paramsJson JSON格式的参数字符串
+         * @param {jQuery} $aiMessage AI消息DOM容器对象
+         */
         function executeToolCall(name, paramsJson, $aiMessage) {
             var toolNamesMap = {
-                'query_database': '查询/操作数据库'
+                'query_database': '<?= _lang('ai_tool_query_database') ?>'
             };
             var friendlyName = toolNamesMap[name] || name;
 
@@ -389,14 +399,14 @@
                 '<div class="card-body py-2 px-3">' +
                 '<div class="d-flex align-items-center justify-content-between">' +
                 '<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">' +
-                '<i class="icofont-tools-bag mr-1"></i> AI 博客助手操作' +
+                '<i class="icofont-tools-bag mr-1"></i> <?= _lang('ai_tool_operation') ?>' +
                 '</div>' +
                 '<span class="badge badge-info status-badge">' +
-                (isWriteOp ? '<i class="icofont-warning-alt"></i> 等待确认' : '<i class="icofont-spinner-alt-3 rotate"></i> 正在执行...') +
+                (isWriteOp ? '<i class="icofont-warning-alt"></i> <?= _lang('ai_tool_wait_confirm') ?>' : '<i class="icofont-spinner-alt-3 rotate"></i> <?= _lang('ai_tool_executing') ?>') +
                 '</span>' +
                 '</div>' +
                 '<div class="text-sm text-gray-800 action-details">' +
-                (isWriteOp ? '检测到敏感的数据或表结构变更操作。' : '正在为您：' + friendlyName + '...') +
+                (isWriteOp ? '<?= _lang('ai_tool_sensitive_detect') ?>' : '<?= _lang('ai_tool_executing_for_you') ?>'.replace('%s', friendlyName)) +
                 '</div>' +
                 '</div>' +
                 '</div>'
@@ -408,10 +418,10 @@
                 // 显示确认界面
                 var confirmHtml =
                     '<div class="confirm-wrap mt-2 p-2 bg-light border rounded">' +
-                    '<div class="text-xs text-muted mb-1">该操作将修改数据库：<code>' + $('<div>').text(sql).html() + '</code></div>' +
-                    '<div class="text-xs font-weight-bold text-danger mb-2">敏感操作警告！确认是否执行该操作？</div>' +
-                    '<button class="btn btn-xs btn-danger run-confirm-btn mr-2">确认执行</button>' +
-                    '<button class="btn btn-xs btn-light cancel-confirm-btn">取消</button>' +
+                    '<div class="text-xs text-muted mb-1"><?= _lang('ai_tool_modify_db_tip') ?><code>' + $('<div>').text(sql).html() + '</code></div>' +
+                    '<div class="text-xs font-weight-bold text-danger mb-2"><?= _lang('ai_tool_warning') ?></div>' +
+                    '<button class="btn btn-xs btn-danger run-confirm-btn mr-2"><?= _lang('ai_tool_confirm_btn') ?></button>' +
+                    '<button class="btn btn-xs btn-light cancel-confirm-btn"><?= _lang('ai_tool_cancel') ?></button>' +
                     '</div>';
                 $card.find('.action-details').append(confirmHtml);
                 $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
@@ -419,15 +429,15 @@
                 // 取消按钮
                 $card.find('.cancel-confirm-btn').on('click', function() {
                     $card.removeClass('border-left-primary').addClass('border-left-secondary');
-                    $card.find('.status-badge').removeClass('badge-info').addClass('badge-secondary').html('<i class="icofont-close-circled"></i> 已取消');
-                    $card.find('.action-details').html('<span class="text-muted">操作已取消。</span>');
+                    $card.find('.status-badge').removeClass('badge-info').addClass('badge-secondary').html('<i class="icofont-close-circled"></i> <?= _lang('ai_tool_cancelled') ?>');
+                    $card.find('.action-details').html('<span class="text-muted"><?= _lang('ai_tool_cancelled_tip') ?></span>');
                 });
 
                 // 确认执行按钮
                 $card.find('.run-confirm-btn').on('click', function() {
                     $card.find('.confirm-wrap').remove();
-                    $card.find('.status-badge').removeClass('badge-info').addClass('badge-info').html('<i class="icofont-spinner-alt-3 rotate"></i> 正在执行...');
-                    $card.find('.action-details').html('正在为您执行敏感操作，请稍候...');
+                    $card.find('.status-badge').removeClass('badge-info').addClass('badge-info').html('<i class="icofont-spinner-alt-3 rotate"></i> <?= _lang('ai_tool_executing') ?>');
+                    $card.find('.action-details').html('<?= _lang('ai_tool_wait_sensitive') ?>');
                     sendAjaxRequest('confirm');
                 });
             } else {
@@ -453,14 +463,14 @@
                     success: function(response) {
                         if (response.code === 0) {
                             $card.removeClass('border-left-primary').addClass('border-left-success');
-                            $card.find('.status-badge').removeClass('badge-info').addClass('badge-success').html('<i class="icofont-check-circled"></i> 执行成功');
+                            $card.find('.status-badge').removeClass('badge-info').addClass('badge-success').html('<i class="icofont-check-circled"></i> <?= _lang('ai_tool_success') ?>');
 
                             var data = response.data || {};
                             var detailHtml = '';
                             if (name === 'query_database') {
                                 var list = data.results || [];
                                 if (list.length === 0) {
-                                    detailHtml = '操作成功，没有返回任何数据（这在执行 DELETE/UPDATE 时是正常的）。';
+                                    detailHtml = '<?= _lang('ai_tool_no_data') ?>';
                                 } else {
                                     detailHtml = '<div class="table-responsive"><table class="table table-bordered table-sm text-xs mb-0"><thead><tr>';
                                     var keys = Object.keys(list[0]);
@@ -487,19 +497,19 @@
                             } else if (data.message) {
                                 detailHtml = data.message;
                             } else {
-                                detailHtml = '操作执行完毕。';
+                                detailHtml = '<?= _lang('ai_tool_complete') ?>';
                             }
                             $card.find('.action-details').html(detailHtml);
                         } else {
-                            showError(response.msg || '执行失败');
+                            showError(response.msg || '<?= _lang('ai_tool_failed') ?>');
                         }
                         $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
                     },
                     /**
-                     * AJAX 请求失败的回调函数，若服务端返回带有错误信息的 JSON，则解析出并友好地显示 msg 报错信息。
+                     * AJAX 请求失败的回调函数，若服务端返回带有错误信息的 JSON，则解析出并显示 msg 报错信息。
                      */
                     error: function(xhr, status, error) {
-                        var errorMsg = '网络连接异常：' + error;
+                        var errorMsg = '<?= _lang('ai_tool_network_error') ?>' + error;
                         try {
                             var response = JSON.parse(xhr.responseText);
                             if (response && response.msg) {
@@ -514,9 +524,14 @@
                 });
             }
 
+            /**
+             * 在卡片中显示错误信息，并更新卡片状态
+             * 
+             * @param {string} errorMsg 错误提示信息
+             */
             function showError(errorMsg) {
                 $card.removeClass('border-left-primary').addClass('border-left-danger');
-                $card.find('.status-badge').removeClass('badge-info').addClass('badge-danger').html('<i class="icofont-close-circled"></i> 执行失败');
+                $card.find('.status-badge').removeClass('badge-info').addClass('badge-danger').html('<i class="icofont-close-circled"></i> <?= _lang('ai_tool_failed') ?>');
                 $card.find('.action-details').html('<span class="text-danger">' + errorMsg + '</span>');
             }
         }
