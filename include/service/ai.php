@@ -31,7 +31,7 @@ class Ai
                 return '请输入您要询问的 emlog 使用问题。例如：`@em-help 挂载点`';
             }
             $searchResults = self::searchEmlog($searchQuery);
-            $system_prompt = "你是一个专业的 Emlog 博客系统解答专家。以下是关于用户问题“" . $searchQuery . "”从 Emlog 官网 FAQ（https://www.emlog.net/docs/faq）及互联网搜索到的相关参考资料：\n\n" . $searchResults . "\n\n请结合上述参考资料以及你自身的知识，专业、详细地回答用户的问题。如果参考资料中有具体的步骤或代码，请尽量提供给用户。请使用中文回答，并保持语气友好、专业。";
+            $system_prompt = "你是一个专业的 Emlog 博客系统解答专家。以下是关于用户问题“" . $searchQuery . "”从 Emlog 官网 FAQ（https://www.emlog.net/docs/faq）及互联网搜索到的相关参考资料：\n\n" . $searchResults . "\n\n请结合上述参考资料以及你自身的知识，专业、详细地回答用户的问题。特别注意：如果参考资料中包含【优先参考：Emlog 官方 FAQ】且有匹配的问题与解答，你必须【绝对优先】采用官方 FAQ 的答案作为你的回答核心，然后再用互联网搜索结果或自身知识进行补充。如果参考资料中有具体的步骤或代码，请尽量提供给用户。请使用中文回答，并保持语气友好、专业。";
             $prompt = $searchQuery;
         }
 
@@ -107,7 +107,7 @@ class Ai
                 return '';
             }
             $searchResults = self::searchEmlog($searchQuery);
-            $system_prompt = "你是一个专业的 Emlog 博客系统解答专家。以下是关于用户问题“" . $searchQuery . "”从 Emlog 官网 FAQ（https://www.emlog.net/docs/faq）及互联网搜索到的相关参考资料：\n\n" . $searchResults . "\n\n请结合上述参考资料以及你自身的知识，专业、详细地回答用户的问题。如果参考资料中有具体的步骤或代码，请尽量提供给用户。请使用中文回答，并保持语气友好、专业。";
+            $system_prompt = "你是一个专业的 Emlog 博客系统解答专家。以下是关于用户问题“" . $searchQuery . "”从 Emlog 官网 FAQ（https://www.emlog.net/docs/faq）及互联网搜索到的相关参考资料：\n\n" . $searchResults . "\n\n请结合上述参考资料以及你自身的知识，专业、详细地回答用户的问题。特别注意：如果参考资料中包含【优先参考：Emlog 官方 FAQ】且有匹配的问题与解答，你必须【绝对优先】采用官方 FAQ 的答案作为你的回答核心，然后再用互联网搜索结果或自身知识进行补充。如果参考资料中有具体的步骤或代码，请尽量提供给用户。请使用中文回答，并保持语气友好、专业。";
             $prompt = $searchQuery;
         }
 
@@ -867,7 +867,13 @@ class Ai
         $faqContext = "";
 
         // 1. 优先抓取并解析官方 FAQ 页面
-        $faqHtml = self::fetchSearchHtml('https://www.emlog.net/docs/faq');
+        // 使用核心封装的 EmCurl 方法读取官网 FAQ 页面（使用带斜杠的规范URL以避免301重定向）
+        $emcurl = new EmCurl(8);
+        $emcurl->request('https://www.emlog.net/docs/faq/');
+        $faqHtml = '';
+        if ($emcurl->getHttpStatus() === 200) {
+            $faqHtml = $emcurl->getRespone();
+        }
         if (!empty($faqHtml)) {
             $parts = preg_split('/<(h[23])\b[^>]*>/i', $faqHtml);
             $faqItems = [];
