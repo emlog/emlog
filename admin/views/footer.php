@@ -210,11 +210,21 @@
             return formatChunk(cleanText);
         }
 
+        /**
+         * 过滤掉不需要渲染在正文中的标签内容（如 tool_call 和 think 思考过程）
+         * 
+         * @param {string} text 原始文本
+         * @returns {string} 过滤后的 Markdown 文本
+         */
         function getCleanMarkdown(text) {
             // 过滤掉 <tool_call ...>...</tool_call> 标签及其内容
             var cleanText = text.replace(/<tool_call\s+name="[^"]*">[\s\S]*?<\/tool_call>/g, '');
             cleanText = cleanText.replace(/<tool_call\s+name="[^"]*">[\s\S]*$/g, '');
             cleanText = cleanText.replace(/<tool_call\s*$/g, '');
+
+            // 过滤掉 <think>...</think> 标签及其内容 (避免历史记录里泄露思考过程)
+            cleanText = cleanText.replace(/<think>[\s\S]*?<\/think>/g, '');
+            cleanText = cleanText.replace(/<think>[\s\S]*$/g, '');
             return cleanText;
         }
 
@@ -318,6 +328,8 @@
             var $answerContent = $aiMessage.find('.ai-answer-content');
             var hasReasoning = false;
             var rawAnswer = '';
+            var rawReasoning = '';
+            var mainAnswer = '';
 
             eventSource.onmessage = function(event) {
                 if (event.data === '[DONE]') {
@@ -327,10 +339,10 @@
                     $sendBtn.prop('disabled', false).text('<?= _lang('send') ?>');
                     eventSource.close();
 
-                    // 对话输出完毕后，尝试提取 tool_call
+                    // 对话输出完毕后，尝试从过滤了思考过程的正文中提取 tool_call
                     var toolCallRegex = /<tool_call\s+name="([^"]+)">([\s\S]*?)<\/tool_call>/g;
                     var match;
-                    while ((match = toolCallRegex.exec(rawAnswer)) !== null) {
+                    while ((match = toolCallRegex.exec(mainAnswer)) !== null) {
                         var toolName = match[1];
                         var paramsStr = match[2].trim();
                         executeToolCall(toolName, paramsStr, $aiMessage);
@@ -347,11 +359,40 @@
                             if (typeof rchunk === 'string' && $.trim(rchunk) !== '') {
                                 hasReasoning = true;
                                 $thoughtWrap.removeClass('d-none');
-                                $thoughtContent.html($thoughtContent.html() + formatChunk(rchunk));
+                                rawReasoning += rchunk;
+                                $thoughtContent.html(formatChunk(rawReasoning));
                             }
                             if (chunk) {
                                 rawAnswer += chunk;
-                                $answerContent.html(renderMarkdown(rawAnswer));
+
+                                var thinkText = '';
+                                var mainText = rawAnswer;
+
+                                // 判断是否包含 <think> 标签以提取思考过程 (DeepSeek-R1 兼容)
+                                if (rawAnswer.indexOf('<think>') >= 0) {
+                                    hasReasoning = true;
+                                    $thoughtWrap.removeClass('d-none');
+
+                                    var thinkMatch = rawAnswer.match(/<think>([\s\S]*?)(?:<\/think>|$)/);
+                                    if (thinkMatch) {
+                                        thinkText = thinkMatch[1];
+                                    }
+
+                                    mainText = rawAnswer.replace(/<think>[\s\S]*?<\/think>/, '');
+                                    if (rawAnswer.indexOf('</think>') < 0) {
+                                        mainText = '';
+                                    }
+                                }
+
+                                mainAnswer = mainText;
+
+                                if (thinkText) {
+                                    $thoughtContent.html(formatChunk(thinkText));
+                                }
+
+                                if (mainText) {
+                                    $answerContent.html(renderMarkdown(mainText));
+                                }
                             }
                             $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
                         }

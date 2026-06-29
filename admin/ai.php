@@ -63,13 +63,19 @@ if ($action == 'chat_stream') {
 - 工具名称: query_database
 - 说明: 编写 SQL 语句对数据库中的任何表进行操作。你拥有对所有数据库表的完全操作权限。只读查询操作（如 SELECT, SHOW, DESCRIBE）会直接执行并输出；凡是涉及到数据或表结构变更的操作（如 INSERT, UPDATE, DELETE, TRUNCATE, ALTER 等写操作）均需要用户二次输入“确定操作”进行确认，执行成功后会自动刷新缓存。
 - 核心表结构及常用表说明：
-  - `emlog_blog` (文章/页面表): `gid` (ID), `title` (标题), `content` (内容), `views` (点击数), `comnum` (评论数), `hide` (是否草稿 'y'/'n'), `type` (类型 'blog'/'page'), `author` (作者ID，通常为 1), `date` (发布时间戳，请使用 UNIX_TIMESTAMP()), `excerpt` (摘要，如设为空字符串 ''), `alias` (别名，如设为空字符串 '')
-  - `emlog_comment` (评论表): `cid` (评论ID), `gid` (文章ID), `poster` (评论人), `comment` (评论内容), `hide` (是否审核 'y'/'n')
-  - `emlog_options` (配置表): `option_name` (配置项名), `option_value` (配置项值)
-  - `emlog_user` (用户表): `uid` (用户ID), `username` (账号), `nickname` (昵称), `role` (角色 admin/member/writer)
-  - `emlog_sort` (分类表): `sid` (分类ID), `sortname` (分类名称)
-  - `emlog_link` (友情链接表): `id`, `linkname` (链接名), `siteurl` (网址)
-  注意：在编写 SQL时，可以直接使用没有前缀的表名（如 blog, user, comment, options），后端会自动为您替换为带真实前缀的表名（如 emlog_blog）。
+  - `emlog_blog` (文章/页面表): `gid` (文章ID), `title` (标题), `date` (时间戳), `content` (内容), `excerpt` (摘要), `cover` (封面图), `alias` (别名), `author` (作者UID，通常为 1), `sortid` (分类ID，默认为 -1), `type` (文章OR页面: 'blog'/'page'), `views` (点击数), `comnum` (评论数), `like_count` (点赞数), `dislike_count` (点踩数), `collect_count` (收藏数), `top` (置顶 'n'/'y'), `sortop` (分类置顶 'n'/'y'), `hide` (草稿/隐藏 'n'/'y'), `checked` (已审核 'n'/'y'), `allow_remark` (允许评论 'n'/'y'), `password` (密码), `template` (模板), `tags` (标签), `link` (外部链接), `parent_id` (父级文章ID)
+  - `emlog_comment` (评论表): `cid` (评论ID), `gid` (对应文章ID), `pid` (父评论ID), `top` (置顶 'n'/'y'), `poster` (昵称), `avatar` (头像URL), `uid` (发布人UID，游客为 0), `comment` (内容), `mail` (邮箱), `url` (主页网址), `ip` (IP), `agent` (UserAgent), `hide` (是否审核/隐藏 'n'/'y'), `like_count` (点赞数), `date` (发布时间戳)
+  - `emlog_options` (站点配置表): `option_id` (主键), `option_name` (配置项名), `option_value` (配置项值)。常用 `option_name` 如 `blogname` (站点名称), `bloginfo` (站点副标题), `blogurl` (站点地址), `footer_info` (底部版权信息), `icp` (备案号), `active_plugins` (启用的插件序列化串), `widgets1` (启用的侧边栏组件序列化串)
+  - `emlog_user` (用户表): `uid` (用户ID), `username` (登录账号), `password` (密码hash), `nickname` (昵称), `role` (角色 admin/writer/member), `ischeck` (投稿免审核 'n'/'y'), `photo` (头像), `email` (邮箱), `description` (简介), `ip` (注册或最后登录IP), `state` (状态 0正常 1禁用), `credits` (积分), `create_time` (创建时间戳), `update_time` (更新时间戳)
+  - `emlog_sort` (文章分类表): `sid` (分类ID), `sortname` (分类名), `alias` (别名), `taxis` (排序号), `pid` (父分类ID), `description` (分类备注), `kw` (分类SEO关键词), `title` (分类页面SEO标题), `template` (分类模板名), `sortimg` (分类图片), `page_count` (每页文章数), `allow_user_post` (接受用户投稿 'y'/'n')
+  - `emlog_link` (友情链接表): `id` (链接ID), `sitename` (链接名称), `siteurl` (链接地址), `icon` (图标URL), `description` (链接描述), `hide` (是否隐藏 'n'/'y'), `taxis` (排序号)
+  - `emlog_twitter` (微语笔记表): `id` (微语ID), `content` (微语内容), `img` (图片URL), `author` (作者UID，通常为 1), `date` (创建时间戳), `replynum` (回复数), `like_count` (点赞数), `private` (是否私密 'y'/'n'), `top` (是否置顶 'y'/'n'), `ip` (发布者IP)
+  - `emlog_attachment` (资源文件/附件表): `aid` (资源ID), `alias` (别名), `author` (上传者UID), `sortid` (附件分类ID), `filename` (文件名), `filesize` (大小字节), `filepath` (路径), `addtime` (时间戳), `width` (宽), `height` (高), `mimetype` (MIME类型), `download_count` (下载次数)
+  - `emlog_navi` (导航表): `id` (导航ID), `naviname` (导航名), `url` (跳转地址), `newtab` (新窗口打开 'n'/'y'), `hide` (隐藏 'n'/'y'), `taxis` (排序), `pid` (父ID), `isdefault` (默认 'n'/'y'), `type` (类型: 0自定义 1首页 2微语 3后台 4分类 5页面), `type_id` (关联ID)
+  - `emlog_tag` (文章标签表): `tid` (标签ID), `tagname` (标签名), `title` (SEO标题), `kw` (SEO关键词), `description` (SEO描述), `gid` (关联文章ID列表，以半角逗号前后包围的字符串，如 `,1,2,`)
+  - `emlog_reply` (微语回复表): `id` (回复ID), `uid` (回复人UID), `tid` (对应微语ID), `date` (回复时间戳), `name` (回复人昵称), `content` (回复内容), `hide` (隐藏 'y'/'n'), `islike` (点赞 'y'/'n'), `ip` (IP)
+  - `emlog_like` (点赞记录表): `id` (记录ID), `gid` (文章ID), `vote_type` (类型 'like'/'dislike'/'collect'), `poster` (游客昵称), `avatar` (头像URL), `uid` (用户UID), `ip` (IP), `agent` (UserAgent), `date` (时间戳)
+  注意：在编写 SQL时，可以直接使用没有前缀的表名（如 blog, user, comment, options, link, sort, twitter, attachment, navi, tag, reply, like），后端会自动为您替换为带真实前缀的表名（如 emlog_blog）。
 - 参数格式 (JSON):
   {
     \"sql\": \"标准的 SQL 语句。示例 1 (查询): SELECT nickname FROM user WHERE role='admin'。示例 2 (更新配置): UPDATE options SET option_value='新的站点标题' WHERE option_name='blogname'。示例 3 (删除友情链接): DELETE FROM link WHERE id=2\"

@@ -619,7 +619,7 @@ class Ai
         foreach ($system_tables as $tbl) {
             // 匹配常用 SQL 关键字（FROM, JOIN, UPDATE, INTO, TABLE 等）后面跟着的不带前缀的表名，自动添加真实前缀
             $clean_sql = preg_replace(
-                '/\b(from|join|update|into|truncate(?:\s+table)?|table)\s+`?' . preg_quote($tbl, '/') . '`?\b/i',
+                '/\b(from|join|update|into|truncate(?:\s+table)?|table|describe|desc)\s+`?' . preg_quote($tbl, '/') . '`?\b/i',
                 '$1 `' . DB_PREFIX . $tbl . '`',
                 $clean_sql
             );
