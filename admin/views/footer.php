@@ -38,7 +38,9 @@
                     <div class="mt-2 d-flex flex-wrap" style="gap: 5px;">
                         <button type="button" class="btn btn-xs btn-outline-info" id="btn-em-help" style="font-size: 11px; padding: 2px 6px;"><i class="icofont-search-document"></i> @em-help 询问emlog使用问题</button>
                     </div>
-                    <div class="text-muted text-xs mt-1"><?= _lang('model_label') ?><?= AI::model() ? AI::model() : _lang('no_ai_model') ?>，<?= _lang('shift_enter_tip') ?></div>
+                    <div class="text-muted text-xs mt-1">
+                        <?= _lang('model_label') ?><?php if (AI::model()): ?><?= AI::model() ?><?php else: ?><?= _lang('no_ai_model') ?> <a href="./setting.php?action=ai" class="text-primary font-weight-bold ml-1">点击快速去设置</a><?php endif; ?>，<?= _lang('shift_enter_tip') ?>
+                    </div>
                 </form>
                 <script>
                     $(document).ready(function() {
