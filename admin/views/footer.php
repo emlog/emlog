@@ -35,11 +35,11 @@
                             <button class="btn btn-primary" type="submit" id="send-btn"><?= _lang('send') ?></button>
                         </div>
                     </div>
-                    <div class="mt-2 d-flex flex-wrap" style="gap: 5px;">
+                    <div class="mt-2 d-flex justify-content-between align-items-center flex-wrap" style="gap: 5px;">
                         <button type="button" class="btn btn-xs btn-outline-info" id="btn-em-help" style="font-size: 11px; padding: 2px 6px;"><i class="icofont-search-document"></i> @em-help <?= _lang('ai_em_help_btn') ?></button>
-                    </div>
-                    <div class="text-muted text-xs mt-1">
-                        <?= _lang('model_label') ?><?php if (AI::model()): ?><?= AI::model() ?><?php else: ?><?= _lang('no_ai_model') ?> <a href="./setting.php?action=ai" class="text-primary font-weight-bold ml-1"><?= _lang('click_to_setting') ?></a><?php endif; ?>，<?= _lang('shift_enter_tip') ?>
+                        <div class="text-muted small">
+                            <?= _lang('model_label') ?><?php if (AI::model()): ?><?= AI::model() ?><?php else: ?><?= _lang('no_ai_model') ?> <a href="./setting.php?action=ai" class="text-primary font-weight-bold ml-1"><?= _lang('click_to_setting') ?></a><?php endif; ?>
+                        </div>
                     </div>
                 </form>
                 <script>

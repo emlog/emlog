@@ -116,12 +116,11 @@ return [
 
     // AI
     'ai_chat' => 'AI助手',
-    'input_message' => '输入消息...',
+    'input_message' => '输入消息，按 Shift + Enter 换行',
     'send' => '发送',
     'sending' => '发送中...',
     'model_label' => 'Model：',
     'no_ai_model' => '未配置AI模型',
-    'shift_enter_tip' => '按 Shift + Enter 换行',
     'connect_error' => '连接出错，可能是模型配置或者网络问题',
     'clear_history' => '清空历史',
     'clear_history_title' => '清空对话历史',

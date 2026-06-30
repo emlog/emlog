@@ -116,12 +116,11 @@ return [
 
     // AI
     'ai_chat' => 'AI Chat',
-    'input_message' => 'Type a message...',
+    'input_message' => 'Type a message, Press Shift + Enter for new line',
     'send' => 'Send',
     'sending' => 'Sending...',
     'model_label' => 'Model: ',
     'no_ai_model' => 'AI model not configured',
-    'shift_enter_tip' => 'Press Shift + Enter for new line',
     'connect_error' => 'Connection error, possibly model configuration or network issue',
     'clear_history' => 'Clear History',
     'clear_history_title' => 'Clear conversation history',
