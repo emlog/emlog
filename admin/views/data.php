@@ -20,7 +20,7 @@
     </div>
     <div class="card">
         <h5 class="card-header"><?= _lang('import_backup'); ?></h5>
-        <form action="data.php?action=import" enctype="multipart/form-data" method="post">
+        <form action="data.php?action=import" enctype="multipart/form-data" method="post" style="display: flex; flex-direction: column; flex-grow: 1;">
             <div class="card-body">
                 <div id="import">
                     <p class="des"><?= _lang('import_backup_desc'); ?></p>
@@ -40,6 +40,18 @@
         </form>
     </div>
     <div class="card">
+        <h5 class="card-header"><?= _lang('data_repair'); ?></h5>
+        <div class="card-body">
+            <p class="des text-muted"><?= _lang('data_repair_desc'); ?></p>
+            <div>
+                <?= _lang('data_repair_features'); ?>
+            </div>
+        </div>
+        <div class="card-footer text-right">
+            <a href="store.php?keyword=工具箱" class="btn btn-sm btn-success"><?= _lang('get_toolbox_plugin'); ?></a>
+        </div>
+    </div>
+    <div class="card">
         <h5 class="card-header"><?= _lang('update_cache'); ?></h5>
         <div class="card-body">
             <div id="cache">
@@ -51,6 +63,7 @@
         </div>
     </div>
 </div>
+
 <script>
     $(function() {
         $("#menu_category_sys").addClass('active');

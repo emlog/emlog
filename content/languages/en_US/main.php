@@ -903,6 +903,10 @@ return [
     'not_emlog_pro_backup' => 'The file is not an emlog pro data backup file',
     'prefix_mismatch' => 'The database table prefix in the backup file is inconsistent with the current system database table prefix %s',
     'open_backup_error' => 'Cannot open backup file for reading',
+    'data_repair' => 'Data Repair',
+    'data_repair_desc' => 'Recommended to install and use the Toolbox plugin, which includes the following features:',
+    'data_repair_features' => 'Repair database tables, change domain name, import external data, reset login cookies, etc.',
+    'get_toolbox_plugin' => 'Get Plugin',
 
     // Page
     'page_draft_success' => 'Draft saved successfully',
