@@ -119,6 +119,7 @@ return [
     'input_message' => 'Type a message, Press Shift + Enter for new line',
     'send' => 'Send',
     'sending' => 'Sending...',
+    'stop_streaming' => 'Stop',
     'model_label' => 'Model: ',
     'no_ai_model' => 'AI model not configured',
     'connect_error' => 'Connection error, possibly model configuration or network issue',

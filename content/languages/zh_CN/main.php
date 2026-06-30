@@ -119,6 +119,7 @@ return [
     'input_message' => '输入消息，按 Shift + Enter 换行',
     'send' => '发送',
     'sending' => '发送中...',
+    'stop_streaming' => '停止',
     'model_label' => 'Model：',
     'no_ai_model' => '未配置AI模型',
     'connect_error' => '连接出错，可能是模型配置或者网络问题',

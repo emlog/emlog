@@ -37,18 +37,35 @@
                     </div>
                     <div class="mt-2 d-flex justify-content-between align-items-center flex-wrap" style="gap: 5px;">
                         <button type="button" class="btn btn-xs btn-outline-info" id="btn-em-help" style="font-size: 11px; padding: 2px 6px;"><i class="icofont-search-document"></i> @em-help <?= _lang('ai_em_help_btn') ?></button>
-                        <div class="text-muted small">
-                            <?= _lang('model_label') ?><?php if (AI::model()): ?><?= AI::model() ?><?php else: ?><?= _lang('no_ai_model') ?> <a href="./setting.php?action=ai" class="text-primary font-weight-bold ml-1"><?= _lang('click_to_setting') ?></a><?php endif; ?>
+                        <div class="text-muted text-xs">
+                            <?= _lang('model_label') ?><?php if (AI::model()): ?><a href="./setting.php?action=ai" class="text-primary font-weight-bold"><?= AI::model() ?></a><?php else: ?><?= _lang('no_ai_model') ?> <a href="./setting.php?action=ai" class="text-primary font-weight-bold ml-1"><?= _lang('click_to_setting') ?></a><?php endif; ?>
                         </div>
                     </div>
                 </form>
                 <script>
                     $(document).ready(function() {
-                        $('#chat-input').on('input', function() {
-                            this.style.height = 'auto';
-                            this.style.height = (this.scrollHeight) + 'px';
-                            $('#send-btn').css('height', this.style.height);
-                        });
+                        /**
+                         * 动态调整AI聊天输入框及发送按钮的高度
+                         * 在输入内容变化时，自动计算合适的高度，并对最大高度做 200px 的限制
+                         */
+                        function adjustInputHeight() {
+                            var $input = $('#chat-input');
+                            var $btn = $('#send-btn');
+                            $input.css('height', 'auto');
+                            $btn.css('height', 'auto');
+                            
+                            var scrollHeight = $input[0].scrollHeight;
+                            if (scrollHeight > 200) {
+                                scrollHeight = 200;
+                                $input.css('overflow-y', 'auto');
+                            } else {
+                                $input.css('overflow-y', 'hidden');
+                            }
+                            $input.css('height', scrollHeight + 'px');
+                            $btn.css('height', scrollHeight + 'px');
+                        }
+
+                        $('#chat-input').on('input', adjustInputHeight);
 
                         $('#chat-input').on('keydown', function(event) {
                             if (event.key === 'Enter' && !event.shiftKey) {
@@ -58,7 +75,7 @@
                         });
 
                         $('#chat-form').submit(function() {
-                            $('#chat-input').css('height', 'auto');
+                            $('#chat-input').css('height', 'auto').css('overflow-y', 'hidden');
                             $('#send-btn').css('height', 'auto');
                         });
 
@@ -197,6 +214,20 @@
         })
 
         // AI Chat
+        var currentEventSource = null;
+
+        /**
+         * 重置聊天发送按钮和连接状态
+         */
+        function resetChatStatus() {
+            if (currentEventSource) {
+                currentEventSource.close();
+                currentEventSource = null;
+            }
+            var $sendBtn = $('#send-btn');
+            $sendBtn.removeClass('btn-danger').addClass('btn-primary').prop('disabled', false).text('<?= _lang('send') ?>');
+        }
+
         function formatChunk(text) {
             return $('<div>').text(text).html().replace(/\n/g, '<br>');
         }
@@ -307,7 +338,7 @@
             if (!isSystemFeedback) {
                 // 用户发送的真实消息
                 $('#chat-box').append('<div style="background-color:#69b4ff; color:#FFFFFF; border-radius: 10px; padding: 10px; margin: 5px 0;"> ' + $('<div>').text(message).html() + '</div>');
-                $('#chat-input').val('');
+                $('#chat-input').val('').trigger('input');
             } else {
                 // 系统自动回传的工具执行结果提示
                 $('#chat-box').append('<div class="text-center text-muted my-2 text-xs"><i class="icofont-exchange"></i> [系统提示] 工具执行结果已自动反馈给 AI 助手</div>');
@@ -315,9 +346,12 @@
             $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
 
             var $sendBtn = $('#send-btn');
-            $sendBtn.prop('disabled', true).text('<?= _lang('sending') ?>');
+            $sendBtn.removeClass('btn-primary').addClass('btn-danger').text('<?= _lang('stop_streaming') ?>');
 
-            var eventSource = new EventSource('ai.php?action=chat_stream&message=' + encodeURIComponent(message));
+            if (currentEventSource) {
+                currentEventSource.close();
+            }
+            currentEventSource = new EventSource('ai.php?action=chat_stream&message=' + encodeURIComponent(message));
             var $aiMessage = $(
                 '<div class="ai-chat-message">' +
                 '<div class="ai-thought-wrap d-none">' +
@@ -337,13 +371,12 @@
             var rawReasoning = '';
             var mainAnswer = '';
 
-            eventSource.onmessage = function(event) {
+            currentEventSource.onmessage = function(event) {
                 if (event.data === '[DONE]') {
                     if (!hasReasoning) {
                         $thoughtWrap.remove();
                     }
-                    $sendBtn.prop('disabled', false).text('<?= _lang('send') ?>');
-                    eventSource.close();
+                    resetChatStatus();
 
                     // 对话输出完毕后，尝试从过滤了思考过程的正文中提取 tool_call
                     var toolCallRegex = /<tool_call\s+name="([^"]+)">([\s\S]*?)<\/tool_call>/g;
@@ -408,19 +441,22 @@
                 }
             };
 
-            eventSource.onerror = function() {
+            currentEventSource.onerror = function() {
                 if (!hasReasoning) {
                     $thoughtWrap.remove();
                 }
                 $answerContent.html($answerContent.html() + "<?= _lang('connect_error') ?>");
                 $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
-                $sendBtn.prop('disabled', false).text('<?= _lang('send') ?>');
-                eventSource.close();
+                resetChatStatus();
             };
         }
 
         $('#chat-form').submit(function(event) {
             event.preventDefault();
+            if (currentEventSource) {
+                resetChatStatus();
+                return;
+            }
             var message = $('#chat-input').val().trim();
             if (message === '') return;
             sendAiMessage(message, false);
