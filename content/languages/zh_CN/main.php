@@ -125,7 +125,7 @@ return [
     'connect_error' => '连接出错，可能是模型配置或者网络问题',
     'clear_history' => '清空历史',
     'clear_history_title' => '清空对话历史',
-    'click_to_setting' => '点击快速去设置',
+    'click_to_setting' => '配置文本AI模型',
     'ai_chat_guide' => '你可以这样对我说：',
     'ai_suggest_query_posts' => '帮我查询最近最受欢迎的5篇文章',
     'ai_suggest_change_name' => '把博客名称改为：我的技术博客',
