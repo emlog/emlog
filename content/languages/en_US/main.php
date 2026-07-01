@@ -125,7 +125,6 @@ return [
     'connect_error' => 'Connection error, possibly model configuration or network issue',
     'clear_history' => 'Clear History',
     'clear_history_title' => 'Clear conversation history',
-    'click_to_setting' => 'Click to configure',
     'ai_chat_guide' => 'You can say to me like this:',
     'ai_suggest_query_posts' => 'Help me query the 5 most popular posts recently',
     'ai_suggest_change_name' => 'Change the blog name to: My Tech Blog',

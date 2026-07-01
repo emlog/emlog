@@ -125,7 +125,6 @@ return [
     'connect_error' => '连接出错，可能是模型配置或者网络问题',
     'clear_history' => '清空历史',
     'clear_history_title' => '清空对话历史',
-    'click_to_setting' => '配置文本AI模型',
     'ai_chat_guide' => '你可以这样对我说：',
     'ai_suggest_query_posts' => '帮我查询最近最受欢迎的5篇文章',
     'ai_suggest_change_name' => '把博客名称改为：我的技术博客',
@@ -428,7 +427,7 @@ return [
     // Setting - AI
     'ai_chat_model' => '文本对话模型',
     'enabled' => '已启用',
-    'add_chat_model' => '添加文本对话模型',
+    'add_ai_model' => '添加模型',
     'view_supported_models' => '查看支持模型列表',
     'ai_image_model' => '图像生成模型',
     'add_image_model' => '添加图像生成模型',
