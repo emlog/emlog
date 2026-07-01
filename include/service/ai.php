@@ -1045,13 +1045,7 @@ class Ai
     public static function updateConfig($key, $action, $value = null)
     {
         $allowed_keys = [
-            'ADMIN_PATH_CODE',
-            'APP_UPLOAD_FORBID',
             'ENVIRONMENT',
-            'UPLOAD_MAX_SIZE',
-            'UPLOAD_ATT_TYPE',
-            'USE_MYSQL_PDO',
-            'UPLOAD_PATH_RELATIVE',
             'ARTICLE_AUTOSAVE_OFF',
             'SWITCH_TEMPLATE',
             'EMLOG_LANG'
