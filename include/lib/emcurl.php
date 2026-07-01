@@ -82,8 +82,6 @@ class EmCurl
         $this->_status = curl_getinfo($s, CURLINFO_HTTP_CODE);
         $this->_headers = substr($this->_response, 0, curl_getinfo($s, CURLINFO_HEADER_SIZE));
         $this->_error = curl_error($s);
-
-        curl_close($s);
     }
 
     public function getHttpStatus()

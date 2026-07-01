@@ -236,8 +236,6 @@ class Ai
             echo "data: [ERROR] " . curl_error($ch) . "\n\n";
         }
 
-        curl_close($ch);
-
         return $full_response;
     }
 
@@ -397,7 +395,6 @@ class Ai
         $response = curl_exec($ch);
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         $error = curl_error($ch);
-        curl_close($ch);
 
         if ($error) {
             return array('error' => 'CURL错误: ' . $error);
@@ -652,7 +649,7 @@ class Ai
                             $is_nullable = (strtoupper($info['Null']) === 'YES');
                             $has_default = ($info['Default'] !== null);
                             $is_auto_increment = (strpos(strtolower($info['Extra']), 'auto_increment') !== false);
-                            
+
                             if (!$is_nullable && !$has_default && !$is_auto_increment) {
                                 $type = strtolower($info['Type']);
                                 if (strpos($type, 'int') !== false || strpos($type, 'decimal') !== false || strpos($type, 'float') !== false || strpos($type, 'double') !== false) {
@@ -676,17 +673,17 @@ class Ai
                             if (preg_match('/insert\s+into\s+`?\w+`?\s*\(([^)]+)\)\s*values\s*(.+)/is', $clean_sql, $insert_matches)) {
                                 $cols_str = $insert_matches[1];
                                 $vals_part = trim($insert_matches[2]);
-                                
-                                $existing_cols = array_map(function($c) {
+
+                                $existing_cols = array_map(function ($c) {
                                     return trim($c, " \t\n\r\0\x0B`'");
                                 }, explode(',', $cols_str));
-                                
+
                                 foreach ($required_fields as $f => $def) {
                                     if (!in_array($f, $existing_cols)) {
                                         $missing_fields[$f] = $def;
                                     }
                                 }
-                                
+
                                 if (!empty($missing_fields)) {
                                     $append_cols = [];
                                     $append_vals = [];
@@ -698,9 +695,9 @@ class Ai
                                             $append_vals[] = "'" . addslashes($def) . "'";
                                         }
                                     }
-                                    
+
                                     $new_cols_str = $cols_str . ", " . implode(', ', $append_cols);
-                                    
+
                                     // 鲁棒解析并追加值，支持包含括号的字符串
                                     $new_vals_part = '';
                                     $len = strlen($vals_part);
@@ -708,7 +705,7 @@ class Ai
                                     $string_char = '';
                                     $bracket_depth = 0;
                                     $current_group = '';
-                                    
+
                                     for ($i = 0; $i < $len; $i++) {
                                         $char = $vals_part[$i];
                                         if (($char === "'" || $char === '"') && ($i === 0 || $vals_part[$i - 1] !== '\\')) {
@@ -719,7 +716,7 @@ class Ai
                                                 $string_char = $char;
                                             }
                                         }
-                                        
+
                                         if (!$in_string) {
                                             if ($char === '(') {
                                                 $bracket_depth++;
@@ -736,14 +733,14 @@ class Ai
                                                 }
                                             }
                                         }
-                                        
+
                                         if ($bracket_depth > 0) {
                                             $current_group .= $char;
                                         } else {
                                             $new_vals_part .= $char;
                                         }
                                     }
-                                    
+
                                     $cols_pos = strpos($clean_sql, $cols_str);
                                     if ($cols_pos !== false) {
                                         $sql_replaced_cols = substr_replace($clean_sql, $new_cols_str, $cols_pos, strlen($cols_str));
@@ -761,13 +758,13 @@ class Ai
                                 $set_str = $insert_matches[1];
                                 preg_match_all('/`?(\w+)`?\s*=/i', $set_str, $set_cols_matches);
                                 $existing_cols = isset($set_cols_matches[1]) ? $set_cols_matches[1] : [];
-                                
+
                                 foreach ($required_fields as $f => $def) {
                                     if (!in_array($f, $existing_cols)) {
                                         $missing_fields[$f] = $def;
                                     }
                                 }
-                                
+
                                 if (!empty($missing_fields)) {
                                     $append_sets = [];
                                     foreach ($missing_fields as $f => $def) {
@@ -909,7 +906,7 @@ class Ai
 
             if (!empty($faqItems)) {
                 // 按照匹配得分从高到低排序
-                usort($faqItems, function($a, $b) {
+                usort($faqItems, function ($a, $b) {
                     return $b['score'] <=> $a['score'];
                 });
 
@@ -1029,7 +1026,6 @@ class Ai
 
         $html = curl_exec($ch);
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        curl_close($ch);
 
         if ($httpCode !== 200) {
             return '';
