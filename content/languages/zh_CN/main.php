@@ -427,7 +427,6 @@ return [
     // Setting - AI
     'ai_chat_model' => '文本对话模型',
     'enabled' => '已启用',
-    'add_ai_model' => '添加模型',
     'view_supported_models' => '查看支持模型列表',
     'ai_image_model' => '图像生成模型',
     'add_image_model' => '添加图像生成模型',
@@ -435,7 +434,7 @@ return [
     'chat_talk' => 'AI助手',
     'generate_image' => '生成图像',
     'more_ai_apps' => '更多AI应用',
-    'add_ai_model' => '添加AI模型',
+    'add_chat_model' => '添加文本对话模型',
     'edit_ai_model' => '编辑AI模型',
     'ai_generate_image' => 'AI 生成图像',
     'image_prompt' => '图像描述提示词',

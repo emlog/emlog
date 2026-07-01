@@ -435,7 +435,6 @@ return [
     'chat_talk' => 'Chat',
     'generate_image' => 'Generate Image',
     'more_ai_apps' => 'More AI Apps',
-    'add_ai_model' => 'Add AI Model',
     'edit_ai_model' => 'Edit AI Model',
     'ai_generate_image' => 'AI Image Generation',
     'image_prompt' => 'Prompt',
