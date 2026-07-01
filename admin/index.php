@@ -50,6 +50,9 @@ if (empty($action)) {
     if (extension_loaded('mbstring')) {
         $php_ver .= ',mbstr';
     }
+    if (Util::isDevEnv()) {
+        $php_ver .= ',dev';
+    }
 
     if (User::haveEditPermission()) {
         include View::getAdmView('header');

@@ -137,7 +137,6 @@ return [
     'ai_tool_operation' => 'AI 博客助手操作',
     'ai_tool_wait_confirm' => '等待确认',
     'ai_tool_executing' => '正在执行...',
-    'ai_tool_sensitive_detect' => '检测到敏感的数据或表结构变更操作。',
     'ai_tool_executing_for_you' => '正在为您：%s...',
     'ai_tool_modify_db_tip' => '该操作将修改数据库：',
     'ai_tool_warning' => '敏感操作警告！确认是否执行该操作？',

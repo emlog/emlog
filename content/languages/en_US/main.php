@@ -137,7 +137,6 @@ return [
     'ai_tool_operation' => 'AI Blog Assistant Operation',
     'ai_tool_wait_confirm' => 'Waiting for Confirmation',
     'ai_tool_executing' => 'Executing...',
-    'ai_tool_sensitive_detect' => 'Sensitive data or table structure modification detected.',
     'ai_tool_executing_for_you' => 'Executing for you: %s...',
     'ai_tool_modify_db_tip' => 'This operation will modify the database: ',
     'ai_tool_warning' => 'Sensitive Operation Warning! Confirm execution?',

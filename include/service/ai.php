@@ -1036,4 +1036,114 @@ class Ai
         }
         return $html;
     }
+
+    /**
+     * 修改 system config (config.php) 的特定常量配置项
+     * 
+     * @param string $key 配置常量键名
+     * @param string $action 操作：add, update, delete
+     * @param mixed $value 配置值
+     * @return bool 修改成功返回 true
+     * @throws Exception
+     */
+    public static function updateConfig($key, $action, $value = null)
+    {
+        $allowed_keys = [
+            'ADMIN_PATH_CODE',
+            'APP_UPLOAD_FORBID',
+            'ENVIRONMENT',
+            'UPLOAD_MAX_SIZE',
+            'UPLOAD_ATT_TYPE',
+            'USE_MYSQL_PDO',
+            'UPLOAD_PATH_RELATIVE',
+            'ARTICLE_AUTOSAVE_OFF',
+            'SWITCH_TEMPLATE',
+            'EMLOG_LANG'
+        ];
+
+        if (!in_array($key, $allowed_keys)) {
+            throw new Exception("权限限制：只允许修改特定的配置项目");
+        }
+
+        if ($action !== 'delete') {
+            if ($key === 'ADMIN_PATH_CODE') {
+                if (!preg_match('/^[a-zA-Z0-9]{8,16}$/', $value)) {
+                    throw new Exception("ADMIN_PATH_CODE 格式不正确，必须是8-16位的字母数字，不得包含特殊字符");
+                }
+            }
+            if ($key === 'UPLOAD_MAX_SIZE') {
+                if (!is_numeric($value) || intval($value) <= 0) {
+                    throw new Exception("UPLOAD_MAX_SIZE 必须是大于0的整数");
+                }
+                $value = intval($value);
+            }
+            $bool_keys = ['APP_UPLOAD_FORBID', 'USE_MYSQL_PDO', 'UPLOAD_PATH_RELATIVE', 'ARTICLE_AUTOSAVE_OFF', 'SWITCH_TEMPLATE'];
+            if (in_array($key, $bool_keys)) {
+                if (is_string($value)) {
+                    $val_lower = strtolower(trim($value));
+                    if ($val_lower === 'true' || $val_lower === '1') {
+                        $value = true;
+                    } elseif ($val_lower === 'false' || $val_lower === '0') {
+                        $value = false;
+                    } else {
+                        throw new Exception("{$key} 必须是布尔值（true 或 false）");
+                    }
+                } else {
+                    $value = (bool)$value;
+                }
+            }
+        }
+
+        $config_file = EMLOG_ROOT . '/config.php';
+        if (!file_exists($config_file)) {
+            throw new Exception("配置文件 config.php 不存在");
+        }
+
+        if (!is_writable($config_file)) {
+            throw new Exception("配置文件 config.php 不可写");
+        }
+
+        $content = file_get_contents($config_file);
+        if ($content === false) {
+            throw new Exception("读取配置文件 config.php 失败");
+        }
+
+        $formatted_value = '';
+        if ($action !== 'delete') {
+            if (is_bool($value)) {
+                $formatted_value = $value ? 'true' : 'false';
+            } elseif (is_int($value) || is_float($value)) {
+                $formatted_value = $value;
+            } else {
+                $formatted_value = "'" . addslashes($value) . "'";
+            }
+        }
+
+        $pattern = '/const\s+' . preg_quote($key, '/') . '\s*=\s*.*?;/i';
+        $has_const = preg_match($pattern, $content);
+
+        if ($action === 'delete') {
+            if ($has_const) {
+                $content = preg_replace('/const\s+' . preg_quote($key, '/') . '\s*=\s*.*?;[ \t]*\r?\n?/i', '', $content);
+            }
+        } else {
+            $new_line = "const {$key} = {$formatted_value};";
+            if ($has_const) {
+                $content = preg_replace($pattern, $new_line, $content);
+            } else {
+                $content = rtrim($content);
+                if (substr($content, -2) === '?>') {
+                    $content = substr($content, 0, -2) . "\r\n" . $new_line . "\r\n?>";
+                } else {
+                    $content = $content . "\r\n" . $new_line . "\r\n";
+                }
+            }
+        }
+
+        if (file_put_contents($config_file, $content) === false) {
+            throw new Exception("写入配置文件 config.php 失败");
+        }
+
+        return true;
+    }
 }

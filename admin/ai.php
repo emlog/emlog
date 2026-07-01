@@ -45,8 +45,8 @@ if ($action == 'chat_stream') {
     $blogname = Option::get('blogname');
     $bloginfo = Option::get('bloginfo');
 
-    $system_prompt = "你是一个专业的 Emlog 博客助手。你不仅能回答用户的问题，还可以通过输出特定的 `<tool_call>` XML 标签来操作博客数据库的所有表，包含读取、删除、插入及修改数据。
-当用户让你查询、修改、更新、插入或删除数据库数据时（例如：查询最近最受欢迎文章、把某个系统配置修改、添加一个友情链接、删除某个评论等），请在生成给用户的友好回复后，使用特定的工具标签来触发操作。
+    $system_prompt = "你是一个专业的 Emlog 博客助手。你不仅能回答用户的问题，还可以通过输出特定的 `<tool_call>` XML 标签来操作博客数据库或修改系统配置文件 config.php。
+当用户让你查询、修改、更新、插入或删除数据库数据，或者让你调整系统安全、性能、环境、上传大小及路径等 config.php 配置时，请在生成给用户的友好回复后，使用特定的工具标签来触发操作。
 注意：
 1. 所有的 `<tool_call>` 标记必须包含 `name` 属性，内部是一个标准的 JSON 字符串。
 2. 必须且只能在完成给用户的回答后输出工具标签。一次对话中只能输出一个工具标签。
@@ -75,12 +75,35 @@ if ($action == 'chat_stream') {
   - `emlog_tag` (文章标签表): `tid` (标签ID), `tagname` (标签名), `title` (SEO标题), `kw` (SEO关键词), `description` (SEO描述), `gid` (关联文章ID列表，以半角逗号前后包围的字符串，如 `,1,2,`)
   - `emlog_reply` (微语回复表): `id` (回复ID), `uid` (回复人UID), `tid` (对应微语ID), `date` (回复时间戳), `name` (回复人昵称), `content` (回复内容), `hide` (隐藏 'y'/'n'), `islike` (点赞 'y'/'n'), `ip` (IP)
   - `emlog_like` (点赞记录表): `id` (记录ID), `gid` (文章ID), `vote_type` (类型 'like'/'dislike'/'collect'), `poster` (游客昵称), `avatar` (头像URL), `uid` (用户UID), `ip` (IP), `agent` (UserAgent), `date` (时间戳)
-  注意：在编写 SQL时，可以直接使用没有前缀的表名（如 blog, user, comment, options, link, sort, twitter, attachment, navi, tag, reply, like），后端会自动为您替换为带真实前缀的表名（如 emlog_blog）。
+  注意：在编写 SQL时，可以直接使用没有前缀的表名（如 blog, user, comment, options, link, sort, twitter, attachment, navi, tag, reply, like），后端会自动为您替换为带真实前缀 of表名（如 emlog_blog）。
 - 参数格式 (JSON):
   {
-    \"sql\": \"标准的 SQL 语句。示例 1 (查询): SELECT nickname FROM user WHERE role='admin'。示例 2 (更新配置): UPDATE options SET option_value='新的站点标题' WHERE option_name='blogname'。示例 3 (删除友情链接): DELETE FROM link WHERE id=2\"
+    \"sql\": \"标准的 SQL 语句。\"
   }
-- 示例：`<tool_call name=\"query_database\">{\"sql\":\"UPDATE options SET option_value='新站点名称' WHERE option_name='blogname'\"}</tool_call>`";
+- 示例：`<tool_call name=\"query_database\">{\"sql\":\"UPDATE options SET option_value='新站点名称' WHERE option_name='blogname'\"}</tool_call>`
+
+2. 增加、删除、修改特定系统配置文件 (config.php)
+- 工具名称: update_config
+- 说明: 只能增加、删除、修改特定的配置项目，这些配置项目包括：
+  - `ADMIN_PATH_CODE`: 隐藏管理后台登录页面。值必须是8-16位的字母数字，不得包含特殊字符。例如：'abcd1234'。
+  - `APP_UPLOAD_FORBID`: 禁用后台手动上传安装应用。值为布尔值（true/false）。
+  - `ENVIRONMENT`: 开启开发者模式。通常值为 'develop'。
+  - `UPLOAD_MAX_SIZE`: 管理员上传文件最大限制，单位为 KB。如果不配置，系统默认最大为2G。
+  - `UPLOAD_ATT_TYPE`: 管理员上传文件类型限制，用英文逗号分割的后缀。例如：'rar,zip,gif,jpg,jpeg,png,webp,txt,pdf,docx,doc,xls,xlsx,mp4,mp3'。
+  - `USE_MYSQL_PDO`: 使用PDO连接数据库。值为布尔值（true/false）。
+  - `UPLOAD_PATH_RELATIVE`: 上传路径使用相对路径。值为布尔值（true/false）。
+  - `ARTICLE_AUTOSAVE_OFF`: 关闭文章自动保存。值为布尔值（true/false）。
+  - `SWITCH_TEMPLATE`: 开启前台动态切换模板功能。值为布尔值（true/false）。
+  - `EMLOG_LANG`: 切换系统语言。简体中文为 'zh_CN'，英文为 'en_US'。
+- 参数格式 (JSON):
+  {
+    \"key\": \"配置常量键名（必须是上述列表之一）\",
+    \"action\": \"操作类型：add (新增)、update (修改) 或 delete (删除)\",
+    \"value\": \"新增或修改时的配置值，布尔、整数或字符串类型\"
+  }
+- 示例 1 (隐藏后台登录页面): `<tool_call name=\"update_config\">{\"key\":\"ADMIN_PATH_CODE\", \"action\":\"add\", \"value\":\"myadminpath123\"}</tool_call>`
+- 示例 2 (关闭自动保存): `<tool_call name=\"update_config\">{\"key\":\"ARTICLE_AUTOSAVE_OFF\", \"action\":\"add\", \"value\":true}</tool_call>`
+- 示例 3 (删除自动保存配置以恢复默认): `<tool_call name=\"update_config\">{\"key\":\"ARTICLE_AUTOSAVE_OFF\", \"action\":\"delete\"}</tool_call>`";
 
     Ai::chatStream($message, $system_prompt, true);
     exit;
@@ -113,6 +136,31 @@ if ($action == 'execute_tool') {
 
                 Output::ok([
                     'results' => $result
+                ]);
+            } catch (Exception $e) {
+                Output::error($e->getMessage());
+            }
+            break;
+
+        case 'update_config':
+            try {
+                $key = isset($params['key']) ? $params['key'] : '';
+                $configAction = isset($params['action']) ? $params['action'] : '';
+                $value = isset($params['value']) ? $params['value'] : null;
+                $confirm_code = isset($_POST['confirm_code']) ? $_POST['confirm_code'] : '';
+
+                if (empty($key) || empty($configAction)) {
+                    throw new Exception('参数错误，key 和 action 不能为空');
+                }
+
+                if (trim($confirm_code) !== 'confirm') {
+                    throw new Exception("敏感操作拦截：修改系统配置需要确认");
+                }
+
+                $result = Ai::updateConfig($key, $configAction, $value);
+
+                Output::ok([
+                    'message' => '配置文件 config.php 修改成功'
                 ]);
             } catch (Exception $e) {
                 Output::error($e->getMessage());

@@ -346,17 +346,28 @@ var AIChat = {
     executeToolCall: function (name, paramsJson, $aiMessage) {
         var self = this;
         var toolNamesMap = {
-            'query_database': _langJS.ai_tool_query_database
+            'query_database': _langJS.ai_tool_query_database,
+            'update_config': _langJS.ai_tool_update_config || '修改系统配置'
         };
         var friendlyName = toolNamesMap[name] || name;
 
         var sql = '';
+        var configKey = '';
+        var configAction = '';
+        var configValue = '';
         try {
             var paramsObj = JSON.parse(paramsJson);
             sql = paramsObj.sql || '';
+            configKey = paramsObj.key || '';
+            configAction = paramsObj.action || '';
+            configValue = paramsObj.value !== undefined ? JSON.stringify(paramsObj.value) : '';
         } catch (e) {}
 
-        var isWriteOp = !/^\s*(select|show|desc|describe|explain)\b/i.test(sql);
+        var isWriteOp = name === 'update_config' || !/^\s*(select|show|desc|describe|explain)\b/i.test(sql);
+
+        var waitSensitiveText = name === 'update_config'
+            ? (_langJS.ai_tool_config_wait_sensitive || '正在修改配置文件，请稍候...')
+            : _langJS.ai_tool_wait_sensitive;
 
         var $card = $(
             '<div class="card mt-2 shadow-sm border-left-primary">' +
@@ -370,7 +381,7 @@ var AIChat = {
             '</span>' +
             '</div>' +
             '<div class="text-sm text-gray-800 action-details">' +
-            (isWriteOp ? _langJS.ai_tool_sensitive_detect : _langJS.ai_tool_executing_for_you.replace('%s', friendlyName)) +
+            (isWriteOp ? '' : _langJS.ai_tool_executing_for_you.replace('%s', friendlyName)) +
             '</div>' +
             '</div>' +
             '</div>'
@@ -380,14 +391,21 @@ var AIChat = {
 
         if (isWriteOp) {
             // 显示确认界面
+            var tipText = '';
+            if (name === 'update_config') {
+                var actionText = configAction === 'add' ? '新增' : (configAction === 'delete' ? '删除' : '修改');
+                tipText = '即将修改 config.php 配置文件。操作：【' + actionText + '】，配置项：<code>' + $('<div>').text(configKey).html() + '</code>' + (configAction !== 'delete' ? '，新值：<code>' + $('<div>').text(configValue).html() + '</code>' : '');
+            } else {
+                tipText = _langJS.ai_tool_modify_db_tip + '<code>' + $('<div>').text(sql).html() + '</code>';
+            }
             var confirmHtml =
-                '<div class="confirm-wrap mt-2 p-2 bg-light border rounded">' +
-                '<div class="text-xs text-muted mb-1">' + _langJS.ai_tool_modify_db_tip + '<code>' + $('<div>').text(sql).html() + '</code></div>' +
-                '<div class="text-xs font-weight-bold text-danger mb-2">' + _langJS.ai_tool_warning + '</div>' +
+                '<div class="confirm-wrap mt-2">' +
+                '<div class="text-sm mb-2">' + tipText + '</div>' +
+                '<div class="text-sm font-weight-bold text-danger mb-2">' + _langJS.ai_tool_warning + '</div>' +
                 '<button class="btn btn-xs btn-danger run-confirm-btn mr-2">' + _langJS.ai_tool_confirm_btn + '</button>' +
                 '<button class="btn btn-xs btn-light cancel-confirm-btn">' + _langJS.cancel + '</button>' +
                 '</div>';
-            $card.find('.action-details').append(confirmHtml);
+            $card.find('.action-details').html(confirmHtml);
             $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
 
             // 取消按钮
@@ -401,7 +419,7 @@ var AIChat = {
             $card.find('.run-confirm-btn').on('click', function () {
                 $card.find('.confirm-wrap').remove();
                 $card.find('.status-badge').removeClass('badge-info').addClass('badge-info').html('<i class="icofont-spinner-alt-3 rotate"></i> ' + _langJS.ai_tool_executing);
-                $card.find('.action-details').html(_langJS.ai_tool_wait_sensitive);
+                $card.find('.action-details').html(waitSensitiveText);
                 sendAjaxRequest('confirm');
             });
         } else {
