@@ -48,7 +48,7 @@
             </div>
         </div>
         <div class="card-footer text-right">
-            <a href="store.php?keyword=工具箱" class="btn btn-sm btn-success"><?= _lang('get_toolbox_plugin'); ?></a>
+            <a href="store.php?keyword=工具箱" class="btn btn-sm btn-success"><?= _lang('install_plugin'); ?></a>
         </div>
     </div>
     <div class="card">

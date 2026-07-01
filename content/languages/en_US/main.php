@@ -904,7 +904,6 @@ return [
     'data_repair' => 'Data Repair',
     'data_repair_desc' => 'Recommended to install and use the Toolbox plugin, which includes the following features:',
     'data_repair_features' => 'Repair database tables, change domain name, import external data, reset login cookies, etc.',
-    'get_toolbox_plugin' => 'Get Plugin',
 
     // Page
     'page_draft_success' => 'Draft saved successfully',

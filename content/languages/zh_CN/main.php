@@ -903,9 +903,8 @@ return [
     'prefix_mismatch' => '备份文件中的数据库表前缀与当前系统数据库表前缀不一致 %s',
     'open_backup_error' => '无法打开备份文件进行读取',
     'data_repair' => '数据修复',
-    'data_repair_desc' => '推荐安装并使用工具箱插件，包含以下功能：',
+    'data_repair_desc' => '安装并使用：工具箱插件，获得以下功能：',
     'data_repair_features' => '修复数据库表、更换域名、外部数据导入、重置登录Cookie ...',
-    'get_toolbox_plugin' => '获取工具箱插件',
 
     // Page
     'page_draft_success' => '转为草稿成功',
