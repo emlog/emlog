@@ -907,7 +907,10 @@ class Ai
             if (!empty($faqItems)) {
                 // 按照匹配得分从高到低排序
                 usort($faqItems, function ($a, $b) {
-                    return $b['score'] <=> $a['score'];
+                    if ($b['score'] == $a['score']) {
+                        return 0;
+                    }
+                    return ($b['score'] < $a['score']) ? -1 : 1;
                 });
 
                 // 最多保留前 3 个最相关的 FAQ
