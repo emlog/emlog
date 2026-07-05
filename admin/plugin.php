@@ -87,10 +87,15 @@ if (empty($action) && $plugin) {
     $pluginModel = new Plugin_Model();
     $pluginData = $pluginModel->getPluginData($plugin . '/' . $plugin . '.php');
     $pluginName = isset($pluginData['Name']) && $pluginData['Name'] ? $pluginData['Name'] : $plugin;
+    $isActive = in_array($plugin . '/' . $plugin . '.php', Option::get('active_plugins'));
+    $showUrlHtml = '';
+    if (!empty($pluginData['ShowUrl']) && $isActive) {
+        $showUrlHtml = ' <a href="' . $pluginData['ShowUrl'] . '" target="_blank" class="ml-3"><i class="icofont-link icofont-1x"></i></a>';
+    }
     echo '<nav class="mb-3">';
     echo '<ol class="breadcrumb bg-white px-2 py-2 mb-2">';
     echo '<li class="breadcrumb-item"><a href="./plugin.php">插件</a></li>';
-    echo '<li class="breadcrumb-item active" aria-current="page">' . htmlspecialchars($pluginName) . '</li>';
+    echo '<li class="breadcrumb-item active" aria-current="page">' . htmlspecialchars($pluginName) . $showUrlHtml . '</li>';
     echo '</ol>';
     echo '</nav>';
     echo FlashMsg::renderAlertsByMap('plugin_setting_flash_messages', array(
