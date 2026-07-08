@@ -21,6 +21,9 @@ var MediaLib = {
         this.sid = 0;
         this.images = {};
 
+        // 重置分类下拉选择框为默认的全部/未选择状态
+        $('#media-sort-select').val('');
+
         $('#image-list').empty();
         this.load();
         $('#load-more').show();
@@ -220,6 +223,7 @@ function delete_media_lib(id) {
     }
 }
 
+// 监听模态窗口显示事件，进行数据加载与重置
 $('#mediaModal').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget);
     if (!button.length) {
@@ -232,6 +236,8 @@ $('#mediaModal').on('show.bs.modal', function (event) {
             // Already inited? Maybe just reload.
             // But we want to reset page usually.
             MediaLib.page = 1;
+            MediaLib.sid = 0;
+            $('#media-sort-select').val('');
             $('#image-list').empty();
             MediaLib.load();
             $('#load-more').show();
@@ -293,6 +299,9 @@ var myDropzone = new Dropzone("#mediaAdd", {
         formData.append("filesize", file.size);
         $('#mediaAdd').html(_langJS.uploading);
     },
+    /**
+     * 初始化上传组件的事件监听
+     */
     init: function () {
         this.on("totaluploadprogress", function (progress) {
             var progressStr = progress.toFixed(0) + '%';
@@ -304,6 +313,7 @@ var myDropzone = new Dropzone("#mediaAdd", {
         this.on("queuecomplete", function (file) {
             MediaLib.page = 1;
             MediaLib.sid = 0;
+            $('#media-sort-select').val('');
             $('#image-list').empty();
             MediaLib.load();
             $('#load-more').show();
