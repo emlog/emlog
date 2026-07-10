@@ -910,6 +910,8 @@ return [
     'jump_link' => 'Redirect URL',
     'to_draft' => 'To Draft',
     'select_operate_page' => 'Please select pages to operate',
+    'select_operate_navi' => 'Please select navigation items to operate',
+    'delete_navi_confirm' => 'Delete selected navigation items?',
     'delete_page_confirm' => 'Delete selected pages?',
     'page_title' => 'Page Title',
     'publish_page' => 'Publish Page',

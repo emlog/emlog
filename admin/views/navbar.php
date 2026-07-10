@@ -21,6 +21,7 @@
                 <table class="table table-striped table-bordered table-hover dataTable no-footer" id="dataTable">
                     <thead>
                         <tr>
+                            <th width="40"><input type="checkbox" id="checkAllItem" /></th>
                             <th><?= _lang('navbar') ?></th>
                             <th><?= _lang('type') ?></th>
                             <th><?= _lang('view') ?></th>
@@ -28,7 +29,7 @@
                             <th><?= _lang('operation') ?></th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="checkboxContainer">
                         <?php
                         if ($navis):
                             foreach ($navis as $key => $value):
@@ -57,6 +58,11 @@
 
                         ?>
                                 <tr class="tree-parent" data-id="<?= $value['id'] ?>">
+                                    <td>
+                                        <?php if ($value['isdefault'] == 'n'): ?>
+                                            <input type="checkbox" name="navi_ids[]" class="ids" value="<?= $value['id'] ?>" />
+                                        <?php endif; ?>
+                                    </td>
                                     <td class="tree-name">
                                         <input type="hidden" name="navi[]" value="<?= $value['id'] ?>" />
                                         <span class="drag-handle text-muted mr-2" style="cursor: move;" title="拖动排序"><i class="icofont-navigation-menu"></i></span>
@@ -102,6 +108,11 @@
                                         $is_last_child = ($child_index === $total_childnavi);
                                 ?>
                                         <tr class="tree-child <?= $is_last_child ? 'last-child' : '' ?>" data-pid="<?= $val['pid'] ?>">
+                                            <td>
+                                                <?php if ($val['isdefault'] == 'n'): ?>
+                                                    <input type="checkbox" name="navi_ids[]" class="ids" value="<?= $val['id'] ?>" />
+                                                <?php endif; ?>
+                                            </td>
                                             <td class="tree-name">
                                                 <input type="hidden" name="navi[]" value="<?= $val['id'] ?>" />
                                                 <span class="drag-handle text-muted mr-2" style="cursor: move;" title="拖动排序"><i class="icofont-navigation-menu"></i></span>
@@ -135,14 +146,15 @@
                             <?php endforeach;
                         else: ?>
                             <tr>
-                                <td colspan="5"><?= _lang('no_navi_yet') ?></td>
+                                <td colspan="6"><?= _lang('no_navi_yet') ?></td>
                             </tr>
                         <?php endif ?>
                     </tbody>
                 </table>
             </div>
             <div class="list_footer">
-                <button type="submit" class="btn btn-sm btn-success"><?= _lang('save_sort') ?></button>
+                <button type="submit" class="btn btn-sm btn-success mr-2"><?= _lang('save_sort') ?></button>
+                <a href="javascript: navi_batch_delete();" class="btn btn-sm btn-outline-danger"><?= _lang('delete') ?></a>
             </div>
         </form>
     </div>
@@ -322,4 +334,20 @@
         initCheckboxSelectAll('#selectAllSorts', '#sortsContainer');
         initCheckboxSelectAll('#selectAllPages', '#pagesContainer');
     });
+
+    /**
+     * 批量删除导航项
+     */
+    window.navi_batch_delete = function() {
+        if (getChecked('ids') === false) {
+            infoAlert('<?= _lang('select_operate_navi') ?>');
+            return;
+        }
+        delAlert2('', '<?= _lang('delete_navi_confirm') ?>', function() {
+            var form = $("#navi_form");
+            form.attr("action", "navbar.php?action=del&token=<?= LoginAuth::genToken() ?>");
+            form.off("submit");
+            form.submit();
+        });
+    };
 </script>

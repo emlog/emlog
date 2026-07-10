@@ -143,7 +143,14 @@ if ($action == 'update') {
 if ($action == 'del') {
     LoginAuth::checkToken();
     $navid = Input::getIntVar('id');
-    $Navi_Model->deleteNavi($navid);
+    if ($navid > 0) {
+        $Navi_Model->deleteNavi($navid);
+    } else {
+        $navi_ids = Input::postIntArray('navi_ids', []);
+        foreach ($navi_ids as $id) {
+            $Navi_Model->deleteNavi((int)$id);
+        }
+    }
     $CACHE->updateCache('navi');
     emDirect("./navbar.php");
 }
