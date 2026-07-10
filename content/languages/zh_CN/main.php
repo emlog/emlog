@@ -913,6 +913,8 @@ return [
     'select_operate_page' => '请选择要操作的页面',
     'select_operate_navi' => '请选择要操作的导航项',
     'delete_navi_confirm' => '删除所选导航？',
+    'select_operate_link' => '请选择要操作的友情链接',
+    'delete_link_confirm' => '删除所选友情链接？',
     'delete_page_confirm' => '删除所选页面？',
     'page_title' => '页面标题',
     'publish_page' => '发布页面',

@@ -912,6 +912,8 @@ return [
     'select_operate_page' => 'Please select pages to operate',
     'select_operate_navi' => 'Please select navigation items to operate',
     'delete_navi_confirm' => 'Delete selected navigation items?',
+    'select_operate_link' => 'Please select links to operate',
+    'delete_link_confirm' => 'Delete selected links?',
     'delete_page_confirm' => 'Delete selected pages?',
     'page_title' => 'Page Title',
     'publish_page' => 'Publish Page',

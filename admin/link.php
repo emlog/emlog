@@ -74,8 +74,15 @@ if ($action == 'save') {
 if ($action == 'del') {
     LoginAuth::checkToken();
     $linkId = Input::getIntVar('linkid');
-
-    $Link_Model->deleteLink($linkId);
+    if ($linkId > 0) {
+        $Link_Model->deleteLink($linkId);
+    } else {
+        // 批量删除
+        $link_ids = Input::postIntArray('link_ids', []);
+        foreach ($link_ids as $id) {
+            $Link_Model->deleteLink((int)$id);
+        }
+    }
     $CACHE->updateCache('link');
     FlashMsg::redirectWithFlash('./link.php', array(), 'link_flash_messages', 'active_del');
 }

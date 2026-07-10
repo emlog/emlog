@@ -11,17 +11,21 @@
                 <table class="table table-bordered table-striped table-hover" id="dataTable">
                     <thead>
                         <tr>
+                            <th width="40"><input type="checkbox" id="checkAllItem" /></th>
                             <th><?= _lang('name'); ?></th>
                             <th><?= _lang('link'); ?></th>
                             <th><?= _lang('operation'); ?></th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="checkboxContainer">
                         <?php
                         foreach ($links as $key => $value):
                             doAction('adm_link_display');
                         ?>
                             <tr>
+                                <td>
+                                    <input type="checkbox" name="link_ids[]" class="ids" value="<?= $value['id'] ?>" />
+                                </td>
                                 <td>
                                     <div class="d-flex align-items-center">
                                         <span class="drag-handle text-muted mr-2" style="cursor: move;" title="拖动排序"><i class="icofont-navigation-menu"></i></span>
@@ -71,7 +75,8 @@
         </div>
     </div>
     <div class="list_footer">
-        <input type="submit" value="<?= _lang('save_sort'); ?>" class="btn btn-sm btn-success shadow-sm" />
+        <input type="submit" value="<?= _lang('save_sort'); ?>" class="btn btn-sm btn-success mr-2 shadow-sm" />
+        <a href="javascript: link_batch_delete();" class="btn btn-sm btn-outline-danger"><?= _lang('delete') ?></a>
     </div>
 </form>
 
@@ -169,4 +174,20 @@
             hasHierarchy: false
         });
     });
+
+    /**
+     * 批量删除友情链接
+     */
+    window.link_batch_delete = function() {
+        if (getChecked('ids') === false) {
+            infoAlert('<?= _lang('select_operate_link') ?>');
+            return;
+        }
+        delAlert2('', '<?= _lang('delete_link_confirm') ?>', function() {
+            var form = $("#link_form");
+            form.attr("action", "link.php?action=del&token=<?= LoginAuth::genToken() ?>");
+            form.off("submit");
+            form.submit();
+        });
+    };
 </script>
