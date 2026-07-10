@@ -200,16 +200,20 @@
 <div class="modal fade" id="sortNavModal" tabindex="-1" role="dialog" aria-labelledby="sortNavModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header border-0">
-                <h5 class="modal-title" id="sortNavModalLabel"><?= _lang('add_category_navi') ?></h5>
+            <div class="modal-header border-0 pb-0">
+                <h5 class="modal-title font-weight-bold" id="sortNavModalLabel"><?= _lang('add_category_navi') ?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body pt-2 pb-0">
                 <form action="navbar.php?action=add_sort" method="post" name="navi_sort" id="navi_sort">
                     <?php if ($sorts): ?>
-                        <div class="form-group">
+                        <div class="custom-control custom-checkbox mb-3 border-bottom pb-2">
+                            <input type="checkbox" class="custom-control-input" id="selectAllSorts">
+                            <label class="custom-control-label font-weight-bold" for="selectAllSorts"><?= _lang('select_all') ?></label>
+                        </div>
+                        <div id="sortsContainer" class="form-group mb-0" style="max-height: 260px; overflow-y: auto; padding-right: 5px;">
                             <?php foreach ($sorts as $key => $value):
                                 if ($value['pid'] != 0) {
                                     continue;
@@ -231,14 +235,16 @@
                                 <?php endforeach; ?>
                             <?php endforeach; ?>
                         </div>
-                        <div class="modal-footer border-0">
-                            <a class="btn btn-sm btn-link mr-auto" href="sort.php">+<?= _lang('new_category') ?></a>
+                        <div class="modal-footer border-0 px-0 mt-3 d-flex align-items-center">
+                            <a class="btn btn-sm btn-outline-primary mr-auto" href="sort.php">
+                                <i class="icofont-plus mr-1"></i><?= _lang('new_category') ?>
+                            </a>
                             <button type="button" class="btn btn-sm btn-light" data-dismiss="modal"><?= _lang('cancel') ?></button>
                             <button type="submit" class="btn btn-sm btn-success"><?= _lang('save') ?></button>
                         </div>
                     <?php else: ?>
-                        <div>
-                            <?= _lang('no_category_yet') ?>, <a href="sort.php"><?= _lang('new_category') ?></a>
+                        <div class="py-3 text-center text-muted">
+                            <?= _lang('no_category_yet') ?>, <a href="sort.php" class="btn btn-sm btn-outline-primary ml-2"><i class="icofont-plus mr-1"></i><?= _lang('new_category') ?></a>
                         </div>
                     <?php endif ?>
                 </form>
@@ -251,16 +257,20 @@
 <div class="modal fade" id="pageNavModal" tabindex="-1" role="dialog" aria-labelledby="pageNavModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header border-0">
-                <h5 class="modal-title" id="pageNavModalLabel"><?= _lang('add_page_navi') ?></h5>
+            <div class="modal-header border-0 pb-0">
+                <h5 class="modal-title font-weight-bold" id="pageNavModalLabel"><?= _lang('add_page_navi') ?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body pt-2 pb-0">
                 <form action="navbar.php?action=add_page" method="post" name="navi_page" id="navi_page">
                     <?php if ($pages): ?>
-                        <div class="form-group">
+                        <div class="custom-control custom-checkbox mb-3 border-bottom pb-2">
+                            <input type="checkbox" class="custom-control-input" id="selectAllPages">
+                            <label class="custom-control-label font-weight-bold" for="selectAllPages"><?= _lang('select_all') ?></label>
+                        </div>
+                        <div id="pagesContainer" class="form-group mb-0" style="max-height: 260px; overflow-y: auto; padding-right: 5px;">
                             <?php foreach ($pages as $key => $value): ?>
                                 <div class="custom-control custom-checkbox mb-2">
                                     <input type="checkbox" class="custom-control-input" name="pages[<?= $value['gid'] ?>]" value="<?= $value['title'] ?>" id="page_<?= $value['gid'] ?>">
@@ -268,14 +278,16 @@
                                 </div>
                             <?php endforeach; ?>
                         </div>
-                        <div class="modal-footer border-0">
-                            <a class="btn btn-sm btn-link mr-auto" href="page.php?action=new">+<?= _lang('new_page') ?></a>
+                        <div class="modal-footer border-0 px-0 mt-3 d-flex align-items-center">
+                            <a class="btn btn-sm btn-outline-primary mr-auto" href="page.php?action=new">
+                                <i class="icofont-plus mr-1"></i><?= _lang('new_page') ?>
+                            </a>
                             <button type="button" class="btn btn-sm btn-light" data-dismiss="modal"><?= _lang('cancel') ?></button>
                             <button type="submit" class="btn btn-sm btn-success"><?= _lang('save') ?></button>
                         </div>
                     <?php else: ?>
-                        <div>
-                            <?= _lang('no_page_yet') ?>, <a href="page.php?action=new"><?= _lang('new_page') ?></a>
+                        <div class="py-3 text-center text-muted">
+                            <?= _lang('no_page_yet') ?>, <a href="page.php?action=new" class="btn btn-sm btn-outline-primary ml-2"><i class="icofont-plus mr-1"></i><?= _lang('new_page') ?></a>
                         </div>
                     <?php endif ?>
                 </form>
@@ -305,5 +317,9 @@
             hasHierarchy: true,
             storagePrefix: 'em_navi_folded_'
         });
+
+        // 绑定分类导航与页面导航的全选复选框联动逻辑
+        initCheckboxSelectAll('#selectAllSorts', '#sortsContainer');
+        initCheckboxSelectAll('#selectAllPages', '#pagesContainer');
     });
 </script>
