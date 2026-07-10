@@ -110,8 +110,7 @@ if ($action == 'chat_stream') {
 }
 
 if ($action == 'execute_tool') {
-    // 权限校验：只允许管理员或有权限的用户执行博客操作
-    if (!User::haveEditPermission()) {
+    if (!User::isAdmin()) {
         Output::error('权限不足');
     }
 
