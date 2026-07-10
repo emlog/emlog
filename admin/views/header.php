@@ -138,6 +138,7 @@
                                 <a href="blogger.php" class="text-gray-800 small d-none d-sm-inline" style="text-decoration: none;" title="<?= isset($currentUser['nickname']) ? htmlspecialchars($currentUser['nickname']) : '' ?>"><?= isset($currentUser['nickname']) ? htmlspecialchars(subString($currentUser['nickname'], 0, 8)) : '' ?></a>
                             </div>
 
+                            <?php if (User::isAdmin()): // 仅管理员显示顶部 AI 助手和快捷菜单 ?>
                             <div class="topbar-divider d-none d-sm-block"></div>
 
                             <!-- AI chat button -->
@@ -159,6 +160,7 @@
                                     <a href="#" class="mr-2 shortcut-link" data-toggle="modal" data-target="#shortcutModal" title="<?= _lang('add_shortcut') ?>"><i class="icofont-plus"></i></a>
                                 </div>
                             </div>
+                            <?php endif; ?>
                         </div>
                         <div>
                             <ul class="navbar-nav ml-auto">
