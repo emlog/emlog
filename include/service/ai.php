@@ -812,10 +812,16 @@ class Ai
             $CACHE->updateArticleCache(); // 刷新文章与页面相关的关联缓存
         }
 
-        // 7. 处理返回数据
+        // 7. 处理返回数据，敏感字段脱敏处理
         $results = [];
         if (!$is_write_op) {
+            $sensitive_keys = ['password'];
             while ($row = $db->fetch_array($ret)) {
+                foreach ($row as $key => $val) {
+                    if (in_array(strtolower($key), $sensitive_keys)) {
+                        $row[$key] = '******';
+                    }
+                }
                 $results[] = $row;
             }
         }
