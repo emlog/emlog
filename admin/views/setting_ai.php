@@ -173,7 +173,7 @@
             var model_type = $(this).data('model_type') || 'chat';
             $('#editModelModal #edit_ai_model').val(model);
             $('#editModelModal #edit_ai_api_url').val(url);
-            $('#editModelModal #edit_ai_api_key').val(api_key);
+            $('#editModelModal #edit_ai_api_key').val('').attr('placeholder', api_key);
             $('#editModelModal #ai_model_key').val(model_key);
             $('#editModelModal #ai_model_type').val(model_type);
         });
@@ -278,11 +278,11 @@
                 <div class="modal-body">
                     <p>API URL：</p>
                     <div class="form-group">
-                        <input type="url" class="form-control" value="" name="edit_ai_api_url" id="edit_ai_api_url" disabled />
+                        <input type="url" class="form-control" value="" name="edit_ai_api_url" id="edit_ai_api_url" />
                     </div>
                     <p>API Key：</p>
                     <div class="form-group">
-                        <input type="text" class="form-control" value="" name="edit_ai_api_key" id="edit_ai_api_key" disabled />
+                        <input type="text" class="form-control" value="" name="edit_ai_api_key" id="edit_ai_api_key" />
                     </div>
                     <p>Model：</p>
                     <div class="form-group">

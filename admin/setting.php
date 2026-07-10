@@ -519,6 +519,8 @@ if ($action == 'ai_update') {
 
     $aiModelKey = Input::postStrVar('ai_model_key');
     $aiModel = Input::postStrVar('edit_ai_model');
+    $aiApiUrl = Input::postStrVar('edit_ai_api_url');
+    $aiApiKey = Input::postStrVar('edit_ai_api_key');
     $aiModelType = Input::postStrVar('ai_model_type', 'chat');
 
     $aiModels = AI::models();
@@ -526,6 +528,12 @@ if ($action == 'ai_update') {
         emDirect("./setting.php?action=ai");
     }
     $aiModels[$aiModelKey]['model'] = $aiModel;
+    if (!empty($aiApiUrl)) {
+        $aiModels[$aiModelKey]['api_url'] = $aiApiUrl;
+    }
+    if (!empty($aiApiKey)) {
+        $aiModels[$aiModelKey]['api_key'] = $aiApiKey;
+    }
     // 确保模型类型字段存在
     if (!isset($aiModels[$aiModelKey]['type'])) {
         $aiModels[$aiModelKey]['type'] = $aiModelType;
