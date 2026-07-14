@@ -316,7 +316,7 @@
                     </div>
                     <div class="my-3">
                         <input type="submit" value="<?= _lang('save_sort'); ?>" class="btn btn-sm btn-success" />
-                        <a href="javascript:em_confirm(0, 'reset_widget', '<?= LoginAuth::genToken() ?>');" class="btn btn-sm btn-warning"><?= _lang('reset_widget'); ?></a>
+                        <a href="javascript:em_confirm(0, 'reset_widget', '<?= LoginAuth::genToken() ?>');" class="btn btn-sm btn-danger"><?= _lang('reset_widget'); ?></a>
                     </div>
                 </form>
             </div>
