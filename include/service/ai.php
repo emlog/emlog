@@ -587,6 +587,10 @@ class Ai
 
         // 3. 二次确认码安全防线：针对敏感的数据/表变更（写操作）进行确认验证
         if ($is_write_op) {
+            // 禁止通过 SQL 语句直接写入 blog 文章表
+            if (preg_match('/\b(?:' . DB_PREFIX . ')?blog\b/i', $clean_sql)) {
+                throw new Exception("权限限制：禁止通过 SQL 语句直接写入或修改 blog 文章表，请使用写文章方法/工具。");
+            }
             if (trim($confirm_code) !== 'confirm') {
                 throw new Exception("敏感操作拦截：执行敏感操作需要确认");
             }

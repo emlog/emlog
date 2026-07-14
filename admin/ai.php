@@ -52,6 +52,7 @@ if ($action == 'chat_stream') {
 2. 必须且只能在完成给用户的回答后输出工具标签。一次对话中只能输出一个工具标签。
 3. 参数中的字符串请注意不要包含截断 JSON 语法的特殊字符，尽量写出正确的 JSON，尤其是双引号。
 4. 在构建写操作（如 INSERT）的 SQL 语句时，请务必注意目标表结构的必填字段（没有默认值且不允许为 NULL 的字段，例如 description 字段）。你在构建 SQL 语句时，必须显式为此类字段赋予合适的值或默认空值（如空字符串），或者先通过只读操作（如执行 DESCRIBE 表名）查询该表的详细字段信息后再构建 SQL，以避免出现类似 Field 'xxx' doesn't have a default value 的执行错误。
+5. 禁止直接通过 SQL 语句（即 `query_database` 工具）写入、修改或删除文章表 `emlog_blog`（或 `blog`）。如果需要发表文章、撰写博客等写文章操作，请务必使用 `write_article` 专用工具。
 
 当前博客的状态信息：
 - 博客名称: $blogname
@@ -63,7 +64,7 @@ if ($action == 'chat_stream') {
 - 工具名称: query_database
 - 说明: 编写 SQL 语句对数据库中的任何表进行操作。
 - 核心表结构及常用表说明：
-  - `emlog_blog` (文章/页面表): `gid` (文章ID), `title` (标题), `date` (时间戳), `content` (内容), `excerpt` (摘要), `cover` (封面图), `alias` (别名), `author` (作者UID，通常为 1), `sortid` (分类ID，默认为 -1), `type` (文章OR页面: 'blog'/'page'), `views` (点击数), `comnum` (评论数), `like_count` (点赞数), `dislike_count` (点踩数), `collect_count` (收藏数), `top` (置顶 'n'/'y'), `sortop` (分类置顶 'n'/'y'), `hide` (草稿/隐藏 'n'/'y'), `checked` (已审核 'n'/'y'), `allow_remark` (允许评论 'n'/'y'), `password` (密码), `template` (模板), `tags` (标签), `link` (外部链接), `parent_id` (父级文章ID)
+  - `emlog_blog` (文章/页面表): `gid` (文章ID), `title` (标题), `date` (时间戳), `content` (内容), `excerpt` (摘要), `cover` (封面图), `alias` (别名), `author` (作者UID，通常为 1), `sortid` (分类ID，默认为 -1), `type` (文章OR页面: 'blog'/'page'), `views` (点击数), `comnum` (评论数), `like_count` (点赞数), `dislike_count` (点踩数), `collect_count` (收藏数), `top` (置顶 'n'/'y'), `sortop` (分类置顶 'n'/'y'), `hide` (草稿/隐藏 'n'/'y'), `checked` (已审核 'n'/'y'), `allow_remark` (允许评论 'n'/'y'), `password` (密码), `template` (模板), `tags` (逗号分隔的标签ID，如：1,2,3), `link` (外部链接), `parent_id` (父级文章ID)
   - `emlog_comment` (评论表): `cid` (评论ID), `gid` (对应文章ID), `pid` (父评论ID), `top` (置顶 'n'/'y'), `poster` (昵称), `avatar` (头像URL), `uid` (发布人UID，游客为 0), `comment` (内容), `mail` (邮箱), `url` (主页网址), `ip` (IP), `agent` (UserAgent), `hide` (是否审核/隐藏 'n'/'y'), `like_count` (点赞数), `date` (发布时间戳)
   - `emlog_options` (站点配置表): `option_id` (主键), `option_name` (配置项名), `option_value` (配置项值)。常用 `option_name` 如 `blogname` (站点名称), `bloginfo` (站点副标题), `blogurl` (站点地址), `footer_info` (底部版权信息), `icp` (备案号), `active_plugins` (启用的插件序列化串), `widgets1` (启用的侧边栏组件序列化串)
   - `emlog_user` (用户表): `uid` (用户ID), `username` (登录账号), `password` (密码hash), `nickname` (昵称), `role` (角色 admin/writer/member), `ischeck` (投稿免审核 'n'/'y'), `photo` (头像), `email` (邮箱), `description` (简介), `ip` (注册或最后登录IP), `state` (状态 0正常 1禁用), `credits` (积分), `create_time` (创建时间戳), `update_time` (更新时间戳)
@@ -76,6 +77,7 @@ if ($action == 'chat_stream') {
   - `emlog_reply` (微语回复表): `id` (回复ID), `uid` (回复人UID), `tid` (对应微语ID), `date` (回复时间戳), `name` (回复人昵称), `content` (回复内容), `hide` (隐藏 'y'/'n'), `islike` (点赞 'y'/'n'), `ip` (IP)
   - `emlog_like` (点赞记录表): `id` (记录ID), `gid` (文章ID), `vote_type` (类型 'like'/'dislike'/'collect'), `poster` (游客昵称), `avatar` (头像URL), `uid` (用户UID), `ip` (IP), `agent` (UserAgent), `date` (时间戳)
   注意：在编写 SQL时，可以直接使用没有前缀的表名（如 blog, user, comment, options, link, sort, twitter, attachment, navi, tag, reply, like），后端会自动为您替换为带真实前缀 of表名（如 emlog_blog）。
+  注意：禁止对 `emlog_blog` (或 `blog`) 执行任何 non-SELECT 写操作 SQL，若需发表文章请使用 write_article 工具。
 - 参数格式 (JSON):
   {
     \"sql\": \"标准的 SQL 语句。\"
@@ -85,15 +87,7 @@ if ($action == 'chat_stream') {
 2. 增加、删除、修改特定系统配置文件 (config.php)
 - 工具名称: update_config
 - 说明: 只能增加、删除、修改特定的配置项目，这些配置项目包括：
-  - `ADMIN_PATH_CODE`: 隐藏管理后台登录页面。值必须是8-16位的字母数字，不得包含特殊字符。例如：'abcd1234'。
-  - `APP_UPLOAD_FORBID`: 禁用后台手动上传安装应用。值为布尔值（true/false）。
   - `ENVIRONMENT`: 开启开发者模式。通常值为 'develop'。
-  - `UPLOAD_MAX_SIZE`: 管理员上传文件最大限制，单位为 KB。如果不配置，系统默认最大为2G。
-  - `UPLOAD_ATT_TYPE`: 管理员上传文件类型限制，用英文逗号分割的后缀。例如：'rar,zip,gif,jpg,jpeg,png,webp,txt,pdf,docx,doc,xls,xlsx,mp4,mp3'。
-  - `USE_MYSQL_PDO`: 使用PDO连接数据库。值为布尔值（true/false）。
-  - `UPLOAD_PATH_RELATIVE`: 上传路径使用相对路径。值为布尔值（true/false）。
-  - `ARTICLE_AUTOSAVE_OFF`: 关闭文章自动保存。值为布尔值（true/false）。
-  - `SWITCH_TEMPLATE`: 开启前台动态切换模板功能。值为布尔值（true/false）。
   - `EMLOG_LANG`: 切换系统语言。简体中文为 'zh_CN'，英文为 'en_US'。
 - 参数格式 (JSON):
   {
@@ -103,7 +97,20 @@ if ($action == 'chat_stream') {
   }
 - 示例 1 (隐藏后台登录页面): `<tool_call name=\"update_config\">{\"key\":\"ADMIN_PATH_CODE\", \"action\":\"add\", \"value\":\"myadminpath123\"}</tool_call>`
 - 示例 2 (关闭自动保存): `<tool_call name=\"update_config\">{\"key\":\"ARTICLE_AUTOSAVE_OFF\", \"action\":\"add\", \"value\":true}</tool_call>`
-- 示例 3 (删除自动保存配置以恢复默认): `<tool_call name=\"update_config\">{\"key\":\"ARTICLE_AUTOSAVE_OFF\", \"action\":\"delete\"}</tool_call>`";
+- 示例 3 (删除自动保存配置以恢复默认): `<tool_call name=\"update_config\">{\"key\":\"ARTICLE_AUTOSAVE_OFF\", \"action\":\"delete\"}</tool_call>`
+
+3. 写文章、发布文章操作
+- 工具名称: write_article
+- 说明: 当用户需要发表文章、撰写博客等写文章操作时，必须使用此专用工具。本工具会进行表结构的规范字段检验与安全处理，从而避免直接执行 SQL 操作可能导致的异常。
+- 参数格式 (JSON):
+  {
+    \"title\": \"文章标题（必填）\",
+    \"content\": \"文章内容（必填）\",
+    \"excerpt\": \"文章摘要（可选）\",
+    \"sortid\": 分类ID（可选，整数，默认为 -1）,
+    \"tag\": \"文章标签（可选，多个标签用英文逗号隔开，例如：'AI,科技,博客'）\"
+  }
+- 示例：`<tool_call name=\"write_article\">{\"title\":\"我的第一篇AI博客\",\"content\":\"这是通过AI助手自动撰写的博客内容。\",\"sortid\":-1,\"tag\":\"AI,科技,博客\"}</tool_call>`";
 
     Ai::chatStream($message, $system_prompt, true);
     exit;
@@ -135,6 +142,40 @@ if ($action == 'execute_tool') {
 
                 Output::ok([
                     'results' => $result
+                ]);
+            } catch (Exception $e) {
+                Output::error($e->getMessage());
+            }
+            break;
+
+        case 'write_article':
+            try {
+                $title = isset($params['title']) ? $params['title'] : '';
+                $content = isset($params['content']) ? $params['content'] : '';
+                $excerpt = isset($params['excerpt']) ? $params['excerpt'] : '';
+                $sortid = isset($params['sortid']) ? (int)$params['sortid'] : -1;
+                $tag = isset($params['tag']) ? $params['tag'] : (isset($params['tags']) ? $params['tags'] : '');
+                $confirm_code = isset($_POST['confirm_code']) ? $_POST['confirm_code'] : '';
+
+                if (empty($title) || empty($content)) {
+                    throw new Exception('文章标题和内容不能为空');
+                }
+
+                if (trim($confirm_code) !== 'confirm') {
+                    throw new Exception("敏感操作拦截：写文章操作需要确认");
+                }
+
+                $blogId = Article::writeArticle([
+                    'title' => $title,
+                    'content' => $content,
+                    'excerpt' => $excerpt,
+                    'sortid' => $sortid,
+                    'tag' => $tag
+                ]);
+
+                Output::ok([
+                    'message' => '文章发表成功，文章ID: ' . $blogId,
+                    'blog_id' => $blogId
                 ]);
             } catch (Exception $e) {
                 Output::error($e->getMessage());

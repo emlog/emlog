@@ -347,7 +347,8 @@ var AIChat = {
         var self = this;
         var toolNamesMap = {
             'query_database': _langJS.ai_tool_query_database,
-            'update_config': _langJS.ai_tool_update_config || '修改系统配置'
+            'update_config': _langJS.ai_tool_update_config,
+            'write_article': _langJS.ai_tool_write_article
         };
         var friendlyName = toolNamesMap[name] || name;
 
@@ -363,11 +364,9 @@ var AIChat = {
             configValue = paramsObj.value !== undefined ? JSON.stringify(paramsObj.value) : '';
         } catch (e) {}
 
-        var isWriteOp = name === 'update_config' || !/^\s*(select|show|desc|describe|explain)\b/i.test(sql);
+        var isWriteOp = name === 'update_config' || name === 'write_article' || !/^\s*(select|show|desc|describe|explain)\b/i.test(sql);
 
-        var waitSensitiveText = name === 'update_config'
-            ? (_langJS.ai_tool_config_wait_sensitive || '正在修改配置文件，请稍候...')
-            : _langJS.ai_tool_wait_sensitive;
+        var waitSensitiveText = name === _langJS.ai_tool_config_wait_sensitive;
 
         var $card = $(
             '<div class="card mt-2 shadow-sm border-left-primary">' +
@@ -395,6 +394,12 @@ var AIChat = {
             if (name === 'update_config') {
                 var actionText = configAction === 'add' ? '新增' : (configAction === 'delete' ? '删除' : '修改');
                 tipText = '即将修改 config.php 配置文件。操作：【' + actionText + '】，配置项：<code>' + $('<div>').text(configKey).html() + '</code>' + (configAction !== 'delete' ? '，新值：<code>' + $('<div>').text(configValue).html() + '</code>' : '');
+            } else if (name === 'write_article') {
+                var articleTitle = '';
+                try {
+                    articleTitle = JSON.parse(paramsJson).title || '';
+                } catch (e) {}
+                tipText = '即将发布新文章。标题：<code>' + $('<div>').text(articleTitle).html() + '</code>';
             } else {
                 tipText = _langJS.ai_tool_modify_db_tip + '<code>' + $('<div>').text(sql).html() + '</code>';
             }
