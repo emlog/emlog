@@ -2670,8 +2670,13 @@
      * @returns {void}
      */
 
+    /**
+     * 重定位并显示对话框的背景遮罩层
+     * @param {Object} dialog 当前对话框 jQuery 实例
+     * @return {void}
+     */
     editormd.dialogShowMask = function (dialog) {
-        var editor = this.editor;
+        var editor = $("#editor-md-dialog");
         var settings = this.settings || {dialogShowMask: true};
 
         dialog.css({
@@ -2680,7 +2685,27 @@
         });
 
         if (settings.dialogShowMask) {
-            editor.children("." + this.classPrefix + "mask").css("z-index", parseInt(dialog.css("z-index")) - 1).show();
+            var maskEl = editor.find("." + this.classPrefix + "mask");
+            if (maskEl.length === 0) {
+                editor.append("<div class=\"" + this.classPrefix + "mask\"></div>");
+                maskEl = editor.find("." + this.classPrefix + "mask");
+            }
+            maskEl.css("z-index", parseInt(dialog.css("z-index")) - 1).show();
+
+            maskEl.css("cursor", "pointer");
+            maskEl.off(editormd.mouseOrTouch("click", "touchend")).bind(editormd.mouseOrTouch("click", "touchend"), function () {
+                dialog.hide();
+                if (typeof dialog.lockScreen === "function") {
+                    dialog.lockScreen(false);
+                } else {
+                    $("html,body").css("overflow", "");
+                }
+                if (typeof dialog.hideMask === "function") {
+                    dialog.hideMask();
+                } else {
+                    maskEl.hide();
+                }
+            });
         }
     };
 
@@ -4075,9 +4100,33 @@
             return dialog;
         };
 
+        /**
+         * 显示对话框的背景遮罩层，若不存在则动态创建并 append 到 editor 容器中
+         * @return {Object} dialog 返回当前对话框 jQuery 实例
+         */
         dialog.showMask = function () {
             if (options.mask) {
-                editor.find("." + classPrefix + "mask").css(options.maskStyle).css("z-index", editormd.dialogZindex - 1).show();
+                var maskEl = editor.find("." + classPrefix + "mask");
+                if (maskEl.length === 0) {
+                    editor.append("<div class=\"" + classPrefix + "mask\"></div>");
+                    maskEl = editor.find("." + classPrefix + "mask");
+                }
+                maskEl.css(options.maskStyle).css("z-index", editormd.dialogZindex - 1).show();
+
+                maskEl.css("cursor", "pointer");
+                maskEl.off(mouseOrTouch("click", "touchend")).bind(mouseOrTouch("click", "touchend"), function () {
+                    dialog.hide();
+                    if (typeof dialog.lockScreen === "function") {
+                        dialog.lockScreen(false);
+                    } else {
+                        $("html,body").css("overflow", "");
+                    }
+                    if (typeof dialog.hideMask === "function") {
+                        dialog.hideMask();
+                    } else {
+                        maskEl.hide();
+                    }
+                });
             }
             return dialog;
         };
@@ -4106,6 +4155,10 @@
             height: (typeof options.height === "number") ? options.height + "px" : options.height
         });
 
+        /**
+         * 计算并将对话框定位到窗口正中心
+         * @return {void}
+         */
         var dialogPosition = function () {
             dialog.css({
                 top: ($(window).height() - dialog.height()) / 2 + "px",
@@ -4116,6 +4169,10 @@
         dialogPosition();
 
         $(window).resize(dialogPosition);
+
+        // 异步延迟定位：应对内容异步/同步渲染改变高度导致定位不准的情况
+        setTimeout(dialogPosition, 0);
+        setTimeout(dialogPosition, 100);
 
         dialog.children("." + classPrefix + "dialog-close").bind(mouseOrTouch("click", "touchend"), function () {
             dialog.hide().lockScreen(false).hideMask();

@@ -1185,3 +1185,279 @@ textarea.form-control {
 .shortcut-link:hover {
     color: rgba(0, 0, 0, 0.7) !important;
 }
+
+/* ==========================================================================
+   Markdown 编辑器弹窗与表单控件样式覆盖，用于保持与系统 Bootstrap 模态窗口一致
+   ========================================================================== */
+
+/* 1. 遮罩层 - 使用固定全屏的半透明黑色灯箱背景 */
+.editormd-mask {
+    display: none;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    opacity: 1 !important;
+    z-index: 99990 !important;
+}
+
+/* 2. 弹窗主容器定位与层叠顺序 */
+#editor-md-dialog {
+    position: relative !important;
+    z-index: 99999 !important;
+}
+
+/* 2. 弹窗整体容器 */
+.editormd-dialog {
+    background: #fff !important;
+    border: none !important;
+    border-radius: var(--em-radius-xl) !important;
+    box-shadow: var(--em-shadow-lg) !important;
+    font-family: inherit !important;
+    height: auto !important;
+    min-width: 320px !important;
+    max-width: 90% !important;
+    overflow: hidden !important;
+}
+
+/* 3. 弹窗头部 - 去除标题下方的分割线 */
+.editormd-dialog-header {
+    padding: 1.25rem 1.5rem 0.5rem !important;
+    border-bottom: none !important;
+    background: #fff !important;
+}
+.editormd-dialog-header:hover {
+    background: #fff !important;
+}
+.editormd-dialog-title {
+    font-size: 1.1rem !important;
+    font-weight: 700 !important;
+    color: #4e73df !important;
+}
+
+/* 4. 弹窗关闭按钮 */
+.editormd-dialog-close {
+    position: absolute !important;
+    top: 1rem !important;
+    right: 1.5rem !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    color: #858796 !important;
+    opacity: 0.5 !important;
+    font-size: 1.2rem !important;
+    font-weight: 700 !important;
+    line-height: 1 !important;
+    text-decoration: none !important;
+    transition: opacity 0.15s ease-in-out !important;
+}
+.editormd-dialog-close:hover {
+    color: #3a3b45 !important;
+    opacity: 0.9 !important;
+    text-decoration: none !important;
+}
+
+/* 5. 弹窗内容区 */
+.editormd-dialog-container {
+    padding: 1.5rem !important;
+    line-height: 1.5 !important;
+}
+
+/* 6. 表单样式 */
+.editormd-form {
+    padding: 5px 0 0 0 !important;
+}
+.editormd-form label {
+    float: none !important;
+    display: block !important;
+    width: auto !important;
+    text-align: left !important;
+    margin-bottom: 0.5rem !important;
+    font-weight: 600 !important;
+    color: #5a5c69 !important;
+    font-size: 0.85rem !important;
+    padding: 0 !important;
+}
+
+/* 7. 输入框样式 */
+.editormd-form input[type="text"],
+.editormd-form input[type="number"],
+.editormd-form select {
+    display: block !important;
+    width: 100% !important;
+    height: calc(1.5em + 0.75rem + 2px) !important;
+    padding: 0.375rem 0.75rem !important;
+    font-size: 0.9rem !important;
+    font-weight: 400 !important;
+    line-height: 1.5 !important;
+    color: #6e707e !important;
+    background-color: #fff !important;
+    background-clip: padding-box !important;
+    border: 1px solid #d1d3e2 !important;
+    border-radius: 0.35rem !important;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !important;
+    margin-bottom: 1rem !important;
+    box-sizing: border-box !important;
+}
+.editormd-form input[type="text"]:focus,
+.editormd-form input[type="number"]:focus,
+.editormd-form select:focus {
+    color: #6e707e !important;
+    background-color: #fff !important;
+    border-color: #bac8f3 !important;
+    outline: 0 !important;
+    box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25) !important;
+}
+
+/* 针对 input[type="number"] 的微调，保持其合理的排列方式 */
+.editormd-form input[type="number"] {
+    display: inline-block !important;
+    width: 70px !important;
+    height: calc(1.5em + 0.5rem + 2px) !important;
+    padding: 0.25rem 0.5rem !important;
+    margin-right: 1rem !important;
+    margin-left: 0.2rem !important;
+    margin-bottom: 0 !important;
+    vertical-align: middle !important;
+}
+
+/* 8. 文件上传按钮样式 */
+.editormd-file-input {
+    display: inline-block !important;
+    position: relative !important;
+    margin-left: 0 !important;
+    margin-top: -0.25rem !important;
+    margin-bottom: 1rem !important;
+    width: auto !important;
+    height: auto !important;
+}
+.editormd-file-input input[type="submit"] {
+    display: inline-block !important;
+    background-color: #4e73df !important;
+    border: 1px solid #4e73df !important;
+    color: #fff !important;
+    padding: 0.375rem 0.75rem !important;
+    font-size: 0.85rem !important;
+    line-height: 1.5 !important;
+    border-radius: 0.35rem !important;
+    cursor: pointer !important;
+    transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out !important;
+    width: auto !important;
+    min-width: 100px !important;
+}
+.editormd-file-input input[type="submit"]:hover {
+    background-color: #2e59d9 !important;
+    border-color: #2653d4 !important;
+}
+.editormd-file-input input[type="file"] {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    opacity: 0 !important;
+    cursor: pointer !important;
+}
+
+/* 9. 表单对齐按钮样式微调 */
+.editormd-form .fa-btns {
+    display: block !important;
+    margin-bottom: 1rem !important;
+}
+.editormd-form .fa-btns a {
+    color: #858796 !important;
+    padding: 0.375rem 0.75rem !important;
+    display: inline-block !important;
+    text-decoration: none !important;
+    border: 1px solid #d1d3e2 !important;
+    border-radius: 0.35rem !important;
+    margin-right: 5px !important;
+    background-color: #f8f9fc !important;
+    transition: all 0.15s ease-in-out !important;
+}
+.editormd-form .fa-btns a:hover {
+    color: #4e73df !important;
+    background-color: #eaecf4 !important;
+    border-color: #bac8f3 !important;
+}
+.editormd-form .fa-btns a label {
+    margin: 0 !important;
+    cursor: pointer !important;
+    font-weight: normal !important;
+    display: inline-flex !important;
+    align-items: center !important;
+}
+.editormd-form .fa-btns input[type="radio"] {
+    margin-right: 5px !important;
+    margin-top: 0 !important;
+    vertical-align: middle !important;
+}
+
+/* 10. 底部按钮样式 - 去除底部的分割线，并隐藏取消按钮 */
+.editormd-dialog-footer {
+    display: flex !important;
+    justify-content: flex-end !important;
+    padding: 0.5rem 1.5rem 1.5rem !important;
+    border-top: none !important;
+    margin-top: 0.5rem !important;
+    margin-left: -1.5rem !important;
+    margin-right: -1.5rem !important;
+    margin-bottom: -1.5rem !important;
+    background-color: #fff !important;
+}
+.editormd-dialog-footer .editormd-btn {
+    display: inline-block !important;
+    font-weight: 400 !important;
+    text-align: center !important;
+    vertical-align: middle !important;
+    user-select: none !important;
+    border: 1px solid transparent !important;
+    padding: 0.375rem 0.75rem !important;
+    font-size: 0.85rem !important;
+    line-height: 1.5 !important;
+    border-radius: 0.35rem !important;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !important;
+    min-width: 75px !important;
+    cursor: pointer !important;
+}
+.editormd-dialog-footer .editormd-enter-btn {
+    color: #fff !important;
+    background-color: #4e73df !important;
+    border-color: #4e73df !important;
+}
+.editormd-dialog-footer .editormd-enter-btn:hover {
+    color: #fff !important;
+    background-color: #2e59d9 !important;
+    border-color: #2653d4 !important;
+}
+.editormd-dialog-footer .editormd-cancel-btn {
+    display: none !important;
+}
+
+/* 针对 textarea 控件的样式重写，支持可能用到的多行文本域 */
+.editormd-form textarea {
+    display: block !important;
+    width: 100% !important;
+    padding: 0.375rem 0.75rem !important;
+    font-size: 0.9rem !important;
+    font-weight: 400 !important;
+    line-height: 1.5 !important;
+    color: #6e707e !important;
+    background-color: #fff !important;
+    background-clip: padding-box !important;
+    border: 1px solid #d1d3e2 !important;
+    border-radius: 0.35rem !important;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !important;
+    margin-bottom: 1rem !important;
+    box-sizing: border-box !important;
+    resize: vertical !important;
+}
+.editormd-form textarea:focus {
+    color: #6e707e !important;
+    background-color: #fff !important;
+    border-color: #bac8f3 !important;
+    outline: 0 !important;
+    box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25) !important;
+}

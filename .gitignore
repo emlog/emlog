@@ -3,6 +3,7 @@
 .user.ini
 .php-version
 sitemap*
+.playwright-cli
 Dockerfile
 config.php
 /content/backup/*.sql
