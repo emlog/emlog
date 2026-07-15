@@ -45,6 +45,7 @@ class Shortcut
             ['name' => _lang('article'), 'url' => 'article.php'],
             ['name' => _lang('draft'), 'url' => 'article.php?draft=1'],
             ['name' => _lang('template'), 'url' => 'template.php'],
+            ['name' => _lang('template_setting'), 'url' => 'template.php?setting=1'],
             ['name' => _lang('plugin'), 'url' => 'plugin.php'],
             ['name' => _lang('category'), 'url' => 'sort.php'],
             ['name' => _lang('tag'), 'url' => 'tag.php'],
@@ -52,6 +53,7 @@ class Shortcut
             ['name' => _lang('navbar'), 'url' => 'navbar.php'],
             ['name' => _lang('widget'), 'url' => 'widgets.php'],
             ['name' => _lang('link'), 'url' => 'link.php'],
+            ['name' => _lang('setting'), 'url' => 'setting.php'],
         ];
         foreach ($plugins as $val) {
             if (empty($val) || $val['active'] === 'off' || !$val['Setting'] || in_array($val['Plugin'], ['tips', 'tpl_options'])) {
