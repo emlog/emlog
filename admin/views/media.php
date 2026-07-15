@@ -495,12 +495,7 @@
             $(this).closest('.btn').addClass('active');
         });
 
-        if (window.outerWidth > 767) {
-            hs.graphicsDir = './views/components/highslide/graphics/';
-            hs.wrapperClassName = 'rounded-white';
-        } else {
-            $('.highslide').removeAttr('onclick') // 如果是移动端，则不使用 highslide 功能
-        }
+
 
         // copy url
         $('.copy-link').click(function(e) {
