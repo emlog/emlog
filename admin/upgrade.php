@@ -104,7 +104,6 @@ function isAllowedUpgradeHost($url)
         return false;
     }
 
-    // 拒绝包含 @、\、# 等特殊字符的 URL，防止 URL 解析差异绕过
     if (strpos($url, '@') !== false || strpos($url, '\\') !== false || strpos($url, '#') !== false) {
         return false;
     }
