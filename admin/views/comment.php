@@ -181,7 +181,7 @@
             var cid = button.data('cid')
             var hide = button.data('hide')
             var modal = $(this)
-            modal.find('.modal-body .comment-replay-content').html(comment)
+            modal.find('.modal-body .comment-replay-content').text(comment)
             modal.find('.modal-body #cid').val(cid)
             modal.find('.modal-body #hide').val(hide)
         })
