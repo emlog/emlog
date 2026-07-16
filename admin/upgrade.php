@@ -103,6 +103,12 @@ function isAllowedUpgradeHost($url)
     if (!filter_var($url, FILTER_VALIDATE_URL)) {
         return false;
     }
+
+    // 拒绝包含 @、\、# 等特殊字符的 URL，防止 URL 解析差异绕过
+    if (strpos($url, '@') !== false || strpos($url, '\\') !== false || strpos($url, '#') !== false) {
+        return false;
+    }
+
     $host = strtolower((string)parse_url($url, PHP_URL_HOST));
     $allowedHosts = array('www.emlog.net', 'store.emlog.net');
     return in_array($host, $allowedHosts, true);
