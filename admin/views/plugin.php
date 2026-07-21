@@ -1,5 +1,9 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
 <?= FlashMsg::renderPluginAlerts(); ?>
+<?php
+$all_count = count($plugins);
+$active_count = count(array_filter($plugins, function ($v) { return !empty($v['active']); }));
+?>
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h4 mb-0 text-gray-800"><?= _lang('plugin') ?></h1>
@@ -12,10 +16,10 @@
 <div class="panel-heading d-flex flex-column flex-md-row justify-content-between mb-3">
     <ul class="nav nav-pills justify-content-start mb-2 mb-md-0">
         <li class="nav-item">
-            <a class="nav-link active" href="javascript:void(0);" onclick="pluginFilter('all', this);"><?= _lang('all') ?></a>
+            <a class="nav-link active" href="javascript:void(0);" onclick="pluginFilter('all', this);"><?= _lang('all') ?> <span id="plugin_all_count"><?= $all_count ?></span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0);" onclick="pluginFilter('active', this);"><?= _lang('active') ?></a>
+            <a class="nav-link" href="javascript:void(0);" onclick="pluginFilter('active', this);"><?= _lang('active') ?> <span id="plugin_active_count"><?= $active_count ?></span></a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="javascript:void(0);" onclick="pluginFilter('inactive', this);"><?= _lang('inactive') ?></a>
@@ -206,6 +210,9 @@
         });
     });
 
+    /**
+     * 切换插件开关处理
+     */
     function toggleSwitch(plugin, id, token) {
         var switchElement = document.getElementById(id);
         var action = switchElement.checked ? 'active' : 'inactive';
@@ -214,6 +221,9 @@
         togglePluginAjax(plugin, action, token, id, filter);
     }
 
+    /**
+     * 异步请求切换插件启用/禁用状态
+     */
     function togglePluginAjax(plugin, action, token, switchId, filter) {
         const switchElement = document.getElementById(switchId);
         const originalState = switchElement.checked;
@@ -234,6 +244,7 @@
                 if (response.code === 0) {
                     cocoMessage.success(response.data);
                     updatePluginSettingLink(switchId, action);
+                    updateActiveCount();
                 } else {
                     switchElement.checked = !originalState;
                     cocoMessage.error(response.data, 4000);
@@ -254,9 +265,20 @@
         });
     }
 
+    /**
+     * 实时统计并更新已开启插件数量
+     */
+    function updateActiveCount() {
+        $('#plugin_active_count').text($('#pluginTable tr[data-active="1"]').length);
+    }
+
+    /**
+     * 更新插件名称链接与设置入口展示状态
+     */
     function updatePluginSettingLink(switchId, action) {
         var $tr = $('#' + switchId).closest('tr');
-        $tr.data('active', action === 'active' ? 1 : 0);
+        var isActive = action === 'active' ? 1 : 0;
+        $tr.data('active', isActive).attr('data-active', isActive);
         var settingUrl = $tr.data('plugin-setting-url') || '';
         var showUrl = $tr.data('plugin-show-url') || '';
         var pluginName = $tr.data('plugin-name') || '';
@@ -279,6 +301,9 @@
         }
     }
 
+    /**
+     * 执行插件在线升级操作
+     */
     function updatePlugin(pluginAlias, $updateLink) {
         $updateLink.text('<?= _lang('updating') ?>').prop('disabled', true);
         $.ajax({
@@ -303,6 +328,9 @@
         });
     }
 
+    /**
+     * 过滤显示不同状态的插件列表（全部、已开启、已停用）
+     */
     function pluginFilter(filter, element) {
         $('.nav-pills .nav-link').removeClass('active');
         $(element).addClass('active');
