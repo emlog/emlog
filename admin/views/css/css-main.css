@@ -1190,7 +1190,7 @@ textarea.form-control {
    Markdown 编辑器弹窗与表单控件样式覆盖，用于保持与系统 Bootstrap 模态窗口一致
    ========================================================================== */
 
-/* 1. 遮罩层 - 使用固定全屏的半透明黑色灯箱背景 */
+/* 1. 遮罩层 - 使用固定全屏的半透明黑色灯箱背景，允许鼠标事件穿透以支持划选/复制外部文字 */
 .editormd-mask {
     display: none;
     position: fixed !important;
@@ -1201,12 +1201,14 @@ textarea.form-control {
     background-color: rgba(0, 0, 0, 0.5) !important;
     opacity: 1 !important;
     z-index: 99990 !important;
+    pointer-events: none !important;
 }
 
-/* 2. 弹窗主容器定位与层叠顺序 */
+/* 2. 弹窗主容器定位与层叠顺序，确保弹窗内部正常接收鼠标事件 */
 #editor-md-dialog {
     position: relative !important;
     z-index: 99999 !important;
+    pointer-events: auto !important;
 }
 
 /* 2. 弹窗整体容器 */

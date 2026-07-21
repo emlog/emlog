@@ -552,6 +552,10 @@ function checkUpdate() {
     const updateModalChanges = $("#update-modal-changes");
     const updateModalBtn = $("#update-modal-btn");
 
+    updateModal.modal({
+        backdrop: 'static',
+        keyboard: false
+    });
     updateModal.modal('show');
     updateModalLoading.addClass("spinner-border text-primary");
 

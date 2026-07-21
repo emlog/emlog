@@ -2692,20 +2692,8 @@
             }
             maskEl.css("z-index", parseInt(dialog.css("z-index")) - 1).show();
 
-            maskEl.css("cursor", "pointer");
-            maskEl.off(editormd.mouseOrTouch("click", "touchend")).bind(editormd.mouseOrTouch("click", "touchend"), function () {
-                dialog.hide();
-                if (typeof dialog.lockScreen === "function") {
-                    dialog.lockScreen(false);
-                } else {
-                    $("html,body").css("overflow", "");
-                }
-                if (typeof dialog.hideMask === "function") {
-                    dialog.hideMask();
-                } else {
-                    maskEl.hide();
-                }
-            });
+            // 点击外部遮罩层不关闭弹窗，解绑点击事件
+            maskEl.off(editormd.mouseOrTouch("click", "touchend"));
         }
     };
 
@@ -4113,20 +4101,8 @@
                 }
                 maskEl.css(options.maskStyle).css("z-index", editormd.dialogZindex - 1).show();
 
-                maskEl.css("cursor", "pointer");
-                maskEl.off(mouseOrTouch("click", "touchend")).bind(mouseOrTouch("click", "touchend"), function () {
-                    dialog.hide();
-                    if (typeof dialog.lockScreen === "function") {
-                        dialog.lockScreen(false);
-                    } else {
-                        $("html,body").css("overflow", "");
-                    }
-                    if (typeof dialog.hideMask === "function") {
-                        dialog.hideMask();
-                    } else {
-                        maskEl.hide();
-                    }
-                });
+                // 点击外部遮罩层不关闭弹窗，解绑点击事件
+                maskEl.off(mouseOrTouch("click", "touchend"));
             }
             return dialog;
         };
