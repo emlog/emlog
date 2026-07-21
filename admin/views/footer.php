@@ -15,7 +15,7 @@
 <div class="modal fade" id="aiChatModal" tabindex="-1" role="dialog" aria-labelledby="aiChatModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
         <div class="modal-content border-0 shadow">
-            <div class="modal-header border-0 pb-2">
+            <div class="modal-header border-0 pb-2 align-items-center">
                 <h5 class="modal-title" id="aiChatModalLabel"><?= _lang('ai_chat') ?></h5>
                 <button type="button" class="btn btn-xs btn-outline-danger ml-auto mr-3" id="clear-chat-btn" title="<?= _lang('clear_history_title') ?>" style="font-size: 11px; padding: 1px 5px;">
                     <?= _lang('clear_history') ?>

@@ -1463,3 +1463,14 @@ textarea.form-control {
     outline: 0 !important;
     box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25) !important;
 }
+
+/* 模态框关闭按钮：扩大点击范围、去除点击蓝框、防止负 margin 挡住邻近元素 */
+.close, .editormd-dialog-close {
+    padding: 6px 12px !important;
+    margin: 0 !important;
+}
+.close:focus, .close:active, .close:focus-visible,
+.editormd-dialog-close:focus, .editormd-dialog-close:active {
+    outline: none !important;
+    box-shadow: none !important;
+}
