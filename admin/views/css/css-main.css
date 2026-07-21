@@ -839,23 +839,68 @@ input[type="checkbox"]:hover, select:hover {
 
 /* 应用商店-应用介绍弹出窗 */
 #appModal .modal-dialog {
-    max-width: 60%;
+    max-width: 1100px;
+    width: 85%;
     margin: 1.75rem auto;
 }
 
 #appModal .modal-content {
-    min-height: 90vh;
+    height: 88vh;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
+    background-color: #fff;
+}
+
+#appModal .modal-header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #eef2f7 !important;
+    padding: 0.85rem 1.25rem;
+}
+
+#appModal .modal-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #2c3e50;
+    max-width: 70%;
+}
+
+#appModal .modal-buy-url {
+    font-size: 0.825rem;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+}
+
+#appModal .modal-buy-url:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(78, 115, 223, 0.25);
+}
+
+#appModal .modal-body {
+    height: calc(88vh - 54px);
+    position: relative;
+    background-color: #f8f9fc;
 }
 
 #appModal .iframe-content {
     width: 100%;
-    height: 98%;
+    height: 100%;
+    border: none;
+    display: block;
 }
 
 /* 在小屏幕上，展示更大比例 */
 @media (max-width: 767px) {
     #appModal .modal-dialog {
-        max-width: 90%;
+        width: 95%;
+        max-width: 95%;
+        margin: 0.75rem auto;
+    }
+    #appModal .modal-content {
+        height: 92vh;
+    }
+    #appModal .modal-body {
+        height: calc(92vh - 54px);
     }
 }
 

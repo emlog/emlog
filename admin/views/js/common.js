@@ -756,7 +756,9 @@ $(function () {
         }, 'json');
     });
 
-    // 应用商店：查看应用信息
+    /**
+     * 应用商店：查看应用详情弹窗监听与页面载入处理
+     */
     $('#appModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget);
         var name = button.data('name');
@@ -765,10 +767,15 @@ $(function () {
         var modal = $(this);
 
         modal.find('.modal-body').empty();
-        modal.find('.modal-title').html(name);
-        modal.find('.modal-buy-url').attr('href', buy_url);
+        modal.find('.modal-title').text(name);
 
-        var loadingSpinner = '<div class="spinner-border text-primary ml-3"><span class="sr-only">Loading...</span></div>';
+        if (buy_url && $.trim(buy_url) !== '') {
+            modal.find('.modal-buy-url').attr('href', buy_url).removeClass('d-none').show();
+        } else {
+            modal.find('.modal-buy-url').addClass('d-none').hide();
+        }
+
+        var loadingSpinner = '<div class="spinner-border spinner-border-sm text-primary ml-2 align-middle" role="status" style="width: 1rem; height: 1rem;"><span class="sr-only">Loading...</span></div>';
         modal.find('.modal-title').append(loadingSpinner);
 
         var iframe = $('<iframe>', {
@@ -778,7 +785,7 @@ $(function () {
         });
 
         iframe.on('load', function () {
-            $('.spinner-border').remove();
+            modal.find('.spinner-border').remove();
         });
 
         modal.find('.modal-body').append(iframe);

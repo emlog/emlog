@@ -75,19 +75,21 @@
         <?php endforeach ?>
     </div>
 </div>
-<div class="modal fade" id="appModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-        <div class="modal-content border-0 shadow">
-            <div class="modal-header border-0">
-                <h5 class="modal-title" id="exampleModalLabel"></h5>
-                <div>
-                    <a href="" class="modal-buy-url text-muted" target="_blank">去官网查看</a>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<div class="modal fade" id="appModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl" role="document">
+        <div class="modal-content border-0 shadow-lg">
+            <div class="modal-header border-bottom py-2.5 px-3 align-items-center">
+                <h5 class="modal-title font-weight-bold text-truncate mr-3 mb-0" id="exampleModalLabel"></h5>
+                <div class="d-flex align-items-center ml-auto">
+                    <a href="" class="modal-buy-url btn btn-sm btn-outline-primary rounded-pill px-3 mr-2" target="_blank">
+                        <i class="icofont-external-link mr-1"></i><?= _lang('store_view_official') ?>
+                    </a>
+                    <button type="button" class="close p-1 ml-1" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
             </div>
-            <div class="modal-body">
+            <div class="modal-body p-0">
             </div>
         </div>
     </div>
