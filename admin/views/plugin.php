@@ -2,7 +2,17 @@
 <?= FlashMsg::renderPluginAlerts(); ?>
 <?php
 $all_count = count($plugins);
-$active_count = count(array_filter($plugins, function ($v) { return !empty($v['active']); }));
+$active_count = 0;
+$inactive_count = 0;
+if ($plugins) {
+    foreach ($plugins as $val) {
+        if ($val['active']) {
+            $active_count++;
+        } else {
+            $inactive_count++;
+        }
+    }
+}
 ?>
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -16,13 +26,13 @@ $active_count = count(array_filter($plugins, function ($v) { return !empty($v['a
 <div class="panel-heading d-flex flex-column flex-md-row justify-content-between mb-3">
     <ul class="nav nav-pills justify-content-start mb-2 mb-md-0">
         <li class="nav-item">
-            <a class="nav-link active" href="javascript:void(0);" onclick="pluginFilter('all', this);"><?= _lang('all') ?> <span id="plugin_all_count"><?= $all_count ?></span></a>
+            <a class="nav-link active" data-filter="all" href="javascript:void(0);" onclick="pluginFilter('all', this);"><?= _lang('all') ?> <span class="small font-weight-light">(<span id="count_all"><?= $all_count ?></span>)</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0);" onclick="pluginFilter('active', this);"><?= _lang('active') ?> <span id="plugin_active_count"><?= $active_count ?></span></a>
+            <a class="nav-link" data-filter="active" href="javascript:void(0);" onclick="pluginFilter('active', this);"><?= _lang('active') ?> <span class="small font-weight-light">(<span id="count_active"><?= $active_count ?></span>)</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0);" onclick="pluginFilter('inactive', this);"><?= _lang('inactive') ?></a>
+            <a class="nav-link" data-filter="inactive" href="javascript:void(0);" onclick="pluginFilter('inactive', this);"><?= _lang('inactive') ?></a>
         </li>
     </ul>
     <div class="w-md-auto">
@@ -244,7 +254,7 @@ $active_count = count(array_filter($plugins, function ($v) { return !empty($v['a
                 if (response.code === 0) {
                     cocoMessage.success(response.data);
                     updatePluginSettingLink(switchId, action);
-                    updateActiveCount();
+                    updateCurrentCount();
                 } else {
                     switchElement.checked = !originalState;
                     cocoMessage.error(response.data, 4000);
@@ -266,10 +276,13 @@ $active_count = count(array_filter($plugins, function ($v) { return !empty($v['a
     }
 
     /**
-     * 实时统计并更新已开启插件数量
+     * 实时统计并更新各个 Tab 下的插件数量展示
      */
-    function updateActiveCount() {
-        $('#plugin_active_count').text($('#pluginTable tr[data-active="1"]').length);
+    function updateCurrentCount() {
+        var allCount = $('#pluginTable tr').length;
+        var activeCount = $('#pluginTable tr[data-active="1"]').length;
+        $('#count_all').text(allCount);
+        $('#count_active').text(activeCount);
     }
 
     /**
@@ -347,5 +360,7 @@ $active_count = count(array_filter($plugins, function ($v) { return !empty($v['a
                 else $(this).hide();
             }
         });
+
+        updateCurrentCount();
     }
 </script>

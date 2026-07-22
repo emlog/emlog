@@ -4,19 +4,16 @@
     <h1 class="h4 mb-0 text-gray-800"><?= _lang('comment') ?></h1>
 </div>
 <?php if ($hideCommNum > 0) : ?>
+    <?php
+    $hidecmnum = User::haveEditPermission() ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
+    ?>
     <div class="panel-heading mb-3">
         <ul class="nav nav-pills justify-content-start mb-2 mb-md-0">
             <li class="nav-item">
                 <a class="nav-link <?= $hide == '' ? 'active' : '' ?>" href="./comment.php?<?= $addUrl_1 ?>"><?= _lang('all') ?></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?= $hide == 'y' ? 'active' : '' ?>" href="./comment.php?hide=y&<?= $addUrl_1 ?>"><?= _lang('pending_audit') ?>
-                    <?php
-                    $hidecmnum = User::haveEditPermission() ? $sta_cache['hidecomnum'] : $sta_cache[UID]['hidecommentnum'];
-                    if ($hidecmnum > 0)
-                        echo '(' . $hidecmnum . ')';
-                    ?>
-                </a>
+                <a class="nav-link <?= $hide == 'y' ? 'active' : '' ?>" href="./comment.php?hide=y&<?= $addUrl_1 ?>"><?= _lang('pending_audit') ?> <span class="small font-weight-light">(<?= $hidecmnum ?>)</span></a>
             </li>
         </ul>
     </div>
