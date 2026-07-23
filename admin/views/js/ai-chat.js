@@ -180,6 +180,21 @@ var AIChat = {
     },
 
     /**
+     * 渲染模型未配置时的通用精简提示 HTML
+     * 
+     * @param {string} message 提示信息文本
+     * @param {string} [btnText='前往配置模型'] 按钮文本
+     * @returns {string} HTML 字符串
+     */
+    renderUnconfiguredTip: function (message, btnText) {
+        var btnLabel = btnText || '前往配置模型';
+        return '<div class="text-secondary py-1">' +
+            '<div>' + $('<div>').text(message).html() + '</div>' +
+            '<div class="mt-2"><a href="./setting.php?action=ai" class="btn btn-xs btn-outline-primary"><i class="icofont-gear"></i> ' + btnLabel + '</a></div>' +
+            '</div>';
+    },
+
+    /**
      * 从后台获取并加载AI助手聊天历史记录
      */
     loadChatHistory: function () {
@@ -276,6 +291,12 @@ var AIChat = {
             } else {
                 try {
                     var data = JSON.parse(event.data);
+                    if (data.need_config) {
+                        $thoughtWrap.remove();
+                        $answerContent.html(self.renderUnconfiguredTip(data.message));
+                        $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
+                        return;
+                    }
                     var choice = data.choices && data.choices[0] ? data.choices[0] : {};
                     var delta = choice.delta || {};
                     var messageData = choice.message || {};
@@ -457,9 +478,7 @@ var AIChat = {
                         if (data.need_config) {
                             $card.removeClass('border-left-primary').addClass('border-left-warning');
                             $card.find('.status-badge').removeClass('badge-info').addClass('badge-warning').html('<i class="icofont-warning"></i> 未配置模型');
-                            var configTip = '<div>' + $('<div>').text(data.message).html() + '</div>' +
-                                '<div class="mt-2"><a href="./setting.php?action=ai" class="btn btn-xs btn-primary"><i class="icofont-gear"></i> 前往配置图像生成模型</a></div>';
-                            $card.find('.action-details').html(configTip);
+                            $card.find('.action-details').html(self.renderUnconfiguredTip(data.message));
                             resultsTextForAi = '[工具执行结果] 拦截：用户尚未配置图像生成模型。提示用户前往 [系统设置->AI服务] 页面配置图像生成模型。';
                         } else {
                             $card.removeClass('border-left-primary').addClass('border-left-success');

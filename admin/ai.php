@@ -42,6 +42,17 @@ if ($action == 'chat_stream') {
     header('Cache-Control: no-cache');
     header('Connection: keep-alive');
 
+    $chatModelInfo = Ai::getCurrentModelInfo();
+    if (!$chatModelInfo) {
+        $data = json_encode([
+            'need_config' => true,
+            'message' => '未配置文本对话模型，请先前往 [系统->AI] 页面配置文本对话模型。'
+        ]);
+        echo "data: {$data}\n\n";
+        echo "data: [DONE]\n\n";
+        exit;
+    }
+
     $blogname = Option::get('blogname');
     $bloginfo = Option::get('bloginfo');
 
