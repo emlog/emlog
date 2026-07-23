@@ -255,7 +255,8 @@ function checkSqlFileInfo($sqlfile)
     }
 
     if ($fileTablePrefix !== DB_PREFIX) {
-        emMsg('备份文件中的数据库表前缀与当前系统数据库表前缀不一致');
+        $filePrefixText = !empty($fileTablePrefix) ? $fileTablePrefix : '未知';
+        emMsg('备份文件中的数据库表前缀(' . $filePrefixText . ')与当前系统数据库表前缀(' . DB_PREFIX . ')不一致');
     }
 }
 

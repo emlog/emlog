@@ -22,15 +22,12 @@
         <h5 class="card-header"><?= _lang('import_backup'); ?></h5>
         <form action="data.php?action=import" enctype="multipart/form-data" method="post" style="display: flex; flex-direction: column; flex-grow: 1;">
             <div class="card-body">
-                <div id="import">
-                    <p class="des"><?= _lang('import_backup_desc'); ?></p>
-                </div>
                 <div class="custom-file">
                     <input type="file" class="custom-file-input" name="sqlfile" id="sqlfile" required>
                     <label class="custom-file-label" for="sqlfile"><?= _lang('select_backup_file'); ?></label>
                 </div>
                 <small class="form-text text-muted mt-2">
-                    <?= _lang('select_backup_file_desc'); ?><?= DB_PREFIX ?>
+                    <?= _lang('select_backup_file_desc'); ?>
                 </small>
             </div>
             <div class="card-footer text-right">
