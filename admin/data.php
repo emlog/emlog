@@ -42,6 +42,7 @@ if ($action === 'backup') {
 
     // 写入备份文件头信息
     fwrite($fp, '#version:emlog ' . Option::EMLOG_VERSION . "\n");
+    fwrite($fp, '#dbversion:' . Option::EMLOG_DB_VERSION . "\n");
     fwrite($fp, '#date:' . date('Y-m-d H:i') . "\n");
     fwrite($fp, '#tableprefix:' . DB_PREFIX . "\n");
 
@@ -206,9 +207,9 @@ function checkSqlFileInfo($sqlfile)
         if (empty(trim($a, "\t\n\r\0\x0B"))) {
             continue;
         }
-        $dumpinfo[] = $a;
+        $dumpinfo[] = trim($a);
         $line++;
-        if ($line == 3) {
+        if ($line == 10) {
             break;
         }
     }
@@ -217,17 +218,44 @@ function checkSqlFileInfo($sqlfile)
         emMsg('该文件不是emlog的数据备份文件');
     }
 
-    if (preg_match("/pro\s\d+\.\d+\.\d+/", $dumpinfo[0], $matches)) {
-        $v = $matches[0];
-        if ($v !== Option::EMLOG_VERSION) {
-            emMsg('不是当前版本生成的数据备份，请安装 emlog ' . $v . ' 导入。');
-        }
-    } else {
+    // 检查软件类型标识
+    if (!preg_match("/#version:emlog\s+pro\s\d+\.\d+\.\d+/", $dumpinfo[0], $matches)) {
         emMsg('该文件不是 emlog pro 的数据备份文件');
     }
 
-    if (preg_match('/#tableprefix:' . DB_PREFIX . '/', $dumpinfo[2]) === 0) {
-        emMsg('备份文件中的数据库表前缀与当前系统数据库表前缀不一致' . $dumpinfo[2]);
+    // 尝试解析 dbversion 以及 tableprefix
+    $fileDbVersion = null;
+    $fileTablePrefix = null;
+    $fileSoftwareVersion = null;
+
+    foreach ($dumpinfo as $infoLine) {
+        if (strpos($infoLine, '#version:') === 0) {
+            if (preg_match("/pro\s\d+\.\d+\.\d+/", $infoLine, $m)) {
+                $fileSoftwareVersion = $m[0];
+            }
+        } elseif (strpos($infoLine, '#dbversion:') === 0) {
+            $fileDbVersion = (int)trim(substr($infoLine, 11));
+        } elseif (strpos($infoLine, '#tableprefix:') === 0) {
+            $fileTablePrefix = trim(substr($infoLine, 13));
+        }
+    }
+
+    // 优先使用 dbversion 进行数据库结构版本对比
+    if (!is_null($fileDbVersion)) {
+        if ($fileDbVersion !== Option::EMLOG_DB_VERSION) {
+            $versionText = $fileSoftwareVersion ? ' ' . $fileSoftwareVersion : '';
+            emMsg('备份文件的数据库结构版本(' . $fileDbVersion . ')与当前系统数据库结构版本(' . Option::EMLOG_DB_VERSION . ')不一致，无法导入。请<a href="https://www.emlog.net/docs/changelog" target="_blank">下载安装</a> ' . $versionText . ' 恢复。');
+        }
+    } else {
+        // 向后兼容旧的备份文件（无 #dbversion 标识）：回退校验软件版本号
+        if ($fileSoftwareVersion !== Option::EMLOG_VERSION) {
+            $versionText = $fileSoftwareVersion ? ' ' . $fileSoftwareVersion : '';
+            emMsg('不是当前版本生成的数据备份，无法导入，请<a href="https://www.emlog.net/docs/changelog" target="_blank">下载安装</a> ' . $versionText . ' 恢复。');
+        }
+    }
+
+    if ($fileTablePrefix !== DB_PREFIX) {
+        emMsg('备份文件中的数据库表前缀与当前系统数据库表前缀不一致');
     }
 }
 
