@@ -131,6 +131,8 @@ return [
     'ai_suggest_delete_comment' => '删除最近收到的一条评论',
     'ai_suggest_add_category' => '添加一个新的分类：生活随笔',
     'ai_suggest_write_article' => '写一篇关于宇宙起源的文章，并作为文章发布',
+    'ai_suggest_gen_cat_img' => '生成一张可爱小猫的图片',
+    'ai_suggest_make_cover_for_post' => '为id是5的文章制作一张封面图',
     'loading_history' => '正在加载历史记录...',
     'load_history_failed' => '加载历史记录失败',
     'ai_tool_query_database' => '查询/操作数据库',

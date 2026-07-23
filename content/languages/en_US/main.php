@@ -131,6 +131,8 @@ return [
     'ai_suggest_delete_comment' => 'Delete the most recently received comment',
     'ai_suggest_add_category' => 'Add a new category: Life Journal',
     'ai_suggest_write_article' => 'Write an article about the origin of the universe and publish it',
+    'ai_suggest_gen_cat_img' => 'Generate an image of a cute cat',
+    'ai_suggest_make_cover_for_post' => 'Create a cover image for the post with id 5',
     'loading_history' => 'Loading history...',
     'load_history_failed' => 'Failed to load history',
     'ai_tool_query_database' => 'Query/Operate Database',

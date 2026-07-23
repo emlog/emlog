@@ -28,6 +28,8 @@ var AIChat = {
                     <li class="mb-2 chat-example-suggest" data-text="${_langJS.ai_suggest_delete_comment}" style="cursor: pointer;"><i class="icofont-double-right text-primary mr-1"></i> “${_langJS.ai_suggest_delete_comment}”</li>
                     <li class="mb-2 chat-example-suggest" data-text="${_langJS.ai_suggest_add_category}" style="cursor: pointer;"><i class="icofont-double-right text-primary mr-1"></i> “${_langJS.ai_suggest_add_category}”</li>
                     <li class="mb-2 chat-example-suggest" data-text="${_langJS.ai_suggest_write_article}" style="cursor: pointer;"><i class="icofont-double-right text-primary mr-1"></i> “${_langJS.ai_suggest_write_article}”</li>
+                    <li class="mb-2 chat-example-suggest" data-text="${_langJS.ai_suggest_gen_cat_img}" style="cursor: pointer;"><i class="icofont-double-right text-primary mr-1"></i> “${_langJS.ai_suggest_gen_cat_img}”</li>
+                    <li class="mb-2 chat-example-suggest" data-text="${_langJS.ai_suggest_make_cover_for_post}" style="cursor: pointer;"><i class="icofont-double-right text-primary mr-1"></i> “${_langJS.ai_suggest_make_cover_for_post}”</li>
                 </ul>
             </div>`;
     },
@@ -348,7 +350,8 @@ var AIChat = {
         var toolNamesMap = {
             'query_database': _langJS.ai_tool_query_database,
             'update_config': _langJS.ai_tool_update_config,
-            'write_article': _langJS.ai_tool_write_article
+            'write_article': _langJS.ai_tool_write_article,
+            'generate_image': _langJS.ai_tool_generate_image
         };
         var friendlyName = toolNamesMap[name] || name;
 
@@ -364,7 +367,7 @@ var AIChat = {
             configValue = paramsObj.value !== undefined ? JSON.stringify(paramsObj.value) : '';
         } catch (e) {}
 
-        var isWriteOp = name === 'update_config' || name === 'write_article' || !/^\s*(select|show|desc|describe|explain)\b/i.test(sql);
+        var isWriteOp = name === 'update_config' || name === 'write_article' || (name === 'query_database' && !/^\s*(select|show|desc|describe|explain)\b/i.test(sql));
 
         var waitSensitiveText = name === _langJS.ai_tool_config_wait_sensitive;
 
@@ -450,56 +453,70 @@ var AIChat = {
                 success: function (response) {
                     var resultsTextForAi = '';
                     if (response.code === 0) {
-                        $card.removeClass('border-left-primary').addClass('border-left-success');
-                        $card.find('.status-badge').removeClass('badge-info').addClass('badge-success').html('<i class="icofont-check-circled"></i> ' + _langJS.ai_tool_success);
-
                         var data = response.data || {};
-                        var detailHtml = '';
-                        if (name === 'query_database') {
-                            var list = data.results || [];
-                            if (list.length === 0) {
-                                detailHtml = _langJS.ai_tool_no_data;
-                                resultsTextForAi = '[工具执行结果] 成功，没有返回任何数据（这在执行 DELETE/UPDATE 等写操作时是正常的）。';
-                            } else {
-                                detailHtml = '<div class="table-responsive"><table class="table table-bordered table-sm text-xs mb-0"><thead><tr>';
-                                var keys = Object.keys(list[0]);
-                                var filteredKeys = keys.filter(function (keyName) {
-                                    return isNaN(keyName);
-                                });
-                                filteredKeys.forEach(function (key) {
-                                    detailHtml += '<th>' + $('<div>').text(key).html() + '</th>';
-                                });
-                                detailHtml += '</tr></thead><tbody>';
-                                list.forEach(function (row) {
-                                    detailHtml += '<tr>';
-                                    filteredKeys.forEach(function (key) {
-                                        var val = row[key];
-                                        if (key === 'date') {
-                                            val = new Date(parseInt(val) * 1000).toLocaleString();
-                                        }
-                                        detailHtml += '<td>' + $('<div>').text(val).html() + '</td>';
-                                    });
-                                    detailHtml += '</tr>';
-                                });
-                                detailHtml += '</tbody></table></div>';
-
-                                resultsTextForAi = '[工具执行结果] 成功，查询到的数据如下：\n' + JSON.stringify(list);
-                            }
-                        } else if (data.message) {
-                            detailHtml = data.message;
-                            resultsTextForAi = '[工具执行结果] 成功：' + data.message;
+                        if (data.need_config) {
+                            $card.removeClass('border-left-primary').addClass('border-left-warning');
+                            $card.find('.status-badge').removeClass('badge-info').addClass('badge-warning').html('<i class="icofont-warning"></i> 未配置模型');
+                            var configTip = '<div>' + $('<div>').text(data.message).html() + '</div>' +
+                                '<div class="mt-2"><a href="./setting.php?action=ai" class="btn btn-xs btn-primary"><i class="icofont-gear"></i> 前往配置图像生成模型</a></div>';
+                            $card.find('.action-details').html(configTip);
+                            resultsTextForAi = '[工具执行结果] 拦截：用户尚未配置图像生成模型。提示用户前往 [系统设置->AI服务] 页面配置图像生成模型。';
                         } else {
-                            detailHtml = _langJS.ai_tool_complete;
-                            resultsTextForAi = '[工具执行结果] 成功：操作执行完毕。';
+                            $card.removeClass('border-left-primary').addClass('border-left-success');
+                            $card.find('.status-badge').removeClass('badge-info').addClass('badge-success').html('<i class="icofont-check-circled"></i> ' + _langJS.ai_tool_success);
+
+                            var detailHtml = '';
+                            if (name === 'query_database') {
+                                var list = data.results || [];
+                                if (list.length === 0) {
+                                    detailHtml = _langJS.ai_tool_no_data;
+                                    resultsTextForAi = '[工具执行结果] 成功，没有返回任何数据（这在执行 DELETE/UPDATE 等写操作时是正常的）。';
+                                } else {
+                                    detailHtml = '<div class="table-responsive"><table class="table table-bordered table-sm text-xs mb-0"><thead><tr>';
+                                    var keys = Object.keys(list[0]);
+                                    var filteredKeys = keys.filter(function (keyName) {
+                                        return isNaN(keyName);
+                                    });
+                                    filteredKeys.forEach(function (key) {
+                                        detailHtml += '<th>' + $('<div>').text(key).html() + '</th>';
+                                    });
+                                    detailHtml += '</tr></thead><tbody>';
+                                    list.forEach(function (row) {
+                                        detailHtml += '<tr>';
+                                        filteredKeys.forEach(function (key) {
+                                            var val = row[key];
+                                            if (key === 'date') {
+                                                val = new Date(parseInt(val) * 1000).toLocaleString();
+                                            }
+                                            detailHtml += '<td>' + $('<div>').text(val).html() + '</td>';
+                                        });
+                                        detailHtml += '</tr>';
+                                    });
+                                    detailHtml += '</tbody></table></div>';
+
+                                    resultsTextForAi = '[工具执行结果] 成功，查询到的数据如下：\n' + JSON.stringify(list);
+                                }
+                            } else if (name === 'generate_image') {
+                                var imgUrl = data.image_url || '';
+                                detailHtml = '<div>' + (data.message || '图像生成成功！') + '</div>' +
+                                    (imgUrl ? '<div class="mt-2 text-center"><a href="' + imgUrl + '" target="_blank"><img src="' + imgUrl + '" class="img-fluid rounded shadow-sm" style="max-height: 260px;" /></a></div>' : '');
+                                resultsTextForAi = '[工具执行结果] 成功：图像已成功生成并保存到媒体库。图片访问URL: ' + imgUrl;
+                            } else if (data.message) {
+                                detailHtml = data.message;
+                                resultsTextForAi = '[工具执行结果] 成功：' + data.message;
+                            } else {
+                                detailHtml = _langJS.ai_tool_complete;
+                                resultsTextForAi = '[工具执行结果] 成功：操作执行完毕。';
+                            }
+                            $card.find('.action-details').html(detailHtml);
                         }
-                        $card.find('.action-details').html(detailHtml);
                     } else {
                         var errorMsg = response.msg || _langJS.ai_tool_failed;
                         showError(errorMsg);
                     }
                     $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
 
-                    // 仅当执行成功，且为只读操作（中间信息）时，才自动回传结果给 AI 触发下一步动作
+                    // 仅当执行成功，且为只读操作或生成图片等非确认类中间步骤时，自动回传结果给 AI 触发后续回复
                     if (response.code === 0 && !isWriteOp && resultsTextForAi) {
                         setTimeout(function () {
                             self.sendAiMessage(resultsTextForAi, true);

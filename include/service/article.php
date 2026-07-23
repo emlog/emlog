@@ -52,53 +52,70 @@ class Article
      */
     public static function writeArticle($articleData)
     {
-        // 1. 检查是否限制/禁止发文
-        if (self::hasForbidPost()) {
-            throw new Exception("系统当前禁止发文");
+        // 1. 检查是否限制/禁止发文（更新文章不受发文配额限制）
+        $actionType = isset($articleData['action']) ? $articleData['action'] : 'create';
+        $gid = isset($articleData['gid']) ? (int)$articleData['gid'] : (isset($articleData['blog_id']) ? (int)$articleData['blog_id'] : 0);
+        if ($gid > 0) {
+            $actionType = 'update';
         }
-        if (self::hasReachedDailyPostLimit()) {
-            throw new Exception("已达到今日每日发文限制，无法发文");
+
+        if ($actionType === 'create') {
+            if (self::hasForbidPost()) {
+                throw new Exception("系统当前禁止发文");
+            }
+            if (self::hasReachedDailyPostLimit()) {
+                throw new Exception("已达到今日每日发文限制，无法发文");
+            }
         }
 
         $Log_Model = new Log_Model();
         $Tag_Model = new Tag_Model();
         $db = Database::getInstance();
 
+        // 针对 update 操作，如果部分字段未传，可保留原文原值或按需更新
+        $existingLog = null;
+        if ($actionType === 'update') {
+            $existingLog = $Log_Model->getOneLogForAdmin($gid);
+            if (empty($existingLog)) {
+                throw new Exception("文章不存在(gid: {$gid})");
+            }
+        }
+
         // 2. 字段检验与预处理
-        $title = isset($articleData['title']) ? trim($articleData['title']) : '';
+        $title = (isset($articleData['title']) && trim($articleData['title']) !== '') ? trim($articleData['title']) : ($existingLog ? $existingLog['title'] : '');
         if (empty($title)) {
             throw new Exception("文章标题不能为空");
         }
 
-        $content = isset($articleData['content']) ? $articleData['content'] : (isset($articleData['logcontent']) ? $articleData['logcontent'] : '');
+        $content = (isset($articleData['content']) && $articleData['content'] !== '') ? $articleData['content'] : (isset($articleData['logcontent']) && $articleData['logcontent'] !== '' ? $articleData['logcontent'] : ($existingLog ? $existingLog['content'] : ''));
         if (empty($content)) {
             throw new Exception("文章内容不能为空");
         }
 
         // 日期处理
         $postDate = isset($articleData['postdate']) ? trim($articleData['postdate']) : '';
-        $postTime = $postDate ? strtotime($postDate) : time();
+        $postTime = $postDate ? strtotime($postDate) : ($existingLog ? $existingLog['date'] : time());
         if ($postTime === false) {
             $postTime = time();
         }
 
-        $sort = isset($articleData['sort']) ? (int)$articleData['sort'] : (isset($articleData['sortid']) ? (int)$articleData['sortid'] : -1);
+        $sort = isset($articleData['sort']) ? (int)$articleData['sort'] : (isset($articleData['sortid']) ? (int)$articleData['sortid'] : ($existingLog ? (int)$existingLog['sortid'] : -1));
         $tagstring = isset($articleData['tag']) ? strip_tags(trim($articleData['tag'])) : (isset($articleData['tags']) ? strip_tags(trim($articleData['tags'])) : '');
-        $excerpt = isset($articleData['excerpt']) ? trim($articleData['excerpt']) : (isset($articleData['logexcerpt']) ? trim($articleData['logexcerpt']) : '');
-        $alias = isset($articleData['alias']) ? trim($articleData['alias']) : '';
-        $top = isset($articleData['top']) ? trim($articleData['top']) : 'n';
-        $sortop = isset($articleData['sortop']) ? trim($articleData['sortop']) : 'n';
-        $allow_remark = isset($articleData['allow_remark']) ? trim($articleData['allow_remark']) : 'y';
-        $password = isset($articleData['password']) ? trim($articleData['password']) : '';
-        $template = isset($articleData['template']) ? trim($articleData['template']) : '';
-        $cover = isset($articleData['cover']) ? trim($articleData['cover']) : '';
-        $link = isset($articleData['link']) ? trim($articleData['link']) : '';
+        $excerpt = isset($articleData['excerpt']) ? trim($articleData['excerpt']) : (isset($articleData['logexcerpt']) ? trim($articleData['logexcerpt']) : ($existingLog ? $existingLog['excerpt'] : ''));
+        $alias = isset($articleData['alias']) ? trim($articleData['alias']) : ($existingLog ? $existingLog['alias'] : '');
+        $top = isset($articleData['top']) ? trim($articleData['top']) : ($existingLog ? $existingLog['top'] : 'n');
+        $sortop = isset($articleData['sortop']) ? trim($articleData['sortop']) : ($existingLog ? $existingLog['sortop'] : 'n');
+        $allow_remark = isset($articleData['allow_remark']) ? trim($articleData['allow_remark']) : ($existingLog ? $existingLog['allow_remark'] : 'y');
+        $password = isset($articleData['password']) ? trim($articleData['password']) : ($existingLog ? $existingLog['password'] : '');
+        $template = isset($articleData['template']) ? trim($articleData['template']) : ($existingLog ? $existingLog['template'] : '');
+        $cover = isset($articleData['cover']) ? trim($articleData['cover']) : ($existingLog ? $existingLog['cover'] : '');
+        $link = isset($articleData['link']) ? trim($articleData['link']) : ($existingLog ? $existingLog['link'] : '');
 
         // 作者
         $author = isset($articleData['author']) ? (int)$articleData['author'] : 0;
-        $author = $author && User::haveEditPermission() ? $author : (defined('UID') ? UID : 1);
+        $author = $author && User::haveEditPermission() ? $author : ($existingLog ? $existingLog['author'] : (defined('UID') ? UID : 1));
 
-        $ishide = isset($articleData['ishide']) ? trim($articleData['ishide']) : 'n';
+        $ishide = isset($articleData['ishide']) ? trim($articleData['ishide']) : ($existingLog ? $existingLog['hide'] : 'n');
         $pubPost = isset($articleData['pubPost']) ? trim($articleData['pubPost']) : '';
         $auto_excerpt = isset($articleData['auto_excerpt']) ? trim($articleData['auto_excerpt']) : 'n';
         $auto_cover = isset($articleData['auto_cover']) ? trim($articleData['auto_cover']) : 'n';
@@ -128,11 +145,11 @@ class Article
         if (!empty($alias)) {
             $CACHE = Cache::getInstance();
             $logalias_cache = $CACHE->readCache('logalias');
-            $alias = $Log_Model->checkAlias($alias, $logalias_cache, -1);
+            $alias = $Log_Model->checkAlias($alias, $logalias_cache, $gid ? $gid : -1);
         }
 
         // 审核机制
-        $checked = Option::get('ischkarticle') == 'y' && !User::haveEditPermission() ? 'n' : 'y';
+        $checked = Option::get('ischkarticle') == 'y' && !User::haveEditPermission() ? 'n' : ($existingLog ? $existingLog['checked'] : 'y');
 
         $logData = [
             'title'        => $db->escape_string($title),
@@ -156,14 +173,19 @@ class Article
         // 钩子
         doMultiAction('pre_save_log', $logData, $logData);
 
-        // 保存文章
-        $blogid = $Log_Model->addlog($logData);
-        if (!$blogid) {
-            throw new Exception("写入数据库失败");
+        if ($actionType === 'update') {
+            $Log_Model->updateLog($logData, $gid);
+            $blogid = $gid;
+        } else {
+            // 保存文章
+            $blogid = $Log_Model->addlog($logData);
+            if (!$blogid) {
+                throw new Exception("写入数据库失败");
+            }
         }
 
         // 保存标签
-        if (!empty($tagstring)) {
+        if (isset($articleData['tag']) || isset($articleData['tags'])) {
             $Tag_Model->addTag($tagstring, $blogid);
         }
 
@@ -183,7 +205,7 @@ class Article
         $isPub = $ishide === 'n';
         doAction('save_log', $blogid, $isPub, $logData);
 
-        if ($isPub && !User::haveEditPermission()) {
+        if ($actionType === 'create' && $isPub && !User::haveEditPermission()) {
             Notice::sendNewPostMail($title, $blogid);
         }
 

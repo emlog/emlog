@@ -99,18 +99,39 @@ if ($action == 'chat_stream') {
 - 示例 2 (关闭自动保存): `<tool_call name=\"update_config\">{\"key\":\"ARTICLE_AUTOSAVE_OFF\", \"action\":\"add\", \"value\":true}</tool_call>`
 - 示例 3 (删除自动保存配置以恢复默认): `<tool_call name=\"update_config\">{\"key\":\"ARTICLE_AUTOSAVE_OFF\", \"action\":\"delete\"}</tool_call>`
 
-3. 写文章、发布文章操作
+3. 写文章、发布文章或更新修改已存在文章的操作
 - 工具名称: write_article
-- 说明: 当用户需要发表文章、撰写博客等写文章操作时，必须使用此专用工具。本工具会进行表结构的规范字段检验与安全处理，从而避免直接执行 SQL 操作可能导致的异常。
+- 说明: 当用户需要发表新文章或修改/更新已有文章（如设置/更新文章封面图、修改标题或内容等）时，必须使用此专用工具（禁止使用 query_database 直接 UPDATE/INSERT/DELETE 文章表 emlog_blog）。
 - 参数格式 (JSON):
   {
-    \"title\": \"文章标题（必填）\",
-    \"content\": \"文章内容（必填）\",
+    \"gid\": 文章ID（可选，整数。如果传入了 gid，则表示【更新修改已有文章】；不传或为0表示【新建发表新文章】）,
+    \"title\": \"文章标题（新建时必填；更新时可选，不填则保持原标题）\",
+    \"content\": \"文章内容（新建时必填；更新时可选，不填则保持原内容，可包含 HTML/Markdown 图片标签）\",
     \"excerpt\": \"文章摘要（可选）\",
+    \"cover\": \"文章封面图路径/URL（可选，生成封面图后更新已有文章封面时填入此处）\",
     \"sortid\": 分类ID（可选，整数，默认为 -1）,
-    \"tag\": \"文章标签（可选，多个标签用英文逗号隔开，例如：'AI,科技,博客'）\"
+    \"tag\": \"文章标签（可选，多个标签用英文逗号隔开）\"
   }
-- 示例：`<tool_call name=\"write_article\">{\"title\":\"我的第一篇AI博客\",\"content\":\"这是通过AI助手自动撰写的博客内容。\",\"sortid\":-1,\"tag\":\"AI,科技,博客\"}</tool_call>`";
+- 示例 1 (新建文章): `<tool_call name=\"write_article\">{\"title\":\"我的第一篇AI博客\",\"content\":\"这是通过AI助手自动撰写的博客内容。\",\"sortid\":-1,\"tag\":\"AI,科技,博客\"}</tool_call>`
+- 示例 2 (更新已知文章封面图): `<tool_call name=\"write_article\">{\"gid\":1,\"cover\":\"http://example.com/cover.jpg\"}</tool_call>`
+
+4. 生成图片、制作封面图、给文章配图等图像生成操作
+- 工具名称: generate_image
+- 说明: 当用户在对话中明确要求生成图片、制作封面图、给文章配图、画一张图、设计插图等图像生成需求时，必须调用此工具。
+- 参数格式 (JSON):
+  {
+    \"prompt\": \"详细的英文或中文图片生成提示词（必填，请根据用户需求丰富和优化提示词描述）\",
+    \"size\": \"图片尺寸（可选，默认 '1024x1024'，如 '1024x1024'、'512x512' 等）\",
+    \"quality\": \"图片质量（可选，默认 'standard'）\"
+  }
+- 示例：`<tool_call name=\"generate_image\">{\"prompt\":\"一位在星空下写作的程序员，赛博朋克风格，高清\",\"size\":\"1024x1024\"}</tool_call>`
+
+核心规则与流程自动化规范：
+1. 一次对话只能输出一个 `<tool_call>` 标签。
+2. 涉及多步骤需求（例如：“给第一篇文章生成封面图并设置”、“生成配图并发表/更新文章”等）：
+   - 如果已知文章ID或目标信息，直接调用 `generate_image` 生成图片。
+   - 当 `generate_image` 执行成功并收到系统反馈的图片URL（如 `[工具执行结果] 成功... 图片访问URL: http://...`）后，你必须【立即自动调用】下一步的工具（例如调用 `write_article` 工具，传入 `{\"gid\": 1, \"cover\": \"图片访问URL\"}` 更新文章封面），绝对不能使用 SQL 或仅回答“生成成功”就停止！
+   - 收到工具执行结果反馈后，直接继续输出包含下一个 `<tool_call>` 标签的回复，实现无缝连贯自动操作。";
 
     Ai::chatStream($message, $system_prompt, true);
     exit;
@@ -150,31 +171,40 @@ if ($action == 'execute_tool') {
 
         case 'write_article':
             try {
+                $gid = isset($params['gid']) ? (int)$params['gid'] : (isset($params['blog_id']) ? (int)$params['blog_id'] : 0);
                 $title = isset($params['title']) ? $params['title'] : '';
                 $content = isset($params['content']) ? $params['content'] : '';
                 $excerpt = isset($params['excerpt']) ? $params['excerpt'] : '';
+                $cover = isset($params['cover']) ? $params['cover'] : '';
                 $sortid = isset($params['sortid']) ? (int)$params['sortid'] : -1;
                 $tag = isset($params['tag']) ? $params['tag'] : (isset($params['tags']) ? $params['tags'] : '');
                 $confirm_code = isset($_POST['confirm_code']) ? $_POST['confirm_code'] : '';
 
-                if (empty($title) || empty($content)) {
-                    throw new Exception('文章标题和内容不能为空');
-                }
-
                 if (trim($confirm_code) !== 'confirm') {
-                    throw new Exception("敏感操作拦截：写文章操作需要确认");
+                    $opName = $gid > 0 ? '更新文章' : '写文章';
+                    throw new Exception("敏感操作拦截：" . $opName . "操作需要确认");
                 }
 
-                $blogId = Article::writeArticle([
-                    'title' => $title,
-                    'content' => $content,
-                    'excerpt' => $excerpt,
-                    'sortid' => $sortid,
-                    'tag' => $tag
-                ]);
+                $articleData = [];
+                if (isset($params['title'])) $articleData['title'] = $params['title'];
+                if (isset($params['content'])) $articleData['content'] = $params['content'];
+                if (isset($params['excerpt'])) $articleData['excerpt'] = $params['excerpt'];
+                if (isset($params['cover'])) $articleData['cover'] = $params['cover'];
+                if (isset($params['sortid'])) $articleData['sortid'] = (int)$params['sortid'];
+                if (isset($params['tag'])) $articleData['tag'] = $params['tag'];
+                if (isset($params['tags'])) $articleData['tags'] = $params['tags'];
+
+                if ($gid > 0) {
+                    $articleData['gid'] = $gid;
+                    $articleData['action'] = 'update';
+                }
+
+                $blogId = Article::writeArticle($articleData);
+
+                $msg = $gid > 0 ? "文章(ID: {$blogId})更新成功" : "文章发表成功，文章ID: {$blogId}";
 
                 Output::ok([
-                    'message' => '文章发表成功，文章ID: ' . $blogId,
+                    'message' => $msg,
                     'blog_id' => $blogId
                 ]);
             } catch (Exception $e) {
@@ -201,6 +231,40 @@ if ($action == 'execute_tool') {
 
                 Output::ok([
                     'message' => '配置文件 config.php 修改成功'
+                ]);
+            } catch (Exception $e) {
+                Output::error($e->getMessage());
+            }
+            break;
+
+        case 'generate_image':
+            try {
+                $prompt = isset($params['prompt']) ? trim($params['prompt']) : '';
+                $size = isset($params['size']) ? $params['size'] : '1024x1024';
+                $quality = isset($params['quality']) ? $params['quality'] : 'standard';
+
+                if (empty($prompt)) {
+                    throw new Exception('提示词不能为空');
+                }
+
+                $imageModelInfo = Ai::getCurrentImageModelInfo();
+                if (!$imageModelInfo) {
+                    Output::ok([
+                        'need_config' => true,
+                        'message' => '未配置图像生成模型，请先前往 [系统->AI] 页面配置图像生成模型。'
+                    ]);
+                }
+
+                $result = Ai::generateImageAndSave($prompt, ['size' => $size, 'quality' => $quality]);
+                if (isset($result['error'])) {
+                    throw new Exception($result['error']);
+                }
+
+                Output::ok([
+                    'message' => '图像生成成功！',
+                    'image_url' => isset($result['file_url']) ? $result['file_url'] : '',
+                    'media_id' => isset($result['media_id']) ? $result['media_id'] : 0,
+                    'prompt' => $prompt
                 ]);
             } catch (Exception $e) {
                 Output::error($e->getMessage());
