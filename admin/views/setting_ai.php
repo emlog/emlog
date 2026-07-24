@@ -319,8 +319,8 @@
                 </div>
                 <form id="image-form">
                     <div class="form-group">
-                        <label for="image-prompt"><?= _lang('image_prompt'); ?>：</label>
-                        <textarea class="form-control" id="image-prompt" placeholder="<?= _lang('image_prompt_placeholder'); ?>" rows="3"></textarea>
+                        <label for="image-prompt"><?= _lang('image_prompt'); ?></label>
+                        <textarea class="form-control" id="image-prompt" placeholder="" rows="3" required></textarea>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
@@ -364,7 +364,6 @@
             event.preventDefault();
             var prompt = $('#image-prompt').val().trim();
             if (prompt === '') {
-                alert('<?= _lang('enter_image_prompt'); ?>');
                 return;
             }
 
