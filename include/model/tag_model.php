@@ -240,6 +240,7 @@ class Tag_Model
     function getIdsFromNames($tagNames)
     {
         $result = [];
+        $tagNames = str_replace('，', ',', $tagNames);
         $tagNameArray = explode(',', $tagNames);
 
         foreach ($tagNameArray as $each) {
@@ -333,6 +334,7 @@ class Tag_Model
      */
     function createTags($tagNames)
     {
+        $tagNames = str_replace('，', ',', $tagNames);
         $tagNameArray = explode(',', $tagNames);
 
         foreach ($tagNameArray as $each) {
