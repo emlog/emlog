@@ -87,7 +87,7 @@ defined('EMLOG_ROOT') || exit('access denied!');
                     <div class="shadow-theme bottom-5">
                         <?php if (!empty($value['log_cover'])) : ?>
                             <div class="loglist-cover">
-                                <img src="<?= $value['log_cover'] ?>" alt="article cover" class="rea-width" data-action="zoom">
+                                <a href="<?= $value['log_url'] ?>"><img src="<?= $value['log_cover'] ?>" alt="<?= $value['log_title'] ?>" class="rea-width"></a>
                             </div>
                         <?php endif ?>
                         <div class="card-padding loglist-body">

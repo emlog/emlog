@@ -24,6 +24,11 @@ defined('EMLOG_ROOT') || exit('access denied!');
             <div class="log-meta-right"><?php editflg($logid, $author) ?></div>
         </div>
     </header>
+    <?php if (_em('isShowCover', '0') == '1' && !empty($log_cover)) : ?>
+        <div class="log-cover bottom-5">
+            <img src="<?= $log_cover ?>" alt="<?= $log_title ?>">
+        </div>
+    <?php endif; ?>
     <hr class="bottom-5" />
     <div class="markdown" id="articleContent"><?= $log_content ?></div>
     <p class="top-5"><?php blog_tag($logid) ?></p>

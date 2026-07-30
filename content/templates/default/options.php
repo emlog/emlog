@@ -12,8 +12,9 @@ $options = [
     'TplOptionsNavi' => [
         'name'        => _langTpl('tpl_options_navi_name'),
         'values'      => [
-            'tpl-head' => _langTpl('tpl_head'),
-            'tpl-home' => _langTpl('tpl_home'),
+            'tpl-head'    => _langTpl('tpl_head'),
+            'tpl-home'    => _langTpl('tpl_home'),
+            'tpl-article' => _langTpl('tpl_article'),
         ],
         'description' => '' // 设置说明（可选）
     ],
@@ -49,5 +50,15 @@ $options = [
         'name'        => _langTpl('slideshow_name'),
         'multi'       => true,
         'description' => _langTpl('slideshow_desc'),
+    ],
+    'isShowCover'    => [
+        'labels'  => 'tpl-article',
+        'type'    => 'radio',
+        'name'    => _langTpl('is_show_cover_name'),
+        'values'  => [
+            '1' => _langTpl('show'),
+            '0' => _langTpl('hide'),
+        ],
+        'default' => '0',
     ],
 ];

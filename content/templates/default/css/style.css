@@ -1767,6 +1767,19 @@ body {
     transform: scale(1.05);
 }
 
+.log-cover {
+    width: 100%;
+    border-radius: var(--marRadius);
+    overflow: hidden;
+}
+
+.log-cover img {
+    width: 100% !important;
+    height: auto;
+    display: block;
+    border-radius: var(--marRadius);
+}
+
 /* 文章分类 */
 .loglist-sort {
     user-select: none;
