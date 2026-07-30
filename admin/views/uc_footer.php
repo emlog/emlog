@@ -3,9 +3,9 @@
 </div>
 </div>
 </main>
-<footer class="py-3">
-    <div class="text-center">
-        <small>© <?= date("Y") ?> <?= Option::get('blogname') ?> </small>
+<footer class="py-4 mt-auto">
+    <div class="text-center text-muted">
+        <small>© <?= date("Y") ?> <?= Option::get('blogname') ?> - Powered by Emlog</small>
     </div>
 </footer>
 <?php doAction('adm_footer') ?>
