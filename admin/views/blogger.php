@@ -34,8 +34,8 @@
                 </div>
                 <div class="form-group">
                     <label><?= _lang('username'); ?></label>
-                    <input class="form-control" value="<?= $username ?>" name="username" id="username">
-                    <small><?= _lang('username_tip'); ?></small>
+                    <input class="form-control" value="<?= $username ?>" name="username" id="username" <?= (!empty($username) && !User::haveEditPermission()) ? 'disabled' : '' ?>>
+                    <small><?= empty($username) ? _lang('username_tip') : ((!User::haveEditPermission()) ? _lang('username_set_tip') : _lang('username_tip')); ?></small>
                 </div>
                 <label><?= _lang('email'); ?></label>
                 <div class="input-group mb-3">

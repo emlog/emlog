@@ -34,6 +34,11 @@ if ($action == 'update') {
     $description = Input::postStrVar('description');
     $username = Input::postStrVar('username');
 
+    $currentUser = $User_Model->getOneUser(UID);
+    if (!empty($currentUser['username']) && $username !== $currentUser['username'] && !User::haveEditPermission()) {
+        Output::error(_lang('username_cannot_be_modified'));
+    }
+
     if (empty($nickname)) {
         Output::error(_lang('nickname_required'));
     } elseif ($User_Model->isNicknameExist($nickname, UID)) {

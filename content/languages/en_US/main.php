@@ -454,7 +454,8 @@ return [
     'size_portrait' => 'Portrait',
 
     // Blogger
-    'username_tip' => 'If username is not set, please use email to login',
+    'username_tip' => 'If username is not set, please use email to login. Once set, it cannot be modified',
+    'username_set_tip' => 'Username has been set and cannot be modified',
     'personal_description' => 'Personal Description',
     'change_password' => 'Change Password',
     'crop_and_upload' => 'Crop and Upload',
@@ -478,6 +479,7 @@ return [
     'nickname_required' => 'Nickname cannot be empty',
     'nickname_exists' => 'Nickname is already taken',
     'username_exists' => 'Username is already taken',
+    'username_cannot_be_modified' => 'Username has been set and cannot be modified',
     'password_too_short' => 'Password must be at least 6 characters',
     'password_mismatch' => 'Passwords do not match',
     'email_invalid' => 'Please enter a valid email address',

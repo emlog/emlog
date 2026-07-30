@@ -454,7 +454,8 @@ return [
     'size_portrait' => '纵向',
 
     // Blogger
-    'username_tip' => '未设置用户名时，请使用邮箱登录',
+    'username_tip' => '未设置用户名时，请使用邮箱登录，设置后不可更改',
+    'username_set_tip' => '用户名已设置，不可更改',
     'personal_description' => '个人描述',
     'change_password' => '修改密码',
     'crop_and_upload' => '裁剪并上传',
@@ -478,6 +479,7 @@ return [
     'nickname_required' => '昵称不能为空',
     'nickname_exists' => '昵称已被占用',
     'username_exists' => '用户名已被占用',
+    'username_cannot_be_modified' => '用户名已设置，不允许修改',
     'password_too_short' => '密码不得小于6位',
     'password_mismatch' => '两次密码不一致',
     'email_invalid' => '请正确填写邮箱',
