@@ -218,32 +218,155 @@
         .uc-menu-item.active i {
             color: #2563eb;
         }
+
+        /* 移动端侧边滑出菜单及响应式样式 */
+        .uc-sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(2px);
+            z-index: 1040;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .uc-sidebar-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .uc-mobile-toggle-btn {
+            background: #f1f5f9;
+            border: none;
+            color: #334155;
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .uc-mobile-toggle-btn:hover,
+        .uc-mobile-toggle-btn:focus {
+            background: #e2e8f0;
+            color: #0f172a;
+            outline: none;
+        }
+
+        @media (max-width: 767.98px) {
+            .uc-container {
+                margin: 15px auto;
+                padding: 0 10px;
+            }
+
+            #uc-top-bar {
+                padding: 10px 16px;
+                margin-bottom: 16px;
+                border-radius: 12px;
+            }
+
+            .uc-sidebar-wrapper {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 280px;
+                height: 100%;
+                background: #ffffff;
+                z-index: 1050;
+                transform: translateX(-100%);
+                transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                overflow-y: auto;
+                padding: 20px 16px;
+                box-shadow: 4px 0 24px rgba(0, 0, 0, 0.15);
+            }
+
+            .uc-sidebar-wrapper.show {
+                transform: translateX(0);
+            }
+
+            .uc-sidebar-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding-bottom: 12px;
+                margin-bottom: 16px;
+                border-bottom: 1px solid #f1f5f9;
+            }
+
+            .uc-sidebar-close-btn {
+                background: transparent;
+                border: none;
+                font-size: 1.4rem;
+                color: #64748b;
+                cursor: pointer;
+                padding: 4px 8px;
+                border-radius: 8px;
+            }
+
+            .uc-sidebar-close-btn:hover {
+                background: #f1f5f9;
+                color: #0f172a;
+            }
+        }
     </style>
 </head>
 
 <body class="d-flex flex-column h-100 uc-bg">
     <div id="editor-md-dialog"></div>
+
+    <!-- 移动端侧边遮罩层 -->
+    <div class="uc-sidebar-overlay" id="ucSidebarOverlay"></div>
+
     <main class="flex-shrink-0">
         <div class="uc-container">
             <!-- 顶部导航栏 -->
-            <div class="d-flex flex-column flex-md-row align-items-center justify-content-between" id="uc-top-bar">
-                <div class="d-flex align-items-center mb-2 mb-md-0">
-                    <a href="./" class="brand-title mr-4"><?= subString(Option::get('blogname'), 0, 15) ?></a>
-                    <nav class="d-flex align-items-center">
+            <div class="d-flex align-items-center justify-content-between" id="uc-top-bar">
+                <div class="d-flex align-items-center">
+                    <!-- 移动端侧边栏触发按钮 -->
+                    <button type="button" class="uc-mobile-toggle-btn d-md-none mr-2" id="ucSidebarToggle" aria-label="Toggle Navigation">
+                        <i class="icofont-navigation-menu"></i>
+                    </button>
+                    <a href="./" class="brand-title mr-md-4 mr-2"><?= subString(Option::get('blogname'), 0, 15) ?></a>
+                    <nav class="d-none d-md-flex align-items-center">
                         <a class="nav-link-item active" href="./"><?= _lang('uc_center') ?></a>
                         <a class="nav-link-item ml-2" href="<?= BLOG_URL ?>"><?= _lang('back_to_home') ?></a>
                     </nav>
                 </div>
                 <div class="d-flex align-items-center">
-                    <a class="nav-link-item mr-3" href="blogger.php"><?= _lang('setting') ?></a>
+                    <a class="nav-link-item mr-2 mr-md-3" href="blogger.php"><?= _lang('setting') ?></a>
                     <a class="nav-btn-logout" href="account.php?action=logout"><i class="icofont-logout mr-1"></i><?= _lang('logout') ?></a>
                 </div>
             </div>
 
             <!-- 左右布局主内容区域 -->
             <div class="row">
-                <!-- 左侧栏：个人名片与分类菜单栏 -->
-                <div class="col-lg-3 col-md-4 mb-4">
+                <!-- 左侧栏：个人名片与分类菜单栏（手机端滑出侧边栏） -->
+                <div class="col-lg-3 col-md-4 mb-4 uc-sidebar-wrapper" id="ucSidebar">
+                    <div class="uc-sidebar-header d-md-none">
+                        <span class="font-weight-bold text-dark"><i class="icofont-user-alt-7 mr-2"></i><?= _lang('uc_center') ?></span>
+                        <button type="button" class="uc-sidebar-close-btn" id="ucSidebarClose" aria-label="Close Navigation">
+                            <i class="icofont-close"></i>
+                        </button>
+                    </div>
+
+                    <!-- 移动端侧边栏专属导航菜单项 -->
+                    <div class="uc-menu-group d-md-none mb-3">
+                        <a href="./" class="uc-menu-item active">
+                            <?= _lang('uc_center') ?>
+                        </a>
+                        <a href="<?= BLOG_URL ?>" class="uc-menu-item">
+                            <?= _lang('back_to_home') ?>
+                        </a>
+                    </div>
+
                     <!-- 头像与个人信息名片 -->
                     <div class="uc-profile-card">
                         <div class="uc-profile-banner"></div>
@@ -290,3 +413,22 @@
 
                 <!-- 右侧主内容区容器开口 -->
                 <div class="col-lg-9 col-md-8">
+                    <script>
+                        // 注册用户个人中心移动端侧边栏交互 logic
+                        $(document).ready(function() {
+                            function openSidebar() {
+                                $('#ucSidebar').addClass('show');
+                                $('#ucSidebarOverlay').addClass('show');
+                                $('body').css('overflow', 'hidden');
+                            }
+
+                            function closeSidebar() {
+                                $('#ucSidebar').removeClass('show');
+                                $('#ucSidebarOverlay').removeClass('show');
+                                $('body').css('overflow', '');
+                            }
+
+                            $('#ucSidebarToggle').on('click', openSidebar);
+                            $('#ucSidebarClose, #ucSidebarOverlay').on('click', closeSidebar);
+                        });
+                    </script>
