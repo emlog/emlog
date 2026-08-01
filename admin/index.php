@@ -84,6 +84,9 @@ if ($action === 'get_all_shortcuts') {
 }
 
 if ($action === 'add_shortcut') {
+    if (!User::haveEditPermission()) {
+        emMsg(_lang('permission_denied'));
+    }
     $shortcut = Input::postStrArray('shortcut');
     $shortcutSet = [];
     foreach ($shortcut as $item) {

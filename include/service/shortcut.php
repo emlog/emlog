@@ -25,7 +25,16 @@ class Shortcut
                 ['name' => _lang('draft'), 'url' => 'article.php?draft=1'],
             ];
         }
-        return json_decode($shortcut, 1) ?: [];
+        $list = json_decode($shortcut, 1) ?: [];
+        foreach ($list as &$item) {
+            if (isset($item['name'])) {
+                $item['name'] = htmlspecialchars($item['name'], ENT_QUOTES, 'UTF-8');
+            }
+            if (isset($item['url'])) {
+                $item['url'] = htmlspecialchars($item['url'], ENT_QUOTES, 'UTF-8');
+            }
+        }
+        return $list;
     }
 
     /**

@@ -155,6 +155,7 @@ class Comment_Model
             $row['poster'] = htmlspecialchars($row['poster']);
             $row['mail'] = htmlspecialchars($row['mail']);
             $row['url'] = htmlspecialchars($row['url']);
+            $row['title'] = isset($row['title']) ? htmlspecialchars($row['title'], ENT_QUOTES, 'UTF-8') : '';
             $row['comment_text'] = htmlClean($row['comment']);
             $row['comment'] = parseUBB(htmlClean($row['comment']));
             $row['date'] = smartDate($row['date']);
