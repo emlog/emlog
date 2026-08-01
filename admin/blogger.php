@@ -35,8 +35,11 @@ if ($action == 'update') {
     $username = Input::postStrVar('username');
 
     $currentUser = $User_Model->getOneUser(UID);
-    if (!empty($currentUser['username']) && $username !== $currentUser['username'] && !User::haveEditPermission()) {
-        Output::error(_lang('username_cannot_be_modified'));
+    if (!empty($currentUser['username']) && !User::haveEditPermission()) {
+        if (!empty($username) && $username !== $currentUser['username']) {
+            Output::error(_lang('username_cannot_be_modified'));
+        }
+        $username = $currentUser['username'];
     }
 
     if (empty($nickname)) {
