@@ -20,7 +20,6 @@ class Template_Model
 
         $templates = [];
         $handle = @opendir(TPLS_PATH) or die('emlog template path error!');
-        $i = 1;
         while ($file = @readdir($handle)) {
             if ($file == '.' || $file == '..') {
                 continue;
@@ -39,28 +38,37 @@ class Template_Model
             preg_match("/Description:(.*)/i", $tplData, $tplDes);
             preg_match("/Author Url:(.*)/i", $tplData, $authorUrl);
             $tplInfo = [
-                'tplfile'    => $file,
-                'tplname'    => !empty($tplName[1]) ? subString(strip_tags(trim($tplName[1])), 0, 16) : $file,
-                'version'    => !empty($tplVersion[1]) ? subString(strip_tags(trim($tplVersion[1])), 0, 16) : '',
-                'tplurl'     => !empty($tplUrl[1]) ? subString(strip_tags(trim($tplUrl[1])), 0, 75) : '',
-                'tpldes'     => !empty($tplDes[1]) ? subString(strip_tags(trim($tplDes[1])), 0, 40) : '',
-                'author'     => !empty($author[1]) ? subString(strip_tags(trim($author[1])), 0, 16) : '',
-                'author_url' => !empty($authorUrl[1]) ? subString(strip_tags(trim($authorUrl[1])), 0, 75) : '',
+                'tplfile'       => $file,
+                'tplname'       => !empty($tplName[1]) ? subString(strip_tags(trim($tplName[1])), 0, 16) : $file,
+                'version'       => !empty($tplVersion[1]) ? subString(strip_tags(trim($tplVersion[1])), 0, 16) : '',
+                'tplurl'        => !empty($tplUrl[1]) ? subString(strip_tags(trim($tplUrl[1])), 0, 75) : '',
+                'tpldes'        => !empty($tplDes[1]) ? subString(strip_tags(trim($tplDes[1])), 0, 40) : '',
+                'author'        => !empty($author[1]) ? subString(strip_tags(trim($author[1])), 0, 16) : '',
+                'author_url'    => !empty($authorUrl[1]) ? subString(strip_tags(trim($authorUrl[1])), 0, 75) : '',
+                'last_modified' => filemtime(TPLS_PATH . $file),
             ];
 
             $previewPath = TPLS_PATH . $file . '/preview.jpg';
             $tplInfo['preview'] = file_exists($previewPath) ? (TPLS_URL . $file . '/preview.jpg') : './views/images/theme.png';
 
-            if ($nonce_template === $file) {
-                $templates[0] = $tplInfo;
-            } else {
-                $templates[$i] = $tplInfo;
-            }
-            $i++;
+            $templates[] = $tplInfo;
         }
-        ksort($templates);
         closedir($handle);
-        return $templates;
+
+        // 按主题添加/修改时间倒序排序
+        usort($templates, function ($a, $b) {
+            return $b['last_modified'] - $a['last_modified'];
+        });
+
+        // 将正在使用的主题移动到第一位
+        foreach ($templates as $k => $v) {
+            if ($v['tplfile'] === $nonce_template) {
+                unset($templates[$k]);
+                array_unshift($templates, $v);
+                break;
+            }
+        }
+        return array_values($templates);
     }
 
     function getCustomTemplates($type)
