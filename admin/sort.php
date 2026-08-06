@@ -111,11 +111,16 @@ if ($action == 'save') {
 }
 
 if ($action == 'del') {
-    $sid = Input::getIntVar('sid');
-
     LoginAuth::checkToken();
-
-    $Sort_Model->deleteSort($sid);
+    $sid = Input::getIntVar('sid');
+    if ($sid > 0) {
+        $Sort_Model->deleteSort($sid);
+    } else {
+        $sort_ids = Input::postIntArray('sort_ids', []);
+        foreach ($sort_ids as $id) {
+            $Sort_Model->deleteSort((int)$id);
+        }
+    }
     $CACHE->updateCache(['sort', 'logsort', 'navi']);
-    emDirect("./sort.php");
+    FlashMsg::redirectWithFlash('./sort.php', array(), 'sort_flash_messages', 'active_del');
 }

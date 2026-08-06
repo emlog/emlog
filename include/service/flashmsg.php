@@ -298,6 +298,7 @@ class FlashMsg
     {
         $alertMap = array(
             'active_save' => array('type' => 'success', 'text' => _lang('save_success')),
+            'active_del'  => array('type' => 'success', 'text' => _lang('delete_success')),
             'error_a' => array('type' => 'danger', 'text' => _lang('sort_name_required')),
             'error_c' => array('type' => 'danger', 'text' => _lang('alias_format_error')),
             'error_d' => array('type' => 'danger', 'text' => _lang('alias_exists_error')),

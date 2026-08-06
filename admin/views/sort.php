@@ -11,6 +11,7 @@
                 <table class="table table-bordered table-striped table-hover" id="dataTable">
                     <thead>
                         <tr>
+                            <th width="40"><input type="checkbox" id="checkAllItem" /></th>
                             <th><?= _lang('name') ?></th>
                             <th><?= _lang('image') ?></th>
                             <th><?= _lang('description') ?></th>
@@ -20,7 +21,7 @@
                             <th><?= _lang('operation') ?></th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="checkboxContainer">
                         <?php
                         foreach ($sorts as $key => $value):
                             if ($value['pid'] != 0) {
@@ -28,6 +29,9 @@
                             }
                         ?>
                             <tr class="tree-parent" data-id="<?= $value['sid'] ?>">
+                                <td>
+                                    <input type="checkbox" name="sort_ids[]" class="ids" value="<?= $value['sid'] ?>" />
+                                </td>
                                 <td class="tree-name">
                                     <input type="hidden" value="<?= $value['sid'] ?>" class="sort_id" />
                                     <input type="hidden" name="sort[]" value="<?= $value['sid'] ?>" />
@@ -85,6 +89,9 @@
                                 $is_last_child = ($child_index === $total_children);
                             ?>
                                 <tr class="tree-child <?= $is_last_child ? 'last-child' : '' ?>" data-pid="<?= $value['pid'] ?>">
+                                    <td>
+                                        <input type="checkbox" name="sort_ids[]" class="ids" value="<?= $value['sid'] ?>" />
+                                    </td>
                                     <td class="tree-name">
                                         <input type="hidden" value="<?= $value['sid'] ?>" class="sort_id" />
                                         <input type="hidden" name="sort[]" value="<?= $value['sid'] ?>" />
@@ -131,7 +138,8 @@
         </div>
     </div>
     <div class="list_footer">
-        <input type="submit" value="<?= _lang('save_sort') ?>" class="btn btn-sm btn-success" />
+        <input type="submit" value="<?= _lang('save_sort') ?>" class="btn btn-sm btn-success mr-2 shadow-sm" />
+        <a href="javascript: sort_batch_delete();" class="btn btn-sm btn-outline-danger"><?= _lang('delete') ?></a>
     </div>
 </form>
 
@@ -328,4 +336,20 @@
             modal.find('.modal-footer #sid').val(sid)
         })
     });
+
+    /**
+     * 批量删除分类
+     */
+    window.sort_batch_delete = function() {
+        if (getChecked('ids') === false) {
+            infoAlert('<?= _lang('select_operate_sort') ?>');
+            return;
+        }
+        delAlert2('', '<?= _lang('delete_sort_confirm') ?>', function() {
+            var form = $("#sort_form");
+            form.attr("action", "sort.php?action=del&token=<?= LoginAuth::genToken() ?>");
+            form.off("submit");
+            form.submit();
+        });
+    };
 </script>
