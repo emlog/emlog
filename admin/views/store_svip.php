@@ -47,7 +47,9 @@
                         </p>
                         <p class="card-text text-muted small">
                             <?= _lang('store_developer') ?><a href="./store.php?author_id=<?= $v['author_id'] ?>"><?= $v['author'] ?></a><br>
-                            <?= _lang('store_install_count') ?><?= $v['downloads'] ?><br>
+                            <?php if (Register::isRegLocal()): ?>
+                                <?= _lang('store_install_count') ?><?= $v['downloads'] ?><br>
+                            <?php endif; ?>
                             <?= _lang('store_update_time') ?><?= $v['time_ago'] ?><br>
                         </p>
                         <div class="card-text d-flex justify-content-between">

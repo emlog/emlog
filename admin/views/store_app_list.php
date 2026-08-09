@@ -47,7 +47,9 @@
                                 </span>
                                 <small class="d-block mt-1">
                                     <?= _lang('store_developer') ?><a href="./store.php?author_id=<?= $v['author_id'] ?>"><?= $v['author'] ?></a><br>
-                                    <?= _lang('store_install_count') ?><?= $v['downloads'] ?><br>
+                                    <?php if (Register::isRegLocal()): ?>
+                                        <?= _lang('store_install_count') ?><?= $v['downloads'] ?><br>
+                                    <?php endif; ?>
                                     <?= _lang('store_update_time') ?><?= $v['time_ago'] ?><br>
                                 </small>
                             </p>
@@ -226,7 +228,9 @@
                                                  </span>
                                                 <small class="d-block mt-1">
                                                     <?= _lang("store_developer") ?><a href="./store.php?author_id=${app.author_id}">${app.author}</a><br>
-                                                    <?= _lang("store_install_count") ?>${app.downloads}<br>
+                                                    <?php if (Register::isRegLocal()): ?>
+                                                        <?= _lang("store_install_count") ?>${app.downloads}<br>
+                                                    <?php endif; ?>
                                                     <?= _lang("store_update_time") ?>${app.time_ago}<br>
                                                 </small>
                                             </p>
