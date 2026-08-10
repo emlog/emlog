@@ -64,7 +64,7 @@ $options = [
         'type'         => 'checkon',
         'name'         => _langTpl('is_allow_comment_url_name'),
         'values'       => ['1' => '开启'],
-        'default'      => '0',
+        'default'      => '1',
         'description'  => ''
     ],
 ];
