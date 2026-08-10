@@ -56,6 +56,29 @@ if (empty($action)) {
     $tab_type = 'all';
     $has_more = $r['has_more'];
 
+    // 仅在商店首页且非搜索/筛选状态下获取排行榜与活跃作者
+    $top_plugins = [];
+    $top_templates = [];
+    $active_authors = [];
+    if (empty($tag) && empty($keyword) && empty($author_id) && empty($sid) && $page == 1) {
+        // 调用购买排行(paid_top)接口获取热销插件和主题（展示前5个）
+        $plu_res = $Store_Model->getPlugins('paid_top', '', 1);
+        if (!empty($plu_res['plugins'])) {
+            $top_plugins = array_slice($plu_res['plugins'], 0, 5);
+        }
+
+        $tpl_res = $Store_Model->getTemplates('paid_top', '', 1);
+        if (!empty($tpl_res['templates'])) {
+            $top_templates = array_slice($tpl_res['templates'], 0, 5);
+        }
+
+        // 获取活跃开发者（展示前5个）
+        $active_developers = $Store_Model->getActiveDevelopers();
+        if (!empty($active_developers)) {
+            $active_authors = array_slice($active_developers, 0, 5);
+        }
+    }
+
     $sub_title = _lang('store_title_all');
     if ($tag === 'free') {
         $sub_title = _lang('store_title_free');

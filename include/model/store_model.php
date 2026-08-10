@@ -9,17 +9,17 @@
 class Store_Model
 {
 
-    public function getApps($tag, $keyword, $page, $author_id, $sid)
+    public function getApps($tag = '', $keyword = '', $page = 1, $author_id = 0, $sid = 0)
     {
         return $this->reqEmStore('all', $tag, $keyword, $page, $author_id, $sid);
     }
 
-    public function getTemplates($tag, $keyword, $page, $author_id, $sid)
+    public function getTemplates($tag = '', $keyword = '', $page = 1, $author_id = 0, $sid = 0)
     {
         return $this->reqEmStore('tpl', $tag, $keyword, $page, $author_id, $sid);
     }
 
-    public function getPlugins($tag, $keyword, $page, $author_id, $sid)
+    public function getPlugins($tag = '', $keyword = '', $page = 1, $author_id = 0, $sid = 0)
     {
         return $this->reqEmStore('plu', $tag, $keyword, $page, $author_id, $sid);
     }
@@ -37,6 +37,22 @@ class Store_Model
     public function getFavorites($page = 1)
     {
         return $this->reqEmStore('favorite', '', '', $page);
+    }
+
+    public function getActiveDevelopers()
+    {
+        $emcurl = new EmCurl();
+        $emcurl->request('https://store.emlog.net/store/active_developers');
+        $retStatus = $emcurl->getHttpStatus();
+        if ($retStatus !== MSGCODE_SUCCESS) {
+            return [];
+        }
+        $response = $emcurl->getRespone();
+        $ret = json_decode($response, true);
+        if (!empty($ret['data']) && is_array($ret['data'])) {
+            return $ret['data'];
+        }
+        return [];
     }
 
     public function addFavorite($app_type, $app_id)
