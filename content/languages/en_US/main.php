@@ -941,6 +941,7 @@ return [
     'recent_published' => 'Recently Published',
     'recent_received_comments' => 'Recently Received Comments',
     'empty_list' => 'No items found.',
+    'homepage' => 'Homepage',
     'edit_user_info' => 'Edit User Info',
     'input_avatar_url' => 'Please input avatar URL',
     'username_login_tip' => 'Username (Leave empty to login with email)',

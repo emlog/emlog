@@ -524,7 +524,7 @@ function blog_comments($comments, $comnum)
             <div class="avatar"><img src="<?= $avatar ?>" alt="avatar" /></div>
             <div class="comment-infos">
                 <div class="arrow"></div>
-                <b><?= $comment['poster'] ?> </b><span class="comment-time"><?= $comment['date'] ?></span>
+                <b><?= !empty($comment['url']) ? '<a href="' . $comment['url'] . '" target="_blank" rel="nofollow">' . $comment['poster'] . '</a>' : $comment['poster'] ?> </b><span class="comment-time"><?= $comment['date'] ?></span>
                 <div class="comment-content"><?= $comment['content'] ?></div>
                 <div class="comment-reply">
                     <button type="button" class="com-reply"><?= _langTpl('reply') ?></button>
@@ -553,7 +553,7 @@ function blog_comments_children($comments, $children)
             <div class="avatar"><img src="<?= $avatar ?>" alt="commentator" /></div>
             <div class="comment-infos">
                 <div class="arrow"></div>
-                <b><?= $comment['poster'] ?> </b><span class="comment-time"><?= $comment['date'] ?></span>
+                <b><?= !empty($comment['url']) ? '<a href="' . $comment['url'] . '" target="_blank" rel="nofollow">' . $comment['poster'] . '</a>' : $comment['poster'] ?> </b><span class="comment-time"><?= $comment['date'] ?></span>
                 <div class="comment-content"><?= $comment['content'] ?></div>
                 <?php if ($comment['level'] < 4): ?>
                     <div class="comment-reply">
@@ -582,10 +582,15 @@ function blog_comments_post($logid, $ckname, $ckmail, $ckurl, $verifyCode, $allo
                         <div class="comment-info" id="comment-info">
                             <input class="form-control com_control comment-name" id="info_n" autocomplete="off" type="text" name="comname" maxlength="49"
                                 value="<?= $ckname ?>" size="22"
-                                tabindex="1" placeholder="昵称*" required />
+                                tabindex="1" placeholder="<?= _langTpl('nickname_placeholder') ?>" required />
                             <input class="form-control com_control comment-mail" id="info_m" autocomplete="off" type="email" name="commail" maxlength="128"
                                 value="<?= $ckmail ?>" size="22"
-                                tabindex="2" placeholder="邮箱" />
+                                tabindex="2" placeholder="<?= _langTpl('email_placeholder') ?>" />
+                            <?php if (_em('isAllowCommentUrl', '0') == '1'): ?>
+                                <input class="form-control com_control comment-url" id="info_u" autocomplete="off" type="url" name="comurl" maxlength="128"
+                                    value="<?= $ckurl ?>" size="22"
+                                    tabindex="3" placeholder="<?= _langTpl('url_placeholder') ?>" />
+                            <?php endif; ?>
                             <?php if ($verifyCode != ""): ?>
                                 <div class="captcha-container">
                                     <input type="hidden" id="blog_url" value="<?= BLOG_URL ?>" />

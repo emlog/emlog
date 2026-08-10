@@ -38,6 +38,8 @@ return [
     'next_log' => 'Next: ',
     'received_comments' => '%s comments received',
     'reply' => 'Reply',
+    'is_allow_comment_url_name' => 'Allow submitting homepage in comments',
+    'url_placeholder' => 'Homepage',
     'comment_placeholder' => 'Write a comment',
     'nickname_placeholder' => 'Nickname*',
     'email_placeholder' => 'Email',

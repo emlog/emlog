@@ -51,14 +51,20 @@ $options = [
         'multi'       => true,
         'description' => _langTpl('slideshow_desc'),
     ],
-    'isShowCover'    => [
-        'labels'  => 'tpl-article',
-        'type'    => 'radio',
-        'name'    => _langTpl('is_show_cover_name'),
-        'values'  => [
-            '1' => _langTpl('show'),
-            '0' => _langTpl('hide'),
-        ],
-        'default' => '0',
+    'isShowCover'        => [
+        'labels'       => 'tpl-article',
+        'type'         => 'checkon',
+        'name'         => _langTpl('is_show_cover_name'),
+        'values'       => ['1' => '开启'],
+        'default'      => '0',
+        'description'  => ''
+    ],
+    'isAllowCommentUrl'        => [
+        'labels'       => 'tpl-article',
+        'type'         => 'checkon',
+        'name'         => _langTpl('is_allow_comment_url_name'),
+        'values'       => ['1' => '开启'],
+        'default'      => '0',
+        'description'  => ''
     ],
 ];

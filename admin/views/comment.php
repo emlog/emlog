@@ -37,6 +37,7 @@
                         <?php foreach ($comment as $key => $value):
                             $ishide = $value['hide'] == 'y' ? '<span class="text-danger">' . _lang('pending_audit') . '</span>' : '';
                             $mail = $value['mail'] ? " <br />email: {$value['mail']}" : '';
+                            $url = !empty($value['url']) ? " <br />" . _lang('homepage') . "：<a href=\"{$value['url']}\" target=\"_blank\" rel=\"nofollow\">{$value['url']}</a>" : '';
                             $ip = $value['ip'];
                             $gid = $value['gid'];
                             $cid = $value['cid'];
@@ -59,6 +60,7 @@
                                 </td>
                                 <td class="small">
                                     <?= $poster ?>
+                                    <?= $url ?>
                                     <?php if (User::haveEditPermission()): ?>
                                         <?= $mail ?>
                                         <?= $ip_info ?>

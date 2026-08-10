@@ -941,6 +941,7 @@ return [
     'recent_published' => '最近发布的',
     'recent_received_comments' => '最近收到的评论',
     'empty_list' => '这里是空的。',
+    'homepage' => '主页',
     'edit_user_info' => '编辑用户信息',
     'input_avatar_url' => '请输入头像URL',
     'username_login_tip' => '用户名（为空则使用邮箱登录）',

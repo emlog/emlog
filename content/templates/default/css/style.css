@@ -1206,6 +1206,15 @@ body {
     border-radius: 0 !important;
 }
 
+.comment-url {
+    border-radius: 0 !important;
+}
+
+.comment-info > .com_control:last-child {
+    border-radius: 0 10px 10px 0 !important;
+    border-right: 1px solid var(--borderColor);
+}
+
 .captcha-container {
     flex: 1;
     min-width: 150px;
@@ -1473,6 +1482,16 @@ body {
 .comment:hover > .comment-infos {
     border-color: rgba(89, 184, 248, 0.24);
     box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+}
+
+.comment-infos b a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.comment-infos b a:hover {
+    color: var(--primaryColor, #59b8f8);
+    text-decoration: underline;
 }
 
 [data-theme="dark"] .comment .comment-infos {
@@ -2669,6 +2688,10 @@ img.zoom-img {
     }
 
     .comment-mail {
+        margin-bottom: 0;
+    }
+
+    .comment-url {
         margin-bottom: 0;
     }
 
