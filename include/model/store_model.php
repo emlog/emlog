@@ -39,22 +39,6 @@ class Store_Model
         return $this->reqEmStore('favorite', '', '', $page);
     }
 
-    public function getActiveDevelopers()
-    {
-        $emcurl = new EmCurl();
-        $emcurl->request('https://store.emlog.net/store/active_developers');
-        $retStatus = $emcurl->getHttpStatus();
-        if ($retStatus !== MSGCODE_SUCCESS) {
-            return [];
-        }
-        $response = $emcurl->getRespone();
-        $ret = json_decode($response, true);
-        if (!empty($ret['data']) && is_array($ret['data'])) {
-            return $ret['data'];
-        }
-        return [];
-    }
-
     public function addFavorite($app_type, $app_id)
     {
         $emcurl = new EmCurl();

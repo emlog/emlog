@@ -1,9 +1,9 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
 
-<?php if (!empty($top_plugins) || !empty($top_templates) || !empty($active_authors)): ?>
+<?php if (!empty($top_plugins) || !empty($top_templates)): ?>
 <div class="row mb-4 mx-0">
     <!-- 插件热销榜 -->
-    <div class="col-lg-4 col-md-6 mb-3">
+    <div class="col-lg-6 col-md-6 mb-3">
         <div class="card shadow-sm h-100 border-0">
             <div class="card-header bg-white font-weight-bold d-flex align-items-center justify-content-between py-2 border-bottom-0">
                 <span><?= _lang('store_plugin_top') ?></span>
@@ -13,18 +13,11 @@
                 <div class="list-group list-group-flush">
                     <?php foreach ($top_plugins as $idx => $item): ?>
                         <div class="list-group-item d-flex align-items-center justify-content-between py-2 px-3 border-0">
-                            <div class="text-truncate mr-2" style="max-width: 65%;">
+                            <div class="text-truncate" style="max-width: 100%;">
                                 <span class="badge badge-<?= $idx < 3 ? 'warning' : 'light' ?> badge-pill mr-1"><?= $idx + 1 ?></span>
-                                <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="<?= $item['name'] ?>" data-url="<?= $item['app_url'] ?>" data-buy-url="<?= $item['buy_url'] ?>" class="text-dark font-weight-500 text-truncate d-inline-block align-middle" style="max-width: 80%;">
+                                <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="<?= $item['name'] ?>" data-url="<?= $item['app_url'] ?>" data-buy-url="<?= $item['buy_url'] ?>" class="text-dark font-weight-500 text-truncate d-inline-block align-middle" style="max-width: 85%;">
                                     <?= $item['name'] ?>
                                 </a>
-                            </div>
-                            <div class="text-right">
-                                <?php if ($item['price'] > 0): ?>
-                                    <span class="text-danger font-weight-bold small"><?= $item['price'] ?><small><?= _lang('store_currency_unit') ?></small></span>
-                                <?php else: ?>
-                                    <span class="text-success font-weight-bold small"><?= _lang('store_free') ?></span>
-                                <?php endif; ?>
                             </div>
                         </div>
                     <?php endforeach; ?>
@@ -34,7 +27,7 @@
     </div>
 
     <!-- 主题热销榜 -->
-    <div class="col-lg-4 col-md-6 mb-3">
+    <div class="col-lg-6 col-md-6 mb-3">
         <div class="card shadow-sm h-100 border-0">
             <div class="card-header bg-white font-weight-bold d-flex align-items-center justify-content-between py-2 border-bottom-0">
                 <span><?= _lang('store_template_top') ?></span>
@@ -44,42 +37,10 @@
                 <div class="list-group list-group-flush">
                     <?php foreach ($top_templates as $idx => $item): ?>
                         <div class="list-group-item d-flex align-items-center justify-content-between py-2 px-3 border-0">
-                            <div class="text-truncate mr-2" style="max-width: 65%;">
+                            <div class="text-truncate" style="max-width: 100%;">
                                 <span class="badge badge-<?= $idx < 3 ? 'danger' : 'light' ?> badge-pill mr-1"><?= $idx + 1 ?></span>
-                                <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="<?= $item['name'] ?>" data-url="<?= $item['app_url'] ?>" data-buy-url="<?= $item['buy_url'] ?>" class="text-dark font-weight-500 text-truncate d-inline-block align-middle" style="max-width: 80%;">
+                                <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="<?= $item['name'] ?>" data-url="<?= $item['app_url'] ?>" data-buy-url="<?= $item['buy_url'] ?>" class="text-dark font-weight-500 text-truncate d-inline-block align-middle" style="max-width: 85%;">
                                     <?= $item['name'] ?>
-                                </a>
-                            </div>
-                            <div class="text-right">
-                                <?php if ($item['price'] > 0): ?>
-                                    <span class="text-danger font-weight-bold small"><?= $item['price'] ?><small><?= _lang('store_currency_unit') ?></small></span>
-                                <?php else: ?>
-                                    <span class="text-success font-weight-bold small"><?= _lang('store_free') ?></span>
-                                <?php endif; ?>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 活跃开发者 -->
-    <div class="col-lg-4 col-md-12 mb-3">
-        <div class="card shadow-sm h-100 border-0">
-            <div class="card-header bg-white font-weight-bold d-flex align-items-center justify-content-between py-2 border-bottom-0">
-                <span><?= _lang('store_active_authors') ?></span>
-            </div>
-            <div class="card-body p-0">
-                <div class="list-group list-group-flush">
-                    <?php foreach ($active_authors as $idx => $author):
-                        $name = !empty($author['nickname']) ? $author['nickname'] : (!empty($author['name']) ? $author['name'] : '');
-                    ?>
-                        <div class="list-group-item d-flex align-items-center justify-content-between py-2 px-3 border-0">
-                            <div class="text-truncate mr-2" style="max-width: 80%;">
-                                <span class="badge badge-<?= $idx < 3 ? 'info' : 'light' ?> badge-pill mr-1"><?= $idx + 1 ?></span>
-                                <a href="./store.php?author_id=<?= $author['id'] ?>" class="text-dark font-weight-500 text-truncate align-middle" title="<?= $name ?>">
-                                    <?= $name ?>
                                 </a>
                             </div>
                         </div>
