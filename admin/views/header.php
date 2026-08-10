@@ -123,12 +123,6 @@
                 <div class="text-center d-none d-md-inline">
                     <button class="rounded-circle border-0" id="sidebarToggle" type="button"></button>
                 </div>
-                <?php if (!Register::isRegLocal()) : ?>
-                    <div class="sidebar-card">
-                        <p class="text-center mb-2"><strong>EMLOG</strong> - <?= ucfirst(Option::EMLOG_VERSION) ?></p>
-                        <a class="btn btn-danger btn-sm" href="https://www.emlog.net/register" target="_blank"><?= _lang('upgrade_license') ?></a>
-                    </div>
-                <?php endif ?>
             <?php endif ?>
         </ul>
         <div id="content-wrapper" class="d-flex flex-column">
@@ -149,28 +143,29 @@
                                 <a href="blogger.php" class="text-gray-800 small d-none d-sm-inline" style="text-decoration: none;" title="<?= isset($currentUser['nickname']) ? htmlspecialchars($currentUser['nickname']) : '' ?>"><?= isset($currentUser['nickname']) ? htmlspecialchars(subString($currentUser['nickname'], 0, 8)) : '' ?></a>
                             </div>
 
-                            <?php if (User::isAdmin()): // 仅管理员显示顶部 AI 助手和快捷菜单 ?>
-                            <div class="topbar-divider d-none d-sm-block"></div>
+                            <?php if (User::isAdmin()): // 仅管理员显示顶部 AI 助手和快捷菜单 
+                            ?>
+                                <div class="topbar-divider d-none d-sm-block"></div>
 
-                            <!-- AI chat button -->
-                            <div id="ai-chat-btn-container" class="d-inline-block align-middle ml-2">
-                                <a href="#" class="mr-2 shortcut-link align-middle" data-toggle="modal" data-target="#aiChatModal" title="AI对话" style="display: inline-block; line-height: 1;">
-                                    <svg width="18" height="18" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" version="1.1" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" style="vertical-align: middle;">
-                                        <rect height="7.5" width="12.5" y="5.75" x="1.75" />
-                                        <path d="m10.75 8.75v1.5m-5.5-1.5v1.5m-.5-7.5 3.25 3 3.25-3" />
-                                    </svg>
-                                </a>
-                            </div>
-
-                            <!-- shortcut bar -->
-                            <div id="shortcut-bar-container" class="d-none d-md-inline-block align-middle ml-2">
-                                <div id="shortcut-bar-content" class="d-inline-block text-nowrap">
-                                    <?php foreach ($shortcuts as $item): ?>
-                                        <a href="<?= htmlspecialchars($item['url'], ENT_QUOTES, 'UTF-8') ?>" class="mr-2 shortcut-link"><?= htmlspecialchars($item['name']) ?></a>
-                                    <?php endforeach; ?>
-                                    <a href="#" class="mr-2 shortcut-link" data-toggle="modal" data-target="#shortcutModal" title="<?= _lang('add_shortcut') ?>"><i class="icofont-plus"></i></a>
+                                <!-- AI chat button -->
+                                <div id="ai-chat-btn-container" class="d-inline-block align-middle ml-2">
+                                    <a href="#" class="mr-2 shortcut-link align-middle" data-toggle="modal" data-target="#aiChatModal" title="AI对话" style="display: inline-block; line-height: 1;">
+                                        <svg width="18" height="18" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" version="1.1" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" style="vertical-align: middle;">
+                                            <rect height="7.5" width="12.5" y="5.75" x="1.75" />
+                                            <path d="m10.75 8.75v1.5m-5.5-1.5v1.5m-.5-7.5 3.25 3 3.25-3" />
+                                        </svg>
+                                    </a>
                                 </div>
-                            </div>
+
+                                <!-- shortcut bar -->
+                                <div id="shortcut-bar-container" class="d-none d-md-inline-block align-middle ml-2">
+                                    <div id="shortcut-bar-content" class="d-inline-block text-nowrap">
+                                        <?php foreach ($shortcuts as $item): ?>
+                                            <a href="<?= htmlspecialchars($item['url'], ENT_QUOTES, 'UTF-8') ?>" class="mr-2 shortcut-link"><?= htmlspecialchars($item['name']) ?></a>
+                                        <?php endforeach; ?>
+                                        <a href="#" class="mr-2 shortcut-link" data-toggle="modal" data-target="#shortcutModal" title="<?= _lang('add_shortcut') ?>"><i class="icofont-plus"></i></a>
+                                    </div>
+                                </div>
                             <?php endif; ?>
                         </div>
                         <div>
