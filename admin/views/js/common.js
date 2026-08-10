@@ -741,12 +741,17 @@ $(function () {
         let link = $(this);
         let down_url = link.data('url');
         let type = link.data('type');
-        link.text('安装中…');
+        var installText = typeof _langJS !== 'undefined' && _langJS.store_install ? _langJS.store_install : '安装';
+        link.html('<i class="icofont-spinner icofont-spin mr-1"></i>安装中…');
         link.parent().prev(".installMsg").html("").addClass("spinner-border text-primary");
     
         let url = './store.php?action=install&type=' + type + '&source=' + down_url;
         $.get(url, function (data) {
-            link.text('安装');
+            if (link.hasClass('modal-install-btn')) {
+                link.html('<i class="icofont-download mr-1"></i>' + installText);
+            } else {
+                link.text(installText);
+            }
             if (data.code === 0) {
                 cocoMessage.success(data.msg, 8000);
             } else {
@@ -764,6 +769,8 @@ $(function () {
         var name = button.data('name');
         var url = button.data('url');
         var buy_url = button.data('buy-url');
+        var download_url = button.data('download-url');
+        var type = button.data('type');
         var modal = $(this);
 
         modal.find('.modal-body').empty();
@@ -773,6 +780,19 @@ $(function () {
             modal.find('.modal-buy-url').attr('href', buy_url).removeClass('d-none').show();
         } else {
             modal.find('.modal-buy-url').addClass('d-none').hide();
+        }
+
+        var $installBtn = modal.find('.modal-install-btn');
+        if (download_url && $.trim(download_url) !== '') {
+            var installText = typeof _langJS !== 'undefined' && _langJS.store_install ? _langJS.store_install : '安装';
+            $installBtn.data('url', download_url)
+                       .data('type', type || '')
+                       .html('<i class="icofont-download mr-1"></i>' + installText)
+                       .removeClass('d-none')
+                       .show();
+        } else {
+            // 没有下载链接（如未购买收费应用）则隐藏安装按钮
+            $installBtn.addClass('d-none').hide();
         }
 
         var loadingSpinner = '<div class="spinner-border spinner-border-sm text-primary ml-2 align-middle" role="status" style="width: 1rem; height: 1rem;"><span class="sr-only">Loading...</span></div>';

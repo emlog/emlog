@@ -32,12 +32,12 @@
         ?>
             <div class="col-md-6 col-lg-3 store-app-col app-item" data-type="<?= $type ?>">
                 <div class="card mb-4 shadow-sm hover-shadow-lg">
-                    <a href="#appModal" class="p-1" data-toggle="modal" data-target="#appModal" data-name="<?= $v['name'] ?>" data-url="<?= $v['app_url'] ?>" data-buy-url="<?= $v['buy_url'] ?>">
+                    <a href="#appModal" class="p-1" data-toggle="modal" data-target="#appModal" data-name="<?= $v['name'] ?>" data-url="<?= $v['app_url'] ?>" data-buy-url="<?= $v['buy_url'] ?>" data-download-url="<?= urlencode($v['download_url'] ?? '') ?>" data-type="<?= $type ?>">
                         <img class="bd-placeholder-img card-img-top" alt="cover" width="100%" height="225" src="<?= $icon ?>">
                     </a>
                     <div class="card-body">
                         <p class="card-text font-weight-bold">
-                            <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="<?= $v['name'] ?>" data-url="<?= $v['app_url'] ?>" data-buy-url="<?= $v['buy_url'] ?>" class="h5"><?= $v['name'] ?></a>
+                            <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="<?= $v['name'] ?>" data-url="<?= $v['app_url'] ?>" data-buy-url="<?= $v['buy_url'] ?>" data-download-url="<?= urlencode($v['download_url'] ?? '') ?>" data-type="<?= $type ?>" class="h5"><?= $v['name'] ?></a>
                             <span class="badge badge-light p-1"><?= $v['ver'] ?></span>
                             <?php if ($type === 'tpl'): ?>
                                 <span class="badge badge-success p-1"><?= _lang('store_tpl_tag') ?></span>
@@ -85,6 +85,9 @@
                 <div class="d-flex align-items-center ml-auto">
                     <a href="" class="modal-buy-url btn btn-sm btn-outline-primary rounded-pill px-3 mr-2" target="_blank">
                         <i class="icofont-external-link mr-1"></i><?= _lang('store_view_official') ?>
+                    </a>
+                    <a href="#" class="modal-install-btn btn btn-sm btn-success rounded-pill px-3 mr-2 installBtn" style="display: none;">
+                        <i class="icofont-download mr-1"></i><?= _lang('store_install') ?>
                     </a>
                     <button type="button" class="close p-1 ml-1" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>

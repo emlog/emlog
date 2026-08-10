@@ -12,11 +12,13 @@
             </div>
             <div class="card-body p-0">
                 <div class="list-group list-group-flush">
-                    <?php foreach ($top_plugins as $idx => $item): ?>
+                    <?php foreach ($top_plugins as $idx => $item):
+                        $item_can_install = !empty($item['download_url']) && (($item['price'] ?? 0) == 0 || ($item['purchased'] ?? false) === true || (!empty($item['svip']) && Register::getRegType() === 2));
+                    ?>
                         <div class="list-group-item d-flex align-items-center justify-content-between py-2 px-3 border-0">
                             <div class="text-truncate" style="max-width: 100%;">
                                 <span class="badge badge-<?= $idx < 3 ? 'warning' : 'light' ?> badge-pill mr-1"><?= $idx + 1 ?></span>
-                                <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="<?= $item['name'] ?>" data-url="<?= $item['app_url'] ?>" data-buy-url="<?= $item['buy_url'] ?>" class="text-dark font-weight-500 text-truncate d-inline-block align-middle" style="max-width: 85%;">
+                                <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="<?= $item['name'] ?>" data-url="<?= $item['app_url'] ?>" data-buy-url="<?= $item['buy_url'] ?>" data-download-url="<?= $item_can_install ? urlencode($item['download_url']) : '' ?>" data-type="<?= ($item['app_type'] ?? '') === 'template' ? 'tpl' : 'plugin' ?>" class="text-dark font-weight-500 text-truncate d-inline-block align-middle" style="max-width: 85%;">
                                     <?= $item['name'] ?>
                                 </a>
                             </div>
@@ -38,11 +40,13 @@
             </div>
             <div class="card-body p-0">
                 <div class="list-group list-group-flush">
-                    <?php foreach ($top_templates as $idx => $item): ?>
+                    <?php foreach ($top_templates as $idx => $item):
+                        $item_can_install = !empty($item['download_url']) && (($item['price'] ?? 0) == 0 || ($item['purchased'] ?? false) === true || (!empty($item['svip']) && Register::getRegType() === 2));
+                    ?>
                         <div class="list-group-item d-flex align-items-center justify-content-between py-2 px-3 border-0">
                             <div class="text-truncate" style="max-width: 100%;">
                                 <span class="badge badge-<?= $idx < 3 ? 'danger' : 'light' ?> badge-pill mr-1"><?= $idx + 1 ?></span>
-                                <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="<?= $item['name'] ?>" data-url="<?= $item['app_url'] ?>" data-buy-url="<?= $item['buy_url'] ?>" class="text-dark font-weight-500 text-truncate d-inline-block align-middle" style="max-width: 85%;">
+                                <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="<?= $item['name'] ?>" data-url="<?= $item['app_url'] ?>" data-buy-url="<?= $item['buy_url'] ?>" data-download-url="<?= $item_can_install ? urlencode($item['download_url']) : '' ?>" data-type="<?= ($item['app_type'] ?? '') === 'template' ? 'tpl' : 'plugin' ?>" class="text-dark font-weight-500 text-truncate d-inline-block align-middle" style="max-width: 85%;">
                                     <?= $item['name'] ?>
                                 </a>
                             </div>
@@ -64,11 +68,13 @@
             </div>
             <div class="card-body p-0">
                 <div class="list-group list-group-flush">
-                    <?php foreach ($top_download as $idx => $item): ?>
+                    <?php foreach ($top_download as $idx => $item):
+                        $item_can_install = !empty($item['download_url']) && (($item['price'] ?? 0) == 0 || ($item['purchased'] ?? false) === true || (!empty($item['svip']) && Register::getRegType() === 2));
+                    ?>
                         <div class="list-group-item d-flex align-items-center justify-content-between py-2 px-3 border-0">
                             <div class="text-truncate" style="max-width: 100%;">
                                 <span class="badge badge-<?= $idx < 3 ? 'primary' : 'light' ?> badge-pill mr-1"><?= $idx + 1 ?></span>
-                                <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="<?= $item['name'] ?>" data-url="<?= $item['app_url'] ?>" data-buy-url="<?= $item['buy_url'] ?>" class="text-dark font-weight-500 text-truncate d-inline-block align-middle" style="max-width: 85%;">
+                                <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="<?= $item['name'] ?>" data-url="<?= $item['app_url'] ?>" data-buy-url="<?= $item['buy_url'] ?>" data-download-url="<?= $item_can_install ? urlencode($item['download_url']) : '' ?>" data-type="<?= ($item['app_type'] ?? '') === 'template' ? 'tpl' : 'plugin' ?>" class="text-dark font-weight-500 text-truncate d-inline-block align-middle" style="max-width: 85%;">
                                     <?= $item['name'] ?>
                                 </a>
                             </div>
@@ -90,11 +96,13 @@
             </div>
             <div class="card-body p-0">
                 <div class="list-group list-group-flush">
-                    <?php foreach ($top_favorite as $idx => $item): ?>
+                    <?php foreach ($top_favorite as $idx => $item):
+                        $item_can_install = !empty($item['download_url']) && (($item['price'] ?? 0) == 0 || ($item['purchased'] ?? false) === true || (!empty($item['svip']) && Register::getRegType() === 2));
+                    ?>
                         <div class="list-group-item d-flex align-items-center justify-content-between py-2 px-3 border-0">
                             <div class="text-truncate" style="max-width: 100%;">
                                 <span class="badge badge-<?= $idx < 3 ? 'info' : 'light' ?> badge-pill mr-1"><?= $idx + 1 ?></span>
-                                <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="<?= $item['name'] ?>" data-url="<?= $item['app_url'] ?>" data-buy-url="<?= $item['buy_url'] ?>" class="text-dark font-weight-500 text-truncate d-inline-block align-middle" style="max-width: 85%;">
+                                <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="<?= $item['name'] ?>" data-url="<?= $item['app_url'] ?>" data-buy-url="<?= $item['buy_url'] ?>" data-download-url="<?= $item_can_install ? urlencode($item['download_url']) : '' ?>" data-type="<?= ($item['app_type'] ?? '') === 'template' ? 'tpl' : 'plugin' ?>" class="text-dark font-weight-500 text-truncate d-inline-block align-middle" style="max-width: 85%;">
                                     <?= $item['name'] ?>
                                 </a>
                             </div>
@@ -114,11 +122,12 @@
             <?php foreach ($apps as $k => $v):
                 $icon = $v['icon'] ?: "./views/images/theme.png";
                 $type = $v['app_type'] === 'template' ? 'tpl' : 'plugin';
-                $order_url = 'https://www.emlog.net/order/submit/' . $type . '/' . $v['id']
+                $order_url = 'https://www.emlog.net/order/submit/' . $type . '/' . $v['id'];
+                $can_install = !empty($v['download_url']) && ($v['price'] == 0 || $v['purchased'] === true || (!empty($v['svip']) && Register::getRegType() === 2));
             ?>
                 <div class="col-md-6 col-lg-3 store-app-col">
                     <div class="card mb-4 shadow-sm hover-shadow-lg">
-                        <a href="#appModal" class="p-1" data-toggle="modal" data-target="#appModal" data-name="<?= $v['name'] ?>" data-url="<?= $v['app_url'] ?>" data-buy-url="<?= $v['buy_url'] ?>">
+                        <a href="#appModal" class="p-1" data-toggle="modal" data-target="#appModal" data-name="<?= $v['name'] ?>" data-url="<?= $v['app_url'] ?>" data-buy-url="<?= $v['buy_url'] ?>" data-download-url="<?= $can_install ? urlencode($v['download_url']) : '' ?>" data-type="<?= $type ?>">
                             <img class="bd-placeholder-img card-img-top" alt="cover" width="100%" height="225" src="<?= $icon ?>">
                         </a>
                         <div class="card-body">
@@ -126,7 +135,7 @@
                                 <?php if ($v['top'] === 1): ?>
                                     <span class="badge badge-pink p-1"><?= _lang('store_recommend_daily') ?></span>
                                 <?php endif; ?>
-                                <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="<?= $v['name'] ?>" data-url="<?= $v['app_url'] ?>" data-buy-url="<?= $v['buy_url'] ?>" class="h5"><?= subString($v['name'], 0, 15) ?></a>
+                                <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="<?= $v['name'] ?>" data-url="<?= $v['app_url'] ?>" data-buy-url="<?= $v['buy_url'] ?>" data-download-url="<?= $can_install ? urlencode($v['download_url']) : '' ?>" data-type="<?= $type ?>" class="h5"><?= subString($v['name'], 0, 15) ?></a>
                                 <span class="badge badge-light p-1"><?= $v['ver'] ?></span>
                                 <?php if ($type === 'tpl'): ?>
                                     <span class="badge badge-success p-1"><?= _lang('store_tpl_tag') ?></span>
@@ -219,6 +228,9 @@
                     <a href="" class="modal-buy-url btn btn-sm btn-outline-primary rounded-pill px-3 mr-2" target="_blank">
                         <i class="icofont-external-link mr-1"></i><?= _lang('store_view_official') ?>
                     </a>
+                    <a href="#" class="modal-install-btn btn btn-sm btn-success rounded-pill px-3 mr-2 installBtn" style="display: none;">
+                        <i class="icofont-download mr-1"></i><?= _lang('store_install') ?>
+                    </a>
                     <button type="button" class="close p-1 ml-1" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -275,6 +287,8 @@
                             const icon = app.icon || './views/images/theme.png';
                             const type = app.app_type === 'template' ? 'tpl' : 'plugin';
                             const orderUrl = 'https://www.emlog.net/order/submit/' + type + '/' + app.id;
+                            const canInstall = app.download_url && (app.price == 0 || app.purchased === true || (app.svip && app.user_is_svip));
+                            const downloadUrlParam = canInstall ? encodeURIComponent(app.download_url) : '';
 
                             // 构建按钮HTML
                             let buttonsHtml = '';
@@ -312,13 +326,13 @@
                             html += `
                                 <div class="col-md-6 col-lg-3 store-app-col">
                                     <div class="card mb-4 shadow-sm hover-shadow-lg">
-                                        <a href="#appModal" class="p-1" data-toggle="modal" data-target="#appModal" data-name="${app.name}" data-url="${app.app_url}" data-buy-url="${app.buy_url}">
+                                        <a href="#appModal" class="p-1" data-toggle="modal" data-target="#appModal" data-name="${app.name}" data-url="${app.app_url}" data-buy-url="${app.buy_url}" data-download-url="${downloadUrlParam}" data-type="${type}">
                                             <img class="bd-placeholder-img card-img-top" alt="cover" width="100%" height="225" src="${icon}">
                                         </a>
                                         <div class="card-body">
                                             <p class="card-text font-weight-bold">
                                                 ${app.top === 1 ? '<span class="badge badge-pink p-1"><?= _lang("store_recommend_daily") ?></span>' : ''}
-                                                <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="${app.name}" data-url="${app.app_url}" data-buy-url="${app.buy_url}" class="h5">${app.name.substring(0, 15)}</a>
+                                                <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="${app.name}" data-url="${app.app_url}" data-buy-url="${app.buy_url}" data-download-url="${downloadUrlParam}" data-type="${type}" class="h5">${app.name.substring(0, 15)}</a>
                                                 <span class="badge badge-light p-1">${app.ver}</span>
                                                 ${type === 'tpl' ? '<span class="badge badge-success p-1"><?= _lang("store_tpl_tag") ?></span>' : '<span class="badge badge-primary p-1"><?= _lang("store_plu_tag") ?></span>'}
                                             </p>
