@@ -60,15 +60,13 @@ if (empty($action)) {
     $top_plugins = [];
     $top_templates = [];
     if (empty($tag) && empty($keyword) && empty($author_id) && empty($sid) && $page == 1) {
-        // 调用购买排行(paid_top)接口获取热销插件和主题（展示前5个）
-        $plu_res = $Store_Model->getPlugins('paid_top', '', 1);
-        if (!empty($plu_res['plugins'])) {
-            $top_plugins = array_slice($plu_res['plugins'], 0, 5);
+        // 调用新的热销榜(paid_top)接口获取热销插件和主题（展示前5个）
+        $paid_top = $Store_Model->getPaidTop();
+        if (!empty($paid_top['plugins'])) {
+            $top_plugins = array_slice($paid_top['plugins'], 0, 5);
         }
-
-        $tpl_res = $Store_Model->getTemplates('paid_top', '', 1);
-        if (!empty($tpl_res['templates'])) {
-            $top_templates = array_slice($tpl_res['templates'], 0, 5);
+        if (!empty($paid_top['templates'])) {
+            $top_templates = array_slice($paid_top['templates'], 0, 5);
         }
     }
 

@@ -39,6 +39,26 @@ class Store_Model
         return $this->reqEmStore('favorite', '', '', $page);
     }
 
+    public function getPaidTop()
+    {
+        $emcurl = new EmCurl();
+        $emkey = Option::get('emkey');
+        if (!empty($emkey)) {
+            $emcurl->setPost(['emkey' => $emkey]);
+        }
+        $emcurl->request('https://store.emlog.net/store/paid_top');
+        $retStatus = $emcurl->getHttpStatus();
+        if ($retStatus !== MSGCODE_SUCCESS) {
+            return [];
+        }
+        $response = $emcurl->getRespone();
+        $ret = json_decode($response, true);
+        if (!empty($ret['data']) && is_array($ret['data'])) {
+            return $ret['data'];
+        }
+        return [];
+    }
+
     public function addFavorite($app_type, $app_id)
     {
         $emcurl = new EmCurl();
