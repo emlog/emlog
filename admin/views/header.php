@@ -61,7 +61,18 @@
                 </div>
             </li>
             <li class="nav-item" id="menu_cm">
-                <a class="nav-link" href="comment.php"><i class="icofont-comment"></i><span><?= _lang('comment') ?></span></a>
+                <?php
+                $hidecmnum = User::haveEditPermission() ? ($sta_cache['hidecomnum'] ?? 0) : ($sta_cache[UID]['hidecommentnum'] ?? 0);
+                ?>
+                <div class="nav-link d-flex align-items-center justify-content-between">
+                    <a href="comment.php" class="text-decoration-none text-reset flex-grow-1">
+                        <i class="icofont-comment"></i>
+                        <span><?= _lang('comment') ?></span>
+                    </a>
+                    <?php if ($hidecmnum > 0): ?>
+                        <a href="comment.php?hide=y" class="badge badge-danger badge-pill sidebar-badge-counter" title="<?= _lang('pending_audit') ?>"><?= $hidecmnum > 99 ? '99+' : $hidecmnum ?></a>
+                    <?php endif; ?>
+                </div>
             </li>
             <li class="nav-item" id="menu_twitter">
                 <a class="nav-link" href="twitter.php"><i class="icofont-penalty-card"></i><span><?= _lang('twitter') ?></span></a>

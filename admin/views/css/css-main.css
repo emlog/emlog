@@ -1519,3 +1519,29 @@ textarea.form-control {
     outline: none !important;
     box-shadow: none !important;
 }
+
+/* 侧边栏待审核评论 Badge 样式优化 */
+.sidebar .sidebar-badge-counter {
+    font-size: 0.65rem;
+    font-weight: 400;
+    line-height: 1;
+    padding: 2px 6px;
+    min-width: 18px;
+    height: 18px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #ff4d4f 0%, #d9363e 100%);
+    color: #ffffff !important;
+    box-shadow: 0 2px 4px rgba(217, 54, 62, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    text-decoration: none !important;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.sidebar .sidebar-badge-counter:hover {
+    transform: scale(1.1);
+    box-shadow: 0 3px 6px rgba(217, 54, 62, 0.5);
+    color: #ffffff !important;
+}
