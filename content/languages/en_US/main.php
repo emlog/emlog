@@ -314,6 +314,7 @@ return [
     'setting_api' => 'API',
     'setting_ai' => 'AI',
     'setting_profile' => 'Profile',
+    'more_options' => 'More Options',
 
     // Setting - Basic
     'site_info' => 'Site Info',

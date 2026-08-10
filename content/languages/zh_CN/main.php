@@ -314,6 +314,7 @@ return [
     'setting_api' => 'API',
     'setting_ai' => 'AI',
     'setting_profile' => '个人信息',
+    'more_options' => '更多配置项',
 
     // Setting - Basic
     'site_info' => '站点信息',

@@ -130,6 +130,9 @@
                 <label><?= _lang('sidebar_menu_title'); ?></label>
                 <input class="form-control ml-2" value="<?= $panel_menu_title ?>" name="panel_menu_title">
             </div>
+            <div class="mt-4">
+                <a href="https://www.emlog.net/docs/install/config" target="_blank" class="text-secondary"><?= _lang('more_options'); ?> <i class="icofont-external-link"></i></a>
+            </div>
             <hr>
             <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
             <input type="submit" value="<?= _lang('save'); ?>" class="btn btn-sm btn-success" />
