@@ -59,14 +59,24 @@ if (empty($action)) {
     // 仅在商店首页且非搜索/筛选状态下获取排行榜
     $top_plugins = [];
     $top_templates = [];
+    $top_favorite = [];
+    $top_download = [];
     if (empty($tag) && empty($keyword) && empty($author_id) && empty($sid) && $page == 1) {
-        // 调用新的热销榜(paid_top)接口获取热销插件和主题（展示前5个）
-        $paid_top = $Store_Model->getPaidTop();
-        if (!empty($paid_top['plugins'])) {
-            $top_plugins = array_slice($paid_top['plugins'], 0, 5);
+        // 调用榜单(top)接口获取热销、收藏和下载榜数据（展示前5个）
+        $paid_top = $Store_Model->getTopList();
+        if (!empty($paid_top['plugins_paid_top'])) {
+            $top_plugins = $paid_top['plugins_paid_top'];
         }
-        if (!empty($paid_top['templates'])) {
-            $top_templates = array_slice($paid_top['templates'], 0, 5);
+        if (!empty($paid_top['templates_piad_top'])) {
+            $top_templates = $paid_top['templates_piad_top'];
+        } elseif (!empty($paid_top['templates_paid_top'])) {
+            $top_templates = $paid_top['templates_paid_top'];
+        }
+        if (!empty($paid_top['favorite_top'])) {
+            $top_favorite = $paid_top['favorite_top'];
+        }
+        if (!empty($paid_top['download_top'])) {
+            $top_download = $paid_top['download_top'];
         }
     }
 

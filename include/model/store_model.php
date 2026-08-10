@@ -39,14 +39,14 @@ class Store_Model
         return $this->reqEmStore('favorite', '', '', $page);
     }
 
-    public function getPaidTop()
+    public function getTopList()
     {
         $emcurl = new EmCurl();
         $emkey = Option::get('emkey');
         if (!empty($emkey)) {
             $emcurl->setPost(['emkey' => $emkey]);
         }
-        $emcurl->request('https://store.emlog.net/store/paid_top');
+        $emcurl->request('https://store.emlog.net/store/top');
         $retStatus = $emcurl->getHttpStatus();
         if ($retStatus !== MSGCODE_SUCCESS) {
             return [];
