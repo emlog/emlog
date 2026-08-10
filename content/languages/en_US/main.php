@@ -317,6 +317,7 @@ return [
 
     // Setting - Basic
     'site_info' => 'Site Info',
+    'site_language' => 'Language',
     'site_title' => 'Site Title',
     'site_subtitle' => 'Site Subtitle',
     'site_url' => 'Site URL',

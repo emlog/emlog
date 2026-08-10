@@ -144,6 +144,12 @@ if (empty($action)) {
         'Etc/GMT+12' => _lang('tz_Etc_GMT_minus_12'),
     ];
 
+    $langlist = [
+        'zh_CN' => '简体中文',
+        'en_US' => 'English',
+    ];
+    $language = defined('EMLOG_LANG') ? EMLOG_LANG : 'zh_CN';
+
     include View::getAdmView('header');
     require_once(View::getAdmView('setting'));
     include View::getAdmView('footer');
@@ -152,6 +158,7 @@ if (empty($action)) {
 
 if ($action == 'save') {
     LoginAuth::checkToken();
+    $language = Input::postStrVar('language', 'zh_CN');
     $getData = [
         'blogname'            => Input::postStrVar('blogname'),
         'blogurl'             => Input::postStrVar('blogurl'),
@@ -177,6 +184,13 @@ if ($action == 'save') {
         'detect_url'          => Input::postStrVar('detect_url', 'n'),
         'panel_menu_title'    => Input::postStrVar('panel_menu_title'),
     ];
+
+    if (in_array($language, ['zh_CN', 'en_US'])) {
+        $configFile = EMLOG_ROOT . '/config.php';
+        $configContent = file_get_contents($configFile);
+        $configContent = preg_replace("/const EMLOG_LANG = '.*?';/", "const EMLOG_LANG = '{$language}';", $configContent);
+        file_put_contents($configFile, $configContent);
+    }
 
     if ($getData['comment_code'] == 'y' && !checkGDSupport()) {
         Output::error(_lang('comment_captcha_gd_error'));

@@ -317,6 +317,7 @@ return [
 
     // Setting - Basic
     'site_info' => '站点信息',
+    'site_language' => '语言',
     'site_title' => '站点标题',
     'site_subtitle' => '站点副标题',
     'site_url' => '站点地址',

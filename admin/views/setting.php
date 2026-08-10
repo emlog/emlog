@@ -34,6 +34,15 @@
                 <label class="custom-control-label" for="detect_url"><?= _lang('detect_site_url_desc'); ?></label>
             </div>
             <div class="form-group mt-3">
+                <label><?= _lang('site_language'); ?></label>
+                <select name="language" style="width:320px;" class="form-control">
+                    <?php foreach ($langlist as $key => $value):
+                        $ex = $key == $language ? "selected=\"selected\"" : '' ?>
+                        <option value="<?= $key ?>" <?= $ex ?>><?= $value ?></option>
+                    <?php endforeach ?>
+                </select>
+            </div>
+            <div class="form-group">
                 <label><?= _lang('timezone'); ?></label>
                 <select name="timezone" style="width:320px;" class="form-control">
                     <?php foreach ($tzlist as $key => $value):
