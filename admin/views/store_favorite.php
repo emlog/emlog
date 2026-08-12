@@ -21,7 +21,9 @@
                 $icon = $v['icon'] ?: "./views/images/theme.png";
                 $type = $v['app_type'] === 'template' ? 'tpl' : 'plugin';
                 $order_url = 'https://www.emlog.net/order/submit/' . $type . '/' . $v['id'];
-                $can_install = !empty($v['download_url']) && (($v['price'] ?? 0) == 0 || ($v['purchased'] ?? false) === true || (!empty($v['svip']) && Register::getRegType() === 2));
+                $price = isset($v['price']) ? $v['price'] : 0;
+                $purchased = isset($v['purchased']) ? $v['purchased'] : false;
+                $can_install = !empty($v['download_url']) && ($price == 0 || $purchased === true || (!empty($v['svip']) && Register::getRegType() === 2));
             ?>
                 <div class="col-md-6 col-lg-3 store-app-col">
                     <div class="card mb-4 shadow-sm hover-shadow-lg">

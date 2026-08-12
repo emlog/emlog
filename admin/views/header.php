@@ -62,7 +62,7 @@
             </li>
             <li class="nav-item" id="menu_cm">
                 <?php
-                $hidecmnum = User::haveEditPermission() ? ($sta_cache['hidecomnum'] ?? 0) : ($sta_cache[UID]['hidecommentnum'] ?? 0);
+                $hidecmnum = User::haveEditPermission() ? (isset($sta_cache['hidecomnum']) ? $sta_cache['hidecomnum'] : 0) : (isset($sta_cache[UID]['hidecommentnum']) ? $sta_cache[UID]['hidecommentnum'] : 0);
                 ?>
                 <div class="nav-link d-flex align-items-center justify-content-between">
                     <a href="comment.php" class="text-decoration-none text-reset flex-grow-1">

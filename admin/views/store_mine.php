@@ -19,15 +19,17 @@
         <div class="d-flex flex-wrap app-list">
             <?php foreach ($addons as $k => $v):
                 $icon = $v['icon'] ?: "./views/images/theme.png";
+                $download_url = isset($v['download_url']) ? $v['download_url'] : '';
+                $type = isset($v['type']) ? $v['type'] : '';
             ?>
                 <div class="col-md-6 col-lg-3 store-app-col">
                     <div class="card mb-4 shadow-sm hover-shadow-lg">
-                        <a href="#appModal" class="p-1" data-toggle="modal" data-target="#appModal" data-name="<?= $v['name'] ?>" data-url="<?= $v['app_url'] ?>" data-buy-url="<?= $v['buy_url'] ?>" data-download-url="<?= urlencode($v['download_url'] ?? '') ?>" data-type="<?= $v['type'] ?? '' ?>">
+                        <a href="#appModal" class="p-1" data-toggle="modal" data-target="#appModal" data-name="<?= $v['name'] ?>" data-url="<?= $v['app_url'] ?>" data-buy-url="<?= $v['buy_url'] ?>" data-download-url="<?= urlencode($download_url) ?>" data-type="<?= $type ?>">
                             <img class="bd-placeholder-img card-img-top" alt="cover" width="100%" height="225" src="<?= $icon ?>">
                         </a>
                         <div class="card-body">
                             <p class="card-text font-weight-bold">
-                                <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="<?= $v['name'] ?>" data-url="<?= $v['app_url'] ?>" data-buy-url="<?= $v['buy_url'] ?>" data-download-url="<?= urlencode($v['download_url'] ?? '') ?>" data-type="<?= $v['type'] ?? '' ?>" class="h5"><?= $v['name'] ?></a>
+                                <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="<?= $v['name'] ?>" data-url="<?= $v['app_url'] ?>" data-buy-url="<?= $v['buy_url'] ?>" data-download-url="<?= urlencode($download_url) ?>" data-type="<?= $type ?>" class="h5"><?= $v['name'] ?></a>
                                 <span class="badge badge-light p-1"><?= $v['ver'] ?></span>
                             </p>
                             <p class="card-text text-muted small">

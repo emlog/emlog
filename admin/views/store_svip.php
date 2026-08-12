@@ -29,15 +29,16 @@
         <?php foreach ($addons as $k => $v):
             $icon = $v['icon'] ?: "./views/images/theme.png";
             $type = $v['app_type'] === 'template' ? 'tpl' : 'plugin';
+            $download_url = isset($v['download_url']) ? $v['download_url'] : '';
         ?>
             <div class="col-md-6 col-lg-3 store-app-col app-item" data-type="<?= $type ?>">
                 <div class="card mb-4 shadow-sm hover-shadow-lg">
-                    <a href="#appModal" class="p-1" data-toggle="modal" data-target="#appModal" data-name="<?= $v['name'] ?>" data-url="<?= $v['app_url'] ?>" data-buy-url="<?= $v['buy_url'] ?>" data-download-url="<?= urlencode($v['download_url'] ?? '') ?>" data-type="<?= $type ?>">
+                    <a href="#appModal" class="p-1" data-toggle="modal" data-target="#appModal" data-name="<?= $v['name'] ?>" data-url="<?= $v['app_url'] ?>" data-buy-url="<?= $v['buy_url'] ?>" data-download-url="<?= urlencode($download_url) ?>" data-type="<?= $type ?>">
                         <img class="bd-placeholder-img card-img-top" alt="cover" width="100%" height="225" src="<?= $icon ?>">
                     </a>
                     <div class="card-body">
                         <p class="card-text font-weight-bold">
-                            <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="<?= $v['name'] ?>" data-url="<?= $v['app_url'] ?>" data-buy-url="<?= $v['buy_url'] ?>" data-download-url="<?= urlencode($v['download_url'] ?? '') ?>" data-type="<?= $type ?>" class="h5"><?= $v['name'] ?></a>
+                            <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="<?= $v['name'] ?>" data-url="<?= $v['app_url'] ?>" data-buy-url="<?= $v['buy_url'] ?>" data-download-url="<?= urlencode($download_url) ?>" data-type="<?= $type ?>" class="h5"><?= $v['name'] ?></a>
                             <span class="badge badge-light p-1"><?= $v['ver'] ?></span>
                             <?php if ($type === 'tpl'): ?>
                                 <span class="badge badge-success p-1"><?= _lang('store_tpl_tag') ?></span>
