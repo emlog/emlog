@@ -445,7 +445,6 @@ return [
     'size' => 'Size',
     'image_size_placeholder' => 'e.g., 1024x1024, 2K',
     'image_size_tip' => 'Supports size formats like 1024x1024, 1792x1024 or 2K (Doubao model)',
-    'doubao_size_tip' => 'Tip: Please fill 2K for Doubao image generation API size parameter',
     'generate_image_btn' => 'Generate Image',
     'generate_api_key' => 'Generate API Key',
     'more_ai_models' => 'More AI Models',
