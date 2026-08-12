@@ -6,6 +6,7 @@ sitemap*
 .playwright-cli
 Dockerfile
 config.php
+AGENTS.md
 /content/backup/*.sql
 /content/cache/*
 /content/uploadfile/*
