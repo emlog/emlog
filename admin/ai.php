@@ -308,12 +308,10 @@ if ($action == 'genReply') {
 if ($action == 'generate_image') {
     $prompt = Input::postStrVar('prompt');
     $size = Input::postStrVar('size', '1024x1024');
-    $quality = Input::postStrVar('quality', 'standard');
 
     // 调用封装的AI图像生成和保存方法
     $options = array(
-        'size' => $size,
-        'quality' => $quality
+        'size' => $size
     );
 
     $result = Ai::generateImageAndSave($prompt, $options);

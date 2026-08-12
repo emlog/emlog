@@ -322,26 +322,10 @@
                         <label for="image-prompt"><?= _lang('image_prompt'); ?></label>
                         <textarea class="form-control" id="image-prompt" placeholder="" rows="3" required></textarea>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="image-size"><?= _lang('size'); ?>：</label>
-                                <select class="form-control" id="image-size">
-                                    <option value="1024x1024">1024x1024 (<?= _lang('size_square'); ?>)</option>
-                                    <option value="1792x1024">1792x1024 (<?= _lang('size_landscape'); ?>)</option>
-                                    <option value="1024x1792">1024x1792 (<?= _lang('size_portrait'); ?>)</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="image-quality"><?= _lang('quality'); ?>：</label>
-                                <select class="form-control" id="image-quality">
-                                    <option value="standard"><?= _lang('standard'); ?></option>
-                                    <option value="hd"><?= _lang('hd'); ?></option>
-                                </select>
-                            </div>
-                        </div>
+                    <div class="form-group">
+                        <label for="image-size"><?= _lang('size'); ?>：</label>
+                        <input type="text" class="form-control" id="image-size" value="1024x1024" placeholder="<?= _lang('image_size_placeholder'); ?>">
+                        <small class="form-text text-muted"><?= _lang('image_size_tip'); ?></small>
                     </div>
                     <div class="text-center">
                         <button class="btn btn-primary" type="submit" id="generate-btn">
@@ -367,8 +351,7 @@
                 return;
             }
 
-            var size = $('#image-size').val();
-            var quality = $('#image-quality').val();
+            var size = $('#image-size').val().trim() || '1024x1024';
             var $generateBtn = $('#generate-btn');
             var $imageResult = $('#image-result');
 
@@ -382,8 +365,7 @@
                 type: 'POST',
                 data: {
                     prompt: prompt,
-                    size: size,
-                    quality: quality
+                    size: size
                 },
                 dataType: 'json',
                 timeout: 60000, // 60秒超时
