@@ -25,6 +25,7 @@ AGENTS.md
 .buildpath
 .cache
 .idea
+.antigravitycli
 .netbeans
 .DS_Store
 .trae
