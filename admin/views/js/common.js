@@ -541,9 +541,44 @@ function imgPasteExpand(thisEditor) {
     }
 }
 
-// 把粘贴上传图片函数，挂载到位于文章编辑器、页面编辑器处的 js 钩子处
+// 允许拖动编辑器底部边缘改变高度
+function enableEditorResize(editorInstance) {
+    if (!editorInstance || !editorInstance.editor) return;
+    var $editor = editorInstance.editor;
+    if ($editor.find('.editormd-resize-handle').length > 0) return;
+
+    var $handle = $('<div class="editormd-resize-handle" title="拖拽调节编辑器高度"></div>');
+    $editor.append($handle);
+
+    $handle.on('mousedown', function(e) {
+        e.preventDefault();
+        var startY = e.clientY;
+        var startHeight = $editor.outerHeight();
+
+        $handle.addClass('dragging');
+        var $overlay = $('<div style="position:fixed;top:0;left:0;right:0;bottom:0;z-index:99999;cursor:s-resize;"></div>');
+        $('body').append($overlay);
+
+        $(document).on('mousemove.editorResize', function(e) {
+            var newHeight = startHeight + (e.clientY - startY);
+            if (newHeight >= 300) {
+                editorInstance.resize(null, newHeight);
+            }
+        });
+
+        $(document).on('mouseup.editorResize', function() {
+            $(document).off('.editorResize');
+            $overlay.remove();
+            $handle.removeClass('dragging');
+        });
+    });
+}
+
+// 把粘贴上传图片与高度拖拽拉伸函数，挂载到位于文章编辑器、页面编辑器处的 js 钩子处
 hooks.addAction("loaded", imgPasteExpand);
 hooks.addAction("page_loaded", imgPasteExpand);
+hooks.addAction("loaded", enableEditorResize);
+hooks.addAction("page_loaded", enableEditorResize);
 
 function checkUpdate() {
     const updateModal = $("#update-modal");
