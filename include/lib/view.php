@@ -38,8 +38,8 @@ class View
     public static function output()
     {
         $content = ob_get_clean();
-        doAction('before_exit', $content);
         ob_start();
+        doAction('before_exit', $content);
         echo $content;
         ob_end_flush();
         exit;
