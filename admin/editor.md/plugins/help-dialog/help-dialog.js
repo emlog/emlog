@@ -30,7 +30,7 @@
 
 			if (editor.find("." + dialogName).length < 1)
 			{
-				var dialogContent = `<div class=\"markdown-body\" style=\"font-family:微软雅黑, Helvetica, Tahoma, STXihei,Arial;height:390px;overflow:auto;font-size:14px;border-bottom:1px solid #ddd;padding:0 20px 20px 0;\">
+				var dialogContent = `<div class=\"markdown-body\" style=\"font-family:微软雅黑, Helvetica, Tahoma, STXihei,Arial;height:460px;overflow:auto;font-size:14px;padding:0 20px 20px 0;\">
 				<h5>Markdown语法教程</h5><ul>
 				</li><li><p><a href="https://markdown.p2hp.com/basic-syntax/" title="Markdown 语法说明（简体中文）">Markdown 语法说明（简体中文）</a></p>
 				</li><li><p><a href="http://markdown.tw/" title="Markdown 語法說明（繁體中文）">Markdown 語法說明（繁體中文）</a></p>
@@ -128,16 +128,10 @@
 					drag       : settings.dialogDraggable,
 					content    : dialogContent,
 					lockScreen : settings.dialogLockScreen,
+					footer     : false,
 					maskStyle  : {
 						opacity         : settings.dialogMaskOpacity,
 						backgroundColor : settings.dialogMaskBgColor
-					},
-					buttons    : {
-						close : [lang.buttons.close, function() {
-							this.hide().lockScreen(false).hideMask();
-
-							return false;
-						}]
 					}
 				});
 			}
