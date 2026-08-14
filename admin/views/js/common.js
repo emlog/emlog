@@ -542,11 +542,12 @@ function imgPasteExpand(thisEditor) {
 }
 
 // 允许拖动编辑器底部边缘改变高度
-function enableEditorResize(editorInstance) {
+function enableEditorResize(editorInstance, minHeight) {
     if (!editorInstance || !editorInstance.editor) return;
     var $editor = editorInstance.editor;
     if ($editor.find('.editormd-resize-handle').length > 0) return;
 
+    minHeight = minHeight || 150;
     var $handle = $('<div class="editormd-resize-handle" title="拖拽调节编辑器高度"></div>');
     $editor.append($handle);
 
@@ -561,7 +562,7 @@ function enableEditorResize(editorInstance) {
 
         $(document).on('mousemove.editorResize', function(e) {
             var newHeight = startHeight + (e.clientY - startY);
-            if (newHeight >= 300) {
+            if (newHeight >= minHeight) {
                 editorInstance.resize(null, newHeight);
             }
         });
@@ -574,11 +575,13 @@ function enableEditorResize(editorInstance) {
     });
 }
 
-// 把粘贴上传图片与高度拖拽拉伸函数，挂载到位于文章编辑器、页面编辑器处的 js 钩子处
+// 把粘贴上传图片与高度拖拽拉伸函数，挂载到位于文章编辑器、页面编辑器、微语编辑器处的 js 钩子处
 hooks.addAction("loaded", imgPasteExpand);
 hooks.addAction("page_loaded", imgPasteExpand);
+hooks.addAction("twitter_loaded", imgPasteExpand);
 hooks.addAction("loaded", enableEditorResize);
 hooks.addAction("page_loaded", enableEditorResize);
+hooks.addAction("twitter_loaded", enableEditorResize);
 
 function checkUpdate() {
     const updateModal = $("#update-modal");

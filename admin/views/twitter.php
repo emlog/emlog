@@ -145,6 +145,9 @@
                 videoUpload: false,
                 syncScrolling: "single",
                 placeholder: "<?= _lang('markdown_placeholder') ?>",
+                onload: function() {
+                    hooks.doAction("twitter_loaded", this);
+                }
             });
             Editor.setToolbarAutoFixed(false);
         });
