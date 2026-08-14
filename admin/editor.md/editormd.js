@@ -438,6 +438,7 @@
 
             var appendElements = [
                 (!settings.readOnly) ? "<a href=\"javascript:;\" class=\"fa fa-close " + classPrefix + "preview-close-btn\"></a>" : "",
+                (!settings.readOnly) ? "<div class=\"" + classPrefix + "preview-device-switch\"><a href=\"javascript:;\" class=\"active\" data-device=\"desktop\"><i class=\"fa fa-desktop\"></i> 桌面</a><a href=\"javascript:;\" data-device=\"mobile\"><i class=\"fa fa-mobile\"></i> 手机</a></div>" : "",
                 ((settings.saveHTMLToTextarea) ? "<textarea class=\"" + classNames.textarea.html + "\" name=\"" + id + "-html-code\"></textarea>" : ""),
                 "<div class=\"" + classPrefix + "preview\"><div class=\"markdown-body " + classPrefix + "preview-container\"></div></div>",
                 "<div class=\"" + classPrefix + "container-mask\" style=\"display:block;\"></div>",
@@ -2425,6 +2426,30 @@
                     height: (settings.autoHeight && !this.state.fullscreen) ? "auto" : editor.height() - topHeight
                 });
 
+                var deviceSwitch = editor.find("." + this.classPrefix + "preview-device-switch");
+                if (deviceSwitch.length > 0) {
+                    deviceSwitch.css("top", (topHeight + 10) + "px").show();
+                    deviceSwitch.find("a").removeClass("active");
+                    deviceSwitch.find("a[data-device=desktop]").addClass("active");
+                    previewContainer.removeClass("preview-mobile");
+                    preview.css("background", "#fff");
+
+                    deviceSwitch.find("a").off(editormd.mouseOrTouch("click", "touchend")).on(editormd.mouseOrTouch("click", "touchend"), function () {
+                        var $this = $(this);
+                        var device = $this.data("device");
+                        deviceSwitch.find("a").removeClass("active");
+                        $this.addClass("active");
+
+                        if (device === "mobile") {
+                            previewContainer.addClass("preview-mobile");
+                            preview.css("background", "#f8fafc");
+                        } else {
+                            previewContainer.removeClass("preview-mobile");
+                            preview.css("background", "#fff");
+                        }
+                    });
+                }
+
                 if (this.state.loaded) {
                     $.proxy(settings.onpreviewing, this)();
                 }
@@ -2451,10 +2476,16 @@
             var settings = this.settings;
             var previewContainer = this.previewContainer;
             var previewCloseBtn = editor.find("." + this.classPrefix + "preview-close-btn");
+            var deviceSwitch = editor.find("." + this.classPrefix + "preview-device-switch");
 
             this.state.preview = false;
 
             this.codeMirror.show();
+
+            if (deviceSwitch.length > 0) {
+                deviceSwitch.hide().find("a").off(editormd.mouseOrTouch("click", "touchend"));
+                previewContainer.removeClass("preview-mobile");
+            }
 
             if (settings.toolbar && toolbar) {
                 toolbar.show();
