@@ -40,6 +40,7 @@ if ($action == 'link_taxis') {
 }
 
 if ($action == 'save') {
+    LoginAuth::checkToken();
     $siteName = Input::postStrVar('sitename');
     $siteUrl = Input::postStrVar('siteurl');
     $icon = Input::postStrVar('icon');

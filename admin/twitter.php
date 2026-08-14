@@ -37,6 +37,7 @@ if (empty($action)) {
 }
 
 if ($action == 'post') {
+    LoginAuth::checkToken();
     $t = Input::postStrVar('t');
     $private = Input::postStrVar('private', 'n');
 
@@ -68,6 +69,7 @@ if ($action == 'settop') {
 }
 
 if ($action == 'update') {
+    LoginAuth::checkToken();
     $t = Input::postStrVar('t');
     $id = Input::postIntVar('id');
 

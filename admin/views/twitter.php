@@ -10,6 +10,7 @@
     </div>
     <div class="form-row align-items-center">
         <div class="col-auto">
+            <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
             <button type="submit" class="btn btn-success btn-sm mb-2"><?= _lang('publish') ?></button>
         </div>
         <div class="col-auto">

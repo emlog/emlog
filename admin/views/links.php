@@ -117,6 +117,7 @@
                 </div>
                 <div class="modal-footer border-0">
                     <input type="hidden" value="" name="linkid" id="linkid" />
+                    <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
                     <button type="button" class="btn btn-sm btn-light" data-dismiss="modal"><?= _lang('cancel'); ?></button>
                     <button type="submit" class="btn btn-sm btn-success"><?= _lang('save'); ?></button>
                     <span id="alias_msg_hook"></span>

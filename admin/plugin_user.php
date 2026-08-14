@@ -15,7 +15,7 @@ require_once 'globals.php';
 
 $plugin = Input::getStrVar('plugin', '');
 
-if (empty($action) && $plugin) {
+if (empty($action) && checkPlugin($plugin)) {
     require_once "../content/plugins/{$plugin}/{$plugin}_user.php";
 
     include View::getAdmView(User::haveEditPermission() ? 'header' : 'uc_header');
