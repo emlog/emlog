@@ -1843,7 +1843,16 @@
                 }
             }
 
-            if (settings.watch) {
+            if (state.preview) {
+                codeMirror.width(editor.width());
+                var previewTop = (settings.toolbar && !settings.readOnly) ? toolbar.height() : 0;
+                preview.show().css({
+                    position: "absolute",
+                    top: previewTop,
+                    width: editor.width(),
+                    height: (settings.autoHeight && !state.fullscreen) ? "auto" : editor.height() - previewTop
+                });
+            } else if (settings.watch) {
                 codeMirror.width(editor.width() / 2);
                 preview.width((!state.preview) ? editor.width() / 2 : editor.width());
 
@@ -2432,20 +2441,22 @@
                     deviceSwitch.find("a").removeClass("active");
                     deviceSwitch.find("a[data-device=desktop]").addClass("active");
                     previewContainer.removeClass("preview-mobile");
-                    preview.css("background", "#fff");
+                    preview.removeClass("preview-mobile-wrap").css("background", "#fff");
 
-                    deviceSwitch.find("a").off(editormd.mouseOrTouch("click", "touchend")).on(editormd.mouseOrTouch("click", "touchend"), function () {
+                    deviceSwitch.find("a").off("click").on("click", function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
                         var $this = $(this);
-                        var device = $this.data("device");
+                        var device = $this.attr("data-device");
                         deviceSwitch.find("a").removeClass("active");
                         $this.addClass("active");
 
                         if (device === "mobile") {
                             previewContainer.addClass("preview-mobile");
-                            preview.css("background", "#f8fafc");
+                            preview.addClass("preview-mobile-wrap").css("background", "#f8fafc");
                         } else {
                             previewContainer.removeClass("preview-mobile");
-                            preview.css("background", "#fff");
+                            preview.removeClass("preview-mobile-wrap").css("background", "#fff");
                         }
                     });
                 }
@@ -2531,6 +2542,7 @@
             var state = this.state;
             var editor = this.editor;
             var preview = this.preview;
+            var previewContainer = this.previewContainer;
             var toolbar = this.toolbar;
             var settings = this.settings;
             var fullscreenClass = this.classPrefix + "fullscreen";
@@ -2557,9 +2569,36 @@
                     height: $(window).height()
                 }).addClass(fullscreenClass);
 
+                $.proxy(settings.onfullscreen, this)();
+
                 this.resize();
 
-                $.proxy(settings.onfullscreen, this)();
+                var deviceSwitch = editor.find("." + this.classPrefix + "preview-device-switch");
+                if (deviceSwitch.length > 0) {
+                    var topHeight = (settings.toolbar && toolbar) ? toolbar.height() : 0;
+                    deviceSwitch.css("top", (topHeight + 10) + "px").show();
+                    deviceSwitch.find("a").removeClass("active");
+                    deviceSwitch.find("a[data-device=desktop]").addClass("active");
+                    previewContainer.removeClass("preview-mobile");
+                    preview.removeClass("preview-mobile-wrap").css("background", "#fff");
+
+                    deviceSwitch.find("a").off("click").on("click", function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        var $this = $(this);
+                        var device = $this.attr("data-device");
+                        deviceSwitch.find("a").removeClass("active");
+                        $this.addClass("active");
+
+                        if (device === "mobile") {
+                            previewContainer.addClass("preview-mobile");
+                            preview.addClass("preview-mobile-wrap").css("background", "#f8fafc");
+                        } else {
+                            previewContainer.removeClass("preview-mobile");
+                            preview.removeClass("preview-mobile-wrap").css("background", "#fff");
+                        }
+                    });
+                }
 
                 $(window).bind("keyup", escHandle);
             } else {
@@ -2582,12 +2621,21 @@
             var editor = this.editor;
             var settings = this.settings;
             var toolbar = this.toolbar;
+            var preview = this.preview;
+            var previewContainer = this.previewContainer;
             var fullscreenClass = this.classPrefix + "fullscreen";
+            var deviceSwitch = editor.find("." + this.classPrefix + "preview-device-switch");
 
             this.state.fullscreen = false;
 
             if (toolbar) {
                 toolbar.find(".fa[name=fullscreen]").parent().removeClass("active");
+            }
+
+            if (!this.state.preview && deviceSwitch.length > 0) {
+                deviceSwitch.hide().find("a").off(editormd.mouseOrTouch("click", "touchend"));
+                previewContainer.removeClass("preview-mobile");
+                preview.css("background", "#fff");
             }
 
             $("html,body").css("overflow", "");
