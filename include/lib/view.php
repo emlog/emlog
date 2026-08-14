@@ -39,7 +39,7 @@ class View
     {
         $content = ob_get_clean();
         ob_start();
-        doAction('before_exit', $content);
+        doAction('before_output_view', $content);
         echo $content;
         ob_end_flush();
         exit;
