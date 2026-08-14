@@ -1,13 +1,19 @@
 <?php
+/*
+插件后台设置页面（仅管理员可见）
+该文件内要包含名为 plugin_setting_view 的函数，其中可以输出设置内容 此时插件的后台配置地址为：https://yourdomain/admin/plugin.php?plugin=pluginname
+*/
+
 defined('EMLOG_ROOT') || exit('access denied!');
 
-function plugin_setting_view() {
+function plugin_setting_view()
+{
     $plugin_storage = Storage::getInstance('tips');
     $hello = $plugin_storage->getValue('hello');
     if (empty($hello)) {
         $hello = 'hello world';
     }
-    ?>
+?>
     <?php if (isset($_GET['succ'])): ?>
         <div class="alert alert-success">hello world !</div>
     <?php endif; ?>
@@ -37,14 +43,15 @@ function plugin_setting_view() {
         $("#menu_category_ext").addClass('active');
 
         // 异步提交表单
-        $("#tips_form").submit(function (event) {
+        $("#tips_form").submit(function(event) {
             event.preventDefault();
             submitForm("#tips_form");
         });
     </script>
 <?php }
 
-function plugin_setting() {
+function plugin_setting()
+{
     $hello = Input::postStrVar('hello');
 
     $plugin_storage = Storage::getInstance('tips');
