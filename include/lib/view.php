@@ -39,6 +39,7 @@ class View
     {
         $content = ob_get_clean();
         ob_start();
+        doAction('before_exit', $content);
         echo $content;
         ob_end_flush();
         exit;
