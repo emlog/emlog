@@ -159,6 +159,12 @@
   border: 1px solid #ddd;
   background: #eee;
 }
+.editormd-menu > li > a.disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  border-color: transparent !important;
+  background: transparent !important;
+}
 .editormd-menu > li > a > .fa {
   text-align: center;
   display: block;
@@ -171,6 +177,9 @@
 }
 .editormd-menu > li:hover .editormd-dropdown-menu {
   display: block;
+}
+.editormd-menu > li:has(> a.disabled):hover .editormd-dropdown-menu {
+  display: none;
 }
 .editormd-menu > li + li > a {
   margin-left: 3px;

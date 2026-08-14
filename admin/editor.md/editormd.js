@@ -1229,6 +1229,10 @@
 
                 _this.activeIcon = icon;
 
+                if (_this.state.preview && name !== "preview") {
+                    return false;
+                }
+
                 if (typeof toolbarIconHandlers[name] !== "undefined") {
                     $.proxy(toolbarIconHandlers[name], _this)(cm);
                 } else {
@@ -2382,8 +2386,9 @@
             }
 
             if (settings.toolbar && toolbar) {
-                toolbar.toggle();
-                toolbar.find(".fa[name=preview]").toggleClass("active");
+                var previewBtn = toolbar.find(".fa[name=preview]").parent();
+                previewBtn.toggleClass("active");
+                toolbar.find("li > a").not(previewBtn).toggleClass("disabled");
             }
 
             codeMirror.toggle();
@@ -2402,9 +2407,7 @@
                     preview.css("background", "#fff");
                 }
 
-                editor.find("." + this.classPrefix + "preview-close-btn").show().bind(editormd.mouseOrTouch("click", "touchend"), function () {
-                    _this.previewed();
-                });
+                editor.find("." + this.classPrefix + "preview-close-btn").hide();
 
                 if (!settings.watch) {
                     this.save();
@@ -2414,11 +2417,12 @@
 
                 previewContainer.addClass(this.classPrefix + "preview-active");
 
+                var topHeight = (settings.toolbar && toolbar) ? toolbar.height() : 0;
                 preview.show().css({
-                    position: "",
-                    top: 0,
+                    position: "absolute",
+                    top: topHeight,
                     width: editor.width(),
-                    height: (settings.autoHeight && !this.state.fullscreen) ? "auto" : editor.height()
+                    height: (settings.autoHeight && !this.state.fullscreen) ? "auto" : editor.height() - topHeight
                 });
 
                 if (this.state.loaded) {
@@ -2452,8 +2456,10 @@
 
             this.codeMirror.show();
 
-            if (settings.toolbar) {
+            if (settings.toolbar && toolbar) {
                 toolbar.show();
+                toolbar.find(".fa[name=preview]").parent().removeClass("active");
+                toolbar.find("li > a").removeClass("disabled");
             }
 
             preview[(settings.watch) ? "show" : "hide"]();
