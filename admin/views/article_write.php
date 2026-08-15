@@ -247,14 +247,19 @@
 
     // 编辑器
     var Editor;
+
     $(function() {
         Editor = editormd("logcontent", {
             width: "100%",
             height: 745,
             toolbarIcons: function() {
                 return ["bold", "del", "italic", "quote", "|", "h1", "h2", "h3", "|", "list-ul", "list-ol", "hr", "|",
-                    "link", "image", "audio", "video", "code", "code-block", "table", "|", "search", "preview", "fullscreen", "help"
+                    "link", "image", "audio", "video", "code", "code-block", "table", "|", "search", "preview", "fullscreen", "help",
+                    "||", "wordCount"
                 ]
+            },
+            toolbarCustomIcons: {
+                wordCount: '<span class="editor-word-count" title="<?= _lang('word_count_title') ?>" style="display:inline-block;padding:2px 8px;font-size:12px;color:#888;line-height:24px;user-select:none;"><span id="editor-word-count-num">0</span> <?= _lang('words') ?></span>'
             },
             path: "editor.md/lib/",
             tex: false,
@@ -278,6 +283,16 @@
             },
             onload: function() {
                 hooks.doAction("loaded", this);
+                var _this = this;
+                updateWordCount(_this.getMarkdown());
+                if (_this.cm) {
+                    _this.cm.on("change", function() {
+                        updateWordCount(_this.getMarkdown());
+                    });
+                }
+            },
+            onchange: function() {
+                updateWordCount(this.getMarkdown());
             }
         });
         Editor.setToolbarAutoFixed(false);

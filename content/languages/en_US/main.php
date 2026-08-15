@@ -795,6 +795,8 @@ return [
     'leave_page_prompt' => 'You have unsaved changes',
     'crop_tip' => 'Hold Shift to maintain aspect ratio',
     'markdown_placeholder' => 'Start writing with Markdown...',
+    'words' => 'words',
+    'word_count_title' => 'Word Count',
     'pending_comments' => 'Pending Comments',
     'software_info' => 'Software Info',
     'database' => 'Database',

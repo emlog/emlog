@@ -796,6 +796,8 @@ return [
     'leave_page_prompt' => '离开页面提示',
     'crop_tip' => '按住 Shift 等比例调整裁剪区域',
     'markdown_placeholder' => '使用 Markdown 开始你的创作吧...',
+    'words' => '字',
+    'word_count_title' => '字数统计',
     'pending_comments' => '待审评论',
     'software_info' => '软件信息',
     'database' => '数据库',

@@ -976,3 +976,25 @@ function initTreeSortable(options) {
         }).disableSelection();
     }
 }
+
+/**
+ * 计算文本字数（英文单词计为1字，汉字、标点符号、特殊字符每个计为1字，空白字符不计入）
+ * @param {string} str 待统计的文本内容
+ * @returns {number} 统计的字数
+ */
+function countWords(str) {
+    if (!str) return 0;
+    var matches = str.match(/[a-zA-Z0-9]+(?:[-'][a-zA-Z0-9]+)*|[^\s]/gu);
+    return matches ? matches.length : 0;
+}
+
+/**
+ * 更新编辑器字数展示
+ * @param {string} content 编辑器 Markdown 内容
+ * @param {string} [targetSelector='#editor-word-count-num'] 展示字数的目标元素选择器
+ */
+function updateWordCount(content, targetSelector) {
+    var count = countWords(content);
+    $(targetSelector || '#editor-word-count-num').text(count);
+}
+
