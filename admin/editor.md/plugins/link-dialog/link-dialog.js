@@ -32,7 +32,7 @@
             if (editor.find("." + dialogName).length > 0)
             {
                 dialog = editor.find("." + dialogName);
-                dialog.find("[data-url]").val("http://");
+                dialog.find("[data-url]").val("https://");
                 dialog.find("[data-title]").val(selection);
 
                 this.dialogShowMask(dialog);

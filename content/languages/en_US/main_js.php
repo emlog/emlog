@@ -11,6 +11,7 @@ return [
     'cancel' => 'Cancel',
     'success' => ' successfully',
     'select' => 'Select',
+    'media_lib' => 'Media Library',
 
     // Delete Confirm
     'delete_article' => 'Delete this article?',

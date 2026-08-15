@@ -75,7 +75,7 @@
             dialog = editor.find("." + dialogName);
             dialog.find("[type=\"text\"]").val("");
             dialog.find("[type=\"file\"]").val("");
-            dialog.find("[data-link]").val("http://");
+            dialog.find("[data-link]").val("https://");
             this.dialogShowMask(dialog);
             this.dialogLockScreen();
             dialog.show();

@@ -161,6 +161,10 @@
             htmlDecode: true,
             lineNumbers: false,
             sequenceDiagram: false,
+            imageUpload: true,
+            imageFormats: ["jpg", "jpeg", "gif", "png"],
+            imageUploadURL: "media.php?action=upload&editor=1",
+            videoUpload: false,
             syncScrolling: "single",
             placeholder: "<?= _lang('markdown_placeholder') ?>",
             onload: function() {

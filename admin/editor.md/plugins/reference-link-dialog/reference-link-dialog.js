@@ -113,7 +113,7 @@
 			dialog = editor.find("." + dialogName);
 			dialog.find("[data-name]").val("[" + ReLinkId + "]");
 			dialog.find("[data-url-id]").val("");
-			dialog.find("[data-url]").val("http://");
+			dialog.find("[data-url]").val("https://");
 			dialog.find("[data-title]").val(selection);
 
 			this.dialogShowMask(dialog);

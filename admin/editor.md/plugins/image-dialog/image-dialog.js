@@ -52,9 +52,12 @@
                                         ( (settings.imageUpload) ? "<iframe name=\"" + iframeName + "\" id=\"" + iframeName + "\" guid=\"" + guid + "\"></iframe>" : "" ) +
                                         "<label>" + imageLang.url + "</label>" +
                                         "<input type=\"text\" data-url />" + (function(){
-                                            return (settings.imageUpload) ? "<div class=\"" + classPrefix + "file-input\">" +
-                                                                                "<input type=\"file\" name=\"" + classPrefix + "image-file\" accept=\"image/*\" />" +
-                                                                                "<input type=\"submit\" value=\"" + imageLang.uploadButton + "\" />" +
+                                            return (settings.imageUpload) ? "<div class=\"d-flex align-items-center mt-2 mb-3\">" +
+                                                                                "<div class=\"" + classPrefix + "file-input\">" +
+                                                                                    "<input type=\"file\" name=\"" + classPrefix + "image-file\" accept=\"image/*\" />" +
+                                                                                    "<input type=\"submit\" value=\"" + imageLang.uploadButton + "\" />" +
+                                                                                "</div>" +
+                                                                                "<button type=\"button\" class=\"" + classPrefix + "btn " + classPrefix + "image-medialib-btn\">" + (typeof _langJS !== "undefined" && _langJS.media_lib ? _langJS.media_lib : (imageLang.mediaLibButton || "资源媒体库")) + "</button>" +
                                                                             "</div>" : "";
                                         })() +
                                         "<br/>" +
@@ -70,7 +73,7 @@
 
                 dialog = this.createDialog({
                     title      : imageLang.title,
-                    width      : (settings.imageUpload) ? 465 : 380,
+                    width      : (settings.imageUpload) ? 565 : 380,
                     height     : 254,
                     name       : dialogName,
                     content    : dialogContent,
@@ -108,7 +111,9 @@
                                 cm.setCursor(cursor.line, cursor.ch + 2);
                             }
 
-                            this.hide().lockScreen(false).hideMask();
+                            $("html,body").css("overflow", "");
+                            editor.find("." + classPrefix + "mask").hide();
+                            this.hide();
 
                             //删除对话框
                             this.remove();
@@ -117,7 +122,9 @@
                         }],
 
                         cancel : [lang.buttons.cancel, function() {
-                            this.hide().lockScreen(false).hideMask();
+                            $("html,body").css("overflow", "");
+                            editor.find("." + classPrefix + "mask").hide();
+                            this.hide();
 
                             //删除对话框
                             this.remove();
@@ -128,6 +135,16 @@
                 });
 
                 dialog.attr("id", classPrefix + "image-dialog-" + guid);
+
+                dialog.find("." + classPrefix + "image-medialib-btn").bind("click", function() {
+                    $("html,body").css("overflow", "");
+                    editor.find("." + classPrefix + "mask").hide();
+                    dialog.hide();
+                    dialog.remove();
+                    if (typeof $ !== "undefined" && $("#mediaModal").length > 0) {
+                        $("#mediaModal").modal("show");
+                    }
+                });
 
 				if (!settings.imageUpload) {
                     return ;
@@ -191,7 +208,7 @@
 			dialog = editor.find("." + dialogName);
 			dialog.find("[type=\"text\"]").val("");
 			dialog.find("[type=\"file\"]").val("");
-			dialog.find("[data-link]").val("http://");
+			dialog.find("[data-link]").val("https://");
 
 			this.dialogShowMask(dialog);
 			this.dialogLockScreen();

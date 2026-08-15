@@ -1375,10 +1375,11 @@ textarea.form-control {
     display: inline-block !important;
     position: relative !important;
     margin-left: 0 !important;
-    margin-top: -0.25rem !important;
-    margin-bottom: 1rem !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
     width: auto !important;
     height: auto !important;
+    vertical-align: middle !important;
 }
 .editormd-file-input input[type="submit"] {
     display: inline-block !important;
@@ -1393,6 +1394,7 @@ textarea.form-control {
     transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out !important;
     width: auto !important;
     min-width: 100px !important;
+    vertical-align: middle !important;
 }
 .editormd-file-input input[type="submit"]:hover {
     background-color: #2e59d9 !important;
@@ -1406,6 +1408,30 @@ textarea.form-control {
     height: 100% !important;
     opacity: 0 !important;
     cursor: pointer !important;
+}
+
+.editormd-image-medialib-btn {
+    display: inline-block !important;
+    background-color: #fff !important;
+    border: 1px solid #d1d3e2 !important;
+    color: #6e707e !important;
+    padding: 0.375rem 0.75rem !important;
+    font-size: 0.85rem !important;
+    line-height: 1.5 !important;
+    border-radius: 0.35rem !important;
+    cursor: pointer !important;
+    margin: 0 0 0 0.5rem !important;
+    vertical-align: middle !important;
+    transition: all 0.15s ease-in-out !important;
+    min-width: 90px !important;
+    text-align: center !important;
+    text-decoration: none !important;
+}
+.editormd-image-medialib-btn:hover {
+    color: #4e73df !important;
+    background-color: #eaecf4 !important;
+    border-color: #bac8f3 !important;
+    text-decoration: none !important;
 }
 
 /* 9. 表单对齐按钮样式微调 */

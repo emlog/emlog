@@ -308,6 +308,7 @@
                     link: "图片链接",
                     alt: "图片描述",
                     uploadButton: "本地上传",
+                    mediaLibButton: "资源媒体库",
                     imageURLEmpty: "图片地址不能为空。",
                     uploadFileEmpty: "上传的图片不能为空。",
                     formatNotAllowed: "只允许上传图片文件，允许上传的图片文件格式有："
