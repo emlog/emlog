@@ -129,8 +129,12 @@
                 height: 260,
                 toolbarIcons: function() {
                     return ["bold", "del", "italic", "quote", "|", "h1", "h2", "h3", "|", "list-ul", "list-ol", "|",
-                        "link", "image", "audio", "video", "|", "preview"
+                        "link", "image", "audio", "video", "|", "preview",
+                        "||", "wordCount"
                     ];
+                },
+                toolbarCustomIcons: {
+                    wordCount: '<span class="editor-word-count" title="<?= _lang('word_count_title') ?>" style="display:inline-block;padding:2px 8px;font-size:12px;color:#888;line-height:24px;user-select:none;"><span id="editor-word-count-num">0</span> <?= _lang('words') ?></span>'
                 },
                 path: "editor.md/lib/",
                 tex: false,
@@ -148,6 +152,16 @@
                 placeholder: "<?= _lang('markdown_placeholder') ?>",
                 onload: function() {
                     hooks.doAction("twitter_loaded", this);
+                    var _this = this;
+                    updateWordCount(_this.getMarkdown());
+                    if (_this.cm) {
+                        _this.cm.on("change", function() {
+                            updateWordCount(_this.getMarkdown());
+                        });
+                    }
+                },
+                onchange: function() {
+                    updateWordCount(this.getMarkdown());
                 }
             });
             Editor.setToolbarAutoFixed(false);
