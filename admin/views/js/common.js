@@ -650,6 +650,9 @@ function doUp(source, upSQL) {
             upbtn.text(_langJS.refresh_page);
             upbtn.attr('href', './');
             updateModalMsg.html(_langJS.update_success_html);
+        } else if (data.includes("error_register")) {
+            updateModalMsg.html(_langJS.update_register_msg);
+            $("#update-modal-btn").empty();
         } else if (data.includes("error_down")) {
             updateModalMsg.html(_langJS.download_error);
         } else if (data.includes("error_zip")) {

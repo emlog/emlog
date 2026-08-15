@@ -36,6 +36,10 @@ if ($action === 'check_update') {
 }
 
 if ($action === 'update' && User::isAdmin()) {
+    if (!Register::isRegLocal()) {
+        exit('error_register');
+    }
+
     $source = Input::postStrVar('source', '');
     $upsql = Input::postStrVar('upsql', '');
 
