@@ -698,11 +698,42 @@
                 indentUnit: settings.indentUnit,
                 lineNumbers: settings.lineNumbers,
                 lineWrapping: settings.lineWrapping,
-                extraKeys: {
+                extraKeys: $.extend({
                     "Ctrl-Q": function (cm) {
                         cm.foldCode(cm.getCursor());
+                    },
+                    "Enter": function (cm) {
+                        var listRE = /^(\s*)(>[> ]*|[*+-](?: \[[x ]\])?\s+|(\d+)([.)]\s+))/;
+                        var emptyListRE = /^(\s*)(>[> ]*|[*+-](?: \[[x ]\])?\s+|\d+[.)]\s+)$/;
+                        var ranges = cm.listSelections();
+                        for (var i = 0; i < ranges.length; i++) {
+                            var pos = ranges[i].head;
+                            var line = cm.getLine(pos.line);
+                            var match = listRE.exec(line);
+                            var cursorBeforeBullet = /^\s*$/.test(line.slice(0, pos.ch));
+                            if (!match || cursorBeforeBullet) {
+                                cm.execCommand("newlineAndIndent");
+                                return;
+                            }
+                            if (emptyListRE.test(line)) {
+                                cm.replaceRange("", {line: pos.line, ch: 0}, {line: pos.line, ch: line.length});
+                                return;
+                            }
+                            var indent = match[1];
+                            var after = match[2];
+                            var bullet;
+                            if (match[3]) {
+                                var num = parseInt(match[3], 10);
+                                bullet = (num + 1) + after.slice(String(num).length);
+                            } else {
+                                bullet = after.replace(/\[x\]/i, "[ ]");
+                            }
+                            cm.replaceSelection("\n" + indent + bullet, "end");
+                            return;
+                        }
+                        cm.execCommand("newlineAndIndent");
                     }
-                },
+                }, settings.extraKeys || {}),
                 foldGutter: settings.codeFold,
                 gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
                 matchBrackets: settings.matchBrackets,
