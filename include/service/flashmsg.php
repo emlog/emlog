@@ -431,8 +431,8 @@ class FlashMsg
     {
         $alertMap = array(
             'error_b' => array('type' => 'danger', 'text' => _lang('reg_failed_msg')),
-            'error_article' => array('type' => 'danger', 'text' => _lang('reg_failed_msg')),
-            'error_store' => array('type' => 'danger', 'text' => _lang('reg_failed_msg')),
+            'error_article' => array('type' => 'danger', 'text' => _lang('reg_article_limit_msg')),
+            'error_store' => array('type' => 'danger', 'text' => _lang('reg_store_limit_msg')),
         );
         return self::renderAlertsByMap($sessionKey, $alertMap);
     }

@@ -109,6 +109,8 @@ return [
     // Auth
     'reg_official' => '正版注册',
     'reg_failed_msg' => '注册失败了，可能是注册码不正确，或服务器无法访问官网 emlog.net',
+    'reg_article_limit_msg' => '当前文章数已达到免费版上限，请完成正版注册后继续发布',
+    'reg_store_limit_msg' => '注册码已失效，请重新进行正版注册',
     'input_reg_code' => '请输入注册码',
     'get_reg_code' => '获取注册码',
     'reg_success_msg' => '🎉 恭喜，成功完成注册 🎉',

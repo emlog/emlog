@@ -109,6 +109,8 @@ return [
     // Auth
     'reg_official' => 'Register Now',
     'reg_failed_msg' => 'Failed. The Registration Key may be incorrect, or the server cannot access the internet.',
+    'reg_article_limit_msg' => 'The number of articles has reached the limit for the free edition. Please register to continue publishing.',
+    'reg_store_limit_msg' => 'The registration key is invalid or expired, please re-register.',
     'input_reg_code' => 'Registration Key',
     'get_reg_code' => 'Get Registration Key',
     'reg_success_msg' => '🎉 Congratulations, Registration successfully 🎉',
