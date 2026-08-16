@@ -45,4 +45,6 @@ return [
     'email_placeholder' => 'Email',
     'login_to_comment' => 'Please <a href="./admin/index.php">Login</a> to comment',
     'submit_comment' => 'Submit',
+    'prev_page' => 'Prev',
+    'next_page' => 'Next',
 ];

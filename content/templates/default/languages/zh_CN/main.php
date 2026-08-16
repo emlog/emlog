@@ -45,4 +45,6 @@ return [
     'email_placeholder' => '邮箱',
     'login_to_comment' => '请先 <a href="./admin/index.php">登录</a> 再评论',
     'submit_comment' => '发布评论',
+    'prev_page' => '&laquo;',
+    'next_page' => '&raquo;',
 ];

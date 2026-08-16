@@ -117,7 +117,7 @@ defined('EMLOG_ROOT') || exit('access denied!');
                 <p><?= _langTpl('no_content') ?></p>
             <?php endif ?>
             <div class="pagination bottom-5">
-                <?= $page_url ?>
+                <?= pagination($lognum, $index_lognum, $page, $pageurl, '', 3, _langTpl('prev_page'), _langTpl('next_page')) ?>
             </div>
         </div>
         <?php include View::getView('side') ?>
