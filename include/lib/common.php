@@ -301,52 +301,63 @@ function pagination($count, $perlogs, $page, $url, $anchor = '', $showPages = 7,
     $re = '';
     $urlHome = preg_replace("|[\?&/][^\./\?&=]*page[=/\-]|", "", $url);
 
+    if ($pnums <= 1) {
+        return $re;
+    }
+
     $frontContent = '';
     $paginContent = '';
     $endContent = '';
-    $circle_a = 1;
-    $circle_b = $pnums;
-    $neighborNum = 1;
-    $minKey = 4;
 
-    // 根据 showPages 参数动态调整显示逻辑
-    if ($showPages >= 5) {
-        $minKey = $showPages;
-        $neighborNum = floor(($showPages - 3) / 2); // 减去首页、末页和当前页，剩余页数的一半作为邻居页数
+    // 上一页
+    if ($page > 1) {
+        $prevUrl = ($page - 1 == 1) ? $urlHome : $url . ($page - 1);
+        $frontContent .= " <a href=\"$prevUrl$anchor\" title=\"Previous Page\">$prevText</a> ";
     }
 
-    if ($pnums == 1)
-        return $re;
-    if ($page >= 1 && $pnums >= $showPages) {
-        $frontContent .= " <a href=\"$urlHome$anchor\">1</a> ";
-        $frontContent .= " <em> ... </em> ";
-        $endContent .= " <em> ... </em> ";
-        $endContent .= " <a href=\"$url$pnums$anchor\">$pnums</a> ";
+    // 下一页
+    if ($page < $pnums) {
+        $nextUrl = $url . ($page + 1);
+        $endContent .= " <a href=\"$nextUrl$anchor\" title=\"Next Page\">$nextText</a> ";
+    }
 
-        // 动态调整更大页数时的显示逻辑
-        if ($pnums >= ($showPages * 2)) {
-            $neighborNum = floor($showPages / 2);
+    if ($pnums <= $showPages) {
+        $circle_a = 1;
+        $circle_b = $pnums;
+    } else {
+        $half = (int)floor(($showPages - 1) / 2);
+        $circle_a = $page - $half;
+        $circle_b = $page + $half;
+
+        if ($circle_a < 1) {
+            $circle_b += (1 - $circle_a);
+            $circle_a = 1;
+        }
+        if ($circle_b > $pnums) {
+            $circle_a -= ($circle_b - $pnums);
+            $circle_b = $pnums;
+        }
+        if ($circle_a < 1) {
+            $circle_a = 1;
         }
 
-        if ($page < $minKey) {
-            $circle_b = $minKey;
-            $frontContent = '';
+        if ($circle_a > 1) {
+            $frontContent .= " <a href=\"$urlHome$anchor\">1</a> ";
+            if ($circle_a > 2) {
+                $frontContent .= " <em> ... </em> ";
+            }
         }
-        if ($page > ($pnums - $minKey + 1)) {
-            $circle_a = $pnums - $minKey + 1;
-            $endContent = '';
-        }
-        if ($page > ($minKey - 1) && $page < ($pnums - $minKey + 2)) {
-            $circle_a = $page - $neighborNum;
-            $circle_b = $page + $neighborNum;
-        }
-        if ($page != 1) {
-            $frontContent = " <a href=\"$url" . ($page - 1) . "$anchor\" title=\"Previous Page\">$prevText</a> " . $frontContent;
-        }
-        if ($page != $pnums) {
-            $endContent .= " <a href=\"$url" . ($page + 1) . "$anchor\" title=\"Next Page\">$nextText</a> ";
+
+        if ($circle_b < $pnums) {
+            $lastPageContent = '';
+            if ($circle_b < $pnums - 1) {
+                $lastPageContent .= " <em> ... </em> ";
+            }
+            $lastPageContent .= " <a href=\"$url$pnums$anchor\">$pnums</a> ";
+            $endContent = $lastPageContent . $endContent;
         }
     }
+
     for ($i = $circle_a; $i <= $circle_b; $i++) {
         if ($i == $page) {
             $paginContent .= " <span>$i</span> ";
@@ -356,6 +367,7 @@ function pagination($count, $perlogs, $page, $url, $anchor = '', $showPages = 7,
             $paginContent .= " <a href=\"$url$i$anchor\">$i</a> ";
         }
     }
+
     $re = $frontContent . $paginContent . $endContent;
     return $re;
 }
