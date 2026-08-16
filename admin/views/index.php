@@ -80,7 +80,10 @@
                                 <?php endif; ?>
                             </div>
                             <div>
-                                <a id="ckup" href="javascript:checkUpdate();" class="badge badge-success d-flex align-items-center"><span><?= _lang('update') ?></span></a>
+                                <a id="ckup" href="javascript:checkUpdate();" class="btn-check-update position-relative">
+                                    <i class="icofont-refresh mr-1"></i>
+                                    <span><?= _lang('update') ?></span>
+                                </a>
                             </div>
                         </li>
                     </ul>
@@ -166,7 +169,7 @@
         // auto check update
         $.get("./upgrade.php?action=check_update", function(result) {
             if (result.code === 200) {
-                $("#ckup").append('<span class="badge bg-danger ml-1">!</span>');
+                $("#ckup").append('<span class="update-dot"></span>');
             }
         });
     </script>

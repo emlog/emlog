@@ -711,3 +711,55 @@ body {
 #chat-box {
     height: 65vh !important;
 }
+
+/* 检查更新按钮与红点提示 */
+.btn-check-update {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2rem 0.65rem;
+    font-size: 0.78rem;
+    color: #4e73df;
+    background-color: #f8f9fc;
+    border: 1px solid #e3e6f0;
+    border-radius: 50rem;
+    text-decoration: none !important;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-check-update:hover {
+    color: #224abe;
+    background-color: #eaecf4;
+}
+
+.btn-check-update i {
+    font-size: 0.8rem;
+    transition: transform 0.4s ease;
+}
+
+.btn-check-update:hover i {
+    transform: rotate(180deg);
+}
+
+.update-dot {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 8px;
+    height: 8px;
+    background-color: #e74a3b;
+    border-radius: 50%;
+    animation: dot-breathe 2.8s ease-in-out infinite;
+}
+
+@keyframes dot-breathe {
+    0%, 100% {
+        opacity: 1;
+        box-shadow: 0 0 0 0 rgba(231, 74, 59, 0.6);
+    }
+    50% {
+        opacity: 0.7;
+        box-shadow: 0 0 0 4px rgba(231, 74, 59, 0.15);
+    }
+}
+
+
