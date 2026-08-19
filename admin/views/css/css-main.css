@@ -975,13 +975,7 @@ input[type="checkbox"]:hover, select:hover {
     border: none;
     border-radius: var(--em-radius-lg);
     box-shadow: var(--em-shadow-sm);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
     margin-bottom: 1.5rem;
-}
-
-.card:hover {
-    box-shadow: var(--em-shadow);
-    transform: translateY(-2px);
 }
 
 .card-header {

@@ -45,12 +45,13 @@ img {
 }
 
 .hover-shadow-lg {
-    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .hover-shadow-lg:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175) !important;
+    border-color: rgba(78, 115, 223, 0.35) !important;
+    box-shadow: 0 0.5rem 1.5rem rgba(58, 59, 69, 0.12) !important;
 }
 
 .transition-all {
