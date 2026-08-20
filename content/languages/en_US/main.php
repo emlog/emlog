@@ -452,6 +452,8 @@ return [
     'more_ai_models' => 'More AI Models',
     'support_openai_model' => 'Support OpenAI Protocol Models',
     'support_openai_image_model' => 'Support OpenAI Protocol Image Models',
+    'set_as_enabled' => 'Enable',
+    'cannot_delete_enabled_model' => 'Cannot delete the currently active AI model. Please switch to another model first.',
 
     // Blogger
     'username_tip' => 'If username is not set, please use email to login. Once set, it cannot be modified',

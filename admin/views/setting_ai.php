@@ -29,31 +29,49 @@
             $chatModels = array_filter($aiModels, function ($model) {
                 return !isset($model['type']) || $model['type'] === 'chat';
             });
+            $chatModelCount = count($chatModels);
             foreach ($chatModels as $k => $val):
+                $isCurrent = ($k == $currentModelKey);
                 $apiUrl = $val['api_url'];
                 $apiUrlDomain = parse_url($apiUrl, PHP_URL_HOST);
                 $apiKey = subString($val['api_key'], 0, 8, '******');
                 $model = $val['model'];
-                if (strpos($model, 'deepseek') !== false) {
-                    $model = '🐳 ' . $model;
-                }
             ?>
                 <div class="col-md-4 mb-3">
-                    <div class="card model-card">
-                        <div class="card-body align-items-center justify-content-center">
-                            <h4 class="card-title model-name">
-                                <?php if ($k == $currentModelKey): ?>
-                                    <?= $model ?>
-                                    <span class="badge badge-success"><?= _lang('enabled'); ?></span>
-                                <?php else: ?>
-                                    <a href="./setting.php?action=ai_model&ai_model_key=<?= $k ?>&model_type=chat"><?= $model ?></a>
-                                <?php endif; ?>
-                            </h4>
-                            <div class="my-3">
-                                <span class="badge badge-gray" style="font-size: 1.2em;"><?= $apiUrlDomain ?></span><br>
+                    <div class="card h-100 shadow-sm <?= $isCurrent ? 'border-success' : '' ?>" style="<?= $isCurrent ? 'border-width: 2px;' : '' ?>">
+                        <div class="card-body d-flex flex-column justify-content-between">
+                            <div>
+                                <div class="d-flex align-items-center mb-2">
+                                    <h5 class="card-title font-weight-bold mb-0 text-truncate" title="<?= htmlspecialchars($val['model']) ?>">
+                                        <?= $model ?>
+                                    </h5>
+                                    <?php if ($isCurrent): ?>
+                                        <span class="badge badge-success px-2 py-1 ml-2 flex-shrink-0"><i class="icofont-check-circled mr-1"></i><?= _lang('enabled'); ?></span>
+                                    <?php endif; ?>
+                                </div>
+                                <div class="mb-3">
+                                    <span class="badge badge-light border text-muted" style="font-size: 0.85rem;"><i class="icofont-link mr-1"></i><?= $apiUrlDomain ?></span>
+                                </div>
                             </div>
-                            <a href="#" class="edit-link small text-primary" data-toggle="modal" data-target="#editModelModal" data-model="<?= $val['model'] ?>" data-url="<?= $val['api_url'] ?>" data-api_key="<?= $apiKey ?>" data-model_key="<?= $k ?>" data-model_type="chat"><?= _lang('edit'); ?></a>
-                            <a href="javascript: em_confirm('<?= $k ?>', 'ai_model', '<?= LoginAuth::genToken() ?>');" class="delete-link small text-danger"><?= _lang('delete'); ?></a>
+                            <div class="d-flex justify-content-end align-items-center pt-2 border-top">
+                                <?php if (!$isCurrent): ?>
+                                    <a href="./setting.php?action=ai_model&ai_model_key=<?= $k ?>&model_type=chat" class="btn btn-outline-success btn-sm mr-1">
+                                        <i class="icofont-check-circled mr-1"></i><?= _lang('set_as_enabled'); ?>
+                                    </a>
+                                <?php endif; ?>
+                                <a href="#" class="edit-link btn btn-outline-primary btn-sm mr-1" data-toggle="modal" data-target="#editModelModal" data-model="<?= $val['model'] ?>" data-url="<?= $val['api_url'] ?>" data-api_key="<?= $apiKey ?>" data-model_key="<?= $k ?>" data-model_type="chat">
+                                    <?= _lang('edit'); ?>
+                                </a>
+                                <?php if ($isCurrent && $chatModelCount > 1): ?>
+                                    <a href="javascript: infoAlert('<?= _lang('cannot_delete_enabled_model'); ?>');" class="btn btn-outline-danger btn-sm">
+                                        <?= _lang('delete'); ?>
+                                    </a>
+                                <?php else: ?>
+                                    <a href="javascript: em_confirm('<?= $k ?>', 'ai_model', '<?= LoginAuth::genToken() ?>');" class="btn btn-outline-danger btn-sm">
+                                        <?= _lang('delete'); ?>
+                                    </a>
+                                <?php endif; ?>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -78,28 +96,49 @@
             $imageModels = array_filter($aiModels, function ($model) {
                 return isset($model['type']) && $model['type'] === 'image';
             });
+            $imageModelCount = count($imageModels);
             foreach ($imageModels as $k => $val):
+                $isCurrent = ($k == $currentImageModelKey);
                 $apiUrl = $val['api_url'];
                 $apiUrlDomain = parse_url($apiUrl, PHP_URL_HOST);
                 $apiKey = subString($val['api_key'], 0, 8, '******');
                 $model = $val['model'];
             ?>
                 <div class="col-md-4 mb-3">
-                    <div class="card model-card">
-                        <div class="card-body align-items-center justify-content-center">
-                            <h4 class="card-title model-name">
-                                <?php if ($k == $currentImageModelKey): ?>
-                                    <?= $model ?>
-                                    <span class="badge badge-success"><?= _lang('enabled'); ?></span>
-                                <?php else: ?>
-                                    <a href="./setting.php?action=ai_model&ai_model_key=<?= $k ?>&model_type=image"><?= $model ?></a>
-                                <?php endif; ?>
-                            </h4>
-                            <div class="my-3">
-                                <span class="badge badge-gray" style="font-size: 1.2em;"><?= $apiUrlDomain ?></span><br>
+                    <div class="card h-100 shadow-sm <?= $isCurrent ? 'border-success' : '' ?>" style="<?= $isCurrent ? 'border-width: 2px;' : '' ?>">
+                        <div class="card-body d-flex flex-column justify-content-between">
+                            <div>
+                                <div class="d-flex align-items-center mb-2">
+                                    <h5 class="card-title font-weight-bold mb-0 text-truncate" title="<?= htmlspecialchars($val['model']) ?>">
+                                        <?= $model ?>
+                                    </h5>
+                                    <?php if ($isCurrent): ?>
+                                        <span class="badge badge-success px-2 py-1 ml-2 flex-shrink-0"><i class="icofont-check-circled mr-1"></i><?= _lang('enabled'); ?></span>
+                                    <?php endif; ?>
+                                </div>
+                                <div class="mb-3">
+                                    <span class="badge badge-light border text-muted" style="font-size: 0.85rem;"><i class="icofont-link mr-1"></i><?= $apiUrlDomain ?></span>
+                                </div>
                             </div>
-                            <a href="#" class="edit-link small text-primary" data-toggle="modal" data-target="#editModelModal" data-model="<?= $val['model'] ?>" data-url="<?= $val['api_url'] ?>" data-api_key="<?= $apiKey ?>" data-model_key="<?= $k ?>" data-model_type="image"><?= _lang('edit'); ?></a>
-                            <a href="javascript: em_confirm('<?= $k ?>', 'ai_model', '<?= LoginAuth::genToken() ?>');" class="delete-link small text-danger"><?= _lang('delete'); ?></a>
+                            <div class="d-flex justify-content-end align-items-center pt-2 border-top">
+                                <?php if (!$isCurrent): ?>
+                                    <a href="./setting.php?action=ai_model&ai_model_key=<?= $k ?>&model_type=image" class="btn btn-outline-success btn-sm mr-1">
+                                        <i class="icofont-check-circled mr-1"></i><?= _lang('set_as_enabled'); ?>
+                                    </a>
+                                <?php endif; ?>
+                                <a href="#" class="edit-link btn btn-outline-primary btn-sm mr-1" data-toggle="modal" data-target="#editModelModal" data-model="<?= $val['model'] ?>" data-url="<?= $val['api_url'] ?>" data-api_key="<?= $apiKey ?>" data-model_key="<?= $k ?>" data-model_type="image">
+                                    <?= _lang('edit'); ?>
+                                </a>
+                                <?php if ($isCurrent && $imageModelCount > 1): ?>
+                                    <a href="javascript: infoAlert('<?= _lang('cannot_delete_enabled_model'); ?>');" class="btn btn-outline-danger btn-sm">
+                                        <?= _lang('delete'); ?>
+                                    </a>
+                                <?php else: ?>
+                                    <a href="javascript: em_confirm('<?= $k ?>', 'ai_model', '<?= LoginAuth::genToken() ?>');" class="btn btn-outline-danger btn-sm">
+                                        <?= _lang('delete'); ?>
+                                    </a>
+                                <?php endif; ?>
+                            </div>
                         </div>
                     </div>
                 </div>

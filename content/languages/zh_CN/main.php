@@ -452,6 +452,8 @@ return [
     'more_ai_models' => '更多AI模型',
     'support_openai_model' => '支持 OpenAI 协议的大模型',
     'support_openai_image_model' => '支持 OpenAI 协议的图像生成模型',
+    'set_as_enabled' => '启用',
+    'cannot_delete_enabled_model' => '不能删除正在启用的模型，请先启用其他模型',
 
     // Blogger
     'username_tip' => '未设置用户名时，请使用邮箱登录，设置后不可更改',

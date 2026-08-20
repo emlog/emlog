@@ -512,15 +512,33 @@ if ($action == 'ai_model') {
 }
 
 if ($action == 'delete_model') {
+    LoginAuth::checkToken();
     $aiModelKey = Input::getStrVar('ai_model_key');
     $aiModels = AI::models();
-    $currentAiModelKey = AI::model();
+    $currentChatModelKey = Option::get('ai_model');
+    $currentImageModelKey = Option::get('ai_image_model');
+
     if (is_array($aiModels) && isset($aiModels[$aiModelKey])) {
+        $modelType = isset($aiModels[$aiModelKey]['type']) ? $aiModels[$aiModelKey]['type'] : 'chat';
+        $sameTypeModels = array_filter($aiModels, function ($model) use ($modelType) {
+            $type = isset($model['type']) ? $model['type'] : 'chat';
+            return $type === $modelType;
+        });
+
+        if ($aiModelKey === $currentChatModelKey || $aiModelKey === $currentImageModelKey) {
+            if (count($sameTypeModels) > 1) {
+                emMsg(_lang('cannot_delete_enabled_model'));
+            }
+            if ($aiModelKey === $currentChatModelKey) {
+                Option::updateOption('ai_model', '');
+            }
+            if ($aiModelKey === $currentImageModelKey) {
+                Option::updateOption('ai_image_model', '');
+            }
+        }
+
         unset($aiModels[$aiModelKey]);
         Option::updateOption('ai_models', json_encode($aiModels));
-        if ($currentAiModel == $aiModelKey) {
-            Option::updateOption('ai_model', '');
-        }
         $CACHE->updateCache('options');
         emDirect("./setting.php?action=ai");
     } else {
