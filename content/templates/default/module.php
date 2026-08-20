@@ -335,18 +335,19 @@ function blog_navi()
                     continue;
                 }
                 if ($value['url'] == 'admin' && (!User::isVisitor())):
+                    $menuText = User::haveEditPermission() ? _langTpl('management') : _langTpl('user_center');
                     $userNickname = !empty($userData['nickname']) ? $userData['nickname'] : '';
-                    $userNickname = $userNickname ?: _langTpl('management');
+                    $userNickname = $userNickname ?: $menuText;
                     $userNickname = htmlspecialchars($userNickname, ENT_QUOTES, 'UTF-8');
                     $userAvatar = User::getAvatar(isset($userData['photo']) ? $userData['photo'] : '');
             ?>
                     <li class="list-item list-menu user-menu">
                         <a href="<?= BLOG_URL ?>admin/" class="nav-link user-menu-trigger" title="<?= $userNickname ?>" aria-label="<?= $userNickname ?>" aria-haspopup="true">
                             <img src="<?= $userAvatar ?>" alt="<?= $userNickname ?>" class="header-avatar">
-                            <span class="user-menu-label"><?= _langTpl('management') ?></span>
+                            <span class="user-menu-label"><?= $menuText ?></span>
                         </a>
                         <ul class="dropdown-menus user-dropdown-menus">
-                            <li class="list-item list-menu"><a href="<?= BLOG_URL ?>admin/" class="nav-link"><?= _langTpl('management') ?></a></li>
+                            <li class="list-item list-menu"><a href="<?= BLOG_URL ?>admin/" class="nav-link"><?= $menuText ?></a></li>
                             <li class="list-item list-menu"><a href="<?= BLOG_URL ?>admin/account.php?action=logout" class="nav-link"><?= _langTpl('logout') ?></a></li>
                         </ul>
                     </li>

@@ -30,6 +30,7 @@ return [
     'slideshow_name' => 'Home Slideshow',
     'slideshow_desc' => 'One per line, recommended image height 260 pixels, format: Image URL | Image Title | Link URL',
     'management' => 'Management',
+    'user_center' => 'User Center',
     'logout' => 'Logout',
     'top_flag' => 'Top',
     'sort_top_flag' => 'Category Top',

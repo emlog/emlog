@@ -30,6 +30,7 @@ return [
     'slideshow_name' => '首页轮播图',
     'slideshow_desc' => '每行一个，图片高度推荐260像素，格式：图片地址 | 图片标题 | 跳转地址',
     'management' => '管理',
+    'user_center' => '个人中心',
     'logout' => '退出',
     'top_flag' => '置顶',
     'sort_top_flag' => '分类置顶',
