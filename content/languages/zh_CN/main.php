@@ -651,7 +651,7 @@ return [
     'store_no_result' => '暂未找到结果，应用商店进货中，敬请期待：）',
 
     // Store Categories
-    'store_cat_tpl_search' => '按模板分类查找',
+    'store_cat_tpl' => '模板分类',
     'store_cat_blog' => '博客自媒体',
     'store_cat_download' => '资源下载',
     'store_cat_community' => '社区论坛',
@@ -659,7 +659,7 @@ return [
     'store_cat_corp' => '企业展示',
     'store_cat_docs' => '文档知识库',
     'store_cat_general' => '通用主题',
-    'store_cat_plu_search' => '按插件分类查找',
+    'store_cat_plu' => '插件分类',
     'store_cat_editor' => '编辑器',
     'store_cat_seo' => 'SEO优化',
     'store_cat_wechat' => '微信生态',

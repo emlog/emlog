@@ -16,7 +16,7 @@ require_once 'globals.php';
 $Store_Model = new Store_Model();
 
 $template_categories = [
-    0  => _lang('store_cat_tpl_search'),
+    0  => _lang('store_cat_tpl'),
     8  => _lang('store_cat_blog'),
     7  => _lang('store_cat_download'),
     9  => _lang('store_cat_community'),
@@ -27,7 +27,7 @@ $template_categories = [
 ];
 
 $plugin_categories = [
-    0  => _lang('store_cat_plu_search'),
+    0  => _lang('store_cat_plu'),
     20 => _lang('store_cat_editor'),
     2  => _lang('store_cat_seo'),
     1  => _lang('store_cat_download'),

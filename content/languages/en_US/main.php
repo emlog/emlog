@@ -651,7 +651,7 @@ return [
     'store_no_result' => 'No results found. The app store is being updated, please stay tuned :)',
 
     // Store Categories
-    'store_cat_tpl_search' => 'Search Themes by Category',
+    'store_cat_tpl' => 'Search Themes by Category',
     'store_cat_blog' => 'Blog & Media',
     'store_cat_download' => 'Downloads',
     'store_cat_community' => 'Community & Forum',
@@ -659,7 +659,7 @@ return [
     'store_cat_corp' => 'Corporate',
     'store_cat_docs' => 'Documentation',
     'store_cat_general' => 'General Themes',
-    'store_cat_plu_search' => 'Search Plugins by Category',
+    'store_cat_plu' => 'Search Plugins by Category',
     'store_cat_editor' => 'Editor',
     'store_cat_seo' => 'SEO',
     'store_cat_wechat' => 'WeChat Ecosystem',
