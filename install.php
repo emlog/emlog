@@ -523,7 +523,7 @@ CREATE TABLE {$db_prefix}blog (
     KEY top (top,date),
     KEY date (date)
 )" . $table_charset_sql . "
-INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,author,views,comnum,attnum,top,sortop,hide,allow_remark,password) VALUES (1, '" . _langInstall('demo_post_title') . "', '" . time() . "', '" . _langInstall('demo_post_content') . "', '', 1, 0, 1, 0, 'n', 'n', 'n', 'y', '');
+INSERT INTO {$db_prefix}blog (gid,title,date,content,excerpt,author,views,comnum,attnum,top,sortop,hide,allow_remark,password) VALUES (1, '" . _langInstall('demo_post_title') . "', '" . time() . "', '" . _langInstall('demo_post_content') . "', '', 1, 0, 0, 0, 'n', 'n', 'n', 'y', '');
 DROP TABLE IF EXISTS {$db_prefix}attachment;
 CREATE TABLE {$db_prefix}attachment (
     aid int(11) unsigned NOT NULL auto_increment COMMENT '资源文件表',
