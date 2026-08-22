@@ -17,9 +17,7 @@
 
 <div class="d-flex flex-wrap align-items-center mb-4">
     <a href="./store.php" class="badge badge-primary m-1 px-3 py-2"><?= _lang('store_recent') ?></a>
-    <a href="./store.php?tag=free" class="badge badge-success m-1 px-3 py-2"><?= _lang('store_free') ?></a>
-    <a href="./store.php?tag=paid" class="badge badge-warning m-1 px-3 py-2 text-white"><?= _lang('store_paid') ?></a>
-    <a href="./store.php?tag=promo" class="badge badge-danger m-1 px-3 py-2"><?= _lang('store_promo') ?></a>
+    <a href="./store.php?tag=free" class="badge badge-success m-1 px-3 py-2"><?= _lang('store_filter_free') ?></a>
     <a href="./store.php?tag=download_top" class="badge badge-light text-primary border m-1 px-3 py-2"><?= _lang('store_download_top') ?></a>
     <a href="./store.php?tag=favorite_top" class="badge badge-light text-primary border m-1 px-3 py-2"><?= _lang('store_favorite_top') ?></a>
     <form action="#" method="get" class="m-1 d-inline-block">

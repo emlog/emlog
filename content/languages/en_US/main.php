@@ -642,7 +642,7 @@ return [
     'store_filter_tpl' => 'Themes',
     'store_filter_plu' => 'Plugins',
     'store_filter_latest' => 'Latest',
-    'store_filter_free' => 'Free',
+    'store_filter_free' => 'Free Only',
     'store_filter_paid' => 'Paid',
     'store_filter_promo' => 'Promo',
     'store_filter_download_top' => '🔥 Top Downloads',

@@ -642,7 +642,7 @@ return [
     'store_filter_tpl' => '模板',
     'store_filter_plu' => '插件',
     'store_filter_latest' => '最近更新',
-    'store_filter_free' => '免费',
+    'store_filter_free' => '只看免费',
     'store_filter_paid' => '付费',
     'store_filter_promo' => '优惠',
     'store_filter_download_top' => '🔥 下载排行',

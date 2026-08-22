@@ -19,8 +19,6 @@
     <div class="mb-3 mb-sm-0">
         <a href="./store.php?action=tpl" class="badge badge-primary m-1 p-2"><?= _lang('store_filter_latest') ?></a>
         <a href="./store.php?action=tpl&tag=free" class="badge badge-success m-1 p-2"><?= _lang('store_filter_free') ?></a>
-        <a href="./store.php?action=tpl&tag=paid" class="badge badge-warning m-1 p-2"><?= _lang('store_filter_paid') ?></a>
-        <a href="./store.php?action=tpl&tag=promo" class="badge badge-danger m-1 p-2"><?= _lang('store_filter_promo') ?></a>
         <a href="./store.php?action=tpl&tag=download_top" class="badge badge-light text-primary p-2 small"><?= _lang('store_filter_download_top') ?></a>
         <a href="./store.php?action=tpl&tag=paid_top" class="badge badge-light text-primary p-2 small"><?= _lang('store_paid_top') ?></a>
         <a href="./store.php?action=tpl&sid=8" class="badge badge-light text-primary p-2 small"><?= _lang('store_cat_blog') ?></a>
