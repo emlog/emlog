@@ -1,10 +1,10 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
 
-<?php if (!empty($top_plugins) || !empty($top_templates) || !empty($top_download) || !empty($top_favorite)): ?>
+<?php if (!empty($top_plugins) || !empty($top_templates) || !empty($top_download) || !empty($top_favorite) || !empty($active_authors)): ?>
 <div class="row mb-4 mx-0">
     <!-- 插件热销榜 -->
     <?php if (!empty($top_plugins)): ?>
-    <div class="col-lg-3 col-md-6 mb-3">
+    <div class="col-xl col-lg-4 col-md-6 mb-3">
         <div class="card shadow-sm h-100 border-0">
             <div class="card-header bg-white font-weight-bold d-flex align-items-center justify-content-between py-2 border-bottom-0">
                 <span><?= _lang('store_plugin_top') ?></span>
@@ -35,7 +35,7 @@
 
     <!-- 主题热销榜 -->
     <?php if (!empty($top_templates)): ?>
-    <div class="col-lg-3 col-md-6 mb-3">
+    <div class="col-xl col-lg-4 col-md-6 mb-3">
         <div class="card shadow-sm h-100 border-0">
             <div class="card-header bg-white font-weight-bold d-flex align-items-center justify-content-between py-2 border-bottom-0">
                 <span><?= _lang('store_template_top') ?></span>
@@ -66,7 +66,7 @@
 
     <!-- 下载榜 -->
     <?php if (!empty($top_download)): ?>
-    <div class="col-lg-3 col-md-6 mb-3">
+    <div class="col-xl col-lg-4 col-md-6 mb-3">
         <div class="card shadow-sm h-100 border-0">
             <div class="card-header bg-white font-weight-bold d-flex align-items-center justify-content-between py-2 border-bottom-0">
                 <span><?= _lang('store_download_top') ?></span>
@@ -97,7 +97,7 @@
 
     <!-- 收藏榜 -->
     <?php if (!empty($top_favorite)): ?>
-    <div class="col-lg-3 col-md-6 mb-3">
+    <div class="col-xl col-lg-4 col-md-6 mb-3">
         <div class="card shadow-sm h-100 border-0">
             <div class="card-header bg-white font-weight-bold d-flex align-items-center justify-content-between py-2 border-bottom-0">
                 <span><?= _lang('store_favorite_top') ?></span>
@@ -116,6 +116,34 @@
                                 <span class="badge badge-<?= $idx < 3 ? 'info' : 'light' ?> badge-pill mr-1"><?= $idx + 1 ?></span>
                                 <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="<?= $item['name'] ?>" data-url="<?= $item['app_url'] ?>" data-buy-url="<?= $item['buy_url'] ?>" data-download-url="<?= $item_can_install ? urlencode($item['download_url']) : '' ?>" data-type="<?= $item_app_type === 'template' ? 'tpl' : 'plugin' ?>" class="text-dark font-weight-500 text-truncate d-inline-block align-middle" style="max-width: 85%;">
                                     <?= $item['name'] ?>
+                                </a>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
+
+    <!-- 活跃开发者 -->
+    <?php if (!empty($active_authors)): ?>
+    <div class="col-xl col-lg-4 col-md-6 mb-3">
+        <div class="card shadow-sm h-100 border-0">
+            <div class="card-header bg-white font-weight-bold d-flex align-items-center justify-content-between py-2 border-bottom-0">
+                <span><?= _lang('store_active_authors') ?></span>
+            </div>
+            <div class="card-body p-0">
+                <div class="list-group list-group-flush">
+                    <?php foreach ($active_authors as $idx => $author):
+                        $author_id = isset($author['id']) ? $author['id'] : (isset($author['author_id']) ? $author['author_id'] : 0);
+                        $author_name = !empty($author['nickname']) ? $author['nickname'] : (!empty($author['name']) ? $author['name'] : (!empty($author['author']) ? $author['author'] : ''));
+                    ?>
+                        <div class="list-group-item d-flex align-items-center justify-content-between py-2 px-3 border-0">
+                            <div class="text-truncate" style="max-width: 100%;">
+                                <span class="badge badge-<?= $idx < 3 ? 'success' : 'light' ?> badge-pill mr-1"><?= $idx + 1 ?></span>
+                                <a href="./store.php?author_id=<?= $author_id ?>" class="text-dark font-weight-500 text-truncate d-inline-block align-middle" style="max-width: 85%;" title="<?= $author_name ?>">
+                                    <?= $author_name ?>
                                 </a>
                             </div>
                         </div>

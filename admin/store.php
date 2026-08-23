@@ -61,6 +61,7 @@ if (empty($action)) {
     $top_templates = [];
     $top_favorite = [];
     $top_download = [];
+    $active_authors = [];
     if (empty($tag) && empty($keyword) && empty($author_id) && empty($sid) && $page == 1) {
         // 调用榜单(top)接口获取热销、收藏和下载榜数据（展示前5个）
         $paid_top = $Store_Model->getTopList();
@@ -77,6 +78,49 @@ if (empty($action)) {
         }
         if (!empty($paid_top['download_top'])) {
             $top_download = $paid_top['download_top'];
+        }
+        if (!empty($paid_top['active_authors'])) {
+            $active_authors = $paid_top['active_authors'];
+        } elseif (!empty($paid_top['active_developers'])) {
+            $active_authors = $paid_top['active_developers'];
+        } elseif (!empty($paid_top['authors_top'])) {
+            $active_authors = $paid_top['authors_top'];
+        } elseif (!empty($paid_top['author_top'])) {
+            $active_authors = $paid_top['author_top'];
+        } elseif (!empty($paid_top['authors'])) {
+            $active_authors = $paid_top['authors'];
+        }
+
+        // 如果 top 接口未直接返回活跃开发者字段，则从榜单应用数据中提取活跃开发者
+        if (empty($active_authors)) {
+            $authors_map = [];
+            $all_top_items = array_merge(
+                isset($paid_top['plugins_paid_top']) && is_array($paid_top['plugins_paid_top']) ? $paid_top['plugins_paid_top'] : [],
+                isset($paid_top['templates_paid_top']) && is_array($paid_top['templates_paid_top']) ? $paid_top['templates_paid_top'] : (isset($paid_top['templates_piad_top']) && is_array($paid_top['templates_piad_top']) ? $paid_top['templates_piad_top'] : []),
+                isset($paid_top['download_top']) && is_array($paid_top['download_top']) ? $paid_top['download_top'] : [],
+                isset($paid_top['favorite_top']) && is_array($paid_top['favorite_top']) ? $paid_top['favorite_top'] : []
+            );
+            foreach ($all_top_items as $item) {
+                if (!empty($item['author_id']) && !empty($item['author'])) {
+                    $aid = $item['author_id'];
+                    if (!isset($authors_map[$aid])) {
+                        $authors_map[$aid] = [
+                            'id' => $aid,
+                            'name' => $item['author'],
+                            'nickname' => $item['author'],
+                            'count' => 0
+                        ];
+                    }
+                    $authors_map[$aid]['count']++;
+                }
+            }
+            if (!empty($authors_map)) {
+                $active_authors = array_values($authors_map);
+                usort($active_authors, function ($a, $b) {
+                    return $b['count'] - $a['count'];
+                });
+                $active_authors = array_slice($active_authors, 0, 5);
+            }
         }
     }
 
