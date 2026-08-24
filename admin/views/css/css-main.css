@@ -1119,45 +1119,69 @@ textarea.form-control {
 
 /* --- Tables --- */
 .table {
-    color: #5a5c69;
+    color: #4b5563;
     margin-bottom: 0;
+    width: 100%;
     border-collapse: collapse;
     border-spacing: 0;
 }
 
-.table th, .table td {
-    padding: 1rem;
+/* 统一单元格边框与间距：去掉粗重纵向网格线，只保留精致轻盈的横向分割线 */
+.table th,
+.table td,
+.table-bordered th,
+.table-bordered td {
+    padding: 0.875rem 1rem;
     vertical-align: middle;
-    border: 1px solid #eaecf4;
+    border: none;
+    border-top: 1px solid #f1f5f9;
 }
 
-.table thead th {
-    vertical-align: bottom;
-    background-color: #f8f9fc;
-    color: #5a5c69;
+.table thead th,
+.table-bordered thead th,
+.table thead td,
+.table-bordered thead td {
+    vertical-align: middle;
+    background-color: #f8fafc;
+    color: #475569;
     font-weight: 600;
-    text-transform: uppercase;
-    font-size: 0.8rem;
+    font-size: 0.8125rem;
+    letter-spacing: 0.02em;
     white-space: nowrap;
+    border-top: none !important;
+    border-bottom: 1px solid #e2e8f0 !important;
 }
 
+/* 表格主体首行去掉顶部多余边框，避免与 thead 底部边框叠加变粗 */
+.table tbody tr:first-child th,
+.table tbody tr:first-child td {
+    border-top: none;
+}
+
+/* 斑马纹与悬浮状态优化 */
 .table-striped tbody tr:nth-of-type(odd) {
-    background-color: rgba(0, 0, 0, 0.02);
+    background-color: rgba(248, 250, 252, 0.6);
 }
 
 .table-hover tbody tr:hover {
-    background-color: rgba(78, 115, 223, 0.05);
-    transition: background-color 0.2s;
+    background-color: #f1f5f9;
+    transition: background-color 0.15s ease-in-out;
 }
 
+/* 表格容器圆角与浅边框 */
 .table-responsive {
-    border-radius: var(--em-radius-base);
-    border: 1px solid #eaecf4;
+    border-radius: var(--em-radius-base, 0.6rem);
+    border: 1px solid #e2e8f0;
+    background-color: #ffffff;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.02);
     margin-bottom: 1.5rem;
+    overflow-x: auto;
+    overflow-y: hidden;
 }
 
+.table-bordered,
 .table-responsive .table-bordered {
-    border: none;
+    border: none !important;
 }
 
 /* --- Accordion / Widget Cards --- */
