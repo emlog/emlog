@@ -201,7 +201,7 @@ textarea {
 }
 
 footer {
-    margin-top: 80px;
+    margin-top: 0;
     padding-bottom: 40px;
 }
 
@@ -225,39 +225,41 @@ footer {
 .row {
     display: flex;
     flex-wrap: wrap;
+    margin-left: -10px;
+    margin-right: -10px;
 }
 
 /* 大屏下的列 */
 @media (min-width: 768px) {
     .column-big {
+        padding-left: 10px;
         padding-right: 10px;
-        flex: 0 0 66.666667%;
-        max-width: 66.666667%
+        flex: 0 0 72%;
+        max-width: 72%;
+        box-sizing: border-box;
     }
 
     /* 工具栏列 */
     .column-small {
         font-size: medium;
-        padding-left: 20px;
-        -ms-flex: 0 0 33.333333%;
-        flex: 0 0 33.333333%;
-        max-width: 33.333333%
+        padding-left: 10px;
+        padding-right: 10px;
+        -ms-flex: 0 0 28%;
+        flex: 0 0 28%;
+        max-width: 28%;
+        box-sizing: border-box;
     }
 
     /* 文章发布时间和文章阅读评论数这两列的配置 */
-    .info-row {
-        padding: 1rem !important
-    }
-
     .log-info {
         flex: 0 0 66.666667%;
-        max-width: 66.666667%
+        max-width: 66.666667%;
     }
 
     .log-count {
         flex: 0 0 33.333333%;
         max-width: 33.333333%;
-        text-align: right
+        text-align: right;
     }
 }
 
@@ -265,16 +267,18 @@ footer {
 @media (max-width: 767px) {
 
     .column-big {
-        padding-right: 8px;
-        padding-left: 8px;
-        width: 100%
+        padding-right: 10px;
+        padding-left: 10px;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     /* 工具栏列 */
     .column-small {
-        padding-right: 8px;
-        padding-left: 8px;
-        width: 100%
+        padding-right: 10px;
+        padding-left: 10px;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     /* 文章发布时间和文章阅读评论数两列的配置 */
@@ -297,7 +301,10 @@ footer {
     width: 100%;
     align-items: center; /* 网页容器在整个网页中垂直居中 */
     margin-right: auto;
-    margin-left: auto
+    margin-left: auto;
+    padding-right: 15px;
+    padding-left: 15px;
+    box-sizing: border-box;
 }
 
 /* container 在不同屏幕下的配置 */
@@ -322,16 +329,6 @@ footer {
 @media (min-width: 1201px) {
     .container {
         max-width: 1140px
-    }
-}
-
-/* 设置 container 在小型屏幕上的内外边距 ，使其更符合小型屏幕的观感体验 */
-@media (min-width: 768px) {
-    .container {
-        padding-right: 15px;
-        padding-left: 15px;
-        margin-right: auto;
-        margin-left: auto
     }
 }
 
@@ -388,7 +385,8 @@ body {
 
 .blog-container {
     flex: 1 0 auto;
-    margin-top: calc(71.63px + 2.3rem);
+    margin-top: calc(71.63px + 24px);
+    margin-bottom: 24px;
 }
 
 .blog-footer {
@@ -825,8 +823,12 @@ body {
 ---------------------------------------------------*/
 /* 卡片上的文章发布时间这部分的属性 */
 .info-row {
-    padding: 1rem;
-    padding-bottom: 8px !important
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.25rem 1.25rem 1.25rem;
+    margin: 0;
 }
 
 /* 文章阅读页
@@ -938,12 +940,6 @@ body {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.02);
     border-radius: var(--marRadius);
     background-color: var(--conBgcolor);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.shadow-theme:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
 }
 
 /* 日历样式
@@ -1743,12 +1739,12 @@ body {
 
 /* 摘要内容部分 */
 .loglist-body {
-    margin-bottom: -22px;
-    font-size: small
+    font-size: small;
+    padding-bottom: 0.5rem;
 }
 
 .loglist-body p {
-    margin: 0 -6px 0 0
+    margin: 0;
 }
 
 /* 文章标题和标签等 */
@@ -2550,7 +2546,8 @@ img.zoom-img {
 
     /* 博客主容器顶部的上边距 */
     .blog-container {
-        margin-top: calc(74px + 1.6rem)
+        margin-top: calc(74px + 15px);
+        margin-bottom: 15px;
     }
 
     /* 评论的信息栏变化 */

@@ -59,6 +59,14 @@ $options = [
         'default'      => '0',
         'description'  => ''
     ],
+    'isSideBar'          => [
+        'labels'       => 'tpl-article',
+        'type'         => 'checkon',
+        'name'         => _langTpl('is_sidebar_name'),
+        'values'       => ['1' => '开启'],
+        'default'      => '0',
+        'description'  => ''
+    ],
     'isAllowCommentUrl'        => [
         'labels'       => 'tpl-article',
         'type'         => 'checkon',

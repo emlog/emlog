@@ -4,8 +4,14 @@
  * 阅读文章页面
  */
 defined('EMLOG_ROOT') || exit('access denied!');
+$isSideBar = _em('isSideBar', '0') == '1';
 ?>
-<article class="container log-con blog-container">
+<?php if ($isSideBar): ?>
+<main class="container blog-container">
+    <div class="row">
+        <div class="column-big">
+<?php endif; ?>
+<article class="<?= $isSideBar ? 'log-con' : 'container log-con blog-container' ?>">
     <header class="log-header">
         <h1 class="log-title"><?php topflg($top) ?><?= $log_title ?></h1>
         <div class="log-meta">
@@ -42,4 +48,10 @@ defined('EMLOG_ROOT') || exit('access denied!');
 
     <div style="clear:both;"></div>
 </article>
+<?php if ($isSideBar): ?>
+        </div>
+        <?php include View::getView('side') ?>
+    </div>
+</main>
+<?php endif; ?>
 <?php include View::getView('footer');

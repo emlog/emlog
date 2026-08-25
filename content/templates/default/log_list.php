@@ -99,7 +99,7 @@ defined('EMLOG_ROOT') || exit('access denied!');
                             <div class="loglist-content markdown"><?php echo subContent($value['log_description'], 180, 1); ?></div>
                             <div class="loglist-tag"><?php blog_tag($value['logid']) ?></div>
                         </div>
-                        <div class="row info-row">
+                        <div class="info-row">
                             <div class="log-info">
                                 <?php blog_author($value['author']) ?>&nbsp;<?= _langTpl('published_on') ?>&nbsp;
                                 <time><?= date('Y-n-j H:i', $value['date']) ?></time>

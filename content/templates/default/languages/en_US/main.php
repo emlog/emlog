@@ -18,6 +18,7 @@ return [
     'tpl_home' => 'Home Settings',
     'tpl_article' => 'Article Settings',
     'is_show_cover_name' => 'Display article cover image on article page',
+    'is_sidebar_name' => 'Display sidebar on article page',
     'show' => 'Show',
     'hide' => 'Hide',
     'logo_type_name' => 'LOGO Display Mode',
@@ -48,4 +49,5 @@ return [
     'submit_comment' => 'Submit',
     'prev_page' => 'Prev',
     'next_page' => 'Next',
+    'edit' => 'Edit',
 ];

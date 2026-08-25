@@ -18,6 +18,7 @@ return [
     'tpl_home' => '首页设置',
     'tpl_article' => '文章设置',
     'is_show_cover_name' => '在文章页展示封面图',
+    'is_sidebar_name' => '在文章页展示侧边栏',
     'show' => '显示',
     'hide' => '隐藏',
     'logo_type_name' => 'LOGO显示模式',
@@ -48,4 +49,5 @@ return [
     'submit_comment' => '发布评论',
     'prev_page' => '&laquo;',
     'next_page' => '&raquo;',
+    'edit' => '编辑',
 ];

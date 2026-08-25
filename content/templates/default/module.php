@@ -413,7 +413,7 @@ function topflg($top, $sortop = 'n', $sortid = null)
  */
 function editflg($logid, $author)
 {
-    $editflg = User::haveEditPermission() || $author == UID ? '<a href="' . BLOG_URL . 'admin/article.php?action=edit&gid=' . $logid . '" target="_blank"><span class="iconfont icon-edit"></span></a>' : '';
+    $editflg = User::haveEditPermission() || $author == UID ? '<a href="' . BLOG_URL . 'admin/article.php?action=edit&gid=' . $logid . '" target="_blank"><span class="iconfont icon-edit"></span> ' . _langTpl('edit') . '</a>' : '';
     echo $editflg;
 }
 
