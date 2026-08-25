@@ -1671,7 +1671,7 @@ body {
     background-color: var(--conBgcolor);
     border-radius: var(--marRadius);
     max-width: 960px;
-    padding: 30px;
+    padding: 1.25rem;
     font-size: 16px;
     height: fit-content;
     letter-spacing: 0.5px
@@ -1684,10 +1684,6 @@ body {
 
 .log-con .date {
     margin-bottom: 0px
-}
-
-.log-con .markdown {
-    margin-inline: 5px;
 }
 
 .loglist-content h1 {
@@ -2518,10 +2514,6 @@ img.zoom-img {
         text-align: left
     }
 
-    .log-con {
-        padding: 30px 16px
-    }
-
     .commentform .comment-info {
         width: 100%
     }
@@ -2614,7 +2606,8 @@ img.zoom-img {
     }
 
     /* 卡片容器内边距略小一点 */
-    .card-padding {
+    .card-padding,
+    .log-con {
         padding: 14px;
     }
 
