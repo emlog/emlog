@@ -40,14 +40,14 @@
                                 <div class="installMsg"></div>
                                 <div>
                                     <?php if ($v['app_type'] === 'template' && Template::isInstalled($v['alias'])): ?>
-                                        <a href="template.php" class="btn btn-light"><?= _lang('store_installed') ?></a>
+                                        <a href="template.php" class="btn btn-sm btn-light"><?= _lang('store_installed') ?></a>
                                     <?php elseif ($v['app_type'] !== 'template' && Plugin::isInstalled($v['alias'])): ?>
-                                        <a href="plugin.php" class="btn btn-light"><?= _lang('store_installed') ?></a>
+                                        <a href="plugin.php" class="btn btn-sm btn-light"><?= _lang('store_installed') ?></a>
                                     <?php endif; ?>
                                     <?php if (empty($v['download_url'])): ?>
                                         <a href="<?= $v['buy_url'] ?>" class="btn btn-success btn-sm"><?= _lang('store_contact_author') ?></a>
                                     <?php else: ?>
-                                        <a href="#" class="btn btn-success installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-cdn-url="<?= urlencode($v['cdn_download_url']) ?>" data-type="<?= $v['type'] ?>"><?= _lang('store_install') ?></a>
+                                        <a href="#" class="btn btn-sm btn-success installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-cdn-url="<?= urlencode($v['cdn_download_url']) ?>" data-type="<?= $v['type'] ?>"><?= _lang('store_install') ?></a>
                                     <?php endif ?>
                                 </div>
                             </div>

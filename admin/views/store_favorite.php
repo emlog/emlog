@@ -43,7 +43,7 @@
                                 <div class="installMsg"></div>
                                 <div>
                                     <!-- 取消收藏按钮 -->
-                                    <button type="button" class="btn btn-warning favoriteBtn mr-1"
+                                    <button type="button" class="btn btn-sm btn-warning favoriteBtn mr-1"
                                         data-app-id="<?= $v['id'] ?>"
                                         data-app-type="<?= $v['app_type'] ?>"
                                         data-favorited="1">
@@ -51,21 +51,21 @@
                                     </button>
 
                                     <?php if ($v['app_type'] === 'template' && Template::isInstalled($v['alias'])): ?>
-                                        <a href="template.php" class="btn btn-light"><?= _lang('store_installed') ?></a>
+                                        <a href="template.php" class="btn btn-sm btn-light"><?= _lang('store_installed') ?></a>
                                     <?php elseif ($v['app_type'] !== 'template' && Plugin::isInstalled($v['alias'])): ?>
-                                        <a href="plugin.php" class="btn btn-light"><?= _lang('store_installed') ?></a>
+                                        <a href="plugin.php" class="btn btn-sm btn-light"><?= _lang('store_installed') ?></a>
                                     <?php endif; ?>
                                     <?php if ($v['price'] > 0): ?>
                                         <?php if ($v['purchased'] === true): ?>
-                                            <a href="store.php?action=mine" class="btn btn-light"><?= _lang('store_purchased_status') ?></a>
-                                            <a href="#" class="btn btn-success installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-cdn-url="<?= urlencode($v['cdn_download_url']) ?>" data-type="<?= $type ?>"><?= _lang('store_install') ?></a>
+                                            <a href="store.php?action=mine" class="btn btn-sm btn-light"><?= _lang('store_purchased_status') ?></a>
+                                            <a href="#" class="btn btn-sm btn-success installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-cdn-url="<?= urlencode($v['cdn_download_url']) ?>" data-type="<?= $type ?>"><?= _lang('store_install') ?></a>
                                         <?php elseif ($v['svip'] && Register::getRegType() === 2): ?>
-                                            <a href="#" class="btn btn-warning installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-cdn-url="<?= urlencode($v['cdn_download_url']) ?>" data-type="<?= $type ?>"><?= _lang('store_install') ?></a>
+                                            <a href="#" class="btn btn-sm btn-warning installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-cdn-url="<?= urlencode($v['cdn_download_url']) ?>" data-type="<?= $type ?>"><?= _lang('store_install') ?></a>
                                         <?php else: ?>
-                                            <a href="<?= $order_url ?>" class="btn btn-danger" target="_blank"><?= _lang('store_buy_now') ?></a>
+                                            <a href="<?= $order_url ?>" class="btn btn-sm btn-danger" target="_blank"><?= _lang('store_buy_now') ?></a>
                                         <?php endif ?>
                                     <?php else: ?>
-                                        <a href="#" class="btn btn-success installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-cdn-url="<?= urlencode($v['cdn_download_url']) ?>" data-type="<?= $type ?>"><?= _lang('store_install') ?></a>
+                                        <a href="#" class="btn btn-sm btn-success installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-cdn-url="<?= urlencode($v['cdn_download_url']) ?>" data-type="<?= $type ?>"><?= _lang('store_install') ?></a>
                                     <?php endif ?>
                                 </div>
                             </div>

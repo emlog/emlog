@@ -57,7 +57,7 @@
                             <div class="installMsg"></div>
                             <div>
                                 <!-- 收藏按钮 -->
-                                <button type="button" class="btn <?= $v['is_favorited'] ? 'btn-warning' : 'btn-outline-warning' ?> favoriteBtn mr-1"
+                                <button type="button" class="btn btn-sm <?= $v['is_favorited'] ? 'btn-warning' : 'btn-outline-warning' ?> favoriteBtn mr-1"
                                     data-app-id="<?= $v['id'] ?>"
                                     data-app-type="<?= $v['app_type'] ?>"
                                     data-favorited="<?= $v['is_favorited'] ? '1' : '0' ?>">
@@ -65,11 +65,11 @@
                                 </button>
 
                                 <?php if ($v['app_type'] === 'template' && Template::isInstalled($v['alias'])): ?>
-                                    <a href="template.php" class="btn btn-light"><?= _lang('store_installed') ?></a>
+                                    <a href="template.php" class="btn btn-sm btn-light"><?= _lang('store_installed') ?></a>
                                 <?php elseif ($v['app_type'] !== 'template' && Plugin::isInstalled($v['alias'])): ?>
-                                    <a href="plugin.php" class="btn btn-light"><?= _lang('store_installed') ?></a>
+                                    <a href="plugin.php" class="btn btn-sm btn-light"><?= _lang('store_installed') ?></a>
                                 <?php endif; ?>
-                                <a href="#" class="btn btn-warning installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-cdn-url="<?= urlencode($v['cdn_download_url']) ?>" data-type="<?= $type ?>"><?= _lang('store_install') ?></a>
+                                <a href="#" class="btn btn-sm btn-warning installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-cdn-url="<?= urlencode($v['cdn_download_url']) ?>" data-type="<?= $type ?>"><?= _lang('store_install') ?></a>
                             </div>
                         </div>
                     </div>

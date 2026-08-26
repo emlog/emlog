@@ -215,7 +215,7 @@
                                 <div class="installMsg"></div>
                                 <div>
                                     <!-- 收藏按钮 -->
-                                    <button type="button" class="btn <?= $v['is_favorited'] ? 'btn-warning' : 'btn-outline-warning' ?> favoriteBtn mr-1"
+                                    <button type="button" class="btn btn-sm <?= $v['is_favorited'] ? 'btn-warning' : 'btn-outline-warning' ?> favoriteBtn mr-1"
                                         data-app-id="<?= $v['id'] ?>"
                                         data-app-type="<?= $v['app_type'] ?>"
                                         data-favorited="<?= $v['is_favorited'] ? '1' : '0' ?>">
@@ -223,21 +223,21 @@
                                     </button>
 
                                     <?php if ($v['app_type'] === 'template' && Template::isInstalled($v['alias'])): ?>
-                                        <a href="template.php" class="btn btn-light"><?= _lang('store_installed') ?></a>
+                                        <a href="template.php" class="btn btn-sm btn-light"><?= _lang('store_installed') ?></a>
                                     <?php elseif ($v['app_type'] !== 'template' && Plugin::isInstalled($v['alias'])): ?>
-                                        <a href="plugin.php" class="btn btn-light"><?= _lang('store_installed') ?></a>
+                                        <a href="plugin.php" class="btn btn-sm btn-light"><?= _lang('store_installed') ?></a>
                                     <?php endif; ?>
                                     <?php if ($v['price'] > 0): ?>
                                         <?php if ($v['purchased'] === true): ?>
-                                            <a href="store.php?action=mine" class="btn btn-light"><?= _lang('store_purchased_status') ?></a>
-                                            <a href="#" class="btn btn-success installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-cdn-url="<?= urlencode($v['cdn_download_url']) ?>" data-type="<?= $type ?>"><?= _lang('store_install') ?></a>
+                                            <a href="store.php?action=mine" class="btn btn-sm btn-light"><?= _lang('store_purchased_status') ?></a>
+                                            <a href="#" class="btn btn-sm btn-success installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-cdn-url="<?= urlencode($v['cdn_download_url']) ?>" data-type="<?= $type ?>"><?= _lang('store_install') ?></a>
                                         <?php elseif (!empty($v['svip']) && Register::getRegType() === 2): ?>
-                                            <a href="#" class="btn btn-warning installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-cdn-url="<?= urlencode($v['cdn_download_url']) ?>" data-type="<?= $type ?>"><?= _lang('store_install') ?></a>
+                                            <a href="#" class="btn btn-sm btn-warning installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-cdn-url="<?= urlencode($v['cdn_download_url']) ?>" data-type="<?= $type ?>"><?= _lang('store_install') ?></a>
                                         <?php else: ?>
-                                            <a href="<?= $order_url ?>" class="btn btn-danger" target="_blank"><?= _lang('store_buy_now') ?></a>
+                                            <a href="<?= $order_url ?>" class="btn btn-sm btn-danger" target="_blank"><?= _lang('store_buy_now') ?></a>
                                         <?php endif ?>
                                     <?php else: ?>
-                                        <a href="#" class="btn btn-success installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-cdn-url="<?= urlencode($v['cdn_download_url']) ?>" data-type="<?= $type ?>"><?= _lang('store_install') ?></a>
+                                        <a href="#" class="btn btn-sm btn-success installBtn" data-url="<?= urlencode($v['download_url']) ?>" data-cdn-url="<?= urlencode($v['cdn_download_url']) ?>" data-type="<?= $type ?>"><?= _lang('store_install') ?></a>
                                     <?php endif ?>
                                 </div>
                             </div>
@@ -336,7 +336,7 @@
                             // 收藏按钮
                             const favoriteClass = app.is_favorited ? 'btn-warning' : 'btn-outline-warning';
                             const favoriteText = app.is_favorited ? '<?= _lang("store_collected") ?>' : '<?= _lang("store_collect") ?>';
-                            buttonsHtml += `<button type="button" class="btn ${favoriteClass} favoriteBtn mr-1" 
+                            buttonsHtml += `<button type="button" class="btn btn-sm ${favoriteClass} favoriteBtn mr-1" 
                                                     data-app-id="${app.id}" 
                                                     data-app-type="${app.app_type}" 
                                                     data-favorited="${app.is_favorited ? '1' : '0'}">
@@ -346,21 +346,21 @@
                             // 检查已安装状态
                             if (app.is_installed) {
                                 const manageUrl = type === 'tpl' ? 'template.php' : 'plugin.php';
-                                buttonsHtml += `<a href="${manageUrl}" class="btn btn-light"><?= _lang("store_installed") ?></a> `;
+                                buttonsHtml += `<a href="${manageUrl}" class="btn btn-sm btn-light"><?= _lang("store_installed") ?></a> `;
                             }
 
                             // 根据价格和权限构建安装/购买按钮
                             if (app.price > 0) {
                                 if (app.purchased === true) {
-                                    buttonsHtml += '<a href="store.php?action=mine" class="btn btn-light"><?= _lang("store_purchased_status") ?></a> ';
-                                    buttonsHtml += `<a href="#" class="btn btn-success installBtn" data-url="${encodeURIComponent(app.download_url)}" data-cdn-url="${encodeURIComponent(app.cdn_download_url)}" data-type="${type}"><?= _lang("store_install") ?></a>`;
+                                    buttonsHtml += '<a href="store.php?action=mine" class="btn btn-sm btn-light"><?= _lang("store_purchased_status") ?></a> ';
+                                    buttonsHtml += `<a href="#" class="btn btn-sm btn-success installBtn" data-url="${encodeURIComponent(app.download_url)}" data-cdn-url="${encodeURIComponent(app.cdn_download_url)}" data-type="${type}"><?= _lang("store_install") ?></a>`;
                                 } else if (app.svip && app.user_is_svip) {
-                                    buttonsHtml += `<a href="#" class="btn btn-warning installBtn" data-url="${encodeURIComponent(app.download_url)}" data-cdn-url="${encodeURIComponent(app.cdn_download_url)}" data-type="${type}"><?= _lang("store_install") ?></a>`;
+                                    buttonsHtml += `<a href="#" class="btn btn-sm btn-warning installBtn" data-url="${encodeURIComponent(app.download_url)}" data-cdn-url="${encodeURIComponent(app.cdn_download_url)}" data-type="${type}"><?= _lang("store_install") ?></a>`;
                                 } else {
-                                    buttonsHtml += `<a href="${orderUrl}" class="btn btn-danger" target="_blank"><?= _lang("store_buy_now") ?></a>`;
+                                    buttonsHtml += `<a href="${orderUrl}" class="btn btn-sm btn-danger" target="_blank"><?= _lang("store_buy_now") ?></a>`;
                                 }
                             } else {
-                                buttonsHtml += `<a href="#" class="btn btn-success installBtn" data-url="${encodeURIComponent(app.download_url)}" data-cdn-url="${encodeURIComponent(app.cdn_download_url)}" data-type="${type}"><?= _lang("store_install") ?></a>`;
+                                buttonsHtml += `<a href="#" class="btn btn-sm btn-success installBtn" data-url="${encodeURIComponent(app.download_url)}" data-cdn-url="${encodeURIComponent(app.cdn_download_url)}" data-type="${type}"><?= _lang("store_install") ?></a>`;
                             }
 
                             html += `
