@@ -192,6 +192,7 @@ return [
     'alias_format_error' => 'Alias format error',
     'alias_exists_error' => 'Alias cannot be repeated',
     'alias_reserved_error' => 'Alias cannot contain system reserved keywords',
+    'sort_parent_name_exists' => 'A parent category with the same name already exists',
     'sort_self_parent_error' => 'A category cannot be its own parent',
     'add_category' => 'Add Category',
     'sort_id' => 'Category ID',

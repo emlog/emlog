@@ -192,6 +192,7 @@ return [
     'alias_format_error' => '别名格式错误',
     'alias_exists_error' => '别名不能重复',
     'alias_reserved_error' => '别名不得包含系统保留关键字',
+    'sort_parent_name_exists' => '已存在相同名称的父分类',
     'sort_self_parent_error' => '不能设置自身为父分类',
     'add_category' => '添加分类',
     'sort_id' => '分类ID',
