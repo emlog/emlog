@@ -22,21 +22,26 @@
     <form action="tag.php?action=operate_tag" method="post" name="form_tag" id="form_tag">
         <div class="card-body checkboxContainer">
             <?php if ($tags): ?>
-                <?php foreach ($tags as $key => $v):
-                    $count = empty($v['gid']) ? 0 : count(explode(',', $v['gid']));
-                    $count_style = $count > 0 ? 'text-muted' : 'text-danger';
-                ?>
-                    <div class="badge badge-light m-3 p-2">
-                        <h5><a href="#" data-toggle="modal" data-target="#editModal" data-tid="<?= $v['tid'] ?>"
-                                data-tagname="<?= $v['tagname'] ?>" data-kw="<?= $v['kw'] ?>" data-title="<?= $v['title'] ?>" data-desc="<?= $v['description'] ?>"><?= $v['tagname'] ?></a>
-                        </h5>
-                        <a href="<?= Url::tag($v['tagname']) ?>" target="_blank" class="text-muted ml-2"><i class="icofont-external-link"></i></a>
-                        <span class="<?= $count_style ?>">（<a href="./article.php?tagid=<?= $v['tid'] ?>" target="_blank"><?= _lang('article') ?>: <?= $count ?></a>）</span>
-                        <input type="checkbox" name="tids[]" value="<?= $v['tid'] ?>" class="tids align-top" />
-                    </div>
-                <?php endforeach ?>
+                <div class="d-flex flex-wrap align-items-center" style="gap: 10px;">
+                    <?php foreach ($tags as $key => $v):
+                        $count = empty($v['gid']) ? 0 : count(explode(',', $v['gid']));
+                        $count_badge = $count > 0 ? 'badge-primary' : 'badge-light text-muted';
+                    ?>
+                        <div class="d-inline-flex align-items-center bg-light border rounded px-2 py-1" style="font-size: 14px;">
+                            <input type="checkbox" name="tids[]" value="<?= $v['tid'] ?>" class="tids mr-2" />
+                            <a href="#" data-toggle="modal" data-target="#editModal" data-tid="<?= $v['tid'] ?>"
+                                data-tagname="<?= htmlspecialchars($v['tagname']) ?>" data-kw="<?= htmlspecialchars($v['kw']) ?>" data-title="<?= htmlspecialchars($v['title']) ?>" data-desc="<?= htmlspecialchars($v['description']) ?>" class="font-weight-bold text-dark text-decoration-none mr-1">
+                                <?= htmlspecialchars($v['tagname']) ?>
+                            </a>
+                            <a href="./article.php?tagid=<?= $v['tid'] ?>" target="_blank" class="badge badge-pill <?= $count_badge ?> mr-1" title="<?= _lang('article') ?>: <?= $count ?>">
+                                <?= $count ?>
+                            </a>
+                            <a href="<?= Url::tag($v['tagname']) ?>" target="_blank" class="text-muted small ml-1" title="<?= _lang('view') ?>"><i class="icofont-external-link"></i></a>
+                        </div>
+                    <?php endforeach ?>
+                </div>
             <?php else: ?>
-                <p class="m-3"><?= _lang('no_tags') ?></p>
+                <p class="text-muted text-center py-4 mb-0"><?= _lang('no_tags') ?></p>
             <?php endif ?>
         </div>
         <div class="form-row align-items-center mx-4 mb-4">
