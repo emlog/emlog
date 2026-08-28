@@ -61,17 +61,8 @@ if ($action == 'save') {
         FlashMsg::redirectAdmin('sort', 'error_a');
     }
 
-    $sort_cache = $CACHE->readCache('sort');
-
-    if ($pid == 0) {
-        foreach ($sort_cache as $key => $value) {
-            if ($sid && $sid == $key) {
-                continue;
-            }
-            if ($value['pid'] == 0 && $value['sortname'] === $sortname) {
-                FlashMsg::redirectAdmin('sort', 'error_b');
-            }
-        }
+    if ($pid == 0 && Sort::isParentSortNameExist($sortname, $sid)) {
+        FlashMsg::redirectAdmin('sort', 'error_b');
     }
 
     if ($sid && $sid == $pid) {
@@ -86,6 +77,7 @@ if ($action == 'save') {
         } elseif (in_array($alias, array('post', 'record', 'sort', 'tag', 'author', 'page', 'posts'))) {
             FlashMsg::redirectAdmin('sort', 'error_e');
         } else {
+            $sort_cache = $CACHE->readCache('sort');
             foreach ($sort_cache as $key => $value) {
                 if ($sid && $sid == $key) {
                     continue;

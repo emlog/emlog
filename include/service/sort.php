@@ -61,4 +61,32 @@ class Sort
         }
         return [$sortId];
     }
+
+    /**
+     * 检查是否存在重名的父分类
+     *
+     * @param string $sortName 分类名称
+     * @param int $excludeSid 排除的分类ID（编辑时传入当前分类ID）
+     * @return bool
+     */
+    static function isParentSortNameExist($sortName, $excludeSid = 0)
+    {
+        $sortName = trim($sortName);
+        if ($sortName === '') {
+            return false;
+        }
+
+        $sortCache = Cache::getInstance()->readCache('sort');
+        $excludeSid = (int)$excludeSid;
+
+        foreach ($sortCache as $sid => $sort) {
+            if ($excludeSid > 0 && $excludeSid === (int)$sid) {
+                continue;
+            }
+            if (isset($sort['pid']) && (int)$sort['pid'] === 0 && isset($sort['sortname']) && $sort['sortname'] === $sortName) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
