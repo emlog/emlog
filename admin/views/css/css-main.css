@@ -1569,7 +1569,7 @@ textarea.form-control {
     box-shadow: 0 8px 20px -3px rgba(33, 74, 190, 0.25) !important;
 }
 
-/* Logo 标题区域 */
+/* Logo 标题区域 - 紧凑精炼的上下间距 */
 .sidebar .nav-item.emlog_title .nav-link {
     font-size: 0.95rem;
     font-weight: 700;
@@ -1577,14 +1577,14 @@ textarea.form-control {
     color: #ffffff !important;
     background: transparent !important;
     box-shadow: none !important;
-    padding: 1.15rem 1rem 0.95rem 1rem !important;
+    padding: 0.75rem 1rem 0.65rem 1rem !important;
     border-radius: 0 !important;
 }
 
 /* 分割线 */
 .sidebar hr.sidebar-divider {
     border-top: 1px solid rgba(255, 255, 255, 0.15) !important;
-    margin: 0.4rem 0.75rem !important;
+    margin: 0.2rem 0.75rem !important;
 }
 
 /* 菜单项排版与胶囊圆角 */
@@ -1688,12 +1688,12 @@ textarea.form-control {
 
 .sidebar .nav-item .collapse .collapse-inner .collapse-item,
 .sidebar .nav-item .collapsing .collapse-inner .collapse-item {
-    font-size: 0.85rem !important;
+    font-size: 0.92rem !important;
     color: #475569 !important;
-    padding: 0.45rem 0.9rem !important;
+    padding: 0.5rem 0.9rem !important;
     margin: 2px 4px !important;
     border-radius: 6px !important;
-    font-weight: 450;
+    font-weight: 500;
     transition: background-color 0.15s ease, color 0.15s ease !important;
 }
 
