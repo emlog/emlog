@@ -608,41 +608,9 @@ input[type="checkbox"]:hover, select:hover {
 
 @media all and (max-width: 767px) and (min-width: 1px) {
 
-    /*scroll hidden*/
-    body {
-        position: absolute;
-        width: 100%;
-        overflow-x: hidden;
-    }
-
-    .sd-hidden {
-        display: none !important;
-    }
-
-    #content-wrapper {
-        height: 100vh;
-        position: absolute;
-    }
-
-    .toggle {
-        margin-left: -91px;
-    }
-
-    .sidebar .nav-item .collapse .collapse-inner .collapse-item.active, .sidebar .nav-item .collapsing .collapse-inner .collapse-item.active {
-        color: #4e73df;;
-    }
-
-    .sidebar .nav-item .collapse .collapse-inner .collapse-item, .sidebar .nav-item .collapsing .collapse-inner .collapse-item {
-        color: #3a3b45;
-    }
-
     .container, .container-fluid, .container-sm, .container-md, .container-lg, .container-xl {
         padding-left: 1rem;
         padding-right: 1rem;
-    }
-
-    .sd_menu_hd {
-        display: none;
     }
 
     /* 用户查询搜索框和按钮两个元素在移动端不换行 */
@@ -1589,3 +1557,281 @@ textarea.form-control {
     box-shadow: 0 3px 6px rgba(217, 54, 62, 0.5);
     color: #ffffff !important;
 }
+
+/* ==========================================================================
+   Modern Sidebar Styling (侧边栏)
+   ========================================================================== */
+
+/* 侧边栏容器与背景配色（经典蓝微调） */
+.sidebar.bg-gradient-primary {
+    background: linear-gradient(180deg, #466fe8 0%, #2b52cc 100%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 8px 20px -3px rgba(33, 74, 190, 0.25) !important;
+}
+
+/* Logo 标题区域 */
+.sidebar .nav-item.emlog_title .nav-link {
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: #ffffff !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 1.15rem 1rem 0.95rem 1rem !important;
+    border-radius: 0 !important;
+}
+
+/* 分割线 */
+.sidebar hr.sidebar-divider {
+    border-top: 1px solid rgba(255, 255, 255, 0.15) !important;
+    margin: 0.4rem 0.75rem !important;
+}
+
+/* 菜单项排版与胶囊圆角 */
+.sidebar .nav-item {
+    margin: 2px 8px;
+}
+
+.sidebar .nav-item .nav-link {
+    border-radius: 8px;
+    padding: 0.65rem 0.9rem !important;
+    color: rgba(255, 255, 255, 0.88) !important;
+    font-size: 0.88rem;
+    font-weight: 500;
+    transition: background-color 0.18s ease, color 0.18s ease;
+    display: flex;
+    align-items: center;
+}
+
+/* 菜单项图标 */
+.sidebar .nav-item .nav-link i {
+    font-size: 1.15rem;
+    color: rgba(255, 255, 255, 0.8) !important;
+    margin-right: 0.55rem;
+    vertical-align: middle;
+    transition: color 0.18s ease;
+}
+
+/* 悬停状态 (Hover) - 纯净半透明背景高亮，无浮动/位移 */
+.sidebar .nav-item:not(.emlog_title) .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.14) !important;
+    color: #ffffff !important;
+}
+
+.sidebar .nav-item:not(.emlog_title) .nav-link:hover i {
+    color: #ffffff !important;
+}
+
+/* 激活状态 (Active) 高亮 - 仅针对无子项的单层菜单项 */
+.sidebar .nav-item:not(.emlog_title).active > .nav-link:not([data-toggle="collapse"]),
+.sidebar .nav-item:not(.emlog_title) > .nav-link.active:not([data-toggle="collapse"]) {
+    background-color: rgba(255, 255, 255, 0.22) !important;
+    color: #ffffff !important;
+    font-weight: 600;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1) !important;
+}
+
+.sidebar .nav-item:not(.emlog_title).active > .nav-link:not([data-toggle="collapse"]) i,
+.sidebar .nav-item:not(.emlog_title) > .nav-link.active:not([data-toggle="collapse"]) i {
+    color: #ffffff !important;
+}
+
+/* 带有二级子菜单的父级分类项，始终去掉高亮背景 */
+.sidebar .nav-item .nav-link[data-toggle="collapse"] {
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+.sidebar .nav-item .nav-link[data-toggle="collapse"]:hover {
+    background-color: rgba(255, 255, 255, 0.14) !important;
+}
+
+/* 折叠菜单指示箭头动效 */
+.sidebar .nav-item .nav-link[data-toggle="collapse"]::after {
+    display: inline-block;
+    content: '\eab8' !important;
+    font-family: 'IcoFont' !important;
+    font-weight: normal;
+    color: rgba(255, 255, 255, 0.6) !important;
+    margin-left: auto;
+    float: none !important;
+    transform: rotate(90deg);
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.sidebar .nav-item .nav-link[data-toggle="collapse"].collapsed::after {
+    transform: rotate(0deg);
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.sidebar .nav-item .nav-link[data-toggle="collapse"]:hover::after {
+    color: #ffffff !important;
+}
+
+/* 二级子菜单卡片与项目样式 - 左右对齐与对称间距 */
+.sidebar .nav-item .collapse,
+.sidebar .nav-item .collapsing {
+    margin: 0 !important;
+    width: 100% !important;
+}
+
+.sidebar .nav-item .collapse .collapse-inner,
+.sidebar .nav-item .collapsing .collapse-inner {
+    border-radius: 8px !important;
+    background-color: #ffffff !important;
+    padding: 6px 4px !important;
+    box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.15), 0 4px 8px -2px rgba(0, 0, 0, 0.08) !important;
+    border: 1px solid rgba(0, 0, 0, 0.04) !important;
+    margin: 4px 0 0 0 !important;
+    width: 100% !important;
+}
+
+.sidebar .nav-item .collapse .collapse-inner .collapse-item,
+.sidebar .nav-item .collapsing .collapse-inner .collapse-item {
+    font-size: 0.85rem !important;
+    color: #475569 !important;
+    padding: 0.45rem 0.9rem !important;
+    margin: 2px 4px !important;
+    border-radius: 6px !important;
+    font-weight: 450;
+    transition: background-color 0.15s ease, color 0.15s ease !important;
+}
+
+.sidebar .nav-item .collapse .collapse-inner .collapse-item:hover,
+.sidebar .nav-item .collapsing .collapse-inner .collapse-item:hover {
+    background-color: #f1f5f9 !important;
+    color: #1e293b !important;
+}
+
+.sidebar .nav-item .collapse .collapse-inner .collapse-item.active,
+.sidebar .nav-item .collapsing .collapse-inner .collapse-item.active {
+    background-color: #eff6ff !important;
+    color: #2563eb !important;
+    font-weight: 600 !important;
+}
+
+/* 折叠切换按钮 */
+.sidebar #sidebarToggle {
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    transition: background-color 0.2s ease;
+}
+
+.sidebar #sidebarToggle:hover {
+    background-color: rgba(255, 255, 255, 0.25) !important;
+}
+
+/* ==========================================================================
+   Mobile Off-Canvas Drawer (移动端抽屉式侧滑菜单与遮罩)
+   ========================================================================== */
+
+/* 移动端侧边栏半透明遮罩 */
+.sidebar-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(15, 23, 42, 0.45);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    z-index: 1055;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.sidebar-backdrop.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 移动端抽屉式侧栏与全宽菜单 */
+@media (max-width: 767.98px) {
+    body.sidebar-open {
+        overflow: hidden !important;
+    }
+
+    #content-wrapper {
+        left: 0 !important;
+        position: relative !important;
+        height: auto !important;
+        min-height: 100vh;
+        width: 100% !important;
+    }
+
+    .sidebar {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        bottom: 0 !important;
+        width: 180px !important;
+        min-width: 180px !important;
+        max-width: 75vw !important;
+        height: 100vh !important;
+        max-height: 100vh !important;
+        z-index: 1060 !important;
+        margin: 0 !important;
+        border-radius: 0 12px 12px 0 !important;
+        box-shadow: 4px 0 24px rgba(0, 0, 0, 0.25) !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch;
+        transform: translateX(-100%) !important;
+        transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        display: flex !important;
+        visibility: visible !important;
+    }
+
+    .sidebar.show-sidebar {
+        transform: translateX(0) !important;
+    }
+
+    .sidebar .nav-item {
+        margin: 2px 6px !important;
+    }
+
+    .sidebar .nav-item .nav-link {
+        text-align: left !important;
+        width: 100% !important;
+        padding: 0.65rem 0.75rem !important;
+        display: flex !important;
+        align-items: center !important;
+    }
+
+    .sidebar .nav-item .nav-link span {
+        display: inline !important;
+        font-size: 0.9rem !important;
+        padding-left: 0.15rem !important;
+        white-space: nowrap !important;
+    }
+
+    .sidebar .nav-item .nav-link i {
+        font-size: 1.1rem !important;
+        margin-right: 0.45rem !important;
+        display: inline-block !important;
+    }
+
+    .sidebar .nav-item .nav-link[data-toggle="collapse"]::after {
+        display: inline-block !important;
+        margin-left: auto !important;
+        float: none !important;
+    }
+
+    .sidebar .nav-item .collapse,
+    .sidebar .nav-item .collapsing {
+        position: static !important;
+        left: auto !important;
+        top: auto !important;
+        margin: 0 !important;
+        width: 100% !important;
+        animation: none !important;
+    }
+
+    .sidebar .nav-item .collapse .collapse-inner,
+    .sidebar .nav-item .collapsing .collapse-inner {
+        width: 100% !important;
+        margin: 4px 0 0 0 !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+    }
+}
+
+
