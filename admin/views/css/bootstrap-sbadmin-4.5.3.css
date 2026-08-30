@@ -5132,17 +5132,17 @@ a.badge-success:focus, a.badge-success.focus {
 
 .badge-info {
     color: #fff;
-    background-color: #36b9cc;
+    background-color: #0ea5e9;
 }
 
 a.badge-info:hover, a.badge-info:focus {
     color: #fff;
-    background-color: #2a96a5;
+    background-color: #0284c7;
 }
 
 a.badge-info:focus, a.badge-info.focus {
     outline: 0;
-    box-shadow: 0 0 0 0.2rem rgba(54, 185, 204, 0.5);
+    box-shadow: 0 0 0 0.2rem rgba(14, 165, 233, 0.35);
 }
 
 .badge-warning {

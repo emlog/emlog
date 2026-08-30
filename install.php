@@ -605,7 +605,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES
 ('log_title_style','0'),
 ('blogurl','" . BLOG_URL . "'),
 ('icp',''),
-('footer_info','Hello World'),
+('footer_info','Built with <a href=\"https://www.emlog.net\">emlog</a>'),
 ('rss_output_num','10'),
 ('rss_output_fulltext','y'),
 ('index_lognum','10'),
