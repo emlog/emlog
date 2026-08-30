@@ -43,7 +43,6 @@
             <li class="nav-item" id="menu_panel">
                 <a class="nav-link" href="./"><i class="icofont-dashboard icofont-1x"></i><span><?= _lang('dashboard') ?></span></a>
             </li>
-            <hr class="sidebar-divider my-0">
             <li class="nav-item" id="menu_category_content">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_content" aria-expanded="true" aria-controls="menu_content">
                     <i class="icofont-pencil-alt-5"></i><span><?= _lang('article') ?></span>
@@ -65,10 +64,7 @@
                 $hidecmnum = User::haveEditPermission() ? (isset($sta_cache['hidecomnum']) ? $sta_cache['hidecomnum'] : 0) : (isset($sta_cache[UID]['hidecommentnum']) ? $sta_cache[UID]['hidecommentnum'] : 0);
                 ?>
                 <div class="nav-link d-flex align-items-center justify-content-between">
-                    <a href="comment.php" class="text-decoration-none text-reset flex-grow-1">
-                        <i class="icofont-comment"></i>
-                        <span><?= _lang('comment') ?></span>
-                    </a>
+                    <a href="comment.php" class="text-decoration-none text-reset flex-grow-1"><i class="icofont-comment"></i><span><?= _lang('comment') ?></span></a>
                     <?php if ($hidecmnum > 0): ?>
                         <a href="comment.php?hide=y" class="badge badge-danger badge-pill sidebar-badge-counter" title="<?= _lang('pending_audit') ?>"><?= $hidecmnum > 99 ? '99+' : $hidecmnum ?></a>
                     <?php endif; ?>
