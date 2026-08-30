@@ -372,7 +372,7 @@ return [
     'user_twitter_alias' => '用户中心微语别名',
     'twitter_alias_example' => '如：动态、笔记等',
     'user_group' => '用户组',
-    'user_group_intro_1' => '注册用户：可以发文投稿、管理自己的文章、图文资源与微语（需开启）',
+    'user_group_intro_1' => '注册用户：可以发文投稿、管理自己的文章、微语、图文资源',
     'user_group_intro_2' => '内容编辑：负责全站文章、资源、评论等内容的管理',
     'user_group_intro_3' => '管理员：拥有站点全部管理权限，可以管理用户、进行系统设置等',
 

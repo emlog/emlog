@@ -372,7 +372,7 @@ return [
     'user_twitter_alias' => 'User Center Microblog Alias',
     'twitter_alias_example' => 'e.g., Moments, Status, Note',
     'user_group' => 'User Groups',
-    'user_group_intro_1' => 'Registered User: Can post articles, microblogs (if enabled), manage own articles and media',
+    'user_group_intro_1' => 'Registered User: Can post articles, microblogs, manage own articles and media',
     'user_group_intro_2' => 'Editor: Manage all articles, media, and comments',
     'user_group_intro_3' => 'Administrator: Full access, manage users and system settings',
 
