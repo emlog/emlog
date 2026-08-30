@@ -517,6 +517,7 @@ return [
     'collect_most' => '收藏最多',
     'like_dislike_collect' => '赞/踩/收藏',
     'search_title' => '搜索标题...',
+    'search_article' => '搜索文章...',
     'unknown_sort' => '未知分类',
     'unknown_author' => '未知作者',
     'unknown_role' => '未知角色',

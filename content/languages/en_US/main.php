@@ -517,6 +517,7 @@ return [
     'collect_most' => 'Most collected',
     'like_dislike_collect' => 'Likes/Dislikes/Collects',
     'search_title' => 'Search title...',
+    'search_article' => 'Search article...',
     'unknown_sort' => 'Unknown category',
     'unknown_author' => 'Unknown author',
     'unknown_role' => 'Unknown role',

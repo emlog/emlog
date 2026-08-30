@@ -64,7 +64,7 @@ $isdraft = $draft ? '&draft=1' : '';
             </div>
             <form action="article.php" method="get">
                 <div class="form-inline search-inputs-nowrap">
-                    <input type="text" name="keyword" class="form-control m-1 small" placeholder="<?= _lang('search_title') ?>" aria-label="Search" aria-describedby="basic-addon2">
+                    <input type="text" name="keyword" value="<?= htmlspecialchars($keyword) ?>" class="form-control m-1 small" placeholder="<?= _lang('search_article') ?>" aria-label="Search" aria-describedby="basic-addon2">
                     <input type="hidden" name="draft" value="<?= $draft ?>">
                     <div class="input-group-append">
                         <button class="btn btn-sm btn-success" type="submit">
