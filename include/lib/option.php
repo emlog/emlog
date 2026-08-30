@@ -37,6 +37,12 @@ class Option
                 if (empty($options_cache['posts_name'])) {
                     return '文章';
                 }
+                return $options_cache['posts_name'];
+            case 'twitter_name':
+                if (empty($options_cache['twitter_name'])) {
+                    return '微语';
+                }
+                return $options_cache['twitter_name'];
             default:
                 return isset($options_cache[$option]) ? $options_cache[$option] : '';
         }

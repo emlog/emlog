@@ -1,6 +1,6 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
 <?= FlashMsg::renderTwitterAlerts(); ?>
-<h1 class="h4 mb-2 text-gray-800 mb-4"><?= _lang('twitter_note') ?></h1>
+<h1 class="h4 mb-2 text-gray-800 mb-4"><?= User::haveEditPermission() ? _lang('twitter_note') : Option::get('twitter_name') ?></h1>
 <form method="post" action="twitter.php?action=post">
     <div class="form-group">
         <div class="small my-2">
@@ -73,7 +73,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content border-0 shadow">
             <div class="modal-header border-0">
-                <h5 class="modal-title" id="exampleModalLabel"><?= _lang('edit_twitter') ?></h5>
+                <h5 class="modal-title" id="exampleModalLabel"><?= User::haveEditPermission() ? _lang('edit_twitter') : _lang('edit') . Option::get('twitter_name') ?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

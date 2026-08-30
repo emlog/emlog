@@ -391,21 +391,26 @@
                         <div class="uc-menu-title">内容与创作</div>
                         <?php if (!Article::hasForbidPost()): ?>
                             <div class="d-flex align-items-center justify-content-between mb-1">
-                                <a href="article.php" class="uc-menu-item flex-grow-1 mb-0 mr-2">
-                                    <?= Option::get("posts_name") ?>
+                                <a href="article.php" class="uc-menu-item flex-grow-1 mb-0 mr-2" id="menu_log">
+                                    <i class="icofont-pencil-alt-5"></i><?= Option::get("posts_name") ?>
                                 </a>
                                 <a href="./article.php?action=write" class="btn btn-sm btn-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 28px; height: 28px; padding: 0;" title="<?= _lang('post_new') . Option::get("posts_name") ?>">
                                     <i class="icofont-plus" style="font-size: 0.85rem; margin-right: 0;"></i>
                                 </a>
                             </div>
                             <?php if (Option::get('forbid_user_upload') !== 'y') : ?>
-                                <a href="media.php" class="uc-menu-item">
-                                    <?= _lang('media_lib') ?>
+                                <a href="media.php" class="uc-menu-item" id="menu_media">
+                                    <i class="icofont-image"></i><?= _lang('media_lib') ?>
                                 </a>
                             <?php endif ?>
                         <?php endif ?>
-                        <a href="comment.php" class="uc-menu-item">
-                            <?= _lang('comment') ?>
+                        <?php if (Option::get('allow_user_twitter') === 'y') : ?>
+                            <a href="twitter.php" class="uc-menu-item" id="menu_twitter">
+                                <i class="icofont-penalty-card"></i><?= Option::get('twitter_name') ?>
+                            </a>
+                        <?php endif ?>
+                        <a href="comment.php" class="uc-menu-item" id="menu_cm">
+                            <i class="icofont-comment"></i><?= _lang('comment') ?>
                         </a>
                         <?php doAction('user_menu') ?>
                     </div>

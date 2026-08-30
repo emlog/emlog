@@ -369,6 +369,8 @@ if ($action == 'user') {
     $forbid_user_upload = isset($options_cache['forbid_user_upload']) ? $options_cache['forbid_user_upload'] : '';
     $posts_per_day = isset($options_cache['posts_per_day']) ? $options_cache['posts_per_day'] : '';
     $posts_name = isset($options_cache['posts_name']) ? $options_cache['posts_name'] : '';
+    $twitter_name = isset($options_cache['twitter_name']) ? $options_cache['twitter_name'] : '';
+    $allow_user_twitter = isset($options_cache['allow_user_twitter']) ? $options_cache['allow_user_twitter'] : '';
     $email_code = isset($options_cache['email_code']) ? $options_cache['email_code'] : '';
     $att_maxsize = isset($options_cache['att_maxsize']) ? $options_cache['att_maxsize'] : '';
     $att_type = isset($options_cache['att_type']) ? $options_cache['att_type'] : '';
@@ -377,6 +379,7 @@ if ($action == 'user') {
     $conf_login_code = $login_code == 'y' ? 'checked="checked"' : '';
     $conf_email_code = $email_code == 'y' ? 'checked="checked"' : '';
     $conf_ischkarticle = $ischkarticle == 'y' ? 'checked="checked"' : '';
+    $conf_allow_user_twitter = $allow_user_twitter == 'y' ? 'checked="checked"' : '';
     $conf_forbid_user_upload = $forbid_user_upload == 'y' ? 'checked="checked"' : '';
     $conf_article_uneditable = $article_uneditable == 'y' ? 'checked="checked"' : '';
 
@@ -394,9 +397,11 @@ if ($action == 'user_save') {
         'email_code'         => Input::postStrVar('email_code', 'n'),
         'ischkarticle'       => Input::postStrVar('ischkarticle', 'n'),
         'article_uneditable' => Input::postStrVar('article_uneditable', 'n'),
+        'allow_user_twitter' => Input::postStrVar('allow_user_twitter', 'n'),
         'forbid_user_upload' => Input::postStrVar('forbid_user_upload', 'n'),
         'posts_per_day'      => Input::postIntVar('posts_per_day', 0),
         'posts_name'         => Input::postStrVar('posts_name'),
+        'twitter_name'       => Input::postStrVar('twitter_name'),
         'att_maxsize'        => Input::postIntVar('att_maxsize'),
         'att_type'           => str_replace(['php', 'phtml', 'pht'], 'x', strtolower(Input::postStrVar('att_type', ''))),
     ];

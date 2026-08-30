@@ -41,6 +41,10 @@
                 <label for="posts_per_day"><?= _lang('register_post_limit'); ?></label>
                 <input class="form-control mx-sm-3" style="width:60px;" value="<?= $posts_per_day ?>" type="number" min="0" name="posts_per_day" id="posts_per_day" />
             </div>
+            <div class="custom-control custom-switch">
+                <input class="custom-control-input" type="checkbox" value="y" name="allow_user_twitter" id="allow_user_twitter" <?= $conf_allow_user_twitter ?> />
+                <label class="custom-control-label" for="allow_user_twitter"><?= _lang('allow_user_twitter'); ?></label>
+            </div>
             <hr>
             <div class="custom-control custom-switch">
                 <input class="custom-control-input" type="checkbox" value="y" name="forbid_user_upload" id="forbid_user_upload" <?= $conf_forbid_user_upload ?> />
@@ -56,6 +60,10 @@
             <div class="form-group form-inline">
                 <label for="posts_name"><?= _lang('user_article_alias'); ?>：</label>
                 <input class="form-control mx-sm-3" style="width:80px;" value="<?= $posts_name ?>" name="posts_name" id="posts_name" /> <?= _lang('alias_example'); ?>
+            </div>
+            <div class="form-group form-inline">
+                <label for="twitter_name"><?= _lang('user_twitter_alias'); ?>：</label>
+                <input class="form-control mx-sm-3" style="width:80px;" value="<?= $twitter_name ?>" name="twitter_name" id="twitter_name" /> <?= _lang('twitter_alias_example'); ?>
             </div>
             <div class="form-group">
                 <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />

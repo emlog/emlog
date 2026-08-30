@@ -1,9 +1,15 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
 
+<?php
+$can_post_article = !Article::hasForbidPost();
+$can_post_twitter = Option::get('allow_user_twitter') === 'y';
+$card_count = ($can_post_article ? 1 : 0) + ($can_post_twitter ? 1 : 0) + 1;
+$card_col = $card_count == 3 ? '4' : ($card_count == 2 ? '6' : '12');
+?>
 <!-- 数据概览卡片统计 -->
 <div class="row mb-4">
-    <?php if (!Article::hasForbidPost()): ?>
-        <div class="mb-3 mb-md-0 col-md-6">
+    <?php if ($can_post_article): ?>
+        <div class="mb-3 mb-md-0 col-md-<?= $card_col ?>">
             <div class="uc-card p-4 d-flex align-items-center justify-content-between">
                 <div>
                     <div class="text-muted small font-weight-bold text-uppercase mb-1"><?= Option::get("posts_name") ?></div>
@@ -15,7 +21,20 @@
             </div>
         </div>
     <?php endif; ?>
-    <div class="mb-3 mb-md-0 col-md-<?= Article::hasForbidPost() ? '12' : '6' ?>">
+    <?php if ($can_post_twitter): ?>
+        <div class="mb-3 mb-md-0 col-md-<?= $card_col ?>">
+            <div class="uc-card p-4 d-flex align-items-center justify-content-between">
+                <div>
+                    <div class="text-muted small font-weight-bold text-uppercase mb-1"><?= Option::get('twitter_name') ?></div>
+                    <div class="h3 mb-0 font-weight-bold text-gray-800"><a href="./twitter.php" class="text-dark text-decoration-none"><?= $note_amount ?></a></div>
+                </div>
+                <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 54px; height: 54px; background: #fef3c7; color: #d97706;">
+                    <i class="icofont-penalty-card fa-2x"></i>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+    <div class="mb-3 mb-md-0 col-md-<?= $card_col ?>">
         <div class="uc-card p-4 d-flex align-items-center justify-content-between">
             <div>
                 <div class="text-muted small font-weight-bold text-uppercase mb-1"><?= _lang('received_comments') ?></div>

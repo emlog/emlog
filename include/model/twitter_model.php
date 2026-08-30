@@ -21,6 +21,12 @@ class Twitter_Model
         $this->table = DB_PREFIX . 'twitter';
     }
 
+    /**
+     * 添加微语
+     *
+     * @param array $tData
+     * @return int
+     */
     function addTwitter($tData)
     {
         $kItem = [];
@@ -35,21 +41,36 @@ class Twitter_Model
         return $this->db->insert_id();
     }
 
+    /**
+     * 更新微语
+     *
+     * @param array $data
+     * @param int $id
+     * @return void
+     */
     function update($data, $id)
     {
+        $id = (int)$id;
+        $author = User::haveEditPermission() ? '' : ' and author=' . UID;
         $Item = [];
         foreach ($data as $key => $value) {
             $Item[] = "$key='$value'";
         }
         $upStr = implode(',', $Item);
-        $this->db->query("update $this->table set $upStr where id=$id");
+        $this->db->query("update $this->table set $upStr where id=$id $author");
     }
 
+    /**
+     * 获取微语数量
+     *
+     * @param int|string $uid
+     * @return int
+     */
     function getCount($uid = UID)
     {
-        $author = $uid ? 'and author=' . $uid : '';
+        $author = !empty($uid) ? 'and author=' . (int)$uid : '';
         $data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM $this->table WHERE 1=1 $author");
-        return $data['total'];
+        return isset($data['total']) ? (int)$data['total'] : 0;
     }
 
     /**
@@ -63,7 +84,7 @@ class Twitter_Model
     function getTwitters($uid, $page = 1, $perpage_num = 20, $private = false)
     {
         $start_limit = !empty($page) ? ($page - 1) * $perpage_num : 0;
-        $author = $uid ? 'and author=' . $uid : '';
+        $author = !empty($uid) ? 'and author=' . (int)$uid : '';
         $privateCondition = $private ? '' : 'AND private="n"';
         $limit = "LIMIT $start_limit, $perpage_num";
         $sql = "SELECT * FROM $this->table WHERE 1=1 $author $privateCondition ORDER BY top DESC, id DESC $limit";
@@ -79,11 +100,21 @@ class Twitter_Model
         return $tws;
     }
 
+    /**
+     * 删除微语
+     *
+     * @param int $tid
+     * @return void
+     */
     function delTwitter($tid)
     {
+        $tid = (int)$tid;
         $author = User::haveEditPermission() ? '' : 'and author=' . UID;
         $query = $this->db->query("select img from $this->table where id=$tid $author");
         $row = $this->db->fetch_array($query);
+        if (!$row) {
+            emMsg('权限不足！', './');
+        }
 
         // del tw
         $this->db->query("DELETE FROM $this->table where id=$tid $author");

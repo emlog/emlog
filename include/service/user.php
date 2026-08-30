@@ -117,10 +117,19 @@ class User
         return true;
     }
 
+    /**
+     * 校验当前用户组的访问权限
+     *
+     * @return void
+     */
     static function checkRolePermission()
     {
         $request_uri = strtolower(substr(basename($_SERVER['SCRIPT_NAME']), 0, -4));
-        if (ROLE === self::ROLE_WRITER && !in_array($request_uri, ['article', 'media', 'blogger', 'comment', 'index', 'article_save', 'plugin_user'])) {
+        $writer_allowed = ['article', 'media', 'blogger', 'comment', 'index', 'article_save', 'plugin_user'];
+        if (Option::get('allow_user_twitter') === 'y') {
+            $writer_allowed[] = 'twitter';
+        }
+        if (ROLE === self::ROLE_WRITER && !in_array($request_uri, $writer_allowed)) {
             emMsg('你所在的用户组无法使用该功能，请联系管理员', './');
         }
         if (ROLE === self::ROLE_EDITOR && !in_array($request_uri, ['article', 'twitter', 'media', 'blogger', 'comment', 'index', 'article_save', 'plugin_user'])) {
