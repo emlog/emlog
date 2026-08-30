@@ -390,7 +390,7 @@ return [
     'template_deep_blue' => 'Deep Blue',
     'template_green' => 'Green',
     'mail_template_placeholder' => 'HTML Mail Template (Leave empty to disable)',
-    'mail_template_vars' => 'Variables: {{mail_content}} Content, {{mail_site_title}} Site Title',
+    'mail_template_vars' => 'Variables: {{mail_content}} Content, {{mail_site_title}} Site Title, {{mail_user_name}} User Nickname',
     'mail_notice_comment' => 'Comment Notification',
     'mail_notice_post' => 'Post Notification (To Admin)',
     'send_success' => 'Sent Successfully',

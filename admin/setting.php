@@ -351,7 +351,7 @@ if ($action == 'mail_test') {
     $mail->AddAddress($data['testTo']);
     $mail->Subject = $mailSubject;
     $mail->isHTML();
-    $mail->Body = Notice::getMailTemplate($mailContent);
+    $mail->Body = Notice::getMailTemplate($mailContent, $data['testTo']);
 
     try {
         return $mail->Send();

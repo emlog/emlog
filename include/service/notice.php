@@ -181,9 +181,17 @@ class Notice
         return false;
     }
 
+    /**
+     * 发送邮件
+     *
+     * @param string|array $mail 收件人邮箱
+     * @param string $title 邮件标题
+     * @param string $content 邮件内容
+     * @return bool
+     */
     public static function sendMail($mail, $title, $content)
     {
-        $content = self::getMailTemplate($content);
+        $content = self::getMailTemplate($content, $mail);
         $sendmail = new SendMail();
         $ret = $sendmail->send($mail, $title, $content);
         if ($ret) {
@@ -192,13 +200,20 @@ class Notice
         return false;
     }
 
+    /**
+     * 发送邮件给创始人
+     *
+     * @param string $title 邮件标题
+     * @param string $content 邮件内容
+     * @return bool
+     */
     public static function sendMail2Founder($title, $content)
     {
         $mail = self::getFounderEmail();
         if (!$mail) {
             return false;
         }
-        $content = self::getMailTemplate($content);
+        $content = self::getMailTemplate($content, $mail);
         $sendmail = new SendMail();
         $ret = $sendmail->send($mail, $title, $content);
         if ($ret) {
@@ -207,11 +222,31 @@ class Notice
         return false;
     }
 
-    public static function getMailTemplate($content)
+    /**
+     * 获取经过模板渲染后的邮件内容
+     *
+     * @param string $content 邮件原始内容
+     * @param string|array $toMail 收件人邮箱
+     * @return string
+     */
+    public static function getMailTemplate($content, $toMail = '')
     {
         $mailTemplate = Option::get('mail_template');
         if (!empty(trim($mailTemplate))) {
-            return str_replace(['{{mail_content}}', '{{mail_site_title}}'], [$content, Option::get('blogname')], $mailTemplate);
+            $email = is_array($toMail) ? (isset($toMail[0]) ? $toMail[0] : '') : $toMail;
+            $nickname = '';
+            if (!empty($email) && checkMail($email)) {
+                $userModel = new User_Model();
+                $userData = $userModel->getUserDataByLogin($email);
+                if (!empty($userData) && !empty($userData['nickname'])) {
+                    $nickname = $userData['nickname'];
+                }
+            }
+            return str_replace(
+                ['{{mail_content}}', '{{mail_site_title}}', '{{mail_user_name}}'],
+                [$content, Option::get('blogname'), $nickname],
+                $mailTemplate
+            );
         }
         return $content;
     }

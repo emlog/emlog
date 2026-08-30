@@ -390,7 +390,7 @@ return [
     'template_deep_blue' => '深蓝',
     'template_green' => '草绿',
     'mail_template_placeholder' => '邮件模板(支持html)，不使用模板请留空。',
-    'mail_template_vars' => '模板变量：{{mail_content}} 邮件内容，{{mail_site_title}} 站点标题',
+    'mail_template_vars' => '模板变量：{{mail_content}} 邮件内容，{{mail_site_title}} 站点标题，{{mail_user_name}} 用户昵称',
     'mail_notice_comment' => '评论通知（评论通知文章作者，回复评论通知评论人）',
     'mail_notice_post' => '文章投稿通知（仅发送到创始人邮箱）',
     'send_success' => '发送成功',
