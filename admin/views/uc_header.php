@@ -400,7 +400,7 @@
                             </div>
                             <?php if (Option::get('forbid_user_upload') !== 'y') : ?>
                                 <a href="media.php" class="uc-menu-item" id="menu_media">
-                                    <i class="icofont-image"></i><?= _lang('media_lib') ?>
+                                    <i class="icofont-image"></i><?= _lang('media') ?>
                                 </a>
                             <?php endif ?>
                         <?php endif ?>
