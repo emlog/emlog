@@ -173,8 +173,19 @@ class Api_Controller
             Output::error('parameter error');
         }
 
+        $article = $this->Log_Model->getDetail($id);
+        if (empty($article)) {
+            Output::error('article not exist');
+        }
+
         if ($this->curUid) {
             $author_uid = $this->curUid;
+            $role = isset($this->curUserInfo['role']) ? $this->curUserInfo['role'] : '';
+            if (!User::haveEditPermission($role)) {
+                if ((int)$article['author'] !== (int)$this->curUid) {
+                    Output::authError('permission denied');
+                }
+            }
         }
 
         $logData = [
