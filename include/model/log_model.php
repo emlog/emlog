@@ -536,16 +536,33 @@ class Log_Model
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name=renderer  content=webkit>
-<title>请输入文章访问密码</title>
-<link rel="stylesheet" type="text/css" href="{$url}admin/views/css/bootstrap.min.css">
+    <meta name="renderer" content="webkit">
+    <title>请输入文章访问密码</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f8fafc; color: #334155; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+        .card { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); width: 100%; max-width: 360px; padding: 32px 28px; text-align: center; }
+        .card h2 { font-size: 18px; margin-bottom: 8px; color: #0f172a; }
+        .card p { font-size: 13px; color: #64748b; margin-bottom: 20px; }
+        .card form { display: flex; flex-direction: column; gap: 12px; }
+        .card input { width: 100%; padding: 10px 14px; font-size: 14px; border: 1px solid #cbd5e1; border-radius: 8px; outline: none; transition: border-color .15s; }
+        .card input:focus { border-color: #3b82f6; }
+        .card button { width: 100%; padding: 10px 14px; font-size: 14px; color: #fff; background: #3b82f6; border: none; border-radius: 8px; cursor: pointer; transition: background .15s; }
+        .card button:hover { background: #2563eb; }
+        .card a { display: inline-block; margin-top: 20px; color: #64748b; font-size: 13px; text-decoration: none; }
+        .card a:hover { color: #3b82f6; }
+    </style>
 </head>
-<body class="text-center">
-    <form action="" method="post" class="form-signin" style="width: 100%;max-width: 330px;padding: 15px;margin: 0 auto;">
-      <input type="password" id="logpwd" name="logpwd" class="form-control" placeholder="请输入文章的访问密码" required autofocus>
-      <button class="btn btn-lg btn-primary btn-block mt-2" type="submit">提交</button>
-      <p class="mt-5 mb-3 text-muted"><a href="$url">&larr;返回首页</a></p>
-    </form>
+<body>
+    <div class="card">
+        <h2>受保护的文章</h2>
+        <p>请输入文章访问密码</p>
+        <form action="" method="post">
+            <input type="password" id="logpwd" name="logpwd" placeholder="请输入访问密码" required autofocus autocomplete="current-password">
+            <button type="submit">确认访问</button>
+        </form>
+        <a href="$url">&larr; 返回首页</a>
+    </div>
 </body>
 </html>
 EOT;
