@@ -109,11 +109,13 @@ class Cache
             }
         }
 
-        if ($cacheData = file_get_contents($cacheFile)) {
+        if ($cacheData = @file_get_contents($cacheFile)) {
             clearstatcache();
             $prefixLen = 13; // Length of "<?php exit;//"
             $this->{$cacheProperty} = unserialize(substr($cacheData, $prefixLen));
             return $this->{$cacheProperty};
+        } else {
+            emMsg('读取缓存失败，无法读取缓存文件内容：' . $cacheFile);
         }
     }
 
