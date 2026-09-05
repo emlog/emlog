@@ -64,7 +64,7 @@ defined('EMLOG_ROOT') || exit('access denied!');
         }
 
         .card input:focus {
-            border-color: #3b82f6;
+            border-color: #59b8f8;
         }
 
         .card button {
@@ -72,7 +72,7 @@ defined('EMLOG_ROOT') || exit('access denied!');
             padding: 10px 14px;
             font-size: 14px;
             color: #fff;
-            background: #3b82f6;
+            background: #59b8f8;
             border: none;
             border-radius: 8px;
             cursor: pointer;
@@ -80,7 +80,7 @@ defined('EMLOG_ROOT') || exit('access denied!');
         }
 
         .card button:hover {
-            background: #2563eb;
+            background: #4ab1f5;
         }
 
         .card a {
@@ -92,7 +92,7 @@ defined('EMLOG_ROOT') || exit('access denied!');
         }
 
         .card a:hover {
-            color: #3b82f6;
+            color: #59b8f8;
         }
     </style>
 </head>
