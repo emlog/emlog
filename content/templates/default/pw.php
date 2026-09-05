@@ -11,76 +11,101 @@ defined('EMLOG_ROOT') || exit('access denied!');
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>请输入文章访问密码</title>
+    <title><?= _langTpl('enter_password_title') ?></title>
     <style>
-        body {
-            font-family: helvetica neue, Helvetica, Arial, sans-serif;
-            background-color: #f5f5f5;
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
-        form {
-            background-color: #fff;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin: 20px auto;
-            max-width: 500px;
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #f8fafc;
+            color: #334155;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             padding: 20px;
         }
 
-        h1 {
-            font-size: 24px;
-            color: #333333;
-            margin: 0 0 20px;
+        .card {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            width: 100%;
+            max-width: 360px;
+            padding: 32px 28px;
             text-align: center;
         }
 
-        input[type="password"] {
-            border-radius: 3px;
-            border: 1px solid #ccc;
-            font-size: 14px;
-            height: 25px;
-            padding: 8px;
-            width: calc(100% - 100px);
-        }
-
-        button[type="submit"] {
-            background-color: #007bff;
-            border: none;
-            border-radius: 3px;
-            color: #fff;
-            cursor: pointer;
+        .card p {
             font-size: 16px;
-            font-weight: bold;
-            height: 40px;
-            margin-left: 10px;
-            transition: all .3s ease-in-out;
-            width: 100px;
+            color: #64748b;
+            margin-bottom: 20px;
         }
 
-        button[type="submit"]:hover {
-            background-color: #0069d9;
+        .card form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
         }
 
-        a {
-            color: #007bff;
-            display: block;
-            margin-top: 20px;
-            text-align: center;
-            text-decoration: none;
+        .card input {
+            width: 100%;
+            padding: 10px 14px;
             font-size: 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            outline: none;
+            transition: border-color .15s;
+        }
+
+        .card input:focus {
+            border-color: #3b82f6;
+        }
+
+        .card button {
+            width: 100%;
+            padding: 10px 14px;
+            font-size: 14px;
+            color: #fff;
+            background: #3b82f6;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background .15s;
+        }
+
+        .card button:hover {
+            background: #2563eb;
+        }
+
+        .card a {
+            display: inline-block;
+            margin-top: 20px;
+            color: #64748b;
+            font-size: 13px;
+            text-decoration: none;
+        }
+
+        .card a:hover {
+            color: #3b82f6;
         }
     </style>
 </head>
 
 <body>
-    <form action="" method="post">
-        <h1><?= _langTpl('enter_password_title') ?></h1>
-        <div style="display: flex;">
-            <input type="password" id="logpwd" name="logpwd" required autofocus>
+    <div class="card">
+        <p><?= _langTpl('enter_password_title') ?></p>
+        <form action="" method="post">
+            <input type="password" id="logpwd" name="logpwd" placeholder="<?= _langTpl('enter_password_title') ?>" required autofocus autocomplete="current-password">
             <button type="submit"><?= _langTpl('submit') ?></button>
-        </div>
-        <a href="<?= BLOG_URL ?>">&larr;<?= _langTpl('back_to_home') ?></a>
-    </form>
+        </form>
+        <a href="<?= BLOG_URL ?>">&larr; <?= _langTpl('back_to_home') ?></a>
+    </div>
 </body>
 
 </html>
