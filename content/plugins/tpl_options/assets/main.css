@@ -320,6 +320,7 @@ span.tpl-options-setting:hover {
 
 .tpl-options-menu ul {
     margin-left: -5px;
+    padding: 0;
     width: 100%;
     float: left
 }
@@ -567,6 +568,7 @@ span.tpl-options-setting:hover {
 .vtpl-nav ul {
     clear: left;
     margin: 0;
+    padding: 0;
     list-style-type: none;
 }
 
