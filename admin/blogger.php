@@ -109,10 +109,10 @@ if ($action === 'change_email') {
 
 if ($action == 'update_avatar') {
     $ret = uploadCropImg();
-    $file_path = $ret['file_info']['file_path'];
+    $file_path = !empty($ret['file_info']['url']) ? $ret['file_info']['url'] : (!empty($ret['url']) ? $ret['url'] : $ret['file_info']['file_path']);
 
     $User_Model = new User_Model();
     $User_Model->updateUser(array('photo' => $file_path), UID);
     $CACHE->updateCache('user');
-    Output::ok($file_path);
+    Output::ok(User::getAvatar($file_path));
 }

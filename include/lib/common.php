@@ -1267,7 +1267,8 @@ function uploadCropImg()
     }
 
     $ret = '';
-    upload2local($attach, $ret);
+    addAction('upload_media', 'upload2local');
+    doOnceAction('upload_media', $attach, $ret);
     if (empty($ret['success'])) {
         Output::error($ret['message']);
     }
