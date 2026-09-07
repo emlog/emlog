@@ -56,31 +56,37 @@ class Plugin_Model
         Option::updateOption('active_plugins', $active_plugins);
     }
 
+    /**
+     * 执行插件删除回调并自动清理插件设置数据
+     *
+     * @param string $plugin 插件别名或主文件路径
+     * @return void
+     */
     public function rmCallback($plugin)
     {
         $r = explode('/', $plugin, 2);
         $plugin_folder = $r[0];
         $callback_file = "../content/plugins/{$plugin_folder}/{$plugin_folder}_callback.php";
 
-        if (!file_exists($callback_file)) {
-            return;
-        }
-
-        require_once $callback_file;
-        if (!function_exists('callback_rm')) {
-            return;
-        }
-
-        // 如果是 PHP 7+ 并且 非 开发环境，抑制 'Error' 异常。
-        if (class_exists('Error') && (!Util::isDevEnv())) {
-            try {
-                callback_rm();
-            } catch (Error $e) {
-                // Do nothing.
+        if (file_exists($callback_file)) {
+            require_once $callback_file;
+            if (function_exists('callback_rm')) {
+                // 如果是 PHP 7+ 并且 非 开发环境，抑制 'Error' 异常。
+                if (class_exists('Error') && (!Util::isDevEnv())) {
+                    try {
+                        callback_rm();
+                    } catch (Error $e) {
+                        // Do nothing.
+                    }
+                } else {
+                    callback_rm();
+                }
             }
-        } else {
-            callback_rm();
         }
+
+        // 删除时自动清理插件的设置数据
+        $plugin_storage = Storage::getInstance($plugin_folder);
+        $plugin_storage->deleteAllName('YES');
     }
 
     // upgrade callback
