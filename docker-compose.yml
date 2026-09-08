@@ -1,7 +1,6 @@
 services:
   db:
     image: mysql:8.0
-    container_name: mysql
     command:
       - --character-set-server=utf8mb4
       - --collation-server=utf8mb4_unicode_ci
@@ -20,7 +19,7 @@ services:
 
   #  db:
   #    image: mariadb:latest
-  #    container_name: mariadb
+  #    container_name: emlog-mariadb
   #    command:
   #      - --default_authentication_plugin=mysql_native_password
   #      - --character-set-server=utf8mb4
@@ -41,7 +40,7 @@ services:
 
   # frankenphp:
   #   image: emlog/frankenphp-php8.3
-  #   container_name: frankenphp
+  #   container_name: emlog-frankenphp
   #   restart: always
   #   ports:
   #     - "8080:80"
@@ -62,7 +61,6 @@ services:
 
   php:
     image: emlog/emlog:pro-php8.1
-    container_name: php
     volumes:
       - ./:/app/emlog
     working_dir: /app/emlog
@@ -77,7 +75,6 @@ services:
 
   nginx:
     image: nginx:alpine
-    container_name: nginx
     volumes:
       - ./:/app/emlog
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
