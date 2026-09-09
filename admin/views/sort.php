@@ -23,41 +23,66 @@
                     </thead>
                     <tbody class="checkboxContainer">
                         <?php
-                        foreach ($sorts as $key => $value):
-                            if ($value['pid'] != 0) {
-                                continue;
-                            }
+                        /**
+                         * 递归渲染分类树节点（支持任意多层级展示与管理）
+                         *
+                         * @param array $sorts 全量分类缓存/模型数据
+                         * @param array $value 当前分类节点数据
+                         * @param int $depth 深度层级（0为顶级，1为二级，2为三级...）
+                         * @param bool $is_last_child 是否为同级最后一个节点
+                         * @param array $ancestors_has_next 祖先层级是否有后续兄弟节点的布尔数组
+                         * @return void
+                         */
+                        function renderSortRow($sorts, $value, $depth = 0, $is_last_child = false, $ancestors_has_next = [])
+                        {
+                            $sid = $value['sid'];
+                            $pid = $value['pid'];
+                            $children = isset($value['children']) && is_array($value['children']) ? $value['children'] : [];
+                            $hasChildren = !empty($children);
+                            $isTop = ($depth === 0);
+                            $rowClass = $isTop ? 'tree-parent' : ('tree-child' . ($is_last_child ? ' last-child' : ''));
+                            // 每层缩进 1.3rem，首层基础 padding-left 为 2.6rem
+                            $paddingLeft = $isTop ? '' : ' style="padding-left: ' . (1.3 + $depth * 1.3) . 'rem !important;"';
                         ?>
-                            <tr class="tree-parent" data-id="<?= $value['sid'] ?>">
+                            <tr class="<?= $rowClass ?>" <?= $isTop ? 'data-id="' . $sid . '"' : 'data-pid="' . $pid . '"' ?>>
                                 <td>
-                                    <input type="checkbox" name="sort_ids[]" class="ids" value="<?= $value['sid'] ?>" />
+                                    <input type="checkbox" name="sort_ids[]" class="ids" value="<?= $sid ?>" />
                                 </td>
-                                <td class="tree-name">
-                                    <input type="hidden" value="<?= $value['sid'] ?>" class="sort_id" />
-                                    <input type="hidden" name="sort[]" value="<?= $value['sid'] ?>" />
+                                <td class="tree-name"<?= $paddingLeft ?>>
+                                    <input type="hidden" value="<?= $sid ?>" class="sort_id" />
+                                    <input type="hidden" name="sort[]" value="<?= $sid ?>" />
+                                    <?php if (!$isTop): ?>
+                                        <?php for ($i = 0; $i < $depth - 1; $i++): ?>
+                                            <?php if (!empty($ancestors_has_next[$i])): ?>
+                                                <span class="tree-branch-wire" style="left: <?= (1.3 + $i * 1.3) ?>rem;"></span>
+                                            <?php endif; ?>
+                                        <?php endfor; ?>
+                                        <span class="tree-branch-wire is-joint <?= $is_last_child ? '' : 'has-next' ?>" style="left: <?= (1.3 + ($depth - 1) * 1.3) ?>rem;"></span>
+                                        <span class="tree-branch-elbow" style="left: <?= (1.3 + ($depth - 1) * 1.3) ?>rem;"></span>
+                                    <?php endif; ?>
                                     <span class="drag-handle text-muted mr-2" style="cursor: move;" title="拖动排序"><i class="icofont-navigation-menu"></i></span>
-                                    <?php if (!empty($value['children'])): ?>
-                                        <span class="fold-btn text-muted mr-1" style="cursor: pointer;" data-id="<?= $value['sid'] ?>">
+                                    <?php if ($hasChildren): ?>
+                                        <span class="fold-btn text-muted mr-1" style="cursor: pointer;" data-id="<?= $sid ?>">
                                             <i class="icofont-simple-down"></i>
                                         </span>
                                     <?php else: ?>
                                         <span class="fold-btn-placeholder mr-1" style="display: inline-block; width: 12px;"></span>
                                     <?php endif; ?>
                                     <a href="#" data-toggle="modal" data-target="#sortModal"
-                                        data-sid="<?= $value['sid'] ?>"
+                                        data-sid="<?= $sid ?>"
                                         data-sortname="<?= $value['sortname'] ?>"
                                         data-alias="<?= $value['alias'] ?>"
                                         data-description="<?= $value['description'] ?>"
                                         data-kw="<?= $value['kw'] ?>"
                                         data-title="<?= $value['title_origin'] ?>"
-                                        data-pid="<?= $value['pid'] ?>"
+                                        data-pid="<?= $pid ?>"
                                         data-sortimg="<?= $value['sortimg'] ?>"
                                         data-page_count="<?= $value['page_count'] ?>"
                                         data-allow_user_post="<?= $value['allow_user_post'] ?>"
                                         data-template="<?= $value['template'] ?>">
                                         <?= $value['sortname'] ?>
                                     </a>
-                                    <a href="<?= Url::sort($value['sid']) ?>" target="_blank" class="text-muted ml-2"><i class="icofont-external-link"></i></a>
+                                    <a href="<?= Url::sort($sid) ?>" target="_blank" class="text-muted ml-2"><i class="icofont-external-link"></i></a>
                                     <?php if ($value['allow_user_post'] == 'n'): ?>
                                         <br><span class="badge small badge-orange"><?= _lang('no_contribute') ?></span>
                                     <?php endif ?>
@@ -72,66 +97,40 @@
                                     </div>
                                 </td>
                                 <td><?= subString($value['description'], 0, 100) ?></td>
-                                <td><?= $value['sid'] ?></td>
+                                <td><?= $sid ?></td>
                                 <td class="alias"><?= $value['alias'] ?></td>
-                                <td><a href="article.php?sid=<?= $value['sid'] ?>"><?= $value['lognum'] ?></a></td>
+                                <td><a href="article.php?sid=<?= $sid ?>"><?= $value['lognum'] ?></a></td>
                                 <td>
-                                    <a href="javascript: em_confirm(<?= $value['sid'] ?>, 'sort', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger"><?= _lang('delete') ?></a>
+                                    <a href="javascript: em_confirm(<?= $sid ?>, 'sort', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger"><?= _lang('delete') ?></a>
                                 </td>
                             </tr>
                             <?php
-                            $children = $value['children'];
-                            $total_children = count($children);
-                            $child_index = 0;
-                            foreach ($children as $key):
-                                $value = $sorts[$key];
-                                $child_index++;
-                                $is_last_child = ($child_index === $total_children);
-                            ?>
-                                <tr class="tree-child <?= $is_last_child ? 'last-child' : '' ?>" data-pid="<?= $value['pid'] ?>">
-                                    <td>
-                                        <input type="checkbox" name="sort_ids[]" class="ids" value="<?= $value['sid'] ?>" />
-                                    </td>
-                                    <td class="tree-name">
-                                        <input type="hidden" value="<?= $value['sid'] ?>" class="sort_id" />
-                                        <input type="hidden" name="sort[]" value="<?= $value['sid'] ?>" />
-                                        <span class="drag-handle text-muted mr-2" style="cursor: move;" title="拖动排序"><i class="icofont-navigation-menu"></i></span>
-                                        <a href="#" data-toggle="modal" data-target="#sortModal"
-                                            data-sid="<?= $value['sid'] ?>"
-                                            data-sortname="<?= $value['sortname'] ?>"
-                                            data-alias="<?= $value['alias'] ?>"
-                                            data-description="<?= $value['description'] ?>"
-                                            data-kw="<?= $value['kw'] ?>"
-                                            data-title="<?= $value['title_origin'] ?>"
-                                            data-pid="<?= $value['pid'] ?>"
-                                            data-sortimg="<?= $value['sortimg'] ?>"
-                                            data-page_count="<?= $value['page_count'] ?>"
-                                            data-allow_user_post="<?= $value['allow_user_post'] ?>"
-                                            data-template="<?= $value['template'] ?>"><?= $value['sortname'] ?></a>
-                                        <a href="<?= Url::sort($value['sid']) ?>" target="_blank" class="text-muted ml-2"><i class="icofont-external-link"></i></a>
-                                        <?php if ($value['allow_user_post'] == 'n'): ?>
-                                            <br><span class="badge small badge-orange"><?= _lang('no_contribute') ?></span>
-                                        <?php endif ?>
-                                    </td>
-                                    <td>
-                                        <div class="flex-shrink-0">
-                                            <?php if ($value['sortimg']): ?>
-                                                <img src="<?= $value['sortimg'] ?>" height="55" class="rounded" />
-                                            <?php else: ?>
-                                                <img src="<?= './views/images/null.png' ?>" height="55" class="rounded" />
-                                            <?php endif; ?>
-                                        </div>
-                                    </td>
-                                    <td><?= subString($value['description'], 0, 100) ?></td>
-                                    <td><?= $value['sid'] ?></td>
-                                    <td class="alias"><?= $value['alias'] ?></td>
-                                    <td><a href="article.php?sid=<?= $value['sid'] ?>"><?= $value['lognum'] ?></a></td>
-                                    <td>
-                                        <a href="javascript: em_confirm(<?= $value['sid'] ?>, 'sort', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger"><?= _lang('delete') ?></a>
-                                    </td>
-                                </tr>
-                            <?php endforeach ?>
-                        <?php endforeach ?>
+                            if ($hasChildren) {
+                                $total_children = count($children);
+                                $child_index = 0;
+                                foreach ($children as $child_key) {
+                                    if (!isset($sorts[$child_key])) {
+                                        continue;
+                                    }
+                                    $child_value = $sorts[$child_key];
+                                    $child_index++;
+                                    $child_is_last = ($child_index === $total_children);
+                                    $next_ancestors = $ancestors_has_next;
+                                    if ($depth > 0) {
+                                        $next_ancestors[$depth - 1] = !$is_last_child;
+                                    }
+                                    renderSortRow($sorts, $child_value, $depth + 1, $child_is_last, $next_ancestors);
+                                }
+                            }
+                        }
+
+                        foreach ($sorts as $key => $value) {
+                            if ($value['pid'] != 0) {
+                                continue;
+                            }
+                            renderSortRow($sorts, $value, 0, false, []);
+                        }
+                        ?>
                     </tbody>
                 </table>
             </div>
@@ -144,6 +143,32 @@
 </form>
 
 <style>
+    /* 树形分类多层级连线与精准缩进 */
+    #adm_sort_list .tree-child td.tree-name {
+        position: relative;
+    }
+    #adm_sort_list .tree-child td.tree-name::before,
+    #adm_sort_list .tree-child td.tree-name::after {
+        display: none !important;
+    }
+    .tree-branch-wire {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        border-left: 2px solid #cbd5e1;
+    }
+    .tree-branch-wire.is-joint {
+        bottom: 50%;
+    }
+    .tree-branch-wire.is-joint.has-next {
+        bottom: 0;
+    }
+    .tree-branch-elbow {
+        position: absolute;
+        top: 50%;
+        width: 14px;
+        border-bottom: 2px solid #cbd5e1;
+    }
     #sortModal .modal-body {
         max-height: 78vh;
         overflow-y: auto;
