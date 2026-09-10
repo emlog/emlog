@@ -139,7 +139,8 @@ class Storage
         $sql = "SELECT `type` FROM " . DB_PREFIX . "storage WHERE `plugin` = '" . $this->db_conn->escape_string($this->plugin_name) . "' AND `name` = '" . $this->db_conn->escape_string($name) . "'";
         $result = $this->db_conn->once_fetch_array($sql);
 
-        if ($result === FALSE) {
+        // 数据不存在时，mysqli 驱动返回 NULL、PDO 驱动返回空数组，统一按不存在处理，避免访问空值的数组下标
+        if (empty($result) || !isset($result['type'])) {
             return FALSE;
         }
 
@@ -216,11 +217,12 @@ class Storage
         $sql = "SELECT `type` FROM " . DB_PREFIX . "storage WHERE `plugin` = '" . $this->db_conn->escape_string($this->plugin_name) . "' AND `name` = '" . $this->db_conn->escape_string($name) . "'";
         $result = $this->db_conn->once_fetch_array($sql);
 
-        if ($result === FALSE) {
+        // 数据不存在时，mysqli 驱动返回 NULL、PDO 驱动返回空数组，统一按不存在处理，避免访问空值的数组下标
+        if (empty($result) || !isset($result['type'])) {
             return FALSE;
-        } else {
-            return $result['type'];
         }
+
+        return $result['type'];
     }
 
     /**
@@ -248,7 +250,8 @@ class Storage
     {
         $sql = "SELECT count(`name`) as 'count' FROM " . DB_PREFIX . "storage WHERE `plugin` = '" . $this->db_conn->escape_string($this->plugin_name) . "'";
         $result = $this->db_conn->once_fetch_array($sql);
-        return (int)$result['count'];
+        // 结果为空时按 0 条处理，避免访问空值的数组下标
+        return isset($result['count']) ? (int)$result['count'] : 0;
     }
 
     /**
@@ -263,7 +266,8 @@ class Storage
         $sql = "SELECT count(`name`) as 'count' FROM " . DB_PREFIX . "storage WHERE `plugin` = '" . $this->db_conn->escape_string($this->plugin_name) . "' AND `name` = '" . $this->db_conn->escape_string($name) . "'";
         $result = $this->db_conn->once_fetch_array($sql);
 
-        return ($result['count'] > 0);
+        // 结果为空时视为数据不存在，避免访问空值的数组下标
+        return isset($result['count']) && $result['count'] > 0;
     }
 
     /**
@@ -280,11 +284,12 @@ class Storage
         $sql = "SELECT `createdate` FROM " . DB_PREFIX . "storage WHERE `plugin` = '" . $this->db_conn->escape_string($this->plugin_name) . "' AND `name` = '" . $this->db_conn->escape_string($name) . "'";
         $result = $this->db_conn->once_fetch_array($sql);
 
-        if ($result === FALSE) {
+        // 数据不存在时，mysqli 驱动返回 NULL、PDO 驱动返回空数组，统一按不存在处理，避免访问空值的数组下标
+        if (empty($result) || !isset($result['createdate'])) {
             return FALSE;
-        } else {
-            return $result['createdate'];
         }
+
+        return $result['createdate'];
     }
 
     /**
@@ -301,11 +306,12 @@ class Storage
         $sql = "SELECT `lastupdate` FROM " . DB_PREFIX . "storage WHERE `plugin` = '" . $this->db_conn->escape_string($this->plugin_name) . "' AND `name` = '" . $this->db_conn->escape_string($name) . "'";
         $result = $this->db_conn->once_fetch_array($sql);
 
-        if ($result === FALSE) {
+        // 数据不存在时，mysqli 驱动返回 NULL、PDO 驱动返回空数组，统一按不存在处理，避免访问空值的数组下标
+        if (empty($result) || !isset($result['lastupdate'])) {
             return FALSE;
-        } else {
-            return $result['lastupdate'];
         }
+
+        return $result['lastupdate'];
     }
 
     /**
