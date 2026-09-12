@@ -2524,40 +2524,29 @@ textarea.form-control {
     }
 }
 
-.btn-check-update-green {
-    border-color: #c3e6cb !important;
-    background-color: #f4faf6 !important;
-    color: #1e7e34 !important;
-    transition: none !important;
+.sidebar-update-dot {
+    display: inline-block !important;
+    width: 6px !important;
+    height: 6px !important;
+    min-width: 6px !important;
+    max-width: 6px !important;
+    min-height: 6px !important;
+    max-height: 6px !important;
+    background-color: #e74a3b !important;
+    border-radius: 50% !important;
+    margin-left: 6px !important;
+    padding: 0 !important;
+    line-height: 0 !important;
+    font-size: 0 !important;
+    vertical-align: middle !important;
+    box-sizing: content-box !important;
+    flex-shrink: 0 !important;
+    animation: dot-breathe 2.8s ease-in-out infinite;
 }
 
-.btn-check-update-green:hover {
-    color: #155724 !important;
-    background-color: #e8f5ed !important;
-    border-color: #a8dfb7 !important;
-}
-
-.btn-check-update-blue {
-    border-color: #b8daff !important;
-    background-color: #f2f8ff !important;
-    color: #224abe !important;
-    transition: none !important;
-}
-
-.btn-check-update-blue:hover {
-    color: #1a388f !important;
-    background-color: #e4f0ff !important;
-    border-color: #9cc8ff !important;
-}
-
-.btn-check-update-gold {
-    border-color: #f3d18c !important;
-    background-color: #fdfbf3 !important;
-    color: #a17800 !important;
-}
-
-.btn-check-update-gold:hover {
-    color: #8c6700 !important;
-    background-color: #fcf4db !important;
-    border-color: #eec165 !important;
+/* 当外观菜单展开或子菜单可见时，绝不同时在外观主菜单上显示红点，仅在模板子菜单上显示 */
+#menu_category_view > .nav-link:not(.collapsed) .sidebar-update-dot,
+#menu_category_view:has(#menu_view.show) > .nav-link .sidebar-update-dot,
+#menu_category_view:has(#menu_view:not(.collapse)) > .nav-link .sidebar-update-dot {
+    display: none !important;
 }

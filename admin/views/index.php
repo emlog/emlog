@@ -63,8 +63,8 @@
                             <?= _lang('system_timezone') ?>
                             <span class="small"><?= Option::get('timezone') ?></span>
                         </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                            <div class="d-flex align-items-center flex-wrap">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
                                 <?php if (!Register::isRegLocal()) : ?>
                                     <a href="https://www.emlog.net/register" target="_blank"><span class="badge badge-secondary">Emlog <?= Option::EMLOG_VERSION ?></span></a>
                                     <a href="https://www.emlog.net/register" target="_blank" class="badge badge-secondary ml-1"><?= _lang('unregistered') ?></a>
@@ -79,18 +79,8 @@
                                     <?php endif ?>
                                 <?php endif; ?>
                             </div>
-                            <div class="d-flex align-items-center mt-1 mt-sm-0">
-                                <span id="app-update-wrap" class="d-inline-flex align-items-center mr-1 d-none">
-                                    <a id="plu-update-btn" href="plugin.php" class="btn-check-update btn-check-update-green mr-1 d-none">
-                                        <span><?= _lang('plugin') ?></span>
-                                        <span class="badge badge-success text-white ml-1 font-weight-bold" id="plu-update-count"></span>
-                                    </a>
-                                    <a id="tpl-update-btn" href="template.php" class="btn-check-update btn-check-update-blue mr-1 d-none">
-                                        <span><?= _lang('template') ?></span>
-                                        <span class="badge badge-primary text-white ml-1 font-weight-bold" id="tpl-update-count"></span>
-                                    </a>
-                                </span>
-                                <a id="ckup" href="javascript:checkUpdate();" class="btn-check-update btn-check-update-gold position-relative">
+                            <div>
+                                <a id="ckup" href="javascript:checkUpdate();" class="btn-check-update position-relative">
                                     <i class="icofont-refresh mr-1"></i>
                                     <span><?= _lang('update') ?></span>
                                 </a>
@@ -188,23 +178,11 @@
             if (response.code === 0 && response.data) {
                 var tplCount = response.data.template_count || 0;
                 var pluCount = response.data.plugin_count || 0;
-                var totalCount = response.data.total_count || 0;
 
-                if (totalCount > 0) {
-                    var hasUpdate = false;
-                    if (pluCount > 0) {
-                        $("#plu-update-count").text(pluCount);
-                        $("#plu-update-btn").removeClass('d-none');
-                        hasUpdate = true;
-                    }
-                    if (tplCount > 0) {
-                        $("#tpl-update-count").text(tplCount);
-                        $("#tpl-update-btn").removeClass('d-none');
-                        hasUpdate = true;
-                    }
-                    if (hasUpdate) {
-                        $("#app-update-wrap").removeClass('d-none');
-                    }
+                localStorage.setItem('emlog_has_plugin_update', pluCount > 0 ? '1' : '0');
+                localStorage.setItem('emlog_has_template_update', tplCount > 0 ? '1' : '0');
+                if (typeof renderAppUpdateDots === 'function') {
+                    renderAppUpdateDots();
                 }
             }
         });

@@ -998,3 +998,62 @@ function updateWordCount(content, targetSelector) {
     $(targetSelector || '#editor-word-count-num').text(count);
 }
 
+/**
+ * 渲染侧边栏插件与模板更新红点提示
+ */
+function renderAppUpdateDots() {
+    var hasPluginUpdate = localStorage.getItem('emlog_has_plugin_update') === '1';
+    var hasTemplateUpdate = localStorage.getItem('emlog_has_template_update') === '1';
+
+    var $pluMenu = $("#menu_category_ext .nav-link");
+    if ($pluMenu.length) {
+        if (hasPluginUpdate) {
+            if ($pluMenu.find('.sidebar-update-dot').length === 0) {
+                $pluMenu.find('span').append('<i class="sidebar-update-dot"></i>');
+            }
+        } else {
+            $pluMenu.find('.sidebar-update-dot').remove();
+        }
+    }
+
+    var $tplMenu = $("#menu_tpl");
+    var $viewMenu = $("#menu_category_view > .nav-link");
+    var isViewExpanded = $('#menu_view').hasClass('show') || ($viewMenu.length && !$viewMenu.hasClass('collapsed')) || ($tplMenu.is(':visible'));
+
+    if (hasTemplateUpdate) {
+        if ($tplMenu.length && $tplMenu.find('.sidebar-update-dot').length === 0) {
+            $tplMenu.append('<i class="sidebar-update-dot"></i>');
+        }
+        if ($viewMenu.length && $viewMenu.find('.sidebar-update-dot').length === 0) {
+            $viewMenu.find('span').append('<i class="sidebar-update-dot"></i>');
+        }
+        // 外观与模板无论何时都不要同时展示红点：只要外观处于展开状态或模板子菜单可见，就隐藏外观主菜单上的红点
+        if (isViewExpanded) {
+            $viewMenu.find('.sidebar-update-dot').hide();
+        } else {
+            $viewMenu.find('.sidebar-update-dot').show();
+        }
+    } else {
+        if ($tplMenu.length) {
+            $tplMenu.find('.sidebar-update-dot').remove();
+        }
+        if ($viewMenu.length) {
+            $viewMenu.find('.sidebar-update-dot').remove();
+        }
+    }
+}
+
+$(document).ready(function () {
+    renderAppUpdateDots();
+
+    // 监听外观折叠菜单的展开与收起，展开时只展示在模板上，收起时恢复外观上的提示（确保二者绝不同时展示）
+    $('#menu_view').on('show.bs.collapse shown.bs.collapse', function () {
+        $('#menu_category_view > .nav-link .sidebar-update-dot').hide();
+    }).on('hide.bs.collapse hidden.bs.collapse', function () {
+        if (localStorage.getItem('emlog_has_template_update') === '1') {
+            $('#menu_category_view > .nav-link .sidebar-update-dot').show();
+        }
+    });
+});
+
+

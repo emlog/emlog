@@ -190,6 +190,10 @@ if ($plugins) {
             success: function(response) {
                 if (response.code === 0) {
                     var pluginsToUpdate = response.data;
+                    localStorage.setItem('emlog_has_plugin_update', (pluginsToUpdate && pluginsToUpdate.length > 0) ? '1' : '0');
+                    if (typeof renderAppUpdateDots === 'function') {
+                        renderAppUpdateDots();
+                    }
                     $.each(pluginsToUpdate, function(index, item) {
                         var $tr = $('table tbody tr[data-plugin-alias="' + item.name + '"]');
                         var $updateBtn = $tr.find('.update-btn');
