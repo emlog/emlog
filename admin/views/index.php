@@ -63,24 +63,34 @@
                             <?= _lang('system_timezone') ?>
                             <span class="small"><?= Option::get('timezone') ?></span>
                         </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <div>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <div class="d-flex align-items-center flex-wrap">
                                 <?php if (!Register::isRegLocal()) : ?>
                                     <a href="https://www.emlog.net/register" target="_blank"><span class="badge badge-secondary">Emlog <?= Option::EMLOG_VERSION ?></span></a>
-                                    <a href="https://www.emlog.net/register" target="_blank" class="badge badge-secondary"><?= _lang('unregistered') ?></a>
+                                    <a href="https://www.emlog.net/register" target="_blank" class="badge badge-secondary ml-1"><?= _lang('unregistered') ?></a>
                                 <?php else: ?>
                                     <a href="https://www.emlog.net" target="_blank"><span class="badge badge-success">Emlog <?= ucfirst(Option::EMLOG_VERSION) ?></span></a>
                                     <?php if (Register::getRegType() === 2): ?>
-                                        <a href="https://www.emlog.net/register" target="_blank" class="badge badge-warning"><?= _lang('hardcore_svip') ?></a>
+                                        <a href="https://www.emlog.net/register" target="_blank" class="badge badge-warning ml-1"><?= _lang('hardcore_svip') ?></a>
                                     <?php elseif (Register::getRegType() === 1): ?>
-                                        <a href="https://www.emlog.net/register" target="_blank" class="badge badge-success"><?= _lang('friend_vip') ?></a>
+                                        <a href="https://www.emlog.net/register" target="_blank" class="badge badge-success ml-1"><?= _lang('friend_vip') ?></a>
                                     <?php else: ?>
-                                        <a href="https://www.emlog.net/register" target="_blank" class="badge badge-success"><?= _lang('registered') ?></a>
+                                        <a href="https://www.emlog.net/register" target="_blank" class="badge badge-success ml-1"><?= _lang('registered') ?></a>
                                     <?php endif ?>
                                 <?php endif; ?>
                             </div>
-                            <div>
-                                <a id="ckup" href="javascript:checkUpdate();" class="btn-check-update position-relative">
+                            <div class="d-flex align-items-center mt-1 mt-sm-0">
+                                <span id="app-update-wrap" class="d-inline-flex align-items-center mr-1 d-none">
+                                    <a id="plu-update-btn" href="plugin.php" class="btn-check-update btn-check-update-green mr-1 d-none">
+                                        <span><?= _lang('plugin') ?></span>
+                                        <span class="badge badge-success text-white ml-1 font-weight-bold" id="plu-update-count"></span>
+                                    </a>
+                                    <a id="tpl-update-btn" href="template.php" class="btn-check-update btn-check-update-blue mr-1 d-none">
+                                        <span><?= _lang('template') ?></span>
+                                        <span class="badge badge-primary text-white ml-1 font-weight-bold" id="tpl-update-count"></span>
+                                    </a>
+                                </span>
+                                <a id="ckup" href="javascript:checkUpdate();" class="btn-check-update btn-check-update-gold position-relative">
                                     <i class="icofont-refresh mr-1"></i>
                                     <span><?= _lang('update') ?></span>
                                 </a>
@@ -170,6 +180,32 @@
         $.get("./upgrade.php?action=check_update", function(result) {
             if (result.code === 200) {
                 $("#ckup").append('<span class="update-dot"></span>');
+            }
+        });
+
+        // auto check templates & plugins update
+        $.get("./index.php?action=check_app_update", function(response) {
+            if (response.code === 0 && response.data) {
+                var tplCount = response.data.template_count || 0;
+                var pluCount = response.data.plugin_count || 0;
+                var totalCount = response.data.total_count || 0;
+
+                if (totalCount > 0) {
+                    var hasUpdate = false;
+                    if (pluCount > 0) {
+                        $("#plu-update-count").text(pluCount);
+                        $("#plu-update-btn").removeClass('d-none');
+                        hasUpdate = true;
+                    }
+                    if (tplCount > 0) {
+                        $("#tpl-update-count").text(tplCount);
+                        $("#tpl-update-btn").removeClass('d-none');
+                        hasUpdate = true;
+                    }
+                    if (hasUpdate) {
+                        $("#app-update-wrap").removeClass('d-none');
+                    }
+                }
             }
         });
     </script>

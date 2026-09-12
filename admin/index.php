@@ -100,3 +100,90 @@ if ($action === 'add_shortcut') {
     $CACHE->updateCache('options');
     emDirect("./index.php?add_shortcut_suc=1");
 }
+
+/**
+ * 异步检查主题和插件的更新状态
+ * 
+ * @return void
+ */
+if ($action === 'check_app_update') {
+    if (!User::isAdmin()) {
+        Output::error(_lang('permission_denied'));
+    }
+
+    $templatesToUpdate = [];
+    $pluginsToUpdate = [];
+
+    // 获取已安装模板列表
+    $Template_Model = new Template_Model();
+    $templates = $Template_Model->getTemplates();
+    $templateList = [];
+    if (is_array($templates)) {
+        foreach ($templates as $tpl) {
+            if (!empty($tpl['tplfile'])) {
+                $templateList[] = [
+                    'name'    => $tpl['tplfile'],
+                    'version' => isset($tpl['version']) ? $tpl['version'] : '',
+                ];
+            }
+        }
+    }
+
+    // 获取已安装插件列表
+    $Plugin_Model = new Plugin_Model();
+    $plugins = $Plugin_Model->getPlugins();
+    $pluginList = [];
+    if (is_array($plugins)) {
+        foreach ($plugins as $plu) {
+            if (!empty($plu['Plugin'])) {
+                $pluginList[] = [
+                    'name'    => $plu['Plugin'],
+                    'version' => isset($plu['Version']) ? $plu['Version'] : '',
+                ];
+            }
+        }
+    }
+
+    $emkey = Option::get('emkey');
+
+    // 检查主题更新
+    if (!empty($templateList)) {
+        $emcurl = new EmCurl(5);
+        $emcurl->setPost([
+            'emkey' => $emkey,
+            'apps'  => json_encode($templateList),
+        ]);
+        $emcurl->request('https://store.emlog.net/template/upgrade');
+        if ($emcurl->getHttpStatus() === MSGCODE_SUCCESS) {
+            $res = json_decode($emcurl->getRespone(), true);
+            if (is_array($res) && (!isset($res['code']) || $res['code'] === 0 || $res['code'] === MSGCODE_SUCCESS) && !empty($res['data']) && is_array($res['data'])) {
+                $templatesToUpdate = $res['data'];
+            }
+        }
+    }
+
+    // 检查插件更新
+    if (!empty($pluginList)) {
+        $emcurl = new EmCurl(5);
+        $emcurl->setPost([
+            'emkey' => $emkey,
+            'apps'  => json_encode($pluginList),
+        ]);
+        $emcurl->request('https://store.emlog.net/plugin/upgrade');
+        if ($emcurl->getHttpStatus() === MSGCODE_SUCCESS) {
+            $res = json_decode($emcurl->getRespone(), true);
+            if (is_array($res) && (!isset($res['code']) || $res['code'] === 0 || $res['code'] === MSGCODE_SUCCESS) && !empty($res['data']) && is_array($res['data'])) {
+                $pluginsToUpdate = $res['data'];
+            }
+        }
+    }
+
+    Output::ok([
+        'templates'      => $templatesToUpdate,
+        'plugins'        => $pluginsToUpdate,
+        'template_count' => count($templatesToUpdate),
+        'plugin_count'   => count($pluginsToUpdate),
+        'total_count'    => count($templatesToUpdate) + count($pluginsToUpdate),
+    ]);
+}
+
