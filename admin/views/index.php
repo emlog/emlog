@@ -5,10 +5,9 @@
 <div class="row ml-1 mb-1"><?php doAction('adm_main_top') ?></div>
 <div class="row">
     <div class="col-lg-6 mb-3">
-        <div class="card shadow mb-3">
+        <div class="card h-100 shadow mb-3">
             <h6 class="card-header"><?= _lang('site_info') ?></h6>
-            <div class="card-body">
-                <ul class="list-group list-group-flush">
+            <ul class="list-group list-group-flush">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <a href="./article.php?checked=n"><?= _lang('pending_articles') ?></a>
                         <a href="./article.php?checked=n"><span class="badge badge-pink badge-pill"><?= $sta_cache['checknum'] ?></span></a>
@@ -34,15 +33,13 @@
                         <a href="./comment.php"><span class="badge badge-primary badge-pill"><?= $sta_cache['comnum_all'] ?></span></a>
                     </li>
                 </ul>
-            </div>
         </div>
     </div>
     <?php if (User::isAdmin()): ?>
         <div class="col-lg-6 mb-3">
-            <div class="card shadow mb-3">
+            <div class="card h-100 shadow mb-3">
                 <h6 class="card-header"><?= _lang('software_info') ?></h6>
-                <div class="card-body">
-                    <ul class="list-group list-group-flush">
+                <ul class="list-group list-group-flush">
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             PHP
                             <span class="small"><?= $php_ver ?></span>
@@ -95,7 +92,6 @@
                         </li>
                         <?php endif ?>
                     </ul>
-                </div>
             </div>
         </div>
     <?php endif; ?>
