@@ -63,6 +63,13 @@
                             <?= _lang('system_timezone') ?>
                             <span class="small"><?= Option::get('timezone') ?></span>
                         </li>
+                        <?php if (defined('OFFLINE_MODE') && OFFLINE_MODE === true): ?>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                <span class="badge badge-secondary"><?= preg_replace('/^(?:emlog\s*)?(?:pro\s*)?/i', '', Option::EMLOG_VERSION) ?></span>
+                            </div>
+                        </li>
+                        <?php else: ?>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <div>
                                 <?php if (!Register::isRegLocal()) : ?>
@@ -86,6 +93,7 @@
                                 </a>
                             </div>
                         </li>
+                        <?php endif ?>
                     </ul>
                 </div>
             </div>
@@ -166,6 +174,7 @@
         setTimeout(hideActived, 3600);
         const menuPanel = $("#menu_panel").addClass('active');
 
+        <?php if (!defined('OFFLINE_MODE') || OFFLINE_MODE !== true): ?>
         // auto check update
         $.get("./upgrade.php?action=check_update", function(result) {
             if (result.code === 200) {
@@ -186,6 +195,7 @@
                 }
             }
         });
+        <?php endif ?>
     </script>
 <?php endif ?>
 <?php if (User::isAdmin()): ?>

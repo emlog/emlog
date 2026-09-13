@@ -119,6 +119,7 @@
                 version: version
             });
         });
+        <?php if (!defined('OFFLINE_MODE') || OFFLINE_MODE !== true): ?>
         $.ajax({
             url: './template.php?action=check_update',
             type: 'POST',
@@ -149,6 +150,7 @@
                 console.log('请求更新接口失败');
             }
         });
+        <?php endif ?>
     });
 
     function updateTemplate(alias, $updateLink) {

@@ -109,6 +109,9 @@ if ($action === 'upgrade_done') {
 }
 
 if ($action === 'check_update') {
+    if (defined('OFFLINE_MODE') && OFFLINE_MODE === true) {
+        Output::ok([]);
+    }
     $templates = Input::postStrArray('templates', []);
 
     $emcurl = new EmCurl();

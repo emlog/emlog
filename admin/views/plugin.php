@@ -181,6 +181,7 @@ if ($plugins) {
                 version: currentVersion
             });
         });
+        <?php if (!defined('OFFLINE_MODE') || OFFLINE_MODE !== true): ?>
         $.ajax({
             url: './plugin.php?action=check_update',
             type: 'POST',
@@ -214,6 +215,7 @@ if ($plugins) {
                 $('#upMsg').html('<?= _lang('plugin_update_check_error') ?>' + msgValue).addClass('alert alert-warning');
             }
         });
+        <?php endif ?>
 
         // Plugin search functionality
         $('#pluginSearch').on('keyup', function() {

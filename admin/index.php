@@ -114,6 +114,16 @@ if ($action === 'check_app_update') {
     $templatesToUpdate = [];
     $pluginsToUpdate = [];
 
+    if (defined('OFFLINE_MODE') && OFFLINE_MODE === true) {
+        Output::ok([
+            'templates'      => [],
+            'plugins'        => [],
+            'template_count' => 0,
+            'plugin_count'   => 0,
+            'total_count'    => 0,
+        ]);
+    }
+
     // 获取已安装模板列表
     $Template_Model = new Template_Model();
     $templates = $Template_Model->getTemplates();

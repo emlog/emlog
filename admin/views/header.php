@@ -110,9 +110,11 @@
                         </div>
                     </div>
                 </li>
+                <?php if (!defined('OFFLINE_MODE') || OFFLINE_MODE !== true): ?>
                 <li class="nav-item" id="menu_store">
                     <a class="nav-link" href="store.php"><i class="icofont-shopping-cart"></i><span><?= _lang('store') ?></span></a>
                 </li>
+                <?php endif ?>
                 <hr class="sidebar-divider d-none d-md-block">
                 <?php doAction('adm_menu') ?>
                 <div class="text-center d-none d-md-inline">

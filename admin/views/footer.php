@@ -6,7 +6,11 @@
 </a>
 <footer class="sticky-footer bg-white">
     <div class="text-right my-auto mr-4">
+        <?php if (defined('OFFLINE_MODE') && OFFLINE_MODE === true): ?>
+        <small><?= preg_replace('/^(?:emlog\s*)?(?:pro\s*)?/i', '', Option::EMLOG_VERSION) ?></small>
+        <?php else: ?>
         <small><a href="https://www.emlog.net" target="_blank">EMLOG</a> - <?= ucfirst(Option::EMLOG_VERSION) ?></small>
+        <?php endif ?>
     </div>
 </footer>
 <!-- AI Chat Modal -->

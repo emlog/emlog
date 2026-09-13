@@ -14,6 +14,10 @@
 require_once 'globals.php';
 
 if ($action === 'check_update') {
+    if (defined('OFFLINE_MODE') && OFFLINE_MODE === true) {
+        header('Content-Type: application/json; charset=UTF-8');
+        exit(json_encode(['code' => 0, 'data' => []]));
+    }
     $emcurl = new EmCurl();
     $emcurl->setPost([
         'emkey'     => Option::get('emkey'),
