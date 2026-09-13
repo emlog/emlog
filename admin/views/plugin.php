@@ -35,9 +35,16 @@ if ($plugins) {
             <a class="nav-link" data-filter="inactive" href="javascript:void(0);" onclick="pluginFilter('inactive', this);"><?= _lang('inactive') ?></a>
         </li>
     </ul>
-    <div class="w-md-auto">
-        <input type="text" id="pluginSearch" class="form-control" placeholder="<?= _lang('search_plugin_placeholder') ?>">
-    </div>
+    <form id="pluginSearchForm" onsubmit="return false;">
+        <div class="form-inline search-inputs-nowrap">
+            <input type="text" id="pluginSearch" name="keyword" class="form-control m-1 small" placeholder="<?= _lang('search_plugin_placeholder') ?>" aria-label="Search" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-sm btn-success" type="button" id="pluginSearchBtn">
+                    <i class="icofont-search-2"></i>
+                </button>
+            </div>
+        </div>
+    </form>
 </div>
 <div class="card shadow mb-4">
     <div class="card-body">
@@ -218,12 +225,19 @@ if ($plugins) {
         <?php endif ?>
 
         // Plugin search functionality
-        $('#pluginSearch').on('keyup', function() {
-            var value = $(this).val().toLowerCase();
-            $('#pluginTable tr').filter(function() {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+        function doPluginSearch() {
+            var value = $('#pluginSearch').val().toLowerCase();
+            var activeFilter = $('.nav-pills .nav-link.active').data('filter') || 'all';
+            $('#pluginTable tr').each(function() {
+                var isActive = $(this).data('active');
+                var matchesFilter = (activeFilter === 'all') || (activeFilter === 'active' && isActive == 1) || (activeFilter === 'inactive' && isActive == 0);
+                var matchesSearch = !value || $(this).text().toLowerCase().indexOf(value) > -1;
+                $(this).toggle(matchesFilter && matchesSearch);
             });
-        });
+        }
+
+        $('#pluginSearch').on('keyup input', doPluginSearch);
+        $('#pluginSearchBtn').on('click', doPluginSearch);
     });
 
     /**
@@ -354,17 +368,13 @@ if ($plugins) {
         $('.nav-pills .nav-link').removeClass('active');
         $(element).addClass('active');
 
+        var keyword = $('#pluginSearch').val().toLowerCase();
+
         $('#pluginTable tr').each(function() {
             var isActive = $(this).data('active');
-            if (filter === 'all') {
-                $(this).show();
-            } else if (filter === 'active') {
-                if (isActive == 1) $(this).show();
-                else $(this).hide();
-            } else if (filter === 'inactive') {
-                if (isActive == 0) $(this).show();
-                else $(this).hide();
-            }
+            var matchesFilter = (filter === 'all') || (filter === 'active' && isActive == 1) || (filter === 'inactive' && isActive == 0);
+            var matchesSearch = !keyword || $(this).text().toLowerCase().indexOf(keyword) > -1;
+            $(this).toggle(matchesFilter && matchesSearch);
         });
 
         updateCurrentCount();

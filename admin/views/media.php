@@ -60,9 +60,9 @@
                 <input type="text" class="form-control datepicker" value="<?= $dateTime ?>" placeholder="<?= _lang('view_date_before') ?>">
             </div>
             <div class="ml-2">
-                <form action="./media.php" method="get" class="form-inline w-100">
-                    <div class="input-group">
-                        <input type="text" name="keyword" value="<?= $keyword ?>" class="form-control small" placeholder="<?= _lang('search_media_placeholder') ?>">
+                <form action="./media.php" method="get">
+                    <div class="form-inline search-inputs-nowrap">
+                        <input type="text" name="keyword" value="<?= htmlspecialchars($keyword) ?>" class="form-control m-1 small" placeholder="<?= _lang('search_media_placeholder') ?>" aria-label="Search" aria-describedby="basic-addon2">
                         <div class="input-group-append">
                             <button class="btn btn-sm btn-success" type="submit">
                                 <i class="icofont-search-2"></i>
