@@ -510,6 +510,7 @@ return [
     'uncategorized' => 'Uncategorized',
     'latest_post' => 'Latest',
     'top_priority' => 'Pinned',
+    'pending_priority' => 'Pending Review First',
     'comment_most' => 'Most commented',
     'view_most' => 'Most viewed',
     'like_most' => 'Most liked',

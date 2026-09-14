@@ -54,6 +54,7 @@ $isdraft = $draft ? '&draft=1' : '';
                     <select name="order" id="order" onChange="selectOrder(this);" class="form-control">
                         <option value="date" <?= (empty($order)) ? 'selected' : '' ?>><?= _lang('latest_post') ?></option>
                         <option value="top" <?= ($order === 'top') ? 'selected' : '' ?>><?= _lang('top_priority') ?></option>
+                        <option value="uncheck" <?= ($order === 'uncheck') ? 'selected' : '' ?>><?= _lang('pending_priority') ?></option>
                         <option value="comm" <?= ($order === 'comm') ? 'selected' : '' ?>><?= _lang('comment_most') ?></option>
                         <option value="view" <?= ($order === 'view') ? 'selected' : '' ?>><?= _lang('view_most') ?></option>
                         <option value="like" <?= ($order === 'like') ? 'selected' : '' ?>><?= _lang('like_most') ?></option>

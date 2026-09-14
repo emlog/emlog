@@ -75,6 +75,9 @@ if (empty($action)) {
         case 'top':
             $orderBy .= 'top DESC, sortop DESC, date DESC';
             break;
+        case 'uncheck':
+            $orderBy .= 'checked ASC, date DESC';
+            break;
         default:
             $orderBy .= 'date DESC';
             break;

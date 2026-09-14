@@ -510,6 +510,7 @@ return [
     'uncategorized' => '未分类',
     'latest_post' => '最新发布',
     'top_priority' => '置顶优先',
+    'pending_priority' => '待审优先',
     'comment_most' => '评论最多',
     'view_most' => '浏览最多',
     'like_most' => '点赞最多',
