@@ -309,7 +309,7 @@ $isdraft = $draft ? '&draft=1' : '';
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <input type="text" id="authorSearchInput" class="form-control" autocomplete="off" placeholder="输入昵称、ID或拼音首字母缩写" style="transition: none !important;">
+                    <input type="text" id="authorSearchInput" class="form-control" autocomplete="off" placeholder="输入昵称、邮箱、ID或拼音首字母缩写" style="transition: none !important;">
                     <div id="authorSearchResults" class="list-group mt-2" style="max-height: 220px; overflow-y: auto; display: none; border: 1px solid #dee2e6; border-radius: 4px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); z-index: 1050; position: relative;">
                     </div>
                 </div>
@@ -471,6 +471,9 @@ $isdraft = $draft ? '&draft=1' : '';
                             $.each(res.data, function(idx, item) {
                                 var itemHtml = '<div class="list-group-item list-group-item-action py-2 px-3 search-author-item" style="cursor: pointer;" data-id="' + item.uid + '" data-name="' + item.nickname + '" onclick="window.selectAuthor(this)">';
                                 itemHtml += '<strong>' + item.nickname + '</strong>';
+                                if (item.email) {
+                                    itemHtml += ' <span class="text-muted small ml-1">&lt;' + item.email + '&gt;</span>';
+                                }
                                 itemHtml += ' <span class="badge badge-light float-right">ID: ' + item.uid + '</span>';
                                 itemHtml += '</div>';
                                 $results.append(itemHtml);

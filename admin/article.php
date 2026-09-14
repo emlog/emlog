@@ -109,7 +109,7 @@ if (empty($action)) {
 /**
  * 处理作者实时搜索的 AJAX 请求
  * 
- * 根据输入的关键字进行模糊匹配查询（支持用户ID、用户名或昵称），返回匹配的用户列表，用于文章更改作者时的下拉选择
+ * 根据输入的关键字进行模糊匹配查询（支持用户ID、用户名、昵称或邮箱），返回匹配的用户列表，用于文章更改作者时的下拉选择
  * 
  * @return void
  */
@@ -124,13 +124,14 @@ if ($action == 'search_author') {
     $termLower = strtolower($term);
     
     $db = Database::getInstance();
-    $res = $db->query("SELECT uid, nickname, username FROM " . DB_PREFIX . "user ORDER BY uid DESC");
+    $res = $db->query("SELECT uid, nickname, username, email FROM " . DB_PREFIX . "user ORDER BY uid DESC");
     $matchedUsers = [];
     
     while ($row = $db->fetch_array($res)) {
         $uid = (int)$row['uid'];
         $nickname = $row['nickname'] ?: $row['username'];
         $username = $row['username'];
+        $email = isset($row['email']) ? $row['email'] : '';
         
         $isMatch = false;
         if (empty($termLower)) {
@@ -141,6 +142,7 @@ if ($action == 'search_author') {
             } else {
                 $nicknameLower = strtolower($nickname);
                 $usernameLower = strtolower($username);
+                $emailLower = strtolower($email);
                 
                 $initials = '';
                 $len = mb_strlen($nickname, 'UTF-8');
@@ -185,6 +187,7 @@ if ($action == 'search_author') {
                 
                 if (stripos($nicknameLower, $termLower) !== false || 
                     stripos($usernameLower, $termLower) !== false || 
+                    stripos($emailLower, $termLower) !== false || 
                     stripos($initials, $termLower) !== false) {
                     $isMatch = true;
                 }
@@ -196,6 +199,7 @@ if ($action == 'search_author') {
                 'uid' => $uid,
                 'nickname' => htmlspecialchars($nickname),
                 'username' => htmlspecialchars($username),
+                'email' => htmlspecialchars($email),
             ];
             if (count($matchedUsers) >= 20) {
                 break;
