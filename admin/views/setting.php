@@ -81,30 +81,34 @@
                 <input class="custom-control-input" type="checkbox" value="y" name="comment_paging" id="comment_paging" <?= $conf_comment_paging ?> />
                 <label class="custom-control-label" for="comment_paging"><?= _lang('comment_paging'); ?></label>
             </div>
-            <div class="form-group form-inline">
-                <?= _lang('comment_per_page'); ?>：<input maxlength="5" style="width:80px;" class="form-control" value="<?= $comment_pnum ?>" name="comment_pnum" type="number" min="0" />
+            <div class="form-group form-inline mt-3">
+                <input maxlength="5" style="width:100px;" class="form-control" value="<?= $comment_pnum ?>" name="comment_pnum" id="comment_pnum" type="number" min="0" />
+                <label for="comment_pnum" class="ml-2"><?= _lang('comment_per_page'); ?></label>
             </div>
             <div class="form-group form-inline">
-                <?= _lang('comment_order'); ?>：<select name="comment_order" class="form-control" style="width: 120px;">
+                <select name="comment_order" id="comment_order" class="form-control" style="width: 100px;">
                     <option value="newer" <?= $ex3 ?>><?= _lang('newer_first'); ?></option>
                     <option value="older" <?= $ex4 ?>><?= _lang('older_first'); ?></option>
                 </select>
+                <label for="comment_order" class="ml-2"><?= _lang('comment_order'); ?></label>
             </div>
             <div class="form-group form-inline">
-                <?= _lang('comment_interval'); ?>： <input class="form-control mx-sm-3" value="<?= $comment_interval ?>" name="comment_interval" style="width:80px;" type="number" min="0" />
+                <input class="form-control" value="<?= $comment_interval ?>" name="comment_interval" id="comment_interval" style="width:100px;" type="number" min="0" />
+                <label for="comment_interval" class="ml-2"><?= _lang('comment_interval'); ?></label>
             </div>
             <hr>
             <h4><?= _lang('article_setting'); ?></h4>
             <div class="form-group form-inline">
-                <label><?= _lang('article_per_page'); ?></label>
-                <input class="form-control mx-sm-3" style="width:80px;" value="<?= $index_lognum ?>" name="index_lognum" type="number" min="1" />
+                <input class="form-control" style="width:100px;" value="<?= $index_lognum ?>" name="index_lognum" id="index_lognum" type="number" min="1" />
+                <label for="index_lognum" class="ml-2"><?= _lang('article_per_page'); ?></label>
             </div>
             <div class="form-group form-inline">
-                <?= _lang('rss_output'); ?> <input maxlength="5" style="width:80px;" value="<?= $rss_output_num ?>" type="number" min="0" class="form-control" name="rss_output_num" />（0为关闭），且输出
-                <select name="rss_output_fulltext" class="form-control">
+                <input maxlength="5" style="width:100px;" value="<?= $rss_output_num ?>" type="number" min="0" class="form-control" name="rss_output_num" id="rss_output_num" />
+                <select name="rss_output_fulltext" class="form-control ml-2" style="width:100px;">
                     <option value="y" <?= $ex1 ?>><?= _lang('rss_output_fulltext'); ?></option>
                     <option value="n" <?= $ex2 ?>><?= _lang('rss_output_abstract'); ?></option>
                 </select>
+                <label for="rss_output_num" class="ml-2"><?= _lang('rss_output'); ?>（0为关闭）</label>
             </div>
             <div class="alert alert-primary">
                 <?= _lang('rss_feed_url'); ?>：<?= $blogurl . 'rss.php' ?>
@@ -115,20 +119,21 @@
             </div>
             <hr>
             <h4><?= _lang('upload_setting'); ?></h4>
-            <div class="form-group form-inline">
-                <div class="custom-control custom-switch">
-                    <input type="checkbox" value="y" name="isthumbnail" id="isthumbnail" class="custom-control-input" <?= $conf_isthumbnail ?> />
-                    <label class="custom-control-label" for="isthumbnail"><?= _lang('upload_thumb'); ?></label>
-                </div>
-                ，<?= _lang('max_size'); ?>：
-                <input maxlength="5" style="width:80px;" class="form-control" value="<?= $att_imgmaxw ?>" name="att_imgmaxw" /> x
-                <input maxlength="5" style="width:80px;" class="form-control" value="<?= $att_imgmaxh ?>" name="att_imgmaxh" />（<?= _lang('unit_pixels'); ?>）
+            <div class="custom-control custom-switch">
+                <input type="checkbox" value="y" name="isthumbnail" id="isthumbnail" class="custom-control-input" <?= $conf_isthumbnail ?> />
+                <label class="custom-control-label" for="isthumbnail"><?= _lang('upload_thumb'); ?></label>
+            </div>
+            <div class="form-group form-inline mt-3">
+                <input maxlength="5" style="width:100px;" class="form-control" value="<?= $att_imgmaxw ?>" name="att_imgmaxw" placeholder="宽" />
+                <span class="mx-2 text-muted">x</span>
+                <input maxlength="5" style="width:100px;" class="form-control" value="<?= $att_imgmaxh ?>" name="att_imgmaxh" placeholder="高" />
+                <label class="ml-2"><?= _lang('max_size'); ?>（<?= _lang('unit_pixels'); ?>）</label>
             </div>
             <hr>
             <h4><?= _lang('panel_setting'); ?></h4>
             <div class="form-group form-inline">
-                <label><?= _lang('sidebar_menu_title'); ?></label>
-                <input class="form-control ml-2" value="<?= $panel_menu_title ?>" name="panel_menu_title">
+                <input class="form-control" style="width:200px;" value="<?= $panel_menu_title ?>" name="panel_menu_title" id="panel_menu_title">
+                <label for="panel_menu_title" class="ml-2"><?= _lang('sidebar_menu_title'); ?></label>
             </div>
             <div class="mt-4">
                 <a href="https://www.emlog.net/docs/install/config" target="_blank" class="text-secondary"><?= _lang('more_options'); ?> <i class="icofont-external-link"></i></a>

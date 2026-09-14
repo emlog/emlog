@@ -37,9 +37,9 @@
                 <input class="custom-control-input" type="checkbox" value="y" name="article_uneditable" id="article_uneditable" <?= $conf_article_uneditable ?> />
                 <label class="custom-control-label" for="article_uneditable"><?= _lang('article_uneditable'); ?></label>
             </div>
-            <div class="form-group form-inline">
-                <label for="posts_per_day"><?= _lang('register_post_limit'); ?></label>
-                <input class="form-control mx-sm-3" style="width:60px;" value="<?= $posts_per_day ?>" type="number" min="0" name="posts_per_day" id="posts_per_day" />
+            <div class="form-group form-inline mt-3">
+                <input class="form-control" style="width:100px;" value="<?= $posts_per_day ?>" type="number" min="0" name="posts_per_day" id="posts_per_day" />
+                <label for="posts_per_day" class="ml-2"><?= _lang('register_post_limit'); ?></label>
             </div>
             <div class="custom-control custom-switch">
                 <input class="custom-control-input" type="checkbox" value="y" name="allow_user_twitter" id="allow_user_twitter" <?= $conf_allow_user_twitter ?> />
@@ -50,20 +50,22 @@
                 <input class="custom-control-input" type="checkbox" value="y" name="forbid_user_upload" id="forbid_user_upload" <?= $conf_forbid_user_upload ?> />
                 <label class="custom-control-label" for="forbid_user_upload"><?= _lang('forbid_register_upload'); ?></label>
             </div>
-            <div class="form-group form-inline" id="form_att_maxsize">
-                <?= _lang('register_upload_max'); ?>：<input type="number" min="0" style="width:200px;" class="form-control" value="<?= $att_maxsize ?>" name="att_maxsize" /> （<?= _lang('unit_kb'); ?>）
+            <div class="form-group form-inline mt-3" id="form_att_maxsize">
+                <input type="number" min="0" style="width:100px;" class="form-control" value="<?= $att_maxsize ?>" name="att_maxsize" id="att_maxsize" />
+                <label for="att_maxsize" class="ml-2"><?= _lang('register_upload_max'); ?>（<?= _lang('unit_kb'); ?>）</label>
             </div>
             <div class="form-group form-inline" id="form_att_type">
-                <?= _lang('register_upload_type'); ?>：<input maxlength="200" style="width:500px;" class="form-control" value="<?= $att_type ?>" name="att_type" />（<?= _lang('separate_by_comma'); ?>）
+                <input maxlength="200" style="width:260px;" class="form-control" value="<?= $att_type ?>" name="att_type" id="att_type" />
+                <label for="att_type" class="ml-2"><?= _lang('register_upload_type'); ?>（<?= _lang('separate_by_comma'); ?>）</label>
             </div>
             <hr>
             <div class="form-group form-inline">
-                <label for="posts_name"><?= _lang('user_article_alias'); ?>：</label>
-                <input class="form-control mx-sm-3" style="width:80px;" value="<?= $posts_name ?>" name="posts_name" id="posts_name" /> <?= _lang('alias_example'); ?>
+                <input class="form-control" style="width:100px;" value="<?= $posts_name ?>" name="posts_name" id="posts_name" />
+                <label for="posts_name" class="ml-2"><?= _lang('user_article_alias'); ?>（<?= _lang('alias_example'); ?>）</label>
             </div>
             <div class="form-group form-inline">
-                <label for="twitter_name"><?= _lang('user_twitter_alias'); ?>：</label>
-                <input class="form-control mx-sm-3" style="width:80px;" value="<?= $twitter_name ?>" name="twitter_name" id="twitter_name" /> <?= _lang('twitter_alias_example'); ?>
+                <input class="form-control" style="width:100px;" value="<?= $twitter_name ?>" name="twitter_name" id="twitter_name" />
+                <label for="twitter_name" class="ml-2"><?= _lang('user_twitter_alias'); ?>（<?= _lang('twitter_alias_example'); ?>）</label>
             </div>
             <div class="form-group">
                 <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
