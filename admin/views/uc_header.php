@@ -408,8 +408,11 @@
                                 <i class="icofont-penalty-card"></i><?= Option::get('twitter_name') ?>
                             </a>
                         <?php endif ?>
+                        <?php
+                        $hidecmnum = isset($sta_cache[UID]['hidecommentnum']) ? (int)$sta_cache[UID]['hidecommentnum'] : 0;
+                        ?>
                         <a href="comment.php" class="uc-menu-item" id="menu_cm">
-                            <i class="icofont-comment"></i><?= _lang('comment') ?>
+                            <i class="icofont-comment"></i><?= _lang('comment') ?><?php if ($hidecmnum > 0): ?><i class="sidebar-update-dot" title="<?= _lang('pending_audit') ?> (<?= $hidecmnum ?>)"></i><?php endif; ?>
                         </a>
                         <?php doAction('user_menu') ?>
                     </div>

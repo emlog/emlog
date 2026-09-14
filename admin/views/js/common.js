@@ -1054,6 +1054,18 @@ $(document).ready(function () {
             $('#menu_category_view > .nav-link .sidebar-update-dot').show();
         }
     });
+
+    // 监听文章折叠菜单的展开与收起，展开时只展示在子菜单文章上，收起时恢复主菜单上的提示（确保二者绝不同时展示）
+    var $contentMenu = $('#menu_category_content > .nav-link');
+    var isContentExpanded = $('#menu_content').hasClass('show') || ($contentMenu.length && !$contentMenu.hasClass('collapsed')) || ($('#menu_log').is(':visible'));
+    if (isContentExpanded) {
+        $contentMenu.find('.sidebar-update-dot').hide();
+    }
+    $('#menu_content').on('show.bs.collapse shown.bs.collapse', function () {
+        $('#menu_category_content > .nav-link .sidebar-update-dot').hide();
+    }).on('hide.bs.collapse hidden.bs.collapse', function () {
+        $('#menu_category_content > .nav-link .sidebar-update-dot').show();
+    });
 });
 
 

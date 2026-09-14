@@ -2544,9 +2544,12 @@ textarea.form-control {
     animation: dot-breathe 2.8s ease-in-out infinite;
 }
 
-/* 当外观菜单展开或子菜单可见时，绝不同时在外观主菜单上显示红点，仅在模板子菜单上显示 */
+/* 当外观与文章折叠菜单展开或子菜单可见时，绝不同时在主菜单上显示红点，仅在子菜单上显示 */
 #menu_category_view > .nav-link:not(.collapsed) .sidebar-update-dot,
 #menu_category_view:has(#menu_view.show) > .nav-link .sidebar-update-dot,
-#menu_category_view:has(#menu_view:not(.collapse)) > .nav-link .sidebar-update-dot {
+#menu_category_view:has(#menu_view:not(.collapse)) > .nav-link .sidebar-update-dot,
+#menu_category_content > .nav-link:not(.collapsed) .sidebar-update-dot,
+#menu_category_content:has(#menu_content.show) > .nav-link .sidebar-update-dot,
+#menu_category_content:has(#menu_content:not(.collapse)) > .nav-link .sidebar-update-dot {
     display: none !important;
 }

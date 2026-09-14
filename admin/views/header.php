@@ -42,14 +42,17 @@
             <li class="nav-item" id="menu_panel">
                 <a class="nav-link" href="./"><i class="icofont-dashboard icofont-1x"></i><span><?= _lang('dashboard') ?></span></a>
             </li>
+            <?php
+            $checknum = User::haveEditPermission() ? (isset($sta_cache['checknum']) ? (int)$sta_cache['checknum'] : 0) : 0;
+            ?>
             <li class="nav-item" id="menu_category_content">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#menu_content" aria-expanded="true" aria-controls="menu_content">
-                    <i class="icofont-pencil-alt-5"></i><span><?= _lang('article') ?></span>
+                    <i class="icofont-pencil-alt-5"></i><span><?= _lang('article') ?><?php if ($checknum > 0): ?><i class="sidebar-update-dot" title="<?= _lang('pending_audit') ?> (<?= $checknum ?>)"></i><?php endif; ?></span>
                 </a>
                 <div id="menu_content" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="z-index: 1055;">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" id="menu_write" href="article.php?action=write"><?= _lang('write_article') ?></a>
-                        <a class="collapse-item" id="menu_log" href="article.php"><?= _lang('article') ?></a>
+                        <a class="collapse-item" id="menu_log" href="article.php"><?= _lang('article') ?><?php if ($checknum > 0): ?><i class="sidebar-update-dot" title="<?= _lang('pending_audit') ?> (<?= $checknum ?>)"></i><?php endif; ?></a>
                         <a class="collapse-item" id="menu_draft" href="article.php?draft=1"><?= _lang('draft') ?></a>
                         <?php if (User::isAdmin()): ?>
                             <a class="collapse-item" id="menu_sort" href="sort.php"><?= _lang('category') ?></a>
@@ -60,14 +63,11 @@
             </li>
             <li class="nav-item" id="menu_cm">
                 <?php
-                $hidecmnum = User::haveEditPermission() ? (isset($sta_cache['hidecomnum']) ? $sta_cache['hidecomnum'] : 0) : (isset($sta_cache[UID]['hidecommentnum']) ? $sta_cache[UID]['hidecommentnum'] : 0);
+                $hidecmnum = User::haveEditPermission() ? (isset($sta_cache['hidecomnum']) ? (int)$sta_cache['hidecomnum'] : 0) : (isset($sta_cache[UID]['hidecommentnum']) ? (int)$sta_cache[UID]['hidecommentnum'] : 0);
                 ?>
-                <div class="nav-link d-flex align-items-center justify-content-between">
-                    <a href="comment.php" class="text-decoration-none text-reset flex-grow-1"><i class="icofont-comment"></i><span><?= _lang('comment') ?></span></a>
-                    <?php if ($hidecmnum > 0): ?>
-                        <a href="comment.php?hide=y" class="badge badge-danger badge-pill sidebar-badge-counter" title="<?= _lang('pending_audit') ?>"><?= $hidecmnum > 99 ? '99+' : $hidecmnum ?></a>
-                    <?php endif; ?>
-                </div>
+                <a class="nav-link" href="comment.php">
+                    <i class="icofont-comment"></i><span><?= _lang('comment') ?><?php if ($hidecmnum > 0): ?><i class="sidebar-update-dot" title="<?= _lang('pending_audit') ?> (<?= $hidecmnum ?>)"></i><?php endif; ?></span>
+                </a>
             </li>
             <li class="nav-item" id="menu_twitter">
                 <a class="nav-link" href="twitter.php"><i class="icofont-penalty-card"></i><span><?= _lang('twitter') ?></span></a>
