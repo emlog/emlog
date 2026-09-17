@@ -10,6 +10,11 @@ defined('EMLOG_ROOT') || exit('access denied!');
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= _langTpl('page_not_found_title') ?></title>
+    <?php
+    $favicon = Option::get('favicon') ? Option::get('favicon') : (function_exists('_g') ? _g('favicon') : '');
+    if (!empty($favicon)): ?>
+        <link href="<?= $favicon ?>" rel="icon">
+    <?php endif; ?>
     <link href="<?= TEMPLATE_URL ?>css/style.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>" rel="stylesheet" type="text/css" />
     <script>
         // 初始化主题模式

@@ -33,6 +33,11 @@ class Option
                     return realUrl();
                 }
                 return $options_cache['blogurl'];
+            case 'favicon':
+                if (!empty($options_cache['favicon'])) {
+                    return getFileUrl($options_cache['favicon']);
+                }
+                return '';
             case 'posts_name':
                 if (empty($options_cache['posts_name'])) {
                     return '文章';

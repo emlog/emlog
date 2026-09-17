@@ -25,7 +25,11 @@ if (!function_exists('_g')) {
     <title><?= $site_title ?></title>
     <meta name="keywords" content="<?= $site_key ?>" />
     <meta name="description" content="<?= $site_description ?>" />
-    <link href="<?= empty(_g('favicon')) ? BLOG_URL . 'favicon.ico' : _g('favicon'); ?>" rel="icon">
+    <?php
+    $favicon = Option::get('favicon') ? Option::get('favicon') : (function_exists('_g') ? _g('favicon') : '');
+    if (!empty($favicon)): ?>
+        <link href="<?= $favicon ?>" rel="icon">
+    <?php endif; ?>
     <link rel="alternate" title="RSS" href="<?= BLOG_URL ?>rss.php" type="application/rss+xml" />
     <link href="<?= TEMPLATE_URL ?>css/style.css?v=<?= $v ?>&t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>" rel="stylesheet" />
     <link href="<?= TEMPLATE_URL ?>css/icon/iconfont.css?v=<?= $v ?>&t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>" rel="stylesheet" />

@@ -17,6 +17,7 @@ if (empty($action)) {
     $options_cache = $CACHE->readCache('options');
     extract($options_cache);
 
+    $favicon = isset($favicon) ? $favicon : '';
     $conf_comment_code = $comment_code == 'y' ? 'checked="checked"' : '';
     $conf_iscomment = $iscomment == 'y' ? 'checked="checked"' : '';
     $conf_login_comment = $login_comment == 'y' ? 'checked="checked"' : '';
@@ -163,6 +164,7 @@ if ($action == 'save') {
         'blogname'            => Input::postStrVar('blogname'),
         'blogurl'             => Input::postStrVar('blogurl'),
         'bloginfo'            => Input::postStrVar('bloginfo'),
+        'favicon'             => Input::postStrVar('favicon'),
         'icp'                 => Input::postStrVar('icp'),
         'footer_info'         => Input::postStrVar('footer_info'),
         'index_lognum'        => Input::postIntVar('index_lognum'),
@@ -208,6 +210,33 @@ if ($action == 'save') {
     }
     $CACHE->updateCache(array('tags', 'options', 'comment', 'record'));
     Output::ok();
+}
+
+if ($action == 'upload_favicon') {
+    LoginAuth::checkToken();
+    $attach = isset($_FILES['favicon_file']) ? $_FILES['favicon_file'] : '';
+    $extension = !empty($attach['name']) ? getFileSuffix($attach['name']) : '';
+    $allowed_exts = ['ico', 'png', 'jpg', 'jpeg', 'webp'];
+    if (!in_array($extension, $allowed_exts)) {
+        Output::error(_lang('upload_favicon_error'));
+    }
+    $uploadCheckResult = Media::checkUpload($attach);
+    if ($uploadCheckResult !== true) {
+        Output::error($uploadCheckResult);
+    }
+    $ret = '';
+    addAction('upload_media', 'upload2local');
+    doOnceAction('upload_media', $attach, $ret);
+    if (empty($ret['success'])) {
+        Output::error($ret['message']);
+    }
+    $file_path = !empty($ret['file_info']['file_path']) ? $ret['file_info']['file_path'] : (!empty($ret['url']) ? $ret['url'] : '');
+    $Media_Model = new Media_Model();
+    $Media_Model->addMedia($ret['file_info']);
+    Output::ok([
+        'file_path' => $file_path,
+        'url'       => getFileUrl($file_path),
+    ]);
 }
 
 if ($action == 'seo') {

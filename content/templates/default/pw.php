@@ -12,6 +12,11 @@ defined('EMLOG_ROOT') || exit('access denied!');
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title><?= _langTpl('enter_password_title') ?></title>
+    <?php
+    $favicon = Option::get('favicon') ? Option::get('favicon') : (function_exists('_g') ? _g('favicon') : '');
+    if (!empty($favicon)): ?>
+        <link href="<?= $favicon ?>" rel="icon">
+    <?php endif; ?>
     <style>
         * {
             box-sizing: border-box;

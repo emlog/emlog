@@ -26,6 +26,21 @@
                 <textarea name="bloginfo" cols="" rows="3" class="form-control"><?= $bloginfo ?></textarea>
             </div>
             <div class="form-group">
+                <label><?= _lang('site_favicon'); ?></label>
+                <div>
+                    <label for="favicon_file" class="d-inline-flex align-items-center mb-0" style="cursor: pointer;">
+                        <div class="border rounded p-1 bg-light text-center d-flex align-items-center justify-content-center" style="width: 42px; height: 42px;">
+                            <img id="favicon_preview" src="<?= !empty($favicon) ? getFileUrl($favicon) : '' ?>" width="32" height="32" class="rounded" alt="favicon" <?= empty($favicon) ? 'style="display:none;"' : '' ?> />
+                            <i id="favicon_placeholder" class="icofont-plus text-muted" <?= !empty($favicon) ? 'style="display:none;"' : '' ?> style="font-size: 18px;"></i>
+                        </div>
+                        <input type="file" id="favicon_file" accept=".ico,.png,.jpg,.jpeg,.webp" style="display: none;" />
+                        <button type="button" id="favicon_rm" class="btn-sm btn btn-link ml-1" <?php if (empty($favicon)): ?>style="display:none" <?php endif ?>>x</button>
+                    </label>
+                    <input type="hidden" name="favicon" id="favicon_val" value="<?= $favicon ?>">
+                    <small class="form-text text-muted"><?= _lang('site_favicon_desc'); ?></small>
+                </div>
+            </div>
+            <div class="form-group">
                 <label><?= _lang('site_url'); ?></label>
                 <input class="form-control" value="<?= $blogurl ?>" name="blogurl" type="url" required>
             </div>
@@ -155,6 +170,56 @@
         $("#setting_form").submit(function(event) {
             event.preventDefault();
             submitForm("#setting_form");
+        });
+
+        // 站点图标上传
+        $("#favicon_file").change(function() {
+            var file = this.files[0];
+            if (!file) {
+                return;
+            }
+            var formData = new FormData();
+            formData.append('favicon_file', file);
+            formData.append('token', $('#token').val());
+
+            var loadIndex = (typeof layer !== 'undefined' && layer.load) ? layer.load(1) : null;
+            $.ajax({
+                url: './setting.php?action=upload_favicon',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                dataType: 'json',
+                success: function(resp) {
+                    if (loadIndex !== null && typeof layer !== 'undefined') layer.close(loadIndex);
+                    if (resp.code === 0) {
+                        var url = resp.data.url || resp.data.file_path;
+                        var rawPath = resp.data.file_path || resp.data.url;
+                        $("#favicon_preview").attr("src", url).show();
+                        $("#favicon_placeholder").hide();
+                        $("#favicon_val").val(rawPath);
+                        $("#favicon_rm").show();
+                    } else {
+                        infoAlert(resp.msg || "<?= _lang('upload_favicon_error') ?>");
+                    }
+                },
+                error: function() {
+                    if (loadIndex !== null && typeof layer !== 'undefined') layer.close(loadIndex);
+                    infoAlert("<?= _lang('upload_favicon_error') ?>");
+                },
+                complete: function() {
+                    $("#favicon_file").val('');
+                }
+            });
+        });
+
+        // 删除站点图标
+        $('#favicon_rm').click(function(e) {
+            e.preventDefault();
+            $("#favicon_preview").attr("src", "").hide();
+            $("#favicon_placeholder").show();
+            $("#favicon_val").val('');
+            $('#favicon_rm').hide();
         });
 
         // 设置界面: 自动检测站点地址 如果设置“自动检测地址”，则设置 input 为只读，以表示该项是无效的

@@ -8,7 +8,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name=renderer content=webkit>
     <title><?= _lang('admin_center') ?> - <?= Option::get('blogname') ?></title>
-    <link rel="shortcut icon" href="./views/images/favicon.ico" />
+    <?php if (Option::get('favicon')): ?>
+        <link rel="shortcut icon" href="<?= Option::get('favicon') ?>" />
+    <?php endif; ?>
     <link rel="stylesheet" type="text/css" href="./editor.md/css/editormd.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>">
     <link rel="stylesheet" type="text/css" href="./views/css/bootstrap-sbadmin-4.5.3.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>">
     <link rel="stylesheet" type="text/css" href="./views/css/css-main.css?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>">
