@@ -264,6 +264,7 @@ if ($plugins) {
         $.ajax({
             type: "GET",
             url: "./plugin.php",
+            dataType: "json",
             data: {
                 action: action,
                 plugin: plugin,
@@ -271,23 +272,39 @@ if ($plugins) {
                 filter: filter
             },
             success: function(response) {
-                if (response.code === 0) {
+                if (typeof response === 'string') {
+                    try {
+                        response = JSON.parse(response);
+                    } catch (e) {
+                        switchElement.checked = !originalState;
+                        cocoMessage.error(response.substring(0, 200), 4000);
+                        return;
+                    }
+                }
+                if (response && response.code === 0) {
                     cocoMessage.success(response.data);
                     updatePluginSettingLink(switchId, action);
                     updateCurrentCount();
                 } else {
                     switchElement.checked = !originalState;
-                    cocoMessage.error(response.data, 4000);
+                    var errorMsg = (response && response.msg) ? response.msg : ((response && response.data) ? response.data : (JSON.stringify(response) || '').substring(0, 200));
+                    cocoMessage.error(errorMsg || '操作失败', 4000);
                 }
             },
             error: function(xhr) {
                 switchElement.checked = !originalState;
+                var errorMsg = '';
                 try {
-                    const errorResponse = JSON.parse(xhr.responseText);
-                    cocoMessage.error(errorResponse.msg, 4000);
-                } catch (e) {
-                    cocoMessage.error(`HTTP ${xhr.status}`, 4000);
+                    var parsed = JSON.parse(xhr.responseText);
+                    if (parsed && parsed.msg) {
+                        errorMsg = parsed.msg;
+                    }
+                } catch (e) {}
+
+                if (!errorMsg) {
+                    errorMsg = xhr.responseText ? xhr.responseText.substring(0, 200) : `HTTP ${xhr.status}`;
                 }
+                cocoMessage.error(errorMsg, 4000);
             },
             complete: function() {
                 switchElement.disabled = false;
