@@ -155,7 +155,7 @@
             </div>
             <hr>
             <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
-            <input type="submit" value="<?= _lang('save'); ?>" class="btn btn-sm btn-success" />
+            <input type="submit" value="<?= _lang('save_setting'); ?>" class="btn btn-sm btn-success" />
         </form>
     </div>
 </div>

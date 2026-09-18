@@ -21,6 +21,7 @@ return [
     'home' => 'Home',
     'delete' => 'Delete',
     'save' => 'Save',
+    'save_setting' => 'Save Settings',
     'cancel' => 'Cancel',
     'close' => 'Close',
     'publish' => 'Publish',

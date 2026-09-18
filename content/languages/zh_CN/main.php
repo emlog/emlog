@@ -21,6 +21,7 @@ return [
     'home' => '首页',
     'delete' => '删除',
     'save' => '保存',
+    'save_setting' => '保存设置',
     'cancel' => '取消',
     'close' => '关闭',
     'publish' => '发布',
