@@ -424,6 +424,10 @@ return [
     'article_title' => '文章标题',
     'article_site_title' => '文章标题 - 站点标题',
     'article_site_browser_title' => '文章标题 - 站点浏览器标题',
+    'more_seo_feature' => '更多SEO功能',
+    'sitemap_plugin' => '站点地图插件',
+    'spider_log_plugin' => '爬虫记录插件',
+    'more_seo_plugins' => '更多SEO插件',
 
     // Setting - API
     'enable_api' => '开启API',
@@ -448,6 +452,7 @@ return [
     'ai_app' => 'AI 应用',
     'chat_talk' => 'AI助手',
     'generate_image' => '生成图像',
+    'ai_writing' => '智能写作',
     'more_ai_apps' => '更多AI应用',
     'add_chat_model' => '添加文本对话模型',
     'edit_ai_model' => '编辑AI模型',

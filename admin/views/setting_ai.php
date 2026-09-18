@@ -155,7 +155,7 @@
     </div>
     <div class="card-body">
         <div class="row">
-            <div class="col-md-4 mb-3">
+            <div class="col-md-3 mb-3">
                 <div class="card h-100">
                     <div class="card-body d-flex flex-column align-items-center justify-content-center">
                         <a type="button" class="" data-toggle="modal" data-target="#aiChatModal">
@@ -164,7 +164,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 mb-3">
+            <div class="col-md-3 mb-3">
                 <div class="card h-100">
                     <div class="card-body d-flex flex-column align-items-center justify-content-center">
                         <a type="button" class="" data-toggle="modal" data-target="#aiImageModal">
@@ -173,7 +173,16 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 mb-3">
+            <div class="col-md-3 mb-3">
+                <div class="card h-100">
+                    <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                        <a type="button" class="" href="store.php?keyword=AI超级助手">
+                            <?= _lang('ai_writing'); ?>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
                 <div class="card h-100">
                     <div class="card-body d-flex flex-column align-items-center justify-content-center">
                         <a type="button" class="" href="store.php?action=plu&keyword=AI">

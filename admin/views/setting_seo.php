@@ -112,6 +112,45 @@
         </form>
     </div>
 </div>
+
+<!-- 更多SEO功能区域 -->
+<div class="card shadow mb-4">
+    <div class="card-header">
+        <h5 class="mb-0"><?= _lang('more_seo_feature'); ?></h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-3 mb-3">
+                <div class="card h-100">
+                    <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                        <a type="button" class="" href="store.php?keyword=站点地图">
+                            <?= _lang('sitemap_plugin'); ?>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card h-100">
+                    <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                        <a type="button" class="" href="store.php?keyword=爬虫记录">
+                            <?= _lang('spider_log_plugin'); ?>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card h-100">
+                    <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                        <a type="button" class="" href="store.php?action=plu&sid=2">
+                            <?= _lang('more_seo_plugins'); ?>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     $(function() {
         setTimeout(hideActived, 3600);

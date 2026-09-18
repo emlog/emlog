@@ -424,6 +424,10 @@ return [
     'article_title' => 'Article Title',
     'article_site_title' => 'Article Title - Site Title',
     'article_site_browser_title' => 'Article Title - Browser Title',
+    'more_seo_feature' => 'More SEO Features',
+    'sitemap_plugin' => 'Sitemap Plugin',
+    'spider_log_plugin' => 'Spider Log Plugin',
+    'more_seo_plugins' => 'More SEO Plugins',
 
     // Setting - API
     'enable_api' => 'Enable API',
@@ -449,6 +453,7 @@ return [
     'ai_app' => 'AI Apps',
     'chat_talk' => 'Chat',
     'generate_image' => 'Generate Image',
+    'ai_writing' => 'Smart Writing',
     'more_ai_apps' => 'More AI Apps',
     'edit_ai_model' => 'Edit AI Model',
     'ai_generate_image' => 'AI Image Generation',
