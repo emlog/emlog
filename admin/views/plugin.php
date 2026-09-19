@@ -96,7 +96,7 @@ if ($plugins) {
                                                         ｜ <a href="<?= $val['ShowUrl'] ?>" target="_blank"><i class="icofont-link icofont-1x"></i></a>
                                                     <?php endif ?>
                                                 </p>
-                                                <p class="mb-0 m-2 small"><?= $val['Description'] ?> <?php if (strpos($val['Url'], 'https://www.emlog.net') === 0): ?><a href="<?= $val['Url'] ?>" target="_blank"><?= _lang('more_info') ?>&raquo;</a><?php endif ?></p>
+                                                <p class="mb-0 m-2 small text-muted" title="<?= htmlspecialchars(strip_tags($val['Description'])) ?>"><?= subString($val['Description'], 0, 80) ?> <?php if (strpos($val['Url'], 'https://www.emlog.net') === 0): ?><a href="<?= $val['Url'] ?>" target="_blank"><?= _lang('more_info') ?>&raquo;</a><?php endif ?></p>
                                             </div>
                                         </div>
                                     </div>
