@@ -426,7 +426,7 @@ return [
     'article_site_browser_title' => '文章标题 - 站点浏览器标题',
     'more_seo_feature' => '更多SEO功能',
     'sitemap_plugin' => '站点地图插件',
-    'spider_log_plugin' => '爬虫记录插件',
+    'spider_log_plugin' => '站点推送-爬虫记录',
     'more_seo_plugins' => '更多SEO插件',
 
     // Setting - API

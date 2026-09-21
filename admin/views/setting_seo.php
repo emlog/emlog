@@ -132,7 +132,7 @@
             <div class="col-md-3 mb-3">
                 <div class="card h-100">
                     <div class="card-body d-flex flex-column align-items-center justify-content-center">
-                        <a type="button" class="" href="store.php?keyword=爬虫记录">
+                        <a type="button" class="" href="store.php?keyword=站点推送-爬虫记录">
                             <?= _lang('spider_log_plugin'); ?>
                         </a>
                     </div>
