@@ -24,6 +24,7 @@ return [
     'logo_type_name' => 'LOGO Display Mode',
     'text' => 'Text',
     'image' => 'Image',
+    'text_image' => 'Image and text',
     'logo_img_name' => 'Upload LOGO',
     'logo_img_desc' => 'Upload LOGO image, recommended size 180x60 pixels, height not exceeding 60 pixels',
     'favicon_name' => 'Browser Icon (favicon)',

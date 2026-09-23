@@ -22,10 +22,10 @@ $options = [
         'labels'  => 'tpl-head',
         'type'    => 'radio',
         'name'    => _langTpl('logo_type_name'),
-        'new'     => 'NEW',
         'values'  => [
             '1' => _langTpl('text'),
             '0' => _langTpl('image'),
+            '2' => _langTpl('text_image'),
         ],
         'default' => '1',
     ],

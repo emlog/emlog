@@ -24,6 +24,7 @@ return [
     'logo_type_name' => 'LOGO显示模式',
     'text' => '文字',
     'image' => '图片',
+    'text_image' => '图文',
     'logo_img_name' => 'LOGO上传',
     'logo_img_desc' => '上传LOGO图片，推荐尺寸 180x60像素，高度不超60像素',
     'favicon_name' => '浏览器图标（favicon）',

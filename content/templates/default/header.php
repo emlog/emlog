@@ -67,8 +67,18 @@ if (!function_exists('_g')) {
             <?php if (_em('logotype') == 1): ?>
                 <a class="blog-header-title" href="<?= BLOG_URL ?>"><?= $blogname ?></a>
                 <div class="blog-header-subtitle subtitle-overflow" title="<?= $bloginfo ?>"><?= $bloginfo ?></div>
+            <?php elseif (_em('logotype') == 2): ?>
+                <a class="blog-header-brand" href="<?= BLOG_URL ?>" title="<?= $blogname ?><?= !empty($bloginfo) ? ' - ' . $bloginfo : '' ?>">
+                    <img class="blog-header-logo" src="<?= _em('logoimg') ?>" alt="<?= $blogname ?>">
+                    <div class="blog-header-brand-text">
+                        <span class="blog-header-brand-name"><?= $blogname ?></span>
+                        <?php if (!empty($bloginfo)): ?>
+                            <span class="blog-header-brand-desc" title="<?= $bloginfo ?>"><?= $bloginfo ?></span>
+                        <?php endif; ?>
+                    </div>
+                </a>
             <?php else: ?>
-                <a href="<?= BLOG_URL; ?>" title="<?= $bloginfo; ?>"><img src="<?= _em('logoimg'); ?>" alt="<?= $blogname; ?>" /></a>
+                <a class="blog-header-imglink" href="<?= BLOG_URL ?>" title="<?= $bloginfo ?>"><img class="blog-header-img" src="<?= _em('logoimg') ?>" alt="<?= $blogname ?>" /></a>
             <?php endif; ?>
             <div class="blog-header-toggle">
                 <svg class="blogtoggle-icon">
