@@ -573,6 +573,7 @@ return [
     'this_article_comments' => 'Comments on this article',
     'delete_selected_comments' => 'Delete selected comments?',
     'reply_comment' => 'Reply Comment',
+    'edit_comment' => 'Edit Comment',
     'reply' => 'Reply',
     'ai_generating' => 'AI Generating...',
     'ai_generate_failed' => 'AI Generation Failed',

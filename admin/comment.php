@@ -147,3 +147,25 @@ if ($action === 'doreply') {
     doAction('comment_reply', $commentId, $reply);
     FlashMsg::redirectAdmin('comment', 'active_rep');
 }
+
+if ($action === 'edit') {
+    if (!User::haveEditPermission()) {
+        emMsg('权限不足！', './');
+    }
+
+    $comment = Input::postStrVar('comment');
+    $commentId = Input::postIntVar('cid');
+
+    if (empty($comment)) {
+        FlashMsg::redirectAdmin('comment', 'error_e');
+    }
+    if (strlen($comment) > 60000) {
+        FlashMsg::redirectAdmin('comment', 'error_d');
+    }
+
+    $Comment_Model->editComment($commentId, $comment);
+    $CACHE->updateCache('comment');
+    doAction('comment_edited', $commentId, $comment);
+    FlashMsg::redirectAdmin('comment', 'active_edit');
+}
+

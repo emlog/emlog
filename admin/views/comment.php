@@ -80,6 +80,10 @@
                                     <?php if (User::haveEditPermission()): ?>
                                         <a href="javascript: em_confirm('<?= $ip ?>', 'commentbyip', '<?= LoginAuth::genToken() ?>');" class="badge badge-pill badge-danger"><?= _lang('delete_by_ip') ?></a>
                                         <a href="javascript: em_confirm(<?= $cid ?>, 'comment', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger"><?= _lang('delete') ?></a>
+                                        <a href="#" data-toggle="modal" class="badge badge-primary" data-target="#editModal"
+                                            data-cid="<?= $cid ?>"
+                                            data-comment="<?= htmlspecialchars($value['comment_raw'], ENT_QUOTES, 'UTF-8') ?>"><?= _lang('edit') ?>
+                                        </a>
                                     <?php endif ?>
                                     <a href="#" data-toggle="modal" class="badge badge-success" data-target="#replyModal"
                                         data-cid="<?= $cid ?>"
@@ -161,6 +165,32 @@
         </div>
     </div>
 </div>
+<?php if (User::haveEditPermission()): ?>
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header border-0">
+                <h5 class="modal-title" id="editModalLabel"><?= _lang('edit_comment') ?></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="comment.php?action=edit" method="post">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input type="hidden" value="" name="cid" id="edit_cid" />
+                        <textarea class="form-control" id="edit_comment" name="comment" rows="5" required></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-sm btn-light" data-dismiss="modal"><?= _lang('cancel') ?></button>
+                    <button type="submit" class="btn btn-sm btn-primary"><?= _lang('save') ?></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<?php endif ?>
 
 <script>
     $(document).ready(function() {
@@ -187,6 +217,19 @@
 
         $('#replyModal').on('shown.bs.modal', function() {
             $('#reply').focus();
+        });
+
+        $('#editModal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            var comment = button.data('comment')
+            var cid = button.data('cid')
+            var modal = $(this)
+            modal.find('.modal-body #edit_cid').val(cid)
+            modal.find('.modal-body #edit_comment').val(comment)
+        })
+
+        $('#editModal').on('shown.bs.modal', function() {
+            $('#edit_comment').focus();
         });
 
         // AI 生成评论回复

@@ -156,6 +156,7 @@ class Comment_Model
             $row['mail'] = htmlspecialchars($row['mail']);
             $row['url'] = htmlspecialchars($row['url']);
             $row['title'] = isset($row['title']) ? htmlspecialchars($row['title'], ENT_QUOTES, 'UTF-8') : '';
+            $row['comment_raw'] = $row['comment'];
             $row['comment_text'] = htmlClean($row['comment']);
             $row['comment'] = parseUBB(htmlClean($row['comment']));
             $row['date'] = smartDate($row['date']);
@@ -275,6 +276,22 @@ class Comment_Model
     function likeComment($commentId)
     {
         $this->db->query("UPDATE $this->table SET like_count = like_count + 1 WHERE cid = $commentId");
+    }
+
+    /**
+     * 编辑评论内容
+     *
+     * @param int $commentId
+     * @param string $comment
+     * @return bool
+     */
+    function editComment($commentId, $comment)
+    {
+        if (!User::haveEditPermission()) {
+            emMsg('权限不足！', './');
+        }
+        $comment = addslashes($comment);
+        return $this->db->query("UPDATE $this->table SET comment='$comment' WHERE cid=$commentId");
     }
 
     function replyComment($blogId, $pid, $content, $hide)

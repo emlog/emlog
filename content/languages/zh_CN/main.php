@@ -573,6 +573,7 @@ return [
     'this_article_comments' => '该文所有评论',
     'delete_selected_comments' => '删除所选评论？',
     'reply_comment' => '回复评论',
+    'edit_comment' => '编辑评论',
     'reply' => '回复',
     'ai_generating' => 'AI生成中...',
     'ai_generate_failed' => 'AI 生成失败',
