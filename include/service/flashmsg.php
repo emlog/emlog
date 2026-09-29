@@ -205,9 +205,9 @@ class FlashMsg
     {
         $alertMap = array(
             'active_save' => array('type' => 'success', 'text' => _lang('save_success')),
-            'active_del' => array('type' => 'success', 'text' => _lang('link_delete_success')),
+            'active_del' => array('type' => 'success', 'text' => _lang('delete_success')),
             'active_hide' => array('type' => 'success', 'text' => _lang('hide_success')),
-            'active_show' => array('type' => 'success', 'text' => _lang('link_show_success')),
+            'active_show' => array('type' => 'success', 'text' => _lang('show_success')),
             'error_a' => array('type' => 'danger', 'text' => _lang('link_required')),
         );
         return self::renderAlertsByMap($sessionKey, $alertMap);

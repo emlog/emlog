@@ -560,6 +560,7 @@ return [
     'delete_draft_confirm' => '删除所选草稿？',
 
     // Comment Management
+    'show_success' => '显示成功',
     'hide_success' => '隐藏成功',
     'reply_success' => '回复成功',
     'select_operate_comment' => '请选择要操作的评论',

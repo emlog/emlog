@@ -560,6 +560,7 @@ return [
     'delete_draft_confirm' => 'Delete selected drafts?',
 
     // Comment Management
+    'show_success' => 'Shown successfully',
     'hide_success' => 'Hidden successfully',
     'reply_success' => 'Replied successfully',
     'select_operate_comment' => 'Please select comment to operate',
