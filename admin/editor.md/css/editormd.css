@@ -4524,3 +4524,183 @@ hr.editormd-page-break {
 .editormd-theme-dark .CodeMirror {
   border-right: 1px solid rgba(0, 0, 0, 0.1);
 }
+
+/* CodeMirror Modern Search & Replace Dialog */
+.CodeMirror-search-dialog {
+  position: absolute;
+  top: 12px;
+  right: 20px;
+  z-index: 99;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.05);
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 380px;
+  max-width: 480px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 13px;
+  color: #334155;
+  box-sizing: border-box;
+  animation: cmSearchFadeIn 0.15s ease-out;
+}
+
+@keyframes cmSearchFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.CodeMirror-search-row,
+.CodeMirror-replace-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+}
+
+.CodeMirror-search-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 0 8px;
+  transition: all 0.2s ease;
+}
+
+.CodeMirror-search-input-wrap:focus-within {
+  background: #ffffff;
+  border-color: #4e73df;
+  box-shadow: 0 0 0 2px rgba(78, 115, 223, 0.18);
+}
+
+.CodeMirror-search-icon {
+  flex-shrink: 0;
+  color: #94a3b8;
+  margin-right: 6px;
+}
+
+.CodeMirror-search-field,
+.CodeMirror-replace-field {
+  width: 100% !important;
+  border: none !important;
+  outline: none !important;
+  background: transparent !important;
+  padding: 5px 0 !important;
+  font-size: 13px !important;
+  color: #1e293b !important;
+  font-family: inherit !important;
+  line-height: 1.4 !important;
+}
+
+.CodeMirror-search-field::placeholder,
+.CodeMirror-replace-field::placeholder {
+  color: #94a3b8;
+  font-size: 12px;
+}
+
+.CodeMirror-search-count {
+  flex-shrink: 0;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: #64748b;
+  background: #e2e8f0;
+  margin-left: 6px;
+  white-space: nowrap;
+}
+
+.CodeMirror-search-count.has-match {
+  color: #0284c7;
+  background: #e0f2fe;
+}
+
+.CodeMirror-search-count.no-match {
+  color: #ef4444;
+  background: #fee2e2;
+}
+
+.CodeMirror-search-btn-group {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  flex-shrink: 0;
+}
+
+.CodeMirror-search-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 6px;
+  min-width: 26px;
+  height: 26px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background: transparent;
+  color: #64748b;
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 1;
+  transition: all 0.15s ease;
+  box-sizing: border-box;
+}
+
+.CodeMirror-search-btn:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+  border-color: #e2e8f0;
+}
+
+.CodeMirror-search-btn:active {
+  background: #e2e8f0;
+}
+
+.CodeMirror-search-btn.active {
+  background: #e0e7ff;
+  color: #4338ca;
+  border-color: #c7d2fe;
+}
+
+.CodeMirror-search-action-btn {
+  padding: 4px 8px;
+  font-size: 12px;
+  color: #475569;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+}
+
+.CodeMirror-search-action-btn:hover {
+  background: #e2e8f0;
+  color: #1e293b;
+  border-color: #94a3b8;
+}
+
+.CodeMirror-search-close-btn:hover {
+  background: #fee2e2;
+  color: #ef4444;
+  border-color: #fecaca;
+}
+
+.cm-searching {
+  background-color: rgba(254, 240, 138, 0.7) !important;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba(234, 179, 8, 0.4);
+}
+
+.editormd-fullscreen .CodeMirror-search-dialog {
+  top: 48px;
+  right: 24px;
+}
+

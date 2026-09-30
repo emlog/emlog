@@ -124,4 +124,19 @@ return [
     'ai_tool_complete' => '操作执行完毕。',
     'ai_tool_failed' => '执行失败',
     'ai_tool_network_error' => '网络连接异常：',
+
+    // Editor Search & Replace
+    'md_search' => '搜索',
+    'md_search_placeholder' => '搜索内容...',
+    'md_search_hint' => '支持 /re/ 正则',
+    'md_find_prev' => '上一个 (Shift+Enter)',
+    'md_find_next' => '下一个 (Enter)',
+    'md_toggle_replace' => '展开/收起替换',
+    'md_replace' => '替换',
+    'md_replace_placeholder' => '替换为...',
+    'md_replace_all' => '全部替换',
+    'md_close' => '关闭 (Esc)',
+    'md_no_match' => '无结果',
+    'md_match_count' => '%d / %d',
+    'md_replaced_count' => '已替换 %d 处',
 ];

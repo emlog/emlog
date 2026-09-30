@@ -124,4 +124,19 @@ return [
     'ai_tool_complete' => 'Operation execution completed.',
     'ai_tool_failed' => 'Execution Failed',
     'ai_tool_network_error' => 'Network connection anomaly: ',
+
+    // Editor Search & Replace
+    'md_search' => 'Search',
+    'md_search_placeholder' => 'Find...',
+    'md_search_hint' => 'Supports /re/ regex',
+    'md_find_prev' => 'Previous (Shift+Enter)',
+    'md_find_next' => 'Next (Enter)',
+    'md_toggle_replace' => 'Toggle Replace',
+    'md_replace' => 'Replace',
+    'md_replace_placeholder' => 'Replace with...',
+    'md_replace_all' => 'Replace All',
+    'md_close' => 'Close (Esc)',
+    'md_no_match' => 'No results',
+    'md_match_count' => '%d of %d',
+    'md_replaced_count' => 'Replaced %d occurrence(s)',
 ];
