@@ -1875,18 +1875,21 @@
                 }
             }
 
-            if (state.preview) {
-                codeMirror.width(editor.width());
-                var previewTop = (settings.toolbar && !settings.readOnly) ? toolbar.height() : 0;
-                preview.show().css({
-                    position: "absolute",
-                    top: previewTop,
-                    width: editor.width(),
-                    height: (settings.autoHeight && !state.fullscreen) ? "auto" : editor.height() - previewTop
-                });
+            if (state.preview && (!settings.watch || $(window).width() <= 767)) {
+                codeMirror.hide();
+                preview.show().width(editor.width());
+                this.previewContainer.css("padding", settings.autoHeight ? "20px 20px 50px 40px" : "20px");
+                var previewTop = (settings.toolbar && !settings.readOnly) ? toolbar.height() + 1 : 0;
+                preview.css("top", previewTop);
+                if (settings.autoHeight && !state.fullscreen) {
+                    preview.height("");
+                } else {
+                    var previewHeight = (settings.toolbar && !settings.readOnly) ? editor.height() - toolbar.height() : editor.height();
+                    preview.height(previewHeight);
+                }
             } else if (settings.watch) {
-                codeMirror.width(editor.width() / 2);
-                preview.width((!state.preview) ? editor.width() / 2 : editor.width());
+                codeMirror.show().width(editor.width() / 2);
+                preview.show().width(editor.width() / 2);
 
                 this.previewContainer.css("padding", settings.autoHeight ? "20px 20px 50px 40px" : "20px");
 
@@ -1896,7 +1899,7 @@
                     preview.css("top", 0);
                 }
 
-                if (settings.autoHeight && !state.fullscreen && !state.preview) {
+                if (settings.autoHeight && !state.fullscreen) {
                     preview.height("");
                 } else {
                     var previewHeight = (settings.toolbar && !settings.readOnly) ? editor.height() - toolbar.height() : editor.height();
@@ -1904,7 +1907,7 @@
                     preview.height(previewHeight);
                 }
             } else {
-                codeMirror.width(editor.width());
+                codeMirror.show().width(editor.width());
                 preview.hide();
             }
 
@@ -1928,7 +1931,7 @@
             var state = this.state;
             var settings = this.settings;
 
-            if (timer === null && !(!settings.watch && state.preview)) {
+            if (timer === null && !settings.watch && !state.preview) {
                 return this;
             }
 
@@ -2427,81 +2430,81 @@
                 return this;
             }
 
-            if (settings.toolbar && toolbar) {
-                var previewBtn = toolbar.find(".fa[name=preview]").parent();
-                previewBtn.toggleClass("active");
-                toolbar.find("li > a").not(previewBtn).toggleClass("disabled");
-            }
-
-            codeMirror.toggle();
-
-            var escHandle = function (event) {
-                if (event.shiftKey && event.keyCode === 27) {
-                    _this.previewed();
-                }
-            };
-
-            if (codeMirror.css("display") === "none") // 为了兼容Zepto，而不使用codeMirror.is(":hidden")
-            {
+            if (!this.state.preview) {
                 this.state.preview = true;
 
-                if (this.state.fullscreen) {
-                    preview.css("background", "#fff");
-                }
-
-                editor.find("." + this.classPrefix + "preview-close-btn").hide();
-
-                if (!settings.watch) {
-                    this.save();
-                } else {
-                    previewContainer.css("padding", "");
-                }
-
-                previewContainer.addClass(this.classPrefix + "preview-active");
-
-                var topHeight = (settings.toolbar && toolbar) ? toolbar.height() : 0;
-                preview.show().css({
-                    position: "absolute",
-                    top: topHeight,
-                    width: editor.width(),
-                    height: (settings.autoHeight && !this.state.fullscreen) ? "auto" : editor.height() - topHeight
-                });
-
-                var deviceSwitch = editor.find("." + this.classPrefix + "preview-device-switch");
-                if (deviceSwitch.length > 0) {
-                    deviceSwitch.css("top", (topHeight + 10) + "px").show();
-                    deviceSwitch.find("a").removeClass("active");
-                    deviceSwitch.find("a[data-device=desktop]").addClass("active");
-                    previewContainer.removeClass("preview-mobile");
-                    preview.removeClass("preview-mobile-wrap").css("background", "#fff");
-
-                    deviceSwitch.find("a").off("click").on("click", function (e) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        var $this = $(this);
-                        var device = $this.attr("data-device");
-                        deviceSwitch.find("a").removeClass("active");
-                        $this.addClass("active");
-
-                        if (device === "mobile") {
-                            previewContainer.addClass("preview-mobile");
-                            preview.addClass("preview-mobile-wrap").css("background", "#f8fafc");
-                        } else {
-                            previewContainer.removeClass("preview-mobile");
-                            preview.removeClass("preview-mobile-wrap").css("background", "#fff");
-                        }
-                    });
+                if (settings.toolbar && toolbar) {
+                    var previewBtn = toolbar.find(".fa[name=preview]").parent();
+                    previewBtn.addClass("active");
                 }
 
                 if (this.state.loaded) {
                     $.proxy(settings.onpreviewing, this)();
                 }
 
-                $(window).bind("keyup", escHandle);
+                var isMobile = $(window).width() <= 767;
+
+                if (isMobile) {
+                    this.state.watching = settings.watch = false;
+                    this.codeMirror.hide();
+                    this.preview.show();
+                    this.save().resize();
+                } else {
+                    this.state.watching = settings.watch = true;
+                    this.preview.show();
+                    this.codeMirror.show().css("border-right", "1px solid #ddd");
+                    this.save().resize();
+                }
+
+                var deviceSwitch = editor.find("." + this.classPrefix + "preview-device-switch");
+                if (deviceSwitch.length > 0) {
+                    if (isMobile) {
+                        deviceSwitch.hide();
+                        previewContainer.removeClass("preview-mobile");
+                        preview.removeClass("preview-mobile-wrap").css("background", "#fff");
+                    } else {
+                        var topHeight = (settings.toolbar && toolbar) ? toolbar.height() : 0;
+                        deviceSwitch.css({
+                            "top": (topHeight + 10) + "px",
+                            "left": "75%"
+                        }).show();
+                        deviceSwitch.find("a").removeClass("active");
+                        deviceSwitch.find("a[data-device=desktop]").addClass("active");
+                        previewContainer.removeClass("preview-mobile");
+                        preview.removeClass("preview-mobile-wrap").css("background", "#fff");
+
+                        deviceSwitch.find("a").off("click").on("click", function (e) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            var $this = $(this);
+                            var device = $this.attr("data-device");
+                            deviceSwitch.find("a").removeClass("active");
+                            $this.addClass("active");
+
+                            if (device === "mobile") {
+                                previewContainer.addClass("preview-mobile");
+                                preview.addClass("preview-mobile-wrap").css("background", "#f8fafc");
+                            } else {
+                                previewContainer.removeClass("preview-mobile");
+                                preview.removeClass("preview-mobile-wrap").css("background", "#fff");
+                            }
+                        });
+                    }
+                }
+
+                var escHandle = function (event) {
+                    if (event.keyCode === 27) {
+                        _this.previewed();
+                    }
+                };
+
+                $(window).bind("keyup.editormdPreview", escHandle);
             } else {
-                $(window).unbind("keyup", escHandle);
+                $(window).unbind("keyup.editormdPreview");
                 this.previewed();
             }
+
+            return this;
         },
 
         /**
@@ -2518,45 +2521,33 @@
             var toolbar = this.toolbar;
             var settings = this.settings;
             var previewContainer = this.previewContainer;
-            var previewCloseBtn = editor.find("." + this.classPrefix + "preview-close-btn");
             var deviceSwitch = editor.find("." + this.classPrefix + "preview-device-switch");
 
             this.state.preview = false;
+            this.state.watching = settings.watch = false;
 
-            this.codeMirror.show();
+            this.codeMirror.show().css("border-right", "none");
+            this.preview.hide();
 
             if (deviceSwitch.length > 0) {
-                deviceSwitch.hide().find("a").off(editormd.mouseOrTouch("click", "touchend"));
+                deviceSwitch.hide().find("a").off("click");
                 previewContainer.removeClass("preview-mobile");
+                preview.removeClass("preview-mobile-wrap").css("background", "");
             }
 
             if (settings.toolbar && toolbar) {
-                toolbar.show();
                 toolbar.find(".fa[name=preview]").parent().removeClass("active");
-                toolbar.find("li > a").removeClass("disabled");
             }
-
-            preview[(settings.watch) ? "show" : "hide"]();
-
-            previewCloseBtn.hide().unbind(editormd.mouseOrTouch("click", "touchend"));
 
             previewContainer.removeClass(this.classPrefix + "preview-active");
 
-            if (settings.watch) {
-                previewContainer.css("padding", "20px");
-            }
-
-            preview.css({
-                background: null,
-                position: "absolute",
-                width: editor.width() / 2,
-                height: (settings.autoHeight && !this.state.fullscreen) ? "auto" : editor.height() - toolbar.height(),
-                top: (settings.toolbar) ? toolbar.height() : 0
-            });
+            $(window).unbind("keyup.editormdPreview");
 
             if (this.state.loaded) {
                 $.proxy(settings.onpreviewed, this)();
             }
+
+            this.resize();
 
             return this;
         },
@@ -2608,7 +2599,10 @@
                 var deviceSwitch = editor.find("." + this.classPrefix + "preview-device-switch");
                 if (deviceSwitch.length > 0) {
                     var topHeight = (settings.toolbar && toolbar) ? toolbar.height() : 0;
-                    deviceSwitch.css("top", (topHeight + 10) + "px").show();
+                    deviceSwitch.css({
+                        "top": (topHeight + 10) + "px",
+                        "left": (state.preview ? "50%" : "75%")
+                    }).show();
                     deviceSwitch.find("a").removeClass("active");
                     deviceSwitch.find("a[data-device=desktop]").addClass("active");
                     previewContainer.removeClass("preview-mobile");
@@ -2677,9 +2671,9 @@
                 height: editor.data("oldHeight")
             }).removeClass(fullscreenClass);
 
-            this.resize();
-
             $.proxy(settings.onfullscreenExit, this)();
+
+            this.resize();
 
             return this;
         },

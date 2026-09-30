@@ -4300,7 +4300,7 @@ hr.editormd-page-break {
   box-sizing: border-box !important;
 }
 
-.editormd-fullscreen .editormd-preview-container {
+.editormd-fullscreen .editormd-preview-container:not(.preview-mobile) {
   padding-top: 50px !important;
   box-sizing: border-box;
 }
@@ -4309,7 +4309,7 @@ hr.editormd-page-break {
   display: none;
   position: absolute;
   top: 10px;
-  left: 50%;
+  left: 75%;
   transform: translateX(-50%);
   z-index: 20;
   background: #f1f5f9;
@@ -4317,10 +4317,6 @@ hr.editormd-page-break {
   border-radius: 8px;
   padding: 3px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
-
-.editormd-fullscreen .editormd-preview-device-switch {
-  left: 75%;
 }
 
 .editormd-preview-device-switch a {

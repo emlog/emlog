@@ -710,8 +710,21 @@ input[type="checkbox"]:hover, select:hover {
 }
 
 /* editormd fullscreen mode style */
+.editormd.editormd-fullscreen,
 .editormd-fullscreen {
-    z-index: 1035;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    margin: 0 !important;
+    border: none !important;
+    z-index: 1035 !important;
+    padding-bottom: 0 !important;
+}
+
+.editormd-fullscreen .editormd-resize-handle {
+    display: none !important;
 }
 
 /* switch */
@@ -1862,7 +1875,7 @@ textarea.form-control {
 /* ==========================================================================
    Editor & Content Styles (编辑器、微语及应用商店展示)
    ========================================================================== */
-.editormd {
+.editormd:not(.editormd-fullscreen) {
     z-index: 0;
     position: relative;
     padding-bottom: 14px !important;

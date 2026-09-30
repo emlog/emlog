@@ -3,7 +3,7 @@
 <h4 class="mb-4 text-gray-800"><?= $containerTitle ?> <span id="save_info"></span></h4>
 <form action="article_save.php" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
     <div class="row">
-        <div class="col-xl-9">
+        <div class="col-xl-9" id="post_main_col">
             <div id="post" class="form-group">
                 <div>
                     <input type="text" name="title" id="title" value="<?= $title ?>" class="form-control" maxlength="512" placeholder="<?= _lang('title') ?>" autofocus required />
@@ -34,7 +34,7 @@
                                     <input type="text" name="field_keys[]" value="<?= $key ?>" list="customFieldList" class="form-control field-keys-input" placeholder="<?= _lang('field_name') ?>" maxlength="120" required>
                                     <datalist id="customFieldList">
                                         <?php foreach ($customFields as $k => $v): ?>
-                                            <option value="<?= $k ?>"><?= $k . '【' . $v['name'] . '】' . $v['description'] ?></option>
+                                             <option value="<?= $k ?>"><?= $k . '【' . $v['name'] . '】' . $v['description'] ?></option>
                                         <?php endforeach; ?>
                                     </datalist>
                                 </div>
@@ -56,7 +56,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-3">
+        <div class="col-xl-3" id="post_side_col">
             <div id="post_button">
                 <input type="hidden" name="ishide" id="ishide" value="<?= $hide ?>" />
                 <input type="hidden" name="as_logid" id="as_logid" value="<?= $logid ?>" />
@@ -254,7 +254,7 @@
             height: 745,
             toolbarIcons: function() {
                 return ["bold", "del", "italic", "quote", "|", "h1", "h2", "h3", "|", "list-ul", "list-ol", "hr", "|",
-                    "link", "image", "audio", "video", "code", "code-block", "table", "|", "search", "preview", "fullscreen", "help",
+                    "link", "image", "audio", "video", "code", "code-block", "table", "|", "search", "preview", "help",
                     "||", "wordCount"
                 ]
             },
@@ -275,11 +275,15 @@
             videoUpload: false,
             syncScrolling: "single",
             placeholder: "<?= _lang('markdown_placeholder') ?>",
-            onfullscreen: function() {
-                this.watch();
+            onpreviewing: function() {
+                $("#post_main_col").removeClass("col-xl-9").addClass("col-xl-12");
+                $("#post_side_col").hide();
+                this.resize();
             },
-            onfullscreenExit: function() {
-                this.unwatch();
+            onpreviewed: function() {
+                $("#post_main_col").removeClass("col-xl-12").addClass("col-xl-9");
+                $("#post_side_col").show();
+                this.resize();
             },
             onload: function() {
                 hooks.doAction("loaded", this);

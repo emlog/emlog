@@ -2,7 +2,7 @@
 <form action="page.php?action=save" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
     <h1 class="h4 mb-4 text-gray-800"><?= $containertitle ?><span id="save_info"></span></h1>
     <div class="row">
-        <div class="col-xl-9">
+        <div class="col-xl-9" id="post_main_col">
             <div id="post" class="form-group">
                 <div>
                     <input type="text" name="title" id="title" value="<?= $title ?>" class="form-control" placeholder="<?= _lang('page_title') ?>" />
@@ -18,7 +18,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-3">
+        <div class="col-xl-3" id="post_side_col">
             <div id="post_button">
                 <input type="hidden" name="ishide" id="ishide" value="<?= $hide ?>" />
                 <input type="hidden" name="pageid" id="pageid" value="<?= $pageId ?>" />
@@ -152,7 +152,7 @@
             height: 745,
             toolbarIcons: function() {
                 return ["bold", "del", "italic", "quote", "|", "h1", "h2", "h3", "|", "list-ul", "list-ol", "hr", "|",
-                    "link", "image", "audio", "video", "code", "code-block", "table", "|", "search", "preview", "fullscreen", "help",
+                    "link", "image", "audio", "video", "code", "code-block", "table", "|", "search", "preview", "help",
                     "||", "wordCount"
                 ]
             },
@@ -172,6 +172,16 @@
             videoUpload: false,
             syncScrolling: "single",
             placeholder: "<?= _lang('markdown_placeholder') ?>",
+            onpreviewing: function() {
+                $("#post_main_col").removeClass("col-xl-9").addClass("col-xl-12");
+                $("#post_side_col").hide();
+                this.resize();
+            },
+            onpreviewed: function() {
+                $("#post_main_col").removeClass("col-xl-12").addClass("col-xl-9");
+                $("#post_side_col").show();
+                this.resize();
+            },
             onload: function() {
                 hooks.doAction("page_loaded", this);
                 var _this = this;
