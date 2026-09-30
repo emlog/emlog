@@ -254,8 +254,8 @@
             height: 745,
             toolbarIcons: function() {
                 return ["bold", "del", "italic", "quote", "|", "h1", "h2", "h3", "|", "list-ul", "list-ol", "hr", "|",
-                    "link", "image", "audio", "video", "code", "code-block", "table", "|", "search", "preview", "help",
-                    "||", "wordCount"
+                    "link", "image", "audio", "video", "code", "code-block", "table", "|", "search", "preview",
+                    "||", "wordCount", "help"
                 ]
             },
             toolbarCustomIcons: {
