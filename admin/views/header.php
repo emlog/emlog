@@ -71,9 +71,11 @@
                     <i class="icofont-comment"></i><span><?= _lang('comment') ?><?php if ($hidecmnum > 0): ?><i class="sidebar-update-dot" title="<?= _lang('pending_audit') ?> (<?= $hidecmnum ?>)"></i><?php endif; ?></span>
                 </a>
             </li>
-            <li class="nav-item" id="menu_twitter">
-                <a class="nav-link" href="twitter.php"><i class="icofont-penalty-card"></i><span><?= _lang('twitter') ?></span></a>
-            </li>
+            <?php if (!Option::isMenuHidden('twitter')): ?>
+                <li class="nav-item" id="menu_twitter">
+                    <a class="nav-link" href="twitter.php"><i class="icofont-penalty-card"></i><span><?= _lang('twitter') ?></span></a>
+                </li>
+            <?php endif; ?>
             <li class="nav-item" id="menu_media">
                 <a class="nav-link" href="media.php"><i class="icofont-image"></i><span><?= _lang('media') ?></span></a>
             </li>

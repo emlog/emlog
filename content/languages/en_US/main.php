@@ -358,6 +358,7 @@ return [
     'unit_pixels' => 'Unit: Pixels',
     'panel_setting' => 'Panel Settings',
     'sidebar_menu_title' => 'Sidebar Menu Title',
+    'hide_menu_twitter' => 'Hide Microblog Menu',
 
     // Setting - User
     'enable_register' => 'Enable User Registration',

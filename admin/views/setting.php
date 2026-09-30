@@ -150,6 +150,10 @@
                 <input class="form-control" style="width:200px;" value="<?= $panel_menu_title ?>" name="panel_menu_title" id="panel_menu_title">
                 <label for="panel_menu_title" class="ml-2"><?= _lang('sidebar_menu_title'); ?></label>
             </div>
+            <div class="custom-control custom-switch">
+                <input class="custom-control-input" type="checkbox" value="y" name="hide_menu_twitter" id="hide_menu_twitter" <?= $conf_hide_menu_twitter ?> />
+                <label class="custom-control-label" for="hide_menu_twitter"><?= _lang('hide_menu_twitter'); ?></label>
+            </div>
             <div class="mt-4">
                 <a href="https://www.emlog.net/docs/install/config" target="_blank" class="text-secondary"><?= _lang('more_options'); ?> <i class="icofont-external-link"></i></a>
             </div>

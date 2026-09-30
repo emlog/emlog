@@ -53,6 +53,17 @@ class Option
         }
     }
 
+    /**
+     * 判断指定菜单项是否在管理面板中隐藏
+     *
+     * @param string $menu 菜单标识名，如 'twitter'
+     * @return bool
+     */
+    static function isMenuHidden($menu)
+    {
+        return self::get('hide_menu_' . $menu) === 'y';
+    }
+
     /** 
      * 获取路由表
      * reg_0、reg_1、reg_2、reg_3 分别对应SEO设置中4种文章链接模式
