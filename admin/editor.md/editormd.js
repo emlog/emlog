@@ -1260,10 +1260,12 @@
                     return;
                 }
 
-                _this.activeIcon = icon;
-
-                if (_this.state.preview && name !== "preview") {
+                if (_this.state.preview && name !== "preview" && name !== "search") {
                     return false;
+                }
+
+                if (_this.state.preview && name === "search" && _this.codeMirror.is(":hidden")) {
+                    _this.previewed();
                 }
 
                 if (typeof toolbarIconHandlers[name] !== "undefined") {
@@ -2736,7 +2738,13 @@
             }
 
             if (!settings.readOnly) {
-                this.cm.execCommand(command || "find");
+                var cm = this.cm;
+                var searchState = cm.state && cm.state.search;
+                if ((!command || command === "find") && searchState && searchState.dialog && searchState.dialog.parentNode) {
+                    cm.execCommand("clearSearch");
+                } else {
+                    this.cm.execCommand(command || "find");
+                }
             }
 
             return this;

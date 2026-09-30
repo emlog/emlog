@@ -2747,3 +2747,9 @@ textarea.form-control {
     top: 48px;
     right: 24px;
 }
+
+.editormd-menu > li > a.active {
+    border: 1px solid #c7d2fe !important;
+    background: #e0e7ff !important;
+    color: #4e73df !important;
+}
