@@ -1047,6 +1047,38 @@ textarea.form-control {
     box-shadow: none;
 }
 
+/* 媒体库分类与右侧操作栏布局防挤压保护 */
+.media-sort-filter {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.media-filter-actions {
+    flex-shrink: 0;
+}
+
+.media-filter-actions .datepicker {
+    width: 175px;
+}
+
+.media-filter-actions .media-search-input {
+    width: 170px;
+}
+
+@media (max-width: 575.98px) {
+    .media-filter-actions {
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    .media-filter-actions .datepicker {
+        width: 100%;
+    }
+    .media-filter-actions .media-search-input {
+        width: calc(100% - 40px);
+    }
+}
+
 .btn-user {
     border-radius: var(--em-radius-base) !important;
 }

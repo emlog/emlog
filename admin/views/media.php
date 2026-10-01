@@ -9,8 +9,8 @@
     </span>
 </div>
 <?php if (User::isAdmin()): ?>
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <div class="media-sort-filter">
+    <div class="d-flex flex-column flex-lg-row align-items-lg-start justify-content-between mb-4">
+        <div class="media-sort-filter d-flex flex-wrap align-items-center mr-lg-3 mb-3 mb-lg-0">
             <a href="media.php" class="btn btn-sm <?= $sid === '' ? 'btn-primary' : 'btn-light' ?> mr-2 my-1"><?= _lang('all') ?></a>
             <?php foreach ($sorts as $key => $val):
                 $cur_tab = $val['id'] == $sid ? "btn-primary" : "btn-light";
@@ -29,8 +29,8 @@
             <?php endif ?>
             <a href="#" class="btn btn-light btn-sm my-1" data-toggle="modal" data-target="#mediaSortModal"><i class="icofont-plus"></i> <?= _lang('category') ?></a>
         </div>
-        <div class="d-flex align-items-center mb-3 mb-sm-0">
-            <div class="mr-2">
+        <div class="d-flex align-items-center flex-shrink-0 ml-auto my-1 media-filter-actions">
+            <div class="mr-2 flex-shrink-0">
                 <?php if ($show === 'grid'): ?>
                     <a href="media.php?show=list">
                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
@@ -56,13 +56,13 @@
                     </a>
                 <?php endif ?>
             </div>
-            <div class="flex-fill">
+            <div class="mr-2 flex-shrink-0">
                 <input type="text" class="form-control datepicker" value="<?= $dateTime ?>" placeholder="<?= _lang('view_date_before') ?>">
             </div>
-            <div class="ml-2">
-                <form action="./media.php" method="get">
-                    <div class="form-inline search-inputs-nowrap">
-                        <input type="text" name="keyword" value="<?= htmlspecialchars($keyword) ?>" class="form-control m-1 small" placeholder="<?= _lang('search_media_placeholder') ?>" aria-label="Search" aria-describedby="basic-addon2">
+            <div class="flex-shrink-0">
+                <form action="./media.php" method="get" class="m-0">
+                    <div class="d-flex align-items-center flex-nowrap">
+                        <input type="text" name="keyword" value="<?= htmlspecialchars($keyword) ?>" class="form-control small mr-1 media-search-input" placeholder="<?= _lang('search_media_placeholder') ?>" aria-label="Search">
                         <div class="input-group-append">
                             <button class="btn btn-sm btn-success" type="submit">
                                 <i class="icofont-search-2"></i>
