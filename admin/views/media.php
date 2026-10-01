@@ -10,8 +10,8 @@
 </div>
 <?php if (User::isAdmin()): ?>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <div>
-            <a href="media.php" class="btn btn-sm <?= $sid === '' ? 'btn-primary' : 'btn-light' ?> mr-2 my-1"><?= _lang('all_media') ?></a>
+        <div class="media-sort-filter">
+            <a href="media.php" class="btn btn-sm <?= $sid === '' ? 'btn-primary' : 'btn-light' ?> mr-2 my-1"><?= _lang('all') ?></a>
             <?php foreach ($sorts as $key => $val):
                 $cur_tab = $val['id'] == $sid ? "btn-primary" : "btn-light";
             ?>

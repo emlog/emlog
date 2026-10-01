@@ -90,7 +90,6 @@ return [
     'media_lib' => 'Media Library',
     'upload_file' => 'Upload File',
     'add_external_resource' => 'Add External Resource',
-    'all_media' => 'All Media',
     'view_date_before' => 'View resources on or before this date',
     'search_media_placeholder' => 'Search media filename...',
     'media_name' => 'Media Name',

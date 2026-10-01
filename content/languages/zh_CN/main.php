@@ -90,7 +90,6 @@ return [
     'media_lib' => '资源媒体库',
     'upload_file' => '上传图片/文件',
     'add_external_resource' => '添加外部资源',
-    'all_media' => '全部资源',
     'view_date_before' => '查看该日期及之前的资源',
     'search_media_placeholder' => '搜索资源文件名...',
     'media_name' => '资源名称',

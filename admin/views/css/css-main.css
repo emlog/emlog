@@ -1039,6 +1039,14 @@ textarea.form-control {
     transform: translateY(0);
 }
 
+.btn-group .btn:hover,
+.btn-group .btn:active,
+.media-sort-filter .btn:hover,
+.media-sort-filter .btn:active {
+    transform: none;
+    box-shadow: none;
+}
+
 .btn-user {
     border-radius: var(--em-radius-base) !important;
 }
