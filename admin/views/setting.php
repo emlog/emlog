@@ -312,6 +312,7 @@
             hideMenuConfirmed = true;
             renderHiddenMenus();
             $('#hideMenuModal').modal('hide');
+            submitForm("#setting_form");
         });
 
         $('#hideMenuModal').on('hidden.bs.modal', function() {
