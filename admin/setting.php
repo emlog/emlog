@@ -26,6 +26,10 @@ if (empty($action)) {
     $conf_comment_paging = $comment_paging == 'y' ? 'checked="checked"' : '';
     $conf_detect_url = $detect_url == 'y' ? 'checked="checked"' : '';
     $conf_isfullsearch = $isfullsearch == 'y' ? 'checked="checked"' : '';
+    $hide_menu_dashboard = isset($hide_menu_dashboard) ? $hide_menu_dashboard : 'n';
+    $conf_hide_menu_dashboard = $hide_menu_dashboard == 'y' ? 'checked="checked"' : '';
+    $hide_menu_comment = isset($hide_menu_comment) ? $hide_menu_comment : 'n';
+    $conf_hide_menu_comment = $hide_menu_comment == 'y' ? 'checked="checked"' : '';
     $hide_menu_twitter = isset($hide_menu_twitter) ? $hide_menu_twitter : 'n';
     $conf_hide_menu_twitter = $hide_menu_twitter == 'y' ? 'checked="checked"' : '';
 
@@ -187,6 +191,8 @@ if ($action == 'save') {
         'att_imgmaxh'         => Input::postIntVar('att_imgmaxh', 460),
         'detect_url'          => Input::postStrVar('detect_url', 'n'),
         'panel_menu_title'    => Input::postStrVar('panel_menu_title'),
+        'hide_menu_dashboard' => Input::postStrVar('hide_menu_dashboard', 'n'),
+        'hide_menu_comment'   => Input::postStrVar('hide_menu_comment', 'n'),
         'hide_menu_twitter'   => Input::postStrVar('hide_menu_twitter', 'n'),
     ];
 

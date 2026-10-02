@@ -41,9 +41,11 @@
                 <a class="nav-link" href="./"><?= subString(Option::get('panel_menu_title'), 0, 11) ?: 'EMLOG PRO' ?></a>
             </li>
             <hr class="sidebar-divider my-0">
-            <li class="nav-item" id="menu_panel">
-                <a class="nav-link" href="./"><i class="icofont-dashboard icofont-1x"></i><span><?= _lang('dashboard') ?></span></a>
-            </li>
+            <?php if (!Option::isMenuHidden('dashboard')): ?>
+                <li class="nav-item" id="menu_panel">
+                    <a class="nav-link" href="./"><i class="icofont-dashboard icofont-1x"></i><span><?= _lang('dashboard') ?></span></a>
+                </li>
+            <?php endif; ?>
             <?php
             $checknum = User::haveEditPermission() ? (isset($sta_cache['checknum']) ? (int)$sta_cache['checknum'] : 0) : 0;
             ?>
@@ -63,14 +65,16 @@
                     </div>
                 </div>
             </li>
-            <li class="nav-item" id="menu_cm">
-                <?php
-                $hidecmnum = User::haveEditPermission() ? (isset($sta_cache['hidecomnum']) ? (int)$sta_cache['hidecomnum'] : 0) : (isset($sta_cache[UID]['hidecommentnum']) ? (int)$sta_cache[UID]['hidecommentnum'] : 0);
-                ?>
-                <a class="nav-link" href="comment.php">
-                    <i class="icofont-comment"></i><span><?= _lang('comment') ?><?php if ($hidecmnum > 0): ?><i class="sidebar-update-dot" title="<?= _lang('pending_audit') ?> (<?= $hidecmnum ?>)"></i><?php endif; ?></span>
-                </a>
-            </li>
+            <?php if (!Option::isMenuHidden('comment')): ?>
+                <li class="nav-item" id="menu_cm">
+                    <?php
+                    $hidecmnum = User::haveEditPermission() ? (isset($sta_cache['hidecomnum']) ? (int)$sta_cache['hidecomnum'] : 0) : (isset($sta_cache[UID]['hidecommentnum']) ? (int)$sta_cache[UID]['hidecommentnum'] : 0);
+                    ?>
+                    <a class="nav-link" href="comment.php">
+                        <i class="icofont-comment"></i><span><?= _lang('comment') ?><?php if ($hidecmnum > 0): ?><i class="sidebar-update-dot" title="<?= _lang('pending_audit') ?> (<?= $hidecmnum ?>)"></i><?php endif; ?></span>
+                    </a>
+                </li>
+            <?php endif; ?>
             <?php if (!Option::isMenuHidden('twitter')): ?>
                 <li class="nav-item" id="menu_twitter">
                     <a class="nav-link" href="twitter.php"><i class="icofont-penalty-card"></i><span><?= _lang('twitter') ?></span></a>

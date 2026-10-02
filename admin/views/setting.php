@@ -150,9 +150,44 @@
                 <input class="form-control" style="width:200px;" value="<?= $panel_menu_title ?>" name="panel_menu_title" id="panel_menu_title">
                 <label for="panel_menu_title" class="ml-2"><?= _lang('sidebar_menu_title'); ?></label>
             </div>
-            <div class="custom-control custom-switch">
-                <input class="custom-control-input" type="checkbox" value="y" name="hide_menu_twitter" id="hide_menu_twitter" <?= $conf_hide_menu_twitter ?> />
-                <label class="custom-control-label" for="hide_menu_twitter"><?= _lang('hide_menu_twitter'); ?></label>
+            <div class="form-group">
+                <div class="d-flex align-items-center flex-wrap">
+                    <button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#hideMenuModal">
+                        <i class="icofont-eye-blocked mr-1"></i><?= _lang('hide_menu'); ?>
+                    </button>
+                    <span class="ml-3 text-muted"><?= _lang('hidden'); ?>：</span>
+                    <span id="hidden_menu_display" class="ml-1"></span>
+                </div>
+            </div>
+            <div class="modal fade" id="hideMenuModal" tabindex="-1" role="dialog" aria-labelledby="hideMenuModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content border-0 shadow">
+                        <div class="modal-header border-0">
+                            <h5 class="modal-title" id="hideMenuModalLabel"><?= _lang('hide_menu'); ?></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body py-2">
+                            <div class="custom-control custom-switch mb-3">
+                                <input class="custom-control-input menu-hide-checkbox" type="checkbox" value="y" name="hide_menu_dashboard" id="hide_menu_dashboard" data-name="<?= _lang('dashboard'); ?>" <?= $conf_hide_menu_dashboard ?> />
+                                <label class="custom-control-label" for="hide_menu_dashboard"><?= _lang('dashboard'); ?></label>
+                            </div>
+                            <div class="custom-control custom-switch mb-3">
+                                <input class="custom-control-input menu-hide-checkbox" type="checkbox" value="y" name="hide_menu_comment" id="hide_menu_comment" data-name="<?= _lang('comment'); ?>" <?= $conf_hide_menu_comment ?> />
+                                <label class="custom-control-label" for="hide_menu_comment"><?= _lang('comment'); ?></label>
+                            </div>
+                            <div class="custom-control custom-switch mb-3">
+                                <input class="custom-control-input menu-hide-checkbox" type="checkbox" value="y" name="hide_menu_twitter" id="hide_menu_twitter" data-name="<?= _lang('twitter'); ?>" <?= $conf_hide_menu_twitter ?> />
+                                <label class="custom-control-label" for="hide_menu_twitter"><?= _lang('twitter'); ?></label>
+                            </div>
+                        </div>
+                        <div class="modal-footer border-0">
+                            <button type="button" class="btn btn-sm btn-light" data-dismiss="modal"><?= _lang('cancel'); ?></button>
+                            <button type="button" class="btn btn-sm btn-primary" id="save_hide_menu_btn"><?= _lang('save'); ?></button>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="mt-4">
                 <a href="https://www.emlog.net/docs/install/config" target="_blank" class="text-secondary"><?= _lang('more_options'); ?> <i class="icofont-external-link"></i></a>
@@ -236,6 +271,59 @@
             } else {
                 $("[name=blogurl]").removeAttr("readonly")
             }
-        })
+        });
+
+        /**
+         * 渲染已隐藏菜单标签列表
+         * @return void
+         */
+        function renderHiddenMenus() {
+            var hiddenNames = [];
+            $('.menu-hide-checkbox:checked').each(function() {
+                var name = $(this).data('name');
+                if (name) {
+                    hiddenNames.push(name);
+                }
+            });
+            if (hiddenNames.length > 0) {
+                var html = '';
+                for (var i = 0; i < hiddenNames.length; i++) {
+                    html += '<span class="badge badge-secondary mr-1">' + $('<div>').text(hiddenNames[i]).html() + '</span>';
+                }
+                $('#hidden_menu_display').html(html);
+            } else {
+                $('#hidden_menu_display').html('<span class="text-muted small"><?= _lang('none'); ?></span>');
+            }
+        }
+
+        renderHiddenMenus();
+
+        var hideMenuConfirmed = false;
+        var originalHideMenuState = {};
+
+        $('#hideMenuModal').on('show.bs.modal', function() {
+            hideMenuConfirmed = false;
+            $('.menu-hide-checkbox').each(function() {
+                originalHideMenuState[$(this).attr('id')] = $(this).prop('checked');
+            });
+        });
+
+        $('#save_hide_menu_btn').click(function() {
+            hideMenuConfirmed = true;
+            renderHiddenMenus();
+            $('#hideMenuModal').modal('hide');
+        });
+
+        $('#hideMenuModal').on('hidden.bs.modal', function() {
+            if (!hideMenuConfirmed) {
+                $('.menu-hide-checkbox').each(function() {
+                    var id = $(this).attr('id');
+                    if (originalHideMenuState.hasOwnProperty(id)) {
+                        $(this).prop('checked', originalHideMenuState[id]);
+                    }
+                });
+                renderHiddenMenus();
+            }
+        });
     });
 </script>

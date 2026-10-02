@@ -357,7 +357,7 @@ return [
     'unit_pixels' => '单位：像素',
     'panel_setting' => '面板设置',
     'sidebar_menu_title' => '左侧菜单标题',
-    'hide_menu_twitter' => '隐藏微语菜单',
+    'hide_menu' => '隐藏菜单',
 
     // Setting - User
     'enable_register' => '开启用户注册',

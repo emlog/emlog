@@ -661,6 +661,8 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES
 ('is_openapi','n'),
 ('apikey','$apikey'),
 ('panel_menu_title',''),
+('hide_menu_dashboard','n'),
+('hide_menu_comment','n'),
 ('hide_menu_twitter','n'),
 ('admin_media_perpage_num','24'),
 ('admin_article_perpage_num','20'),
