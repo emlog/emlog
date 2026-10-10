@@ -73,6 +73,9 @@ class TplOptions
     //文章
     private $_posts;
 
+    //模板原始设置项缓存
+    private $_definedOptionsCache = array();
+
     /**
      * 单例入口
      * @return TplOptions
@@ -558,7 +561,9 @@ class TplOptions
         $template = $this->arrayGet($_GET, 'template');
         $code = $this->arrayGet($_GET, 'code');
         $msg = $this->arrayGet($_GET, 'msg');
-        $allTemplate = $this->getTemplates();
+        $currentTemplate = Option::get('nonce_templet');
+        $targetTemplate = !empty($template) ? $template : $currentTemplate;
+        $allTemplate = $this->getTemplates($targetTemplate);
         if ($do != '') {
             if ($do == 'upload' && isset($_FILES['image'])) {
                 $file = $_FILES['image'];
@@ -1398,37 +1403,48 @@ class TplOptions
     }
 
     /**
-     * 获取支持的模板
+     * 获取单个模板的配置信息项
+     * @param string $template 模板目录名
+     * @return array|false
+     */
+    private function getTemplateItem($template)
+    {
+        if (!is_dir(TPLS_PATH . $template)) {
+            return false;
+        }
+        $headerFile = TPLS_PATH . $template . '/header.php';
+        if (!file_exists($headerFile)) {
+            return false;
+        }
+        if ($this->getTemplateDefinedOptions($template) === false) {
+            return false;
+        }
+        $tplData = @file_get_contents($headerFile);
+        $templateItem = array();
+        preg_match("/Template Name:([^\r\n]+)/i", (string)$tplData, $name);
+        $templateItem['name'] = isset($name[1]) ? trim($name[1]) : $template;
+        $templateItem['file'] = $template;
+        $templateItem['preview'] = $this->getTemplatePreview($template);
+        return $templateItem;
+    }
+
+    /**
+     * 获取模板信息（仅加载指定或当前启用主题，避免全量包含未启用主题导致致命错误）
+     * @param string|null $template 模板目录名，默认当前启用模板
      * @return array
      */
-    private function getTemplates()
+    private function getTemplates($template = null)
     {
-        $handle = @opendir(TPLS_PATH);
-        if ($handle === false) {
-            return array();
+        if ($template === null || $template === '') {
+            $template = Option::get('nonce_templet');
         }
         $templates = array();
-        while ($file = @readdir($handle)) {
-            if ($file == '.' || $file == '..') {
-                continue;
-            }
-            if (!is_dir(TPLS_PATH . $file)) {
-                continue;
-            }
-            if (@file_exists($headerFile = TPLS_PATH . $file . '/header.php')) {
-                if ($this->getTemplateDefinedOptions($file) === false) {
-                    continue;
-                }
-                $tplData = file_get_contents($headerFile);
-                $template = array();
-                preg_match("/Template Name:([^\r\n]+)/i", $tplData, $name);
-                $template['name'] = isset($name[1]) ? trim($name[1]) : $file;
-                $template['file'] = $file;
-                $template['preview'] = $this->getTemplatePreview($file);
-                $templates[$file] = $template;
+        if (!empty($template)) {
+            $item = $this->getTemplateItem($template);
+            if ($item !== false) {
+                $templates[$template] = $item;
             }
         }
-        closedir($handle);
         return $templates;
     }
 
@@ -1447,22 +1463,44 @@ class TplOptions
 
     /**
      * 获取模板参数配置
-     * @param string $optionFile
-     * @return mixed false表示不支持本插件
+     * @param string $template 模板目录名
+     * @return mixed 模板配置数组，false表示不支持本插件
      */
     private function getTemplateDefinedOptions($template)
     {
-        if (!is_file($optionFile = TPLS_PATH . $template . '/options.php')) {
+        if (isset($this->_definedOptionsCache[$template])) {
+            return $this->_definedOptionsCache[$template];
+        }
+
+        $optionFile = TPLS_PATH . $template . '/options.php';
+        if (!is_file($optionFile)) {
+            $this->_definedOptionsCache[$template] = false;
             return false;
         }
-        include $optionFile;
+
+        // 先静态检测是否声明支持tpl_options，避免直接执行无关或损坏文件
+        $fileContent = @file_get_contents($optionFile);
+        if ($fileContent === false || strpos($fileContent, '@support tpl_options') === false) {
+            $this->_definedOptionsCache[$template] = false;
+            return false;
+        }
+
+        $options = null;
+        try {
+            include $optionFile;
+        } catch (\Throwable $t) {
+            $options = null;
+        } catch (\Exception $e) {
+            $options = null;
+        }
+
         if (!isset($options) || !is_array($options)) {
+            $this->_definedOptionsCache[$template] = false;
             return false;
         }
-        if (strpos(file_get_contents($optionFile), '@support tpl_options') !== false) {
-            return $options;
-        }
-        return false;
+
+        $this->_definedOptionsCache[$template] = $options;
+        return $options;
     }
 
     private function buildImageUrl($path)
