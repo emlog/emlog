@@ -87,7 +87,8 @@ $(function () {
                 // 模拟点击关闭，但不触发 pushState
                 document.getElementsByClassName("container-fluid")[0].children[0].style.cssText = 'display:flex !important';
                 showTemplateList();
-                optionArea.slideUp(500), tplBox.show();
+                optionArea.hide();
+                tplBox.show();
             }
         }
     });
@@ -150,7 +151,8 @@ $(function () {
     }).on('click', '.tpl-options-close', function () {
         document.getElementsByClassName("container-fluid")[0].children[0].style.cssText = 'display:flex !important';
         showTemplateList();
-        optionArea.slideUp(500), tplBox.show();
+        optionArea.hide();
+        tplBox.show();
         // 更新URL状态
         if (window.location.search.indexOf('setting=1') !== -1) {
             window.history.pushState({}, '', 'template.php');
@@ -464,11 +466,11 @@ $(function () {
     }
 
     function hideTemplateList() {
-        $('.container-fluid .row.app-list').fadeOut(120);
+        $('.container-fluid .row.app-list').hide();
     }
 
     function showTemplateList() {
-        $('.container-fluid .row.app-list').fadeIn(120);
+        $('.container-fluid .row.app-list').show();
     }
 
     function isOptionMarkup(data) {
