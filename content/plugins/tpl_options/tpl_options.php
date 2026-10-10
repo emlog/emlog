@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: 模板设置
-Version: 4.2.12
+Version: 4.2.13
 Plugin URL: https://www.emlog.net/docs/dev/template
 Description: 为模板增加丰富的设置功能，详见官网文档-模板开发。
 Author: emlog
@@ -19,7 +19,7 @@ class TplOptions
     //插件标识
     const ID = 'tpl_options';
     const NAME = '模板设置';
-    const VERSION = '4.2.12';
+    const VERSION = '4.2.13';
 
     //数据表前缀
     private $_prefix = 'tpl_options_';

@@ -16,17 +16,23 @@ if ($is_has_menu && !$show_desc && !empty($tplnavi)) {
         <div class="vtpl-header vtpl-sticky-header">
             <div class="vtpl-header-inner">
                 <div class="vtpl-header-left">
-                    <h1><?= $allTemplate[$template]['name'] ?></h1>
+                    <button type="button" class="vtpl-back-btn tpl-options-close" title="<?= _langPlu('back', 'tpl_options'); ?>">
+                        <span><?= _langPlu('back', 'tpl_options'); ?></span>
+                    </button>
+                    <span class="vtpl-header-sep"></span>
+                    <div class="vtpl-title-group">
+                        <h1 class="vtpl-title"><?= $allTemplate[$template]['name'] ?></h1>
+                    </div>
                 </div>
                 <div class="vtpl-header-right">
                     <div class="vtpl-buttons">
-                        <input type="submit" class="button vtpl-back-primary tpl-options-close" value="<?= _langPlu('back', 'tpl_options'); ?>">
                         <?php if ($is_has_menu): ?>
-                            <input type="submit" class="button vtpl-menu none" value="<?= _langPlu('menu', 'tpl_options'); ?>">
+                            <button type="button" class="vtpl-menu-btn vtpl-menu" title="<?= _langPlu('menu', 'tpl_options'); ?>">
+                                <i class="icofont-navigation-menu mr-1"></i><?= _langPlu('menu', 'tpl_options'); ?>
+                            </button>
                         <?php endif; ?>
                     </div>
                 </div>
-                <div class="clear"></div>
             </div>
         </div>
         <?php if (!$is_has_menu): ?>
@@ -58,7 +64,7 @@ if ($is_has_menu && !$show_desc && !empty($tplnavi)) {
                         $active_class = $is_first ? ' class="active"' : '';
                         $is_first = false;
                     ?>
-                        <li onClick="TplShow('<?= $key; ?>')"<?= $active_class; ?>><?= $icom_html . $v; ?></li>
+                        <li onClick="TplShow('<?= $key; ?>')" <?= $active_class; ?>><?= $icom_html . $v; ?></li>
                     <?php endforeach; ?>
                 </ul>
             </div>
