@@ -16,6 +16,7 @@
 <div class="card shadow mb-4 mt-2">
     <div class="card-body">
         <form action="setting.php?action=mail_save" method="post" name="mail_setting_form" id="mail_setting_form">
+            <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
             <h4><?= _lang('mail_service'); ?></h4>
             <div class="form-group">
                 <label><?= _lang('mail_sender'); ?></label>
@@ -61,6 +62,14 @@
                 </div>
                 <div class="mb-3 mt-1 small" id="mail_template_vars"><?= _lang('mail_template_vars'); ?></div>
             </div>
+            <div class="form-group">
+                <hr>
+                <input type="submit" value="<?= _lang('save_setting'); ?>" class="btn btn-sm btn-success" />
+            </div>
+        </div>
+    </div>
+    <div class="card shadow mb-4">
+        <div class="card-body">
             <h4><?= _lang('setting_mail'); ?></h4>
             <div class="custom-control custom-switch">
                 <input class="custom-control-input" type="checkbox" value="y" name="mail_notice_comment" id="mail_notice_comment" <?= $conf_mail_notice_comment ?> />
@@ -72,12 +81,11 @@
             </div>
             <div class="form-group">
                 <hr>
-                <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
                 <input type="submit" value="<?= _lang('save_setting'); ?>" class="btn btn-sm btn-success" />
             </div>
-        </form>
+        </div>
     </div>
-</div>
+</form>
 <!-- 设置接收邮箱的模态框 -->
 <div class="modal fade" id="testMail">
     <div class="modal-dialog modal-sm">
