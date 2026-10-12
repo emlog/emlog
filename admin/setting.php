@@ -410,12 +410,14 @@ if ($action == 'user') {
     $twitter_name = isset($options_cache['twitter_name']) ? $options_cache['twitter_name'] : '';
     $allow_user_twitter = isset($options_cache['allow_user_twitter']) ? $options_cache['allow_user_twitter'] : '';
     $email_code = isset($options_cache['email_code']) ? $options_cache['email_code'] : '';
+    $login_email_code = isset($options_cache['login_email_code']) ? $options_cache['login_email_code'] : '';
     $att_maxsize = isset($options_cache['att_maxsize']) ? $options_cache['att_maxsize'] : '';
     $att_type = isset($options_cache['att_type']) ? $options_cache['att_type'] : '';
 
     $conf_is_signup = $is_signup == 'y' ? 'checked="checked"' : '';
     $conf_login_code = $login_code == 'y' ? 'checked="checked"' : '';
     $conf_email_code = $email_code == 'y' ? 'checked="checked"' : '';
+    $conf_login_email_code = $login_email_code == 'y' ? 'checked="checked"' : '';
     $conf_ischkarticle = $ischkarticle == 'y' ? 'checked="checked"' : '';
     $conf_allow_user_twitter = $allow_user_twitter == 'y' ? 'checked="checked"' : '';
     $conf_forbid_user_upload = $forbid_user_upload == 'y' ? 'checked="checked"' : '';
@@ -433,6 +435,7 @@ if ($action == 'user_save') {
         'is_signup'          => Input::postStrVar('is_signup', 'n'),
         'login_code'         => Input::postStrVar('login_code', 'n'),
         'email_code'         => Input::postStrVar('email_code', 'n'),
+        'login_email_code'   => Input::postStrVar('login_email_code', 'n'),
         'ischkarticle'       => Input::postStrVar('ischkarticle', 'n'),
         'article_uneditable' => Input::postStrVar('article_uneditable', 'n'),
         'allow_user_twitter' => Input::postStrVar('allow_user_twitter', 'n'),

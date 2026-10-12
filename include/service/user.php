@@ -118,6 +118,40 @@ class User
     }
 
     /**
+     * 校验登录邮箱验证码
+     *
+     * @param string $mail 邮箱地址
+     * @param string $mail_code 验证码
+     * @return bool
+     */
+    static function checkLoginMailCode($mail, $mail_code)
+    {
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        $session_code = isset($_SESSION['login_mail_code']) ? $_SESSION['login_mail_code'] : '';
+        $session_mail = isset($_SESSION['login_mail']) ? $_SESSION['login_mail'] : '';
+        $session_time = isset($_SESSION['login_mail_time']) ? (int)$_SESSION['login_mail_time'] : 0;
+
+        // 验证码有效期为 15 分钟
+        if ($session_time > 0 && time() - $session_time > 900) {
+            unset($_SESSION['login_mail_code'], $_SESSION['login_mail'], $_SESSION['login_mail_time']);
+            return false;
+        }
+
+        if (empty($mail_code) || empty($session_code) || strtolower($mail_code) !== strtolower($session_code)) {
+            return false;
+        }
+
+        if (empty($mail) || strtolower($mail) !== strtolower($session_mail)) {
+            return false;
+        }
+
+        unset($_SESSION['login_mail_code'], $_SESSION['login_mail'], $_SESSION['login_mail_time']);
+        return true;
+    }
+
+    /**
      * 校验当前用户组的访问权限
      *
      * @return void

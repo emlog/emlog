@@ -501,6 +501,10 @@ class FlashMsg
             'err_ckcode' => array('type' => 'danger', 'text' => _lang('captcha_error')),
             'err_login' => array('type' => 'danger', 'text' => _lang('user_pass_error')),
             'err_forbid' => array('type' => 'danger', 'text' => _lang('account_forbidden')),
+            'err_mail_code' => array('type' => 'danger', 'text' => _lang('email_code_error')),
+            'err_mail_format' => array('type' => 'danger', 'text' => _lang('email_format_error')),
+            'err_mail_unreg' => array('type' => 'danger', 'text' => _lang('email_not_registered')),
+            'err_mail_login_closed' => array('type' => 'danger', 'text' => _lang('email_code_login_disabled')),
         );
         return self::renderAlertsByMap($sessionKey, $alertMap);
     }

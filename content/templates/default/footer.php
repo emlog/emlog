@@ -59,17 +59,44 @@ defined('EMLOG_ROOT') || exit('access denied!');
         $adminSignInS = defined('ADMIN_PATH_CODE') ? '&s=' . rawurlencode((string)constant('ADMIN_PATH_CODE')) : '';
         ?>
         <div class="auth-modal-panel" data-auth-panel="signin" data-title="<?= _lang('login') ?>" data-subtitle="<?= _lang('login') ?>">
+            <?php if (Option::get('login_email_code') === 'y'): ?>
+                <div class="auth-switch-links">
+                    <a href="javascript:void(0);" class="auth-switch-link active" data-signin-type="pwd"><?= _lang('login_by_pwd') ?></a>
+                    <span class="auth-switch-sep">|</span>
+                    <a href="javascript:void(0);" class="auth-switch-link" data-signin-type="code"><?= _lang('login_by_code') ?></a>
+                </div>
+            <?php endif; ?>
             <form id="auth-signin-form" action="<?= BLOG_URL ?>admin/account.php?action=dosignin<?= $adminSignInS ?>" method="post">
-                <div class="auth-form-row">
-                    <input type="text" name="user" placeholder="<?= _lang('username_email') ?>" autocomplete="username" required />
+                <?php if (Option::get('login_email_code') === 'y'): ?>
+                    <input type="hidden" name="login_type" id="auth-signin-type" value="pwd" />
+                <?php endif; ?>
+                <div class="auth-signin-pane auth-signin-pane-pwd" id="auth-signin-pane-pwd">
+                    <div class="auth-form-row">
+                        <input type="text" name="user" placeholder="<?= _lang('username_email') ?>" autocomplete="username" required />
+                    </div>
+                    <div class="auth-form-row">
+                        <input type="password" name="pw" placeholder="<?= _lang('password') ?>" autocomplete="current-password" required />
+                    </div>
                 </div>
-                <div class="auth-form-row">
-                    <input type="password" name="pw" placeholder="<?= _lang('password') ?>" autocomplete="current-password" required />
-                </div>
+                <?php if (Option::get('login_email_code') === 'y'): ?>
+                    <div class="auth-signin-pane auth-signin-pane-code" id="auth-signin-pane-code-mail" style="display: none;">
+                        <div class="auth-form-row">
+                            <input type="email" name="mail" placeholder="<?= _lang('email') ?>" autocomplete="email" disabled />
+                        </div>
+                    </div>
+                <?php endif; ?>
                 <?php if (Option::get('login_code') === 'y'): ?>
-                    <div class="auth-form-row auth-captcha-row">
+                    <div class="auth-form-row auth-captcha-row" id="auth-signin-captcha-row">
                         <input type="text" name="login_code" placeholder="<?= _lang('captcha') ?>" autocomplete="off" required />
                         <img src="<?= BLOG_URL ?>include/lib/checkcode.php" data-auth-captcha="signin" alt="<?= _lang('captcha') ?>" />
+                    </div>
+                <?php endif; ?>
+                <?php if (Option::get('login_email_code') === 'y'): ?>
+                    <div class="auth-signin-pane auth-signin-pane-code" id="auth-signin-pane-code-verify" style="display: none;">
+                        <div class="auth-form-row auth-inline-row">
+                            <input type="text" name="mail_code" placeholder="<?= _lang('email_code') ?>" disabled />
+                            <button type="button" class="btn auth-inline-btn" id="auth-signin-send-code"><?= _lang('send_email_code') ?></button>
+                        </div>
                     </div>
                 <?php endif; ?>
                 <label class="auth-checkbox">

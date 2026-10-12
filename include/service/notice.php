@@ -80,6 +80,30 @@ class Notice
     }
 
     /**
+     * 发送登录邮件验证码。
+     *
+     * @param string $mail 邮箱地址
+     * @return bool
+     */
+    public static function sendLoginMailCode($mail)
+    {
+        if (!self::smtpServerReady()) {
+            return false;
+        }
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        $randCode = getRandStr(6, false, true);
+        $_SESSION['login_mail_code'] = $randCode;
+        $_SESSION['login_mail'] = $mail;
+        $_SESSION['login_mail_time'] = time();
+
+        $title = _lang('notice_login_mail_code_title');
+        $content = self::buildMailCodeContent($randCode);
+        return self::sendMail($mail, $title, $content);
+    }
+
+    /**
      * 发送新投稿通知邮件。
      *
      * @param string $postTitle 文章标题
@@ -260,15 +284,28 @@ class Notice
     }
 
     /**
-     * 构建验证码邮件内容。
+     * 构建验证码邮件内容，包含验证码与来源站点提示。
      *
-     * @param string $randCode 验证码
+     * @param string $randCode 随机验证码
      * @return string
      */
     private static function buildMailCodeContent($randCode)
     {
-        $codeHtml = sprintf('<b style="color: orange;">%s</b>', $randCode);
-        return sprintf('<div id="email_code">%s：%s</div>', _lang('email_code'), $codeHtml);
+        $siteName = Option::get('blogname');
+        if (empty($siteName)) {
+            $siteName = Option::get('site_title');
+        }
+        $siteName = htmlspecialchars($siteName, ENT_QUOTES, 'UTF-8');
+        $siteUrl = defined('BLOG_URL') ? BLOG_URL : './';
+        $codeHtml = sprintf('<b style="color: orange; font-size: 18px;">%s</b>', $randCode);
+        return sprintf(
+            '<div id="email_code">%s：%s</div><div id="email_site" style="margin-top: 10px; color: #666; font-size: 13px;">%s：<a href="%s" target="_blank" style="color: #666; text-decoration: underline;">%s</a></div>',
+            _lang('email_code'),
+            $codeHtml,
+            _lang('mail_from_site'),
+            $siteUrl,
+            $siteName
+        );
     }
 
     private static function getArticleInfo($gid)

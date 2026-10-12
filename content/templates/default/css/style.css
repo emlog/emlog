@@ -3201,12 +3201,82 @@ img.zoom-img {
     color: #2f855a;
 }
 
+.auth-switch-links {
+    text-align: left;
+    margin-bottom: 16px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.auth-switch-link {
+    color: var(--lightColor);
+    text-decoration: none !important;
+    cursor: pointer;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+    padding: 0;
+    transition: color 0.15s ease;
+}
+
+.auth-switch-link:hover {
+    color: var(--buttonBgColor);
+}
+
+.auth-switch-link.active {
+    color: var(--buttonBgColor);
+    font-weight: 600;
+}
+
+.auth-switch-sep {
+    margin: 0 5px;
+    color: var(--borderColor);
+    font-size: 12px;
+}
+
+.auth-modal button,
+.auth-modal .btn,
+.auth-modal .auth-submit,
+.auth-modal .auth-inline-btn,
+.auth-modal input,
+.auth-modal a {
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+.auth-modal button:hover,
+.auth-modal .btn:hover,
+.auth-modal .auth-submit:hover,
+.auth-modal .auth-inline-btn:hover,
+.auth-modal input:hover,
+.auth-modal a:hover {
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+.auth-modal button:active,
+.auth-modal .btn:active,
+.auth-modal .auth-submit:active,
+.auth-modal .auth-inline-btn:active {
+    box-shadow: none !important;
+    transform: none !important;
+}
+
 .auth-form-row {
     margin-bottom: 12px;
 }
 
 .auth-form-row input {
     height: 46px;
+    border: 1px solid var(--inputBorderColor) !important;
+    box-shadow: none !important;
+}
+
+.auth-form-row input:focus {
+    border-color: var(--buttonBgColor) !important;
+    box-shadow: none !important;
+    outline: none !important;
 }
 
 .auth-captcha-row,
@@ -3223,20 +3293,37 @@ img.zoom-img {
 
 .auth-captcha-row img {
     width: 110px;
-    height: 42px;
-    border-radius: 8px;
-    border: 1px solid var(--inputBorderColor);
+    height: 46px;
+    border-radius: var(--marRadius, 8px);
+    border: 1px solid var(--inputBorderColor) !important;
+    box-shadow: none !important;
     cursor: pointer;
     background: var(--inputBgColor);
 }
 
 .auth-inline-btn {
     margin: 0;
-    height: 42px;
-    line-height: 1;
+    height: 46px;
+    line-height: 44px;
     white-space: nowrap;
-    padding: 0 14px;
-    border-radius: 10px;
+    padding: 0 16px;
+    border-radius: var(--marRadius, 8px);
+    font-size: 14px;
+    background: var(--inputBgColor);
+    color: var(--buttonBgColor);
+    border: 1px solid var(--inputBorderColor) !important;
+    box-shadow: none !important;
+    transform: none !important;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.auth-inline-btn:hover:not(:disabled) {
+    background: var(--buttonBgColor);
+    color: var(--buttonTextColor);
+    border-color: var(--buttonBgColor) !important;
+    box-shadow: none !important;
+    transform: none !important;
 }
 
 .auth-checkbox {

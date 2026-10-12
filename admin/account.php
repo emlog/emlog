@@ -26,6 +26,7 @@ if ($action == 'signin') {
         show_404_page(true);
     }
     $login_code = Option::get('login_code') === 'y';
+    $login_email_code = Option::get('login_email_code') === 'y';
     $is_signup = Option::get('is_signup') === 'y';
 
     $page_title = _lang('login');
@@ -40,11 +41,92 @@ if ($action == 'dosignin') {
     if (defined('ADMIN_PATH_CODE') && $admin_path_code !== ADMIN_PATH_CODE) {
         show_404_page(true);
     }
-    $username = Input::postStrVar('user');
-    $password = Input::postStrVar('pw');
+    $login_type = Input::postStrVar('login_type', 'pwd');
     $persist = Input::postIntVar('persist');
     $resp = Input::postStrVar('resp'); // eg: json (only support json now)
     $login_code = Option::get('login_code') === 'y' ? strtoupper(Input::postStrVar('login_code')) : '';
+
+    // 邮件验证码登录
+    if ($login_type === 'code') {
+        if (Option::get('login_email_code') !== 'y') {
+            if ($resp === 'json') {
+                Output::error(_lang('email_code_login_disabled'));
+            }
+            FlashMsg::redirectAccount('signin', 'err_mail_login_closed', array('s' => $admin_path_code, 'type' => 'code'));
+        }
+
+        if (Option::get('login_code') === 'y') {
+            if (!isset($_SESSION)) {
+                session_start();
+            }
+            $passed = isset($_SESSION['login_code_passed']) && (time() - (int)$_SESSION['login_code_passed'] < 900);
+            if (!$passed && !User::checkLoginCode($login_code)) {
+                if ($resp === 'json') {
+                    Output::error(_lang('captcha_error'));
+                }
+                FlashMsg::redirectAccount('signin', 'err_ckcode', array('s' => $admin_path_code, 'type' => 'code'));
+            }
+            unset($_SESSION['login_code_passed']);
+        }
+
+        $mail = Input::postStrVar('mail');
+        $mail_code = Input::postStrVar('mail_code');
+
+        if (!checkMail($mail)) {
+            if ($resp === 'json') {
+                Output::error(_lang('email_format_error'));
+            }
+            FlashMsg::redirectAccount('signin', 'err_mail_format', array('s' => $admin_path_code, 'type' => 'code'));
+        }
+
+        if (!User::checkLoginMailCode($mail, $mail_code)) {
+            if ($resp === 'json') {
+                Output::error(_lang('email_code_error'));
+            }
+            FlashMsg::redirectAccount('signin', 'err_mail_code', array('s' => $admin_path_code, 'type' => 'code'));
+        }
+
+        $userData = $User_Model->getUserDataByLogin($mail);
+        if (false === $userData) {
+            if (Option::get('is_signup') !== 'y') {
+                if ($resp === 'json') {
+                    Output::error(_lang('email_not_registered'));
+                }
+                FlashMsg::redirectAccount('signin', 'err_mail_unreg', array('s' => $admin_path_code, 'type' => 'code'));
+            }
+            $PHPASS = new PasswordHash(8, true);
+            $randomPass = $PHPASS->HashPassword(getRandStr(16));
+            $uid = $User_Model->addUser('', $mail, $randomPass, User::ROLE_WRITER);
+            $CACHE->updateCache(['sta', 'user']);
+            doAction('register_succeed', $uid);
+            $userData = $User_Model->getUserDataByLogin($mail);
+        }
+
+        $state = isset($userData['state']) ? $userData['state'] : 0;
+        if ($state === User::USER_STATE_FORBID) {
+            doAction('login_fail');
+            if ($resp === 'json') {
+                Output::error(_lang('account_forbidden'));
+            }
+            FlashMsg::redirectAccount('signin', 'err_forbid', array('s' => $admin_path_code, 'type' => 'code'));
+        }
+
+        $uid = $userData['uid'];
+        $user_login = !empty($userData['username']) ? $userData['username'] : $mail;
+
+        Register::isRegServer();
+        $User_Model->updateUser(['ip' => getIp()], $uid);
+        LoginAuth::setAuthCookie($user_login, $persist);
+        doAction('login_succeed', $uid, $resp);
+        if ($resp === 'json') {
+            Output::ok();
+        }
+        emDirect("./");
+    }
+
+    // 密码登录
+    $username = Input::postStrVar('user');
+    $password = Input::postStrVar('pw');
 
     if (!User::checkLoginCode($login_code)) {
         if ($resp === 'json') {
@@ -176,6 +258,56 @@ if ($action == 'send_email_code') {
     doAction('send_email_code', $mail);
 
     $ret = Notice::sendVerifyMailCode($mail);
+    if ($ret) {
+        Output::ok();
+    } else {
+        Output::error(_lang('email_code_send_failed'));
+    }
+}
+
+// 发送登录邮件验证码
+if ($action == 'send_login_email_code') {
+    if (Option::get('login_email_code') !== 'y') {
+        Output::error(_lang('email_code_login_disabled'));
+    }
+
+    if (Option::get('login_code') === 'y') {
+        $login_code = strtoupper(Input::postStrVar('login_code'));
+        if (!User::checkLoginCode($login_code)) {
+            Output::error(_lang('captcha_error'));
+        }
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        $_SESSION['login_code_passed'] = time();
+    }
+
+    $mail = Input::postStrVar('mail');
+    if (!checkMail($mail)) {
+        Output::error(_lang('email_format_error'));
+    }
+
+    if (!$User_Model->isMailExist($mail)) {
+        if (Option::get('is_signup') !== 'y') {
+            Output::error(_lang('email_not_registered'));
+        }
+    } else {
+        $userData = $User_Model->getUserDataByLogin($mail);
+        if ($userData && isset($userData['state']) && (int)$userData['state'] === User::USER_STATE_FORBID) {
+            Output::error(_lang('account_forbidden'));
+        }
+    }
+
+    if (!isset($_SESSION)) {
+        session_start();
+    }
+    if (isset($_SESSION['login_mail_time']) && time() - (int)$_SESSION['login_mail_time'] < 60) {
+        Output::error(_lang('send_code_too_frequent'));
+    }
+
+    doAction('send_login_email_code', $mail);
+
+    $ret = Notice::sendLoginMailCode($mail);
     if ($ret) {
         Output::ok();
     } else {

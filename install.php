@@ -646,6 +646,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES
 ('emkey',''),
 ('login_code','n'),
 ('email_code','n'),
+('login_email_code','n'),
 ('is_signup','y'),
 ('ischkarticle','y'),
 ('article_uneditable','n'),

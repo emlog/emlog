@@ -436,6 +436,13 @@ var authModal = {
         this.$modal.on("click", "[data-auth-captcha]", function () {
             self.refreshCaptcha($(this))
         })
+        this.$modal.on("click", "[data-signin-type]", function () {
+            var type = $(this).attr("data-signin-type")
+            self.switchSignInType(type)
+        })
+        this.$modal.on("click", "#auth-signin-send-code", function () {
+            self.sendSignInMailCode()
+        })
         this.$signinForm.on("submit", function (e) {
             e.preventDefault()
             self.submitSignIn()
@@ -474,7 +481,9 @@ var authModal = {
         $target.show()
         this.$title.text($target.attr("data-title") || "")
         this.$subtitle.text($target.attr("data-subtitle") || "")
-        if ($target.is(this.$resetPanel)) {
+        if ($target.is(this.$panels.filter('[data-auth-panel="signin"]'))) {
+            this.switchSignInType("pwd")
+        } else if ($target.is(this.$resetPanel)) {
             this.resetResetFlow()
         }
     },
@@ -708,6 +717,84 @@ var authModal = {
                 src = src.split("?")[0]
             }
             $img.attr("src", src + "?_t=" + Date.now())
+        })
+    },
+    /**
+     * 切换前台登录弹窗中的登录方式（密码登录 / 验证码登录）。
+     */
+    switchSignInType: function (type) {
+        var isCode = type === "code"
+        var $tabBtns = this.$modal.find("[data-signin-type]")
+        var $panePwd = $("#auth-signin-pane-pwd")
+        var $paneCode = $(".auth-signin-pane-code")
+        var $typeInput = $("#auth-signin-type")
+
+        $tabBtns.removeClass("active")
+        $tabBtns.filter('[data-signin-type="' + (isCode ? "code" : "pwd") + '"]').addClass("active")
+
+        if ($typeInput.length) {
+            $typeInput.val(isCode ? "code" : "pwd")
+        }
+
+        if (isCode) {
+            $panePwd.hide().find("input").prop("disabled", true).prop("required", false)
+            $paneCode.show().find("input").prop("disabled", false).prop("required", true)
+            $paneCode.find('input[name="mail"]').focus()
+        } else {
+            $paneCode.hide().find("input").prop("disabled", true).prop("required", false)
+            $panePwd.show().find("input").prop("disabled", false).prop("required", true)
+            $panePwd.find('input[name="user"]').focus()
+        }
+        this.clearAlert()
+    },
+    /**
+     * 发送登录邮箱验证码。
+     */
+    sendSignInMailCode: function () {
+        var self = this
+        var $mail = this.$signinForm.find('input[name="mail"]')
+        var mail = $.trim($mail.val())
+        if (!mail) {
+            $mail.focus()
+            return
+        }
+        var postData = {mail: mail}
+        var $loginCode = this.$signinForm.find('input[name="login_code"]')
+        if ($loginCode.length) {
+            var captcha = $.trim($loginCode.val())
+            if (!captcha) {
+                $loginCode.focus()
+                self.showAlert("请输入验证码")
+                return
+            }
+            postData.login_code = captcha
+        }
+        var $btn = $("#auth-signin-send-code")
+        var defaultText = $btn.text()
+        this.clearAlert()
+        $btn.prop("disabled", true)
+        $.ajax({
+            type: "POST",
+            url: this.accountUrl("send_login_email_code"),
+            data: postData,
+            success: function () {
+                self.showAlert(self.$modal.data("msg-email-code-sent"), true)
+                var seconds = 60
+                var timer = setInterval(function () {
+                    seconds--
+                    if (seconds <= 0) {
+                        clearInterval(timer)
+                        $btn.text(defaultText).prop("disabled", false)
+                    } else {
+                        $btn.text(seconds + "s")
+                    }
+                }, 1000)
+            },
+            error: function (xhr) {
+                self.showAlert(self.getErrorMessage(xhr))
+                $btn.text(defaultText).prop("disabled", false)
+                self.refreshAllCaptcha()
+            }
         })
     },
     toggleSubmit: function ($form, loading) {

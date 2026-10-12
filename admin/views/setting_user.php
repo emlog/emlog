@@ -28,6 +28,10 @@
                 <input class="custom-control-input" type="checkbox" value="y" name="email_code" id="email_code" <?= $conf_email_code ?>>
                 <label class="custom-control-label" for="email_code"><?= _lang('register_email_code'); ?></label>
             </div>
+            <div class="custom-control custom-switch">
+                <input class="custom-control-input" type="checkbox" value="y" name="login_email_code" id="login_email_code" <?= $conf_login_email_code ?>>
+                <label class="custom-control-label" for="login_email_code"><?= _lang('login_email_code'); ?></label>
+            </div>
             <hr>
             <div class="custom-control custom-switch">
                 <input class="custom-control-input" type="checkbox" value="y" name="ischkarticle" id="ischkarticle" <?= $conf_ischkarticle ?> />
