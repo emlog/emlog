@@ -152,6 +152,8 @@ class Comment_Model
         $ret = $this->db->query($sql);
         $comments = [];
         while ($row = $this->db->fetch_array($ret)) {
+            $row['poster_raw'] = $row['poster'];
+            $row['url_raw'] = $row['url'];
             $row['poster'] = htmlspecialchars($row['poster']);
             $row['mail'] = htmlspecialchars($row['mail']);
             $row['url'] = htmlspecialchars($row['url']);
@@ -283,15 +285,26 @@ class Comment_Model
      *
      * @param int $commentId
      * @param string $comment
+     * @param string|null $poster
+     * @param string|null $url
      * @return bool
      */
-    function editComment($commentId, $comment)
+    function editComment($commentId, $comment, $poster = null, $url = null)
     {
         if (!User::haveEditPermission()) {
             emMsg('权限不足！', './');
         }
         $comment = addslashes($comment);
-        return $this->db->query("UPDATE $this->table SET comment='$comment' WHERE cid=$commentId");
+        $set = "comment='$comment'";
+        if ($poster !== null) {
+            $poster = addslashes($poster);
+            $set .= ", poster='$poster'";
+        }
+        if ($url !== null) {
+            $url = addslashes($url);
+            $set .= ", url='$url'";
+        }
+        return $this->db->query("UPDATE $this->table SET $set WHERE cid=$commentId");
     }
 
     function replyComment($blogId, $pid, $content, $hide)

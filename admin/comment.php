@@ -154,6 +154,8 @@ if ($action === 'edit') {
     }
 
     $comment = Input::postStrVar('comment');
+    $poster = Input::postStrVar('poster');
+    $url = Input::postStrVar('url');
     $commentId = Input::postIntVar('cid');
 
     if (empty($comment)) {
@@ -162,10 +164,24 @@ if ($action === 'edit') {
     if (strlen($comment) > 60000) {
         FlashMsg::redirectAdmin('comment', 'error_d');
     }
+    if (empty($poster)) {
+        FlashMsg::redirectAdmin('comment', 'error_poster');
+    }
+    if (strlen($poster) > 100) {
+        FlashMsg::redirectAdmin('comment', 'error_poster_len');
+    }
+    if ($url !== '') {
+        if (strncasecmp($url, 'http://', 7) !== 0 && strncasecmp($url, 'https://', 8) !== 0) {
+            $url = 'https://' . $url;
+        }
+        if (!filter_var($url, FILTER_VALIDATE_URL)) {
+            FlashMsg::redirectAdmin('comment', 'error_url');
+        }
+    }
 
-    $Comment_Model->editComment($commentId, $comment);
+    $Comment_Model->editComment($commentId, $comment, $poster, $url);
     $CACHE->updateCache('comment');
-    doAction('comment_edited', $commentId, $comment);
+    doAction('comment_edited', $commentId, $comment, $poster, $url);
     FlashMsg::redirectAdmin('comment', 'active_edit');
 }
 

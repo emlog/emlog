@@ -82,6 +82,8 @@
                                         <a href="javascript: em_confirm(<?= $cid ?>, 'comment', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger"><?= _lang('delete') ?></a>
                                         <a href="#" data-toggle="modal" class="badge badge-primary" data-target="#editModal"
                                             data-cid="<?= $cid ?>"
+                                            data-poster="<?= htmlspecialchars($value['poster_raw'], ENT_QUOTES, 'UTF-8') ?>"
+                                            data-url="<?= htmlspecialchars($value['url_raw'], ENT_QUOTES, 'UTF-8') ?>"
                                             data-comment="<?= htmlspecialchars($value['comment_raw'], ENT_QUOTES, 'UTF-8') ?>"><?= _lang('edit') ?>
                                         </a>
                                     <?php endif ?>
@@ -177,8 +179,17 @@
             </div>
             <form action="comment.php?action=edit" method="post">
                 <div class="modal-body">
+                    <input type="hidden" value="" name="cid" id="edit_cid" />
                     <div class="form-group">
-                        <input type="hidden" value="" name="cid" id="edit_cid" />
+                        <label for="edit_poster"><?= _lang('nickname') ?></label>
+                        <input type="text" class="form-control" id="edit_poster" name="poster" maxlength="100" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="edit_url"><?= _lang('homepage') ?></label>
+                        <input type="text" class="form-control" id="edit_url" name="url" placeholder="https://" />
+                    </div>
+                    <div class="form-group">
+                        <label for="edit_comment"><?= _lang('comment') ?></label>
                         <textarea class="form-control" id="edit_comment" name="comment" rows="5" required></textarea>
                     </div>
                 </div>
@@ -222,9 +233,13 @@
         $('#editModal').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget)
             var comment = button.data('comment')
+            var poster = button.data('poster')
+            var url = button.data('url')
             var cid = button.data('cid')
             var modal = $(this)
             modal.find('.modal-body #edit_cid').val(cid)
+            modal.find('.modal-body #edit_poster').val(poster)
+            modal.find('.modal-body #edit_url').val(url)
             modal.find('.modal-body #edit_comment').val(comment)
         })
 

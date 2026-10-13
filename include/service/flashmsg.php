@@ -382,6 +382,9 @@ class FlashMsg
             'error_c' => array('type' => 'danger', 'text' => _lang('reply_empty_error')),
             'error_d' => array('type' => 'danger', 'text' => _lang('content_too_long')),
             'error_e' => array('type' => 'danger', 'text' => _lang('comment_empty_error')),
+            'error_poster' => array('type' => 'danger', 'text' => _lang('fill_nickname')),
+            'error_poster_len' => array('type' => 'danger', 'text' => _lang('nickname_too_long')),
+            'error_url' => array('type' => 'danger', 'text' => _lang('url_format_error')),
         );
         return self::renderAlertsByMap($sessionKey, $alertMap);
     }
