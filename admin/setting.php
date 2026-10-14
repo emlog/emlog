@@ -464,6 +464,8 @@ if ($action == 'api') {
     $is_openapi = Option::get('is_openapi');
     $conf_is_openapi = $is_openapi == 'y' ? 'checked="checked"' : '';
 
+    $conf_is_dev_mode = Option::get('is_dev_mode') == 'y' ? 'checked="checked"' : '';
+
     include View::getAdmView('header');
     require_once(View::getAdmView('setting_api'));
     include View::getAdmView('footer');
@@ -472,6 +474,9 @@ if ($action == 'api') {
 
 if ($action == 'api_save') {
     LoginAuth::checkToken();
+
+    $isDevMode = Input::postStrVar('is_dev_mode', 'n');
+    Option::updateOption('is_dev_mode', $isDevMode);
 
     $isOpenapiEnabled = Input::postStrVar('is_openapi', 'n');
     Option::updateOption('is_openapi', $isOpenapiEnabled);

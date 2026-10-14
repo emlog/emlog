@@ -98,7 +98,6 @@ if ($action == 'chat_stream') {
 2. 增加、删除、修改特定系统配置文件 (config.php)
 - 工具名称: update_config
 - 说明: 只能增加、删除、修改特定的配置项目，这些配置项目包括：
-  - `ENVIRONMENT`: 开启开发者模式。通常值为 'develop'。
   - `EMLOG_LANG`: 切换系统语言。简体中文为 'zh_CN'，英文为 'en_US'。
 - 参数格式 (JSON):
   {

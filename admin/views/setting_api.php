@@ -35,20 +35,26 @@
                     </div>
                 </div>
             </div>
+            <div class="alert alert-warning">
+                <b><?= _lang('api_list'); ?>：</b><br><br>
+                <?= _lang('api_article_post'); ?><?= BLOG_URL ?>?rest-api=article_post<br>
+                <?= _lang('api_category_list'); ?><br>
+                <?= _lang('api_twitter_post'); ?><br>
+                <?= _lang('api_twitter_list'); ?><br>
+                <?= _lang('api_media_upload'); ?><br>
+                ……<br><br>
+                <?= _lang('api_doc_link'); ?>：<a href="https://www.emlog.net/docs/api" target="_blank"><?= _lang('api_doc'); ?>→</a>
+            </div>
+            <hr class="my-4">
+            <div class="custom-control custom-switch">
+                <input class="custom-control-input" type="checkbox" value="y" name="is_dev_mode" id="is_dev_mode" <?= $conf_is_dev_mode ?> />
+                <label class="custom-control-label" for="is_dev_mode"><?= _lang('enable_dev_mode'); ?></label>
+            </div>
+            <small class="form-text text-muted"><?= _lang('dev_mode_desc'); ?></small>
             <div class="form-group mt-3">
                 <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
             </div>
         </form>
-        <div class="alert alert-warning">
-            <b><?= _lang('api_list'); ?>：</b><br><br>
-            <?= _lang('api_article_post'); ?><?= BLOG_URL ?>?rest-api=article_post<br>
-            <?= _lang('api_category_list'); ?><br>
-            <?= _lang('api_twitter_post'); ?><br>
-            <?= _lang('api_twitter_list'); ?><br>
-            <?= _lang('api_media_upload'); ?><br>
-            ……<br><br>
-            <?= _lang('api_doc_link'); ?>：<a href="https://www.emlog.net/docs/api" target="_blank"><?= _lang('api_doc'); ?>→</a>
-        </div>
     </div>
 </div>
 <script>

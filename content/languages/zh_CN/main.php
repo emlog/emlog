@@ -321,7 +321,7 @@ return [
     'setting_user' => '用户设置',
     'setting_mail' => '邮件通知',
     'setting_seo' => 'SEO',
-    'setting_api' => 'API',
+    'setting_api' => '开发/API',
     'setting_ai' => 'AI',
     'setting_profile' => '个人信息',
     'more_options' => '更多配置项',
@@ -438,6 +438,8 @@ return [
     'more_seo_plugins' => '更多SEO插件',
 
     // Setting - API
+    'enable_dev_mode' => '开启开发者模式',
+    'dev_mode_desc' => '开启后将输出更详细的报错信息，包括 warning 和 notice 级别的错误，方便开发调试主题、插件，生产环境请勿开启',
     'enable_api' => '开启API',
     'api_key' => 'API秘钥',
     'reset_api_key' => '重置API秘钥',

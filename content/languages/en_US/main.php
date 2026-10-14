@@ -321,7 +321,7 @@ return [
     'setting_user' => 'User Settings',
     'setting_mail' => 'Email Settings',
     'setting_seo' => 'SEO',
-    'setting_api' => 'API',
+    'setting_api' => 'Dev/API',
     'setting_ai' => 'AI',
     'setting_profile' => 'Profile',
     'more_options' => 'More Options',
@@ -438,6 +438,8 @@ return [
     'more_seo_plugins' => 'More SEO Plugins',
 
     // Setting - API
+    'enable_dev_mode' => 'Enable Developer Mode',
+    'dev_mode_desc' => 'When enabled, the program will output detailed error messages, including warnings and notices, to facilitate debugging.',
     'enable_api' => 'Enable API',
     'api_key' => 'API Key',
     'reset_api_key' => 'Reset API Key',

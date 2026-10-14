@@ -1058,7 +1058,6 @@ class Ai
     public static function updateConfig($key, $action, $value = null)
     {
         $allowed_keys = [
-            'ENVIRONMENT',
             'ARTICLE_AUTOSAVE_OFF',
             'SWITCH_TEMPLATE',
             'EMLOG_LANG'
