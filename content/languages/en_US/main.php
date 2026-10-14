@@ -321,8 +321,8 @@ return [
     'setting_user' => 'User Settings',
     'setting_mail' => 'Email Settings',
     'setting_seo' => 'SEO',
-    'setting_api' => 'Dev/API',
     'setting_ai' => 'AI',
+    'setting_api' => 'Dev/API',
     'setting_profile' => 'Profile',
     'more_options' => 'More Options',
 

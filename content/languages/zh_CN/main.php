@@ -321,8 +321,8 @@ return [
     'setting_user' => '用户设置',
     'setting_mail' => '邮件通知',
     'setting_seo' => 'SEO',
-    'setting_api' => '开发/API',
     'setting_ai' => 'AI',
+    'setting_api' => '开发/API',
     'setting_profile' => '个人信息',
     'more_options' => '更多配置项',
 
