@@ -17,6 +17,7 @@ $Sort_Model = new Sort_Model();
 
 if (empty($action)) {
     $sorts = $Sort_Model->getSorts();
+    $sorts_count = count($sorts);
 
     $Template_Model = new Template_Model();
     $customTemplates = $Template_Model->getCustomTemplates('sort');

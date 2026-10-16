@@ -99,7 +99,13 @@
                 </div>
                 <div class="form-group">
                     <label><?= _lang('category') ?>：</label>
-                    <select name="sort" id="sort" class="form-control">
+                    <?php
+                    $selectedSortName = _lang('select_category');
+                    if ($sortid > 0 && isset($sorts[$sortid])) {
+                        $selectedSortName = $sorts[$sortid]['sortname'];
+                    }
+                    ?>
+                    <select name="sort" id="sort" class="d-none">
                         <option value="-1"><?= _lang('select_category') ?></option>
                         <?php
                         foreach ($sorts as $key => $value):
@@ -111,16 +117,58 @@
                             <option value="<?= $value['sid'] ?>" <?= $flg ?>><?= $value['sortname'] ?></option>
                             <?php
                             $children = $value['children'];
-                            foreach ($children as $key):
-                                $value = $sorts[$key];
-                                $flg = $value['sid'] == $sortid ? 'selected' : '';
+                            foreach ($children as $cid):
+                                $child = $sorts[$cid];
+                                $flg = $child['sid'] == $sortid ? 'selected' : '';
                             ?>
-                                <option value="<?= $value['sid'] ?>" <?= $flg ?>>&nbsp; &nbsp; &nbsp; <?= $value['sortname'] ?></option>
+                                <option value="<?= $child['sid'] ?>" <?= $flg ?>>&nbsp; &nbsp; &nbsp; <?= $child['sortname'] ?></option>
                         <?php
                             endforeach;
                         endforeach;
                         ?>
                     </select>
+                    <div class="dropdown sort-searchable-dropdown" id="sort_search_dropdown">
+                        <button class="form-control text-left d-flex justify-content-between align-items-center" type="button" id="sortDropdownBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="text-truncate sort-selected-text"><?= $selectedSortName ?></span>
+                            <i class="icofont-rounded-down text-muted ml-2"></i>
+                        </button>
+                        <div class="dropdown-menu w-100 p-2 shadow-sm" aria-labelledby="sortDropdownBtn" style="min-width: 100%;">
+                            <?php if (count($sorts) > 10): ?>
+                                <div class="sort-search-box mb-2">
+                                    <i class="icofont-search-1 sort-search-icon"></i>
+                                    <input type="text" class="form-control sort-search-input" id="sort_search_input" placeholder="<?= _lang('search') ?>" autocomplete="off">
+                                </div>
+                            <?php endif; ?>
+                            <div class="sort-dropdown-list" style="max-height: 220px; overflow-y: auto;">
+                                <a href="javascript:;" class="dropdown-item sort-dropdown-item py-1 px-2 rounded <?= $sortid <= 0 ? 'active' : '' ?>" data-value="-1" data-name="<?= htmlspecialchars(_lang('select_category'), ENT_QUOTES, 'UTF-8') ?>">
+                                    <?= _lang('select_category') ?>
+                                </a>
+                                <?php
+                                foreach ($sorts as $key => $value):
+                                    if ($value['pid'] != 0) {
+                                        continue;
+                                    }
+                                    $isSelected = $value['sid'] == $sortid;
+                                ?>
+                                    <a href="javascript:;" class="dropdown-item sort-dropdown-item py-1 px-2 rounded <?= $isSelected ? 'active' : '' ?>" data-value="<?= $value['sid'] ?>" data-name="<?= htmlspecialchars($value['sortname'], ENT_QUOTES, 'UTF-8') ?>" title="<?= htmlspecialchars($value['sortname'], ENT_QUOTES, 'UTF-8') ?>">
+                                        <?= $value['sortname'] ?>
+                                    </a>
+                                    <?php
+                                    $children = $value['children'];
+                                    foreach ($children as $cid):
+                                        $child = $sorts[$cid];
+                                        $isChildSelected = $child['sid'] == $sortid;
+                                    ?>
+                                        <a href="javascript:;" class="dropdown-item sort-dropdown-item py-1 px-2 rounded pl-4 <?= $isChildSelected ? 'active' : '' ?>" data-value="<?= $child['sid'] ?>" data-name="<?= htmlspecialchars($child['sortname'], ENT_QUOTES, 'UTF-8') ?>" data-pname="<?= htmlspecialchars($value['sortname'], ENT_QUOTES, 'UTF-8') ?>" title="<?= htmlspecialchars($child['sortname'], ENT_QUOTES, 'UTF-8') ?>">
+                                            <span class="text-muted mr-1">└</span><?= $child['sortname'] ?>
+                                        </a>
+                                <?php
+                                    endforeach;
+                                endforeach;
+                                ?>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label><?= _lang('tag') ?>：</label>
@@ -517,4 +565,164 @@
     initCheckboxState('auto_excerpt');
     // 自动提取封面状态
     initCheckboxState('auto_cover');
+
+    /**
+     * 初始化分类快捷搜索与下拉选择功能（当分类总数超过10个时）
+     * 支持键盘上下键选择、回车确认、ESC关闭、实时不区分大小写模糊匹配
+     */
+    function initSearchableSort() {
+        var $dropdown = $('#sort_search_dropdown');
+        if (!$dropdown.length) {
+            return;
+        }
+
+        var $input = $('#sort_search_input');
+        var $list = $dropdown.find('.sort-dropdown-list');
+        var $items = $list.find('.sort-dropdown-item');
+        var $hiddenSelect = $('#sort');
+        var $selectedText = $('.sort-selected-text');
+        var $toggleBtn = $('#sortDropdownBtn');
+
+        // 展开下拉面板时自动聚焦搜索输入框（存在搜索框时）
+        $dropdown.on('shown.bs.dropdown', function () {
+            if ($input.length) {
+                $input.focus().select();
+            }
+        });
+
+        // 关闭下拉面板时重置搜索关键字与列表显示（存在搜索框时）
+        $dropdown.on('hidden.bs.dropdown', function () {
+            if ($input.length) {
+                $input.val('');
+                filterSortList('');
+            }
+        });
+
+        // 阻止在下拉面板内部（非选项）点击时冒泡导致面板意外关闭
+        $dropdown.find('.dropdown-menu').on('click', function (e) {
+            if (!$(e.target).hasClass('sort-dropdown-item') && !$(e.target).closest('.sort-dropdown-item').length) {
+                e.stopPropagation();
+            }
+        });
+
+        /**
+         * 根据关键字实时筛选分类列表
+         * @param {string} kw 搜索关键字
+         */
+        function filterSortList(kw) {
+            kw = $.trim(kw).toLowerCase();
+            $items.removeClass('is-highlight');
+
+            $items.each(function () {
+                var $item = $(this);
+                var val = $item.data('value');
+                var name = ($item.data('name') || '').toString().toLowerCase();
+                var pname = ($item.data('pname') || '').toString().toLowerCase();
+
+                if (kw === '') {
+                    $item.show();
+                } else {
+                    if (val == -1) {
+                        $item.hide();
+                    } else if (name.indexOf(kw) !== -1 || pname.indexOf(kw) !== -1) {
+                        $item.show();
+                    } else {
+                        $item.hide();
+                    }
+                }
+            });
+        }
+
+        // 监听搜索框输入
+        $input.on('input', function () {
+            filterSortList($(this).val());
+        });
+
+        /**
+         * 滚动选项至容器可视区域
+         * @param {jQuery} $item 目标元素
+         * @param {jQuery} $container 容器元素
+         */
+        function scrollItemIntoView($item, $container) {
+            if (!$item.length || !$container.length) {
+                return;
+            }
+            var containerTop = $container.scrollTop();
+            var containerHeight = $container.innerHeight();
+            var itemTop = $item.position().top + containerTop;
+            var itemHeight = $item.outerHeight();
+
+            if (itemTop < containerTop) {
+                $container.scrollTop(itemTop);
+            } else if (itemTop + itemHeight > containerTop + containerHeight) {
+                $container.scrollTop(itemTop + itemHeight - containerHeight);
+            }
+        }
+
+        // 键盘导航支持（上下箭头选择，回车确认，Esc取消）
+        $input.on('keydown', function (e) {
+            var $visibleItems = $items.filter(':visible');
+            if (!$visibleItems.length) {
+                if (e.keyCode === 27) {
+                    $toggleBtn.dropdown('toggle');
+                }
+                return;
+            }
+
+            var $highlighted = $visibleItems.filter('.is-highlight');
+            var currentIndex = $visibleItems.index($highlighted);
+
+            if (e.keyCode === 40) { // Arrow Down
+                e.preventDefault();
+                var nextIndex = (currentIndex + 1) >= $visibleItems.length ? 0 : currentIndex + 1;
+                $visibleItems.removeClass('is-highlight');
+                var $next = $visibleItems.eq(nextIndex).addClass('is-highlight');
+                scrollItemIntoView($next, $list);
+            } else if (e.keyCode === 38) { // Arrow Up
+                e.preventDefault();
+                var prevIndex = (currentIndex - 1) < 0 ? $visibleItems.length - 1 : currentIndex - 1;
+                $visibleItems.removeClass('is-highlight');
+                var $prev = $visibleItems.eq(prevIndex).addClass('is-highlight');
+                scrollItemIntoView($prev, $list);
+            } else if (e.keyCode === 13) { // Enter
+                e.preventDefault();
+                var $target = $highlighted.length ? $highlighted : $visibleItems.first();
+                if ($target.length) {
+                    $target.trigger('click');
+                }
+            } else if (e.keyCode === 27) { // Escape
+                $toggleBtn.dropdown('toggle');
+            }
+        });
+
+        // 点击选择分类项
+        $(document).on('click', '#sort_search_dropdown .sort-dropdown-item', function (e) {
+            e.preventDefault();
+            var val = $(this).data('value');
+            var name = $(this).data('name');
+
+            $hiddenSelect.val(val).trigger('change');
+            $selectedText.text(name);
+            $items.removeClass('active is-highlight');
+            $(this).addClass('active');
+
+            $toggleBtn.dropdown('toggle');
+        });
+
+        // 监听底层 select 变化以保持UI同步
+        $hiddenSelect.on('change', function () {
+            var currentVal = $(this).val();
+            $items.removeClass('active');
+            var $matched = $items.filter(function () {
+                return $(this).data('value') == currentVal;
+            });
+            if ($matched.length) {
+                $matched.addClass('active');
+                $selectedText.text($matched.data('name'));
+            }
+        });
+    }
+
+    // 初始化分类快捷搜索
+    initSearchableSort();
 </script>

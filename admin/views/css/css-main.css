@@ -2793,3 +2793,88 @@ textarea.form-control {
     background: #e0e7ff !important;
     color: #4e73df !important;
 }
+
+/* 可搜索分类下拉选择器 */
+.sort-searchable-dropdown .dropdown-toggle::after {
+    display: none;
+}
+.sort-searchable-dropdown #sortDropdownBtn {
+    background-color: var(--em-input-bg, #fff);
+    text-align: left;
+    height: auto;
+    min-height: calc(1.5em + 1rem + 2px);
+    cursor: pointer;
+}
+.sort-searchable-dropdown .dropdown-menu {
+    border-radius: var(--em-radius-base, 0.35rem);
+    border: 1px solid var(--em-border-color, #e3e6f0);
+}
+.sort-searchable-dropdown .sort-dropdown-item {
+    font-size: 0.875rem;
+    color: var(--em-body-color, #334155);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    cursor: pointer;
+    text-decoration: none;
+}
+.sort-searchable-dropdown .sort-dropdown-item:hover,
+.sort-searchable-dropdown .sort-dropdown-item.is-highlight {
+    background-color: #f1f5f9;
+    color: var(--em-primary, #4e73df);
+}
+.sort-searchable-dropdown .sort-dropdown-item.active {
+    background-color: var(--em-primary, #4e73df);
+    color: #fff !important;
+}
+.sort-searchable-dropdown .sort-dropdown-item.active .text-muted {
+    color: rgba(255, 255, 255, 0.75) !important;
+}
+
+/* 确保仅在点击激活（.show）时展开，禁止鼠标悬停时自动展开 */
+.sort-searchable-dropdown.dropdown:hover .dropdown-menu:not(.show),
+.sort-searchable-dropdown .dropdown-menu:not(.show) {
+    display: none !important;
+}
+.sort-searchable-dropdown .dropdown-menu.show {
+    display: block !important;
+}
+.sort-searchable-dropdown #sortDropdownBtn * {
+    pointer-events: none;
+}
+
+/* 搜索输入框盒子与聚焦样式 */
+.sort-search-box {
+    position: relative;
+    width: 100%;
+}
+.sort-search-box .sort-search-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+    font-size: 0.85rem;
+    pointer-events: none;
+    z-index: 5;
+}
+.sort-search-box .sort-search-input {
+    width: 100%;
+    padding-left: 32px !important;
+    padding-right: 10px !important;
+    height: 34px !important;
+    min-height: 34px !important;
+    line-height: 1.5 !important;
+    font-size: 0.85rem !important;
+    border-radius: var(--em-radius-base, 0.35rem) !important;
+    border: 1px solid var(--em-input-border, #d1d3e2) !important;
+    background-color: var(--em-input-bg, #fff) !important;
+    box-sizing: border-box !important;
+}
+.sort-search-box .sort-search-input:focus {
+    background-color: #fff !important;
+    border-color: var(--em-input-focus-border, #4e73df) !important;
+    box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.2) !important;
+    outline: none !important;
+}

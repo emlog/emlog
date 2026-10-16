@@ -141,6 +141,7 @@
         <a href="javascript: sort_batch_delete();" class="btn btn-sm btn-outline-danger"><?= _lang('delete') ?></a>
     </div>
 </form>
+<div class="text-center small"><?= _lang('total') ?> <?= $sorts_count ?></div>
 
 <style>
     /* 树形分类多层级连线与精准缩进 */
