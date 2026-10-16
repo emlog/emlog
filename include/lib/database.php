@@ -10,6 +10,9 @@
 class Database
 {
 
+    /**
+     * @return MySqlii|DatabasePDO
+     */
     public static function getInstance()
     {
         if (defined('USE_MYSQL_PDO') && USE_MYSQL_PDO === true) {

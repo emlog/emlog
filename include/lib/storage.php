@@ -54,7 +54,7 @@ class Storage
 
     /**
      * 数据库连接实例
-     * @var MySql 数据库连接实例
+     * @var MySqlii|DatabasePDO
      */
     private $db_conn = NULL;
 

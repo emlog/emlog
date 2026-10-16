@@ -134,7 +134,6 @@ class Notice
      * @param string $comment 评论内容
      * @param int $gid 文章ID
      * @param int $pid 父评论ID
-     * @param string $pcomment 父评论内容，原始评论内容
      * @return bool
      */
     public static function sendNewCommentMail($comment, $gid, $pid = 0)

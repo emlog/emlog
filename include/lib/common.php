@@ -1067,10 +1067,10 @@ function show_404_page($show_404_only = false)
 /**
  * hmac 加密
  *
- * @param unknown_type $algo hash算法 md5
- * @param unknown_type $data 用户名和到期时间
- * @param unknown_type $key
- * @return unknown
+ * @param string $algo hash算法 md5
+ * @param string $data 用户名和到期时间
+ * @param string $key
+ * @return string
  */
 if (!function_exists('hash_hmac')) {
     function hash_hmac($algo, $data, $key)
