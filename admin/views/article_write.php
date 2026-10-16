@@ -134,13 +134,10 @@
                         </button>
                         <div class="dropdown-menu w-100 p-2 shadow-sm" aria-labelledby="sortDropdownBtn" style="min-width: 100%;">
                             <?php if (count($sorts) > 10): ?>
-                                <div class="sort-search-box mb-2">
-                                    <i class="icofont-search-1 sort-search-icon"></i>
-                                    <input type="text" class="form-control sort-search-input" id="sort_search_input" placeholder="<?= _lang('search') ?>" autocomplete="off">
-                                </div>
+                                <input type="text" class="form-control form-control-sm mb-2" id="sort_search_input" placeholder="<?= _lang('search') ?>" autocomplete="off">
                             <?php endif; ?>
                             <div class="sort-dropdown-list" style="max-height: 220px; overflow-y: auto;">
-                                <a href="javascript:;" class="dropdown-item sort-dropdown-item py-1 px-2 rounded <?= $sortid <= 0 ? 'active' : '' ?>" data-value="-1" data-name="<?= htmlspecialchars(_lang('select_category'), ENT_QUOTES, 'UTF-8') ?>">
+                                <a href="javascript:;" class="dropdown-item sort-item py-1 px-2 text-truncate rounded <?= $sortid <= 0 ? 'active' : '' ?>" data-value="-1" data-name="<?= htmlspecialchars(_lang('select_category'), ENT_QUOTES, 'UTF-8') ?>">
                                     <?= _lang('select_category') ?>
                                 </a>
                                 <?php
@@ -150,7 +147,7 @@
                                     }
                                     $isSelected = $value['sid'] == $sortid;
                                 ?>
-                                    <a href="javascript:;" class="dropdown-item sort-dropdown-item py-1 px-2 rounded <?= $isSelected ? 'active' : '' ?>" data-value="<?= $value['sid'] ?>" data-name="<?= htmlspecialchars($value['sortname'], ENT_QUOTES, 'UTF-8') ?>" title="<?= htmlspecialchars($value['sortname'], ENT_QUOTES, 'UTF-8') ?>">
+                                    <a href="javascript:;" class="dropdown-item sort-item py-1 px-2 text-truncate rounded <?= $isSelected ? 'active' : '' ?>" data-value="<?= $value['sid'] ?>" data-name="<?= htmlspecialchars($value['sortname'], ENT_QUOTES, 'UTF-8') ?>" title="<?= htmlspecialchars($value['sortname'], ENT_QUOTES, 'UTF-8') ?>">
                                         <?= $value['sortname'] ?>
                                     </a>
                                     <?php
@@ -159,7 +156,7 @@
                                         $child = $sorts[$cid];
                                         $isChildSelected = $child['sid'] == $sortid;
                                     ?>
-                                        <a href="javascript:;" class="dropdown-item sort-dropdown-item py-1 px-2 rounded pl-4 <?= $isChildSelected ? 'active' : '' ?>" data-value="<?= $child['sid'] ?>" data-name="<?= htmlspecialchars($child['sortname'], ENT_QUOTES, 'UTF-8') ?>" data-pname="<?= htmlspecialchars($value['sortname'], ENT_QUOTES, 'UTF-8') ?>" title="<?= htmlspecialchars($child['sortname'], ENT_QUOTES, 'UTF-8') ?>">
+                                        <a href="javascript:;" class="dropdown-item sort-item py-1 px-2 text-truncate rounded pl-4 <?= $isChildSelected ? 'active' : '' ?>" data-value="<?= $child['sid'] ?>" data-name="<?= htmlspecialchars($child['sortname'], ENT_QUOTES, 'UTF-8') ?>" data-pname="<?= htmlspecialchars($value['sortname'], ENT_QUOTES, 'UTF-8') ?>" title="<?= htmlspecialchars($child['sortname'], ENT_QUOTES, 'UTF-8') ?>">
                                             <span class="text-muted mr-1">└</span><?= $child['sortname'] ?>
                                         </a>
                                 <?php
@@ -578,7 +575,7 @@
 
         var $input = $('#sort_search_input');
         var $list = $dropdown.find('.sort-dropdown-list');
-        var $items = $list.find('.sort-dropdown-item');
+        var $items = $list.find('.sort-item');
         var $hiddenSelect = $('#sort');
         var $selectedText = $('.sort-selected-text');
         var $toggleBtn = $('#sortDropdownBtn');
@@ -600,7 +597,7 @@
 
         // 阻止在下拉面板内部（非选项）点击时冒泡导致面板意外关闭
         $dropdown.find('.dropdown-menu').on('click', function (e) {
-            if (!$(e.target).hasClass('sort-dropdown-item') && !$(e.target).closest('.sort-dropdown-item').length) {
+            if (!$(e.target).hasClass('sort-item') && !$(e.target).closest('.sort-item').length) {
                 e.stopPropagation();
             }
         });
@@ -696,7 +693,7 @@
         });
 
         // 点击选择分类项
-        $(document).on('click', '#sort_search_dropdown .sort-dropdown-item', function (e) {
+        $(document).on('click', '#sort_search_dropdown .sort-item', function (e) {
             e.preventDefault();
             var val = $(this).data('value');
             var name = $(this).data('name');
