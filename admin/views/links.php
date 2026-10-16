@@ -79,6 +79,7 @@
         <a href="javascript: link_batch_delete();" class="btn btn-sm btn-outline-danger"><?= _lang('delete') ?></a>
     </div>
 </form>
+<div class="text-center small"><?= _lang('total') ?> <?= $link_count ?></div>
 
 <!--编辑链接弹窗-->
 <div class="modal fade" id="linkModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

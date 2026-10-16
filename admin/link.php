@@ -17,6 +17,7 @@ $Link_Model = new Link_Model();
 
 if (empty($action)) {
     $links = $Link_Model->getLinks();
+    $link_count = count($links);
     include View::getAdmView('header');
     require_once(View::getAdmView('links'));
     include View::getAdmView('footer');
