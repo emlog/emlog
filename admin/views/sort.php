@@ -2,7 +2,19 @@
 <?= FlashMsg::renderSortAlerts(); ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h4 mb-0 text-gray-800"><?= _lang('category') ?></h1>
-    <a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#sortModal"><i class="icofont-plus"></i> <?= _lang('add_category') ?></a>
+    <div class="d-flex align-items-center">
+        <form id="sortSearchForm" onsubmit="return false;" class="d-inline-block mr-2 mb-0">
+            <div class="form-inline search-inputs-nowrap">
+                <input type="text" id="sortSearch" name="keyword" class="form-control m-1 small" placeholder="<?= _lang('search') ?>" aria-label="Search" autocomplete="off">
+                <div class="input-group-append">
+                    <button class="btn btn-sm btn-success" type="button" id="sortSearchBtn">
+                        <i class="icofont-search-2"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+        <a href="#" class="btn btn-sm btn-success shadow-sm" data-toggle="modal" data-target="#sortModal"><i class="icofont-plus"></i> <?= _lang('add_category') ?></a>
+    </div>
 </div>
 <form method="post" id="sort_form" action="sort.php?action=taxis">
     <div class="card shadow mb-4">
@@ -44,7 +56,7 @@
                             // 每层缩进 1.3rem，首层基础 padding-left 为 2.6rem
                             $paddingLeft = $isTop ? '' : ' style="padding-left: ' . (1.3 + $depth * 1.3) . 'rem !important;"';
                         ?>
-                            <tr class="<?= $rowClass ?>" <?= $isTop ? 'data-id="' . $sid . '"' : 'data-pid="' . $pid . '"' ?>>
+                            <tr class="<?= $rowClass ?>" data-id="<?= $sid ?>" data-pid="<?= $pid ?>">
                                 <td>
                                     <input type="checkbox" name="sort_ids[]" class="ids" value="<?= $sid ?>" />
                                 </td>
@@ -326,6 +338,28 @@
             hasHierarchy: true,
             storagePrefix: 'em_sort_folded_'
         });
+
+        // 初始化分类前端搜索功能
+        function doSortSearch() {
+            var kw = $.trim($('#sortSearch').val()).toLowerCase();
+            var $rows = $('#adm_sort_list table tbody tr');
+            if (!kw) {
+                $rows.each(function() {
+                    var pid = $(this).data('pid');
+                    $(this).toggle(!pid || localStorage.getItem('em_sort_folded_' + pid) !== 'true');
+                });
+                return;
+            }
+            $rows.each(function() {
+                var match = $(this).text().toLowerCase().indexOf(kw) > -1;
+                $(this).toggle(match);
+                if (match && $(this).data('pid')) {
+                    $rows.filter('[data-id="' + $(this).data('pid') + '"]').show();
+                }
+            });
+        }
+        $('#sortSearch').on('input keyup', doSortSearch);
+        $('#sortSearchBtn').on('click', doSortSearch);
 
         // 修复多层模态窗口关闭导致的滚动失效问题
         $('#mediaModal').on('hidden.bs.modal', function() {
