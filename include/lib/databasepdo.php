@@ -110,11 +110,19 @@ class DatabasePDO
 
     /**
      * Escapes special characters
+     *
+     * @param string $sql
+     * @return string
      */
     function escape_string($sql)
     {
-        return trim($sql);
-        // return $this->conn->quote($sql);
+        if ($this->conn instanceof PDO) {
+            $quoted = $this->conn->quote($sql);
+            if ($quoted !== false && strlen($quoted) >= 2 && $quoted[0] === "'" && substr($quoted, -1) === "'") {
+                return substr($quoted, 1, -1);
+            }
+        }
+        return addslashes(trim($sql));
     }
 
     /**

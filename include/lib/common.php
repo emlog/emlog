@@ -59,7 +59,12 @@ if (!function_exists('getIp')) {
 if (!function_exists('getUA')) {
     function getUA()
     {
-        return isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '';
+        $ua = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '';
+        $ua = strip_tags($ua);
+        if (strlen($ua) > 500) {
+            $ua = substr($ua, 0, 500);
+        }
+        return addslashes(trim($ua));
     }
 }
 
