@@ -99,6 +99,12 @@ if (Article::hasReachedDailyPostLimit()) {
 doMultiAction('pre_save_log', $logData, $logData);
 
 if ($blogid > 0) {
+    if (!User::haveEditPermission()) {
+        $logDataAuth = $Log_Model->getDetail($blogid);
+        if (empty($logDataAuth) || $logDataAuth['author'] != UID) {
+            emMsg('No permission to modify the article');
+        }
+    }
     $Log_Model->updateLog($logData, $blogid);
     $Tag_Model->updateTag($tagstring, $blogid);
 } else {

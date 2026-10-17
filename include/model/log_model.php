@@ -399,9 +399,11 @@ class Log_Model
         $blogId = (int)$blogId;
         $author = User::haveEditPermission() ? '' : 'and author=' . UID;
         $this->db->query("UPDATE $this->table SET hide='$state' WHERE gid=$blogId $author");
-        $this->db->query("UPDATE $this->table_comment SET hide='$state' WHERE gid=$blogId");
-        $Comment_Model = new Comment_Model();
-        $Comment_Model->updateCommentNum($blogId);
+        if ($this->db->affected_rows() > 0) {
+            $this->db->query("UPDATE $this->table_comment SET hide='$state' WHERE gid=$blogId");
+            $Comment_Model = new Comment_Model();
+            $Comment_Model->updateCommentNum($blogId);
+        }
     }
 
     public function checkSwitch($blogId, $state)
