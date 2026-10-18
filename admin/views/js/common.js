@@ -575,6 +575,207 @@ function enableEditorResize(editorInstance, minHeight) {
     });
 }
 
+/**
+ * Editor.md 表格增强辅助器（悬浮工具栏与智能操作）
+ * 为 Markdown 表格提供就地增行、增列、删行、删列及格式化对齐功能
+ *
+ * @param {Object} thisEditor Editor.md 实例
+ * @return {void}
+ */
+function enableEditorTableHelper(thisEditor) {
+    if (!thisEditor || !thisEditor.cm) return;
+    var cm = thisEditor.cm;
+    var $wrapper = $(cm.getWrapperElement());
+    if ($wrapper.find('.editormd-table-toolbar').length > 0) return;
+
+    var $toolbar = $('<div class="editormd-table-toolbar">' +
+        '<span class="table-tool-title"><i class="icofont-table mr-1"></i>表格</span>' +
+        '<a href="javascript:;" class="table-tool-btn" data-act="addRowBelow" title="在当前行下方插入行">+ 行↓</a>' +
+        '<a href="javascript:;" class="table-tool-btn" data-act="addRowAbove" title="在当前行上方插入行">+ 行↑</a>' +
+        '<span class="table-tool-sep"></span>' +
+        '<a href="javascript:;" class="table-tool-btn" data-act="addColRight" title="在当前列右侧插入列">+ 列→</a>' +
+        '<a href="javascript:;" class="table-tool-btn" data-act="addColLeft" title="在当前列左侧插入列">+ 列←</a>' +
+        '<span class="table-tool-sep"></span>' +
+        '<a href="javascript:;" class="table-tool-btn btn-danger-tool" data-act="deleteRow" title="删除当前行">- 行</a>' +
+        '<a href="javascript:;" class="table-tool-btn btn-danger-tool" data-act="deleteCol" title="删除当前列">- 列</a>' +
+        '<span class="table-tool-sep"></span>' +
+        '<a href="javascript:;" class="table-tool-btn" data-act="format" title="美化对齐表格">对齐</a>' +
+    '</div>');
+    $wrapper.append($toolbar);
+
+    // 字符显示宽度（中文字符占2）与字符串重复
+    function charW(s) { return (s || '').replace(/[\u4e00-\u9fa5\uff00-\uffef]/g, 'aa').length; }
+    function rep(s, n) { return n > 0 ? (s.repeat ? s.repeat(n) : new Array(n + 1).join(s)) : ''; }
+
+    // 拆分单行单元格
+    function parseRowCells(line) {
+        var s = line.trim().replace(/^\||\|$/g, ''), cells = [], cur = '', esc = false;
+        for (var i = 0; i < s.length; i++) {
+            var c = s[i];
+            if (esc) { cur += c; esc = false; }
+            else if (c === '\\') { cur += c; esc = true; }
+            else if (c === '|') { cells.push(cur.trim()); cur = ''; }
+            else { cur += c; }
+        }
+        cells.push(cur.trim());
+        return cells;
+    }
+
+    // 格式化表格并输出字符偏移映射
+    function formatMarkdownTable(rows) {
+        var maxCols = 0;
+        rows.forEach(function(r) { if (r.length > maxCols) maxCols = r.length; });
+        if (!maxCols) return { text: '', cellPositions: [] };
+
+        var colWidths = new Array(maxCols).fill(3);
+        rows.forEach(function(r, rIdx) {
+            if (rIdx === 1) return;
+            r.forEach(function(val, cIdx) {
+                colWidths[cIdx] = Math.max(colWidths[cIdx], charW(val));
+            });
+        });
+
+        var lines = [], cellPositions = [];
+        rows.forEach(function(r, rIdx) {
+            var parts = [], currentCh = 2, rowPos = [];
+            for (var c = 0; c < maxCols; c++) {
+                var val = r[c] || '', targetW = colWidths[c], cellText = '';
+                if (rIdx === 1) {
+                    var l = val.charAt(0) === ':', rt = val.slice(-1) === ':';
+                    cellText = (l ? ':' : '-') + rep('-', Math.max(3, targetW) - (l ? 1 : 0) - (rt ? 1 : 0)) + (rt ? ':' : '-');
+                } else {
+                    cellText = val + rep(' ', targetW - charW(val));
+                }
+                rowPos.push({ startCh: currentCh, endCh: currentCh + cellText.length, contentEndCh: currentCh + val.length });
+                parts.push(cellText);
+                currentCh += cellText.length + (c < maxCols - 1 ? 3 : 2);
+            }
+            cellPositions.push(rowPos);
+            lines.push('| ' + parts.join(' | ') + ' |');
+        });
+        return { text: lines.join('\n'), cellPositions: cellPositions };
+    }
+
+    // 探测光标所在表格
+    function detectMarkdownTable(cursor) {
+        var curLine = cursor.line, totalLines = cm.lineCount();
+        var curText = cm.getLine(curLine);
+        if (!curText || curText.indexOf('|') === -1) return null;
+
+        var startLine = curLine, endLine = curLine;
+        while (startLine > 0 && cm.getLine(startLine - 1).indexOf('|') !== -1 && cm.getLine(startLine - 1).trim() !== '') startLine--;
+        while (endLine < totalLines - 1 && cm.getLine(endLine + 1).indexOf('|') !== -1 && cm.getLine(endLine + 1).trim() !== '') endLine++;
+
+        var sepLine = -1, sepRegex = /^\s*\|?\s*:?-{2,}:?\s*(\|\s*:?-{2,}:?\s*)+\|?\s*$/;
+        for (var l = startLine; l <= endLine; l++) {
+            if (sepRegex.test(cm.getLine(l))) { sepLine = l; break; }
+        }
+        if (sepLine === -1 || sepLine - 1 < startLine || curLine < sepLine - 1) return null;
+
+        var headerLine = sepLine - 1, rows = [], maxCols = 0;
+        for (var i = headerLine; i <= endLine; i++) {
+            var parsed = parseRowCells(cm.getLine(i));
+            maxCols = Math.max(maxCols, parsed.length);
+            rows.push(parsed);
+        }
+        if (!maxCols) return null;
+
+        rows.forEach(function(r, idx) {
+            while (r.length < maxCols) r.push(idx === 1 ? '---' : (idx === 0 ? '表头' : '数据'));
+        });
+
+        var before = curText.substring(0, cursor.ch);
+        var pipes = (before.match(/(^|[^\\])\|/g) || []).length;
+        var col = curText.trim().charAt(0) === '|' ? Math.max(0, pipes - 1) : pipes;
+
+        return {
+            startLine: headerLine,
+            endLine: endLine,
+            currentRow: curLine - headerLine,
+            currentCol: Math.min(col, maxCols - 1),
+            totalCols: maxCols,
+            rows: rows
+        };
+    }
+
+    // 更新工具栏浮动位置
+    function updateToolbar() {
+        var cursor = cm.getCursor(), table = detectMarkdownTable(cursor);
+        if (!table) return $toolbar.hide();
+
+        var charPos = cm.charCoords(cursor, "local"), scrollInfo = cm.getScrollInfo();
+        var top = charPos.top - scrollInfo.top - 36, left = charPos.left - scrollInfo.left;
+        if (top < 5) top = charPos.bottom - scrollInfo.top + 6;
+
+        var wrapperW = $wrapper.width(), toolW = $toolbar.outerWidth() || 330;
+        left = Math.max(10, Math.min(left, wrapperW - toolW - 15));
+        $toolbar.css({ top: top + 'px', left: left + 'px' }).show();
+    }
+
+    // 执行增删改动作
+    function executeTableAction(action) {
+        var cursor = cm.getCursor(), table = detectMarkdownTable(cursor);
+        if (!table) return;
+
+        var rows = table.rows, curR = table.currentRow, curC = table.currentCol;
+        var targetR = curR, targetC = curC;
+
+        if (action === 'addRowBelow' || action === 'addRowAbove') {
+            targetR = (action === 'addRowBelow') ? (curR <= 1 ? 2 : curR + 1) : Math.max(2, curR);
+            var newRow = [];
+            for (var i = 0; i < table.totalCols; i++) newRow.push('数据');
+            rows.splice(targetR, 0, newRow);
+        } else if (action === 'addColRight' || action === 'addColLeft') {
+            targetC = (action === 'addColRight') ? curC + 1 : curC;
+            rows.forEach(function(r, idx) {
+                r.splice(targetC, 0, idx === 0 ? '表头' : (idx === 1 ? '---' : '数据'));
+            });
+        } else if (action === 'deleteRow') {
+            if (curR <= 1) return layer && layer.msg && layer.msg('表头和分隔行不可删除');
+            rows.splice(curR, 1);
+            if (rows.length <= 2) {
+                var newRow = [];
+                for (var i = 0; i < table.totalCols; i++) newRow.push('数据');
+                rows.push(newRow);
+            }
+            targetR = Math.max(2, curR - 1);
+        } else if (action === 'deleteCol') {
+            if (table.totalCols <= 1) return layer && layer.msg && layer.msg('表格至少保留一列');
+            rows.forEach(function(r) { r.splice(curC, 1); });
+            targetC = Math.max(0, curC - 1);
+        } else if (action === 'format') {
+            layer && layer.msg && layer.msg('表格已对齐美化');
+        }
+
+        var formatted = formatMarkdownTable(rows);
+        cm.replaceRange(formatted.text, { line: table.startLine, ch: 0 }, { line: table.endLine, ch: cm.getLine(table.endLine).length });
+
+        var nextLine = table.startLine + targetR;
+        if (formatted.cellPositions[targetR] && formatted.cellPositions[targetR][targetC]) {
+            var pos = formatted.cellPositions[targetR][targetC];
+            if (action !== 'format' && pos.startCh < pos.contentEndCh) {
+                cm.setSelection({ line: nextLine, ch: pos.startCh }, { line: nextLine, ch: pos.contentEndCh });
+            } else {
+                cm.setCursor({ line: nextLine, ch: pos.contentEndCh });
+            }
+        }
+        cm.focus();
+        setTimeout(updateToolbar, 30);
+    }
+
+    $toolbar.on('mousedown', '.table-tool-btn', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        executeTableAction($(this).data('act'));
+    });
+
+    cm.on('cursorActivity', updateToolbar);
+    cm.on('scroll', updateToolbar);
+    cm.on('blur', function() {
+        setTimeout(function() { if (!$toolbar.is(':hover')) $toolbar.hide(); }, 200);
+    });
+}
+
 // 把粘贴上传图片与高度拖拽拉伸函数，挂载到位于文章编辑器、页面编辑器、微语编辑器处的 js 钩子处
 hooks.addAction("loaded", imgPasteExpand);
 hooks.addAction("page_loaded", imgPasteExpand);
@@ -582,6 +783,8 @@ hooks.addAction("twitter_loaded", imgPasteExpand);
 hooks.addAction("loaded", enableEditorResize);
 hooks.addAction("page_loaded", enableEditorResize);
 hooks.addAction("twitter_loaded", enableEditorResize);
+hooks.addAction("loaded", enableEditorTableHelper);
+hooks.addAction("page_loaded", enableEditorTableHelper);
 
 function checkUpdate() {
     const updateModal = $("#update-modal");

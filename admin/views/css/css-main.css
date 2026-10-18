@@ -2804,3 +2804,42 @@ textarea.form-control {
 .sort-dropdown-list .is-highlight {
     background-color: #eaecf4;
 }
+
+/* Editor.md 表格悬浮工具条 */
+.editormd-table-toolbar {
+    position: absolute;
+    z-index: 99;
+    display: none;
+    background: #fff;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, .1);
+    padding: 2px 4px;
+    font-size: 11px;
+    white-space: nowrap;
+    user-select: none;
+}
+.editormd-table-toolbar .table-tool-title {
+    color: #4e73df;
+    font-weight: 600;
+    padding: 0 4px;
+}
+.editormd-table-toolbar .table-tool-btn {
+    display: inline-block;
+    padding: 3px 5px;
+    color: #4b5563;
+    border-radius: 3px;
+    text-decoration: none;
+}
+.editormd-table-toolbar .table-tool-btn:hover {
+    background: #eaecf4;
+    color: #4e73df;
+}
+.editormd-table-toolbar .btn-danger-tool:hover {
+    background: #fee2e2;
+    color: #e74a3b;
+}
+.editormd-table-toolbar .table-tool-sep {
+    border-left: 1px solid #e3e6f0;
+    margin: 0 2px;
+}
