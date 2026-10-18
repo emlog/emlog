@@ -65,7 +65,6 @@
 			var dialogName  = classPrefix + pluginName, dialog;
 
 			$.extend(true, this.lang, langs[this.lang.name]);
-			this.setToolbar();
 
 			var lang        = this.lang;
 			var dialogLang  = lang.dialog["goto-line"];

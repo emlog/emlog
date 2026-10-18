@@ -785,11 +785,10 @@ function enableEditorTableHelper(thisEditor) {
 function enableEditorColorHelper(thisEditor) {
     if (!thisEditor || !thisEditor.editor || !thisEditor.cm) return;
     var cm = thisEditor.cm, $editor = $(thisEditor.editor);
-    var $btn = $editor.find('.editormd-menu .fa[name="color"]').closest('a');
-    if ($btn.length === 0 || $btn.data('color-helper-inited')) return;
-    $btn.data('color-helper-inited', true);
-
     var editorId = thisEditor.id || 'default', popId = 'editormd-color-popover-' + editorId;
+    if ($editor.data('color-helper-inited')) return;
+    $editor.data('color-helper-inited', true);
+
     $('#' + popId).remove();
 
     var lang = typeof _langJS !== 'undefined' ? _langJS : {};
@@ -853,19 +852,35 @@ function enableEditorColorHelper(thisEditor) {
         apply($(this).val());
     });
 
-    $btn.on('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
+    function toggleColorPopover(btnEl, e) {
+        if (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        var $targetBtn = $(btnEl || $editor.find('.editormd-menu .fa[name="color"]').closest('a'));
+        if ($targetBtn.length === 0) return;
         if ($popover.is(':visible')) { $popover.hide(); savedSel = null; return; }
         savedSel = { from: cm.getCursor('from'), to: cm.getCursor('to'), text: cm.getSelection() };
-        var bOff = $btn.offset(), eOff = $editor.offset();
+        var bOff = $targetBtn.offset(), eOff = $editor.offset();
         var left = Math.max(0, Math.min(bOff.left - eOff.left, $editor.width() - 206));
-        $popover.css({ top: (bOff.top - eOff.top + $btn.outerHeight() + 4) + 'px', left: left + 'px' }).fadeIn(100);
+        $popover.css({ top: (bOff.top - eOff.top + $targetBtn.outerHeight() + 4) + 'px', left: left + 'px' }).fadeIn(100);
+    }
+
+    // 注册为 editormd 自定义工具栏动作，保证 editormd 原生工具栏事件能直接触发
+    if (typeof editormd !== 'undefined' && editormd.toolbarHandlers) {
+        editormd.toolbarHandlers.color = function() {
+            toggleColorPopover();
+        };
+    }
+
+    // 事件委托：支持直接点击颜色图标或按钮
+    $editor.on('click', '.editormd-menu a:has(.fa[name="color"]), .editormd-menu a.editormd-color-btn, .editormd-menu .fa[name="color"]', function(e) {
+        toggleColorPopover($(this).closest('a')[0] || this, e);
     });
 
     $(document).on('mousedown.em_c_' + editorId + ' keydown.em_c_' + editorId, function(e) {
         if (e.type === 'keydown' && e.key !== 'Escape') return;
-        if (!$(e.target).closest($popover).length && !$(e.target).closest($btn).length) {
+        if (!$(e.target).closest($popover).length && !$(e.target).closest('.editormd-menu a:has(.fa[name="color"]), .editormd-menu a.editormd-color-btn, .editormd-menu .fa[name="color"]').length) {
             $popover.hide();
         }
     });

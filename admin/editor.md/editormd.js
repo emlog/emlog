@@ -1277,7 +1277,7 @@
                 }
 
                 if (name !== "link" && name !== "reference-link" && name !== "image" && name !== "video" && name !== "code-block" &&
-                    name !== "preformatted-text" && name !== "watch" && name !== "preview" && name !== "search" && name !== "fullscreen" && name !== "info") {
+                    name !== "preformatted-text" && name !== "watch" && name !== "preview" && name !== "search" && name !== "fullscreen" && name !== "info" && name !== "color") {
                     cm.focus();
                 }
 
