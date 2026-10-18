@@ -2843,3 +2843,28 @@ textarea.form-control {
     border-left: 1px solid #e3e6f0;
     margin: 0 2px;
 }
+
+/* Editor.md 文字颜色与背景色拾取浮层 */
+.editormd-color-popover {
+    position: absolute;
+    z-index: 1050;
+    width: 196px;
+    background: #fff;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, .12);
+    padding: 8px;
+    user-select: none;
+    box-sizing: border-box;
+}
+.editormd-color-popover .color-popover-tabs { display: flex; border-bottom: 1px solid #eaecf4; margin-bottom: 6px; padding-bottom: 3px; }
+.editormd-color-popover .color-tab { flex: 1; text-align: center; font-size: 11px; color: #6b7280; cursor: pointer; padding: 2px 0; border-radius: 3px; }
+.editormd-color-popover .color-tab.active { color: #4e73df; font-weight: 600; background: #eaecf4; }
+.editormd-color-popover .color-palette { display: grid; grid-template-columns: repeat(6, 1fr); gap: 5px; margin-bottom: 6px; }
+.editormd-color-popover .color-swatch { width: 24px; height: 24px; border-radius: 3px; cursor: pointer; border: 1px solid rgba(0, 0, 0, .12); }
+.editormd-color-popover .color-swatch:hover { transform: scale(1.15); box-shadow: 0 2px 5px rgba(0, 0, 0, .2); }
+.editormd-color-popover .color-popover-footer { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #f1f3f9; padding-top: 5px; font-size: 11px; }
+.editormd-color-popover .custom-color-label { display: flex; align-items: center; gap: 4px; margin: 0; cursor: pointer; color: #6b7280; }
+.editormd-color-popover .custom-color-input { width: 20px; height: 20px; padding: 0; border: none; cursor: pointer; background: transparent; }
+.editormd-color-popover .color-clear-btn { color: #858796; text-decoration: none; }
+.editormd-color-popover .color-clear-btn:hover { color: #e74a3b; }

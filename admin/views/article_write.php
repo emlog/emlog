@@ -298,12 +298,13 @@
             width: "100%",
             height: 745,
             toolbarIcons: function() {
-                return ["bold", "del", "italic", "quote", "|", "h1", "h2", "h3", "|", "list-ul", "list-ol", "hr", "|",
+                return ["bold", "del", "italic", "quote", "color", "|", "h1", "h2", "h3", "|", "list-ul", "list-ol", "hr", "|",
                     "link", "image", "audio", "video", "code", "code-block", "table", "|", "search", "preview",
                     "||", "wordCount", "help"
                 ]
             },
             toolbarCustomIcons: {
+                color: '<a href="javascript:;" title="<?= _lang('text_color') ?>" class="editormd-color-btn"><i class="fa fa-paint-brush" name="color"></i></a>',
                 wordCount: '<span class="editor-word-count" title="<?= _lang('word_count_title') ?>" style="display:inline-block;padding:2px 8px;font-size:12px;color:#888;line-height:24px;user-select:none;"><span id="editor-word-count-num">0</span> <?= _lang('words') ?></span>'
             },
             path: "editor.md/lib/",

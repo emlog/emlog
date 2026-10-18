@@ -776,6 +776,101 @@ function enableEditorTableHelper(thisEditor) {
     });
 }
 
+/**
+ * 为 Editor.md 编辑器工具栏提供文字颜色和背景色拾取功能
+ *
+ * @param {Object} thisEditor Editor.md 实例
+ * @return {void}
+ */
+function enableEditorColorHelper(thisEditor) {
+    if (!thisEditor || !thisEditor.editor || !thisEditor.cm) return;
+    var cm = thisEditor.cm, $editor = $(thisEditor.editor);
+    var $btn = $editor.find('.editormd-menu .fa[name="color"]').closest('a');
+    if ($btn.length === 0 || $btn.data('color-helper-inited')) return;
+    $btn.data('color-helper-inited', true);
+
+    var editorId = thisEditor.id || 'default', popId = 'editormd-color-popover-' + editorId;
+    $('#' + popId).remove();
+
+    var lang = typeof _langJS !== 'undefined' ? _langJS : {};
+    var colors = {
+        text: ['#e03131', '#e8590c', '#f59f00', '#2f9e44', '#0ca678', '#1098ad', '#1c7ed6', '#4263eb', '#7048e8', '#ae3ec9', '#d6336c', '#212529'],
+        bg: ['#ffe3e3', '#ffe8cc', '#ffec99', '#d3f9d8', '#c3fae8', '#c5f6fa', '#d0ebff', '#dbe4ff', '#e5dbff', '#f3d9fa', '#fcc2d7', '#f1f3f5']
+    };
+
+    function renderSwatches(list) {
+        return list.map(function(c) {
+            return '<span class="color-swatch" data-color="' + c + '" style="background-color:' + c + ';" title="' + c + '"></span>';
+        }).join('');
+    }
+
+    var $popover = $('<div id="' + popId + '" class="editormd-color-popover" style="display:none;">' +
+        '<div class="color-popover-tabs">' +
+            '<span class="color-tab active" data-type="text">' + (lang.md_text_color || '文字颜色') + '</span>' +
+            '<span class="color-tab" data-type="bg">' + (lang.md_bg_color || '背景颜色') + '</span>' +
+        '</div>' +
+        '<div class="color-palette">' + renderSwatches(colors.text) + '</div>' +
+        '<div class="color-popover-footer">' +
+            '<label class="custom-color-label" title="' + (lang.md_custom_color || '自定义') + '">' +
+                '<span>' + (lang.md_custom_color || '自定义') + '</span>' +
+                '<input type="color" class="custom-color-input" value="#e03131">' +
+            '</label>' +
+            '<a href="javascript:;" class="color-clear-btn">' + (lang.md_clear_color || '恢复默认') + '</a>' +
+        '</div>' +
+    '</div>').appendTo($editor);
+
+    var savedSel = null, currentMode = 'text';
+
+    function apply(color) {
+        cm.focus();
+        var sel = savedSel || { from: cm.getCursor('from'), to: cm.getCursor('to'), text: cm.getSelection() };
+        var text = sel.text || (color ? '文本' : '');
+        var repl = color ? '<span style="' + (currentMode === 'text' ? 'color:' : 'background-color:') + ' ' + color + ';">' + text + '</span>'
+                         : (sel.text ? sel.text.replace(/<span style="(color|background-color):\s*[^";]+;">(.*?)<\/span>/gi, '$2') : '');
+        cm.replaceRange(repl, sel.from, sel.to);
+        if (color && !sel.text) {
+            var offset = ('<span style="' + (currentMode === 'text' ? 'color:' : 'background-color:') + ' ' + color + ';">').length;
+            cm.setSelection({ line: sel.from.line, ch: sel.from.ch + offset }, { line: sel.from.line, ch: sel.from.ch + offset + text.length });
+        }
+        $popover.hide();
+        savedSel = null;
+    }
+
+    $popover.on('click', '.color-tab', function(e) {
+        e.stopPropagation();
+        currentMode = $(this).data('type');
+        $popover.find('.color-tab').removeClass('active');
+        $(this).addClass('active');
+        $popover.find('.color-palette').html(renderSwatches(colors[currentMode]));
+        $popover.find('.custom-color-input').val(currentMode === 'text' ? '#e03131' : '#ffe3e3');
+    }).on('click', '.color-swatch', function(e) {
+        e.stopPropagation();
+        apply($(this).data('color'));
+    }).on('click', '.color-clear-btn', function(e) {
+        e.stopPropagation();
+        apply(null);
+    }).on('change', '.custom-color-input', function() {
+        apply($(this).val());
+    });
+
+    $btn.on('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        if ($popover.is(':visible')) { $popover.hide(); savedSel = null; return; }
+        savedSel = { from: cm.getCursor('from'), to: cm.getCursor('to'), text: cm.getSelection() };
+        var bOff = $btn.offset(), eOff = $editor.offset();
+        var left = Math.max(0, Math.min(bOff.left - eOff.left, $editor.width() - 206));
+        $popover.css({ top: (bOff.top - eOff.top + $btn.outerHeight() + 4) + 'px', left: left + 'px' }).fadeIn(100);
+    });
+
+    $(document).on('mousedown.em_c_' + editorId + ' keydown.em_c_' + editorId, function(e) {
+        if (e.type === 'keydown' && e.key !== 'Escape') return;
+        if (!$(e.target).closest($popover).length && !$(e.target).closest($btn).length) {
+            $popover.hide();
+        }
+    });
+}
+
 // 把粘贴上传图片与高度拖拽拉伸函数，挂载到位于文章编辑器、页面编辑器、微语编辑器处的 js 钩子处
 hooks.addAction("loaded", imgPasteExpand);
 hooks.addAction("page_loaded", imgPasteExpand);
@@ -785,6 +880,9 @@ hooks.addAction("page_loaded", enableEditorResize);
 hooks.addAction("twitter_loaded", enableEditorResize);
 hooks.addAction("loaded", enableEditorTableHelper);
 hooks.addAction("page_loaded", enableEditorTableHelper);
+hooks.addAction("loaded", enableEditorColorHelper);
+hooks.addAction("page_loaded", enableEditorColorHelper);
+hooks.addAction("twitter_loaded", enableEditorColorHelper);
 
 function checkUpdate() {
     const updateModal = $("#update-modal");

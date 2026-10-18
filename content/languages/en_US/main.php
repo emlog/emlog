@@ -827,6 +827,7 @@ return [
     'leave_page_prompt' => 'You have unsaved changes',
     'crop_tip' => 'Hold Shift to maintain aspect ratio',
     'markdown_placeholder' => 'Start writing with Markdown...',
+    'text_color' => 'Text Color',
     'words' => 'words',
     'word_count_title' => 'Word Count',
     'pending_comments' => 'Pending Comments',

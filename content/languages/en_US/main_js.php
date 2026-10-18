@@ -139,4 +139,8 @@ return [
     'md_no_match' => 'No results',
     'md_match_count' => '%d of %d',
     'md_replaced_count' => 'Replaced %d occurrence(s)',
+    'md_text_color' => 'Text Color',
+    'md_bg_color' => 'Background Color',
+    'md_custom_color' => 'Custom',
+    'md_clear_color' => 'Reset',
 ];

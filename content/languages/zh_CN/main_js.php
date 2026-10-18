@@ -139,4 +139,8 @@ return [
     'md_no_match' => '无结果',
     'md_match_count' => '%d / %d',
     'md_replaced_count' => '已替换 %d 处',
+    'md_text_color' => '文字颜色',
+    'md_bg_color' => '背景颜色',
+    'md_custom_color' => '自定义',
+    'md_clear_color' => '恢复默认',
 ];
