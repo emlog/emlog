@@ -5,6 +5,7 @@
     <a href="#" class="btn btn-sm btn-success shadow-sm mt-4" data-toggle="modal" data-target="#linkModel"><i class="icofont-plus"></i> <?= _lang('add_link'); ?></a>
 </div>
 <form action="link.php?action=link_taxis" id="link_form" method="post">
+    <input type="hidden" name="token" value="<?= LoginAuth::genToken() ?>" />
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="table-responsive">
@@ -61,9 +62,9 @@
                                 </td>
                                 <td>
                                     <?php if ($value['hide'] == 'n'): ?>
-                                        <a href="link.php?action=hide&amp;linkid=<?= $value['id'] ?>" class="badge badge-primary"><?= _lang('hide'); ?></a>
+                                        <a href="link.php?action=hide&amp;linkid=<?= $value['id'] ?>&amp;token=<?= LoginAuth::genToken() ?>" class="badge badge-primary"><?= _lang('hide'); ?></a>
                                     <?php else: ?>
-                                        <a href="link.php?action=show&amp;linkid=<?= $value['id'] ?>" class="badge badge-warning"><?= _lang('show'); ?></a>
+                                        <a href="link.php?action=show&amp;linkid=<?= $value['id'] ?>&amp;token=<?= LoginAuth::genToken() ?>" class="badge badge-warning"><?= _lang('show'); ?></a>
                                     <?php endif ?>
                                     <a href="javascript: em_confirm(<?= $value['id'] ?>, 'link', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger"><?= _lang('delete'); ?></a>
                                 </td>

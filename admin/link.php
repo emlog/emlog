@@ -25,6 +25,7 @@ if (empty($action)) {
 }
 
 if ($action == 'link_taxis') {
+    LoginAuth::checkToken();
     $link = Input::postStrArray('link', []);
 
     if (empty($link)) {
@@ -90,6 +91,7 @@ if ($action == 'del') {
 }
 
 if ($action == 'hide') {
+    LoginAuth::checkToken();
     $linkId = Input::getIntVar('linkid');
 
     $Link_Model->updateLink(['hide' => 'y'], $linkId);
@@ -99,6 +101,7 @@ if ($action == 'hide') {
 }
 
 if ($action == 'show') {
+    LoginAuth::checkToken();
     $linkId = Input::getIntVar('linkid');
 
     $Link_Model->updateLink(['hide' => 'n'], $linkId);
