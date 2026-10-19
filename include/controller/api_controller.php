@@ -9,6 +9,7 @@
 
 class Api_Controller
 {
+    const SIGN_EXPIRE_TIME = 300; // API 签名有效时效窗口（单位：秒，默认 5 分钟）
 
     /**
      * @var Log_Model
@@ -806,6 +807,11 @@ class Api_Controller
         }
     }
 
+    /**
+     * 校验 API Key 及请求签名
+     *
+     * @return void
+     */
     private function checkApiKey()
     {
         $this->authApiKey = Input::requestStrVar('api_key');
@@ -817,14 +823,22 @@ class Api_Controller
         }
 
         $apikey = Option::get('apikey');
+        if (empty($apikey)) {
+            Output::authError('api key not configured');
+        }
 
-        if ($apikey === $this->authApiKey) {
+        if (!empty($this->authApiKey) && $apikey === $this->authApiKey) {
             return;
         }
 
-        $sign = md5($this->authReqTime . $apikey);
-        if ($sign === $this->authReqSign) {
-            return;
+        if (!empty($this->authReqSign) && !empty($this->authReqTime)) {
+            if (abs(time() - (int)$this->authReqTime) > self::SIGN_EXPIRE_TIME) {
+                Output::authError('request expired');
+            }
+            $sign = md5($this->authReqTime . $apikey);
+            if ($sign === $this->authReqSign) {
+                return;
+            }
         }
         Output::authError('auth error');
     }
