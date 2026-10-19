@@ -21,6 +21,7 @@ return [
     'delete_comment_by_ip' => '删除来自该IP的所有评论？',
     'delete_link' => '删除该链接？',
     'delete_navi' => '删除该导航？',
+    'delete_page' => '删除该页面？',
     'delete_media' => '删除该文件？',
     'delete_avatar' => '删除头像？',
     'delete_sort' => '删除该分类？',

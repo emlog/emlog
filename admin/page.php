@@ -97,6 +97,7 @@ if ($action == 'mod') {
 }
 
 if ($action == 'save' || $action == 'autosave') {
+    LoginAuth::checkToken();
     $emPage = new Log_Model();
     $Navi_Model = new Navi_Model();
 
@@ -200,3 +201,20 @@ if ($action == 'operate_page') {
             break;
     }
 }
+
+if ($action == 'del') {
+    LoginAuth::checkToken();
+    $pageId = Input::getIntVar('id');
+    if ($pageId > 0) {
+        $emPage = new Log_Model();
+        $emPage->deleteLog($pageId);
+        $home_page_id = Option::get('home_page_id');
+        // 如果被删除的页面是首页，需要恢复默认首页
+        if ($home_page_id == $pageId) {
+            Option::updateOption('home_page_id', 0);
+        }
+        $CACHE->updateCache(array('options', 'sta', 'comment', 'logalias'));
+    }
+    emDirect("./page.php");
+}
+

@@ -42,6 +42,7 @@
                             <th><?= _lang('alias') ?></th>
                             <th><?= _lang('template') ?></th>
                             <th><?= _lang('time') ?></th>
+                            <th><?= _lang('operation') ?></th>
                         </tr>
                     </thead>
                     <tbody class="checkboxContainer">
@@ -80,6 +81,9 @@
                                 <td><?= $value['alias'] ?></td>
                                 <td><?= $value['template'] ?></td>
                                 <td class="small"><?= $value['date'] ?></td>
+                                <td>
+                                    <a href="javascript: em_confirm(<?= $value['gid'] ?>, 'page', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger"><?= _lang('delete') ?></a>
+                                </td>
                             </tr>
                         <?php endforeach ?>
                     </tbody>

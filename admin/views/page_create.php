@@ -20,6 +20,7 @@
         </div>
         <div class="col-xl-3" id="post_side_col">
             <div id="post_button">
+                <input type="hidden" name="token" id="token" value="<?= LoginAuth::genToken() ?>" />
                 <input type="hidden" name="ishide" id="ishide" value="<?= $hide ?>" />
                 <input type="hidden" name="pageid" id="pageid" value="<?= $pageId ?>" />
                 <?php if ($pageId < 0): ?>

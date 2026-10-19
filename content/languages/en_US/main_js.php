@@ -21,6 +21,7 @@ return [
     'delete_comment_by_ip' => 'Delete all comments from this IP?',
     'delete_link' => 'Delete this link?',
     'delete_navi' => 'Delete this navigation?',
+    'delete_page' => 'Delete this page?',
     'delete_media' => 'Delete this file?',
     'delete_avatar' => 'Delete avatar?',
     'delete_sort' => 'Delete this category?',

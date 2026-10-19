@@ -53,6 +53,11 @@ function em_confirm(id, property, token, extraQuery) {
             text = _langJS.delete_navi;
             delAlert(msg, text, url, token)
             break;
+        case 'page':
+            url = 'page.php?action=del&id=' + id;
+            text = _langJS.delete_page;
+            delAlert(msg, text, url, token)
+            break;
         case 'media':
             url = 'media.php?action=delete&aid=' + id;
             if (extraQuery) {
