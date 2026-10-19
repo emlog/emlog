@@ -1260,11 +1260,8 @@
                     return;
                 }
 
-                if (_this.state.preview && name !== "preview" && name !== "search") {
-                    return false;
-                }
-
-                if (_this.state.preview && name === "search" && _this.codeMirror.is(":hidden")) {
+                // 开启预览模式时，若编辑器处于隐藏状态（如移动端纯预览），点击非预览按钮时先切回编辑模式
+                if (_this.state.preview && name !== "preview" && _this.codeMirror.is(":hidden")) {
                     _this.previewed();
                 }
 

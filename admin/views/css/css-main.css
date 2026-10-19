@@ -367,6 +367,10 @@ input[type="checkbox"]:hover, select:hover {
     margin: 0px 0px 10px;
 }
 
+#post_button_preview_slot #post_button {
+    margin: 0;
+}
+
 #post_options {
     float: right
 }

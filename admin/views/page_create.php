@@ -4,8 +4,11 @@
     <div class="row">
         <div class="col-xl-9" id="post_main_col">
             <div id="post" class="form-group">
-                <div>
-                    <input type="text" name="title" id="title" value="<?= $title ?>" class="form-control" placeholder="<?= _lang('page_title') ?>" />
+                <div class="d-flex align-items-center mb-0">
+                    <div class="flex-grow-1 mr-md-2">
+                        <input type="text" name="title" id="title" value="<?= $title ?>" class="form-control" placeholder="<?= _lang('page_title') ?>" />
+                    </div>
+                    <div id="post_button_preview_slot" class="d-none text-nowrap"></div>
                 </div>
                 <div class="small my-3">
                     <a href="#mediaModal" data-toggle="modal" data-target="#mediaModal"><i class="icofont-plus"></i><?= _lang('media_lib') ?></a>
@@ -176,11 +179,15 @@
             placeholder: "<?= _lang('markdown_placeholder') ?>",
             onpreviewing: function() {
                 $("#post_main_col").removeClass("col-xl-9").addClass("col-xl-12");
+                $("#post_button").appendTo("#post_button_preview_slot");
+                $("#post_button_preview_slot").removeClass("d-none");
                 $("#post_side_col").hide();
                 this.resize();
             },
             onpreviewed: function() {
                 $("#post_main_col").removeClass("col-xl-12").addClass("col-xl-9");
+                $("#post_button").prependTo("#post_side_col");
+                $("#post_button_preview_slot").addClass("d-none");
                 $("#post_side_col").show();
                 this.resize();
             },
