@@ -1375,3 +1375,429 @@ span.tpl-options-setting:hover {
     background: #000;
     color: #eee;
 }
+
+/* ==========================================================================
+   新组件类型样式（Notice, Submessage, Number, Slider, Date, Link, LinkColor, Spacing, Border, Background, Accordion, Sortable）
+   ========================================================================== */
+
+/* 提醒条 Notice */
+.vtpl-notice {
+    display: flex;
+    align-items: flex-start;
+    padding: 12px 16px;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    margin-bottom: 8px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+.vtpl-notice-icon {
+    font-size: 18px;
+    margin-right: 10px;
+    margin-top: 1px;
+    flex-shrink: 0;
+}
+.vtpl-notice-content {
+    flex: 1;
+}
+.vtpl-notice-title {
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+.vtpl-notice-desc {
+    margin-top: 4px;
+    font-size: 12px;
+    opacity: 0.85;
+}
+.vtpl-notice-info {
+    background-color: #e8f4fd;
+    border-color: #b6e0fe;
+    color: #0b5394;
+}
+.vtpl-notice-success {
+    background-color: #edf7ed;
+    border-color: #c7eed8;
+    color: #1e4620;
+}
+.vtpl-notice-warning {
+    background-color: #fff8e1;
+    border-color: #ffe082;
+    color: #b78103;
+}
+.vtpl-notice-danger {
+    background-color: #fde8e8;
+    border-color: #f8b4b4;
+    color: #9b1c1c;
+}
+.vtpl-notice-normal {
+    background-color: #f8f9fa;
+    border-color: #e2e8f0;
+    color: #4b5563;
+}
+
+/* 小提醒 Submessage */
+.vtpl-submessage {
+    padding: 8px 12px;
+    font-size: 13px;
+    line-height: 1.5;
+    border-radius: 4px;
+    border-left: 3px solid #6b7280;
+    background-color: #f9fafb;
+    color: #4b5563;
+    margin-bottom: 6px;
+}
+.vtpl-submessage-info {
+    border-left-color: #3b82f6;
+    background-color: #eff6ff;
+    color: #1d4ed8;
+}
+.vtpl-submessage-success {
+    border-left-color: #10b981;
+    background-color: #ecfdf5;
+    color: #047857;
+}
+.vtpl-submessage-warning {
+    border-left-color: #f59e0b;
+    background-color: #fffbeb;
+    color: #b45309;
+}
+.vtpl-submessage-danger {
+    border-left-color: #ef4444;
+    background-color: #fef2f2;
+    color: #b91c1c;
+}
+.vtpl-submessage-normal {
+    border-left-color: #9ca3af;
+    background-color: #f3f4f6;
+    color: #4b5563;
+}
+
+/* 数字文本框 Number */
+.vtpl-number-wrap {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    max-width: 220px;
+}
+.vtpl-number-input {
+    display: block;
+    width: 100%;
+    padding: 0.422rem 0.875rem;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    color: #6f6b7d;
+    background-color: #fff;
+    border: 1px solid #dbdade;
+    border-radius: 5px;
+}
+.vtpl-number-wrap .vtpl-input-unit {
+    position: absolute;
+    right: 10px;
+    color: #8c879c;
+    font-size: 12px;
+    pointer-events: none;
+    background: #f4f5f7;
+    padding: 2px 6px;
+    border-radius: 3px;
+}
+
+/* 滑块 Slider */
+.vtpl-slider-wrap {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    max-width: 480px;
+}
+.vtpl-slider-range {
+    flex: 1;
+    height: 6px;
+    border-radius: 3px;
+    background: #e2e8f0;
+    outline: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+}
+.vtpl-slider-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #4e73df;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    transition: transform 0.1s ease;
+}
+.vtpl-slider-range::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+}
+.vtpl-slider-input-group {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100px;
+}
+.vtpl-slider-number {
+    width: 100%;
+    padding: 0.35rem 0.6rem;
+    font-size: 0.875rem;
+    border: 1px solid #dbdade;
+    border-radius: 4px;
+    text-align: center;
+}
+.vtpl-slider-input-group .vtpl-input-unit {
+    position: absolute;
+    right: 8px;
+    font-size: 11px;
+    color: #8c879c;
+    pointer-events: none;
+}
+
+/* 日期选择器 Date */
+.vtpl-date-input {
+    max-width: 260px;
+    padding: 0.422rem 0.875rem;
+    border: 1px solid #dbdade;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #6f6b7d;
+}
+.vtpl-date-range {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+.vtpl-date-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.vtpl-date-label {
+    font-size: 13px;
+    color: #64748b;
+}
+.vtpl-date-sep {
+    color: #94a3b8;
+    font-size: 13px;
+}
+
+/* 链接 Link */
+.vtpl-link-card {
+    background: #fafbfc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 14px 16px;
+    max-width: 650px;
+}
+.vtpl-link-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+.vtpl-link-field {
+    min-width: 180px;
+}
+.vtpl-link-field label {
+    display: block;
+    font-size: 12px;
+    color: #64748b;
+    margin-bottom: 4px;
+    font-weight: 500;
+}
+.vtpl-link-target label {
+    font-size: 13px;
+    color: #475569;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* 超链接颜色 Link Color */
+.vtpl-color-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+.vtpl-color-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.vtpl-color-title {
+    font-size: 12px;
+    color: #64748b;
+    font-weight: 500;
+}
+.vtpl-color-picker-box {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+.vtpl-color-swatch {
+    width: 36px !important;
+    height: 34px !important;
+    padding: 2px !important;
+    border: 1px solid #dbdade !important;
+    border-radius: 4px !important;
+    cursor: pointer;
+    background: #fff;
+}
+.vtpl-color-text {
+    width: 110px !important;
+    padding: 0.35rem 0.6rem !important;
+    font-size: 0.875rem !important;
+    border: 1px solid #dbdade;
+    border-radius: 4px;
+    font-family: monospace;
+}
+
+/* 间距 Spacing */
+.vtpl-spacing-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    max-width: 600px;
+}
+.vtpl-spacing-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 5px;
+    padding: 4px 8px;
+}
+.vtpl-spacing-label {
+    font-size: 12px;
+    color: #64748b;
+    white-space: nowrap;
+}
+.vtpl-spacing-input {
+    width: 60px !important;
+    padding: 0.25rem 0.4rem !important;
+    text-align: center;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 4px !important;
+    font-size: 13px !important;
+}
+.vtpl-spacing-unit-select {
+    padding: 0.35rem 0.6rem;
+    font-size: 13px;
+    border: 1px solid #dbdade;
+    border-radius: 4px;
+    background: #fff;
+    color: #6f6b7d;
+}
+
+/* 边框 Border */
+.vtpl-border-wrap {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    max-width: 650px;
+}
+.vtpl-border-sides {
+    display: flex;
+    gap: 8px;
+}
+.vtpl-border-width-item, .vtpl-border-style-item, .vtpl-border-color-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.vtpl-border-label {
+    font-size: 13px;
+    color: #64748b;
+    white-space: nowrap;
+}
+.vtpl-select {
+    padding: 0.35rem 0.6rem;
+    font-size: 13px;
+    border: 1px solid #dbdade;
+    border-radius: 4px;
+    background: #fff;
+    color: #6f6b7d;
+}
+
+/* 背景 Background */
+.vtpl-bg-wrap {
+    background: #fafbfc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 16px;
+    max-width: 680px;
+}
+.vtpl-bg-field {
+    margin-bottom: 14px;
+}
+.vtpl-bg-label {
+    display: block;
+    font-size: 13px;
+    color: #475569;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+.vtpl-bg-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 12px;
+    margin-top: 10px;
+}
+.vtpl-bg-grid-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.vtpl-bg-sublabel {
+    font-size: 12px;
+    color: #64748b;
+}
+
+/* 暗黑模式 Dark Theme 适配 */
+.dark-theme .vtpl-notice-normal,
+.dark-theme .vtpl-submessage-normal {
+    background-color: #1e293b;
+    border-color: #334155;
+    color: #cbd5e1;
+}
+.dark-theme .vtpl-number-input,
+.dark-theme .vtpl-slider-number,
+.dark-theme .vtpl-date-input,
+.dark-theme .vtpl-select,
+.dark-theme .vtpl-spacing-unit-select,
+.dark-theme .vtpl-color-text {
+    background-color: #0f1013;
+    border-color: #2c2d2f;
+    color: #eee;
+}
+.dark-theme .vtpl-number-wrap .vtpl-input-unit,
+.dark-theme .vtpl-slider-input-group .vtpl-input-unit {
+    background: #1e293b;
+    color: #94a3b8;
+}
+.dark-theme .vtpl-link-card,
+.dark-theme .vtpl-bg-wrap {
+    background: #121417;
+    border-color: #2c2d2f;
+}
+.dark-theme .vtpl-bg-label {
+    color: #eee;
+}
+.dark-theme .vtpl-spacing-item {
+    background: #181a1d;
+    border-color: #2c2d2f;
+}
+.dark-theme .vtpl-spacing-input {
+    background: #0f1013 !important;
+    border-color: #2c2d2f !important;
+    color: #eee !important;
+}
+
+#ui-datepicker-div {
+    z-index: 999999 !important;
+}
+

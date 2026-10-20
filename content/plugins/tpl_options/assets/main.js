@@ -350,8 +350,26 @@ $(function () {
             }
         });
         return false;
-    }).on('change', '.tpl-options-form input:not(.chosen-search-input,.tpl-image), .tpl-options-form textarea', function () {
+    }).on('change', '.tpl-options-form input:not(.chosen-search-input,.tpl-image,.vtpl-slider-range), .tpl-options-form textarea, .tpl-options-form select', function () {
         $('form.tpl-options-form').trigger('submit');
+    }).on('input change', '.vtpl-color-swatch', function () {
+        var color = $(this).val();
+        var textInput = $(this).siblings('.vtpl-color-text');
+        textInput.val(color);
+        $('form.tpl-options-form').trigger('submit');
+    }).on('input change', '.vtpl-color-text', function () {
+        var val = $(this).val().trim();
+        if (/^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(val)) {
+            $(this).siblings('.vtpl-color-swatch').val(val);
+        }
+    }).on('input', '.vtpl-slider-range', function () {
+        var val = $(this).val();
+        $(this).closest('.vtpl-slider-wrap').find('.vtpl-slider-number').val(val);
+    }).on('change', '.vtpl-slider-range', function () {
+        $('form.tpl-options-form').trigger('submit');
+    }).on('input change', '.vtpl-slider-number', function () {
+        var val = $(this).val();
+        $(this).closest('.vtpl-slider-wrap').find('.vtpl-slider-range').val(val);
     });
 
     if (+tplOptions.autoOpenSetting === 1) {
@@ -435,12 +453,54 @@ $(function () {
         loading(false);
     }
 
+    function initDatepickers() {
+        if (!$.fn.datepicker && !$.fn.datetimepicker) return;
+        var dayNamesMin = ["日", "一", "二", "三", "四", "五", "六"];
+        var monthNamesShort = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"];
+        if (window._langJS && window._langJS.day_names_min) {
+            dayNamesMin = window._langJS.day_names_min;
+        }
+        if (window._langJS && window._langJS.month_names_short) {
+            monthNamesShort = window._langJS.month_names_short;
+        }
+
+        var pickerFn = $.fn.datepicker ? 'datepicker' : 'datetimepicker';
+        $('.vtpl-date-input').each(function () {
+            var $this = $(this);
+            if (!$this.hasClass('hasDatepicker')) {
+                $this[pickerFn]({
+                    controlType: "select",
+                    dayNamesMin: dayNamesMin,
+                    monthNamesShort: monthNamesShort,
+                    changeMonth: true,
+                    changeYear: true,
+                    yearRange: "c-30:c+10",
+                    dateFormat: "yy-mm-dd",
+                    beforeShow: function (input, inst) {
+                        setTimeout(function () {
+                            $('#ui-datepicker-div').css('z-index', 999999);
+                        }, 0);
+                    },
+                    onSelect: function (dateText) {
+                        $this.val(dateText).trigger('change');
+                        $('form.tpl-options-form').trigger('submit');
+                    },
+                    onClose: function () {
+                        $('form.tpl-options-form').trigger('submit');
+                    }
+                });
+            }
+        });
+    }
+    window.initDatepickers = initDatepickers;
+
     function renderOptionArea(data) {
         mountOptionArea();
         optionArea.html(data).show();
         tplBox.hide();
         initOptionSort();
         initRichText();
+        initDatepickers();
     }
 
     function mountOptionArea() {
@@ -607,7 +667,11 @@ $(function () {
 
 function TplShow(a) {
     $('.option').hide();
-    $('.' + a).fadeIn();
+    $('.' + a).fadeIn(100, function () {
+        if (typeof window.initDatepickers === 'function') {
+            window.initDatepickers();
+        }
+    });
 }
 
 function block_drag_end() {

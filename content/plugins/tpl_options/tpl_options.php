@@ -159,12 +159,57 @@ class TplOptions
                 'name'       => _langPlu('block', 'tpl_options'),
                 'allowMulti' => true,
             ),
+            'background' => array(
+                'name'       => _langPlu('background', 'tpl_options'),
+                'allowMulti' => false,
+            ),
+            'border' => array(
+                'name'       => _langPlu('border', 'tpl_options'),
+                'allowMulti' => false,
+            ),
+            'date' => array(
+                'name'       => _langPlu('date', 'tpl_options'),
+                'allowMulti' => false,
+            ),
+            'link' => array(
+                'name'       => _langPlu('link', 'tpl_options'),
+                'allowMulti' => false,
+            ),
+            'link_color' => array(
+                'name'       => _langPlu('link_color', 'tpl_options'),
+                'allowMulti' => false,
+            ),
+            'notice' => array(
+                'name'       => _langPlu('notice', 'tpl_options'),
+                'allowMulti' => false,
+            ),
+            'number' => array(
+                'name'       => _langPlu('number', 'tpl_options'),
+                'allowMulti' => false,
+            ),
+            'slider' => array(
+                'name'       => _langPlu('slider', 'tpl_options'),
+                'allowMulti' => false,
+            ),
+            'spacing' => array(
+                'name'       => _langPlu('spacing', 'tpl_options'),
+                'allowMulti' => false,
+            ),
+            'submessage' => array(
+                'name'       => _langPlu('submessage', 'tpl_options'),
+                'allowMulti' => false,
+            ),
         );
         $this->_arrayTypes = array(
             'checkbox',
             'tag',
             'select',
             'block',
+            'background',
+            'border',
+            'spacing',
+            'link',
+            'link_color',
         );
 
         //设置模板目录
@@ -284,9 +329,12 @@ class TplOptions
         $sorts = $this->getSorts($unsorted);
         $pages = $this->getPages();
         foreach ($options as $name => $option) {
-            if (!is_array($option) || !isset($option['name']) || !isset($option['type']) || !isset($this->_types[$option['type']])) {
+            if (!is_array($option) || !isset($option['type']) || !isset($this->_types[$option['type']])) {
                 unset($options[$name]);
                 continue;
+            }
+            if (!isset($option['name'])) {
+                $option['name'] = '';
             }
             if (!isset($templateOptions[$name])) {
                 $templateOptions[$name] = $this->getOptionDefaultValue($option, $template);
@@ -309,6 +357,11 @@ class TplOptions
                     $var = $$varName;
                     if (!$this->isMulti($option) && !isset($var[$templateOptions[$name]])) {
                         $templateOptions[$name] = $this->getOptionDefaultValue($option, $template);
+                    }
+                    break;
+                case 'background':
+                    if (is_array($templateOptions[$name]) && !empty($templateOptions[$name]['background-image'])) {
+                        $templateOptions[$name]['background-image'] = $this->buildImageUrl($templateOptions[$name]['background-image']);
                     }
                     break;
 
@@ -598,9 +651,12 @@ class TplOptions
             $this->_currentTemplate = $template;
             $storedOptions = $this->getTemplateOptions($template);
             foreach ($options as $name => &$option) {
-                if (!is_array($option) || !isset($option['name']) || !isset($option['type']) || !isset($this->_types[$option['type']])) {
+                if (!is_array($option) || !isset($option['type']) || !isset($this->_types[$option['type']])) {
                     unset($options[$name]);
                     continue;
+                }
+                if (!isset($option['name'])) {
+                    $option['name'] = '';
                 }
                 $option['id'] = $name;
                 $option['value'] = $storedOptions[$name];
@@ -610,6 +666,10 @@ class TplOptions
                 $newOptions = array();
                 foreach ($_POST as $name => $data) {
                     if (!isset($options[$name])) {
+                        continue;
+                    }
+                    $type = isset($options[$name]['type']) ? $options[$name]['type'] : '';
+                    if (in_array($type, array('notice', 'submessage'))) {
                         continue;
                     }
                     $depend = isset($options[$name]['depend']) ? $options[$name]['depend'] : '';
@@ -848,6 +908,67 @@ class TplOptions
                     $default = array();
                     break;
 
+                case 'number':
+                    $default = '';
+                    break;
+
+                case 'slider':
+                    $default = isset($option['min']) ? (string)$option['min'] : '0';
+                    break;
+
+                case 'date':
+                    $default = !empty($option['from_to']) ? array('from' => '', 'to' => '') : '';
+                    break;
+
+                case 'link':
+                    $default = array(
+                        'url'    => '',
+                        'text'   => '',
+                        'target' => '_self',
+                    );
+                    break;
+
+                case 'link_color':
+                    $default = array(
+                        'color' => '#1a73e8',
+                        'hover' => '#1557b0',
+                    );
+                    break;
+
+                case 'spacing':
+                    $default = array(
+                        'top'    => '10',
+                        'right'  => '15',
+                        'bottom' => '10',
+                        'left'   => '15',
+                        'unit'   => 'px',
+                    );
+                    break;
+
+                case 'border':
+                    $default = array(
+                        'all'   => '1',
+                        'style' => 'solid',
+                        'color' => '#e2e8f0',
+                    );
+                    break;
+
+                case 'background':
+                    $default = array(
+                        'background-color'      => '#ffffff',
+                        'background-image'      => '',
+                        'background-repeat'     => 'no-repeat',
+                        'background-position'   => 'center center',
+                        'background-size'       => 'cover',
+                        'background-attachment' => 'scroll',
+                    );
+                    break;
+
+                case 'notice':
+                case 'submessage':
+                    $default = null;
+                    break;
+
                 default:
                     return null;
             }
@@ -887,8 +1008,13 @@ class TplOptions
     private function renderOptions()
     {
         foreach ($this->_options as $option) {
-            $method = 'render' . ucfirst($option['type']);
-            $this->$method($option);
+            $methodCamel = 'render' . str_replace('_', '', ucfirst($option['type']));
+            $methodDirect = 'render' . ucfirst($option['type']);
+            if (method_exists($this, $methodCamel)) {
+                $this->$methodCamel($option);
+            } elseif (method_exists($this, $methodDirect)) {
+                $this->$methodDirect($option);
+            }
         }
     }
 
@@ -1390,6 +1516,482 @@ class TplOptions
         }
         $option['values'] = $values;
         $this->renderCheckbox($option);
+    }
+
+    /**
+     * 渲染提醒条
+     * @param array $option
+     * @return void
+     */
+    private function renderNotice($option)
+    {
+        $style = isset($option['style']) ? $option['style'] : 'info';
+        $content = isset($option['content']) ? $option['content'] : (isset($option['name']) ? $option['name'] : '');
+        $desc = !empty($option['description']) ? '<div class="vtpl-notice-desc">' . $option['description'] . '</div>' : '';
+        $iconMap = array(
+            'info'    => 'ri-information-line',
+            'success' => 'ri-checkbox-circle-line',
+            'warning' => 'ri-error-warning-line',
+            'danger'  => 'ri-close-circle-line',
+            'normal'  => 'ri-notification-3-line',
+        );
+        $icon = isset($iconMap[$style]) ? $iconMap[$style] : 'ri-information-line';
+
+        echo '<div class="option ' . (isset($option['labels']) ? $option['labels'] : '') . '" id="' . $option['id'] . '">';
+        echo '<div class="vtpl-notice vtpl-notice-' . $this->encode($style) . '">';
+        echo '<i class="' . $icon . ' vtpl-notice-icon"></i>';
+        echo '<div class="vtpl-notice-content">';
+        if (!empty($option['name']) && $content !== $option['name']) {
+            echo '<div class="vtpl-notice-title">' . $this->encode($option['name']) . '</div>';
+        }
+        echo '<div class="vtpl-notice-text">' . $content . '</div>';
+        echo $desc;
+        echo '</div></div></div>';
+    }
+
+    /**
+     * 渲染小提醒
+     * @param array $option
+     * @return void
+     */
+    private function renderSubmessage($option)
+    {
+        $style = isset($option['style']) ? $option['style'] : 'normal';
+        $content = isset($option['content']) ? $option['content'] : (isset($option['name']) ? $option['name'] : '');
+        echo '<div class="option ' . (isset($option['labels']) ? $option['labels'] : '') . '" id="' . $option['id'] . '">';
+        echo '<div class="vtpl-submessage vtpl-submessage-' . $this->encode($style) . '">';
+        echo $content;
+        echo '</div></div>';
+    }
+
+    /**
+     * 渲染数字输入框
+     * @param array $option
+     * @return void
+     */
+    private function renderNumber($option)
+    {
+        $min = isset($option['min']) && is_numeric($option['min']) ? ' min="' . $option['min'] . '"' : '';
+        $max = isset($option['max']) && is_numeric($option['max']) ? ' max="' . $option['max'] . '"' : '';
+        $step = isset($option['step']) ? ' step="' . $option['step'] . '"' : ' step="any"';
+        $unit = isset($option['unit']) && trim($option['unit']) !== '' ? '<span class="vtpl-input-unit">' . $this->encode(trim($option['unit'])) . '</span>' : '';
+        $placeholder = isset($option['placeholder']) ? ' placeholder="' . $this->encode($option['placeholder']) . '"' : '';
+
+        $tpl = '<div class="vtpl-number-wrap">
+                    <input type="number" class="vtpl-number-input" name="{name}" value="{value}"' . $min . $max . $step . $placeholder . '>
+                    ' . $unit . '
+                </div>';
+        $this->renderByTpl($option, $tpl, false);
+    }
+
+    /**
+     * 渲染滑块控件
+     * @param array $option
+     * @return void
+     */
+    private function renderSlider($option)
+    {
+        $min = isset($option['min']) && is_numeric($option['min']) ? (float)$option['min'] : 0;
+        $max = isset($option['max']) && is_numeric($option['max']) ? (float)$option['max'] : 100;
+        $step = isset($option['step']) && is_numeric($option['step']) ? (float)$option['step'] : 1;
+        $unit = isset($option['unit']) && trim($option['unit']) !== '' ? $this->encode(trim($option['unit'])) : '';
+
+        $tpl = '<div class="vtpl-slider-wrap" data-min="' . $min . '" data-max="' . $max . '" data-step="' . $step . '">
+                    <input type="range" class="vtpl-slider-range" min="' . $min . '" max="' . $max . '" step="' . $step . '" value="{value}">
+                    <div class="vtpl-slider-input-group">
+                        <input type="number" class="vtpl-slider-number" name="{name}" min="' . $min . '" max="' . $max . '" step="' . $step . '" value="{value}">
+                        ' . ($unit !== '' ? '<span class="vtpl-input-unit">' . $unit . '</span>' : '') . '
+                    </div>
+                </div>';
+        $this->renderByTpl($option, $tpl, false);
+    }
+
+    /**
+     * 渲染日期选择器（参考写文章页面日期控件风格）
+     * @param array $option
+     * @return void
+     */
+    private function renderDate($option)
+    {
+        if (!empty($option['from_to'])) {
+            $fromText = isset($option['text_from']) ? $option['text_from'] : '从';
+            $toText = isset($option['text_to']) ? $option['text_to'] : '到';
+
+            $value = is_array($option['value']) ? $option['value'] : array('from' => '', 'to' => '');
+            $fromVal = isset($value['from']) ? $value['from'] : '';
+            $toVal = isset($value['to']) ? $value['to'] : '';
+
+            $desc = !empty($option['description']) ? '<div class="option-description">' . $option['description'] . '</div>' : '';
+            $tip = (isset($option['new']) && trim($option['new'])) ? '<small class="new-tip">' . trim($option['new']) . '</small>' : '';
+
+            echo '<div class="option ' . (isset($option['labels']) ? $option['labels'] : '') . '" id="' . $option['id'] . '">';
+            echo '<div class="option-name" data-name="' . $this->encode($option['name']) . '" data-id="' . $option['id'] . '">', $this->encode($option['name']) . $tip, $desc, '</div>';
+            echo '<div class="option-body depend-none">';
+            echo '<div class="vtpl-date-range">';
+            echo '<div class="vtpl-date-item"><span class="vtpl-date-label">' . $this->encode($fromText) . '</span><input type="text" class="vtpl-date-input datepicker" name="' . $option['id'] . '[from]" value="' . $this->encode($fromVal) . '" placeholder="YYYY-MM-DD" autocomplete="off"></div>';
+            echo '<span class="vtpl-date-sep">至</span>';
+            echo '<div class="vtpl-date-item"><span class="vtpl-date-label">' . $this->encode($toText) . '</span><input type="text" class="vtpl-date-input datepicker" name="' . $option['id'] . '[to]" value="' . $this->encode($toVal) . '" placeholder="YYYY-MM-DD" autocomplete="off"></div>';
+            echo '</div>';
+            echo '</div></div>';
+        } else {
+            $tpl = '<input type="text" class="vtpl-date-input datepicker" name="{name}" value="{value}" placeholder="YYYY-MM-DD" autocomplete="off">';
+            $this->renderByTpl($option, $tpl, false);
+        }
+    }
+
+    /**
+     * 渲染链接字段
+     * @param array $option
+     * @return void
+     */
+    private function renderLink($option)
+    {
+        $val = is_array($option['value']) ? $option['value'] : array();
+        $url = isset($val['url']) ? $val['url'] : '';
+        $text = isset($val['text']) ? $val['text'] : '';
+        $target = isset($val['target']) ? $val['target'] : '_self';
+        $checked = ($target === '_blank') ? ' checked="checked"' : '';
+
+        $desc = !empty($option['description']) ? '<div class="option-description">' . $option['description'] . '</div>' : '';
+        $tip = (isset($option['new']) && trim($option['new'])) ? '<small class="new-tip">' . trim($option['new']) . '</small>' : '';
+
+        echo '<div class="option ' . (isset($option['labels']) ? $option['labels'] : '') . '" id="' . $option['id'] . '">';
+        echo '<div class="option-name" data-name="' . $this->encode($option['name']) . '" data-id="' . $option['id'] . '">', $this->encode($option['name']) . $tip, $desc, '</div>';
+        echo '<div class="option-body depend-none">';
+        echo '<div class="vtpl-link-card">';
+        echo '<div class="vtpl-link-row">';
+        echo '<div class="vtpl-link-field"><label>链接文字</label><input type="text" name="' . $option['id'] . '[text]" value="' . $this->encode($text) . '" placeholder="例如：首页导航"></div>';
+        echo '<div class="vtpl-link-field flex-grow-1"><label>链接网址</label><input type="text" name="' . $option['id'] . '[url]" value="' . $this->encode($url) . '" placeholder="https://..."></div>';
+        echo '</div>';
+        echo '<div class="vtpl-link-target mt-2">';
+        echo '<input type="hidden" name="' . $option['id'] . '[target]" value="_self">';
+        echo '<label class="vtpl-check"><input type="checkbox" name="' . $option['id'] . '[target]" value="_blank"' . $checked . '> 在新标签页中打开链接</label>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div></div>';
+    }
+
+    /**
+     * 渲染超链接颜色（常规、悬浮、激活等状态）
+     * @param array $option
+     * @return void
+     */
+    private function renderLinkColor($option)
+    {
+        $this->renderLink_color($option);
+    }
+
+    /**
+     * 兼容下划线调用 renderLink_color
+     * @param array $option
+     * @return void
+     */
+    private function renderLink_color($option)
+    {
+        $val = is_array($option['value']) ? $option['value'] : array();
+        $props = array(
+            'color'   => '常规',
+            'hover'   => '悬浮 (hover)',
+            'active'  => '激活 (active)',
+            'visited' => '访问 (visited)',
+            'focus'   => '聚焦 (focus)',
+        );
+
+        $showColor = isset($option['color']) ? !empty($option['color']) : true;
+        $showHover = isset($option['hover']) ? !empty($option['hover']) : true;
+        $showActive = !empty($option['active']);
+        $showVisited = !empty($option['visited']);
+        $showFocus = !empty($option['focus']);
+
+        $desc = !empty($option['description']) ? '<div class="option-description">' . $option['description'] . '</div>' : '';
+        $tip = (isset($option['new']) && trim($option['new'])) ? '<small class="new-tip">' . trim($option['new']) . '</small>' : '';
+
+        echo '<div class="option ' . (isset($option['labels']) ? $option['labels'] : '') . '" id="' . $option['id'] . '">';
+        echo '<div class="option-name" data-name="' . $this->encode($option['name']) . '" data-id="' . $option['id'] . '">', $this->encode($option['name']) . $tip, $desc, '</div>';
+        echo '<div class="option-body depend-none">';
+        echo '<div class="vtpl-color-group">';
+
+        $activeProps = array();
+        if ($showColor) $activeProps['color'] = $props['color'];
+        if ($showHover) $activeProps['hover'] = $props['hover'];
+        if ($showActive) $activeProps['active'] = $props['active'];
+        if ($showVisited) $activeProps['visited'] = $props['visited'];
+        if ($showFocus) $activeProps['focus'] = $props['focus'];
+
+        foreach ($activeProps as $key => $label) {
+            $colorVal = isset($val[$key]) ? $val[$key] : '';
+            $pickerVal = (!empty($colorVal) && preg_match('/^#[a-f0-9]{6}$/i', $colorVal)) ? $colorVal : '#000000';
+            echo '<div class="vtpl-color-item">';
+            echo '<span class="vtpl-color-title">' . $label . '</span>';
+            echo '<div class="vtpl-color-picker-box">';
+            echo '<input type="color" class="vtpl-color-swatch" value="' . $pickerVal . '">';
+            echo '<input type="text" class="vtpl-color-text" name="' . $option['id'] . '[' . $key . ']" value="' . $this->encode($colorVal) . '" placeholder="#000000">';
+            echo '</div>';
+            echo '</div>';
+        }
+
+        echo '</div>';
+        echo '</div></div>';
+    }
+
+    /**
+     * 渲染边框字段（宽度、线型、颜色）
+     * @param array $option
+     * @return void
+     */
+    private function renderBorder($option)
+    {
+        $val = is_array($option['value']) ? $option['value'] : array();
+        $isAll = isset($option['all']) ? !empty($option['all']) : true;
+        $unit = isset($option['unit']) ? $option['unit'] : 'px';
+
+        $style = isset($val['style']) ? $val['style'] : 'solid';
+        $color = isset($val['color']) ? $val['color'] : '#e2e8f0';
+        $pickerVal = (!empty($color) && preg_match('/^#[a-f0-9]{6}$/i', $color)) ? $color : '#e2e8f0';
+
+        $borderStyles = array(
+            'solid'  => '实线 (solid)',
+            'dashed' => '虚线 (dashed)',
+            'dotted' => '点线 (dotted)',
+            'double' => '双线 (double)',
+            'inset'  => '3D内嵌 (inset)',
+            'outset' => '3D突出 (outset)',
+            'none'   => '无 (none)',
+        );
+
+        $desc = !empty($option['description']) ? '<div class="option-description">' . $option['description'] . '</div>' : '';
+        $tip = (isset($option['new']) && trim($option['new'])) ? '<small class="new-tip">' . trim($option['new']) . '</small>' : '';
+
+        echo '<div class="option ' . (isset($option['labels']) ? $option['labels'] : '') . '" id="' . $option['id'] . '">';
+        echo '<div class="option-name" data-name="' . $this->encode($option['name']) . '" data-id="' . $option['id'] . '">', $this->encode($option['name']) . $tip, $desc, '</div>';
+        echo '<div class="option-body depend-none">';
+        echo '<div class="vtpl-border-wrap">';
+
+        if ($isAll) {
+            $widthVal = isset($val['all']) ? $val['all'] : '';
+            echo '<div class="vtpl-border-width-item">';
+            echo '<span class="vtpl-border-label">粗细</span>';
+            echo '<div class="vtpl-number-wrap"><input type="number" class="vtpl-number-input" name="' . $option['id'] . '[all]" value="' . $this->encode($widthVal) . '" placeholder="1"><span class="vtpl-input-unit">' . $unit . '</span></div>';
+            echo '</div>';
+        } else {
+            $sides = array(
+                'top'    => '上',
+                'right'  => '右',
+                'bottom' => '下',
+                'left'   => '左',
+            );
+            echo '<div class="vtpl-border-sides">';
+            foreach ($sides as $sKey => $sLabel) {
+                $sVal = isset($val[$sKey]) ? $val[$sKey] : '';
+                echo '<div class="vtpl-border-width-item">';
+                echo '<span class="vtpl-border-label">' . $sLabel . '</span>';
+                echo '<div class="vtpl-number-wrap"><input type="number" class="vtpl-number-input" name="' . $option['id'] . '[' . $sKey . ']" value="' . $this->encode($sVal) . '" placeholder="0"><span class="vtpl-input-unit">' . $unit . '</span></div>';
+                echo '</div>';
+            }
+            echo '</div>';
+        }
+
+        echo '<div class="vtpl-border-style-item">';
+        echo '<span class="vtpl-border-label">样式</span>';
+        echo '<select name="' . $option['id'] . '[style]" class="vtpl-select">';
+        foreach ($borderStyles as $sValKey => $sValName) {
+            $sel = ($style === $sValKey) ? ' selected="selected"' : '';
+            echo '<option value="' . $sValKey . '"' . $sel . '>' . $sValName . '</option>';
+        }
+        echo '</select>';
+        echo '</div>';
+
+        echo '<div class="vtpl-border-color-item">';
+        echo '<span class="vtpl-border-label">颜色</span>';
+        echo '<div class="vtpl-color-picker-box">';
+        echo '<input type="color" class="vtpl-color-swatch" value="' . $pickerVal . '">';
+        echo '<input type="text" class="vtpl-color-text" name="' . $option['id'] . '[color]" value="' . $this->encode($color) . '" placeholder="#000000">';
+        echo '</div>';
+        echo '</div>';
+
+        echo '</div>';
+        echo '</div></div>';
+    }
+
+    /**
+     * 渲染间距字段（外边距或内边距）
+     * @param array $option
+     * @return void
+     */
+    private function renderSpacing($option)
+    {
+        $val = is_array($option['value']) ? $option['value'] : array();
+        $units = isset($option['units']) && is_array($option['units']) ? $option['units'] : array('px', '%', 'rem', 'em');
+        $currentUnit = isset($val['unit']) ? $val['unit'] : (isset($units[0]) ? $units[0] : 'px');
+        $isAll = !empty($option['all']);
+
+        $desc = !empty($option['description']) ? '<div class="option-description">' . $option['description'] . '</div>' : '';
+        $tip = (isset($option['new']) && trim($option['new'])) ? '<small class="new-tip">' . trim($option['new']) . '</small>' : '';
+
+        echo '<div class="option ' . (isset($option['labels']) ? $option['labels'] : '') . '" id="' . $option['id'] . '">';
+        echo '<div class="option-name" data-name="' . $this->encode($option['name']) . '" data-id="' . $option['id'] . '">', $this->encode($option['name']) . $tip, $desc, '</div>';
+        echo '<div class="option-body depend-none">';
+        echo '<div class="vtpl-spacing-wrap">';
+
+        if ($isAll) {
+            $allVal = isset($val['all']) ? $val['all'] : '';
+            echo '<div class="vtpl-spacing-item">';
+            echo '<span class="vtpl-spacing-label"><i class="ri-drag-move-fill"></i> 四边统一</span>';
+            echo '<input type="number" class="vtpl-spacing-input" name="' . $option['id'] . '[all]" value="' . $this->encode($allVal) . '" placeholder="数值">';
+            echo '</div>';
+        } else {
+            $sides = array(
+                'top'    => array('label' => '顶部', 'icon' => 'ri-arrow-up-line'),
+                'right'  => array('label' => '右侧', 'icon' => 'ri-arrow-right-line'),
+                'bottom' => array('label' => '底部', 'icon' => 'ri-arrow-down-line'),
+                'left'   => array('label' => '左侧', 'icon' => 'ri-arrow-left-line'),
+            );
+            foreach ($sides as $sideKey => $sideInfo) {
+                $sideVal = isset($val[$sideKey]) ? $val[$sideKey] : '';
+                echo '<div class="vtpl-spacing-item">';
+                echo '<span class="vtpl-spacing-label"><i class="' . $sideInfo['icon'] . '"></i> ' . $sideInfo['label'] . '</span>';
+                echo '<input type="number" class="vtpl-spacing-input" name="' . $option['id'] . '[' . $sideKey . ']" value="' . $this->encode($sideVal) . '" placeholder="数值">';
+                echo '</div>';
+            }
+        }
+
+        if (count($units) > 1) {
+            echo '<div class="vtpl-spacing-unit">';
+            echo '<select name="' . $option['id'] . '[unit]" class="vtpl-spacing-unit-select">';
+            foreach ($units as $u) {
+                $selected = ($u === $currentUnit) ? ' selected="selected"' : '';
+                echo '<option value="' . $this->encode($u) . '"' . $selected . '>' . $this->encode($u) . '</option>';
+            }
+            echo '</select>';
+            echo '</div>';
+        } else {
+            echo '<input type="hidden" name="' . $option['id'] . '[unit]" value="' . $this->encode($currentUnit) . '">';
+        }
+
+        echo '</div>';
+        echo '</div></div>';
+    }
+
+    /**
+     * 渲染背景设置字段（颜色、图片、重复、位置、大小、固定）
+     * @param array $option
+     * @return void
+     */
+    private function renderBackground($option)
+    {
+        $val = is_array($option['value']) ? $option['value'] : array();
+        $bgColor = isset($val['background-color']) ? $val['background-color'] : '';
+        $bgImg = isset($val['background-image']) ? $val['background-image'] : '';
+        $bgRepeat = isset($val['background-repeat']) ? $val['background-repeat'] : 'no-repeat';
+        $bgPos = isset($val['background-position']) ? $val['background-position'] : 'center center';
+        $bgSize = isset($val['background-size']) ? $val['background-size'] : 'cover';
+        $bgAttach = isset($val['background-attachment']) ? $val['background-attachment'] : 'scroll';
+
+        $pickerVal = (!empty($bgColor) && preg_match('/^#[a-f0-9]{6}$/i', $bgColor)) ? $bgColor : '#ffffff';
+
+        $repeatOpts = array(
+            'no-repeat' => '不平铺 (no-repeat)',
+            'repeat'    => '完全平铺 (repeat)',
+            'repeat-x'  => '水平平铺 (repeat-x)',
+            'repeat-y'  => '垂直平铺 (repeat-y)',
+        );
+
+        $posOpts = array(
+            'left top'      => '左上 (left top)',
+            'left center'   => '左中 (left center)',
+            'left bottom'   => '左下 (left bottom)',
+            'center top'    => '中上 (center top)',
+            'center center' => '居中 (center center)',
+            'center bottom' => '中下 (center bottom)',
+            'right top'     => '右上 (right top)',
+            'right center'  => '右中 (right center)',
+            'right bottom'  => '右下 (right bottom)',
+        );
+
+        $sizeOpts = array(
+            'cover'      => '全覆盖 (cover)',
+            'contain'    => '保持比例包含 (contain)',
+            'auto'       => '原始尺寸 (auto)',
+            '100% 100%'  => '拉伸铺满 (100% 100%)',
+        );
+
+        $attachOpts = array(
+            'scroll' => '随页面滚动 (scroll)',
+            'fixed'  => '固定背景 (fixed)',
+        );
+
+        $desc = !empty($option['description']) ? '<div class="option-description">' . $option['description'] . '</div>' : '';
+        $tip = (isset($option['new']) && trim($option['new'])) ? '<small class="new-tip">' . trim($option['new']) . '</small>' : '';
+
+        echo '<div class="option ' . (isset($option['labels']) ? $option['labels'] : '') . '" id="' . $option['id'] . '">';
+        echo '<div class="option-name" data-name="' . $this->encode($option['name']) . '" data-id="' . $option['id'] . '">', $this->encode($option['name']) . $tip, $desc, '</div>';
+        echo '<div class="option-body depend-none">';
+        echo '<div class="vtpl-bg-wrap">';
+
+        // 背景颜色
+        echo '<div class="vtpl-bg-field">';
+        echo '<span class="vtpl-bg-label">背景颜色</span>';
+        echo '<div class="vtpl-color-picker-box">';
+        echo '<input type="color" class="vtpl-color-swatch" value="' . $pickerVal . '">';
+        echo '<input type="text" class="vtpl-color-text" name="' . $option['id'] . '[background-color]" value="' . $this->encode($bgColor) . '" placeholder="例如：#f4f6f9">';
+        echo '</div>';
+        echo '</div>';
+
+        // 背景图片（利用现有 upload/media 机制）
+        echo '<div class="vtpl-bg-field vtpl-bg-field-image">';
+        echo '<span class="vtpl-bg-label">背景图片</span>';
+        echo '<div class="tpl-block-upload">';
+        echo '<div class="tpl-image-preview"><img src="' . $this->encode($bgImg) . '"></div>';
+        echo '<div class="tpl-block-upload-input">';
+        echo '<input type="text" name="' . $option['id'] . '[background-image]" value="' . $this->encode($bgImg) . '" placeholder="图片URL或选择上传">';
+        echo '<a class="btn btn-outline-primary tpl-select-media" href="#mediaModal" data-toggle="modal" data-target="#mediaModal" data-mode="custom" data-media-type="image" data-btn-text="' . _langPlu('select', 'tpl_options') . '" data-callback="tplOptionsUseMediaImage">' . _langPlu('select', 'tpl_options') . '</a>';
+        echo '<label><a class="btn btn-primary">' . _langPlu('js_upload', 'tpl_options') . '</a><input class="d-none tpl-image" type="file" name="image" data-url="' . BLOG_URL . '" accept="image/svg+xml,image/webp,image/avif,image/jpeg,image/jpg,image/png,image/gif"></label>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
+
+        // 背景属性网格
+        echo '<div class="vtpl-bg-grid">';
+
+        echo '<div class="vtpl-bg-grid-item">';
+        echo '<span class="vtpl-bg-sublabel">重复模式</span>';
+        echo '<select name="' . $option['id'] . '[background-repeat]" class="vtpl-select">';
+        foreach ($repeatOpts as $rk => $rv) {
+            $sel = ($bgRepeat === $rk) ? ' selected="selected"' : '';
+            echo '<option value="' . $rk . '"' . $sel . '>' . $rv . '</option>';
+        }
+        echo '</select></div>';
+
+        echo '<div class="vtpl-bg-grid-item">';
+        echo '<span class="vtpl-bg-sublabel">对齐位置</span>';
+        echo '<select name="' . $option['id'] . '[background-position]" class="vtpl-select">';
+        foreach ($posOpts as $pk => $pv) {
+            $sel = ($bgPos === $pk) ? ' selected="selected"' : '';
+            echo '<option value="' . $pk . '"' . $sel . '>' . $pv . '</option>';
+        }
+        echo '</select></div>';
+
+        echo '<div class="vtpl-bg-grid-item">';
+        echo '<span class="vtpl-bg-sublabel">尺寸大小</span>';
+        echo '<select name="' . $option['id'] . '[background-size]" class="vtpl-select">';
+        foreach ($sizeOpts as $sk => $sv) {
+            $sel = ($bgSize === $sk) ? ' selected="selected"' : '';
+            echo '<option value="' . $sk . '"' . $sel . '>' . $sv . '</option>';
+        }
+        echo '</select></div>';
+
+        echo '<div class="vtpl-bg-grid-item">';
+        echo '<span class="vtpl-bg-sublabel">附着方式</span>';
+        echo '<select name="' . $option['id'] . '[background-attachment]" class="vtpl-select">';
+        foreach ($attachOpts as $ak => $av) {
+            $sel = ($bgAttach === $ak) ? ' selected="selected"' : '';
+            echo '<option value="' . $ak . '"' . $sel . '>' . $av . '</option>';
+        }
+        echo '</select></div>';
+
+        echo '</div>'; // vtpl-bg-grid
+        echo '</div>'; // vtpl-bg-wrap
+        echo '</div></div>';
     }
 
     /**
