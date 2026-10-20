@@ -47,9 +47,11 @@
             </div>
             <h4><?= _lang('mail_template'); ?></h4>
             <div class="my-3">
-                <div class="mb-3" id="mail_template_box"><?= _lang('select_template'); ?>：<a href="javascript:useDefaultTemplate();"><?= _lang('template_simple'); ?></a>
-                    <a href="javascript:useDeepBlueTemplate();"><?= _lang('template_deep_blue'); ?></a>
-                    <a href="javascript:useGreenVibrantTemplate();"><?= _lang('template_green'); ?></a>
+                <div class="mb-3 d-flex align-items-center flex-wrap" id="mail_template_box">
+                    <span class="text-secondary mr-2"><?= _lang('select_template'); ?>：</span>
+                    <a href="javascript:useDefaultTemplate();" class="badge badge-light border text-secondary px-3 py-2 mr-2 mb-1 shadow-sm" style="font-weight: 500; font-size: 13px; text-decoration: none;"><?= _lang('template_simple'); ?></a>
+                    <a href="javascript:useDeepBlueTemplate();" class="badge badge-light border text-primary px-3 py-2 mr-2 mb-1 shadow-sm" style="font-weight: 500; font-size: 13px; text-decoration: none;"><?= _lang('template_deep_blue'); ?></a>
+                    <a href="javascript:useGreenVibrantTemplate();" class="badge badge-light border text-success px-3 py-2 mr-2 mb-1 shadow-sm" style="font-weight: 500; font-size: 13px; text-decoration: none;"><?= _lang('template_green'); ?></a>
                     <span id="mail_template_box_ext"></span>
                 </div>
                 <div class="row">
@@ -111,6 +113,9 @@
     function updatePreview() {
         const htmlCode = htmlInput.value;
         const previewDocument = previewFrame.contentDocument;
+        if (!previewDocument) {
+            return;
+        }
         previewDocument.open();
         previewDocument.write(htmlCode);
         previewDocument.close();
@@ -122,19 +127,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{mail_site_title}}</title>
 </head>
-<body style="font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f7f7f7;">
-    <div style="max-width: 600px; margin: 0 auto; background-color: #fff; border-radius: 8px; padding: 20px; box-shadow: 0 4px 16px rgba(0,0,0,.1);">
-        <div style="border-bottom: 1px solid #e0e0e0; padding-bottom: 10px; margin-bottom: 20px;">
-            <h1 style="font-size: 24px; margin: 0; color: #333;">{{mail_site_title}}</h1>
-        </div>
-        <div style="font-size: 16px; color: #333; line-height: 1.6;">
-            <p>{{mail_content}}</p>
-        </div>
-        <div style="border-top: 1px solid #e0e0e0; padding-top: 10px; text-align: center; font-size: 12px; color: #888; margin-top: 20px;">
-            <small>来自站点：{{mail_site_title}}</small>
-        </div>
-    </div>
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif; margin: 0; padding: 0; background-color: #ffffff; color: #111827; -webkit-font-smoothing: antialiased;">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" style="background-color: #ffffff; padding: 48px 20px;">
+        <tr>
+            <td align="center">
+                <table width="100%" border="0" cellpadding="0" cellspacing="0" style="max-width: 580px; text-align: left;">
+                    <tr>
+                        <td style="padding-bottom: 20px; border-bottom: 2px solid #111827;">
+                            <h1 style="font-size: 24px; font-weight: 700; margin: 0; color: #111827; letter-spacing: -0.5px; line-height: 1.2;">{{mail_site_title}}</h1>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 36px 0 40px; font-size: 15px; line-height: 1.75; color: #374151;">
+                            {{mail_content}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-top: 24px; border-top: 1px solid #e5e7eb; font-size: 12px; color: #6b7280; line-height: 1.6;">
+                            来自 · <strong>{{mail_site_title}}</strong>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
 </body>
 </html>`;
         $('#mail_template').val(defaultTemplate);
@@ -147,23 +165,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body{font-family:Arial,sans-serif;margin:0;padding:0;background:#f7f9fb}.container{max-width:600px;margin:0 auto;background:#fff;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.1)}.header{background:#0066cc;color:#fff;padding:20px;text-align:center}.header h1{margin:0;font-size:24px}.content{padding:20px;color:#333;line-height:1.6}.footer{padding:15px;text-align:center;font-size:12px;color:#888;background:#f7f9fb}.divider{margin:20px 0;border-bottom:1px solid #e0e0e0}.cta-button{display:inline-block;background:#0066cc;color:#fff;padding:12px 20px;text-decoration:none;border-radius:30px;font-weight:bold;margin-top:20px}.cta-button:hover{background:#004d99}
-    </style>
+    <title>{{mail_site_title}}</title>
 </head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>{{mail_site_title}}</h1>
-        </div>
-        <div class="content">
-            <p>{{mail_content}}</p>
-            <div class="divider"></div>
-        </div>
-        <div class="footer">
-            <small>来自站点：{{mail_site_title}}</small>
-        </div>
-    </div>
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif; margin: 0; padding: 0; background-color: #f0f4f8; color: #0f172a; -webkit-font-smoothing: antialiased;">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" style="background-color: #f0f4f8; padding: 40px 16px;">
+        <tr>
+            <td align="center">
+                <table width="100%" border="0" cellpadding="0" cellspacing="0" style="max-width: 600px; background-color: #ffffff; border: 2px solid #0f172a; border-radius: 0px; box-shadow: 6px 6px 0px #0f172a;">
+                    <tr>
+                        <td style="background-color: #0b192c; padding: 24px 30px; border-bottom: 2px solid #0f172a;">
+                            <h1 style="font-size: 20px; font-weight: 700; margin: 0; color: #ffffff; letter-spacing: 0.5px;">{{mail_site_title}}</h1>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 32px 30px; font-size: 15px; line-height: 1.7; color: #1e293b; text-align: left;">
+                            {{mail_content}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 16px 30px; background-color: #f8fafc; border-top: 2px solid #0f172a; font-size: 12px; color: #475569;">
+                            来自 · <span style="color: #0b192c; font-weight: bold;">{{mail_site_title}}</span>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
 </body>
 </html>`;
         $('#mail_template').val(deepBlueTemplate);
@@ -176,31 +203,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body{font-family:'Arial',sans-serif;margin:0;padding:0;background:#e8f7ec}
-        .container{max-width:600px;margin:0 auto;background:#ffffff;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,.1)}
-        .header{background:#4caf50;color:#fff;padding:20px;text-align:center;border-radius:12px 12px 0 0}
-        .header h1{margin:0;font-size:28px;font-weight:bold}
-        .content{padding:25px;color:#333333;line-height:1.8;text-align:center}
-        .content p{font-size:18px;margin:0 0 20px}
-        .content .cta-button{display:inline-block;background:#66bb6a;color:#fff;padding:14px 24px;text-decoration:none;border-radius:50px;font-weight:bold;font-size:18px;box-shadow:0 4px 8px rgba(0,0,0,.1);transition:background-color .3s ease-in-out}
-        .content .cta-button:hover{background:#388e3c}
-        .footer{padding:15px;text-align:center;font-size:14px;color:#777;background:#4caf50;border-radius:0 0 12px 12px}
-        .footer small{display:block}
-    </style>
+    <title>{{mail_site_title}}</title>
 </head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>{{mail_site_title}}</h1>
-        </div>
-        <div class="content">
-            <p>{{mail_content}}</p>
-        </div>
-        <div class="footer">
-            <small>来自站点：{{mail_site_title}}</small>
-        </div>
-    </div>
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif; margin: 0; padding: 0; background-color: #f4f7f4; color: #1c2e1c; -webkit-font-smoothing: antialiased;">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" style="background-color: #f4f7f4; padding: 40px 16px;">
+        <tr>
+            <td align="center">
+                <table width="100%" border="0" cellpadding="0" cellspacing="0" style="max-width: 580px; background-color: #ffffff; border-radius: 24px; border: 1px solid #dbe6db; box-shadow: 0 12px 36px rgba(44, 76, 44, 0.06); overflow: hidden;">
+                    <tr>
+                        <td style="padding: 32px 36px 16px; text-align: center;">
+                            <h1 style="font-size: 21px; font-weight: 700; margin: 0; color: #1b3d1b; letter-spacing: 0.2px;">{{mail_site_title}}</h1>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 24px 36px 36px; font-size: 15px; line-height: 1.8; color: #2a3d2a; text-align: left;">
+                            {{mail_content}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 18px 36px; background-color: #f4f8f4; border-top: 1px solid #e8f0e8; text-align: center; font-size: 12px; color: #5a755a; border-radius: 0 0 24px 24px;">
+                            来自 · <span style="font-weight: 600; color: #2e602e;">{{mail_site_title}}</span>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
 </body>
 </html>`;
         $('#mail_template').val(greenVibrantTemplate);

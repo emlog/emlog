@@ -140,7 +140,10 @@ if ($action === 'doreply') {
     $content = '@' . addslashes($comment['poster']) . '：' . $reply;
 
     $Comment_Model->replyComment($blogId, $commentId, $content, $hide);
-    notice::sendNewCommentMail($reply, $blogId, $commentId);
+    $User_Model = new User_Model();
+    $admin_info = $User_Model->getOneUser(UID);
+    $admin_poster = isset($admin_info['nickname']) ? $admin_info['nickname'] : '';
+    notice::sendNewCommentMail($reply, $blogId, $commentId, $admin_poster);
 
     $CACHE->updateCache('comment');
     $CACHE->updateCache('sta');

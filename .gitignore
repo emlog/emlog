@@ -7,6 +7,7 @@ sitemap*
 Dockerfile
 config.php
 AGENTS.md
+TEST.md
 /content/backup/*.sql
 /content/cache/*
 /content/uploadfile/*

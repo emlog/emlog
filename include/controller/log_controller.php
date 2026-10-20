@@ -206,7 +206,7 @@ class Log_Controller
         $hide = isset($r['hide']) ? $r['hide'] : '';
 
         $_SESSION['code'] = null;
-        notice::sendNewCommentMail($content, $blogId, $pid);
+        notice::sendNewCommentMail($content, $blogId, $pid, $name);
 
         if ($hide === 'y') {
             $msg = _lang('comment_success_audit');
