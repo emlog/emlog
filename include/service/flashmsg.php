@@ -284,6 +284,7 @@ class FlashMsg
             'active_edit' => array('type' => 'success', 'text' => _lang('edit_tag_success')),
             'error_a' => array('type' => 'danger', 'text' => _lang('select_tag')),
             'error_exist' => array('type' => 'danger', 'text' => _lang('tag_exists')),
+            'error_len' => array('type' => 'danger', 'text' => _lang('tag_too_long')),
         );
         return self::renderAlertsByMap($sessionKey, $alertMap);
     }

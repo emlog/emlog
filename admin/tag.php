@@ -41,6 +41,10 @@ if ($action == 'add_tag') {
         FlashMsg::redirectAdmin('tag', 'error_a');
     }
 
+    if ((function_exists('mb_strlen') ? mb_strlen($tagName, 'UTF-8') : strlen($tagName)) > 50) {
+        FlashMsg::redirectAdmin('tag', 'error_len');
+    }
+
     // 检查标签是否已存在
     $existingTagId = $Tag_Model->getIdFromName($tagName);
     if ($existingTagId) {
@@ -68,6 +72,10 @@ if ($action == 'update_tag') {
 
     if (empty($tagName)) {
         FlashMsg::redirectAdmin('tag', 'error_a');
+    }
+
+    if ((function_exists('mb_strlen') ? mb_strlen($tagName, 'UTF-8') : strlen($tagName)) > 50) {
+        FlashMsg::redirectAdmin('tag', 'error_len');
     }
 
     $Tag_Model->updateTagName($tagId, $tagName, $kw, $title, $description);

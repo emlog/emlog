@@ -60,7 +60,7 @@ services:
   #     - db
 
   php:
-    image: emlog/emlog:pro-php8.1
+    image: emlog/emlog:pro-php8.2
     volumes:
       - ./:/app/emlog
     working_dir: /app/emlog

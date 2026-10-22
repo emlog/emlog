@@ -616,6 +616,7 @@ return [
     'no_tags' => 'No tags yet, you can add tags when writing articles',
     'select_tag' => 'Please select a tag',
     'tag_exists' => 'Tag already exists',
+    'tag_too_long' => 'Tag length cannot exceed 50 characters',
     'add_tag_success' => 'Tag added successfully',
     'edit_tag_success' => 'Tag updated successfully',
     'confirm_delete_tag' => 'Delete selected tags?',

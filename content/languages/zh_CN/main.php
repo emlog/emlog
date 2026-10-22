@@ -616,6 +616,7 @@ return [
     'no_tags' => '还没有标签，写文章时可以打标签',
     'select_tag' => '请选择标签',
     'tag_exists' => '标签已存在',
+    'tag_too_long' => '标签长度不得超过50个字',
     'add_tag_success' => '添加标签成功',
     'edit_tag_success' => '修改标签成功',
     'confirm_delete_tag' => '删除所选标签？',
