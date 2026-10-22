@@ -72,32 +72,38 @@
                                         <span class="tree-branch-wire is-joint <?= $is_last_child ? '' : 'has-next' ?>" style="left: <?= (1.3 + ($depth - 1) * 1.3) ?>rem;"></span>
                                         <span class="tree-branch-elbow" style="left: <?= (1.3 + ($depth - 1) * 1.3) ?>rem;"></span>
                                     <?php endif; ?>
-                                    <span class="drag-handle text-muted mr-2" style="cursor: move;" title="拖动排序"><i class="icofont-navigation-menu"></i></span>
-                                    <?php if ($hasChildren): ?>
-                                        <span class="fold-btn text-muted mr-1" style="cursor: pointer;" data-id="<?= $sid ?>">
-                                            <i class="icofont-simple-down"></i>
-                                        </span>
-                                    <?php else: ?>
-                                        <span class="fold-btn-placeholder mr-1" style="display: inline-block; width: 12px;"></span>
-                                    <?php endif; ?>
-                                    <a href="#" data-toggle="modal" data-target="#sortModal"
-                                        data-sid="<?= $sid ?>"
-                                        data-sortname="<?= $value['sortname'] ?>"
-                                        data-alias="<?= $value['alias'] ?>"
-                                        data-description="<?= $value['description'] ?>"
-                                        data-kw="<?= $value['kw'] ?>"
-                                        data-title="<?= $value['title_origin'] ?>"
-                                        data-pid="<?= $pid ?>"
-                                        data-sortimg="<?= $value['sortimg'] ?>"
-                                        data-page_count="<?= $value['page_count'] ?>"
-                                        data-allow_user_post="<?= $value['allow_user_post'] ?>"
-                                        data-template="<?= $value['template'] ?>">
-                                        <?= $value['sortname'] ?>
-                                    </a>
-                                    <a href="<?= Url::sort($sid) ?>" target="_blank" class="text-muted ml-2"><i class="icofont-external-link"></i></a>
-                                    <?php if ($value['allow_user_post'] == 'n'): ?>
-                                        <br><span class="badge small badge-orange"><?= _lang('no_contribute') ?></span>
-                                    <?php endif ?>
+                                    <div class="sort-name-container">
+                                        <div class="sort-actions">
+                                            <span class="drag-handle text-muted mr-2" style="cursor: move;" title="拖动排序"><i class="icofont-navigation-menu"></i></span>
+                                            <?php if ($hasChildren): ?>
+                                                <span class="fold-btn text-muted mr-1" style="cursor: pointer;" data-id="<?= $sid ?>">
+                                                    <i class="icofont-simple-down"></i>
+                                                </span>
+                                            <?php else: ?>
+                                                <span class="fold-btn-placeholder mr-1" style="display: inline-block; width: 12px;"></span>
+                                            <?php endif; ?>
+                                        </div>
+                                        <div class="sort-name-text">
+                                            <a href="#" data-toggle="modal" data-target="#sortModal"
+                                                data-sid="<?= $sid ?>"
+                                                data-sortname="<?= $value['sortname'] ?>"
+                                                data-alias="<?= $value['alias'] ?>"
+                                                data-description="<?= $value['description'] ?>"
+                                                data-kw="<?= $value['kw'] ?>"
+                                                data-title="<?= $value['title_origin'] ?>"
+                                                data-pid="<?= $pid ?>"
+                                                data-sortimg="<?= $value['sortimg'] ?>"
+                                                data-page_count="<?= $value['page_count'] ?>"
+                                                data-allow_user_post="<?= $value['allow_user_post'] ?>"
+                                                data-template="<?= $value['template'] ?>">
+                                                <?= $value['sortname'] ?>
+                                            </a>
+                                            <a href="<?= Url::sort($sid) ?>" target="_blank" class="text-muted ml-2 text-nowrap"><i class="icofont-external-link"></i></a>
+                                            <?php if ($value['allow_user_post'] == 'n'): ?>
+                                                <br><span class="badge small badge-orange"><?= _lang('no_contribute') ?></span>
+                                            <?php endif ?>
+                                        </div>
+                                    </div>
                                 </td>
                                 <td>
                                     <div class="flex-shrink-0">
@@ -171,16 +177,36 @@
         border-left: 2px solid #cbd5e1;
     }
     .tree-branch-wire.is-joint {
-        bottom: 50%;
+        bottom: calc(100% - 1.45rem);
     }
     .tree-branch-wire.is-joint.has-next {
         bottom: 0;
     }
     .tree-branch-elbow {
         position: absolute;
-        top: 50%;
+        top: 1.45rem;
         width: 14px;
         border-bottom: 2px solid #cbd5e1;
+    }
+    #adm_sort_list td.tree-name {
+        white-space: normal;
+        word-break: break-all;
+    }
+    #adm_sort_list .sort-name-container {
+        display: flex;
+        align-items: flex-start;
+    }
+    #adm_sort_list .sort-actions {
+        display: inline-flex;
+        align-items: center;
+        flex-shrink: 0;
+        margin-right: 0.35rem;
+        margin-top: 0.15rem;
+    }
+    #adm_sort_list .sort-name-text {
+        flex-grow: 1;
+        min-width: 0;
+        word-break: break-all;
     }
     #sortModal .modal-body {
         max-height: 78vh;
