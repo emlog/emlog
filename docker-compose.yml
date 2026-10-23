@@ -60,7 +60,22 @@ services:
   #     - db
 
   php:
-    image: emlog/emlog:pro-php8.2
+    image: php:8.5-fpm-emlog
+    build:
+      context: .
+      dockerfile_inline: |
+        FROM php:8.5-fpm-alpine
+        RUN apk add --no-cache \
+            freetype-dev \
+            libjpeg-turbo-dev \
+            libpng-dev \
+            libzip-dev \
+            && docker-php-ext-configure gd --with-freetype --with-jpeg \
+            && docker-php-ext-install -j$$(nproc) \
+            gd \
+            zip \
+            pdo_mysql \
+            mysqli
     volumes:
       - ./:/app/emlog
     working_dir: /app/emlog
