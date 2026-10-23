@@ -60,11 +60,11 @@ services:
   #     - db
 
   php:
-    image: php:8.5-fpm-emlog
+    image: php:8.2.35-fpm-emlog
     build:
       context: .
       dockerfile_inline: |
-        FROM php:8.5-fpm-alpine
+        FROM php:8.2.35-fpm-alpine
         RUN apk add --no-cache \
             freetype-dev \
             libjpeg-turbo-dev \
