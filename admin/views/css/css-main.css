@@ -2808,7 +2808,7 @@ textarea.form-control {
 .sort-searchable-dropdown #sortDropdownBtn * {
     pointer-events: none;
 }
-.sort-searchable-dropdown.dropdown:hover .dropdown-menu:not(.show) {
+.sort-searchable-dropdown .dropdown-menu:not(.show) {
     display: none !important;
 }
 .sort-dropdown-list .is-highlight {

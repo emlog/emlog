@@ -130,7 +130,7 @@
                         endforeach;
                         ?>
                     </select>
-                    <div class="dropdown sort-searchable-dropdown" id="sort_search_dropdown">
+                    <div class="position-relative sort-searchable-dropdown" id="sort_search_dropdown">
                         <button class="form-control text-left d-flex justify-content-between align-items-center" type="button" id="sortDropdownBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="text-truncate sort-selected-text"><?= $selectedSortName ?></span>
                             <i class="icofont-rounded-down text-muted ml-2"></i>
