@@ -81,32 +81,39 @@ defined('EMLOG_ROOT') || exit('access denied!');
                 </script>
             <?php endif; ?>
             <?php doAction('index_loglist_top');
+            $coverLayout = function_exists('_em') ? _em('coverLayout') : 'top';
+            if (empty($coverLayout)) {
+                $coverLayout = 'top';
+            }
             if (!empty($logs)):
                 foreach ($logs as $value):
+                    $isLeftLayout = ($coverLayout === 'left' && !empty($value['log_cover']));
             ?>
-                    <div class="shadow-theme bottom-5">
+                    <div class="shadow-theme bottom-5 <?= $isLeftLayout ? 'layout-left' : '' ?>">
                         <?php if (!empty($value['log_cover'])) : ?>
                             <div class="loglist-cover">
                                 <a href="<?= $value['log_url'] ?>"><img src="<?= $value['log_cover'] ?>" alt="<?= $value['log_title'] ?>" class="rea-width"></a>
                             </div>
                         <?php endif ?>
-                        <div class="card-padding loglist-body">
-                            <h3 class="card-title">
-                                <a href="<?= $value['log_url'] ?>" class="loglist-title"><?= $value['log_title'] ?></a>
-                                <?php topflg($value['top'], $value['sortop'], isset($sortid) ? $sortid : '') ?>
-                                <?php bloglist_sort($value['sortid']) ?>
-                            </h3>
-                            <div class="loglist-content markdown"><?php echo subContent($value['log_description'], 180, 1); ?></div>
-                            <div class="loglist-tag"><?php blog_tag($value['logid']) ?></div>
-                        </div>
-                        <div class="info-row">
-                            <div class="log-info">
-                                <?php blog_author($value['author']) ?>&nbsp;<?= _langTpl('published_on') ?>&nbsp;
-                                <time><?= date('Y-n-j H:i', $value['date']) ?></time>
+                        <div class="loglist-main">
+                            <div class="card-padding loglist-body">
+                                <h3 class="card-title">
+                                    <a href="<?= $value['log_url'] ?>" class="loglist-title"><?= $value['log_title'] ?></a>
+                                    <?php topflg($value['top'], $value['sortop'], isset($sortid) ? $sortid : '') ?>
+                                    <?php bloglist_sort($value['sortid']) ?>
+                                </h3>
+                                <div class="loglist-content markdown"><?php echo subContent($value['log_description'], 180, 1); ?></div>
+                                <div class="loglist-tag"><?php blog_tag($value['logid']) ?></div>
                             </div>
-                            <div class="log-count">
-                                <a href="<?= $value['log_url'] ?>" class="m-r-10"><span class="iconfont icon-view"></span> <?= $value['views'] ?></a>
-                                <a href="<?= $value['log_url'] ?>#comment"><span class="iconfont icon-comment"></span> <?= $value['comnum'] ?></a>
+                            <div class="info-row">
+                                <div class="log-info">
+                                    <?php blog_author($value['author']) ?>&nbsp;<?= _langTpl('published_on') ?>&nbsp;
+                                    <time><?= date('Y-n-j H:i', $value['date']) ?></time>
+                                </div>
+                                <div class="log-count">
+                                    <a href="<?= $value['log_url'] ?>" class="m-r-10"><span class="iconfont icon-view"></span> <?= $value['views'] ?></a>
+                                    <a href="<?= $value['log_url'] ?>#comment"><span class="iconfont icon-comment"></span> <?= $value['comnum'] ?></a>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -51,6 +51,17 @@ $options = [
         'multi'       => true,
         'description' => _langTpl('slideshow_desc'),
     ],
+    'coverLayout'    => [
+        'labels'      => 'tpl-home',
+        'type'        => 'radio',
+        'name'        => _langTpl('cover_layout_name'),
+        'values'      => [
+            'top'  => _langTpl('cover_layout_top'),
+            'left' => _langTpl('cover_layout_left'),
+        ],
+        'default'     => 'top',
+        'description' => _langTpl('cover_layout_desc'),
+    ],
     'isShowCover'        => [
         'labels'       => 'tpl-article',
         'type'         => 'checkon',
