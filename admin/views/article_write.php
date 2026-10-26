@@ -131,9 +131,9 @@
                         ?>
                     </select>
                     <div class="position-relative sort-searchable-dropdown" id="sort_search_dropdown">
-                        <button class="form-control text-left d-flex justify-content-between align-items-center" type="button" id="sortDropdownBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="text-truncate sort-selected-text"><?= $selectedSortName ?></span>
-                            <i class="icofont-rounded-down text-muted ml-2"></i>
+                        <button class="form-control text-left d-flex justify-content-between align-items-center" type="button" id="sortDropdownBtn" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false" style="cursor: pointer;">
+                            <span class="text-truncate sort-selected-text" style="pointer-events: none;"><?= $selectedSortName ?></span>
+                            <i class="icofont-rounded-down text-muted ml-2" style="pointer-events: none;"></i>
                         </button>
                         <div class="dropdown-menu w-100 p-2 shadow-sm" aria-labelledby="sortDropdownBtn" style="min-width: 100%;">
                             <?php if (count($sorts) > 10): ?>
@@ -160,7 +160,7 @@
                                         $isChildSelected = $child['sid'] == $sortid;
                                     ?>
                                         <a href="javascript:;" class="dropdown-item sort-item py-1 px-2 text-truncate rounded pl-4 <?= $isChildSelected ? 'active' : '' ?>" data-value="<?= $child['sid'] ?>" data-name="<?= htmlspecialchars($child['sortname'], ENT_QUOTES, 'UTF-8') ?>" data-pname="<?= htmlspecialchars($value['sortname'], ENT_QUOTES, 'UTF-8') ?>" title="<?= htmlspecialchars($child['sortname'], ENT_QUOTES, 'UTF-8') ?>">
-                                            <span class="text-muted mr-1">└</span><?= $child['sortname'] ?>
+                                            <span class="text-muted mr-1" style="pointer-events: none;">└</span><?= $child['sortname'] ?>
                                         </a>
                                 <?php
                                     endforeach;
@@ -574,6 +574,7 @@
     /**
      * 初始化分类快捷搜索与下拉选择功能（当分类总数超过10个时）
      * 支持键盘上下键选择、回车确认、ESC关闭、实时不区分大小写模糊匹配
+     * 并针对全浏览器兼容性（iOS Safari/Chrome/Firefox/Edge）彻底解决点击失效、冒泡冲突与Hover误触发问题
      */
     function initSearchableSort() {
         var $dropdown = $('#sort_search_dropdown');
@@ -643,6 +644,14 @@
             filterSortList($(this).val());
         });
 
+        // 阻止在搜索框按 Enter 时意外触发表单提交
+        $input.on('keypress', function (e) {
+            if (e.keyCode === 13) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+        });
+
         /**
          * 滚动选项至容器可视区域
          * @param {jQuery} $item 目标元素
@@ -669,7 +678,7 @@
             var $visibleItems = $items.filter(':visible');
             if (!$visibleItems.length) {
                 if (e.keyCode === 27) {
-                    $toggleBtn.dropdown('toggle');
+                    $toggleBtn.dropdown('hide');
                 }
                 return;
             }
@@ -691,18 +700,20 @@
                 scrollItemIntoView($prev, $list);
             } else if (e.keyCode === 13) { // Enter
                 e.preventDefault();
+                e.stopPropagation();
                 var $target = $highlighted.length ? $highlighted : $visibleItems.first();
                 if ($target.length) {
                     $target.trigger('click');
                 }
             } else if (e.keyCode === 27) { // Escape
-                $toggleBtn.dropdown('toggle');
+                $toggleBtn.dropdown('hide');
             }
         });
 
-        // 点击选择分类项
+        // 点击选择分类项（阻止冒泡，精准关闭，防止与全局clearMenus时序冲突导致二次弹开）
         $(document).on('click', '#sort_search_dropdown .sort-item', function (e) {
             e.preventDefault();
+            e.stopPropagation();
             var val = $(this).data('value');
             var name = $(this).data('name');
 
@@ -711,7 +722,10 @@
             $items.removeClass('active is-highlight');
             $(this).addClass('active');
 
-            $toggleBtn.dropdown('toggle');
+            // 精准关闭下拉面板，杜绝使用 toggle 导致状态翻转二次展开
+            $toggleBtn.dropdown('hide');
+            $dropdown.removeClass('show').find('.dropdown-menu').removeClass('show');
+            $toggleBtn.attr('aria-expanded', 'false');
         });
 
         // 监听底层 select 变化以保持UI同步

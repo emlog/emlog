@@ -2808,8 +2808,16 @@ textarea.form-control {
 .sort-searchable-dropdown #sortDropdownBtn * {
     pointer-events: none;
 }
+.sort-searchable-dropdown:hover .dropdown-menu:not(.show),
+.sort-searchable-dropdown.dropdown:hover .dropdown-menu:not(.show),
 .sort-searchable-dropdown .dropdown-menu:not(.show) {
     display: none !important;
+}
+.sort-searchable-dropdown .dropdown-menu.show {
+    display: block !important;
+}
+.sort-dropdown-list {
+    -webkit-overflow-scrolling: touch;
 }
 .sort-dropdown-list .is-highlight {
     background-color: #eaecf4;
