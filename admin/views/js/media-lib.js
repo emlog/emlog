@@ -2,6 +2,7 @@
 var MediaLib = {
     page: 1,
     sid: 0,
+    keyword: '',
     images: {}, // Cache images by ID
     options: {
         mode: 'article', // article, cover, category, custom
@@ -19,10 +20,13 @@ var MediaLib = {
 
         this.page = 1;
         this.sid = 0;
+        this.keyword = '';
         this.images = {};
 
         // 重置分类下拉选择框为默认的全部/未选择状态
         $('#media-sort-select').val('');
+        // 重置搜索输入框
+        $('#media-search-keyword').val('');
 
         $('#image-list').empty();
         this.load();
@@ -53,7 +57,8 @@ var MediaLib = {
             url: './media.php?action=lib',
             data: {
                 page: self.page,
-                sid: self.sid
+                sid: self.sid,
+                keyword: self.keyword
             },
             success: function (resp) {
                 $('#load-more').html(_langJS.load_more);
@@ -128,6 +133,11 @@ var MediaLib = {
                 var btnText = _langJS.select;
                 html = '<a href="javascript:insert_link_img(\'' + image.media_icon + '\')" class="mr-2 small text-muted"><i class="icofont-plus"></i> ' + btnText + '</a>';
              }
+        } else if (mode === 'favicon') {
+            if (image.media_type === 'image') {
+                var btnText = _langJS.select;
+                html = '<a href="javascript:insert_favicon(\'' + image.media_url + '\')" class="mr-2 small text-muted"><i class="icofont-plus"></i> ' + btnText + '</a>';
+            }
         }
         else if (mode === 'twitter') {
              if (image.media_type === 'image') {
@@ -195,6 +205,18 @@ function insert_link_img(url) {
     $('#mediaModal').modal('hide');
 }
 
+/**
+ * 插入站点图标
+ * @param {string} url 图标URL
+ */
+function insert_favicon(url) {
+    $('#favicon_preview').attr('src', url).show();
+    $('#favicon_placeholder').hide();
+    $('#favicon_val').val(url);
+    $('#favicon_rm').show();
+    $('#mediaModal').modal('hide');
+}
+
 function delete_media_lib(id) {
     var token = $('#media_lib_token').val() || $('#token').val() || '';
     if (!token) {
@@ -237,7 +259,9 @@ $('#mediaModal').on('show.bs.modal', function (event) {
             // But we want to reset page usually.
             MediaLib.page = 1;
             MediaLib.sid = 0;
+            MediaLib.keyword = '';
             $('#media-sort-select').val('');
+            $('#media-search-keyword').val('');
             $('#image-list').empty();
             MediaLib.load();
             $('#load-more').show();
@@ -271,6 +295,29 @@ $('#mediaModal').on('show.bs.modal', function (event) {
     }
     
     MediaLib.init(initOptions);
+});
+
+/**
+ * 执行多媒体库搜索
+ * @return void
+ */
+function doMediaSearch() {
+    MediaLib.keyword = $.trim($('#media-search-keyword').val());
+    MediaLib.page = 1;
+    $('#image-list').empty();
+    MediaLib.load();
+    $('#load-more').show();
+}
+
+$('#media-search-btn').click(function () {
+    doMediaSearch();
+});
+
+$('#media-search-keyword').on('keydown', function (e) {
+    if (e.which === 13) {
+        e.preventDefault();
+        doMediaSearch();
+    }
 });
 
 $('#media-sort-select').change(function () {
@@ -313,7 +360,9 @@ var myDropzone = new Dropzone("#mediaAdd", {
         this.on("queuecomplete", function (file) {
             MediaLib.page = 1;
             MediaLib.sid = 0;
+            MediaLib.keyword = '';
             $('#media-sort-select').val('');
+            $('#media-search-keyword').val('');
             $('#image-list').empty();
             MediaLib.load();
             $('#load-more').show();

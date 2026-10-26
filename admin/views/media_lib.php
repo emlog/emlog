@@ -14,17 +14,23 @@ $mediaSorts = $MediaSort_Model->getSorts();
                 </button>
             </div>
             <div class="modal-body">
-                <div class="d-flex justify-content-between">
-                    <div><a href="#" id="mediaAdd" class="btn btn-sm btn-success shadow-sm mb-3"><?= _lang('upload_file') ?></a></div>
-                    <div>
+                <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap" style="gap: 8px;">
+                    <div><a href="#" id="mediaAdd" class="btn btn-sm btn-success shadow-sm"><?= _lang('upload_file') ?></a></div>
+                    <div class="d-flex align-items-center flex-wrap" style="gap: 8px;">
                         <?php if (User::haveEditPermission() && isset($mediaSorts) && $mediaSorts): ?>
-                            <select class="form-control" id="media-sort-select">
+                            <select class="form-control" id="media-sort-select" style="width: auto;">
                                 <option value=""><?= _lang('select_media_category') ?></option>
                                 <?php foreach ($mediaSorts as $v): ?>
                                     <option value="<?= $v['id'] ?>"><?= $v['sortname'] ?></option>
                                 <?php endforeach ?>
                             </select>
                         <?php endif ?>
+                        <div class="position-relative" style="width: 220px;">
+                            <input type="text" class="form-control" id="media-search-keyword" placeholder="<?= _lang('search_media_placeholder') ?>" aria-label="<?= _lang('search') ?>" autocomplete="off" style="padding-right: 32px;">
+                            <button type="button" class="btn btn-link text-muted p-0 position-absolute" id="media-search-btn" style="right: 10px; top: 50%; transform: translateY(-50%); border: none; background: transparent; box-shadow: none; line-height: 1;" title="<?= _lang('search') ?>">
+                                <i class="icofont-search-2"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <form action="media.php?action=operate_media" method="post" name="form_media" id="form_media">

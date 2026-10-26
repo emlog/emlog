@@ -70,11 +70,12 @@ if (empty($action)) {
 if ($action === 'lib') {
     $sid = Input::getIntVar('sid');
     $page = Input::getIntVar('page', 1);
+    $keyword = Input::getStrVar('keyword');
     $uid = User::haveEditPermission() ? null : UID;
     $perPageCount = 12;
 
-    $medias = $Media_Model->getMedias($page, $perPageCount, $uid, $sid);
-    $count = $Media_Model->getMediaCount($uid, $sid);
+    $medias = $Media_Model->getMedias($page, $perPageCount, $uid, $sid, '', $keyword);
+    $count = $Media_Model->getMediaCount($uid, $sid, '', $keyword);
 
     $ret['hasMore'] = !(count($medias) < $perPageCount);
     foreach ($medias as $v) {
