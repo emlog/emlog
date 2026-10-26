@@ -405,7 +405,7 @@ if ($action == 'user') {
     $ischkarticle = isset($options_cache['ischkarticle']) ? $options_cache['ischkarticle'] : '';
     $article_uneditable = isset($options_cache['article_uneditable']) ? $options_cache['article_uneditable'] : '';
     $forbid_user_upload = isset($options_cache['forbid_user_upload']) ? $options_cache['forbid_user_upload'] : '';
-    $posts_per_day = isset($options_cache['posts_per_day']) ? $options_cache['posts_per_day'] : '';
+    $posts_per_day = isset($options_cache['posts_per_day']) ? (int)$options_cache['posts_per_day'] : 0;
     $posts_name = isset($options_cache['posts_name']) ? $options_cache['posts_name'] : '';
     $twitter_name = isset($options_cache['twitter_name']) ? $options_cache['twitter_name'] : '';
     $allow_user_twitter = isset($options_cache['allow_user_twitter']) ? $options_cache['allow_user_twitter'] : '';
@@ -419,6 +419,8 @@ if ($action == 'user') {
     $conf_email_code = $email_code == 'y' ? 'checked="checked"' : '';
     $conf_login_email_code = $login_email_code == 'y' ? 'checked="checked"' : '';
     $conf_ischkarticle = $ischkarticle == 'y' ? 'checked="checked"' : '';
+    $conf_allow_user_post = $posts_per_day > 0 ? 'checked="checked"' : '';
+    $posts_per_day = $posts_per_day > 0 ? $posts_per_day : 10;
     $conf_allow_user_twitter = $allow_user_twitter == 'y' ? 'checked="checked"' : '';
     $conf_forbid_user_upload = $forbid_user_upload == 'y' ? 'checked="checked"' : '';
     $conf_article_uneditable = $article_uneditable == 'y' ? 'checked="checked"' : '';
@@ -431,6 +433,11 @@ if ($action == 'user') {
 
 if ($action == 'user_save') {
     LoginAuth::checkToken();
+    $allow_user_post = Input::postStrVar('allow_user_post', 'n');
+    $posts_per_day = $allow_user_post === 'y' ? Input::postIntVar('posts_per_day', 0) : 0;
+    if ($posts_per_day < 0) {
+        $posts_per_day = 0;
+    }
     $data = [
         'is_signup'          => Input::postStrVar('is_signup', 'n'),
         'login_code'         => Input::postStrVar('login_code', 'n'),
@@ -440,7 +447,7 @@ if ($action == 'user_save') {
         'article_uneditable' => Input::postStrVar('article_uneditable', 'n'),
         'allow_user_twitter' => Input::postStrVar('allow_user_twitter', 'n'),
         'forbid_user_upload' => Input::postStrVar('forbid_user_upload', 'n'),
-        'posts_per_day'      => Input::postIntVar('posts_per_day', 0),
+        'posts_per_day'      => $posts_per_day,
         'posts_name'         => Input::postStrVar('posts_name'),
         'twitter_name'       => Input::postStrVar('twitter_name'),
         'att_maxsize'        => Input::postIntVar('att_maxsize'),

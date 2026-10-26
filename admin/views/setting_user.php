@@ -34,6 +34,10 @@
             </div>
             <hr>
             <div class="custom-control custom-switch">
+                <input class="custom-control-input" type="checkbox" value="y" name="allow_user_twitter" id="allow_user_twitter" <?= $conf_allow_user_twitter ?> />
+                <label class="custom-control-label" for="allow_user_twitter"><?= _lang('allow_user_twitter'); ?></label>
+            </div>
+            <div class="custom-control custom-switch">
                 <input class="custom-control-input" type="checkbox" value="y" name="ischkarticle" id="ischkarticle" <?= $conf_ischkarticle ?> />
                 <label class="custom-control-label" for="ischkarticle"><?= _lang('register_article_audit'); ?></label>
             </div>
@@ -41,13 +45,13 @@
                 <input class="custom-control-input" type="checkbox" value="y" name="article_uneditable" id="article_uneditable" <?= $conf_article_uneditable ?> />
                 <label class="custom-control-label" for="article_uneditable"><?= _lang('article_uneditable'); ?></label>
             </div>
-            <div class="form-group form-inline mt-3">
+            <div class="custom-control custom-switch">
+                <input class="custom-control-input" type="checkbox" value="y" name="allow_user_post" id="allow_user_post" <?= $conf_allow_user_post ?> />
+                <label class="custom-control-label" for="allow_user_post"><?= _lang('allow_user_post'); ?></label>
+            </div>
+            <div class="form-group form-inline mt-3" id="form_posts_per_day" style="<?= empty($conf_allow_user_post) ? 'display:none;' : '' ?>">
                 <input class="form-control" style="width:100px;" value="<?= $posts_per_day ?>" type="number" min="0" name="posts_per_day" id="posts_per_day" />
                 <label for="posts_per_day" class="ml-2"><?= _lang('register_post_limit'); ?></label>
-            </div>
-            <div class="custom-control custom-switch">
-                <input class="custom-control-input" type="checkbox" value="y" name="allow_user_twitter" id="allow_user_twitter" <?= $conf_allow_user_twitter ?> />
-                <label class="custom-control-label" for="allow_user_twitter"><?= _lang('allow_user_twitter'); ?></label>
             </div>
             <hr>
             <div class="custom-control custom-switch">
@@ -91,9 +95,27 @@
         $("#menu_setting").addClass('active');
         setTimeout(hideActived, 3600);
 
+        // 允许注册用户发文开关切换
+        $("#allow_user_post").change(function() {
+            if ($(this).is(':checked')) {
+                $("#form_posts_per_day").show();
+                var postVal = parseInt($("#posts_per_day").val(), 10);
+                if (isNaN(postVal) || postVal <= 0) {
+                    $("#posts_per_day").val(10);
+                }
+            } else {
+                $("#form_posts_per_day").hide();
+            }
+        });
+
         // 提交表单
         $("#user_setting_form").submit(function(event) {
             event.preventDefault();
+            var postVal = parseInt($("#posts_per_day").val(), 10);
+            if ($("#allow_user_post").is(':checked') && (isNaN(postVal) || postVal <= 0)) {
+                $("#allow_user_post").prop('checked', false);
+                $("#form_posts_per_day").hide();
+            }
             submitForm("#user_setting_form");
         });
     });

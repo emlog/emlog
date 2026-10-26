@@ -387,6 +387,7 @@ return [
     'login_email_code' => 'Email Code Login (Requires Email Service)',
     'register_article_audit' => 'Review Registered User Articles',
     'article_uneditable' => 'Approved articles cannot be edited/deleted by user',
+    'allow_user_post' => 'Allow Registered Users to Post Articles',
     'register_post_limit' => '24h Post Limit for Registered Users (0 to disable)',
     'allow_user_twitter' => 'Allow Registered Users to Post Microblogs',
     'forbid_register_upload' => 'Prevent Registered Users from Uploading Media',
