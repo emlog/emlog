@@ -91,11 +91,11 @@
                 <input class="custom-control-input" type="checkbox" value="y" name="login_comment" id="login_comment" <?= $conf_login_comment ?> />
                 <label class="custom-control-label" for="login_comment"><?= _lang('comment_need_login'); ?></label>
             </div>
-            <div class="custom-control custom-switch">
+            <div class="custom-control custom-switch mb-3">
                 <input class="custom-control-input" type="checkbox" value="y" name="comment_paging" id="comment_paging" <?= $conf_comment_paging ?> />
                 <label class="custom-control-label" for="comment_paging"><?= _lang('comment_paging'); ?></label>
             </div>
-            <div class="form-group form-inline mt-3">
+            <div class="form-group form-inline" id="form_comment_pnum" style="<?= empty($conf_comment_paging) ? 'display:none;' : '' ?>">
                 <input maxlength="5" style="width:100px;" class="form-control" value="<?= $comment_pnum ?>" name="comment_pnum" id="comment_pnum" type="number" min="0" />
                 <label for="comment_pnum" class="ml-2"><?= _lang('comment_per_page'); ?></label>
             </div>
@@ -133,11 +133,11 @@
             </div>
             <hr>
             <h4><?= _lang('upload_setting'); ?></h4>
-            <div class="custom-control custom-switch">
+            <div class="custom-control custom-switch mb-3">
                 <input type="checkbox" value="y" name="isthumbnail" id="isthumbnail" class="custom-control-input" <?= $conf_isthumbnail ?> />
                 <label class="custom-control-label" for="isthumbnail"><?= _lang('upload_thumb'); ?></label>
             </div>
-            <div class="form-group form-inline mt-3">
+            <div class="form-group form-inline" id="form_thumbnail_size" style="<?= empty($conf_isthumbnail) ? 'display:none;' : '' ?>">
                 <input maxlength="5" style="width:100px;" class="form-control" value="<?= $att_imgmaxw ?>" name="att_imgmaxw" placeholder="宽" />
                 <span class="mx-2 text-muted">x</span>
                 <input maxlength="5" style="width:100px;" class="form-control" value="<?= $att_imgmaxh ?>" name="att_imgmaxh" placeholder="高" />
@@ -245,6 +245,24 @@
                 $("[name=blogurl]").attr("readonly", "readonly")
             } else {
                 $("[name=blogurl]").removeAttr("readonly")
+            }
+        });
+
+        // 评论分页开关切换
+        $("#comment_paging").change(function() {
+            if ($(this).is(':checked')) {
+                $("#form_comment_pnum").show();
+            } else {
+                $("#form_comment_pnum").hide();
+            }
+        });
+
+        // 上传图片生成缩略图开关切换
+        $("#isthumbnail").change(function() {
+            if ($(this).is(':checked')) {
+                $("#form_thumbnail_size").show();
+            } else {
+                $("#form_thumbnail_size").hide();
             }
         });
 

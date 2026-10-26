@@ -45,24 +45,24 @@
                 <input class="custom-control-input" type="checkbox" value="y" name="article_uneditable" id="article_uneditable" <?= $conf_article_uneditable ?> />
                 <label class="custom-control-label" for="article_uneditable"><?= _lang('article_uneditable'); ?></label>
             </div>
-            <div class="custom-control custom-switch">
+            <div class="custom-control custom-switch mb-3">
                 <input class="custom-control-input" type="checkbox" value="y" name="allow_user_post" id="allow_user_post" <?= $conf_allow_user_post ?> />
                 <label class="custom-control-label" for="allow_user_post"><?= _lang('allow_user_post'); ?></label>
             </div>
-            <div class="form-group form-inline mt-3" id="form_posts_per_day" style="<?= empty($conf_allow_user_post) ? 'display:none;' : '' ?>">
+            <div class="form-group form-inline" id="form_posts_per_day" style="<?= empty($conf_allow_user_post) ? 'display:none;' : '' ?>">
                 <input class="form-control" style="width:100px;" value="<?= $posts_per_day ?>" type="number" min="0" name="posts_per_day" id="posts_per_day" />
                 <label for="posts_per_day" class="ml-2"><?= _lang('register_post_limit'); ?></label>
             </div>
             <hr>
-            <div class="custom-control custom-switch">
+            <div class="custom-control custom-switch mb-3">
                 <input class="custom-control-input" type="checkbox" value="y" name="forbid_user_upload" id="forbid_user_upload" <?= $conf_forbid_user_upload ?> />
                 <label class="custom-control-label" for="forbid_user_upload"><?= _lang('forbid_register_upload'); ?></label>
             </div>
-            <div class="form-group form-inline mt-3" id="form_att_maxsize">
+            <div class="form-group form-inline" id="form_att_maxsize" style="<?= !empty($conf_forbid_user_upload) ? 'display:none;' : '' ?>">
                 <input type="number" min="0" style="width:100px;" class="form-control" value="<?= $att_maxsize ?>" name="att_maxsize" id="att_maxsize" />
-                <label for="att_maxsize" class="ml-2"><?= _lang('register_upload_max'); ?>（<?= _lang('unit_kb'); ?>）</label>
+                <label for="att_maxsize" class="ml-2"><?= _lang('register_upload_max'); ?></label>
             </div>
-            <div class="form-group form-inline" id="form_att_type">
+            <div class="form-group form-inline" id="form_att_type" style="<?= !empty($conf_forbid_user_upload) ? 'display:none;' : '' ?>">
                 <input maxlength="200" style="width:260px;" class="form-control" value="<?= $att_type ?>" name="att_type" id="att_type" />
                 <label for="att_type" class="ml-2"><?= _lang('register_upload_type'); ?>（<?= _lang('separate_by_comma'); ?>）</label>
             </div>
@@ -105,6 +105,17 @@
                 }
             } else {
                 $("#form_posts_per_day").hide();
+            }
+        });
+
+        // 禁止注册用户上传图文资源开关切换
+        $("#forbid_user_upload").change(function() {
+            if ($(this).is(':checked')) {
+                $("#form_att_maxsize").hide();
+                $("#form_att_type").hide();
+            } else {
+                $("#form_att_maxsize").show();
+                $("#form_att_type").show();
             }
         });
 
