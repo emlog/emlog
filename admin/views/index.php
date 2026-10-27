@@ -8,31 +8,31 @@
         <div class="card h-100 shadow mb-3">
             <h6 class="card-header"><?= _lang('site_info') ?></h6>
             <ul class="list-group list-group-flush">
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <a href="./article.php?checked=n"><?= _lang('pending_articles') ?></a>
-                        <a href="./article.php?checked=n"><span class="badge badge-pink badge-pill"><?= $sta_cache['checknum'] ?></span></a>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <a href="./comment.php?hide=y"><?= _lang('pending_comments') ?></a>
-                        <a href="./comment.php?hide=y"><span class="badge badge-warning badge-pill"><?= $sta_cache['hidecomnum'] ?></span></a>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <a href="./user.php"><?= _lang('user') ?></a>
-                        <a href="./user.php"><span class="badge badge-cyan badge-pill"><?= isset($sta_cache['user_num']) ? (int)$sta_cache['user_num'] : 0 ?></span></a>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <a href="./article.php"><?= _lang('article') ?></a>
-                        <a href="./article.php"><span class="badge badge-primary badge-pill"><?= $sta_cache['lognum'] ?></span></a>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <a href="./twitter.php?all=y"><?= _lang('twitter') ?></a>
-                        <a href="./twitter.php?all=y"><span class="badge badge-primary badge-pill"><?= $sta_cache['note_num'] ?></span></a>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <a href="./comment.php"><?= _lang('comment') ?></a>
-                        <a href="./comment.php"><span class="badge badge-primary badge-pill"><?= $sta_cache['comnum_all'] ?></span></a>
-                    </li>
-                </ul>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a href="./article.php?checked=n"><?= _lang('pending_articles') ?></a>
+                    <a href="./article.php?checked=n"><span class="badge badge-pink badge-pill"><?= $sta_cache['checknum'] ?></span></a>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a href="./comment.php?hide=y"><?= _lang('pending_comments') ?></a>
+                    <a href="./comment.php?hide=y"><span class="badge badge-warning badge-pill"><?= $sta_cache['hidecomnum'] ?></span></a>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a href="./user.php"><?= _lang('user') ?></a>
+                    <a href="./user.php"><span class="badge badge-cyan badge-pill"><?= isset($sta_cache['user_num']) ? (int)$sta_cache['user_num'] : 0 ?></span></a>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a href="./article.php"><?= _lang('article') ?></a>
+                    <a href="./article.php"><span class="badge badge-primary badge-pill"><?= $sta_cache['lognum'] ?></span></a>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a href="./twitter.php?all=y"><?= _lang('twitter') ?></a>
+                    <a href="./twitter.php?all=y"><span class="badge badge-primary badge-pill"><?= $sta_cache['note_num'] ?></span></a>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a href="./comment.php"><?= _lang('comment') ?></a>
+                    <a href="./comment.php"><span class="badge badge-primary badge-pill"><?= $sta_cache['comnum_all'] ?></span></a>
+                </li>
+            </ul>
         </div>
     </div>
     <?php if (User::isAdmin()): ?>
@@ -40,33 +40,33 @@
             <div class="card h-100 shadow mb-3">
                 <h6 class="card-header"><?= _lang('software_info') ?></h6>
                 <ul class="list-group list-group-flush">
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            PHP
-                            <span class="small"><?= $php_ver ?></span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <?= _lang('database') ?>
-                            <span class="small">MySQL <?= $mysql_ver ?></span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <?= _lang('web_service') ?>
-                            <span class="small"><?= $server_app ?></span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <?= _lang('os') ?>
-                            <span class="small"><?= $os ?></span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <?= _lang('system_timezone') ?>
-                            <span class="small"><?= Option::get('timezone') ?></span>
-                        </li>
-                        <?php if (defined('OFFLINE_MODE') && OFFLINE_MODE === true): ?>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        PHP
+                        <span class="small"><?= $php_ver ?></span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <?= _lang('database') ?>
+                        <span class="small">MySQL <?= $mysql_ver ?></span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <?= _lang('web_service') ?>
+                        <span class="small"><?= $server_app ?></span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <?= _lang('os') ?>
+                        <span class="small"><?= $os ?></span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <?= _lang('system_timezone') ?>
+                        <span class="small"><?= Option::get('timezone') ?></span>
+                    </li>
+                    <?php if (defined('OFFLINE_MODE') && OFFLINE_MODE === true): ?>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <div>
                                 <span class="badge badge-secondary"><?= preg_replace('/^(?:emlog\s*)?(?:pro\s*)?/i', '', Option::EMLOG_VERSION) ?></span>
                             </div>
                         </li>
-                        <?php else: ?>
+                    <?php else: ?>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <div>
                                 <?php if (!Register::isRegLocal()) : ?>
@@ -90,8 +90,8 @@
                                 </a>
                             </div>
                         </li>
-                        <?php endif ?>
-                    </ul>
+                    <?php endif ?>
+                </ul>
             </div>
         </div>
     <?php endif; ?>
@@ -105,11 +105,41 @@
                         <h6 class="my-0 font-weight-bold"><?= _lang('register_full_feature') ?></h6>
                     </div>
                     <div class="card-body">
-                        <p><span class="badge badge-warning badge-pill">1</span> <?= _lang('register_feature_1') ?></p>
-                        <p><span class="badge badge-warning badge-pill">2</span> <?= _lang('register_feature_2') ?></p>
-                        <p><span class="badge badge-warning badge-pill">3</span> <?= _lang('register_feature_3') ?></p>
-                        <p><span class="badge badge-warning badge-pill">4</span> <?= _lang('register_feature_4') ?></p>
-                        <p>
+                        <ul class="list-unstyled reg-features mb-3">
+                            <li class="reg-feature-item">
+                                <span class="reg-icon-box">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </span>
+                                <span class="reg-feature-text"><?= _lang('register_feature_1') ?></span>
+                            </li>
+                            <li class="reg-feature-item">
+                                <span class="reg-icon-box">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </span>
+                                <span class="reg-feature-text"><?= _lang('register_feature_2') ?></span>
+                            </li>
+                            <li class="reg-feature-item">
+                                <span class="reg-icon-box">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </span>
+                                <span class="reg-feature-text"><?= _lang('register_feature_3') ?></span>
+                            </li>
+                            <li class="reg-feature-item">
+                                <span class="reg-icon-box reg-icon-highlight">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1">
+                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                                    </svg>
+                                </span>
+                                <span class="reg-feature-text"><?= _lang('register_feature_4') ?></span>
+                            </li>
+                        </ul>
+                        <p class="mb-0">
                             <a href="https://www.emlog.net/register" target="_blank" class="btn btn-danger px-4">
                                 <?= _lang('register_now') ?>
                                 <i class="icofont-external-link me-2"></i>
@@ -123,28 +153,37 @@
             </div>
         </div>
         <style>
-            .bg-gradient-warning {
-                background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%);
+            .reg-features {
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 0;
             }
 
-            .registration-prompt {
-                animation: slideInUp 0.6s ease-out;
+            .reg-feature-item {
+                display: flex;
+                align-items: center;
+                padding: 6px 0;
+                font-size: 13.5px;
+                color: #4b5563;
+                line-height: 1.4;
             }
 
-            @keyframes slideInUp {
-                from {
-                    opacity: 0;
-                    transform: translateY(30px);
-                }
-
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
+            .reg-icon-box {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                background-color: #ecfdf5;
+                color: #10b981;
+                margin-right: 10px;
+                flex-shrink: 0;
             }
 
-            .registration-prompt .card-body {
-                background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            .reg-icon-highlight {
+                background-color: #fde68a;
+                color: #d97706;
             }
         </style>
     <?php endif ?>
@@ -171,26 +210,26 @@
         const menuPanel = $("#menu_panel").addClass('active');
 
         <?php if (!defined('OFFLINE_MODE') || OFFLINE_MODE !== true): ?>
-        // auto check update
-        $.get("./upgrade.php?action=check_update", function(result) {
-            if (result.code === 200) {
-                $("#ckup").append('<span class="update-dot"></span>');
-            }
-        });
-
-        // auto check templates & plugins update
-        $.get("./index.php?action=check_app_update", function(response) {
-            if (response.code === 0 && response.data) {
-                var tplCount = response.data.template_count || 0;
-                var pluCount = response.data.plugin_count || 0;
-
-                localStorage.setItem('emlog_has_plugin_update', pluCount > 0 ? '1' : '0');
-                localStorage.setItem('emlog_has_template_update', tplCount > 0 ? '1' : '0');
-                if (typeof renderAppUpdateDots === 'function') {
-                    renderAppUpdateDots();
+            // auto check update
+            $.get("./upgrade.php?action=check_update", function(result) {
+                if (result.code === 200) {
+                    $("#ckup").append('<span class="update-dot"></span>');
                 }
-            }
-        });
+            });
+
+            // auto check templates & plugins update
+            $.get("./index.php?action=check_app_update", function(response) {
+                if (response.code === 0 && response.data) {
+                    var tplCount = response.data.template_count || 0;
+                    var pluCount = response.data.plugin_count || 0;
+
+                    localStorage.setItem('emlog_has_plugin_update', pluCount > 0 ? '1' : '0');
+                    localStorage.setItem('emlog_has_template_update', tplCount > 0 ? '1' : '0');
+                    if (typeof renderAppUpdateDots === 'function') {
+                        renderAppUpdateDots();
+                    }
+                }
+            });
         <?php endif ?>
     </script>
 <?php endif ?>
