@@ -246,12 +246,7 @@
             <a href="https://www.deepseek.com/" target="_blank">DeepSeek</a><br>
             API URL：https://api.deepseek.com/v1/chat/completions<br>
             API Key：<a href="https://platform.deepseek.com/api_keys" target="_blank"><?= _lang('generate_api_key'); ?></a>，格式如：sk-****<br>
-            Model：deepseek-v4-flash<br>
-            <hr>
-            <a href="https://bigmodel.cn/" target="_blank">智谱AI</a><br>
-            API URL：https://open.bigmodel.cn/api/paas/v4/chat/completions<br>
-            API Key：<a href="https://bigmodel.cn/usercenter/proj-mgmt/apikeys" target="_blank"><?= _lang('generate_api_key'); ?></a><br>
-            Model：glm-4.7-flash<br>
+            Model：deepseek-flash<br>
             <hr>
             <?= _lang('support_openai_model'); ?>，<a href="https://www.emlog.net/docs/ai/ai_emlog" target="_blank"><?= _lang('more_ai_models'); ?></a><br>
         `;
