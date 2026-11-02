@@ -371,6 +371,7 @@ return [
     'rss_output_fulltext' => 'Full Text',
     'rss_output_abstract' => 'Summary',
     'rss_feed_url' => 'RSS Feed URL (For RSS readers)',
+    'rss_url' => 'RSS URL',
     'full_text_search' => 'Full Text Search (May affect performance with many articles)',
     'upload_setting' => 'Upload Settings',
     'upload_thumb' => 'Generate Thumbnail',

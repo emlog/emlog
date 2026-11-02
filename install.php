@@ -674,6 +674,7 @@ CREATE TABLE {$db_prefix}link (
     id int(11) unsigned NOT NULL auto_increment COMMENT '链接表',
     sitename varchar(255) NOT NULL default '' COMMENT '名称',
     siteurl varchar(255) NOT NULL default '' COMMENT '地址',
+    rss varchar(512) NOT NULL default '' COMMENT 'RSS订阅地址',
     icon varchar(512) NOT NULL default '' COMMENT '图标URL',
     description varchar(512) NOT NULL default '' COMMENT '备注信息',
     hide enum('n','y') NOT NULL default 'n' COMMENT '是否隐藏',

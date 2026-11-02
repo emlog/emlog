@@ -311,6 +311,11 @@ class Cache
         $this->cacheWrite($cacheData, 'sort');
     }
 
+    /**
+     * 更新友情链接缓存
+     *
+     * @return void
+     */
     private function mc_link()
     {
         $link_cache = [];
@@ -319,6 +324,7 @@ class Cache
             $link_cache[] = array(
                 'link' => htmlspecialchars($show_link['sitename']),
                 'url'  => htmlspecialchars($show_link['siteurl']),
+                'rss'  => isset($show_link['rss']) ? htmlspecialchars($show_link['rss']) : '',
                 'icon' => htmlspecialchars($show_link['icon']),
                 'des'  => htmlspecialchars($show_link['description'])
             );

@@ -371,6 +371,7 @@ return [
     'rss_output_fulltext' => '全文',
     'rss_output_abstract' => '摘要',
     'rss_feed_url' => 'RSS订阅地址 (用于RSS阅读器订阅站点内容)',
+    'rss_url' => 'RSS订阅地址',
     'full_text_search' => '全文搜索（文章较多时开启可能会影响站点性能）',
     'upload_setting' => '上传设置',
     'upload_thumb' => '上传图片生成缩略图',

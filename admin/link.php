@@ -45,6 +45,7 @@ if ($action == 'save') {
     LoginAuth::checkToken();
     $siteName = Input::postStrVar('sitename');
     $siteUrl = Input::postStrVar('siteurl');
+    $rss = Input::postStrVar('rss');
     $icon = Input::postStrVar('icon');
     $description = Input::postStrVar('description');
     $linkId = Input::postIntVar('linkid');
@@ -57,9 +58,14 @@ if ($action == 'save') {
         $siteUrl = 'https://' . $siteUrl;
     }
 
+    if (!empty($rss) && !preg_match("/^http|ftp.+$/i", $rss)) {
+        $rss = 'https://' . $rss;
+    }
+
     $data = [
         'sitename'    => $siteName,
         'siteurl'     => $siteUrl,
+        'rss'         => $rss,
         'icon'        => $icon,
         'description' => $description
     ];

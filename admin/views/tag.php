@@ -75,7 +75,7 @@
             <form method="post" action="tag.php?action=add_tag">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="add_tagname"><?= _lang('tag_name') ?></label>
+                        <label for="add_tagname"><?= _lang('tag_name') ?> <span class="text-danger">*</span></label>
                         <input type="text" class="form-control" id="add_tagname" name="tagname" required>
                     </div>
                     <div class="form-group">
@@ -115,7 +115,7 @@
             <form method="post" action="tag.php?action=update_tag">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="tagname"><?= _lang('tag_name') ?></label>
+                        <label for="tagname"><?= _lang('tag_name') ?> <span class="text-danger">*</span></label>
                         <input type="text" class="form-control" id="tagname" name="tagname" required>
                     </div>
                     <div class="form-group">

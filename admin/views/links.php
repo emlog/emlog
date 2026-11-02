@@ -45,6 +45,7 @@
                                                         data-linkid="<?= $value['id'] ?>"
                                                         data-sitename="<?= $value['sitename'] ?>"
                                                         data-siteurl="<?= $value['siteurl'] ?>"
+                                                        data-rss="<?= isset($value['rss']) ? $value['rss'] : '' ?>"
                                                         data-icon="<?= $value['icon'] ?>"
                                                         data-description="<?= $value['description'] ?>"><?= $value['sitename'] ?></a>
                                                     <?php if ($value['hide'] === 'y'): ?>
@@ -58,7 +59,10 @@
 
                                 </td>
                                 <td>
-                                    <a href="<?= $value['siteurl'] ?>" target="_blank"><?= subString($value['siteurl'], 0, 39) ?></a>
+                                    <div><a href="<?= $value['siteurl'] ?>" target="_blank"><?= subString($value['siteurl'], 0, 39) ?></a></div>
+                                    <?php if (!empty($value['rss'])): ?>
+                                        <div class="mt-1"><a href="<?= $value['rss'] ?>" target="_blank" class="small text-muted" title="<?= $value['rss'] ?>"><span class="badge badge-light border text-secondary">RSS</span> <?= subString($value['rss'], 0, 35) ?></a></div>
+                                    <?php endif ?>
                                 </td>
                                 <td>
                                     <?php if ($value['hide'] == 'n'): ?>
@@ -96,12 +100,16 @@
             <form action="link.php?action=save" method="post" name="link" id="link">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="sitename"><?= _lang('name'); ?></label>
+                        <label for="sitename"><?= _lang('name'); ?> <span class="text-danger">*</span></label>
                         <input class="form-control" id="sitename" maxlength="255" name="sitename" required>
                     </div>
                     <div class="form-group">
-                        <label for="siteurl"><?= _lang('address'); ?></label>
+                        <label for="siteurl"><?= _lang('address'); ?> <span class="text-danger">*</span></label>
                         <input class="form-control" id="siteurl" maxlength="255" name="siteurl" type="url" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="rss"><?= _lang('rss_url'); ?></label>
+                        <input class="form-control" id="rss" maxlength="512" name="rss" type="url" placeholder="https://">
                     </div>
                     <div class="form-group">
                         <label for="icon"><?= _lang('icon_url'); ?></label>
@@ -149,14 +157,16 @@
             var linkid = button.data('linkid')
             var sitename = button.data('sitename')
             var siteurl = button.data('siteurl')
+            var rss = button.data('rss')
             var icon = button.data('icon')
             var description = button.data('description')
             var modal = $(this)
-            modal.find('.modal-body #sitename').val(sitename)
-            modal.find('.modal-body #siteurl').val(siteurl)
-            modal.find('.modal-body #icon').val(icon)
-            modal.find('.modal-body #description').val(description)
-            modal.find('.modal-footer #linkid').val(linkid)
+            modal.find('.modal-body #sitename').val(sitename || '')
+            modal.find('.modal-body #siteurl').val(siteurl || '')
+            modal.find('.modal-body #rss').val(rss || '')
+            modal.find('.modal-body #icon').val(icon || '')
+            modal.find('.modal-body #description').val(description || '')
+            modal.find('.modal-footer #linkid').val(linkid || '')
         })
 
         // 提交表单
