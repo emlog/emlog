@@ -382,7 +382,7 @@ return [
     'hide_menu' => 'Hide Menu',
 
     // Setting - User
-    'enable_register' => 'Enable User Registration',
+    'enable_register' => 'User Registration',
     'login_captcha' => 'Login/Register Captcha',
     'register_email_code' => 'Registration Email Code (Requires Email Service)',
     'login_email_code' => 'Email Code Login (Requires Email Service)',

@@ -382,7 +382,7 @@ return [
     'hide_menu' => '隐藏菜单',
 
     // Setting - User
-    'enable_register' => '开启用户注册',
+    'enable_register' => '用户注册',
     'login_captcha' => '登录注册图形验证码',
     'register_email_code' => '用户注册邮件验证码',
     'login_email_code' => '邮件验证码登录',
