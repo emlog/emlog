@@ -29,14 +29,6 @@ class TplOptions
         'data',
     );
 
-    //允许上传的文件类型
-    private $_imageTypes = array(
-        'gif',
-        'jpg',
-        'jpeg',
-        'png'
-    );
-
     //实例
     private static $_instance;
 
@@ -242,9 +234,6 @@ class TplOptions
             'currentTemplate' => Option::get('nonce_templet'),
             'autoOpenSetting' => Input::getIntVar('setting', 0),
             'baseUrl'   => $this->url(),
-            'uploadUrl' => $this->url(array(
-                "do" => "upload"
-            )),
             'lang'      => array(
                 'setting' => _langPlu('js_setting', 'tpl_options'),
                 'title' => _langPlu('js_title', 'tpl_options'),
@@ -610,31 +599,13 @@ class TplOptions
      */
     public function setting()
     {
-        $do = $this->arrayGet($_GET, 'do');
         $template = $this->arrayGet($_GET, 'template');
         $code = $this->arrayGet($_GET, 'code');
         $msg = $this->arrayGet($_GET, 'msg');
         $currentTemplate = Option::get('nonce_templet');
         $targetTemplate = !empty($template) ? $template : $currentTemplate;
         $allTemplate = $this->getTemplates($targetTemplate);
-        if ($do != '') {
-            if ($do == 'upload' && isset($_FILES['image'])) {
-                $file = $_FILES['image'];
-                $target = $this->arrayGet($_POST, 'target');
-                $template = $this->arrayGet($_POST, 'template');
-                $result = $this->upload($template, $file, $target);
-                extract($result);
-                $src = '';
-                if ($path) {
-                    $path = substr($path, 3);
-                    $src = BLOG_URL . $path;
-                }
-                ob_clean();
-                include $this->view('upload');
-                exit;
-            }
-            emDirect('./template.php?setting=1');
-        } elseif ($template !== null) {
+        if ($template !== null) {
             if (!is_dir(TPLS_PATH . $template)) {
                 $this->jsonReturn(array(
                     'code' => 1,
@@ -754,81 +725,6 @@ class TplOptions
     private function isDate($option)
     {
         return isset($option['date']) && $option['date'];
-    }
-
-    /**
-     * 上传文件
-     * @param string $template 模板
-     * @param array $file 上传的文件
-     * @param string $target 目标
-     * @return array 上传结果信息
-     */
-    private function upload($template, $file, $target)
-    {
-        $result = array(
-            'code' => 0,
-            'msg'  => '',
-            'name' => $file['name'],
-            'size' => $file['size'],
-            'path' => '',
-        );
-        if ($file['error'] == 1) {
-            $result['code'] = 100;
-            $result['msg'] = _langPlu('file_size_limit', 'tpl_options');
-            return $result;
-        }
-
-        if ($file['error'] > 1) {
-            $result['code'] = 101;
-            $result['msg'] = _langPlu('upload_failed', 'tpl_options');
-            return $result;
-        }
-        $extension = getFileSuffix($file['name']);
-        if (!in_array($extension, $this->_imageTypes)) {
-            $result['code'] = 102;
-            $result['msg'] = _langPlu('file_type_error', 'tpl_options');
-            return $result;
-        }
-        $maxSize = defined('UPLOAD_MAX_SIZE') ? constant('UPLOAD_MAX_SIZE') : 2097152;
-
-        if ($file['size'] > $maxSize) {
-            $result['code'] = 103;
-            $result['msg'] = _langPlu('file_size_limit', 'tpl_options');
-            return $result;
-        }
-        $uploadPath = Option::UPLOADFILE_PATH . self::ID . "/$template/";
-
-        $file_baseName = rtrim(str_replace(array(
-            '[',
-            ']'
-        ), '.', $target), '.');
-
-        $fileName = $file_baseName . '_' . uniqid() . '.' . $extension;
-        $exists_files = glob($uploadPath . $file_baseName . '*');
-        if (count($exists_files)) {
-            unlink($exists_files[0]);
-        }
-
-        $attachpath = $uploadPath . $fileName;
-        $result['path'] = $attachpath;
-        if (!is_dir($uploadPath)) {
-            @umask(0);
-            $ret = @mkdir($uploadPath, 0777, true);
-            if ($ret === false) {
-                $result['code'] = 104;
-                $result['msg'] = _langPlu('create_dir_failed', 'tpl_options');
-                return $result;
-            }
-        }
-        if (@is_uploaded_file($file['tmp_name'])) {
-            if (@!move_uploaded_file($file['tmp_name'], $attachpath)) {
-                $result['code'] = 105;
-                $result['msg'] = _langPlu('dir_not_writable', 'tpl_options');
-                return $result;
-            }
-            @chmod($attachpath, 0777);
-        }
-        return $result;
     }
 
     /**

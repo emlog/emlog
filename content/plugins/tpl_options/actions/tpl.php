@@ -31,10 +31,13 @@ if ($action === 'tpl_upload') {
     $abs_file_path = BLOG_URL . $abs_file_path;
 
     //删除旧图
-    if (!empty(trim($origin_image)) && strpos($origin_image, 'uploadfile') !== false) {
-        $path = '../../../../' . str_replace(BLOG_URL, '', $origin_image);
-        if (file_exists($path)) {
-            unlink($path);
+    if (!empty(trim($origin_image))) {
+        $sub_path = strstr(str_replace(BLOG_URL, '', $origin_image), 'content/uploadfile/');
+        if ($sub_path !== false && strpos($sub_path, '..') === false) {
+            $path = EMLOG_ROOT . '/' . $sub_path;
+            if (is_file($path)) {
+                @unlink($path);
+            }
         }
     }
 

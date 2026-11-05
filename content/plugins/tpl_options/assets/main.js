@@ -2,32 +2,16 @@ $(function () {
     //初始化变量
     var tplOptions = window.tplOptions;
     var body = $('body');
-    var iframe = $('<iframe name="upload-image" src="about:blank" style="display:none"/>').appendTo(body);
     var optionArea = $('<div/>').addClass(attr('area')).hide();
     mountOptionArea();
     var loadingDom = $('<div class="tpl-loading" />').appendTo(body);
     var message = $('<span />').appendTo($('#wrapper'));
     var tplBox = $('.tpl');
-    var timer, input, targetInput, target, templateInput, template, mediaTargetWrap = null;
+    var timer, mediaTargetWrap = null;
     var optionCache = {};
     var preloadState = {};
     var requestXhr = null;
     var loadingTimer = null;
-    var trueInput = $('<input type="file" name="image">').css({
-        position: 'absolute', margin: 0, visibility: 'hidden'
-    }).on('change', function () {
-        loading();
-        target = input.data('target');
-        targetInput.val(target);
-        templateInput.val(template);
-        form.submit();
-    }).on('mouseleave', function () {
-        trueInput.css('visibility', 'hidden');
-        input.css('visibility', 'visible');
-    });
-    var form = $('<form id="upload-form" target="upload-image" />').append(trueInput, targetInput = $('<input type="hidden" name="target">'), templateInput = $('<input type="hidden" name="template">')).prependTo(body).attr({
-        action: tplOptions.uploadUrl, target: 'upload-image', enctype: 'multipart/form-data', method: 'post'
-    });
     //插入设置按钮
     for (var tpl of Object.keys(tplOptions.templates)) {
         var templateCards = document.querySelectorAll('.card[data-app-alias]');
@@ -328,11 +312,6 @@ $(function () {
         } else {
             $(this).parent().parent().removeClass('vtpl-checked')
         }
-    }).on('mouseenter', '.tpl-options-form input[type="file"]', function () {
-        input = $(this);
-        trueInput.css(input.offset());
-        input.css('visibility', 'hidden');
-        trueInput.css('visibility', 'visible');
     }).on('submit', 'form.tpl-options-form', function () {
         var that = $(this);
         $.ajax({
@@ -394,17 +373,6 @@ $(function () {
             }, 100);
         }
     })();
-    window.setImage = function (src, path, code, msg) {
-        if (code == 0) {
-            $('[name="' + target + '"]').val(path).trigger('change');
-            $('[data-name="' + target + '"]').attr('href', src).find('img').attr('src', src);
-        } else {
-            alert(tplOptions.lang.upload_failed + msg)
-        }
-        trueInput.val('');
-        target = '';
-        loading(false);
-    };
     window.tplOptionsUseMediaImage = function (url) {
         if (!mediaTargetWrap || !mediaTargetWrap.length) {
             return;
