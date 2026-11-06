@@ -737,6 +737,8 @@ CREATE TABLE {$db_prefix}user (
     photo varchar(255) NOT NULL default '' COMMENT '头像',
     email varchar(60) NOT NULL default '' COMMENT '邮箱',
     em_phone varchar(32) NOT NULL default '' COMMENT '手机号',
+    em_name varchar(128) NOT NULL default '' COMMENT '真实姓名',
+    em_id_num varchar(128) NOT NULL default '' COMMENT '身份证编号',
     description varchar(255) NOT NULL default '' COMMENT '备注',
     ip varchar(128) NOT NULL default '' COMMENT 'ip地址',
     state tinyint NOT NULL DEFAULT '0' COMMENT '用户状态 0正常 1禁用',
@@ -746,7 +748,8 @@ CREATE TABLE {$db_prefix}user (
     PRIMARY KEY  (uid),
     KEY username (username),
     KEY email (email),
-    KEY em_phone (em_phone)         
+    KEY em_phone (em_phone),
+    KEY em_id_num (em_id_num)         
 )" . $table_charset_sql . "
 INSERT INTO {$db_prefix}user (uid, username, email, password, nickname, role, create_time, update_time) VALUES (1,'$username','$email','$password', 'blogger','admin', " . time() . ", " . time() . ");
 DROP TABLE IF EXISTS {$db_prefix}twitter;

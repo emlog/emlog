@@ -67,6 +67,8 @@ class User_Model
             $row['update_time'] = smartDate($row['update_time']);
             $row['role_raw'] = $row['role'];
             $row['em_phone'] = isset($row['em_phone']) ? htmlspecialchars($row['em_phone']) : '';
+            $row['em_name'] = isset($row['em_name']) ? htmlspecialchars($row['em_name']) : '';
+            $row['em_id_num'] = isset($row['em_id_num']) ? htmlspecialchars($row['em_id_num']) : '';
             $row['role'] = User::getRoleName($row['role'], (int)$row['uid']);
             $users[] = $row;
         }
@@ -87,6 +89,8 @@ class User_Model
         $row['nickname'] = htmlspecialchars(empty($row['nickname']) ? $row['username'] : $row['nickname']);
         $row['email'] = htmlspecialchars($row['email']);
         $row['em_phone'] = isset($row['em_phone']) ? htmlspecialchars($row['em_phone']) : '';
+        $row['em_name'] = isset($row['em_name']) ? htmlspecialchars($row['em_name']) : '';
+        $row['em_id_num'] = isset($row['em_id_num']) ? htmlspecialchars($row['em_id_num']) : '';
         $row['photo'] = htmlspecialchars($row['photo']);
         $row['description_orig'] = $row['description'];
         $row['description'] = htmlspecialchars($row['description']);
@@ -123,6 +127,8 @@ class User_Model
         $userData['photo'] = $ret['photo'];
         $userData['email'] = $ret['email'];
         $userData['em_phone'] = isset($ret['em_phone']) ? htmlspecialchars($ret['em_phone']) : '';
+        $userData['em_name'] = isset($ret['em_name']) ? htmlspecialchars($ret['em_name']) : '';
+        $userData['em_id_num'] = isset($ret['em_id_num']) ? htmlspecialchars($ret['em_id_num']) : '';
         $userData['description'] = $ret['description'];
         $userData['ip'] = $ret['ip'];
         $userData['credits'] = (int)$ret['credits'];
@@ -157,6 +163,44 @@ class User_Model
         $userData['photo'] = $ret['photo'];
         $userData['email'] = $ret['email'];
         $userData['em_phone'] = isset($ret['em_phone']) ? htmlspecialchars($ret['em_phone']) : '';
+        $userData['em_name'] = isset($ret['em_name']) ? htmlspecialchars($ret['em_name']) : '';
+        $userData['em_id_num'] = isset($ret['em_id_num']) ? htmlspecialchars($ret['em_id_num']) : '';
+        $userData['description'] = $ret['description'];
+        $userData['ip'] = $ret['ip'];
+        $userData['credits'] = (int)$ret['credits'];
+        $userData['create_time'] = $ret['create_time'];
+        $userData['update_time'] = $ret['update_time'];
+        $userData['state'] = (int)$ret['state'];
+        return $userData;
+    }
+
+    /**
+     * 根据身份证号获取用户信息
+     *
+     * @param string $idNum 身份证号
+     * @return array|false 用户信息或 false
+     */
+    public function getUserDataByIdNum($idNum)
+    {
+        if (empty($idNum)) {
+            return false;
+        }
+        $idNum = $this->db->escape_string(trim($idNum));
+        $ret = $this->db->once_fetch_array("SELECT * FROM " . DB_PREFIX . "user WHERE em_id_num = '$idNum'");
+        if (!$ret) {
+            return false;
+        }
+        $userData = [];
+        $userData['nickname'] = htmlspecialchars($ret['nickname']);
+        $userData['username'] = htmlspecialchars($ret['username']);
+        $userData['password'] = $ret['password'];
+        $userData['uid'] = $ret['uid'];
+        $userData['role'] = $ret['role'];
+        $userData['photo'] = $ret['photo'];
+        $userData['email'] = $ret['email'];
+        $userData['em_phone'] = isset($ret['em_phone']) ? htmlspecialchars($ret['em_phone']) : '';
+        $userData['em_name'] = isset($ret['em_name']) ? htmlspecialchars($ret['em_name']) : '';
+        $userData['em_id_num'] = isset($ret['em_id_num']) ? htmlspecialchars($ret['em_id_num']) : '';
         $userData['description'] = $ret['description'];
         $userData['ip'] = $ret['ip'];
         $userData['credits'] = (int)$ret['credits'];
@@ -302,6 +346,26 @@ class User_Model
         $uid = (int)$uid;
         $subSql = $uid ? 'and uid!=' . $uid : '';
         $data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM $this->table WHERE em_phone='$phone' $subSql");
+        return isset($data['total']) && $data['total'] > 0;
+    }
+
+    /**
+     * 检查身份证号是否已被占用
+     *
+     * @param string $idNum 身份证号
+     * @param int $uid 排除的UID
+     * @return bool
+     */
+    public function isIdNumExist($idNum, $uid = '')
+    {
+        $idNum = trim($idNum);
+        if (empty($idNum)) {
+            return false;
+        }
+        $idNum = $this->db->escape_string($idNum);
+        $uid = (int)$uid;
+        $subSql = $uid ? 'and uid!=' . $uid : '';
+        $data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM $this->table WHERE em_id_num='$idNum' $subSql");
         return isset($data['total']) && $data['total'] > 0;
     }
 

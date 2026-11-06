@@ -25,10 +25,6 @@
                 <input type="email" class="form-control" value="<?= $email ?>" name="email" id="email">
             </div>
             <div class="form-group">
-                <label for="phone"><?= _lang('phone') ?></label>
-                <input type="text" class="form-control" value="<?= $phone ?>" name="phone" id="phone">
-            </div>
-            <div class="form-group">
                 <label for="role"><?= _lang('user_group') ?></label>
                 <select name="role" id="role" class="form-control">
                     <option value="writer" <?= $ex1 ?>><?= _lang('registered_user') ?></option>
@@ -56,6 +52,18 @@
                 <label for="credits"><?= _lang('credits') ?></label>
                 <input class="form-control" value="<?= $credits ?>" name="credits" id="credits" type="number" min="0" step="1" max="999999999" required>
             </div>
+            <div class="form-group">
+                <label for="real_name"><?= _lang('real_name') ?></label>
+                <input type="text" class="form-control" value="<?= $real_name ?>" name="em_name" id="real_name" maxlength="128">
+            </div>
+            <div class="form-group">
+                <label for="id_num"><?= _lang('id_num') ?></label>
+                <input type="text" class="form-control" value="<?= $id_num ?>" name="em_id_num" id="id_num" maxlength="18">
+            </div>
+            <div class="form-group">
+                <label for="phone"><?= _lang('phone') ?></label>
+                <input type="text" class="form-control" value="<?= $phone ?>" name="phone" id="phone">
+            </div>
             <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
             <input type="hidden" value="<?= $uid ?>" name="uid" />
             <input type="submit" value="<?= _lang('save') ?>" class="btn btn-sm btn-success" />
@@ -78,13 +86,13 @@
             icon: 3,
             title: '',
             btn: [_langJS.confirm, _langJS.cancel]
-        }, function (index) {
+        }, function(index) {
             layer.close(index);
             var token = $("#token").val();
             $.post('user.php?action=del_avatar', {
                 uid: uid,
                 token: token
-            }, function (res) {
+            }, function(res) {
                 if (res.code === 0) {
                     cocoMessage.success('<?= _lang('avatar_deleted_success') ?>');
                     $('#avatar_img').attr('src', '<?= User::getAvatar("") ?>');

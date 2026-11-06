@@ -169,6 +169,20 @@ function checkPhone($phone)
 }
 
 /**
+ * 验证身份证/证件编号格式（最长18位，只能由大写或者小写字母、数字、短横线、空格组成）
+ *
+ * @param string $idCard 身份证号码
+ * @return bool
+ */
+function checkIdCard($idCard)
+{
+    if (empty($idCard) || !is_string($idCard)) {
+        return false;
+    }
+    return preg_match('/^[A-Za-z0-9\- ]{1,18}$/', trim($idCard)) === 1;
+}
+
+/**
  * 截取编码为utf8的字符串
  *
  * @param string $strings 预处理字符串
