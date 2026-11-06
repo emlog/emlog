@@ -25,6 +25,10 @@
                 <input type="email" class="form-control" value="<?= $email ?>" name="email" id="email">
             </div>
             <div class="form-group">
+                <label for="phone"><?= _lang('phone') ?></label>
+                <input type="text" class="form-control" value="<?= $phone ?>" name="phone" id="phone">
+            </div>
+            <div class="form-group">
                 <label for="role"><?= _lang('user_group') ?></label>
                 <select name="role" id="role" class="form-control">
                     <option value="writer" <?= $ex1 ?>><?= _lang('registered_user') ?></option>

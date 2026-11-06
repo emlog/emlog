@@ -98,6 +98,7 @@ if ($action == 'edit') {
     $description = $data['description'];
     $username = $data['username'];
     $email = $data['email'];
+    $phone = isset($data['em_phone']) ? $data['em_phone'] : '';
     $credits = (int)$data['credits'];
 
     $ex1 = $ex2 = $ex3 = '';
@@ -121,6 +122,7 @@ if ($action == 'update') {
     $password = Input::postStrVar('password');
     $password2 = Input::postStrVar('password2');
     $email = Input::postStrVar('email');
+    $phone = Input::postStrVar('phone');
     $description = Input::postStrVar('description');
     $role = Input::postStrVar('role', User::ROLE_WRITER);
     $uid = Input::postIntVar('uid');
@@ -149,6 +151,14 @@ if ($action == 'update') {
     if ($User_Model->isMailExist($email, $uid)) {
         FlashMsg::redirectAdmin('user', 'error_exist_email', array('action' => 'edit', 'uid' => $uid), 'user_edit_flash_messages');
     }
+    if (!empty($phone)) {
+        if (!checkPhone($phone)) {
+            FlashMsg::redirectAdmin('user', 'error_phone_format', array('action' => 'edit', 'uid' => $uid), 'user_edit_flash_messages');
+        }
+        if ($User_Model->isPhoneExist($phone, $uid)) {
+            FlashMsg::redirectAdmin('user', 'error_exist_phone', array('action' => 'edit', 'uid' => $uid), 'user_edit_flash_messages');
+        }
+    }
     if ($User_Model->isUserExist($username, $uid)) {
         FlashMsg::redirectAdmin('user', 'error_exist', array('action' => 'edit', 'uid' => $uid), 'user_edit_flash_messages');
     }
@@ -163,6 +173,7 @@ if ($action == 'update') {
         'username'    => $username,
         'nickname'    => $nickname,
         'email'       => $email,
+        'em_phone'    => $phone,
         'description' => $description,
         'role'        => $role,
         'credits'     => $credits,

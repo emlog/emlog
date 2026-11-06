@@ -248,6 +248,8 @@ class FlashMsg
             'error_email' => array('type' => 'danger', 'text' => _lang('email_username_empty')),
             'error_exist' => array('type' => 'danger', 'text' => _lang('username_exists')),
             'error_exist_email' => array('type' => 'danger', 'text' => _lang('error_exist_email')),
+            'error_phone_format' => array('type' => 'danger', 'text' => _lang('phone_format_error')),
+            'error_exist_phone' => array('type' => 'danger', 'text' => _lang('phone_exist_error')),
             'error_pwd_len' => array('type' => 'danger', 'text' => _lang('password_min_length')),
             'error_pwd2' => array('type' => 'danger', 'text' => _lang('password_inconsistent')),
         );
