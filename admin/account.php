@@ -27,6 +27,7 @@ if ($action == 'signin') {
     }
     $login_code = Option::get('login_code') === 'y';
     $login_email_code = Option::get('login_email_code') === 'y';
+    $login_phone_code = Option::get('login_phone_code') === 'y';
     $is_signup = Option::get('is_signup') === 'y';
 
     $page_title = _lang('login');
@@ -47,7 +48,7 @@ if ($action == 'dosignin') {
     $login_code = Option::get('login_code') === 'y' ? strtoupper(Input::postStrVar('login_code')) : '';
 
     // 邮件验证码登录
-    if ($login_type === 'code') {
+    if ($login_type === 'code' || $login_type === 'mail') {
         if (Option::get('login_email_code') !== 'y') {
             if ($resp === 'json') {
                 Output::error(_lang('email_code_login_disabled'));
@@ -113,6 +114,85 @@ if ($action == 'dosignin') {
 
         $uid = $userData['uid'];
         $user_login = !empty($userData['username']) ? $userData['username'] : $mail;
+
+        Register::isRegServer();
+        $User_Model->updateUser(['ip' => getIp()], $uid);
+        LoginAuth::setAuthCookie($user_login, $persist);
+        doAction('login_succeed', $uid, $resp);
+        if ($resp === 'json') {
+            Output::ok();
+        }
+        emDirect("./");
+    }
+
+    // 手机号验证码登录
+    if ($login_type === 'phone') {
+        if (Option::get('login_phone_code') !== 'y') {
+            if ($resp === 'json') {
+                Output::error(_lang('phone_code_login_disabled'));
+            }
+            FlashMsg::redirectAccount('signin', 'err_phone_login_closed', array('s' => $admin_path_code, 'type' => 'phone'));
+        }
+
+        if (Option::get('login_code') === 'y') {
+            if (!isset($_SESSION)) {
+                session_start();
+            }
+            $passed = isset($_SESSION['login_code_passed']) && (time() - (int)$_SESSION['login_code_passed'] < 900);
+            if (!$passed && !User::checkLoginCode($login_code)) {
+                if ($resp === 'json') {
+                    Output::error(_lang('captcha_error'));
+                }
+                FlashMsg::redirectAccount('signin', 'err_ckcode', array('s' => $admin_path_code, 'type' => 'phone'));
+            }
+            unset($_SESSION['login_code_passed']);
+        }
+
+        $phone = Input::postStrVar('phone');
+        $phone_code = Input::postStrVar('phone_code');
+
+        if (!checkPhone($phone)) {
+            if ($resp === 'json') {
+                Output::error(_lang('phone_format_error'));
+            }
+            FlashMsg::redirectAccount('signin', 'err_phone_format', array('s' => $admin_path_code, 'type' => 'phone'));
+        }
+
+        if (!User::checkLoginPhoneCode($phone, $phone_code)) {
+            if ($resp === 'json') {
+                Output::error(_lang('phone_code_error'));
+            }
+            FlashMsg::redirectAccount('signin', 'err_phone_code', array('s' => $admin_path_code, 'type' => 'phone'));
+        }
+
+        $userData = $User_Model->getUserDataByPhone($phone);
+        if (false === $userData) {
+            if (Option::get('is_signup') !== 'y') {
+                if ($resp === 'json') {
+                    Output::error(_lang('phone_not_registered'));
+                }
+                FlashMsg::redirectAccount('signin', 'err_phone_unreg', array('s' => $admin_path_code, 'type' => 'phone'));
+            }
+            $PHPASS = new PasswordHash(8, true);
+            $randomPass = $PHPASS->HashPassword(getRandStr(16));
+            $defaultUsername = 'u' . substr($phone, -4) . getRandStr(4, false);
+            $uid = $User_Model->addUser($defaultUsername, '', $randomPass, User::ROLE_WRITER, $phone);
+            $CACHE->updateCache(['sta', 'user']);
+            doAction('register_succeed', $uid);
+            $userData = $User_Model->getUserDataByPhone($phone);
+        }
+
+        $state = isset($userData['state']) ? $userData['state'] : 0;
+        if ($state === User::USER_STATE_FORBID) {
+            doAction('login_fail');
+            if ($resp === 'json') {
+                Output::error(_lang('account_forbidden'));
+            }
+            FlashMsg::redirectAccount('signin', 'err_forbid', array('s' => $admin_path_code, 'type' => 'phone'));
+        }
+
+        $uid = $userData['uid'];
+        $user_login = !empty($userData['username']) ? $userData['username'] : (!empty($userData['email']) ? $userData['email'] : $phone);
 
         Register::isRegServer();
         $User_Model->updateUser(['ip' => getIp()], $uid);
@@ -312,6 +392,61 @@ if ($action == 'send_login_email_code') {
         Output::ok();
     } else {
         Output::error(_lang('email_code_send_failed'));
+    }
+}
+
+// 发送登录手机验证码
+if ($action == 'send_login_phone_code') {
+    if (Option::get('login_phone_code') !== 'y') {
+        Output::error(_lang('phone_code_login_disabled'));
+    }
+
+    if (!Sms::isSmsReady()) {
+        Output::error(_lang('sms_plugin_not_found'));
+    }
+
+    if (Option::get('login_code') === 'y') {
+        $login_code = strtoupper(Input::postStrVar('login_code'));
+        if (!User::checkLoginCode($login_code)) {
+            Output::error(_lang('captcha_error'));
+        }
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        $_SESSION['login_code_passed'] = time();
+    }
+
+    $phone = Input::postStrVar('phone');
+    if (!checkPhone($phone)) {
+        Output::error(_lang('phone_format_error'));
+    }
+
+    if (!$User_Model->isPhoneExist($phone)) {
+        if (Option::get('is_signup') !== 'y') {
+            Output::error(_lang('phone_not_registered'));
+        }
+    } else {
+        $userData = $User_Model->getUserDataByPhone($phone);
+        if ($userData && isset($userData['state']) && (int)$userData['state'] === User::USER_STATE_FORBID) {
+            Output::error(_lang('account_forbidden'));
+        }
+    }
+
+    if (!isset($_SESSION)) {
+        session_start();
+    }
+    if (isset($_SESSION['login_phone_time']) && time() - (int)$_SESSION['login_phone_time'] < 60) {
+        Output::error(_lang('send_code_too_frequent'));
+    }
+
+    doAction('send_login_phone_code', $phone);
+
+    $ret = Sms::sendLoginSmsCode($phone);
+    if (!empty($ret['success'])) {
+        Output::ok();
+    } else {
+        $msg = !empty($ret['message']) ? $ret['message'] : _lang('sms_send_failed');
+        Output::error($msg);
     }
 }
 

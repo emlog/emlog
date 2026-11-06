@@ -509,6 +509,12 @@ class FlashMsg
             'err_mail_format' => array('type' => 'danger', 'text' => _lang('email_format_error')),
             'err_mail_unreg' => array('type' => 'danger', 'text' => _lang('email_not_registered')),
             'err_mail_login_closed' => array('type' => 'danger', 'text' => _lang('email_code_login_disabled')),
+            'err_phone_code' => array('type' => 'danger', 'text' => _lang('phone_code_error')),
+            'err_phone_format' => array('type' => 'danger', 'text' => _lang('phone_format_error')),
+            'err_phone_unreg' => array('type' => 'danger', 'text' => _lang('phone_not_registered')),
+            'err_phone_login_closed' => array('type' => 'danger', 'text' => _lang('phone_code_login_disabled')),
+            'err_sms_plugin' => array('type' => 'danger', 'text' => _lang('sms_plugin_not_found')),
+            'err_sms_send' => array('type' => 'danger', 'text' => _lang('sms_send_failed')),
         );
         return self::renderAlertsByMap($sessionKey, $alertMap);
     }

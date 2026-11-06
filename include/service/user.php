@@ -152,6 +152,40 @@ class User
     }
 
     /**
+     * 校验登录手机短信验证码
+     *
+     * @param string $phone 手机号码
+     * @param string $phone_code 验证码
+     * @return bool
+     */
+    static function checkLoginPhoneCode($phone, $phone_code)
+    {
+        if (session_status() === PHP_SESSION_NONE) {
+            @session_start();
+        }
+        $session_code = isset($_SESSION['login_phone_code']) ? $_SESSION['login_phone_code'] : '';
+        $session_phone = isset($_SESSION['login_phone']) ? $_SESSION['login_phone'] : '';
+        $session_time = isset($_SESSION['login_phone_time']) ? (int)$_SESSION['login_phone_time'] : 0;
+
+        // 验证码有效期为 15 分钟
+        if ($session_time > 0 && time() - $session_time > 900) {
+            unset($_SESSION['login_phone_code'], $_SESSION['login_phone'], $_SESSION['login_phone_time']);
+            return false;
+        }
+
+        if (empty($phone_code) || empty($session_code) || strtolower($phone_code) !== strtolower($session_code)) {
+            return false;
+        }
+
+        if (empty($phone) || trim($phone) !== trim($session_phone)) {
+            return false;
+        }
+
+        unset($_SESSION['login_phone_code'], $_SESSION['login_phone'], $_SESSION['login_phone_time']);
+        return true;
+    }
+
+    /**
      * 校验当前用户组的访问权限
      *
      * @return void

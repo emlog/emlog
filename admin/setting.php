@@ -411,6 +411,7 @@ if ($action == 'user') {
     $allow_user_twitter = isset($options_cache['allow_user_twitter']) ? $options_cache['allow_user_twitter'] : '';
     $email_code = isset($options_cache['email_code']) ? $options_cache['email_code'] : '';
     $login_email_code = isset($options_cache['login_email_code']) ? $options_cache['login_email_code'] : '';
+    $login_phone_code = isset($options_cache['login_phone_code']) ? $options_cache['login_phone_code'] : '';
     $att_maxsize = isset($options_cache['att_maxsize']) ? $options_cache['att_maxsize'] : '';
     $att_type = isset($options_cache['att_type']) ? $options_cache['att_type'] : '';
 
@@ -418,6 +419,7 @@ if ($action == 'user') {
     $conf_login_code = $login_code == 'y' ? 'checked="checked"' : '';
     $conf_email_code = $email_code == 'y' ? 'checked="checked"' : '';
     $conf_login_email_code = $login_email_code == 'y' ? 'checked="checked"' : '';
+    $conf_login_phone_code = $login_phone_code == 'y' ? 'checked="checked"' : '';
     $conf_ischkarticle = $ischkarticle == 'y' ? 'checked="checked"' : '';
     $conf_allow_user_post = $posts_per_day > 0 ? 'checked="checked"' : '';
     $posts_per_day = $posts_per_day > 0 ? $posts_per_day : 10;
@@ -443,6 +445,7 @@ if ($action == 'user_save') {
         'login_code'         => Input::postStrVar('login_code', 'n'),
         'email_code'         => Input::postStrVar('email_code', 'n'),
         'login_email_code'   => Input::postStrVar('login_email_code', 'n'),
+        'login_phone_code'   => Input::postStrVar('login_phone_code', 'n'),
         'ischkarticle'       => Input::postStrVar('ischkarticle', 'n'),
         'article_uneditable' => Input::postStrVar('article_uneditable', 'n'),
         'allow_user_twitter' => Input::postStrVar('allow_user_twitter', 'n'),

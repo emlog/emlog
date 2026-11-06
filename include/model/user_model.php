@@ -66,6 +66,7 @@ class User_Model
             $row['create_time'] = date("Y-m-d H:i", $row['create_time']);
             $row['update_time'] = smartDate($row['update_time']);
             $row['role_raw'] = $row['role'];
+            $row['em_phone'] = isset($row['em_phone']) ? htmlspecialchars($row['em_phone']) : '';
             $row['role'] = User::getRoleName($row['role'], (int)$row['uid']);
             $users[] = $row;
         }
@@ -85,6 +86,7 @@ class User_Model
         $row['name_orig'] = $row['nickname'];
         $row['nickname'] = htmlspecialchars(empty($row['nickname']) ? $row['username'] : $row['nickname']);
         $row['email'] = htmlspecialchars($row['email']);
+        $row['em_phone'] = isset($row['em_phone']) ? htmlspecialchars($row['em_phone']) : '';
         $row['photo'] = htmlspecialchars($row['photo']);
         $row['description_orig'] = $row['description'];
         $row['description'] = htmlspecialchars($row['description']);
@@ -95,7 +97,7 @@ class User_Model
     }
 
     /**
-     * 根据用户名或邮箱获取用户信息
+     * 根据用户名、邮箱或手机号获取用户信息
      */
     public function getUserDataByLogin($account)
     {
@@ -107,7 +109,10 @@ class User_Model
         if (!$ret) {
             $ret = $this->db->once_fetch_array("SELECT * FROM " . DB_PREFIX . "user WHERE email = '$account'");
             if (!$ret) {
-                return false;
+                $ret = $this->db->once_fetch_array("SELECT * FROM " . DB_PREFIX . "user WHERE em_phone = '$account'");
+                if (!$ret) {
+                    return false;
+                }
             }
         }
         $userData['nickname'] = htmlspecialchars($ret['nickname']);
@@ -117,6 +122,41 @@ class User_Model
         $userData['role'] = $ret['role'];
         $userData['photo'] = $ret['photo'];
         $userData['email'] = $ret['email'];
+        $userData['em_phone'] = isset($ret['em_phone']) ? htmlspecialchars($ret['em_phone']) : '';
+        $userData['description'] = $ret['description'];
+        $userData['ip'] = $ret['ip'];
+        $userData['credits'] = (int)$ret['credits'];
+        $userData['create_time'] = $ret['create_time'];
+        $userData['update_time'] = $ret['update_time'];
+        $userData['state'] = (int)$ret['state'];
+        return $userData;
+    }
+
+    /**
+     * 根据手机号获取用户信息
+     *
+     * @param string $phone 手机号码
+     * @return array|false 用户信息或 false
+     */
+    public function getUserDataByPhone($phone)
+    {
+        if (empty($phone)) {
+            return false;
+        }
+        $phone = $this->db->escape_string(trim($phone));
+        $ret = $this->db->once_fetch_array("SELECT * FROM " . DB_PREFIX . "user WHERE em_phone = '$phone'");
+        if (!$ret) {
+            return false;
+        }
+        $userData = [];
+        $userData['nickname'] = htmlspecialchars($ret['nickname']);
+        $userData['username'] = htmlspecialchars($ret['username']);
+        $userData['password'] = $ret['password'];
+        $userData['uid'] = $ret['uid'];
+        $userData['role'] = $ret['role'];
+        $userData['photo'] = $ret['photo'];
+        $userData['email'] = $ret['email'];
+        $userData['em_phone'] = isset($ret['em_phone']) ? htmlspecialchars($ret['em_phone']) : '';
         $userData['description'] = $ret['description'];
         $userData['ip'] = $ret['ip'];
         $userData['credits'] = (int)$ret['credits'];
@@ -149,11 +189,41 @@ class User_Model
         $this->db->query("update $this->table set $upStr where email='$mail'");
     }
 
-    public function addUser($username, $mail, $password, $role)
+    /**
+     * 根据手机号更新用户信息
+     *
+     * @param array $userData 用户数据
+     * @param string $phone 手机号码
+     * @return void
+     */
+    public function updateUserByPhone($userData, $phone)
+    {
+        $phone = $this->db->escape_string(trim($phone));
+        $timestamp = time();
+        $Item = ["update_time=$timestamp"];
+        foreach ($userData as $key => $data) {
+            $Item[] = "$key='$data'";
+        }
+        $upStr = implode(',', $Item);
+        $this->db->query("update $this->table set $upStr where em_phone='$phone'");
+    }
+
+    /**
+     * 添加用户
+     *
+     * @param string $username 用户名
+     * @param string $mail 邮箱
+     * @param string $password 密码
+     * @param string $role 角色
+     * @param string $phone 手机号码
+     * @return int 新增用户的UID
+     */
+    public function addUser($username, $mail, $password, $role, $phone = '')
     {
         $timestamp = time();
         $nickname = getRandStr(8, false);
-        $sql = "insert into $this->table (username,email,password,nickname,role,create_time,update_time) values('$username','$mail','$password','$nickname','$role',$timestamp,$timestamp)";
+        $phone = $this->db->escape_string(trim($phone));
+        $sql = "insert into $this->table (username,email,password,nickname,role,em_phone,create_time,update_time) values('$username','$mail','$password','$nickname','$role','$phone',$timestamp,$timestamp)";
         $this->db->query($sql);
         return $this->db->insert_id();
     }
@@ -213,6 +283,26 @@ class User_Model
         $subSql = $uid ? 'and uid!=' . $uid : '';
         $data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM $this->table WHERE email='$mail' $subSql");
         return $data['total'] > 0;
+    }
+
+    /**
+     * 检查手机号是否已被占用
+     *
+     * @param string $phone 手机号码
+     * @param int $uid 排除的UID
+     * @return bool
+     */
+    public function isPhoneExist($phone, $uid = '')
+    {
+        $phone = trim($phone);
+        if (empty($phone)) {
+            return false;
+        }
+        $phone = $this->db->escape_string($phone);
+        $uid = (int)$uid;
+        $subSql = $uid ? 'and uid!=' . $uid : '';
+        $data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM $this->table WHERE em_phone='$phone' $subSql");
+        return isset($data['total']) && $data['total'] > 0;
     }
 
     public function getUserCount($email = '', $nickname = '')

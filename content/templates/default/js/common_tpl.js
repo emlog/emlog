@@ -443,6 +443,9 @@ var authModal = {
         this.$modal.on("click", "#auth-signin-send-code", function () {
             self.sendSignInMailCode()
         })
+        this.$modal.on("click", "#auth-signin-send-phone-code", function () {
+            self.sendSignInPhoneCode()
+        })
         this.$signinForm.on("submit", function (e) {
             e.preventDefault()
             self.submitSignIn()
@@ -720,32 +723,87 @@ var authModal = {
         })
     },
     /**
-     * 切换前台登录弹窗中的登录方式（密码登录 / 验证码登录）。
+     * 切换前台登录弹窗中的登录方式（密码登录 / 邮箱验证码登录 / 手机验证码登录）。
      */
     switchSignInType: function (type) {
-        var isCode = type === "code"
         var $tabBtns = this.$modal.find("[data-signin-type]")
         var $panePwd = $("#auth-signin-pane-pwd")
         var $paneCode = $(".auth-signin-pane-code")
+        var $panePhone = $(".auth-signin-pane-phone")
         var $typeInput = $("#auth-signin-type")
 
         $tabBtns.removeClass("active")
-        $tabBtns.filter('[data-signin-type="' + (isCode ? "code" : "pwd") + '"]').addClass("active")
+        $tabBtns.filter('[data-signin-type="' + type + '"]').addClass("active")
 
         if ($typeInput.length) {
-            $typeInput.val(isCode ? "code" : "pwd")
+            $typeInput.val(type)
         }
 
-        if (isCode) {
-            $panePwd.hide().find("input").prop("disabled", true).prop("required", false)
+        $panePwd.hide().find("input").prop("disabled", true).prop("required", false)
+        $paneCode.hide().find("input").prop("disabled", true).prop("required", false)
+        $panePhone.hide().find("input").prop("disabled", true).prop("required", false)
+
+        if (type === "phone") {
+            $panePhone.show().find("input").prop("disabled", false).prop("required", true)
+            $panePhone.find('input[name="phone"]').focus()
+        } else if (type === "code") {
             $paneCode.show().find("input").prop("disabled", false).prop("required", true)
             $paneCode.find('input[name="mail"]').focus()
         } else {
-            $paneCode.hide().find("input").prop("disabled", true).prop("required", false)
             $panePwd.show().find("input").prop("disabled", false).prop("required", true)
             $panePwd.find('input[name="user"]').focus()
         }
         this.clearAlert()
+    },
+    /**
+     * 发送登录手机验证码。
+     */
+    sendSignInPhoneCode: function () {
+        var self = this
+        var $phone = this.$signinForm.find('input[name="phone"]')
+        var phone = $.trim($phone.val())
+        if (!phone) {
+            $phone.focus()
+            return
+        }
+        var postData = {phone: phone}
+        var $loginCode = this.$signinForm.find('input[name="login_code"]')
+        if ($loginCode.length) {
+            var captcha = $.trim($loginCode.val())
+            if (!captcha) {
+                $loginCode.focus()
+                self.showAlert("请输入验证码")
+                return
+            }
+            postData.login_code = captcha
+        }
+        var $btn = $("#auth-signin-send-phone-code")
+        var defaultText = $btn.text()
+        this.clearAlert()
+        $btn.prop("disabled", true)
+        $.ajax({
+            type: "POST",
+            url: this.accountUrl("send_login_phone_code"),
+            data: postData,
+            success: function () {
+                self.showAlert(self.$modal.data("msg-phone-code-sent"), true)
+                var seconds = 60
+                var timer = setInterval(function () {
+                    seconds--
+                    if (seconds <= 0) {
+                        clearInterval(timer)
+                        $btn.text(defaultText).prop("disabled", false)
+                    } else {
+                        $btn.text(seconds + "s")
+                    }
+                }, 1000)
+            },
+            error: function (xhr) {
+                self.showAlert(self.getErrorMessage(xhr))
+                $btn.text(defaultText).prop("disabled", false)
+                self.refreshAllCaptcha()
+            }
+        })
     },
     /**
      * 发送登录邮箱验证码。

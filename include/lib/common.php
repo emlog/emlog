@@ -155,6 +155,20 @@ function checkMail($email)
 }
 
 /**
+ * 验证手机号格式（支持常规国内11位手机号及国际区号格式）
+ *
+ * @param string $phone 手机号码
+ * @return bool
+ */
+function checkPhone($phone)
+{
+    if (empty($phone) || !is_string($phone)) {
+        return false;
+    }
+    return preg_match('/^(\+?86)?1[3-9]\d{9}$/', trim($phone)) === 1;
+}
+
+/**
  * 截取编码为utf8的字符串
  *
  * @param string $strings 预处理字符串
@@ -375,6 +389,18 @@ function pagination($count, $perlogs, $page, $url, $anchor = '', $showPages = 7,
 
     $re = $frontContent . $paginContent . $endContent;
     return $re;
+}
+
+/**
+ * 检查指定钩子上是否挂载了函数
+ *
+ * @param string $hook 钩子名称
+ * @return bool
+ */
+function hasAction($hook)
+{
+    global $emHooks;
+    return !empty($emHooks[$hook]);
 }
 
 /**

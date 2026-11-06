@@ -32,6 +32,15 @@
                 <input class="custom-control-input" type="checkbox" value="y" name="login_email_code" id="login_email_code" <?= $conf_login_email_code ?>>
                 <label class="custom-control-label" for="login_email_code"><?= _lang('login_email_code'); ?></label>
             </div>
+            <div class="custom-control custom-switch">
+                <input class="custom-control-input" type="checkbox" value="y" name="login_phone_code" id="login_phone_code" <?= $conf_login_phone_code ?>>
+                <label class="custom-control-label" for="login_phone_code">
+                    <?= _lang('login_phone_code'); ?>
+                    <?php if (!Sms::isSmsReady()): ?>
+                        <a href="./store.php?keyword=短信发送插件" class="small ml-1"><?= _lang('sms_plugin_not_found'); ?></a>
+                    <?php endif; ?>
+                </label>
+            </div>
             <hr>
             <div class="custom-control custom-switch">
                 <input class="custom-control-input" type="checkbox" value="y" name="allow_user_twitter" id="allow_user_twitter" <?= $conf_allow_user_twitter ?> />

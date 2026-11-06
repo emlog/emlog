@@ -647,6 +647,7 @@ INSERT INTO {$db_prefix}options (option_name, option_value) VALUES
 ('login_code','n'),
 ('email_code','n'),
 ('login_email_code','n'),
+('login_phone_code','n'),
 ('is_signup','y'),
 ('ischkarticle','y'),
 ('article_uneditable','n'),
@@ -735,6 +736,7 @@ CREATE TABLE {$db_prefix}user (
     ischeck enum('n','y') NOT NULL default 'n' COMMENT '内容是否需要管理员审核',
     photo varchar(255) NOT NULL default '' COMMENT '头像',
     email varchar(60) NOT NULL default '' COMMENT '邮箱',
+    em_phone varchar(32) NOT NULL default '' COMMENT '手机号',
     description varchar(255) NOT NULL default '' COMMENT '备注',
     ip varchar(128) NOT NULL default '' COMMENT 'ip地址',
     state tinyint NOT NULL DEFAULT '0' COMMENT '用户状态 0正常 1禁用',
@@ -743,7 +745,8 @@ CREATE TABLE {$db_prefix}user (
     update_time int(11) NOT NULL COMMENT '更新时间',
     PRIMARY KEY  (uid),
     KEY username (username),
-    KEY email (email)         
+    KEY email (email),
+    KEY em_phone (em_phone)         
 )" . $table_charset_sql . "
 INSERT INTO {$db_prefix}user (uid, username, email, password, nickname, role, create_time, update_time) VALUES (1,'$username','$email','$password', 'blogger','admin', " . time() . ", " . time() . ");
 DROP TABLE IF EXISTS {$db_prefix}twitter;

@@ -18,11 +18,11 @@ defined('EMLOG_ROOT') || exit('access denied!');
 </footer>
 <div class="side-toolbar">
     <?php if (isset($logid)): ?>
-    <div class="side-btn" id="back-to-prev" title="返回上一页" onclick="history.go(-1);">
-        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="15 18 9 12 15 6"></polyline>
-        </svg>
-    </div>
+        <div class="side-btn" id="back-to-prev" title="返回上一页" onclick="history.go(-1);">
+            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+        </div>
     <?php endif; ?>
     <div class="side-btn" id="back-to-top" title="返回顶部" style="display: none;">
         <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -48,7 +48,7 @@ defined('EMLOG_ROOT') || exit('access denied!');
     </div>
 </div>
 <div class="auth-modal-mask" id="auth-modal-mask" style="display: none;"></div>
-<div class="auth-modal" id="auth-modal" style="display: none;" aria-hidden="true" data-msg-signup-success="<?= _lang('register_success_login') ?>" data-msg-reset-success="<?= _lang('reset_success_login') ?>" data-msg-email-code-sent="<?= _lang('email_code_sent') ?>" data-msg-error="操作失败，请稍后重试">
+<div class="auth-modal" id="auth-modal" style="display: none;" aria-hidden="true" data-msg-signup-success="<?= _lang('register_success_login') ?>" data-msg-reset-success="<?= _lang('reset_success_login') ?>" data-msg-email-code-sent="<?= _lang('email_code_sent') ?>" data-msg-phone-code-sent="<?= _lang('phone_code_sent') ?>" data-msg-error="操作失败，请稍后重试">
     <div class="auth-modal-card" role="dialog" aria-modal="true" aria-labelledby="auth-modal-title">
         <button type="button" class="auth-modal-close" id="auth-modal-close" aria-label="<?= _lang('close') ?>">×</button>
         <div class="auth-modal-head">
@@ -57,17 +57,26 @@ defined('EMLOG_ROOT') || exit('access denied!');
         <div class="auth-modal-alert" id="auth-modal-alert"></div>
         <?php
         $adminSignInS = defined('ADMIN_PATH_CODE') ? '&s=' . rawurlencode((string)constant('ADMIN_PATH_CODE')) : '';
+        $loginEmailCode = Option::get('login_email_code') === 'y';
+        $loginPhoneCode = Option::get('login_phone_code') === 'y';
+        $hasCodeLogin = $loginEmailCode || $loginPhoneCode;
         ?>
         <div class="auth-modal-panel" data-auth-panel="signin" data-title="<?= _lang('login') ?>" data-subtitle="<?= _lang('login') ?>">
-            <?php if (Option::get('login_email_code') === 'y'): ?>
+            <?php if ($hasCodeLogin): ?>
                 <div class="auth-switch-links">
                     <a href="javascript:void(0);" class="auth-switch-link active" data-signin-type="pwd"><?= _lang('login_by_pwd') ?></a>
-                    <span class="auth-switch-sep">|</span>
-                    <a href="javascript:void(0);" class="auth-switch-link" data-signin-type="code"><?= _lang('login_by_code') ?></a>
+                    <?php if ($loginEmailCode): ?>
+                        <span class="auth-switch-sep">|</span>
+                        <a href="javascript:void(0);" class="auth-switch-link" data-signin-type="code"><?= _lang('login_email_code') ?></a>
+                    <?php endif; ?>
+                    <?php if ($loginPhoneCode): ?>
+                        <span class="auth-switch-sep">|</span>
+                        <a href="javascript:void(0);" class="auth-switch-link" data-signin-type="phone"><?= _lang('login_by_phone') ?></a>
+                    <?php endif; ?>
                 </div>
             <?php endif; ?>
             <form id="auth-signin-form" action="<?= BLOG_URL ?>admin/account.php?action=dosignin<?= $adminSignInS ?>" method="post">
-                <?php if (Option::get('login_email_code') === 'y'): ?>
+                <?php if ($hasCodeLogin): ?>
                     <input type="hidden" name="login_type" id="auth-signin-type" value="pwd" />
                 <?php endif; ?>
                 <div class="auth-signin-pane auth-signin-pane-pwd" id="auth-signin-pane-pwd">
@@ -78,10 +87,17 @@ defined('EMLOG_ROOT') || exit('access denied!');
                         <input type="password" name="pw" placeholder="<?= _lang('password') ?>" autocomplete="current-password" required />
                     </div>
                 </div>
-                <?php if (Option::get('login_email_code') === 'y'): ?>
+                <?php if ($loginEmailCode): ?>
                     <div class="auth-signin-pane auth-signin-pane-code" id="auth-signin-pane-code-mail" style="display: none;">
                         <div class="auth-form-row">
                             <input type="email" name="mail" placeholder="<?= _lang('email') ?>" autocomplete="email" disabled />
+                        </div>
+                    </div>
+                <?php endif; ?>
+                <?php if ($loginPhoneCode): ?>
+                    <div class="auth-signin-pane auth-signin-pane-phone" id="auth-signin-pane-phone" style="display: none;">
+                        <div class="auth-form-row">
+                            <input type="text" name="phone" placeholder="<?= _lang('phone') ?>" autocomplete="tel" disabled />
                         </div>
                     </div>
                 <?php endif; ?>
@@ -91,11 +107,19 @@ defined('EMLOG_ROOT') || exit('access denied!');
                         <img src="<?= BLOG_URL ?>include/lib/checkcode.php" data-auth-captcha="signin" alt="<?= _lang('captcha') ?>" />
                     </div>
                 <?php endif; ?>
-                <?php if (Option::get('login_email_code') === 'y'): ?>
+                <?php if ($loginEmailCode): ?>
                     <div class="auth-signin-pane auth-signin-pane-code" id="auth-signin-pane-code-verify" style="display: none;">
                         <div class="auth-form-row auth-inline-row">
                             <input type="text" name="mail_code" placeholder="<?= _lang('email_code') ?>" disabled />
                             <button type="button" class="btn auth-inline-btn" id="auth-signin-send-code"><?= _lang('send_email_code') ?></button>
+                        </div>
+                    </div>
+                <?php endif; ?>
+                <?php if ($loginPhoneCode): ?>
+                    <div class="auth-signin-pane auth-signin-pane-phone" id="auth-signin-pane-phone-verify" style="display: none;">
+                        <div class="auth-form-row auth-inline-row">
+                            <input type="text" name="phone_code" placeholder="<?= _lang('phone_code') ?>" disabled />
+                            <button type="button" class="btn auth-inline-btn" id="auth-signin-send-phone-code"><?= _lang('send_phone_code') ?></button>
                         </div>
                     </div>
                 <?php endif; ?>
