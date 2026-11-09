@@ -20,6 +20,17 @@ if (PHP_VERSION < '5.6') {
     emMsg(_langInstall('php_version_error'));
 }
 
+function check_install_allowed()
+{
+    $configFile = EMLOG_ROOT . '/config.php';
+    $configContent = is_file($configFile) ? file_get_contents($configFile) : '';
+    if (strpos($configContent, 'emlog-key') === false) {
+        emMsg(_langInstall('already_installed'));
+    }
+}
+
+check_install_allowed();
+
 $act = Input::getStrVar('action');
 
 $bt_db_host = 'localhost';

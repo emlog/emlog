@@ -5,6 +5,7 @@
  */
 return [
     'php_version_error' => 'PHP版本太低，推荐使用PHP7.4及以上版本',
+    'already_installed' => '系统已安装，如需重新安装请先重置 config.php 配置文件',
     'mysql_settings' => 'MySQL数据库设置',
     'db_host' => '数据库地址',
     'db_host_info' => '通常为 localhost 或者指定端口 localhost:3306',

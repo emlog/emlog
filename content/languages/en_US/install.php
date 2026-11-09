@@ -5,6 +5,7 @@
  */
 return [
     'php_version_error' => 'PHP version is too old. PHP 7.4 or higher is recommended',
+    'already_installed' => 'The system is already installed. If you need to reinstall, please reset the config.php file first.',
     'mysql_settings' => 'MySQL Settings',
     'db_host' => 'Database Host',
     'db_host_info' => 'Usually localhost or localhost:3306',
