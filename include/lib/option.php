@@ -210,7 +210,6 @@ class Option
                 'png',
                 'webp',
                 'avif',
-                'svg',
                 'ico',
                 'txt',
                 'pdf',

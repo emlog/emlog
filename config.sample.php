@@ -11,7 +11,7 @@ const DB_PASSWD = '';
 const DB_NAME = 'emlog';
 //Database table prefix
 const DB_PREFIX = 'emlog_';
-//Auth key
-const AUTH_KEY = 'emlog-key';
+//Auth key 32-character random string
+const AUTH_KEY = '';
 //Cookie name
 const AUTH_COOKIE_NAME = 'emlog-cookie';

@@ -23,9 +23,11 @@ if (PHP_VERSION < '5.6') {
 function check_install_allowed()
 {
     $configFile = EMLOG_ROOT . '/config.php';
-    $configContent = is_file($configFile) ? file_get_contents($configFile) : '';
-    if (strpos($configContent, 'emlog-key') === false) {
-        emMsg(_langInstall('already_installed'));
+    if (is_file($configFile)) {
+        $configContent = file_get_contents($configFile);
+        if (strpos($configContent, 'install.php') === false) {
+            emMsg(_langInstall('already_installed'));
+        }
     }
 }
 
