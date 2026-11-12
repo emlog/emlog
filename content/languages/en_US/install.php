@@ -44,4 +44,10 @@ return [
     'home' => 'Home',
     'login' => 'Login',
     'admin_nickname' => 'Admin',
+    'terms_title' => 'Terms of Service & Disclaimer',
+    'terms_summary' => '1. This system is an open-source self-hosted program provided "AS IS". The developers do not participate in the operation of any user site.<br>2. The site operator independently assumes all content moderation and legal responsibilities. It is strictly prohibited to publish illegal, pornographic, gambling, fraudulent, or infringing content.<br>3. Any legal liability arising from improper use rests solely with the operator; the developers assume no direct or joint liability.',
+    'terms_agree' => 'I have read and agree to the',
+    'terms_doc_name' => 'Terms of Service & Disclaimer',
+    'terms_agree_suffix' => ', and promise to build sites legally and never publish illegal content',
+    'terms_agree_required' => 'Please read and agree to the Terms of Service & Disclaimer before proceeding with installation!',
 ];

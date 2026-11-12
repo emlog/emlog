@@ -250,6 +250,59 @@ if (!$act) {
             text-align: center;
         }
 
+        .terms-card {
+            margin-top: 35px;
+            padding: 16px 20px;
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+        }
+
+        .terms-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #334155;
+            margin-bottom: 8px;
+        }
+
+        .terms-summary {
+            font-size: 12px;
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 12px;
+            padding: 10px 12px;
+            background: #ffffff;
+            border: 1px solid #edf2f7;
+            border-radius: 6px;
+        }
+
+        .terms-agree-wrap {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 13px;
+            color: #1e293b;
+            line-height: 1.4;
+            cursor: pointer;
+        }
+
+        .terms-agree-wrap input[type="checkbox"] {
+            margin-top: 2px;
+            cursor: pointer;
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+        }
+
+        .terms-agree-wrap a {
+            color: #008cff;
+            text-decoration: none;
+        }
+
+        .terms-agree-wrap a:hover {
+            text-decoration: underline;
+        }
+
         @media (max-width: 768px) {
             .main {
                 width: unset;
@@ -333,6 +386,14 @@ if (!$act) {
                         <input name="email" type="text" class="form-control">
                     </div>
                 </div>
+                <div class="terms-card mb20">
+                    <div class="terms-title"><?= _langInstall('terms_title') ?></div>
+                    <div class="terms-summary"><?= _langInstall('terms_summary') ?></div>
+                    <label class="terms-agree-wrap" for="agree_terms">
+                        <input type="checkbox" name="agree_terms" id="agree_terms" value="1" required>
+                        <span><?= _langInstall('terms_agree') ?> <a href="TERMS.md" target="_blank" rel="noopener noreferrer"><?= _langInstall('terms_doc_name') ?></a><?= _langInstall('terms_agree_suffix') ?></span>
+                    </label>
+                </div>
                 <div class="next_btn">
                     <button type="submit" class="btn btn-primary"><?= _langInstall('start_install') ?></button>
                 </div>
@@ -344,6 +405,11 @@ if (!$act) {
 <?php
 }
 if ($act == 'install' || $act == 'reinstall') {
+    $agree_terms = Input::postStrVar('agree_terms');
+    if ($agree_terms !== '1' && $agree_terms !== 'on') {
+        emMsg(_langInstall('terms_agree_required'));
+    }
+
     $db_host = Input::postStrVar('hostname');
     $db_user = Input::postStrVar('dbuser');
     $db_pw = Input::postStrVar('dbpasswd');
@@ -439,6 +505,7 @@ body {
     <input name="password" type="hidden" class="input" value="$password">
     <input name="repassword" type="hidden" class="input" value="$repassword">
     <input name="email" type="hidden" class="input" value="$email">
+    <input name="agree_terms" type="hidden" class="input" value="1">
 <div class="warning-card">
     <h2 class="warning-title">{$warning_msg}</h2>
 </div>
