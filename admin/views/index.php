@@ -197,6 +197,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                    <input type="hidden" id="token" name="token" value="<?= LoginAuth::genToken() ?>" />
                     <div id="update-modal-loading"></div>
                     <div id="update-modal-msg" class="text-center"></div>
                     <div id="update-modal-changes"></div>

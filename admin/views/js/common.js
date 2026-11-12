@@ -951,7 +951,7 @@ function checkUpdate() {
     });
 }
 
-function doUp(source, upSQL) {
+function doUp(source, upSQL, token) {
     const updateModalLoading = $("#update-modal-loading");
     const updateModalMsg = $("#update-modal-msg");
     const updateModalChanges = $("#update-modal-changes");
@@ -962,9 +962,12 @@ function doUp(source, upSQL) {
     updateModalMsg.html(_langJS.uploading_wait);
     updateModalChanges.html("");
 
+    const csrfToken = token || (typeof em_csrf_token !== 'undefined' ? em_csrf_token : ($("#token").val() || ''));
+
     $.post("./upgrade.php?action=update", {
         source: source,
-        upsql: upSQL
+        upsql: upSQL,
+        token: csrfToken
     }, function (data) {
         upmsg.removeClass();
         if (data.includes("succ")) {

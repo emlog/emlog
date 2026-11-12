@@ -40,6 +40,8 @@ if ($action === 'check_update') {
 }
 
 if ($action === 'update' && User::isAdmin()) {
+    LoginAuth::checkToken();
+
     if (!Register::isRegLocal()) {
         exit('error_register');
     }

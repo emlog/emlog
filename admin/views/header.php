@@ -26,6 +26,7 @@
     <script src="./views/js/cropper.min.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
     <script>
         var _langJS = <?= json_encode(EmLang::getInstance()->getJsLang()); ?>;
+        var em_csrf_token = '<?= LoginAuth::genToken() ?>';
     </script>
     <script src="./views/js/common.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>
     <script src="./views/components/layer/layer.js?t=<?= Option::EMLOG_VERSION_TIMESTAMP ?>"></script>

@@ -221,6 +221,7 @@ if ($action === 'check_update') {
 }
 
 if ($action === 'upgrade') {
+    LoginAuth::checkToken();
     $alias = Input::getStrVar('alias');
 
     if (!Register::isRegLocal()) {
