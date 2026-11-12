@@ -142,11 +142,16 @@
                             }
                         }
 
-                        foreach ($sorts as $key => $value) {
-                            if ($value['pid'] != 0) {
-                                continue;
+                        if (empty($sorts)) {
+                            $emptyAction = '<button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#sortModal">' . _lang('add_category') . '</button>';
+                            echo View::renderEmptyTableRow(8, _lang('no_category_yet'), _lang('no_category_desc'), $emptyAction);
+                        } else {
+                            foreach ($sorts as $key => $value) {
+                                if ($value['pid'] != 0) {
+                                    continue;
+                                }
+                                renderSortRow($sorts, $value, 0, false, []);
                             }
-                            renderSortRow($sorts, $value, 0, false, []);
                         }
                         ?>
                     </tbody>
@@ -154,12 +159,16 @@
             </div>
         </div>
     </div>
-    <div class="list_footer">
-        <input type="submit" value="<?= _lang('save_sort') ?>" class="btn btn-sm btn-success mr-2 shadow-sm" />
-        <a href="javascript: sort_batch_delete();" class="btn btn-sm btn-outline-danger"><?= _lang('delete') ?></a>
-    </div>
+    <?php if (!empty($sorts)): ?>
+        <div class="list_footer">
+            <input type="submit" value="<?= _lang('save_sort') ?>" class="btn btn-sm btn-success mr-2 shadow-sm" />
+            <a href="javascript: sort_batch_delete();" class="btn btn-sm btn-outline-danger"><?= _lang('delete') ?></a>
+        </div>
+    <?php endif; ?>
 </form>
-<div class="text-center small"><?= _lang('total') ?> <?= $sorts_count ?></div>
+<?php if (!empty($sorts)): ?>
+    <div class="text-center small"><?= _lang('total') ?> <?= $sorts_count ?></div>
+<?php endif; ?>
 
 <style>
     /* 树形分类多层级连线与精准缩进 */

@@ -96,17 +96,23 @@ $isdraft = $draft ? '&draft=1' : '';
                     </thead>
                     <tbody class="checkboxContainer">
                         <?php
-                        $multiCheckBtn = false; // 是否显示批量审核驳回按钮
-                        foreach ($logs as $key => $value):
-                            $sortName = isset($sorts[$value['sortid']]['sortname']) ? $sorts[$value['sortid']]['sortname'] : _lang('unknown_sort');
-                            $sortName = $value['sortid'] == -1 ? _lang('uncategorized') : $sortName;
-                            $authorInfo = User::getUserByUid($value['author']);
-                            $author = !empty($authorInfo['nickname']) ? $authorInfo['nickname'] : _lang('unknown_author');
-                            $author_role = isset($authorInfo['role']) ? $authorInfo['role'] : '';
-                            $logTags = [];
-                            if ($value['tags']) {
-                                $logTags = $Tag_Model->getNamesFromIdStr($value['tags']);
-                            }
+                        if (empty($logs)):
+                            $emptyTitle = $draft ? _lang('no_draft_yet') : _lang('no_article_yet');
+                            $emptyDesc = $draft ? _lang('no_draft_desc') : _lang('no_article_desc');
+                            $emptyAction = '<a href="article.php?action=write" class="btn btn-sm btn-success">' . ($draft ? _lang('write_new_article') : _lang('write_article')) . '</a>';
+                            echo View::renderEmptyTableRow(9, $emptyTitle, $emptyDesc, $emptyAction);
+                        else:
+                            $multiCheckBtn = false; // 是否显示批量审核驳回按钮
+                            foreach ($logs as $key => $value):
+                                $sortName = isset($sorts[$value['sortid']]['sortname']) ? $sorts[$value['sortid']]['sortname'] : _lang('unknown_sort');
+                                $sortName = $value['sortid'] == -1 ? _lang('uncategorized') : $sortName;
+                                $authorInfo = User::getUserByUid($value['author']);
+                                $author = !empty($authorInfo['nickname']) ? $authorInfo['nickname'] : _lang('unknown_author');
+                                $author_role = isset($authorInfo['role']) ? $authorInfo['role'] : '';
+                                $logTags = [];
+                                if ($value['tags']) {
+                                    $logTags = $Tag_Model->getNamesFromIdStr($value['tags']);
+                                }
                         ?>
                             <tr>
                                 <td style="width: 20px;"><input type="checkbox" name="blog[]" value="<?= $value['gid'] ?>" class="ids" /></td>
@@ -158,86 +164,93 @@ $isdraft = $draft ? '&draft=1' : '';
                                     <?php endif ?>
                                 </td>
                             </tr>
-                        <?php endforeach ?>
+                        <?php
+                            endforeach;
+                        endif;
+                        ?>
                     </tbody>
                 </table>
             </div>
             <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
             <input name="operate" id="operate" value="" type="hidden" />
             <input name="author" id="author" value="" type="hidden" />
-            <div class="form-inline">
-                <div class="btn-group">
-                    <button class="btn btn-success btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"><?= _lang('operation') ?></button>
-                    <div class="dropdown-menu">
-                        <?php if ($multiCheckBtn): ?>
-                            <a href="javascript:logact('check');" class="dropdown-item"><?= _lang('audit') ?></a>
-                            <a href="javascript:logact('uncheck');" class="dropdown-item"><?= _lang('reject') ?></a>
-                            <hr>
-                        <?php endif ?>
-                        <?php if ($draft): ?>
-                            <a href="javascript:logact('pub');" class="dropdown-item"><?= _lang('publish') ?></a>
-                            <a href="javascript:logact('del_draft');" class="dropdown-item text-danger"><?= _lang('delete') ?></a>
-                        <?php else: ?>
-                            <?php if (User::haveEditPermission()): ?>
-                                <a href="javascript:logact('top');" class="dropdown-item"><?= _lang('home_top') ?></a>
-                                <a href="javascript:logact('sortop');" class="dropdown-item"><?= _lang('sort_top') ?></a>
-                                <a href="javascript:logact('notop');" class="dropdown-item"><?= _lang('cancel_top') ?></a>
-                                <hr>
-                                <a href="javascript:changeAuthorAlert();" class="dropdown-item"><?= _lang('change_author') ?></a>
+            <?php if (!empty($logs)): ?>
+                <div class="form-inline">
+                    <div class="btn-group">
+                        <button class="btn btn-success btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"><?= _lang('operation') ?></button>
+                        <div class="dropdown-menu">
+                            <?php if ($multiCheckBtn): ?>
+                                <a href="javascript:logact('check');" class="dropdown-item"><?= _lang('audit') ?></a>
+                                <a href="javascript:logact('uncheck');" class="dropdown-item"><?= _lang('reject') ?></a>
                                 <hr>
                             <?php endif ?>
-                            <a href="javascript:logact('hide');" class="dropdown-item"><?= _lang('put_to_draft') ?></a>
-                            <a href="javascript:logact('del');" class="dropdown-item text-danger"><?= _lang('delete') ?></a>
-                        <?php endif ?>
+                            <?php if ($draft): ?>
+                                <a href="javascript:logact('pub');" class="dropdown-item"><?= _lang('publish') ?></a>
+                                <a href="javascript:logact('del_draft');" class="dropdown-item text-danger"><?= _lang('delete') ?></a>
+                            <?php else: ?>
+                                <?php if (User::haveEditPermission()): ?>
+                                    <a href="javascript:logact('top');" class="dropdown-item"><?= _lang('home_top') ?></a>
+                                    <a href="javascript:logact('sortop');" class="dropdown-item"><?= _lang('sort_top') ?></a>
+                                    <a href="javascript:logact('notop');" class="dropdown-item"><?= _lang('cancel_top') ?></a>
+                                    <hr>
+                                    <a href="javascript:changeAuthorAlert();" class="dropdown-item"><?= _lang('change_author') ?></a>
+                                    <hr>
+                                <?php endif ?>
+                                <a href="javascript:logact('hide');" class="dropdown-item"><?= _lang('put_to_draft') ?></a>
+                                <a href="javascript:logact('del');" class="dropdown-item text-danger"><?= _lang('delete') ?></a>
+                            <?php endif ?>
+                        </div>
                     </div>
-                </div>
-                <select name="sort" id="sort" onChange="changeSort(this);" class="form-control form-control-sm m-1">
-                    <option value="" selected="selected"><?= _lang('move_to_sort') ?></option>
-                    <?php
-                    foreach ($sorts as $key => $value):
-                        if ($value['pid'] != 0) {
-                            continue;
-                        }
-                    ?>
-                        <option value="<?= $value['sid'] ?>"><?= $value['sortname'] ?></option>
+                    <select name="sort" id="sort" onChange="changeSort(this);" class="form-control form-control-sm m-1">
+                        <option value="" selected="selected"><?= _lang('move_to_sort') ?></option>
                         <?php
-                        $children = $value['children'];
-                        foreach ($children as $key):
-                            $value = $sorts[$key];
+                        foreach ($sorts as $key => $value):
+                            if ($value['pid'] != 0) {
+                                continue;
+                            }
                         ?>
-                            <option value="<?= $value['sid'] ?>">&nbsp; &nbsp;
-                                &nbsp; <?= $value['sortname'] ?></option>
-                    <?php
+                            <option value="<?= $value['sid'] ?>"><?= $value['sortname'] ?></option>
+                            <?php
+                            $children = $value['children'];
+                            foreach ($children as $key):
+                                $value = $sorts[$key];
+                            ?>
+                                <option value="<?= $value['sid'] ?>">&nbsp; &nbsp;
+                                    &nbsp; <?= $value['sortname'] ?></option>
+                        <?php
+                            endforeach;
                         endforeach;
-                    endforeach;
-                    ?>
-                    <option value="-1"><?= _lang('uncategorized') ?></option>
-                </select>
-            </div>
+                        ?>
+                        <option value="-1"><?= _lang('uncategorized') ?></option>
+                    </select>
+                </div>
+            <?php endif; ?>
         </form>
     </div>
 </div>
-<div class="page"><?= $pageurl ?> </div>
-<div class="d-flex justify-content-center mb-4 small">
-    <div class="form-inline d-flex flex-wrap justify-content-center align-items-center">
-        <label for="perpage_num" class="mr-2"><?= _lang('total') ?> <?= $logNum ?>, <?= _lang('per_page') ?></label>
-        <select name="perpage_num" id="perpage_num" class="form-control form-control-sm w-auto" onChange="changePerPage(this);">
-            <option value="10" <?= ($perPage == 10) ? 'selected' : '' ?>>10</option>
-            <option value="20" <?= ($perPage == 20) ? 'selected' : '' ?>>20</option>
-            <option value="50" <?= ($perPage == 50) ? 'selected' : '' ?>>50</option>
-            <option value="100" <?= ($perPage == 100) ? 'selected' : '' ?>>100</option>
-            <option value="500" <?= ($perPage == 500) ? 'selected' : '' ?>>500</option>
-        </select>
+<?php if (!empty($logs)): ?>
+    <div class="page"><?= $pageurl ?> </div>
+    <div class="d-flex justify-content-center mb-4 small">
+        <div class="form-inline d-flex flex-wrap justify-content-center align-items-center">
+            <label for="perpage_num" class="mr-2"><?= _lang('total') ?> <?= $logNum ?>, <?= _lang('per_page') ?></label>
+            <select name="perpage_num" id="perpage_num" class="form-control form-control-sm w-auto" onChange="changePerPage(this);">
+                <option value="10" <?= ($perPage == 10) ? 'selected' : '' ?>>10</option>
+                <option value="20" <?= ($perPage == 20) ? 'selected' : '' ?>>20</option>
+                <option value="50" <?= ($perPage == 50) ? 'selected' : '' ?>>50</option>
+                <option value="100" <?= ($perPage == 100) ? 'selected' : '' ?>>100</option>
+                <option value="500" <?= ($perPage == 500) ? 'selected' : '' ?>>500</option>
+            </select>
+        </div>
+        <script>
+            function changePerPage(select) {
+                const params = new URLSearchParams(window.location.search);
+                params.set('perpage_num', select.value);
+                params.set('page', '1');
+                window.location.search = params.toString();
+            }
+        </script>
     </div>
-    <script>
-        function changePerPage(select) {
-            const params = new URLSearchParams(window.location.search);
-            params.set('perpage_num', select.value);
-            params.set('page', '1');
-            window.location.search = params.toString();
-        }
-    </script>
-</div>
+<?php endif; ?>
 <!--驳回文章-->
 <div class="modal fade" id="uncheckModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

@@ -20,8 +20,12 @@
                     </thead>
                     <tbody class="checkboxContainer">
                         <?php
-                        foreach ($links as $key => $value):
-                            doAction('adm_link_display');
+                        if (empty($links)):
+                            $emptyAction = '<a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#linkModel">' . _lang('add_link') . '</a>';
+                            echo View::renderEmptyTableRow(4, _lang('no_link_yet'), _lang('no_link_desc'), $emptyAction);
+                        else:
+                            foreach ($links as $key => $value):
+                                doAction('adm_link_display');
                         ?>
                             <tr>
                                 <td>
@@ -73,18 +77,25 @@
                                     <a href="javascript: em_confirm(<?= $value['id'] ?>, 'link', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger"><?= _lang('delete'); ?></a>
                                 </td>
                             </tr>
-                        <?php endforeach ?>
+                        <?php
+                            endforeach;
+                        endif;
+                        ?>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-    <div class="list_footer">
-        <input type="submit" value="<?= _lang('save_sort'); ?>" class="btn btn-sm btn-success mr-2 shadow-sm" />
-        <a href="javascript: link_batch_delete();" class="btn btn-sm btn-outline-danger"><?= _lang('delete') ?></a>
-    </div>
+    <?php if (!empty($links)): ?>
+        <div class="list_footer">
+            <input type="submit" value="<?= _lang('save_sort'); ?>" class="btn btn-sm btn-success mr-2 shadow-sm" />
+            <a href="javascript: link_batch_delete();" class="btn btn-sm btn-outline-danger"><?= _lang('delete') ?></a>
+        </div>
+    <?php endif; ?>
 </form>
-<div class="text-center small"><?= _lang('total') ?> <?= $link_count ?></div>
+<?php if (!empty($links)): ?>
+    <div class="text-center small"><?= _lang('total') ?> <?= $link_count ?></div>
+<?php endif; ?>
 
 <!--编辑链接弹窗-->
 <div class="modal fade" id="linkModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

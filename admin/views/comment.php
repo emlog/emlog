@@ -34,8 +34,13 @@
                         </tr>
                     </thead>
                     <tbody class="checkboxContainer">
-                        <?php foreach ($comment as $key => $value):
-                            $ishide = $value['hide'] == 'y' ? '<span class="text-danger">' . _lang('pending_audit') . '</span>' : '';
+                        <?php
+                        $hasComment = !empty($comment);
+                        if (!$hasComment):
+                            echo View::renderEmptyTableRow(6, _lang('no_comment_yet'), _lang('no_comment_desc'));
+                        else:
+                            foreach ($comment as $key => $value):
+                                $ishide = $value['hide'] == 'y' ? '<span class="text-danger">' . _lang('pending_audit') . '</span>' : '';
                             $mail = $value['mail'] ? " <br />email: {$value['mail']}" : '';
                             $url = !empty($value['url']) ? " <br />" . _lang('homepage') . "：<a href=\"{$value['url']}\" target=\"_blank\" rel=\"nofollow\">{$value['url']}</a>" : '';
                             $ip = $value['ip'];
@@ -97,10 +102,14 @@
                                     <?php endif ?>
                                 </td>
                             </tr>
-                        <?php endforeach ?>
+                        <?php
+                            endforeach;
+                        endif;
+                        ?>
                     </tbody>
                 </table>
             </div>
+            <?php if ($hasComment): ?>
             <div class="list_footer">
                 <div class="btn-group">
                     <button class="btn btn-success btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"><?= _lang('operation') ?></button>
@@ -116,8 +125,10 @@
                 </div>
                 <input name="operate" id="operate" value="" type="hidden" />
             </div>
+            <?php endif; ?>
         </div>
     </div>
+    <?php if ($hasComment): ?>
     <div class="page"><?= $pageurl ?></div>
     <div class="d-flex justify-content-center mb-4 small">
         <div class="form-inline d-flex flex-wrap justify-content-center align-items-center">
@@ -139,6 +150,7 @@
             }
         </script>
     </div>
+    <?php endif; ?>
 </form>
 <div class="modal fade" id="replyModal" tabindex="-1" role="dialog" aria-labelledby="replyModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

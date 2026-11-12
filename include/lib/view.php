@@ -44,4 +44,44 @@ class View
         ob_end_flush();
         exit;
     }
+
+    /**
+     * 渲染无数据空状态 HTML
+     *
+     * @param string $title 主提示文案
+     * @param string $desc 辅助说明文案（可选）
+     * @param string $actionHtml 快捷操作按钮或链接 HTML（可选）
+     * @param string $extraClass 额外的容器 class（可选）
+     * @return string
+     */
+    public static function renderEmpty($title, $desc = '', $actionHtml = '', $extraClass = '')
+    {
+        $html = '<div class="em-empty-box' . ($extraClass ? ' ' . htmlspecialchars($extraClass, ENT_QUOTES, 'UTF-8') : '') . '">';
+        if (!empty($title)) {
+            $html .= '<div class="em-empty-title">' . htmlspecialchars($title, ENT_QUOTES, 'UTF-8') . '</div>';
+        }
+        if (!empty($desc)) {
+            $html .= '<div class="em-empty-desc">' . htmlspecialchars($desc, ENT_QUOTES, 'UTF-8') . '</div>';
+        }
+        if (!empty($actionHtml)) {
+            $html .= '<div class="em-empty-action">' . $actionHtml . '</div>';
+        }
+        $html .= '</div>';
+        return $html;
+    }
+
+    /**
+     * 渲染表格内的无数据空状态占位行 (tr > td[colspan])
+     *
+     * @param int $colspan 跨列数
+     * @param string $title 主提示文案
+     * @param string $desc 辅助说明文案（可选）
+     * @param string $actionHtml 快捷操作按钮或链接 HTML（可选）
+     * @return string
+     */
+    public static function renderEmptyTableRow($colspan, $title, $desc = '', $actionHtml = '')
+    {
+        $colspan = (int)$colspan;
+        return '<tr><td colspan="' . $colspan . '" class="p-0 border-0">' . self::renderEmpty($title, $desc, $actionHtml) . '</td></tr>';
+    }
 }

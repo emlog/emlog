@@ -46,7 +46,13 @@
                         </tr>
                     </thead>
                     <tbody class="checkboxContainer">
-                        <?php foreach ($pages as $key => $value): ?>
+                        <?php
+                        if (empty($pages)):
+                            $emptyAction = '<a href="page.php?action=new" class="btn btn-sm btn-success">' . _lang('new_page') . '</a>';
+                            echo View::renderEmptyTableRow(8, _lang('no_page_yet'), _lang('no_page_desc'), $emptyAction);
+                        else:
+                            foreach ($pages as $key => $value):
+                        ?>
                             <tr>
                                 <td style="width: 19px;">
                                     <input type="checkbox" name="page[]" value="<?= $value['gid'] ?>" class="ids" />
@@ -85,27 +91,34 @@
                                     <a href="javascript: em_confirm(<?= $value['gid'] ?>, 'page', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger"><?= _lang('delete') ?></a>
                                 </td>
                             </tr>
-                        <?php endforeach ?>
+                        <?php
+                            endforeach;
+                        endif;
+                        ?>
                     </tbody>
                 </table>
             </div>
-            <div class="list_footer">
-                <div class="btn-group">
-                    <button class="btn btn-success btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"><?= _lang('operation') ?></button>
-                    <div class="dropdown-menu">
-                        <a href="javascript:pageact('hide');" class="dropdown-item"><?= _lang('to_draft') ?></a>
-                        <a href="javascript:pageact('pub');" class="dropdown-item"><?= _lang('publish') ?></a>
-                        <a href="javascript:pageact('del');" class="dropdown-item text-danger"><?= _lang('delete') ?></a>
+            <?php if (!empty($pages)): ?>
+                <div class="list_footer">
+                    <div class="btn-group">
+                        <button class="btn btn-success btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"><?= _lang('operation') ?></button>
+                        <div class="dropdown-menu">
+                            <a href="javascript:pageact('hide');" class="dropdown-item"><?= _lang('to_draft') ?></a>
+                            <a href="javascript:pageact('pub');" class="dropdown-item"><?= _lang('publish') ?></a>
+                            <a href="javascript:pageact('del');" class="dropdown-item text-danger"><?= _lang('delete') ?></a>
+                        </div>
                     </div>
+                    <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
+                    <input name="operate" id="operate" value="" type="hidden" />
                 </div>
-                <input name="token" id="token" value="<?= LoginAuth::genToken() ?>" type="hidden" />
-                <input name="operate" id="operate" value="" type="hidden" />
-            </div>
+            <?php endif; ?>
         </form>
     </div>
 </div>
-<div class="page"><?= $pageurl ?></div>
-<div class="text-center small"><?= _lang('total') ?> <?= $pageNum ?></div>
+<?php if (!empty($pages)): ?>
+    <div class="page"><?= $pageurl ?></div>
+    <div class="text-center small"><?= _lang('total') ?> <?= $pageNum ?></div>
+<?php endif; ?>
 <script>
     $(function() {
         setTimeout(hideActived, 3600);

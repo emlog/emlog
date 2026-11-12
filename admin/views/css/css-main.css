@@ -2886,3 +2886,24 @@ textarea.form-control {
 .editormd-color-popover .custom-color-input { width: 20px; height: 20px; padding: 0; border: none; cursor: pointer; background: transparent; }
 .editormd-color-popover .color-clear-btn { color: #858796; text-decoration: none; }
 .editormd-color-popover .color-clear-btn:hover { color: #e74a3b; }
+
+/* 列表空数据状态通用样式 */
+.em-empty-box {
+    padding: 2.75rem 1.5rem;
+    text-align: center;
+}
+.em-empty-title {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #4b5563;
+    margin-bottom: 0.35rem;
+}
+.em-empty-desc {
+    font-size: 0.825rem;
+    color: #9ca3af;
+    margin-bottom: 0.75rem;
+}
+.em-empty-action .btn {
+    font-size: 0.8125rem;
+    padding: 0.25rem 0.75rem;
+}

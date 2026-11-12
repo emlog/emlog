@@ -74,6 +74,9 @@
         </div>
     </div>
 <?php endif; ?>
+<?php
+$emptyAction = '<a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#exampleModal">' . _lang('upload_file') . '</a>';
+?>
 <form action="media.php?action=operate_media" method="post" name="form_media" id="form_media">
     <?php if ($show === 'list'): ?>
         <!-- 列表模式 -->
@@ -92,12 +95,16 @@
                             </tr>
                         </thead>
                         <tbody class="checkboxContainer">
-                            <?php foreach ($medias as $key => $value):
-                                $media_url = getFileUrl($value['filepath']);
-                                $sort_name = $value['sortname'];
-                                $media_name = $value['filename'];
-                                $authorInfo = User::getUserByUid($value['author']);
-                                $author = !empty($authorInfo['nickname']) ? $authorInfo['nickname'] : _lang('unknown_author');
+                            <?php
+                            if (empty($medias)):
+                                echo View::renderEmptyTableRow(6, _lang('no_media_yet'), _lang('no_media_desc'), $emptyAction);
+                            else:
+                                foreach ($medias as $key => $value):
+                                    $media_url = getFileUrl($value['filepath']);
+                                    $sort_name = $value['sortname'];
+                                    $media_name = $value['filename'];
+                                    $authorInfo = User::getUserByUid($value['author']);
+                                    $author = !empty($authorInfo['nickname']) ? $authorInfo['nickname'] : _lang('unknown_author');
                                 if (isImage($value['mimetype'])) {
                                     $media_icon = '🖼️';
                                     $img_viewer = 'class="highslide" onclick="return hs.expand(this)"';
@@ -140,81 +147,92 @@
                                         <a href="javascript: em_confirm(<?= $value['aid'] ?>, 'media', '<?= LoginAuth::genToken() ?>', '<?= $mediaSidQuery ?>');" class="badge badge-danger"><?= _lang('delete') ?></a>
                                     </td>
                                 </tr>
-                            <?php endforeach; ?>
+                            <?php
+                                endforeach;
+                            endif;
+                            ?>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
     <?php else: ?>
-        <div class="row checkboxContainer">
-            <!-- 宫格卡片模式 -->
-            <?php foreach ($medias as $key => $value):
-                $media_url = getFileUrl($value['filepath']);
-                $thumbnail_url = $value['thumbnail_url'];
-                $sort_name = $value['sortname'];
-                $media_name = $value['filename'];
-                $authorInfo = User::getUserByUid($value['author']);
-                $author = !empty($authorInfo['nickname']) ? $authorInfo['nickname'] : _lang('unknown_author');
-                if (isImage($value['mimetype'])) {
-                    $media_icon = getFileUrl($value['filepath_thum']);
-                    $img_viewer = 'class="highslide" onclick="return hs.expand(this)"';
-                } elseif (isZip($value['filename'])) {
-                    $media_icon = "./views/images/zip.webp";
-                    $img_viewer = '';
-                } elseif (isVideo($value['mimetype'])) {
-                    $media_icon = "./views/images/video.webp";
-                    $img_viewer = '';
-                } elseif (isAudio($value['filename'])) {
-                    $media_icon = "./views/images/audio.webp";
-                    $img_viewer = '';
-                } else {
-                    $media_icon = "./views/images/fnone.webp";
-                    $img_viewer = '';
-                }
-            ?>
-                <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm hover-shadow-lg media-select-card" style="cursor: pointer;">
-                        <a href="<?= $media_url ?>" <?= $img_viewer ?> target="_blank"><img class="card-img-top" loading="lazy" src="<?= $media_icon ?>" /></a>
-                        <div class="card-body">
-                            <p class="card-text text-muted small">
-                                <a href="#" data-toggle="modal" data-target="#editMediaModal" data-id="<?= $value['aid'] ?>" data-filename="<?= $media_name ?>"><?= $media_name ?></a> <span class="badge badge-success"><?= $sort_name ?></span><br>
-                                <?= _lang('time') ?>：<?= $value['addtime'] ?><br>
-                                <?= _lang('creator') ?>：
-                                <?php if (User::haveEditPermission()): ?>
-                                    <a href="./media.php?uid=<?= $value['author'] ?>"><?= $author ?> </a>
-                                <?php else: ?>
-                                    <?= $author ?>
-                                <?php endif; ?><br>
-                                <?= _lang('file_size') ?>：<?= $value['attsize'] ?>
-                                <?php if ($value['width'] && $value['height']): ?>
-                                    ，<?= _lang('image_size') ?>：<?= $value['width'] ?>x<?= $value['height'] ?>
-                                <?php endif ?><br>
-                                <?= _lang('source_file') ?>：<a href="#" class="copy-link text-muted" data-toggle="popover" data-url="<?= $media_url ?>"><?= $media_url ?></a><br>
-                                <a href="#" class="copy-link" data-toggle="popover" data-url="<?= $media_url ?>"><?= _lang('original_file_url') ?></a>
-                                <?php if ($value['alias'] && isZip($value['filename'])):
-                                    $media_down_url = BLOG_URL . '?resource_alias=' . $value['alias'];
-                                    $media_down_url_pub = BLOG_URL . '?resource_alias=' . $value['alias'] . '&resource_filename=' . $value['filename_without_ext'];
-                                ?>
-                                    ｜ <a href="#" class="copy-link" data-toggle="popover" data-url="<?= $media_down_url_pub ?>"><?= _lang('public_download_url') ?></a>
-                                    ｜ <a href="#" class="copy-link" data-toggle="popover" data-url="<?= $media_down_url ?>"><?= _lang('login_download_url') ?></a> （<?= _lang('download') ?><?= $value['download_count'] ?>）
-                                <?php endif ?>
-                                <?php if ($thumbnail_url): ?>
-                                    ｜ <a href="#" class="copy-link" data-toggle="popover" data-url="<?= $thumbnail_url ?>"><?= _lang('thumbnail_url') ?></a>
-                                <?php endif ?>
-                            </p>
-                            <p class="card-text d-flex justify-content-between">
-                                <span>
-                                    <a href="javascript: em_confirm(<?= $value['aid'] ?>, 'media', '<?= LoginAuth::genToken() ?>', '<?= $mediaSidQuery ?>');" class="text-danger small mr-2"><?= _lang('delete') ?></a>
-                                    <a href="#" data-toggle="modal" data-target="#moveMediaModal" data-id="<?= $value['aid'] ?>" data-sortid="<?= $value['sortid'] ?>" class="text-primary small"><?= _lang('move') ?></a>
-                                </span>
-                                <input type="checkbox" name="aids[]" value="<?= $value['aid'] ?>" class="aids" />
-                            </p>
+        <?php if (empty($medias)): ?>
+            <div class="card shadow mb-4">
+                <div class="card-body">
+                    <?= View::renderEmpty(_lang('no_media_yet'), _lang('no_media_desc'), $emptyAction) ?>
+                </div>
+            </div>
+        <?php else: ?>
+            <div class="row checkboxContainer">
+                <!-- 宫格卡片模式 -->
+                <?php foreach ($medias as $key => $value):
+                    $media_url = getFileUrl($value['filepath']);
+                    $thumbnail_url = $value['thumbnail_url'];
+                    $sort_name = $value['sortname'];
+                    $media_name = $value['filename'];
+                    $authorInfo = User::getUserByUid($value['author']);
+                    $author = !empty($authorInfo['nickname']) ? $authorInfo['nickname'] : _lang('unknown_author');
+                    if (isImage($value['mimetype'])) {
+                        $media_icon = getFileUrl($value['filepath_thum']);
+                        $img_viewer = 'class="highslide" onclick="return hs.expand(this)"';
+                    } elseif (isZip($value['filename'])) {
+                        $media_icon = "./views/images/zip.webp";
+                        $img_viewer = '';
+                    } elseif (isVideo($value['mimetype'])) {
+                        $media_icon = "./views/images/video.webp";
+                        $img_viewer = '';
+                    } elseif (isAudio($value['filename'])) {
+                        $media_icon = "./views/images/audio.webp";
+                        $img_viewer = '';
+                    } else {
+                        $media_icon = "./views/images/fnone.webp";
+                        $img_viewer = '';
+                    }
+                ?>
+                    <div class="col-md-4">
+                        <div class="card mb-4 shadow-sm hover-shadow-lg media-select-card" style="cursor: pointer;">
+                            <a href="<?= $media_url ?>" <?= $img_viewer ?> target="_blank"><img class="card-img-top" loading="lazy" src="<?= $media_icon ?>" /></a>
+                            <div class="card-body">
+                                <p class="card-text text-muted small">
+                                    <a href="#" data-toggle="modal" data-target="#editMediaModal" data-id="<?= $value['aid'] ?>" data-filename="<?= $media_name ?>"><?= $media_name ?></a> <span class="badge badge-success"><?= $sort_name ?></span><br>
+                                    <?= _lang('time') ?>：<?= $value['addtime'] ?><br>
+                                    <?= _lang('creator') ?>：
+                                    <?php if (User::haveEditPermission()): ?>
+                                        <a href="./media.php?uid=<?= $value['author'] ?>"><?= $author ?> </a>
+                                    <?php else: ?>
+                                        <?= $author ?>
+                                    <?php endif; ?><br>
+                                    <?= _lang('file_size') ?>：<?= $value['attsize'] ?>
+                                    <?php if ($value['width'] && $value['height']): ?>
+                                        ，<?= _lang('image_size') ?>：<?= $value['width'] ?>x<?= $value['height'] ?>
+                                    <?php endif ?><br>
+                                    <?= _lang('source_file') ?>：<a href="#" class="copy-link text-muted" data-toggle="popover" data-url="<?= $media_url ?>"><?= $media_url ?></a><br>
+                                    <a href="#" class="copy-link" data-toggle="popover" data-url="<?= $media_url ?>"><?= _lang('original_file_url') ?></a>
+                                    <?php if ($value['alias'] && isZip($value['filename'])):
+                                        $media_down_url = BLOG_URL . '?resource_alias=' . $value['alias'];
+                                        $media_down_url_pub = BLOG_URL . '?resource_alias=' . $value['alias'] . '&resource_filename=' . $value['filename_without_ext'];
+                                    ?>
+                                        ｜ <a href="#" class="copy-link" data-toggle="popover" data-url="<?= $media_down_url_pub ?>"><?= _lang('public_download_url') ?></a>
+                                        ｜ <a href="#" class="copy-link" data-toggle="popover" data-url="<?= $media_down_url ?>"><?= _lang('login_download_url') ?></a> （<?= _lang('download') ?><?= $value['download_count'] ?>）
+                                    <?php endif ?>
+                                    <?php if ($thumbnail_url): ?>
+                                        ｜ <a href="#" class="copy-link" data-toggle="popover" data-url="<?= $thumbnail_url ?>"><?= _lang('thumbnail_url') ?></a>
+                                    <?php endif ?>
+                                </p>
+                                <p class="card-text d-flex justify-content-between">
+                                    <span>
+                                        <a href="javascript: em_confirm(<?= $value['aid'] ?>, 'media', '<?= LoginAuth::genToken() ?>', '<?= $mediaSidQuery ?>');" class="text-danger small mr-2"><?= _lang('delete') ?></a>
+                                        <a href="#" data-toggle="modal" data-target="#moveMediaModal" data-id="<?= $value['aid'] ?>" data-sortid="<?= $value['sortid'] ?>" class="text-primary small"><?= _lang('move') ?></a>
+                                    </span>
+                                    <input type="checkbox" name="aids[]" value="<?= $value['aid'] ?>" class="aids" />
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            <?php endforeach; ?>
-        </div>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
     <?php endif; ?>
     <?php if ($count > 0): ?>
         <div class="form-row align-items-center">
@@ -242,27 +260,29 @@
         </div>
     <?php endif; ?>
 </form>
-<div class="page"><?= $page ?> </div>
-<div class="d-flex justify-content-center mb-4 small">
-    <div class="form-inline d-flex flex-wrap justify-content-center align-items-center">
-        <label for="perpage_num" class="mr-2"><?= _lang('total') ?> <?= $count ?>, <?= _lang('per_page') ?></label>
-        <select name="perpage_num" id="perpage_num" class="form-control form-control-sm w-auto" onChange="changePerPage(this);">
-            <option value="12" <?= ($perPage == 12) ? 'selected' : '' ?>>12</option>
-            <option value="24" <?= ($perPage == 24) ? 'selected' : '' ?>>24</option>
-            <option value="60" <?= ($perPage == 60) ? 'selected' : '' ?>>60</option>
-            <option value="120" <?= ($perPage == 120) ? 'selected' : '' ?>>120</option>
-            <option value="600" <?= ($perPage == 600) ? 'selected' : '' ?>>600</option>
-        </select>
-        <script>
-            function changePerPage(select) {
-                const params = new URLSearchParams(window.location.search);
-                params.set('perpage_num', select.value);
-                params.set('page', '1');
-                window.location.search = params.toString();
-            }
-        </script>
+<?php if ($count > 0): ?>
+    <div class="page"><?= $page ?> </div>
+    <div class="d-flex justify-content-center mb-4 small">
+        <div class="form-inline d-flex flex-wrap justify-content-center align-items-center">
+            <label for="perpage_num" class="mr-2"><?= _lang('total') ?> <?= $count ?>, <?= _lang('per_page') ?></label>
+            <select name="perpage_num" id="perpage_num" class="form-control form-control-sm w-auto" onChange="changePerPage(this);">
+                <option value="12" <?= ($perPage == 12) ? 'selected' : '' ?>>12</option>
+                <option value="24" <?= ($perPage == 24) ? 'selected' : '' ?>>24</option>
+                <option value="60" <?= ($perPage == 60) ? 'selected' : '' ?>>60</option>
+                <option value="120" <?= ($perPage == 120) ? 'selected' : '' ?>>120</option>
+                <option value="600" <?= ($perPage == 600) ? 'selected' : '' ?>>600</option>
+            </select>
+            <script>
+                function changePerPage(select) {
+                    const params = new URLSearchParams(window.location.search);
+                    params.set('perpage_num', select.value);
+                    params.set('page', '1');
+                    window.location.search = params.toString();
+                }
+            </script>
+        </div>
     </div>
-</div>
+<?php endif; ?>
 
 <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
