@@ -1390,6 +1390,263 @@ $(document).ready(function () {
     }).on('hide.bs.collapse hidden.bs.collapse', function () {
         $('#menu_category_content > .nav-link .sidebar-update-dot').show();
     });
+
+    // 自动初始化页面中的所有可搜索分类下拉组件
+    initSearchableSortDropdown('.sort-searchable-dropdown');
 });
+
+/**
+ * 初始化通用可搜索分类下拉选择组件（支持文章分类、资源分类等全场景复用）
+ * 功能支持：实时不区分大小写模糊匹配（含父级分类名匹配）、键盘导航（上下箭头滚动、Enter确认、Esc取消）、
+ *           防表单意外提交、与底层表单 select 双向状态同步、模态框（Modal）关闭自动重置、全浏览器兼容性事件处理
+ *
+ * @param {jQuery|string} [container] 目标容器选择器或元素（默认为 '.sort-searchable-dropdown'）
+ * @returns {jQuery} 匹配到的组件元素集合
+ */
+function initSearchableSortDropdown(container) {
+    var $dropdown = $(container || '.sort-searchable-dropdown');
+    if (!$dropdown.length) {
+        return $dropdown;
+    }
+
+    $dropdown.each(function () {
+        var $wrap = $(this);
+        if ($wrap.data('searchable-sort-inited')) {
+            return;
+        }
+        $wrap.data('searchable-sort-inited', true);
+
+        // 获取底层关联的原生 select 控件
+        var selectSelector = $wrap.data('select') || $wrap.data('target');
+        var $hiddenSelect = selectSelector ? $(selectSelector) : $wrap.find('select');
+        if (!$hiddenSelect.length) {
+            $hiddenSelect = $wrap.siblings('select');
+        }
+        if (!$hiddenSelect.length) {
+            $hiddenSelect = $wrap.closest('.form-group').find('select');
+        }
+
+        var $toggleBtn = $wrap.find('[data-toggle="dropdown"]');
+        var $menu = $wrap.find('.dropdown-menu');
+        var $input = $wrap.find('.sort-search-input, input[type="text"]');
+        var $list = $wrap.find('.sort-dropdown-list');
+        var $selectedText = $wrap.find('.sort-selected-text');
+        var defaultText = $wrap.data('default-text') || ($selectedText.length ? $selectedText.text() : '');
+        $wrap.data('default-text', defaultText);
+
+        function getItems() {
+            return $list.find('.sort-item');
+        }
+
+        // 展开下拉面板时自动聚焦搜索输入框（存在搜索框时）
+        $wrap.on('shown.bs.dropdown', function () {
+            if ($input.length) {
+                $input.focus().select();
+            }
+        });
+
+        // 关闭下拉面板时重置搜索关键字与列表显示（存在搜索框时）
+        $wrap.on('hidden.bs.dropdown', function () {
+            if ($input.length) {
+                $input.val('');
+                filterList('');
+            }
+        });
+
+        // 阻止在下拉面板内部（非选项）点击时冒泡导致面板意外关闭
+        $menu.on('click', function (e) {
+            if (!$(e.target).hasClass('sort-item') && !$(e.target).closest('.sort-item').length) {
+                e.stopPropagation();
+            }
+        });
+
+        /**
+         * 实时筛选分类列表
+         * @param {string} kw 搜索关键字
+         */
+        function filterList(kw) {
+            kw = $.trim(kw).toLowerCase();
+            var $items = getItems();
+            $items.removeClass('is-highlight');
+
+            $items.each(function () {
+                var $item = $(this);
+                var val = $item.data('value');
+                var name = ($item.data('name') || '').toString().toLowerCase();
+                var pname = ($item.data('pname') || '').toString().toLowerCase();
+
+                if (kw === '') {
+                    $item.show();
+                } else {
+                    // 当有搜索词时，隐藏“未分类”或“选择分类”项（val 为 0 或 -1）
+                    if (val == 0 || val == -1) {
+                        $item.hide();
+                    } else if (name.indexOf(kw) !== -1 || pname.indexOf(kw) !== -1) {
+                        $item.show();
+                    } else {
+                        $item.hide();
+                    }
+                }
+            });
+        }
+
+        // 监听搜索框输入
+        $input.on('input', function () {
+            filterList($(this).val());
+        });
+
+        // 阻止在搜索框按 Enter 时意外触发表单提交
+        $input.on('keypress', function (e) {
+            if (e.keyCode === 13) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+        });
+
+        /**
+         * 滚动选项至容器可视区域
+         * @param {jQuery} $item 目标元素
+         * @param {jQuery} $container 容器元素
+         */
+        function scrollItemIntoView($item, $container) {
+            if (!$item.length || !$container.length) {
+                return;
+            }
+            var containerTop = $container.scrollTop();
+            var containerHeight = $container.innerHeight();
+            var itemTop = $item.position().top + containerTop;
+            var itemHeight = $item.outerHeight();
+
+            if (itemTop < containerTop) {
+                $container.scrollTop(itemTop);
+            } else if (itemTop + itemHeight > containerTop + containerHeight) {
+                $container.scrollTop(itemTop + itemHeight - containerHeight);
+            }
+        }
+
+        // 键盘导航支持（上下箭头选择，回车确认，Esc取消）
+        $input.on('keydown', function (e) {
+            var $items = getItems();
+            var $visibleItems = $items.filter(':visible');
+            if (!$visibleItems.length) {
+                if (e.keyCode === 27) {
+                    $toggleBtn.dropdown('hide');
+                }
+                return;
+            }
+
+            var $highlighted = $visibleItems.filter('.is-highlight');
+            var currentIndex = $visibleItems.index($highlighted);
+
+            if (e.keyCode === 40) { // Arrow Down
+                e.preventDefault();
+                var nextIndex = (currentIndex + 1) >= $visibleItems.length ? 0 : currentIndex + 1;
+                $visibleItems.removeClass('is-highlight');
+                var $next = $visibleItems.eq(nextIndex).addClass('is-highlight');
+                scrollItemIntoView($next, $list);
+            } else if (e.keyCode === 38) { // Arrow Up
+                e.preventDefault();
+                var prevIndex = (currentIndex - 1) < 0 ? $visibleItems.length - 1 : currentIndex - 1;
+                $visibleItems.removeClass('is-highlight');
+                var $prev = $visibleItems.eq(prevIndex).addClass('is-highlight');
+                scrollItemIntoView($prev, $list);
+            } else if (e.keyCode === 13) { // Enter
+                e.preventDefault();
+                e.stopPropagation();
+                var $target = $highlighted.length ? $highlighted : $visibleItems.first();
+                if ($target.length) {
+                    $target.trigger('click');
+                }
+            } else if (e.keyCode === 27) { // Escape
+                $toggleBtn.dropdown('hide');
+            }
+        });
+
+        var isUpdating = false;
+
+        // 点击选择分类项（阻止冒泡，精准关闭，防止与全局clearMenus时序冲突导致二次弹开）
+        $wrap.on('click', '.sort-item', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (isUpdating) {
+                return;
+            }
+            isUpdating = true;
+            try {
+                var val = $(this).data('value');
+                var name = $(this).data('name');
+                var $items = getItems();
+
+                $items.removeClass('active is-highlight');
+                $(this).addClass('active');
+                if ($selectedText.length) {
+                    $selectedText.text(name);
+                }
+
+                // 精准关闭下拉面板，杜绝使用 toggle 导致状态翻转二次展开
+                $toggleBtn.dropdown('hide');
+                $wrap.removeClass('show').find('.dropdown-menu').removeClass('show');
+                $toggleBtn.attr('aria-expanded', 'false');
+
+                if ($hiddenSelect.length) {
+                    $hiddenSelect.val(val).trigger('change');
+                }
+            } finally {
+                isUpdating = false;
+            }
+        });
+
+        // 监听底层 select 变化以保持 UI 状态同步
+        if ($hiddenSelect.length) {
+            $hiddenSelect.on('change', function () {
+                if (isUpdating) {
+                    return;
+                }
+                isUpdating = true;
+                try {
+                    var currentVal = $(this).val();
+                    var $items = getItems();
+                    $items.removeClass('active');
+                    if (currentVal === '' || currentVal === null || typeof currentVal === 'undefined') {
+                        if ($selectedText.length) {
+                            $selectedText.text($wrap.data('default-text') || '');
+                        }
+                        return;
+                    }
+                    var $matched = $items.filter(function () {
+                        return $(this).data('value') == currentVal;
+                    });
+                    if ($matched.length) {
+                        $matched.addClass('active');
+                        if ($selectedText.length) {
+                            $selectedText.text($matched.data('name'));
+                        }
+                    }
+                } finally {
+                    isUpdating = false;
+                }
+            });
+        }
+
+        // 如果下拉组件位于模态框（.modal）内，在模态框关闭时重置下拉状态
+        var $closestModal = $wrap.closest('.modal');
+        if ($closestModal.length) {
+            $closestModal.on('hidden.bs.modal', function () {
+                $toggleBtn.dropdown('hide');
+                $wrap.removeClass('show').find('.dropdown-menu').removeClass('show');
+                $toggleBtn.attr('aria-expanded', 'false');
+                if ($input.length) {
+                    $input.val('');
+                    filterList('');
+                }
+            });
+        }
+    });
+
+    return $dropdown;
+}
+
+window.initSearchableSort = initSearchableSortDropdown;
+window.initSearchableSortDropdown = initSearchableSortDropdown;
 
 

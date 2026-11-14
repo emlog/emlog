@@ -248,13 +248,34 @@ $emptyAction = '<a href="#" class="btn btn-sm btn-success" data-toggle="modal" d
             <a href="javascript:mediaact('del');" class="btn btn-outline-danger btn-sm"><?= _lang('delete') ?></a>
             <div class="col-auto my-1 form-inline">
                 <?php if (User::isAdmin()): ?>
-                    <select name="sort" id="sort" onChange="changeSort(this);" class="form-control form-control-sm m-1">
+                    <select name="sort" id="sort" onChange="changeSort(this);" class="d-none">
                         <option value="" selected="selected"><?= _lang('move_to') ?></option>
                         <?php foreach ($sorts as $key => $value): ?>
                             <option value="<?= $value['id'] ?>"><?= $value['sortname'] ?></option>
                         <?php endforeach; ?>
                         <option value="0"><?= _lang('uncategorized') ?></option>
                     </select>
+                    <div class="dropdown sort-searchable-dropdown d-inline-block position-relative m-1" id="batch_sort_search_dropdown" data-default-text="<?= htmlspecialchars(_lang('move_to'), ENT_QUOTES, 'UTF-8') ?>">
+                        <button class="form-control form-control-sm text-left d-flex justify-content-between align-items-center bg-white" type="button" id="batchSortDropdownBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor: pointer; width: auto; min-width: 110px;">
+                            <span class="text-truncate sort-selected-text mr-2" style="pointer-events: none; max-width: 140px;"><?= _lang('move_to') ?></span>
+                            <i class="icofont-rounded-down text-muted" style="pointer-events: none;"></i>
+                        </button>
+                        <div class="dropdown-menu p-2 shadow-sm" aria-labelledby="batchSortDropdownBtn" style="min-width: 180px;">
+                            <?php if (count($sorts) > 10): ?>
+                                <input type="text" class="form-control form-control-sm mb-2 sort-search-input" placeholder="<?= _lang('search') ?>" autocomplete="off">
+                            <?php endif; ?>
+                            <div class="sort-dropdown-list" style="max-height: 220px; overflow-y: auto;">
+                                <?php foreach ($sorts as $key => $value): ?>
+                                    <a href="javascript:;" class="dropdown-item sort-item py-1 px-2 text-truncate rounded" data-value="<?= $value['id'] ?>" data-name="<?= htmlspecialchars($value['sortname'], ENT_QUOTES, 'UTF-8') ?>" title="<?= htmlspecialchars($value['sortname'], ENT_QUOTES, 'UTF-8') ?>">
+                                        <?= $value['sortname'] ?>
+                                    </a>
+                                <?php endforeach; ?>
+                                <a href="javascript:;" class="dropdown-item sort-item py-1 px-2 text-truncate rounded" data-value="0" data-name="<?= htmlspecialchars(_lang('uncategorized'), ENT_QUOTES, 'UTF-8') ?>">
+                                    <?= _lang('uncategorized') ?>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 <?php endif; ?>
             </div>
         </div>
@@ -322,14 +343,51 @@ $emptyAction = '<a href="#" class="btn btn-sm btn-success" data-toggle="modal" d
                         <small class="form-text text-muted"><?= _lang('resource_name_tip') ?></small>
                     </div>
                     <?php if (User::isAdmin()): ?>
+                        <?php
+                        $selectedSortId = 0;
+                        $selectedSortName = _lang('uncategorized');
+                        if (!empty($sid) && !empty($sorts)) {
+                            foreach ($sorts as $sort) {
+                                if ($sort['id'] == $sid) {
+                                    $selectedSortId = $sort['id'];
+                                    $selectedSortName = $sort['sortname'];
+                                    break;
+                                }
+                            }
+                        }
+                        ?>
                         <div class="form-group">
                             <label for="resource_sort"><?= _lang('resource_sort') ?></label>
-                            <select class="form-control" id="resource_sort" name="resource_sort">
-                                <option value="0"><?= _lang('uncategorized') ?></option>
+                            <select class="d-none" id="resource_sort" name="resource_sort">
+                                <option value="0" <?= $selectedSortId == 0 ? 'selected' : '' ?>><?= _lang('uncategorized') ?></option>
                                 <?php foreach ($sorts as $sort): ?>
-                                    <option value="<?= $sort['id'] ?>" <?= $sort['id'] == $sid ? 'selected' : '' ?>><?= $sort['sortname'] ?></option>
+                                    <option value="<?= $sort['id'] ?>" <?= $sort['id'] == $selectedSortId ? 'selected' : '' ?>><?= $sort['sortname'] ?></option>
                                 <?php endforeach; ?>
                             </select>
+                            <div class="position-relative sort-searchable-dropdown" id="external_sort_search_dropdown">
+                                <button class="form-control text-left d-flex justify-content-between align-items-center" type="button" id="externalSortDropdownBtn" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false" style="cursor: pointer;">
+                                    <span class="text-truncate sort-selected-text" style="pointer-events: none;"><?= $selectedSortName ?></span>
+                                    <i class="icofont-rounded-down text-muted ml-2" style="pointer-events: none;"></i>
+                                </button>
+                                <div class="dropdown-menu w-100 p-2 shadow-sm" aria-labelledby="externalSortDropdownBtn" style="min-width: 100%;">
+                                    <?php if (count($sorts) > 10): ?>
+                                        <input type="text" class="form-control form-control-sm mb-2 sort-search-input" id="external_sort_search_input" placeholder="<?= _lang('search') ?>" autocomplete="off">
+                                    <?php endif; ?>
+                                    <div class="sort-dropdown-list" style="max-height: 220px; overflow-y: auto;">
+                                        <a href="javascript:;" class="dropdown-item sort-item py-1 px-2 text-truncate rounded <?= $selectedSortId == 0 ? 'active' : '' ?>" data-value="0" data-name="<?= htmlspecialchars(_lang('uncategorized'), ENT_QUOTES, 'UTF-8') ?>">
+                                            <?= _lang('uncategorized') ?>
+                                        </a>
+                                        <?php
+                                        foreach ($sorts as $sort):
+                                            $isSelected = $sort['id'] == $selectedSortId;
+                                        ?>
+                                            <a href="javascript:;" class="dropdown-item sort-item py-1 px-2 text-truncate rounded <?= $isSelected ? 'active' : '' ?>" data-value="<?= $sort['id'] ?>" data-name="<?= htmlspecialchars($sort['sortname'], ENT_QUOTES, 'UTF-8') ?>" title="<?= htmlspecialchars($sort['sortname'], ENT_QUOTES, 'UTF-8') ?>">
+                                                <?= $sort['sortname'] ?>
+                                            </a>
+                                        <?php endforeach; ?>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     <?php endif; ?>
                 </div>
@@ -432,15 +490,35 @@ $emptyAction = '<a href="#" class="btn btn-sm btn-success" data-toggle="modal" d
             </div>
             <form method="post" action="media.php?action=operate_media">
                 <div class="modal-body">
-                    <div class="d-flex flex-wrap" style="max-height: 400px; overflow-y: auto;">
-                        <label class="btn btn-outline-success btn-sm m-1 rounded">
-                            <input type="radio" name="sort" value="0" autocomplete="off" hidden> <?= _lang('uncategorized') ?>
-                        </label>
-                        <?php foreach ($sorts as $key => $value): ?>
-                            <label class="btn btn-outline-success btn-sm m-1 rounded">
-                                <input type="radio" name="sort" value="<?= $value['id'] ?>" autocomplete="off" hidden> <?= $value['sortname'] ?>
-                            </label>
-                        <?php endforeach; ?>
+                    <div class="form-group mb-0">
+                        <label for="move_sort"><?= _lang('resource_sort') ?></label>
+                        <select class="d-none" id="move_sort" name="sort">
+                            <option value="0"><?= _lang('uncategorized') ?></option>
+                            <?php foreach ($sorts as $sort): ?>
+                                <option value="<?= $sort['id'] ?>"><?= $sort['sortname'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                        <div class="position-relative sort-searchable-dropdown" id="move_sort_search_dropdown">
+                            <button class="form-control text-left d-flex justify-content-between align-items-center" type="button" id="moveSortDropdownBtn" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false" style="cursor: pointer;">
+                                <span class="text-truncate sort-selected-text" style="pointer-events: none;"><?= _lang('uncategorized') ?></span>
+                                <i class="icofont-rounded-down text-muted ml-2" style="pointer-events: none;"></i>
+                            </button>
+                            <div class="dropdown-menu w-100 p-2 shadow-sm" aria-labelledby="moveSortDropdownBtn" style="min-width: 100%;">
+                                <?php if (count($sorts) > 10): ?>
+                                    <input type="text" class="form-control form-control-sm mb-2 sort-search-input" placeholder="<?= _lang('search') ?>" autocomplete="off">
+                                <?php endif; ?>
+                                <div class="sort-dropdown-list" style="max-height: 220px; overflow-y: auto;">
+                                    <a href="javascript:;" class="dropdown-item sort-item py-1 px-2 text-truncate rounded active" data-value="0" data-name="<?= htmlspecialchars(_lang('uncategorized'), ENT_QUOTES, 'UTF-8') ?>">
+                                        <?= _lang('uncategorized') ?>
+                                    </a>
+                                    <?php foreach ($sorts as $sort): ?>
+                                        <a href="javascript:;" class="dropdown-item sort-item py-1 px-2 text-truncate rounded" data-value="<?= $sort['id'] ?>" data-name="<?= htmlspecialchars($sort['sortname'], ENT_QUOTES, 'UTF-8') ?>" title="<?= htmlspecialchars($sort['sortname'], ENT_QUOTES, 'UTF-8') ?>">
+                                            <?= $sort['sortname'] ?>
+                                        </a>
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer border-0">
@@ -496,26 +574,15 @@ $emptyAction = '<a href="#" class="btn btn-sm btn-success" data-toggle="modal" d
         })
 
         $('#moveMediaModal').on('show.bs.modal', function(event) {
-            var button = $(event.relatedTarget)
-            var id = button.data('id')
-            var sortid = button.data('sortid')
-            var modal = $(this)
-            modal.find('#move_aid').val(id)
+            var button = $(event.relatedTarget);
+            var id = button.data('id');
+            var sortid = button.data('sortid');
+            var modal = $(this);
+            modal.find('#move_aid').val(id);
 
-            // Initial selection state
-            modal.find('.btn').removeClass('active');
-            var $radio = modal.find('input[name="sort"][value="' + sortid + '"]');
-            $radio.prop('checked', true);
-            $radio.closest('.btn').addClass('active');
-        })
-
-        // Update active style on click
-        $('#moveMediaModal').on('change', 'input[name="sort"]', function() {
-            $('#moveMediaModal .btn').removeClass('active');
-            $(this).closest('.btn').addClass('active');
+            // 保持分类选择与当前资源一致
+            modal.find('#move_sort').val(sortid || 0).trigger('change');
         });
-
-
 
         // copy url
         $('.copy-link').click(function(e) {
@@ -578,6 +645,9 @@ $emptyAction = '<a href="#" class="btn btn-sm btn-success" data-toggle="modal" d
     function changeSort(obj) {
         if (getChecked('aids') === false) {
             infoAlert('<?= _lang('select_move_media') ?>');
+            $('#sort').val('');
+            $('#batch_sort_search_dropdown .sort-selected-text').text('<?= _lang('move_to') ?>');
+            $('#batch_sort_search_dropdown .sort-item').removeClass('active is-highlight');
             return;
         }
         if ($('#sort').val() === '') return;

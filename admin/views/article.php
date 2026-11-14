@@ -201,7 +201,7 @@ $isdraft = $draft ? '&draft=1' : '';
                             <?php endif ?>
                         </div>
                     </div>
-                    <select name="sort" id="sort" onChange="changeSort(this);" class="form-control form-control-sm m-1">
+                    <select name="sort" id="sort" onChange="changeSort(this);" class="d-none">
                         <option value="" selected="selected"><?= _lang('move_to_sort') ?></option>
                         <?php
                         foreach ($sorts as $key => $value):
@@ -223,6 +223,43 @@ $isdraft = $draft ? '&draft=1' : '';
                         ?>
                         <option value="-1"><?= _lang('uncategorized') ?></option>
                     </select>
+                    <div class="dropdown sort-searchable-dropdown d-inline-block position-relative m-1" id="batch_sort_search_dropdown" data-default-text="<?= htmlspecialchars(_lang('move_to_sort'), ENT_QUOTES, 'UTF-8') ?>">
+                        <button class="form-control form-control-sm text-left d-flex justify-content-between align-items-center bg-white" type="button" id="batchSortDropdownBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor: pointer; width: auto; min-width: 110px;">
+                            <span class="text-truncate sort-selected-text mr-2" style="pointer-events: none; max-width: 140px;"><?= _lang('move_to_sort') ?></span>
+                            <i class="icofont-rounded-down text-muted" style="pointer-events: none;"></i>
+                        </button>
+                        <div class="dropdown-menu p-2 shadow-sm" aria-labelledby="batchSortDropdownBtn" style="min-width: 180px;">
+                            <?php if (count($sorts) > 10): ?>
+                                <input type="text" class="form-control form-control-sm mb-2 sort-search-input" placeholder="<?= _lang('search') ?>" autocomplete="off">
+                            <?php endif; ?>
+                            <div class="sort-dropdown-list" style="max-height: 220px; overflow-y: auto;">
+                                <?php
+                                foreach ($sorts as $key => $value):
+                                    if ($value['pid'] != 0) {
+                                        continue;
+                                    }
+                                ?>
+                                    <a href="javascript:;" class="dropdown-item sort-item py-1 px-2 text-truncate rounded" data-value="<?= $value['sid'] ?>" data-name="<?= htmlspecialchars($value['sortname'], ENT_QUOTES, 'UTF-8') ?>" title="<?= htmlspecialchars($value['sortname'], ENT_QUOTES, 'UTF-8') ?>">
+                                        <?= $value['sortname'] ?>
+                                    </a>
+                                    <?php
+                                    $children = $value['children'];
+                                    foreach ($children as $cid):
+                                        $child = $sorts[$cid];
+                                    ?>
+                                        <a href="javascript:;" class="dropdown-item sort-item py-1 px-2 text-truncate rounded pl-4" data-value="<?= $child['sid'] ?>" data-name="<?= htmlspecialchars($child['sortname'], ENT_QUOTES, 'UTF-8') ?>" data-pname="<?= htmlspecialchars($value['sortname'], ENT_QUOTES, 'UTF-8') ?>" title="<?= htmlspecialchars($child['sortname'], ENT_QUOTES, 'UTF-8') ?>">
+                                            <span class="text-muted mr-1" style="pointer-events: none;">└</span><?= $child['sortname'] ?>
+                                        </a>
+                                <?php
+                                    endforeach;
+                                endforeach;
+                                ?>
+                                <a href="javascript:;" class="dropdown-item sort-item py-1 px-2 text-truncate rounded" data-value="-1" data-name="<?= htmlspecialchars(_lang('uncategorized'), ENT_QUOTES, 'UTF-8') ?>">
+                                    <?= _lang('uncategorized') ?>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             <?php endif; ?>
         </form>
@@ -396,6 +433,9 @@ $isdraft = $draft ? '&draft=1' : '';
     function changeSort(obj) {
         if (getChecked('ids') === false) {
             infoAlert('<?= _lang('select_operate_article') ?>');
+            $('#sort').val('');
+            $('#batch_sort_search_dropdown .sort-selected-text').text('<?= _lang('move_to_sort') ?>');
+            $('#batch_sort_search_dropdown .sort-item').removeClass('active is-highlight');
             return;
         }
         if ($('#sort').val() === '') return;

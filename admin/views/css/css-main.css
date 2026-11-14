@@ -2804,8 +2804,8 @@ textarea.form-control {
     color: #4e73df !important;
 }
 
-/* 分类下拉选择器 */
-.sort-searchable-dropdown #sortDropdownBtn * {
+/* 通用分类可搜索下拉选择器 */
+.sort-searchable-dropdown button * {
     pointer-events: none;
 }
 .sort-searchable-dropdown:hover .dropdown-menu:not(.show),
