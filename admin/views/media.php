@@ -264,7 +264,7 @@ $emptyAction = '<a href="#" class="btn btn-sm btn-success" data-toggle="modal" d
                             <?php if (count($sorts) > 10): ?>
                                 <input type="text" class="form-control form-control-sm mb-2 sort-search-input" placeholder="<?= _lang('search') ?>" autocomplete="off">
                             <?php endif; ?>
-                            <div class="sort-dropdown-list" style="max-height: 220px; overflow-y: auto;">
+                            <div class="sort-dropdown-list">
                                 <?php foreach ($sorts as $key => $value): ?>
                                     <a href="javascript:;" class="dropdown-item sort-item py-1 px-2 text-truncate rounded" data-value="<?= $value['id'] ?>" data-name="<?= htmlspecialchars($value['sortname'], ENT_QUOTES, 'UTF-8') ?>" title="<?= htmlspecialchars($value['sortname'], ENT_QUOTES, 'UTF-8') ?>">
                                         <?= $value['sortname'] ?>
@@ -373,7 +373,7 @@ $emptyAction = '<a href="#" class="btn btn-sm btn-success" data-toggle="modal" d
                                     <?php if (count($sorts) > 10): ?>
                                         <input type="text" class="form-control form-control-sm mb-2 sort-search-input" id="external_sort_search_input" placeholder="<?= _lang('search') ?>" autocomplete="off">
                                     <?php endif; ?>
-                                    <div class="sort-dropdown-list" style="max-height: 220px; overflow-y: auto;">
+                                    <div class="sort-dropdown-list">
                                         <a href="javascript:;" class="dropdown-item sort-item py-1 px-2 text-truncate rounded <?= $selectedSortId == 0 ? 'active' : '' ?>" data-value="0" data-name="<?= htmlspecialchars(_lang('uncategorized'), ENT_QUOTES, 'UTF-8') ?>">
                                             <?= _lang('uncategorized') ?>
                                         </a>
@@ -507,7 +507,7 @@ $emptyAction = '<a href="#" class="btn btn-sm btn-success" data-toggle="modal" d
                                 <?php if (count($sorts) > 10): ?>
                                     <input type="text" class="form-control form-control-sm mb-2 sort-search-input" placeholder="<?= _lang('search') ?>" autocomplete="off">
                                 <?php endif; ?>
-                                <div class="sort-dropdown-list" style="max-height: 220px; overflow-y: auto;">
+                                <div class="sort-dropdown-list">
                                     <a href="javascript:;" class="dropdown-item sort-item py-1 px-2 text-truncate rounded active" data-value="0" data-name="<?= htmlspecialchars(_lang('uncategorized'), ENT_QUOTES, 'UTF-8') ?>">
                                         <?= _lang('uncategorized') ?>
                                     </a>

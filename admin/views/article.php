@@ -1,6 +1,13 @@
 <?php
 defined('EMLOG_ROOT') || exit('access denied!');
 $isdraft = $draft ? '&draft=1' : '';
+
+$selectedSortName = _lang('view_by_sort');
+if ($sid == -1) {
+    $selectedSortName = _lang('uncategorized');
+} elseif (!empty($sid) && isset($sorts[$sid])) {
+    $selectedSortName = $sorts[$sid]['sortname'];
+}
 ?>
 <?= FlashMsg::renderArticleAlerts(); ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -24,31 +31,71 @@ $isdraft = $draft ? '&draft=1' : '';
         <div class="row justify-content-between">
             <div class="form-inline">
                 <div id="f_t_sort" class="mx-1">
-                    <select name="bysort" id="bysort" onChange="selectSort(this);" class="form-control">
-                        <option value="" selected="selected"><?= _lang('view_by_sort') ?></option>
+                    <select name="bysort" id="bysort" onChange="selectSort(this);" class="d-none">
+                        <option value="" <?= empty($sid) ? 'selected="selected"' : '' ?>><?= _lang('view_by_sort') ?></option>
                         <?php
                         foreach ($sorts as $key => $value):
                             if ($value['pid'] != 0) {
                                 continue;
                             }
-                            $flg = $value['sid'] == $sid ? 'selected' : '';
+                            $flg = $value['sid'] == $sid ? 'selected="selected"' : '';
                         ?>
                             <option value="<?= $value['sid'] ?>" <?= $flg ?>><?= $value['sortname'] ?></option>
                             <?php
                             $children = $value['children'];
-                            foreach ($children as $key):
-                                $value = $sorts[$key];
-                                $flg = $value['sid'] == $sid ? 'selected' : '';
+                            foreach ($children as $cid):
+                                $child = $sorts[$cid];
+                                $flg = $child['sid'] == $sid ? 'selected="selected"' : '';
                             ?>
-                                <option value="<?= $value['sid'] ?>" <?= $flg ?>>&nbsp; &nbsp; &nbsp; <?= $value['sortname'] ?></option>
+                                <option value="<?= $child['sid'] ?>" <?= $flg ?>>&nbsp; &nbsp; &nbsp; <?= $child['sortname'] ?></option>
                         <?php
                             endforeach;
                         endforeach;
                         ?>
-                        <option value="-1" <?php if ($sid == -1)
-                                                echo 'selected' ?>><?= _lang('uncategorized') ?>
-                        </option>
+                        <option value="-1" <?= $sid == -1 ? 'selected="selected"' : '' ?>><?= _lang('uncategorized') ?></option>
                     </select>
+                    <div class="dropdown sort-searchable-dropdown d-inline-block position-relative" id="filter_sort_search_dropdown" data-select="#bysort" data-default-text="<?= htmlspecialchars(_lang('view_by_sort'), ENT_QUOTES, 'UTF-8') ?>">
+                        <button class="form-control text-left d-flex justify-content-between align-items-center bg-white" type="button" id="filterSortDropdownBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor: pointer; width: auto; min-width: 130px;">
+                            <span class="text-truncate sort-selected-text mr-2" style="pointer-events: none; max-width: 140px;"><?= htmlspecialchars($selectedSortName, ENT_QUOTES, 'UTF-8') ?></span>
+                            <i class="icofont-rounded-down text-muted" style="pointer-events: none;"></i>
+                        </button>
+                        <div class="dropdown-menu p-2 shadow-sm" aria-labelledby="filterSortDropdownBtn" style="min-width: 180px;">
+                            <?php if (count($sorts) > 10): ?>
+                                <input type="text" class="form-control form-control-sm mb-2 sort-search-input" placeholder="<?= _lang('search') ?>" autocomplete="off">
+                            <?php endif; ?>
+                            <div class="sort-dropdown-list">
+                                <a href="javascript:;" class="dropdown-item sort-item py-1 px-2 text-truncate rounded <?= empty($sid) ? 'active' : '' ?>" data-value="" data-name="<?= htmlspecialchars(_lang('view_by_sort'), ENT_QUOTES, 'UTF-8') ?>">
+                                    <?= _lang('view_by_sort') ?>
+                                </a>
+                                <?php
+                                foreach ($sorts as $key => $value):
+                                    if ($value['pid'] != 0) {
+                                        continue;
+                                    }
+                                    $isSelected = $value['sid'] == $sid;
+                                ?>
+                                    <a href="javascript:;" class="dropdown-item sort-item py-1 px-2 text-truncate rounded <?= $isSelected ? 'active' : '' ?>" data-value="<?= $value['sid'] ?>" data-name="<?= htmlspecialchars($value['sortname'], ENT_QUOTES, 'UTF-8') ?>" title="<?= htmlspecialchars($value['sortname'], ENT_QUOTES, 'UTF-8') ?>">
+                                        <?= $value['sortname'] ?>
+                                    </a>
+                                    <?php
+                                    $children = $value['children'];
+                                    foreach ($children as $cid):
+                                        $child = $sorts[$cid];
+                                        $isChildSelected = $child['sid'] == $sid;
+                                    ?>
+                                        <a href="javascript:;" class="dropdown-item sort-item py-1 px-2 text-truncate rounded pl-4 <?= $isChildSelected ? 'active' : '' ?>" data-value="<?= $child['sid'] ?>" data-name="<?= htmlspecialchars($child['sortname'], ENT_QUOTES, 'UTF-8') ?>" data-pname="<?= htmlspecialchars($value['sortname'], ENT_QUOTES, 'UTF-8') ?>" title="<?= htmlspecialchars($child['sortname'], ENT_QUOTES, 'UTF-8') ?>">
+                                            <span class="text-muted mr-1" style="pointer-events: none;">└</span><?= $child['sortname'] ?>
+                                        </a>
+                                <?php
+                                    endforeach;
+                                endforeach;
+                                ?>
+                                <a href="javascript:;" class="dropdown-item sort-item py-1 px-2 text-truncate rounded <?= $sid == -1 ? 'active' : '' ?>" data-value="-1" data-name="<?= htmlspecialchars(_lang('uncategorized'), ENT_QUOTES, 'UTF-8') ?>">
+                                    <?= _lang('uncategorized') ?>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div id="f_t_order" class="mx-1">
                     <select name="order" id="order" onChange="selectOrder(this);" class="form-control">
@@ -232,7 +279,7 @@ $isdraft = $draft ? '&draft=1' : '';
                             <?php if (count($sorts) > 10): ?>
                                 <input type="text" class="form-control form-control-sm mb-2 sort-search-input" placeholder="<?= _lang('search') ?>" autocomplete="off">
                             <?php endif; ?>
-                            <div class="sort-dropdown-list" style="max-height: 220px; overflow-y: auto;">
+                            <div class="sort-dropdown-list">
                                 <?php
                                 foreach ($sorts as $key => $value):
                                     if ($value['pid'] != 0) {
@@ -453,8 +500,16 @@ $isdraft = $draft ? '&draft=1' : '';
         $("#form_log").submit();
     }
 
+    /**
+     * 按分类筛选文章
+     * 
+     * @param {HTMLElement|Object} obj 触发选择的原生控件或事件源
+     * @returns {void}
+     */
     function selectSort(obj) {
-        window.open("./article.php?sid=" + obj.value + "<?= $isdraft ?>", "_self");
+        var sid = obj.value;
+        var url = (sid !== '' && typeof sid !== 'undefined') ? "./article.php?sid=" + sid + "<?= $isdraft ?>" : "./article.php<?= $draft ? '?draft=1' : '' ?>";
+        window.open(url, "_self");
     }
 
     function selectOrder(obj) {

@@ -1611,6 +1611,13 @@ function initSearchableSortDropdown(container) {
                         if ($selectedText.length) {
                             $selectedText.text($wrap.data('default-text') || '');
                         }
+                        var $emptyMatched = $items.filter(function () {
+                            var v = $(this).data('value');
+                            return v === '' || typeof v === 'undefined';
+                        });
+                        if ($emptyMatched.length) {
+                            $emptyMatched.addClass('active');
+                        }
                         return;
                     }
                     var $matched = $items.filter(function () {

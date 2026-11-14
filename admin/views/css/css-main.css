@@ -2817,7 +2817,14 @@ textarea.form-control {
     display: block !important;
 }
 .sort-dropdown-list {
+    max-height: 520px;
+    max-height: min(580px, 65vh);
+    overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+}
+.modal .sort-dropdown-list {
+    max-height: 380px;
+    max-height: min(400px, 45vh);
 }
 .sort-dropdown-list .is-highlight {
     background-color: #eaecf4;

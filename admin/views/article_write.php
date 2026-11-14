@@ -139,7 +139,7 @@
                             <?php if (count($sorts) > 10): ?>
                                 <input type="text" class="form-control form-control-sm mb-2 sort-search-input" id="sort_search_input" placeholder="<?= _lang('search') ?>" autocomplete="off">
                             <?php endif; ?>
-                            <div class="sort-dropdown-list" style="max-height: 220px; overflow-y: auto;">
+                            <div class="sort-dropdown-list">
                                 <a href="javascript:;" class="dropdown-item sort-item py-1 px-2 text-truncate rounded <?= $sortid <= 0 ? 'active' : '' ?>" data-value="-1" data-name="<?= htmlspecialchars(_lang('select_category'), ENT_QUOTES, 'UTF-8') ?>">
                                     <?= _lang('select_category') ?>
                                 </a>
