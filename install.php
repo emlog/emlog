@@ -269,10 +269,8 @@ if (!$act) {
             font-size: 12px;
             color: #64748b;
             line-height: 1.6;
-            margin-bottom: 12px;
+            margin-bottom: 6px;
             padding: 10px 12px;
-            background: #ffffff;
-            border: 1px solid #edf2f7;
             border-radius: 6px;
         }
 
