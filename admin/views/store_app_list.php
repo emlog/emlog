@@ -1,159 +1,159 @@
 <?php defined('EMLOG_ROOT') || exit('access denied!'); ?>
 
 <?php if (!empty($top_plugins) || !empty($top_templates) || !empty($top_download) || !empty($top_favorite) || !empty($active_authors)): ?>
-<div class="row mb-4 mx-0">
-    <!-- 插件热销榜 -->
-    <?php if (!empty($top_plugins)): ?>
-    <div class="col-xl col-lg-4 col-md-6 mb-3">
-        <div class="card shadow-sm h-100 border-0">
-            <div class="card-header bg-white font-weight-bold d-flex align-items-center justify-content-between py-2 border-bottom-0">
-                <span><?= _lang('store_plugin_top') ?></span>
-                <a href="./store.php?action=plu&tag=paid_top" class="small text-muted"><?= _lang('more') ?> &rarr;</a>
-            </div>
-            <div class="card-body p-0">
-                <div class="list-group list-group-flush">
-                    <?php foreach ($top_plugins as $idx => $item):
-                        $item_price = isset($item['price']) ? $item['price'] : 0;
-                        $item_purchased = isset($item['purchased']) ? $item['purchased'] : false;
-                        $item_app_type = isset($item['app_type']) ? $item['app_type'] : '';
-                        $item_can_install = !empty($item['download_url']) && ($item_price == 0 || $item_purchased === true || (!empty($item['svip']) && Register::getRegType() === 2));
-                    ?>
-                        <div class="list-group-item d-flex align-items-center justify-content-between py-2 px-3 border-0">
-                            <div class="text-truncate" style="max-width: 100%;">
-                                <span class="badge badge-<?= $idx < 3 ? 'warning' : 'light' ?> badge-pill mr-1"><?= $idx + 1 ?></span>
-                                <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="<?= $item['name'] ?>" data-url="<?= $item['app_url'] ?>" data-buy-url="<?= $item['buy_url'] ?>" data-download-url="<?= $item_can_install ? urlencode($item['download_url']) : '' ?>" data-type="<?= $item_app_type === 'template' ? 'tpl' : 'plugin' ?>" class="text-dark font-weight-500 text-truncate d-inline-block align-middle" style="max-width: 85%;">
-                                    <?= $item['name'] ?>
-                                </a>
-                            </div>
+    <div class="row mb-4 mx-0">
+        <!-- 插件热销榜 -->
+        <?php if (!empty($top_plugins)): ?>
+            <div class="col-xl col-lg-4 col-md-6 mb-3">
+                <div class="card shadow-sm h-100 border-0">
+                    <div class="card-header bg-white font-weight-bold d-flex align-items-center justify-content-between py-2 border-bottom-0">
+                        <span><?= _lang('store_plugin_top') ?></span>
+                        <a href="./store.php?action=plu&tag=paid_top" class="small text-muted"><?= _lang('more') ?> &rarr;</a>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="list-group list-group-flush">
+                            <?php foreach ($top_plugins as $idx => $item):
+                                $item_price = isset($item['price']) ? $item['price'] : 0;
+                                $item_purchased = isset($item['purchased']) ? $item['purchased'] : false;
+                                $item_app_type = isset($item['app_type']) ? $item['app_type'] : '';
+                                $item_can_install = !empty($item['download_url']) && ($item_price == 0 || $item_purchased === true || (!empty($item['svip']) && Register::getRegType() === 2));
+                            ?>
+                                <div class="list-group-item d-flex align-items-center justify-content-between py-2 px-3 border-0">
+                                    <div class="text-truncate" style="max-width: 100%;">
+                                        <span class="badge badge-<?= $idx < 3 ? 'warning' : 'light' ?> badge-pill mr-1"><?= $idx + 1 ?></span>
+                                        <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="<?= $item['name'] ?>" data-url="<?= $item['app_url'] ?>" data-buy-url="<?= $item['buy_url'] ?>" data-download-url="<?= $item_can_install ? urlencode($item['download_url']) : '' ?>" data-type="<?= $item_app_type === 'template' ? 'tpl' : 'plugin' ?>" class="text-dark font-weight-500 text-truncate d-inline-block align-middle" style="max-width: 85%;">
+                                            <?= $item['name'] ?>
+                                        </a>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
                         </div>
-                    <?php endforeach; ?>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <?php endif; ?>
+        <?php endif; ?>
 
-    <!-- 主题热销榜 -->
-    <?php if (!empty($top_templates)): ?>
-    <div class="col-xl col-lg-4 col-md-6 mb-3">
-        <div class="card shadow-sm h-100 border-0">
-            <div class="card-header bg-white font-weight-bold d-flex align-items-center justify-content-between py-2 border-bottom-0">
-                <span><?= _lang('store_template_top') ?></span>
-                <a href="./store.php?action=tpl&tag=paid_top" class="small text-muted"><?= _lang('more') ?> &rarr;</a>
-            </div>
-            <div class="card-body p-0">
-                <div class="list-group list-group-flush">
-                    <?php foreach ($top_templates as $idx => $item):
-                        $item_price = isset($item['price']) ? $item['price'] : 0;
-                        $item_purchased = isset($item['purchased']) ? $item['purchased'] : false;
-                        $item_app_type = isset($item['app_type']) ? $item['app_type'] : '';
-                        $item_can_install = !empty($item['download_url']) && ($item_price == 0 || $item_purchased === true || (!empty($item['svip']) && Register::getRegType() === 2));
-                    ?>
-                        <div class="list-group-item d-flex align-items-center justify-content-between py-2 px-3 border-0">
-                            <div class="text-truncate" style="max-width: 100%;">
-                                <span class="badge badge-<?= $idx < 3 ? 'danger' : 'light' ?> badge-pill mr-1"><?= $idx + 1 ?></span>
-                                <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="<?= $item['name'] ?>" data-url="<?= $item['app_url'] ?>" data-buy-url="<?= $item['buy_url'] ?>" data-download-url="<?= $item_can_install ? urlencode($item['download_url']) : '' ?>" data-type="<?= $item_app_type === 'template' ? 'tpl' : 'plugin' ?>" class="text-dark font-weight-500 text-truncate d-inline-block align-middle" style="max-width: 85%;">
-                                    <?= $item['name'] ?>
-                                </a>
-                            </div>
+        <!-- 主题热销榜 -->
+        <?php if (!empty($top_templates)): ?>
+            <div class="col-xl col-lg-4 col-md-6 mb-3">
+                <div class="card shadow-sm h-100 border-0">
+                    <div class="card-header bg-white font-weight-bold d-flex align-items-center justify-content-between py-2 border-bottom-0">
+                        <span><?= _lang('store_template_top') ?></span>
+                        <a href="./store.php?action=tpl&tag=paid_top" class="small text-muted"><?= _lang('more') ?> &rarr;</a>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="list-group list-group-flush">
+                            <?php foreach ($top_templates as $idx => $item):
+                                $item_price = isset($item['price']) ? $item['price'] : 0;
+                                $item_purchased = isset($item['purchased']) ? $item['purchased'] : false;
+                                $item_app_type = isset($item['app_type']) ? $item['app_type'] : '';
+                                $item_can_install = !empty($item['download_url']) && ($item_price == 0 || $item_purchased === true || (!empty($item['svip']) && Register::getRegType() === 2));
+                            ?>
+                                <div class="list-group-item d-flex align-items-center justify-content-between py-2 px-3 border-0">
+                                    <div class="text-truncate" style="max-width: 100%;">
+                                        <span class="badge badge-<?= $idx < 3 ? 'danger' : 'light' ?> badge-pill mr-1"><?= $idx + 1 ?></span>
+                                        <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="<?= $item['name'] ?>" data-url="<?= $item['app_url'] ?>" data-buy-url="<?= $item['buy_url'] ?>" data-download-url="<?= $item_can_install ? urlencode($item['download_url']) : '' ?>" data-type="<?= $item_app_type === 'template' ? 'tpl' : 'plugin' ?>" class="text-dark font-weight-500 text-truncate d-inline-block align-middle" style="max-width: 85%;">
+                                            <?= $item['name'] ?>
+                                        </a>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
                         </div>
-                    <?php endforeach; ?>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <?php endif; ?>
+        <?php endif; ?>
 
-    <!-- 下载榜 -->
-    <?php if (!empty($top_download)): ?>
-    <div class="col-xl col-lg-4 col-md-6 mb-3">
-        <div class="card shadow-sm h-100 border-0">
-            <div class="card-header bg-white font-weight-bold d-flex align-items-center justify-content-between py-2 border-bottom-0">
-                <span><?= _lang('store_download_top') ?></span>
-                <a href="./store.php?tag=download_top" class="small text-muted"><?= _lang('more') ?> &rarr;</a>
-            </div>
-            <div class="card-body p-0">
-                <div class="list-group list-group-flush">
-                    <?php foreach ($top_download as $idx => $item):
-                        $item_price = isset($item['price']) ? $item['price'] : 0;
-                        $item_purchased = isset($item['purchased']) ? $item['purchased'] : false;
-                        $item_app_type = isset($item['app_type']) ? $item['app_type'] : '';
-                        $item_can_install = !empty($item['download_url']) && ($item_price == 0 || $item_purchased === true || (!empty($item['svip']) && Register::getRegType() === 2));
-                    ?>
-                        <div class="list-group-item d-flex align-items-center justify-content-between py-2 px-3 border-0">
-                            <div class="text-truncate" style="max-width: 100%;">
-                                <span class="badge badge-<?= $idx < 3 ? 'primary' : 'light' ?> badge-pill mr-1"><?= $idx + 1 ?></span>
-                                <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="<?= $item['name'] ?>" data-url="<?= $item['app_url'] ?>" data-buy-url="<?= $item['buy_url'] ?>" data-download-url="<?= $item_can_install ? urlencode($item['download_url']) : '' ?>" data-type="<?= $item_app_type === 'template' ? 'tpl' : 'plugin' ?>" class="text-dark font-weight-500 text-truncate d-inline-block align-middle" style="max-width: 85%;">
-                                    <?= $item['name'] ?>
-                                </a>
-                            </div>
+        <!-- 下载榜 -->
+        <?php if (!empty($top_download)): ?>
+            <div class="col-xl col-lg-4 col-md-6 mb-3">
+                <div class="card shadow-sm h-100 border-0">
+                    <div class="card-header bg-white font-weight-bold d-flex align-items-center justify-content-between py-2 border-bottom-0">
+                        <span><?= _lang('store_download_top') ?></span>
+                        <a href="./store.php?tag=download_top" class="small text-muted"><?= _lang('more') ?> &rarr;</a>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="list-group list-group-flush">
+                            <?php foreach ($top_download as $idx => $item):
+                                $item_price = isset($item['price']) ? $item['price'] : 0;
+                                $item_purchased = isset($item['purchased']) ? $item['purchased'] : false;
+                                $item_app_type = isset($item['app_type']) ? $item['app_type'] : '';
+                                $item_can_install = !empty($item['download_url']) && ($item_price == 0 || $item_purchased === true || (!empty($item['svip']) && Register::getRegType() === 2));
+                            ?>
+                                <div class="list-group-item d-flex align-items-center justify-content-between py-2 px-3 border-0">
+                                    <div class="text-truncate" style="max-width: 100%;">
+                                        <span class="badge badge-<?= $idx < 3 ? 'primary' : 'light' ?> badge-pill mr-1"><?= $idx + 1 ?></span>
+                                        <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="<?= $item['name'] ?>" data-url="<?= $item['app_url'] ?>" data-buy-url="<?= $item['buy_url'] ?>" data-download-url="<?= $item_can_install ? urlencode($item['download_url']) : '' ?>" data-type="<?= $item_app_type === 'template' ? 'tpl' : 'plugin' ?>" class="text-dark font-weight-500 text-truncate d-inline-block align-middle" style="max-width: 85%;">
+                                            <?= $item['name'] ?>
+                                        </a>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
                         </div>
-                    <?php endforeach; ?>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <?php endif; ?>
+        <?php endif; ?>
 
-    <!-- 收藏榜 -->
-    <?php if (!empty($top_favorite)): ?>
-    <div class="col-xl col-lg-4 col-md-6 mb-3">
-        <div class="card shadow-sm h-100 border-0">
-            <div class="card-header bg-white font-weight-bold d-flex align-items-center justify-content-between py-2 border-bottom-0">
-                <span><?= _lang('store_favorite_top') ?></span>
-                <a href="./store.php?tag=favorite_top" class="small text-muted"><?= _lang('more') ?> &rarr;</a>
-            </div>
-            <div class="card-body p-0">
-                <div class="list-group list-group-flush">
-                    <?php foreach ($top_favorite as $idx => $item):
-                        $item_price = isset($item['price']) ? $item['price'] : 0;
-                        $item_purchased = isset($item['purchased']) ? $item['purchased'] : false;
-                        $item_app_type = isset($item['app_type']) ? $item['app_type'] : '';
-                        $item_can_install = !empty($item['download_url']) && ($item_price == 0 || $item_purchased === true || (!empty($item['svip']) && Register::getRegType() === 2));
-                    ?>
-                        <div class="list-group-item d-flex align-items-center justify-content-between py-2 px-3 border-0">
-                            <div class="text-truncate" style="max-width: 100%;">
-                                <span class="badge badge-<?= $idx < 3 ? 'info' : 'light' ?> badge-pill mr-1"><?= $idx + 1 ?></span>
-                                <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="<?= $item['name'] ?>" data-url="<?= $item['app_url'] ?>" data-buy-url="<?= $item['buy_url'] ?>" data-download-url="<?= $item_can_install ? urlencode($item['download_url']) : '' ?>" data-type="<?= $item_app_type === 'template' ? 'tpl' : 'plugin' ?>" class="text-dark font-weight-500 text-truncate d-inline-block align-middle" style="max-width: 85%;">
-                                    <?= $item['name'] ?>
-                                </a>
-                            </div>
+        <!-- 收藏榜 -->
+        <?php if (!empty($top_favorite)): ?>
+            <div class="col-xl col-lg-4 col-md-6 mb-3">
+                <div class="card shadow-sm h-100 border-0">
+                    <div class="card-header bg-white font-weight-bold d-flex align-items-center justify-content-between py-2 border-bottom-0">
+                        <span><?= _lang('store_favorite_top') ?></span>
+                        <a href="./store.php?tag=favorite_top" class="small text-muted"><?= _lang('more') ?> &rarr;</a>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="list-group list-group-flush">
+                            <?php foreach ($top_favorite as $idx => $item):
+                                $item_price = isset($item['price']) ? $item['price'] : 0;
+                                $item_purchased = isset($item['purchased']) ? $item['purchased'] : false;
+                                $item_app_type = isset($item['app_type']) ? $item['app_type'] : '';
+                                $item_can_install = !empty($item['download_url']) && ($item_price == 0 || $item_purchased === true || (!empty($item['svip']) && Register::getRegType() === 2));
+                            ?>
+                                <div class="list-group-item d-flex align-items-center justify-content-between py-2 px-3 border-0">
+                                    <div class="text-truncate" style="max-width: 100%;">
+                                        <span class="badge badge-<?= $idx < 3 ? 'info' : 'light' ?> badge-pill mr-1"><?= $idx + 1 ?></span>
+                                        <a href="#appModal" data-toggle="modal" data-target="#appModal" data-name="<?= $item['name'] ?>" data-url="<?= $item['app_url'] ?>" data-buy-url="<?= $item['buy_url'] ?>" data-download-url="<?= $item_can_install ? urlencode($item['download_url']) : '' ?>" data-type="<?= $item_app_type === 'template' ? 'tpl' : 'plugin' ?>" class="text-dark font-weight-500 text-truncate d-inline-block align-middle" style="max-width: 85%;">
+                                            <?= $item['name'] ?>
+                                        </a>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
                         </div>
-                    <?php endforeach; ?>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <?php endif; ?>
+        <?php endif; ?>
 
-    <!-- 活跃开发者 -->
-    <?php if (!empty($active_authors)): ?>
-    <div class="col-xl col-lg-4 col-md-6 mb-3">
-        <div class="card shadow-sm h-100 border-0">
-            <div class="card-header bg-white font-weight-bold d-flex align-items-center justify-content-between py-2 border-bottom-0">
-                <span><?= _lang('store_active_authors') ?></span>
-            </div>
-            <div class="card-body p-0">
-                <div class="list-group list-group-flush">
-                    <?php foreach ($active_authors as $idx => $author):
-                        $author_id = isset($author['id']) ? $author['id'] : (isset($author['author_id']) ? $author['author_id'] : 0);
-                        $author_name = !empty($author['nickname']) ? $author['nickname'] : (!empty($author['name']) ? $author['name'] : (!empty($author['author']) ? $author['author'] : ''));
-                    ?>
-                        <div class="list-group-item d-flex align-items-center justify-content-between py-2 px-3 border-0">
-                            <div class="text-truncate" style="max-width: 100%;">
-                                <span class="badge badge-<?= $idx < 3 ? 'success' : 'light' ?> badge-pill mr-1"><?= $idx + 1 ?></span>
-                                <a href="./store.php?author_id=<?= $author_id ?>" class="text-dark font-weight-500 text-truncate d-inline-block align-middle" style="max-width: 85%;" title="<?= $author_name ?>">
-                                    <?= $author_name ?>
-                                </a>
-                            </div>
+        <!-- 活跃开发者 -->
+        <?php if (!empty($active_authors)): ?>
+            <div class="col-xl col-lg-4 col-md-6 mb-3">
+                <div class="card shadow-sm h-100 border-0">
+                    <div class="card-header bg-white font-weight-bold d-flex align-items-center justify-content-between py-2 border-bottom-0">
+                        <span><?= _lang('store_active_authors') ?></span>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="list-group list-group-flush">
+                            <?php foreach ($active_authors as $idx => $author):
+                                $author_id = isset($author['id']) ? $author['id'] : (isset($author['author_id']) ? $author['author_id'] : 0);
+                                $author_name = !empty($author['nickname']) ? $author['nickname'] : (!empty($author['name']) ? $author['name'] : (!empty($author['author']) ? $author['author'] : ''));
+                            ?>
+                                <div class="list-group-item d-flex align-items-center justify-content-between py-2 px-3 border-0">
+                                    <div class="text-truncate" style="max-width: 100%;">
+                                        <span class="badge badge-<?= $idx < 3 ? 'success' : 'light' ?> badge-pill mr-1"><?= $idx + 1 ?></span>
+                                        <a href="./store.php?author_id=<?= $author_id ?>" class="text-dark font-weight-500 text-truncate d-inline-block align-middle" style="max-width: 85%;" title="<?= $author_name ?>">
+                                            <?= $author_name ?>
+                                        </a>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
                         </div>
-                    <?php endforeach; ?>
+                    </div>
                 </div>
             </div>
-        </div>
+        <?php endif; ?>
     </div>
-    <?php endif; ?>
-</div>
 <?php endif; ?>
 
 <div class="mb-3">
@@ -185,7 +185,6 @@
                             </p>
                             <p class="card-text text-muted">
                                 <span class="d-flex flex-wrap align-items-center" style="gap: 4px;">
-                                    <span><?= _lang('store_price') ?></span>
                                     <?php if ($v['price'] > 0): ?>
                                         <?php if ($v['promo_price'] > 0): ?>
                                             <span style="text-decoration:line-through"><?= $v['price'] ?><small><?= _lang('store_currency_unit') ?></small></span>
@@ -378,7 +377,6 @@
                                             </p>
                                             <p class="card-text text-muted">
                                                 <span class="d-flex flex-wrap align-items-center" style="gap: 4px;">
-                                                    <span><?= _lang("store_price") ?></span>
                                                     ${app.price > 0 ? 
                                                         (app.promo_price > 0 ? 
                                                             `<span style="text-decoration:line-through">${app.price}<small><?= _lang("store_currency_unit") ?></small></span> <span class="text-danger">${app.promo_price}<small><?= _lang("store_currency_unit") ?></small></span>` : 
