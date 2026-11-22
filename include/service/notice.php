@@ -219,6 +219,13 @@ class Notice
         $safePoster = htmlspecialchars($poster, ENT_QUOTES, 'UTF-8');
         $safeComment = nl2br(htmlClean(trim($comment)));
 
+        // 获取文章作者（博主）信息
+        $userModel = new User_Model();
+        $author = $userModel->getOneUser($article['author']);
+        $authorName = !empty($author['nickname']) ? $author['nickname'] : _lang('author');
+        $safeAuthorName = htmlspecialchars($authorName, ENT_QUOTES, 'UTF-8');
+        $authorMail = self::getArticleAuthorEmail($article['author']);
+
         if ($pid) {
             $Comment_Model = new Comment_Model();
             $c = $Comment_Model->getOneComment($pid);
@@ -231,28 +238,53 @@ class Notice
             $rawParentComment = isset($c['comment_text']) ? $c['comment_text'] : (isset($c['comment']) ? $c['comment'] : '');
             $safeParentComment = nl2br(htmlClean(trim($rawParentComment)));
 
-            $title = sprintf(_lang('notice_comment_reply_subject'), $safeSiteName);
+            $replyTitle = sprintf(_lang('notice_comment_reply_subject'), $safeSiteName);
 
-            // 1. 原评论人问候
-            $content = '<div style="font-size: 16px; font-weight: 600; color: #0f172a; margin-bottom: 12px;">' . $safeParentPoster . ' <span style="font-weight: normal; font-size: 14px; color: #64748b;">' . _lang('notice_hello') . '</span></div>';
-            // 2. 您在「文章」发表评论：
-            $articleLink = '<a href="' . $articleUrl . '" target="_blank" style="color: #2563eb; text-decoration: none; font-weight: 500;">' . $safeArticleTitle . '</a>';
-            $content .= '<div style="font-size: 14px; color: #475569; margin-bottom: 10px; line-height: 1.6;">' . sprintf(_lang('notice_comment_on'), $articleLink) . '</div>';
-            // 3. 原评论内容卡片（次级引用：柔和冷灰边框）
-            $content .= '<div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px 18px; margin-bottom: 20px; font-size: 14px; line-height: 1.6; color: #475569; word-break: break-all;">' . $safeParentComment . '</div>';
-            // 4. 回复人 给您的回复如下：
-            $content .= '<div style="font-size: 14px; color: #475569; margin-bottom: 10px; line-height: 1.6;"><strong style="font-size: 15px; color: #0f172a;">' . $safePoster . '</strong> ' . _lang('notice_reply_content_prefix') . '</div>';
-            // 5. 回复内容卡片（核心焦点：全包围柔和边框）
-            $content .= '<div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px 20px; margin-bottom: 24px; font-size: 15px; line-height: 1.65; color: #1e293b; word-break: break-all;">' . $safeComment . '</div>';
+            // 1. 发送给被回复人（A）
+            $parentMail = self::getCommentAuthorEmail($pid);
+            if ($parentMail) {
+                // 原评论人问候
+                $content = '<div style="font-size: 16px; font-weight: 600; color: #0f172a; margin-bottom: 12px;">' . $safeParentPoster . ' <span style="font-weight: normal; font-size: 14px; color: #64748b;">' . _lang('notice_hello') . '</span></div>';
+                // 您在「文章」发表评论：
+                $articleLink = '<a href="' . $articleUrl . '" target="_blank" style="color: #2563eb; text-decoration: none; font-weight: 500;">' . $safeArticleTitle . '</a>';
+                $content .= '<div style="font-size: 14px; color: #475569; margin-bottom: 10px; line-height: 1.6;">' . sprintf(_lang('notice_comment_on'), $articleLink) . '</div>';
+                // 原评论内容卡片（次级引用：柔和冷灰边框）
+                $content .= '<div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px 18px; margin-bottom: 20px; font-size: 14px; line-height: 1.6; color: #475569; word-break: break-all;">' . $safeParentComment . '</div>';
+                // 回复人 给您的回复如下：
+                $content .= '<div style="font-size: 14px; color: #475569; margin-bottom: 10px; line-height: 1.6;"><strong style="font-size: 15px; color: #0f172a;">' . $safePoster . '</strong> ' . _lang('notice_reply_content_prefix') . '</div>';
+                // 回复内容卡片（核心焦点：全包围柔和边框）
+                $content .= '<div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px 20px; margin-bottom: 24px; font-size: 15px; line-height: 1.65; color: #1e293b; word-break: break-all;">' . $safeComment . '</div>';
 
-            $mail = self::getCommentAuthorEmail($pid);
+                self::sendMail($parentMail, $replyTitle, $content);
+            }
+
+            // 2. 同时通知博主/文章作者（去重防骚扰策略）
+            // - 被回复人不是博主自己（避免博主收到重复邮件）
+            // - 当前操作者不是博主自己（避免博主在后台或前台回复他人时给自己发邮件）
+            $isAuthorReplied = ($authorMail && $parentMail && strtolower($authorMail) === strtolower($parentMail));
+            $isAuthorPosting = (User::isLogin() && (int)UID === (int)$article['author']);
+
+            if ($authorMail && !$isAuthorReplied && !$isAuthorPosting) {
+                $authorTitle = sprintf(_lang('notice_new_comment_subject'), $safeSiteName);
+                $articleLink = '<a href="' . $articleUrl . '" target="_blank" style="color: #2563eb; text-decoration: none; font-weight: 500;">' . $safeArticleTitle . '</a>';
+
+                // 文章作者问候
+                $authorContent = '<div style="font-size: 16px; font-weight: 600; color: #0f172a; margin-bottom: 12px;">' . $safeAuthorName . ' <span style="font-weight: normal; font-size: 14px; color: #64748b;">' . _lang('notice_hello') . '</span></div>';
+                // 您的文章「文章」收到了新的评论回复：
+                $authorContent .= '<div style="font-size: 14px; color: #475569; margin-bottom: 12px; line-height: 1.6;">' . sprintf(_lang('notice_comment_received'), $articleLink) . '</div>';
+                // 被回复原评论卡片
+                $authorContent .= '<div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px 18px; margin-bottom: 16px; font-size: 14px; line-height: 1.6; color: #64748b; word-break: break-all;"><span style="color: #94a3b8; font-size: 13px;">@' . $safeParentPoster . '：</span>' . $safeParentComment . '</div>';
+                // 回复人 给您的回复如下：
+                $authorContent .= '<div style="font-size: 14px; color: #475569; margin-bottom: 10px; line-height: 1.6;"><strong style="font-size: 15px; color: #0f172a;">' . $safePoster . '</strong> ' . _lang('notice_reply_content_prefix') . '</div>';
+                // 回复内容卡片
+                $authorContent .= '<div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px 20px; margin-bottom: 24px; font-size: 15px; line-height: 1.65; color: #1e293b; word-break: break-all;">' . $safeComment . '</div>';
+
+                self::sendMail($authorMail, $authorTitle, $authorContent);
+            }
+
+            return true;
         } else {
-            // 新评论通知文章作者
-            $userModel = new User_Model();
-            $author = $userModel->getOneUser($article['author']);
-            $authorName = !empty($author['nickname']) ? $author['nickname'] : _lang('author');
-            $safeAuthorName = htmlspecialchars($authorName, ENT_QUOTES, 'UTF-8');
-
+            // 一级新评论通知文章作者
             $title = sprintf(_lang('notice_new_comment_subject'), $safeSiteName);
 
             // 1. 文章作者问候
@@ -265,13 +297,11 @@ class Notice
             // 4. 评论内容卡片（全包围柔和边框）
             $content .= '<div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px 20px; margin-bottom: 24px; font-size: 15px; line-height: 1.65; color: #1e293b; word-break: break-all;">' . $safeComment . '</div>';
 
-            $mail = self::getArticleAuthorEmail($article['author']);
+            if (!$authorMail) {
+                return false;
+            }
+            return self::sendMail($authorMail, $title, $content);
         }
-
-        if (!$mail) {
-            return false;
-        }
-        return self::sendMail($mail, $title, $content);
     }
 
     public static function getFounderEmail()
