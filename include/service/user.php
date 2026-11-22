@@ -312,4 +312,49 @@ class User
         $logModel = new Log_Model();
         return $logModel->getLogNum('n', "and author=$uid");
     }
+
+    /**
+     * 姓名脱敏处理（只显示第一个字符，其他字符用星号替代）
+     *
+     * @param string $name 姓名
+     * @return string 脱敏后的姓名
+     */
+    static function maskName($name)
+    {
+        if (empty($name) || !is_string($name)) {
+            return '';
+        }
+        $name = trim($name);
+        if ($name === '') {
+            return '';
+        }
+        $len = function_exists('mb_strlen') ? mb_strlen($name, 'UTF-8') : strlen($name);
+        if ($len <= 1) {
+            return $name;
+        }
+        $firstChar = function_exists('mb_substr') ? mb_substr($name, 0, 1, 'UTF-8') : substr($name, 0, 1);
+        return $firstChar . str_repeat('*', $len - 1);
+    }
+
+    /**
+     * 身份证/证件号脱敏处理（只显示前三位，其他字符用星号替代）
+     *
+     * @param string $idCard 身份证号
+     * @return string 脱敏后的身份证号
+     */
+    static function maskIdCard($idCard)
+    {
+        if (empty($idCard) || !is_string($idCard)) {
+            return '';
+        }
+        $idCard = trim($idCard);
+        if ($idCard === '') {
+            return '';
+        }
+        $len = strlen($idCard);
+        if ($len <= 3) {
+            return $idCard;
+        }
+        return substr($idCard, 0, 3) . str_repeat('*', $len - 3);
+    }
 }

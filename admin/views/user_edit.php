@@ -53,11 +53,11 @@
                 <input class="form-control" value="<?= $credits ?>" name="credits" id="credits" type="number" min="0" step="1" max="999999999" required>
             </div>
             <div class="form-group">
-                <label for="real_name"><?= _lang('real_name') ?></label>
+                <label for="real_name"><?= _lang('real_name') ?><?php if (!empty($real_name)): ?> <small class="text-muted ml-1">(<?= _lang('masked_field_tip') ?>)</small><?php endif; ?></label>
                 <input type="text" class="form-control" value="<?= $real_name ?>" name="em_name" id="real_name" maxlength="128">
             </div>
             <div class="form-group">
-                <label for="id_num"><?= _lang('id_num') ?></label>
+                <label for="id_num"><?= _lang('id_num') ?><?php if (!empty($id_num)): ?> <small class="text-muted ml-1">(<?= _lang('masked_field_tip') ?>)</small><?php endif; ?></label>
                 <input type="text" class="form-control" value="<?= $id_num ?>" name="em_id_num" id="id_num" maxlength="18">
             </div>
             <div class="form-group">
@@ -75,6 +75,12 @@
     $(function() {
         setTimeout(hideActived, 3600);
         $("#menu_user").addClass('active');
+
+        $('#real_name, #id_num').on('focus', function() {
+            if ($(this).val().indexOf('*') !== -1) {
+                $(this).select();
+            }
+        });
     });
 
     /**

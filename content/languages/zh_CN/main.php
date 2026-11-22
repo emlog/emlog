@@ -260,6 +260,7 @@ return [
     'phone_exist_error' => '该手机号已被注册',
     'real_name' => '真实姓名',
     'id_num' => '身份证号',
+    'masked_field_tip' => '已脱敏显示，如不修改请保留原样',
     'id_num_format_error' => '错误的身份证号格式',
     'id_num_exist_error' => '该身份证号已被占用',
     'phone_code_login_disabled' => '未开启手机验证码登录',

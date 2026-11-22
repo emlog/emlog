@@ -260,6 +260,7 @@ return [
     'phone_exist_error' => 'Phone number already registered',
     'real_name' => 'Real Name',
     'id_num' => 'ID Number',
+    'masked_field_tip' => 'Masked for privacy. Leave unchanged to keep original value, or enter new value to update.',
     'id_num_format_error' => 'Invalid ID number format',
     'id_num_exist_error' => 'ID number already registered',
     'phone_code_login_disabled' => 'Phone code login is disabled',

@@ -99,8 +99,8 @@ if ($action == 'edit') {
     $username = $data['username'];
     $email = $data['email'];
     $phone = isset($data['em_phone']) ? $data['em_phone'] : '';
-    $real_name = isset($data['em_name']) ? $data['em_name'] : '';
-    $id_num = isset($data['em_id_num']) ? $data['em_id_num'] : '';
+    $real_name = isset($data['em_name']) ? User::maskName($data['em_name']) : '';
+    $id_num = isset($data['em_id_num']) ? User::maskIdCard($data['em_id_num']) : '';
     $credits = (int)$data['credits'];
 
     $ex1 = $ex2 = $ex3 = '';
@@ -134,6 +134,18 @@ if ($action == 'update') {
     $avatar = Input::postStrVar('avatar');
 
     LoginAuth::checkToken();
+
+    $oldUser = $User_Model->getOneUser($uid);
+    $old_real_name = isset($oldUser['em_name']) ? $oldUser['em_name'] : '';
+    $old_id_num = isset($oldUser['em_id_num']) ? $oldUser['em_id_num'] : '';
+
+    // 脱密字段处理：若未修改或仍包含脱敏占位符则保留原值
+    if ($real_name === User::maskName($old_real_name) || (strpos($real_name, '*') !== false && $old_real_name !== '')) {
+        $real_name = $old_real_name;
+    }
+    if ($id_num === User::maskIdCard($old_id_num)) {
+        $id_num = $old_id_num;
+    }
 
     if ($credits < 0 || $credits > 999999999) {
         $credits = 0;
