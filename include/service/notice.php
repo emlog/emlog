@@ -150,7 +150,7 @@ class Notice
             }
         }
         if (empty($authorName)) {
-            if (User::isLogin()) {
+            if (LoginAuth::isLogin()) {
                 $curr = $User_Model->getOneUser(UID);
                 $authorName = isset($curr['nickname']) ? $curr['nickname'] : '';
             }
@@ -207,7 +207,7 @@ class Notice
 
         // 整理当前评论/回复者昵称
         if (empty($poster)) {
-            if (User::isLogin()) {
+            if (LoginAuth::isLogin()) {
                 $userModel = new User_Model();
                 $currUser = $userModel->getOneUser(UID);
                 $poster = isset($currUser['nickname']) ? $currUser['nickname'] : '';
@@ -262,7 +262,7 @@ class Notice
             // - 被回复人不是博主自己（避免博主收到重复邮件）
             // - 当前操作者不是博主自己（避免博主在后台或前台回复他人时给自己发邮件）
             $isAuthorReplied = ($authorMail && $parentMail && strtolower($authorMail) === strtolower($parentMail));
-            $isAuthorPosting = (User::isLogin() && (int)UID === (int)$article['author']);
+            $isAuthorPosting = (((defined('ISLOGIN') && ISLOGIN === true) || LoginAuth::isLogin()) && defined('UID') && (int)UID === (int)$article['author']);
 
             if ($authorMail && !$isAuthorReplied && !$isAuthorPosting) {
                 $authorTitle = sprintf(_lang('notice_new_comment_subject'), $safeSiteName);
