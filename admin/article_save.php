@@ -29,6 +29,7 @@ $allow_remark = Input::postStrVar('allow_remark', 'n');
 $password = Input::postStrVar('password');
 $template = Input::postStrVar('template');
 $cover = Input::postStrVar('cover');
+$cover = str_replace(['"', "'", '<', '>', '\\'], '', $cover);
 $link = Input::postStrVar('link');
 $author  = Input::postIntVar('author');
 $author = $author && User::haveEditPermission() ? $author : UID; // 非管理员用户只能修改自己的文章

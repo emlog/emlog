@@ -124,6 +124,7 @@ class Log_Model
             $row['excerpt'] = htmlspecialchars($row['excerpt']);
             $row['password'] = htmlspecialchars($row['password']);
             $row['template'] = !empty($row['template']) ? htmlspecialchars(trim($row['template'])) : 'page';
+            $row['cover'] = htmlspecialchars($row['cover']);
             return $row;
         }
         return false;

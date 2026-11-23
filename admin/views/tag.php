@@ -5,7 +5,7 @@
     <div class="d-flex align-items-center">
         <form action="tag.php" method="get" class="mr-2">
             <div class="form-inline search-inputs-nowrap">
-                <input type="text" name="keyword" value="<?= $keyword ?>" class="form-control m-1 small" placeholder="<?= _lang('search_tag_placeholder') ?>">
+                <input type="text" name="keyword" value="<?= htmlspecialchars($keyword) ?>" class="form-control m-1 small" placeholder="<?= _lang('search_tag_placeholder') ?>">
                 <div class="input-group-append">
                     <button class="btn btn-sm btn-success" type="submit">
                         <i class="icofont-search-2"></i>

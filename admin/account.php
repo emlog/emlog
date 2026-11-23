@@ -335,10 +335,18 @@ if ($action == 'send_email_code') {
         Output::error(_lang('email_format_error'));
     }
 
+    if (!isset($_SESSION)) {
+        session_start();
+    }
+    if (isset($_SESSION['reg_mail_time']) && time() - (int)$_SESSION['reg_mail_time'] < 60) {
+        Output::error(_lang('send_code_too_frequent'));
+    }
+
     doAction('send_email_code', $mail);
 
     $ret = Notice::sendVerifyMailCode($mail);
     if ($ret) {
+        $_SESSION['reg_mail_time'] = time();
         Output::ok();
     } else {
         Output::error(_lang('email_code_send_failed'));

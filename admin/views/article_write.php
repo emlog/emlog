@@ -80,7 +80,7 @@
                 <div class="form-group">
                     <label><?= _lang('cover') ?>：</label>
                     <div class="input-group">
-                        <input name="cover" id="cover" class="form-control" maxlength="2048" placeholder="" value="<?= $cover ?>" />
+                        <input name="cover" id="cover" class="form-control" maxlength="2048" placeholder="" value="<?= htmlspecialchars($cover) ?>" />
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target="#mediaModal" data-mode="cover"><?= _lang('select') ?></button>
                         </div>
@@ -89,7 +89,7 @@
                     <div class="row mt-3">
                         <div class="col-md-4">
                             <label for="upload_img">
-                                <img src="<?= $cover ?: './views/images/cover.svg' ?>" width="200" id="cover_image" class="rounded" alt="<?= _lang('cover_image') ?>" />
+                                <img src="<?= htmlspecialchars($cover ? $cover : './views/images/cover.svg') ?>" width="200" id="cover_image" class="rounded" alt="<?= _lang('cover_image') ?>" />
                                 <input type="file" name="upload_img" class="image" id="upload_img" style="display:none" />
                                 <button type="button" id="cover_rm" class="btn-sm btn btn-link" <?php if (!$cover): ?>style="display:none" <?php endif ?>>x</button>
                             </label>

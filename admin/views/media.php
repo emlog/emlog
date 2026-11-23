@@ -57,7 +57,7 @@
                 <?php endif ?>
             </div>
             <div class="mr-2 flex-shrink-0">
-                <input type="text" class="form-control datepicker" value="<?= $dateTime ?>" placeholder="<?= _lang('view_date_before') ?>">
+                <input type="text" class="form-control datepicker" value="<?= htmlspecialchars($dateTime) ?>" placeholder="<?= _lang('view_date_before') ?>">
             </div>
             <div class="flex-shrink-0">
                 <form action="./media.php" method="get" class="m-0">
@@ -100,7 +100,7 @@ $emptyAction = '<a href="#" class="btn btn-sm btn-success" data-toggle="modal" d
                                 echo View::renderEmptyTableRow(6, _lang('no_media_yet'), _lang('no_media_desc'), $emptyAction);
                             else:
                                 foreach ($medias as $key => $value):
-                                    $media_url = getFileUrl($value['filepath']);
+                                    $media_url = htmlspecialchars(getFileUrl($value['filepath']), ENT_QUOTES);
                                     $sort_name = $value['sortname'];
                                     $media_name = $value['filename'];
                                     $authorInfo = User::getUserByUid($value['author']);
@@ -167,7 +167,7 @@ $emptyAction = '<a href="#" class="btn btn-sm btn-success" data-toggle="modal" d
             <div class="row checkboxContainer">
                 <!-- 宫格卡片模式 -->
                 <?php foreach ($medias as $key => $value):
-                    $media_url = getFileUrl($value['filepath']);
+                    $media_url = htmlspecialchars(getFileUrl($value['filepath']), ENT_QUOTES);
                     $thumbnail_url = $value['thumbnail_url'];
                     $sort_name = $value['sortname'];
                     $media_name = $value['filename'];
