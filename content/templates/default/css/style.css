@@ -1940,91 +1940,124 @@ body {
     }
 }
 
-/* 列表文章左右布局（封面居左，内容居右） */
-.shadow-theme.layout-left {
+/* 列表文章左右布局（封面居左/居右） */
+.shadow-theme.layout-left,
+.shadow-theme.layout-right {
     display: flex;
-    flex-direction: row;
     align-items: stretch;
     min-height: 200px;
 }
 
-.shadow-theme.layout-left .loglist-cover {
+.shadow-theme.layout-left {
+    flex-direction: row;
+}
+
+.shadow-theme.layout-right {
+    flex-direction: row-reverse;
+}
+
+.shadow-theme.layout-left .loglist-cover,
+.shadow-theme.layout-right .loglist-cover {
     flex: 0 0 38%;
     max-width: 38%;
     width: 38%;
     height: auto;
-    min-height: 100%;
-    border-radius: var(--marRadius) 0 0 var(--marRadius);
+    min-height: auto;
+    border-radius: var(--marRadius);
 }
 
-.shadow-theme.layout-left .loglist-cover a {
+.shadow-theme.layout-left .loglist-cover {
+    margin: 5px 0 5px 5px;
+}
+
+.shadow-theme.layout-right .loglist-cover {
+    margin: 5px 5px 5px 0;
+}
+
+.shadow-theme.layout-left .loglist-cover a,
+.shadow-theme.layout-right .loglist-cover a {
     display: block;
     width: 100%;
     height: 100%;
+    border-radius: var(--marRadius);
+    overflow: hidden;
 }
 
-.shadow-theme.layout-left .loglist-cover img {
+.shadow-theme.layout-left .loglist-cover img,
+.shadow-theme.layout-right .loglist-cover img {
     width: 100% !important;
     height: 100%;
     object-fit: cover;
+    border-radius: var(--marRadius);
 }
 
-.shadow-theme.layout-left .loglist-main {
-    flex: 0 0 62%;
-    max-width: 62%;
+.shadow-theme.layout-left .loglist-main,
+.shadow-theme.layout-right .loglist-main {
+    flex: 1;
+    max-width: none;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     min-width: 0;
 }
 
-.shadow-theme.layout-left .card-padding {
+.shadow-theme.layout-left .card-padding,
+.shadow-theme.layout-right .card-padding {
     padding: 1.25rem 1.25rem 0.5rem 1.25rem;
 }
 
-.shadow-theme.layout-left .loglist-content {
+.shadow-theme.layout-left .loglist-content,
+.shadow-theme.layout-right .loglist-content {
     margin-top: 15px;
     margin-bottom: 10px;
 }
 
-.shadow-theme.layout-left .loglist-tag {
+.shadow-theme.layout-left .loglist-tag,
+.shadow-theme.layout-right .loglist-tag {
     margin-top: 15px;
 }
 
 @media (max-width: 767px) {
-    .shadow-theme.layout-left {
+    .shadow-theme.layout-left,
+    .shadow-theme.layout-right {
         display: block;
         min-height: auto;
     }
 
-    .shadow-theme.layout-left .loglist-cover {
+    .shadow-theme.layout-left .loglist-cover,
+    .shadow-theme.layout-right .loglist-cover {
         flex: none;
         max-width: 100%;
         width: 100%;
         height: 205px;
         min-height: auto;
+        margin: 0;
         border-radius: var(--marRadius) var(--marRadius) 0 0;
     }
 
-    .shadow-theme.layout-left .loglist-main {
+    .shadow-theme.layout-left .loglist-main,
+    .shadow-theme.layout-right .loglist-main {
         flex: none;
         max-width: 100%;
         display: block;
     }
 
-    .shadow-theme.layout-left .card-padding {
+    .shadow-theme.layout-left .card-padding,
+    .shadow-theme.layout-right .card-padding {
         padding: 1.25rem;
     }
 }
 
 @media (max-width: 415px) {
-    .shadow-theme.layout-left .loglist-cover {
+    .shadow-theme.layout-left .loglist-cover,
+    .shadow-theme.layout-right .loglist-cover {
         height: 160px;
     }
 }
 
 @media (max-width: 375px) {
-    .shadow-theme.layout-left .loglist-cover {
+    .shadow-theme.layout-left .loglist-cover,
+    .shadow-theme.layout-right .loglist-cover {
         height: 140px;
     }
 }

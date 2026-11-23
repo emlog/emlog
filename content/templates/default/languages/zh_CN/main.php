@@ -35,6 +35,7 @@ return [
     'cover_layout_desc' => '设置文章列表中封面图与内容的排版方式',
     'cover_layout_top' => '上下布局（封面居上）',
     'cover_layout_left' => '左右布局（封面居左）',
+    'cover_layout_right' => '左右布局（封面居右）',
     'management' => '管理',
     'user_center' => '个人中心',
     'logout' => '退出',

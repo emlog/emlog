@@ -56,8 +56,9 @@ $options = [
         'type'        => 'radio',
         'name'        => _langTpl('cover_layout_name'),
         'values'      => [
-            'top'  => _langTpl('cover_layout_top'),
-            'left' => _langTpl('cover_layout_left'),
+            'top'   => _langTpl('cover_layout_top'),
+            'left'  => _langTpl('cover_layout_left'),
+            'right' => _langTpl('cover_layout_right'),
         ],
         'default'     => 'top',
         'description' => _langTpl('cover_layout_desc'),

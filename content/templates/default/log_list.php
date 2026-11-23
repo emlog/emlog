@@ -87,9 +87,16 @@ defined('EMLOG_ROOT') || exit('access denied!');
             }
             if (!empty($logs)):
                 foreach ($logs as $value):
-                    $isLeftLayout = ($coverLayout === 'left' && !empty($value['log_cover']));
+                    $cardClass = '';
+                    if (!empty($value['log_cover'])) {
+                        if ($coverLayout === 'left') {
+                            $cardClass = 'layout-left';
+                        } elseif ($coverLayout === 'right') {
+                            $cardClass = 'layout-right';
+                        }
+                    }
             ?>
-                    <div class="shadow-theme bottom-5 <?= $isLeftLayout ? 'layout-left' : '' ?>">
+                    <div class="shadow-theme bottom-5 <?= $cardClass ?>">
                         <?php if (!empty($value['log_cover'])) : ?>
                             <div class="loglist-cover">
                                 <a href="<?= $value['log_url'] ?>"><img src="<?= $value['log_cover'] ?>" alt="<?= $value['log_title'] ?>" class="rea-width"></a>

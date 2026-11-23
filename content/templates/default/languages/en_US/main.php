@@ -35,6 +35,7 @@ return [
     'cover_layout_desc' => 'Set the layout of the cover image and content in the article list',
     'cover_layout_top' => 'Top-Bottom (Cover on top)',
     'cover_layout_left' => 'Left-Right (Cover on left)',
+    'cover_layout_right' => 'Left-Right (Cover on right)',
     'management' => 'Management',
     'user_center' => 'User Center',
     'logout' => 'Logout',
