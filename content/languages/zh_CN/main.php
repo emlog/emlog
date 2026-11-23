@@ -238,6 +238,7 @@ return [
     'no_article_desc' => '记录灵感、分享见解，开启你的第一篇创作吧',
     'no_draft_yet' => '暂无草稿',
     'no_draft_desc' => '目前草稿箱空空如也',
+    'search_no_result' => '未搜索到相关文章',
     'no_comment_yet' => '还没有评论',
     'no_comment_desc' => '还没有访客发表评论，静候交流与互动',
     'no_media_yet' => '还没有资源文件',

@@ -151,9 +151,15 @@ if ($sid == -1) {
                     <tbody class="checkboxContainer">
                         <?php
                         if (empty($logs)):
-                            $emptyTitle = $draft ? _lang('no_draft_yet') : _lang('no_article_yet');
-                            $emptyDesc = $draft ? _lang('no_draft_desc') : _lang('no_article_desc');
-                            $emptyAction = '<a href="article.php?action=write" class="btn btn-sm btn-success">' . ($draft ? _lang('write_new_article') : _lang('write_article')) . '</a>';
+                            if (!empty($keyword)):
+                                $emptyTitle = _lang('search_no_result');
+                                $emptyDesc = '';
+                                $emptyAction = '';
+                            else:
+                                $emptyTitle = $draft ? _lang('no_draft_yet') : _lang('no_article_yet');
+                                $emptyDesc = $draft ? _lang('no_draft_desc') : _lang('no_article_desc');
+                                $emptyAction = '<a href="article.php?action=write" class="btn btn-sm btn-success">' . ($draft ? _lang('write_new_article') : _lang('write_article')) . '</a>';
+                            endif;
                             echo View::renderEmptyTableRow(9, $emptyTitle, $emptyDesc, $emptyAction);
                         else:
                             $multiCheckBtn = false; // 是否显示批量审核驳回按钮

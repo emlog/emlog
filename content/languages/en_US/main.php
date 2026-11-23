@@ -238,6 +238,7 @@ return [
     'no_article_desc' => 'Capture ideas, share insights, and start your first post',
     'no_draft_yet' => 'No drafts yet',
     'no_draft_desc' => 'Unpublished thoughts will be saved here. The draft box is currently empty',
+    'search_no_result' => 'No articles found',
     'no_comment_yet' => 'No comments yet',
     'no_comment_desc' => 'No comments from visitors yet. Waiting for interaction',
     'no_media_yet' => 'No media files yet',
