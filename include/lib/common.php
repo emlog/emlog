@@ -323,12 +323,12 @@ function isZip($fileName)
  * @param int $page 当前页码
  * @param string $url 页码的地址
  * @param string $anchor 锚点
- * @param int $showPages 显示页码的数量，默认为7
+ * @param int $showPages 显示页码的数量，默认为5
  * @param string $prevText 上一页按钮文字，默认为 &laquo;
  * @param string $nextText 下一页按钮文字，默认为 &raquo;
  * @return string 返回分页导航HTML代码
  */
-function pagination($count, $perlogs, $page, $url, $anchor = '', $showPages = 7, $prevText = '&laquo;', $nextText = '&raquo;')
+function pagination($count, $perlogs, $page, $url, $anchor = '', $showPages = 5, $prevText = '&laquo;', $nextText = '&raquo;')
 {
     $pnums = @ceil($count / $perlogs);
     $re = '';

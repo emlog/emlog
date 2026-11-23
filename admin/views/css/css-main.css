@@ -530,6 +530,12 @@ input[type="checkbox"]:hover, select:hover {
     font-weight: bold;
 }
 
+@media (max-width: 767px) {
+    .page a, .page span {
+        padding: 5px 8px;
+    }
+}
+
 .dropdown:hover .dropdown-menu {
     display: block;
 }
