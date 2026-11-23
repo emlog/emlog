@@ -28,6 +28,8 @@ if (empty($action)) {
     $uid = Input::getIntVar('uid');
     $page = Input::getIntVar('page', 1);
     $keyword = Input::getStrVar('keyword');
+    $field = Input::getStrVar('field', 'all');
+    $field = in_array($field, ['title', 'content', 'all'], true) ? $field : 'all';
     $checked = Input::getStrVar('checked');
     $order = Input::getStrVar('order');
     $perpage_num = Input::getIntVar('perpage_num');
@@ -43,7 +45,18 @@ if (empty($action)) {
     } elseif ($checked) {
         $condition = "and checked='$checked'";
     } elseif ($keyword) {
-        $condition = "and (title like '%$keyword%' or content like '%$keyword%')";
+        switch ($field) {
+            case 'title':
+                $condition = "and title like '%$keyword%'";
+                break;
+            case 'content':
+                $condition = "and content like '%$keyword%'";
+                break;
+            case 'all':
+            default:
+                $condition = "and (title like '%$keyword%' or content like '%$keyword%')";
+                break;
+        }
     }
 
     if ($perpage_num > 0) {

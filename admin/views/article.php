@@ -110,12 +110,19 @@ if ($sid == -1) {
                     </select>
                 </div>
             </div>
-            <form action="article.php" method="get">
-                <div class="form-inline search-inputs-nowrap">
-                    <input type="text" name="keyword" value="<?= htmlspecialchars($keyword) ?>" class="form-control m-1 small" placeholder="<?= _lang('search_article') ?>" aria-label="Search" aria-describedby="basic-addon2">
-                    <input type="hidden" name="draft" value="<?= $draft ?>">
+            <form action="article.php" method="get" class="mt-2 mt-md-0">
+                <input type="hidden" name="draft" value="<?= $draft ?>">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <select name="field" class="custom-select bg-light text-secondary border-right-0" style="border-top-right-radius: 0; border-bottom-right-radius: 0; cursor: pointer; width: auto; min-width: 78px; padding-left: 0.65rem; padding-right: 1.85rem;">
+                            <option value="all" <?= (empty($field) || $field === 'all') ? 'selected' : '' ?>><?= _lang('all') ?></option>
+                            <option value="title" <?= ($field === 'title') ? 'selected' : '' ?>><?= _lang('title') ?></option>
+                            <option value="content" <?= ($field === 'content') ? 'selected' : '' ?>><?= _lang('post_content') ?></option>
+                        </select>
+                    </div>
+                    <input type="text" name="keyword" value="<?= htmlspecialchars($keyword) ?>" class="form-control" placeholder="<?= _lang('search_article') ?>" aria-label="Search" style="max-width: 200px;">
                     <div class="input-group-append">
-                        <button class="btn btn-sm btn-success" type="submit">
+                        <button class="btn btn-success" type="submit">
                             <i class="icofont-search-2"></i>
                         </button>
                     </div>
