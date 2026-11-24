@@ -25,7 +25,7 @@
                 <div class="d-flex flex-wrap align-items-center" style="gap: 10px;">
                     <?php foreach ($tags as $key => $v):
                         $count = empty($v['gid']) ? 0 : count(explode(',', $v['gid']));
-                        $count_badge = $count > 0 ? 'badge-primary' : 'badge-light text-muted';
+                        $count_badge = $count > 0 ? 'badge-light' : 'badge-light text-muted';
                     ?>
                         <div class="d-inline-flex align-items-center bg-light border rounded px-2 py-1" style="font-size: 14px;">
                             <input type="checkbox" name="tids[]" value="<?= $v['tid'] ?>" class="tids mr-2" />
@@ -33,7 +33,7 @@
                                 data-tagname="<?= htmlspecialchars($v['tagname']) ?>" data-kw="<?= htmlspecialchars($v['kw']) ?>" data-title="<?= htmlspecialchars($v['title']) ?>" data-desc="<?= htmlspecialchars($v['description']) ?>" class="font-weight-bold text-dark text-decoration-none mr-1">
                                 <?= htmlspecialchars($v['tagname']) ?>
                             </a>
-                            <a href="./article.php?tagid=<?= $v['tid'] ?>" target="_blank" class="badge badge-pill <?= $count_badge ?> mr-1" title="<?= _lang('article') ?>: <?= $count ?>">
+                            <a href="./article.php?tagid=<?= $v['tid'] ?>" target="_blank" class="badge badge-pill border <?= $count_badge ?> mr-1" title="<?= _lang('article') ?>: <?= $count ?>">
                                 <?= $count ?>
                             </a>
                             <a href="<?= Url::tag($v['tagname']) ?>" target="_blank" class="text-muted small ml-1" title="<?= _lang('view') ?>"><i class="icofont-external-link"></i></a>
