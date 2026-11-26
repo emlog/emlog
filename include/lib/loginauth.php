@@ -172,15 +172,17 @@ class LoginAuth
         return $token;
     }
 
+    /**
+     * 校验 CSRF Token
+     *
+     * @return void
+     */
     public static function checkToken()
     {
         $token = isset($_REQUEST['token']) ? addslashes($_REQUEST['token']) : '';
         $sessionToken = self::getToken();
         // The session is abnormal, the /tmp directory may not be writable, skip the check
-        if (empty($sessionToken)) {
-            return;
-        }
-        if ($token !== $sessionToken) {
+        if (empty($sessionToken) || empty($token) || $token !== $sessionToken) {
             emMsg('Token校验失败，请尝试清理浏览器cookie后刷新页面或者更换浏览器重试');
         }
     }

@@ -3561,3 +3561,83 @@ img.zoom-img {
         max-height: 24px;
     }
 }
+
+/* 空状态样式 (搜索无结果/列表为空) */
+.empty-wrap {
+    padding: 60px 24px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.empty-icon {
+    margin: 0 auto 18px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.empty-icon svg {
+    display: block;
+}
+
+.empty-icon-bg {
+    fill: rgba(89, 184, 248, 0.08);
+}
+
+.empty-icon-stroke {
+    stroke: var(--lightColor);
+}
+
+.empty-icon-accent {
+    stroke: var(--buttonBgColor);
+}
+
+.empty-icon-accent-fill {
+    fill: var(--buttonBgColor);
+}
+
+[data-theme="dark"] .empty-icon-bg {
+    fill: rgba(79, 179, 247, 0.12);
+}
+
+.empty-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--fontColor);
+    margin: 0 0 20px;
+    line-height: 1.4;
+}
+
+.empty-action {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.empty-home-link {
+    display: inline-block;
+    background-color: var(--buttonBgColor);
+    color: var(--buttonTextColor) !important;
+    border: 1px solid var(--buttonBorderColor);
+    padding: 0.5rem 1.6rem;
+    border-radius: var(--marRadius);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.875rem;
+    transition: all 0.25s ease;
+}
+
+.empty-home-link:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+@media (max-width: 576px) {
+    .empty-wrap {
+        padding: 40px 16px;
+    }
+
+    .empty-title {
+        font-size: 1.15rem;
+    }
+}

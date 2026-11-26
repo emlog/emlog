@@ -127,12 +127,38 @@ defined('EMLOG_ROOT') || exit('access denied!');
                 <?php
                 endforeach;
             else:
+                $isSearch = isset($keyword);
                 ?>
-                <p><?= _langTpl('no_content') ?></p>
-            <?php endif ?>
-            <div class="pagination bottom-5">
-                <?= pagination($lognum, $index_lognum, $page, $pageurl, '', 3, _langTpl('prev_page'), _langTpl('next_page')) ?>
-            </div>
+                <div class="empty-wrap shadow-theme bottom-5">
+                    <div class="empty-icon">
+                        <?php if ($isSearch): ?>
+                            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="32" cy="32" r="30" class="empty-icon-bg" />
+                                <path d="M28 38C33.5228 38 38 33.5228 38 28C38 22.4772 33.5228 18 28 18C22.4772 18 18 22.4772 18 28C18 33.5228 22.4772 38 28 38Z" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="empty-icon-stroke" />
+                                <path d="M35.5 35.5L46 46" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="empty-icon-accent" />
+                                <circle cx="28" cy="28" r="4" class="empty-icon-accent-fill" opacity="0.3" />
+                            </svg>
+                        <?php else: ?>
+                            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="32" cy="32" r="30" class="empty-icon-bg" />
+                                <path d="M22 18H36L44 26V46H22V18Z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" class="empty-icon-stroke" />
+                                <path d="M36 18V26H44" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" class="empty-icon-stroke" />
+                                <path d="M28 34H38" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" class="empty-icon-accent" />
+                                <path d="M28 40H34" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" class="empty-icon-accent" />
+                            </svg>
+                        <?php endif; ?>
+                    </div>
+                    <h3 class="empty-title"><?= $isSearch ? _langTpl('search_no_result') : _langTpl('no_content') ?></h3>
+                    <div class="empty-action">
+                        <a href="<?= BLOG_URL ?>" class="empty-home-link"><?= _langTpl('back_to_home') ?></a>
+                    </div>
+                </div>
+            <?php endif; ?>
+            <?php if (!empty($logs)): ?>
+                <div class="pagination bottom-5">
+                    <?= pagination($lognum, $index_lognum, $page, $pageurl, '', 3, _langTpl('prev_page'), _langTpl('next_page')) ?>
+                </div>
+            <?php endif; ?>
         </div>
         <?php include View::getView('side') ?>
     </div>

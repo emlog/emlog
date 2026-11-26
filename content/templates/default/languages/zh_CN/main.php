@@ -5,6 +5,7 @@ return [
     'articles' => '篇文章',
     'search' => '搜索',
     'no_content' => '抱歉，暂时还没有内容。',
+    'search_no_result' => '未搜索到相关文章',
     'page_not_found_title' => '出错了，页面未找到 :(',
     'page_not_found_msg' => '您请求的页面已飞往外太空，或者从未存在过。',
     'home' => '首页',

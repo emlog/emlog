@@ -5,6 +5,7 @@ return [
     'articles' => ' Articles',
     'search' => 'Search',
     'no_content' => 'Sorry, there is no content yet.',
+    'search_no_result' => 'No articles found',
     'page_not_found_title' => 'Oops, Page Not Found :(',
     'page_not_found_msg' => 'The page you requested has flown into outer space or never existed.',
     'home' => 'Home',
