@@ -971,6 +971,7 @@ return [
     'backup_db' => '备份数据库',
     'backup_db_desc' => '将站点数据库备份到自己电脑上，包括文章、评论、用户等信息，但不包括上传的文件图片。',
     'start_backup' => '开始备份',
+    'backup_forbidden' => '系统禁止导出数据备份',
     'import_backup' => '导入备份',
     'select_backup_file' => '选择备份文件',
     'select_backup_file_desc' => '请选择emlog导出的数据库备份文件',

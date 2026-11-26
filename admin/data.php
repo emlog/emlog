@@ -21,6 +21,10 @@ if (!$action) {
 }
 
 if ($action === 'backup') {
+    if ((defined('BACKUP_FORBID') && BACKUP_FORBID === true) || (defined('DATA_BACKUP_FORBID') && DATA_BACKUP_FORBID === true)) {
+        emMsg(_lang('backup_forbidden'));
+    }
+
     LoginAuth::checkToken();
 
     $DB = Database::getInstance();

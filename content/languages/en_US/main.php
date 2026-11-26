@@ -970,6 +970,7 @@ return [
     'backup_db' => 'Backup Database',
     'backup_db_desc' => 'Backup the site database to your computer, including articles, comments, users, etc., but excluding uploaded files and images.',
     'start_backup' => 'Start Backup',
+    'backup_forbidden' => 'Database export and backup is disabled by the system',
     'import_backup' => 'Import Backup',
     'select_backup_file' => 'Select Backup File',
     'select_backup_file_desc' => 'Please select an SQL file or a backup ZIP archive. The database table prefix must remain consistent. Current database table prefix: ',
