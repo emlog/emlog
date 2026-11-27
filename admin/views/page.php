@@ -89,6 +89,9 @@
                                 <td class="small"><?= $value['date'] ?></td>
                                 <td>
                                     <a href="javascript: em_confirm(<?= $value['gid'] ?>, 'page', '<?= LoginAuth::genToken() ?>');" class="badge badge-danger"><?= _lang('delete') ?></a>
+                                    <?php if ($value['hide'] == 'y'): ?>
+                                        <a href="page.php?action=pub&id=<?= $value['gid'] ?>&token=<?= LoginAuth::genToken() ?>" class="badge badge-success"><?= _lang('publish') ?></a>
+                                    <?php endif; ?>
                                 </td>
                             </tr>
                         <?php

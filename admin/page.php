@@ -202,6 +202,18 @@ if ($action == 'operate_page') {
     }
 }
 
+if ($action == 'pub') {
+    LoginAuth::checkToken();
+    $pageId = Input::getIntVar('id');
+    if ($pageId > 0) {
+        $emPage = new Log_Model();
+        $emPage->hideSwitch($pageId, 'n');
+        $CACHE->updateCache(array('options', 'sta', 'comment'));
+        FlashMsg::redirectAdmin('page', 'active_hide_n');
+    }
+    emDirect("./page.php");
+}
+
 if ($action == 'del') {
     LoginAuth::checkToken();
     $pageId = Input::getIntVar('id');
